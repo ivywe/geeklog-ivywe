@@ -57,7 +57,7 @@ $_CST_VERBOSE = false;
  *
  * UAで判断してケータイ向けのページを生成します。
  */
-require_once('custom/custom_cellular.php');
+// require_once('custom/custom_cellular.php');
 
 
 /**
