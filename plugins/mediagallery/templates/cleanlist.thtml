@@ -1,0 +1,17 @@
+<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container">  <tr>
+    <th colspan="2" width="100%">
+      {directory}
+    </th>
+  </tr>
+<!-- BEGIN fileRow -->
+  <tr>
+    <td style="width:10%;text-align:center;">
+        <input type="checkbox" name="sel[]" value="{filename}"{xhtml}>
+        <input type="hidden" name="dir[]" value="{dir}"{xhtml}>
+    </td>
+    <td style="width:90%;text-align:left;">
+        {filename}
+    </td>
+   </tr>
+<!-- END fileRow -->
+ </table>

@@ -1,0 +1,15 @@
+<div class="plugin">
+  <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container gl-tablelist" style="width:100%">
+  <tr>
+    <th>{lang_error_postcard}</th>
+  </tr>
+  <tr>
+    <td align="center">
+      <br{xhtml}>
+      <div class="pluginAlert">{lang_error_retrieve_text}</div>
+      <br{xhtml}>
+      <span class="pluginMediumText">{lang_thank_you}</span>
+    </td>
+  </tr>
+</table>
+</div>

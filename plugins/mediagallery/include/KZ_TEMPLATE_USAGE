@@ -1,0 +1,169 @@
+KZ_Templateクラスの使用法
+
+@author   Kenji ITO <geeklog AT mytsral-kk DOT net>
+@date     2009-04-02
+@license  GPLv2 or later
+
+このクラスはGeeklog標準であるPHPLIBのTemplateクラスに、
+
+ 1. Joe Mucchiello <joe AT throwingdice DOT com>さんがCaching Template Library
+   （以下、CTL）で導入した変数置換機能（の一部）を追加
+
+ 2. 同じくCTLの定義済み変数機能を追加。定義されているのは、
+     'site_url'        （サイトのURL。$_CONF['site_url']と同じ。）
+     'site_admin_url'  （管理画面のURL。$_CONF['site_admin_url']と同じ。）
+     'layout_url'      （テーマパス。$_CONF['layout_url']と同じ。）
+     'xhtml'           （定数のXHTMLと同じ。）
+   の4つ。
+
+ 3. 木下さん<tktools.jp>がGeeklog-1.4.x用に作成したOverRide機能を追加
+
+ 4. dengenさん<http://www.trybase.com/~dengen/log/>が考案したTemplateクラスの高
+   速化を追加
+
+したものです。Joeさんのオリジナルと異なり、このクラスはキャッシュファイルを作成
+しないので、モジュール版PHPでも動作します。MediaGallery-1.6.xを使用する場合に特
+に有効でしょう。
+
+インストールは簡単で、従来のtemplate.class.phpをアーカイブの中に入っている同名
+のファイルで上書きするだけです。
+
+初期設定ではOverRideが有効になっています。無効にするには、84行目付近にある
+
+'override' => 'professional'
+
+を
+
+'override' => ''
+
+に変えてください。PHPコードから制御するには、Templateクラスの
+setOverride(string $theme_name)、getOverride(void)メソッドを使用します。
+
+お断り：このクラスはTemplateクラスを拡張したものなので、本来はクラス名・ファイ
+ル名ともにオリジナルと違うものにすべきなのですが、ユーザが簡単に置き換えられる
+ようにということで、敢えて変えていません。
+
+以下の変数置換機能の説明は、Joeさんが作成したCTLに同梱されているTEMPLATE_USAGE
+を私が翻訳したものです。
+
+----- ここから翻訳 -----
+このライブラリ(CTL)では、テンプレートファイルに含まれる変数を置換してから、出力
+を生成します。CTLではアクション変数を追加しています。テンプレート構文はすべて波
+カッコの中に含まれています: {変数名}。最も単純な構文は今、見たばかりのものです。
+アクションもまた波カッコ内に含まれていますが、最初の文字が感嘆符(!)になっていま
+す：{!アクション パラメータ}。ふつう、アクションは最終的な生成物の中には出力さ
+れません。その代わりに、出力されるものを制御します。この場合、アクションにより、
+2つのアクションに挟まれたブロックがテンプレート内に生成されます。ふつう、2番目
+のアクションは1番目のアクション名の前に'end'が付いたものです：{!endアクション}。
+
+複雑なアクションでは、!} を終了タグとして使用します。!}の前には半角スペースが
+なければなりません。この場合、条件や関数のパラメータの中に他の変数を埋め込むこ
+とができます。したがって、{!if {var1} == {var2} !} と記述すると、2つの変数を比
+較することになります。
+
+[訳注：KZ_Templateクラスでは、!}を使用する複雑なアクションを実装していません。]
+
+
+アクション
+
+条件判断を行うアクション(Conditional Actions)
+
+  {!if var}           最も単純な形式では、!if アクションは、varがtrueに評価され
+  {!endif}            た場合、{!endif}までのブロックの内容を表示します。
+  {!else}             このアクションは、!if と !endif の間に置く必要があります。
+                      varがtrueに評価された場合は、{!if var}と{!else}で挟まれた
+		      ブロックが、falseに評価された場合は、{!else}と{!endif}で
+		      挟まれたブロックが表示されます。
+  {!elseif var}       elseとifをひとまとめにして、複数の条件を評価できるように
+                      したものです。
+
+繰り返しを行うアクション(Looping Actions)
+
+  {!while var}        {!if}に似ており、varがtrueに評価される間、繰り返し
+  {!endwhile}         {!while var}と{!endwhile}で挟まれる部分が表示されます。
+                      falseに評価されると、繰り返しを終了します。
+  {!loop variable}    variable__loopvar という名前の変数を新規作成し、
+  {!endloop}          {!loop variable}と{!endloop}で挟まれたブロックをvariable
+		      の回数だけ繰り返します。このとき、varialbe__loopvarは1か
+		      らvariableまで1ずつ増えていきます。variableが負の場合、-1
+		      から始まり1ずつ減っていきます。繰り返しが終了したとき、
+		      variable__loopvarは削除(unset)されます。
+  {!break}            強制的に繰り返しを終了します。ブロックの残りの部分は処理
+                      されず、!endwhileや!endloopの後から処理が再開されます。
+  {!continue}         強制的に繰り返しを終了します。ブロックの残りの部分は処理
+                      されず、繰り返しの先頭に処理が戻ります。
+
+他のアクション(Other Actions)
+
+  {!inc variable}     variableを1増やします。数値でない場合は、'1'になります。
+  {!dec variable}     variableを1減らします。数値でない場合は、'-1'になります。
+  {!inc+echo variable}  !incと同じですが、数字が表示されます。
+  {!dec+echo variable}  !decと同じですが、数字が表示されます。
+  {!set variable value} variabkeにvalueを割り当てます。この構文はまだ十分にエ
+                        ラーチェックをしていないので、慎重に使用してください。
+  {!unset variable}     テンプレート内部の変数リストから、variableを削除(unset)
+                        します。
+
+コメント
+
+テンプレートファイルに {# と #} で挟むとコメントを追加できます。最終的に表示さ
+れるときには、{# から #} までが削除されます。この機能を使うと、テンプレートの中
+で不可解な制御構文を使用しても、最終的に表示されるHTMLにコメントをたくさん残さ
+なくても済みます。
+
+例
+
+次の（でっちあげた）例では、唯一のテンプレート変数は'count'であり、3に設定され
+ています。
+
+{# コメントの例です #}
+{!loop count}
+{count__loopvar} of {count}: {!inc+echo total}
+{!if count__loopvar == "2"}{!inc count}{!endif}<br>
+{!endloop}
+
+このテンプレートが2回、count変数をリセットせずにパースされると次のように出力さ
+れます。
+
+1 of 3: 1
+2 of 3: 2
+3 of 4: 3
+4 of 4: 4
+1 of 4: 5
+2 of 4: 6
+3 of 5: 7
+4 of 5: 8
+5 of 5: 9
+
+次の例はGeeklogに特有なものですが、最も単純な !if 構文の使い方を説明するのに役
+に立つでしょう。
+
+if ( $_USER['uid'] > 2 ) {  // ユーザはログインしている
+    $T->set_var('onlyloggedinusers', 'ログインユーザしか使用できない機能があります');
+}
+
+テンプレートでは、{onlyloggedinusers}変数の存在をチェックすることで、ユーザがロ
+グインしているかどうかを調べることができます。
+
+<div id="pageheader">
+  ページヘッダを表示
+</div>
+{!if onlyloggedinusers}
+  <div class="boldtext">ログインユーザはここでもっと多くのことができます。ログインしてくれてありがとう!
+  </div>
+{!else}
+  <div class="boldtext">ログインすれば、もっと多くのことができますよ!</div>
+{!endif}
+
+これは単純な例ですが、CTLの機能とパワーを説明しています。もはやPHPのコードでロ
+グインしていないユーザを別に扱う必要がなくなったのです。
+
+
+どうしたらいいですか?
+------------
+Q. どうしたら波カッコを表示できますか?
+A. スマートな方法ではありませんが、{!echo '{' !} としてください。{! や !} を表示
+するには、{!echo '{' !}{!echo '!' !}とします。
+[訳注]HTMLの実体参照に変換する方が簡単でしょう。'{'は &x7b; 、'}'は &x7d; 、
+'!'は &x21; とします。
+----- ここまで翻訳 -----

@@ -1,0 +1,355 @@
+<noscript><div class="pluginAlert" style="padding:10px;">{no_javascript_warning}</div></noscript>
+<script type="text/javascript" src="{site_url}/js/defaults_editor.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+function change(what) {
+    value = '{path_mg}/watermarks/' + what.options[what.selectedIndex].value;
+    if (value != '')
+        if (document.images)
+            document.images['myImage'].src = value;
+}
+//]]>
+</script>
+<div id="pe_navbar" class="jsenabled_show" style="display:none">{navbar}</div>
+<div style="clear:both;"></div>
+<form class="uk-form" enctype="multipart/form-data" method="post" action="{s_form_action}">
+<div id="pe_attributes">
+    <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container">
+      <tr>
+        <th colspan="2">
+          {lang_album_attributes}
+        </th>
+      </tr>
+      <tr>
+        <th>{lang_theme_select}</th>
+        <td class="mgAdminAlignLeft">
+          {album_theme_select}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_comments}</th>
+        <td class="mgAdminAlignLeft">
+          {comment_select}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_enable_exif}</th>
+        <td class="mgAdminAlignLeft">
+          {exif_select}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_enable_ratings}</th>
+        <td class="mgAdminAlignLeft">
+          {ranking_select}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_enable_album_views}</th>
+        <td class="mgAdminAlignLeft">
+          {album_views_select}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_enable_views}</th>
+        <td class="mgAdminAlignLeft">
+          {views_select}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_enable_keywords}</th>
+        <td class="mgAdminAlignLeft">
+          {keywords_select}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_display_album_desc}</th>
+        <td class="mgAdminAlignLeft">
+          {display_album_desc_select}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_filename_title}</th>
+        <td class="mgAdminAlignLeft">
+          {filename_title_select}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_enable_rss}</th>
+        <td class="mgAdminAlignLeft">
+          {rss_select}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_rsschildren}</th>
+        <td class="mgAdminAlignLeft">
+          {rsschildren_select}
+        </td>
+      </tr>
+
+      <tr>
+        <th>{lang_podcast}</th>
+        <td class="mgAdminAlignLeft">
+          {podcast_select}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_mp3ribbon}</th>
+        <td class="mgAdminAlignLeft">
+          {mp3ribbon_select}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_enable_postcard}</th>
+        <td class="mgAdminAlignLeft">
+          {postcard_select}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_enable_sort}</th>
+        <td class="mgAdminAlignLeft">
+          {sort_select}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_album_sort}</th>
+        <td class="mgAdminAlignLeft">
+          {album_sort_select}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_av_play_options}</th>
+        <td class="mgAdminAlignLeft">
+          {playback_type}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_ss_enable}</th>
+        <td class="mgAdminAlignLeft">
+          {ss_select}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_ri_enable}</th>
+        <td class="mgAdminAlignLeft">
+          {ri_select}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_albums_first}</th>
+        <td class="mgAdminAlignLeft">
+          {afirst_select}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_sf_enable}</th>
+        <td class="mgAdminAlignLeft">
+          {sf_select}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_allow_download}</th>
+        <td class="mgAdminAlignLeft">
+          {allow_download_select}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_full_display}</th>
+        <td class="mgAdminAlignLeft">
+          {full_select}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_tn_size}</th>
+        <td class="mgAdminAlignLeft">
+          {tn_size_select}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_tnwidth}</th>
+        <td class="mgAdminAlignLeft">
+          {tnwidth_input}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_tnheight}</th>
+        <td class="mgAdminAlignLeft">
+          {tnheight_input}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_max_image_width}</th>
+        <td class="mgAdminAlignLeft">
+          {width_input}&nbsp;{lang_zero_unlimited}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_max_image_height}</th>
+        <td class="mgAdminAlignLeft">
+          {height_input}&nbsp;{lang_zero_unlimited}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_max_filesize}</th>
+        <td class="mgAdminAlignLeft">
+          {max_size_input}&nbsp;{lang_zero_unlimited}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_display_image_size}</th>
+        <td class="mgAdminAlignLeft">
+          {display_image_size}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_rows}</th>
+        <td class="mgAdminAlignLeft">
+          {rows_input}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_columns}</th>
+        <td class="mgAdminAlignLeft">
+          {columns_input}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_image_skin}</th>
+        <td class="mgAdminAlignLeft">
+          {skin_select}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_display_skin}</th>
+        <td class="mgAdminAlignLeft">
+          {dskin_select}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_album_skin}</th>
+        <td class="mgAdminAlignLeft">
+          {askin_select}
+        </td>
+      </tr>
+    </table>
+</div>
+
+<div id="pe_watermark" class="jsenabled_hide">
+    <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container">
+      <tr>
+        <th colspan="2">
+          {lang_watermark}
+        </th>
+      </tr>
+      <tr>
+        <th>{lang_wm_auto}</th>
+        <td class="mgAdminAlignLeft">
+          {wm_auto_select}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_wm_opacity}</th>
+        <td class="mgAdminAlignLeft">
+          {wm_opacity_select}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_wm_location}</th>
+        <td class="mgAdminAlignLeft">
+          {wm_location_select}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_wm_id}</th>
+        <td class="mgAdminAlignLeft">
+          {wm_select}
+        </td>
+      </tr>
+      <tr>
+        <td style="white-space:nowrap;" colspan="2" align="center">
+          {wm_current}
+        </td>
+      </tr>
+    </table>
+</div>
+
+{valid_formats}
+
+<div id="pe_useruploads" class="jsenabled_hide">
+    <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container">
+      <tr>
+        <th colspan="2">
+          {lang_uploads}
+        </th>
+      </tr>
+      <tr>
+        <th>{lang_member_upload}</th>
+        <td class="mgAdminAlignLeft">
+          {uploads}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_moderate_album}</th>
+        <td class="mgAdminAlignLeft">
+          {moderate}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_mod_group}</th>
+        <td class="mgAdminAlignLeft">
+          {mod_dropdown}
+        </td>
+      </tr>
+      <tr>
+        <th>{lang_email_mods_on_submission}</th>
+        <td class="mgAdminAlignLeft">
+          {email_mod_select}
+        </td>
+      </tr>
+    </table>
+</div>
+
+<div id="pe_access" class="jsenabled_hide">
+    <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container">
+      <tr>
+        <th colspan="2">
+          {lang_accessrights}
+        </th>
+      </tr>
+      <tr>
+        <th>{lang_group}</th>
+        <td class="mgAdminAlignLeft">
+          {group_dropdown}
+        </td>
+      </tr>
+      <tr>
+        <td style="white-space:nowrap;" colspan="2">
+          {lang_permissions}
+        </td>
+      </tr>
+      <tr align="center">
+        <td colspan="2" style="white-space:nowrap;">
+          {lang_perm_key} {permissions_editor}
+        </td>
+      </tr>
+    </table>
+</div>
+<div style="text-align:center;margin-top:10px">
+<input type="submit" class="uk-button" value="{lang_save}" name="mode"{xhtml}>
+<input type="submit" class="uk-button" value="{lang_cancel}" name="mode"{xhtml}>
+</div>
+</form>
+<!-- JS Functions which will execute only if JS enabled will un-hide the special features that enhance the profile editor -->
+<script type="text/javascript">
+//<![CDATA[
+var el;
+el=document.getElementsByTagName('div');
+for(i=0;i<el.length;i++){
+    if(el[i].className == 'jsenabled_show'){
+        el[i].style.display = '';
+    } else if(el[i].className == 'jsenabled_hide'){
+        el[i].style.display = 'none';
+    }
+}
+//]]>
+</script>

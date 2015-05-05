@@ -1,0 +1,8 @@
+<!-- plugins/mediagallery/templates/medialist/uikit_animation/autotag_medialist_col.thtml 20150309 { -->
+
+                                    <li>
+										<div class="uk-cover-background uk-position-cover" style="background-image: url({filename_disp});"></div>
+                                        <img src="{filename_disp}" alt="{media_title}" width="" height="">
+                                    </li>
+
+<!-- } plugins/mediagallery/templates/medialist/uikit_animation/autotag_medialist_col.thtml 20150309 -->

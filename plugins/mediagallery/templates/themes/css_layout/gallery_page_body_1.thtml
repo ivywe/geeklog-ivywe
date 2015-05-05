@@ -1,0 +1,30 @@
+<!-- BEGIN AlbumRow -->
+<div style="width:100%;clear:both;">
+<!-- BEGIN AlbumColumn -->
+  <div class="mg_wrapper">
+{!if lang_subalbums}
+    <div class="mg_gallery_info1" style="margin-left:{column_width2};">
+{!else}
+    <div class="mg_gallery_info2" style="margin-left:{column_width2};">
+{!endif}
+      <div style="padding-top:10px;padding-bottom:5px;"><span style="font-weight:bold;">{album_title}</span> ({subalbum_media_count})</div>
+      <div style="padding-bottom:5px;">{album_desc}</div>
+      <div style="padding-bottom:5px;"><span style="font-weight:bold;">{updated_prompt}</span> {album_last_update}</div>
+      <div><span style="font-weight:bold;">{lang_views}</span> {views}</div>
+    </div>
+  </div>
+
+  <div class="mg_gallery_thumbnail" style="width:{column_width2};">
+  {media_item_thumbnail}
+  </div>
+
+{!if lang_subalbums}
+  <div class="mg_gallery_subalbums">
+    <div style="padding-top:10px;"><span style="font-weight:bold;">{lang_subalbums}</span> {subalbumcount}</div>
+    {saulstart}{subalbumlist}{saulend}
+  </div>
+{!endif}
+<!-- END AlbumColumn -->
+</div>
+<!-- END AlbumRow -->
+<div class="pluginRow2 mg_gallery_bottom_pagination">{bottom_pagination}</div>

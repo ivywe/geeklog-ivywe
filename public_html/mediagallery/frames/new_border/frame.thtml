@@ -1,0 +1,6 @@
+
+<div class="mgFrame_new_border">
+  {media_link_start}
+    <img src="{media_thumbnail}" alt="{media_tag}" title="{media_tag}" class="image" style="width: {media_width}px; height: {media_height}px;"{xhtml}>
+  {media_link_end}
+</div>

@@ -1,0 +1,10 @@
+.mgFrame_new_border {
+  border: 1px solid #DDD;
+  background-color: #FFF;
+  padding: 4px;
+  display:inline-block;
+}
+
+.mgFrame_new_border:hover {
+  border-color: #004E98;
+}

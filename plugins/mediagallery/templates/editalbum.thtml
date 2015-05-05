@@ -1,0 +1,324 @@
+<script type="text/javascript">
+<!--
+function change(what) {
+    value = '{path_mg}/watermarks/' + what.options[what.selectedIndex].value;
+    if (value != '')
+        if (document.images)
+            document.images['myImage'].src = value;
+}
+//-->
+</script>
+
+
+  <form class="uk-form" class="MG_editform" enctype="multipart/form-data" method="post" action="{s_form_action}">
+  <div>
+  <input type="hidden" name="album_id" value="{album_id}"{xhtml}>
+  <input type="hidden" name="cover" value="{album_cover}"{xhtml}>
+  <input type="hidden" name="owner" value="{album_owner}"{xhtml}>
+  <input type="hidden" name="order" value="{album_order}"{xhtml}>
+  <input type="hidden" name="album_cover_filename" value="{album_cover_filename}"{xhtml}>
+  <input type="hidden" name="last_update" value="{last_update}"{xhtml}>
+  <input type="hidden" name="media_count" value="{media_count}"{xhtml}>
+  <input type="hidden" name="action" value="{action}"{xhtml}> {origaid}
+
+  <table class="uk-table uk-table-striped uk-table-condensed uk-overflow-container gl-tablelist">
+	<caption>{lang_edit_title}</caption>
+	<tbody>
+    <tr>
+      <th class="uk-text-right">{lang_title}</th>
+      <td style="text-align:left;">
+        <textarea name="album_name" cols="50" rows="2" style="width:95%;">{album_title}</textarea>
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_description}</th>
+      <td style="text-align:left;">
+        <textarea name="album_desc" cols="50" rows="5" style="width:95%;">{album_desc}</textarea>
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_parent_album}</th>
+      <td style="text-align:left;">
+        {parent_select}
+      </td>
+    </tr>
+    <tr>
+      <th colspan="2" style="width:100%;">
+        {lang_album_attributes}
+      </th>
+    </tr>
+    <tr>
+	  <th class="uk-text-right">{lang_theme_select}</th>
+      <td style="text-align:left;">
+        {album_theme_select}
+      </td>
+    </tr>
+    <tr>
+	  <th class="uk-text-right">{lang_comments}</th>
+      <td style="text-align:left;">
+        {comment_select}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_enable_exif}</th>
+      <td style="text-align:left;">
+        {exif_select}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_enable_ratings}</th>
+      <td style="text-align:left;">
+        {ranking_select}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_enable_rss}</th>
+      <td style="text-align:left;">
+        {rss_select}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_rsschildren}</th>
+      <td style="text-align:left;">
+        {rsschildren_select}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_podcast}</th>
+      <td style="text-align:left;">
+        {podcast_select}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_mp3ribbon}</th>
+      <td style="text-align:left;">
+        {mp3ribbon_select}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_enable_sort}</th>
+      <td style="text-align:left;">
+        {sort_select}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_album_sort}</th>
+      <td style="text-align:left;">
+        {album_sort_select}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_enable_postcard}</th>
+      <td style="text-align:left;">
+        {postcard_select}
+      </td>
+    </tr>
+
+    <tr>
+      <th class="uk-text-right">{lang_display_album_desc}</th>
+      <td style="text-align:left;">
+        {display_album_desc_select}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_enable_album_views}</th>
+      <td style="text-align:left;">
+        {album_views_select}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_enable_views}</th>
+      <td style="text-align:left;">
+        {views_select}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_enable_keywords}</th>
+      <td style="text-align:left;">
+        {keywords_select}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_image_skin}</th>
+      <td style="text-align:left;">
+        {skin_select}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_display_skin}</th>
+      <td style="text-align:left;">
+        {dskin_select}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_album_skin}</th>
+      <td style="text-align:left;">
+        {askin_select}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_albums_first}</th>
+      <td style="text-align:left;">
+        {afirst_select}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_tn_size}</th>
+      <td style="text-align:left;">
+        {tn_size_select}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_tnwidth}</th>
+      <td style="text-align:left;">
+        {tnwidth_input}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_tnheight}</th>
+      <td style="text-align:left;">
+        {tnheight_input}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_av_play_options}</th>
+      <td style="text-align:left;">
+        {playback_type}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_ss_enable}</th>
+      <td style="text-align:left;">
+        {ss_select}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_rows}</th>
+      <td style="text-align:left;">
+        {rows_input}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_columns}</th>
+      <td style="text-align:left;">
+        {columns_input}
+      </td>
+    </tr>
+
+    <tr>
+      <th colspan="2" style="width:100%;">
+        {lang_album_cover}
+      </th>
+    </tr>
+{!if thumbnail}
+    <tr>
+      <td colspan="2" style="text-align:center;">
+        {thumbnail}
+      </td>
+    </tr>
+{!endif}
+    <tr>
+      <th class="uk-text-right">{lang_attached_thumbnail}</th>
+      <td style="text-align:left;">
+        {attach_select}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_thumbnail}</th>
+      <td style="text-align:left;">
+        <input type="file" dir="ltr" name="thumbnail"{xhtml}>
+      </td>
+    </tr>
+{featureselect}
+    <tr>
+      <th colspan="2" style="width:100%;">
+        {lang_media_attributes}
+      </th>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_filename_title}</th>
+      <td style="text-align:left;">
+        {filename_title_select}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_sf_enable}</th>
+      <td style="text-align:left;">
+        {sf_select}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_allow_download}</th>
+      <td style="text-align:left;">
+        {allow_download_select}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_full_display}</th>
+      <td style="text-align:left;">
+        {full_select}
+      </td>
+    </tr>
+    {adminattr}
+    <tr>
+      <th class="uk-text-right">{lang_display_image_size}</th>
+      <td style="text-align:left;">
+        {display_image_size}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_usealternate}</th>
+      <td style="text-align:left;">
+        {usealternate_select}
+      </td>
+    </tr>
+    <tr>
+      <th colspan="2" style="width:100%;">
+        {lang_watermark}
+      </th>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_wm_auto}</th>
+      <td style="text-align:left;">
+        {wm_auto_select}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_wm_opacity}</th>
+      <td style="text-align:left;">
+        {wm_opacity_select}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_wm_location}</th>
+      <td style="text-align:left;">
+        {wm_location_select}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_wm_id}</th>
+      <td style="text-align:left;">
+        {wm_select}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <div style="text-align:center;">
+          {wm_current}
+       </div>
+      </td>
+    </tr>
+	</tbody>
+  </table>
+<br{xhtml}>
+{valid_formats}
+<br{xhtml}>
+{perm_editor}
+<br{xhtml}>
+<div style="text-align:center;">
+  <input type="submit" class="uk-button" value="{lang_save}" name="mode"{xhtml}>
+  <input type="submit" class="uk-button" value="{lang_delete}" name="mode"{xhtml}>
+  <input type="submit" class="uk-button" value="{lang_cancel}" name="mode"{xhtml}>
+</div>
+</div>
+</form>

@@ -1,0 +1,21 @@
+<!-- plugins/mediagallery/templates/medialist/admin/autotag_medialist.thtml 20150309 { -->
+
+{!if edit}
+<fieldset>
+<legend><a href="{site_url}/mediagallery/album.php?aid={album_id}&page=1"><i class="uk-icon-file-image-o"></i> {album_title}</a></legend>
+{!endif}
+
+<div class="uk-margin-large uk-panel uk-panel-box">
+
+  <h2>&#91;medialist:{album_id}&#93;</h2>
+
+  <div class="uk-margin-large">
+{medialist_col}
+  </div>
+</div>
+
+{!if edit}
+</fieldset>
+{!endif}
+
+<!-- } plugins/mediagallery/templates/medialist/admin/autotag_medialist.thtml -->

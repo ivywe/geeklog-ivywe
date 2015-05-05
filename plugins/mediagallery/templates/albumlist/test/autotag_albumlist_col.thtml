@@ -1,0 +1,21 @@
+<!-- plugins/mediagallery/templates/albumlist/test/autotag_albumlist_col.thtml 20150318 { -->
+
+<div class="{class}">
+			
+<a href="{album_url}"><img src="{album_img}"></a>
+			
+<p class="photo_title en"><a href="{album_url}">{album_title}</a> </p>
+			
+<p class="released_date">
+<span style="color:green"> &#123;released&#125;</span>:{released}
+</p>
+
+<p><span style="color:green"> &#123;album_id&#125;</span>:{album_id}</p>
+<p><span style="color:green"> &#123;album_title&#125;</span>:{album_title}</p>
+<p><span style="color:green"> &#123;album_desc&#125;</span>{album_desc}</p>
+<p><span style="color:green"> &#123;album_cover&#125;</span>{album_cover}</p>
+<p><span style="color:green"> &#123;album_cover_filename&#125;</span>{album_cover_filename}</p>
+{edit}
+</div>
+
+<!-- } plugins/mediagallery/templates/albumlist/test/autotag_albumlist_col.thtml -->

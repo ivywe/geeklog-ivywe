@@ -1,0 +1,32 @@
+  <table class="uk-table gl-tablelist-remove">
+    <tbody>
+    <tr>
+      <th style="width:100%;" colspan="2">
+        {lang_accessrights}
+      </th>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_owner}</th>
+      <td style="text-align:left;">
+        {owner_username}
+        <input type="hidden" name="owner_id" value="{owner_id}"{xhtml}>
+      </td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap" colspan="2">
+        {lang_permissions}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center">
+        {lang_perm_key} {permissions_editor}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">
+        {lang_force_child_update}
+      </th>
+      <td>{force_child_update}</td>
+    </tr>
+    </tbody>
+  </table>
