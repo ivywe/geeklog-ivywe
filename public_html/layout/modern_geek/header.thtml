@@ -14,6 +14,22 @@
 
 {feed_url}
 
+<!-- jQuery Isotope { -->
+<link rel="stylesheet" type="text/css" href="{layout_url}/vendor/jquery-isotope-site/isotope.css" />
+<!-- } jQuery Isotope -->
+
+<!-- jQuery Plugin one-page-faq-source { -->
+<link type="text/css" rel="stylesheet" href="{layout_url}/vendor/one-page-faq-source/css/style.css">
+<!-- } jQuery Plugin one-page-faq-source -->
+
+<!-- jQuery Datatables { -->
+<link rel="stylesheet" type="text/css" href="{layout_url}/vendor/jquery-datatables/css/jquery.dataTables.min.css" />
+<!-- } jQuery Datatables -->
+
+<!-- Important Owl stylesheet { -->
+<link rel="stylesheet" href="{layout_url}/vendor/jquery-owl.carousel/owl-carousel/owl.carousel.css">
+<link rel="stylesheet" href="{layout_url}/vendor/jquery-owl.carousel/owl-carousel/owl.theme.css"><!-- } Important Owl stylesheet -->
+
 <link rel="stylesheet" href="{layout_url}/vendor/uikit/css/uikit-ivywe.css"{xhtml}> 
 
 {rel_links}

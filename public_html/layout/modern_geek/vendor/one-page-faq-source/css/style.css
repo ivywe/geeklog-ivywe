@@ -1,0 +1,49 @@
+/* =The style for the lab
+-------------------------------------------------------------- */
+hr {
+    height:1px;
+    border:none;
+    background-color:rgb(220,220,220)
+}
+
+.bx-answer, .bx-checkbox {
+    display:none;
+}
+
+div#centerblocks #form-list h3 {
+    line-height:18px;
+    font-size:14px;
+    font-weight:bold;
+    color:rgb(100,150,200);
+	margin:10px 0 5px 0;
+    padding-left:24px;
+    cursor:pointer;
+    background-image:url('../img/open.png' );
+    background-position:left;
+    background-repeat:no-repeat;
+}
+
+div#centerblocks #map-list h3 {
+    line-height:18px;
+    font-size:14px;
+    font-weight:bold;
+    color:rgb(100,150,200);
+	margin:10px 0 5px 0;
+    padding-left:0;
+    cursor:pointer;
+    background-image:url('../img/faq-close.png' );
+    background-position:right;
+    background-repeat:no-repeat;
+}
+
+div#centerblocks #map-list h3.close {
+    background-image:url('../img/faq-open.png');
+}
+
+div#centerblocks h3.close {
+    background-image:url('../img/faq-close.png');
+}
+
+div#centerblocks #form-list h3.close {
+    background-image:url('../img/close.png');
+}

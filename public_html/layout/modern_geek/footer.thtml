@@ -40,6 +40,7 @@
 
 <!-- } #container -->
 
+
 {plg_footercode}
 
 <!-- Front-end framework UIkit { -->
@@ -49,6 +50,297 @@
 <script src="{layout_url}/vendor/uikit/js/components/slideshow.js"></script>
 <script src="{layout_url}/vendor/uikit/js/components/slideshow-fx.js"></script>
 <!-- } Front-end framework UIkit -->
+
+<!-- PDF}–Ê•\Ž¦ { -->
+<script type="text/javascript" src="{layout_url}/vendor/jquery-gdocsviewer/jquery.gdocsviewer.min.js"></script>
+<script type="text/javascript">
+/*<![CDATA[*/
+$(document).ready(function() {
+  $('a.embed-large').gdocsViewer({width: 960, height: 600});
+  $('a.embed-medium').gdocsViewer({width: 768, height: 500});
+  $('a.embed-small').gdocsViewer({width: 300, height: 240});
+  $('#embedURL').gdocsViewer();
+});
+/*]]>*/
+</script>
+<!-- } PDF}–Ê•\Ž¦ -->
+
+<!-- jQuery isotope { -->
+<script type="text/javascript" src="{layout_url}/vendor/jquery-isotope-site/jquery.isotope.min.js"></script>
+
+<script>
+$(function(){
+var $container = $('#container-isotope');
+
+// hover element
+$container.delegate('.element', 'mouseenter', function () {
+$('.name',this).fadeIn('slow');
+});
+
+$container.delegate('.element', 'mouseleave', function () {
+$('.name',this).fadeOut('slow');
+});
+});
+</script>
+
+
+
+<script>
+  $(function(){
+   
+    var $container = $('#container-isotope'),
+        filters = {};
+
+    $container.isotope({
+      itemSelector : '.element',
+      masonry: {
+        columnWidth: 0
+      }
+    });
+
+    // filter buttons
+    $('.filter a').click(function(){
+      var $this = $(this);
+      // don't proceed if already selected
+      if ( $this.hasClass('selected') ) {
+        return;
+      }
+      
+      var $optionSet = $this.parents('.option-set');
+      // change selected class
+      $optionSet.find('.selected').removeClass('selected');
+      $this.addClass('selected');
+      
+      // store filter value in object
+      // i.e. filters.color = 'red'
+      var group = $optionSet.attr('data-filter-group');
+      filters[ group ] = $this.attr('data-filter-value');
+      // convert object into array
+      var isoFilters = [];
+      for ( var prop in filters ) {
+        isoFilters.push( filters[ prop ] )
+      }
+      var selector = isoFilters.join('');
+      $container.isotope({ filter: selector });
+
+      return false;
+    });
+
+  });
+</script>
+
+<script>
+  $(function(){
+    
+    var $container = $('#container-isotope');
+    
+    
+      // add randomish size classes
+      $container.find('.element').each(function(){
+        var $this = $(this),
+            number = parseInt( $this.find('.number').text(), 10 );
+        if ( number % 7 % 2 === 1 ) {
+          $this.addClass('width2');
+        }
+        if ( number % 3 === 0 ) {
+          $this.addClass('height2');
+        }
+      });
+    
+    $container.isotope({
+      itemSelector : '.element',
+      masonry : {
+        columnWidth : 20
+      },
+      masonryHorizontal : {
+        rowHeight: 20
+      },
+      cellsByRow : {
+        columnWidth : 20,
+        rowHeight : 170
+      },
+      cellsByColumn : {
+        columnWidth : 20,
+        rowHeight : 170
+      },
+      getSortData : {
+        symbol : function( $elem ) {
+          return $elem.attr('data-symbol');
+        },
+        category : function( $elem ) {
+          return $elem.attr('data-category');
+        },
+        number : function( $elem ) {
+          return parseInt( $elem.find('.number').text(), 10 );
+        },
+        weight : function( $elem ) {
+          return parseFloat( $elem.find('.weight').text().replace( /[\(\)]/g, '') );
+        },
+        name : function ( $elem ) {
+          return $elem.find('.name').text();
+        }
+      }
+    });
+    
+    
+      var $optionSets = $('#options .option-set'),
+          $optionLinks = $optionSets.find('a');
+
+      $optionLinks.click(function(){
+        var $this = $(this);
+        // don't proceed if already selected
+        if ( $this.hasClass('selected') ) {
+          return false;
+        }
+        var $optionSet = $this.parents('.option-set');
+        $optionSet.find('.selected').removeClass('selected');
+        $this.addClass('selected');
+  
+        // make option object dynamically, i.e. { filter: '.my-filter-class' }
+        var options = {},
+            key = $optionSet.attr('data-option-key'),
+            value = $this.attr('data-option-value');
+        // parse 'false' as false boolean
+        value = value === 'false' ? false : value;
+        options[ key ] = value;
+        if ( key === 'layoutMode' && typeof changeLayoutMode === 'function' ) {
+          // changes in layout modes need extra logic
+          changeLayoutMode( $this, options )
+        } else {
+          // otherwise, apply new options
+          $container.isotope( options );
+        }
+        
+        return false;
+      });
+
+
+    
+      // change layout
+      var isHorizontal = false;
+      function changeLayoutMode( $link, options ) {
+        var wasHorizontal = isHorizontal;
+        isHorizontal = $link.hasClass('horizontal');
+
+        if ( wasHorizontal !== isHorizontal ) {
+          // orientation change
+          // need to do some clean up for transitions and sizes
+          var style = isHorizontal ? 
+            { height: '80%', width: $container.width() } : 
+            { width: 'auto' };
+          // stop any animation on container height / width
+          $container.filter(':animated').stop();
+          // disable transition, apply revised style
+          $container.addClass('no-transition').css( style );
+          setTimeout(function(){
+            $container.removeClass('no-transition').isotope( options );
+          }, 100 )
+        } else {
+          $container.isotope( options );
+        }
+      }
+
+
+    
+      // change size of clicked element
+      $container.delegate( '.element', 'click', function(){
+        $(this).toggleClass('large');
+        $container.isotope('reLayout');
+      });
+
+      // toggle variable sizes of all elements
+      $('#toggle-sizes').find('a').click(function(){
+        $container
+          .toggleClass('variable-sizes')
+          .isotope('reLayout');
+        return false;
+      });
+
+
+    
+      $('#insert a').click(function(){
+        var $newEls = $( fakeElement.getGroup() );
+        $container.isotope( 'insert', $newEls );
+
+        return false;
+      });
+
+      $('#append a').click(function(){
+        var $newEls = $( fakeElement.getGroup() );
+        $container.append( $newEls ).isotope( 'appended', $newEls );
+
+        return false;
+      });
+
+
+    var $sortBy = $('#sort-by');
+    $('#shuffle a').click(function(){
+      $container.isotope('shuffle');
+      $sortBy.find('.selected').removeClass('selected');
+      $sortBy.find('[data-option-value="random"]').addClass('selected');
+      return false;
+    });
+
+
+  });
+</script>
+<!-- } jQuery isotope -->
+
+<!-- DataTables jQuery { -->
+        <script type="text/javascript" language="javascript" src="{layout_url}/vendor/jquery-datatables/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="{layout_url}/vendor/jquery-datatables/js/numericComma.js"></script>
+
+        <script type="text/javascript">
+             $(document).ready( function() {
+               $('#bukkendata').dataTable( {
+		 "lengthMenu": [[-1], ["All"]],
+
+    	 "bLengthChange": false,
+		 "aoData": [
+			{ "sType": "html" },
+			{ "sType": "html" },
+			{ "sType": "html" },
+			{ "sType": "html" },
+			{ "sType": "html" }
+			],
+
+               } );
+
+               $('#memberlist').dataTable( {
+		 "lengthMenu": [[-1], ["All"]],
+	         "order": [[ 0, "desc" ]],
+    		 "bLengthChange": true,
+               } );
+
+
+             } );
+</script>
+<!-- } DataTables jQuery -->
+
+<!-- jQuery Plugin one-page-faq-source { -->
+    <script>
+        $(document).ready(function() {
+            $('#faq-list h3').click(function() {
+                
+                $(this).next('.bx-answer').slideToggle(500);
+                $(this).toggleClass('close');
+                
+            });
+            $('#form-list h3').click(function() {
+                
+                $(this).next('.bx-checkbox').slideToggle(200);
+                $(this).toggleClass('close');
+                
+            });
+            $('#map-list h3').click(function() {
+                
+                $(this).next('.map').slideToggle(200);
+                $(this).toggleClass('close');
+                
+            });
+        }); // end ready
+    </script>
+<!-- } jQuery Plugin one-page-faq-source -->
 
 <!-- Simple Back To Top Link jQuery -->
 <script type="text/javascript">
@@ -73,6 +365,41 @@
         });
 </script>
 <!-- } Simple Back To Top Link jQuery -->
+
+
+
+<!-- Include owl js plugin { -->
+<script src="{layout_url}/vendor/jquery-owl.carousel/owl-carousel/owl.carousel.js"></script>
+
+<script>
+$(document).ready(function() {
+      $("#owl-images").owlCarousel({
+        autoPlay: 3000,
+        itemsDesktop : [1199,3],
+        itemsDesktopSmall : [979,3],
+    	lazyLoad : true,
+    	navigation : true
+      });
+
+	  $("#owl-oneslide").owlCarousel({
+ 
+      navigation : true, // Show next and prev buttons
+      slideSpeed : 300,
+      paginationSpeed : 400,
+      singleItem:true
+ 
+      // "singleItem:true" is a shortcut for:
+      // items : 1, 
+      // itemsDesktop : false,
+      // itemsDesktopSmall : false,
+      // itemsTablet: false,
+      // itemsMobile : false
+ 
+      });
+    });
+</script>
+<!-- } Include owl js plugin -->
+
 
 
 
