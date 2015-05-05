@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>Assist | Geeklog Document</title>
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css " title="Dev Stylesheet">
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/english/docstyle.css " title="Dev Stylesheet">
+</head>
+
+<body>
+<p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
+<div class="menu">
+<a href="../../../../../docs/english/index.html">Geeklog Document</a>
+- <a href="index.html">Assist Plugin </a>
+- Setting</div>
+<p>
+<a href="../../../../../">Top page</a>
+ <a href="../../../../../admin/plugins/assist/">Admin</a>
+</p>
+<h1><a href="index.html">Assist Plugin </h1>
+
+<h2><a name="config.php">Setting</a>
+<p>Assist Plugin Setting
+<form name='assist_conf_link' action='../../../../../admin/configuration.php' method='POST'>
+<input type='hidden' name='conf_group' value='assist'></form>
+ <a style='text-decoration: none;' href='#' onclick="document.assist_conf_link.submit()">Configuration Admin</a>「Admin - Configuration  - Assist」からCan change.</p>
+<h3><a name="public">Main Setting</a>(2013/03/18 update)</h3>
+
+<table>
+<tr><th style="width:25%">Variables</th>
+    <th style="width:25%">Default</th>
+    <th style="width:50%">Description</th>
+</tr>
+<tr>
+  <td valign="top"><a name="desc_title_trim_length">Title のlength(title_trim_length)</a></td>
+  <td valign="top">20</td>
+  <td valign="top">　</td>
+</tr>
+
+<tr class="r2">
+  <td valign="top"><a name="desc_intervalday">Display Period（date）(intervalday)</a></td>
+  <td valign="top">90(date)</td>
+  <td valign="top">　</td>
+</tr>
+
+<tr>
+  <td valign="top"><a name="desc_limitcnt">display Number (limitcnt)</a></td>
+  <td valign="top">10(count)</td>
+  <td valign="top">　</td>
+</tr>
+
+<tr class="r2">
+  <td valign="top"><a name="desc_newmarkday">New arrival display period（date）(newmarkday)</a></td>
+  <td valign="top">3(date)</td>
+  <td valign="top">　</td>
+</tr>
+
+<tr>
+  <td valign="top"><a name="desc_topics"> Default Topics(topics)</a></td>
+  <td valign="top">''</td>
+  <td valign="top">　</td>
+</tr>
+
+<tr class="r2">
+  <td valign="top"><a name="desc_new_img">New arrival(new_img)</a></td>
+  <td valign="top">&lt;img&nbsp;width='29'&nbsp;height='11'&nbsp;src='{$_CONF['site_url']}/assist/images/icon_new.gif'&nbsp;alt='NEW!'&nbsp;/&gt;</td>
+  <td valign="top">　</td>
+</tr>
+
+<tr>
+  <td valign="top"><a name="desc_rss_img">RSS mark(rss_img)</a></td>
+  <td valign="top">&lt;img&nbsp;width='35'&nbsp;height='16'&nbsp;src='{$_CONF['site_url']}/assist/images/icon_RSS.gif'&nbsp;alt='RSS'&nbsp;class='icon_rss'&nbsp;&gt;　</td>
+  <td valign="top">　</td>
+</tr>
+
+<tr class="r2">
+  <td valign="top"><a name="desc_newsletter_tid">Newsletter topic ID(newsletter_tid)</a></td>
+  <td valign="top">newsletter</td>
+  <td valign="top">　</td>
+</tr>
+
+<tr>
+  <td valign="top"><a name="desc_templates">Templateuser display(templates)</a></td>
+  <td valign="top">Standard(standard)</td>
+  <td valign="top">Select theme directory.
+<ul>
+    <li>Standard(standard)( Default): private/plugins/assist/templates/under </li>
+    <li>custom (custom): private/plugins/assist/custom/templates/under </li>
+    <li>Theme (theme): public_html/Theme /Theme Template path /under </li>
+    </ul>
+<strong>notification:</strong> custom or Theme Select  case Directory がなければdefault theme directoryをuse 
+</td>
+</tr>
+
+<tr class="r2">
+  <td valign="top"><a name="desc_templates_admin">Template  Admin(templates_admin)</a></td>
+  <td valign="top">Standard(standard)</td>
+  <td valign="top">Select theme directory.
+<ul>
+    <li>Standard(standard)( Default): private/plugins/assist/templates/under </li>
+    <li>custom (custom): private/plugins/assist/custom/templates/under </li>
+    <li>Theme (theme): public_html/Theme /Theme Template path /under </li>
+    </ul>
+<strong>notification:</strong> custom or Theme Select  case Directory がなければdefault theme directoryをuse 　</td>
+</tr>
+
+<tr>
+  <td valign="top"><a name="desc_themespath">Theme Template path (themespath)</a></td>
+  <td valign="top">assist/templates/</td>
+  <td valign="top">Theme Template using case 、Theme からのrelated path 　</td>
+</tr>
+
+<tr class="r2">
+  <td valign="top"><del><a name="desc_cron_schedule_interval">assist Cron schedule interval(cron_schedule_interval)</a></del></td>
+  <td valign="top">3600 sec.(60 min.)</td>
+  <td valign="top">Send newsletter by Geeklog CRON</td>
+</tr>
+
+<tr>
+  <td valign="top"><a name="desc_onoff_emailfromadmin">Administrator Email Setting display（準備中）(onoff_emailfromadmin)</a></td>
+  <td valign="top">1</td>
+  <td valign="top">　</td>
+</tr>
+<tr class="r2">
+  <td valign="top"><a name="desc_aftersave">After save のDisplay 遷移 User's Display (aftersave)</a></td>
+  <td valign="top">作成した項目をdisplay(item)</td>
+  <td valign="top">save した後、どのページにmove するかをSelect します.
+    <ul>
+    <li>Display 遷移なし(no): don't move.</li>
+    <li>作成した項目をdisplay(item): 作成した記事をdisplay.</li>
+    <li>項目list をdisplay(list): list をdisplay.</li>
+    <li>ホームをdisplay(home): site のHomeページ（Top page）をdisplay.</li>
+    <li>AdminTOPをdisplay(admin): Adminをdisplay.</li>
+    <li>Plugin トップをdisplay(plugin): Plugin トップをdisplay.</li>
+    </ul>　<strong>notification:</strong> 現在対象Display はありません　</td>
+</tr>
+<tr>
+  <td valign="top"><a name="desc_aftersave_admin">After save のDisplay 遷移 Admin(aftersave_admin)</a></td>
+  <td valign="top">作成した項目をdisplay(item)</td>
+  <td valign="top">save した後、どのページにmove するかをSelect します.
+    <ul>
+    <li>Display 遷移なし(no): don't move.</li>
+    <li>作成した項目をdisplay(item): 作成した記事をdisplay.</li>
+    <li>項目list をdisplay(list): list をdisplay.</li>
+    <li>ホームをdisplay(home): site のHomeページ（Top page）をdisplay.</li>
+    <li>AdminTOPをdisplay(admin): Adminをdisplay.</li>
+    <li>Plugin トップをdisplay(plugin): Plugin トップをdisplay.</li>
+    </ul>　</td>
+</tr>
+
+<tr class="r2">
+  <td valign="top"><a name="desc_xmlns">xmlns</a></td>
+  <td valign="top">
+ xmlns:fb="http://www.facebook.com/2008/fbml"
+ xmlns:og="http://ogp.me/ns#"
+ xmlns:mixi="http://mixi-platform.com/ns#"
+  </td>
+  <td valign="top"> html　に追加記述する内容
+　</td>
+</tr>
+<tr >
+  <td valign="top"><a name="desc_default_img_url"> DefaultImages URL(default_img_url)</a></td>
+  <td valign="top">　</td>
+  <td valign="top">TOPページ等のMeta tag Settingでuse .<br />
+  Images File は、under の要件を満たす必要があります.
+  <ul>
+  <li>縦横3:1under の比率</li>
+  <li>50px × 50px以上</li>
+  <li>フォーマットはpng, jpg, gif</li>
+ </ul>
+ notice: facebookのogpImages use case 、over 200X200px、under 1500X1500px
+ </td>
+</tr>
+<tr class="r2">
+  <td valign="top"><a name="desc_path_cache">キャッシュFile path (path_cache)</a></td>
+  <td valign="top">
+ /path/to/geeklog/data/cache/
+  </td>
+  <td valign="top">Select Cache File path 
+　</td>
+</tr>
+</table>
+
+<h3><a name="profesional">profesional version</a></h3>
+<table>
+<tr><th style="width:25%">Variables</th>
+    <th style="width:25%">Default</th>
+    <th style="width:50%">Description</th>
+</tr>
+<tr>
+  <td valign="top"><a name="desc_path_xml">XMLAll inport directory(path_xml)</a></td>
+  <td valign="top">$_CONF['path_html']."assist_data"</td>
+  <td valign="top">　</td>
+</tr>
+
+<tr class="r2">
+  <td valign="top"><a name="desc_path_xml_out">XML Export Directory(path_xml_out)</a></td>
+  <td valign="top">$_CONF['path']."data/assist"</td>
+  <td valign="top">　</td>
+</tr>
+</table>
+
+
+<div class="footer">
+    <a href="http://wiki.geeklog.net/">Geeklog Document作成 Development Project</a>、<a href="http://wiki.geeklog.jp/">Geeklog Document Japanese Development Project</a><br />
+    All trademarks and copyrights on this page are owned by their respective owners.Geeklogis copyleft.
+</div>
+
+</body>
+</html>

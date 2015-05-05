@@ -1,0 +1,30 @@
+Assist Plugin History/Changes:
+
+2012/02/01(1.1.1)
+-----------
+Ver 1.1.0 からの主な変更
+- Geeklog 2.0の仕様に対応
+  テーブルtopic_assignments対応
+  話題の継承対応
+  テーマdenim対応
+- 自動タグ　[assist:newstories　
+   meta_descriptionとintrotext(冒頭文)のテーマ
+   変数を追加
+- 自動タグ　[assit:newstories　
+   注目記事用テンプレート   featuredstories_col.thtml
+- 自動タグ機能追加　[assist:staticpage_content
+   mode:except　機能追加 　
+- 自動タグ追加　[assist:cache
+- 自動タグ追加　[assist:staticpage
+- 多言語対応機能強化
+
+おまけ追加
+staticpagescache  (静的ページのキャッシュファイル作成）
+switchlanguage　（言語切替　phpblock 用関数）
+-----------
+Ver 1.0.0 からの主な変更
+- フォルダ構成みなおし
+- Geeklog 1.7以降の仕様に対応
+- 管理画面の追加
+- 自動タグ ブロック用関数の追加
+- ニュースレター機能追加

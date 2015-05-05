@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>Assist | Geeklog Document</title>
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css " title="Dev Stylesheet">
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/english/docstyle.css " title="Dev Stylesheet">
+</head>
+
+<body>
+<p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
+<div class="menu"><a href="../../../../../docs/english/index.html">Geeklog Document</a>
+- Assist Plugin 
+</div>
+<p>
+<a href="../../../../../">Top page</a>
+ <a href="../../../../../admin/plugins/assist/">Admin</a>
+</p>
+
+<h1>Assist Plugin </h1>
+<p>Ver.1.1.0　<a href="../history" >history</a></p>	
+<p>License　<a href="../../../../../docs/license" title="GNU General Public License">GNU GPLv2</a></p>
+<p><a href="http://www.geeklog.jp/filemgmt/index.php?id=339" >旧版配布</a></p>
+<p><a href="http://www.ivywe.co.jp/downloads/index.php/file_assist" >正式版配布</a></p>
+<p><a href="http://www.ivywe.co.jp/downloads/index.php/file_assist_test" >最新testing version 配布</a></p>
+
+<p>☆Version1.8.1未満のGeeklogではcan not use..</p>
+<p>☆Version5.1未満のMySQLではcan not use..</p>
+<p>☆testing version でのupdate 処理は原則Versionの変更とConfiguration Settingのupdate only おこなっています.</p>
+
+<h2> Document目次</h2>
+<ul>
+  <li><a href="install.html">Install procedure</a> (upgrade のprocedureを含む)</li>
+  <li><a href="assist.html">Setting（Configuration ）</a></li>
+  <li><a href="autotags.html">Autotags・Block Functions</a></li>
+  <li><a href="files.html">File structure</a></li>
+  <li><a href="templatesetvars.html">Theme variables </a></li>
+</ul>
+
+<h2>Outline</h2>
+Geeklogsite を種々補助するPlugin です
+
+<h2>機能</h2>
+<ul>
+  <li><a href="../../../../../admin/plugins/assist/user.php">user 関連</a>：インポート（メール通知なし）delete （user ID範囲Select ）</li>
+  <li><a href="../../../../../admin/plugins/assist/vars.php">変数関連</a>：擬似クーロン実行日を変更する</li>
+  <li><a href="../../../../../admin/plugins/assist/newsletter.php">ニュースレター</a>：記事をニュースレターとして送信.送信先を分けて送信予約も</br>JapanizePlugin を先にロードしないと、Japanese メールが文字化けする case があります.</li>
+  <li><a href="../../../../../admin/plugins/assist/backuprestore.php">backup & restore </a>：assistPlugin のConfiguration のbackup & restore 初期化 update </li>
+  <li>いいねボタン等の<a href="autotags.html#btn">Autotags</a>（<a href="templatesetvars.html#btn">Theme variables </a>）</br>facebookのいいねボタンusing case は、GeeklogのConfiguration SettingでFacebook OAuth Application IDのSettingが必要です.</li>
+  <li>Topページ、記事、話題のトップのMeta tag 編集（<a href="templatesetvars.html#headercode">Theme variables </a>）</br>GeeklogのConfiguration SettingのMeta tag を有効にするとDescription Meta tag がregist できます.</li>
+</ul>
+  
+<h2>Related Plugins</h2>
+<ul>
+  <li>Japanize : load earlier than Assist Plugin</li>
+  <li>merumagauser （wkymimguser）</li>
+  <li>Maps professional版only </li>
+</ul>
+  
+<h2>制限事項</h2>
+<ol>
+<li>英語language File がない case のlanguage File の既定 valueはJapanese になっています.</li>
+<li>文字code はutfonly 対応しています.</li>
+<li>MySQLonly 対応しています.</li>
+<li>主にXrea仕様 および SaaSes サーバで動作作検証しています.</li>
+</ol>
+
+<h2>注意</h2>
+<p>Ver1.0　以前のVersionのassistPlugin が存在する case は、いったん
+Uninstall 、after delete, 、re Install してください.</p>
+<p>Ver1.0　以前のVersionのAutotagsは、原則、そのままでもuse できます.</p>
+
+
+ <div class="footer">
+    <a href="http://wiki.geeklog.net/">Geeklog Document作成 Development Project</a>、<a href="http://wiki.geeklog.jp/">Geeklog Document Japanese Development Project</a><br />
+    All trademarks and copyrights on this page are owned by their respective owners.Geeklogis copyleft.
+</div>
+
+</body>
+</html>

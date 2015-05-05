@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>Assist | Geeklog Document</title>
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css " title="Dev Stylesheet">
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/english/docstyle.css " title="Dev Stylesheet">
+</head>
+
+<body>
+<p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
+<div class="menu">
+<a href="../../../../../docs/english/index.html">Geeklog Document</a>
+- <a href="index.html">Assist Plugin </a>
+- Setting</div>
+<p>
+<a href="../../../../../">Top page</a>
+ <a href="../../../../../admin/plugins/assist/">Admin</a>
+</p>
+<h1><a href="index.html">Assist Plugin </h1>
+
+
+<h2><a name="templatesetvars">Theme variables </a>(2013/03/22	 update)</h2>
+<table>
+<tr>
+	<th style="width:20%">Display </th>
+	<th style="width:20%">【Directory 】Template </th>
+    <th style="width:60%">Theme variables </th>
+</tr>
+<tbody>
+
+
+<tr class="r2">
+<td>
+Socila box
+</td>	
+<td>
+【btn】
+　</td>
+ <td>
+currenturl,appid<a title="Require Geeklog Configuration Setting Facebook OAuth Application ID Setting" class="note_super" href="#notefoot_1" id="notetext_1">*1</a>
+
+</td>	
+
+</tr>
+
+<tr>
+<td  rowspan=3>
+headercode
+</td>
+<td>
+【headercode】articles.thtml 記事
+</td>
+<td  >
+xhtml,
+site_url,
+currenturl,
+site_name,
+og_title,
+og_image
+<a title="記事に添付したImages or Assist DefaultImages or logo Images " class="note_super" href="#notetext_3">*3</a>
+,og_description,
+og_type
+facebook_consumer_key
+<a title="GeeklogのConfiguration SettingでFacebook OAuth Application IDのSettingが必要です" class="note_super" href="#notetext_1">*1</a>
+<br/>site_mail
+<a title="StandardTemplate には記述されていません" class="note_super" href="#notetext_2" >*2</a>
+</td>
+</tr>
+
+<tr >
+<td>
+【headercode】frontpage.thtml　Top page
+</td>
+<td  >
+xhtml,
+site_url,
+currenturl,
+site_name,
+og_title,
+og_image
+<a title="Assist DefaultImages or logo Images " class="note_super" href="#notetext_4">*4</a>
+,og_description,
+og_type
+facebook_consumer_key
+<a title="GeeklogのConfiguration SettingでFacebook OAuth Application IDのSettingが必要です" class="note_super" href="#notetext_1">*1</a>
+<br/>site_mail
+<a title="StandardTemplate には記述されていません" class="note_super" href="#notetext_2" >*2</a>
+</td>
+</tr>
+
+<tr >
+<td>
+【headercode】topictop.thtml　話題Top page
+</td>
+<td  >
+xhtml,
+site_url,
+currenturl,
+site_name,
+og_title,
+og_image
+<a title="話題アイコンor Assist DefaultImages or logo Images " class="note_super" href="#notetext_5">*5</a>
+,og_description,
+og_type
+facebook_consumer_key
+<a title="GeeklogのConfiguration SettingでFacebook OAuth Application IDのSettingが必要です" class="note_super" href="#notetext_1">*1</a>
+<br/>site_mail
+<a title="StandardTemplate には記述されていません" class="note_super" href="#notetext_2" >*2</a>
+</td>
+</tr>
+
+
+
+
+
+<tr  class="r2">
+<td rowspan=2>
+newstories
+</td>
+<td>【newstories】stories.thtml </td>
+<td>
+rss_url,rss_title ,more_url,more_title<br/>
+stories_col<br/>
+</td>
+</tr>
+<tr class="r2">
+	<td>【newstories】stories_col.thtml　featuredstories_col.thtml(注目記事の case )
+	</td>
+<td>
+day,new_img,url,title,meta_description,introtext
+</td>
+</tr>
+
+
+
+
+<tr >
+<td>
+rss
+</td>
+<td>【rss】rss.thtml rss_col.thtml</td>
+<td>
+head_link,head_title,image_link,image_url,image_title,
+head_description,
+head_webmaster,
+head_copyright<br/>
+rss_col<br/>
+link,title,pubdate,description
+</td>
+</tr>
+
+</tbody>
+</table>
+
+<h2><a name="plg_templatesetvars">PLG_templateSetVars</a>(2012/12/05	 update)</h2>
+<table>
+<tr>
+	<th style="width:20%">Display </th>
+	<th style="width:20%">【Directory 】Template </th>
+    <th style="width:60%">Theme variables </th>
+</tr>
+<tbody>
+
+
+<tr  class="r2">
+<td rowspan=2>
+PLG_templatesetvarsをuse しているDisplay <br/>
+<br/>
+COM_siteHeader(header.thtml)<br/>
+COM_siteFooter(footer.thtml)<br/>
+COM_createHTMLDocument<br/>
+&nbsp; &nbsp; &nbsp; &nbsp; (header.thtml,footer.thtml)<br/>
+COM_userMenu(loginblock.thtml)
+</td>
+<td>
+header.thtml<br/>
+footer.thtml<br/>
+storytext.thtml<br/>
+loginblock.thtml<br/>
+featuredstorytext.thtml<br/>
+archivestorytext.thtml<br/>
+ほか
+</td>
+<td>
+language<br/>
+languageid,_languageidlanguage File [multi language mode ]にregist not  case はdisplay されません<br/>
+</td>
+</tr>
+<tr class="r2">
+	<td>header.thtml
+	</td>
+<td>
+xmlns<br/>
+<a title="AssistPlugin のConfiguration Setting" class="note_super" href="assist.html#desc_xmlns">xmlns</a>にregist されている内容を追加記述します
+</td>
+</tr>
+
+</tbody>
+</table>
+
+<br/><a class="note_super" href="#notetext_1" id="notetext_1">*1</a>
+GeeklogのConfiguration SettingでFacebook OAuth Application IDのSettingが必要です.
+
+<br/><a class="note_super" href="#notetext_2" id="notetext_2">*2</a>
+StandardTemplate には記述されていません.
+
+<br/><a class="note_super" href="#notetext_3" id="notetext_3">*3</a>
+記事に添付したImages 
+or <a title="AssistPlugin のConfiguration Setting" class="note_super" href="assist.html#desc_default_img_url">Assist DefaultImages </a>
+or logo Images 
+
+<br/><a class="note_super" href="#notetext_4" id="notetext_4">*4</a>
+<a title="AssistPlugin のConfiguration Setting" class="note_super" href="assist.html#desc_default_img_url">Assist DefaultImages </a>
+or logo Images 
+
+<br/><a class="note_super" href="#notetext_5" id="notetext_5">*5</a>
+話題アイコン
+or <a title="AssistPlugin のConfiguration Setting" class="note_super" href="assist.html#desc_default_img_url">Assist DefaultImages </a>
+or logo Images 
+
+<div class="footer">
+    <a href="http://wiki.geeklog.net/">Geeklog Document作成 Development Project</a>、<a href="http://wiki.geeklog.jp/">Geeklog Document Japanese Development Project</a><br />
+    All trademarks and copyrights on this page are owned by their respective owners.Geeklogis copyleft.
+</div>
+
+</body>
+</html>

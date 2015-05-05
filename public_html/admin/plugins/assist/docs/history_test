@@ -1,0 +1,12 @@
+Assist Plugin History test
+
+2012/02/14-
+- 言語ファイル見直し
+- templates/admin/newsletter.thtml
+- admin/newsletter.php
+- admin/user.php function.inc
+　アイコン表示修正
+- function_auttag.inc
+  自動タグ[assist:truncate]
+- function_autotag.inc templates/headercode/default/topictop.thtml
+　話題トップ　のメタタグ追加

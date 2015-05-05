@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>Assist | Geeklogドキュメント</title>
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css " title="Dev Stylesheet">
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css " title="Dev Stylesheet">
+</head>
+<!-- admin/plugins/assist/docs/japanese/assist.html 20131202 -->
+<body>
+<p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
+<div class="menu">
+<a href="../../../../../docs/japanese/index.html">Geeklogドキュメント</a>
+- <a href="index.html">Assist プラグイン</a>
+- 設定</div>
+<p>
+<a href="../../../../../">トップページ</a>
+ <a href="../../../../../admin/plugins/assist/">管理画面</a>
+</p>
+<h1><a href="index.html">Assist プラグイン</h1>
+
+<h2><a name="config.php">設定</a>
+<p>Assist プラグインの設定は、
+<form name='assist_conf_link' action='../../../../../admin/configuration.php' method='POST'>
+<input type='hidden' name='conf_group' value='assist'></form>
+ <a style='text-decoration: none;' href='#' onclick="document.assist_conf_link.submit()">コンフィギュレーション管理画面</a>「管理者用メニュー - コンフィギュレーション - Assist」から変更できます。</p>
+<h3><a name="public">メイン設定</a>(2013/12/02 update)</h3>
+
+<table>
+<tr><th style="width:25%">項目(変数)</th>
+    <th style="width:25%">デフォルト</th>
+    <th style="width:50%">説明</th>
+</tr>
+
+
+<tr>
+  <td valign="top"><a name="desc_title_trim_length">タイトルの長さ(title_trim_length)</a></td>
+  <td valign="top">20</td>
+  <td valign="top">　</td>
+</tr>
+
+<tr class="r2">
+  <td valign="top"><a name="desc_intervalday">表示期間（日）(intervalday)</a></td>
+  <td valign="top">90(日)</td>
+  <td valign="top">　</td>
+</tr>
+
+<tr>
+  <td valign="top"><a name="desc_limitcnt">表示件数(limitcnt)</a></td>
+  <td valign="top">10(件)</td>
+  <td valign="top">　</td>
+</tr>
+
+<tr class="r2">
+  <td valign="top"><a name="desc_newmarkday">新着マーク表示期間（日）(newmarkday)</a></td>
+  <td valign="top">3(日)</td>
+  <td valign="top">　</td>
+</tr>
+
+<tr>
+  <td valign="top"><a name="desc_topics">デフォルトトピック(topics)</a></td>
+  <td valign="top">''</td>
+  <td valign="top">　</td>
+</tr>
+
+<tr class="r2">
+  <td valign="top"><a name="desc_new_img">新着マーク(new_img)</a></td>
+  <td valign="top">&lt;span class="assist_new"&gt;new!&lt;/span&gt;　　</td>
+  <td valign="top">旧デフォルト&lt;img&nbsp;width='29'&nbsp;height='11'&nbsp;src='{$_CONF['site_url']}/assist/images/icon_new.gif'&nbsp;alt='NEW!'&nbsp;/&gt;</td>
+</tr>
+
+<tr>
+  <td valign="top"><a name="desc_rss_img">RSSマーク(rss_img)</a></td>
+  <td valign="top">&lt;span class="databox_rss"&gt;RSS&lt;/span&gt;　</td>
+  <td valign="top">旧デフォルト&lt;img&nbsp;width='35'&nbsp;height='16'&nbsp;src='{$_CONF['site_url']}/assist/images/icon_RSS.gif'&nbsp;alt='RSS'&nbsp;class='icon_rss'&nbsp;&gt;　</td>
+</tr>
+
+<tr class="r2">
+  <td valign="top"><a name="desc_newsletter_tid">ニュースレタートピック(newsletter_tid)</a></td>
+  <td valign="top">newsletter</td>
+  <td valign="top">　</td>
+</tr>
+
+<tr>
+  <td valign="top"><a name="desc_templates">テンプレート　一般画面(templates)</a></td>
+  <td valign="top">標準(standard)</td>
+  <td valign="top">どのテンプレートフォルダを使用するかを指定します。
+<ul>
+    <li>標準(standard)(デフォルト): private/plugins/assist/templates/以下</li>
+    <li>カスタム(custom): private/plugins/assist/custom/templates/以下</li>
+    <li>テーマ(theme): public_html/テーマ/テーマテンプレートパス/以下</li>
+    </ul>
+<strong>注意:</strong> カスタムまたはテーマを指定している場合でもフォルダがなければ標準のテンプレートフォルダを使用します
+</td>
+</tr>
+
+<tr class="r2">
+  <td valign="top"><a name="desc_templates_admin">テンプレート 管理画面(templates_admin)</a></td>
+  <td valign="top">標準(standard)</td>
+  <td valign="top">どのテンプレートフォルダを使用するかを指定します。
+<ul>
+    <li>標準(standard)(デフォルト): private/plugins/assist/templates/以下</li>
+    <li>カスタム(custom): private/plugins/assist/custom/templates/以下</li>
+    <li>テーマ(theme): public_html/テーマ/テーマテンプレートパス/以下</li>
+    </ul>
+<strong>注意:</strong> カスタムまたはテーマを指定している場合でもフォルダがなければ標準のテンプレートフォルダを使用します　</td>
+</tr>
+
+<tr>
+  <td valign="top"><a name="desc_themespath">テーマテンプレートパス(themespath)</a></td>
+  <td valign="top">assist/templates/</td>
+  <td valign="top">テーマテンプレートを使用する場合、テーマからの相対パス　</td>
+</tr>
+
+<tr class="r2">
+  <td valign="top"><del><a name="desc_cron_schedule_interval">assist用擬似Cronスケジュール間隔(cron_schedule_interval)</a></del></td>
+  <td valign="top">3600(秒)(＝６０分)</td>
+  <td valign="top">ニュースレターを疑似CRONで予約送信する場合に使用します　</td>
+</tr>
+
+<tr>
+  <td valign="top"><a name="desc_onoff_emailfromadmin">管理者からのメール受信設定を表示する（準備中）(onoff_emailfromadmin)</a></td>
+  <td valign="top">1</td>
+  <td valign="top">　</td>
+</tr>
+<tr class="r2">
+  <td valign="top"><a name="desc_aftersave">保存後の画面遷移 一般画面(aftersave)</a></td>
+  <td valign="top">作成した項目を表示する(item)</td>
+  <td valign="top">保存した後、どのページに移動するかを指定します。
+    <ul>
+    <li>画面遷移なし(no): 移動しません。</li>
+    <li>作成した項目を表示する(item): 作成した記事を表示します。</li>
+    <li>項目一覧を表示する(list): 一覧を表示します。</li>
+    <li>ホームを表示する(home): サイトのHomeページ（トップページ）を表示します。</li>
+    <li>管理画面TOPを表示する(admin): 管理画面を表示します。</li>
+    <li>プラグイントップを表示する(plugin): プラグイントップを表示します。</li>
+    </ul>　<strong>注意:</strong> 現在対象画面はありません　</td>
+</tr>
+<tr>
+  <td valign="top"><a name="desc_aftersave_admin">保存後の画面遷移 管理画面(aftersave_admin)</a></td>
+  <td valign="top">作成した項目を表示する(item)</td>
+  <td valign="top">保存した後、どのページに移動するかを指定します。
+    <ul>
+    <li>画面遷移なし(no): 移動しません。</li>
+    <li>作成した項目を表示する(item): 作成した記事を表示します。</li>
+    <li>項目一覧を表示する(list): 一覧を表示します。</li>
+    <li>ホームを表示する(home): サイトのHomeページ（トップページ）を表示します。</li>
+    <li>管理画面TOPを表示する(admin): 管理画面を表示します。</li>
+    <li>プラグイントップを表示する(plugin): プラグイントップを表示します。</li>
+    </ul>　</td>
+</tr>
+
+<tr class="r2">
+  <td valign="top"><a name="desc_xmlns">xmlns</a></td>
+  <td valign="top">
+ xmlns:fb="http://www.facebook.com/2008/fbml"
+ xmlns:og="http://ogp.me/ns#"
+ xmlns:mixi="http://mixi-platform.com/ns#"
+  </td>
+  <td valign="top"> html　に追加記述する内容
+　</td>
+</tr>
+<tr >
+  <td valign="top"><a name="desc_default_img_url">デフォルト画像URL(default_img_url)</a></td>
+  <td valign="top">　</td>
+  <td valign="top">TOPページ等のメタタグ設定で使用します。<br />
+  画像ファイルは、以下の要件を満たす必要があります。
+  <ul>
+  <li>縦横3:1以下の比率</li>
+  <li>50px × 50px以上</li>
+  <li>フォーマットはpng, jpg, gif</li>
+ </ul>
+ 注：facebookのogp画像に使用する場合、200X200ピクセル以上、1500X1500ピクセル以下で
+ </td>
+</tr>
+<tr class="r2">
+  <td valign="top"><a name="desc_path_cache">キャッシュファイルパス(path_cache)</a></td>
+  <td valign="top">
+ /path/to/geeklog/data/cache/
+  </td>
+  <td valign="top"> キャッシュファイルを記憶するパスを指定します
+　</td>
+</tr>
+
+
+</table>
+
+<h3><a name="profesional">profesional版</a></h3>
+<table>
+<tr><th style="width:25%">項目(変数)</th>
+    <th style="width:25%">デフォルト</th>
+    <th style="width:50%">説明</th>
+</tr>
+
+<tr>
+  <td valign="top"><a name="desc_path_xml">XML一括インポートディレクトリ(path_xml)</a></td>
+  <td valign="top">$_CONF['path_html']."assist_data"</td>
+  <td valign="top">　</td>
+</tr>
+
+<tr class="r2">
+  <td valign="top"><a name="desc_path_xml_out">XMLエキスポートディレクトリ(path_xml_out)</a></td>
+  <td valign="top">$_CONF['path']."data/assist"</td>
+  <td valign="top">　</td>
+</tr>
+
+
+</table>
+
+
+<div class="footer">
+    <a href="http://wiki.geeklog.net/">Geeklogドキュメント作成プロジェクト</a>、<a href="http://wiki.geeklog.jp/">Geeklogドキュメント日本語版作成プロジェクト</a><br />
+    本ページのすべての商標と著作権はそれぞれの所有者に帰属します。Geeklogはコピーレフトです。
+</div>
+
+</body>
+</html>

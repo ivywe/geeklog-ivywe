@@ -1,0 +1,3 @@
+#!/bin/sh
+/usr/local/bin/php /virtual/xxxxxx/public_html/yyyyyy/assist/job/emailgeeklogstories.php
+exit

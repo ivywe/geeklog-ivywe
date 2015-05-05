@@ -1,0 +1,306 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>Assist | Geeklog Document</title>
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css " title="Dev Stylesheet">
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/english/docstyle.css " title="Dev Stylesheet">
+</head>
+
+<body>
+<p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
+<div class="menu">
+<a href="../../../../../docs/english/index.html">Geeklog Document</a>
+- <a href="index.html">Assist Plugin </a>
+- Setting</div>
+<p>
+<a href="../../../../../">Top page</a>
+ <a href="../../../../../admin/plugins/assist/">Admin</a>
+</p>
+<h1><a href="index.html">Assist Plugin </h1>
+
+
+<h2><a name="autotags">Autotags</a>(2013/01/28 update)</h2>
+<table>
+<tr><th style="width:25%">Format</th>
+    <th style="width:75%">Description</th>
+</tr>
+<tbody>
+<tr>
+<td>[newstories:話題ID RSSFile ]</td>
+<td>
+新着記事（おしらせ）<br />
+例1:[newstories:news news.rss]<br />
+例2:[newstories:]話題Select When omitted, はConfiguration Setting value、Setting valueがない case はALL<br />
+例3:[newstories:ALL]全話題<br />
+例4:[newstories:news|General] 話題の複数Select <br />
+</td>
+</tr>
+
+<tr class="r2">
+<td>[newstories2:話題ID RSSFile ほか例1参照]</td>
+<td>
+新着記事（おしらせ）<br />
+例1:[newstories2:news rss_file:news.rss title_trim_length:50 intervalday:70 limitcnt:40 newmarkday:30 thtml:xxxx]<br />
+例2:話題news を全件display   [newstories2:news intervalday:0]<br />
+例3:話題news を/Theme /xxxx/ のTemplate でdisplay   [newstories2:news thtml:xxxx]<br />
+例4:[newstories2:ALL]全話題<br />
+例5:[newstories2:news|General] 話題の複数Select <br />
+</td>
+</tr>
+<tr>
+<td>[conf:Varialname ]</td>
+<td>$_CONF[Varialname ] の valueを返す<br />
+例1：[conf:site_url]<br />
+例2：[conf:site_name]<br />
+例3：[conf:site_mail]<br />
+例4：[conf:site_slogan]<br />
+</td>
+</tr>
+<tr class="r2">
+<td>[assist:usercount]</td>
+<td>regist user 数</td>
+
+<tr>
+<td>[assist:usercount_location]</td>
+<td>locationregist user 数</td>
+</tr>
+
+<tr class="r2">
+<td>[assist:staticpage_content]</td>
+<td>
+例1:[assist:staticpage_content] id=blockpageの静的ページを無条件にdisplay<br />
+例2:[assist:staticpage_content id:xxxx urlkey:yyyy] urlor スクリプトの引数にyyyyを含む case にidがxxxx の静的ページをdisplay<br />
+例3:[assist:staticpage_content id:xxxx mode:home] ホームの case にidがxxxx の静的ページをdisplay<br />
+例4:[assist:staticpage_content id:xxxx mode:sub] ホーム以外の case にidがxxxx の静的ページをdisplay<br />
+例5:[assist:staticpage_content id:xxxx mode:except] Select したキーワードを含まないサブページの case にidがxxxx の静的ページをdisplay<br />
+Select された静的ページをdisplayaccess rights のないuser がaccess している case はdisplay されません<br />
+modeがSelect されている case 　urlkeyのSelect は無視されます<br />
+idがSelect not  case は、blockpage がSelect されたものとします<br />
+multi language site の case 、id:xxxx_jpのlanguage idは、urlの第一引数or 現在のlanguage mode に基づき、自動的に変換されます.（第一引数優先）
+</td>
+</tr>
+
+<tr>
+<td>[assist:user_homepage uid:9]</td>
+<td>
+Select user （When omitted, Logged in user ）のホームページ
+</td>
+</tr>
+
+
+<tr class="r2">
+<td>[assist:user_location uid:9]</td>
+<td>
+Select user （When omitted, Logged in user ）の居住地
+</td>
+</tr>
+
+
+<tr>
+<td>[assist:user_sig uid:9]</td>
+<td>
+Select user （When omitted, Logged in user ）の署name 
+</td>
+</tr>
+
+
+<tr class="r2">
+<td>[assist:user_photo uid:9 width:9 height:9]</td>
+<td>
+Select user （When omitted, Logged in user ）の写真
+</td>
+</tr>
+
+
+<tr>
+<td>[assist:user_about uid:9 ]</td>
+<td>
+Select user （When omitted, Logged in user ）の自己紹介
+
+</td>
+</tr>
+
+
+<tr class="r2">
+<td>[assist:user_pgpkey uid:9 ]</td>
+<td>
+Select user （When omitted, Logged in user ）のPGP鍵
+</td>
+</tr>
+
+
+<tr>
+<td>[assist:uid]</td>
+<td>
+Logged in user のuid
+</td>
+</tr>
+
+
+<tr class="r2">
+<td>[assist:username uid:9]</td>
+<td>
+Select user （When omitted, Logged in user ）のuser name 
+</td>
+</tr>
+
+
+<tr>
+<td>[assist:fullname uid:9]</td>
+<td>
+Select user （When omitted, Logged in user ）の氏name 
+</td>
+</tr>
+
+<tr class="r2">
+<td>[assist:showgroup]</td>
+<td>
+Logged in user の所属するGroup list 出力
+</td>
+</tr>
+
+<tr>
+<td>[assit:newstories  話題ID RSSFile ほか例1参照]</td>
+<td>
+新着記事（おしらせ）<br />
+例1:[assist:newstories]<br />
+例2:[assist:newstories topics:news rss_file:news.rss title_trim_length:50 intervalday:70 limitcnt:40 newmarkday:30 thtml:xxxx]<br />
+例3:話題news を全件display   [assit:newstories topics:news intervalday:0]<br />
+例4:話題news を/Theme /xxxx/ のTemplate でdisplay   [assist:newstories topics:news thtml:xxxx]<br />
+例5:[assist:ALL]　全話題<br />
+例6:[assist:newstories topics:news|General]　話題の複数Select <br />
+</td>
+</tr>
+
+
+<tr class="r2">
+<td>
+[assit:home_id]
+</td>
+<td>
+home or  sub （language File で変更可）
+</td>
+</tr>
+
+<tr>
+<td>
+[assit:login_status]
+</td>
+<td>
+member or  guest （language File で変更可）
+</td>
+</tr>
+
+<tr class="r2">
+<td>
+[assit:topic_id]
+</td>
+<td>
+現在のDisplay の話題ID
+</td>
+</tr>
+
+<tr>
+<td>
+[assit:sp_id]
+</td>
+<td>
+現在のDisplay の静的ページID
+</td>
+</tr>
+
+<tr class="r2">
+<td>
+[assit:rss RSSFile ほか例1参照]
+</td>
+<td>
+rss のdisplay <br />
+例1:[assist:rss urlrss:www.rentpro.co.jp/backend/databoxchintai.rss strip_tags:-1 description_trim_length:30 templatedir:aaa]<br />
+例2:[assist:rss]<br />
+</td>
+</tr>
+
+<tr >
+<td><a name="btn">
+[assist:btn typeほか例1参照 ]</a>
+</td>
+<td>
+ソーシャルボタン・ボックス のdisplay <br />
+例1:[assist:btn type:fblikebtn templatedir:aaa]<br />
+例2:[assist:btn type:evclip]<br />
+例3:[assist:btn type:fbcomment]<br />
+例4:[assist:btn type:tweet]<br />
+例5:[assist:btn type:plusone]<br />
+</td>
+</tr>
+
+<tr class="r2">
+<td>
+[assist:truncate text:x maxlen:9 filler:x endchars:9]
+</td>
+<td>
+文字列を区切る<br />
+例１；[assist:truncate text:あいうえおかきくけこ maxlen:3]<br />
+例２；[assist:truncate text:あいうえおかきくけこ maxlen:3 filler:...]<br />
+例３；[assist:truncate text:あいうえおかきくけこ maxlen:1 filler:... endchars:3]</td>
+</tr>
+
+<tr >
+<td>
+[assist:cache id:top type:staticpages]
+</td>
+<td><a name="desc_cache"></a>
+キャッシュFile を返す<br />
+例１；[assist:cache id:top]<br />
+例２；[assist:cache id:top type:staticpages]<br />
+キャッシュFile は、<a title="AssistPlugin のConfiguration Setting" class="note_super" href="assist.html#desc_path_cache">キャッシュpath </a>/<a title="例１例２の case staticpages" class="note_super" href="#desc_cache">type</a>/<a title="例１例２の case top" class="note_super" href="#path_cache">id</a>.html <br />
+キャッシュFile が存在しない case は、空白を返します<br />
+</tr>
+<tr class="r2">
+<td>[assist:staticpage]</td>
+<td>
+例１：[assist:staticpage id:xxxx]<br />
+例２：[assist:staticpage id:xxxx linktext]<br />
+linktext が省略されている case は、Title をlinktextとします.<br />
+linktext は、必ず最後に記述してください.半角スペースを含む内容も記述ableです.<br />
+該当ページがない case もlink はdisplay されます.<br />
+multi language site の case 、id:xxxx_jpのlanguage idは、urlの第一引数or 現在のlanguage mode に基づき、自動的に変換されます.（第一引数優先）
+</td>
+</tr>
+
+</tbody>
+</table>
+<h2>Block Functions(2010/12/03 update)</h2>
+<table>
+<tr><th style="width:25%">Function</th>
+    <th style="width:75%">Description</th>
+</tr>
+<tbody>
+<tr>
+  <td>phpblock_shownewstories</td>
+  <td>&nbsp;</td>
+</tr>
+<tr>
+  <td>phpblock_shownewstories_news</td>
+  <td>話題id=newsの新着記事のlist をdisplay</td>
+</tr>
+<tr class="r2">
+  <td>phpblock_showstaticpage</td>
+  <td>id=blockpageの静的ページをdisplay</td>
+</tr>
+<tr>
+  <td>phpblock_showgroup</td>
+  <td>Logged in user の所属するGroup list 出力</td>
+</tr>
+</tbody>
+</table>
+
+<div class="footer">
+    <a href="http://wiki.geeklog.net/">Geeklog Document作成 Development Project</a>、<a href="http://wiki.geeklog.jp/">Geeklog Document Japanese Development Project</a><br />
+    All trademarks and copyrights on this page are owned by their respective owners.Geeklogis copyleft.
+</div>
+
+</body>
+</html>

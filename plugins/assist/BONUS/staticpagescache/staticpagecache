@@ -1,0 +1,6 @@
+#! /bin/sh
+cd /path/to/geeklog/job/;
+/usr/bin/php  /path/to/geeklog/job/staticpagecache.php top01
+/usr/bin/php  /path/to/geeklog/job/staticpagecache.php top02
+/usr/bin/php  /path/to/geeklog/job/staticpagecache.php top03 yyyy 
+exit
