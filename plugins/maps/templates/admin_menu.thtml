@@ -1,0 +1,10 @@
+<div class="user_menu">
+ <a href="{site_url}/admin/plugins/maps/index.php">{admin_home}</a> | 
+ <a href="{site_url}/admin/plugins/maps/markers.php">{markers}</a> |
+ <a href="{site_url}/admin/plugins/maps/icons.php">{icons}</a> |
+ <a href="{site_url}/admin/plugins/maps/overlays.php">{overlays}</a> |
+ <a href="{site_url}/admin/plugins/maps/import_export.php">{import_export}</a> |
+ <a href="{site_url}/admin/plugins/maps/geocoder.php">{geocoder}</a> |
+ <a href="{site_url}/admin/plugins/maps/index.php?mode=setgeolocation">{set_user_geo}</a>
+
+</div>

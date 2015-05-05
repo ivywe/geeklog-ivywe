@@ -1,0 +1,94 @@
+/*CSS for Maps plugin*/
+.colorSwatch {
+    border: 1px solid #000000; 
+    font-family: Verdana; 
+    font-size: 10px; 
+    text-decoration: none;
+  }
+
+/*Marker Submission */
+#map_contener_submission {
+	padding:5px;
+	border: 1px solid #333;
+	background: #FFFFFF;
+}
+/* Map form */
+form#map-form legend {
+  display: block!important;
+  color:#00f;
+  background-color:#ddd
+}
+fieldset {
+  margin-bottom:1em;
+}
+fieldset p {
+  padding:5px;
+  margin:0px;
+  margin-top:5px;
+  margin-bottom:0px;
+}
+fieldset legend {
+  font-size:0.9em;
+}
+
+/*Tabs*/
+ul.tabNavigation {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul.tabNavigation li {
+  display: inline;
+  font-weight:bold;
+}
+
+ul.tabNavigation li a {
+  padding: 3px 10px;
+  background-color: #ddd;
+  color: #333;
+  text-decoration: none;
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+ul.tabNavigation li a.selected {
+  padding: 3px 10px;
+  background-color: #999;
+  color: #FFF;
+  text-decoration: none;
+}
+ul.tabNavigation li a:hover {
+  background-color: #999;
+  color: #FFF;
+}
+
+ul.tabNavigation li a:focus {
+  outline: 0;
+}
+
+div.tabs > div {
+  padding: 0px 10px 10px 10px;
+  margin-top: 3px;
+  border: 1px solid #bbb;
+}
+
+div.tabs > div h2 {
+  margin-top: 0;
+}
+
+#overlays_checkboxes {
+  padding-top:10px;
+  font-size:x-small;
+}
+#maps_list {
+  padding:5px;
+}
+#ui-datepicker-div {
+  background:white;
+  border:1px solid #DDD;
+  padding:15px;
+}
+.user_menu {
+    padding-top:10px;
+}
