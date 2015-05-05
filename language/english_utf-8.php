@@ -100,7 +100,7 @@ $LANG01 = array(
     56 => 'Vote',
     57 => 'Password',
     58 => 'Login',
-    59 => "Don't have an account yet?  Sign up as a <a href=\"{$_CONF['site_url']}/users.php?mode=new\" rel=\"nofollow\">New User</a>!",
+    59 => "Don't have an account yet?  Sign up as a <a href=\"{$_CONF['site_url']}/users.php?mode=new\" rel=\"nofollow\"><i class=\"uk-icon-sign-in\"></i> New User</a>!",
     60 => 'Post a comment',
     61 => 'Create New Account',
     62 => 'words',
@@ -160,7 +160,7 @@ $LANG01 = array(
     116 => 'Trackback',
     117 => 'Directory',
     118 => 'Please continue reading on the next page:',
-    119 => "Lost your <a href=\"{$_CONF['site_url']}/users.php?mode=getpassword\" rel=\"nofollow\">password</a>?",
+    119 => "Lost your <a href=\"{$_CONF['site_url']}/users.php?mode=getpassword\" rel=\"nofollow\"><i class=\"uk-icon-exclamation-circle\"></i> password</a>?",
     120 => 'Permanent link to this comment',
     121 => 'Comments (%d)',
     122 => 'Trackbacks (%d)',
@@ -271,7 +271,7 @@ $LANG04 = array(
     22 => "Register with {$_CONF['site_name']}!",
     23 => "Creating a user account will give you all the benefits of {$_CONF['site_name']} membership and it will allow you to post comments and submit items as yourself. If you don't have an account, you will only be able to post anonymously. Please note that your email address will <b><i>never</i></b> be publicly displayed on this site.",
     24 => 'Your password will be sent to the email address you enter.',
-    25 => 'Did You Forget Your Password?',
+    25 => '<i class="uk-icon-exclamation-circle"></i> Did You Forget Your Password?',
     26 => 'Enter <em>either</em> your username <em>or</em> the email address you used to register and click Email Password. Instructions on how to set a new password will be mailed to the email address on record.',
     27 => 'Register Now!',
     28 => 'Email Password',
@@ -369,7 +369,7 @@ $LANG04 = array(
     120 => 'Account Activated',
     121 => 'Service',
     122 => 'Sorry, new user registration is disabled',
-    123 => "Are you a <a href=\"{$_CONF['site_url']}/users.php?mode=new\" rel=\"nofollow\">new user</a>?",
+    123 => "Are you a <a href=\"{$_CONF['site_url']}/users.php?mode=new\" rel=\"nofollow\"><i class=\"uk-icon-sign-in\"></i> new user</a>?",
     124 => 'Confirm Email',
     125 => 'You have to enter the same email address in both fields!',
     126 => 'Please repeat for confirmation',
@@ -621,7 +621,7 @@ $LANG11 = array(
 $LANG12 = array(
     1 => 'To submit a %s you are required to be logged in as a user.',
     2 => 'Login',
-    3 => 'New User',
+    3 => '<i class="uk-icon-sign-in"></i> New User',
     4 => '',
     5 => '',
     6 => 'Submit a Story',
@@ -1594,7 +1594,7 @@ $LANG_LOGIN = array(
     1 => 'Login required',
     2 => 'Sorry, to access this area you need to be logged in as a user.',
     3 => 'Login',
-    4 => 'New User'
+    4 => '<i class="uk-icon-users"></i> New User'
 );
 
 ###############################################################################

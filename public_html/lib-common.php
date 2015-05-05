@@ -4824,7 +4824,7 @@ function COM_rdfImport($bid, $rdfurl, $maxheadlines = 0)
         }
 
         // build a list
-        $content = COM_makeList($articles, 'list-feed');
+        $content = COM_makeList($articles, 'uk-list uk-list-striped');
         $content = str_replace(array("\015", "\012"), '', $content);
 
         if (strlen($content) > 65000) {
@@ -5590,9 +5590,7 @@ function COM_showMessageText($message, $title = '')
         $timestamp = strftime($_CONF['daytime']);
         $retval .= COM_startBlock($title . ' - ' . $timestamp, '',
                                   COM_getBlockTemplate('_msg_block', 'header'))
-                . '<p class="sysmessage"><img src="' . $_CONF['layout_url']
-                . '/images/sysmessage.' . $_IMAGE_TYPE . '" alt="" ' . XHTML
-                . '>' . $message . '</p>'
+                . '<p class="sysmessage"><i class="uk-icon-warning uk-color-warning"></i> ' . $message . '</p>'
                 . COM_endBlock(COM_getBlockTemplate('_msg_block', 'footer'));
     }
 
@@ -8243,7 +8241,7 @@ function COM_handleError($errno, $errstr, $errfile='', $errline=0, $errcontext='
             if (!empty($_CONF['site_name'])) {
                 $title = $_CONF['site_name'] . ' - ' . $title;
             }
-            echo "<html><head><title>$title</title></head>\n<body>\n";
+            echo '<html><head><meta charset="UTF-8" '.XHTML.'><title>'.$title.'</title></head>.LB.<body>'.LB;
 
             echo '<h1>An error has occurred:</h1>';
             if ($_CONF['rootdebug']) {
@@ -8352,12 +8350,13 @@ function COM_handleError($errno, $errstr, $errfile='', $errline=0, $errcontext='
         echo "
         <html>
             <head>
+				<meta charset \"UTF-8\">
                 <title>{$title}</title>
+				<meta http-equiv='refresh' content='3;URL=\"".$_CONF['site_url']."\"'> 
             </head>
             <body>
             <div style=\"width: 100%; text-align: center;\">
-            Unfortunately, an error has occurred rendering this page. Please try
-            again later.
+            ページを表示できません。しばらくお待ちください。
             </div>
             </body>
         </html>

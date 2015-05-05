@@ -463,7 +463,7 @@ function USER_getPhoto ($uid = 0, $photo = '', $email = '', $width = 0)
             if ($width > 0) {
                 $userphoto .= ' width="' . $width . '"';
             }
-            $userphoto .= ' alt="" class="userphoto"' . XHTML . '>';
+            $userphoto .= ' alt="" class="userphoto uk-border-circle"' . XHTML . '>';
         }
     }
 
