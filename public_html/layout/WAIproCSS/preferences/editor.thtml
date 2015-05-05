@@ -1,0 +1,7 @@
+
+<!-- preferences/editor.thtml { -->
+
+    <dt>{lang_advanced_editor}</dt>
+    <dd><label for="advanced_editor"><input type="checkbox" id="advanced_editor" name="advanced_editor" {advanced_editor_checked}{xhtml}>{adveditor_name}</label></dd>
+
+<!-- } preferences/editor.thtml -->

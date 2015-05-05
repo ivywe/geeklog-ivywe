@@ -1,0 +1,239 @@
+@charset "utf-8";
+
+/*==============================================================================
+  タイトル: ブロックスタイル
+  著者    : Original Coding by Fumito Arakawa as Phize (http://phize.net/)  Accessibility Modifid by Masuko koeda as みるく(http://white-stage.com/)
+  説明    : 左ブロック・中央ブロック・右ブロック・その他ブロックのスタイルです。
+            ブロックはサイト全体を通して使用されます。
+  適用先  : header.thtml,
+            blockheader.thtml, blockfooter.thtml, blockservices.thtml,
+            blockheader-*.thtml, blockfooter-*.thtml
+            (leftblocks.thtml, loginform.thtml, listitem.thtml)
+==============================================================================*/
+
+
+
+/*--------------------------------------
+  共通スタイル
+--------------------------------------*/
+
+div#leftblocks ul,
+div#leftblocks ol,
+div#rightblocks ul,
+div#rightblocks ol {
+  padding-left: 0;
+  list-style: none;
+}
+
+div#leftblocks ul li,
+div#leftblocks ol li,
+div#rightblocks ul li,
+div#rightblocks ol li {
+  list-style-position: outside;
+} 
+
+
+/*--------------------------------------
+  リストアイテム
+    ブロック内のリストです。
+--------------------------------------*/
+
+li.listitem {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+/*--------------------------------------
+  メッセージブロック
+    システムメッセージ等です。
+--------------------------------------*/
+
+div#centerblocks div.block-message {
+  margin: 2em 1em;
+  padding: 0;
+  border: 1px solid #000000;
+}
+
+div#centerblocks div.block-message dl {
+  margin: 0;
+  padding: 0;
+}
+
+/* タイトル */
+div#centerblocks div.block-message dl dt {
+  margin: 0;
+  padding: 8px;
+  background: #555555;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+/* メッセージ */
+div#centerblocks div.block-message dl dd {
+  margin: 0;
+  padding: 8px;
+  background: #eeeeee;
+  font-weight: bold;
+}
+
+
+
+/*--------------------------------------
+  関連情報ブロック
+    個別記事ページの関連情報ブロックです。
+--------------------------------------*/
+
+/* ブロック */
+div.block-related {
+  margin: 0 0 2em 0;
+  padding-left: 1em;
+}
+
+/* ブロックタイトル */
+div.block-related h3 {
+  margin: 0 0 0.5em 0;
+  padding: 0;
+  font-size: 100%;
+  font-weight: bold;
+}
+
+/* ブロックコンテンツ */
+div.block-related div.block-related-content {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+/*--------------------------------------
+  中央ブロック
+--------------------------------------*/
+
+/* ブロック */
+div#centerblocks div.block-center {
+  margin: 0 0 1em 0;
+  padding: 0 1em 2em 1em;
+  border-bottom: 1px solid #999999;
+}
+
+/* ブロックタイトル */
+div#centerblocks h2,
+div#centerblocks h3,
+div#centerblocks h4 {
+  margin: 1em 0 1em 0;
+  font-weight: bold;
+}
+
+div#centerblocks div.block-center h2 {
+  font-size: 125%;
+}
+
+div#centerblocks div.block-center h3 {
+  font-size: 110%;
+}
+
+div#centerblocks div.block-center h4 {
+  font-size: 100%;
+}
+
+/* ヘルプアイコン */
+div#centerblocks h2 img,
+div#centerblocks h3 img,
+div#centerblocks h4 img {
+  vertical-align: middle;
+}
+
+/* ブロックコンテンツ */
+div#centerblocks div.block-center div.block-center-content {
+  margin: 0;
+  padding: 0;
+}
+
+/* 中央ブロックに表示される時のアンケート内 */
+div#centerblocks div.poll-questions {
+  margin-left: 1em;
+  background: #ffffff;
+}
+
+
+
+/*--------------------------------------
+  左ブロック
+--------------------------------------*/
+
+/* ブロック */
+div#leftblocks div.block-list,
+div#leftblocks div.block-left,
+div#leftblocks div.block-center {
+  margin: 0 0.5em;
+  padding: 1em 0.5em 0.5em;
+  border-top: 1px solid #ffffff;
+  border-bottom: 1px solid #999999;
+}
+
+/* ブロックタイトル */
+div#leftblocks div.block-list h2,
+div#leftblocks div.block-left h2 {
+  margin: 0 0 0.5em 0;
+  padding: 0;
+  font-size: 1.125em;
+  font-weight: bold;
+}
+
+/* ヘルプアイコン */
+div#leftblocks div.block-list h2 img,
+div#leftblocks div.block-left h2 img {
+  vertical-align: middle;
+}
+
+/* ブロックコンテンツ */
+div#leftblocks div.block-list div.block-left-content,
+div#leftblocks div.block-left div.block-left-content {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+/*--------------------------------------
+  右ブロック
+--------------------------------------*/
+
+/* ブロック */
+div#rightblocks div.block-list,
+div#rightblocks div.block-right {
+  margin: 0 0.5em;
+  padding: 1em 0.5em 0.5em;
+  border-top: 1px solid #ffffff;
+  border-bottom: 1px solid #999999;
+}
+
+/* ブロックタイトル */
+div#rightblocks div.block-list h2,
+div#rightblocks div.block-right h2 {
+  margin: 0 0 0.5em 0;
+  padding: 0;
+  font-size: 1.125em;
+  font-weight: bold;
+}
+
+/* ヘルプアイコン */
+div#rightblocks div.block-list h2 img,
+div#rightblocks div.block-right h2 img {
+  vertical-align: middle;
+}
+
+/* ブロックコンテンツ */
+div#rightblocks div.block-list div.block-list-content,
+div#rightblocks div.block-right div.block-right-content {
+  margin: 0;
+  padding: 0;
+}
+
+/* アンケート内 */
+div.poll-questions {
+  background: #ffffff;
+}
+

@@ -1,0 +1,48 @@
+<!-- footer.thtml { -->
+</div>
+<!-- } centerblocks -->
+    
+    <!--[if !IE]> Win IE 6のバグを回避するために条件コメントを使用しています。 <![endif]-->
+    <!--[if !IE]> (複数の浮動要素を組み合わせた場合に、最後の浮動要素の内容が重複するバグ) <![endif]-->
+    <!--[if !IE]> } #centerblocks <![endif]-->
+ {left_blocks}
+
+</div>
+<!-- } carrier -->
+
+    {right_blocks}
+</div>
+<!-- } #wrapper -->
+
+<hr class="separator"{xhtml}>
+
+  <!-- #footer { -->
+  <!-- フッタコンテナ -->
+  <div id="footer" role="contentinfo">
+<p class="back"><a href="#header">ページの先頭へ戻る</a></p>
+    <ul>
+      <li class="copyright_notice"><address>{copyright_notice}</address></li>
+      <li class="powered_by">{powered_by}&nbsp;<a href="http://www.geeklog.net/">Geeklog</a>&amp;<a href="http://www.geeklog.jp/" accesskey="j">Geeklog Japanese</a></li>
+      <!-- Theme by Fumito Arakawa as Phize (http://phize.net/) -->
+      <!-- Accessibility Modifid by Masuko Koeda as みるく (http://white-stage.com/) アクセシビリティチェック by B-line (http://www.b-lines.jp/) -->
+      <li class="execution_textandtime">{execution_textandtime}</li>
+    </ul>
+  </div>
+  <!-- } #footer -->
+</div>  
+<!-- } #container -->
+
+    {plg_footercode}
+
+<!-- 状況に応じて、HTMLのbody要素にclass属性値を指定するJavaScript
+     引数は左から、左ブロックコンテナ・中央ブロックコンテナ・右ブロックコンテナのid属性値 -->
+<script type="text/javascript">
+<!--
+  FixHTML('leftblocks', 'centerblocks', 'rightblocks');
+-->
+</script>
+
+<!-- } footer.thtml -->
+
+</body>
+</html>

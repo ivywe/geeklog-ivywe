@@ -1,7 +1,7 @@
 {# begin {templatelocation} #}
 
 {block_start}
-{content}
+{content}{edit_icon}
 {block_end}
 
 {# end {templatelocation} #}

@@ -1,0 +1,3 @@
+<!-- start newtopic.thtml -->
+<a href="{newtopiclink}">{LANG_newtopic}</a>   
+<!-- end newtopic.thtml -->

@@ -1,0 +1,582 @@
+@charset "utf-8";
+
+/*==============================================================================
+  タイトル: 共通スタイル
+  著者    : Original Coding by Fumito Arakawa as Phize (http://phize.net/)  Accessibility Modifid by Masuko koeda as みるく(http://white-stage.com/)
+  説明    : サイト全体を通して使用されるスタイルです。
+            タイプセレクタを使って全てのプロパティの値を上書きしてしまうと、
+            「HTML形式」で投稿された記事等のスタイルも変更されてしまうので注意してください。
+            標準の設定で使用できるHTMLの要素は下記の通りです。
+
+            h1, h2, h3, h4, h5, h6,
+            p, blockquote, pre, div, font, tt, i, em, b, strong, code, span, a,
+            ul, ol, li, table, caption, tbody, th, tr, td,
+            img, object, embed, param, script, noscript, hr, br
+  適用先  : 全て
+==============================================================================*/
+
+
+
+/*--------------------------------------
+  要素スタイル
+--------------------------------------*/
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #e0e0e0; 
+  color: #000000; 
+  font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, "ＭＳ Ｐゴシック", Verdana, Arial, Helvetica, sans-serif;
+  font-size: 13px; 
+  font-size: small;
+  line-height: 1.5;
+}
+
+pre {
+  overflow: auto;
+}
+
+/* Win IE 6用 { */
+* html pre {
+  overflow: visible;  /* Mac IE用(overflowプロパティにvisible以外の値が指定されたdiv要素以外の要素が表示されない) */
+
+  /* Mac IE以外用 { \*/
+  overflow: auto;
+  /* } Mac IE以外用 */
+
+  width: 95%;  /* Win IE 6以下用(overflowプロパティにautoを指定すると幅が最大に広がる) */
+}
+/* } Win IE 6用 */
+
+/* Win IE 6用(フォントサイズの指定が表要素に継承されない) { */
+table {
+  border-spacing: 0;
+  font-size: 100%;
+}
+/* } Win IE 6用 { */
+
+ul,
+ol {
+  list-style-position: inside;
+}
+
+fieldset {
+  margin: 0 0 1em 0;
+  padding: 8px;
+  border: 1px solid #CCCCCC;
+}
+
+fieldset legend {
+  display: inline;
+  padding: 2px 4px;
+  color: #000000;
+}
+
+form.basic fieldset {
+  margin: 0;
+  border: none;
+}
+
+form.basic legend {
+  display: none;
+}
+
+img {
+  vertical-align: bottom;
+}
+
+a img {
+  border: none;
+}
+
+/*
+textarea {
+  width: 98% !important;
+}
+*/
+
+/* Mac用(入力ボックス内で2バイト文字が欧文フォントで表示される) { */
+input,
+select,
+textarea {
+  font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, "ＭＳ Ｐゴシック", Verdana, Arial, Helvetica, sans-serif;
+}
+/* } Mac用 */
+
+/* テキストフィールド */
+input.text {
+}
+
+/* 送信ボタン */
+input.submit {
+}
+
+option {
+  padding-right: 0.25em;  /* For Firefox */
+}
+
+iframe[width="100%"] {
+  width: 99%;
+}
+
+/* Basic editor */
+.user_basic {
+  padding: 0.5em 2em;
+}
+
+.wide {
+  width: 98%;
+}
+
+/*--------------------------------------
+  スキップ要素
+--------------------------------------*/
+
+hr.separator {
+  display: none;
+}
+
+p.skip {
+  display:inline;
+  line-height: 0;
+}
+
+.skip a {
+  display: inline;
+  position: absolute;
+  left: -9999px;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  z-index: 200;
+}
+
+.skip a:focus,
+.skip a:hover,
+.skip a:active {
+  display: block;
+  position: absolute;
+  left: 349px;
+  width: 10em;
+  height: 3em;
+  margin: 0;
+  padding: 10px;
+  background: #1A1A1A;
+  line-height: 1.5;
+  text-align: center;
+  font-size: 1em;
+  z-index: 300;
+  color: #FFFFFF;
+}
+
+.speech {
+  overflow: hidden;
+  position: absolute;
+  left: -999px;
+  width: 0;
+  height: 0;
+}
+
+div#container div#footer ul li.execution_textandtime {
+  speak: none;
+}
+
+
+
+/*--------------------------------------
+  多言語切り替えフォーム
+--------------------------------------*/
+
+form[name="change"] select[name="lang"],
+form[name="change"] select[name="lang"] option {
+  width: 99%;
+  font-size: 95%;
+}
+
+
+
+/*--------------------------------------
+  ページナビゲーション
+--------------------------------------*/
+
+div.gl-pagenav {
+  margin-bottom: 0.5em;
+  text-align: center;
+  line-height: 1.5;
+}
+
+div.gl-pagenav span {
+  line-height: 1.7;
+  padding: 8px;
+}
+
+/* IE6用 ここから */
+* html div.gl-pagenav {
+  line-height: 2.9;
+}
+/* IE6用 ここまで */
+
+/* IE7用 ここから */
+*:first-child+html div.gl-pagenav {
+  line-height: 2.9;
+}
+/* IE7用 ここまで */
+
+div.gl-pagenav b {
+  margin: 8px;
+  padding: 8px;
+  border: 1px solid #cccccc;
+  line-height: 1.7;
+  -webkit-box-shadow: inset 0px 0px 2px 0px #436878; /* For Safari,Chrome */
+  -moz-box-shadow: inset 0px 0px 2px 0px #436878; /* For Firefox */
+  -o-box-shadow: inset 0px 0px 2px 0px #436878; /* For Opera */
+  box-shadow: inset 0px 0px 2px 0px #436878; /* There is no vendor pre-fix（Standard）） */
+}
+
+div.gl-pagenav a {
+  margin: 8px;
+  padding: 8px;
+  background: #c0dfef;
+  border: 1px solid #3087b1;
+  text-decoration: none;
+  line-height: 4;
+  -webkit-box-shadow: inset 0px 0px 2px 0px #436878; /* For Safari,Chrome */
+  -moz-box-shadow: inset 0px 0px 2px 0px #436878; /* For Firefox */
+  -o-box-shadow: inset 0px 0px 2px 0px #436878; /* For Opera */
+  box-shadow: inset 0px 0px 2px 0px #436878; /* There is no vendor pre-fix（Standard）） */
+}
+
+/* IE6用 ここから */
+* html div.gl-pagenav a {
+  text-decoration: none !important;
+}
+/* IE6用 ここまで */
+div.gl-pagenav a:hover {
+  background: #90a7b3;
+  text-decoration: none;
+}
+
+div.gl-pagenav span {
+  padding: 8px;
+  line-height: 1.7;
+}
+
+div.gl-pagenav span a { 
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  -webkit-box-shadow: none; /* For Safari,Chrome */
+  -moz-box-shadow: none; /* For Firefox */
+  -o-box-shadow: none; /* For Opera */
+  box-shadow: none; /* There is no vendor pre-fix（Standard） */
+  border: none;
+  text-decoration: underline;
+}
+
+div.gl-pagenav span a:hover {
+  background: transparent;
+}
+
+/* 掲示板のページナビに影響を与えないようにする[ */
+table div.gl-pagenav b {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: none;
+  -webkit-box-shadow: none; /* For Safari,Chrome */
+  -moz-box-shadow: none; /* For Firefox */
+  -o-box-shadow: none; /* For Opera */
+  box-shadow: none; /* There is no vendor pre-fix（Standard） */
+  line-height: 1.5;
+}
+
+table div.gl-pagenav a {
+  display: inline;
+  margin: 0 5px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  -webkit-box-shadow: none; /* For Safari,Chrome */
+  -moz-box-shadow: none; /* For Firefox */
+  -o-box-shadow: none; /* For Opera */
+  box-shadow: none; /* There is no vendor pre-fix（Standard） */
+  text-decoration: underline;
+}
+
+table div.gl-pagenav a:hover {
+  background: transparent;
+}
+
+table div.gl-pagenav span {
+  display: inline;
+  padding: 0;
+  line-height: 1.5;
+}
+/* 掲示板のページナビに影響を与えないようにする] */
+
+/*--------------------------------------
+  プラグインの警告
+--------------------------------------*/
+
+.pluginAlert {
+  margin-bottom: 1em;
+}
+
+
+
+/*--------------------------------------
+  基本的なフォーム
+--------------------------------------*/
+
+form.basic {
+  margin: 0;
+  padding: 0;
+}
+
+/* メッセージ */
+form.basic p.message {
+  margin: 0 0 1em 0;
+  padding: 0;
+}
+
+/* 送信ボタン */
+form.basic ul.submit {
+  margin: 0;
+  padding: 0;
+}
+
+form.basic ul.submit li {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+/*--------------------------------------
+  フォーム(2カラム)
+--------------------------------------*/
+
+form.compact {
+  margin: 0;
+  padding: 0;
+}
+
+/* メッセージ */
+form.compact p.message {
+  margin: 0 0 1em 0;
+  padding: 0;
+}
+
+form.compact dl {
+  margin: 0 0 1em 0;
+  padding: 0;
+}
+
+/* 内容生成によってfloatを解除 */
+form.compact dl:after {
+  content: "";
+  display: block;
+  clear: both;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Win IE 6用(浮動要素の調整) { \*/
+* html form.compact dl {
+  height: 1%;
+  overflow: visible;
+}
+/* } Win IE 6用(浮動要素の調整) */
+
+form.compact dl dt {
+  float: left;
+  clear: left;
+  width: 25%;
+  margin: 0 0 0.5em 0;
+  padding: 0;
+}
+
+/* Win IE 6用 { \*/
+* html form.compact dl dt {
+  width: 16em;
+}
+/* } Win IE 6用 */
+
+/* Win IE 7用 { \*/
+*+html form.compact dl dt {
+  width: 16em;
+}
+/* } Win IE 7用 */
+
+form.compact dl dd {
+  float: left;
+  width: 75%;
+  margin: 0 0 0.5em 0;
+  padding: 0;
+}
+
+/* Win IE 6用 { \*/
+* html form.compact dl dd {
+  float: none;
+  width: auto;
+  margin-left: 16.5em;
+}
+/* } Win IE 6用 */
+
+/* Win IE 7用 { \*/
+*+html form.compact dl dd {
+  float: none;
+  width: auto;
+  margin-left: 16.5em;
+}
+/* } Win IE 7用 */
+
+/* 説明 */
+form.compact dl dd.description {
+  margin: 0 0 0.5em 0;
+  padding: 0;
+}
+
+/* Win IE 6用(フロートの左右マージンが指定値より大きくなる) { \*/
+* html form.compact dl dd.description {
+  margin-left: 12.5%;
+}
+/* } Win IE 6用 */
+
+form.compact p.description,
+form.compact div.description {
+  margin: 0 0 0.5em 0;
+  padding: 0;
+}
+
+/* 入力フィールド(JavaScript無効時) */
+body.js_off form.compact input.text,
+body.js_off form.compact textarea {
+  width: 98%;
+}
+
+/* 送信ボタン */
+form.compact ul.submit {
+  margin: 0;
+  padding: 0;
+}
+
+form.compact ul.submit li {
+  display: inline;
+  margin-right: 13px;
+  padding: 0;
+}
+
+
+
+/*--------------------------------------
+  フォーム(1カラム)
+--------------------------------------*/
+
+form.linear {
+  margin: 0;
+  padding: 0;
+}
+
+/* メッセージ */
+form.linear p.message {
+  margin: 0 0 1em 0;
+  padding: 0;
+}
+
+form.linear dl {
+  margin: 0 0 1em 0;
+  padding: 0;
+}
+
+form.linear dl dt {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+}
+
+form.linear dl dd {
+  margin: 0 0 0.5em 0;
+  padding: 0;
+}
+
+/* 説明 */
+form.linear p.description {
+  margin: 0 0 1em 0;
+  padding: 0;
+}
+
+/* 送信ボタン */
+form.linear ul.submit {
+  margin: 0;
+  padding: 0;
+}
+
+form.linear ul.submit li {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+/*--------------------------------------
+  ノート(注意・注釈)
+--------------------------------------*/
+
+form dl.notes {
+  margin: 0 0 1em 0;
+  padding: 8px;
+  border: 1px solid #000000;
+  background: #FFFFE1;
+}
+
+form dl.notes dt {
+  margin: 0 0 0.5em 0;
+  padding: 0 0 0 42px;
+  border-bottom: 1px solid #000000;
+  background: url(../images/icon_info.png) no-repeat 0 0;
+  font-weight: bold;
+  line-height: 36px;
+}
+
+form dl.notes dd {
+}
+
+form dl.notes dd ul {
+  list-style-position: inside;
+  margin: 0;
+  padding: 0;
+}
+
+form dl.notes dd ul li {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+/*--------------------------------------
+  リスト(水平)
+--------------------------------------*/
+
+ul.compact {
+  margin: 0;
+  padding: 0;
+}
+
+ul.compact li {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+
+/*--------------------------------------
+  パンくずナビゲーション
+--------------------------------------*/
+.bc_navigation {
+  margin: 1.12em 0;
+}

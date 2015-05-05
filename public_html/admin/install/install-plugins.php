@@ -362,6 +362,8 @@ if (INST_phpOutOfDate()) {
                             $pi_version      = $info['pi_version'];
                             $gl_version      = $info['pi_gl_version'];
                             $pi_url          = $info['pi_homepage'];
+                            require_once 'disable-plugins.php';
+                            $pi_checked      = ($_GEEKLOGJP_pi_preinstall[$plugin]) ? ' checked="checked"' : '';
                         }
 
                         // If the plugin has been installed to the admin directory
@@ -439,7 +441,7 @@ if (INST_phpOutOfDate()) {
 
                         $display .= '<tr>' . LB
                             . '<td align="center"><input type="checkbox" name="plugins[' . $plugin . '][install]"'
-                                . ($missing_autoinstall ? ' disabled="disabled"' : ' checked="checked"') . XHTML . '>' . LB
+                                . ($missing_autoinstall ? ' disabled="disabled"' : $pi_checked) . XHTML . '>' . LB
                             . '</td>' . LB
                             . '<td valign="top">' . LB
                                 . '<input type="hidden" name="plugins[' . $plugin . '][name]" value="' . $plugin . '"' . XHTML . '>' 

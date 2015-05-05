@@ -1,6 +1,8 @@
+@charset "utf-8";
+
 /*==============================================================================
   Title       : Common Style
-  Author      : Fumito Arakawa as Phize (http://phize.net/) and Geeklog Japanese
+  Author      : Fumito Arakawa as Phize (http://phize.net/) and Geeklog Japan
   Description : For All layout
                 NOTE:
                   If Overwrite all property by using type selecter,
@@ -109,8 +111,8 @@ textarea {
   -ms-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-/* font-family: arial,verdana,tahoma,helvetica,sans-serif; */
-  font-family: Verdana, Arial, Meiryo, "Hiragino Kaku Gothic Pro", sans-serif;
+   /* font-family: arial,verdana,tahoma,helvetica,sans-serif; */
+   font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, "ＭＳ Ｐゴシック", Verdana, Arial, Helvetica, sans-serif;  */
 }
 /* } Mac */
 

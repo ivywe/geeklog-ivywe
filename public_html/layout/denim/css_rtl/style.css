@@ -1,3 +1,4 @@
+@charset "utf-8";
 
 body, div,
 p, blockquote, pre, code,
@@ -114,6 +115,15 @@ textarea {
   width: 75%;
   min-height: 60px;
 }
+
+/* Mac(in Form 2 byte font display as europe fonts) { */
+input,
+select,
+textarea {
+/*  font-family: arial,verdana,tahoma,helvetica,sans-serif; */
+  font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, "ＭＳ Ｐゴシック", Verdana, Arial, Helvetica, sans-serif;
+}
+/* } Mac */
 
 hr {
   height: 1px;

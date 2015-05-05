@@ -1,0 +1,5 @@
+<!-- start centerblock.thtml -->
+<!-- startblock -->
+        {block_records}
+<!-- endblock -->
+<!-- end centerblock.thtml -->

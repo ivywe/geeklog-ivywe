@@ -1,0 +1,128 @@
+@charset "utf-8";
+
+/*==============================================================================
+  タイトル: コンフィギュレーションページスタイル(管理者ページ)
+  著者    : Hiromi Ikeda as Jiro & Fumito Arakawa as Phize  Accessibility Modifid by Masuko koeda as みるく(http://white-stage.com/)
+  説明    : コンフィギュレーションページ(管理者ページ)のスタイルです。
+  適用先  : admin/config/configuration.thtml, admin/config/config_element.thtml,
+            admin/config/menu_element.thtml
+==============================================================================*/
+
+#config_menu {
+  float: left;
+  width: 15em;
+  padding: 0 1em;
+}
+
+body.center-right #config_menu {
+  width: 12.5em;
+}
+
+#search-configuration-container,
+div#centerblocks #config_menu .block-center {
+  margin: 0 0 0.5em;
+  padding: 0 0em 1em;
+  text-align: left;
+}
+
+#search-configuration-container {
+  border-bottom: 1px solid #CCC;
+}
+
+div#centerblocks #config_menu div.block-center {
+  border-bottom: none;
+}
+
+div#centerblocks #config_menu .block-center h2 {
+  font-size: 1.125em;
+}
+
+#search-configuration-container label {
+  margin: 0 0 0.5em 0;
+  padding: 0 0 0.1em 0;
+  display: block;
+  font-size: 1.125em;
+  font-weight: bold;
+}
+
+div#centerblocks #config_menu .block-center .block-center-content {
+  padding-left: 0.5em;
+  border-bottom: 1px solid #CCC;
+}
+
+.configoption,
+.configoption_off {
+  list-style: none outside;
+  margin: 0;
+  padding: 0;
+}
+
+#config_content {
+  float: left;
+  width: 49.8em;
+  padding: 0 1em;
+  margin-bottom: 1em;
+}
+
+body.center-right #config_content {
+  width: 40.1em;
+}
+
+#geeklog_config_editor:after {
+  content: "";
+  display: block;
+  clear: both;
+  height: 1px;
+  overflow: hidden;
+}
+
+#config_main {
+  width: 100%;
+}
+
+#config_main form {
+  margin: 0;
+}
+
+#search-configuration {
+  width: 90%;
+  margin: 1em 0 1em 0.5em;
+}
+
+.inputTable {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.config_label {
+  float: left;
+  width: 40%;
+  padding-right: 0.5em;
+}
+
+.restore {
+  padding: 0.1em 0;
+}
+
+.config_input {
+  float: left;
+  width: 53%;
+  
+}
+
+.config_name {
+  clear: left;
+  margin: 0.4em 0;
+  padding: 0.4em;
+}
+
+.config_name input[type="text"],
+.config_name textarea {
+  width: 53%;
+}
+
+.config_name select {
+  width: 54.5%;
+  max-width: none;
+}

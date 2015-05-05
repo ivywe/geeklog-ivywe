@@ -1,0 +1,22 @@
+@charset "utf-8";
+
+/*==============================================================================
+  タイトル: インポート用スタイルシート(管理者ページ)
+  著者    : Fumito Arakawa as Phize (http://phize.net/)
+  説明    : 各CSSファイル(管理者ページ)をインポートします。
+==============================================================================*/
+
+
+
+@import url("admin/common.css");  /* 共通スタイル(管理者ページ) */
+@import url("admin/block.css");  /* ブロックエディタスタイル(管理者ページ) */
+@import url("admin/group.css");  /* グループエディタスタイル(管理者ページ) */
+@import url("admin/lists.css");  /* リストスタイル(管理者ページ) */
+@import url("admin/commandcontrol.css");  /* 管理画面スタイル(管理者ページ) */
+@import url("admin/plugins.css");  /* プラグインページスタイル(管理者ページ) */
+@import url("admin/story.css");  /* 記事エディタスタイル(管理者ページ) */
+@import url("admin/topic.css");  /* 話題エディタスタイル(管理者ページ) */
+@import url("admin/envcheck.css");  /* 環境チェックスタイル(管理者ページ) */
+@import url("admin/trackback.css");  /* トラックバックページスタイル(管理者ページ) */
+@import url("admin/user.css");  /* ユーザエディタスタイル(管理者ページ) */
+@import url("admin/configuration.css");  /* コンフィギュレーションページスタイル(管理者ページ) */

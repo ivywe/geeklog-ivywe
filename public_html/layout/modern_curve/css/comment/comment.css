@@ -1,6 +1,6 @@
 /*==============================================================================
   Title       : Comment Style 
-  Author      : Fumito Arakawa as Phize (http://phize.net/) and Geeklog Japanese
+  Author      : Fumito Arakawa as Phize (http://phize.net/) and Geeklog Japan
   Description : Comment  | Comment page style.
   Apply       : comment/startcomment.thtml, comment/commentbar.thtml,
                 comment/commentform.thtml, comment/commentform_advanced.thtml,
@@ -111,7 +111,7 @@ div.comments ul.thread li.title {
   padding: 0;
 }
 
-/* Individual Comment (Tree) Auther */
+/* Individual Comment (Tree) Author */
 div.comments ul.thread li.author {
   display: inline;
   margin: 0;

@@ -1,0 +1,69 @@
+@charset "utf-8";
+
+/*==============================================================================
+  タイトル: 話題エディタスタイル(管理者ページ)
+  著者    : Fumito Arakawa as Phize (http://phize.net/)
+  説明    : 話題エディタ(管理者ページ)のスタイルです。
+  適用先  : admin/topic/topiceditor.thtml, admin/topic/topiclist.thtml,
+            admin/topic/listitem.thtml
+==============================================================================*/
+
+
+
+/*--------------------------------------
+  話題エディタ  
+--------------------------------------*/
+
+/* 話題リスト */
+ul#admin-topiclist {
+  list-style-position: outside;
+  list-style-type: none;
+  overflow: hidden;  /* 浮動要素の調整用 */
+  margin: 0;
+  padding: 0;
+}
+
+/* 内容生成によってfloatを解除 */
+ul#admin-topiclist:after {
+  content: "";
+  display: block;
+  clear: both;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Win IE 6以下用(浮動要素の調整) { \*/
+* html ul#admin-topiclist {
+  height: 1%;
+  overflow: visible;
+}
+/* } Win IE 6以下用(浮動要素の調整) */
+
+ul#admin-topiclist li {
+  float: left;
+  width: 20%;
+  height: 8em;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+ul#admin-topiclist li a {
+  display: block;
+}
+
+/* 話題エディタ */
+form#admin-topiceditor fieldset {
+  margin: 0 0 1em 0;
+}
+
+form#admin-topiceditor h3 {
+  margin: 0 0 0.5em 0;
+  padding: 0.5em 0 0 0;
+  border-top: 1px solid #CCCCCC;
+}
+
+.admin-topic-image {
+  margin: 0 5px 0 0;
+  vertical-align: middle;
+}

@@ -1,0 +1,40 @@
+
+<!-- profiles/contactuserform.thtml { -->
+
+<form action="{site_url}/profiles.php" method="post" id="contactuserform" class="compact">
+  <fieldset>
+    <legend>送信情報</legend><!-- Geeklog Japanese -->
+
+    <p class="message">{lang_description}</p>
+
+    <dl>
+      <dt><label for="contactuserform-author">{lang_username}</label></dt>
+      <dd><input type="text" size="32" value="{username}" maxlength="32" name="author" id="contactuserform-author" class="text"{xhtml}></dd>
+
+      <dt><label for="contactuserform-authoremail">{lang_useremail}</label></dt>
+      <dd><input type="text" size="32" value="{useremail}" maxlength="96" name="authoremail" id="contactuserform-authoremail" class="text"{xhtml}></dd>
+
+      <dt><label for="contactuserform-subject">{lang_subject}</label></dt>
+      <dd><input type="text" size="32" maxlength="96" value="{subject}" name="subject" id="contactuserform-subject" class="text"{xhtml}></dd>
+
+      <dt><label for="contactuserform-message">{lang_message}&nbsp;{lang_nohtml}</label></dt>
+      <dd><textarea rows="10" cols="50" name="message" id="contactuserform-message" class="wide">{message}</textarea></dd>
+
+      <dt>{lang_cc}</dt>
+      <dd><input type="checkbox" id="contactuserform-cc" name="cc" checked="checked"{xhtml}>&nbsp;<label for="contactuserform-cc">{lang_cc_description}</label></dd>
+
+    </dl>
+
+    {captcha}
+
+    <ul class="submit">
+      <li>
+        <input type="hidden" name="what" value="contact"{xhtml}>
+        <input type="hidden" name="uid" value="{uid}"{xhtml}>
+        <input type="submit" value="{lang_submit}" onclick="return postconfirm();" onkeypress="return postconfirm();" class="submit"{xhtml}>
+      </li>
+    </ul>
+  </fieldset>
+</form>
+
+<!-- } profiles/contactuserform.thtml-->

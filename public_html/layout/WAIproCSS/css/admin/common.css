@@ -1,0 +1,95 @@
+@charset "utf-8";
+
+/*==============================================================================
+  タイトル: 共通スタイル(管理者ページ)
+  著者    : Fumito Arakawa as Phize (http://phize.net/)  Accessibility Modifid by Masuko koeda as みるく(http://white-stage.com/)
+  説明    : 共通スタイル(管理者ページ)です。
+  適用先  : admin/, admin/common/
+==============================================================================*/
+
+
+
+/*--------------------------------------
+  共通スタイル
+--------------------------------------*/
+
+/* アイコン */
+img.plugin {
+  width: 48px;
+  height: 48px;
+}
+
+/* ナビゲーション */
+div#admin-instructions p#menu_fields:before {
+  content: "[";
+}
+
+div#admin-instructions p#menu_fields:after {
+  content: "]";
+}
+
+div#admin-instructions p,
+div#admin-instructions div {
+  margin: 0;
+  padding: 0;
+}
+
+/* Basic editor */
+.admin_basic {
+  padding: 0.5em 2em;
+}
+
+.form_block {
+  margin: 0;
+  padding: 0;
+}
+
+.form_block:after {
+  content: "";
+  display: block;
+  clear: both;
+  height: 1px;
+  overflow: hidden;
+}
+
+.wide {
+  width: 98%;
+}
+
+.separator {
+  display: none;
+}
+
+.size1  { width:  60px; }
+.size2  { width: 120px; }
+.size3  { width: 180px; }
+.size4  { width: 240px; }
+.size5  { width: 300px; }
+.size6  { width: 360px; }
+.size7  { width: 420px; }
+.size8  { width: 480px; }
+.size9  { width: 540px; }
+.size10 { width: 600px; }
+
+/*--------------------------------------
+  パーミッションスタイル
+--------------------------------------*/
+
+table#admin-permissions {
+  margin: 0 0 0.5em 0;
+}
+
+table#admin-permissions th {
+  padding: 4px;
+  border: 1px solid #ffffff;
+  background: #dae0ed;
+  text-align: left;
+}
+
+table#admin-permissions td {
+  padding: 4px;
+  border: 1px solid #ffffff;
+  background: #f7f7f7;
+  font-weight: bold;
+  text-align: center;
+}

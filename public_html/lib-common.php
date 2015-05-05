@@ -3877,7 +3877,11 @@ function COM_adminMenu( $help = '', $title = '', $position = '' )
 */
 function COM_refresh($url)
 {
-    return "<html><head><meta http-equiv=\"refresh\" content=\"0; URL=$url\"></head></html>\n";
+    if ( function_exists( 'CUSTOM_refresh' ) ) {
+        return CUSTOM_refresh( $url );
+    } else {
+        return "<html><head><meta http-equiv=\"refresh\" content=\"0; URL=$url\"></head></html>\n";
+    }
 }
 
 /**

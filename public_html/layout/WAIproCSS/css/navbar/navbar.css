@@ -1,0 +1,120 @@
+@charset "utf-8";
+
+/*==============================================================================
+  タイトル: ナビゲーションスタイル
+  著者    : Fumito Arakawa as Phize (http://phize.net/)
+  説明    : ナビゲーションのスタイルです。
+  適用先  : navbar/breadcrumbs.thtml, navbar/breadcrumb_link.thtml,
+            navbar/menuitem.thtml, navbar/navbar.thtml
+==============================================================================*/
+
+
+
+/*--------------------------------------
+  パンくずリスト
+--------------------------------------*/
+
+ul.navbar-breadcrumbs {
+  list-style-position: outside;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul.navbar-breadcrumbs li {
+  display: inline;
+}
+
+ul.navbar-breadcrumbs li a {
+  margin: 0 8px;
+}
+
+
+
+/*--------------------------------------
+  ナビゲーション
+--------------------------------------*/
+
+#navcontainer {
+  overflow: hidden;  /* 浮動要素の調整用 */
+  margin-bottom: 1em;
+  padding-top: 16px;
+  padding-left: 8px;
+  background: #F4F4F4;
+  border-top: 1px solid #CCCCCC;
+  border-bottom: 1px solid #24618E;
+}
+
+/* 内容生成によってfloatを解除 */
+#navcontainer:after {
+  content: "";
+  display: block;
+  clear: both;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Win IE 6用(浮動要素の調整) { \*/
+* html #navcontainer {
+  height: 1%;
+  overflow: visible;
+}
+/* } Win IE 6用(浮動要素の調整) */
+
+#navcontainer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: transparent !important;
+}
+
+#navcontainer li {
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+
+#navcontainer a {
+  display: block;
+  margin: 0;
+  padding: 0 0 0 5px;
+  background: url(../../images/navbar/tableftJ.gif) no-repeat 0 0;
+  text-decoration: none;
+}
+
+#navcontainer a span {
+  display: block;
+  padding: 4px 8px 4px 3px;
+  color: #24618E;
+  background: url(../../images/navbar/tabrightJ.gif) no-repeat 100% 0;
+}
+
+/* Mac IE以外用 { \*/
+#navcontainer a span {
+  float: none;
+}
+/* } Mac IE以外用 */
+
+#navcontainer a:hover span {
+  color: #FFFFFF;
+}
+
+#navcontainer a:hover {
+  background-position: 0% -42px;
+}
+
+#navcontainer a:hover span {
+  background-position: 100% -42px;
+}
+
+#navcontainer a#current span {
+  color: #FFFFFF;
+  background: url(../../images/navbar/tabrightI.gif) no-repeat 100% -42px;
+}
+
+#navcontainer a:link#current,
+#navcontainer a:visited#current,
+#navcontainer a:hover#current {
+  background: url(../../images/navbar/tableftI.gif) no-repeat 0% -42px;
+}
+
