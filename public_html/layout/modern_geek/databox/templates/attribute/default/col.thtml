@@ -1,0 +1,4 @@
+<!-- layout/(theme)/databox/templates/attribute/default/col.thtml 20110204 { -->
+    <li>{field_link}<br />
+    1{field_description}2{field_url}3{value_url}4{value}</li>
+<!-- } layout/(theme)/databox/templates/attribute/default/col.thtml -->

@@ -1,0 +1,10 @@
+<!-- layout/(theme)/databox/templates/newlist/list.thtml  { -->
+
+<dl>
+{list_col}
+</dl>
+
+<p><a href="{rss_url}">{rss_title}</a></p>
+<p class="more" style="text-align: right"><a href="/databox/category.php">{more_title}</a></p>
+
+<!-- } layout/(theme)/databox/templates/newlist/list.thtml -->

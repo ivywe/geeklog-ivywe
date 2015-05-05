@@ -1,0 +1,17 @@
+<!-- plugins/databox/templates/category/default/list_detail.thtml 20140328{ -->
+
+<div>
+
+  <p id="breadcrumbs"><a href="{site_url}/">{home}</a>{category_top}</p>
+
+  <h2> {group_link} {group_name} {category_name}</h2>
+  <p>{category_description}</p>
+  <p>{msg}</p>
+
+  <ul class="contents" id="list">
+{nav_var}
+  </ul>
+
+</div>
+
+<!-- } plugins/databox/templates/category/default/list_detail.thtml -->

@@ -1,0 +1,57 @@
+<!-- layout/(theme)/databox/templates/attribute/default/navigation_detail.thtml 20120810{ -->
+
+  <div style="float: right">サムネイルリスト | <a href="http://www.geeklog.jp/databox/category.php/{category_code}/code/desc">詳細リスト</a></div>
+
+  <div style="clear:both"></div>
+
+  <section id="options" class="clearfix combo-filters">
+  
+     <div class="option-combo type">
+      <ul class="filter option-set clearfix " data-filter-group="type"> 
+          <li><a href="#filter-type-any" data-filter-value="" class="selected" style="background-color: #75507B; width:6em">タイプ</a></li>
+          <li class="display[databox:count category_code:jichitai|{category_code} mode:and]"><a href="#filter-type-jichitai" data-filter-value=".jichitai">自治体</a></li>
+          <li class="display[databox:count category_code:univ|{category_code} mode:and]"><a href="#filter-type-univ" data-filter-value=".univ">大学</a></li>
+          <li class="display[databox:count category_code:developer|{category_code} mode:and]"><a href="#filter-type-developer" data-filter-value=".developer">Geeklog開発サービス提供</a></li>
+          <li class="display[databox:count category_code:corporate|{category_code} mode:and]"><a href="#filter-type-corporate" data-filter-value=".corporate">企業・団体サイト</a></li>
+          <li class="display[databox:count category_code:community|{category_code} mode:and]"><a href="#filter-type-community" data-filter-value=".community">コミュニティサイト</a></li>
+          <li class="display[databox:count category_code:database|{category_code} mode:and]"><a href="#filter-type-site_database" data-filter-value=".site_database">データ検索サイト</a></li>
+      </ul>
+    </div>
+
+    <div class="option-combo addon">
+      <ul class="filter option-set clearfix " data-filter-group="addon"> 
+          <li><a href="#filter-addon-any" data-filter-value="" class="selected" style="background-color: #75507B; width:6em">アドオン</a></li>
+          <li class="display[databox:count category_code:DataBox|{category_code} mode:and]"><a href="#filter-addon-addon_DataBox" data-filter-value=".addon_DataBox">DataBox</a></li>
+          <li class="display[databox:count category_code:UserBox|{category_code} mode:and]"><a href="#filter-addon-addon_UserBox" data-filter-value=".addon_UserBox">UserBox</a></li>
+          <li class="display[databox:count category_code:mediagallery|{category_code} mode:and]"><a href="#filter-addon-addon_mediagallery" data-filter-value=".addon_mediagallery">Mediagallery</a></li>
+          <li class="display[databox:count category_code:Assist_Newsletter|{category_code} mode:and]"><a href="#filter-addon-Assist_Newsletter" data-filter-value=".addon_Assist_Newsletter">Assist</a></li>
+      </ul>
+    </div>
+
+    <div class="option-combo sort-direction">
+      <ul id="sort-direction" class="option-set clearfix" data-option-key="sortAscending">
+        <li><a href="#sortAscending=true" data-option-value="true" class="selected" style="background-color: #75507B; width:6em">正順</a></li>
+        <li><a href="#sortAscending=false" data-option-value="false">逆順</a></li>
+        <li id="shuffle"><a href='#shuffle' data-option-value="shuffle">シャッフル</a></li>
+      </ul>
+    </div>
+
+
+</section> <!-- #options -->
+
+
+  <div id="container-isotope" class="clearfix">
+    {row_var}
+  </div>
+
+  <div style="clear:both; height:50px"></div>
+
+  <div class='pagenav' {pagenavinone}>
+    {page_navigation}
+    <div class='count' style="float:left">{lang_view} [{lin}] / {cnt} </div>
+  </div>
+  <div style="clear:both"></div>
+
+</div> <!-- #container -->
+
+<!-- } layout/(theme)/databox/templates/attribute/default/navigation_detail.thtml -->

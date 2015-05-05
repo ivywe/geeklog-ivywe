@@ -1,0 +1,5 @@
+<!-- layout/(theme)/databox/templates/attribute/default/col2.thtml 20110204 { -->
+
+    <li>{value_link}&nbsp;({count})</li>
+
+<!-- } layout/(theme)/databox/templates/attribute/default/col2.thtml -->

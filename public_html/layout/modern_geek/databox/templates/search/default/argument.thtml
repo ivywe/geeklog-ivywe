@@ -1,0 +1,50 @@
+<!-- plugins/databox/templates/search/default/argument.thtml 20141015{ -->
+
+<section id="search-list">
+
+<form action="{site_url}/databox/search.php" method="get" class="uk-form">
+
+	<!-- templatedir　テンプレートディレクトリを指定する 省略可 -->
+	<input name="templatedir" value="" type="hidden">
+
+	<!-- fieldset　タイプを指定する -->
+	<input name="fieldset" value="1" type="hidden">
+
+	<!-- gor_2 カテゴリグループid=2のカテゴリを複数指定する　OR条件 -->
+	<h3>サイトの種別(OR検索)</h3>
+	<div class="faqcheckbox">
+		{gor_2}
+		<input name="gor_2[]" value="" type="hidden">
+	</div>
+
+	<!-- gor_1 カテゴリグループid=1のカテゴリを複数指定する　OR条件 -->
+	<h3>制作会社別(OR検索)</h3>
+	<div class="faqcheckbox">
+		{gor_1}
+		<input name="gor_1[]" value="" type="hidden">
+	</div>
+
+	<!-- gand_3 カテゴリグループid=3のカテゴリを複数指定する　AND条件 -->
+	<h3>アドオン別(AND検索)</h3>
+	<div class="faqcheckbox">
+		{gand_3}
+		<input name="gand_3[]" value="" type="hidden">
+	</div>
+
+	<?php $perpage = $this->get_var('perpage'); if($perpage==""){ $perpage = 50; } ?>
+	<div class="uk-text-right">
+		<select type="text" name="perpage">
+			<option value="50"></option>
+			<option value="20"<?php if(!strcmp("20",$perpage)){ echo ' selected="selected"'; } ?>>20件</option>
+			<option value="50"<?php if(!strcmp("50",$perpage)){ echo ' selected="selected"'; } ?>>50件</option>
+			<option value="150"<?php if(!strcmp("150",$perpage)){ echo ' selected="selected"'; } ?>>150件</option>
+		</select>
+
+		<input value="検索" class="waitMe_ex uk-button uk-button-success uk-button-large" type="submit" style="width: 130px">
+
+	</div>
+
+</form>
+</section>
+
+<!-- } plugins/databox/templates/search/default/argument.thtml -->

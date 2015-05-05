@@ -1,0 +1,10 @@
+<!-- layout/(theme)/databox/templates/attribute/default/col_detail.thtml { -->
+
+<div class="element {group_sitetype_code} {group_company_code} {group_addon_code}">
+
+  <a href="{data_url}"><img alt="{data_title}" class="lightbox" style="background:#FFFFFF; padding:5px; border:1px solid #CCC;" src="http://www.geeklog.jp/jquery/timthumb.php?src=/images/databox/{additionfield3}&amp;w=120&amp;h=120&amp;zc=1&amp;q=90" alt="" title=""></a>
+  <p class="name"><a href="{data_url}" style="text-decoration: none;">{data_title}</a>{data_edit}</p>
+
+</div>
+
+<!-- } layout/(theme)/databox/templates/attribute/default/col_detail.thtml -->

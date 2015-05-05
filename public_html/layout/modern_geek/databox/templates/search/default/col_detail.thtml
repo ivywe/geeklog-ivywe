@@ -1,0 +1,17 @@
+<!-- layout/(theme)/databox/templates/category/default/col_detail.thtml { -->
+
+<div class="element uk-overlay {group_sitetype_code} {group_company_code} {group_addon_code}" data-symbol="{data_title}" data-category="{group_sitetype_pipeline}" style="min-height:150px">
+  <a href="{data_url}">
+    <img alt="{data_title}" src="{site_url}/images/databox/{image}" style="width:100%; height:auto" alt="" title="">
+    <div class="uk-overlay-area"></div>
+    <div class="uk-overlay-area">
+        <div class="uk-overlay-caption">
+           <i class="uk-icon-toggle-right"></i> {data_title} {!if new_img}<span class="uk-badge uk-badge-danger">NEW!</span>{!endif}
+            <p class="number" style="display: none">{data_id}</p>
+        </div>
+    </div>
+  </a>
+  {!if data_edit}<figcaption style="position:absolute; top:0px; right: 10px">{data_edit}</figcaption>{!endif}
+</div>
+
+<!-- } layout/(theme)/databox/templates/category/default/col_detail.thtml -->

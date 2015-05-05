@@ -1,0 +1,14 @@
+<!-- layout/(theme)/databox/templates/attribute/default/list_detail.thtml 20120410{ -->
+
+<div id="databox">
+
+  <p id="breadcrumbs"><a href="{site_url}/">{home}</a> :: <a href="http://www.geeklog.jp/databox/attribute.php/company_name/code">制作会社</a> :: {fieldvalue}</p>
+
+  <h2 style="font-family:Ryumin Medium KL; font-size:14px">{fieldvalue}</h2>
+  <p>{msg}</p>
+
+{nav_var}
+
+</div>
+
+<!-- } layout/(theme)/databox/templates/attribute/default/list_detail.thtml -->

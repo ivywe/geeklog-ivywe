@@ -1,0 +1,5 @@
+#! /bin/sh
+cd /var/www/virtual/xxxxxx.net/geeklog/jobs/;
+/usr/bin/php  /var/www/virtual/xxxxxx.net/geeklog/jobs/csvimport_mapsupdate.php 
+exit
+

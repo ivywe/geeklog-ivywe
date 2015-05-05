@@ -1,0 +1,161 @@
+<!-- layout/(theme)/databox/templates/category/default/navigation_detail.thtml 20120810{ -->
+
+
+<div class="uk-grid">
+    <div class="uk-width-1-1 uk-margin-top">
+			<span class="uk-text-danger"><strong>{cnt}</strong>件</span>の物件が見つかりました。
+	</div>
+    <div class="uk-width-1-1 uk-margin" data-uk-alert>
+			<a href="" class="uk-alert-close uk-close uk-float-right"></a>
+		<div class='pagenav'>
+			{page_navigation}
+			<div class='count' style="float:left">{lang_view} [{lin}] / {cnt} </div>
+		</div>
+	</div>
+    <div class="uk-width-1-1">
+
+  <section id="options" class="clearfix combo-filters">
+  <div class="uk-grid">
+
+    <div class="uk-width-1-1 option-combo type display{!if gor_2_0}{!elseif}{!endif}" data-uk-alert>
+			<a href="" class="uk-alert-close uk-close uk-float-right"></a>
+      <ul class="filter option-set clearfix " data-filter-group="type"> 
+          <li><a href="#filter-type-any" data-filter-value="" class="selected" style="background-color: #6C6DFF; width:6em">タイプ</a></li>
+
+<?php if( $_GET['gor_2'][0] == "" ){ ?>
+
+          <li><a href="#filter-type-jichitai" data-filter-value=".jichitai">自治体</a></li>
+          <li><a href="#filter-type-univ" data-filter-value=".univ">大学</a></li>
+          <li><a href="#filter-type-developer" data-filter-value=".developer">Geeklog開発サービス提供</a></li>
+          <li><a href="#filter-type-corporate" data-filter-value=".corporate">企業・団体サイト</a></li>
+          <li><a href="#filter-type-community" data-filter-value=".community">コミュニティサイト</a></li>
+          <li><a href="#filter-type-site_database" data-filter-value=".site_database">データ検索サイト</a></li>
+
+<?php } else { ?>
+
+          <li class="display<?php if(isset($_GET['gor_2'])){ if(!in_array("42",$_GET['gor_2'])){ echo "0"; }} ?>"><a href="#filter-type-jichitai" data-filter-value=".jichitai">自治体</a></li>
+          <li class="display<?php if(isset($_GET['gor_2'])){ if(!in_array("41",$_GET['gor_2'])){ echo "0"; }} ?>"><a href="#filter-type-univ" data-filter-value=".univ">大学</a></li>
+          <li class="display<?php if(isset($_GET['gor_2'])){ if(!in_array("34",$_GET['gor_2'])){ echo "0"; }} ?>"><a href="#filter-type-developer" data-filter-value=".developer">Geeklog開発サービス提供</a></li>
+          <li class="display<?php if(isset($_GET['gor_2'])){ if(!in_array("12",$_GET['gor_2'])){ echo "0"; }} ?>"><a href="#filter-type-corporate" data-filter-value=".corporate">企業・団体サイト</a></li>
+          <li class="display<?php if(isset($_GET['gor_2'])){ if(!in_array("13",$_GET['gor_2'])){ echo "0"; }} ?>"><a href="#filter-type-community" data-filter-value=".community">コミュニティサイト</a></li>
+          <li class="display<?php if(isset($_GET['gor_2'])){ if(!in_array("14",$_GET['gor_2'])){ echo "0"; }} ?>"><a href="#filter-type-site_database" data-filter-value=".site_database">データ検索サイト</a></li>
+
+<?php } ?>
+
+      </ul>
+    </div>
+
+    <div class="uk-width-1-1 option-combo developer display{!if gor_1_0}{!elseif}{!endif}" data-uk-alert>
+	  <a href="" class="uk-alert-close uk-close uk-float-right"></a>
+      <ul class="filter option-set clearfix " data-filter-group="size"> 
+          <li><a href="#filter-developer-any" data-filter-value="" class="selected" style="background-color: #6C6DFF; width:6em">開発会社</a></li>
+
+<?php if( $_GET['gor_1'][0] == "" ){ ?>
+
+          <li><a href="#filter-developer-ivywe" data-filter-value=".ivywe">IVYWE</a></li>
+          <li><a href="#filter-developer-Adeliae" data-filter-value=".Adeliae">Adeliae</a></li>
+          <li><a href="#filter-developer-Obitastar" data-filter-value=".Obitastar">Obitastar</a></li>
+          <li><a href="#filter-developer-Winkey" data-filter-value=".Winkey">Winkey</a>
+          <li><a href="#filter-developer-mistgrass" data-filter-value=".mistgrass">Mistgrass</a></li>
+          <li><a href="#filter-developer-Design-Symphony" data-filter-value=".Design-Symphony">DS</a></li>
+          <li><a href="#filter-developer-GLT" data-filter-value=".GLT_Matrix">GLT</a></li>
+          <li><a href="#filter-developer-1ststepshoes" data-filter-value=".1ststepshoes">1stss</a></li>
+          <li><a href="#filter-developer-maxi" data-filter-value=".maxi">maxi</a></li>
+          <li><a href="#filter-developer-move" data-filter-value=".move">move</a></li>
+          <li><a href="#filter-developer-Crimsonj" data-filter-value=".Crimsonj">Crimsonj</a></li>
+          <li><a href="#filter-developer-freedom" data-filter-value=".freedom">Freedom</a></li>
+          <li><a href="#filter-developer-freedom" data-filter-value=".freedom">mystral-kk</a></li>
+          <li><a href="#filter-developer-freedom" data-filter-value=".freedom">1s tstep shoes</a></li>
+          <li><a href="#filter-developer-freedom" data-filter-value=".freedom">未登録</a></li>
+
+<?php } else { ?>
+
+          <li class="display<?php if(isset($_GET['gor_1'])){ if(!in_array("2",$_GET['gor_1'])){ echo "0"; }} ?>"><a href="#filter-developer-ivywe" data-filter-value=".ivywe">IVYWE</a></li>
+          <li class="display<?php if(isset($_GET['gor_1'])){ if(!in_array("5",$_GET['gor_1'])){ echo "0"; }} ?>"><a href="#filter-developer-Adeliae" data-filter-value=".Adeliae">Adeliae</a></li>
+          <li class="display<?php if(isset($_GET['gor_1'])){ if(!in_array("3",$_GET['gor_1'])){ echo "0"; }} ?>"><a href="#filter-developer-Obitastar" data-filter-value=".Obitastar">Obitastar</a></li>
+          <li class="display<?php if(isset($_GET['gor_1'])){ if(!in_array("4",$_GET['gor_1'])){ echo "0"; }} ?>"><a href="#filter-developer-Winkey" data-filter-value=".Winkey">Winkey</a>
+          <li class="display<?php if(isset($_GET['gor_1'])){ if(!in_array("11",$_GET['gor_1'])){ echo "0"; }} ?>"><a href="#filter-developer-mistgrass" data-filter-value=".mistgrass">Mistgrass</a></li>
+          <li class="display<?php if(isset($_GET['gor_1'])){ if(!in_array("32",$_GET['gor_1'])){ echo "0"; }} ?>"><a href="#filter-developer-Design-Symphony" data-filter-value=".Design-Symphony">DS</a></li>
+          <li class="display<?php if(isset($_GET['gor_1'])){ if(!in_array("6",$_GET['gor_1'])){ echo "0"; }} ?>"><a href="#filter-developer-GLT" data-filter-value=".GLT_Matrix">GLT</a></li>
+          <li class="display<?php if(isset($_GET['gor_1'])){ if(!in_array("8",$_GET['gor_1'])){ echo "0"; }} ?>"><a href="#filter-developer-1ststepshoes" data-filter-value=".1ststepshoes">1stss</a></li>
+          <li class="display<?php if(isset($_GET['gor_1'])){ if(!in_array("9",$_GET['gor_1'])){ echo "0"; }} ?>"><a href="#filter-developer-maxi" data-filter-value=".maxi">maxi</a></li>
+          <li class="display<?php if(isset($_GET['gor_1'])){ if(!in_array("33",$_GET['gor_1'])){ echo "0"; }} ?>"><a href="#filter-developer-move" data-filter-value=".move">move</a></li>
+          <li class="display<?php if(isset($_GET['gor_1'])){ if(!in_array("7",$_GET['gor_1'])){ echo "0"; }} ?>"><a href="#filter-developer-Crimsonj" data-filter-value=".Crimsonj">Crimsonj</a></li>
+          <li class="display<?php if(isset($_GET['gor_1'])){ if(!in_array("35",$_GET['gor_1'])){ echo "0"; }} ?>"><a href="#filter-developer-freedom" data-filter-value=".freedom">Freedom</a></li>
+          <li class="display<?php if(isset($_GET['gor_1'])){ if(!in_array("39",$_GET['gor_1'])){ echo "0"; }} ?>"><a href="#filter-developer-freedom" data-filter-value=".freedom">mystral-kk</a></li>
+          <li class="display<?php if(isset($_GET['gor_1'])){ if(!in_array("40",$_GET['gor_1'])){ echo "0"; }} ?>"><a href="#filter-developer-freedom" data-filter-value=".freedom">1s tstep shoes</a></li>
+          <li class="display<?php if(isset($_GET['gor_1'])){ if(!in_array("10",$_GET['gor_1'])){ echo "0"; }} ?>"><a href="#filter-developer-freedom" data-filter-value=".freedom">未登録</a></li>
+<?php } ?>
+
+      </ul>
+    </div>
+
+    <div class="uk-width-1-1 option-combo addon display{!if gand_3_0}{!elseif}{!endif}" data-uk-alert>
+			<a href="" class="uk-alert-close uk-close uk-float-right"></a>
+      <ul class="filter option-set clearfix " data-filter-group="addon"> 
+          <li><a href="#filter-addon-any" data-filter-value="" class="selected" style="background-color: #6C6DFF; width:6em">アドオン</a></li>
+
+<?php if( $_GET['gand_3'][0] == "" ){ ?>
+
+<li><a href="#filter-addon-responsive" data-filter-value=".responsive">レスポンシブWEBデザイン</a></li>
+<li><a href="#filter-addon-addon_DataBox" data-filter-value=".addon_DataBox">DataBoxプラグイン</a></li>
+<li><a href="#filter-addon-addon_Maps" data-filter-value=".addon_Maps">Mapsプラグイン</a></li>
+<li><a href="#filter-addon-addon_moblog" data-filter-value=".addon_moblog">モブログ（Moblog）プラグイン</a></li>
+<li><a href="#filter-addon-addon_mediagallery" data-filter-value=".addon_mediagallery">Mediagallery</a></li>
+<li><a href="#filter-addon-addon_Downloads" data-filter-value=".addon_Downloads">Downloads Filemgmtプラグイン</a></li>
+<li><a href="#filter-addon-addon_Forum" data-filter-value=".addon_Forum">Forumプラグイン</a></li>
+<li><a href="#filter-addon-addon_tag" data-filter-value=".addon_tag">Tagプラグイン</a></li>
+<li><a href="#filter-addon-addon_GoogleAnalytics" data-filter-value=".addon_GoogleAnalytics">GoogleAnalyticsプラグイン</a></li>
+<li><a href="#filter-addon-addon_wkyForm" data-filter-value=".addon_wkyForm">汎用お問い合わせフォーム</a></li>
+<li><a href="#filter-addon-addon_SSL" data-filter-value=".addon_SSL">SSL対応ハック</a></li>
+<li><a href="#filter-addon-addon_Langselect" data-filter-value=".addon_Langselect">多言語切り替え（switchlang.php）</a></li>
+
+<?php } else { ?>
+
+<li class="display<?php if(isset($_GET['gand_3'])){ if(!in_array("37",$_GET['gand_3'])){ echo "0"; }} ?>"><a href="#filter-addon-responsive" data-filter-value=".responsive">レスポンシブWEBデザイン</a></li>
+<li class="display<?php if(isset($_GET['gand_3'])){ if(!in_array("16",$_GET['gand_3'])){ echo "0"; }} ?>"><a href="#filter-addon-addon_DataBox" data-filter-value=".addon_DataBox">DataBoxプラグイン</a></li>
+<li class="display<?php if(isset($_GET['gand_3'])){ if(!in_array("17",$_GET['gand_3'])){ echo "0"; }} ?>"><a href="#filter-addon-addon_UserBox" data-filter-value=".addon_UserBox">UserBoxプラグイン</a></li>
+<li class="display<?php if(isset($_GET['gand_3'])){ if(!in_array("18",$_GET['gand_3'])){ echo "0"; }} ?>"><a href="#filter-addon-addon_Maps" data-filter-value=".addon_Maps">Mapsプラグイン</a></li>
+<li class="display<?php if(isset($_GET['gand_3'])){ if(!in_array("38",$_GET['gand_3'])){ echo "0"; }} ?>"><a href="#filter-addon-addon_mediagallery" data-filter-value=".addon_mediagallery">Mediagallery</a></li>
+<li class="display<?php if(isset($_GET['gand_3'])){ if(!in_array("22",$_GET['gand_3'])){ echo "0"; }} ?>"><a href="#filter-addon-addon_Downloads" data-filter-value=".addon_Downloads">Downloads Filemgmtプラグイン</a></li>
+<li class="display<?php if(isset($_GET['gand_3'])){ if(!in_array("21",$_GET['gand_3'])){ echo "0"; }} ?>"><a href="#filter-addon-addon_Forum" data-filter-value=".addon_Forum">Forumプラグイン</a></li>
+<li class="display<?php if(isset($_GET['gand_3'])){ if(!in_array("29",$_GET['gand_3'])){ echo "0"; }} ?>"><a href="#filter-addon-addon_tag" data-filter-value=".addon_tag">Tagプラグイン</a></li>
+<li class="display<?php if(isset($_GET['gand_3'])){ if(!in_array("27",$_GET['gand_3'])){ echo "0"; }} ?>"><a href="#filter-addon-addon_GoogleAnalytics" data-filter-value=".addon_GoogleAnalytics">GoogleAnalyticsプラグイン</a></li>
+<li class="display<?php if(isset($_GET['gand_3'])){ if(!in_array("28",$_GET['gand_3'])){ echo "0"; }} ?>"><a href="#filter-addon-addon_wkyForm" data-filter-value=".addon_wkyForm">汎用お問い合わせフォーム</a></li>
+<li class="display<?php if(isset($_GET['gand_3'])){ if(!in_array("26",$_GET['gand_3'])){ echo "0"; }} ?>"><a href="#filter-addon-addon_SSL" data-filter-value=".addon_SSL">SSL対応ハック</a></li>
+<li class="display<?php if(isset($_GET['gand_3'])){ if(!in_array("31",$_GET['gand_3'])){ echo "0"; }} ?>"><a href="#filter-addon-addon_Langselect" data-filter-value=".addon_Langselect">多言語切り替え（switchlang.php）</a></li>
+
+<?php } ?>
+
+      </ul>
+    </div>
+
+		<div class="uk-width-1-1 option-combo sort-direction" data-uk-alert>
+			<a href="" class="uk-alert-close uk-close uk-float-right"></a>
+			<ul id="sort" class="option-set clearfix" data-option-key="sortAscending">
+				<li><a href="#sortAscending=true" data-option-value="true" class="selected">正順</a></li>
+				<li><a href="#sortAscending=false" data-option-value="false">逆順</a></li>
+				<li id="shuffle"><a href='#shuffle' data-option-value="shuffle">シャッフル</a></li>
+			</ul>
+    	</div>
+
+	</section> <!-- #options -->
+
+	</div>
+    <div class="uk-width-1-1">
+
+		<div id="container-isotope" class="clearfix" style="margin-top: 3em">
+			{row_var}
+		</div>
+
+	</div>
+    <div class="uk-width-1-1 uk-margin">
+		<div class='pagenav'>
+			{page_navigation}
+			<div class='count' style="float:left">{lang_view} [{lin}] / {cnt} </div>
+		</div>
+	</div>
+</div>
+
+
+<!-- } layout/(theme)/databox/templates/category/default/navigation_detail.thtml -->

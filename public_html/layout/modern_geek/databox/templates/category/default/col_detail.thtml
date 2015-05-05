@@ -1,0 +1,5 @@
+<!-- plugins/databox/templates/category/default/col_detail.thtml 20140114 { -->
+<li>
+{data_link}
+</li>
+<!-- } plugins/databox/templates/category/default/col_detail.thtml -->

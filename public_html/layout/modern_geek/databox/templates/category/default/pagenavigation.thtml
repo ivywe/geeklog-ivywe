@@ -1,0 +1,6 @@
+<!-- plugins/databox/templates/category/default/pagenavibation.thtml { -->
+
+<div style="text-align:center">{begin_backlink} {lang_back} {end_backlink}&nbsp;[{lang_page_of}]&nbsp;{begin_nextlink} {lang_next} {end_nextlink}
+</div>
+
+<!-- } plugins/databox/templates/category/default/pagenavibation.thtml -->

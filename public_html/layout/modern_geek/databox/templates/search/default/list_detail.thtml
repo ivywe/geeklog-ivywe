@@ -1,0 +1,23 @@
+<!-- layout/(theme)/databox/templates/category/default/list_detail.thtml 20120410{ -->
+
+<div class="uk-grid">
+	<div class="uk-width-1-1">
+		<ul class="uk-breadcrumb">
+			<li><a href="{site_url}/">{home}</a></li>
+    		<li>{fieldset_name}</li>
+		</ul>
+	</div>
+
+	<div class="uk-width-1-1">
+		<div class="uk-panel uk-panel-box" data-uk-alert>
+			<a href="" class="uk-alert-close uk-close uk-float-right"></a>
+			{arg_var}
+		</div>
+	</div>
+	<div class="uk-width-1-1">
+		{nav_var}
+	</div>
+
+</div>
+
+<!-- } layout/(theme)/databox/templates/category/default/list_detail.thtml -->

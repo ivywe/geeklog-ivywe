@@ -1,0 +1,16 @@
+<!-- layout/(theme)/databox/templates/attribute/default/list.thtml 20121031 { -->
+
+<div id="databox">
+
+  <p id="breadcrumbs"><a href="{site_url}/">{home}</a>{attribute_top}</p>
+
+  <h2>{field_top}</h2>
+  <p>{msg}</p>
+
+  <div>
+    {nav_var}
+  </div>
+
+</div>
+
+<!-- } layout/(theme)/databox/templates/attribute/default/list.thtml -->

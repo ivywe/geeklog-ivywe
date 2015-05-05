@@ -1,0 +1,65 @@
+<!-- layout/(theme)/databox/templates/data/default/list_detail.thtm { -->
+
+<p><a href="{site_url}/">HOME</a> :: <a href="{site_url}/databox/search.php?templatedir=&fieldset=1&gor_2[]=&gor_1[]=&gand_3[]=">検索</a> :: カテゴリ :: {categories} :: {title}</p>
+
+<div class="databox">
+  <h2 style="margin: 1em; font-family:Ryumin Medium KL; font-size:24px">{title}</h2>
+
+<p style="margin: 0 3em 1em 5em">{description}</p>
+
+<div style="text-align:center">
+
+<!--
+<a class="uk-button" href="{URL}" data-uk-lightbox="{group:'group2'}"><img src="{data_img_url}{image}" width="500" height="300" alt="{title}"></a>
+-->
+
+
+							<button class="uk-button" data-uk-modal="{target:'#modal'}"><img src="{data_img_url}{image}" style="width:300px" /></button>
+							<div id="modal" class="uk-modal" style="display: none; overflow-y: scroll;">
+                                <div class="uk-modal-dialog uk-modal-dialog-lightbox">
+                                    <button type="button" class="uk-modal-close uk-close uk-close-alt"></button>
+                                    <img src="{data_img_url}{image}" width="500" height="300" alt="">
+                                </div>
+                            </div>
+
+</div>
+
+<dl style="margin: 1em 3em 1em 5em">
+<dt style="font-weight:bold; margin: 1em 0 0 0">サイトURL</dt><dd style="margin: 0 0 0 5em"><a  target="_blank" href="{URL}" class="ext-link">{URL}</a></dd>
+{!if description2}
+<dt style="font-weight:bold; margin: 1em 0 0 0">詳細説明</dt><dd style="margin: 0 0 0 5em">{description2}</dd>
+{!endif} 
+{!if addons}
+<dt style="font-weight:bold; margin: 1em 0 0 0">アドオン</dt><dd style="margin: 0 0 0 5em">{addons}</dd>
+{!endif} 
+{!if basetheme}
+<dt style="font-weight:bold; margin: 1em 0 0 0">ベーステーマ</dt><dd style="margin: 0 0 0 5em">{basetheme}</dd>
+{!endif} 
+{!if say}
+<dt style="font-weight:bold; margin: 1em 0 0 0">運用者の感想</dt style="margin: 0 0 0 5em"><dd>{say}</dd>
+{!endif} 
+{!if company_name}
+<dt style="font-weight:bold; margin: 1em 0 0 0">制作会社名</dt><dd style="margin: 0 0 0 5em"><a  target="_blank" href="{company_URL}" class="ext-link">{company_name}</a><br />{company_URL}</dd>
+{!endif} 
+{!if company_name2}
+<dt style="font-weight:bold; margin: 1em 0 0 0">制作会社名(2)</dt><dd style="margin: 0 0 0 5em"><a  target="_blank" href="{company_URL2}" class="ext-link">{company_name2}</a><br />{company_URL2}</dd>
+{!endif} 
+</dl>
+
+<div style="text-align:right">投稿者: <a href="/users.php?mode=profile&uid={owner_id}">{owner_name}</a></div>
+
+<p style="text-align:center; margin:0 0 2em 0">hits:{hits} modified:{modified} created:{created} </p>
+
+<div style="clear:both; margin: 1em 0 0 5em">
+
+{edit}{draft}
+
+<div style="float:left; width:80px">{!!autotag assist:btn type:tweet !!}</div>
+<div style="float:left; width:80px">{!!autotag assist:btn type:fblikebtn templatedir:aaa !!}</div>
+<div style="float:left; width:80px">{!!autotag assist:btn type:evclip !!}</div>
+<div style="clear:both; margin: 1em 0 0 5em">{!!autotag assist:btn type:fbcomment !!}</div>
+
+</div>
+</div>
+
+<!-- } layout/(theme)/databox/templates/data/default/list_detail.thtml -->
