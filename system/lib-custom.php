@@ -611,4 +611,11 @@ require_once( 'custom/phpblock_stats.php' );
 /* ユーザーエージェント判定のテンプレート変数を追加する */
 require_once( 'custom/useragent.class.php' );
 
+/* 404 */
+require_once( 'custom/custom_handle404.php' );
+
+/* Forum センターブロック */
+require_once( 'custom/custom_centerblock_forum.php' );
+
+
 ?>
