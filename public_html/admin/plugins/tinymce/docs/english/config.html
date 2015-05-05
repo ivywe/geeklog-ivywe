@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<link rel="stylesheet" type="text/css" href="../docstyle.css" title="Dev Stylesheet">
+	<title>Configuration - TinyMCE plugin</title>
+</head>
+<body dir="ltr">
+	<h1>Global settings for TinyMCE plugin</h1>
+	
+	<h2>TinyMCE settings</h2>
+	<table>
+		<tr>
+			<th style="width: 25%;">Items (Variable)</th>
+			<th style="width: 25%;">Default value</th>
+			<th style="width: 50%;">Description</th>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_targets">Target textarea(mode)</a></td>
+			<td valign="top">Select automatically</td>
+			<td valign="top">
+				The kind of &lt;textarea&gt; tags to which you would like to attach TinyMCE.  Valid values are:
+				<ul>
+					<li>Select automatically: &lt;textarea&gt; tags in Story/Staticpage/Comment/Calendar/Mail/Block editors</li>
+					<li>All &lt;textarea&gt; tags: All &lt;textarea&gt; tags used in Geeklog</li>
+					<li>Specific &lt;textarea&gt; tags(with a specific <acronym title="Cascading Style Sheet">CSS</acronym> class name): All &lt;textarea&gt; tags used in Geeklog which have a specific CSS class name</li>
+					<li>Specific &lt;textarea&gt; tags(with specific CSS IDs): All &lt;textarea&gt; tags used in Geeklog which have specific CSS IDs</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_target_class">CSS class name(target_class)</a></td>
+			<td valign="top">tinymce_enabled</td>
+			<td valign="top">The CSS class name of &lt;textarea&gt; tags to which you would like to attach TinyMCE when you choose "Specific &lt;textarea&gt; tags(with a specific CSS class name)" in the above option.</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_target_ids">CSS IDs(target_ids)</a></td>
+			<td valign="top">array('introtext', 'bodytext', 'html_content')</td>
+			<td valign="top">The CSS class name of &lt;textarea&gt; tags to which you would like to attach TinyMCE when you choose "Specific &lt;textarea&gt; tags(with specific CSS IDs)" in the above option.</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_height">Editor height(height)</a></td>
+			<td valign="top">360</td>
+			<td valign="top">the height of TinyMCE (including toolbars) in pixels or percent.  To specify in pixels, enter only a number.  To specify in percent, enter a number followed by a '%'.  If you leave this item blank, the height of the textarea tag TinyMCE replaces will be used.</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_width">Editor width(width)</a></td>
+			<td valign="top">90%</td>
+			<td valign="top">the width of TinyMCE in pixels or percent.  To specify in pixels, enter only a number.  To specify in percent, enter a number followed by a '%'.  If you leave this item empty, the width of the textarea tag TinyMCE replaces will be used.</td>
+		</tr>
+	</table>
+
+	<h2>TinyBrwoser plugin settings</h2>
+	<table>
+		<tr>
+			<th style="width:25%">Items (Variable)</th>
+			<th style="width:25%">Default value</th>
+			<th style="width:50%">Description</th>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_tb_unixpermissions">Folder permissions</a></td>
+			<td valign="top">777</td>
+			<td valign="top">Permissions needed in creating folders on Unix servers.  Be sure to use octal numbers WITHOUT preceding zeros, for example, 777 or 755.</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_tb_cleanfilename">Clean filename</a></td>
+			<td valign="top">Yes</td>
+			<td valign="top">Whether to clean filenames on upload</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_tb_filetype_image">Permitted image file extensions</a></td>
+			<td valign="top">array('jpg', 'jpeg', 'gif', 'png')</td>
+			<td valign="top">Extensions of image files you are allowed to upload</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_tb_filetype_media">Permitted media file extensions</a></td>
+			<td valign="top">array('swf', 'dcr', 'mov', 'qt', 'mpg', 'mp3', 'mp4', 'mpeg',
+			'avi', 'wmv', 'wm', 'asf', 'asx', 'wmx', 'wvx', 'rm', 'ra', 'ram')</td>
+			<td valign="top">Extensions of media files you are allowed to upload</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_tb_prohibited">Prohibited file extensions</a></td>
+			<td valign="top">array('php', 'php3', 'php4', 'php5', 'phtml', 'asp', 'aspx', 'ascx', 'jsp', 'cfm', 'cfc', 'pl', 'bat', 'exe', 'dll', 'reg', 'cgi', 'sh', 'py', 'asa', 'asax', 'config', 'com', 'inc')</td>
+			<td valign="top">Extensions of files you are not allowed to upload</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_tb_maxsize_image">Image file maximum size</a></td>
+			<td valign="top">0</td>
+			<td valign="top">Maximum size (in bytes) of image files you are allowed to upload.  0 means "unlimited".  If you want to specify 1MB (mega bytes), specify <tt>1048576</tt>.</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_tb_maxsize_media">Media file maximum size</a></td>
+			<td valign="top">0</td>
+			<td valign="top">Maximum size (in bytes) of media files you are allowed to upload.  0 means "unlimited".  If you want to specify 1MB (mega bytes), specify <tt>1048576</tt></td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_tb_maxsize_file">Other file maximum size</a></td>
+			<td valign="top">0</td>
+			<td valign="top">Maximum size (in bytes) of other files you are allowed to upload.  0 means "unlimited".  If you want to specify 1MB (mega bytes), specify <tt>1048576</tt></td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_tb_imagequality">Image quality</a></td>
+			<td valign="top">80</td>
+			<td valign="top">Image quality (1 to 99, the higher the better).  This setting will be used only when resizing or rotating images.</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_tb_imageresize_width">Width</a></td>
+			<td valign="top">0(= no resizing)</td>
+			<td valign="top">The width of a resized image</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_tb_imageresize_height">Height</a></td>
+			<td valign="top">0(= no resizing)</td>
+			<td valign="top">The height of a resized image</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_tb_thumbsize">Image thumbnail size</a></td>
+			<td valign="top">80</td>
+			<td valign="top">The size of a thumbnail image (in pixels)</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_tb_thumbquality">Thumbnail quality</a></td>
+			<td valign="top">80</td>
+			<td valign="top">Thumbnail quality (1 to 99, the higher the better).  This setting will be used only when creating thumbnails.</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_tb_window_width">Pop-up window width</a></td>
+			<td valign="top">770</td>
+			<td valign="top">The width of TinyBrowser pop-up window</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_tb_window_height">Pop-up window height</a></td>
+			<td valign="top">480</td>
+			<td valign="top">The height of TinyBrowser pop-up window</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_tb_pagination">File Pagination</a></td>
+			<td valign="top">0</td>
+			<td valign="top">The number of items per page.  0 means no paging.</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_tb_dateformat">Date format</a></td>
+			<td valign="top">Y-m-d H:i</td>
+			<td valign="top">Date format as per PHP date function</td>
+		</tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>{#emojisoftbank.title}</title>
+	<script type="text/javascript" src="../../tiny_mce_popup.js"></script>
+	<script type="text/javascript" src="js/emojisoftbank.js"></script>
+	<base target="_self" />
+	<style>
+		.emojisoftbank {
+			margin:0;
+			padding:0;
+			background-repeat: no-repeat;
+			background-position: center center;
+		}
+		.emojisoftbank td{
+			width:17px;
+			height:17px;
+		}
+		.emojisoftbank p{
+			width:15px;
+			height:15px;
+			margin:0;
+			padding:0;
+		}
+		#emojisoftbank_pallet_container{
+			width:300px;
+			height:200px;
+		}
+	</style>
+</head>
+<body style="display: none">
+	<div align="center">
+		<div class="title">{#emojisoftbank.title}:<br /><br /></div>
+		<a href="javascript:Emojisoftbank_pallet.prev_pallet();"><img src="img/arrow_back.gif" border="0" /></a>&nbsp;&nbsp;<a href="javascript:Emojisoftbank_pallet.next_pallet();"><img src="img/arrow_forward.gif" border="0" /></a><br />
+		<div id="emojisoftbank_pallet_container">
+		
+		</div>
+	</div>
+<script type="text/javascript">
+<!--
+	Emojisoftbank_pallet.init();
+-->
+</script>
+</body>
+</html>

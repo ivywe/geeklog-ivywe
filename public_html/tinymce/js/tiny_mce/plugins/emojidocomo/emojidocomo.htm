@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>{#emojidocomo.title}</title>
+	<script type="text/javascript" src="../../tiny_mce_popup.js"></script>
+	<script type="text/javascript" src="js/emojidocomo.js"></script>
+	<base target="_self" />
+	<style>
+		.emojidocomo {
+			margin:0;
+			padding:0;
+			background-repeat: no-repeat;
+			background-position: center center;
+		}
+		.emojidocomo td{
+			width:14px;
+			height:14px;
+		}
+		.emojidocomo p{
+			width:12px;
+			height:12px;
+			margin:0;
+			padding:0;
+		}
+
+	</style>
+</head>
+<body style="display: none">
+	<div align="center">
+		<div class="title">{#emojidocomo.title}:<br /><br /></div>
+		<div id="emojidocomo_pallet_container">
+		
+		</div>
+	</div>
+
+<script>
+	Emojidocomo_pallet.init();
+</script>
+</body>
+</html>

@@ -1,0 +1,561 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<title>Geeklog TinyMCE plugin</title>
+	<style type="text/css">
+	<!-->
+		body {
+			color: black;
+			background-color: white;
+			line-height: 1.5em;
+		}
+		h1 {
+			border-left: solid 15px #333399;
+			border-bottom: solid 2px #333399;
+			padding: 3px 3px 3px 10px;
+		}
+		h2 {
+			border-left: solid 15px #333399;
+			border-bottom: solid 2px #333399;
+			padding-left: 5px;
+		}
+		dl {
+			width: 500px;
+			border: dotted 1px black;
+		}
+		dt {
+			padding: 5px;
+			font-style: italic;
+		}
+		table {
+			border: solid 1px black;
+			border-collapse: collapse;
+		}
+		tr.header {
+			background-color: #ccccff;
+		}
+		th, td {
+			border: solid 1px black;
+			padding: 5px;
+		}
+		.geeklog {
+			background-color: yellow;
+		}
+		.public {
+			background-color: #99ff00;
+		}
+		.admin {
+			background-color: aqua;
+		}
+		li {
+			padding: 5px;
+		}
+		code {
+			padding: 3px;
+			margin: 5px;
+			background-color: #ccffff;
+			border: dotted 1px black;
+		}
+		tt {
+			font-family: Arial, sans-serif;
+			font-weight: bold;
+		}
+		.warning {
+			padding: 5px;
+			background-color: #ff99ff;
+			border: solid 1px black;
+		}
+		.back_to_top {
+			font-size: 0.8em;
+			text-align: right;
+		}
+		.fix {
+			color: #cc0033;
+			font-weight: bold;
+		}
+		.new {
+			color: #33cc66;
+			font-weight: bold;
+		}
+		.footer {
+			border: solid 1px black;
+			background-color: #ffff66;
+			padding: 5px;
+		}
+	<! -->
+	</style>
+</head>
+
+<body>
+	<a name="top"></a>
+	<h1>Geeklog TinyMCE plugin</h1>
+	
+	<dl>
+		<dt>Author</dt><dd>mystral-kk   &lt;geeklog AT mystral-kk DOT net&gt;</dd>
+		<dt>Version</dt><dd>0.4.7 (Beta release), TinyMCE v3.4.7</dd>
+		<dt>Release date</dt><dd>2011-11-19</dd>
+		<dt>License</dt><dd>GPLv2 or later</dd>
+		<dt>Requirements</dt><dd><strong>Geeklog-1.6.0 or later</strong></dd>
+	</dl>
+	
+	<a name="introduction"></a>
+	<h2>Introduction</h2>
+	<p>Geeklog TinyMCE plugin implements TinyMCE, a most famous JavaScript <acronym title="What you see is what you get">WYSIWYG</acronym> editor as a plugin, which means you don't have to chage any part of Geeklog's core code.  You have to enable JavaScript in your web browser to use this plugin, though.</p>
+	
+	<div class="back_to_top"><a href="#top">Back to TOP</a></div>
+	
+	<a name="install"></a>
+	<h2>Installation</h2>
+	
+	<p>In the description below:</p>
+	<ul>
+		<li><span class="geeklog">&lt;geeklog_dir&gt;</span> is a folder (directory) in which Geeklogs's <tt>db-config.php</tt> resides</li>
+		<li><span class="public">&lt;public_html&gt;</span> is a folder (directory) in which <tt>lib-common.php</tt> resides</li>
+		<li><span class="admin">&lt;admin&gt;</span> is a folder (directory) in which files for admin resides (Usually, the child directory of <span class="public">&lt;public_html&gt;</span>)</li>
+	</ul>
+	
+	<ol>
+		<li>Back up your database by using admin's database utility or a GUI tool like phpMyAdmin, since TinyMCE plugin modifies the database.</li>
+		<li>Unpack a archive file of the plugin into <span class="geeklog">&lt;geeklog_dir&gt;</span>/plugins folder.  A folder named <tt>tinymce</tt> will be created in the <tt>plugins</tt> folder.</li>
+		<li>In the <span class="public">&lt;public_html&gt;</span>/ folder, create a folder named <tt>tinymce</tt>, and in the <span class="admin">&lt;admin&gt;</span>/plugins/ folder, create a folder named <tt>tinymce</tt> as well.</li>
+		<li>Move to <span class="geeklog">&lt;geeklog_dir&gt;</span>/plugins/tinymce/ folder and copy all the contents of the <tt>public_html</tt> folder into the <span class="public">&lt;public_html&gt;</span>/tinymce folder you created in the previous step.  Likewise, copy all the contents of the <tt>admin</tt>folder into the <span class="admin">&lt;admin&gt;</span>/plugins/tinymce/ folder.</li>
+		<li>Log in to your site as admin, go to the plugin editor and click on the "TinyMCE" link.  When installation failed, please check the error log (<span class="geeklog">&lt;geeklog_dir&gt;</span><tt>/logs/error.log</tt>).</li>
+	</ol>
+	<div class="back_to_top"><a href="#top">Back to TOP</a></div>
+	
+	<a name="how_to_use"></a>
+	<h2>Usage</h2>
+	
+	<h3>1. Configuration</h3>
+	
+	<p>You can specify TinyMCE's toolbar buttons and plugins you would like to use for each Geeklog group.  To do this, log in to your site as admin and click on the "TinyMCE" link in the admin menu.</p>
+	
+	<h3>2. Plugins</h3>
+	
+	<p>Some plugins produce HTML tags with/without attributes (See Table 1 below).  You have to allow these HTML tags (and attributes) in Geeklog.  To do so, log in to your site as admin, go to "Configuration", click on "Miscellaneous", scroll down to "HTML Filtering" section, and click "+" button next to "User HTML" or "Admin HTML".  For example, if you want to use <tt>autoresize</tt> plugin, you don't have to add any HTML tags, since the plugin won't produce any HTML tag.  However, if you want to use <tt>emotions</tt> plugin, you have to add <tt>img</tt> tag.  Or, if you want to use <tt>advhr</tt> plugin, you have to add <tt>hr</tt> tag with <tt>style</tt> attribute.  Or, if you want to use <tt>legacyoutput</tt> plugin, you have to add <tt>font</tt>, <tt>b</tt>, <tt>i</tt>, <tt>u</tt>, <tt>strike</tt> tags.</p>
+	<p>Note: <tt>contextmenu</tt>, <tt>inlinepopups</tt> and <tt>xhtmlxtras</tt> plugins are essential and are always enabled.</p>
+	
+	<table style="margin: 10px auto;">
+		<caption>Table 1  HTML tags and attributes that plugins produce</caption>
+		<tr>
+			<th>Plugin Name</th><th>What the plugin does</th><th>HTML tags and attributes this plugin produces</th>
+		</tr>
+		<tr>
+			<td>advhr</td>
+			<td>Insert a horizontal rule with CSS styles</td>
+			<td>hr[style]</td>
+		</tr>
+		<tr>
+			<td>advimage</td>
+			<td>Insert/edit an image</td>
+			<td>img</td>
+		</tr>
+		<tr>
+			<td>advlink</td>
+			<td>Insert/edit a link</td>
+			<td>a[href]</td>
+		</tr>
+		<tr>
+			<td>advlist</td>
+			<td>Insert an ordered/unordered list</td>
+			<td>ul, ol, li</td>
+		</tr>
+		<tr>
+			<td>autoresize</td>
+			<td>Resize editor window automatically</td>
+			<td>(none)</td>
+		</tr>
+		<tr>
+			<td>autosave</td>
+			<td>Save the content you are editting automatically</td>
+			<td>(none)</td>
+		</tr>
+		<tr>
+			<td>bbcode</td>
+			<td>Insrert bbcode</td>
+			<td>(none)</td>
+		</tr>
+		<tr>
+			<td>directionality</td>
+			<td>Set directionality (left to right, right to left) of the document</td>
+			<td>(none)</td>
+		</tr>
+		<tr>
+			<td>emotions</td>
+			<td>Insert emoticons/smileies</td>
+			<td>img</td>
+		</tr>
+		<tr>
+			<td>fullscreen</td>
+			<td>Show in full screen</td>
+			<td>(none)</td>
+		</tr>
+		<tr>
+			<td>iespell</td>
+			<td>Spell checker (for Internet Explorer only)</td>
+			<td>(none)</td>
+		</tr>
+		<tr>
+			<td>insertdatetime</td>
+			<td>Insert the current date/time</td>
+			<td>(none)</td>
+		</tr>
+		<tr>
+			<td>layer</td>
+			<td>Insert/edit a layer</td>
+			<td>(none)</td>
+		</tr>
+		<tr>
+			<td>legacyoutput</td>
+			<td>Enable inserting legacy HTML tags (not recommended)</td>
+			<td>font, b, i, u, strike</td>
+		</tr>
+		<tr>
+			<td>media</td>
+			<td>Insert/edit media</td>
+			<td>img</td>
+		</tr>
+		<tr>
+			<td>nonbreaking</td>
+			<td>Insert a non-breaking space</td>
+			<td>(none)</td>
+		</tr>
+		<tr>
+			<td>noneditable</td>
+			<td>Set a non-editable area</td>
+			<td>(none)</td>
+		</tr>
+		<tr>
+			<td>pagebreak</td>
+			<td>Insert a page-break</td>
+			<td>img</td>
+		</tr>
+		<tr>
+			<td>paste</td>
+			<td>Adavanced paste</td>
+			<td>(none)</td>
+		</tr>
+		<tr>
+			<td>preview</td>
+			<td>Preview the content</td>
+			<td>(none)</td>
+		</tr>
+		<tr>
+			<td>print</td>
+			<td>Print the content</td>
+			<td>(none)</td>
+		</tr>
+		<tr>
+			<td>searchreplace</td>
+			<td>Search/replace</td>
+			<td>(none)</td>
+		</tr>
+		<tr>
+			<td>spellchecker</td>
+			<td>Spell checker</td>
+			<td>(none)</td>
+		</tr>
+		<tr>
+			<td>style</td>
+			<td>Edit the CSS style</td>
+			<td>(none)</td>
+		</tr>
+		<tr>
+			<td>tabfocus</td>
+			<td>Tab focus</td>
+			<td>(none)</td>
+		</tr>
+		<tr>
+			<td>table</td>
+			<td>Insert/edit an HTML table</td>
+			<td>(none)</td>
+		</tr>
+		<tr>
+			<td>template</td>
+			<td>Insert a template</td>
+			<td>(none)</td>
+		</tr>
+		<tr>
+			<td>tinybrowser</td>
+			<td>Enable TinyBrwoser plugin to browse image, media and other files</td>
+			<td>img</td>
+		</tr>
+		<tr>
+			<td>visualchars</td>
+			<td>Visual control characters on/off</td>
+			<td>(none)</td>
+		</tr>
+		<tr>
+			<td>wordcount</td>
+			<td>Count the number of words</td>
+			<td>(none)</td>
+		</tr>
+		<tr>
+			<td>emojiau</td>
+			<td>Insert emoji (pictograms) used by au subscribers</td>
+			<td>img</td>
+		</tr>
+		<tr>
+			<td>emojidocomo</td>
+			<td>Insert emoji (pictograms) used by docomo subscribers</td>
+			<td>img</td>
+		</tr>
+		<tr>
+			<td>emojisoftbank</td>
+			<td>Insert emoji (pictograms) used by SoftBank subscribers</td>
+			<td>img</td>
+		</tr>
+	</table>
+	<div class="back_to_top"><a href="#top">Back to TOP</a></div>
+	
+	<h3>3. Toolbar buttons</h3>
+	
+	<p>Some toolbar buttons produce HTML tags with/without attributes (See Table 2 below).  You have to allow these HTML tags (and attributes) in Geeklog.  To do so, log in to your site as admin, go to "Configuration", click on "Miscellaneous", scroll down to "HTML Filtering" section, and click "+" button next to "User HTML" or "Admin HTML".  For example, if you want to use <tt>copy</tt> button, you don't have to add any HTML tag, since the button won't produce any HTML tag.  However, if you want to use <tt>blockquote</tt> button, you have to add <tt>blockquote</tt> tag.  Or, if you want to use <tt>backcolor</tt> button, you have to add <tt>span</tt> tag with <tt>style</tt> attribute.  Or, if you want to use <tt>bullist</tt> button, you have to add <tt>ul</tt> and <tt>li</tt> tags.</p>
+	
+	<p><strong>Caution</strong>: As you see from Table 2 below, you have to add <tt>&lt;p&gt;</tt> tag with <tt>style</tt> attribute and/or <tt>&lt;span&gt;</tt> tag with <tt>style</tt> attribute, if you want to decorate a text.</p>
+	
+	<p>The names of buttons provided by plugins are the same as those of plugins.  See table 1 above.</p>
+	
+	<table style="margin: 10px auto;">
+		<caption>Table 2  HTML tags and attributes that toolbar buttons produce</caption>
+		<tr>
+			<th>Button Name</th>
+			<th>What the button does</th>
+			<th>HTML tags and attributes this button produces</th>
+		</tr>
+		<tr>
+			<td>anchor</td><td>Insert an anchor</td><td>a[name]</td>
+		</tr>
+		<tr>
+			<td>backcolor</td><td>Set background color</td><td>span[style]</td>
+		</tr>
+		<tr>
+			<td>blockquote</td><td>Insert a blockquote tag</td><td>blockquote</td>
+		</tr>
+		<tr>
+			<td>bold</td><td>Bold</td><td>strong</td>
+		</tr>
+		<tr>
+			<td>bullist</td><td>Make an unordered list</td><td>ul, li</td>
+		</tr>
+		<tr>
+			<td>charmap</td><td>Character map</td><td>(none)</td>
+		</tr>
+		<tr>
+			<td>cleanup</td><td>Clean up code</td><td>(none)</td>
+		</tr>
+		<tr>
+			<td>code</td><td>HTML code</td><td>(none)</td>
+		</tr>
+		<tr>
+			<td>copy</td><td>Copy</td><td>(none)</td>
+		</tr>
+		<tr>
+			<td>cut</td><td>Cut</td><td>(none)</td>
+		</tr>
+		<tr>
+			<td>fontselect</td><td>Select font</td><td>span[style]</td>
+		</tr>
+		<tr>
+			<td>fontsizeselect</td><td>Select font size</td><td>span[style]</td>
+		</tr>
+		<tr>
+			<td>forecolor</td><td>Set text color</td><td>span[style]</td>
+		</tr>
+		<tr>
+			<td>formatselect</td><td>Select format</td><td>(none)</td>
+		</tr>
+		<tr>
+			<td>help</td><td>Show help</td><td>(none)</td>
+		</tr>
+		<tr>
+			<td>hr</td><td>Insert a horizontal rule</td><td>hr</td>
+		</tr>
+		<tr>
+			<td>image</td><td>Insert/edit an image</td><td>img</td>
+		</tr>
+		<tr>
+			<td>indent</td><td>Indent</td><td>p[style]</td>
+		</tr>
+		<tr>
+			<td>italic</td><td>Italic</td><td>em</td>
+		</tr>
+		<tr>
+			<td>justifycenter</td><td>Justify a paragraph in center</td><td>p[style]</td>
+		</tr>
+		<tr>
+			<td>justifyfull</td><td>Justify a paragraph in full</td><td>p[style]</td>
+		</tr>
+		<tr>
+			<td>justifyleft</td><td>Justify a paragraph to left</td><td>p[style]</td>
+		</tr>
+		<tr>
+			<td>justifyright</td><td>Justify a paragraph to right</td><td>p[style]</td>
+		</tr>
+		<tr>
+			<td>link</td><td>Insert/edit a link</td><td>a[href]</td>
+		</tr>
+		<tr>
+			<td>numlist</td><td>Make an ordered list</td><td>ol,li</td>
+		</tr>
+		<tr>
+			<td>outdent</td><td>Outdent a paragraph</td><td>p[style]</td>
+		</tr>
+		<tr>
+			<td>paste</td><td>Paste a text</td><td>(none)</td>
+		</tr>
+		<tr>
+			<td>redo</td><td>Redo</td><td>(none)</td>
+		</tr>
+		<tr>
+			<td>removeformat</td><td>Remove format</td><td>(none)</td>
+		</tr>
+		<tr>
+			<td>strikethrough</td><td>Strike through</td><td>span[style]</td>
+		</tr>
+		<tr>
+			<td>styleselect</td><td>Select CSS style</td><td>span[style]</td>
+		</tr>
+		<tr>
+			<td>sub</td><td>Subscript</td><td>sub</td>
+		</tr>
+		<tr>
+			<td>sup</td><td>Superscript</td><td>sup</td>
+		</tr>
+		<tr>
+			<td>underline</td><td>Underline</td><td>span[style]</td>
+		</tr>
+		<tr>
+			<td>undo</td><td>Undo</td><td>(none)</td>
+		</tr>
+		<tr>
+			<td>unlink</td><td>Unlink</td><td>a[href]</td>
+		</tr>
+		<tr>
+			<td>visualaid</td><td>Toggle visual aid</td><td>(none)</td>
+		</tr>
+	</table>
+	<div class="back_to_top"><a href="#top">Back to TOP</a></div>
+	
+	<a name="uninstall"></a>
+	<h2>Uninstallation</h2>
+	
+	<ol>
+		<li>Log in to your site as admin, go to the plugin editor and click on the "TinyMCE" link.  All relevant database data will be erased.</li>
+		<li>Then, remove the three folders you created when installing the plugin: <span class="geeklog">&lt;geeklog-dir&gt;</span>/plugins/tinymce/, <span class="public">&lt;public_html&gt;</span>/tinymce and <span class="admin">&lt;admin&gt;</span>/plugins/tinymce/.</li>
+	</ol>
+	<div class="back_to_top"><a href="#top">Back to TOP</a></div>
+	
+	<a name="history"></a>
+	<h2>History</h2>
+	<table summary="revision history of the TinyMCE plugin">
+		<tr class="header">
+			<th>Date(YYYY-MM-DD)</th><th>Version</th><th>Description</th>
+		</tr>
+		<tr>
+			<td>2011-11-19</td><td>0.4.7</td>
+			<td>
+				<span class="fix">[Fix]</span> Fixed to work with MySQL-5.5.<br>
+				<span class="new">[New]</span> Updated TinyMCE version to 3.4.7.
+			</td>
+		</tr>
+		<tr>
+			<td>2010-04-13</td><td>0.4.6</td>
+			<td>
+				<span class="fix">[Fix]</span> Fixed a bug where toolbars were not properly displayed when you specified a textarea tag by CSS ids.
+			</td>
+		</tr>
+		<tr>
+			<td>2010-03-17</td><td>0.4.5</td>
+			<td>
+				<span class="new">[New]</span> Upgraded to use TinyMCE-3.3.<br>
+				<span class="fix">[Fix]</span> The fullpage plugin, which is not necessary at all for Geeklog, is no longer supported.
+			</td>
+		</tr>
+		<tr>
+			<td>2010-03-14</td><td>0.4.4</td>
+			<td>
+				<span class="fix">[Fix]</span> Fixed a bug in which the context menu was disabled.
+			</td>
+		</tr>
+		<tr>
+			<td>2010-03-13</td><td>0.4.3</td>
+			<td>
+				<span class="fix">[Fix]</span> Truly (this time!) fixed the bug I thought I had fixed in v0.4.1.<br>
+				<span class="new">[New]</span> Added a UI to create/edit/delete a template file to admin menu.
+			</td>
+		</tr>
+		<tr>
+			<td>2010-03-11</td><td>0.4.2</td>
+			<td>
+				<span class="fix">[Fix]</span> Truly fixed the bug I thought I had fixed in v0.4.1.
+			</td>
+		</tr>
+		<tr>
+			<td>2010-03-11</td><td>0.4.1</td>
+			<td>
+				<span class="fix">[Fix]</span> Fixed to operate properly in creating a new configuration.<br>
+				<span class="fix">[Fix]</span> Fixed to use the plugin's own CSS file(<tt>public_html/tinymce/js/editor.css</tt>) instead of Geeklog's CSS file in order to display the wditor window.
+			</td>
+		</tr>
+		<tr>
+			<td>2010-03-10</td><td>0.4.0</td>
+			<td>
+				<span class="new">[New]</span> Toolbar buttons and plugins are fully controlled according to the HTML tags and attributes allowed for the the user.<br>
+				<span class="new">[New]</span> Added three new plugins -- emojidocomo, emojiau and emojisoftbank -- which allow users to insert <em>emoji</em> (pictograms) used by Japanese cellphone carriers.  Thanks, hiroron!
+			</td>
+		</tr>
+		<tr>
+			<td>2010-03-08</td><td>0.3.0</td>
+			<td>
+				<span class="new">[New]</span> Added options to configure the TinyBrowser plugin shipped with the TinyMCE plugin.
+			</td>
+		</tr>
+		<tr>
+			<td>2010-03-07</td><td>0.2.1</td>
+			<td>
+				<span class="new">[New]</span> Added an option to decide the behavior of TinyMCE when you hit ENTER key: whether to insert a &lt;p&gt; tag (default) or a &lt;br&gt; tag.<br>
+				<span class="fix">[Fix]</span> Fixed to show all buttons in toolbars.  Thanks for reporting, hiroron!<br>
+				<span class="fix">[Fix]</span> Fixed to show TinyMCE in static page editor when PHP is disabled.  Thanks for reporting, hiroron!
+			</td>
+		</tr>
+		<tr>
+			<td>2010-03-06</td><td>0.2.0</td>
+			<td>
+				<span class="new">[New]</span> First beta release.  Added a new "Select Automatically" option for "Target textareas" configuration so that TinyMCE will be automatically attached to all textarea tags where HTML is allowed.  To be more specific, when you select "HTML" at a dropdown list or check "HTML" option in story/staticpage/comment/calendar/mail/block editor, TinyMCE will be automatically loaded.<br>
+				<span class="new">[New]</span> Changed to disable "advanced editor" when installing the TinyMCE plugin in order to prevent FCKeditor from interfering with the plugin.  Of course, you can use TinyMCE regardless of this change.<br>
+				<span class="fix">[Fix]</span> Fixed to handle images correctly when Geeklog is installed in a sub-directory of the document root.
+			</td>
+		</tr>
+		<tr>
+			<td>2010-03-04</td><td>0.1.3</td>
+			<td>
+				<span class="fix">[Fix]</span> Fixed to prevent loading TinyMCE when editing a static page with PHP enabled.
+			</td>
+		</tr>
+		<tr>
+			<td>2010-03-03</td><td>0.1.2</td>
+			<td>
+				<span class="fix">[Fix]</span> Fixed an error occurring when the current user doesn't have enough privileges to manipulate folders while using tinyBrowser plugin.
+			</td>
+		</tr>
+		<tr>
+			<td>2010-03-02</td><td>0.1.1</td>
+			<td>
+				<span class="new">[New]</span> Added configuration options to specify the height and width of the editor window.  Thanks, hiroron!<br>
+				<span class="fix">[Fix]</span> Fixed the wrong path to CSS in the tinyBrowser plugin.  Thanks for reporting, hiroron!
+			</td>
+		</tr>
+		<tr>
+			<td>2010-03-01</td><td>0.1.0</td>
+			<td>
+				<span class="new">[New]</span> First public release with TinyMCE v3.3b2.
+			</td>
+		</tr>
+	</table>
+	
+	<p class="footer">2010-2011 &copy; mystral-kk at <a href="http://mystral-kk.net/">mystral-kk.net</a></p>
+</body>
+</html>

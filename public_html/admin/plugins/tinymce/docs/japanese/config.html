@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<link rel="stylesheet" type="text/css" href="../docstyle.css" title="Dev Stylesheet">
+	<title>コンフィギュレーション - TinyMCEプラグイン</title>
+</head>
+<body dir="ltr">
+	<h1>TinyMCEプラグインの共通設定</h1>
+	
+	<h2>TinyMCEの設定</h2>
+	<table>
+		<tr>
+			<th style="width: 25%;">項目(変数)</th>
+			<th style="width: 25%;">初期値</th>
+			<th style="width: 50%;">説明</th>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_targets">対象textarea(targets)</a></td>
+			<td valign="top">自動選択</td>
+			<td valign="top">
+				TinyMCEを有効にするtextareaタグの種類を指定します。次の4つのうちのどれかです。
+				<ul>
+					<li>「自動選択」: 記事/静的ページ/コメント/カレンダ/グループメール/ブロック編集時のtextareaタグでTinyMCEを有効にします。</li>
+					<li>「すべてのtextareaタグ」: Geeklogで使用しているすべてのtextareaタグでTinyMCEを有効にします。</li>
+					<li>「特定のtextareaタグ（<acronym title="Cascading Style Sheet">CSS</acronym>クラス名指定）」: Geeklogで使用しているすべてのtextareaタグのうち、「CSSクラス名」で指定したクラス名を持つものだけでTinyMCEを有効にします。</li>
+					<li>「特定のtextareaタグ（CSS ID指定）」: Geeklogで使用しているすべてのtextareaタグのうち、「CSS ID」で指定したIDを持つものだけでTinyMCEを有効にします。</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_target_class">CSSクラス名(target_class)</a></td>
+			<td valign="top">tinymce_enabled</td>
+			<td valign="top">「対象textarea」を「特定のtextareaタグ（CSSクラス名指定）」に設定した場合、この項目で指定したCSSクラス名を持つtextareaだけでTinyMCEが有効になります。</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_target_ids">CSS ID(target_ids)</a></td>
+			<td valign="top">array('introtext', 'bodytext', 'html_content')</td>
+			<td valign="top">「対象textarea」を「特定のtextareaタグ（CSS ID指定）」に設定した場合、この項目で指定したCSS IDを持つtextareaだけでTinyMCEが有効になります。</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_height">エディタの縦の長さ(height)</a></td>
+			<td valign="top">360</td>
+			<td valign="top">ツールバーを含むエディタの縦の長さをピクセルないしパーセントで指定します。ピクセルの場合は数字のみ、パーセントの場合はパーセントを数字の後につけます。この欄を空白にすると、TinyMCEが置き換わる前のtextareaタグの縦の長さと同じになります。</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_width">エディタの横の長さ(width)</a></td>
+			<td valign="top">90%</td>
+			<td valign="top">エディタの横の長さをピクセルないしパーセントで指定します。ピクセルの場合は数字のみ、パーセントの場合はパーセントを数字の後につけます。この欄を空白にすると、TinyMCEが置き換わる前のtextareaタグの横の長さと同じになります。</td>
+		</tr>
+	</table>
+	
+	<h2>TinyBrowserプラグインの設定</h2>
+	<table>
+		<tr>
+			<th style="width: 25%;">項目(変数)</th>
+			<th style="width: 25%;">初期値</th>
+			<th style="width: 50%;">説明</th>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_tb_unixpermissions">フォルダ作成時のパーミッション</a></td>
+			<td valign="top">777</td>
+			<td valign="top">アップロード時のフォルダ作成で必要となるパーミッションを8進数で指定します。先頭の0はつけないでください。Unix系サーバでのみ必要です。</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_tb_cleanfilename">ファイル名をチェックする</a></td>
+			<td valign="top">はい</td>
+			<td valign="top">アップロードされるファイルの名前をチェックするかどうかを指定します。</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_tb_filetype_image">画像ファイルの拡張子</a></td>
+			<td valign="top">array('jpg', 'jpeg', 'gif', 'png')</td>
+			<td valign="top">アップロードを許可する画像ファイルの拡張子を指定します。</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_tb_filetype_media">メディアファイルの拡張子</a></td>
+			<td valign="top">array('swf', 'dcr', 'mov', 'qt', 'mpg', 'mp3', 'mp4', 'mpeg',
+			'avi', 'wmv', 'wm', 'asf', 'asx', 'wmx', 'wvx', 'rm', 'ra', 'ram')</td>
+			<td valign="top">アップロードを許可するメディアファイルの拡張子を指定します。</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_tb_prohibited">アップロード禁止ファイルの拡張子</a></td>
+			<td valign="top">array('php', 'php3', 'php4', 'php5', 'phtml', 'asp', 'aspx', 'ascx', 'jsp', 'cfm', 'cfc', 'pl', 'bat', 'exe', 'dll', 'reg', 'cgi', 'sh', 'py', 'asa', 'asax', 'config', 'com', 'inc')</td>
+			<td valign="top">アップロードを禁止するファイルの拡張子を指定します。</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_tb_maxsize_image">画像ファイル</a></td>
+			<td valign="top">0</td>
+			<td valign="top">アップロードできる画像ファイルのサイズ(単位：バイト)の上限を指定します。0で無制限になります。1MBなら、1048576を指定します。</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_tb_maxsize_media">メディアファイル</a></td>
+			<td valign="top">0</td>
+			<td valign="top">アップロードできるメディアファイルのサイズ(単位：バイト)の上限を指定します。0で無制限になります。1MBなら、1048576を指定します。</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_tb_maxsize_file">その他のファイル</a></td>
+			<td valign="top">0</td>
+			<td valign="top">アップロードできるその他のファイルのサイズ(単位：バイト)の上限を指定します。0で無制限になります。1MBなら、1048576を指定します。</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_tb_imagequality">画質</a></td>
+			<td valign="top">80</td>
+			<td valign="top">画質を1～99の範囲で指定します。この設定は、画像をリサイズしたり回転するときにしか使用されません。</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_tb_imageresize_width">サイズ(横)</a></td>
+			<td valign="top">0（リサイズなし）</td>
+			<td valign="top">リサイズ後のサイズ（横）</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_tb_imageresize_height">サイズ（縦）</a></td>
+			<td valign="top">0（リサイズなし）</td>
+			<td valign="top">リサイズ後のサイズ（縦）</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_tb_thumbsize">サムネールのサイズ(px)</a></td>
+			<td valign="top">80</td>
+			<td valign="top">サムネール画像のサイズ（単位: ピクセル）</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_tb_thumbquality">サムネールの画質</a></td>
+			<td valign="top">80</td>
+			<td valign="top">画質を1～99の範囲で指定します。この設定は、サムネール画像を作成するときにしか使用されません。</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_tb_window_width">ポップアップウィンドウのサイズ(横)</a></td>
+			<td valign="top">770</td>
+			<td valign="top">TinyBrowserのポップアップウィンドウのサイズ(横)を指定します。</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_tb_window_height">ポップアップウィンドウのサイズ(縦)</a></td>
+			<td valign="top">480</td>
+			<td valign="top">TinyBrowserのポップアップウィンドウのサイズ(縦)を指定します。</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_tb_pagination">1ページあたりのアイテム数</a></td>
+			<td valign="top">0</td>
+			<td valign="top">ファイルを1ページあたりいくつ表示するかを指定します。0を指定すると、ページ分割せずにすべてを表示します。</td>
+		</tr>
+		<tr>
+			<td valign="top"><a name="desc_tb_dateformat">タイムスタンプのフォーマット</a></td>
+			<td valign="top">Y-m-d H:i</td>
+			<td valign="top">タイムスタンプを表示する際に使用するPHPのdate関数のフォーマットを指定します。</td>
+		</tr>
+	</table>
+</body>
+</html>

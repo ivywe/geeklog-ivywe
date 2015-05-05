@@ -1,0 +1,564 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<title>Geeklog TinyMCEプラグイン</title>
+	<style type="text/css">
+	<!-->
+		body {
+			color: black;
+			background-color: white;
+			line-height: 1.5em;
+		}
+		h1 {
+			border-left: solid 15px #333399;
+			border-bottom: solid 2px #333399;
+			padding: 3px 3px 3px 10px;
+		}
+		h2 {
+			border-left: solid 15px #333399;
+			border-bottom: solid 2px #333399;
+			padding-left: 5px;
+		}
+		dl {
+			width: 500px;
+			border: dotted 1px black;
+		}
+		dt {
+			padding: 5px;
+			font-style: italic;
+		}
+		table {
+			border: solid 1px black;
+			border-collapse: collapse;
+		}
+		tr.header {
+			background-color: #ccccff;
+		}
+		th, td {
+			border: solid 1px black;
+			padding: 5px;
+		}
+		.geeklog {
+			background-color: yellow;
+		}
+		.public {
+			background-color: #99ff00;
+		}
+		.admin {
+			background-color: aqua;
+		}
+		li {
+			padding: 5px;
+		}
+		code {
+			padding: 3px;
+			margin: 5px;
+			background-color: #ccffff;
+			border: dotted 1px black;
+		}
+		tt {
+			font-family: Arial, sans-serif;
+			font-weight: bold;
+		}
+		.warning {
+			padding: 5px;
+			background-color: #ff99ff;
+			border: solid 1px black;
+		}
+		.back_to_top {
+			font-size: 0.8em;
+			text-align: right;
+		}
+		.fix {
+			color: #cc0033;
+			font-weight: bold;
+		}
+		.new {
+			color: #33cc66;
+			font-weight: bold;
+		}
+		.footer {
+			border: solid 1px black;
+			background-color: #ffff66;
+			padding: 5px;
+		}
+	<! -->
+	</style>
+</head>
+
+<body>
+	<a name="top"></a>
+	<h1>Geeklog TinyMCEプラグイン</h1>
+	
+	<dl>
+		<dt>作者</dt><dd>mystral-kk   &lt;geeklog AT mystral-kk DOT net&gt;</dd>
+		<dt>バージョン</dt><dd>0.4.7 (ベータ版)、TinyMCEのバージョンは3.4.7。</dd>
+		<dt>公開日</dt><dd>2011-11-19</dd>
+		<dt>ライセンス</dt><dd>GPLv2以降</dd>
+		<dt>必要条件</dt><dd><strong>Geeklog-1.6.0以降</strong></dd>
+	</dl>
+	
+	<a name="introduction"></a>
+	<h2>概要</h2>
+	<p>Geeklog TinyMCEプラグインは、JavaScriptを使用した有名な<acronym title="What you see is what you get">WYSIWYG</acronym>エディタであるTinyMCEをプラグインとして実装しています。使用する際には、WebブラウザでJavaScriptを有効にしている必要があります。</p>
+	
+	<div class="back_to_top"><a href="#top">TOPへ戻る</a></div>
+	
+	<a name="install"></a>
+	<h2>インストール</h2>
+	
+	<p>以下の説明で、</p>
+	<ul>
+		<li><span class="geeklog">&lt;geeklog_dir&gt;</span> は、Geeklogシステムの<tt>db-config.php</tt>が存在するフォルダ（ディレクトリ）</li>
+		<li><span class="public">&lt;public_html&gt;</span> は、<tt>lib-common.php</tt>のあるフォルダ</li>
+		<li><span class="admin">&lt;admin&gt;</span> は管理用ファイルがあるフォルダ(ふつうは、<span class="public">&lt;public_html&gt;</span>の直下)</li>
+	</ul>
+	<p>を表しています。</p>
+	
+	<ol>
+		<li>管理者メニューのデータベースやphpMyAdminを使用して、データベースのバックアップを取ります。TinyMCEプラグインはデータベースにデータを追加します。</li>
+		<li>プラグインのアーカイブファイルを <span class="geeklog">&lt;geeklog_dir&gt;</span>/plugins フォルダ内に展開（解凍）します。<tt>plugins</tt> フォルダ内に <tt>tinymce</tt> というフォルダができます。</li>
+		<li><span class="public">&lt;public_html&gt;</span>/ フォルダ内に<tt>tinymce</tt>という名前のフォルダを、また、<span class="admin">&lt;admin&gt;</span>/plugins/ フォルダ内にも <tt>tinymce</tt>という名前のフォルダを作成します。</li>
+		<li><span class="geeklog">&lt;geeklog_dir&gt;</span>/plugins/tinymce/ フォルダに移動し、<tt>public_hrml</tt>フォルダの内容を先ほど作成した<span class="public">&lt;public_html&gt;</span>/tinymceフォルダ内にコピーします。また、<tt>admin</tt>フォルダの内容を<span class="admin">&lt;admin&gt;</span>/plugins/tinymce/フォルダ内にコピーします。</li>
+		<li>管理者としてサイトにログインし、プラグインエディタで"TinyMCE"をクリックします。インストールに失敗した場合は、エラーログ(<tt>&lt;geeklog_dir&gt;/logs/error.log</tt>)を調べてください。</li>
+	</ol>
+	<div class="back_to_top"><a href="#top">TOPへ戻る</a></div>
+	
+	<a name="how_to_use"></a>
+	<h2>使用法</h2>
+	
+	<h3>1. 設定</h3>
+	
+	<p>Geeklogのグループごとに、TinyMCEのツールバーボタン、プラグインをカスタマイズできます。設定するには、管理者メニューのTinyMCEをクリックします。</p>
+
+	
+	<h3>2. プラグイン</h3>
+	
+	<p>プラグインの中には、HTMLタグと属性(属性がない場合もあります)を出力するものがあります(下記の表1をご覧ください)。これらのタグ(と属性)はGeeklog側で許可しておく必要があります。そのためには、管理者としてサイトにログインし、「コンフィギュレーション」-&gt;「その他」をクリックし、「HTMLフィルタ」の「ユーザHTML」や「管理者HTML」で追加します。たとえば、<tt>autoresize</tt>プラグインを使用する場合、このプラグインはタグを出力しないので、HTMLタグを出力する必要はありません。しかし、<tt>emotions</tt>プラグインを使用する場合は、<tt>img</tt>タグを追加する必要があります。同様に、<tt>advhr</tt>プラグインを使用する場合は、<tt>hr</tt>タグと<tt>style</tt>属性を追加する必要があります。同様に、<tt>legacyoutput</tt>プラグインを使用する場合は、<tt>font</tt>、<tt>b</tt>、<tt>i</tt>、<tt>u</tt>、<tt>strike</tt>タグを追加する必要があります。</p>
+	
+	<p>メモ: <tt>contextmenu</tt>、<tt>inlinepopups</tt>、<tt>xhtmlxtras</tt>プラグインは常に有効になっています。</p>
+	
+	<table style="margin: 10px auto;">
+		<caption>表1  プラグインが出力するHTMLタグと属性</caption>
+		<tr>
+			<th>プラグイン名</th><th>プラグインの動作</th><th>出力されるHTMLタグと属性</th>
+		</tr>
+		<tr>
+			<td>advhr</td>
+			<td>拡張水平線を挿入する</td>
+			<td>hr[style]</td>
+		</tr>
+		<tr>
+			<td>advimage</td>
+			<td>画像の挿入/編集</td>
+			<td>img</td>
+		</tr>
+		<tr>
+			<td>advlink</td>
+			<td>リンクの挿入/編集</td>
+			<td>a[href]</td>
+		</tr>
+		<tr>
+			<td>advlist</td>
+			<td>番号付き/番号なしリスト</td>
+			<td>ul, ol, li</td>
+		</tr>
+		<tr>
+			<td>autoresize</td>
+			<td>エディタウィンドウのサイズを自動的に変更する</td>
+			<td>(なし)</td>
+		</tr>
+		<tr>
+			<td>autosave</td>
+			<td>編集中の文書を自動的に保存する</td>
+			<td>(なし)</td>
+		</tr>
+		<tr>
+			<td>bbcode</td>
+			<td>bbcodeを挿入する</td>
+			<td>(なし)</td>
+		</tr>
+		<tr>
+			<td>directionality</td>
+			<td>文字の方向(左から右、右から左)を設定する</td>
+			<td>(なし)</td>
+		</tr>
+		<tr>
+			<td>emotions</td>
+			<td>顔文字を挿入する</td>
+			<td>img</td>
+		</tr>
+		<tr>
+			<td>fullscreen</td>
+			<td>フルスクリーン表示</td>
+			<td>(なし)</td>
+		</tr>
+		<tr>
+			<td>iespell</td>
+			<td>スペルチェック(インターネットエクスプローラのみ)</td>
+			<td>(なし)</td>
+		</tr>
+		<tr>
+			<td>insertdatetime</td>
+			<td>現在の日付/時刻を挿入する</td>
+			<td>(なし)</td>
+		</tr>
+		<tr>
+			<td>layer</td>
+			<td>レイヤーを挿入/編集する</td>
+			<td>(なし)</td>
+		</tr>
+		<tr>
+			<td>legacyoutput</td>
+			<td>旧式のHTMLタグを入力する(非推奨)</td>
+			<td>font, b, i, u, strike</td>
+		</tr>
+		<tr>
+			<td>media</td>
+			<td>メディアを挿入/編集する</td>
+			<td>img</td>
+		</tr>
+		<tr>
+			<td>nonbreaking</td>
+			<td>改行しないスペースを挿入する</td>
+			<td>(なし)</td>
+		</tr>
+		<tr>
+			<td>noneditable</td>
+			<td>編集禁止領域を設定する</td>
+			<td>(なし)</td>
+		</tr>
+		<tr>
+			<td>pagebreak</td>
+			<td>改ページを挿入する</td>
+			<td>img</td>
+		</tr>
+		<tr>
+			<td>paste</td>
+			<td>貼り付け</td>
+			<td>(なし)</td>
+		</tr>
+		<tr>
+			<td>preview</td>
+			<td>プレビュー</td>
+			<td>(なし)</td>
+		</tr>
+		<tr>
+			<td>print</td>
+			<td>印刷</td>
+			<td>(なし)</td>
+		</tr>
+		<tr>
+			<td>searchreplace</td>
+			<td>検索/置換</td>
+			<td>(なし)</td>
+		</tr>
+		<tr>
+			<td>spellchecker</td>
+			<td>スペルチェック</td>
+			<td>(なし)</td>
+		</tr>
+		<tr>
+			<td>style</td>
+			<td>CSSスタイルの編集</td>
+			<td>(なし)</td>
+		</tr>
+		<tr>
+			<td>tabfocus</td>
+			<td>タブフォーカス</td>
+			<td>(なし)</td>
+		</tr>
+		<tr>
+			<td>table</td>
+			<td>テーブルを挿入/編集する</td>
+			<td>(なし)</td>
+		</tr>
+		<tr>
+			<td>template</td>
+			<td>テンプレートを挿入する</td>
+			<td>(なし)</td>
+		</tr>
+		<tr>
+			<td>tinybrowser</td>
+			<td>TinyBrowser(ファイル表示)を有効にする</td>
+			<td>img</td>
+		</tr>
+		<tr>
+			<td>visualchars</td>
+			<td>制御文字の表示/非表示</td>
+			<td>(なし)</td>
+		</tr>
+		<tr>
+			<td>wordcount</td>
+			<td>語数カウント</td>
+			<td>(なし)</td>
+		</tr>
+		<tr>
+			<td>emojiau</td>
+			<td>auの絵文字を入力する</td>
+			<td>img</td>
+		</tr>
+		<tr>
+			<td>emojidocomo</td>
+			<td>docomoの絵文字を入力する</td>
+			<td>img</td>
+		</tr>
+		<tr>
+			<td>emojisoftbank</td>
+			<td>SoftBankの絵文字を入力する</td>
+			<td>img</td>
+		</tr>
+	</table>
+	<div class="back_to_top"><a href="#top">TOPへ戻る</a></div>
+	
+	<h3>3. ツールバーのボタン</h3>
+	
+	<p>ツールバーのボタンの中には、HTMLタグと属性(属性がない場合もあります)を出力するものがあります(下記の表2をご覧ください)。これらのタグ(と属性)はGeeklog側で許可しておく必要があります。そのためには、管理者としてサイトにログインし、「コンフィギュレーション」-&gt;「その他」をクリックし、「HTMLフィルタ」の「ユーザHTML」や「管理者HTML」で追加します。たとえば、<tt>copy</tt>ボタンを使用する場合は、HTMLタグを出力しないので、タグを追加する必要はありません。しかし、<tt>blockquote</tt>ボタンを使用するには、<tt>blockquote</tt>タグを追加する必要があります。同様に、<tt>backcolor</tt>ボタンを使用するには、<tt>span</tt>タグと<tt>style</tt>属性を追加する必要があります。同様に、<tt>bullist</tt>ボタンを使用するには、<tt>ul</tt>タグと<tt>li</tt>タグを追加する必要があります。</p>
+	
+	<p><strong>注意</strong>: 下記の表2からわかるように、文字を修飾するには<tt>&lt;p&gt;</tt>タグと<tt>style</tt>属性、及び、<tt>&lt;span&gt;</tt>タグと<tt>style</tt>属性を許可する必要があります。</p>
+	
+	<p>プラグインのボタン名は、プラグインの名前と同じです。上記の表1をご覧ください。</p>
+	
+	<table style="margin: 10px auto;">
+		<caption>表2  ツールバーのボタンが出力するHTMLタグと属性</caption>
+		<tr>
+			<th>ボタン名</th>
+			<th>ボタンの機能</th>
+			<th>ボタンが出力するHTMLタグと属性</th>
+		</tr>
+		<tr>
+			<td>anchor</td><td>アンカーを挿入します</td><td>a[name]</td>
+		</tr>
+		<tr>
+			<td>backcolor</td><td>背景色を設定します</td><td>span[style]</td>
+		</tr>
+		<tr>
+			<td>blockquote</td><td>引用(ブロッククォート)</td><td>blockquote</td>
+		</tr>
+		<tr>
+			<td>bold</td><td>太字</td><td>strong</td>
+		</tr>
+		<tr>
+			<td>bullist</td><td>数字なしリスト</td><td>ul, li</td>
+		</tr>
+		<tr>
+			<td>charmap</td><td>特殊文字を入力する</td><td>(なし)</td>
+		</tr>
+		<tr>
+			<td>cleanup</td><td>コード整形</td><td>(なし)</td>
+		</tr>
+		<tr>
+			<td>code</td><td>HTMLソース編集</td><td>(なし)</td>
+		</tr>
+		<tr>
+			<td>copy</td><td>コピー</td><td>(なし)</td>
+		</tr>
+		<tr>
+			<td>cut</td><td>切り取り</td><td>(なし)</td>
+		</tr>
+		<tr>
+			<td>fontselect</td><td>フォント選択</td><td>span[style]</td>
+		</tr>
+		<tr>
+			<td>fontsizeselect</td><td>フォントサイズ選択</td><td>span[style]</td>
+		</tr>
+		<tr>
+			<td>forecolor</td><td>文字色設定</td><td>span[style]</td>
+		</tr>
+		<tr>
+			<td>formatselect</td><td>フォーマット設定</td><td>(なし)</td>
+		</tr>
+		<tr>
+			<td>help</td><td>ヘルプ表示</td><td>(なし)</td>
+		</tr>
+		<tr>
+			<td>hr</td><td>水平線を挿入する</td><td>hr</td>
+		</tr>
+		<tr>
+			<td>image</td><td>画像を挿入/編集する</td><td>img</td>
+		</tr>
+		<tr>
+			<td>indent</td><td>インデント</td><td>p[style]</td>
+		</tr>
+		<tr>
+			<td>italic</td><td>斜体</td><td>em</td>
+		</tr>
+		<tr>
+			<td>justifycenter</td><td>中央揃え</td><td>p[style]</td>
+		</tr>
+		<tr>
+			<td>justifyfull</td><td>両端揃え</td><td>p[style]</td>
+		</tr>
+		<tr>
+			<td>justifyleft</td><td>左揃え</td><td>p[style]</td>
+		</tr>
+		<tr>
+			<td>justifyright</td><td>右揃え</td><td>p[style]</td>
+		</tr>
+		<tr>
+			<td>link</td><td>リンクを挿入/編集する</td><td>a[href]</td>
+		</tr>
+		<tr>
+			<td>numlist</td><td>数字付きリスト</td><td>ol,li</td>
+		</tr>
+		<tr>
+			<td>outdent</td><td>インデント解除</td><td>p[style]</td>
+		</tr>
+		<tr>
+			<td>paste</td><td>貼り付け</td><td>(なし)</td>
+		</tr>
+		<tr>
+			<td>redo</td><td>やり直し</td><td>(なし)</td>
+		</tr>
+		<tr>
+			<td>removeformat</td><td>フォーマット解除</td><td>(なし)</td>
+		</tr>
+		<tr>
+			<td>strikethrough</td><td>取消線</td><td>span[style]</td>
+		</tr>
+		<tr>
+			<td>styleselect</td><td>CSSスタイル選択</td><td>span[style]</td>
+		</tr>
+		<tr>
+			<td>sub</td><td>下付き文字</td><td>sub</td>
+		</tr>
+		<tr>
+			<td>sup</td><td>上付き文字</td><td>sup</td>
+		</tr>
+		<tr>
+			<td>underline</td><td>下線</td><td>span[style]</td>
+		</tr>
+		<tr>
+			<td>undo</td><td>元に戻す</td><td>(なし)</td>
+		</tr>
+		<tr>
+			<td>unlink</td><td>リンク解除</td><td>a[href]</td>
+		</tr>
+		<tr>
+			<td>visualaid</td><td>ガイドラインと非表示項目の表示切替</td><td>(なし)</td>
+		</tr>
+	</table>
+	<div class="back_to_top"><a href="#top">TOPへ戻る</a></div>
+	
+	<a name="uninstall"></a>
+	<h2>アンインストール</h2>
+	
+	<ol>
+		<li>管理者としてサイトにログインし、「プラグイン」をクリックします。"TinyMCE"を削除すると、関連するデータがデータベースから自動的に削除します。</li>
+		<li>インストール時に作成した3つのフォルダ(<span class="geeklog">&lt;geeklog-dir&gt;</span>/plugins/tinymce/、<span class="public">&lt;public_html&gt;</span>/tinymce、<span class="admin">&lt;admin&gt;</span>/plugins/tinymce/)を削除します。</li>
+	</ol>
+	<div class="back_to_top"><a href="#top">TOPへ戻る</a></div>
+	
+	<a name="history"></a>
+	<h2>更新履歴</h2>
+	<table summary="revision history of the TinyMCE plugin">
+		<tr class="header">
+			<th>日付(YYYY-MM-DD)</th><th>バージョン</th><th>説明</th>
+		</tr>
+		<tr>
+			<td>2011-11-19</td><td>0.4.7</td>
+			<td>
+				<span class="fix">[修正]</span> MySQL-5.5で動作するように修正しました。<br>
+				<span class="new">[新規]</span> TinyMCEのバージョンを3.4.7へ上げました。
+			</td>
+		</tr>
+		<tr>
+			<td>2010-04-13</td><td>0.4.6</td>
+			<td>
+				<span class="fix">[修正]</span> 対象テキストエリアをCSS IDで指定したときに、ツールバーがきちんと表示されないバグを修正しました。
+			</td>
+		</tr>
+		<tr>
+			<td>2010-03-17</td><td>0.4.5</td>
+			<td>
+				<span class="new">[新規]</span> TinyMCE-3.3を使用するようにしました。<br>
+				<span class="fix">[修正]</span> Geeklogでは無用のfullpageプラグインをサポートしないようにしました。
+			</td>
+		</tr>
+		<tr>
+			<td>2010-03-14</td><td>0.4.4</td>
+			<td>
+				<span class="fix">[修正]</span> コンテキストメニューが無効になっていたバグを修正しました。
+			</td>
+		</tr>
+		<tr>
+			<td>2010-03-13</td><td>0.4.3</td>
+			<td>
+				<span class="fix">[修正]</span> バージョン0.4.1で修正したつもりになっていたバグを修正しました(今度こそ!)。<br>
+				<span class="new">[新規]</span> テンプレートファイルを作成/編集/削除するUIを管理者メニューに追加しました。
+			</td>
+		</tr>
+		<tr>
+			<td>2010-03-11</td><td>0.4.2</td>
+			<td>
+				<span class="fix">[修正]</span> バージョン0.4.1で修正したつもりになっていたバグを修正しました。
+			</td>
+		</tr>
+		<tr>
+			<td>2010-03-11</td><td>0.4.1</td>
+			<td>
+				<span class="fix">[修正]</span> 管理者メニューで新規コンフィギュレーションが一部おかしくなっていたバグを修正しました。<br>
+				<span class="fix">[修正]</span> エディタウィンドウ内の表示に、Geeklog本体のCSSではなくプラグイン独自のCSS(公開領域/tinymce/js/editor.css)を使用するようにしました。
+			</td>
+		</tr>
+		<tr>
+			<td>2010-03-10</td><td>0.4.0</td>
+			<td>
+				<span class="new">[新規]</span> ツールバーのボタンとプラグインがGeeklogで許可しているHTMLタグを完全に反映するようになりました。<br>
+				<span class="new">[新規]</span> プラグインを3つ(emojidocomo、emojiau、emojisoftbank)追加しました。docomo、au、ソフトバンクの携帯電話で使用されている絵文字を入力できます。アイデアをいただいたひろろんさんに感謝します。
+			</td>
+		</tr>
+		<tr>
+			<td>2010-03-08</td><td>0.3.0</td>
+			<td>
+				<span class="new">[新規]</span> TinyMCEプラグインに同梱されているTinyBrowserプラグインを設定するコンフィギュレーションを追加しました。
+			</td>
+		</tr>
+		<tr>
+			<td>2010-03-07</td><td>0.2.1</td>
+			<td>
+				<span class="new">[新規]</span> ENTERキーを押したときに、&lt;p&gt;タグを挿入するか（初期値）&lt;br&gt;タグを挿入するかを選べるようにオプションを追加しました。<br>
+				<span class="fix">[修正]</span> ツールバーのボタンがはみ出さずにすべて表示されるようにしました。ご指摘いただいたひろろんさんに感謝します。<br>
+				<span class="fix">[修正]</span> 静的ページでPHPを許可していないときにTinyMCEが有効にならないバグを修正しました。ご指摘いただいたひろろんさんに感謝します。
+			</td>
+		</tr>
+		<tr>
+			<td>2010-03-06</td><td>0.2.0</td>
+			<td>
+				<span class="new">[新規]</span> 最初のベータ版です。コンフィギュレーションの「対象textarea」に「自動選択」というオプション（初期値）を追加しました。このオプションを選択すると、GeeklogのエディタでHTMLが有効なもの、つまり、記事/静的ページ/コメント/カレンダ/グループメール/ブロック編集時に、ドロップダウンリストで"HTML"を選択するかオプションで"HTML"にチェックを入れると、TinyMCEが自動的に読み込まれます。<br>
+				<span class="new">[新規]</span> TinyMCEプラグインをインストールするときに、FCKeditorとの競合を避けるため、コンフィギュレーションの「アドバンストエディタを使用する」を「いいえ」に変更するようにしました。もちろん、この場合でもTinyMCEは使用できます。<br>
+				<span class="fix">[修正]</span> Geeklogがドキュメントルートのサブディレクトリにインストールされているとき、画像をきちんと扱えていなかったバグを修正しました。
+			</td>
+		</tr>
+		<tr>
+			<td>2010-03-04</td><td>0.1.3</td>
+			<td>
+				<span class="fix">[修正]</span> PHPを実行する静的ページを編集するときにTinyMCEを読み込まないようにしました。
+			</td>
+		</tr>
+		<tr>
+			<td>2010-03-03</td><td>0.1.2</td>
+			<td>
+				<span class="fix">[修正]</span> tinyBrowserプラグイン使用時、ユーザーがフォルダを操作する権限を持っていないときにエラーが発生するバグを修正しました。
+			</td>
+		</tr>
+		<tr>
+			<td>2010-03-02</td><td>0.1.1</td>
+			<td>
+				<span class="new">[新規]</span> エディタウィンドウの高さと横幅をコンフィギュレーションで指定できるようにしました。ご指摘いただいたひろろんさんに感謝します。<br>
+				<span class="fix">[修正]</span> tinyBrowserプラグインの一部の画面でCSSが効いていなかったバグを修正しました。ご指摘いただいたひろろんさんに感謝します。
+			</td>
+		</tr>
+		<tr>
+			<td>2010-03-01</td><td>0.1.0</td>
+			<td>
+				<span class="new">[新規]</span> 初公開。TinyMCEのバージョンは3.3b2。
+			</td>
+		</tr>
+	</table>
+	
+	<p class="footer">2010-2011 &copy; mystral-kk at <a href="http://mystral-kk.net/">mystral-kk.net</a></p>
+</body>
+</html>

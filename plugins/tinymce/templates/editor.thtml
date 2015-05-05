@@ -1,0 +1,130 @@
+<div style="width: 99%;">
+	<form id="tmce_admin_editor" name="tmce_admin_editor" action="{action}" method="post">
+		<table style="width: 99%;">
+			<tr>
+				<th style="width: 80px; text-align: right;">{lang_admin_title}:</th>
+				<td>
+					<input type="text" name="title" value="{title}" style="width: 99%;"{xhtml}>
+				</td>
+			</tr>
+			<tr>
+				<th style="text-align: right;">{lang_admin_theme}:</th>
+				<td>
+					<select name="theme">
+						{theme_options}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th style="text-align: right;">{lang_admin_toolbars}:</th>
+				<td>
+					<p>{config_help}</p>
+					<fieldset>
+						<legend>{lang_admin_avaiable_buttons}</legend>
+						{palette1}
+					</fieldset>
+					<fieldset>
+						<legend>{lang_admin_disabled_buttons}</legend>
+						{palette2}
+					</fieldset>
+					
+					<p>{config_help}</p>
+					
+					<fieldset>
+						<legend>{lang_admin_toolbars}</legend>
+						<dl>
+							<dt>{lang_admin_toolbars}1:</dt>
+							<dd><input type="text" name="buttons1" value="{buttons1}" style="width: 100%;"></dd>
+							<dt>{lang_admin_toolbars}2:</dt>
+							<dd><input type="text" name="buttons2" value="{buttons2}" style="width: 100%;"></dd>
+							<dt>{lang_admin_toolbars}3:</dt>
+							<dd><input type="text" name="buttons3" value="{buttons3}" style="width: 100%;"></dd>
+							<dt>{lang_admin_toolbars}4:</dt>
+							<dd><input type="text" name="buttons4" value="{buttons4}" style="width: 100%;"></dd>
+						</dl>
+					</fieldset>
+				</td>
+			</tr>
+			<tr>
+				<th style="text-align: right;">{lang_admin_plugins}:</th>
+				<td>
+					<table style="width: 100%;">
+						{plugins}
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<th style="text-align: right;">{lang_admin_tb_perms}:</th>
+				<td>
+					<table>
+						<tr>
+							<th style="text-align: right;">
+								{lang_admin_tb_allow_upload}
+							</th>
+							<td>
+								<select name="tb_allow_upload">
+									{tb_allow_upload_options}
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th style="text-align: right;">
+								{lang_admin_tb_allow_edit}
+							</th>
+							<td>
+								<select name="tb_allow_edit">
+									{tb_allow_edit_options}
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th style="text-align: right;">
+								{lang_admin_tb_allow_delete}
+							</th>
+							<td>
+								<select name="tb_allow_delete">
+									{tb_allow_delete_options}
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th style="text-align: right;">
+								{lang_admin_tb_allow_folders}
+							</th>
+							<td>
+								<select name="tb_allow_folders">
+									{tb_allow_folders_options}
+								</select>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<th style="text-align: right;">{lang_admin_enter_function}:</th>
+				<td>
+					<select name="enter_function">
+						{enter_options}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th style="text-align: right;">{lang_admin_grp_name}:</th>
+				<td>
+					<select name="group_id">
+						{group_options}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" style="text-align: center;">
+					<input type="submit" name="submit" value="{lang_admin_submit}"{xhtml}>&nbsp;&nbsp;
+					<input type="submit" name="submit" value="{lang_admin_delete}" style="display: {visibility}" onclick="return confirm('{lang_admin_confirm_delete}');"{xhtml}>
+					<input type="hidden" name="mode" value="edit"{xhtml}>
+					<input type="hidden" name="what" value="config"{xhtml}>
+					<input type="hidden" name="cid" value="{cid}"{xhtml}>
+					<input type="hidden" name="{token_name}" value="{token_value}"{xhtml}>
+				</td>
+		</table>
+	</form>
+</div>

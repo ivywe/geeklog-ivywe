@@ -1,0 +1,108 @@
+@charset "utf-8";
+
+a {
+  background: transparent;
+}
+
+a:link {
+  color: #0000FF;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #800080;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #008000;
+  text-decoration: none;
+}
+
+a:active {
+  color: #FF0000;
+  text-decoration: none;
+}
+
+body {
+  width: 99%;
+  background: #FFFFFF;
+  color: #000000;
+  font: 0.9em arial, verdana, tahoma, helvetica, sans-serif;
+  padding: 0px 1px;
+  margin: 0px auto;
+  border: 1px solid #E7E7E7;
+  line-height: 1.0em;
+}
+
+fieldset {
+  margin-bottom: 1em;
+}
+
+fieldset legend {
+  font-size: 0.9em;
+}
+
+form {
+  margin: 5px 0px;
+}
+
+h1 {
+  font-size: 125%;
+}
+
+h2 {
+  font-size: 110%;
+}
+
+h3 {
+  font-size: 100%;
+}
+
+h4 {
+  font-size: 90%;
+}
+
+h5 {
+  font-size: 85%;
+}
+
+h6 {
+  font-size: 80%;
+}
+
+em {
+	font-style: italic;
+}
+
+strong {
+	font-weight: bold;
+}
+
+img {
+  border: 0;
+}
+
+input {
+  font-size: 0.9em;
+}
+
+table {
+  border: solid 2px #000000;
+}
+
+th {
+  color: #000000;
+  background-color: #DAE0ED;
+  font-weight: bold;
+  padding: 3px;
+  text-align: center;
+}
+
+th {
+  color: #000000;
+  background-color: #FFFFFF;
+  font-weight: normal;
+  padding: 3px;
+  text-align: right;
+}

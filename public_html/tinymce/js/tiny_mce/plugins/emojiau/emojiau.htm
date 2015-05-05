@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>{#emojiau.title}</title>
+	<script type="text/javascript" src="../../tiny_mce_popup.js"></script>
+	<script type="text/javascript" src="js/emojiau.js"></script>
+	<base target="_self" />
+	<style>
+		.emojiau {
+			margin:0;
+			padding:0;
+			background-repeat: no-repeat;
+			background-position: center center;
+		}
+		.emojiau td{
+			width:18px;
+			height:18px;
+		}
+		.emojiau p{
+			width:16px;
+			height:16px;
+			margin:0;
+			padding:0;
+		}
+		#emojiau_pallet_container{
+			width:300px;
+			height:200px;
+		}
+	</style>
+</head>
+<body style="display: none">
+	<div align="center">
+		<div class="title">{#emojiau.title}:<br /><br /></div>
+		<a href="javascript:Emojiau_pallet.prev_pallet();"><img src="img/arrow_back.gif" border="0" /></a>&nbsp;&nbsp;<a href="javascript:Emojiau_pallet.next_pallet();"><img src="img/arrow_forward.gif" border="0" /></a><br />
+		<div id="emojiau_pallet_container">
+		
+		</div>
+	</div>
+<script type="text/javascript">
+<!--
+	Emojiau_pallet.init();
+-->
+</script>
+</body>
+</html>

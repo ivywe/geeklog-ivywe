@@ -1,0 +1,24 @@
+/**
+* Definitions for style selector dropdown list
+*
+* Usage: Rename this file as "style_formats.js" and edit the content as you like.
+*        For more information, see
+*           http://wiki.moxiecode.com/index.php/TinyMCE:Configuration/formats
+*           http://wiki.moxiecode.com/index.php/TinyMCE:Configuration/style_formats
+*        for detail.
+*
+* Caution: Avoid using multibyte characters (e.g. Japanese).  Instead, use
+*          only ASCII characters.
+*/
+gl_tinymce.style_formats = [
+// Edit start
+	{title : 'Bold text', inline : 'b'},
+	{title : 'Strong text', inline : 'strong'},
+	{title : 'Red text', inline : 'span', styles : {color : '#ff0000'}},
+	{title : 'Red header', block : 'h1', styles : {color : '#ff0000'}},
+	{title : 'Example 1', inline : 'span', classes : 'example1'},
+	{title : 'Example 2', inline : 'span', classes : 'example2'},
+	{title : 'Table styles'},
+	{title : 'Table row 1', selector : 'tr', classes : 'tablerow1'}	// Don't put a comma in the last line
+// Edit end
+];
