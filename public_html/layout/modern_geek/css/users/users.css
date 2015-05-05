@@ -1,6 +1,6 @@
 /*==============================================================================
   Title       : Account Information Page Templates
-  Authors     : Fumito Arakawa as Phize (http://phize.net/) and Geeklog Japan
+  Authors     : Fumito Arakawa as Phize (http://phize.net/) and Geeklog Japanese
                 Rouslan Placella rouslan@placella.com
   Description : Account information page style.
   Apply       : users/profile.thtml, users/commentrow.thtml, users/storyrow.thtml,
@@ -51,7 +51,7 @@ div.remote-login-panel div.wrapper{
 }
 
 div.standard-login-panel label {
-  margin: 0 1em;
+  margin: 0.5em 1em 0 1em;
   float: {right};
   line-height: 1.8em;
 }
@@ -85,7 +85,22 @@ div.standard-login-panel ul.navi li {
   text-align: center;
 }
 
-
+/* winkey14_ivy { */
+form#loginform dl dt {
+float: left;
+clear: left;
+width: 25%;
+margin: 0 0 0.5em 0;
+padding: 0 1em 0 0;
+white-space: nowrap;
+}
+form#loginform dl dd {
+float: left;
+width: 65%;
+margin: 0 0 0.5em 0;
+padding: 0 0 0 0.5em;
+}
+/* } winkey14_ivy */
 
 /*--------------------------------------
   Password Reminder Form 
@@ -145,7 +160,7 @@ dl#profile-userprofile dt {
 
 dl#profile-userprofile dd {
   float: {left};
-  width: 75%;
+  width: 65%;
   margin: 0 0 0.5em 0;
   padding: 0;
 }
@@ -196,7 +211,7 @@ dl#profile-postingstats dt {
 
 dl#profile-postingstats dd {
   float: {left};
-  width: 75%;
+  width: 65%;
   margin: 0 0 0.5em 0;
   padding: 0;
 }

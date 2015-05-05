@@ -1,0 +1,7 @@
+<!-- plugins/assist/templates/newstories/default/stories.thtml  20131029 { -->
+
+<dl class="assist_stories uk-text-truncate">
+	{stories_col}
+</dl>
+
+<!-- } plugins/assist/templates/newstories/default/stories.thtml -->

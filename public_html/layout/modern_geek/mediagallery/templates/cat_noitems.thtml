@@ -1,0 +1,7 @@
+			<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container">
+                <tr>
+                    <td align="center">
+                      <p>{lang_no_cat}</p>
+                    </td>
+                </tr>
+            </table>

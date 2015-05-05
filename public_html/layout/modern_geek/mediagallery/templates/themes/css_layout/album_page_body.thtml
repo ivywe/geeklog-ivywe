@@ -1,0 +1,10 @@
+<div style="width:100%;margin:10px 0;clear:both">
+<!-- BEGIN ImageRow -->
+<!-- BEGIN ImageColumn -->
+<div class="mg_album_cell" style="width:{table_column_width};{clear_float}">
+{CELL_DISPLAY_IMAGE}
+</div>
+<!-- END ImageColumn -->
+<!-- END ImageRow -->
+</div>
+<div style="clear:both"></div>

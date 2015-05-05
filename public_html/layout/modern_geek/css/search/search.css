@@ -1,6 +1,6 @@
 /*==============================================================================
   Title       : Search Page Style 
-  Author      : Fumito Arakawa as Phize (http://phize.net/) and Geeklog Japan
+  Author      : Fumito Arakawa as Phize (http://phize.net/) and Geeklog Japanese
   Description : Search option page  | Search result page style.
   Apply       : search/searchform.thtml, search/searchauthors.thtml,
                 search/searchresults.thtml, search/searchblock.thtml,
@@ -43,9 +43,10 @@ body.js_off form#advsearchform textarea {
 
 #advsearchform select,
 #advsearchform input {
-  width: 25%;
+  /* width: 25%; */
   vertical-align: middle;
 }
+
 
 #advsearchform span {
   padding: 0 0.4em;
@@ -54,6 +55,7 @@ body.js_off form#advsearchform textarea {
 #advsearchform ul .submit {
   width: 41.25%; /* 55% * 75% */
   margin-left: 25%;
+  height: 3em;
 }
 
 /*--------------------------------------

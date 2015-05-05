@@ -1,0 +1,6 @@
+<!-- plugins/assist/templates/articles/default/row.thtml { -->
+
+{grp_var}
+{col_var}
+
+<!-- } plugins/assist/templates/articles/default/row.thtml -->

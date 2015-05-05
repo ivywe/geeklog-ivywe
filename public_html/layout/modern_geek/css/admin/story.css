@@ -1,6 +1,6 @@
 /*==============================================================================
   Title       : Story  Editor Style (Admin Page)
-  Author      : Fumito Arakawa as Phize (http://phize.net/) and Geeklog Japan
+  Author      : Fumito Arakawa as Phize (http://phize.net/) and Geeklog Japanese
   Description : Story  editor style for admin.
   Apply       : admin/story/storyeditor.thtml, admin/story/storyeditor_advanced.thtml
 ==============================================================================*/
@@ -76,7 +76,9 @@ form#admin-storyeditor_advanced div#text_editor,
 form#admin-storyeditor_advanced div#html_editor {
   margin: 0 0 1em 0;
   padding: 8px;
-  border: 1px solid #000000;
+  border: 1px solid #cccccc;
+-webkit-border-radius: 4px;
+border-radius: 4px;
 }
 
 form#admin-storyeditor_advanced div#text_editor textarea,

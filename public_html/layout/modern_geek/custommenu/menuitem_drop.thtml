@@ -1,7 +1,10 @@
-<li id="{menuitem_id}" class="menuitem {menuitem_class}"><a href="{menuitem_url}"{class_property}>{menuitem_text}<!--[if gte IE 7]><!--></a><!--<![endif]-->
-<!--[if lte IE 6]><table><tr><td><![endif]-->
-<ul>
-{menu_elements}
-</ul>
-<!--[if lte IE 6]></td></tr></table></a><![endif]-->
-</li>
+                              <li id="{menuitem_id}" class="menuitem {menuitem_class}">
+                                <div class="uk-button-dropdown" data-uk-dropdown="">
+                                    <span>{menuitem_text} <i class="uk-icon-caret-down" style="color: #666"></i></span>
+                                    <div class="uk-dropdown">
+                                      <ul class="uk-nav uk-nav-dropdown">
+                                         {menu_elements}
+                                        </ul>
+                                    </div>
+                                </div>
+                              </li>

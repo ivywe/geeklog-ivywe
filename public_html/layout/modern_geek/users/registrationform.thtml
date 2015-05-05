@@ -1,7 +1,7 @@
 {# begin {templatelocation} #}
 
 {start_block}
-  <form action="{site_url}/users.php" method="post" id="registrationform" class="compact">
+  <form action="{site_url}/users.php" method="post" id="registrationform" class="compact uk-form">
     <fieldset>
       <legend>{lang_register}</legend>
 

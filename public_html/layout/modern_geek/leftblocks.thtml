@@ -5,19 +5,16 @@
     <!-- #leftblocks { -->
     {# Left Blocks Container #}
     <div id="leftblocks">
-      <div class="block-left" id="block-left-search">
-        <div class="block-left-content">
-          <form action="{site_url}/search.php" method="get" id="searchform" class="basic">
-            <div>
-              <input type="text" value="{button_search}" size="16" maxlength="255" name="query" class="text"{xhtml}>
-              <input type="submit" value="" title="{button_search}" class="submit"{xhtml}>
-              <input type="hidden" value="all" name="type"{xhtml}>
-              <input type="hidden" value="all" name="keyType"{xhtml}>
-              <input type="hidden" value="search" name="mode"{xhtml}>
+
+            <div class="uk-navbar-content uk-navbar-flip uk-hidden-small uk-width-1-1" style="margin-bottom: 40px;">
+              <form action="{site_url}/search.php" method="get" id="searchform" class="uk-form uk-margin-remove uk-display-inline-block uk-width-1-1" style="display: inline-block !important;">
+                <input type="text" class="search uk-width-1-1" size="16" maxlength="255" value="Search" name="query" onfocus="if (this.value == 'Search') this.value = ''" onblur="if (this.value == '') this.value = 'Search'">
+                <input type="submit" value="Search" class="submit" style="display:none;">
+                <input type="hidden" value="all" name="type">
+                <input type="hidden" value="all" name="keyType">
+                <input type="hidden" value="search" name="mode">
+              </form>
             </div>
-          </form>
-        </div>
-      </div>
 
       {geeklog_blocks}
     </div>

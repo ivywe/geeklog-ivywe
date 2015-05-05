@@ -1,6 +1,6 @@
 /*==============================================================================
   Title       : Default Style
-  Author      : Fumito Arakawa as Phize (http://phize.net/) and Geeklog Japan
+  Author      : Fumito Arakawa as Phize (http://phize.net/) and Geeklog Japanese
   Description : Default style.
                 This CSS is for only Adjustment of user agent default style differences.
                 Don' change these style, because these are base of all ProfessionalCSS_en style.
@@ -47,42 +47,42 @@ body {
 h1 {
   display: block;
   margin: 0.67em 0;
-  font-size: 2em;
+  font-size: 24px;
   font-weight: bolder;
 }
 
 h2 {
   display: block;
   margin: 0.75em 0;
-  font-size: 1.5em;
+  font-size: 20px;
   font-weight: bolder;
 }
 
 h3 {
   display: block;
   margin: 0.83em 0;
-  font-size: 1.17em;
+  font-size: 16px;
   font-weight: bolder;
 }
 
 h4 {
   display: block;
   margin: 1.12em 0;
-  font-size: 1em;
+  font-size: 14px;
   font-weight: bolder;
 }
 
 h5 {
   display: block;
   margin: 1.5em 0;
-  font-size: 0.83em;
+  font-size: 12px;
   font-weight: bolder;
 }
 
 h6 {
   display: block;
   margin: 1.67em 0;
-  font-size: 0.75em;
+  font-size: 10px;
   font-weight: bolder;
 }
 
@@ -93,12 +93,14 @@ address {
 
 p {
   display: block;
-  margin: 1.12em 0;
+  margin: 0 0 15px 0;
 }
 
 pre {
   display: block;
   margin: 1em 0;
+  padding: 1em;
+  border: 1px dashed #08C;
   font-family: monospace;
   white-space: pre;
 }
@@ -106,6 +108,7 @@ pre {
 blockquote {
   display: block;
   margin: 1.12em 40px;
+  word-wrap: break-word;
 }
 
 q:before {
@@ -175,15 +178,15 @@ a:focus  {
 ul {
   list-style-type: disc;
   display: block;
-  margin: 1.12em 0;
-  padding-{left}: 40px;
+  margin: 15px 0;
+  padding-{left}: 15px;
 }
 
 ol {
   list-style-type: decimal;
   display: block;
-  margin: 1.12em 0;
-  padding-{left}: 40px;
+  margin: 15px 0;
+  padding-{left}: 15px;
 }
 
 li {
@@ -217,7 +220,7 @@ ul ul ul {
 
 dl {
   display: block;
-  margin: 1.12em 0;
+  margin: 15px 0;
 }
 
 dt {
@@ -226,7 +229,6 @@ dt {
 
 dd {
   display: block;
-  margin-{left}: 40px;
 }
 
 
@@ -285,9 +287,9 @@ select {
 table {
   display: table;
   margin-top: 0;
-  margin-bottom: 0;
+  margin-bottom: 15px;
   border-spacing: 2px;
-  border-collapse: separate;
+  border-collapse: collapse;
   text-indent: 0;
 }
 
@@ -344,6 +346,7 @@ table>tr {
 th,
 td {
   vertical-align: top;
+
 }
 
 th {
@@ -432,7 +435,6 @@ Presentation Module
 hr {
   display: block;
   height: 2px;
-  border: 1px inset;
   margin: 0.5em auto;
 }
 

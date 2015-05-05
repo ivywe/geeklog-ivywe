@@ -1,23 +1,23 @@
 {# begin {templatelocation} #}
 
-<table id="admin-permissions">
+<table class="uk-table uk-margin-remove uk-table-striped gl-tablelist-remove" style="width:100%; max-width:480px; border:1px solid #ddd">
   <thead>
-    <tr>
-      <th colspan="2">{lang_owner}</th>
-      <th colspan="2">{lang_group}</th>
-      <th>{lang_members}</th>
-      <th>{lang_anonymous}</th>
+    <tr style="background-color:#eee">
+      <th class="uk-text-nowrap uk-text-center" colspan="2" style="border-right:1px solid #ddd">{lang_owner}</th>
+      <th class="uk-text-nowrap uk-text-center" colspan="2" style="border-right:1px solid #ddd">{lang_group}</th>
+      <th class="uk-text-nowrap uk-text-center" style="border-right:1px solid #ddd">{lang_members}</th>
+      <th class="uk-text-nowrap uk-text-center">{lang_anonymous}</th>
     </tr>
   </thead>
 
   <tbody>
     <tr>
-      <td>R<br{xhtml}><input type="checkbox" name="perm_owner[]" value="2"{owner_r_checked} class="checkbox"{xhtml}></td>
-      <td>E<br{xhtml}><input type="checkbox" name="perm_owner[]" value="1"{owner_e_checked} class="checkbox"{xhtml}></td>
-      <td>R<br{xhtml}><input type="checkbox" name="perm_group[]" value="2"{group_r_checked} class="checkbox"{xhtml}></td>
-      <td>E<br{xhtml}><input type="checkbox" name="perm_group[]" value="1"{group_e_checked} class="checkbox"{xhtml}></td>
-      <td>R<br{xhtml}><input type="checkbox" name="perm_members[]" value="2"{members_checked} class="checkbox"{xhtml}></td>
-      <td>R<br{xhtml}><input type="checkbox" name="perm_anon[]" value="2"{anon_checked} class="checkbox"{xhtml}></td>
+      <td class="uk-text-center">R<br{xhtml}><input type="checkbox" name="perm_owner[]" value="2"{owner_r_checked} class="checkbox"{xhtml}></td>
+      <td class="uk-text-center" style="border-right:1px solid #ddd">E<br{xhtml}><input type="checkbox" name="perm_owner[]" value="1"{owner_e_checked} class="checkbox"{xhtml}></td>
+      <td class="uk-text-center">R<br{xhtml}><input type="checkbox" name="perm_group[]" value="2"{group_r_checked} class="checkbox"{xhtml}></td>
+      <td class="uk-text-center" style="border-right:1px solid #ddd">E<br{xhtml}><input type="checkbox" name="perm_group[]" value="1"{group_e_checked} class="checkbox"{xhtml}></td>
+      <td style="border-right:1px solid #ddd" class="uk-text-center">R<br{xhtml}><input type="checkbox" name="perm_members[]" value="2"{members_checked} class="checkbox"{xhtml}></td>
+      <td class="uk-text-center">R<br{xhtml}><input type="checkbox" name="perm_anon[]" value="2"{anon_checked} class="checkbox"{xhtml}></td>
     </tr>
   </tbody>
 </table>

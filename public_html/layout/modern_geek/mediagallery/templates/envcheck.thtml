@@ -1,0 +1,14 @@
+<form class="uk-form" method="post" action="{s_form_action}">
+<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container">
+<!-- BEGIN CheckRow -->
+<tr>
+  <td>{config_item}</td>
+  <td>{status}</td>
+</tr>
+<!-- END CheckRow -->
+</table>
+<div style="text-align:center">
+<input type="submit" class="uk-button" name="mode" value="{lang_recheck}"{xhtml}>&nbsp;&nbsp;
+<input type="submit" class="uk-button" name="mode" value="{lang_continue}"{xhtml}>
+</div>
+</form>

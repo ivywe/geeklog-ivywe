@@ -1,6 +1,6 @@
 /*==============================================================================
   Title       : Story Style
-  Author      : Fumito Arakawa as Phize (http://phize.net/) and Geeklog Japan
+  Author      : Fumito Arakawa as Phize (http://phize.net/) and Geeklog Japanese
   Description : Story style.
   Apply       : storytext.thtml, storybodytext.thtml
                 featuredstorytext.thtml, featuredstorybodytext.thtml
@@ -14,23 +14,21 @@
 --------------------------------------*/
 
 /* Container */
-div#centerblocks div.storytext {
-  margin: 0 0 1em 0;
-  padding: 0 0 1em;
-  border-bottom: 1px solid #ccc;
+div#centerblocks .storytext {
+  margin: 0 0 15px 0;
+  padding: 15px;
+  /* border: 1px solid #ddd; */
 }
 
 /* Story Title */
-div#centerblocks div.storytext h2.story_title {
-  float: {left};
-  margin: 0 0 1em 0;
+div#centerblocks .storytext h1.story_title {
+  margin: 0 0 10px 0;
   padding: 0;
-  font-size: 125%; /* 15px */
-  font-weight: bold;
+  font-size: 20px;
 }
 
 /* Icon(email to friends, print, pdf) */
-div#centerblocks div.storytext ul.icon {
+div#centerblocks .storytext ul.icon {
   list-style-type: none;
   float: {right};
   margin: 0;
@@ -38,87 +36,52 @@ div#centerblocks div.storytext ul.icon {
   text-align: {right};
 }
 
-div#centerblocks div.storytext ul.icon li{
+div#centerblocks .storytext ul.icon li{
   display: inline;
   margin: 0;
   padding: 0;
 }
 
 /* Story(Date, Auther, Display no.) */
-div#centerblocks div.storytext ul.status {
-  list-style-position: outside;
-  list-style-type: none;
-  margin: 0 0 1em 0;
-  margin-{left}: 1em;
-  padding: 0;
-  float: {left};
-}
-
-div#centerblocks div.storytext ul.status li {
-  margin: 0;
-  padding: 0;
-}
-
-div#centerblocks div.storytext ul.status li dl {
-  display: inline;
-  margin: 0;
-  padding: 0;
-}
-
-div#centerblocks div.storytext ul.status li dl dt {
-  display: inline;
-  margin: 0;
-  padding: 0;
-}
-
-div#centerblocks div.storytext ul.status li dl dd {
-  display: inline;
-  margin: 0;
-  padding: 0;
+div#centerblocks .storytext div.status {
+  color: #989898;
+  font-size: 11px;
+  padding: 0 0 10px;
 }
 
 /* Story Body */
-div#centerblocks div.storytext div.story_introtext {
-  margin: 0 0 2em 0;
+div#centerblocks .storytext div.story_introtext {
+  margin: 0;
   padding: 0;
+}
+/* Story Image */
+div#centerblocks .storytext div.story_introtext img {
+  max-width:100%;
+  height:auto;
 }
 
 /* Topic Icon */
-div#centerblocks div.storytext span.story_image {
-  float: {left};
+div#centerblocks .storytext span.story_image {
+  float: {right};
   width: 48px;
   height: 48px;
-  margin: 0;
+  margin: -8px 0 0;
   padding: 0;
 }
 
 /* Navigation */
-div#centerblocks div.storytext ul.navi {
-  list-style-type: none;
+div#centerblocks .storytext div.navi {
   clear: both;
-  margin: 0 0 0.5em 0;
-  padding: 0;
-  text-align: center;
-}
-
-div#centerblocks div.storytext ul.navi li {
-  display: inline;
-  margin: 0 2px;
+  font-size: 11px;
+  margin: 0 0 10px 0;
   padding: 0;
 }
 
 /* Comment and Trackback */
-div#centerblocks div.storytext ul.feedback {
-  list-style-type: none;
-  margin: 0 0 0.5em 0;
-  padding: 0;
-  text-align: center;
-}
-
-div#centerblocks div.storytext ul.feedback li {
-  display: inline;
-  margin: 0 2px;
-  padding: 0;
+div#centerblocks .storytext div.feedback {
+  font-size: 11px;
+  margin: 0;
+  padding: 3px 0 0 0;
 }
 
 
@@ -128,23 +91,21 @@ div#centerblocks div.storytext ul.feedback li {
 --------------------------------------*/
 
 /* Container */
-div#centerblocks div.featuredstorytext {
-  margin: 0 0 1em 0;
-  padding: 0 0 1em;
-  border-bottom: 1px solid #ccc;
+div#centerblocks .featuredstorytext {
+  margin: 0 0 15px 0;
+  padding: 15px;
+  /* border: 1px solid #ddd; */
 }
 
 /* Story Title */
-div#centerblocks div.featuredstorytext h2.story_title {
-  float: {left};
-  margin: 0 0 1em 0;
+div#centerblocks .featuredstorytext h1.story_title {
+  margin: 0 0 10px 0;
   padding: 0;
-  font-size: 125%;
-  font-weight: bold;
+  font-size: 20px;
 }
 
 /* Icon(email to friends, print, pdf) */
-div#centerblocks div.featuredstorytext ul.icon {
+div#centerblocks .featuredstorytext ul.icon {
   list-style-type: none;
   float: {right};
   margin: 0;
@@ -152,87 +113,51 @@ div#centerblocks div.featuredstorytext ul.icon {
   text-align: {right};
 }
 
-div#centerblocks div.featuredstorytext ul.icon li{
+div#centerblocks .featuredstorytext ul.icon li{
   display: inline;
   margin: 0;
   padding: 0;
 }
 
 /* Story(Date, Auther, Display no.) */
-div#centerblocks div.featuredstorytext ul.status {
-  list-style-position: outside;
-  list-style-type: none;
-  margin: 0;
-  margin-{left}: 1em;
-  padding: 0;
-  float: {left};
-}
-
-div#centerblocks div.featuredstorytext ul.status li {
-  margin: 0;
-  padding: 0;
-}
-
-div#centerblocks div.featuredstorytext ul.status li dl {
-  display: inline;
-  margin: 0;
-  padding: 0;
-}
-
-div#centerblocks div.featuredstorytext ul.status li dl dt {
-  display: inline;
-  margin: 0;
-  padding: 0;
-}
-
-div#centerblocks div.featuredstorytext ul.status li dl dd {
-  display: inline;
-  margin: 0;
-  padding: 0;
+div#centerblocks .featuredstorytext div.status {
+  color: #989898;
+  font-size: 11px;
+  padding: 0 0 10px;
 }
 
 /* Story Body */
-div#centerblocks div.featuredstorytext div.story_introtext {
-  margin: 0 0 2em 0;
+div#centerblocks .featuredstorytext div.story_introtext {
+  margin: 0;
   padding: 0;
+}
+/* Story Image */
+div#centerblocks .featuredstorytext div.story_introtext img {
+  max-width:100%;
+  height:auto;
 }
 
 /* Topic Icon */
-div#centerblocks div.featuredstorytext span.story_image {
-  float: {left};
+div#centerblocks .featuredstorytext span.story_image {
+  float: {right};
   width: 48px;
   height: 48px;
-  margin: 0;
+  margin: -8px 0 0;
   padding: 0;
 }
 
 /* Navigation */
-div#centerblocks div.featuredstorytext ul.navi {
-  list-style-type: none;
-  clear: both;
-  margin: 0 0 0.5em 0;
-  padding: 0;
-  text-align: center;
-}
-
-div#centerblocks div.featuredstorytext ul.navi li {
-  display: inline;
-  margin: 0 2px;
+div#centerblocks .featuredstorytext div.navi {
+  font-size: 11px;
+  margin: 0 0 10px 0;
   padding: 0;
 }
 
 /* Comment and Trackback */
-div#centerblocks div.featuredstorytext ul.feedback {
-  list-style-type: none;
-  margin: 0 0 0.5em 0;
-  padding: 0;
-  text-align: center;
-}
-
-div#centerblocks div.featuredstorytext ul.feedback li {
-  display: inline;
-  margin: 0 2px;
-  padding: 0;
+div#centerblocks .featuredstorytext div.feedback {
+  font-size: 11px;
+  margin: 0;
+  padding: 3px 0 0 0;
 }
 
 
@@ -242,23 +167,21 @@ div#centerblocks div.featuredstorytext ul.feedback li {
 --------------------------------------*/
 
 /* Container */
-div#centerblocks div.archivestorytext {
-  margin: 0 0 1em 0;
-  padding: 0 0 1em;
-  border-bottom: 1px solid #ccc;
+div#centerblocks .archivestorytext {
+  margin: 0 0 15px 0;
+  padding: 15px;
+  /* border: 1px solid #ddd; */
 }
 
 /* Story Title */
-div#centerblocks div.archivestorytext h2.story_title {
-  float: {left};
-  margin: 0 0 1em 0;
+div#centerblocks .archivestorytext h1.story_title {
+  margin: 0 0 10px 0;
   padding: 0;
-  font-size: 125%;
-  font-weight: bold;
+  font-size: 20px;
 }
 
 /* Icon(email to friends, print, pdf) */
-div#centerblocks div.archivestorytext ul.icon {
+div#centerblocks .archivestorytext ul.icon {
   list-style-type: none;
   float: {right};
   margin: 0;
@@ -266,87 +189,51 @@ div#centerblocks div.archivestorytext ul.icon {
   text-align: {right};
 }
 
-div#centerblocks div.archivestorytext ul.icon li{
+div#centerblocks .archivestorytext ul.icon li{
   display: inline;
   margin: 0;
   padding: 0;
 }
 
 /* Story(Date, Auther, Display no.) */
-div#centerblocks div.archivestorytext ul.status {
-  list-style-position: outside;
-  list-style-type: none;
-  margin: 0 0 1em 0;
-  margin-{left}: 1em;
-  padding: 0;
-  float: {left};
-}
-
-div#centerblocks div.archivestorytext ul.status li {
-  margin: 0;
-  padding: 0;
-}
-
-div#centerblocks div.archivestorytext ul.status li dl {
-  display: inline;
-  margin: 0;
-  padding: 0;
-}
-
-div#centerblocks div.archivestorytext ul.status li dl dt {
-  display: inline;
-  margin: 0;
-  padding: 0;
-}
-
-div#centerblocks div.archivestorytext ul.status li dl dd {
-  display: inline;
-  margin: 0;
-  padding: 0;
+div#centerblocks .archivestorytext div.status {
+  color: #989898;
+  font-size: 11px;
+  padding: 0 0 10px;
 }
 
 /* Story Body */
-div#centerblocks div.archivestorytext div.story_introtext {
-  margin: 0 0 2em 0;
+div#centerblocks .archivestorytext div.story_introtext {
+  margin: 0;
   padding: 0;
+}
+/* Story Image */
+div#centerblocks .archivestorytext div.story_introtext img {
+  max-width:100%;
+  height:auto;
 }
 
 /* Topic Icon */
-div#centerblocks div.archivestorytext span.story_image {
-  float: {left};
+div#centerblocks .archivestorytext span.story_image {
+  float: {right};
   width: 48px;
   height: 48px;
-  margin: 0;
+  margin: -8px 0 0;
   padding: 0;
 }
 
 /* Navigation */
-div#centerblocks div.archivestorytext ul.navi {
-  list-style-type: none;
-  clear: both;
-  margin: 0 0 0.5em 0;
-  padding: 0;
-  text-align: center;
-}
-
-div#centerblocks div.archivestorytext ul.navi li {
-  display: inline;
-  margin: 0 2px;
+div#centerblocks .archivestorytext div.navi {
+  font-size: 11px;
+  margin: 0 0 10px 0;
   padding: 0;
 }
 
 /* Comment and Trackback */
-div#centerblocks div.archivestorytext ul.feedback {
-  list-style-type: none;
-  margin: 0 0 0.5em 0;
-  padding: 0;
-  text-align: center;
-}
-
-div#centerblocks div.archivestorytext ul.feedback li {
-  display: inline;
-  margin: 0 2px;
-  padding: 0;
+div#centerblocks .archivestorytext div.feedback {
+  font-size: 11px;
+  margin: 0;
+  padding: 3px 0 0 0;
 }
 
 /* Set font size for h2, h3, h4, h5, h6 */
@@ -360,4 +247,11 @@ div.story_introtext h4,
 div.story_introtext h5,
 div.story_introtext h6 {
   font-size: 100%; /* 12px */
+}
+
+div.story_introtext hr,
+div.story_introtext h1, div.story_introtext h2,
+div.story_introtext h3, div.story_introtext h4,
+div.story_introtext h5, div.story_introtext h6 {
+  clear:both;
 }

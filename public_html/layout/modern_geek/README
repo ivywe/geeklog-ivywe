@@ -1,220 +1,189 @@
 /*==============================================================================
-  Title           : Modern_Curve
-  Version         : 2.1.0 for Geeklog 2.1.0 +
-  Original Author : Fumito Arakawa as Phize (http://phize.net/) & Geeklog Japan
-                & Ivy (http://www.ivywe.co.jp)
-  Description     : Geeklog's default theme
+  Theme    : Modern Geek
+  Update   : 2014/05/27
+  Version  : 0.9
+  Copyright (C) 2012-2014 by Ivy
+  Author   : Ivy (komma AT ivywe DOT co DOT jp)
+  License  : GPLv2
+  Homepage : http://www.ivywe.co.jp/
 ==============================================================================*/
-
-
-
-/*==============================================================================
-  Index:
-
-    *Profile
-    *Install
-    *File and Directory
-    *Template Files: Comments
-    *CSS: CSS File Structure/Order
-    *CSS: Property Order
-    *Customize
-==============================================================================*/
-
 
 
 /*==============================================================================
   Profile
 ==============================================================================*/
 
-Geeklog Theme using HTML 4.01 Transitional+CSS 2.0 and eliminate table tags.
-Design is based on ProfessionalCSS_en.
+Geeklog Theme using frontend framework "UIKIT",
+HTML 5 Transitional+CSS 3.0 and Responsive Web Design.
+Design is based on Winkey14 based on Modern Curve.
+Geeklog 2.1 Hack is required for HTML 5.
 
-If JavaScript is enabled, body class item is changed by Geeklog layout column.
-So we can set multi column layout.
-If JavaScript is not enabled, body class item is fixed as 3 column layout.
+Feature
+* HTML5+CSS3 
+  <article> <aside> tags
+* Responsive Web Design by using CSS3 Media Queries.
+* Error 0 html5 validation check
+* Use UIKIT : License MIT License
+  http://www.getuikit.com/
+* View rightblocks bellow in frontpage.
 
+/*==============================================================================
+  Install
+==============================================================================*/
+
+winkey14_uikit_ivy  --> <public_html>/layout/
+
+Geeklog Admin:
+Configuration - Theme - 
+ Theme: Winkey14 Uikit Ivy
+ DOCTYPE: HTML5 with XHTML syntax
+
+/*==============================================================================
+  hack for HTML 5 
+==============================================================================*/
+
+1. a tag: remove "rel=category"
+
+1-1. private/system/lib-story.php  : 129
+
+from:
+<code>
+            $article->set_var( 'story_anchortag_and_image',
+                COM_createLink(
+                    $topicimage,
+                    $topicurl,
+                    array('rel'=>"category")
+                )
+                , false, true
+            );
+</code>
+
+to:
+<code>
+            $article->set_var( 'story_anchortag_and_image',
+                COM_createLink(
+                    $topicimage,
+                    $topicurl,
+                    array()
+                )
+                , false, true
+            );
+</code>
+
+
+1-2. private/system/lib-story.php  : 140
+
+from:
+<code>
+            $article->set_var( 'story_anchortag_and_image_no_align',
+                COM_createLink(
+                    $topicimage_noalign,
+                    $topicurl,
+                    array('rel'=>"category")
+                )
+                , false, true
+            );
+</code>
+
+to:
+<code>
+            $article->set_var( 'story_anchortag_and_image_no_align',
+                COM_createLink(
+                    $topicimage_noalign,
+                    $topicurl,
+                    array()
+                )
+                , false, true
+            );
+</code>
+
+
+2. HTML 5 time tag for datetime
+
+2-1. private/system/lib-story.php : 107
+
+from:
+<code>
+    // Date formatting set by user therefore cannot be cached
+    $article->set_var('story_date', $story->DisplayElements('date'), false, true);
+</code>
+
+to:
+<code>
+    // Date formatting set by user therefore cannot be cached
+    $article->set_var('story_date', $story->DisplayElements('date'), false, true);
+    $article->set_var('story_datetime', $story->DisplayElements('datetime'), false, true );
+</code>
+
+
+2-2. private/system/classes/story.class.php : 1807
+
+from:
+<code>
+        case 'date':
+            $return = COM_getUserDateTimeFormat($this->_date);
+
+            $return = $return[0];
+            break;
+
+        case 'unixdate':
+            $return = $this->_date;
+</code>
+
+to:
+<code>
+        case 'date':
+            $return = COM_getUserDateTimeFormat($this->_date);
+
+            $return = $return[0];
+            break;
+
+        case 'datetime':
+            $return = strftime('%FT%T', $this->_date);
+
+            break;
+
+        case 'unixdate':
+            $return = $this->_date;
+</code>
+
+
+2-3. public_html/lib-common.php 1189, 1881
+
+add:
+<code>
+    $header->set_var( 'theme', $_CONF['theme'] );
+
+    $header->set_var('charset', COM_getCharset());
+</code>
+
+to:
+<code>
+    $header->set_var( 'theme', $_CONF['theme'] );
+    $header->set_var( 'datetime_html5', strftime('%FT%T', $curtime[1]) );
+
+    $header->set_var('charset', COM_getCharset());
+</code>
 
 
 /*==============================================================================
-  Install - Use as a Default Theme
+  History
 ==============================================================================*/
 
-Modern_Curve is preinstalled with Geeklog.
+0.9.1  2014/05/25
+ * Release
 
-If you wish to use this theme as a default theme for your own theme then all 
-you need to do is create your own theme directory and copy the files 
-functions.php and style.css.php to your new theme along with the images and 
-jquery_ui directories. Plus any theme files and css files you wish to change. 
+/*==============================================================================
+  Download site
+==============================================================================*/
 
-In style.css.php you with need to update the variables $theme and 
-$theme_default. $theme_default would now equal "modern_curve".
-
-In functions.php you will need to change any function name to represent your 
-own theme. (theme_config_modern_curve -> theme_config_your_theme_name). You 
-would also need to add to the array in the fuction theme_config_your_theme_name
-'theme_default' => 'modern_curve'
-
+IVYWE CO.,LTD.: http://www.ivywe.co.jp/
 
 
 /*==============================================================================
-  CSS: CSS File Structure/Order
+  Special thanks!
 ==============================================================================*/
 
-+layout -------------------- Geeklog directory
-  +Modern_Curve --------- 'Modern_Curve' theme directory
-    +admin
-    +article
-    +comment
-    +forum
-    +navbar
-    +preferences
-    +profiles
-    +search
-    +stats
-    +submit
-    +trackback
-    +users
-    +css ------------------- CSS
-    | |                        
-    | |
-    | +plugin -------------- for Plugins
-    |  |                       
-    |  +forum.css ---------- for Forum Plugin
-    |
-    +images ---------------- Images
-    | |
-    | +css ----------------- Images for Modern_Curve
-    |
-    +javascript ------------ JavaScript
-    | |
-    | +fix_html.js --------- Geeklog body Class Attribute
-    |
-    +README ---------------- 'Modern_Curve' README(this file)
-    |
-    +style.css ------------ CSS import
-    |
-    +custom.css ----------- for Customize
-    |
-    +custom.sample.css ---- Sample for Customize
-
-
-
-/*==============================================================================
-  Template Files: Comments
-==============================================================================*/
-
-Template files (.thtml) are added comments.
-
-  File Name
-
-      <!-- dir/file.thtml { -->
-                 ...
-      <!-- } dir/file.thtml -->
-
-
-/*==============================================================================
-  CSS: CSS File Structure/Order
-==============================================================================*/
-
-+style.css -------------------------- called from header.thtml
-  +css/default.css ------------------ Default Style
-                                        W3C CSS 2.1 Appendix D
-                                        URI: http://www.w3.org/TR/2004/CR-CSS21-20040225/sample.html
-  +css/common.css ------------------- Common Style
-
-  +css/layout.css ------------------- Base Layout Style
-
-  +css/block.css -------------------- Block Style
-  +css/option.css ------------------- Option Menu Style
-  +css/form.css --------------------- Form Style
-  +css/story.css -------------------- Story Style
-
-  +css/article/article.css ---------- Article Style
-  +css/comment/comment.css ---------- Comment Style
-  +css/navbar/navbar.css ------------ Navigation Style
-  +css/preferences/preferences.css -- Preference Style
-  +css/search/search.css ------------ Search Style
-  +css/stats/stats.css -------------- Stats Style
-  +css/submit/submit.css ------------ Submit Style
-  +css/tooltips/tooltips.css -------- Tooltips Style
-  +css/trackback/trackback.css ------ Trackback Style
-  +css/users/users.css -------------- Myaccount Style
-
-  Admin Style
-  +css/admin.css -------------------- Import Style Sheet(for admin)
-    +css/admin/common.css ----------- Common Style(for admin)
-    +css/admin/block.css ------------ Block Editor Style(for admin)
-    +css/admin/group.css ------------ Group Editor Style(for admin)
-    +css/admin/lists.css ------------ List Style(for admin)
-    +css/admin/moderation.css ------- Moderation Style(for admin)
-    +css/admin/plugins.css ---------- Plugins Editor Style(for admin)
-    +css/admin/story.css ------------ Story Editor Style(for admin)
-    +css/admin/topic.css ------------ Topic Editor Style(for admin)
-    +css/admin/trackback.css -------- Trackback Editor Style(for admin)
-    +css/admin/user.css ------------- User Editor Style(for admin)
-    +css/admin/configuration.css ---- Configuration Editor Style(for admin)
-
-  Plugin Style
-  +css/plugin.css ------------------- Import Style
-    +css/plugin/japanize.css ---------Japanize Plugin Style
-
-  Custom Style
-  +custom.css ----------------------- Custom Style
-                                      custom.sample.css is added as sample.
-
-
-
-/*==============================================================================
-    *CSS: Property Order
-==============================================================================*/
-
-CSS Property Order
-
-  *display
-  *visibility
-  *overflow
-  *list-style
-  *position
-  *float
-  *clear
-  *top right bottom left
-  *width
-  *height
-  *margin
-  *padding
-  *border
-  *background
-    color
-    image
-    repeat
-    position
-    attachement
-  *color
-  *font
-    style
-    variant
-    weight
-    size
-    line-height
-    family
-  *text-decoration
-  *text-align
-  *vertical-align
-  *white-space
-  *other text
-  *quotes
-  *content
-
-
-
-/*==============================================================================
-  Customize
-==============================================================================*/
-
-ProfessionalCSS can design site by only CSS files 'custom.css' without change other CSS files or template files.
-
-SAMPLE custom.css: custom.sample.css
-
-If custom.sample.css copy custom.css, can use as base of theme.
-Set images in the custom.css on images/custom/ not images/css/.
+hiroron: http://winkey.jp
+milk: http://white-stage.com/
 

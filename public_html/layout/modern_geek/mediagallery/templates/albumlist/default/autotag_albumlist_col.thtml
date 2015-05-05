@@ -1,0 +1,21 @@
+<!-- plugins/mediagallery/templates/albumlist/default/autotag_albumlist_col.thtml 20150318 { -->
+
+<div class="{class}">
+			
+<a href="{album_url}"><img src="{album_img}"></a>
+			
+<p class="photo_title en"><a href="{album_url}">{album_title}</a> </p>
+			
+<p class="released_date">
+<span style="color:green"> {released}
+</p>
+
+<p>{album_id}</p>
+<p>{album_title}</p>
+<p>{album_desc}</p>
+<p>{album_cover}</p>
+<p>{album_cover_filename}</p>
+{edit}
+</div>
+
+<!-- } plugins/mediagallery/templates/albumlist/default/autotag_albumlist_col.thtml -->

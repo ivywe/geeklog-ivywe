@@ -6,7 +6,7 @@
   <li>{user_nullname}<a href="{login_logout_url}" rel="nofollow">{lang_login_logout}</a></li>
 </ul>
 
-<form action="{parent_url}" method="post" id="commentbar-selector" class="basic">
+<form action="{parent_url}" method="post" id="commentbar-selector" class="basic uk-form">
 
   <div class="user_basic">
     <ul>

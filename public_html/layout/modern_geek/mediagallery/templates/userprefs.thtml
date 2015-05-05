@@ -1,0 +1,18 @@
+<form class="uk-form" method="post" action="{s_form_action}">
+<table class="uk-table uk-table-condensed uk-overflow-container">
+<tr>
+  <td class="pluginCellTitle" colspan="3"><span style="font-weight:bold;">{lang_user_prefs}</span></td>
+</tr>
+  <!-- BEGIN prefRow -->
+<tr>
+  <td>{lang_prompt}</td>
+  <td>{input_field}</td>
+  <td>{lang_help}</td>
+</tr>
+<!-- END prefRow -->
+</table>
+<div style="text-align:center;margin-top:10px">
+  <input type="submit" class="uk-button" name="mode" value="{lang_submit}"{xhtml}>
+  <input type="submit" class="uk-button" name="mode" value="{lang_cancel}"{xhtml}>
+</div>
+</form>

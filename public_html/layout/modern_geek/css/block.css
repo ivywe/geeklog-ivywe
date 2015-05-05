@@ -1,6 +1,6 @@
 /*==============================================================================
   Title       : Block Style
-  Author      : Fumito Arakawa as Phize (http://phize.net/) and Geeklog Japan
+  Author      : Fumito Arakawa as Phize (http://phize.net/) and Geeklog Japanese
   Description : Left, center and right block CSS files.
   Apply       : header.thtml,
                 blockheader.thtml, blockfooter.thtml, blockservices.thtml,
@@ -29,8 +29,9 @@ div#rightblocks ol {
 --------------------------------------*/
 
 li.listitem {
-  margin: 0;
-  padding: 0;
+  margin: 2px 0;
+  padding: 2px 0;
+  list-style-type: none;
 }
 
 
@@ -41,20 +42,16 @@ li.listitem {
 --------------------------------------*/
 
 div#centerblocks div.block-message {
-  margin: 1.2em 0;
-  padding: 0;
-
-  border: 1px solid #939490;
-
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-
-  -webkit-box-shadow: 0px 0px 4px 1px #aaa;
-  -moz-box-shadow: 0px 0px 4px 1px #aaa;
-  box-shadow: 0px 0px 4px 1px #aaa; 
-
-  background: #eeeeec url("./images/css/bg_message_title.png") repeat-x scroll 0 0;
+margin: 1.2em 0;
+padding: 0;
+/* border: 1px solid #939490; */
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+/* -webkit-box-shadow: 0px 0px 4px 1px #aaa; */
+-moz-box-shadow: 0px 0px 4px 1px #aaa;
+/* box-shadow: 0px 0px 4px 1px #aaa;
+background: #eeeeec url("./images/css/bg_message_title.png") repeat-x scroll 0 0; */
 }
 
 div#centerblocks div.block-message dl {
@@ -70,6 +67,7 @@ div#centerblocks div.block-message dl dt {
   font-weight: bold;
   text-align: center;
   line-height: 1.5em;
+  background: #e8e8e8;
 }
 
 /* Message */
@@ -87,21 +85,23 @@ div#centerblocks div.block-message dl dd {
 --------------------------------------*/
 
 /* Block */
-div.block-related {
-  margin: 0 0 2em 0;
-  padding: 0;
+.block-related {
+  margin: 0 0 15px 0;
+  padding: 15px;
+  /* border: 1px solid #ddd; */
+  color: #666;
 }
 
 /* Block Title */
-div.block-related h3 {
-  margin: 0 0 0.5em 0;
+.block-related h3 {
+  margin: 0 0 10px 0;
   padding: 0;
   font-size: 100%;
   font-weight: bold;
 }
 
 /* Block Contents */
-div.block-related div.block-related-content {
+.block-related div.block-related-content {
   margin: 0;
   padding: 0;
 }
@@ -114,56 +114,32 @@ div.block-related div.block-related-content {
 
 div#centerblocks {
   margin-bottom: 12px;
-  border-top: 1px solid #aaa;
-  background: #fff url("./images/css/block_bg.png") repeat-x scroll 0 0;
-
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-}
-
-/* Welcome Message */
-div#centerblocks p.welcome_msg {
-  margin: 0 0 1.2em 0;
-  padding: 10px 8px;
-}
-
-/* Welcome Message Link */
-div#centerblocks p.welcome_msg a,
-div#centerblocks p.welcome_msg a:link,
-div#centerblocks p.welcome_msg a:visited {
-}
-
-div#centerblocks p.welcome_msg a:hover,
-div#centerblocks p.welcome_msg a:focus,
-div#centerblocks p.welcome_msg a:active {
 }
 
 /* Block */
-div#centerblocks div.block-center {
-  margin: 0 0 1em 0;
-  padding: 0 0 2em 0;
-  border-bottom: 1px solid #CCC;
+div#centerblocks .block-center {
+  margin: 0 0 15px 0;
+  padding: 15px;
+  
 }
 
 /* Block Title */
 div#centerblocks h2,
 div#centerblocks h3,
 div#centerblocks h4 {
-  margin: 0 0 1em 0;
+  margin: 0 0 10px 0;
   padding: 0;
-  font-weight: bold;
 }
 
-div#centerblocks div.block-center h2 {
+div#centerblocks .block-center h2 {
   font-size: 125%;
 }
 
-div#centerblocks div.block-center h3 {
+div#centerblocks .block-center h3 {
   font-size: 110%;
 }
 
-div#centerblocks div.block-center h4 {
+div#centerblocks .block-center h4 {
   font-size: 100%;
 }
 
@@ -175,9 +151,15 @@ div#centerblocks h4 img {
 }
 
 /* Block Content */
-div#centerblocks div.block-center div.block-center-content {
+div#centerblocks .block-center div.block-center-content {
   margin: 0;
   padding: 0;
+}
+
+/* Block Content Image */
+div#centerblocks .block-center div.block-center-content img {
+  max-width:100%;
+  height:auto;
 }
 
 
@@ -188,45 +170,46 @@ div#centerblocks div.block-center div.block-center-content {
 
 /* Block */
 div#leftblocks {
-  margin-{right}: 8px;
+  margin: 0;
+  line-height: 21px;
 }
 
-div#leftblocks div.block-list,
-div#leftblocks div.block-left {
-  margin-bottom: 12px;
-  border-top: 1px solid #aaa;
-  padding: 8px;
-  background: #fff url("./images/css/block_bg.png") repeat-x scroll 0 0;
+div#leftblocks .block-list,
+div#leftblocks .block-left {
+  margin-bottom: 15px;
 
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+  padding: 15px;
+  color: #666
 }
 
 /* Block Title */
-div#leftblocks div.block-list h2,
-div#leftblocks div.block-left h2 {
-  margin: 0 0 0.5em 0;
-  padding: 0 0 0.1em 0;
-  font-size: 110%;
-  font-weight: bold;
+div#leftblocks .block-list h2,
+div#leftblocks .block-left h2 {
+  margin: 0 0 10px;
+  padding: 0;
+  font-size: 16px;
+  color: #222;
 }
 
 /* Help Icon */
-div#leftblocks div.block-list h2 img,
-div#leftblocks div.block-left h2 img {
+div#leftblocks .block-list h2 img,
+div#leftblocks .block-left h2 img {
   vertical-align: middle;
 }
 
 /* Block Content */
-div#leftblocks div.block-list div.block-list-content,
-div#leftblocks div.block-left div.block-left-content {
-  margin: 0;
+div#leftblocks .block-list div.block-list-content,
+div#leftblocks .block-left div.block-left-content {
+  margin: 0 0 10px 5px;
   padding: 0;
 }
 
 div#leftblocks ul {
-  margin: 0.8em 0;
+  margin: 0 0 10px;
+}
+
+div#leftblocks ul li {
+  margin: 0;
 }
 
 /*--------------------------------------
@@ -235,39 +218,44 @@ div#leftblocks ul {
 
 /* Block */
 div#rightblocks {
-  margin-{left}: 8px;
+  line-height: 21px;
 }
 
-div#rightblocks div.block-list,
-div#rightblocks div.block-right {
-  margin-bottom: 12px;
-  border-top: 1px solid #aaa;
-  padding: 8px;
-  background: #fff url("./images/css/block_bg.png") repeat-x scroll 0 0;
-
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+div#rightblocks .block-left,
+div#rightblocks .block-list,
+div#rightblocks .block-right {
+  width: 268px;
+  margin: 10px;
+  padding: 0;
+  float: {left};
 }
 
 /* Block Title */
-div#rightblocks div.block-list h2,
-div#rightblocks div.block-right h2 {
-  margin: 0 0 0.5em 0;
-  padding: 0 0 0.1em 0;
-  font-size: 110%;
-  font-weight: bold;
+div#rightblocks .block-list h2,
+div#rightblocks .block-right h2 {
+  margin: 0 0 10px;
+  padding: 0;
+  font-size: 16px;
+  color: #222;
 }
 
 /* Help Icon */
-div#rightblocks div.block-list h2 img,
-div#rightblocks div.block-right h2 img {
+div#rightblocks .block-list h2 img,
+div#rightblocks .block-right h2 img {
   vertical-align: middle;
 }
 
 /* Block Content */
-div#rightblocks div.block-list div.block-list-content,
-div#rightblocks div.block-right div.block-right-content {
-  margin: 0;
+div#rightblocks .block-list div.block-list-content,
+div#rightblocks .block-right div.block-right-content {
+  margin: 0 0 10px 5px;
   padding: 0;
+}
+
+div#rightblocks ul {
+  margin: 0 0 10px;
+}
+
+div#rightblocks ul li {
+  margin: 0 0 0 5px;
 }

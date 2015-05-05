@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<form action="{site_admin_url}/user.php" method="post" id="admin-edituser" class="compact">
+<form action="{site_admin_url}/user.php" method="post" id="admin-edituser" class="compact uk-form">
 
   <div class="admin_basic">
     <dl>

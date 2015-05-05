@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<form action="{site_admin_url}/group.php" method="post" id="admin-groupeditor" class="linear">
+<form action="{site_admin_url}/group.php" method="post" id="admin-groupeditor" class="linear uk-form">
 
   <div class="admin_basic">
     <dl>

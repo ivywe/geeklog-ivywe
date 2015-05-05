@@ -1,0 +1,20 @@
+<div class="uk-margin-right uk-margin-bottom">
+  <div class="uk-container-center">
+    {media_item_thumbnail}
+  </div>
+  <div class="uk-text-center">
+      <span style="font-weight:bold;">{lang_album} {album_title}</span> ({subalbum_media_count})
+      <br{xhtml}>
+      <span class="pluginSmallText">{album_desc}</span>
+      <br{xhtml}><br{xhtml}>
+      {!if updated}
+      <span style="font-weight:bold;">{updated}</span> {album_last_update}
+      {!endif}
+      {!if lang_views}
+      <br{xhtml}><span style="font-weight:bold;">{lang_views}</span> {views}
+      {!endif}
+      {!if lang_subalbums}
+      <br{xhtml}><span style="font-weight:bold;">{lang_subalbums}</span> {subalbumcount}
+      {!endif}
+  </div>
+</div>

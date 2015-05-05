@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<form action="{site_url}/submit.php" method="post" id="submitstory" class="compact">
+<form action="{site_url}/submit.php" method="post" id="submitstory" class="compact uk-form">
 
   <div class="user_basic">
     <dl>

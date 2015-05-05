@@ -1,0 +1,15 @@
+<form class="uk-form" method="post" action="{s_form_action}">
+<table class="uk-table uk-table-condensed uk-overflow-container">
+<tr>
+  <td align="left">
+    {lang_details}
+  </td>
+</tr>
+<tr>
+  <td align="left">
+    <input type="submit" class="uk-button" name="mode" value="{lang_save}" />&nbsp;
+    <input type="submit" class="uk-button" name="mode" value="{lang_cancel}" />
+  </td>
+</tr>
+</table>
+</form>

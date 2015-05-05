@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<form action="{form_url}" method="post" class="admin-topmenu basic">
+<form action="{form_url}" method="post" class="admin-topmenu basic uk-form">
   <fieldset>
     <legend>{lang_search}</legend>
 

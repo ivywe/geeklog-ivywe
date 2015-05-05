@@ -1,0 +1,16 @@
+<!-- plugins/mediagallery/templates/medialist/uikit_overlay/autotag_medialist_col.thtml 20150309 { -->
+
+                                    <li>
+                                        <img src="{filename_disp}" width="960" height="354"{xhtml}>
+
+{!if media_title}
+                                        <div class="uk-vertical-align uk-overlay-panel uk-overlay-top uk-overlay-fade uk-text-center uk-hidden-small">
+										    <div class="uk-margin-large-top">
+                                                <h2 class="uk-container-center uk-margin-large-top" style="font-size:36px; font-family: 'Averia Serif Libre', cursive;text-shadow: 5px 5px 10px #1F1F1F; ">{media_title}</h2>
+												<div style="text-shadow: 5px 5px 10px #1F1F1F;">{media_desc}</div>
+											</div>
+                                        </div>
+{!endif}
+                                    </li>
+
+<!-- } plugins/mediagallery/templates/medialist/uikit_overlay/autotag_medialist_col.thtml 20150309 -->

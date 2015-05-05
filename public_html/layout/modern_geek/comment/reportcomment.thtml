@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<form action="{site_url}/comment.php" method="post" id="reportcomment" class="basic">
+<form action="{site_url}/comment.php" method="post" id="reportcomment" class="basic uk-form">
 
   <div class="user_basic">
     <div class="comment">{comment}</div>

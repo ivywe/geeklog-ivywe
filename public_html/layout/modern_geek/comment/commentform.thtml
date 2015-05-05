@@ -3,7 +3,7 @@
 {start_block_postacomment}
 <div id="commenteditform">
 
-<form action="{form_url}" method="post" id="commentform" class="linear">
+<form action="{form_url}" method="post" id="commentform" class="linear" class="uk-form">
 
   <div class="user_basic">
     <dl>

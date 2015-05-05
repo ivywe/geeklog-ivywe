@@ -1,38 +1,81 @@
 {# begin {templatelocation} #}
 
-          </div>
-        </div>
-        <!--[if !IE]> Using conditional comments to avoid Win IE 6 bugs <![endif]-->
-        <!--[if !IE]> (When combined with multiple floating elements, floating bug duplicate last element content) <![endif]-->
-        <!--[if !IE]> } #centerblocks <![endif]-->
-
-        {right_blocks}
       </div>
-      <!-- } #wrapper -->
-
-      <hr class="separator"{xhtml}>
-
-      <!-- #footer { -->
-      <div id="footer">
-        <div id="footer-content">
-        <ul class="copyright">
-          <li class="copyright_notice"><address>{copyright_notice}</address></li>
-        </ul>
-        <ul class="site_info">
-          <li class="powered_by">{powered_by}&nbsp;<a href="http://www.geeklog.net/">Geeklog</a></li>
-          <!-- Theme by Fumito Arakawa as Phize (http://phize.net/) -->
-          <li class="execution_textandtime">{execution_textandtime}</li>
-        </ul>
-        </div>
-        <div style="clear: both;"></div>
-      </div>
-      <!-- } #footer -->
-
     </div>
-    <!-- } #container -->
+    <!--[if !IE]> Using conditional comments to avoid Win IE 6 bugs <![endif]-->
+    <!--[if !IE]> (When combined with multiple floating elements, floating bug duplicate last element content) <![endif]-->
+    <!--[if !IE]> } #centerblocks <![endif]-->
 
-    {plg_footercode} 
-    
+    {left_blocks}
+
+    <div style="clear: both;"></div>
+
+  </div>
+  <!-- } #wrapper -->
+
+  <hr class="separator"{xhtml}>
+
+<p id="back-to-top"><a href="#top" style="display: block;"><i class="uk-icon-chevron-up"></i></a></p>
+
+</div>
+
+{!if right_blocks}
+    <div id="footer-content" class="tm-footer">
+      {right_blocks}
+      <div style="clear: both"></div>
+    </div>
+{!endif}
+
+  <!-- #footer { -->
+  <footer id="footer">
+
+    <div class="copyright">
+        <div class="copyright_notice"><small>{copyright_notice}</small></div>
+    </div>
+    <div class="site_info">
+        <span class="powered_by">{powered_by}&nbsp;<a href="http://www.geeklog.net/">Geeklog</a></span>&nbsp;<span class="execution_textandtime">{execution_textandtime}</span>
+    </div>
+  </footer>
+  <!-- } #footer -->
+
+<!-- } #container -->
+
+{plg_footercode}
+
+<!-- Front-end framework UIkit { -->
+<script type="text/javascript" src="{layout_url}/vendor/uikit/js/uikit.js"></script>
+<script src="{layout_url}/vendor/uikit/js/components/lightbox.js"></script>
+<script src="{layout_url}/vendor/uikit/js/components/grid.js"></script>
+<script src="{layout_url}/vendor/uikit/js/components/slideshow.js"></script>
+<script src="{layout_url}/vendor/uikit/js/components/slideshow-fx.js"></script>
+<!-- } Front-end framework UIkit -->
+
+<!-- Simple Back To Top Link jQuery -->
+<script type="text/javascript">
+    $(document).ready(function(){
+    $("#back-to-top").hide();
+    $(function () {
+        $(window).scroll(function(){
+        if ($(window).scrollTop()>100){
+        $("#back-to-top").fadeIn(1500);
+        }
+        else
+        {
+        $("#back-to-top").fadeOut(1500);
+        }
+        });
+        //back to top
+        $("#back-to-top").click(function(){
+        $('body,html').animate({scrollTop:0},1000);
+        return false;
+        });
+        });
+        });
+</script>
+<!-- } Simple Back To Top Link jQuery -->
+
+
+
     {# Depending on the situation, HTML body element's class attribute to specify a value by JavaScript
        The argument from the left, the right block container, the middle block left the right block id attribute value #}
     <script type="text/javascript">
@@ -41,7 +84,7 @@
     -->
     </script>    
 
-  </body>
+</body>
 </html>
 
 {# end {templatelocation} #}

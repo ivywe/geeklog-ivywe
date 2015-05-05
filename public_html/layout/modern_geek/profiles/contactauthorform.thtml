@@ -1,7 +1,7 @@
 {# begin {templatelocation} #}
 
 {start_block_mailstory2friend}
-  <form action="{site_url}/profiles.php" method="post" id="contactauthorform" class="compact">
+  <form action="{site_url}/profiles.php" method="post" id="contactauthorform" class="compact uk-form">
 
     <div class="user_basic">
       <dl>

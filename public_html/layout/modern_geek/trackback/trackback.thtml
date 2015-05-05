@@ -1,5 +1,5 @@
 {# begin {templatelocation} #}
-
+<aside>
 <div id="trackback">
   <h3>{lang_trackback}</h3>
   <div class="block-trackback-content">
@@ -13,5 +13,5 @@
     {trackback_comments}
   </div>
 </div>
-
+</aside>
 {# end {templatelocation} #}

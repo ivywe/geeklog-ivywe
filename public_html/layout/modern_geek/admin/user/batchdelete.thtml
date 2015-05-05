@@ -2,7 +2,7 @@
 
 <p>{lang_instruction}</p>
 
-<form action="{site_admin_url}/user.php?mode=batchdelete" method="post" id="admin-batchdelete" class="compact">
+<form action="{site_admin_url}/user.php?mode=batchdelete" method="post" id="admin-batchdelete" class="compact uk-form">
   <fieldset>
     <legend>{lang_updatelist}</legend>
 

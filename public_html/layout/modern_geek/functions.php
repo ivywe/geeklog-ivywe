@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 2.0                                                               |
+// | Geeklog 2.1                                                               |
 // +---------------------------------------------------------------------------+
 // | functions.php                                                             |
 // |                                                                           |
@@ -42,20 +42,20 @@ if (strpos(strtolower($_SERVER['PHP_SELF']), 'functions.php') !== false) {
 /**
  * Return the configuration values for the theme
  */
-function theme_config_modern_curve()
+function theme_config_modern_geek()
 {
     return array(
         'image_type' => 'png',
-        'doctype' => 'xhtml10strict',
+        'doctype' => 'xhtml5',
         'etag' => true,
-        'supported_version_theme' => '2.0.0' // support new theme format for the later Geeklog 2.0.0
+        'supported_version_theme' => '2.1.0' // support new theme format for the later Geeklog 2.1.0
     );
 }
 
 /**
  * Return an array of CSS files to be loaded
  */
-function theme_css_modern_curve()
+function theme_css_modern_geek()
 {
     global $_CONF, $LANG_DIRECTION;
          
@@ -115,7 +115,7 @@ function theme_css_modern_curve()
 /**
  * Return an array of JS libraries to be loaded
  */
-function theme_js_libs_modern_curve()
+function theme_js_libs_modern_geek()
 {
     return array(
        array(
@@ -128,7 +128,7 @@ function theme_js_libs_modern_curve()
 /**
  * Return an array of JS files to be loaded
  */
-function theme_js_files_modern_curve()
+function theme_js_files_modern_geek()
 {
     global $_CONF;
     
@@ -150,9 +150,16 @@ function theme_js_files_modern_curve()
 /**
  * Do any other initialisation here
  */
-function theme_init_modern_curve()
+function theme_init_modern_geek()
 {
     global $_BLOCK_TEMPLATE, $_CONF;
+    $_CONF['left_blocks_in_footer'] = 1;
+
+    if( COM_onFrontpage() ) {
+      $_CONF['show_right_blocks'] = true;
+    } else {
+      $_CONF['show_right_blocks'] = false;
+    }
 
     /*
      * For left/right block support there is no longer any need for the theme to
@@ -174,7 +181,9 @@ function theme_init_modern_curve()
     $_BLOCK_TEMPLATE['section_block'] = 'blockheader-list.thtml,blockfooter-list.thtml';
 
     if (! COM_isAnonUser()) {
-        $_BLOCK_TEMPLATE['user_block'] = 'blockheader-list.thtml,blockfooter-list.thtml';
+        $_BLOCK_TEMPLATE['user_block'] = 'blockheader-user.thtml,blockfooter-user.thtml';
+    } else {
+        $_BLOCK_TEMPLATE['user_block'] = 'blockheader-user-login.thtml,blockfooter-user-login.thtml';
     }
 }
 

@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<form action="{site_admin_url}/trackback.php" method="post" id="admin-serviceeditor" class="compact">
+<form action="{site_admin_url}/trackback.php" method="post" id="admin-serviceeditor" class="compact uk-form">
 
   <div class="admin_basic">
     <dl>

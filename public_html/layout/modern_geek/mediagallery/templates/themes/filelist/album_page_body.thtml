@@ -1,0 +1,18 @@
+<div class="uk-margin">
+  <table class="uk-table uk-table-striped uk-table-condensed uk-overflow-container gl-tablelist" style="width:100%">
+    <thead>
+      <tr>
+        <th>Thumbnail</th>
+        <th class="uk-text-truncate">Name / Description</th>
+        <th class="uk-text-truncate">Size / User / Updated</td>
+      </tr>
+    </thead>
+    <tbody>
+<!-- BEGIN ImageRow -->
+<!-- BEGIN ImageColumn -->
+{CELL_DISPLAY_IMAGE}
+<!-- END ImageColumn -->
+<!-- END ImageRow -->
+    </tbody>
+</table>
+</div>

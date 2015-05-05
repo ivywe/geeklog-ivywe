@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<div class="block-center">
+<article class="block-center">
   <h2>{block_title}{block_help}</h2>
   <div class="block-center-content">
 

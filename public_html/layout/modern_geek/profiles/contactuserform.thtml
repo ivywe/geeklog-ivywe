@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<form action="{site_url}/profiles.php" method="post" id="contactuserform" class="compact">
+<form action="{site_url}/profiles.php" method="post" id="contactuserform" class="compact uk-form">
 
   <div class="user_basic">
     <p class="message">{lang_description}</p>
