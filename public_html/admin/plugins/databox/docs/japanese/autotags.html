@@ -1,0 +1,311 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>DataBox | Geeklogドキュメント</title>
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
+</head>
+<!-- admin/plugins/databox/docs/japanese/autotags.html 20150215 -->
+<body>
+<p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
+<div class="menu">
+<a href="../../../../../docs/japanese/index.html">Geeklogドキュメント</a>
+- <a href="index.html">DataBox プラグイン</a>
+- 自動タグ・ブロック用関数</div>
+<p>
+<a href="../../../../../">トップページ</a>
+ <a href="../../../../../admin/plugins/databox/">管理画面</a>
+</p>
+<h1><a href="index.html">DataBox プラグイン</h1>
+
+
+<h2><a name="autotags">自動タグ</a>(2015/02/05 update)</h2>
+<table>
+<tr><th style="width:25%">自動タグ 引数</th>
+    <th style="width:75%">説明</th>
+</tr>
+<tbody>
+<tr>
+<td>[databox:count ]<br /><br />
+category_id:　category_code:<br />
+mode:<br />
+</td>
+<td>
+データ件数<br />
+例１：[databox:count]<br />
+例２：[databox:count category_id:1]<br />
+例３：[databox:count category_code:AAA]<br />
+例４：[databox:count category_code:AAA|BBB] カテゴリコードがAAA またはBBB<br />
+例５：[databox:count category_code:AAA|BBB|CCC] カテゴリコードがAAA または BBB または CCC<br />
+例６：[databox:count category_code:AAA|BBB mode:and] カテゴリコードがAAA かつ BBB<br />
+</td>
+</tr>
+
+<tr class="r2">
+<td>[databox:newlist ]<br /><br />
+rss_file:<br />
+title_trim_length:<br />
+intervalday:<br />
+limitcnt:<br />
+newmarkday:<br />
+templatedir:<a title="テンプレートディレクトリ"class="note_super" href="#notetext_1">*1</a><br />
+category_id:　category_code:<br />
+</td>
+<td>
+新着データ<br />
+例１：[databox:newlist]<br />
+例２：[databox:newlist rss_file:databox.rss title_trim_length:50 intervalday:70 limitcnt:40 newmarkday:30 templatedir:XXX category_id:99 category_code:XXX]<br />
+</td>
+</tr>
+
+<tr>
+<td>[databox:data ]<br /><br />
+id:<br />
+templatedir:<a title="テンプレートディレクトリ"class="note_super" href="#notetext_1">*1</a><br />
+nohitmsg:<br />
+</td>
+<td>
+データ<br />
+例１：[databox:data] <br />
+例２：[databox:data id:1 templatedir:XXX nohitmsg:yes]<br />
+</td>
+</tr>
+
+<tr class="r2">
+<td>[databox:category ]<br /><br />
+category_id:<br />
+templatedir:<a title="テンプレートディレクトリ"class="note_super" href="#notetext_1">*1</a><br />
+nohitmsg:<br />
+perpage:<br />
+page:<br />
+order:<br />
+expired:<br />
+without_code: 表示から除くデータidを指定する <br />
+without_id: 表示から除くデータcodeを指定する<br />
+
+</td>
+<td>
+カテゴリ別一覧<br />
+例１：[databox:category] <br />
+例２：[databox:category category_id:1 templatedir:XXX nohitmsg:yes perpage:10 page:1 order:id expired:no]<br />
+例３：[databox:category category_code:AAA ]<br />
+例４：[databox:category category_code:AAA|BBB] カテゴリコードがAAA または BBB<br />
+例５：[databox:category category_code:AAA|BBB|CCC] カテゴリコードがAAA または BBB または CCC<br />
+例５：[databox:category category_code:AAA|BBB mode:and] カテゴリコードがAAA かつ BBB<br />
+例６：[databox:category category_code:AAA expired:yes]<br />
+order に指定できるのは、 random date orderno code title description id と　表示制限されていない追加項目のテーマ変数　です <br />
+<br />
+perpage:(Number) 1ページあたりの表示件数。0のときは改ページなし（デフォルト:0）<br />
+expired:no 公開終了日を過ぎたデータは表示しません。（デフォルト）<br />
+expired:yes 公開終了日を過ぎたデータも表示します。<br />
+</td>
+</tr>
+
+<tr >
+<td>[databox:attributedatacount ]<br /><br />
+templatesetvar:<br />
+value:<br />
+</td>
+<td>
+指定アトリビュートが指定値のデータの件数<br />
+例１：[databox:attributedatacount] <br />
+例２：[databox:attributedatacount templatesetvar:pref value:27]<br />
+</td>
+</tr>
+
+<tr class="r2">
+<td>[databox:lastmodified ]<br /><br />
+category_id: category_code:<br />
+</td>
+<td>
+最後（直近）に修正されたデータ<br />
+例１：[databox:lastmodified] <br />
+例２：[databox:lastmodified category_id:1]<br />
+例３：[databox:lastmodified category_code:XXX]<br />
+</td>
+</tr>
+
+<tr >
+<td>[databox:lastcreated ]<br /><br />
+category_id: category_code:<br />
+</td>
+<td>
+最後（直近）に作成されたデータ<br />
+例１：[databox:lastcreated] <br />
+例２：[databox:lastcreated category_id:1]<br />
+例３：[databox:lastcreated category_code:XXX]<br />
+</td>
+</tr>
+
+<tr class="r2">
+<td>[databox:attribute ]<br /><br />
+field_id: field_code:<br />
+value:<br />
+templatedir:<a title="テンプレートディレクトリ"class="note_super" href="#notetext_1">*1</a><br />
+nohitmsg:<br />
+perpage:<br />
+page:<br />
+order:<br />
+	
+</td>
+<td>アトリビュート別一覧<br /> 指定アトリビュートが指定値のデータ一覧<br />
+例１：[databox:attribute field_id:99 value:xx ]<br />
+例２：[databox:attribute field_id:99 value:xx templatedir:x nohitmsg:yes perpage:99 page:99 order:id]<br />
+例３：[databox:attribute field_code:pref value:27 templatedir:x nohitmsg:yes perpage:99 page:99 order:id]<br />
+<br />
+perpage:(Number) 1ページあたりの表示件数。0のときは改ページなし（デフォルト:0）<br />
+</td>
+</tr>
+
+<tr >
+<td>[databox:datalink ]<br /><br />
+id: code: <br />
+ linktext<a class="note_super" href="#notetext_2">*2</a>
+</td>
+<td>データ個別表示リンク<br /> 
+例１：[databox:datalink id:1 ]<br />
+例２：[databox:datalink code:data1]<br />
+例３：[databox:datalink code:data1 データ]<br />
+id とcode が共に指定されている場合はidを優先します<br />
+linktext が省略されている場合は、データのタイトルをlinktextとします。該当データがない場合は表示されません。<br />
+
+</td>
+</tr>
+<tr class="r2">
+<td>[databox:mydataentrylink ]<br />[databox:mydataentry ]<br /><br />
+type_id <br />
+templatedir<a title="テンプレートディレクトリ"class="note_super" href="#notetext_1">*1</a><br />
+ linktext<a title=""class="note_super" href="#notetext_2">*2</a><br />
+
+</td>
+<td>マイデータ新規登録リンク<br /> 
+例１：[databox:mydataentrylink ]<br />
+例２：[databox:mydataentrylink linktext]<br />
+例３：[databox:mydataentrylink type_id:1]<br />
+例４：[databox:mydataentrylink type_id:1 新規登録]<br />
+例５：[databox:mydataentrylink type_id:1 templatedir:XXX linktext]<br />
+type_id linktext が省略されている場合は、マイデータの「新規登録」リンクを表示します。<br />
+type_id が省略されている場合は新規登録リンクを表示します<br />
+type_idを指定、linktext が省略されている場合は、タイプの名称をlinktextとします。
+type_idを指定、該当タイプがない場合は表示されません。<br />
+マイデータ新規登録の権限がない場合は、表示されません<br />
+</td>
+</tr>
+
+<tr >
+<td>
+[databox:mydata templatedir ]<br /><br />
+templatedir:<a title="テンプレートディレクトリ"class="note_super" href="#notetext_1">*1</a><br />
+linktext<a title=""class="note_super" href="#notetext_2">*2</a>
+
+</td>
+<td>マイデータリンク<br /> 
+例１：[databox:mydata ]<br />
+例２：[databox:mydata マイデータリンク]<br />
+例３：[databox:mydata ]<br />
+例４：[databox:mydata マイデータリンク]<br />
+例５：[databox:mydata templatedir:XXX マイデータ]<br />
+<br />
+マイデータ更新の権限がない場合は、表示されません<br />
+</td>
+</tr>
+<tr class="r2">
+<td>[databox:categorycount　カテゴリグループid または　カテゴリグループコード]
+</td>
+
+<td>指定カテゴリグループのカテゴリ件数<br /> 
+例１：[databox:categorycount ] 親グループなしカテゴリの件数<br />
+例２：[databox:categorycount group_id:3]<br />
+例３：[databox:categorycount group_code:pref]<br />
+アクセス権のあるデータが登録されていないカテゴリの件数は含みません
+</td>
+</tr>
+
+<tr>
+<td>[databox:categorycheck　カテゴリグループid チェックボックスの input name]
+</td>
+
+<td>指定カテゴリグループのチェックボックス<br /> 
+例１：[databox:categorycheck group_id:3 iname:gor_1] <br />
+<a title="使用例：BONUS/search/staticpage_search_sample.txt"class="note_super" href="#notetext_3">*3</a>
+</tr>
+<tr  class="r2">
+<td>[databox:mastercheck　アトリビュートid チェックボックスの input name]
+</td>
+
+<td>指定アトリビュートのマスターのチェックボックス<br /> 
+例１：[databox:mastercheck field_id:3 iname:gor_1] <br />
+<a title="使用例：BONUS/search/staticpage_search_sample.txt"class="note_super" href="#notetext_3">*3</a>
+</td>
+</tr>
+<tr>
+<td>[databox:search　検索リスト引数]
+</td>
+
+<td> 検索リスト<br /> 
+例１：[databox:search templatedir=abc&fieldset=10&gor_3=6&gor_3=&gand_8=7&gand_8=&aeq_4=10000&ato_5=&afr_6=&ato_6=&aeq_75=&afr_75=&ato_75=&gor_1=&gand_2=&perpage=4&page=1&nohitmsg=yes]<br />
+<a title="検索リスト引数[]は省いてください"class="note_super" href="#notetext_4">*4</a>
+</tr>
+<tr  class="r2">
+<td>[databox:attributevalue　アトリビュートテーマ変数またはアトリビュートid データidまたはcode option]
+</td>
+
+<td>指定アトリビュートの表示用値等を返す<br /> 
+例１：[databox:attributevalue field_code:pref code:xxx ] <br />
+例２：[databox:attributevalue field_code:pref code:xxx option:value2] <br />
+例３：[databox:attributevalue field_id:1 id:2 option:value2] <br />
+optionなしは、{登録したテーマ変数名} と同等の内容です。 <br />
+option:name　名称 <br />
+option:description 説明 <br />
+option:yes　{登録したテーマ変数名_yes}と同じ <br />
+option:value2　{登録したテーマ変数名_mst_value2}と同じ <br />
+option:disp　{登録したテーマ変数名_mst_disp}と同じ <br />
+option:no　{登録したテーマ変数名_mst_no} と同じ <br />
+<a href="templatesetvars.html#notetext_add">各アトリビュートのテーマ変数</a>参照
+</td>
+</tr>
+</tbody>
+</table>
+<h2>ブロック用関数</h2>
+<table>
+<tr><th style="width:25%">関数名</th>
+    <th style="width:75%">説明</th>
+</tr>
+
+<tbody>
+<tr>
+  <td>phpblock_shownewdatabox</td>
+  <td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+<br/><a class="note_super" href="#notetext_1" id="notetext_1">*1</a>
+テンプレートディレクトリ<br/>
+ココで指定されていない場合は、下記の順に使用されます(一覧画面以外)<br/>
+タイプに登録されているテンプレートディレクトリ<br/>
+データに登録されているテンプレートディレクトリ<br/>
+default<br/>
+
+<br/><a class="note_super" href="#notetext_2" id="notetext_2">*2</a>
+linktext は、必ず最後に記述してください。半角スペースを含む内容も記述可能です。引数名は不要です
+
+<br/><br/><a class="note_super" href="#notetext_3" id="notetext_3">*3</a>
+使用例：BONUS/search/staticpage_search_sample.txt 
+<br/>2015/01/14 引数fname をiname に変更しました。
+
+<br/><br/><a class="note_super" href="#notetext_4" id="notetext_4">*4</a>
+<a href="templatesetvars.html#searcharg">検索リスト引数</a>　[]は省いてください。
+
+<br/><br/>
+<a href="https://bitbucket.org/tsuchi/box/wiki/Autotag%20Argument%20change%20history">自動タグ引数変更履歴</a>
+
+<div class="footer">
+    <a href="http://wiki.geeklog.net/">Geeklogドキュメント作成プロジェクト</a>、<a href="http://wiki.geeklog.jp/">Geeklogドキュメント日本語版作成プロジェクト</a><br />
+    本ページのすべての商標と著作権はそれぞれの所有者に帰属します。Geeklogはコピーレフトです。
+</div>
+
+</body>
+</html>

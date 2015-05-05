@@ -1,0 +1,126 @@
+<!-- plugins/databox/templates/mydata/default/data_editor.thtml 20140414 { -->
+
+<div id="databox_admin">
+  {about_thispage}
+  <a href="{site_url}/databox/mydata/view.php?id={id}">{lang_view}</a>
+  {lang_fieldset} {fieldset_name}(Type id:{fieldset_id})
+  <form enctype="multipart/form-data" name="frmdatabox" action="{site_url}/{script}" method="post">
+    <div class="admin_basic">
+    <input type="hidden" name="fieldset" value="{fieldset_id}"{xhtml}>
+    <input type="hidden" name="fieldset_name" value="{fieldset_name}"{xhtml}>
+
+    <!-- data -->
+    <fieldset style="width:98%">
+      <legend>{lang_basicfields}</legend>
+      <div class="table-wrapper-fit">
+        <table class="admin-list-table">
+          <!-- id -->
+          <tr class="pluginRow1">
+            <th class="admin-list-field">{lang_id} {help_id}</th>
+            <td class="admin-list-field">
+              {id}
+              <input type="hidden" name="id" value="{id}"{xhtml}></td>
+          </tr>
+
+          <!-- DRAFT -->
+          <tr class="pluginRow1">
+            <th class="admin-list-field">{lang_draft} {help_draft}</th>
+            <td class="admin-list-field">
+          <input type="checkbox" name="draft_flag" value="1" {draft_flag} {xhtml} disabled>{draft_msg}</td>
+          </tr>
+
+          <!-- code -->
+          <tr class="pluginRow1">
+            <th class="admin-list-field">{lang_code}<span class="must">{lang_must_code}</span>{help_code}</th>
+            <td class="admin-list-field">
+              {code}
+              <input type="hidden" size="48" maxlength="160" name="code" value="{code}"{xhtml}>
+            </td>
+          </tr>
+
+          <!-- title -->
+          <tr class="pluginRow1">
+            <th class="admin-list-field">{lang_title} {help_title}<span class="must">{lang_must}</span></th>
+            <td class="admin-list-field">
+              <input type="text" size="48" maxlength="160" name="title" value="{title}"{xhtml}>
+            </td>
+          </tr>
+
+          <!-- page title -->
+          <tr class="pluginRow1">
+            <th class="admin-list-field">{lang_page_title} {help_page_title}</th>
+            <td class="admin-list-field">
+              <input type="text" size="48" maxlength="160" name="page_title" value="{page_title}"{xhtml}>
+            </td>
+          </tr>
+
+          <!-- description -->
+          <tr class="pluginRow1">
+            <th class="admin-list-field">{lang_description} {help_description}</th>
+            <td class="admin-list-field">
+              <textarea name="description" style="width:95%" rows="2" id="databox_description"
+                onKeyup="var n={maxlength_description}-this.value.length;var s=document.getElementById('description_cnt');s.innerHTML='('+n+')';">{description}</textarea>
+                <br{xhtml}><strong><span id='description_cnt'></span><strong>
+            </td>
+          </tr>
+
+          <!-- language_id  -->
+          <tr{hide_language_id}>
+            <th class="admin-list-field">{lang_language_id} {help_language_id}</th>
+            <td class="admin-list-field">
+              {select_language_id}
+            </td>
+          </tr>
+
+          <!-- Time stump -->
+          <tr class="pluginRow1">
+            <th class="admin-list-field">{lang_udatetime}</th>
+            <td class="admin-list-field">{udatetime} {lang_uuid}:{uuid}</td>
+              <input type="hidden" name="udatetime" value="{udatetime}"{xhtml}>
+          </tr>
+          <tr class="pluginRow1">
+            <th class="admin-list-field">{lang_created}</th>
+            <td class="admin-list-field">{created}</td>
+            <input type="hidden" name="created" value="{created}"{xhtml}>
+            <input type="hidden" name="created_un" value="{created_un}"{xhtml}>
+          </tr>
+        </table>
+      </div>
+    </fieldset>
+
+    <!-- category -->
+    <fieldset style="width:98%">
+      <legend>{lang_category}</legend>
+      <div class="table-wrapper-fit">
+        <table class="admin-list-table">
+          <tr class="pluginRow1">
+            <th class="admin-list-field">{lang_category} {help_category}</th>
+            <td class="admin-list-field">{checklist_category}</td>
+          </tr>
+        </table>
+      </div>
+    </fieldset>
+
+    <!-- Addition fields -->
+    <fieldset style="width:98%">
+      <legend>{lang_additionfields}</legend>
+      <div class="table-wrapper-fit">
+        <table class="admin-list-table">
+          {additionfields}
+        </table>
+      </div>
+    </fieldset>
+
+    <!-- Save Cancel Derete -->
+    <input type="submit" value="{lang_save}" name="mode"{xhtml}>
+    <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
+    <input type="hidden" value="{code}" name="old_code"{xhtml}>
+    <input type="hidden" value="{old_mode}" name="old_mode"{xhtml}>
+    {delete_option}
+    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+    </div>
+  </form>
+</div>
+
+<!-- } plugins/databox/templates/mydata/default/data_editor.thtml -->
+

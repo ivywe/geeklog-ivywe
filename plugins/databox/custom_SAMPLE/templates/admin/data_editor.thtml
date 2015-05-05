@@ -1,0 +1,252 @@
+<!-- plugins/databox/templates/admin/data_editor.thtml 2014/04/14 { -->
+
+<div id="databox_admin">
+  {about_thispage}
+	| <a href="{site_admin_url}/plugins/databox/view.php?id={id}">{lang_view}</a>
+	| <a href="{site_admin_url}/plugins/databox/view.php?id={id}&template=standard">{lang_ref}</a>
+	| {lang_fieldset}: {fieldset_name}(id: {fieldset_id})
+	
+  <form enctype="multipart/form-data" name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
+    <div class="admin_basic">
+      <input type="hidden" name="fieldset" value="{fieldset_id}"{xhtml}>
+      <input type="hidden" name="fieldset_name" value="{fieldset_name}"{xhtml}>
+
+      <!-- data -->
+      <fieldset style="width:98%">
+        <legend>{lang_basicfields}</legend>
+        <div class="table-wrapper-fit">
+          <table class="admin-list-table">
+
+            <!-- id -->
+            <tr class="pluginRow1">
+              <th class="admin-list-field">{lang_id} {help_id}</th>
+              <td class="admin-list-field">{id}
+                <input type="hidden" name="id" value="{id}"{xhtml}>
+              </td>
+            </tr>
+
+            <!-- DRAFT -->
+            <tr class="pluginRow1">
+              <th class="admin-list-field">{lang_draft} {help_draft}</th>
+              <td class="admin-list-field">
+                <input type="checkbox" name="draft_flag" value="1" {draft_flag} {xhtml}>
+              </td>
+            </tr>
+
+            <!-- code -->
+            <tr class="pluginRow1">
+              <th class="admin-list-field">{lang_code} {help_code}<span class="must">{lang_must_code}</span>{help_code}</th>
+              <td class="admin-list-field">
+                <input type="text" size="48" maxlength="160" name="code" value="{code}"{xhtml}>
+              </td>
+            </tr>
+
+            <!-- title -->
+            <tr class="pluginRow1">
+              <th class="admin-list-field">{lang_title} {help_title}<span class="must">{lang_must}</span></th>
+              <td class="admin-list-field">
+                <input type="text" size="48" maxlength="160" name="title" value="{title}"{xhtml}>
+              </td>
+            </tr>
+
+            <!-- page title -->
+            <tr class="pluginRow1">
+              <th class="admin-list-field">{lang_page_title} {help_page_title}</th>
+              <td class="admin-list-field">
+                <input type="text" size="48" maxlength="160" name="page_title" value="{page_title}"{xhtml}>
+              </td>
+            </tr>
+
+            <!-- description -->
+            <tr class="pluginRow1">
+              <th class="admin-list-field">{lang_description} {help_description}</th>
+              <td class="admin-list-field">
+		<textarea name="description" style="width:95%" rows="2" id="databox_description"
+		onKeyup="var n={maxlength_description}-this.value.length;var s=document.getElementById('description_cnt');s.innerHTML='('+n+')';">{description}</textarea>
+		<br{xhtml}><strong><span id='description_cnt'></span></strong>
+              </td>
+            </tr>
+
+            <!-- defaulttemplatesdirectory -->
+            <tr class="pluginRow1">
+              <th class="admin-list-field">{lang_defaulttemplatesdirectory} {help_defaulttemplatesdirectory}</th>
+              <td class="admin-list-field">
+                {select_defaulttemplatesdirectory}
+              </td>
+            </tr>
+
+            <!-- meta_description -->
+            <tr{hide_meta}>
+              <th class="admin-list-field">{lang_meta_description} {help_meta_description}</th>
+              <td class="admin-list-field">
+		<textarea name="meta_description" style="width:95%" rows="2" id="databox_description"
+		onKeyup="var n={maxlength_meta_description}-this.value.length;var s=document.getElementById('meta_description_cnt');s.innerHTML='('+n+')';">{meta_description}</textarea>
+		<br{xhtml}><strong><span id='meta_description_cnt'></span><strong>
+              </td>
+            </tr>
+
+            <!-- meta_keywords -->
+            <tr{hide_meta}>
+              <th class="admin-list-field">{lang_meta_keywords} {help_meta_keywords}</th>
+              <td class="admin-list-field">
+		<textarea name="meta_keywords" style="width:95%" rows="2" id="meta_keywords" 
+		onKeyup="var n={maxlength_meta_keywords}-this.value.length;var s=document.getElementById('meta_keywords_cnt');s.innerHTML='('+n+')';">{meta_keywords}</textarea>
+		<br{xhtml}><strong><span id='meta_keywords_cnt'></span><strong>
+              </td>
+	    </tr>
+
+            <!-- language_id  -->
+            <tr{hide_language_id}>
+              <th class="admin-list-field">{lang_language_id} {help_language_id}</th>
+              <td class="admin-list-field">{select_language_id}</td>
+	    </tr>
+
+            <!-- hits -->
+            <tr class="pluginRow1">
+              <th class="admin-list-field">{lang_hits} {help_hits}</th>
+              <td class="admin-list-field"><input type="hidden" name="hits" value="{hits}"{xhtml}>{hits}
+              </td>
+            </tr>
+
+            <!-- comments -->
+            <tr class="pluginRow1">
+              <th class="admin-list-field">{lang_comments} {help_comments}</th>
+              <td class="admin-list-field"><input type="hidden" name="comments" value="{comments}"{xhtml}>{comments}
+              </td>
+            </tr>
+
+            <!-- commentcode -->
+            <tr class="pluginRow1">
+              <th class="admin-list-field">{lang_commentcode} {help_commentcode}</th>
+              <td class="admin-list-field">
+                <select name="commentcode">
+                {optionlist_commentcode}
+                </select>
+              </td>
+            </tr>
+
+            <!-- comment_expire -->
+            <tr class="pluginRow1">
+              <th class="admin-list-field">{lang_comment_expire} {help_comment_expire}</th>
+              <td class="admin-list-field">{lang_enabled}:<input type="checkbox"name="comment_expire_flag" value="1" {is_checked_comment_expire} onclick="enable_comment_expire(this);"{xhtml}>{datetime_comment_expire}</td>
+            </tr>
+            <!-- Modified -->
+            <tr class="pluginRow1">
+              <th class="admin-list-field">{lang_modified} {help_modified}</th>
+              <td class="admin-list-field">{lang_modified_autoupdate}:<input type="checkbox" name="modified_autoupdate" value="1" checked="checked" {xhtml}>
+{datetime_modified} </td>
+            </tr>
+
+            <!-- Released -->
+            <tr class="pluginRow1">
+              <th class="admin-list-field">{lang_released} {help_released}</th>
+              <td class="admin-list-field">{datetime_released} </td>
+            </tr>
+
+            <!-- Expired -->
+            <tr class="pluginRow1">
+              <th class="admin-list-field">{lang_expired} {help_expire}</th>
+              <td class="admin-list-field">{lang_enabled}:<input type="checkbox"name="expired_flag" value="1" {is_checked_expired} onclick="enable_expired(this);"{xhtml}>{datetime_expired}</td>
+            </tr>
+
+            <!-- order -->
+            <tr class="pluginRow1">
+              <th class="admin-list-field">{lang_orderno} {help_orderno}</th>
+              <td class="admin-list-field">
+                <input type="text" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
+              </td>
+            </tr>
+
+            <!-- trackbackcode -->
+            <tr class="pluginRow1">
+              <th class="admin-list-field">{lang_trackbackcode} {help_trackbackcode}</th>
+              <td class="admin-list-field">
+                <select name="trackbackcode">
+                  {optionlist_trackbackcode}
+                </select>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </fieldset>
+
+      <!-- category -->
+      <fieldset style="width:98%">
+        <legend>{lang_category}</legend>
+        <div class="table-wrapper-fit">
+          <table class="admin-list-table">
+            <tr class="pluginRow1">
+              <th class="admin-list-field">{lang_category} {help_category}</th>
+              <td class="admin-list-field">{checklist_category}</td>
+            </tr>
+          </table>
+        </div>
+      </fieldset>
+
+      <!-- Additional fields -->
+      <fieldset style="width:98%">
+        <legend>{lang_additionfields}</legend>
+        <div class="table-wrapper-fit">
+          <table class="admin-list-table">
+            {additionfields}
+          </table>
+        </div>
+      </fieldset>
+
+      <!-- Access rights -->
+      <fieldset style="width:98%">
+        <legend>{lang_accessrights}</legend>
+        <div class="table-wrapper-fit">
+          <table class="admin-list-table">
+            <tr class="pluginRow1">
+              <th class="admin-list-field">{lang_owner}</th>
+              <td class="admin-list-field">{owner_name}<input type="hidden" name="owner_id" value="{owner_id}"{xhtml}>
+          ( UID: {owner_id} )</td>
+            </tr>
+            <tr class="pluginRow1">
+              <th class="admin-list-field">{lang_group}</th>
+              <td class="admin-list-field">{group_dropdown}</td>
+            </tr>
+            <tr class="pluginRow1">
+              <th class="admin-list-field">{lang_permissions}</td>
+              <td class="admin-list-field">{lang_perm_key}</td>
+            </tr>
+            <tr class="pluginRow1">
+              <th class="admin-list-field">&nbsp;</td>
+              <td class="admin-list-field">{permissions_editor}</td>
+            </tr>
+            <tr class="pluginRow1">
+              <th class="admin-list-field">&nbsp;</td>
+              <td class="admin-list-field">{lang_permissions_msg}</td>
+            </tr>
+            <tr class="pluginRow1"><td colspan="2">&nbsp;</td></tr>
+
+            <!-- Time stump -->
+            <tr class="pluginRow1">
+              <th class="admin-list-field">{lang_udatetime}</th>
+              <td class="admin-list-field">{udatetime} {lang_uuid}:{uuid}</td>
+                <input type="hidden" name="udatetime" value="{udatetime}"{xhtml}>
+            </tr>
+            <tr class="pluginRow1">
+              <th class="admin-list-field">{lang_created}</th>
+              <td class="admin-list-field">{created}</td>
+                <input type="hidden" name="created" value="{created}"{xhtml}>
+                <input type="hidden" name="created_un" value="{created_un}"{xhtml}>
+            </tr>
+          </table>
+        </div>
+      </fieldset>
+
+      <!-- Save Cancel Derete -->
+      <input type="submit" value="{lang_save}" name="mode"{xhtml}>
+      <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
+      <input type="hidden" value="{code}" name="old_code"{xhtml}>
+      <input type="hidden" value="{old_mode}" name="old_mode"{xhtml}>
+      {delete_option}
+      <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+      {view}
+    </div>
+  </form>
+</div>
+
+<!-- } plugins/databox/templates/admin/data_editor.thtml -->

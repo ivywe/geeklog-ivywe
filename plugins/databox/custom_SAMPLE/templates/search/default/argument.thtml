@@ -1,0 +1,55 @@
+<!--plugins/databox/templates/search/default/argument.thtml 20150108{ -->
+
+<fieldset>
+<legend>argument.thtml</legend>
+
+<form action="{site_url}/{this_script}" method="get" class="uk-form">
+	<dl class="uk-description-list-line">
+		<!--argument example -->
+		<!--以下は参考例です ない場合は表示されません -->
+		<dt><span style="color:green">&#123;fieldset&#125;</span>:</dt><dd style="line-height:1em">{fieldset}</dd>
+		<dt><span style="color:green">&#123;fieldset_name&#125;</span>:</dt><dd style="line-height:1em">{fieldset_name}</dd>
+		<dt><span style="color:green">&#123;t&#125;</span>:</dt><dd style="line-height:1em">{t}</dd>
+		<dt><span style="color:green">&#123;teq&#125;</span>:</dt><dd style="line-height:1em">{teq}</dd>
+
+		<dt><span style="color:green">&#123;gor_1&#125;</span>:</dt><dd style="line-height:1em">{gor_1}<input name="gor_1[]" value="" type="hidden"></dd>
+		<dt><span style="color:green">&#123;gor_2&#125;</span>:</dt><dd style="line-height:1em">{gor_2}<input name="gor_2[]" value="" type="hidden"></dd>
+		<dt><span style="color:green">&#123;gand_3&#125;</span>:</dt><dd style="line-height:1em">{gand_3}<input name="gand_3[]" value="" type="hidden"></dd>
+
+		<dt><span style="color:green">&#123;gor_3_names&#125;</span>:</dt><dd style="line-height:1em">{gor_2_names}</dd>
+		<dt><span style="color:green">&#123;gor_3_1_id&#125;</span>:</dt><dd style="line-height:1em">{gor_2_1_id}</dd>
+		<dt><span style="color:green">&#123;gor_3_2_id&#125;</span>:</dt><dd style="line-height:1em">{gor_2_2_id}</dd>
+		<dt><span style="color:green">&#123;gor_3_1_name&#125;</span>:</dt><dd style="line-height:1em">{gor_2_1_name}</dd>
+		<dt><span style="color:green">&#123;gor_3_2_name&#125;</span>:</dt><dd style="line-height:1em">{gor_2_2_name}</dd>
+
+
+		<dt><span style="color:green">&#123;gand_3_names&#125;</span>:</dt><dd style="line-height:1em">{gand_3_names}</dd>
+		<dt><span style="color:green">&#123;gand_3_1_id&#125;</span>:</dt><dd style="line-height:1em">{gand_3_1_id}</dd>
+		<dt><span style="color:green">&#123;gand_3_2_id&#125;</span>:</dt><dd style="line-height:1em">{gand_3_2_id}</dd>
+		<dt><span style="color:green">&#123;gand_3_1_name&#125;</span>:</dt><dd style="line-height:1em">{gand_3_1_name}</dd>
+		<dt><span style="color:green">&#123;gand_3_2_name&#125;</span>:</dt><dd style="line-height:1em">{gand_3_2_name}</dd>
+
+		<dt><span style="color:green">&#123;a_2&#125;</span>:</dt><dd style="line-height:1em"><input value="{a_2}" type="text" name="a_2" style="width:150px"></dd>
+		<dt><span style="color:green">&#123;aeq_2&#125;</span>:</dt><dd style="line-height:1em"><input value="{aeq_2_name}" type="text" name="aeq_2" style="width:150px"></dd>
+
+		<dt><span style="color:green">&#123;afr_6&#125;</span>:</dt><dd style="line-height:1em">{afr_6}</dd>
+		<dt><span style="color:green">&#123;ato_6&#125;</span>:</dt><dd style="line-height:1em">{ato_6}</dd>
+		<dt><span style="color:green">&#123;ams_47&#125;</span>:</dt><dd style="line-height:1em">{ams_47}<input name="ams_47[]" value="" type="hidden"></dd>
+		<dt><span style="color:green">&#123;ams_47_names&#125;</span>:</dt><dd style="line-height:1em">{ams_47_names}</dd>
+		<dt><span style="color:green">&#123;ams_47_1_no&#125;</span>:</dt><dd style="line-height:1em">{ams_47_1_no}</dd>
+		<dt><span style="color:green">&#123;ams_47_2_no&#125;</span>:</dt><dd style="line-height:1em">{ams_47_2_no}</dd>
+		<dt><span style="color:green">&#123;ams_47_1_name&#125;</span>:</dt><dd style="line-height:1em">{ams_47_1_name}</dd>
+		<dt><span style="color:green">&#123;ams_47_2_name&#125;</span>:</dt><dd style="line-height:1em">{ams_47_2_name}</dd>
+		<dt><span style="color:green">&#123;templatedir&#125;</span>:</dt><dd style="line-height:1em">{templatedir}</dd>
+		<dt><span style="color:green">&#123;perpage&#125;</span>:</dt><dd style="line-height:1em">{perpage}</dd>
+		<dt><span style="color:green">&#123;page&#125;</span>:</dt><dd style="line-height:1em">{page}</dd>
+		<dt><span style="color:green">&#123;order&#125;</span>:</dt><dd style="line-height:1em">{order}</dd>
+	</dl>
+	<input value="{lang_search}" class="submit" type="submit">
+	<input value="{fieldset}" name="fieldset" type="hidden">
+	<input value="{templatedir}" name="templatedir" type="hidden">
+</form>
+
+</fieldset>
+
+<!--} plugins/databox/templates/search/default/argument.thtml -->

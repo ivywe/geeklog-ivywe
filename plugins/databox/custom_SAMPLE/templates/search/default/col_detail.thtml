@@ -1,0 +1,81 @@
+<!-- plugins/databox/templates/search/default/col_detail.thtml 20140926 { -->
+<li>
+<fieldset>
+<legend>col_detail.thtml</legend>
+
+{data_edit}
+
+<div class="uk-panel" style="margin:1em">
+    <div class="uk-panel-badge uk-badge uk-badge-danger">{!if new_img}New!{!endif}</div>
+    <h3 class="uk-panel-title"><span style="color:green">&#123;data_link&#125;:</span>{data_link}</h3>
+
+<fieldset>
+<legend>core items e.g. prefix:data_</legend>
+
+			<div class="uk-text-bold">{lang_title} {lang_id} {lang_code}&nbsp;
+				{lang_description}&nbsp;
+				{lang_date}&nbsp;<!-- 使用する日付 作成日付or編集日付or公開日 -->
+				{lang_released}&nbsp;
+				{lang_expired}&nbsp;
+				{lang_remaingdays}&nbsp;
+				{lang_addfield}&nbsp;<!-- ソート順に指定された追加属性項目 -->
+			</div>
+<hr />
+<dl class="uk-description-list-horizontal">
+<dt><span style="color:green">&#123;data_title&#125;:</span></dt><dd>{data_title}</dd>
+<dt><span style="color:green">&#123;data_id&#125;:</span></dt><dd>{data_id}</dd>
+<dt><span style="color:green">&#123;data_code&#125;:</span></dt><dd>{data_code}</dd>
+<dt><span style="color:green">&#123;data_description&#125;:</span></dt><dd>{data_description}</dd>
+<dt><span style="color:green">&#123;data_datefield&#125;:</span></dt><dd>{data_datefield} {new_img}<!-- 使用する日付 作成日付or編集日付or公開日 --></dd>
+<dt><span style="color:green">&#123;data_datefield_shortdate&#125;:</span></dt><dd>{data_datefield_shortdate} {new_img}<!-- 使用する日付 作成日付or編集日付or公開日 --></dd>
+<dt><span style="color:green">&#123;data_released&#125;:</span></dt><dd>{data_released}</dd>
+<dt><span style="color:green">&#123;data_released_shortdate&#125;:</span></dt><dd>{data_released_shortdate}</dd>
+<dt><span style="color:green">&#123;data_expired&#125;:</span></dt><dd>{data_expired}
+</dd>
+<dt><span style="color:green">&#123;data_expired_shortdate&#125;:</span></dt><dd>{data_expired_shortdate}
+</dd>
+<dt><span style="color:green">&#123;data_hits&#125;:</span></dt><dd>{data_hits}</dd>
+<dt><span style="color:green">&#123;data_remaingdays&#125;:</span></dt><dd>{data_remaingdays}</dd>
+<dt><span style="color:green">&#123;data_value&#125;:</span></dt><dd>{data_value}</dd><!-- ソート順に指定された追加属性項目 -->
+</dl>
+</fieldset>
+
+<fieldset>
+<legend>additional items e.g.</legend>
+
+<!-- 下記テーマ変数　参考例です 登録されていない場合表示されません -->
+<dl class="uk-description-list-horizontal">
+				<!-- 下記テーマ変数　参考例です 登録されていない場合表示されません -->
+<dt><span style="color:green">&#123;URL_name&#125;:</span></dt><dd>{URL_name}</dd><dt><span style="color:green">&#123;URL&#125;:</span></dt><dd>{URL}</dd>
+<dt><span style="color:green">&#123;image_name&#125;:</span></dt><dd>{image_name}</dd><dt><span style="color:green">&#123;image_tn_image&#125;:</span></dt><dd>{image_tn_image}</dd>
+<dt><span style="color:green">&#123;addons_name&#125;:</span></dt><dd>{addons_name}</dd><dt><span style="color:green">&#123;addons&#125;:</span></dt><dd>{addons}</dd>
+<dt><span style="color:green">&#123;any theme var in data&#125;:</span></dt><dd>...</dd>
+</dl>
+</fieldset>
+
+<h4>Category list</h4>
+
+<fieldset>
+<legend>group code e.g.</legend>
+
+<!-- カテゴリ グループコードを使用するテーマ変数 -->
+<span style="color:green">&#123;group_sitetype&#125;:</span>{group_sitetype}<br />
+<span style="color:green">&#123;group_sitetype_code&#125;:</span>{group_sitetype_code}
+<hr />
+<span style="color:green">&#123;group_company&#125;:</span>{group_ecompanyq}<br />
+<span style="color:green">&#123;group_company_code&#125;:</span>{group_company_code}
+</fieldset>
+
+<fieldset>
+<legend>group code link e.g.</legend>
+
+<!-- カテゴリ リンク付　グループコード使用テーマ変数 -->
+<span style="color:green">&#123;grouplink_sitetype&#125;:</span>{group_sitetype}<br />
+<span style="color:green">&#123;grouplink_sitetype_code&#125;:</span>{grouplink_sitetype_code}
+<hr />
+<span style="color:green">&#123;grouplink_company&#125;:</span>{group_ecompanyq}<br />
+<span style="color:green">&#123;grouplink_company_code&#125;:</span>{grouplink_company_code}
+</fieldset>
+
+</li>
+<!-- } plugins/databox/templates/search/default/col_detail.thtml -->

@@ -1,0 +1,97 @@
+<!-- plugins/databox/templates/admin/mst_editor.thtml 20121210{ -->
+
+<div id="databox_admin">
+  {about_thispage}
+  <form name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
+	<div class="admin_basic">
+    <fieldset style="width:98%">
+      <legend>Master</legend>
+
+      <!-- data -->
+      <div class="table-wrapper-fit">
+        <table class="admin-list-table">
+          <!-- id -->
+          <tr class="pluginRow1">
+            <th class="admin-list-field">{lang_id}</th>
+            <td class="admin-list-field">
+              {id}
+              <input type="hidden" name="id" value="{id}"{xhtml}>
+            </td>
+          </tr>
+
+          <!-- kind -->
+          <tr class="pluginRow1">
+            <th class="admin-list-field">{lang_kind} {help_kind}<span class="must">{lang_must}</span></th>
+            <td class="admin-list-field">
+              <input type="text" size="16" maxlength="16" name="kind" value="{kind}"{xhtml}>
+            </td>
+          </tr>
+
+          <!-- no -->
+          <tr class="pluginRow1">
+            <th class="admin-list-field">{lang_no}<span class="must">{lang_must}</span></th>
+            <td class="admin-list-field">
+              <input type="text" size="16" maxlength="6" name="no" value="{no}"{xhtml}>
+            </td>
+          </tr>
+
+          <!-- value -->
+          <tr class="pluginRow1">
+            <th class="admin-list-field">{lang_value}</th>
+            <td class="admin-list-field">
+              <input type="text" size="48" maxlength="160" name="value" value="{value}"{xhtml}>
+            </td>
+          </tr>
+
+          <!-- value2 -->
+          <tr class="pluginRow1">
+            <th class="admin-list-field">{lang_value2}</th>
+            <td class="admin-list-field">
+              <input type="text" size="48" maxlength="160" name="value2" value="{value2}"{xhtml}>
+            </td>
+          </tr>
+
+          <!-- disp -->
+          <tr class="pluginRow1">
+            <th class="admin-list-field">{lang_disp}</th>
+            <td class="admin-list-field">
+              <input type="text" size="48" maxlength="160" name="disp" value="{disp}"{xhtml}>
+            </td>
+          </tr>
+
+          <!-- order -->
+          <tr class="pluginRow1">
+            <th class="admin-list-field">{lang_orderno}</th>
+            <td class="admin-list-field">
+               <input type="text" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
+            </td>
+          </tr>
+
+          <!-- relno -->
+          <tr class="pluginRow1">
+            <th class="admin-list-field">{lang_relno}</th>
+            <td class="admin-list-field">
+               <input type="text" size="48" maxlength="160" name="relno" value="{relno}"{xhtml}>
+            </td>
+          </tr>
+
+          <!-- 保存日 -->
+          <tr class="pluginRow1">
+            <th class="admin-list-field">{lang_udatetime}</th>
+            <td class="admin-list-field">{udatetime} {lang_uuid}:{uuid}</td>
+          </tr>
+        </table>
+      </div>
+    </fieldset>
+
+    <!-- 【保存 キャンセル  削除】 -->
+    <input type="submit" value="{lang_save}" name="mode"{xhtml}>
+    <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
+    <input type="hidden" value="{code}" name="old_code"{xhtml}>
+    {delete_option} {lang_delete_help}
+    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+	</div>
+  </form>
+</div>
+
+<!-- } plugins/databox/templates/admin/mst_editor.thtml -->

@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>UserBox | Geeklog Document</title>
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/english/docstyle.css" title="Dev Stylesheet">
+</head>
+
+<body>
+<p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
+<div class="menu">
+<a href="../../../../../docs/english/index.html">Geeklog Document</a>
+- <a href="index.html">UserBox Plugin </a>
+- Install </div>
+<p>
+<a href="../../../../../">Top page</a>
+ <a href="../../../../../admin/plugins/userbox/">Admin</a>
+</p>
+<h1><a href="index.html">UserBox Plugin </h1>
+
+<h2><a name="files">File structure(2013/01/09update)</a></h2>
+<pre><code>
+-userbox
+  ├ admin
+  │ ├ docs
+  │ │ ├ japanese
+  │ │ │ ├ autotags.html
+  │ │ │ ├ files.html
+  │ │ │ ├ index.html
+  │ │ │ ├ install.html
+  │ │ │ ├ tables.html
+  │ │ │ ├ templatesetvars.html
+  │ │ │ └ userbox.html
+  │ │ │
+  │ │ ├ changed-files
+  │ │ ├ history
+  │ │ ├ index.html
+  │ │ └ license
+  │ │
+  │ │ 
+  │ ├ bqckuprestore.php
+  │ ├ category.php
+  │ ├ field.php
+  │ ├ fieldset.php
+  │ ├ group.php
+  │ ├ index.php
+  │ ├ information.php
+  │ ├ mst.php
+  │ ├ profile.php
+  │ ├ userbox_functions.php
+  │ └ view.php
+  │
+  ├ custom  (各site でご用意ください)
+  │ ├ language
+  │ │ └ japaese_utf-8.php　
+  │ └ templates
+  │ 
+  ├ language
+  │ └ japanese_utf-8.php 
+  │   （Select language がない case にもuse されます）
+  │
+  ├ lib (boxシリーズ共通)
+  │ ├ com_getyearformoptions.php 
+  │ ├ comj_dlfile.php 
+  │ ├ comj_dltbldt.php 
+  │ ├ databox_funcions.inc 
+  │ ├ lib_category.php 
+  │ ├ lib_configuration.php 
+  │ ├ lib_datetimeedit.php 
+  │ ├ lib_field.php 
+  │ ├ lib_fieldset.php 
+  │ ├ lib_getfilelist.php 
+  │ ├ lib_group.php 
+  │ ├ lib_mail_is_mobile.php 
+  │ ├ lib_mst.php 
+  │ ├ lib_outlog.php 
+  │ ├ ppNavbar.php 
+  │ └ sql_mst_sample.inc
+  │
+  ├ public_html
+  │ ├ css
+  │ │ ├ admin_fieldsetfields.css
+  │ │ └ admin_fieldsetgroups.css
+  │ │
+  │ ├ images
+  │ │ └ icons
+  │ │     ├ userbox.png
+  │ │     ├ icon_new.gif
+  │ │     └ icon_RSS.gif
+  │ │
+  │ ├ myprofile
+  │ │ ├ index.php
+  │ │ ├ profile.php
+  │ │ ├ securitygroup.php
+  │ │ ├ userbox_functions.php
+  │ │ └ view.php
+  │ │
+  │ ├ attribute.php
+  │ ├ category.php
+  │ ├ list.php
+  │ ├ index.php
+  │ └ profile.php
+  │
+  ├ sql
+  │ └ mysql_install.php
+  │
+  ├ templates
+  │ ├ admin
+  │ │ ├ backuprestore.thtml
+  │ │ ├ category_editor.thtml
+  │ │ ├ changeset.thtml
+  │ │ ├ confirmation.thtml
+  │ │ ├ field_editor.thtml
+  │ │ ├ fieldset_editor.thtml
+  │ │ ├ fieldset_fields.thtml
+  │ │ ├ fieldset_groups.thtml
+  │ │ ├ group_editor.thtml
+  │ │ ├ import_url.thtml
+  │ │ ├ information.thtml
+  │ │ ├ mst_editor.thtml
+  │ │ ├ profile_col_detail.thtml
+  │ │ ├ profile_editor.thtml
+  │ │ ├ row.thtml
+  │ │ ├ view.thtml
+  │ │ └ xml_editor.thtml
+  │ │
+  │ ├ attribute
+  │ │ └ default
+  │ │    ├ col_detail.thtml
+  │ │    ├ col.thtml
+  │ │    ├ col2.thtml
+  │ │    ├ headercode.thtml
+  │ │    ├ list_detail.thtml
+  │ │    ├ list.thtml
+  │ │    ├ navigation_detail.thtml
+  │ │    ├ navigation.thtml
+  │ │    ├ nohit.thtml
+  │ │    ├ pagenavigation.thtml
+  │ │    └ row.thtml
+  │ │
+  │ ├ category
+  │ │ └ default
+  │ │    ├ col.thtml
+  │ │    ├ col_detail.thtml
+  │ │    ├ grp.thtml
+  │ │    ├ headercode.thtml
+  │ │    ├ list.thtml
+  │ │    ├ list_detail.thtml
+  │ │    ├ navigation.thtml
+  │ │    ├ navigation_detail.thtml
+  │ │    ├ nohit.thtml
+  │ │    ├ pagenavigation.thtml
+  │ │    └ row.thtml
+  │ │
+  │ ├ myprofile
+  │ │ └ default
+  │ │    ├ profile_col_detail.thtml
+  │ │    ├ profile_editor.thtml
+  │ │    ├ row.thtml
+  │ │    ├ securitygroup_editor.thtml
+  │ │    ├ securitygroup_group.thtml
+  │ │    └ view.thtml
+  │ │
+  │ ├ newlist
+  │ │ └ default
+  │ │    ├ list_col.thtml
+  │ │    └ list.thtml
+  │ │
+  │ └ profile
+  │   └ default
+  │      ├ category_row.thtml
+  │      ├ col_detial.thtml
+  │      ├ headercode.thtml
+  │      ├ list_detail.thtml
+  │      ├ nohit.thtml
+  │      └ row.thtml
+  │ 
+  │
+  ├ autoinstall.php
+  ├ config.php
+  ├ configuration_validation.php
+  ├ functions.inc
+  ├ functions_autotag.inc  
+  ├ functions_comment.inc  
+  ├ functions_feed.inc
+  ├ functions_search.inc
+  ├ functions_stats.inc
+  ├ install_defaults.php
+  └ version.php
+  
+  
+  
+</code></pre>
+<p>UserBox のConfiguration のbackupは、
+private/data/ に作成されます</p>
+
+<pre><code>
+ GEEKLOG
+   ├ data
+   │ ├ userbox  (File save path)
+   │
+   ├ public_html
+   │ ├ images
+   │ │ ├ userbox (Additional field のImages （外記憶）の記憶path)
+   │ │
+   │ ├ userbox_data  (File save path)
+   │ ├ layout
+   │ │ ├ Theme 
+   │ │     ├ userbox
+   │ │        ├ templates  Theme Template 
+   │ │                 (各site でご用意ください)
+   │ │
+</code></pre>
+
+<div class="footer">
+    <a href="http://wiki.geeklog.net/">Geeklog Document作成 Development Project</a>、<a href="http://wiki.geeklog.jp/">Geeklog Document Japanese Development Project</a><br />
+    All trademarks and copyrights on this page are owned by their respective owners.Geeklogis copyleft.
+</div>
+
+</body>
+</html>

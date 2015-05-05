@@ -1,0 +1,27 @@
+<!--plugins/databox/templates/admin/confirmation.thtml  20140917 { -->
+
+<h3>{actionname}</h3>
+
+<form action="{actionprg}" method="post">
+  <div class="admin_basic">
+	<dl><dt>{lang_checklist}</dt><dd>{checklist}</dt></dl>
+	<hr{xhtml}>
+	<div  class="uk-margin-small">
+		<input class="uk-button" type='submit' name='action' value='{lang_submit}' onclick="return confirm('{lang_confirm}');"{xhtml}>
+	</div>
+	<div class="uk-margin-small">{btn2}</div>
+	{!if btn3}
+	<div class="uk-panel uk-panel-box uk-margin uk-panel-box-primary">
+		<div class="uk-text-danger">すべてのデータを削除します。</div>
+		{btn3}
+	</div>
+	{!endif}
+	<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+	<input type="hidden" value="{mode}" name="mode"{xhtml}>
+	<dl class="notes">
+		<dd>{help}</dd>
+	</dl>
+  </div>
+</form>
+
+<!--} plugins/databox/templates/admin/confirmation.thtml -->

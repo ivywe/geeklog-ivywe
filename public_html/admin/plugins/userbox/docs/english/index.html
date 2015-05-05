@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>UserBox | Geeklog Document</title>
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css " title="Dev Stylesheet">
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/english/docstyle.css " title="Dev Stylesheet">
+</head>
+
+<body>
+<p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
+<div class="menu"><a href="../../../../../docs/english/index.html">Geeklog Document</a>
+- UserBox Plugin 
+</div>
+<p>
+<a href="../../../../../">Top page</a>
+ <a href="../../../../../admin/plugins/userbox/">Admin</a>
+</p>
+
+<h1>UserBox Plugin </h1>
+<p>Ver.0.0.0（testing version ）<a href="../history" >history</a></p>	
+<p>License　<a href="../../../../../docs/license" title="GNU General Public License">GNU GPLv2</a></p>
+<p><a href="http://www.ivywe.co.jp/downloads/index.php/userbox_test" >最新testing version 配布</a></p>
+
+<p>☆testing version ではlanguage File の既定 valueはjapanese_utf-8になっています</p>
+<p>☆testing version でのupdate 処理は原則Versionの変更とConfiguration Settingのupdate only おこなっています.正式版は0.0.1からの予定です</p>
+
+<h2> Document目次</h2>
+<ul>
+  <li><a href="install.html">Install procedure</a> (upgrade のprocedureを含む)</li>
+
+  <li><a href="userbox.html">Setting（Configuration ）</a></li>
+  <li><a href="autotags.html">Autotags・Block Functions</a></li>
+  <li><a href="files.html">File structure</a></li>
+  <li><a href="templatesetvars.html">Theme variables </a></li>
+  <li><a href="tables.html">Table list </a></li>
+ </ul>
+  
+<h2>概要</h2>
+User 用の項目を自由に追加するPlugin です.<br>
+Install 時は、（userbox.user access rights がある）rootAdministratoronly 管理対象になります<br>
+Userがuserbox.user access rights があるGroup にregist されると、管理対象になります<br>
+Configuration Settingの「Logged in user をregist する」を「Yes」に変更すると、access rights regist にかかわりなく、すべてのLogged in user が管理対象になります
+
+<h2>機能</h2>
+<ul>
+<li>Data 毎にfeaturedimageのregist がable：Additional field で、At the first time display されるImages （File save ）Type 項目 </li>
+<li>Images (featuredimage)付Category 別feed 発行</li>
+<li>ogpMeta tag 編集（Data display 、Category 別Number list 、Category 別list ）</li>
+<li>custom Setting：各site で独自のlanguage File 、Theme Settingがable</li>
+<li>Category 別にTheme Settingがable</li>
+<li>user にマイGroup のSettingをpermit することがable</li>
+<ul>
+  <li>マイGroup とは、Group name が_（アンダーバー）で始まるセキュリティグGroup （UserBox独自仕様）</li>
+  <li>Configuration Settingのuser にマイGroup のupdate をpermit するがYesになっている case 、or userbox.joingroupaccess rights がある case </li>
+</ul>  
+</ul>  
+  
+<h2>関連Plugin </h2>
+<ul>
+<li><s>jQuery 1.3以上のVersion：jQeryPlugin が有効な case にonly date pickerが動作します.</br>jQueryのロード順はUserBoxより前にしてください.</s>Gl2.0未満ではdate pickerは動作しません</li>
+<li>XMLSitemapPlugin のConfiguration Settingのsite マップの内容に userbox をregist すると sitemap.xmlに出力します</li>
+  
+</ul>
+<h2>制限事項</h2>
+<ol>
+<li>Gl1.8未満のGeeklogではInstall できません.</li>
+<li>MySQL 5.0 未満ではInstall できません.</li>
+<li>GeeklogInstall 時に「UTF-8using」をcheck したsite only 対応しています.</li>
+<li>MySQLonly 対応しています.</li>
+<li>主にXrea仕様 および SaaSes サーバで動作作検証しています.</li>
+</ol>
+<h2>注意</h2>
+<p>同一site にDataBoxがある case 、Version（幹番）は同じである必要があります.</p>
+<p>0.0.0yyyymmdd ここまでの表記が同じであること</p>
+
+ <div class="footer">
+    <a href="http://wiki.geeklog.net/">Geeklog Document作成 Development Project</a>、<a href="http://wiki.geeklog.jp/">Geeklog Document Japanese Development Project</a><br />
+    All trademarks and copyrights on this page are owned by their respective owners.Geeklogis copyleft.
+</div>
+
+</body>
+</html>

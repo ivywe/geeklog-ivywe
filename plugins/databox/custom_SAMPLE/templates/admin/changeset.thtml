@@ -1,0 +1,14 @@
+<!--plugins/databox/templates/admin/changeset.thtml 201205015 { -->
+
+<form action="{site_admin_url}/plugins/databox/data.php" method="post" id="admin-changeset" class="basic">
+	<div class="admin_basic">
+		<input type="hidden" name="id" value="{id}"{xhtml}>
+		<p class="message">{lang_inst_changeset}</p>
+		{lang_fieldset} {list_fieldset}
+		<input type="submit" value="{lang_changeset}" name="mode" class="submit"{xhtml}>
+		<input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
+		<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+	</div>
+</form>
+
+<!--} plugins/databox/templates/admin/changeset.thtml -->

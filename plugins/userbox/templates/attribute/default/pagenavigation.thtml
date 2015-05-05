@@ -1,0 +1,4 @@
+<!-- plugins/userbox/templates/attribute/default/pagenavibation.thtml 20121019{ -->
+<p align="center">{begin_backlink}{lang_back}{end_backlink}&nbsp;[{lang_page_of}]&nbsp;{begin_nextlink}{lang_next}{end_nextlink}
+</p>
+<!-- } plugins/userbox/templates/attribute/default/pagenavibation.thtml -->

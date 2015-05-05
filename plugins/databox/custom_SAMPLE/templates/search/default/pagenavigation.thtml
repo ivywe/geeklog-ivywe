@@ -1,0 +1,11 @@
+<!-- plugins/databox/templates/search/default/pagenavibation.thtml 20140926{ -->
+
+<fieldset>
+<legend>pagenavibation.thtml</legend>
+
+<div style="text-align:center">{begin_backlink} {lang_back} {end_backlink}&nbsp;[{lang_page_of}]&nbsp;{begin_nextlink} {lang_next} {end_nextlink}
+</div>
+
+</fieldset>
+
+<!-- } plugins/databox/templates/search/default/pagenavibation.thtml -->

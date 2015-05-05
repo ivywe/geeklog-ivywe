@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>UserBox | Geeklogドキュメント</title>
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
+</head>
+
+<body>
+<p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
+<div class="menu">
+<a href="../../../../../docs/japanese/index.html">Geeklogドキュメント</a>
+- <a href="index.html">UserBox プラグイン</a>
+- インストール</div>
+<p>
+<a href="../../../../../">トップページ</a>
+ <a href="../../../../../admin/plugins/userbox/">管理画面</a>
+</p>
+<h1><a href="index.html">UserBox プラグイン</a></h1>
+(2012/02/17update)
+
+<h2><a name="install">インストール</a></h2>
+<ol>
+<li>データベースおよびファイルのバックアップをとります。</li>
+<li>標準的なプラグインのファイル配置に従い、ファイルをアップします。</li>
+<ol>
+<li>plugins/　以下に　userbox以下をアップ</li>
+<li>admin/plugins/userbox/以下に　admin以下のファイルを移動</li>
+<li>public_html/userbox/以下に　public_html以下のファイルを移動</li>
+</ol>
+<li>Rootユーザーとしてログインし，プラグイン管理の画面でインストールを実行します</li>
+</ol>
+
+<h2>その他必要なフォルダ＆ファイル</h2>
+<ul>
+<li>public_html/images/userbox (追加項目の画像（外記憶）の記憶場所)</li>
+<li>public_html/userbox_data (ファイル保存場所)</li>
+<li>private/data/userbox/ (ファイル保存場所)</li>
+<p>ファイル保存場所は、コンフィギュレーション設定で変更可能です</p>
+</ul>
+<h2>インストール時に作成される権限</h2>
+<ol>
+<li>userbox.admin:UserBoxプラグインに関するすべての処理ができる。</li>
+<li>userbox.edit:(ユーザに更新を許可しない設定になっていても)更新ができる。</li>
+<li>userbox.joingroup:(ユーザにマイグループの更新を許可しない設定になっていても)更新ができる。</li>
+<li>userbox.user:UserBoxに登録するユーザ。ログインユーザを登録する設定になっている場合は、ログインユーザはすべて登録されます。</li>
+</ol>
+<h2>インストール時に作成されるグループ</h2>
+<ol>
+<li>UserBox Admin :userbox.admin userbox.edit userbox.submit 権限を持つ</li>
+<li>UserBox Editor :userbox.edit　権限を持つ</li>
+<li>UserBox Manager :userbox.edit userbox.joingroup　userbox.user 権限を持つ</li>
+<li>UserBox User :userbox.user　権限を持つ</li>
+</ol>
+<h2>実行時に作成されるファイル</h2>
+<ul>
+<li>data/userboxconfig_bak.php　　コンフィギュレーションのバックアッップ</li>
+</ul>
+<h2>アンインストール方法</h2>
+<ul>
+<li>データベースおよびファイルのバックアップをとります。</li>
+<li>Rootユーザーとしてログインし，プラグイン管理の画面で削除を実行します。</li>
+<li>アップしたファイルを削除します。</li>
+</ul>
+<p>アンインストールすると データベース上のUserBox専用データは、すべて削除されます。</p>
+<h2>通常のアップグレード方法</h2>
+<ol>
+<li>データベースおよびファイルのバックアップをとります。</li>
+<li>標準的なプラグインのファイル配置に従い、ファイルをアップします。</li>
+<ol>
+<li>plugins/　以下に　userbox以下をアップ</li>
+<li>admin/plugins/userbox/以下に　admin以下のファイルを移動</li>
+<li>public_html/userbox/以下に　public_html以下のファイルを移動</li>
+</ol> 
+<li>Rootユーザーとしてログインし，プラグイン管理の画面で更新を実行します</li>
+</ol>
+
+<h2>基本的なテスト版のアップグレード方法</h2>
+<p>アンインストール、削除してから、あらためてインストールしてください。</p>
+<p> アンインストールする前にコンフィギュレーション設定のバックアップを
+作成しておくと、インストールしなおした際にリストアすることができます。</p>
+<p>アンインストールすると データベース上の専用データは、すべて削除されます。</p>
+<p>アンインストールすると アップロードしたファイルは、すべて削除されます。</p>
+<p>テーブルの追加変更が必要な場合があります。</p>
+<p>グループおよび権限の追加変更が必要な場合があります。</p>
+
+<div class="footer">
+    <a href="http://wiki.geeklog.net/">Geeklogドキュメント作成プロジェクト</a>、<a href="http://wiki.geeklog.jp/">Geeklogドキュメント日本語版作成プロジェクト</a><br />
+    本ページのすべての商標と著作権はそれぞれの所有者に帰属します。Geeklogはコピーレフトです。
+</div>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!--plugins/databox/templates/admin/import_url.thtml  20110420 { -->
+
+<h3>Export</h3>
+
+<form action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data" class="uk-form">
+  <div class="admin_basic">
+	<dl class="uk-description-list-horizontal">
+	  <dt>URL:</dt>
+	  <dd><input type="text" dir="ltr" name="importurl" value="{defaultpath}" size="48"{xhtml}></dd>
+	  <dd>{help}</dd>
+	</dl>
+	<div></div>
+	<input type="hidden" name="mode" value="{mode}" {xhtml}>
+	<input type="submit" value="{submit}" name="submin"{xhtml}>
+	<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+  </div>
+</form>
+
+<!--} plugins/databox/templates/admin/import_url.thtml -->

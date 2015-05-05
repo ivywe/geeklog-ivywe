@@ -1,0 +1,6 @@
+@charset "utf-8";
+
+span.note_super,
+a.note_super{
+  font-weight: bold;
+}

@@ -1,0 +1,227 @@
+@charset "utf-8";
+
+/*--------------------------------------
+  For Data
+--------------------------------------*/
+
+dl.userbox_col_detail dt {
+  margin-left: 0;
+  color: green;
+  font-weight: normal;
+}
+dl.userbox_col_detail dd {
+  margin-left: 2em;
+}
+table.userbox th,
+table.userbox td {
+  vertical-align: top;
+}
+
+table.userbox {
+      margin:1em 1em 1em 20px;
+      background:#F9F9F9;
+      border:1px #AAA solid;
+      border-collapse:collapse;
+}
+
+table.userbox th, table.userbox td {
+      border:1px #AAA solid;
+      padding:1em;
+}
+
+table.userbox th {
+      text-align:center;
+      font-weight: bold;
+      background:#F0F0F0;
+}
+
+table.userbox caption {
+      margin-left:inherit;
+      margin-right:inherit;
+}
+
+
+/*--------------------------------------
+  For New list
+--------------------------------------*/
+dl.userbox_newlist {
+  width: 100%;  
+  line-height: 1.2;
+}  
+dl.userbox_newlist dt.userbox_date {
+  clear: left;
+  float: left;
+  margin: 0 0 0.8em;
+  width: 7.5em;
+  border-left: solid 8px #CCC;
+  padding-left: 5px;
+  color: #000;
+}  
+dl.userbox_newlist dd.userbox_list {
+  margin-bottom: 0.8em;
+  margin-left: 7.5em;
+  min-width: 30em;
+}
+
+span.userbox_new { 
+  padding: 0 4px 0 4px;
+  margin:  0 0 0 8px;
+  background: #cc3333;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 7px;
+  font-family: Arial;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+span.userbox_rss { 
+  padding: 0 4px 0 4px;
+  margin:  0 0 0 8px;
+  background: #3333cc;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 7px;
+  font-family: Arial;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+p.userbox_more {
+  clear: left;
+  text-align: right;
+}
+
+
+/*--------------------------------------
+  For Admin Data
+--------------------------------------*/
+
+div#userbox_admin .admin-list-table th.admin-list-field {
+  width: 25%;
+  text-align: right;
+}
+div#userbox_admin .admin-list-table td.admin-list-field {
+  width: 75%;
+}
+
+
+/*--------------------------------------
+  For Admin Fieldsetfields
+--------------------------------------*/
+
+form#admin-fieldsetfields fieldset {
+  padding: 8px;
+  border: 1px solid #CCCCCC;
+  background: #EFEFEF;
+}
+
+form#admin-fieldsetfields dl {
+  float: left;
+  width: 30%;
+  margin: 0 0 1em 0;
+  padding: 0;
+}
+
+form#admin-fieldsetfields dl dt {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+form#admin-fieldsetfields dl dd {
+  margin: 0;
+  padding: 0;
+}
+
+form#admin-fieldsetfields dl dd select {
+  width: 100%;
+}
+
+form#admin-fieldsetfields ul.move {
+  list-style-position: outside;
+  list-style-type: none;
+  float: left;
+  width: 40%;
+  margin: 3.5em 0 0 0;
+  padding: 0;
+  text-align: center;
+}
+
+form#admin-fieldsetfields ul.move li {
+  margin: 0 0 0.5em 0;
+  padding: 0;
+}
+
+form#admin-fieldsetfields ul.submit {
+  clear: left;
+  text-align: center;
+}
+
+form#admin-fieldsetfields ul.submit li {
+  display: inline;
+}
+
+
+/*--------------------------------------
+  FOR Admin fieldsetgroups
+--------------------------------------*/
+
+form#admin-fieldsetgroups fieldset {
+  padding: 8px;
+  border: 1px solid #CCCCCC;
+  background: #EFEFEF;
+}
+
+form#admin-fieldsetgroups dl {
+  float: left;
+  width: 30%;
+  margin: 0 0 1em 0;
+  padding: 0;
+}
+
+form#admin-fieldsetgroups dl dt {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+form#admin-fieldsetgroups dl dd {
+  margin: 0;
+  padding: 0;
+}
+
+form#admin-fieldsetgroups dl dd select {
+  width: 100%;
+}
+
+form#admin-fieldsetgroups ul.move {
+  list-style-position: outside;
+  list-style-type: none;
+  float: left;
+  width: 40%;
+  margin: 3.5em 0 0 0;
+  padding: 0;
+  text-align: center;
+}
+
+form#admin-fieldsetgroups ul.move li {
+  margin: 0 0 0.5em 0;
+  padding: 0;
+}
+
+form#admin-fieldsetgroups ul.submit {
+  clear: left;
+  text-align: center;
+}
+
+div#databox_admin .admin-list-table th.admin-list-field2 {
+  vertical-align:middle;
+  width: 35%;
+  text-align: right;
+}
+div#databox_admin .admin-list-table th.admin-list-field2,
+div#databox_admin .admin-list-table td.admin-list-field2,
+div#databox_admin .admin-list-table th.admin-list-field,
+div#databox_admin .admin-list-table td.admin-list-field {
+  vertical-align:middle;
+  color:#333;
+}

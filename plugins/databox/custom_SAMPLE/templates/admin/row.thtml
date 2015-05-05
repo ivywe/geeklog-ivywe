@@ -1,0 +1,3 @@
+<!-- plugins/databox/templates/admin/row.thtml { -->
+<tr class="pluginRow1">{col_var}</tr>
+<!-- } plugins/databox/templates/admmin/row.thtml -->

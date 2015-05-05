@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>UserBox | Geeklog Document</title>
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/english/docstyle.css" title="Dev Stylesheet">
+</head>
+
+<body>
+<p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
+<div class="menu">
+<a href="../../../../../docs/english/index.html">Geeklog Document</a>
+- <a href="index.html">UserBox Plugin </a>
+- Setting</div>
+<p>
+<a href="../../../../../">Top page</a>
+ <a href="../../../../../admin/plugins/userbox/">Admin</a>
+</p>
+<h1><a href="index.html">UserBox Plugin </h1>
+
+
+<h2><a name="autotags">Autotags</a>(2013/08/23 update)</h2>
+<table>
+<tr><th style="width:25%">書式</th>
+    <th style="width:75%">Description</th>
+</tr>
+<tbody>
+<tr>
+<td>[userbox:count Category idor Category code ]</td>
+<td>
+Data Number <br />
+例１：[userbox:count]<br />
+例２：[userbox:count category_id:1]<br />
+例３：[userbox:count category_code:japan]<br />
+例４：[userbox:count category_code:japan|america] Category code がjapan or america<br />
+例５：[userbox:count category_code:japan|groupA mode:and] Category code がjapan かつgroupA<br />
+</td>
+</tr>
+
+<tr class="r2">
+<td>[userbox:newlist　RSSFile ほか例２参照]</td>
+<td>
+新着user <br />
+例１：[userbox:newlist]<br />
+例２：[userbox:newlist rss_file:userbox.rss title_trim_length:50 intervalday:70 limitcnt:40 newmarkday:30 templatedir:aaa category_id:99 category_code:x]<br />
+</td>
+</tr>
+
+<tr>
+<td>[userbox:profile id]</td>
+<td>
+user プロフィール<br />
+例１：[userbox:profile] <br />
+例２：[userbox:profile id:1 templatedir:aaa nohitmsg:yes]<br />
+</td>
+</tr>
+
+<tr class="r2">
+<td>[userbox:category　Category idor Category code 　ほか]</td>
+<td>
+Category 別list <br />
+例１：[userbox:category] <br />
+例２：[userbox:category category_id:1 templatedir:aaa nohitmsg:yes perpage:10 page:1 order:id expired:no]<br />
+例３：[userbox:category category_code:japan ]<br />
+例４：[userbox:category category_code:japan|america ] Category code がjapan or america<br />
+例５：[userbox:category category_code:japan|groupA mode:and] Category code がjapan かつgroupA<br />
+order にSelect できるのは、 random date orderno code title description id と　display 制限not Additional field のTheme variables.<br />
+<br />
+perpage:(Number) Count of display items per page. if 0 display all items. (default: 0)<br />
+expired:no expired data はnot display.（ Default）<br />
+expired:yes expired data もdisplay.<br />
+</td>
+</tr>
+
+<tr >
+<td>[userbox:attributedatacount Theme variables value]</td>
+<td>
+Select AttributeがSelect  valueのData のNumber <br />
+例１：[userbox:attributedatacount] <br />
+例２：[userbox:attributedatacount templatesetvar:pref value:27]<br />
+</td>
+</tr>
+
+<tr class="r2">
+<td>[userbox:lastmodified　theme directory　Additional field value ]</td>
+<td>
+<br />
+例１：[userbox:lastmodified] <br />
+例２：[userbox:lastmodified category_id:1]<br />
+例３：[userbox:lastmodified category_code:japan]<br />
+</td>
+</tr>
+
+<tr >
+<td>[userbox:lastcreated　theme directory　Additional field value ]</td>
+<td>
+<br />
+例１：[userbox:lastcreated] <br />
+例２：[userbox:lastcreated category_id:1]<br />
+例３：[userbox:lastcreated category_code:japan]<br />
+</td>
+</tr>
+
+<tr class="r2">
+<td>[userbox:attribute　theme directory　Additional field value 　ほか例２参照]
+</td>
+<td>Attribute別list <br /> Select AttributeがSelect  valueのData list <br />
+例１：[userbox:attribute field_id:99 value:xx ]<br />
+例２：[userbox:attribute field_id:99 value:xx templatedir:x nohitmsg:yes perpage:99 page:99 order:id]<br />
+例３：[userbox:attribute field_code:pref value:27 templatedir:x nohitmsg:yes perpage:99 page:99 order:id]<br />
+<br />
+perpage:(Number) Count of display items per page. if 0 display all items. (default: 0)<br />
+</td>
+</tr>
+<tr >
+<td>[userbox:msg　Message ]</td>
+<td>
+<br />
+例１：[userbox:msg ] すべてのuser 用Message をdisplay <br />
+例２：[userbox:msg for:draftuser] draft user 用Message をdisplay <br />
+例３：[userbox:msg for:alluser]  すべてのuser 用Message をdisplay <br />
+例４：[userbox:msg for:descriptionempty]Description未regist check をおこなう case 未regist のuser 用Message をdisplay <br />
+Message の内容は、language File に記述しています.
+</td>
+</tr>
+<tr class="r2">
+<td>[userbox:categorycount　Category Group id or 　Category Group Code]
+</td>
+<td>Select Category Group のCategory Number <br /> 
+例１：[userbox:categorycount ] Paerent Group なしCategory のNumber <br />
+例２：[userbox:categorycount group_id:3]<br />
+例３：[userbox:categorycount group_code:pref]<br />
+Access rights のあるData がregist not Category のNumber  not include
+</td>
+</tr>
+
+</tbody>
+</table>
+<h2>Block Functions</h2>
+<table>
+<tr><th style="width:25%">Function</th>
+    <th style="width:75%">Description</th>
+</tr>
+<tbody>
+<tr>
+  <td>phpblock_shownewuserbox</td>
+  <td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+<div class="footer">
+    <a href="http://wiki.geeklog.net/">Geeklog Document作成 Development Project</a>、<a href="http://wiki.geeklog.jp/">Geeklog Document Japanese Development Project</a><br />
+    All trademarks and copyrights on this page are owned by their respective owners.Geeklogis copyleft.
+</div>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!-- plugins/databox/templates/admin/confirmation.thtml  20140917 { -->
+
+<h3>{actionname}</h3>
+<form action="{actionprg}" method="post">
+  <div>
+    <div>{lang_checklist} {checklist}</div>
+    <input type='submit' name='action' value='{lang_submit}' onclick="return confirm('{lang_confirm}');"{xhtml}>
+    {btn2}
+    {btn3}
+	<input type='submit' name='action' value='{lang_cancel}'{xhtml}>
+    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+    <input type="hidden" value="{mode}" name="mode"{xhtml}>
+  </div>
+  <div>
+    {help}
+  </div>
+</form>
+
+<!-- } plugins/databox/templates/admin/confirmation.thtml -->

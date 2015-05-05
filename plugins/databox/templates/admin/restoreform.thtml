@@ -1,0 +1,17 @@
+<!-- plugins/databox/templates/admin/restore_url.thtml  20140717 { -->
+<h1>{actionname}</h1>
+<form action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data">
+<div>
+<input type="text" dir="ltr" name="filename" size="80" {xhtml}>
+<input type='submit' name='action' value='{lang_submit}'{xhtml}>
+<input type='submit' name='action' value='{lang_cancel}'{xhtml}>
+<input type="hidden" name="mode" value="{mode}" {xhtml}>
+<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+</div>
+<div>
+{help}
+</div>
+
+
+</form>
+<!-- } plugins/databox/templates/admin/restore_url.thtml -->

@@ -1,0 +1,5 @@
+<!-- plugins/profile/templates/myprofile/default/profile_col_detail.thtml  { -->
+    <th class="admin-list-field">{additionfield_name}<span class="must">{lang_must_additionfield}</span></th>
+    <td class="admin-list-field">{additionfield_value}{additionfield_description}</td>
+
+<!-- } plugins/profile/templates/myprofile/default/profile_col_detail.thtml -->
