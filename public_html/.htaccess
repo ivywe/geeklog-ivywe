@@ -1,0 +1,12 @@
+#ファイルがみつからない場合のページを指定する。
+ErrorDocument 404 /404.php
+
+# wwwありに統一
+# RewriteEngine on
+# RewriteCond %{HTTP_HOST} ^○○○\.com$
+# RewriteRule ^(.*)$ http://www.○○○.com/$1 [R=301,L]
+
+# wwwなしに統一
+# RewriteEngine on
+# RewriteCond %{HTTP_HOST} ^www\.○○○\.com$
+# RewriteRule ^(.*)$ http://○○○.com/$1 [R=301,L]
