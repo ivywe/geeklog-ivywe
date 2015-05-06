@@ -1,0 +1,19 @@
+<h2 style="margin:0;">{title}</h2>
+<p>{doc}</p>
+{cron}
+<p><a href="#" onclick="document.monitor_conf_link.submit()">{configuration}</a></p>
+
+<form name='monitor_conf_link' action='{site_admin_url}/configuration.php' method='POST'>
+<input type='hidden' name='conf_group' value='monitor'></form>
+<table style="width:100%;" cellspacing="0" cellpadding="0">
+<tr>
+  <td style="vertical-align:top;width:75%;">
+     <div style="padding:5px 5px 0 0">
+     {status_msg}
+     {admin_body}
+     </div>
+  </td>
+
+</tr>
+</table>
+
