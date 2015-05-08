@@ -1,0 +1,7 @@
+<!-- plugins/mediagallery/templates/medialist/owl_carousel_oneslide/autotag_medialist.thtml 20150309 { -->
+
+<div id="owl-oneslide" class="owl-carousel owl-theme">
+{medialist_col}
+</div>
+
+<!-- } plugins/mediagallery/templates/medialist/owl_carousel_oneslide/autotag_medialist.thtml -->
