@@ -5,7 +5,7 @@
 <legend><a href="{site_url}/mediagallery/album.php?aid={album_id}&page=1"><i class="uk-icon-file-image-o"></i> {album_title}</a></legend>
 {!endif}
 
-<div>
+<div id="medialist-{album_id}">
 {medialist_col}
 </div>
 

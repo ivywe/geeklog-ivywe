@@ -1,0 +1,8 @@
+<!-- plugins/mediagallery/templates/medialist/owl_carousel_oneslide/autotag_medialist_col.thtml 20150309 { -->
+
+
+	<div class="item">
+		<img src="{filename_disp}" alt="{mediatitle}" title="{mediatitle}">
+	</div>
+
+<!-- } plugins/mediagallery/templates/medialist/owl_carousel_oneslide/autotag_medialist_col.thtml -->
