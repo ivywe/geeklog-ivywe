@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<div id="admin-instructions">
+<div id="admin-instructions" class="uk-overflow-container">
   {icon}
   <p id="menu_fields">
     {menu_fields_pre}{menu_fields}{menu_fields_aft}

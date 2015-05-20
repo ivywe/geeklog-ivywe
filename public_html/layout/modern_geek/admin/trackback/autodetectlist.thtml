@@ -2,7 +2,7 @@
 
 <p class="trackback-message">{lang_trackback_explain}</p>
 
-<table class="admin-list">
+<table class="uk-table uk-table-condensed uk-table uk-table-striped uk-table-hover">
   <tbody>
     {autodetect_items}
   </tbody>

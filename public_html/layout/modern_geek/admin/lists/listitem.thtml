@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<tr class="admin-listitem{cssid}" onmouseover="this.className='admin-listitem_rollover'; return false;" onmouseout="this.className='admin-listitem{cssid}'; return false;">
+<tr>
   {item_field}
 </tr>
 
