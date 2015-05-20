@@ -2,7 +2,7 @@
 
 <p class="trackback-message">{lang_results}</p>
 
-<table class="uk-table uk-table-condensed uk-table uk-table-striped uk-table-hover">
+<table class="uk-table uk-table-condensed uk-table-striped uk-table-hover">
   <tbody>
     {pingback_results}
   </tbody>

@@ -2,7 +2,7 @@
 
                             {search_menu}
                             {formfields_top}
-                            <table class="uk-table uk-table-condensed uk-table uk-table-striped uk-table-hover">
+                            <table class="uk-table uk-table-condensed uk-table-striped uk-table-hover">
                                 <tr style="background:#FFFFFF;">
                                  {header_row}
                                 </tr>
