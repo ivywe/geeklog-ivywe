@@ -1,19 +1,19 @@
 <div class="block-center">
-	<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container">
+	<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
         <tr>
             <td class="h2topic">
               <h2>{featured_album}</h2>
             </td>
         </tr>
     </table>
-	<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container">
+	<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
       <tr>
         <td style="vertical-align:middle;text-align:center;width:100%;">
-			<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container">
+			<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
 
             <tr>
               <td style="width:100%;">
-				<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container">
+				<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
                   <tr>
                   <td style="vertical-align:top;text-align:center;width:{column_width}px;">
     				<div class="out" style="width:{border_width}px">

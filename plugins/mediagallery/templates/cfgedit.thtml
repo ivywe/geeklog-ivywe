@@ -6,7 +6,7 @@
 <form class="uk-form" method="post" action="{s_form_action}" name="mg_config_form" enctype="multipart/form-data" id="mg_config_form">
 
 <div id="pe_general">
-    <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container">
+    <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
       <tr>
         <th colspan="2">
           {lang_general_options}
@@ -169,7 +169,7 @@
 
 <div id="pe_display"  class="jsenabled_hide">
 
-	<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container">
+	<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
       <tr>
         <th colspan="2">
           {lang_display_options}
@@ -374,7 +374,7 @@
 
 <div id="pe_batch" class="jsenabled_hide">
 
-  <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container gl-tablelist" style="width:100%">
+  <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed gl-tablelist" style="width:100%">
       <tr>
         <th colspan="2">
           {lang_batch_options}
@@ -404,7 +404,7 @@
 
 <div id="pe_userprefs"  class="jsenabled_hide">
 
-  <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container gl-tablelist" style="width:100%">
+  <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed gl-tablelist" style="width:100%">
       <tr>
         <th colspan="2">
           {lang_userpref_options}
@@ -440,7 +440,7 @@
 
 <div id="pe_graphics" class="jsenabled_hide">
 
-  <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container gl-tablelist" style="width:100%">
+  <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed gl-tablelist" style="width:100%">
       <tr>
         <th colspan="2">
           {lang_graphics_options}

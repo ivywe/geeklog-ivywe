@@ -21,7 +21,7 @@ You will also need to tell the export routine if your system is a Unix/Linux sys
 For more detailed directions, see the <a href="http://www.gllabs.org/wiki/doku.php?id=mediagallery:export">Online Documentation Wiki</a>
 <br{xhtml}><br{xhtml}>
 <form class="uk-form" method="post" action="{s_form_action}" name="mgexport" enctype="multipart/form-data" id="mgexport">
-  <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container">
+  <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
     <tr>
       <td class="mgAdminAlignRight" width="35%">
         Destination System:

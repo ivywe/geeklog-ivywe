@@ -1,6 +1,6 @@
 <!-- start view_audio.thtml -->
 {lbslideshow}
-<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container">  <tr>
+<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">  <tr>
     <td class="pluginCellTitle" style="text-align:left;" colspan="2">
       <span style="font-weight:bold;">{album_title}</span></td>
     <td class="pluginCellTitle" style="text-align:right;">
@@ -47,7 +47,7 @@
   </tr>
 </table>
 </div>
-<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container">  <tr>
+<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">  <tr>
     <td align="center" style="width:100%;" colspan="3">{media_desc}</td>
   </tr>
   <tr>

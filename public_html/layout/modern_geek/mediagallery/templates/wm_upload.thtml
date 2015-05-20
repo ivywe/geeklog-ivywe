@@ -5,7 +5,7 @@
 {max_file_size}
 <input type="hidden" name="album_id" value="0"{xhtml}>
 <input type="hidden" name="action" value="{action}"{xhtml}>
-    <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container">
+    <table class="uk-table uk-table-condensed uk-table-striped uk-table-hover">
       <tr>
         <th colspan="2" style="width:100%;">
           {lang_watermark_upload}

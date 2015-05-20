@@ -1,6 +1,6 @@
 {start_block_useralbums}
 <div class="plugin">
-<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container">
+<table class="uk-table uk-table-condensed uk-table-striped uk-table-hover">
   <tr>
   <th>{lang_thumbnail}</th><th>{lang_album}</th>
   <th>{lang_album_description}</th>
