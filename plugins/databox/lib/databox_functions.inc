@@ -999,6 +999,7 @@ function DATABOX_getaddtionfieldsEdit(
     global $_TABLES;
     global $_SCRIPTS;
     global $_CONF;
+    global $_DATABOX_DEFAULT;
     
     if ($pi_name==""){
         $pi_name="databox";
@@ -1189,22 +1190,10 @@ function DATABOX_getaddtionfieldsEdit(
                 if ($disabled===""){
                         //$filedname="afield[".$fid."]";
                         $filedname="afield".$fid;
-                    
-                        $_SCRIPTS->setJavaScript(
-                        "jQuery(function () {"
-                            . "  geeklog.datepicker.set(
-                            '{$filedname}', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
-                            . "});", TRUE, TRUE
-                            );
-                        if  (is_array($fields_date)){
-                            $fieldhtml.=DATABOX_datetimeedit_R($fields_date[$fid],$lang_admin_x,$filedname);
-                        }else{
-                            $fieldhtml.=DATABOX_datetimeedit($fvalue,$lang_admin_x,$filedname,"date");
-                        }
                         $wk =  " <input ";
-                        $wk .= " type=\"hidden\"";
                         $wk .= " name=\"afield[".$fid."]\" ";
                         $wk .= " value=\"".$fvalue."\"";
+                        $wk .= " data-uk-datepicker=\"{format:'YYYY/MM/DD'}\"" ;
                         $wk .= " ".XHTML.">";
                         $fieldhtml.=$wk;
                     }else{
@@ -1216,20 +1205,9 @@ function DATABOX_getaddtionfieldsEdit(
                         //$filedname="afield[".$fid."]";
                         $filedname="afield".$fid;
                     
-                        $_SCRIPTS->setJavaScript(
-                        "jQuery(function () {"
-                            . "  geeklog.datepicker.set(
-                            '{$filedname}', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
-                            . "});", TRUE, TRUE
-                            );
-                        if  (is_array($fields_date)){
-                            $fieldhtml.=DATABOX_datetimeedit_R($fields_date[$fid],$lang_admin_x,$filedname);
-                        }else{
-                            $fieldhtml.=DATABOX_datetimeedit($fvalue,$lang_admin_x,$filedname,"datetime");
-                        }
                         $wk =  " <input ";
-                        $wk .= " type=\"hidden\"";
                         $wk .= " name=\"afield[".$fid."]\" ";
+                        $wk .= " data-uk-datepicker=\"{format:'YYYY/MM/DD'}\"" ;
                         $wk .= " value=\"".$fvalue."\"";
                         $wk .= " ".XHTML.">";
                         $fieldhtml.=$wk;
@@ -1654,26 +1632,7 @@ function DATABOX_getenableexpired(
     ,$flg
     ,$pi_name
 ){
-    //GL のバージョンが1.8.0 より新しくなければおわり
-    if (version_compare(VERSION, '2.0.0') >= 0) {
-    }else{
         return ;
-    }
-    
-    global $_CONF;
-    global $_SCRIPTS;
-    
-    $langCode = COM_getLangIso639Code();
-    $toolTip  = 'Click and select a date';    // Should be translated
-    $imgUrl   = $_CONF['site_url'] . '/images/calendar.png';
-
-    $_SCRIPTS->setJavaScript(
-        "jQuery(function () {"
-        . "  geeklog.datepicker.set('$field', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
-        . "});", TRUE, TRUE
-    );
-    
-    return ;
 }
 
 
@@ -2652,7 +2611,7 @@ global $_TABLES;
         $nrows2 = DB_numRows( $result2 );
         
         if ($nrows2>0){
-            $retval .="<div class=\"databox_admin_data_title\">";
+            $retval .="<div class=\"uk-text-bold uk-margin\">";
             $retval .=$A['group_name'];
             $retval .="</div>".LB;
         

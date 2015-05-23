@@ -1,20 +1,19 @@
 <!-- plugins/databox/templates/category/default/navigation_detail.thtml 20130201{ -->
 
-<div class="databox">
+<div>
 
-    <div class="order">
+    <div>
         {order_date}|{order_orderno}|{order_code} |{order_title}|{order_description}|{order_id}|{order_released}|<!-- 下の行のテーマ変数　参考例です 登録されていない場合機能 -->
 {order_tel}|{order_zipcode}
     </div>
-    <div class="order_random">{order_random}</div>
-    <div class="cur_order">{cur_order}</div>
-    <div class="pagenav" {pagenavinone}>
+    <div>{order_random}</div>
+    <div>{cur_order}</div>
+    <div {pagenavinone}>
     {page_navigation}
-    <div class="count" style="float:left">{lang_view} [{lin}] / {cnt}</div>
+    <div class="count uk-float-left">{lang_view} [{lin}] / {cnt}</div>
   </div>
-  <div style="clear:both"></div>
 
-  <ul class="contents">
+  <ul class="uk-list uk-clearfix">
 <li>{lang_title} ({lang_id}) ({lang_code})&nbsp;
 {lang_description}&nbsp;
 {lang_date}&nbsp;<!-- 使用する日付 作成日付or編集日付or公開日 -->
@@ -30,9 +29,9 @@
 
   <div class="pagenav" {pagenavinone}>
     {page_navigation}
-    <div class="count" style="float:left">{lang_view} [{lin}] / {cnt} </div>
+    <div class="count uk-float-left">{lang_view} [{lin}] / {cnt} </div>
   </div>
-  <div style="clear:both"></div>
+  <div class="uk-clearfix"></div>
 
 </div>
 

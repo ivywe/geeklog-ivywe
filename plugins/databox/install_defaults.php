@@ -99,7 +99,7 @@ $_DATABOX_DEFAULT['mail_to_owner'] = 0;
 $_DATABOX_DEFAULT['mail_to_draft'] = 0;
 
 //日付書式　datepicker用
-$_DATABOX_DEFAULT['dateformat'] = 'Y/m/d';
+$_DATABOX_DEFAULT['dateformat'] = 'YYYY/MM/DD';
 
 //データ保存後の画面遷移　一般画面
 $_DATABOX_DEFAULT['aftersave'] = 'item';

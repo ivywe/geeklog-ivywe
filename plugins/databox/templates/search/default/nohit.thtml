@@ -1,7 +1,6 @@
 <!-- plugins/databox/templates/search/default/nohit.thtml 2010929{ -->
-<div id="databox">
+<div>
   <p id="breadcrumbs"><a href="{site_url}/">{home}</a>|<a href="{referer}">{lang_referer}</p>
-
 
   {arg_var}
 

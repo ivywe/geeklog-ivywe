@@ -401,8 +401,8 @@ $LANG_DATABOX_ADMIN['modified_autoupdate'] = '自動更新する';
 $LANG_DATABOX_ADMIN['additionfields'] = 'アトリビュート';
 $LANG_DATABOX_ADMIN['basicfields'] = '基本';
 
-$LANG_DATABOX_ADMIN['category_id'] = 'カテゴリID';
-$LANG_DATABOX_ADMIN['field_id'] = 'アトリビュートID';
+$LANG_DATABOX_ADMIN['category_id'] = 'ID';
+$LANG_DATABOX_ADMIN['field_id'] = 'ID';
 $LANG_DATABOX_ADMIN['name'] = '名称';
 $LANG_DATABOX_ADMIN['templatesetvar'] = 'テーマ変数';
 $LANG_DATABOX_ADMIN['templatesetvars'] = 'テーマ変数';
@@ -936,7 +936,7 @@ $LANG_configselects['databox'][21] =array(
 );
 
 $LANG_configselects['databox'][22] =array(
-    'ヘッダ・フッタ・左ブロックあり（右ブロックはテーマ設定による）' => 'standard'
+    'ヘッダ・フッタ・左ブロックあり' => 'standard'
     , 'ヘッダ・フッタ・左右ブロックあり' => 'leftrightblocks'
     , '全画面表示（ヘッダ・フッタ・ブロックなし）' => 'blankpage'
     , 'ヘッダ・フッタあり（ブロックなし）' => 'noblocks'

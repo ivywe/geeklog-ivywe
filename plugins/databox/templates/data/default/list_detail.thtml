@@ -1,119 +1,119 @@
 <!-- plugins/databox/templates/data/default/list_detail.thtml 20150224 { -->
 
-<div class="databox">
-  <h2>{title}</h2>
+<div>
+  <h2 class="uk-h2">{title}</h2>
   <p>{lang_id}: {id}</p>
-  <p><span style="color:green"> &#123;languageid&#125;</span>:{languageid}
-     <span style="color:green"> &#123;_languageid&#125;</span>:{_languageid}
-     <span style="color:green"> &#123;language&#125;</span>:{language}
+  <p><span class="uk-text-success"> &#123;languageid&#125;</span>:{languageid}
+     <span class="uk-text-success"> &#123;_languageid&#125;</span>:{_languageid}
+     <span class="uk-text-success"> &#123;language&#125;</span>:{language}
   </p>
-  <p><span style="color:green"> &#123;uid&#125;</span>:{uid}
-     <span style="color:green"> &#123;username&#125;</span>:{username}
-     <span style="color:green"> &#123;fullname&#125;</span>:{fullname}
-     <span style="color:green"> &#123;displayname&#125;</span>:{displayname}
+  <p><span class="uk-text-success"> &#123;uid&#125;</span>:{uid}
+     <span class="uk-text-success"> &#123;username&#125;</span>:{username}
+     <span class="uk-text-success"> &#123;fullname&#125;</span>:{fullname}
+     <span class="uk-text-success"> &#123;displayname&#125;</span>:{displayname}
   </p>
-  <p><span style="color:green"> &#123;lang_download&#125;</span>:{lang_download}
-     <span style="color:green"> &#123;lang_downloadrequired&#125;</span>:{lang_downloadrequired}
-     <span style="color:green"> &#123;lang_display&#125;</span>:{lang_display}
-     <span style="color:green"> &#123;lang_displayrequired&#125;</span>:{lang_displayrequired}
+  <p><span class="uk-text-success"> &#123;lang_download&#125;</span>:{lang_download}
+     <span class="uk-text-success"> &#123;lang_downloadrequired&#125;</span>:{lang_downloadrequired}
+     <span class="uk-text-success"> &#123;lang_display&#125;</span>:{lang_display}
+     <span class="uk-text-success"> &#123;lang_displayrequired&#125;</span>:{lang_displayrequired}
   </p>
 <!-- Basic Items -->
   <fieldset style="width:98%">
     <legend>{lang_basicfields}</legend>
-    <table style="width:98%" class="databox">
+    <table class="uk-table uk-table-condensed uk-table-striped">
       <tr>
-        <th style="width:20%;" class="alignright">{lang_field}</th>
+        <th style="width:20%;" class="uk-text-right">{lang_field}</th>
         <th style="width:20%; color:green;">{lang_templatesetvar}</th>
         <th style="width:60%;">{lang_content}</th>
       </tr>
       <tr>
-        <th style="width:20%" class="alignright">{lang_code}</th>
+        <th style="width:20%" class="uk-text-right">{lang_code}</th>
         <td style="width:20%; color:green">&#123;code&#125;</td>
         <td>{code}</td>
       </tr>
       <tr>
-        <th style="width:20%" class="alignright">{lang_title}</th>
+        <th style="width:20%" class="uk-text-right">{lang_title}</th>
         <td style="width:20%; color:green">&#123;title&#125;</td>
         <td>{title}</td>
       </tr>
       <tr>
-        <th style="width:20%" class="alignright">{lang_description}</th>
+        <th style="width:20%" class="uk-text-right">{lang_description}</th>
         <td style="width:20%; color:green">&#123;description&#125;</td>
         <td>{description}</td>
       </tr>
       <tr>
-        <th style="width:20%" class="alignright">{lang_hits}</th>
+        <th style="width:20%" class="uk-text-right">{lang_hits}</th>
         <td style="width:20%; color:green">&#123;hits&#125;</td>
         <td>{hits}</td>
       </tr>
       <tr>
-        <th style="width:20%" class="alignright">{lang_modified}</th>
+        <th style="width:20%" class="uk-text-right">{lang_modified}</th>
         <td style="width:20%; color:green">&#123;modified&#125;</td>
         <td>{modified}&nbsp;{modified_shortdate}</td>
       </tr>
       <tr>
-        <th style="width:20%" class="alignright">{lang_created}</th>
+        <th style="width:20%" class="uk-text-right">{lang_created}</th>
         <td style="width:20%; color:green">&#123;created&#125;&nbsp;&#123;created_shortdate&#125;</td>
         <td>{created}&nbsp;{created_shortdate}</td>
       </tr>
       <tr>
-        <th style="width:20%" class="alignright">{lang_released}</th>
+        <th style="width:20%" class="uk-text-right">{lang_released}</th>
         <td style="width:20%; color:green">&#123;released&#125;&nbsp;&#123;released_shortdate&#125;</td>
         <td>{released}&nbsp;{released_shortdate}</td>
 		</tr>
       <tr>
-        <th style="width:20%" class="alignright">{lang_expired}</th>
+        <th style="width:20%" class="uk-text-right">{lang_expired}</th>
 		<td style="width:20%; color:green">&#123;expired&#125;&nbsp;&#123;expired_shortdate&#125;</td>
         <td>{expired}&nbsp;{expired_shortdate}</td>
 		</tr>
 
       <tr>
-        <th style="width:20%" class="alignright">{lang_owner}</th>
+        <th style="width:20%" class="uk-text-right">{lang_owner}</th>
         <td style="width:20%; color:green">&#123;owner_name&#125;</td>
         <td>{owner_name}<input type="hidden" name="owner_id" value="{owner_id}"{xhtml}>
-        ( UID: <span  style="color:green"> &#123;owner_id&#125;</span>: {owner_id} )</td>
+        ( UID: <span  class="uk-text-success"> &#123;owner_id&#125;</span>: {owner_id} )</td>
 	　</tr>
 	
       <tr>
-        <th style="width:20%" class="alignright">{lang_udatetime}</th>
+        <th style="width:20%" class="uk-text-right">{lang_udatetime}</th>
         <td style="width:20%; color:green">&#123;udatetime&#125;</td>
         <td>{udatetime}
-	( UID: <span  style="color:green"> &#123;last_modify_uid&#125;</span>: {last_modify_uid}
-name:<span  style="color:green"> &#123;last_modify_name&#125;</span>: {last_modify_name}	
-fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {last_modify_fullname}	
+	( UID: <span  class="uk-text-success"> &#123;last_modify_uid&#125;</span>: {last_modify_uid}
+name:<span  class="uk-text-success"> &#123;last_modify_name&#125;</span>: {last_modify_name}	
+fullname:<span  class="uk-text-success"> &#123;last_modify_fullname&#125;</span>: {last_modify_fullname}	
 		)</td>
 	  </tr>
 
       <tr>
-        <th style="width:20%" class="alignright">Maps Plugin mkid</th>
+        <th style="width:20%" class="uk-text-right">Maps Plugin mkid</th>
         <td style="width:20%; color:green">&#123;mkid&#125;&#123;marker&#125;</td>
         <td>{mkid} {marker}</td>
       </tr>
     </table>
 
-    <table style="width:98%" class="databox">
+    <table class="uk-table uk-table-condensed uk-table-striped">
 		<tr>
-        <th style="width:20%;" class="alignright">{lang_field} PATH</th>
+        <th style="width:20%;" class="uk-text-right">{lang_field} PATH</th>
         <th style="width:20%; color:green;">{lang_templatesetvar}</th>
         <th style="width:60%;">{lang_content}</th>
       </tr>
       <tr>
-        <th style="width:20%" class="alignright">{lang_imgfile_frd} URL</th>
+        <th style="width:20%" class="uk-text-right">{lang_imgfile_frd} URL</th>
         <td style="width:20%; color:green">&#123;imgfile_frd&#125;</td>
         <td>{imgfile_frd}</td>
       </tr>
       <tr>
-        <th style="width:20%" class="alignright">{lang_imgfile_frd} PATH</th>
+        <th style="width:20%" class="uk-text-right">{lang_imgfile_frd} PATH</th>
         <td style="width:20%; color:green">&#123;data_img_url&#125;</td>
         <td>{data_img_url}</td>
       </tr>
       <tr>
-        <th style="width:20%" class="alignright">{lang_imgfile_thumb_frd} URL</th>
+        <th style="width:20%" class="uk-text-right">{lang_imgfile_thumb_frd} URL</th>
         <td style="width:20%; color:green">&#123;imgfile_thumb_frd&#125;</td>
         <td>{imgfile_thumb_frd}</td>
       </tr>
       <tr>
-        <th style="width:20%" class="alignright">{lang_imgfile_thumb_frd}</th>
+        <th style="width:20%" class="uk-text-right">{lang_imgfile_thumb_frd}</th>
         <td style="width:20%; color:green">&#123;data_thumb_img_url&#125;</td>
         <td>{data_thumb_img_url}</td>
       </tr>
@@ -123,21 +123,21 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 <!-- Category -->
   <fieldset style="width:98%">
     <legend>{lang_category} </legend>
-    <table style="width:98%" class="databox">
+    <table class="uk-table uk-table-condensed uk-table-striped">
 		<tr>
-        <th style="width:20%;" class="alignright">{lang_field}</th>
+        <th style="width:20%;" class="uk-text-right">{lang_field}</th>
         <th style="width:20%; color:green;">{lang_templatesetvar}</th>
         <th style="width:60%;">{lang_content}</th>
       </tr>
 	  <!--  カテゴリ名称列挙 -->
       <tr>
-        <th style="width:20%" class="alignright">{lang_category}</th>
+        <th style="width:20%" class="uk-text-right">{lang_category}</th>
 		<td style="width:20%; color:green">&#123;categories&#125;<br{xhtml}></td>
         <td>{categories}</td>
       </tr>
 	  <!--  カテゴリ名称列挙リンク付 -->
       <tr>
-        <th style="width:20%" class="alignright">
+        <th style="width:20%" class="uk-text-right">
 		{lang_category} {lang_withlink}
 		</th>
 		<td style="width:20%; color:green">
@@ -146,14 +146,14 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 		<td>{categorieslink} </td>
         </tr>
 	  <tr>
-		<th style="width:20%" class="alignright">CODE形式</th>
+		<th style="width:20%" class="uk-text-right">CODE形式</th>
 		<td style="width:20%; color:green">
 		&#123;categorieslinkcode&#125
 		</td>
 		<td>{categorieslinkcode}</td>
 	  </tr>
 	  <tr>
-		<th style="width:20%" class="alignright">ID形式</th>
+		<th style="width:20%" class="uk-text-right">ID形式</th>
 		<td style="width:20%; color:green">
 		&#123;categorieslinkid&#125;
 		</td>
@@ -167,16 +167,16 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 <!-- Additional Items -->
   <fieldset style="width:98%">
     <legend>{lang_additionfields} </legend>
-    <table style="width:98%" class="databox">
+    <table class="uk-table uk-table-condensed uk-table-striped">
       <tr>
-	<th style="width:20%;" class="alignright">{lang_field}<br{XHTML}>&#123;additionfield_name&#125;</th>
-        <th style="width:40%; text-align:left" class="alignleft">
-	  <dl class="databox_col_detail">
+	<th style="width:20%;" class="uk-text-right">{lang_field}<br{XHTML}>&#123;additionfield_name&#125;</th>
+        <th style="width:40%; text-align:left" class="uk-text-left">
+	  <dl class="uk-description-list-horizontal">
 	    <dt style=color:green;>{lang_templatesetvar} &#123;additionfield_templatesetvar&#125;</dt>
 	    <dd>{lang_content} &#123;additionfield_value&#125;</dd>
 	  </dl>
 	</th>
-        <th class="alignleft">{lang_type}</th>
+        <th class="uk-text-left">{lang_type}</th>
       </tr>
        {additionfields}
     </table>
@@ -186,36 +186,36 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 
 
 
-<h3 style="margin-top:10em">* Example *</h3> 
+<h3 class="uk-margin-large-top">* Example *</h3> 
 <!-- 以下は参考例です 登録されていない場合表示されません -->
 
 <!-- グループ別カテゴリ　グループコードを使用する -->
   <fieldset style="width:94%">
     <legend>{lang_groupbygroup} {lang_category} {lang_byusingcode}</legend>
-    <table style="width:98%" class="databox">
+    <table class="uk-table uk-table-condensed uk-table-striped">
       <tr>
-        <th style="width:20%;" class="alignright">{lang_group} {lang_code}</th>
-        <th style="width:20%; color:green;" class="alignleft">{lang_templatesetvar}</th>
-        <th class="alignleft">{lang_content}</th>
+        <th style="width:20%;" class="uk-text-right">{lang_group} {lang_code}</th>
+        <th style="width:20%; color:green;" class="uk-text-left">{lang_templatesetvar}</th>
+        <th class="uk-text-left">{lang_content}</th>
       </tr>
 	
 	  <!-- city -->
 	  <tr>
-        <th style="width:20%" class="alignright">city</th>
+        <th style="width:20%" class="uk-text-right">city</th>
 		<td style="width:20%; color:green">
 		&#123;group_city&#125;
 		</td>
 		<td>{group_city} </td>
         </tr>
 	  <tr>
-		<th style="width:20%" class="alignright">　	</th>
+		<th style="width:20%" class="uk-text-right">　	</th>
 		<td style="width:20%; color:green">
 		&#123;group_city_code&#125
 		</td>
 		<td>{group_city_code} </td>
 	  </tr>
 	  <tr>
-		<th style="width:20%" class="alignright">　	</th>
+		<th style="width:20%" class="uk-text-right">　	</th>
 		<td style="width:20%; color:green">
 		&#123;group_city_pipeline&#125
 		</td>
@@ -223,21 +223,21 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 	  </tr>
 	  <!-- country -->
 	  <tr>
-        <th style="width:20%" class="alignright">country</th>
+        <th style="width:20%" class="uk-text-right">country</th>
 		<td style="width:20%; color:green">
 		&#123;group_country&#125;
 		</td>
 		<td>{group_country} </td>
         </tr>
 	  <tr>
-		<th style="width:20%" class="alignright">　	</th>
+		<th style="width:20%" class="uk-text-right">　	</th>
 		<td style="width:20%; color:green">
 		&#123;group_country_code&#125
 		</td>
 		<td>{group_country_code} </td>
 	  </tr>
 	  <tr>
-		<th style="width:20%" class="alignright">　	</th>
+		<th style="width:20%" class="uk-text-right">　	</th>
 		<td style="width:20%; color:green">
 		&#123;group_country_pipeline&#125
 		</td>
@@ -245,21 +245,21 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 	    </tr>
 	  <!-- team -->
 	  <tr>
-        <th style="width:20%" class="alignright">team</th>
+        <th style="width:20%" class="uk-text-right">team</th>
 		<td style="width:20%; color:green">
 		&#123;group_team&#125;
 		</td>
 		<td>{group_team} </td>
         </tr>
 	  <tr>
-		<th style="width:20%" class="alignright">　	</th>
+		<th style="width:20%" class="uk-text-right">　	</th>
 		<td style="width:20%; color:green">
 		&#123;group_team_code&#125
 		</td>
 		<td>{group_team_code} </td>
 	  </tr>
 	  <tr>
-		<th style="width:20%" class="alignright">　	</th>
+		<th style="width:20%" class="uk-text-right">　	</th>
 		<td style="width:20%; color:green">
 		&#123;group_team_pipeline&#125
 		</td>
@@ -271,23 +271,23 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 <!-- グループ別カテゴリ列挙リンク付き　グループコードを使用する -->
   <fieldset style="width:94%">
     <legend>{lang_groupbygroup} {lang_category} {lang_withlink} {lang_byusingcode} </legend>
-    <table style="width:98%" class="databox">
+    <table class="uk-table uk-table-condensed uk-table-striped">
       <tr>
-        <th style="width:20%;" class="alignright">{lang_group} {lang_code}</th>
-        <th style="width:20%; color:green;" class="alignleft">{lang_templatesetvar}</th>
-        <th class="alignleft">{lang_content}</th>
+        <th style="width:20%;" class="uk-text-right">{lang_group} {lang_code}</th>
+        <th style="width:20%; color:green;" class="uk-text-left">{lang_templatesetvar}</th>
+        <th class="uk-text-left">{lang_content}</th>
       </tr>
 	
 	  <!-- city -->
 	  <tr>
-        	<th style="width:20%" class="alignright">city</th>
+        	<th style="width:20%" class="uk-text-right">city</th>
 		<td style="width:20%; color:green">
 		&#123;grouplink_city&#125;
 		</td>
 		<td>{grouplink_city} </td>
         </tr>
 	  <tr>
-		<th style="width:20%" class="alignright">　	</th>
+		<th style="width:20%" class="uk-text-right">　	</th>
 		<td style="width:20%; color:green">
 		&#123;grouplink_city_code&#125
 		</td>
@@ -295,14 +295,14 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 	  </tr>
 	  <!-- country -->
 	  <tr>
-        	<th style="width:20%" class="alignright">country</th>
+        	<th style="width:20%" class="uk-text-right">country</th>
 		<td style="width:20%; color:green">
 		&#123;grouplink_country&#125;
 		</td>
 		<td>{grouplink_country} </td>
         </tr>
 	  <tr>
-		<th style="width:20%" class="alignright">　	</th>
+		<th style="width:20%" class="uk-text-right">　	</th>
 		<td style="width:20%; color:green">
 		&#123;grouplink_country_code&#125
 		</td>
@@ -310,14 +310,14 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 	  </tr>
 	  <!-- team -->
 	  <tr>
-        	<th style="width:20%" class="alignright">team</th>
+        	<th style="width:20%" class="uk-text-right">team</th>
 		<td style="width:20%; color:green">
 		&#123;grouplink_team&#125;
 		</td>
 		<td>{grouplink_team} </td>
         </tr>
 	  <tr>
-		<th style="width:20%" class="alignright">　	</th>
+		<th style="width:20%" class="uk-text-right">　	</th>
 		<td style="width:20%; color:green">
 		&#123;grouplink_team_code&#125
 		</td>
@@ -330,29 +330,29 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 <!-- グループ別カテゴリ　グループIDを使用する -->
   <fieldset style="width:94%">
     <legend>{lang_groupbygroup} {lang_category}  {lang_byusingid}</legend>
-    <table style="width:98%" class="databox">
+    <table class="uk-table uk-table-condensed uk-table-striped">
       <tr>
-        <th style="width:20%;" class="alignright">{lang_group} {lang_id}</th>
-        <th style="width:20%; color:green;" class="alignleft">{lang_templatesetvar}</th>
-        <th class="alignleft">{lang_content}</th>
+        <th style="width:20%;" class="uk-text-right">{lang_group} {lang_id}</th>
+        <th style="width:20%; color:green;" class="uk-text-left">{lang_templatesetvar}</th>
+        <th class="uk-text-left">{lang_content}</th>
       </tr>
 	  <!-- 1 -->
 	  <tr>
-        <th style="width:20%" class="alignright">1</th>
+        <th style="width:20%" class="uk-text-right">1</th>
 		<td style="width:20%; color:green">
 		&#123;group_1&#125;
 		</td>
 		<td>{group_1} </td>
         </tr>
 	  <tr>
-		<th style="width:20%" class="alignright">　	</th>
+		<th style="width:20%" class="uk-text-right">　	</th>
 		<td style="width:20%; color:green">
 		&#123;group_1_code&#125
 		</td>
 		<td>{group_1_code} </td>
 	  </tr>
 	  <tr>
-		<th style="width:20%" class="alignright">　	</th>
+		<th style="width:20%" class="uk-text-right">　	</th>
 		<td style="width:20%; color:green">
 		&#123;group_1_pipeline&#125
 		</td>
@@ -360,21 +360,21 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 	  </tr>
 	  <!-- 2 -->
 	  <tr>
-        <th style="width:20%" class="alignright">2</th>
+        <th style="width:20%" class="uk-text-right">2</th>
 		<td style="width:20%; color:green">
 		&#123;group_2&#125;
 		</td>
 		<td>{group_2} </td>
         </tr>
 	  <tr>
-		<th style="width:20%" class="alignright">　	</th>
+		<th style="width:20%" class="uk-text-right">　	</th>
 		<td style="width:20%; color:green">
 		&#123;group_2_code&#125
 		</td>
 		<td>{group_2_code} </td>
 	  </tr>
 	  <tr>
-		<th style="width:20%" class="alignright">　	</th>
+		<th style="width:20%" class="uk-text-right">　	</th>
 		<td style="width:20%; color:green">
 		&#123;group_2_pipeline&#125
 		</td>
@@ -382,21 +382,21 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 	    </tr>
 	  <!-- 3 -->
 	  <tr>
-        <th style="width:20%" class="alignright">3</th>
+        <th style="width:20%" class="uk-text-right">3</th>
 		<td style="width:20%; color:green">
 		&#123;group_3&#125;
 		</td>
 		<td>{group_3} </td>
         </tr>
 	  <tr>
-		<th style="width:20%" class="alignright">　	</th>
+		<th style="width:20%" class="uk-text-right">　	</th>
 		<td style="width:20%; color:green">
 		&#123;group_3_code&#125
 		</td>
 		<td>{group_3_code} </td>
 	  </tr>
 	  <tr>
-		<th style="width:20%" class="alignright">　	</th>
+		<th style="width:20%" class="uk-text-right">　	</th>
 		<td style="width:20%; color:green">
 		&#123;group_3_pipeline&#125
 		</td>
@@ -410,22 +410,22 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 <!-- グループ別カテゴリ リンク付　グループIDを使用する -->
   <fieldset style="width:94%">
     <legend>{lang_groupbygroup} {lang_category} {lang_withlink} {lang_byusingid}</legend>
-    <table style="width:98%" class="databox">
+    <table class="uk-table uk-table-condensed uk-table-striped">
       <tr>
-        <th style="width:20%;" class="alignright">{lang_group} {lang_id}</th>
-        <th style="width:20%; color:green;" class="alignleft">{lang_templatesetvar}</td>
-        <th class="alignleft">{lang_content}</th>
+        <th style="width:20%;" class="uk-text-right">{lang_group} {lang_id}</th>
+        <th style="width:20%; color:green;" class="uk-text-left">{lang_templatesetvar}</td>
+        <th class="uk-text-left">{lang_content}</th>
       </tr>
 	  <!-- 1 -->
 	  <tr>
-        <th style="width:20%" class="alignright">1</th>
+        <th style="width:20%" class="uk-text-right">1</th>
 		<td style="width:20%; color:green">
 		&#123;grouplink_1&#125;
 		</td>
 		<td>{grouplink_1} </td>
         </tr>
 	  <tr>
-		<th style="width:20%" class="alignright">　	</th>
+		<th style="width:20%" class="uk-text-right">　	</th>
 		<td style="width:20%; color:green">
 		&#123;grouplink_1_code&#125
 		</td>
@@ -433,14 +433,14 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 	  </tr>
 	  <!-- 2 -->
 	  <tr>
-        <th style="width:20%" class="alignright">2</th>
+        <th style="width:20%" class="uk-text-right">2</th>
 		<td style="width:20%; color:green">
 		&#123;grouplink_2&#125;
 		</td>
 		<td>{grouplink_2} </td>
         </tr>
 	  <tr>
-		<th style="width:20%" class="alignright">　	</th>
+		<th style="width:20%" class="uk-text-right">　	</th>
 		<td style="width:20%; color:green">
 		&#123;grouplink_2_code&#125
 		</td>
@@ -448,14 +448,14 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 	  </tr>
 	  <!-- 3 -->
 	  <tr>
-        <th style="width:20%" class="alignright">3</th>
+        <th style="width:20%" class="uk-text-right">3</th>
 		<td style="width:20%; color:green">
 		&#123;grouplink_3&#125;
 		</td>
 		<td>{grouplink_3} </td>
         </tr>
 	  <tr>
-		<th style="width:20%" class="alignright">　	</th>
+		<th style="width:20%" class="uk-text-right">　	</th>
 		<td style="width:20%; color:green">
 		&#123;grouplink_3_code&#125
 		</td>
@@ -478,72 +478,72 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 <!-- アトリビュート（追加項目） 登録したテーマ変数を使用する　テーマ変数 例-->
   <fieldset style="width:94%">
     <legend>{lang_additionfields} {lang_byusingtemplatesetvar}</legend>
-    <table style="width:98%" class="databox">
+    <table class="uk-table uk-table-condensed uk-table-striped">
       <tr>
-        <th style="width:20%; color:green;" class="alignleft">{lang_templatesetvar}</th>
-        <th class="alignleft">{lang_content}</th>
+        <th style="width:20%; color:green;" class="uk-text-left">{lang_templatesetvar}</th>
+        <th class="uk-text-left">{lang_content}</th>
       </tr>
       <tr>
-        <th style="width:20%; color:green" class="alignleft">&#123;tel_name&#125;</th>
+        <th style="width:20%; color:green" class="uk-text-left">&#123;tel_name&#125;</th>
         <td>{tel_name}</td>
       </tr>
       <tr>
-        <th style="width:20%; color:green" class="alignleft">&#123;tel_description&#125;</th>
+        <th style="width:20%; color:green" class="uk-text-left">&#123;tel_description&#125;</th>
         <td>{tel_description}</td>
       </tr>
       <tr>
-        <th style="width:20%; color:green" class="alignleft">&#123;tel&#125;</th>
+        <th style="width:20%; color:green" class="uk-text-left">&#123;tel&#125;</th>
         <td>{tel}</td>
       </tr>
 	
       <tr>
-        <th style="width:20%; color:green" class="alignleft">&#123;pref&#125;</th>
+        <th style="width:20%; color:green" class="uk-text-left">&#123;pref&#125;</th>
         <td>{pref}</td>
       </tr>
 	
       <tr>
-        <th style="width:20%; color:green" class="alignleft">&#123;pref_mst_value2&#125;</th>
+        <th style="width:20%; color:green" class="uk-text-left">&#123;pref_mst_value2&#125;</th>
         <td>{pref_mst_value2}</td>
       </tr>
       <tr>
-        <th style="width:20%; color:green" class="alignleft">&#123;pref_mst_disp&#125;</th>
+        <th style="width:20%; color:green" class="uk-text-left">&#123;pref_mst_disp&#125;</th>
         <td>{pref_mst_disp}</td>
       </tr>
       <tr>
-        <th style="width:20%; color:green" class="alignleft">&#123;pref_mst_no&#125;</th>
+        <th style="width:20%; color:green" class="uk-text-left">&#123;pref_mst_no&#125;</th>
         <td>{pref_mst_no}</td>
       </tr>
       <tr>
-        <th style="width:20%; color:green" class="alignleft">&#123;yesno&#125;</th>
+        <th style="width:20%; color:green" class="uk-text-left">&#123;yesno&#125;</th>
         <td>{yesno}</td>
       </tr>
       <tr>
-        <th style="width:20%; color:green" class="alignleft">&#123;fg12&#125;</th>
+        <th style="width:20%; color:green" class="uk-text-left">&#123;fg12&#125;</th>
         <td>{fg12}</td>
       </tr>
       <tr>
-        <th style="width:20%; color:green" class="alignleft">&#123;fg12_tn&#125;</th>
+        <th style="width:20%; color:green" class="uk-text-left">&#123;fg12_tn&#125;</th>
         <td>{fg12_tn}</td>
       </tr>
       <tr>
-        <th style="width:20%; color:green" class="alignleft">&#123;fg12_noimage&#125;</th>
+        <th style="width:20%; color:green" class="uk-text-left">&#123;fg12_noimage&#125;</th>
         <td>{fg12_noimage}</td>
       </tr>
       <tr>
-        <th style="width:20%; color:green" class="alignleft">&#123;fg12_tn_noimage&#125;</th>
+        <th style="width:20%; color:green" class="uk-text-left">&#123;fg12_tn_noimage&#125;</th>
         <td>{fg12_tn_noimage}</td>
       </tr>
       <tr>
-        <th style="width:20%; color:green" class="alignleft">&#123;fg12_disp&#125;</th>
+        <th style="width:20%; color:green" class="uk-text-left">&#123;fg12_disp&#125;</th>
         <td>{fg12_disp}</td>
       </tr>
       <tr>
-        <th style="width:20%; color:green" class="alignleft">&#123;fg12_tn_image&#125;</th>
+        <th style="width:20%; color:green" class="uk-text-left">&#123;fg12_tn_image&#125;</th>
         <td>{fg12_tn_image}</td>
       </tr>
       <tr>
 		<!-- タイプが添付ファイルの場合表示されます　記憶ファイル名 -->
-        <th style="width:20%; color:green" class="alignleft">&#123;file_readfile&#125;</th>
+        <th style="width:20%; color:green" class="uk-text-left">&#123;file_readfile&#125;</th>
 		<td>{file_readfile}
 		<!-- ダウンロードのリンク例 -->
         <a href="{site_url}/databox/download.php?id=394&field_id=84" 
@@ -560,140 +560,140 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 <!-- アトリビュート（追加項目） IDを使用する　テーマ変数 例-->
   <fieldset style="width:94%">
     <legend>{lang_additionfields} {lang_byusingid}</legend>
-    <table style="width:98%" class="databox">
+    <table class="uk-table uk-table-condensed uk-table-striped">
       <tr>
-        <th style="width:20%;" class="alignright">{lang_additionfields} {lang_id}</th>
-        <th style="width:20%; color:green;" class="alignleft">{lang_templatesetvar}</th>
-        <th class="alignleft">{lang_content}</th>
+        <th style="width:20%;" class="uk-text-right">{lang_additionfields} {lang_id}</th>
+        <th style="width:20%; color:green;" class="uk-text-left">{lang_templatesetvar}</th>
+        <th class="uk-text-left">{lang_content}</th>
       </tr>
       <tr>
-        <th style="width:20%" class="alignright">1</th>
-        <td style="width:20%; color:green" class="alignleft">&#123;additionfield1&#125;</td>
+        <th style="width:20%" class="uk-text-right">1</th>
+        <td style="width:20%; color:green" class="uk-text-left">&#123;additionfield1&#125;</td>
         <td>{additionfield1}</td>
       </tr>
       <tr>
-        <th style="width:20%" class="alignright">1</th>
-        <td style="width:20%; color:green" class="alignleft">&#123;additionfield1_noimage&#125;</td>
+        <th style="width:20%" class="uk-text-right">1</th>
+        <td style="width:20%; color:green" class="uk-text-left">&#123;additionfield1_noimage&#125;</td>
         <td>{additionfield1_noimage}</td>
       </tr>
       <tr>
-        <th style="width:20%" class="alignright">1</th>
-        <td style="width:20%; color:green" class="alignleft">&#123;additionfield1_tn&#125;</td>
+        <th style="width:20%" class="uk-text-right">1</th>
+        <td style="width:20%; color:green" class="uk-text-left">&#123;additionfield1_tn&#125;</td>
         <td>{additionfield1_tn}</td>
       </tr>
       <tr>
-        <th style="width:20%" class="alignright">1</th>
-        <td style="width:20%; color:green" class="alignleft">&#123;additionfield1_tn_noimage&#125;</td>
+        <th style="width:20%" class="uk-text-right">1</th>
+        <td style="width:20%; color:green" class="uk-text-left">&#123;additionfield1_tn_noimage&#125;</td>
         <td>{additionfield1_tn_noimage}</td>
       </tr>
 	
       <tr>
-        <th style="width:20%" class="alignright">1</th>
-        <td style="width:20%; color:green" class="alignleft">&#123;additionfield1_disp&#125;</td>
+        <th style="width:20%" class="uk-text-right">1</th>
+        <td style="width:20%; color:green" class="uk-text-left">&#123;additionfield1_disp&#125;</td>
         <td>{additionfield1_disp}</td>
       </tr>
 
       <tr>
-        <th style="width:20%" class="alignright">1</th>
-		<td style="width:20%; color:green" class="alignleft">&#123;additionfield1:2&#125;
+        <th style="width:20%" class="uk-text-right">1</th>
+		<td style="width:20%; color:green" class="uk-text-left">&#123;additionfield1:2&#125;
 		<!-- タイプが既定リストの場合表示されます　マスタのvalue2　の値 -->
 		</td>
         <td>{additionfield1:2}</td>
       </tr>
 
       <tr>
-        <th style="width:20%" class="alignright">1</th>
-		<td style="width:20%; color:green" class="alignleft">&#123;additionfield1:disp&#125;
+        <th style="width:20%" class="uk-text-right">1</th>
+		<td style="width:20%; color:green" class="uk-text-left">&#123;additionfield1:disp&#125;
 		<!-- タイプが既定リストの場合表示されます　マスタのdisp　の値 例-->
 		</td>
         <td>{additionfield1:disp}</td>
       </tr>
 
       <tr>
-        <th style="width:20%" class="alignright">1</th>
-		<td style="width:20%; color:green" class="alignleft">&#123;additionfield1:no&#125;
+        <th style="width:20%" class="uk-text-right">1</th>
+		<td style="width:20%; color:green" class="uk-text-left">&#123;additionfield1:no&#125;
 		<!-- タイプが既定リストの場合表示されます　マスタno　の値 例-->
 		</td>
         <td>{additionfield1:no}</td>
       </tr>
 
       <tr>
-        <th style="width:20%" class="alignright">1</th>
-		<td style="width:20%; color:green" class="alignleft">&#123;additionfield1_mst_value2&#125;
+        <th style="width:20%" class="uk-text-right">1</th>
+		<td style="width:20%; color:green" class="uk-text-left">&#123;additionfield1_mst_value2&#125;
 		<!-- タイプが既定リストの場合表示されます　マスタのvalue2　の値 -->
 		</td>
         <td>{additionfield1_mst_value2}</td>
       </tr>
 
       <tr>
-        <th style="width:20%" class="alignright">1</th>
-		<td style="width:20%; color:green" class="alignleft">&#123;additionfield1_mst_disp&#125;
+        <th style="width:20%" class="uk-text-right">1</th>
+		<td style="width:20%; color:green" class="uk-text-left">&#123;additionfield1_mst_disp&#125;
 		<!-- タイプが既定リストの場合表示されます　マスタのdisp　の値 例-->
 		</td>
         <td>{additionfield1_mst_disp}</td>
       </tr>
 
       <tr>
-        <th style="width:20%" class="alignright">1</th>
-		<td style="width:20%; color:green" class="alignleft">&#123;additionfield1_mst_no&#125;
+        <th style="width:20%" class="uk-text-right">1</th>
+		<td style="width:20%; color:green" class="uk-text-left">&#123;additionfield1_mst_no&#125;
 		<!-- タイプが既定リストの場合表示されます　マスタno　の値 例-->
 		</td>
         <td>{additionfield1_mst_no}</td>
       </tr>
 
       <tr>
-        <th style="width:20%" class="alignright">1</th>
-		<td style="width:20%; color:green" class="alignleft">&#123;additionfield1_yes&#125;
+        <th style="width:20%" class="uk-text-right">1</th>
+		<td style="width:20%; color:green" class="uk-text-left">&#123;additionfield1_yes&#125;
 		</td>
         <td>{additionfield1_yes}</td>
       </tr>
 
 
       <tr>
-        <th style="width:20%" class="alignright">1</th>
-		<td style="width:20%; color:green" class="alignleft">&#123;additionfield1_tns&#125;
+        <th style="width:20%" class="uk-text-right">1</th>
+		<td style="width:20%; color:green" class="uk-text-left">&#123;additionfield1_tns&#125;
 		</td>
         <td>{additionfield1_tn}</td>
       </tr>
       <tr>
-        <th style="width:20%" class="alignright">1</th>
-		<td style="width:20%; color:green" class="alignleft">&#123;additionfield1_noimage&#125;
+        <th style="width:20%" class="uk-text-right">1</th>
+		<td style="width:20%; color:green" class="uk-text-left">&#123;additionfield1_noimage&#125;
 		</td>
         <td>{additionfield1_noimage}</td>
       </tr>
       <tr>
-        <th style="width:20%" class="alignright">1</th>
-		<td style="width:20%; color:green" class="alignleft">&#123;additionfield1_tn_image&#125;
+        <th style="width:20%" class="uk-text-right">1</th>
+		<td style="width:20%; color:green" class="uk-text-left">&#123;additionfield1_tn_image&#125;
 		</td>
         <td>{additionfield1_tn_image}</td>
       </tr>
       <tr>
-        <th style="width:20%" class="alignright">1</th>
-		<td style="width:20%; color:green" class="alignleft">&#123;additionfield1_tn_noimage&#125;
+        <th style="width:20%" class="uk-text-right">1</th>
+		<td style="width:20%; color:green" class="uk-text-left">&#123;additionfield1_tn_noimage&#125;
 		</td>
         <td>{additionfield1_tn_noimage}</td>
       </tr>
       <tr>
-        <th style="width:20%" class="alignright">1</th>
-		<td style="width:20%; color:green" class="alignleft">&#123;additionfield1_disp&#125;
+        <th style="width:20%" class="uk-text-right">1</th>
+		<td style="width:20%; color:green" class="uk-text-left">&#123;additionfield1_disp&#125;
 		</td>
 	    <td>{additionfield1_disp}</td>
       </tr>
       <tr>
-        <th style="width:20%" class="alignright">1</th>
-		<td style="width:20%; color:green" class="alignleft">&#123;additionfield1_name&#125;
+        <th style="width:20%" class="uk-text-right">1</th>
+		<td style="width:20%; color:green" class="uk-text-left">&#123;additionfield1_name&#125;
 		</td>
 	    <td>{additionfield1_name}</td>
       </tr>
       <tr>
-        <th style="width:20%" class="alignright">1</th>
-		<td style="width:20%; color:green" class="alignleft">&#123;additionfield1_description&#125;
+        <th style="width:20%" class="uk-text-right">1</th>
+		<td style="width:20%; color:green" class="uk-text-left">&#123;additionfield1_description&#125;
 		</td>
 	    <td>{additionfield1_description}</td>
       </tr>
       <tr>
-        <th style="width:20%" class="alignright">11</th>
-		<td style="width:20%; color:green" class="alignleft">
+        <th style="width:20%" class="uk-text-right">11</th>
+		<td style="width:20%; color:green" class="uk-text-left">
 		&#123;additionfield11&#125;
 		</td>
 		<td>{additionfield11}
@@ -701,8 +701,8 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 	  </tr>
 
       <tr>
-        <th style="width:20%" class="alignright">11</th>
-		<td style="width:20%; color:green" class="alignleft">
+        <th style="width:20%" class="uk-text-right">11</th>
+		<td style="width:20%; color:green" class="uk-text-left">
 		&#123;additionfield11:2&#125
 		</td>
 		<td>{additionfield11:2}
@@ -710,8 +710,8 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 	  </tr>
 
       <tr>
-        <th style="width:20%" class="alignright">11</th>
-		<td style="width:20%; color:green" class="alignleft">
+        <th style="width:20%" class="uk-text-right">11</th>
+		<td style="width:20%; color:green" class="uk-text-left">
 		&#123;additionfield11:disp&#125 
 		</td>
 		<td>{additionfield11:disp} 
@@ -719,8 +719,8 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 	  </tr>
 
       <tr>
-        <th style="width:20%" class="alignright">11</th>
-		<td style="width:20%; color:green" class="alignleft">
+        <th style="width:20%" class="uk-text-right">11</th>
+		<td style="width:20%; color:green" class="uk-text-left">
 		&#123;additionfield11:no&#125
 		</td>
 		<td>{additionfield11:no}
@@ -728,8 +728,8 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 	  </tr>
 
       <tr>
-        <th style="width:20%" class="alignright">11</th>
-		<td style="width:20%; color:green" class="alignleft">
+        <th style="width:20%" class="uk-text-right">11</th>
+		<td style="width:20%; color:green" class="uk-text-left">
 		&#123;additionfield11_mst_value2&#125
 		</td>
 		<td>{additionfield11_mst_value2}
@@ -737,8 +737,8 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 	  </tr>
 
       <tr>
-        <th style="width:20%" class="alignright">11</th>
-		<td style="width:20%; color:green" class="alignleft">
+        <th style="width:20%" class="uk-text-right">11</th>
+		<td style="width:20%; color:green" class="uk-text-left">
 		&#123;additionfield11_mst_disp&#125 
 		</td>
 		<td>{additionfield11_mst_disp} 
@@ -746,8 +746,8 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 	  </tr>
 
       <tr>
-        <th style="width:20%" class="alignright">11</th>
-		<td style="width:20%; color:green" class="alignleft">
+        <th style="width:20%" class="uk-text-right">11</th>
+		<td style="width:20%; color:green" class="uk-text-left">
 		&#123;additionfield11_mst_no&#125
 		</td>
 		<td>{additionfield11_mst_no}
@@ -755,69 +755,69 @@ fullname:<span  style="color:green"> &#123;last_modify_fullname&#125;</span>: {l
 	  </tr>
 
       <tr>
-        <th style="width:20%" class="alignright">16</th>
-		<td style="width:20%; color:green" class="alignleft">
+        <th style="width:20%" class="uk-text-right">16</th>
+		<td style="width:20%; color:green" class="uk-text-left">
 		&#123;additionfield16&#125
 		</td>
 		<td>{additionfield16}
 		</td>
 	  </tr>
       <tr>
-        <th style="width:20%" class="alignright">16</th>
-		<td style="width:20%; color:green" class="alignleft">
+        <th style="width:20%" class="uk-text-right">16</th>
+		<td style="width:20%; color:green" class="uk-text-left">
 		&#123;additionfield16_yes&#125
 		</td>
 		<td>{additionfield16_yes}
 		</td>
 	
       <tr>
-        <th style="width:20%" class="alignright">18</th>
-		<td style="width:20%; color:green" class="alignleft">
+        <th style="width:20%" class="uk-text-right">18</th>
+		<td style="width:20%; color:green" class="uk-text-left">
 		&#123;additionfield18&#125
 		</td>
 		<td>{additionfield18}
 		</td>
 	  </tr>
       <tr>
-        <th style="width:20%" class="alignright">18</th>
-		<td style="width:20%; color:green" class="alignleft">
+        <th style="width:20%" class="uk-text-right">18</th>
+		<td style="width:20%; color:green" class="uk-text-left">
 		&#123;additionfield18_tn&#125
 		</td>
 		<td>{additionfield18_tn}
 		</td>
       <tr>
-        <th style="width:20%" class="alignright">18</th>
-		<td style="width:20%; color:green" class="alignleft">
+        <th style="width:20%" class="uk-text-right">18</th>
+		<td style="width:20%; color:green" class="uk-text-left">
 		&#123;additionfield18_noimage&#125
 		</td>
 		<td>{additionfield18_noimage}
 		</td>
       <tr>
-        <th style="width:20%" class="alignright">18</th>
-		<td style="width:20%; color:green" class="alignleft">
+        <th style="width:20%" class="uk-text-right">18</th>
+		<td style="width:20%; color:green" class="uk-text-left">
 		&#123;additionfield18_tn_noimage&#125
 		</td>
 		<td>{additionfield18_tn_noimage}
 		</td>
 
       <tr>
-        <th style="width:20%" class="alignright">18</th>
-		<td style="width:20%; color:green" class="alignleft">
+        <th style="width:20%" class="uk-text-right">18</th>
+		<td style="width:20%; color:green" class="uk-text-left">
 		&#123;additionfield18_disp&#125
 		</td>
 		<td>{additionfield18_disp}
 		</td>
       <tr>
-        <th style="width:20%" class="alignright">18</th>
-		<td style="width:20%; color:green" class="alignleft">
+        <th style="width:20%" class="uk-text-right">18</th>
+		<td style="width:20%; color:green" class="uk-text-left">
 		&#123;additionfield18_tn_image&#125
 		</td>
 		<td>{additionfield18_tn_image}
 		</td>
       <tr>
 		<!-- タイプが添付ファイルの場合表示されます　記憶ファイル名 -->
-        <th style="width:20%" class="alignright">84</th>
-		<td style="width:20%; color:green" class="alignleft">
+        <th style="width:20%" class="uk-text-right">84</th>
+		<td style="width:20%; color:green" class="uk-text-left">
 		&#123;additionfield84_readfile&#125
 		</td>
 		<td>{additionfield84_readfile}

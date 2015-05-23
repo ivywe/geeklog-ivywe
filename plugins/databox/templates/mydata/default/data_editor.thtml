@@ -1,18 +1,18 @@
 <!-- plugins/databox/templates/mydata/default/data_editor.thtml 20140414 { -->
 
-<div id="databox_admin">
+<div>
   {about_thispage}
   <a href="{site_url}/databox/mydata/view.php?id={id}">{lang_view}</a>
   {lang_fieldset} {fieldset_name}(Type id:{fieldset_id})
-  <form enctype="multipart/form-data" name="frmdatabox" action="{site_url}/{script}" method="post">
+  <form class="uk-form" enctype="multipart/form-data" name="frmdatabox" action="{site_url}/{script}" method="post">
     <input type="hidden" name="fieldset" value="{fieldset_id}"{xhtml}>
     <input type="hidden" name="fieldset_name" value="{fieldset_name}"{xhtml}>
 
     <!-- data -->
     <fieldset style="width:98%">
       <legend>{lang_basicfields}</legend>
-      <div class="table-wrapper-fit">
-        <table class="admin-list-table">
+      <div class="uk-overflow-container">
+        <table class="uk-table uk-table-condensed uk-table-striped">
           <!-- id -->
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_id} {help_id}</th>
@@ -30,7 +30,7 @@
 
           <!-- code -->
           <tr class="pluginRow1">
-            <th class="admin-list-field">{lang_code}<span class="must">{lang_must_code}</span>{help_code}</th>
+            <th class="admin-list-field">{lang_code}<span class="uk-text-danger">{lang_must_code}</span>{help_code}</th>
             <td class="admin-list-field">
               {code}
               <input type="hidden" size="48" maxlength="160" name="code" value="{code}"{xhtml}>
@@ -39,7 +39,7 @@
 
           <!-- title -->
           <tr class="pluginRow1">
-            <th class="admin-list-field">{lang_title} {help_title}<span class="must">{lang_must}</span></th>
+            <th class="admin-list-field">{lang_title} {help_title}<span class="uk-text-danger">{lang_must}</span></th>
             <td class="admin-list-field">
               <input type="text" size="48" maxlength="160" name="title" value="{title}"{xhtml}>
             </td>
@@ -90,8 +90,8 @@
     <!-- category -->
     <fieldset style="width:98%">
       <legend>{lang_category}</legend>
-      <div class="table-wrapper-fit">
-        <table class="admin-list-table">
+      <div class="uk-overflow-container">
+        <table class="uk-table uk-table-condensed uk-table-striped">
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_category} {help_category}</th>
             <td class="admin-list-field">{checklist_category}</td>
@@ -103,8 +103,8 @@
     <!-- 追加項目 -->
     <fieldset style="width:98%">
       <legend>{lang_additionfields}</legend>
-      <div class="table-wrapper-fit">
-        <table class="admin-list-table">
+      <div class="uk-overflow-container">
+        <table class="uk-table uk-table-condensed uk-table-striped">
           {additionfields}
         </table>
       </div>

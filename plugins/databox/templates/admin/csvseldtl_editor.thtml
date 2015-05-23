@@ -1,16 +1,16 @@
 <!--plugins/databox/templates/admin/csvseldtl_editor.thtml 20140729{ -->
 
-<div id="databox_admin">
+<div>
 	{about_thispage}
-	<form name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
-		<div class="admin_basic">
+	<form class="uk-form" name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
+		<div class="uk-overflow-container">
 			<fieldset style="width:94%">
 				<legend>{csv_select_dtl}</legend>
 				<!--data -->
-				<table>
+				<table class="uk-table uk-table-condensed uk-table-striped">
 				<!--seq -->
 				<tr>
-					<th style="width:30%" class="alignright">{lang_seq}</th>
+					<th>{lang_seq}</th>
 					<td style="width:70%">
 						{seq}
 						<input type="hidden" name="seq" value="{seq}"{xhtml}>
@@ -20,7 +20,7 @@
 				</tr>
 				<!--csvheader -->
 				<tr>
-					<th style="width:30%" class="alignright">{lang_csvheader}</th>
+					<th style="width:30%" class="uk-text-right">{lang_csvheader}</th>
 					<td style="width:70%">
 						<input type="text" size="60" maxlength="160" name="csvheader" value="{csvheader}"{xhtml}>
 						<br{xhtml}>
@@ -29,7 +29,7 @@
 				</tr>
 				<!--value -->
 				<tr>
-					<th style="width:30%" class="alignright">{lang_value}</th>
+					<th style="width:30%" class="uk-text-right">{lang_value}</th>
 					<td style="width:70%">
 						<input type="text" size="60" maxlength="160" name="value" value="{value}"{xhtml}>
 						<br{xhtml}>
@@ -38,7 +38,7 @@
 				</tr>
 				<!-- Update time -->
 				<tr>
-					<th style="width:30%" class="alignright">{lang_udatetime}</th>
+					<th style="width:30%" class="uk-text-right">{lang_udatetime}</th>
 					<td style="width:70%">{udatetime} {lang_uuid}:{uuid}</td>
 				</tr>
 				</table>

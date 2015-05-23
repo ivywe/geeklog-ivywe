@@ -130,4 +130,6 @@ form {display: block; margin: 0;}
 .uk-grid {margin-left:0;}
 @media (max-width:1220px){.uk-grid{margin-left:0}}
 
-
+body {
+-webkit-font-smoothing: antialiased;
+}
