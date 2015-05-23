@@ -1,6 +1,7 @@
-<!-- plugins/databox/templates/category/default/col_detail.thtml 20140114 { -->
+<!-- plugins/databox/templates/category/default/col_detail.thtml { -->
 <li>
 <span class="uk-text-success">&#123;data_link&#125;</span>{data_link}
+<span class="uk-text-success">&#123;data_url&#125;</span>{data_url}
 <span class="uk-text-success">&#123;data_title&#125;</span>{data_title}
 (id: <span class="uk-text-success">&#123;data_id&#125;</span>{data_id})(code: <span class="uk-text-success">&#123;data_code&#125;</span>{data_code})&nbsp;
 <span class="uk-text-success">&#123;data_description&#125;</span>{data_description}&nbsp;

@@ -1,4 +1,4 @@
-<!-- plugins/databox/templates/admin/data_editor.thtml 2014/04/14 { -->
+<!-- plugins/databox/templates/admin/data_editor.thtml 2015/03/05 { -->
 
 <div>
   {about_thispage}
@@ -165,7 +165,15 @@
                   {optionlist_trackbackcode}
                 </select>
               </td>
+</tr>
+            <!-- cache_time -->
+            <tr>
+              <th class="uk-text-nowrap" style="width:30%">{lang_cache_time} {help_cache_time}</th>
+              <td style="width:70%">
+                <input type="text" size="8" maxlength="160" name="cache_time" value="{cache_time}"{xhtml}><p>{lang_cache_time_desc}</p>
+              </td>
             </tr>
+
           </table>
         </div>
       </fieldset>
@@ -236,9 +244,10 @@
           </table>
         </div>
       </fieldset>
-	  <div class="uk-margin">
+
       <!-- 【LINE】 -->
       <!-- 【保存 キャンセル  削除】 -->
+	  <div class="uk-margin">
       <input type="submit" value="{lang_save}" name="mode"{xhtml}>
       <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
       <input type="hidden" value="{code}" name="old_code"{xhtml}>
@@ -247,6 +256,7 @@
       <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
       {view}
 	  </div>
+
     </div>
   </form>
 </div>
