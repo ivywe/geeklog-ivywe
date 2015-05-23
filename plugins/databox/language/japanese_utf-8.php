@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20150224
+# Last Update 20150513
 
 ###############################################################################
 ## 管理画面 menu
@@ -170,11 +170,16 @@ $LANG_DATABOX_ADMIN['comment_expire']='コメント停止日時';
 
 $LANG_DATABOX_ADMIN['trackbackcode']='トラックバック';
 
+$LANG_DATABOX_ADMIN['cache_time']='キャッシュタイム';
+$LANG_DATABOX_ADMIN['cache_time_desc']='
+このデータはここで指定された秒数以上にキャッシュされることはありません。もしキャッシュが0ならキャッシュ無効 (3600 = 1時間,  86400 = 1日)。
+';
+
 $LANG_DATABOX_ADMIN['group']='グループ';
 $LANG_DATABOX_ADMIN['parent']='親';
 
 $LANG_DATABOX_ADMIN['fieldset']='タイプ';
-$LANG_DATABOX_ADMIN['fieldset_id']="タイプID";
+$LANG_DATABOX_ADMIN['fieldset_id']="ID";
 $LANG_DATABOX_ADMIN['fieldsetfields']="アトリビュートの表示と編集";
 $LANG_DATABOX_ADMIN['fieldsetfieldsregistered']="登録されたアトリビュート";
 $LANG_DATABOX_ADMIN['fieldlist']="アトリビュート一覧";
@@ -300,8 +305,7 @@ $LANG_DATABOX_ADMIN['backupmsg'] =
 アップロードファイルは別途バックアップしてください。<br".XHTML.">
 ";
 $LANG_DATABOX_ADMIN['restoremsg'] = 
-"{$_CONF['backup_path']}"."databox/にある"
-."ファイル名を指定してください。（省略時databox.xml）<br".XHTML.">
+"リストアするファイルを選択してください。<br".XHTML.">
 DataBox のデータベースデータをリストアします。<br".XHTML.">
 アップロードファイルは別途もどしてください。<br".XHTML.">
 ";
@@ -471,11 +475,11 @@ $LANG_DATABOX_ADMIN['config_update'] = '更新';
 $LANG_DATABOX_ADMIN['config_update_help'] = '最新の仕様に更新します ';
 
 //(2)
-$LANG_DATABOX_ADMIN['datamaster'] = 'データ〜マスター';
-$LANG_DATABOX_ADMIN['data_clear'] = 'データクリア実行';
-$LANG_DATABOX_ADMIN['data_allclear'] = 'データ〜マスタークリア実行';
-$LANG_DATABOX_ADMIN['data_backup'] = 'データ〜マスターバックアップ実行';
-$LANG_DATABOX_ADMIN['data_restore'] = 'データ〜マスターリストア実行';
+$LANG_DATABOX_ADMIN['datamaster'] = 'データ、アトリビュート、タイプ、カテゴリー、グループ、マスター';
+$LANG_DATABOX_ADMIN['data_clear'] = 'データを初期化';
+$LANG_DATABOX_ADMIN['data_allclear'] = 'データ, アトリビュート, タイプ, カテゴリー, グループ, マスターを初期化';
+$LANG_DATABOX_ADMIN['data_backup'] = '全データバックアップ　...データ, アトリビュート, タイプ, カテゴリー, グループ, マスターをバックアップする';
+$LANG_DATABOX_ADMIN['data_restore'] = '全データリストア　...データ, アトリビュート, タイプ, カテゴリー, グループ, マスターをバックアップデータからリストアする';
 
 
 $LANG_DATABOX_ADMIN['document'] = 'ドキュメント';
@@ -813,6 +817,7 @@ $LANG_confignames['databox']['hideuseroption'] = 'ユーザー情報に表示し
 $LANG_confignames['databox']['commentcode'] = '新規登録時のコメントのデフォルト';
 
 $LANG_confignames['databox']['sort_list_by'] = '管理者ページ（データ）の並べ替え';
+$LANG_confignames['databox']['default_cache_time'] = 'デフォルトキャッシュタイム';
 
 //--(1)
 $LANG_tab['databox'][tab_whatsnew] = '新着情報ブロック';
