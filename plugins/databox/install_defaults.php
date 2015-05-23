@@ -99,7 +99,7 @@ $_DATABOX_DEFAULT['mail_to_owner'] = 0;
 $_DATABOX_DEFAULT['mail_to_draft'] = 0;
 
 //日付書式　datepicker用
-$_DATABOX_DEFAULT['dateformat'] = 'YYYY/MM/DD';
+$_DATABOX_DEFAULT['dateformat'] = 'Y/m/d';
 
 //データ保存後の画面遷移　一般画面
 $_DATABOX_DEFAULT['aftersave'] = 'item';
@@ -143,6 +143,9 @@ $_DATABOX_DEFAULT['commentcode'] = 0;
 
 //管理者ページ（データ）の並び替え
 $_DATABOX_DEFAULT['sort_list_by'] = "orderno";
+
+//デフォルトキャッシュタイム
+$_DATABOX_DEFAULT['default_cache_time'] = "0";
 
 //---（１）新着
 // 新着の期間
@@ -207,6 +210,30 @@ $_DATABOX_DEFAULT['imgfile_subdir'] = 0;
 $_DATABOX_DEFAULT['file_path'] = $_CONF['path_data']."databox_data/";
 $_DATABOX_DEFAULT['file_size'] = "";
 $_DATABOX_DEFAULT['file_type'] = array();
+$_DATABOX_DEFAULT['file_type'][] ="application/vnd.oasis.opendocument.text";//odt :open office writer*
+$_DATABOX_DEFAULT['file_type'][] ="application/msword";//doc :Microsoft Word
+$_DATABOX_DEFAULT['file_type'][] ="application/vnd.openxmlformats";//docx: Microsoft Office Word 2007*
+$_DATABOX_DEFAULT['file_type'][] ="text/html";//html
+$_DATABOX_DEFAULT['file_type'][] ="application/octet-stream ";//odb :OpenOffice Base*
+$_DATABOX_DEFAULT['file_type'][] ="application/vnd.oasis.opendocument.formula";//odf:OpenOffice Calc*
+$_DATABOX_DEFAULT['file_type'][] ="application/vnd.oasis.opendocument.graphics";//odg:OpenOffice Draw*
+$_DATABOX_DEFAULT['file_type'][] ="application/vnd.oasis.opendocument.text-master";//odm:OpenOffice Writer*
+$_DATABOX_DEFAULT['file_type'][] ="application/vnd.oasis.opendocument.presentation";//odp:OpenOffice Impress*
+$_DATABOX_DEFAULT['file_type'][] ="application/vnd.oasis.opendocument.spreadsheet";//ods:OpenOffice Calc*
+$_DATABOX_DEFAULT['file_type'][] ="application/vnd.oasis.opendocument.graphics-template";//otg:OpenOffice Draw*
+$_DATABOX_DEFAULT['file_type'][] ="application/octet-stream";//oth: OpenOffice.org Writer*
+$_DATABOX_DEFAULT['file_type'][] ="application/vnd.oasis.opendocument.presentation-template";//otp:OpenOffice Impress*
+$_DATABOX_DEFAULT['file_type'][] ="application/octet-stream";//ots:OtsAV*
+$_DATABOX_DEFAULT['file_type'][] ="application/vnd.oasis.opendocument.formula-template ";//ott:OpenOffice Writer*
+$_DATABOX_DEFAULT['file_type'][] ="application/vnd.openofficeorg.extension";//oxt:OpenOffice *
+$_DATABOX_DEFAULT['file_type'][] ="application/pdf";//pdf
+$_DATABOX_DEFAULT['file_type'][] ="application/mspowerpoint";//ppt:Microsoft PowerPoint*
+$_DATABOX_DEFAULT['file_type'][] ="application/vnd.openxmlformats";//pptx:Microsoft Office PowerPoint 2007*
+$_DATABOX_DEFAULT['file_type'][] ="text/plain";//txt
+$_DATABOX_DEFAULT['file_type'][] ="application/vnd.ms-excel";//xls:Microsoft Excel*
+$_DATABOX_DEFAULT['file_type'][] ="application/vnd.openxmlformats ";//xlsx:Microsoft Office Excel 2007*
+$_DATABOX_DEFAULT['file_type'][] ="text/xml";//xml
+
 $_DATABOX_DEFAULT['file_subdir'] = 0;
 
 //(6) autotag permissions
@@ -562,7 +589,13 @@ function plugin_initconfig_databox()
             ,'select', 0, 0, 27, 350, true
             , $pi_name
             ,0);
-        
+        $c->add(
+            'default_cache_time'
+            ,$_DATABOX_DEFAULT['default_cache_time']
+            ,'text', 0, 0, NULL, 360, TRUE
+            , $pi_name
+            ,0);
+         
         //(1)新着
         $c->add('tab_whatsnew', NULL, 'tab', 0, 1, NULL, 0, true, $pi_name, 1);
         $c->add(

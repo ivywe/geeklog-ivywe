@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/admin/profile_editor.thtml 20130610 { -->
+<!-- plugins/userbox/templates/admin/profile_editor.thtml 20150305 { -->
 
 <div id="userbox_admin">
   {about_thispage}
@@ -180,6 +180,13 @@
                </select>
              </td>
           </tr>
+            <!-- cache_time -->
+            <tr class="pluginRow1">
+              <th class="admin-list-field">{lang_cache_time} {help_cache_time}</th>
+              <td class="admin-list-field">
+                <input type="text" size="8" maxlength="160" name="cache_time" value="{cache_time}"{xhtml}>{lang_cache_time_desc}
+              </td>
+            </tr>
         </table>
       </div>
     </fieldset>

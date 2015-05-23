@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
 </head>
-<!-- admin/plugins/userbox/docs/japanese/userbox.html 20150209 -->
+<!-- admin/plugins/userbox/docs/japanese/userbox.html 20150302 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
@@ -25,7 +25,7 @@
 <form name='userbox_conf_link' action='../../../../../admin/configuration.php' method='POST'>
 <input type='hidden' name='conf_group' value='userbox'></form>
  <a style='text-decoration: none;' href='#' onclick="document.userbox_conf_link.submit()">コンフィギュレーション管理画面</a>「管理者用メニュー - コンフィギュレーション - UserBox」から変更できます。</p>
-<h3><a name="public">メイン設定(2014/02/24 update)</a></h3>
+<h3><a name="public">メイン設定(2014/03/02 update)</a></h3>
 
 <table>
 <tr><th style="width:25%">項目(変数)</th>
@@ -296,7 +296,7 @@
   <td valign="top">コメント有効(0)</td>
   <td valign="top">新規登録時のコメントのデフォルトを指定します。コメント有効(0)、コメント無効(-1)。
  </td>
-<tr >
+<tr class="r2">
   <td valign="top"><a name="desc_sort_list_by">管理者ページ（プロフィール）の並べ替え(sort_list_by)</a></td>
   <td valign="top">表示位置(order)</td>
   <td valign="top">管理者専用画面（プロフィール）で表示するソート順のデフォルトを指定します。   <ul>
@@ -310,6 +310,17 @@
   <li>タイムスタンプ降順（udatetime）</li>
   <li>ドラフト（draft）</li>
   </ul>
+ </td>
+</tr>
+<tr >
+	<td valign="top"><a name="desc_default_cache_time">キャッシュデフォルトタイム(default_cache_time)</a></td>
+  <td valign="top">0</td>
+  <td valign="top">キャッシュする期間のデフォルトを指定します。可能な値は:
+<ul>
+ <li>1 以上 = この秒単位の間、キャッシュを再生成せずに表示します。</li>
+ <li>0 = キャッシュしません。記事は常にデータベースから生成されます。</li>
+ <li>-1 = 常にキャッシュし、エディターで記事を更新・保存した場合に限り、キャッシュを再生成します。</li>
+ </ul>
  </td>
 </tr>
 </table>
@@ -404,7 +415,7 @@
 
 
 
-<h3><a name="uploadfile">アップロードファイル</a>(2014/02/19 update)</h3>
+<h3><a name="uploadfile">アップロードファイル</a>(2014/02/25 update)</h3>
 <table>
 <tr><th style="width:25%">項目(変数)</th>
     <th style="width:25%">デフォルト</th>
@@ -512,6 +523,31 @@
 <tr  class="r2">
   <td><a name="desc_file_type">ファイルのタイプ(file_type)　</a></td>
   <td>
+  <ul>
+  <li>application/vnd.oasis.opendocument.text</li>
+  <li>application/msword</li>
+  <li>application/vnd.openxmlformats</li>
+  <li>text/html</li>
+  <li>application/octet-stream</li>
+  <li>application/vnd.oasis.opendocument.formula</li>
+  <li>application/vnd.oasis.opendocument.graphics</li>
+  <li>application/vnd.oasis.opendocument.text-master</li>
+  <li>application/vnd.oasis.opendocument.presentation</li>
+  <li>application/vnd.oasis.opendocument.spreadsheet</li>
+  <li>application/vnd.oasis.opendocument.graphics-template</li>
+  <li>application/octet-stream</li>
+  <li>application/vnd.oasis.opendocument.presentation-template</li>
+  <li>application/octet-stream</li>
+  <li>application/vnd.oasis.opendocument.formula-template</li>
+  <li>application/vnd.openofficeorg.extension</li>
+  <li>application/pdf</li>
+  <li>application/mspowerpoint</li>
+  <li>application/vnd.openxmlformats</li>
+  <li>text/plain</li>
+  <li>application/vnd.ms-excel</li>
+  <li>application/vnd.openxmlformats</li>
+  <li>text/xml</li>
+  </ul>
   </td>
   <td></td>
 </tr>

@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/USERBOX/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20150224
+# Last Update 20150302
 
 ###############################################################################
 ## 管理画面 menu
@@ -171,6 +171,11 @@ $LANG_USERBOX_ADMIN['commentcode']='コメント';
 $LANG_USERBOX_ADMIN['comment_expire']='コメント停止日時';
 
 $LANG_USERBOX_ADMIN['trackbackcode']='トラックバック';
+
+$LANG_USERBOX_ADMIN['cache_time']='キャッシュタイム';
+$LANG_USERBOX_ADMIN['cache_time_desc']='
+このデータはここで指定された秒数以上にキャッシュされることはありません。もしキャッシュが0ならキャッシュ無効 (3600 = 1時間,  86400 = 1日)。
+';
 
 $LANG_USERBOX_ADMIN['group']='グループ';
 $LANG_USERBOX_ADMIN['parent']='親';
@@ -655,6 +660,7 @@ $LANG_confignames['userbox']['hideuseroption'] = 'ユーザー情報に表示し
 
 $LANG_confignames['userbox']['commentcode'] = '新規登録時のコメントのデフォルト';
 $LANG_confignames['userbox']['sort_list_by'] = '管理者ページ（プロフィール）の並べ替え';
+$LANG_confignames['userbox']['default_cache_time'] = 'デフォルトキャッシュタイム';
 
 //--(1)
 $LANG_tab['userbox'][tab_whatsnew] = '新着情報ブロック';

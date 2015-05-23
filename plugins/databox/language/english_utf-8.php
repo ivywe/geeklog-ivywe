@@ -164,6 +164,10 @@ $LANG_DATABOX_ADMIN['commentcode']='Comment';
 $LANG_DATABOX_ADMIN['comment_expire']='Comment Expiry Date';
 
 $LANG_DATABOX_ADMIN['trackbackcode']='trackback';
+$LANG_DATABOX_ADMIN['cache_time']='キャッシュタイム';
+$LANG_DATABOX_ADMIN['cache_time_desc']='
+This DATA content will be cached for no longer than this many seconds. If 0 caching is disabled. If -1 cached until page is edited again.  (3600 = 1 hour,  86400 = 1 day)
+';
 
 $LANG_DATABOX_ADMIN['group']='Group';
 $LANG_DATABOX_ADMIN['parent']='Parent';
@@ -769,6 +773,7 @@ $LANG_confignames['databox']['hideuseroption'] = 'hide useroption';
 $LANG_confignames['databox']['commentcode'] = 'Comment Default';
 
 $LANG_confignames['databox']['sort_list_by'] = 'Sort Admin List by';
+$LANG_confignames['databox']['default_cache_time'] = 'default cache time';
 
 //--(1)
 $LANG_tab['databox'][tab_whatsnew] = 'Whats new Block';

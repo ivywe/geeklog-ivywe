@@ -354,6 +354,7 @@ function fncEdit(
         $comments = COM_applyFilter ($_POST['comments'],true);
         $commentcode = COM_applyFilter ($_POST['commentcode'],true);
         $trackbackcode = COM_applyFilter ($_POST['trackbackcode'],true);
+        $cache_time = COM_applyFilter ($_POST['cache_time'],true);
 
         //@@@@@
         $comment_expire_flag = COM_applyFilter ($_POST['comment_expire_flag'],true);
@@ -529,6 +530,7 @@ function fncEdit(
 
         $commentcode = COM_stripslashes($A['commentcode']);
         $trackbackcode = COM_stripslashes($A['trackbackcode']);
+        $cache_time = COM_stripslashes($A['cache_time']);
 
         $meta_description = COM_stripslashes($A['meta_description']);
         $meta_keywords = COM_stripslashes($A['meta_keywords']);
@@ -792,6 +794,10 @@ function fncEdit(
     $templates->set_var ('trackbackcode', $trackbackcode);
     $optionlist_trackbackcode=COM_optionList ($_TABLES['trackbackcodes'], 'code,name',$trackbackcode);
     $templates->set_var ('optionlist_trackbackcode', $optionlist_trackbackcode);
+	
+    $templates->set_var('lang_cache_time', $LANG_USERBOX_ADMIN['cache_time']);
+    $templates->set_var('lang_cache_time_desc', $LANG_USERBOX_ADMIN['cache_time_desc']);
+    $templates->set_var ('cache_time', $cache_time);
 
     //comment_expire
     $templates->set_var('lang_enabled', $LANG_USERBOX_ADMIN['enabled']);
@@ -1080,6 +1086,7 @@ function fncSave (
 
     $commentcode = COM_applyFilter ($_POST['commentcode'],true);
     $trackbackcode = COM_applyFilter ($_POST['trackbackcode'],true);
+    $cache_time = COM_applyFilter ($_POST['cache_time'],true);
 	
 	$meta_description = $_POST['meta_description'];
     $meta_description = addslashes (COM_checkHTML (COM_checkWords ($meta_description)));
@@ -1362,7 +1369,10 @@ function fncSave (
 	
     $fields.=",trackbackcode";//
     $values.=",$trackbackcode";
-
+	
+    $fields.=",cache_time";//
+    $values.=",$cache_time";
+	
     $fields.=",comment_expire";//
 	if ($comment_expire=='0000-00-00 00:00:00'){
 		$values.=",'$comment_expire'";
@@ -1443,6 +1453,8 @@ function fncSave (
 
     $rt=fncsendmail ('data',$id);
 
+    $cacheInstance = 'userbox__' . $id . '__' ;
+    CACHE_remove_instance($cacheInstance); 
 
 //exit;// debug 用
 
@@ -1530,6 +1542,9 @@ function fncdelete ()
     }
 
     $rt=fncsendmail ('data_delete',$id,$username,$email);
+	
+    $cacheInstance = 'userbox__' . $id . '__' ;
+    CACHE_remove_instance($cacheInstance); 
 
     //exit;// debug 用
 
@@ -1564,7 +1579,11 @@ function fncchangeDraft ($id)
     }
     $sql.=",uuid='$uuid' WHERE id=$id";
 
-    DB_query($sql);
+	DB_query($sql);
+	
+    $cacheInstance = 'userbox__' . $id . '__' ;
+    CACHE_remove_instance($cacheInstance); 
+	
     return;
 
 }
@@ -1661,6 +1680,7 @@ $fld['released']['name'] = $LANG_USERBOX_ADMIN['released'];
 
 $fld['orderno']['name'] = $LANG_USERBOX_ADMIN['orderno'];
 $fld['trackbackcode']['name'] = $LANG_USERBOX_ADMIN['trackbackcode'];
+$fld['cache_time']['name'] = $LANG_USERBOX_ADMIN['cache_time'];
 
 $fld['draft_flag']['name'] = $LANG_USERBOX_ADMIN['draft'];
 $fld['udatetime']['name'] = $LANG_USERBOX_ADMIN['udatetime'];

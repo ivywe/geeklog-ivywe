@@ -383,7 +383,10 @@ function plugin_user_delete_userbox ($uid)
 
     //hits
     DB_delete ($_TABLES['USERBOX_stats'], 'id', $uid);
-
+	
+	$cacheInstance = 'userbox__' .$uid . '__';
+    CACHE_remove_instance($cacheInstance); 
+	
 }
 
 function plugin_user_create_userbox (
@@ -430,6 +433,7 @@ function plugin_user_create_userbox (
     $sql.=" ,`draft_flag`".LB;
     $sql.=" ,`trackbackcode`".LB;
     $sql.=" ,`commentcode`".LB;
+    $sql.=" ,`cache_time`".LB;
 	
     $sql.=")".LB;
 
@@ -444,6 +448,7 @@ function plugin_user_create_userbox (
     $sql.=" ,".$draft_flag.LB ;
 	$sql.=",".$_CONF[trackback_code];
 	$sql.=",".$_USERBOX_CONF['commentcode'];
+	$sql.=",".$_USERBOX_CONF['default_cache_time'];
 
     $sql .= ")";
     DB_query ($sql);
@@ -599,7 +604,11 @@ function plugin_user_changed_userbox (
 			$dummy=plugin_user_delete_userbox ($uid);
 		}
 	}
-		
+	
+	$cacheInstance = 'userbox__' .$uid . '__';
+    CACHE_remove_instance($cacheInstance); 
+	
+	
 	return;
 }
 
@@ -820,7 +829,11 @@ function userbox_update(
 			$dummy=plugin_user_create_userbox ($uid);
 		}
 	}
-
+	
+	
+    $cacheInstance = 'userbox__' ;
+    CACHE_remove_instance($cacheInstance); 
+	
     $display.="<br>";
     $display.=".......... UserBox Data Update finished!"."<br>";
 	

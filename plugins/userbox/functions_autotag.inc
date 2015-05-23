@@ -631,8 +631,10 @@ function userbox_category(
             $templates->set_var ('data_link', $link);
 
             $templates->set_var ('data_fullname', $A['fullname']);
+            $templates->set_var ('data_title', $A['fullname']);
 
             $templates->set_var ('data_username', $username);
+            $templates->set_var ('data_code', $username);
 
             $templates->set_var ('data_description', $description);
             $templates->set_var ('data_id', $id);
@@ -1224,253 +1226,283 @@ function userbox_profile(
 
         $A = DB_fetchArray ($result);
         $A = array_map('stripslashes', $A);
+		
+		$cache_time=$A['cache_time'];
+        $cache=false;
+		if  ($cache_time===0){
+		}else{
+		    if  ($m==="page"){
+                if ($cache_time > -1 ) {
+                    // Don't need to cache per theme since not rendered in a block yet 
+                    $cacheInstance = 'userbox__' . $id . '__' . CACHE_security_hash();
+                    $retval = CACHE_check_instance($cacheInstance);
+                    if ($retval AND $cache_time == -1) {
+                        return $retval;
+                    } elseif ($retval AND $cache_time > 0) {        
+                        $lu = CACHE_get_instance_update($cacheInstance);
+                        $now = time();
+                        if (($now - $lu) < $cache_time) {
+                            return $retval;
+                        } else {
+                            $retval = '';
+                        }
+                   }    
+                }
+            }
+	    }
         
-        if (is_null($template) or ($template==="")){
-            if ($A['defaulttemplatesdirectory']<>""){
-                $template=$A['defaulttemplatesdirectory'];
-            }elseif  ($A['set_defaulttemplatesdirectory']<>""){
-                $template=$A['set_defaulttemplatesdirectory'];
-            }else{
-                $template="default";
-            }
-        }
-
-
-        $group_id = $A['group_id'];
-        $owner_id = $A['owner_id'];
-        $fieldset_id= $A['fieldset_id'];
-        if ($m==="view"){
-            $chk_user=1000;//ログインユーザ
+        if  ($cache){
+            $display = CACHE_check_instance($cacheInstance."_display",$display);
+            $layout = CACHE_check_instance($cacheInstance."_layout",$layout);
+            $headercode = CACHE_check_instance($cacheInstance."_headercode",$headercode);
+            $title = CACHE_check_instance($cacheInstance."_title",$title);
         }else{
-            $chk_user=DATABOX_chkuser($group_id,$owner_id,"userbox.admin");
-        }
+			
+            if (is_null($template) or ($template==="")){
+                if ($A['defaulttemplatesdirectory']<>""){
+                    $template=$A['defaulttemplatesdirectory'];
+                }elseif  ($A['set_defaulttemplatesdirectory']<>""){
+                    $template=$A['set_defaulttemplatesdirectory'];
+                }else{
+                    $template="default";
+                }
+           }
+
+
+            $group_id = $A['group_id'];
+            $owner_id = $A['owner_id'];
+            $fieldset_id= $A['fieldset_id'];
+            if ($m==="view"){
+                $chk_user=1000;//ログインユーザ
+            }else{
+                $chk_user=DATABOX_chkuser($group_id,$owner_id,"userbox.admin");
+            }
             //
-        $id=$A['id'];
-        $additionfields = DATABOX_getadditiondatas($id,$pi_name);
+            $id=$A['id'];
+            $additionfields = DATABOX_getadditiondatas($id,$pi_name);
 
-        //ヘッダ、左ブロック start.............
-        if ($m==="page"){
-            if  ($A['set_layout']<>"0") {
-                $layout=$A['set_layout'];
+            //ヘッダ、左ブロック start.............
+            if ($m==="page"){
+                if  ($A['set_layout']<>"0") {
+                    $layout=$A['set_layout'];
+                }
+                $title= $A['page_title'];
+                if ($title===""){
+                    $title =$A['username'];
+                }
+                // Meta Tags
+                $headercode=DATABOX_getheadercode(    
+                    "profile"
+                    ,$template
+                    ,$pi_name
+                    ,$A['id']
+                    ,$title
+                    ,$A['meta_description']
+                    ,$A['meta_keywords']
+                    ,$A['description']);
             }
-            $title= $A['page_title'];
-            if ($title===""){
-                $title =$A['username'];
-            }
-            // Meta Tags
-            $headercode=DATABOX_getheadercode(    
-                "profile"
-                ,$template
-                ,$pi_name
-                ,$A['id']
-                ,$title
-                ,$A['meta_description']
-                ,$A['meta_keywords']
-                ,$A['description']);
-        }
 
-        $tmplfld=DATABOX_templatePath('profile',$template,$pi_name);
-        $templates = new Template($tmplfld);
-        $templates->set_file (array (
+            $tmplfld=DATABOX_templatePath('profile',$template,$pi_name);
+            $templates = new Template($tmplfld);
+            $templates->set_file (array (
                 'list' => 'list_detail.thtml',
                 'row'   => 'row.thtml',
                 'col'   => "col_detail.thtml",
-            ));
-        $languageid=COM_getLanguageId();
-        $language= COM_getLanguage();
-        $templates->set_var ('languageid', $languageid);
-        $templates->set_var ('language', $language);
-        if ($languageid<>"") {
-            $templates->set_var ('_languageid', "_".$languageid);
-        }else{
-            $templates->set_var ('_languageid', "");
-        }
-
-        $templates->set_var ('site_admin_url', $_CONF['site_admin_url']);
-        $templates->set_var ('site_url',$_CONF['site_url']);
-        
-        $templates->set_var('xhtml', XHTML);
-        $templates->set_var('layout_url', $_CONF['layout_url']);
-        
-        $templates->set_var ('site_name', $_CONF['site_name']);
-        $templates->set_var ('site_mail', $_CONF['site_mail']);
-        
-        $currenturl= COM_getCurrentURL();
-        $templates->set_var ('currenturl', $currenturl);
-        //facebook
-        $facebook_consumer_key = trim($_CONF['facebook_consumer_key']);
-        $templates->set_var ('facebook_consumer_key', $facebook_consumer_key);
-        //
-
-        //daft_flag管理者の時
-        if ($A['draft_flag']==1){
-            $templates->set_var ('draft', "draft!");
-        }else{
-            $templates->set_var ('draft', "");
-        }
-        //------------
-
-        //id
-        $templates->set_var('lang_id', $LANG_USERBOX_ADMIN['id']);
-        $templates->set_var ('id', $A['id']);
-
-        $templates->set_var('lang_fields', $LANG_USERBOX_ADMIN['fields']);
-        $templates->set_var('lang_field', $LANG_USERBOX_ADMIN['field']);
-        $templates->set_var('lang_templatesetvar', $LANG_USERBOX_ADMIN['templatesetvar']);
-        $templates->set_var('lang_content', $LANG_USERBOX_ADMIN['content']);
-        $templates->set_var('lang_type', $LANG_USERBOX_ADMIN['type']);
-        $templates->set_var('lang_byusingid', $LANG_USERBOX_ADMIN['byusingid']);
-        $templates->set_var('lang_byusingcode', $LANG_USERBOX_ADMIN['byusingcode']);
-        $templates->set_var('lang_byusingtemplatesetvar', $LANG_USERBOX_ADMIN['byusingtemplatesetvar']);
-        $templates->set_var('lang_group', $LANG_USERBOX_ADMIN['group']);
-        $templates->set_var('lang_withlink', $LANG_USERBOX_ADMIN['withlink']);
-        $templates->set_var('lang_groupbygroup', $LANG_USERBOX_ADMIN['groupbygroup']);
-
-        $templates->set_var('lang_uid', $LANG28['2']);
-        $templates->set_var('lang_username', $LANG28['3']);
-        $templates->set_var ('username', $A['username']);
-        $templates->set_var('lang_fullname', $LANG28['4']);
-        $templates->set_var ('fullname', $A['fullname']);
-        
-        $templates->set_var('lang_photo', $LANG04['77']);
-        if (isset($A['photo']) && empty($A['photo'])) {
-            $A['photo'] = '(none)'; // user does not have a photo
-            $templates->set_var('photo', "");
-        }else{
-            $templates->set_var('photo', $A['photo']);
-        }
-        //$photo = USER_getPhoto($A['id'], $A['photo'], $A['email'], -1);
-        //$templates->set_var('user_photo', $photo);
-        
-        
-        //$_USERBOX_CONF
-        $templates->set_var('lang_imgfile_frd', $LANG_confignames['userbox']['imgfile_frd']);
-        $templates->set_var ('imgfile_frd', $_USERBOX_CONF['imgfile_frd']);
-        $templates->set_var ('data_img_url', $_CONF['site_url']."/".$_USERBOX_CONF['imgfile_frd']);
-        $templates->set_var('lang_imgfile_thumb_frd', $LANG_confignames['userbox']['imgfile_thumb_frd']);
-        $templates->set_var ('imgfile_thumb_frd', $_USERBOX_CONF['imgfile_thumb_frd']);
-        $templates->set_var ('data_thumb_img_url', $_CONF['site_url']."/".$_USERBOX_CONF['imgfile_thumb_frd']);
-
-        //基本項目
-        $templates->set_var('lang_basicfields', $LANG_USERBOX_ADMIN['basicfields']);
-        //コード＆タイトル＆説明
-        $templates->set_var('lang_code', $LANG_USERBOX_ADMIN['code']);
-        $templates->set_var ('code', $A['username']);
-        $templates->set_var('lang_title', $LANG_USERBOX_ADMIN['title']);
-        $templates->set_var ('title',$A['fullname']);
-
-        $templates->set_var('lang_description', $LANG_USERBOX_ADMIN['description']);
-        $templates->set_var ('description',$A['description']);
-        
-        $templates->set_var('lang_draft', $LANG_USERBOX_ADMIN['draft']);
-        if ($A['draft_flag']){
-            $templates->set_var ('draft',$LANG_USERBOX_ADMIN['draft']);
-        }else{
-            $templates->set_var ('draft',"");
-        }
-        //hits
-        $templates->set_var('lang_hits', $LANG_USERBOX_ADMIN['hits']);
-        $templates->set_var ('hits', $A['hits']);
-        //カテゴリ@@@@@
-        $templates->set_var('lang_category', $LANG_USERBOX_ADMIN['category']);
-        DATABOX_getcategoriesDisp($A['id'],$templates,$chk_user,0,$pi_name);
-
-
-        //追加項目
-        $templates->set_var('lang_additionfields', $LANG_USERBOX_ADMIN['additionfields']);
-        DATABOX_getaddtionfieldsDisp($additionfields,$addition_def,$templates,$chk_user,$pi_name,$fieldset_id);
-
-
-        //編集日付
-        $templates->set_var('lang_modified', $LANG_USERBOX_ADMIN['modified']);
-        $wary = COM_getUserDateTimeFormat($A['modified_un']);
-        $templates->set_var ('modified',$wary[0]);
-        $templates->set_var ('modified_shortdate', strftime( $_CONF['shortdate'], $A['modified_un'] ));
-        //作成日付
-        $templates->set_var('lang_created', $LANG_USERBOX_ADMIN['created']);
-        $wary = COM_getUserDateTimeFormat($A['created_un']);
-        $templates->set_var ('created', $wary[0]);
-        $templates->set_var ('created_shortdate', strftime( $_CONF['shortdate'], $A['created_un'] ));
-        //公開日
-        $templates->set_var('lang_released', $LANG_USERBOX_ADMIN['released']);
-        $wary = COM_getUserDateTimeFormat($A['released_un']);
-        $templates->set_var ('released', $wary[0]);
-        $templates->set_var ('released_shortdate', strftime( $_CONF['shortdate'], $A['released_un'] ));
-        //公開終了日
-        $templates->set_var('lang_expired', $LANG_USERBOX_ADMIN['expired']);
-        if ($A['expired'] ==="0000-00-00 00:00:00"){
-            $templates->set_var ('expired', "");
-            $templates->set_var ('expired_shortdate', "" );
-        }else{
-            $wary = COM_getUserDateTimeFormat($A['expired_un']);
-            $templates->set_var ('expired', $wary[0]);
-            $templates->set_var ('expired_shortdate', strftime( $_CONF['shortdate'], $A['expired_un'] ));
-        }
-
-        $templates->set_var ('lang_uuid', $LANG_USERBOX_ADMIN['uuid']);
-        $templates->set_var ('uuid', $uuid);
-
-        $templates->set_var ('lang_udatetime', $LANG_USERBOX_ADMIN['udatetime']);
-        $wary = COM_getUserDateTimeFormat($A['udatetime_un']);
-        $templates->set_var ('udatetime', $wary[0]);
-        $templates->set_var ('last_modify_uid', $A['uuid']);
-        $templates->set_var ('last_modify_name', $A['last_modify_name']);
-        $templates->set_var ('last_modify_fullname', $A['last_modify_fullname']);
-
-        //管理者の時「編集」
-        $templates->set_var ('edit', "");
-
-        if ($m<>"view"){
-
-            if ( SEC_hasRights('userbox.admin')) {
-                $icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
-                $attr = array('title' => $A['username']." ".$LANG_USERBOX_ADMIN['edit']);
-                $editiconhtml = COM_createImage($icon_url, $LANG_USERBOX_ADMIN['edit'], $attr);
-                $attr = array('class' => 'editlink', 'title' => $A['username']." ".$LANG_USERBOX_ADMIN['edit']);
-                $url = $_CONF['site_admin_url'];
-                $url .= '/plugins/userbox/profile.php';
-                $url .= '?mode=edit';
-                $url .= '&amp;'."id={$id}";
-                $icon = '&nbsp;' ;
-                $icon .=  COM_createLink( $editiconhtml,  $url,   $attr   );
-                $templates->set_var ('edit', $icon);
+                ));
+            $languageid=COM_getLanguageId();
+            $language= COM_getLanguage();
+            $templates->set_var ('languageid', $languageid);
+            $templates->set_var ('language', $language);
+            if ($languageid<>"") {
+                $templates->set_var ('_languageid', "_".$languageid);
             }else{
-                if ($id===$_USER['uid']){
+                $templates->set_var ('_languageid', "");
+            }
+
+            $templates->set_var ('site_admin_url', $_CONF['site_admin_url']);
+            $templates->set_var ('site_url',$_CONF['site_url']);
+        
+            $templates->set_var('xhtml', XHTML);
+            $templates->set_var('layout_url', $_CONF['layout_url']);
+        
+            $templates->set_var ('site_name', $_CONF['site_name']);
+            $templates->set_var ('site_mail', $_CONF['site_mail']);
+        
+            $currenturl= COM_getCurrentURL();
+            $templates->set_var ('currenturl', $currenturl);
+            //facebook
+            $facebook_consumer_key = trim($_CONF['facebook_consumer_key']);
+            $templates->set_var ('facebook_consumer_key', $facebook_consumer_key);
+            //
+
+            //daft_flag管理者の時
+            if ($A['draft_flag']==1){
+                $templates->set_var ('draft', "draft!");
+            }else{
+                $templates->set_var ('draft', "");
+            }
+            //------------
+
+            //id
+            $templates->set_var('lang_id', $LANG_USERBOX_ADMIN['id']);
+            $templates->set_var ('id', $A['id']);
+
+            $templates->set_var('lang_fields', $LANG_USERBOX_ADMIN['fields']);
+            $templates->set_var('lang_field', $LANG_USERBOX_ADMIN['field']);
+            $templates->set_var('lang_templatesetvar', $LANG_USERBOX_ADMIN['templatesetvar']);
+            $templates->set_var('lang_content', $LANG_USERBOX_ADMIN['content']);
+            $templates->set_var('lang_type', $LANG_USERBOX_ADMIN['type']);
+            $templates->set_var('lang_byusingid', $LANG_USERBOX_ADMIN['byusingid']);
+            $templates->set_var('lang_byusingcode', $LANG_USERBOX_ADMIN['byusingcode']);
+            $templates->set_var('lang_byusingtemplatesetvar', $LANG_USERBOX_ADMIN['byusingtemplatesetvar']);
+            $templates->set_var('lang_group', $LANG_USERBOX_ADMIN['group']);
+            $templates->set_var('lang_withlink', $LANG_USERBOX_ADMIN['withlink']);
+            $templates->set_var('lang_groupbygroup', $LANG_USERBOX_ADMIN['groupbygroup']);
+
+            $templates->set_var('lang_uid', $LANG28['2']);
+            $templates->set_var('lang_username', $LANG28['3']);
+            $templates->set_var ('username', $A['username']);
+            $templates->set_var('lang_fullname', $LANG28['4']);
+            $templates->set_var ('fullname', $A['fullname']);
+        
+            $templates->set_var('lang_photo', $LANG04['77']);
+            if (isset($A['photo']) && empty($A['photo'])) {
+                $A['photo'] = '(none)'; // user does not have a photo
+                $templates->set_var('photo', "");
+            }else{
+                $templates->set_var('photo', $A['photo']);
+            }
+            //$photo = USER_getPhoto($A['id'], $A['photo'], $A['email'], -1);
+            //$templates->set_var('user_photo', $photo);
+        
+        
+            //$_USERBOX_CONF
+            $templates->set_var('lang_imgfile_frd', $LANG_confignames['userbox']['imgfile_frd']);
+            $templates->set_var ('imgfile_frd', $_USERBOX_CONF['imgfile_frd']);
+            $templates->set_var ('data_img_url', $_CONF['site_url']."/".$_USERBOX_CONF['imgfile_frd']);
+            $templates->set_var('lang_imgfile_thumb_frd', $LANG_confignames['userbox']['imgfile_thumb_frd']);
+            $templates->set_var ('imgfile_thumb_frd', $_USERBOX_CONF['imgfile_thumb_frd']);
+            $templates->set_var ('data_thumb_img_url', $_CONF['site_url']."/".$_USERBOX_CONF['imgfile_thumb_frd']);
+
+            //基本項目
+            $templates->set_var('lang_basicfields', $LANG_USERBOX_ADMIN['basicfields']);
+            //コード＆タイトル＆説明
+            $templates->set_var('lang_code', $LANG_USERBOX_ADMIN['code']);
+            $templates->set_var ('code', $A['username']);
+            $templates->set_var('lang_title', $LANG_USERBOX_ADMIN['title']);
+            $templates->set_var ('title',$A['fullname']);
+
+            $templates->set_var('lang_description', $LANG_USERBOX_ADMIN['description']);
+            $templates->set_var ('description',$A['description']);
+        
+            $templates->set_var('lang_draft', $LANG_USERBOX_ADMIN['draft']);
+            if ($A['draft_flag']){
+                $templates->set_var ('draft',$LANG_USERBOX_ADMIN['draft']);
+            }else{
+                $templates->set_var ('draft',"");
+            }
+            //hits
+            $templates->set_var('lang_hits', $LANG_USERBOX_ADMIN['hits']);
+            $templates->set_var ('hits', $A['hits']);
+            //カテゴリ@@@@@
+            $templates->set_var('lang_category', $LANG_USERBOX_ADMIN['category']);
+            DATABOX_getcategoriesDisp($A['id'],$templates,$chk_user,0,$pi_name);
+
+            //追加項目
+            $templates->set_var('lang_additionfields', $LANG_USERBOX_ADMIN['additionfields']);
+            DATABOX_getaddtionfieldsDisp($additionfields,$addition_def,$templates,$chk_user,$pi_name,$fieldset_id);
+
+            //編集日付
+            $templates->set_var('lang_modified', $LANG_USERBOX_ADMIN['modified']);
+            $wary = COM_getUserDateTimeFormat($A['modified_un']);
+            $templates->set_var ('modified',$wary[0]);
+            $templates->set_var ('modified_shortdate', strftime( $_CONF['shortdate'], $A['modified_un'] ));
+            //作成日付
+            $templates->set_var('lang_created', $LANG_USERBOX_ADMIN['created']);
+            $wary = COM_getUserDateTimeFormat($A['created_un']);
+            $templates->set_var ('created', $wary[0]);
+            $templates->set_var ('created_shortdate', strftime( $_CONF['shortdate'], $A['created_un'] ));
+            //公開日
+            $templates->set_var('lang_released', $LANG_USERBOX_ADMIN['released']);
+            $wary = COM_getUserDateTimeFormat($A['released_un']);
+            $templates->set_var ('released', $wary[0]);
+            $templates->set_var ('released_shortdate', strftime( $_CONF['shortdate'], $A['released_un'] ));
+            //公開終了日
+            $templates->set_var('lang_expired', $LANG_USERBOX_ADMIN['expired']);
+            if ($A['expired'] ==="0000-00-00 00:00:00"){
+                $templates->set_var ('expired', "");
+                $templates->set_var ('expired_shortdate', "" );
+            }else{
+                $wary = COM_getUserDateTimeFormat($A['expired_un']);
+                $templates->set_var ('expired', $wary[0]);
+                $templates->set_var ('expired_shortdate', strftime( $_CONF['shortdate'], $A['expired_un'] ));
+            }
+
+            $templates->set_var ('lang_uuid', $LANG_USERBOX_ADMIN['uuid']);
+            $templates->set_var ('uuid', $uuid);
+
+            $templates->set_var ('lang_udatetime', $LANG_USERBOX_ADMIN['udatetime']);
+            $wary = COM_getUserDateTimeFormat($A['udatetime_un']);
+            $templates->set_var ('udatetime', $wary[0]);
+            $templates->set_var ('last_modify_uid', $A['uuid']);
+            $templates->set_var ('last_modify_name', $A['last_modify_name']);
+            $templates->set_var ('last_modify_fullname', $A['last_modify_fullname']);
+
+            //管理者の時「編集」
+            $templates->set_var ('edit', "");
+
+            if ($m<>"view"){
+
+                if ( SEC_hasRights('userbox.admin')) {
                     $icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
-                    $attr = array('title' => $LANG_USERBOX_ADMIN['edit']);
+                    $attr = array('title' => $A['username']." ".$LANG_USERBOX_ADMIN['edit']);
                     $editiconhtml = COM_createImage($icon_url, $LANG_USERBOX_ADMIN['edit'], $attr);
-                    $attr = array('class' => 'editlink', 'title' => $A['username']." ".$LANG_USERBOX_ADMIN['edit']);
-                    $url = $_CONF['site_url'];
-                    $url .= '/userbox/myprofile/profile.php';
+                    $attr = array('class' => 'editlink', 'title' => $A['username']." ".   $LANG_USERBOX_ADMIN['edit']);
+                    $url = $_CONF['site_admin_url'];
+                    $url .= '/plugins/userbox/profile.php';
+                    $url .= '?mode=edit';
+                    $url .= '&amp;'."id={$id}";
                     $icon = '&nbsp;' ;
                     $icon .=  COM_createLink( $editiconhtml,  $url,   $attr   );
                     $templates->set_var ('edit', $icon);
+                }else{
+                    if ($id===$_USER['uid']){
+                        $icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
+                        $attr = array('title' => $LANG_USERBOX_ADMIN['edit']);
+                        $editiconhtml = COM_createImage($icon_url, $LANG_USERBOX_ADMIN['edit'], $attr);
+                        $attr = array('class' => 'editlink', 'title' => $A['username']." ".$LANG_USERBOX_ADMIN['edit']);
+                        $url = $_CONF['site_url'];
+                        $url .= '/userbox/myprofile/profile.php';
+                        $icon = '&nbsp;' ;
+                        $icon .=  COM_createLink( $editiconhtml,  $url,   $attr   );
+                        $templates->set_var ('edit', $icon);
+                    }
+                }
+            }
+            // Call to plugins to set template variables in the databox
+            PLG_templateSetVars( 'userbox', $templates );
+
+            //------------
+            $templates->parse ('output', 'list');
+
+            $userbox_content = $templates->finish ($templates->get_var ('output'));
+            $display=$userbox_content;
+			
+            if ($A['draft_flag']!==1){
+                if (!SEC_hasRights('userbox.admin')) {
+                    $id=$A['id'];
+                    $hits=DB_getItem($_TABLES['USERBOX_stats'],"hits","id={$id}");
+                    if (empty($hits)) {
+                        $hits=0;
+                    }
+                    $fields.="id,hits ";
+                    $values.="$id,$hits + 1";
+                    DB_save($_TABLES['USERBOX_stats'],$fields,$values);
                 }
             }
         }
-        // Call to plugins to set template variables in the databox
-        PLG_templateSetVars( 'userbox', $templates );
-
-        //------------
-        $templates->parse ('output', 'list');
-
-        $userbox_content = $templates->finish ($templates->get_var ('output'));
-        $display=$userbox_content;
-
-        if ($A['draft_flag']!==1){
-            if (!SEC_hasRights('userbox.admin')) {
-                $id=$A['id'];
-                $hits=DB_getItem($_TABLES['USERBOX_stats'],"hits","id={$id}");
-                if (empty($hits)) {
-                    $hits=0;
-                }
-                $fields.="id,hits ";
-                $values.="$id,$hits + 1";
-                DB_save($_TABLES['USERBOX_stats'],$fields,$values);
-            }
-        }
-
     }else{
+        $cache_time=0;
         if ($nohitmsg==="yes"){
             $tmplfld=DATABOX_templatePath('profile',$template,$pi_name);
             $templates = new Template($tmplfld);
@@ -1490,6 +1522,13 @@ function userbox_profile(
         }
     }
     $display =PLG_replacetags ($display);
+		
+    if  (($cache_time > 0 OR $cache_time == -1)  AND  $m==="page" ){
+        CACHE_create_instance($cacheInstance."_display", $display); 
+        CACHE_create_instance($cacheInstance."_layout", $layout); 
+        CACHE_create_instance($cacheInstance."_headercode", $headercode); 
+        CACHE_create_instance($cacheInstance."_title", $title); 
+    }
 
     $retval['display']=$display;
     $retval['layout']=$layout;
@@ -1849,8 +1888,10 @@ function userbox_field(
             $templates->set_var ('data_link', $link);
 
             $templates->set_var ('data_fullname', $fullname);
+            $templates->set_var ('data_title', $fullname);
 
             $templates->set_var ('data_username', $username);
+            $templates->set_var ('data_code', $username);
 
             $templates->set_var ('data_description', $description);
             $templates->set_var ('data_id', $id);

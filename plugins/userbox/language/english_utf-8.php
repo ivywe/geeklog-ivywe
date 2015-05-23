@@ -166,6 +166,10 @@ $LANG_USERBOX_ADMIN['commentcode']='Comment';
 $LANG_USERBOX_ADMIN['comment_expire']='Comment Expiry Date';
 
 $LANG_USERBOX_ADMIN['trackbackcode']='trackback';
+$LANG_USERBOX_ADMIN['cache_time']='Cache Time';
+$LANG_USERBOX_ADMIN['cache_time_desc']='
+This DATA content will be cached for no longer than this many seconds. If 0 caching is disabled. If -1 cached until page is edited again.  (3600 = 1 hour,  86400 = 1 day)
+';
 
 $LANG_USERBOX_ADMIN['group']='Group';
 $LANG_USERBOX_ADMIN['parent']='Parent';
@@ -646,6 +650,7 @@ $LANG_confignames['userbox']['hideuseroption'] = 'ユーザー情報に表示し
 
 $LANG_confignames['userbox']['commentcode'] = 'Comment Default';
 $LANG_confignames['userbox']['sort_list_by'] = 'Sort Admin List by';
+$LANG_confignames['userbox']['default_cache_time'] = 'default cache time';
 
 //--(1)
 $LANG_tab['userbox'][tab_whatsnew] = 'Whats new Block';

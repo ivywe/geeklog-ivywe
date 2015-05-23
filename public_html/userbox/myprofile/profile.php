@@ -761,6 +761,9 @@ function fncSave (
 
 
     $rt=fncsendmail ('data',$id);
+	
+    $cacheInstance = 'userbox__' . $id . '__' ;
+    CACHE_remove_instance($cacheInstance); 
 
     //exit;// debug 用
 
@@ -858,6 +861,9 @@ function fncdelete ()
     $return_page=$_CONF['site_url'] . '/index.php?msg=57';
 
     $rt=fncsendmail ('data_delete',$id,$username,$email);
+	
+    $cacheInstance = 'userbox__' . $id . '__' ;
+    CACHE_remove_instance($cacheInstance); 
 
     //exit;// debug 用
 

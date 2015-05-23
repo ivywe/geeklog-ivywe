@@ -225,7 +225,8 @@ function fncGetListField($fieldname, $fieldvalue, $A, $icon_arr)
             break;
         case 'code':
             $name=COM_stripslashes($A['code']);
-            $retval= databox_detail_link(0,$A['code'],$name);
+            $rt= databox_detail_link(0,$A['code'],$name);
+            $retval= $rt['link'];
             break;
         //属性セット名
 		case 'fieldset_name':
@@ -351,6 +352,7 @@ function fncEdit(
         $comments = COM_applyFilter ($_POST['comments'],true);
         $commentcode = COM_applyFilter ($_POST['commentcode'],true);
         $trackbackcode = COM_applyFilter ($_POST['trackbackcode'],true);
+        $cache_time = COM_applyFilter ($_POST['cache_time'],true);
 
         //@@@@@
         $comment_expire_flag = COM_applyFilter ($_POST['comment_expire_flag'],true);
@@ -484,6 +486,7 @@ function fncEdit(
 
             $commentcode =$_DATABOX_CONF['commentcode'];
             $trackbackcode =$_CONF[trackback_code];
+            $cache_time =$_DATABOX_CONF[default_cache_time];
 
             $meta_description ="";
             $meta_keywords ="";
@@ -601,6 +604,7 @@ function fncEdit(
 
             $commentcode = COM_stripslashes($A['commentcode']);
             $trackbackcode = COM_stripslashes($A['trackbackcode']);
+            $cache_time = COM_stripslashes($A['cache_time']);
 
             $meta_description = COM_stripslashes($A['meta_description']);
             $meta_keywords = COM_stripslashes($A['meta_keywords']);
@@ -859,6 +863,10 @@ function fncEdit(
     $templates->set_var ('trackbackcode', $trackbackcode);
     $optionlist_trackbackcode=COM_optionList ($_TABLES['trackbackcodes'], 'code,name',$trackbackcode);
     $templates->set_var ('optionlist_trackbackcode', $optionlist_trackbackcode);
+    
+    $templates->set_var('lang_cache_time', $LANG_DATABOX_ADMIN['cache_time']);
+    $templates->set_var('lang_cache_time_desc', $LANG_DATABOX_ADMIN['cache_time_desc']);
+    $templates->set_var ('cache_time', $cache_time);
 
     //comment_expire
     $templates->set_var('lang_enabled', $LANG_DATABOX_ADMIN['enabled']);
@@ -1146,6 +1154,7 @@ function fncSave (
 
     $commentcode = COM_applyFilter ($_POST['commentcode'],true);
     $trackbackcode = COM_applyFilter ($_POST['trackbackcode'],true);
+    $cache_time = COM_applyFilter ($_POST['cache_time'],true);
 
     $meta_description = $_POST['meta_description'];
     $meta_description = addslashes (COM_checkHTML (COM_checkWords ($meta_description)));
@@ -1460,6 +1469,9 @@ function fncSave (
 	
     $fields.=",trackbackcode";//
     $values.=",$trackbackcode";
+    
+    $fields.=",cache_time";//
+    $values.=",$cache_time";
 
 	$fields.=",comment_expire";//
 	if ($comment_expire=='0000-00-00 00:00:00'){
@@ -1540,6 +1552,8 @@ function fncSave (
 
     $rt=fncsendmail ('data',$id);
 
+    $cacheInstance = 'databox__' . $id . '__' ;
+    CACHE_remove_instance($cacheInstance); 
 
 //exit;// ＠＠＠＠＠＠debug 用
 
@@ -1617,6 +1631,9 @@ function fncdelete ()
 	$rt=databox_deletedata ($id);
 
     $rt=fncsendmail ('data_delete',$id,$title);
+	
+    $cacheInstance = 'databox__' . $id . '__' ;
+    CACHE_remove_instance($cacheInstance); 
 
     //exit;// @@@@@debug 用
 
@@ -1661,7 +1678,11 @@ function fncchangeDraft (
     }
     $sql.=",uuid='$uuid' WHERE id=$id";
 
-    DB_query($sql);
+	DB_query($sql);
+	
+	$cacheInstance = 'databox__' . $id . '__' ;
+    CACHE_remove_instance($cacheInstance); 
+
     return;
 
 }
@@ -1764,6 +1785,7 @@ $fld['released']['name'] = $LANG_DATABOX_ADMIN['released'];
 
 $fld['orderno']['name'] = $LANG_DATABOX_ADMIN['orderno'];
 $fld['trackbackcode']['name'] = $LANG_DATABOX_ADMIN['trackbackcode'];
+$fld['cache_time']['name'] = $LANG_DATABOX_ADMIN['cache_time'];
 
 $fld['draft_flag']['name'] = $LANG_DATABOX_ADMIN['draft'];
 $fld['udatetime']['name'] = $LANG_DATABOX_ADMIN['udatetime'];
@@ -1923,6 +1945,7 @@ function fncsendmail (
 
             $msg.= $LANG_DATABOX_ADMIN['orderno'].":".$A['orderno'].LB;
             $msg.= $LANG_DATABOX_ADMIN['trackbackcode'].":".$A['trackbackcode'].LB;
+            $msg.= $LANG_DATABOX_ADMIN['cache_time'].":".$A['cache_time'].LB;
 
             $msg.= $LANG_DATABOX_ADMIN['draft'].":".$A['draft'].LB;
             $msg.= $LANG_DATABOX_ADMIN['udatetime'].":".$A['udatetime'].LB;

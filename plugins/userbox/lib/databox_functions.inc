@@ -3357,7 +3357,7 @@ function DATABOX_checkaddtiondatas(
                                 $rt.="<br ".XHTML.">".LB;
 ;                               $err=1;
                             }
-                            if (count($box_conf['file_type'])>0){
+							if (count($box_conf['file_type'])>0){
                                 if  (in_array($filetype,$box_conf['file_type'])){
                                 }else{
                                     $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_type']
@@ -3647,7 +3647,56 @@ function DATABOX_uploadaddtiondatas_cpy(
                         }
                     }
                 }
+			}
+            //添付ファイル
+            if ($addition_def[$field_id]['type']==13){
+                $imgfld=$box_conf['file_path'];
+                $filename=$fldary[$field_id];
+                $a=explode("|",$fldary_old[$field_id]);
+                $filename_old=$a[0];
+                $imgname_old=$a[1];
+                if (is_array($fldary_del) AND $fldary_del[$field_id]){
+                    $fldary[$field_id]="";
+                }else{
+                    $imgname=$_FILES['afield_fnm']['name'][$field_id];
+                    if ($imgname<>""){
+                        $imgfile=$_FILES['afield_fnm']['tmp_name'][$field_id];
+                        $imgsize=$_FILES['afield_fnm']['size'][$field_id];
+                        $imgtype=$_FILES['afield_fnm']['type'][$field_id];
+                        $a=explode(".",$imgname);
+                        $a[1]=strtolower($a[1]);
+                        if  ( $box_conf['imgfile_subdir']==1){
+                            $newfilename=$addition_def[$field_id]['templatesetvar']."/";
+                        }else{
+                            $newfilename="";
+                        }
+                        $newfilename.=$addition_def[$field_id]['templatesetvar']."_".$id."_".time().".".$a[1];
+                        if (DATABOX_uploadImageFile
+                                ($imgname,$imgfile,$imgsize, $imgtype,$imgfld,$newfilename)){
+                            $fldary[$field_id]=$newfilename;
+                        }else{
+                            $fldary[$field_id]="";
+                        }
+                    }else{
+                        if  ($filename_old<>""){
+                            $cpyfrom=$imgfld.$filename_old;
+                            $a=explode(".",$filename_old);
+                            $a[1]=strtolower($a[1]);
+                            if  ( $box_conf['file_subdir']==1){
+                                $newfilename=$addition_def[$field_id]['templatesetvar']."/";
+                            }else{
+                                $newfilename="";
+                            }
+                            $newfilename.=$addition_def[$field_id]['templatesetvar']."_".$id."_".time().".".$a[1];
+                            $cpyto=$imgfld.$newfilename;
+                            $rt=copy( $cpyfrom, $cpyto );
+                            //
+                            $fldary[$field_id]=$newfilename."|".$imgname_old;
+                        }
+                    }
+                }
             }
+
         }
     }
 
@@ -3738,6 +3787,15 @@ function DATABOX_deleteaddtionfiles(
                     $rt=DATABOX_deleteFile($imgfld.$filename);
                     $thumbname=DATABOX_getthumbname($filename);
                     $rt=DATABOX_deleteFile($imgfld_thmb.$thumbname);
+                }
+            }
+            //添付ファイル
+            if ($addition_def[$field_id]['type']==13){
+                $imgfld=$box_conf['file_path'];
+                $a=explode("|",$fldary[$field_id]);
+                $filename=$a[0];
+                if ($filename<>""){
+                    $rt=DATABOX_deleteFile($imgfld.$filename);
                 }
             }
         }
@@ -5465,6 +5523,7 @@ function DATABOX_fieldownload(
                                 readfile($path.$readfile);
                                 //download log
                                 //download count
+                                exit;
                             }
                         }else{
                             header('Content-Type: '.$filetype);
@@ -5472,8 +5531,8 @@ function DATABOX_fieldownload(
                             readfile($path.$readfile);
                             //download log
                             //download count
+                            exit;
                         }
-                        exit;
                     }
                 }
             }

@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/category/default/col_detail.thtml 20140121{ -->
+<!-- plugins/userbox/templates/category/default/col_detail.thtml 20150513{ -->
 
 <li>
 <span style= "color:green" > &#123;data_link&#125;</span>{data_link}&nbsp;
@@ -6,6 +6,8 @@
 <span style= "color:green" > &#123;data_id&#125;</span>{data_id}&nbsp;
 <span style= "color:green" > &#123;data_username&#125;</span>{data_username}&nbsp;
 <span style= "color:green" > &#123;data_fullname&#125;</span>{data_fullname}&nbsp;
+<span style= "color:green" > &#123;data_title&#125;</span>{data_title}&nbsp;
+<span style= "color:green" > &#123;data_code&#125;</span>{data_code}&nbsp;
 <span style= "color:green" > &#123;data_user_photo&#125;</span>{data_user_photo}&nbsp;
 <span style= "color:green" > &#123;data_photo&#125;</span>{data_photo}&nbsp;
 <span style= "color:green" > &#123;data_description&#125;</span>{data_description}&nbsp;

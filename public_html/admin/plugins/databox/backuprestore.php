@@ -345,6 +345,8 @@ function fncbackuprestore (
     $tmpl->set_var('script', THIS_SCRIPT);
 
     if ($mode==="restoreform"){
+        $select_filename=fncgetselectfilename();
+        $tmpl->set_var('select_filename', $select_filename);
         $tmpl->set_var('actionname', $LANG_DATABOX_ADMIN['data_restore']);
         $tmpl->set_var('mode', 'restore');
         $tmpl->set_var('help', $LANG_DATABOX_ADMIN['restoremsg']);
@@ -581,6 +583,33 @@ function fncchangeowner(
 	}
 
 	
+}
+function fncgetselectfilename (
+)
+{
+
+    global $_CONF;
+
+    //
+    $selection = '<select id="filename" name="filename">' . LB;
+
+    $fd=$_CONF['backup_path']."databox/";
+    $files=DATABOX_getfilelist($fd,"xml");
+
+    usort($files, 'strcasecmp');
+
+    foreach ($files as $file) {
+        $selection .= '<option value="' . $file . '"';
+        if ($file == "databox.xml") {
+            $selection .= ' selected="selected"';
+        }
+        $selection .= '>' . $file . '</option>' . LB;
+	}
+	
+    $selection .= '</select>';
+
+    return $selection;
+
 }
 
 // +---------------------------------------------------------------------------+

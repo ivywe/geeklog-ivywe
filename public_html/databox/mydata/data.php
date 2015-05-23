@@ -243,7 +243,8 @@ function fncGetListField($fieldname, $fieldvalue, $A, $icon_arr)
 				break;
 			case 'code':
 				$name=COM_stripslashes($A['code']);
-                $retval= databox_detail_link(0,$A['code'],$name);
+                $rt= databox_detail_link(0,$A['code'],$name);
+                $retval= $rt['link'];
 				break;
             //下書
             case 'draft_flag':
@@ -330,6 +331,7 @@ function fncEdit(
         $description=$_POST['description'];//COM_applyFilter($_POST['description']);
 
         $draft_flag = COM_applyFilter ($_POST['draft_flag'],true);
+        $cache_time = COM_applyFilter ($_POST['cache_time'],true);
 
         $language_id = COM_applyFilter ($_POST['language_id']);
 
@@ -382,6 +384,7 @@ function fncEdit(
 
             //
             $draft_flag=$_DATABOX_CONF['user_draft_default'];
+            $cache_time=$_DATABOX_CONF['default_cache_time'];
 			
 			//作成日付
 			$created=0;
@@ -438,6 +441,7 @@ function fncEdit(
 			$additionfields_date="";
 
             $draft_flag=COM_stripslashes($A['draft_flag']);
+            $cache_time=COM_stripslashes($A['cache_time']);
 
 			//編集日
 			$wary = COM_getUserDateTimeFormat(COM_stripslashes($A['modified_un']));
@@ -818,6 +822,7 @@ function fncSave (
 
         $defaulttemplatesdirectory=null;
         $draft_flag =$_DATABOX_CONF['user_draft_default'];
+        $draft_flag =$_DATABOX_CONF['user_draft_default'];
 
         //---
         $meta_description = "";
@@ -834,6 +839,7 @@ function fncSave (
         $perm_members = $array['perm_members'];
 
         $draft_flag=$_DATABOX_CONF['user_draft_default'];
+        $cache_time=$_DATABOX_CONF['default_cache_time'];
 
         //-----
 
@@ -843,6 +849,9 @@ function fncSave (
 
         $fields.=",draft_flag";
         $values.=",$draft_flag";
+		
+		$fields.=",cache_time";
+        $values.=",$cache_time";
 
         $fields.=",meta_description";//
         $values.=",'$meta_description'";
@@ -972,6 +981,9 @@ function fncSave (
     }
 
     $rt=fncsendmail ('data',$id);
+    
+    $cacheInstance = 'databox__' . $id . '__' ;
+    CACHE_remove_instance($cacheInstance); 
 
 //exit;//@@@@@debug 用
 
@@ -1049,6 +1061,9 @@ function fncdelete (
 	$rt=databox_deletedata ($id);
 
     $rt=fncsendmail ('data_delete',$id,$title);
+	
+    $cacheInstance = 'databox__' . $id . '__' ;
+    CACHE_remove_instance($cacheInstance); 
 
     //exit;// debug 用
 	

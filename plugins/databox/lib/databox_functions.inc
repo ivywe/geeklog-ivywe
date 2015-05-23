@@ -999,7 +999,6 @@ function DATABOX_getaddtionfieldsEdit(
     global $_TABLES;
     global $_SCRIPTS;
     global $_CONF;
-    global $_DATABOX_DEFAULT;
     
     if ($pi_name==""){
         $pi_name="databox";
@@ -1190,10 +1189,22 @@ function DATABOX_getaddtionfieldsEdit(
                 if ($disabled===""){
                         //$filedname="afield[".$fid."]";
                         $filedname="afield".$fid;
+                    
+                        $_SCRIPTS->setJavaScript(
+                        "jQuery(function () {"
+                            . "  geeklog.datepicker.set(
+                            '{$filedname}', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
+                            . "});", TRUE, TRUE
+                            );
+                        if  (is_array($fields_date)){
+                            $fieldhtml.=DATABOX_datetimeedit_R($fields_date[$fid],$lang_admin_x,$filedname);
+                        }else{
+                            $fieldhtml.=DATABOX_datetimeedit($fvalue,$lang_admin_x,$filedname,"date");
+                        }
                         $wk =  " <input ";
+                        $wk .= " type=\"hidden\"";
                         $wk .= " name=\"afield[".$fid."]\" ";
                         $wk .= " value=\"".$fvalue."\"";
-                        $wk .= " data-uk-datepicker=\"{format:'YYYY/MM/DD'}\"" ;
                         $wk .= " ".XHTML.">";
                         $fieldhtml.=$wk;
                     }else{
@@ -1205,9 +1216,20 @@ function DATABOX_getaddtionfieldsEdit(
                         //$filedname="afield[".$fid."]";
                         $filedname="afield".$fid;
                     
+                        $_SCRIPTS->setJavaScript(
+                        "jQuery(function () {"
+                            . "  geeklog.datepicker.set(
+                            '{$filedname}', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
+                            . "});", TRUE, TRUE
+                            );
+                        if  (is_array($fields_date)){
+                            $fieldhtml.=DATABOX_datetimeedit_R($fields_date[$fid],$lang_admin_x,$filedname);
+                        }else{
+                            $fieldhtml.=DATABOX_datetimeedit($fvalue,$lang_admin_x,$filedname,"datetime");
+                        }
                         $wk =  " <input ";
+                        $wk .= " type=\"hidden\"";
                         $wk .= " name=\"afield[".$fid."]\" ";
-                        $wk .= " data-uk-datepicker=\"{format:'YYYY/MM/DD'}\"" ;
                         $wk .= " value=\"".$fvalue."\"";
                         $wk .= " ".XHTML.">";
                         $fieldhtml.=$wk;
@@ -1632,7 +1654,26 @@ function DATABOX_getenableexpired(
     ,$flg
     ,$pi_name
 ){
+    //GL のバージョンが1.8.0 より新しくなければおわり
+    if (version_compare(VERSION, '2.0.0') >= 0) {
+    }else{
         return ;
+    }
+    
+    global $_CONF;
+    global $_SCRIPTS;
+    
+    $langCode = COM_getLangIso639Code();
+    $toolTip  = 'Click and select a date';    // Should be translated
+    $imgUrl   = $_CONF['site_url'] . '/images/calendar.png';
+
+    $_SCRIPTS->setJavaScript(
+        "jQuery(function () {"
+        . "  geeklog.datepicker.set('$field', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
+        . "});", TRUE, TRUE
+    );
+    
+    return ;
 }
 
 
@@ -2611,7 +2652,7 @@ global $_TABLES;
         $nrows2 = DB_numRows( $result2 );
         
         if ($nrows2>0){
-            $retval .="<div class=\"uk-text-bold uk-margin\">";
+            $retval .="<div class=\"databox_admin_data_title\">";
             $retval .=$A['group_name'];
             $retval .="</div>".LB;
         
@@ -3316,7 +3357,7 @@ function DATABOX_checkaddtiondatas(
                                 $rt.="<br ".XHTML.">".LB;
 ;                               $err=1;
                             }
-                            if (count($box_conf['file_type'])>0){
+							if (count($box_conf['file_type'])>0){
                                 if  (in_array($filetype,$box_conf['file_type'])){
                                 }else{
                                     $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_type']
@@ -3606,7 +3647,56 @@ function DATABOX_uploadaddtiondatas_cpy(
                         }
                     }
                 }
+			}
+            //添付ファイル
+            if ($addition_def[$field_id]['type']==13){
+                $imgfld=$box_conf['file_path'];
+                $filename=$fldary[$field_id];
+                $a=explode("|",$fldary_old[$field_id]);
+                $filename_old=$a[0];
+                $imgname_old=$a[1];
+                if (is_array($fldary_del) AND $fldary_del[$field_id]){
+                    $fldary[$field_id]="";
+                }else{
+                    $imgname=$_FILES['afield_fnm']['name'][$field_id];
+                    if ($imgname<>""){
+                        $imgfile=$_FILES['afield_fnm']['tmp_name'][$field_id];
+                        $imgsize=$_FILES['afield_fnm']['size'][$field_id];
+                        $imgtype=$_FILES['afield_fnm']['type'][$field_id];
+                        $a=explode(".",$imgname);
+                        $a[1]=strtolower($a[1]);
+                        if  ( $box_conf['imgfile_subdir']==1){
+                            $newfilename=$addition_def[$field_id]['templatesetvar']."/";
+                        }else{
+                            $newfilename="";
+                        }
+                        $newfilename.=$addition_def[$field_id]['templatesetvar']."_".$id."_".time().".".$a[1];
+                        if (DATABOX_uploadImageFile
+                                ($imgname,$imgfile,$imgsize, $imgtype,$imgfld,$newfilename)){
+                            $fldary[$field_id]=$newfilename;
+                        }else{
+                            $fldary[$field_id]="";
+                        }
+                    }else{
+                        if  ($filename_old<>""){
+                            $cpyfrom=$imgfld.$filename_old;
+                            $a=explode(".",$filename_old);
+                            $a[1]=strtolower($a[1]);
+                            if  ( $box_conf['file_subdir']==1){
+                                $newfilename=$addition_def[$field_id]['templatesetvar']."/";
+                            }else{
+                                $newfilename="";
+                            }
+                            $newfilename.=$addition_def[$field_id]['templatesetvar']."_".$id."_".time().".".$a[1];
+                            $cpyto=$imgfld.$newfilename;
+                            $rt=copy( $cpyfrom, $cpyto );
+                            //
+                            $fldary[$field_id]=$newfilename."|".$imgname_old;
+                        }
+                    }
+                }
             }
+
         }
     }
 
@@ -3697,6 +3787,15 @@ function DATABOX_deleteaddtionfiles(
                     $rt=DATABOX_deleteFile($imgfld.$filename);
                     $thumbname=DATABOX_getthumbname($filename);
                     $rt=DATABOX_deleteFile($imgfld_thmb.$thumbname);
+                }
+            }
+            //添付ファイル
+            if ($addition_def[$field_id]['type']==13){
+                $imgfld=$box_conf['file_path'];
+                $a=explode("|",$fldary[$field_id]);
+                $filename=$a[0];
+                if ($filename<>""){
+                    $rt=DATABOX_deleteFile($imgfld.$filename);
                 }
             }
         }
@@ -5424,6 +5523,7 @@ function DATABOX_fieldownload(
                                 readfile($path.$readfile);
                                 //download log
                                 //download count
+                                exit;
                             }
                         }else{
                             header('Content-Type: '.$filetype);
@@ -5431,8 +5531,8 @@ function DATABOX_fieldownload(
                             readfile($path.$readfile);
                             //download log
                             //download count
+                            exit;
                         }
-                        exit;
                     }
                 }
             }

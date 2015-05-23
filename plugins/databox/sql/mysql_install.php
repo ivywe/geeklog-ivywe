@@ -1,6 +1,6 @@
 <?php
 // 2010/02/26 tsuchitani AT ivywe DOT co DOT jp
-// Last Update 20141226
+// Last Update 20150304
 
 //ADDTION DATA
 $_SQL[] = "
@@ -44,6 +44,7 @@ CREATE TABLE {$_TABLES['DATABOX_base']} (
   `orderno` int(2) NOT NULL DEFAULT '0',
   `fieldset_id` int(11) NOT NULL DEFAULT '0',
   `trackbackcode` tinyint(4) NOT NULL DEFAULT '0',
+  `cache_time` int(11) NOT NULL DEFAULT '0',
   `draft_flag` tinyint(3) NOT NULL DEFAULT '0',
   `udatetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `uuid` mediumint(8) NOT NULL,

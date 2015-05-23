@@ -63,7 +63,7 @@ function plugin_autoinstall_userbox($pi_name)
         'pi_name'         => $pi_name,
         'pi_display_name' => $pi_display_name,
         'pi_version'      => $_USERBOX_CONF['version'],
-        'pi_gl_version'   => '2.0.0',
+        'pi_gl_version'   => '2.1.0',
         'pi_homepage'     => 'http://www.ivywe.co.jp',
     );
 
