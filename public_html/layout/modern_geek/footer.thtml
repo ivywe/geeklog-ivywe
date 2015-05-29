@@ -50,9 +50,12 @@
 <script src="{layout_url}/vendor/uikit/js/components/slideshow.js"></script>
 <script src="{layout_url}/vendor/uikit/js/components/slideshow-fx.js"></script>
 <script src="{layout_url}/vendor/uikit/js/components/slideset.js"></script>
+<script src="{layout_url}/vendor/uikit/js/components/tooltip.js"></script>
+<script src="{layout_url}/vendor/uikit/js/components/datepicker.js"></script>
+<script src="{layout_url}/vendor/uikit/js/components/form-select.js"></script>
 <!-- } Front-end framework UIkit -->
 
-<!-- PDF}–Ê•\Ž¦ { -->
+<!-- PDFå›³é¢è¡¨ç¤º { -->
 <script type="text/javascript" src="{layout_url}/vendor/jquery-gdocsviewer/jquery.gdocsviewer.min.js"></script>
 <script type="text/javascript">
 /*<![CDATA[*/
@@ -64,7 +67,7 @@ $(document).ready(function() {
 });
 /*]]>*/
 </script>
-<!-- } PDF}–Ê•\Ž¦ -->
+<!-- } PDFå›³é¢è¡¨ç¤º -->
 
 <!-- jQuery isotope { -->
 <script type="text/javascript" src="{layout_url}/vendor/jquery-isotope-site/jquery.isotope.min.js"></script>
