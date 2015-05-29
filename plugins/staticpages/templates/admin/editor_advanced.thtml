@@ -3,9 +3,9 @@
 {noscript}
 <div id="advanced_editor" style="display:none;">
   {start_block_editor}
-  <form action="{site_admin_url}/plugins/staticpages/index.php" method="post" onsubmit='set_postcontent();' id="sp-advanced_editor" class="compact">
-    <div class="admin_basic">
-      <dl class="form_block">
+  <form action="{site_admin_url}/plugins/staticpages/index.php" method="post" onsubmit='set_postcontent();' id="sp-advanced_editor" class="uk-form">
+    <div>
+      <dl class="uk-description-list-horizontal">
         <dt><label for="sp-advanced_editor-sp_title">{lang_title}</label></dt>
         <dd><input type="text" maxlength="128" {!if titletoid}onkeyup="TitleToId('sp-advanced_editor-sp_title','sp-advanced_editor-sp_id');" {!endif}name="sp_title" value="{sp_title}" id="sp-advanced_editor-sp_title" class="size5"{xhtml}></dd>
         
@@ -79,7 +79,7 @@
         </table>
       </div>
 
-      <dl class="form_block">
+      <dl class="uk-description-list-horizontal">
         <dt><label for="sp-advanced_editor-draft_flag">{lang_draft}</label></dt>
         <dd><input type="checkbox" name="draft_flag" id="sp-advanced_editor-draft_flag" {draft_flag_checked}{xhtml}></dd>
 
@@ -98,7 +98,7 @@
       </dl>
 
       <hr style="margin-bottom: 15px;"{xhtml}>
-      <dl class="form_block">
+      <dl class="uk-description-list-horizontal">
         <dt><label for="sp-advanced_editor-template_flag">{lang_template}</label></dt>
         <dd><input type="checkbox" name="template_flag" id="sp-advanced_editor-template_flag" {template_flag_checked}{xhtml}>&nbsp;&nbsp;{lang_template_flag_msg}</dd>
 
@@ -107,7 +107,7 @@
       </dl>
 
       <hr style="margin-bottom: 15px;"{xhtml}>
-      <dl class="form_block">
+      <dl class="uk-description-list-horizontal">
         <dt><label for="sp-advanced_editor-sp_centerblock">{lang_centerblock}</label></dt>
         <dd><input type="checkbox" name="sp_centerblock" id="sp-advanced_editor-sp_centerblock" {centerblock_checked}{xhtml}>&nbsp;&nbsp;{lang_centerblock_msg}</dd>
 
@@ -116,7 +116,7 @@
       </dl>
 
       <hr style="margin-bottom: 15px;"{xhtml}>
-      <dl class="form_block">
+      <dl class="uk-description-list-horizontal">
         <dt><label for="sp-advanced_editor-sp_inblock">{inblock_msg}</label></dt>
         <dd><input type="checkbox" name="sp_inblock" id="sp-advanced_editor-sp_inblock" {inblock_checked}{xhtml}>&nbsp;&nbsp;{inblock_info}</dd>
 
@@ -134,7 +134,7 @@
       <fieldset>
         <legend>{lang_accessrights}</legend>
 
-        <dl class="form_block">
+        <dl class="uk-description-list-horizontal">
           <dt>{lang_owner}</dt>
           <dd>{owner_link} {camera_icon}
               <input type="hidden" name="owner_id" value="{owner_id}"{xhtml}></dd>
