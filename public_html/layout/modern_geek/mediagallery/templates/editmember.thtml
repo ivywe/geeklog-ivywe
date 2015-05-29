@@ -1,65 +1,65 @@
 <noscript><div class="pluginAlert" style="padding:10px;">{no_javascript_warning}</div></noscript>
 <script type="text/javascript" src="{site_url}/js/memberalbums_editor.js"></script>
 <div id="pe_navbar" class="jsenabled_show" style="display:none">{navbar}</div>
-<div style="clear:both;"></div>
+<div class="uk-clearfix"></div>
 <form class="uk-form" enctype="multipart/form-data" method="post" action="{s_form_action}">
 <div id="pe_members">
-  <table class="uk-table uk-table-condensed uk-table-striped uk-table-hover gl-tablelist" style="width:100%">
+  <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container gl-tablelist" style="width:100%">
     <tr>
       <th colspan="2" style="width:100%;">
         {lang_member_albums}
       </th>
     </tr>
     <tr>
-      <td  style="width:50%;" class="mgAdminAlignRight">{lang_enable_member_albums}</td>
+      <td  style="width:50%;" class="uk-text-right">{lang_enable_member_albums}</td>
       <td class="mgAdminAlignLeft">
         {member_albums}
       </td>
     </tr>
     <tr>
-      <td  style="width:50%;" class="mgAdminAlignRight">{lang_allow_remote}</td>
+      <td  style="width:50%;" class="uk-text-right">{lang_allow_remote}</td>
       <td class="mgAdminAlignLeft">
         {allow_remote}
       </td>
     </tr>
     <tr>
-      <td  style="width:50%;" class="mgAdminAlignRight">{lang_member_use_fullname}</td>
+      <td  style="width:50%;" class="uk-text-right">{lang_member_use_fullname}</td>
       <td class="mgAdminAlignLeft">
         {member_use_fullname}
       </td>
     </tr>
     <tr>
-      <td  style="width:50%;" class="mgAdminAlignRight">{lang_feature_member_album}</td>
+      <td  style="width:50%;" class="uk-text-right">{lang_feature_member_album}</td>
       <td class="mgAdminAlignLeft">
         {feature_member_album}
       </td>
     </tr>
     <tr>
-      <td  style="width:50%;" class="mgAdminAlignRight">{lang_member_quota}</td>
+      <td  style="width:50%;" class="uk-text-right">{lang_member_quota}</td>
       <td class="mgAdminAlignLeft">
         <input type="text" size="5" name="member_quota" value="{member_quota}"{xhtml}>&nbsp;Mb&nbsp;&nbsp;{lang_zero_unlimited}
       </td>
     </tr>
     <tr>
-      <td  style="width:50%;" class="mgAdminAlignRight">{lang_auto_create}</td>
+      <td  style="width:50%;" class="uk-text-right">{lang_auto_create}</td>
       <td class="mgAdminAlignLeft">
         {auto_create}
       </td>
     </tr>
     <tr>
-      <td  style="width:50%;" class="mgAdminAlignRight">{lang_allow_create}</td>
+      <td  style="width:50%;" class="uk-text-right">{lang_allow_create}</td>
       <td class="mgAdminAlignLeft">
         {allow_create}
       </td>
     </tr>
     <tr>
-      <td  style="width:50%;" class="mgAdminAlignRight">{lang_member_root}</td>
+      <td  style="width:50%;" class="uk-text-right">{lang_member_root}</td>
       <td class="mgAdminAlignLeft">
         {album_list_root}
       </td>
     </tr>
     <tr>
-      <td  style="width:50%;" class="mgAdminAlignRight">{lang_member_archive}</td>
+      <td  style="width:50%;" class="uk-text-right">{lang_member_archive}</td>
       <td class="mgAdminAlignLeft">
         {member_archive}
       </td>
@@ -70,32 +70,32 @@
 {valid_formats}
 
 <div id="pe_attributes" class="jsenabled_hide">
-  <table class="uk-table uk-table-condensed uk-table-striped uk-table-hover gl-tablelist" style="width:100%">
+  <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container gl-tablelist" style="width:100%">
     <tr>
       <th colspan="2">
         {lang_album_attributes}
       </th>
     </tr>
     <tr>
-      <td  style="width:50%;" class="mgAdminAlignRight">{lang_ri_enable}</td>
+      <td  style="width:50%;" class="uk-text-right">{lang_ri_enable}</td>
       <td class="mgAdminAlignLeft">
         {ri_select}
       </td>
     </tr>
     <tr>
-      <td  style="width:50%;" class="mgAdminAlignRight">{lang_max_image_width}</td>
+      <td  style="width:50%;" class="uk-text-right">{lang_max_image_width}</td>
       <td class="mgAdminAlignLeft">
         {width_input}&nbsp;{lang_zero_unlimited}
       </td>
     </tr>
     <tr>
-      <td  style="width:50%;" class="mgAdminAlignRight">{lang_max_image_height}</td>
+      <td  style="width:50%;" class="uk-text-right">{lang_max_image_height}</td>
       <td class="mgAdminAlignLeft">
         {height_input}&nbsp;{lang_zero_unlimited}
       </td>
     </tr>
     <tr>
-      <td  style="width:50%;" class="mgAdminAlignRight">{lang_max_filesize}</td>
+      <td  style="width:50%;" class="uk-text-right">{lang_max_filesize}</td>
       <td class="mgAdminAlignLeft">
         <input type="text" size="5" name="max_filesize" value="{max_filesize}"{xhtml}>&nbsp;Kb&nbsp;&nbsp;{lang_zero_unlimited}
       </td>
@@ -104,32 +104,32 @@
 </div>
 
 <div id="pe_useruploads" class="jsenabled_hide">
-  <table class="uk-table uk-table-condensed uk-table-striped uk-table-hover gl-tablelist" style="width:100%">
+  <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container gl-tablelist" style="width:100%">
     <tr>
       <th colspan="2" style="width:100%;">
         {lang_uploads}
       </th>
     </tr>
     <tr>
-      <td  style="width:50%;" class="mgAdminAlignRight">{lang_member_upload}</td>
+      <td  style="width:50%;" class="uk-text-right">{lang_member_upload}</td>
       <td class="mgAdminAlignLeft">
         {uploads}
       </td>
     </tr>
     <tr>
-      <td  style="width:50%;" class="mgAdminAlignRight">{lang_moderate_album}</td>
+      <td  style="width:50%;" class="uk-text-right">{lang_moderate_album}</td>
       <td class="mgAdminAlignLeft">
         {moderate}
       </td>
     </tr>
     <tr>
-      <td  style="width:50%;" class="mgAdminAlignRight">{lang_mod_group}</td>
+      <td  style="width:50%;" class="uk-text-right">{lang_mod_group}</td>
       <td class="mgAdminAlignLeft">
         {mod_dropdown}
       </td>
     </tr>
     <tr>
-      <td  style="width:50%;" class="mgAdminAlignRight">{lang_email_mods_on_submission}</td>
+      <td  style="width:50%;" class="uk-text-right">{lang_email_mods_on_submission}</td>
       <td class="mgAdminAlignLeft">
         {email_mod_select}
       </td>
@@ -138,7 +138,7 @@
 </div>
 
 <div id="pe_access" class="jsenabled_hide">
-  <table class="uk-table uk-table-condensed uk-table-striped uk-table-hover gl-tablelist" style="width:100%">
+  <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container gl-tablelist" style="width:100%">
     <tr>
       <th colspan="2" style="width:100%;">
         {lang_accessrights}

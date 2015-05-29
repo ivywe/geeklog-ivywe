@@ -1,20 +1,67 @@
 <!-- plugins/databox/templates/search/default/col_detail.thtml 20140926 { -->
-<li>
-<span class="uk-text-success">&#123;data_link&#125;</span>{data_link}
-<span class="uk-text-success">&#123;data_title&#125;</span>{data_title}
-(id: <span class="uk-text-success">&#123;data_id&#125;</span>{data_id})(code: <span class="uk-text-success">&#123;data_code&#125;</span>{data_code})&nbsp;
-<span class="uk-text-success">&#123;data_description&#125;</span>{data_description}&nbsp;
-<span class="uk-text-success">&#123;data_datefield&#125;</span>{data_datefield} {new_img}&nbsp;<!-- 使用する日付 作成日付or編集日付or公開日 -->
-<span class="uk-text-success">&#123;data_datefield_shortdate&#125;</span>{data_datefield_shortdate} {new_img}&nbsp;<!-- 使用する日付 作成日付or編集日付or公開日 -->
-<span class="uk-text-success">&#123;data_released&#125;</span>{data_released}&nbsp;
-<span class="uk-text-success">&#123;data_released_shortdate&#125;</span>{data_released_shortdate}&nbsp;
-<span class="uk-text-success">&#123;data_expired&#125;</span>{data_expired}&nbsp;
-<span class="uk-text-success">&#123;data_expired_shortdate&#125;</span>{data_expired_shortdate}&nbsp;
-<span class="uk-text-success">&#123;data_hits&#125;</span>{data_hits}&nbsp;
-<span class="uk-text-success">&#123;data_remaingdays&#125;</span>{data_remaingdays}&nbsp;
-<span class="uk-text-success">&#123;data_value&#125;</span>{data_value}&nbsp;<!-- ソート順に指定された追加属性項目 -->
 
-{data_edit}
+<th style="width:20%" class="uk-text-left">{additionfield_name}</th>
+<td style="width:70%">
+	<dl>
+		<dt class="uk-text-success">&#123;{additionfield_templatesetvar}&#125;</dt>
+		<dd>{additionfield_value}</dd>
 
-</li>
+		{!if additionfield_value_name}
+		<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_value_name&#125;</dt>
+		<dd>{additionfield_value_name}</dd>
+		{!endif}
+
+		{!if additionfield_value_description}
+		<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_value_description&#125;</dt>
+		<dd>{additionfield_value_description}</dd>
+		{!endif}
+
+		{!if additionfield_value_tn}
+		<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_value_tn&#125;</dt>
+		<dd>{additionfield_value_tn}</dd>
+		{!endif}
+
+		{!if additionfield_value_noimage}
+		<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_noimage&#125;</dt>
+		<dd>{additionfield_value_noimage}</dd>
+		{!endif}
+
+		{!if additionfield_value_tn_image}
+		<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_tn_image&#125;</dt>
+		<dd>{additionfield_value_tn_image}</dd>
+		{!endif}
+
+		{!if additionfield_value_tn_noimage}
+		<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_tn_noimage&#125;</dt>
+		<dd>{additionfield_value_tn_noimage}</dd>
+		{!endif}
+
+		{!if additionfield_value_disp}
+		<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_disp&#125;</dt>
+		<dd>{additionfield_value_disp}</dd>
+		{!endif}
+
+		{!if additionfield_value_mst_value2}
+		<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_mst_value2&#125;</dt>
+		<dd>{additionfield_value_mst_value2}</dd>
+		{!endif}
+
+		{!if additionfield_value_mst_disp}
+		<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_mst_disp&#125;</dt>
+		<dd>{additionfield_value_mst_disp}</dd>
+		{!endif}
+
+		{!if additionfield_value_mst_no}
+		<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_mst_no&#125;</dt>
+		<dd>{additionfield_value_mst_no}</dd>
+		{!endif}
+
+		{!if additionfield_value_readfile}
+		<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_readfile&#125;</dt>
+		<dd>{additionfield_value_readfile}</dd>
+		{!endif}
+	</dl>
+</td>
+<td style="width:10%">{field_type} {data_edit}</td>
+
 <!-- } plugins/databox/templates/search/default/col_detail.thtml -->

@@ -26,19 +26,19 @@ function change(what) {
 	<tbody>
     <tr>
       <th class="uk-text-right">{lang_title}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         <textarea name="album_name" cols="50" rows="2" style="width:95%;">{album_title}</textarea>
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_description}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         <textarea name="album_desc" cols="50" rows="5" style="width:95%;">{album_desc}</textarea>
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_parent_album}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {parent_select}
       </td>
     </tr>
@@ -49,158 +49,158 @@ function change(what) {
     </tr>
     <tr>
 	  <th class="uk-text-right">{lang_theme_select}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {album_theme_select}
       </td>
     </tr>
     <tr>
 	  <th class="uk-text-right">{lang_comments}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {comment_select}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_enable_exif}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {exif_select}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_enable_ratings}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {ranking_select}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_enable_rss}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {rss_select}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_rsschildren}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {rsschildren_select}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_podcast}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {podcast_select}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_mp3ribbon}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {mp3ribbon_select}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_enable_sort}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {sort_select}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_album_sort}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {album_sort_select}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_enable_postcard}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {postcard_select}
       </td>
     </tr>
 
     <tr>
       <th class="uk-text-right">{lang_display_album_desc}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {display_album_desc_select}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_enable_album_views}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {album_views_select}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_enable_views}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {views_select}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_enable_keywords}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {keywords_select}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_image_skin}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {skin_select}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_display_skin}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {dskin_select}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_album_skin}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {askin_select}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_albums_first}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {afirst_select}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_tn_size}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {tn_size_select}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_tnwidth}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {tnwidth_input}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_tnheight}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {tnheight_input}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_av_play_options}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {playback_type}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_ss_enable}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {ss_select}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_rows}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {rows_input}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_columns}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {columns_input}
       </td>
     </tr>
@@ -219,13 +219,13 @@ function change(what) {
 {!endif}
     <tr>
       <th class="uk-text-right">{lang_attached_thumbnail}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {attach_select}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_thumbnail}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         <input type="file" dir="ltr" name="thumbnail"{xhtml}>
       </td>
     </tr>
@@ -237,38 +237,38 @@ function change(what) {
     </tr>
     <tr>
       <th class="uk-text-right">{lang_filename_title}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {filename_title_select}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_sf_enable}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {sf_select}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_allow_download}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {allow_download_select}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_full_display}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {full_select}
       </td>
     </tr>
     {adminattr}
     <tr>
       <th class="uk-text-right">{lang_display_image_size}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {display_image_size}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_usealternate}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {usealternate_select}
       </td>
     </tr>
@@ -279,25 +279,25 @@ function change(what) {
     </tr>
     <tr>
       <th class="uk-text-right">{lang_wm_auto}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {wm_auto_select}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_wm_opacity}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {wm_opacity_select}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_wm_location}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {wm_location_select}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_wm_id}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {wm_select}
       </td>
     </tr>

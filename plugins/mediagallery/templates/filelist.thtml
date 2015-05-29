@@ -1,8 +1,8 @@
-<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
+<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container">
 <!-- BEGIN dirRow -->
 <tr>
   <th colspan="3" style="width:100%;">
-    <span style="font-weight:bold;">{lang_put_files}</span>&nbsp;{directory}&nbsp;<span style="font-weight:bold;">{lang_into_album}</span>&nbsp;
+    <span class="uk-text-bold">{lang_put_files}</span>&nbsp;{directory}&nbsp;<span class="uk-text-bold">{lang_into_album}</span>&nbsp;
   </th>
   <td>
     {destination}

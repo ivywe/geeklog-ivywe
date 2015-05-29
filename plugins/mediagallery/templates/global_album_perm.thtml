@@ -5,7 +5,7 @@
 <input type="hidden" name="admin_menu" value="{admin_menu}"{xhtml}>
 {lang_global_perm_help}
 <br{xhtml}><br{xhtml}>
-  <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed gl-tablelist">
+  <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container gl-tablelist">
     <tr>
       <th>
         {lang_attribute}
@@ -18,12 +18,12 @@
       </th>
     </tr>
     <tr>
-      <td class="mgAdminAlignRight">{lang_group}</td>
+      <td class="uk-text-right">{lang_group}</td>
       <td class="mgAdminAlignLeft" style="vertical-align:middle;">{group_select}</td>
       <td class="mgAdminAlignLeft"><input type="checkbox" name="group_active" value="1"{xhtml}></td>
     </tr>
     <tr>
-      <td class="mgAdminAlignRight">{lang_permissions}</td>
+      <td class="uk-text-right">{lang_permissions}</td>
       <td class="mgAdminAlignLeft" style="vertical-align:middle;">
         <br{xhtml}><br{xhtml}>
    	    {lang_perm_key}
@@ -34,22 +34,22 @@
       <td class="mgAdminAlignLeft"><input type="checkbox" name="perm_active" value="1"{xhtml}></td>
     </tr>
     <tr>
-     <td class="mgAdminAlignRight">{lang_member_upload}</td>
+     <td class="uk-text-right">{lang_member_upload}</td>
      <td class="mgAdminAlignLeft" style="vertical-align:middle;"><input type="checkbox" name="member_upload" value="1"{xhtml}></td>
      <td class="mgAdminAlignLeft"><input type="checkbox" name="upload_active" value="1"{xhtml}></td>
     </tr>
     <tr>
-      <td class="mgAdminAlignRight">{lang_moderate_album}</td>
+      <td class="uk-text-right">{lang_moderate_album}</td>
       <td class="mgAdminAlignLeft" style="vertical-align:middle;"><input type="checkbox" name="moderation" value="1"{xhtml}></td>
       <td class="mgAdminAlignLeft"><input type="checkbox" name="moderate_active" value="1"{xhtml}></td>
     </tr>
     <tr>
-      <td class="mgAdminAlignRight">{lang_mod_group}</td>
+      <td class="uk-text-right">{lang_mod_group}</td>
       <td class="mgAdminAlignLeft" style="vertical-align:middle;">{mod_group_select}</td>
       <td class="mgAdminAlignLeft"><input type="checkbox" name="mod_group_active" value="1"{xhtml}></td>
     </tr>
     <tr>
-      <td class="mgAdminAlignRight">{lang_email_mods_on_submission}</td>
+      <td class="uk-text-right">{lang_email_mods_on_submission}</td>
       <td class="mgAdminAlignLeft" style="vertical-align:middle;"><input type="checkbox" name="email_mod" value="1"{xhtml}></td>
       <td class="mgAdminAlignLeft"><input type="checkbox" name="email_mod_active" value="1"{xhtml}></td>
     </tr>

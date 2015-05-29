@@ -1,7 +1,7 @@
 <div class="mg_navbar" style="vertical-align:middle;padding:2px 5px 2px 0px;">
 
 <span style="font-weight:bold;padding:0 20px 0 5px;">{album_id_display}</span>
-<span style="font-weight:bold;">{page_number}</span>
+<span class="uk-text-bold">{page_number}</span>
 
 <div class="mg_pagination">{bottom_pagination}</div>
 

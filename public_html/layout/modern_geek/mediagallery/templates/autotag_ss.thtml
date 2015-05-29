@@ -19,7 +19,7 @@
         show{ss_count}.play();
     });
   </script>
-  <span style="clear:both;"></span>
+  <span class="uk-clearfix"></span>
   <span style="width: {width}px; text-align: center;font-style: italic;font-size: smaller;text-indent: 0;">
     {caption}
   </span>

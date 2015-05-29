@@ -6,9 +6,9 @@
       {media_item_thumbnail}
     </div>
     <div style="text-align:center;vertical-align:top;">
-      <div style="padding-top:10px;padding-bottom:5px;"><span style="font-weight:bold;">{album_title}</span> ({subalbum_media_count})</div>
+      <div style="padding-top:10px;padding-bottom:5px;"><span class="uk-text-bold">{album_title}</span> ({subalbum_media_count})</div>
       <div style="padding-bottom:5px;"><span class="pluginSmallText">{album_desc}</span></div>
-      <div style="padding-bottom:5px;"><span style="font-weight:bold;">{updated_prompt}</span> {album_last_update}</div>
+      <div style="padding-bottom:5px;"><span class="uk-text-bold">{updated_prompt}</span> {album_last_update}</div>
       <div style="padding-bottom:5px;">{subalbumlist}</div>
     </div>
   </div>

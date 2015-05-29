@@ -49,6 +49,7 @@
 <script src="{layout_url}/vendor/uikit/js/components/grid.js"></script>
 <script src="{layout_url}/vendor/uikit/js/components/slideshow.js"></script>
 <script src="{layout_url}/vendor/uikit/js/components/slideshow-fx.js"></script>
+<script src="{layout_url}/vendor/uikit/js/components/slideset.js"></script>
 <!-- } Front-end framework UIkit -->
 
 <!-- PDF}–Ê•\Ž¦ { -->

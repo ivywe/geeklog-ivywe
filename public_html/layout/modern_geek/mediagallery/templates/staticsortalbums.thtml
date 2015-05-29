@@ -1,32 +1,32 @@
 <form class="uk-form" method="post" action="{s_form_action}" name="mg_static_album_sort" enctype="multipart/form-data">
   <div class="mgplugin">
-  <table class="uk-table uk-table-condensed uk-table-striped uk-table-hover gl-tablelist" style="width:100%">
+  <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container gl-tablelist" style="width:100%">
     <tr>
-      <td class="required mgAdminAlignRight" style="width:50%">{lang_starting_album}</td>
+      <td class="required uk-text-right" style="width:50%">{lang_starting_album}</td>
       <td class="mgAdminAlignLeft">
         {album_select}
       </td>
     </tr>
     <tr>
-      <td class="required mgAdminAlignRight" style="width:50%">{lang_sort_by}</td>
+      <td class="required uk-text-right" style="width:50%">{lang_sort_by}</td>
       <td class="mgAdminAlignLeft">
         {sort_field_select}
       </td>
     </tr>
     <tr>
-      <td class="required mgAdminAlignRight" style="width:50%">{lang_ascending}</td>
+      <td class="required uk-text-right" style="width:50%">{lang_ascending}</td>
       <td class="mgAdminAlignLeft">
         <input type="radio" name="sortorder" value="0" checked="checked"{xhtml}>
       </td>
     </tr>
     <tr>
-      <td class="required mgAdminAlignRight" style="width:50%">{lang_descending}</td>
+      <td class="required uk-text-right" style="width:50%">{lang_descending}</td>
       <td class="mgAdminAlignLeft">
         <input type="radio" name="sortorder" value="1"{xhtml}>
       </td>
     </tr>
     <tr>
-      <td class="required mgAdminAlignRight" style="width:50%">{lang_process_subs}</td>
+      <td class="required uk-text-right" style="width:50%">{lang_process_subs}</td>
       <td class="mgAdminAlignLeft">
         <input type="checkbox" name="processsub" value="1"{xhtml}>
       </td>

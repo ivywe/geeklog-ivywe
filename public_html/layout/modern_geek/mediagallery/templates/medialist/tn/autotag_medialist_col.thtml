@@ -9,7 +9,7 @@
     <img src="{filename_tn}" alt="{media_title}" class="uk-overlay-scale uk-border-rounded uk-responsive-height uk-responsive-width {class}" style="max-width:500px" />
 		</a>
 
-    <figcaption class="uk-overlay-panel uk-overlay-bottom uk-overlay-slide-bottom">{media_title}{!if media_desc}{!endif}</figcaption>
+    <figcaption class="uk-overlay-panel uk-overlay-bottom uk-overlay-slide-bottom">{media_title}{!if media_desc}: {media_desc}{!endif}</figcaption>
 </figure>
 
 	</div>

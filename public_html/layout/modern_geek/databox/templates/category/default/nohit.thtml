@@ -2,7 +2,7 @@
 <div>
   <p id="breadcrumbs"><a href="{site_url}/">{home}</a>{category_top}</p>
 
-  <h2>{category_name}</h2>
+  <h2 class="uk-h2">{category_name}</h2>
   <p>{category_description}</p>
   <p>{lang_nohit}</p>
 

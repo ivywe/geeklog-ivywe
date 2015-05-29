@@ -1,2 +1,5 @@
-<!-- layout/(theme)/databox/templates/data/default/row.thtml { -->
-<!-- } layout/(theme)/databox/templates/data/default/row.thtml -->
+<!-- plugins/databox/templates/data/default/row.thtml { -->
+      <tr>
+        {col_var}
+      </tr>
+<!-- } plugins/databox/templates/data/default/row.thtml -->

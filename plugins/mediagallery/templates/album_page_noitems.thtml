@@ -1,4 +1,4 @@
-<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
+<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container">
     <tr>
         <td align="center" style="width:100%">
           {lang_no_image}

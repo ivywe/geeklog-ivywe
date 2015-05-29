@@ -1,4 +1,6 @@
-<!-- layout/(theme)/databox/templates/category/default/row.thtml { -->
+<!-- plugins/databox/templates/search/default/row.thtml 20140926{ -->
+
 {grp_var}
 {col_var}
-<!-- } layout/(theme)/databox/templates/category/default/row.thtml -->
+
+<!-- } plugins/databox/templates/search/default/row.thtml -->

@@ -11,7 +11,7 @@
 
       <tr>
         <td colspan="3">
-          <span style="font-weight:bold;">{lang_send_from}</span>
+          <span class="uk-text-bold">{lang_send_from}</span>
         </td>
         <td rowspan="6" style="width:240px">
           <div style="float:right;margin:10px;">
@@ -42,7 +42,7 @@
       </tr>
       <tr>
         <td colspan="3">
-          <span style="font-weight:bold;">{lang_send_to}</span>
+          <span class="uk-text-bold">{lang_send_to}</span>
         </td>
       </tr>
       <tr>
@@ -63,7 +63,7 @@
       </tr>
       <tr>
         <th colspan="4">
-          <span style="font-weight:bold;">{lang_subject}</span>
+          <span class="uk-text-bold">{lang_subject}</span>
         </th>
       </tr>
       <tr>
@@ -73,7 +73,7 @@
       </tr>
       <tr>
         <th colspan="4">
-          <span style="font-weight:bold;">{lang_message}</span>
+          <span class="uk-text-bold">{lang_message}</span>
         </th>
       </tr>
       <tr>

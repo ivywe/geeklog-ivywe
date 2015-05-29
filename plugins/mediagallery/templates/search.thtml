@@ -1,7 +1,7 @@
 <table class="uk-table uk-table-condensed uk-overflow-container">
   <tr>
     <td class="pluginCellTitle" style="text-align:left;vertical-align:middle;">
-      <span style="font-weight:bold;">{lang_search_title}</span>
+      <span class="uk-text-bold">{lang_search_title}</span>
     </td>
     <td class="pluginCellTitle" style="text-align:right;vertical-align:middle;">
 	  {select_adminbox}
@@ -19,7 +19,7 @@
   <td style="text-align:right;">
     {lang_search_for}:
   </td>
-  <td style="text-align:left;">
+  <td class="uk-text-left">
     <input type="text" name="keywords" size="40" value=""{xhtml}>&nbsp;
     {keytype_select}
   </td>
@@ -29,7 +29,7 @@
   <td style="text-align:right;">
     {lang_search_in}:
   </td>
-  <td style="text-align:left;">
+  <td class="uk-text-left">
     {swhere_select}
   </td>
 </tr>
@@ -38,7 +38,7 @@
   <td style="text-align:right;">
     {lang_category}:
   </td>
-  <td style="text-align:left;">
+  <td class="uk-text-left">
 	{cat_select}
   </td>
 </tr>
@@ -47,7 +47,7 @@
   <td style="text-align:right;">
     {lang_user}:
   </td>
-  <td style="text-align:left;">
+  <td class="uk-text-left">
 	{user_select}
   </td>
 </tr>
@@ -57,7 +57,7 @@
   <td style="text-align:right;">
     {lang_results}:
   </td>
-  <td style="text-align:left;">
+  <td class="uk-text-left">
     {nresults_select}&nbsp;{lang_per_page}
   </td>
 </tr>

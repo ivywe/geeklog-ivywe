@@ -1,50 +1,94 @@
-<!-- plugins/databox/templates/search/default/argument.thtml 20141015{ -->
+<!-- plugins/databox/templates/search/default/argument.thtml 20150108{ -->
 
-<section id="search-list">
+<form class="uk-form" action="{site_url}/{this_script}" method="get">
+<div >
+<!-- argument example -->
+<!-- 以下は参考例です ない場合は表示されません -->
 
-<form action="{site_url}/databox/search.php" method="get" class="uk-form">
+  <p><span class="uk-text-success"> &#123;fieldset&#125;</span>:{fieldset}
+  <span class="uk-text-success"> &#123;fieldset_name&#125;</span>:{fieldset_name}
+  </p>
 
-	<!-- templatedir　テンプレートディレクトリを指定する 省略可 -->
-	<input name="templatedir" value="" type="hidden">
+  <p><span class="uk-text-success"> &#123;t&#125;</span>:{t}
+  <span class="uk-text-success"> &#123;teq&#125;</span>:{teq}
+  </p>
 
-	<!-- fieldset　タイプを指定する -->
-	<input name="fieldset" value="1" type="hidden">
+  <p><span class="uk-text-success"> &#123;fieldset&#125;</span>:{fieldset}
+  <span class="uk-text-success"> &#123;fieldset_name&#125;</span>:{fieldset_name}
+  </p>
 
-	<!-- gor_2 カテゴリグループid=2のカテゴリを複数指定する　OR条件 -->
-	<h3>サイトの種別(OR検索)</h3>
-	<div class="faqcheckbox">
-		{gor_2}
-		<input name="gor_2[]" value="" type="hidden">
-	</div>
+  <p><span class="uk-text-success"> &#123;gor_3&#125;</span>:{gor_3}
+  <input name="gor_3[]" value="" type="hidden">
+  </p>
 
-	<!-- gor_1 カテゴリグループid=1のカテゴリを複数指定する　OR条件 -->
-	<h3>制作会社別(OR検索)</h3>
-	<div class="faqcheckbox">
-		{gor_1}
-		<input name="gor_1[]" value="" type="hidden">
-	</div>
+  <p><span class="uk-text-success"> &#123;gand_8&#125;</span>:{gand_8}
+  <input name="gand_8[]" value="" type="hidden">
+  </p>
 
-	<!-- gand_3 カテゴリグループid=3のカテゴリを複数指定する　AND条件 -->
-	<h3>アドオン別(AND検索)</h3>
-	<div class="faqcheckbox">
-		{gand_3}
-		<input name="gand_3[]" value="" type="hidden">
-	</div>
+  <p><span class="uk-text-success"> &#123;gor_3_names&#125;</span>:{gor_3_names}
+  </p>
+  <p><span class="uk-text-success"> &#123;gor_3_1_id&#125;</span>:{gor_3_1_id}
+  </p>
+  <p><span class="uk-text-success"> &#123;gor_3_2_id&#125;</span>:{gor_3_2_id}
+  </p>
+  <p><span class="uk-text-success"> &#123;gor_3_1_name&#125;</span>:{gor_3_1_name}
+  </p>
+  <p><span class="uk-text-success"> &#123;gor_3_2_name&#125;</span>:{gor_3_2_name}
+  </p>
 
-	<?php $perpage = $this->get_var('perpage'); if($perpage==""){ $perpage = 50; } ?>
-	<div class="uk-text-right">
-		<select type="text" name="perpage">
-			<option value="50"></option>
-			<option value="20"<?php if(!strcmp("20",$perpage)){ echo ' selected="selected"'; } ?>>20件</option>
-			<option value="50"<?php if(!strcmp("50",$perpage)){ echo ' selected="selected"'; } ?>>50件</option>
-			<option value="150"<?php if(!strcmp("150",$perpage)){ echo ' selected="selected"'; } ?>>150件</option>
-		</select>
+  <p><span class="uk-text-success"> &#123;gand_8_names&#125;</span>:{gand_8_names}
+  </p>
+  <p><span class="uk-text-success"> &#123;gand_8_1_id&#125;</span>:{gand_8_1_id}
+  </p>
+  <p><span class="uk-text-success"> &#123;gand_8_2_id&#125;</span>:{gand_8_2_id}
+  </p>
+  <p><span class="uk-text-success"> &#123;gand_8_1_name&#125;</span>:{gand_8_1_name}
+  </p>
+  <p><span class="uk-text-success"> &#123;gand_8_2_name&#125;</span>:{gand_8_2_name}
+  </p>
 
-		<input value="検索" class="waitMe_ex uk-button uk-button-success uk-button-large" type="submit" style="width: 130px">
+  <p><span class="uk-text-success"> &#123;aeq_4&#125;</span>:{aeq_4}
+  </p>
+  <p><span class="uk-text-success"> &#123;a_4&#125;</span>:{a_4}
+  </p>
 
-	</div>
+  <p><span class="uk-text-success"> &#123;afr_6&#125;</span>:{afr_6}
+  </p>
 
+  <p><span class="uk-text-success"> &#123;ato_6&#125;</span>:{ato_6}
+  </p>
+
+  <p><span class="uk-text-success"> &#123;ams_47&#125;</span>:{ams_47}
+  <input name="ams_47[]" value="" type="hidden">
+  </p>
+  <p><span class="uk-text-success"> &#123;ams_47_names&#125;</span>:{ams_47_names}
+  </p>
+  <p><span class="uk-text-success"> &#123;ams_47_1_no&#125;</span>:{ams_47_1_no}
+  </p>
+  <p><span class="uk-text-success"> &#123;ams_47_2_no&#125;</span>:{ams_47_2_no}
+  </p>
+  <p><span class="uk-text-success"> &#123;ams_47_1_name&#125;</span>:{ams_47_1_name}
+  </p>
+  <p><span class="uk-text-success"> &#123;ams_47_2_name&#125;</span>:{ams_47_2_name}
+  </p>
+
+  <p><span class="uk-text-success"> &#123;templatedir&#125;</span>:{templatedir}
+  </p>
+
+  <p><span class="uk-text-success"> &#123;perpage&#125;</span>:{perpage}
+  </p>
+
+  <p><span class="uk-text-success"> &#123;page&#125;</span>:{page}
+  </p>
+
+  <p><span class="uk-text-success"> &#123;nohitmsg&#125;</span>:{nohitmsg}
+  </p>
+  <p><span class="uk-text-success"> &#123;order&#125;</span>:{order}
+  </p>
+
+</div>
+<p><input value="{lang_search}" type="submit"></p>
 </form>
-</section>
+
 
 <!-- } plugins/databox/templates/search/default/argument.thtml -->

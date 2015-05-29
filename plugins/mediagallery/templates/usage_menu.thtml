@@ -5,18 +5,18 @@
   </tr>
   <tr>
     <td style="width:30%;text-align:right;">
-      <span style="font-weight:bold;">{lang_select_date}</span>
+      <span class="uk-text-bold">{lang_select_date}</span>
   </td>
   <td align="left">
     {month_select}&nbsp;
 	{day_select}&nbsp;
 	{year_select}&nbsp;&nbsp;
-	<input type="checkbox" name="alldates"{xhtml}><span style="font-weight:bold;">{lang_all_dates}</span>
+	<input type="checkbox" name="alldates"{xhtml}><span class="uk-text-bold">{lang_all_dates}</span>
   </td>
 </tr>
 <tr>
   <td align="right">
-    <span style="font-weight:bold;">{lang_select_user}</span>
+    <span class="uk-text-bold">{lang_select_user}</span>
   </td>
   <td align="left">
     {user_select}

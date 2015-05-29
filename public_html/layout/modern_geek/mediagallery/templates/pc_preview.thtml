@@ -1,6 +1,6 @@
 <table class="uk-table uk-table-condensed uk-overflow-container">
 <tr>
-<th><span style="font-weight:bold;">{lang_postcard_preview}</span></th>
+<th><span class="uk-text-bold">{lang_postcard_preview}</span></th>
 </tr>
 <tr>
 <td>
@@ -21,7 +21,7 @@
         <tr>
           <td>
             <div style="font-family: arial,'lucida console',sans-serif;font-size:small;">
-            <span style="font-weight:bold;">{lang_to}</span>
+            <span class="uk-text-bold">{lang_to}</span>
             </div>
           </td>
           <td>
@@ -31,7 +31,7 @@
         <tr>
           <td>
           <div style="font-family: arial,'lucida console',sans-serif;font-size:small;">
-            <span style="font-weight:bold;">{lang_from}</span>
+            <span class="uk-text-bold">{lang_from}</span>
           </div>
           </td>
           <td>
@@ -41,7 +41,7 @@
         <tr>
           <td>
           <div style="font-family: arial,'lucida console',sans-serif;font-size:small;">
-            <span style="font-weight:bold;">{lang_subject}</span>
+            <span class="uk-text-bold">{lang_subject}</span>
           </div>
           </td>
           <td>
@@ -61,7 +61,7 @@
       <hr style="width:100%;"{xhtml}>
           {postcard_message}
 	  <hr style="width:100%;"{xhtml}>
-<p style="text-align:center;"><a href="{site_url}"><span style="font-weight:bold;">{lang_visit} {site_name} - {site_slogan}</span></a></p>
+<p style="text-align:center;"><a href="{site_url}"><span class="uk-text-bold">{lang_visit} {site_name} - {site_slogan}</span></a></p>
 </td>
 </tr>
 <tr>

@@ -1,7 +1,7 @@
 <table class="uk-table uk-table-condensed uk-overflow-container">
 <tr>
 <td class="pluginCellTitle" style="width:75%;vertical-align:middle;">
-<span style="font-weight:bold;">{album_title}</span>
+<span class="uk-text-bold">{album_title}</span>
 </td>
 <td class="pluginCellTitle" style="text-align:right;vertical-align:middle;">
 {pagination}

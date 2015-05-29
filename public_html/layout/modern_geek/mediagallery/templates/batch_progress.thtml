@@ -31,27 +31,28 @@ function updateButton()
 
 <div style="text-align:center;"><h1>{L_BATCH}</h1></div>
 <form class="uk-form" name="form_batch_progress" method="post" action="{S_BATCH_ACTION}">
-<div class="mgPluginMI" style="text-align:center;">
-<table class="uk-table uk-table-condensed uk-overflow-container">	<tr>
-		<td class="pluginCellTitle" align="center"><span style="font-weight:bold;">{L_BATCH_PROCESS}</span></td>
+<div>
+<table class="uk-table uk-table-condensed uk-overflow-container">
+	<tr>
+		<td class="uk-text-center"><span class="uk-text-bold">{L_BATCH_PROCESS}</span></td>
 	</tr>
 	<tr>
-		<td align="center">
+		<td class="uk-text-center">
 			<br{xhtml}>{PROCESSING_MESSAGES}<br{xhtml}>
 		</td>
 	</tr>
 	<tr>
-		<td align="center">
+		<td class="uk-text-center">
 			<table class="uk-table uk-table-condensed uk-overflow-container">
 				<tr>
 					<td colspan="3">&nbsp;</td>
 				</tr>
 				<tr>
-					<td colspan="2" style="while-space:nowrap;" align="left">
+					<td colspan="2" class="uk-text-nowrap">
 						<b>{L_STATUS}</b>
 					</td>
-					<td width="200"  style="while-space:nowrap;" align="center">
-						<span style="font-weight:bold;">{SESSION_PERCENT}</span><br{xhtml}>
+					<td width="200" class="uk-text-nowrap; uk-text-center">
+						<span class="uk-text-bold">{SESSION_PERCENT}</span><br{xhtml}>
 						{SESSION_PERCENT_BOX}
 					</td>
 				</tr>
@@ -65,24 +66,24 @@ function updateButton()
 					<td align="center" colspan="2"><b>{L_PROCESSING_DETAILS}</b></td>
 				</tr>
 				<tr>
-					<td style="while-space:nowrap;" align="left">{L_TOTAL_ITEMS}</td>
-					<td style="while-space:nowrap;" align="right">{TOTAL_ITEMS}</td>
+					<td class="uk-text-nowrap uk-text-left">{L_TOTAL_ITEMS}</td>
+					<td class="uk-text-nowrap uk-text-right">{TOTAL_ITEMS}</td>
 				</tr>
 				<tr>
-					<td style="while-space:nowrap;" align="left">{L_ITEMS_PROCESSED}</td>
-					<td style="while-space:nowrap;" align="right">{ITEMS_PROCESSED}</td>
+					<td class="uk-text-nowrap uk-text-left">{L_ITEMS_PROCESSED}</td>
+					<td class="uk-text-nowrap uk-text-right">{ITEMS_PROCESSED}</td>
 				</tr>
 				<tr>
-					<td style="while-space:nowrap;" align="left">{L_ITEMS_REMAINING}</td>
-					<td style="while-space:nowrap;" align="right">{ITEMS_REMAINING}</td>
+					<td class="uk-text-nowrap uk-text-left">{L_ITEMS_REMAINING}</td>
+					<td class="uk-text-nowrap uk-text-right">{ITEMS_REMAINING}</td>
 				</tr>
 				<tr>
-					<td style="while-space:nowrap;" align="left">{L_POSTS_LAST_CYCLE}</td>
-					<td style="while-space:nowrap;" align="right">{POST_LIMIT}</td>
+					<td class="uk-text-nowrap uk-text-left">{L_POSTS_LAST_CYCLE}</td>
+					<td class="uk-text-nowrap uk-text-right">{POST_LIMIT}</td>
 				</tr>
 				<tr>
-					<td style="while-space:nowrap;" align="left">{L_ITEM_RATE}</td>
-					<td style="while-space:nowrap;" align="right">{ITEM_RATE}</td>
+					<td class="uk-text-nowrap uk-text-left">{L_ITEM_RATE}</td>
+					<td class="uk-text-nowrap uk-text-right">{ITEM_RATE}</td>
 				</tr>
 			</table>
 		</td>
@@ -95,18 +96,18 @@ function updateButton()
 					<td align="center" colspan="2"><b>{L_ACTIVE_PARAMETERS}</b></td>
 				</tr>
 				<tr>
-					<td style="while-space:nowrap;" align="left">{L_TIME_LIMIT}</td>
-					<td style="while-space:nowrap;" align="right">{TIME_LIMIT}</td>
+					<td class="uk-text-nowrap uk-text-left">{L_TIME_LIMIT}</td>
+					<td class="uk-text-nowrap uk-text-right">{TIME_LIMIT}</td>
 				</tr>
 				<tr>
-					<td style="while-space:nowrap;" align="left">{L_REFRESH_RATE}</td>
-					<td style="while-space:nowrap;" align="right">
+					<td class="uk-text-nowrap uk-text-left">{L_REFRESH_RATE}</td>
+					<td class="uk-text-nowrap uk-text-right">
 						<input type="text" name="refresh_rate" value="{REFRESH_RATE}" size="3" align="right"{xhtml}>
 					</td>
 				</tr>
 				<tr>
-					<td style="while-space:nowrap;" align="left">{L_ITEMS_PER_CYCLE}</td>
-					<td style="while-space:nowrap;" align="right">
+					<td class="uk-text-nowrap uk-text-left">{L_ITEMS_PER_CYCLE}</td>
+					<td class="uk-text-nowrap uk-text-right">
 						<input type="text" name="item_limit" value="{ITEM_LIMIT}" size="3" align="right"{xhtml}>
 					</td>
 				</tr>

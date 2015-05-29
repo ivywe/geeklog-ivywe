@@ -7,10 +7,10 @@
 {!else}
     <div class="mg_gallery_info2" style="margin-left:{column_width2};">
 {!endif}
-      <div style="padding-top:10px;padding-bottom:5px;"><span style="font-weight:bold;">{album_title}</span> ({subalbum_media_count})</div>
+      <div style="padding-top:10px;padding-bottom:5px;"><span class="uk-text-bold">{album_title}</span> ({subalbum_media_count})</div>
       <div style="padding-bottom:5px;">{album_desc}</div>
-      <div style="padding-bottom:5px;"><span style="font-weight:bold;">{updated_prompt}</span> {album_last_update}</div>
-      <div><span style="font-weight:bold;">{lang_views}</span> {views}</div>
+      <div style="padding-bottom:5px;"><span class="uk-text-bold">{updated_prompt}</span> {album_last_update}</div>
+      <div><span class="uk-text-bold">{lang_views}</span> {views}</div>
     </div>
   </div>
 
@@ -20,7 +20,7 @@
 
 {!if lang_subalbums}
   <div class="mg_gallery_subalbums">
-    <div style="padding-top:10px;"><span style="font-weight:bold;">{lang_subalbums}</span> {subalbumcount}</div>
+    <div style="padding-top:10px;"><span class="uk-text-bold">{lang_subalbums}</span> {subalbumcount}</div>
     {saulstart}{subalbumlist}{saulend}
   </div>
 {!endif}

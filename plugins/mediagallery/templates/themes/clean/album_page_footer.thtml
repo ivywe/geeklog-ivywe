@@ -1,7 +1,7 @@
 <table width="100%" cellspacing="4" border="0" cellpadding="0">
   <tr class="pluginRow2">
     <td align="center" colspan="2" style="vertical-align:middle;padding:2px 5px 2px 0px;">
-      <span style="font-weight:bold;">{page_number}</span>
+      <span class="uk-text-bold">{page_number}</span>
     </td>
   </tr>
   <tr>

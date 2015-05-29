@@ -2,10 +2,10 @@
   <table class="uk-table uk-table-condensed uk-overflow-container">
     <tr>
       <td class="pluginCellTitle" style="width:160px;" align="center">
-        <span style="font-weight:bold;">{lang_media_item}</span>
+        <span class="uk-text-bold">{lang_media_item}</span>
       </td>
       <td  class="pluginCellTitle" align="center" style="width:160px;vertical-align:top;">
-        <span style="font-weight:bold;">{lang_attached_thumbnail}</span>&nbsp;
+        <span class="uk-text-bold">{lang_attached_thumbnail}</span>&nbsp;
       </td>
     </tr>
     <tr>

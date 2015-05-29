@@ -32,7 +32,7 @@ function doUnCheckAll()
     <input type="hidden" name="purgefiles" value="{purgefiles}"{xhtml}>
     <table class="uk-table uk-table-hover uk-table-condensed uk-overflow-container">
       <tr>
-        <td class="pluginCellTitle" style="text-align:center;"><span style="font-weight:bold;">{lang_filelist}</span></td>
+        <td class="pluginCellTitle" style="text-align:center;"><span class="uk-text-bold">{lang_filelist}</span></td>
       </tr>
       <tr>
         <td>

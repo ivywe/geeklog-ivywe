@@ -4,7 +4,7 @@
 </div>
 <div id="divSWFUploadAlbumSelect">
   <form class="uk-form" method="post" name="form_album" action=""><div>
-    <span style="font-weight:bold;">{lang_destination}:</span> {album_select}
+    <span class="uk-text-bold">{lang_destination}:</span> {album_select}
   </div></form>
 </div>
 <div id="divSWFUploadAllowedTypes">

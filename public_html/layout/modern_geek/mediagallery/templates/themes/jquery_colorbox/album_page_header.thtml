@@ -8,7 +8,7 @@
   {!endif}
   {select_adminbox}
 </div>
-<div style="clear:both;"></div>
+<div class="uk-clearfix"></div>
 
 {!if album_description}
 <div style="text-align:left;line-height:1.5em;font-size:1.2em;text-indent:0;padding:1em 50px;">

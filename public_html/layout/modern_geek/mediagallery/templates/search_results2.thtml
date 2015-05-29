@@ -1,9 +1,9 @@
 <table class="uk-table uk-table-condensed uk-overflow-container">
   <tr>
-    <td class="pluginCellTitle" colspan="1" style="text-align:left;">
-      {lang_search_results}: <span style="font-weight:normal;">{search_keywords}</span>
+    <td class="uk-text-left">
+      {lang_search_results}: <span class="uk-text-normal">{search_keywords}</span>
     </td>
-    <td class="pluginCellTitle" colspan="2" style="text-align:right;vertical-align:middle;white-space:nowrap;">
+    <td class="uk-text-right uk-vertical-middle uk-text-nowrap" colspan="2">
       <form class="uk-form" name="mgsearch" method="post" action="{site_url}/search.php" style="margin:0;padding:0">
       <div>
       <input type="text" name="keywords" value="{keywords}"{xhtml}>
@@ -15,14 +15,14 @@
     </td>
   </tr>
   <tr>
-    <td class="pluginSubCellTitle" colspan="3">
-      <span style="float:left;vertical-align:middle;"><a href="{return_url}">{lang_return_to_index}</a></span>
-      <span style="float:right;vertical-align:middle;">{top_pagination}</span>
+    <td colspan="3">
+      <span class="uk-float-left uk-vertical-middle"><a href="{return_url}">{lang_return_to_index}</a></span>
+      <span class="uk-float-right uk-vertical-middle">{top_pagination}</span>
     </td>
   </tr>
 </table>
 
-<div class="mgPluginMI" style="margin:10px auto;">
+<div style="margin:10px auto;">
 <table class="uk-table uk-table-condensed uk-overflow-container">
 <!-- BEGIN ImageRow -->
 <tr>
@@ -39,7 +39,7 @@
 <table class="uk-table uk-table-condensed uk-overflow-container">
   <tr class="pluginFooter">
     <td colspan="2" style="text-align:center;vertical-align:middle;padding:2px 5px 2px 0px;">
-      <span style="font-weight:bold;">{page_number}</span>
+      <span class="uk-text-bold">{page_number}</span>
     </td>
   </tr>
   <tr>

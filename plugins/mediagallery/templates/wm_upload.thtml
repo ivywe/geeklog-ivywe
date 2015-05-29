@@ -5,27 +5,27 @@
 {max_file_size}
 <input type="hidden" name="album_id" value="0"{xhtml}>
 <input type="hidden" name="action" value="{action}"{xhtml}>
-    <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
+    <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container">
       <tr>
         <th colspan="2" style="width:100%;">
           {lang_watermark_upload}
         </th>
       </tr>
       <tr>
-        <td class="required mgAdminAlignRight" style="width:20%;">{lang_file}</td>
-        <td class="mgAdminAlignLeft">
+        <td class="required uk-text-right" style="width:20%;">{lang_file}</td>
+        <td class="uk-text-right">
 		  {max_file_size}
 	      <input type="file" dir="ltr" name="newmedia[]" size="45"{xhtml}>
 	    </td>
       </tr>
       <tr>
-        <td class="mgAdminAlignRight required" style="width:20%;">{lang_description}</td>
-        <td class="mgAdminAlignLeft">
+        <td class="uk-text-right uk-text-warning" style="width:20%;">{lang_description}</td>
+        <td class="uk-text-left">
 		  <textarea name="description[]" cols="45" rows="2"></textarea>
 	    </td>
       </tr>
       <tr>
-        <td colspan="2" class="mgAdminAlignLeft required" style="width:50%;">{public}</td>
+        <td colspan="2" class="uk-text-left uk-text-warning" style="width:50%;">{public}</td>
       </tr>
     </table>
 

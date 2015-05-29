@@ -11,7 +11,7 @@
 <div style="text-align:left;">
 <form class="uk-form" method="post" name="form_album" action="{s_form_action}">
 <div style="margin:5px 2px">
-<span style="font-weight:bold;">{lang_destination}:</span> {album_select}
+<span class="uk-text-bold">{lang_destination}:</span> {album_select}
 </div>
 <applet title="JUpload"
         name="JUpload"

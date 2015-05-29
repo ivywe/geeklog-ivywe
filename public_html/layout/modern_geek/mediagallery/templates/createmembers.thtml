@@ -21,7 +21,7 @@ function doUnCheckAll()
 //]]>
 </script>
 <form class="uk-form" name="members" method="post" action="{s_form_action}">
-  <table class="uk-table uk-table-condensed uk-table-striped uk-table-hover">
+  <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container">
     <tr>
       <th align="left" style="width:20px;">{lang_select}</th>
       <th align="center">{lang_username}</th>

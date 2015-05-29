@@ -6,25 +6,25 @@
     </tr>
     <tr>
       <th class="uk-text-right">{lang_member_upload}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {uploads}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_moderate_album}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {moderate}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_mod_group}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {mod_dropdown}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_email_mods_on_submission}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {email_mod_select}
       </td>
     </tr>
@@ -38,13 +38,13 @@
     </tr>
     <tr>
       <th class="uk-text-right">{lang_owner}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {owner_select}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_group}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {group_dropdown}
       </td>
     </tr>
@@ -55,13 +55,13 @@
     </tr>
     <tr>
       <th class="uk-text-right">{lang_hidden}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {hidden}
       </td>
     </tr>
     <tr>
       <th class="uk-text-right">{lang_force_child_update}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {force_child_update}
       </td>
     </tr>

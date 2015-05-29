@@ -305,7 +305,8 @@ $LANG_DATABOX_ADMIN['backupmsg'] =
 アップロードファイルは別途バックアップしてください。<br".XHTML.">
 ";
 $LANG_DATABOX_ADMIN['restoremsg'] = 
-"リストアするファイルを選択してください。<br".XHTML.">
+"{$_CONF['backup_path']}"."databox/にある"
+."ファイル名を指定してください。（省略時databox.xml）<br".XHTML.">
 DataBox のデータベースデータをリストアします。<br".XHTML.">
 アップロードファイルは別途もどしてください。<br".XHTML.">
 ";

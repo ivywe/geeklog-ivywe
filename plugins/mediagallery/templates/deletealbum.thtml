@@ -1,23 +1,23 @@
-<span style="font-weight:bold;">{lang_edit_title}</span>
+<span class="uk-text-bold">{lang_edit_title}</span>
 <p>
 <form class="uk-form" method="post" action="{s_form_action}">
 <input type="hidden" name="album_id" value="{album_id}">
 <input type="hidden" name="action" value="confalbum">
-<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
+<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container">
   <tr>
     <td style="width:15%;text-align:right;">
-      <span style="font-weight:bold;">{lang_title}</span>
+      <span class="uk-text-bold">{lang_title}</span>
     </td>
     <td colspan="2">{album_title}</td>
   </tr>
   <tr>
-    <td style="width:15%;text-align:right;"><span style="font-weight:bold;">{lang_description}</span></td>
+    <td style="width:15%;text-align:right;"><span class="uk-text-bold">{lang_description}</span></td>
     <td colspan="2" rowspan="3" style="vertical-align:top;">{album_desc}</td>
   </tr>
   <tr><td colspan="3">&nbsp;</td></tr>
   <tr><td colspan="3">&nbsp;</td></tr>
   <tr>
-    <td style="width:15%;text-align:right;"><span style="font-weight:bold;">{lang_move_all_media}</span></td>
+    <td style="width:15%;text-align:right;"><span class="uk-text-bold">{lang_move_all_media}</span></td>
 	<td colspan="2">{select_destination}</td>
   </tr>
   <tr>

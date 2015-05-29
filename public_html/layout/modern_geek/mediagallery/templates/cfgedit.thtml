@@ -2,11 +2,11 @@
 <script type="text/javascript" src="{site_url}/js/admin_editor.js"></script>
 {configuration_check}
 <div id="pe_navbar" class="jsenabled_show" style="display:none">{navbar}</div>
-<div style="clear:both;"></div>
+<div class="uk-clearfix"></div>
 <form class="uk-form" method="post" action="{s_form_action}" name="mg_config_form" enctype="multipart/form-data" id="mg_config_form">
 
 <div id="pe_general">
-    <table class="uk-table uk-table-condensed uk-table-striped uk-table-hover">
+    <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container">
       <tr>
         <th colspan="2">
           {lang_general_options}
@@ -20,14 +20,14 @@
         </td>
       </tr>
       <tr>
-        <td style="width:50%;" class="mgAdminAlignRight">{lang_loginrequired}</th>
+        <td style="width:50%;" class="uk-text-right">{lang_loginrequired}</th>
         <td class="mgAdminAlignLeft">
           <input type="radio" name="loginrequired" value="0" {lr_no_checked}{xhtml}>{lang_no}&nbsp;&nbsp;
           <input type="radio" name="loginrequired" value="1" {lr_yes_checked}{xhtml}>{lang_yes}
         </td>
       </tr>
       <tr>
-        <td style="width:50%;" class="mgAdminAlignRight">{lang_htmlallowed}</th>
+        <td style="width:50%;" class="uk-text-right">{lang_htmlallowed}</th>
         <td class="mgAdminAlignLeft">
           <input type="radio" name="htmlallowed" value="0" {ha_no_checked}{xhtml}>{lang_no}&nbsp;&nbsp;
           <input type="radio" name="htmlallowed" value="1" {ha_yes_checked}{xhtml}>{lang_yes}
@@ -169,7 +169,7 @@
 
 <div id="pe_display"  class="jsenabled_hide">
 
-	<table class="uk-table uk-table-condensed uk-table-striped uk-table-hover">
+	<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container">
       <tr>
         <th colspan="2">
           {lang_display_options}
@@ -374,7 +374,7 @@
 
 <div id="pe_batch" class="jsenabled_hide">
 
-  <table class="uk-table uk-table-condensed uk-table-striped uk-table-hover gl-tablelist" style="width:100%">
+  <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container gl-tablelist" style="width:100%">
       <tr>
         <th colspan="2">
           {lang_batch_options}
@@ -404,7 +404,7 @@
 
 <div id="pe_userprefs"  class="jsenabled_hide">
 
-  <table class="uk-table uk-table-condensed uk-table-striped uk-table-hover gl-tablelist" style="width:100%">
+  <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container gl-tablelist" style="width:100%">
       <tr>
         <th colspan="2">
           {lang_userpref_options}
@@ -440,7 +440,7 @@
 
 <div id="pe_graphics" class="jsenabled_hide">
 
-  <table class="uk-table uk-table-condensed uk-table-striped uk-table-hover gl-tablelist" style="width:100%">
+  <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container gl-tablelist" style="width:100%">
       <tr>
         <th colspan="2">
           {lang_graphics_options}

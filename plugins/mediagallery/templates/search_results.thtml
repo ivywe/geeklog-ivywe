@@ -1,4 +1,4 @@
-  <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed gl-tablelist" style="width:100%">
+  <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container gl-tablelist" style="width:100%">
   <tr>
     <th style="text-align:left;">&nbsp;</th>
     <th style="text-align:left;">{lang_title}</th>
@@ -8,10 +8,10 @@
   <!-- BEGIN SearchRow -->
   <tr>
     <td style="width:110px;text-align:center;">{tn}</td>
-    <td style="text-align:left;">
+    <td class="uk-text-left">
       {media_url}
     </td>
-    <td style="text-align:left;">
+    <td class="uk-text-left">
       {media_description}
     </td>
     <td style="text-align:center;">

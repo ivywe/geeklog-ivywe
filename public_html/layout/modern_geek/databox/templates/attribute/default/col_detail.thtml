@@ -1,10 +1,21 @@
-<!-- layout/(theme)/databox/templates/attribute/default/col_detail.thtml { -->
+<!-- plugins/databox/templates/attribute/default/col_detail.thtml { -->
+<li>
+<span class="uk-text-success">&#123;data_link&#125;</span>{data_link}
+<span class="uk-text-success">&#123;data_url&#125;</span>{data_url}
+<span class="uk-text-success">&#123;data_title&#125;</span>{data_title}
+(id: <span class="uk-text-success">&#123;data_id&#125;</span>{data_id})(code: <span class="uk-text-success">&#123;data_code&#125;</span>{data_code})&nbsp;
+<span class="uk-text-success">&#123;data_description&#125;</span>{data_description}&nbsp;
+<span class="uk-text-success">&#123;data_datefield&#125;</span>{data_datefield} {new_img}&nbsp;<!-- 使用する日付 作成日付or編集日付or公開日 -->
+<span class="uk-text-success">&#123;data_datefield_shortdate&#125;</span>{data_datefield_shortdate} {new_img}&nbsp;<!-- 使用する日付 作成日付or編集日付or公開日 -->
+<span class="uk-text-success">&#123;data_released&#125;</span>{data_released}&nbsp;
+<span class="uk-text-success">&#123;data_released_shortdate&#125;</span>{data_released_shortdate}&nbsp;
+<span class="uk-text-success">&#123;data_expired&#125;</span>{data_expired}&nbsp;
+<span class="uk-text-success">&#123;data_expired_shortdate&#125;</span>{data_expired_shortdate}&nbsp;
+<span class="uk-text-success">&#123;data_hits&#125;</span>{data_hits}&nbsp;
+<span class="uk-text-success">&#123;data_remaingdays&#125;</span>{data_remaingdays}&nbsp;
+<span class="uk-text-success">&#123;data_value&#125;</span>{data_value}&nbsp;<!-- ソート順に指定された追加属性項目 -->
 
-<div class="element {group_sitetype_code} {group_company_code} {group_addon_code}">
+{data_edit}
 
-  <a href="{data_url}"><img alt="{data_title}" class="lightbox" style="background:#FFFFFF; padding:5px; border:1px solid #CCC;" src="http://www.geeklog.jp/jquery/timthumb.php?src=/images/databox/{additionfield3}&amp;w=120&amp;h=120&amp;zc=1&amp;q=90" alt="" title=""></a>
-  <p class="name"><a href="{data_url}" style="text-decoration: none;">{data_title}</a>{data_edit}</p>
-
-</div>
-
-<!-- } layout/(theme)/databox/templates/attribute/default/col_detail.thtml -->
+</li>
+<!-- } plugins/databox/templates/attribute/default/col_detail.thtml -->

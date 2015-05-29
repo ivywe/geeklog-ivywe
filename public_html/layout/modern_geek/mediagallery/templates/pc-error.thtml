@@ -1,5 +1,5 @@
 <div class="plugin">
-  <table class="uk-table uk-table-condensed uk-table-striped uk-table-hover gl-tablelist" style="width:100%">
+  <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container gl-tablelist" style="width:100%">
   <tr>
     <th>{lang_error_postcard}</th>
   </tr>

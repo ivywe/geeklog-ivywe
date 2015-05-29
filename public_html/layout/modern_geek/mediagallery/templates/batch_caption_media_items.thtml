@@ -1,20 +1,20 @@
-<table class="uk-table uk-table-condensed uk-table-striped uk-table-hover">   	<!-- BEGIN ImageRow -->
+<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container">   	<!-- BEGIN ImageRow -->
   	<!-- BEGIN ImageColumn -->
     <tr>
-      <td style="text-align:center;vertical-align:middle;">
+      <td class="uk-text-center">
         <img src="{u_thumbnail}" height="{height}" width="{width}" alt=""{xhtml}>
       </td>
       <td style="vertical-align:top;">
         <table width="100%" border="0">
           <tr>
-            <td class="mgAdminAlignRight"><span style="font-weight:bold;">{lang_title}</span></td>
+            <td class="uk-text-right"><span class="uk-text-bold">{lang_title}</span></td>
             <td class="mgAdminAlignLeft">
               <textarea name="media_title[]" cols="40" rows="2">{media_title}</textarea>
               <input type="hidden" name="media_id[]" value="{media_id}"{xhtml}>
             </td>
           </tr>
           <tr>
-            <td class="mgAdminAlignRight"><span style="font-weight:bold;">{lang_description}</span></td>
+            <td class="uk-text-right"><span class="uk-text-bold">{lang_description}</span></td>
             <td class="mgAdminAlignLeft"><textarea name="media_desc[]" cols="40" rows="5">{media_desc}</textarea></td>
           </tr>
         </table>

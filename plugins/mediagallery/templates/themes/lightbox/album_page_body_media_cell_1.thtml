@@ -5,9 +5,9 @@
      {lang_published} {media_owner} {lang_on} {media_time}
     {media_cell_keywords}
   </div>
-  <div class="mgPluginMI" style="float:left;padding-right:3px;padding-top:5px;">{media_item_thumbnail}</div>
+  <div style="float:left;padding-right:3px;padding-top:5px;">{media_item_thumbnail}</div>
 	<p>{media_description}</p>
-  <div style="clear:both;"></div>
+  <div class="uk-clearfix"></div>
   {mp3_podcast}
   <div class="pluginItemFooter">
   {lang_comments_hot} {media_comments_count}
@@ -19,5 +19,5 @@
   {!endif}
   </div>
   <hr{xhtml}>
-  <div style="clear:both;"></div>
+  <div class="uk-clearfix"></div>
   {# end {templatelocation} #}

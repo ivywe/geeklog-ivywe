@@ -10,7 +10,7 @@
   <div style="float:left;width:70%;text-align:left;">
     {lang_description}
   </div>
-  <div style="clear:both;"></div>
+  <div class="uk-clearfix"></div>
   <br{xhtml}>
 
   <div style="height:25px;width:20%;float:left;white-space:nowrap;">
@@ -23,7 +23,7 @@
   <div style="float:left;width:70%;">
     {lang_auto_start_help}
   </div>
- <div style="clear:both;"></div>
+ <div class="uk-clearfix"></div>
   <br{xhtml}>
 
   <div style="height:25px;width:20%;float:left;white-space:nowrap;">
@@ -35,7 +35,7 @@
   <div style="float:left;width:70%;">
       {lang_width_help}
   </div>
- <div style="clear:both;"></div>
+ <div class="uk-clearfix"></div>
   <br{xhtml}>
 
   <div style="height:25px;width:20%;float:left;white-space:nowrap;">
@@ -47,7 +47,7 @@
   <div style="float:left;width:70%;">
       {lang_height_help}
   </div>
- <div style="clear:both;"></div>
+ <div class="uk-clearfix"></div>
   <br{xhtml}>
 
 </fieldset>

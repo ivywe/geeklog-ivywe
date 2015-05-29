@@ -7,7 +7,7 @@
     </tr>
     <tr>
       <th class="uk-text-right">{lang_owner}</th>
-      <td style="text-align:left;">
+      <td class="uk-text-left">
         {owner_username}
         <input type="hidden" name="owner_id" value="{owner_id}"{xhtml}>
       </td>

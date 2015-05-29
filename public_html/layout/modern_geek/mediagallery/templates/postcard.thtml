@@ -6,7 +6,7 @@
 </head>
 <body>
 <br>
-<p style="text-align:center;"><a href="{site_url}getcard.php?id={pc_id}"><span style="font-weight:bold;">{lang_unable_view}</span></a></p>
+<p style="text-align:center;"><a href="{site_url}getcard.php?id={pc_id}"><span class="uk-text-bold">{lang_unable_view}</span></a></p>
 <table class="uk-table uk-table-condensed uk-overflow-container">
   <tr>
     <td>
@@ -24,7 +24,7 @@
         <tr>
           <td>
             <div style="font-family: arial,'lucida console',sans-serif;font-size:small;">
-            <span style="font-weight:bold;">{lang_to}</span>
+            <span class="uk-text-bold">{lang_to}</span>
             </div>
           </td>
           <td>
@@ -34,7 +34,7 @@
         <tr>
           <td>
            <div style="font-family: arial,'lucida console',sans-serif;font-size:small;">
-            <span style="font-weight:bold;">{lang_from}</span>
+            <span class="uk-text-bold">{lang_from}</span>
             </div>
           </td>
           <td>
@@ -44,7 +44,7 @@
         <tr>
           <td>
           <div style="font-family: arial,'lucida console',sans-serif;font-size:small;">
-            <span style="font-weight:bold;">{lang_subject}</span>
+            <span class="uk-text-bold">{lang_subject}</span>
           </div>
           </td>
           <td>
@@ -68,7 +68,7 @@
         </span>
       <hr style="width:100%;">
      <p style="text-align:center;">
-      <a href="{site_url}"><span style="font-weight:bold;">{lang_visit} {site_name} - {site_slogan}</span></a>
+      <a href="{site_url}"><span class="uk-text-bold">{lang_visit} {site_name} - {site_slogan}</span></a>
      </p>
   </td>
 </tr>

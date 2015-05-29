@@ -6,20 +6,20 @@
 <div>
 <input type="hidden" name="cat_id" value={cat_id}{xhtml}>
 <input type="hidden" name="action" value="{action}"{xhtml}>
-    <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
+    <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container">
       <tr>
         <th colspan="2">
           {lang_edit_category}
         </th>
       </tr>
       <tr>
-        <td class="mgAdminAlignRight">{lang_title}</td>
+        <td class="uk-text-right">{lang_title}</td>
         <td class="mgAdminAlignLeft">
           <textarea name="cat_name" cols="50" rows="2">{cat_name}</textarea>
         </td>
       </tr>
       <tr>
-        <td class="mgAdminAlignRight">{lang_description}</td>
+        <td class="uk-text-right">{lang_description}</td>
         <td class="mgAdminAlignLeft">
           <textarea name="cat_desc" cols="50" rows="5">{cat_description}</textarea>
         </td>

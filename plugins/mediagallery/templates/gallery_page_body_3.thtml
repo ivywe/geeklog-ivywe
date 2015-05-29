@@ -3,7 +3,7 @@
     <tr>
     <!-- BEGIN AlbumColumn -->
       <td style="width:{column_width};vertical-align:top;border:0;border:0;">
-        <div class="mgPluginMI">
+        <div>
     	<table class="uk-table uk-table-condensed uk-overflow-container">
 		  <tr style="height:196px;">
 			<td align="center" style="vertical-align:middle;padding:0;border:0;border:0;">
@@ -12,9 +12,9 @@
 		  </tr>
 		  <tr>
 			<td align="center" style="vertical-align:top;border:0;border:0;">
-			  <div><span style="font-weight:bold;">{album_title}</span> ({subalbum_media_count})</div>
+			  <div><span class="uk-text-bold">{album_title}</span> ({subalbum_media_count})</div>
               <div style="padding:5px;"><span class="pluginSmallText">{album_desc}</span></div>
-              <div><span style="font-weight:bold;">{updated_prompt}</span> {album_last_update}</div>
+              <div><span class="uk-text-bold">{updated_prompt}</span> {album_last_update}</div>
               <div>{subalbumlist}</div>
             </td>
           </tr>

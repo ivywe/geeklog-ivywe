@@ -7,11 +7,11 @@
   </div>
   <div style="float:left;padding-right:3px;padding-top:5px;">{media_item_thumbnail}</div>
 	<p>{media_description}</p>
-  <div style="clear:both;"></div>
+  <div class="uk-clearfix"></div>
   {mp3_podcast}
   <div class="pluginItemFooter">
   {lang_comments} {media_comments_count}&nbsp;&nbsp;{media_rate_results}&nbsp;{edit_link}
   </div>
   <hr>
 </div>
-<div style="clear:both;"></div>
+<div class="uk-clearfix"></div>

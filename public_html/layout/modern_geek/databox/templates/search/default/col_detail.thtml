@@ -1,17 +1,67 @@
-<!-- layout/(theme)/databox/templates/category/default/col_detail.thtml { -->
+<!-- plugins/databox/templates/search/default/col_detail.thtml 20140926 { -->
 
-<div class="element uk-overlay {group_sitetype_code} {group_company_code} {group_addon_code}" data-symbol="{data_title}" data-category="{group_sitetype_pipeline}" style="min-height:150px">
-  <a href="{data_url}">
-    <img alt="{data_title}" src="{site_url}/images/databox/{image}" style="width:100%; height:auto" alt="" title="">
-    <div class="uk-overlay-area"></div>
-    <div class="uk-overlay-area">
-        <div class="uk-overlay-caption">
-           <i class="uk-icon-toggle-right"></i> {data_title} {!if new_img}<span class="uk-badge uk-badge-danger">NEW!</span>{!endif}
-            <p class="number" style="display: none">{data_id}</p>
-        </div>
-    </div>
-  </a>
-  {!if data_edit}<figcaption style="position:absolute; top:0px; right: 10px">{data_edit}</figcaption>{!endif}
-</div>
+<th style="width:20%" class="uk-text-left">{additionfield_name}</th>
+<td style="width:70%">
+	<dl>
+		<dt class="uk-text-success">&#123;{additionfield_templatesetvar}&#125;</dt>
+		<dd>{additionfield_value}</dd>
 
-<!-- } layout/(theme)/databox/templates/category/default/col_detail.thtml -->
+		{!if additionfield_value_name}
+		<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_value_name&#125;</dt>
+		<dd>{additionfield_value_name}</dd>
+		{!endif}
+
+		{!if additionfield_value_description}
+		<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_value_description&#125;</dt>
+		<dd>{additionfield_value_description}</dd>
+		{!endif}
+
+		{!if additionfield_value_tn}
+		<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_value_tn&#125;</dt>
+		<dd>{additionfield_value_tn}</dd>
+		{!endif}
+
+		{!if additionfield_value_noimage}
+		<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_noimage&#125;</dt>
+		<dd>{additionfield_value_noimage}</dd>
+		{!endif}
+
+		{!if additionfield_value_tn_image}
+		<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_tn_image&#125;</dt>
+		<dd>{additionfield_value_tn_image}</dd>
+		{!endif}
+
+		{!if additionfield_value_tn_noimage}
+		<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_tn_noimage&#125;</dt>
+		<dd>{additionfield_value_tn_noimage}</dd>
+		{!endif}
+
+		{!if additionfield_value_disp}
+		<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_disp&#125;</dt>
+		<dd>{additionfield_value_disp}</dd>
+		{!endif}
+
+		{!if additionfield_value_mst_value2}
+		<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_mst_value2&#125;</dt>
+		<dd>{additionfield_value_mst_value2}</dd>
+		{!endif}
+
+		{!if additionfield_value_mst_disp}
+		<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_mst_disp&#125;</dt>
+		<dd>{additionfield_value_mst_disp}</dd>
+		{!endif}
+
+		{!if additionfield_value_mst_no}
+		<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_mst_no&#125;</dt>
+		<dd>{additionfield_value_mst_no}</dd>
+		{!endif}
+
+		{!if additionfield_value_readfile}
+		<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_readfile&#125;</dt>
+		<dd>{additionfield_value_readfile}</dd>
+		{!endif}
+	</dl>
+</td>
+<td style="width:10%">{field_type} {data_edit}</td>
+
+<!-- } plugins/databox/templates/search/default/col_detail.thtml -->

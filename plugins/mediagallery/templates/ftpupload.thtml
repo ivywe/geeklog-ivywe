@@ -9,7 +9,7 @@
 <fieldset style="border:none; border-top: 1px solid #000000;">
 <legend>&nbsp;</legend>
 	<br{xhtml}>
-	<label for="directory"><span style="font-weight:bold;">{lang_directory}</span>&nbsp;</label>
+	<label for="directory"><span class="uk-text-bold">{lang_directory}</span>&nbsp;</label>
 	      <span dir="ltr">{ftp_path}<input type="text" name="directory" id="directory" size="40"{xhtml}></span>
 		  <br{xhtml}><br{xhtml}>
 

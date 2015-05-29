@@ -9,7 +9,7 @@
   </div>
 </div>
 
-<table class="uk-table uk-table-condensed uk-table-striped uk-table-hover">
+<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container">
 
 <tr>
   <td style="vertical-align:top;width:75%;">
