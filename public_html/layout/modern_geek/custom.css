@@ -1,39 +1,5 @@
-/*--------------------------------------
- CSS (FormMail Static Page v2.1.6)
----------------------------------------*/
-#FORM { font-size:100%; width:98%; }
-#FORM #tabs { border: none; }
-#FORM p.honbun { margin-bottom:6px; text-align:left; }
-.errormsg{ padding:2px 3px 3px 3px; font-size:109%; color: #FF0000; line-height:130%; font-weight:bold; word-break:normal; }
-.errorList{ background-color: #FFFFFF; padding: 2px 3px 3px 3px; font-size: 100%; line-height: 120%; color: #FF0000; padding-left: 25px; margin-bottom: 5px; word-break:normal; }
-.error2{ background-color:#FFEFEF; border:1px #FF0000 solid; padding:1px 4px 1px 4px; font-size:12px; line-height:130%; margin:3px; word-break:normal; }
-#form_step {width:100%;}
-#form_step ul, #form_step li { margin:0; padding:0; list-style:none; }
-#form_step li { float:left; display:block; position:relative; width:27%; height:20px; line-height:20px; color:#fff; background: transparent url(images/css/step.png) center right no-repeat; padding:2% 3% 2% 2%; }
-#form_step li.on { background: transparent url(images/css/step_on.png) center right no-repeat; }
-#form_step .step2, #form_step .step3 { margin-left: -30px; padding-left: 50px; }
-#form_step .step1 { z-index: 3; }
-#form_step .step2 { z-index: 2; }
-#form_step .step3 { z-index: 1; background-position: center left; }
-#form_step ul { margin:0; padding:0; }
-#form_step ul:after { content:""; display:block; clear:both; height:1px; overflow:hidden; }
-
-.spf_required{ font-size:9px; color:#CC0000; }
-.form_free{ font-size:9px; color:#00CC44; }
-
-table.formmail {width:100%;}
-table.formmail th { background-color: #f8f8f8; text-align: left; padding:10px; font-weight:bold; font-size:small; word-break:normal; }
-table.formmail td { background-color: #f8f8f8; padding:10px; font-size:small; word-break:normal; word-wrap:break-word; }
-table.formmail tr.error th,table.formmail tr.error td { background: #F2DEDE; }
-table.formmail input[type=text] { min-width:160px; width:50%; }
-
-.idea{ width:98%; background-color:#E6FFE9; border:2px #008000 solid; padding:5px; font-size:11px; line-height:140%; margin-top:12px; }
-.bginput { background-color: #FFFEEa; }
 .ime_on { ime-mode: active; }
 .ime_off { ime-mode: inactive; }
-.button1 { background-color: #05959C; color: #fff; font-weight: bold; }
-.mb20 { margin-bottom:20px; }
-.mt20 { margin-top:20px; }
 
 li.useroption_off {
   padding: 3px 0 3px 15px;
@@ -128,8 +94,7 @@ div#centerblocks div#centerblocks-content div.gm-style img {
 
 form {display: block; margin: 0;}
 .uk-grid {margin-left:0;}
+
 @media (max-width:1220px){.uk-grid{margin-left:0}}
 
-body {
--webkit-font-smoothing: antialiased;
-}
+body {-webkit-font-smoothing: antialiased;}
