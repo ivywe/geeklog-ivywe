@@ -109,7 +109,7 @@
                     <li><a href="{site_url}/search.php"><i class="uk-icon-search"></i> {$LANG01[70]}</a></li>
 
 <?php global $_USER, $_CONF; if (isset($_USER['uid']) && $_USER['uid'] > 1) { ?>
-                    <li><a href="{site_url}/usersettings.php?mode=edit"><i class="uk-icon-cog"></i> マイアカウント</a></li>
+                    <li><a href="{site_url}/usersettings.php?mode=edit"><i class="uk-icon-cog"></i> {$LANG01[48]}</a></li>
                     <li><a href="{site_url}/users.php?mode=logout"><i class="uk-icon-sign-out"></i> {$LANG01[35]}</a></li>
 <?php } else { if ($_CONF['disable_new_user_registration']==0) {?>
                     <li><a href="{site_url}/users.php?mode=new"><i class="uk-icon-user"></i> {$LANG04[27]}</a></li>
