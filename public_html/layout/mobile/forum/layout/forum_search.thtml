@@ -1,8 +1,0 @@
-
-<!-- start forum_search.thtml -->
-                        <form action="index.php" method="post" name="searchbox" onsubmit="return (this.query.value != '');" style="margin:0px;padding:2px;">
-                                    <input type="hidden" name="op" value="search"{xhtml}><input type="hidden" name="forum" value="{forum}"{xhtml}>
-                                    <input type="text" name="query" value="" style="width:165px"{xhtml}>
-                                    <input type="submit" name="btnsubmit" value="{search}"{xhtml}>
-                        </form>
-<!-- end forum_search.thtml -->

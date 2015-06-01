@@ -1,4 +1,0 @@
-<!-- submenu.thtml -->
-        <li {cssid1}><a href="{link}{parms}" {cssid2}>{label}</a></li>
-            <ul id="subnavlist">
-{submenuitems}           </ul>

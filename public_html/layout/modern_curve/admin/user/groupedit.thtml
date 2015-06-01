@@ -1,8 +1,0 @@
-{# begin {templatelocation} #}
-
-<dd>
-  <p class="groupinstructions">{lang_groupinstructions}</p>
-  {group_options}
-</dd>
-
-{# end {templatelocation} #}
