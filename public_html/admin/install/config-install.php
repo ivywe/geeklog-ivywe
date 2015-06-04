@@ -56,7 +56,7 @@ function install_config()
     $c->add('site_disabled_msg','Geeklog Site is down. Please come back soon.','textarea',0,0,NULL,510,TRUE, $me, 0);
     $c->add('owner_name','','text',0,0,NULL,1000,TRUE, $me, 0);
     $c->add('copyrightyear',date('Y'),'text',0,0,NULL,1440,FALSE, $me, 0);
-    $c->add('url_rewrite',FALSE,'select',0,0,1,1800,TRUE, $me, 0);
+    $c->add('url_rewrite',TRUE,'select',0,0,1,1800,TRUE, $me, 0);
     $c->add('cdn_hosted',FALSE,'select',0,0,1,1900,TRUE, $me, 0);
     $c->add('meta_tags',0,'select',0,0,23,2000,TRUE, $me, 0);
     $c->add('meta_description','Geeklog - The secure Content Management System.','textarea',0,0,NULL,2010,TRUE, $me, 0);
