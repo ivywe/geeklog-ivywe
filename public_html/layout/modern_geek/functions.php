@@ -73,15 +73,8 @@ function theme_css_modern_geek()
     // Instead of importing all files in a single css file we will load them seperately 
     // since each file needs to be processed by style.css.php for language template vars
     return array(
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/compatible.css', 'priority' => 1.00),
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/default.css', 'priority' => 1.01),
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/common.css', 'priority' => 1.02),
          array('file' => '/layout/' . $_CONF['theme'] . '/css/layout.css', 'priority' => 1.03),
          array('file' => '/layout/' . $_CONF['theme'] . '/css/block.css', 'priority' => 1.04),
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/option.css', 'priority' => 1.05),
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/form.css', 'priority' => 1.06),
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/story.css', 'priority' => 1.07),
-         
          array('file' => '/layout/' . $_CONF['theme'] . '/css/article/article.css', 'priority' => 1.08),
          array('file' => '/layout/' . $_CONF['theme'] . '/css/comment/comment.css', 'priority' => 1.09),
          array('file' => '/layout/' . $_CONF['theme'] . '/css/navbar/navbar.css', 'priority' => 1.10),
