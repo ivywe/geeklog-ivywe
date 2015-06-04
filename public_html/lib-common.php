@@ -7844,7 +7844,8 @@ function COM_switchLocaleSettings()
           'locale',
           'date', 'daytime', 'shortdate', 'dateonly', 'timeonly',
           'week_start', 'hour_mode',
-          'thousand_separator', 'decimal_separator'
+          'thousand_separator', 'decimal_separator',
+          'meta_description','meta_keywords', 'site_name', 'owner_name', 'site_slogan'
         );
 
         $langId = COM_getLanguageId();
