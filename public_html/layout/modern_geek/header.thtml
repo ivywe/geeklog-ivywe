@@ -4,6 +4,7 @@
 <meta charset="UTF-8"{xhtml}>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
 <title>{page_title_and_site_name}</title>
+
 <!--[if lt IE 7]><meta http-equiv="imagetoolbar" content="no"{xhtml}><![endif]-->
 <!-- <meta http-equiv="Expires" content="0"{xhtml}> -->
 <!-- disable iPhone inital scale -->
@@ -44,7 +45,7 @@
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 </head>
-<body dir="{direction}" class="{layout_columns} {home_id}">
+<body dir="{direction}" class="{layout_columns}">
 
 {# begin {templatelocation} #}
 
