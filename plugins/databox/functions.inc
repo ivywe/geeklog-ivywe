@@ -22,7 +22,7 @@ if (file_exists ($langfile)) {
     require_once ($langfile);
 
 } else {
-    require_once ($_CONF['path'] . "plugins/{$pi_name}/language/japanese_utf-8.php");
+    require_once ($_CONF['path'] . "plugins/{$pi_name}/language/english_utf-8.php");
 }
 
 //custom 言語ファイル
