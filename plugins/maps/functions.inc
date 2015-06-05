@@ -78,7 +78,7 @@ function plugin_getheadercode_maps()
     $_SCRIPTS->setJavaScriptFile('maps_iconmaker', '/' . $_MAPS_CONF['maps_folder'] . '/js/mapiconmaker.js', false);
 	$_SCRIPTS->setJavaScriptLibrary('jquery');
 	
-	$js = '<script src= "http://maps.googleapis.com/maps/api/js?key=' . $_MAPS_CONF['google_api_key'] . '&libraries=adsense&sensor=false" type="text/javascript"> </script>';
+	$js = '<script src= "http://maps.googleapis.com/maps/api/js?language='.COM_getLanguageId().'&key=' . $_MAPS_CONF['google_api_key'] . '&libraries=adsense&sensor=false" type="text/javascript"> </script>';
 	
 	$_SCRIPTS->setJavaScript($js, false, false);
 	
