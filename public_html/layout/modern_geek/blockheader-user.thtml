@@ -1,8 +1,8 @@
 {# begin {templatelocation} #}
 
-                                    <ul class="uk-navbar-nav uk-navbar-flip uk-hidden-small" style="margin-right: 40px">
-                                        <li class="" data-uk-dropdown>
-                                        {!!autotag assist:user_photo width:28 height:28 !!} <i class="uk-icon-caret-down uk-text-primary"></i>
+                                    <ul class="uk-navbar-nav uk-navbar-flip uk-vertical-align-bottom uk-hidden-small" style="margin: 20px 40px 0 0">
+                                        <li class="uk-text-nowrap" data-uk-dropdown>
+                                        {!!autotag assist:user_photo width:28 height:28 !!} <i class="uk-icon-caret-down uk-text-primary"></i> My Account
                                             <div class="uk-dropdown uk-dropdown-navbar">
                                                 <ul class="uk-nav blockheader-user uk-list-line">
                                                     <li class="useroption sideoption uk-container-center" style="text-align: center; line-height: 100%"><span class="notranslate">{!!autotag assist:username !!}</span>
