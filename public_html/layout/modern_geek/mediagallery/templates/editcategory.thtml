@@ -6,7 +6,7 @@
 <div>
 <input type="hidden" name="cat_id" value={cat_id}{xhtml}>
 <input type="hidden" name="action" value="{action}"{xhtml}>
-    <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container">
+    <table class="uk-table uk-table-striped uk-table-condensed">
       <tr>
         <th colspan="2">
           {lang_edit_category}

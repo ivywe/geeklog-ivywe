@@ -2,11 +2,11 @@
 <script type="text/javascript" src="{site_url}/js/admin_editor.js"></script>
 {configuration_check}
 <div id="pe_navbar" class="jsenabled_show" style="display:none">{navbar}</div>
-<div class="uk-clearfix"></div>
 <form class="uk-form" method="post" action="{s_form_action}" name="mg_config_form" enctype="multipart/form-data" id="mg_config_form">
 
 <div id="pe_general">
-    <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container">
+<div class="uk-overflow-container">
+    <table class="uk-table uk-table-striped uk-table-condensed">
       <tr>
         <th colspan="2">
           {lang_general_options}
@@ -167,9 +167,11 @@
     </table>
 </div>
 
-<div id="pe_display"  class="jsenabled_hide">
+</div>
 
-	<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container">
+<div id="pe_display"  class="jsenabled_hide">
+<div class="uk-overflow-container">
+	<table class="uk-table uk-table-striped uk-table-condensed">
       <tr>
         <th colspan="2">
           {lang_display_options}
@@ -371,8 +373,10 @@
 
     </table>
 </div>
+</div>
 
 <div id="pe_batch" class="jsenabled_hide">
+<div class="uk-overflow-container">
 
   <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container gl-tablelist" style="width:100%">
       <tr>
@@ -399,10 +403,11 @@
         </td>
       </tr>
     </table>
-
+</div>
 </div>
 
 <div id="pe_userprefs"  class="jsenabled_hide">
+<div class="uk-overflow-container">
 
   <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container gl-tablelist" style="width:100%">
       <tr>
@@ -435,10 +440,11 @@
         </td>
       </tr>
     </table>
-
+</div>
 </div>
 
 <div id="pe_graphics" class="jsenabled_hide">
+<div class="uk-overflow-container">
 
   <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container gl-tablelist" style="width:100%">
       <tr>
@@ -508,6 +514,7 @@
       </tr>
     </table>
 </div>
+</div>
 
 <div style="text-align:center;margin-top:10px">
 <input type="submit" class="uk-button" value="{lang_save}" name="mode"{xhtml}>
@@ -515,6 +522,7 @@
 <input type="reset" value="{lang_reset}" name="mode"{xhtml}>
 </div>
 </form>
+
 <!-- JS Functions which will execute only if JS enabled will un-hide the special features that enhance the profile editor -->
 <script type="text/javascript">
 //<![CDATA[

@@ -1,0 +1,9 @@
+<!-- plugins/mediagallery/templates/medialist/uikit_overlay_panel/autotag_medialist_col.thtml 20150309 { -->
+
+	<img src="{filename_disp}" alt="{media_title}" width="100%" height="auto">
+	<figcaption class="uk-overlay-panel uk-text-center">
+		<h2 class="uk-h2 gl-slider">{media_title}</h2>
+		<div>{media_desc}</div>
+	</figcaption>
+
+<!-- } plugins/mediagallery/templates/medialist/uikit_overlay_panel/autotag_medialist_col.thtml 20150309 -->
