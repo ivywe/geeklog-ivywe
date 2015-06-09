@@ -1,5 +1,5 @@
 <form class="uk-form" method="post" action="{s_form_action}">
-<table class="uk-table uk-table-condensed uk-overflow-container">
+<table class="uk-table uk-table-condensed">
   <tr>
     <td colspan="2">&nbsp;</td>
   </tr>

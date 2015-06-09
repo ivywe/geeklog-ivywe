@@ -1,4 +1,4 @@
-<table class="uk-table uk-table-condensed uk-overflow-container">
+<table class="uk-table uk-table-condensed">
 <tr class="pluginLinks">
 <td style="width:75%;vertical-align:middle;">
 <span class="uk-text-bold">{album_title}</span>

@@ -1,6 +1,6 @@
 {start_block_last10mediaitems}
 <div class="plugin">
-  <table class="uk-table uk-table-condensed uk-overflow-container">
+  <table class="uk-table uk-table-condensed">
     <tr>
     <th style="width:125px;">{lang_thumbnail}</th>
     <th style="width:35%;">{lang_title}</th>

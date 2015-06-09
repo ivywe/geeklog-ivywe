@@ -1,7 +1,7 @@
-<!-- plugins/mediagallery/templates/medialist/uikit_overlay/autotag_medialist_col.thtml 20150309 { -->
+<!-- plugins/mediagallery/templates/medialist/uikit_overlay_banner/autotag_medialist_col.thtml 20150309 { -->
 
                                     <li>
-                                        <img src="{filename_disp}" width="960" height="354"{xhtml}>
+                                        <img src="{filename_disp}"{xhtml}>
 
 {!if media_title}
                                         <div class="uk-vertical-align uk-overlay-panel uk-overlay-bottom uk-overlay-fade uk-text-center">
@@ -13,4 +13,4 @@
 {!endif}
                                     </li>
 
-<!-- } plugins/mediagallery/templates/medialist/uikit_overlay/autotag_medialist_col.thtml 20150309 -->
+<!-- } plugins/mediagallery/templates/medialist/uikit_overlay_banner/autotag_medialist_col.thtml 20150309 -->

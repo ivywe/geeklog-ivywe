@@ -1,5 +1,5 @@
 
-  <table class="uk-table uk-table-striped uk-table-condensed uk-overflow-container gl-tablelist">
+  <table class="uk-table uk-table-striped uk-table-condensed gl-tablelist">
 	<theader>
       <tr>
         <th class="uk-text-truncate">{lang_select}</th>

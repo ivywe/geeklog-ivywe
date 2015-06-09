@@ -21,7 +21,7 @@ function change(what) {
   <input type="hidden" name="media_count" value="{media_count}"{xhtml}>
   <input type="hidden" name="action" value="{action}"{xhtml}> {origaid}
 
-  <table class="uk-table uk-table-striped uk-table-condensed uk-overflow-container gl-tablelist">
+  <table class="uk-table uk-table-striped uk-table-condensed gl-tablelist">
 	<caption>{lang_edit_title}</caption>
 	<tbody>
     <tr>

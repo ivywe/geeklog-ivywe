@@ -2,7 +2,7 @@
 
 <div class="poll-questions">
     <p class="poll-question">{lang_question}{lang_question_number}{poll_question}</p>
-    <table width="100%">
+    <table width="100%" class="uk-table uk-table-striped uk-table-condensed">
         {poll_votes}
     </table>
 </div>

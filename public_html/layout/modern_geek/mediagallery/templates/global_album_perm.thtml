@@ -5,7 +5,7 @@
 <input type="hidden" name="admin_menu" value="{admin_menu}"{xhtml}>
 {lang_global_perm_help}
 <br{xhtml}><br{xhtml}>
-  <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container gl-tablelist">
+  <table class="uk-table uk-table-striped uk-table-condensed gl-tablelist">
     <tr>
       <th>
         {lang_attribute}

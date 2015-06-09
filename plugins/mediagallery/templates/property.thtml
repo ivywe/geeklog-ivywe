@@ -32,7 +32,7 @@ div.mg-block-exif {
 </style>
 </head>
 <body>
-<table class="uk-table uk-table-condensed uk-overflow-container">
+<table class="uk-table uk-table-condensed">
  <tr>
    <td style="text-align:center;width:100%;">
      {media_thumbnail}

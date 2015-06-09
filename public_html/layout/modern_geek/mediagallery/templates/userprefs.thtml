@@ -1,5 +1,5 @@
 <form class="uk-form" method="post" action="{s_form_action}">
-<table class="uk-table uk-table-condensed uk-overflow-container">
+<table class="uk-table uk-table-condensed">
 <tr>
   <td class="pluginCellTitle" colspan="3"><span class="uk-text-bold">{lang_user_prefs}</span></td>
 </tr>

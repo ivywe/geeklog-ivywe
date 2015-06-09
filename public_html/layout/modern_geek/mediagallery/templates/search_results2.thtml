@@ -1,4 +1,4 @@
-<table class="uk-table uk-table-condensed uk-overflow-container">
+<table class="uk-table uk-table-condensed">
   <tr>
     <td class="uk-text-left">
       {lang_search_results}: <span class="uk-text-normal">{search_keywords}</span>
@@ -23,7 +23,7 @@
 </table>
 
 <div style="margin:10px auto;">
-<table class="uk-table uk-table-condensed uk-overflow-container">
+<table class="uk-table uk-table-condensed">
 <!-- BEGIN ImageRow -->
 <tr>
 <!-- BEGIN ImageColumn -->
@@ -36,7 +36,7 @@
 </table>
 </div>
       {album_noimages}
-<table class="uk-table uk-table-condensed uk-overflow-container">
+<table class="uk-table uk-table-condensed">
   <tr class="pluginFooter">
     <td colspan="2" style="text-align:center;vertical-align:middle;padding:2px 5px 2px 0px;">
       <span class="uk-text-bold">{page_number}</span>

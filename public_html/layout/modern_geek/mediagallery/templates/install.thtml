@@ -1,4 +1,4 @@
-    <table class="uk-table uk-table-condensed uk-overflow-container">
+    <table class="uk-table uk-table-condensed">
 <tr>
 <td rowspan="2" style="width:60px;text-align:left;"><img src="{img}" style="border:none;" alt="" {xhtml}></td>
 <td class="pluginHeader" style="text-align:left;">

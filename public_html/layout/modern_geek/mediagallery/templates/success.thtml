@@ -1,7 +1,7 @@
-<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container gl-tablelist" style="width:100%">
+<table class="uk-table uk-table-striped uk-table-condensed gl-tablelist" style="width:100%">
   <tr>
     <td colspan="2" style="vertical-align:middle;">
-	  <table class="uk-table uk-table-condensed uk-overflow-container">
+	  <table class="uk-table uk-table-condensed">
 	    <tr>
 	      <td rowspan="2" align="left" style="width:60px">
 	        <a href="{site_admin_url}/plugins/mediagallery/index.php">

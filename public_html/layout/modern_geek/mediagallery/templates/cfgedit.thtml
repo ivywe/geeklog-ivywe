@@ -377,8 +377,7 @@
 
 <div id="pe_batch" class="jsenabled_hide">
 <div class="uk-overflow-container">
-
-  <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container gl-tablelist" style="width:100%">
+  <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed gl-tablelist" style="width:100%">
       <tr>
         <th colspan="2">
           {lang_batch_options}
@@ -408,8 +407,7 @@
 
 <div id="pe_userprefs"  class="jsenabled_hide">
 <div class="uk-overflow-container">
-
-  <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container gl-tablelist" style="width:100%">
+  <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed gl-tablelist" style="width:100%">
       <tr>
         <th colspan="2">
           {lang_userpref_options}
@@ -445,8 +443,7 @@
 
 <div id="pe_graphics" class="jsenabled_hide">
 <div class="uk-overflow-container">
-
-  <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container gl-tablelist" style="width:100%">
+  <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed gl-tablelist" style="width:100%">
       <tr>
         <th colspan="2">
           {lang_graphics_options}

@@ -1,4 +1,4 @@
-<table class="uk-table uk-table-condensed uk-overflow-container">
+<table class="uk-table uk-table-condensed">
 <tr>
 <td class="pluginCellTitle" style="width:75%;vertical-align:middle;">
 <span class="uk-text-bold">{album_title}</span>
@@ -246,10 +246,10 @@ function setCaption(text) {
 //]]>
 </script>
 <form class="uk-form" name="TopForm" id="TopForm" action="">
-  <table class="uk-table uk-table-condensed uk-overflow-container">
+  <table class="uk-table uk-table-condensed">
     <tr>
       <td>
-		<table class="uk-table uk-table-condensed uk-overflow-container">
+		<table class="uk-table uk-table-condensed">
           <tr class="pluginSubCellTitle">
             <td style="height:35px;width:1px;"></td>
             <td align="center" rowspan="2" style="vertical-align:middle;">
@@ -280,7 +280,7 @@ function setCaption(text) {
           </tr>
         </table>
 
-		<table class="uk-table uk-table-condensed uk-overflow-container">
+		<table class="uk-table uk-table-condensed">
           <tr>
             <td align="center">
               <h1>{no_images}</h1>

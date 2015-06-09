@@ -1,5 +1,5 @@
 
-  <table class="uk-table uk-table-condensed uk-overflow-container">
+  <table class="uk-table uk-table-condensed">
     <tr>
       <td class="pluginCellTitle" style="width:160px;" align="center">
         <span class="uk-text-bold">{lang_media_item}</span>

@@ -1,5 +1,5 @@
 <div class="uk-margin">
-  <table class="uk-table uk-table-striped uk-table-condensed uk-overflow-container gl-tablelist" style="width:100%">
+  <table class="uk-table uk-table-striped uk-table-condensed gl-tablelist" style="width:100%">
     <thead>
       <tr>
         <th>Thumbnail</th>

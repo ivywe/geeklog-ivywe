@@ -1,10 +1,10 @@
-<table class="uk-table uk-table-condensed uk-overflow-container gl-tablelist" style="width:100%">
+<table class="uk-table uk-table-condensed gl-tablelist" style="width:100%">
 <!-- BEGIN AlbumRow -->
 <tr>
 <!-- BEGIN AlbumColumn -->
   <td style="width:{column_width};vertical-align:top;border:0;">
     <div>
-    <table class="uk-table uk-table-condensed uk-overflow-container">
+    <table class="uk-table uk-table-condensed">
 	  <tr>
 		<td align="center" style="width:100%;vertical-align:top;border:0;">
 		  {media_item_thumbnail}

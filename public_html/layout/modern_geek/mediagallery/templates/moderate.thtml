@@ -26,7 +26,7 @@ function doUnCheckAll()
 <input type="hidden" name="album_id" value="{album_id}"{xhtml}>
 <input type="hidden" name="count" value="{queue_count}"{xhtml}>
 <input type="hidden" name="action" value="{action}"{xhtml}>
-  <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container gl-tablelist" style="width:100%">
+  <table class="uk-table uk-table-striped uk-table-condensed gl-tablelist" style="width:100%">
   <tr>
     <th style="text-align:left;width:{media_width}px;"><span class="uk-text-bold">{lang_item}</span></th>
     <th><span class="uk-text-bold">{lang_title}</span></th>

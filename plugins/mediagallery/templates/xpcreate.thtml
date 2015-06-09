@@ -3,7 +3,7 @@
 <h3>{lang_create_album}</h3>
 </div>
 <br>
-<table class="uk-table uk-table-condensed uk-overflow-container">  <tr>
+<table class="uk-table uk-table-condensed">  <tr>
     <td>
       {lang_title}
     </td>

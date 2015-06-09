@@ -1,4 +1,4 @@
-			<table class="uk-table uk-table-condensed uk-overflow-container">
+			<table class="uk-table uk-table-condensed">
                 <tr>
                     <td align="center">
                       <p>{lang_no_sessions}</p>

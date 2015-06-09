@@ -2,7 +2,7 @@
   <form class="uk-form" name="postcard" method="post" action="{s_form_action}">
     <div>
     <input type="hidden" name="mid" value="{mid}"{xhtml}>
-    <table class="uk-table uk-table-condensed uk-overflow-container">
+    <table class="uk-table uk-table-condensed">
       <tr>
         <th colspan="4">
           {lang_send_postcard}

@@ -22,7 +22,7 @@ function doUnCheckAll()
 //]]>
 </script>
 <form class="uk-form" name="exif" method="post" action="{s_form_action}">
-  <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container">
+  <table class="uk-table uk-table-striped uk-table-condensed">
     <tr>
       <th style="width:7%;">
         {lang_select}
