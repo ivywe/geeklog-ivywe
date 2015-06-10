@@ -812,7 +812,8 @@ function POLLS_pollResults($pid, $scale=400, $order='', $mode='', $page = 1, $di
 
         if ($nquestions > 0){
             $poll = COM_newTemplate($_CONF['path'] . 'plugins/polls/templates/' );
-            $poll->set_file(array('result' => 'pollresult.thtml',
+            $poll->set_file(array(
+				'result' => 'pollresult.thtml',
                 'question' => 'pollquestion.thtml',
                 'comments' => 'pollcomments.thtml',
                 'votes_bar' => 'pollvotes_bar.thtml',
@@ -842,6 +843,10 @@ function POLLS_pollResults($pid, $scale=400, $order='', $mode='', $page = 1, $di
             }
 
             for ($j = 0; $j < $nquestions; $j++) {
+
+
+                $poll->set_var('question_id', $j);
+
                 $Q = DB_fetchArray($questions);
 
                 if ($nquestions >= 1) {
