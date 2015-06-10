@@ -1,7 +1,8 @@
 {# begin {templatelocation} #}
 
-<span class="floatright">{edit_icon}</span><div class="poll-topic">{poll_topic}</div>
+<span class="floatright"></span><div class="poll-topic">{poll_topic}</div>
 {poll_questions}
+{edit_icon}
 
 <script type="text/javascript">
       google.load("visualization", "1", {packages:["corechart"]});
@@ -11,15 +12,15 @@
         var data = google.visualization.arrayToDataTable([
 
         var options = {
-          title: 'My Daily Activities'
+          title: '{lang_question}{lang_question_number}{poll_question}'
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        var chart = new google.visualization.PieChart(document.getElementById('{poll_id}_{question_id}'));
 
         chart.draw(data, options);
       }
     </script>
-<div id="piechart" style="width: 900px; height: 500px;"></div>
+<div id="{poll_id}_{question_id}" style="overflow:hidden; width: 96%; min-height: 450px"></div>
 
 
 <div class="pluginTinyText">
