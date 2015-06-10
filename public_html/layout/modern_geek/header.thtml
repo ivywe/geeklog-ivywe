@@ -36,6 +36,10 @@
 {rel_links}
 
 {plg_headercode}
+
+<!-- AJAX API のロード --> 
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
 <!-- media-queries.js -->
 <!--[if lt IE 9]>
 <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script> 
