@@ -3,6 +3,6 @@
 <aside class="block-list">
     <h2>{block_title}{block_help}</h2>
       <div class="block-list-content">
-      <ul>
+      <ul class="uk-list">
 
 {# end {templatelocation} #}
