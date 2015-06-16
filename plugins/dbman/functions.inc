@@ -1197,25 +1197,25 @@ function DBMAN_createMenu($current_menu = 'list', $text = '', $noesc = true) {
 }
 
 function DBMAN_list($header_arr, $data_arr) {
-	$retval = '<table class="admin-list-table">' . LB
-			. '<tr style="background: #ffffff;">' . LB;
+	$retval = '<table class="uk-table uk-table-striped uk-table-condensed">' . LB
+			. '<tr>' . LB;
 	
 	foreach ($header_arr as $header) {
-		$retval .= '<th class="admin-list-headerfield">' . $header . '</th>' . LB;
+		$retval .= '<th>' . $header . '</th>' . LB;
 	}
 	
 	$retval .= '</tr>' . LB;
-	$class = 'pluginRow1';
+	$class = '';
 	
 	foreach ($data_arr as $row) {
-		$retval .= '<tr class="' . $class . '" onmouseover="className=\'pluginRollOver\';" onmouseout="className=\'' . $class . '\';">' . LB;
+		$retval .= '<tr>' . LB;
 
 		foreach ($row as $cell) {
-			$retval .= '<td class="admin-list-field">' . $cell . '</td>' . LB;
+			$retval .= '<td>' . $cell . '</td>' . LB;
 		}
 		
 		$retval .= '</tr>' . LB;
-		$class = ($class === 'pluginRow1' ? 'pluginRow2' : 'pluginRow1');
+		$class = '';
 	}
 	
 	$retval .= '</table>' . LB;
