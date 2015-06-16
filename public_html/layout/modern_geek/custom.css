@@ -75,12 +75,8 @@ width: auto;
 }
 
 
-/*
-Back to top button 
-*/
-#back-to-top {background:#ba224b;background:rgba(186,34,75,0.75);box-shadow:0 0 2px 0 rgba(255,255,255,0.2);border-radius:3px;bottom:20px;cursor:pointer;display:block;height:45px;line-height:45px;font-size:16px;position:fixed;right:20px;text-align:center;width:45px;z-index:9999;}#back-to-top:hover {background-color:#147D85;background:rgba(199, 8, 80, 0.75);text-decoration:none;}
-#back-to-top i {color:#fff;}
-
+/* Back to top navigation */
+#ivm-page-nav{position:fixed;width:auto;top:0;bottom:0;right:30px}
 
 .uk-article-title {
   clear: both;
@@ -285,3 +281,10 @@ h2.gl-h2-main {
 	}
 }
 
+/* Scroll navigation */
+#ivm-page-nav{position:fixed;width:auto;top:0;bottom:0;right:25px;width:20px; }
+@media (max-width:480px) {
+	#ivm-page-nav{
+		right:5px;
+	}
+}

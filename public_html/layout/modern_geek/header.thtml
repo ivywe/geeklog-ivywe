@@ -27,10 +27,6 @@
 <link rel="stylesheet" type="text/css" href="{layout_url}/vendor/jquery-datatables/css/jquery.dataTables.min.css" />
 <!-- } jQuery Datatables -->
 
-<!-- Important Owl stylesheet { -->
-<link rel="stylesheet" href="{layout_url}/vendor/jquery-owl.carousel/owl-carousel/owl.carousel.css">
-<link rel="stylesheet" href="{layout_url}/vendor/jquery-owl.carousel/owl-carousel/owl.theme.css"><!-- } Important Owl stylesheet -->
-
 <link rel="stylesheet" href="{layout_url}/vendor/uikit/css/uikit-ivywe.css"{xhtml}> 
 
 {rel_links}

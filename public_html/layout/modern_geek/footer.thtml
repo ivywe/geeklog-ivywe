@@ -15,8 +15,6 @@
 
   <hr class="separator"{xhtml}>
 
-<p id="back-to-top"><a href="#top" style="display: block;"><i class="uk-icon-chevron-up"></i></a></p>
-
 </div>
 
 {!if right_blocks}
@@ -40,6 +38,14 @@
 
 <!-- } #container -->
 
+<nav id="ivm-page-nav" class="uk-flex uk-flex-middle uk-flex-center">
+<ul class="uk-dotnav uk-flex-column" data-uk-scrollspy-nav="{ closest:'li', smoothscroll:true}">
+    <li><a href="#top"></a></li>
+    <li><a href="#leftblocks"></a></li>
+    <li><a href="#footer2"></a></li>
+    <li><a href="#footer"></a></li>
+</ul>
+</nav>
 
 {plg_footercode}
 
@@ -321,88 +327,6 @@ $('.name',this).fadeOut('slow');
 </script>
 <!-- } DataTables jQuery -->
 
-<!-- jQuery Plugin one-page-faq-source { -->
-    <script>
-        $(document).ready(function() {
-            $('#faq-list h3').click(function() {
-                
-                $(this).next('.bx-answer').slideToggle(500);
-                $(this).toggleClass('close');
-                
-            });
-            $('#form-list h3').click(function() {
-                
-                $(this).next('.bx-checkbox').slideToggle(200);
-                $(this).toggleClass('close');
-                
-            });
-            $('#map-list h3').click(function() {
-                
-                $(this).next('.map').slideToggle(200);
-                $(this).toggleClass('close');
-                
-            });
-        }); // end ready
-    </script>
-<!-- } jQuery Plugin one-page-faq-source -->
-
-<!-- Simple Back To Top Link jQuery -->
-<script type="text/javascript">
-    $(document).ready(function(){
-    $("#back-to-top").hide();
-    $(function () {
-        $(window).scroll(function(){
-        if ($(window).scrollTop()>100){
-        $("#back-to-top").fadeIn(1500);
-        }
-        else
-        {
-        $("#back-to-top").fadeOut(1500);
-        }
-        });
-        //back to top
-        $("#back-to-top").click(function(){
-        $('body,html').animate({scrollTop:0},1000);
-        return false;
-        });
-        });
-        });
-</script>
-<!-- } Simple Back To Top Link jQuery -->
-
-
-
-<!-- Include owl js plugin { -->
-<script src="{layout_url}/vendor/jquery-owl.carousel/owl-carousel/owl.carousel.js"></script>
-
-<script>
-$(document).ready(function() {
-      $("#owl-images").owlCarousel({
-        autoPlay: 3000,
-        itemsDesktop : [1199,3],
-        itemsDesktopSmall : [979,3],
-    	lazyLoad : true,
-    	navigation : true
-      });
-
-	  $("#owl-oneslide").owlCarousel({
- 
-      navigation : true, // Show next and prev buttons
-      slideSpeed : 300,
-      paginationSpeed : 400,
-      singleItem:true
- 
-      // "singleItem:true" is a shortcut for:
-      // items : 1, 
-      // itemsDesktop : false,
-      // itemsDesktopSmall : false,
-      // itemsTablet: false,
-      // itemsMobile : false
- 
-      });
-    });
-</script>
-<!-- } Include owl js plugin -->
 
 
 
