@@ -1062,9 +1062,9 @@ function MG_autotags ($op, $content = '', $autotag = '')
             $direct_link = '';
             $ss_count++;
 
-            $classtag = ' class=""';
+            $classtag = ' class="uk-border-rounded"';
             if ($class != '') {
-                $classtag = ' class=" ' . $class . '"';
+                $classtag = ' class="uk-border-rounded ' . $class . '"';
             }
             $sql = "SELECT ma.album_id,m.media_title,m.media_type,m.media_filename,"
                         . "m.media_mime_ext,m.mime_type,m.media_tn_attached,m.remote_url "

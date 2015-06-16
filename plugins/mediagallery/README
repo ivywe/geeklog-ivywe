@@ -61,6 +61,103 @@ public_html/mediagallery/mediaobjects/disp   and the following directories
 public_html/mediagallery/mediaobjects/orig   and the following directories
 public_html/mediagallery/mediaobjects/tn     and the following directories
 
+Feature of ivywe edition
+------------------------
+
+Medialist autotag
+
+  Format:　[albumlist:albumid limitcnt:xx order:xx XXXX]
+		Display sub album of album:albumid.
+		limitcnt: number. default:0 (no limit)
+		order:RANDOM ... random. 
+		      or Album id order.
+		<ul>
+		<li>Sub albun 1 thumbnail of album<br />Description</li>
+		<li>Sub albun 2 thumbnail of album<br />Description</li>
+		<li>Sub albun 3 thumbnail of album<br />Description</li>
+		...
+		</ul>
+           e.g. [albumlist:3 limitcnt:10 order:RANDOM class1 class2 class3]
+		
+  Format:　[medialist:albumid theme:xx limitcnt:xx sort:asc {class}]
+		Display Media list by using templates.
+		theme:default:
+			templates/medialist/default/autotag_medialist.thtml
+			templates/medialist/default/autotag_medialist_col.thtml
+		limitcnt: number. default:0 (no limit)
+		sort: asc or desc default:asc
+
+           e.g. [medialist:3 theme:list limitcnt:10 class1 class2 class3]
+			theme:list:
+				templates/medialist/list/autotag_medialist.thtml
+				templates/medialist/list/autotag_medialist_col.thtml
+
+ -------------------------------------------------------------------------------
+ directory
+ mediagalley
+   ├ function.php  (change)
+   │ 
+   ├ include
+   │ ├ autotags.php  (change)
+   │ │ 
+   │ ├ autotags_add.inc  (add) 
+   │ │ 
+   ├ templates
+   │ ├ medialist
+   │ │ │ 
+   │ │ ├ admin
+   │ │ │ │
+   │ │ │ ├ autotag_medialist.thtml  (add) ...for autotag:medialist
+   │ │ │ ├ autotag_medialist_col.thtml  (add) ...for autotag:medialist
+   │ │ │ │
+   │ │ ├ default
+   │ │ │ │
+   │ │ │ ├ autotag_medialist.thtml  (add) ...for autotag:medialist
+   │ │ │ ├ autotag_medialist_col.thtml  (add) ...for autotag:medialist
+   │ │ │ 
+   │ │ ├ (theme name)
+
+-------------
+header.thtml
+-------------
+
+add bellow:
+
+<link rel="stylesheet" href="{layout_url}/vendor/uikit/css/uikit.css"{xhtml}>
+
+get uikit.css from UIkit customizer (http://getuikit.com/docs/customizer.html)
+check Advanced Mode!
+
+
+-------------
+footer.thtml
+-------------
+
+add bellow after {plg_footercode}:
+
+<!-- Front-end framework UIkit { -->
+<script type="text/javascript" src="{layout_url}/vendor/uikit/js/uikit.js"></script>
+<script src="{layout_url}/vendor/uikit/js/components/lightbox.js"></script>
+<script src="{layout_url}/vendor/uikit/js/components/grid.js"></script>
+<script src="{layout_url}/vendor/uikit/js/components/slideshow.js"></script>
+<script src="{layout_url}/vendor/uikit/js/components/slideshow-fx.js"></script>
+<script src="{layout_url}/vendor/uikit/js/components/slideset.js"></script>
+<!-- } Front-end framework UIkit -->
+
+
+upload UIkit source files:
+
+{layout_url}/vendor/uikit/
+
+UIkit download:
+
+http://getuikit.com/
+
+
+
+
+
+
 Feature of Version1.6.10
 ------------------------
 From Version1.6.10 I extend the functionality of glFusion version in earnest.
@@ -128,6 +225,9 @@ From Version1.6.10 I extend the functionality of glFusion version in earnest.
     For more information, please see the comments in config.php.
 
 (9) Several bug fixes and optimizations.
+
+
+
 
 Feature of Version1.6.11
 ------------------------
