@@ -384,12 +384,14 @@ function fncEdit(
         $additionfields_fnm=$_POST['afield_fnm'];//@@@@@
 		$additionfields_del=$_POST['afield_del'];
 		$additionfields_date=array();
+        $additionfields_alt=$_POST['afield_alt'];;
 		$additionfields=DATABOX_cleanaddtiondatas(
 			$additionfields
 			,$addition_def
 			,$additionfields_fnm
 			,$additionfields_del
 			,$additionfields_date
+			,$additionfields_alt
 			,false
 			);
 
@@ -1104,6 +1106,8 @@ function fncSave (
     $additionfields_old=$_POST['afield'];
     $additionfields_fnm=$_POST['afield_fnm'];
     $additionfields_del=$_POST['afield_del'];
+   $additionfields_alt=$_POST['afield_alt'];
+	$additionfields_date=array();
 
 	$dummy=DATABOX_cleanaddtiondatas (
 		$additionfields
@@ -1111,6 +1115,7 @@ function fncSave (
 		,$additionfields_fnm
 		,$additionfields_del
 		,$additionfields_date
+		,$additionfields_alt
 		);
  
     //
@@ -1249,7 +1254,8 @@ function fncSave (
 
     //----追加項目チェック
     $err.=DATABOX_checkaddtiondatas
-        ($additionfields,$addition_def,$pi_name,$additionfields_fnm,$additionfields_del);
+        ($additionfields,$addition_def,$pi_name,$additionfields_fnm
+        ,$additionfields_del,$additionfields_alt);
 
     //編集日付
     $modified=$modified_year."-".$modified_month."-".$modified_day;
@@ -1437,7 +1443,8 @@ function fncSave (
 
 	//追加項目
 	DATABOX_uploadaddtiondatas	
-        ($additionfields,$addition_def,$pi_name,$id,$additionfields_fnm,$additionfields_del,$additionfields_old);
+        ($additionfields,$addition_def,$pi_name,$id,$additionfields_fnm,$additionfields_del
+            ,$additionfields_old,$additionfields_alt);
 
     $rt=DATABOX_saveaddtiondatas($id,$additionfields,$addition_def,$pi_name);
 
@@ -1535,10 +1542,15 @@ function fncdelete ()
 
     }
 
+//    if (!USER_deleteAccount ($id)) {
+//        $return_page=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?msg=3';
+//    }else{
+//        $return_page=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?msg=2';
+//    }
     if (!USER_deleteAccount ($id)) {
-        $return_page=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?msg=3';
+        $msg=3;
     }else{
-        $return_page=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?msg=2';
+        $msg=2;
     }
 
     $rt=fncsendmail ('data_delete',$id,$username,$email);
@@ -1548,7 +1560,13 @@ function fncdelete ()
 
     //exit;// debug 用
 
-    return COM_refresh ($return_page);
+	//return COM_refresh ($return_page);
+	
+    $retval['title']=$LANG_USERBOX_ADMIN['piname'];
+    $retval['display']= COM_showMessage ($msg,'userbox');
+    $retval['display'].= fncList();
+
+    return $retval;
 
 
 }

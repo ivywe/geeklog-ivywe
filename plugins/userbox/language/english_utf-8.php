@@ -494,6 +494,8 @@ $LANG_USERBOX_NOYES = array(
 $LANG_USERBOX_INPUTTYPE = array(
     0 => 'Checkbox',
     1 => 'Multi Select List'
+    ,2 => 'Radio Button List'
+    ,3 => 'Option List'
 );
 $LANG_USERBOX_ALLOW_DISPLAY = array();
 $LANG_USERBOX_ALLOW_DISPLAY[0] ='Display(order)';
