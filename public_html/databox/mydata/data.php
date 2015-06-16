@@ -341,12 +341,14 @@ function fncEdit(
         $additionfields_fnm=$_POST['afield_fnm'];//@@@@@
 		$additionfields_del=$_POST['afield_del'];
 		$additionfields_date=array();
+        $additionfields_alt=$_POST['afield_alt'];;
 		$additionfields=DATABOX_cleanaddtiondatas (
 			$additionfields
 			,$addition_def
 			,$additionfields_fnm
 			,$additionfields_del
 			,$additionfields_date
+			,$additionfields_alt
 			,false
 			);
 
@@ -733,6 +735,7 @@ function fncSave (
     $additionfields_old=$_POST['afield'];
     $additionfields_fnm=$_POST['afield_fnm'];
     $additionfields_del=$_POST['afield_del'];
+    $additionfields_alt=$_POST['afield_alt'];
 	$additionfields_date=array();
 
 	$additionfields=DATABOX_cleanaddtiondatas(
@@ -741,6 +744,7 @@ function fncSave (
 		,$additionfields_fnm
 		,$additionfields_del
 		,$additionfields_date
+		,$additionfields_alt
 		);
 
 
@@ -778,7 +782,8 @@ function fncSave (
 
     //----追加項目チェック
     $err.=DATABOX_checkaddtiondatas
-        ($additionfields,$addition_def,$pi_name,$additionfields_fnm,$additionfields_del);
+        ($additionfields,$addition_def,$pi_name,$additionfields_fnm
+        ,$additionfields_del,$additionfields_alt);
 
     //errorのあるとき
     if ($err<>"") {
@@ -967,11 +972,13 @@ function fncSave (
 
 	//追加項目
 	if  ($old_mode=="copy"){
-	    DATABOX_uploadaddtiondatas_cpy
-            ($additionfields,$addition_def,$pi_name,$id,$additionfields_fnm,$additionfields_del,$additionfields_old);
+        DATABOX_uploadaddtiondatas_cpy
+        ($additionfields,$addition_def,$pi_name,$id,$additionfields_fnm
+        ,$additionfields_del,$additionfields_old,$additionfields_alt);
     }else{
-	    DATABOX_uploadaddtiondatas	
-            ($additionfields,$addition_def,$pi_name,$id,$additionfields_fnm,$additionfields_del,$additionfields_old);
+        DATABOX_uploadaddtiondatas	
+        ($additionfields,$addition_def,$pi_name,$id,$additionfields_fnm
+        ,$additionfields_del,$additionfields_old,$additionfields_alt);
     }
 		
     if ($new_flg){

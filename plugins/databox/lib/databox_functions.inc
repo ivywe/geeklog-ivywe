@@ -1092,7 +1092,7 @@ function DATABOX_getaddtionfieldsEdit(
                         $fvalue_fnm=$fields_fnm[$fid];
                         $fvalue_del=$fields_del[$fid];
                         $fieldhtml .=DATABOX_figurehtml12
-                            ($fid,$fvalue,$fvalue_del);
+                            ($fid,$fvalue,$fvalue_del,$size,$maxlength);
                     break;
                 case 11:// 図
                         $fvalue_fnm=$fields_fnm[$fid];
@@ -1265,7 +1265,6 @@ function DATABOX_getaddtionfieldsEdit(
                         $fieldhtml .= " name=\"afield[".$fid."]\" ";
                         $fieldhtml .= " style=\"max-width:95%\"";
                         $fieldhtml .= " value=\"".$fvalue."\"";
-                        $fieldhtml .= " ".$disabled." ";
                         $fieldhtml .= " ".XHTML.">";
                     }else{
                         $fieldhtml .=$fvalue;
@@ -1400,10 +1399,14 @@ function DATABOX_figurehtml12(
     $fid
     ,$fvalue
     ,$fvalue_del
+    ,$size
+    ,$maxlength
 )
 {
 
     global $LANG04;
+    
+    $a=explode("|",$fvalue);
 
     //
     $retval .= "        <input ";
@@ -1411,12 +1414,21 @@ function DATABOX_figurehtml12(
     $retval .= " name=\"afield[".$fid."]\" ";
     $retval .= " value=\"".$fvalue."\"";
     $retval .= " ".XHTML.">".LB;
-    
+
     $retval .="<input type=\"file\" dir=\"ltr\"";
     $retval .= " id=\"afield_fnm[".$fid."]\" ";
     $retval .= " name=\"afield_fnm[".$fid."]\" ";
     $retval .="size=\"30\"";
     $retval .= " ".XHTML.">".LB;
+    
+    $retval .= "<input ";
+    $retval .= " type=\"text\"";
+    $retval .= " size=\"".$size."\"";
+    $retval .= " maxlength=\"".$maxlength."\" ";
+    $retval .= " name=\"afield_alt[".$fid."]\" ";
+    $retval .= " style=\"max-width:95%\"";
+    $retval .= " value=\"".$a[1]."\"";
+    $retval .= " ".XHTML.">";
 
     if ($fvalue<>""){
 
@@ -1947,20 +1959,22 @@ function DATABOX_getaddtionfieldsDisp(
             $fieldhtml_yes="";
             switch ($type) {
                 case 12://画像（外記憶）（準備中）
-                    $fieldhtml=$fvalue;//ファイル名
-                    $fieldhtml_noimage=$fvalue;
+                    $a=explode("|",$fvalue);
+                    $fieldhtml=$a[0];//ファイル名
+                    $fieldhtml_noimage=$a[0];
                     //
                     if  ($fvalue===""){
                         $fieldhtml_noimage=$noimage;
                         $fieldhtml_tn_noimage=$noimage;
                     }else{
+
                         $fieldurl= $_CONF['site_url']   ."/".$box_conf['imgfile_frd'] ;
-                        $fieldurl.= $fvalue ;
+                        $fieldurl.= $a[0] ;
 
                         $fieldhtmldisp .="<img ";
                         $fieldhtmldisp .=" src=\"{$fieldurl}\"";
                         $fieldhtmldisp .=" border=\"0\"";
-                        $fieldhtmldisp .=" alt=\"{$fvalue}\"";
+                        $fieldhtmldisp .=" alt=\"{$a[1]}\"";
                         $fieldhtmldisp .=" ".HTML.">";
                     
                         //サムネイル
@@ -1979,7 +1993,7 @@ function DATABOX_getaddtionfieldsDisp(
                             $fieldhtml_tn_image .="<img ";
                             $fieldhtml_tn_image .=" src=\"{$fieldurl_tn}\"";
                             $fieldhtml_tn_image .=" border=\"0\"";
-                            $fieldhtml_tn_image .=" alt=\"{$fvalue}\"";
+                            $fieldhtml_tn_image .=" alt=\"{$a[1]}\"";
                             $fieldhtml_tn_image .=" ".XHTML.">";
                             $fieldhtml_tn_image .=" </a>";
                         
@@ -2587,7 +2601,6 @@ function DATABOX_getcategoriesinp(
 )
 {
 global $_TABLES;
-
     if ($pi_name==""){
         $table_def_category=$_TABLES['DATABOX_def_category'];
         $table_def_group=$_TABLES['DATABOX_def_group'];
@@ -2658,8 +2671,10 @@ global $_TABLES;
         
             if  ($A['input_type']==1){
                 $retval .='<select name="category[]" multiple style="height:10em">'.LB;
+            }else if ($A['input_type']==3){
+                $retval .='<select name="category[]" >'.LB;
             }
-        
+            
             for( $i2 = 0; $i2 < $nrows2; $i2++ )    {
 
                 $A2 = DB_fetchArray( $result2, true );
@@ -2667,7 +2682,7 @@ global $_TABLES;
                 $checked=" ";
                 for( $x = 0; $x < sizeof( $S ); $x++ )            {
                     if( $A2['category_id'] == $S[$x] )                {
-                        if  ($A['input_type']==0){
+                        if  ($A['input_type']==0 OR $A['input_type']==2){
                             $checked= ' checked="checked" ';
                         }else{
                             $checked= ' selected ';
@@ -2681,7 +2696,17 @@ global $_TABLES;
                     $retval .= '"';
                     $retval .= $checked;
                     $retval .= ' >' . stripslashes( $A2['name'] ) . '</span>' . LB;
-                }else{
+                }else  if  ($A['input_type']==1){
+                    $retval .= '<option value="' . $A2['category_id'] . '"';
+                    $retval .= $checked;
+                    $retval .= ' >' . stripslashes( $A2['name'] ) ;
+                    $retval .= '</option>' . LB;
+                }else  if  ($A['input_type']==2){
+                    $retval .= '<input type="radio" name="category[]" value="' . $A2['category_id'];
+                    $retval .= '"';
+                    $retval .= $checked;
+                    $retval .= ' >' . stripslashes( $A2['name'] ) . '</span>' . LB;
+                }else  if  ($A['input_type']==3){
                     $retval .= '<option value="' . $A2['category_id'] . '"';
                     $retval .= $checked;
                     $retval .= ' >' . stripslashes( $A2['name'] ) ;
@@ -2689,7 +2714,7 @@ global $_TABLES;
                 }
             }
         
-            if  ($A['input_type']==1){
+            if  ($A['input_type']==1  OR  $A['input_type']==3  ){
                 $retval .='</select>';
             }
         }
@@ -2933,6 +2958,7 @@ function DATABOX_cleanaddtiondatas(
     ,&$fnmary
     ,&$delary
     ,&$dateary
+    ,&$altary
     ,$addslash = true
 )
 // +---------------------------------------------------------------------------+
@@ -3027,12 +3053,19 @@ function DATABOX_cleanaddtiondatas(
                     $delary[$field_id]=COM_applyFilter($delary[$field_id]);
                     $wk=COM_applyFilter($wk);
                     $wk=COM_checkHTML (COM_checkWords ($wk));
+                    $wk2=COM_applyFilter($altary[$field_id]);
+                    $wk2=COM_checkHTML (COM_checkWords ($wk2));
+                    $altary[$field_id]=$wk2;
+                    $a=explode("|",$wk);
+                    $wk=$a[0]."|".$wk2;
                     break;
                 case 13:// 添付ファイル
                     $fnmary[$field_id]=COM_applyFilter($fnmary[$field_id]);
                     $delary[$field_id]=COM_applyFilter($delary[$field_id]);
                     $wk=COM_applyFilter($wk);
                     $wk=COM_checkHTML (COM_checkWords ($wk));
+                    $wk2=COM_applyFilter($delary[$field_id]);
+                    $delary[$field_id]=COM_checkHTML (COM_checkWords ($wk2));
                     break;
                 case 7://オプションリスト（選択肢）
                 case 8://ラジオボタンリスト（選択肢）
@@ -3060,6 +3093,7 @@ function DATABOX_checkaddtiondatas(
     ,$pi_name
     ,$fldary_fnm=""
     ,$fldary_del=""
+    ,$fldary_alt=""
 )
 // +---------------------------------------------------------------------------+
 // | 機能 追加項目check
@@ -3158,7 +3192,7 @@ function DATABOX_checkaddtiondatas(
                             //$filename = str_replace(".JPG",".jpg",$filename);
                             //重複チェック
                             if  ($imgerr===""){
-                                $fldary[$field_id]=$imgname;
+                                $fldary[$field_id]=$imgname."|".fldary_alt;//@@@@@@@!!!!
                             }
                         }
                     }else{
@@ -3409,6 +3443,7 @@ function DATABOX_uploadaddtiondatas(
     ,$fldary_fnm=""
     ,$fldary_del=""
     ,$fldary_old=""
+    ,$fldary_alt=""
 )
 // +---------------------------------------------------------------------------+
 // | 機能  追加項目upload
@@ -3481,7 +3516,7 @@ function DATABOX_uploadaddtiondatas(
                         //$newfilename=$imgname;
                         if (DATABOX_uploadImageFile
                                 ($imgname,$imgfile,$imgsize, $imgtype,$imgfld,$newfilename)){
-                            $fldary[$field_id]=$newfilename;
+                            $fldary[$field_id]=$newfilename."|".$fldary_alt[$field_id];//@@@@@@@!!!!
                             //サムネイル作成する場合
                             if($box_conf['imgfile_thumb_ok'] && function_exists('ImageCreate')) {
                                 $rt=DATABOX_createthumb(
@@ -3549,6 +3584,7 @@ function DATABOX_uploadaddtiondatas_cpy(
     ,$fldary_fnm=""
     ,$fldary_del=""
     ,$fldary_old=""
+    ,$fldary_alt=""
 )
 // +---------------------------------------------------------------------------+
 // | 機能  追加項目upload  for copy
@@ -3589,8 +3625,12 @@ function DATABOX_uploadaddtiondatas_cpy(
             if ($addition_def[$field_id]['type']==12){//図
                 $imgfld=$_CONF['path_html'].$box_conf['imgfile_frd'];
                 $imgfld_thmb=$_CONF['path_html'].$box_conf['imgfile_thumb_frd'];
-                $filename=$fldary[$field_id];
-                $filename_old=$fldary_old[$field_id];
+                //$filename=$fldary[$field_id];
+                //$filename_old=$fldary_old[$field_id];
+                $a=explode("|",$fldary[$field_id]);
+                $filename=$a[0];//ファイル名
+                $a=explode("|",$fldary_old[$field_id]);
+                $filename_old=$a[0];//ファイル名
                 
                 if (is_array($fldary_del) AND $fldary_del[$field_id]){
                     $fldary[$field_id]="";
@@ -3611,7 +3651,7 @@ function DATABOX_uploadaddtiondatas_cpy(
                         //$newfilename=$imgname;
                         if (DATABOX_uploadImageFile
                                 ($imgname,$imgfile,$imgsize, $imgtype,$imgfld,$newfilename)){
-                            $fldary[$field_id]=$newfilename;
+                            $fldary[$field_id]=$newfilename."|".$fldary_alt[$field_id];
                             //サムネイル作成する場合
                             if($box_conf['imgfile_thumb_ok'] && function_exists('ImageCreate')) {
                                 $rt=DATABOX_createthumb(
@@ -3643,7 +3683,7 @@ function DATABOX_uploadaddtiondatas_cpy(
                             $cpyto =$imgfld_thmb.$thumbname;
                             $rt=copy( $cpyfrom, $cpyto );
                             //
-                            $fldary[$field_id]=$newfilename;
+                            $fldary[$field_id]=$newfilename."|".$fldary_alt[$field_id];
                         }
                     }
                 }

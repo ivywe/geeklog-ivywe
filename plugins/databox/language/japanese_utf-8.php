@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20150513
+# Last Update 20150609
 
 ###############################################################################
 ## 管理画面 menu
@@ -68,10 +68,10 @@ $LANG_DATABOX['downloadrequired'] = 'クリックして、ダウンロードし�
 $LANG_DATABOX['display'] = '表示';
 $LANG_DATABOX['displayrequired'] = 'クリックして、表示してください。';
 
-$LANG_DATABOX['category_separater']=" / "; //テーマ変数でカテゴリ名称を列挙する際の区切
-$LANG_DATABOX['category_separater_code']=" "; //テーマ変数でカテゴリコードを列挙する際の区切
-$LANG_DATABOX['category_separater_text']=", "; //送信メールでカテゴリを列挙する際の区切
-$LANG_DATABOX['field_separater']="|"; //マルチセレクトリストの区切り
+$LANG_DATABOX['category_separater']=" / "; //テーマ変数でカテゴリ名称を列挙する際の区切り
+$LANG_DATABOX['category_separater_code']=" "; //テーマ変数でカテゴリコードを列挙する際の区切り
+$LANG_DATABOX['category_separater_text']=", "; //送信メールでカテゴリを列挙する際の区切り
+$LANG_DATABOX['field_separater']="|"; //マルチセレクトボックスの区切り
 
 $LANG_DATABOX['loginrequired'] = '(ログインしてください)';
 
@@ -208,28 +208,28 @@ $LANG_DATABOX_ADMIN['allow_edit']='編集制限(ユーザー)';
 
 $LANG_DATABOX_ADMIN['type']='タイプ';
 
-$LANG_DATABOX_ADMIN['size']='size（テキスト,マルチセレクトリスト）';
-$LANG_DATABOX_ADMIN['maxlength']='maxlength（テキスト）';
-$LANG_DATABOX_ADMIN['rows']='rows（複数行テキスト）';
-$LANG_DATABOX_ADMIN['br']='改行（ラジオボタン）';
-$LANG_DATABOX_ADMIN['help_br']='0:しない,1〜9:指定数毎に改行する';
+$LANG_DATABOX_ADMIN['size']='size(テキスト,マルチセレクトボックス)';
+$LANG_DATABOX_ADMIN['maxlength']='maxlength(テキスト)';
+$LANG_DATABOX_ADMIN['rows']='rows(複数行テキスト)';
+$LANG_DATABOX_ADMIN['br']='改行(ラジオボタン)';
+$LANG_DATABOX_ADMIN['help_br']='0:しない,1～9:指定数毎に改行する';
 
 //
 $LANG_DATABOX_ADMIN['language_id']="言語ID";
 $LANG_DATABOX_ADMIN['owner_id']="所有者ID";
 $LANG_DATABOX_ADMIN['group_id']="グループID";
-$LANG_DATABOX_ADMIN['perm_owner']="パーミッション（所有者）";
-$LANG_DATABOX_ADMIN['perm_group']="パーミッション（グループ）";;
-$LANG_DATABOX_ADMIN['perm_members']="パーミッション（メンバ）";
-$LANG_DATABOX_ADMIN['perm_anon']="パーミッション（ゲスト）";
+$LANG_DATABOX_ADMIN['perm_owner']="パーミッション(所有者)";
+$LANG_DATABOX_ADMIN['perm_group']="パーミッション(グループ)";;
+$LANG_DATABOX_ADMIN['perm_members']="パーミッション(メンバ)";
+$LANG_DATABOX_ADMIN['perm_anon']="パーミッション(ゲスト)";
 //
 
 $LANG_DATABOX_ADMIN['selection']='選択肢';
 $LANG_DATABOX_ADMIN['selectlist']='マスターの種別';
 $LANG_DATABOX_ADMIN['checkrequried']='必須チェック';
 
-$LANG_DATABOX_ADMIN['textcheck']='入力チェック（テキスト）';
-$LANG_DATABOX_ADMIN['textconv']='入力値変換（テキスト）';
+$LANG_DATABOX_ADMIN['textcheck']='入力チェック(テキスト)';
+$LANG_DATABOX_ADMIN['textconv']='入力値変換(テキスト)';
 $LANG_DATABOX_ADMIN['searchtarget']='検索対象にする';
 
 $LANG_DATABOX_ADMIN['initial_value']='初期値';
@@ -277,12 +277,12 @@ $LANG_DATABOX_ADMIN['url'] = 'URL';
 
 $LANG_DATABOX_ADMIN['default'] = 'デフォルト';
 $LANG_DATABOX_ADMIN['importxmlmsg'] = "
-絶対パス（フォルダ、ファイル）またはURLを指定してください。<br".XHTML.">
+絶対パス(フォルダ、ファイル)またはURLを指定してください。<br".XHTML.">
 フォルダ指定の時は、フォルダ下のxmlファイルをインポートします。<br".XHTML.">
 logs/databox_xmlimport.log　にログが記録されます。<br".XHTML.">
 ";
 $LANG_DATABOX_ADMIN['exportxmlmsg'] = "
-絶対パス（フォルダ）を指定してください。<br".XHTML.">
+絶対パス(フォルダ)を指定してください。<br".XHTML.">
 logs/databox_xmlimport.log　にログが記録されます。<br".XHTML.">
 ";
 $LANG_DATABOX_ADMIN['initmsg'] = '
@@ -305,15 +305,14 @@ $LANG_DATABOX_ADMIN['backupmsg'] =
 アップロードファイルは別途バックアップしてください。<br".XHTML.">
 ";
 $LANG_DATABOX_ADMIN['restoremsg'] = 
-"{$_CONF['backup_path']}"."databox/にある"
-."ファイル名を指定してください。（省略時databox.xml）<br".XHTML.">
+"リストアするファイルを選択してください。<br".XHTML.">
 DataBox のデータベースデータをリストアします。<br".XHTML.">
 アップロードファイルは別途もどしてください。<br".XHTML.">
 ";
 
 $LANG_DATABOX_ADMIN['restoremsgPHP'] = 
 "{$_CONF['backup_path']}"."databox/にある"
-."ファイル名を指定してください。（省略時databox.xml）<br".XHTML.">
+."ファイル名を指定してください。(省略時databox.xml)<br".XHTML.">
 phpMyAdmin でエクスポートしたDataBox のデータベースデータをリストアします。<br".XHTML.">
 phpMyAdmin XML Dump version 3.3.8用<br".XHTML.">
 接頭子が異なる場合は、あらかじめ変換しておいてください。<br".XHTML.">
@@ -358,8 +357,8 @@ $LANG_DATABOX_ADMIN['csvheader'] = 'CSV１行目';
 $LANG_DATABOX_ADMIN['help_csvheader'] = 'CSVの１行目';
 $LANG_DATABOX_ADMIN['help_field_csv'] = "
 マスターを使用するアトリビュートは２種類あります
-例マスターのNo.を入力ファイルに編集する場合（都道府県）
-マスターのvalueを入力ファイルに編集する場合（都道府県_value）
+例マスターのNo.を入力ファイルに編集する場合(都道府県)
+マスターのvalueを入力ファイルに編集する場合(都道府県_value)
 ";
 $LANG_DATABOX_ADMIN['help_value_csv'] = "
 カテゴリの場合、カテゴリの名称を登録します
@@ -369,14 +368,14 @@ $LANG_DATABOX_ADMIN['help_value_csv_sel'] = "
 ";
 
 $LANG_DATABOX_ADMIN['importmsgcsv'] = "
-絶対パス（フォルダ、ファイル）またはURLを指定してください。<br".XHTML.">
+絶対パス(フォルダ、ファイル)またはURLを指定してください。<br".XHTML.">
 フォルダ指定の時は、フォルダ下のcsvファイルをインポートします。<br".XHTML.">
 入力を省略すると%s
 の下のcsvファイルをインポートします。<br".XHTML.">
 logs/databox_csvimport.log　にログが記録されます。<br".XHTML.">
 ";
 $LANG_DATABOX_ADMIN['exportmsgcsv'] = "
-絶対パス（フォルダ）を指定してください。<br".XHTML.">
+絶対パス(フォルダ)を指定してください。<br".XHTML.">
 logs/databox_csvimport.log　にログが記録されます。<br".XHTML.">
 ";
 $LANG_DATABOX_ADMIN['initmsgcsv'] = '
@@ -406,8 +405,8 @@ $LANG_DATABOX_ADMIN['modified_autoupdate'] = '自動更新する';
 $LANG_DATABOX_ADMIN['additionfields'] = 'アトリビュート';
 $LANG_DATABOX_ADMIN['basicfields'] = '基本';
 
-$LANG_DATABOX_ADMIN['category_id'] = 'ID';
-$LANG_DATABOX_ADMIN['field_id'] = 'ID';
+$LANG_DATABOX_ADMIN['category_id'] = 'カテゴリID';
+$LANG_DATABOX_ADMIN['field_id'] = 'アトリビュートID';
 $LANG_DATABOX_ADMIN['name'] = '名称';
 $LANG_DATABOX_ADMIN['templatesetvar'] = 'テーマ変数';
 $LANG_DATABOX_ADMIN['templatesetvars'] = 'テーマ変数';
@@ -450,7 +449,7 @@ $LANG_DATABOX_xmlimport['help']=
 ."DataBox プラグインのxmlインポートを実行します <br".XHTML.">"
 ."同一コードが既に登録済の場合は、削除の後追加します <br".XHTML.">"
 ."各々の処理が済んだら、XMLファイルは削除します <br".XHTML.">"
-."(権限により削除できない場合があります） <br".XHTML.">"
+."(権限により削除できない場合があります) <br".XHTML.">"
 ."<br".XHTML.">"
 ."実行内容はdatabox_xmlimport.log に 記録されます<br".XHTML.">"
 
@@ -661,15 +660,15 @@ $LANG_DATABOX_NOYES = array(
     0 => 'いいえ',
     1 => 'はい'
 );
-$LANG_DATABOX_INPUTTYPE = array(
+$LANG_USERBOX_INPUTTYPE = array(
     0 => 'チェックボックス',
-    1 => 'マルチセレクトリスト'
+    1 => 'マルチセレクトボックス',
+    2 => 'ラジオボタン',
+    3 => 'セレクトボックス'
 );
-
-
 $LANG_DATABOX_ALLOW_DISPLAY = array();
-$LANG_DATABOX_ALLOW_DISPLAY[0] ='表示する（一覧表示可能）';
-$LANG_DATABOX_ALLOW_DISPLAY[1] ='ログインユーザーのみ表示する（一覧表示可能）';
+$LANG_DATABOX_ALLOW_DISPLAY[0] ='表示する(一覧表示可能)';
+$LANG_DATABOX_ALLOW_DISPLAY[1] ='ログインユーザーのみ表示する(一覧表示可能)';
 $LANG_DATABOX_ALLOW_DISPLAY[2] ='グループ(所有者含)とアクセス権のある人のみ表示';
 $LANG_DATABOX_ALLOW_DISPLAY[3] ='所有者とアクセス権のある人のみ表示';
 $LANG_DATABOX_ALLOW_DISPLAY[4] ='アクセス権のある人のみ表示';
@@ -684,23 +683,23 @@ $LANG_DATABOX_ALLOW_EDIT[5] = '編集表示しない';
 
 $LANG_DATABOX_TEXTCHECK = array();
 $LANG_DATABOX_TEXTCHECK[0] = 'ノーチェック';
-$LANG_DATABOX_TEXTCHECK[11] = '半角数字のみ（半角に変換します）';
-$LANG_DATABOX_TEXTCHECK[12] = '半角英数字のみ（半角に変換します）';
-$LANG_DATABOX_TEXTCHECK[13] = '標準IDの範囲内（半角に変換します）';
-$LANG_DATABOX_TEXTCHECK[14] = '半角英数字記号のみ（半角に変換します）';
+$LANG_DATABOX_TEXTCHECK[11] = '半角数字のみ(半角に変換します)';
+$LANG_DATABOX_TEXTCHECK[12] = '半角英数字のみ(半角に変換します)';
+$LANG_DATABOX_TEXTCHECK[13] = '標準IDの範囲内(半角に変換します)';
+$LANG_DATABOX_TEXTCHECK[14] = '半角英数字記号のみ(半角に変換します)';
 
 $LANG_DATABOX_TEXTCONV = array();
 $LANG_DATABOX_TEXTCONV[0] = 'しない';
 $LANG_DATABOX_TEXTCONV[10] = '半角に変換する';
 $LANG_DATABOX_TEXTCONV[20] = '全角に変換する';
 
-//TYPE （内容の変更不可）
+//TYPE (内容の変更不可)
 $LANG_DATABOX_TYPE = array();
 $LANG_DATABOX_TYPE[0] = '一行テキスト';
 $LANG_DATABOX_TYPE[10] = '複数行テキスト';//複数行テキストフィールド(HTML NG)';
-$LANG_DATABOX_TYPE[1] = 'HTML（複数行テキスト）';//複数行テキストフィールド(HTML OK)';
-$LANG_DATABOX_TYPE[20] = 'TinyMCEモード（複数行テキスト）';//'複数行テキストフィールド(HTML OK  TinyMCE)';
-$LANG_DATABOX_TYPE[19] = 'CKEditorモード（複数行テキスト）(テスト中GL2.0.1以降用)';//@@@@@複数行テキストフィールド(HTML OK  CKEditor)
+$LANG_DATABOX_TYPE[1] = 'HTML(複数行テキスト)';//複数行テキストフィールド(HTML OK)';
+$LANG_DATABOX_TYPE[20] = 'TinyMCEモード(複数行テキスト)';//'複数行テキストフィールド(HTML OK  TinyMCE)';
+$LANG_DATABOX_TYPE[19] = 'CKEditorモード(複数行テキスト)(テスト中GL2.0.1以降用)';//@@@@@複数行テキストフィールド(HTML OK  CKEditor)
 
 $LANG_DATABOX_TYPE[15] = '数値';
 $LANG_DATABOX_TYPE[21] = '通貨';//@@@@@
@@ -710,17 +709,17 @@ $LANG_DATABOX_TYPE[3] = '日付';
 $LANG_DATABOX_TYPE[4] = '日時';
 $LANG_DATABOX_TYPE[5] = 'メールアドレス';
 $LANG_DATABOX_TYPE[6] = 'url';
-$LANG_DATABOX_TYPE[7] = 'オプションリスト（選択肢）';
-$LANG_DATABOX_TYPE[8] = 'ラジオボタンリスト（選択肢）';
-$LANG_DATABOX_TYPE[14] = 'マルチセレクトリスト（選択肢）';
+$LANG_DATABOX_TYPE[7] = 'セレクトボックス(選択肢)';
+$LANG_DATABOX_TYPE[8] = 'ラジオボタン(選択肢)';
+$LANG_DATABOX_TYPE[14] = 'マルチセレクトボックス(選択肢)';
 $LANG_DATABOX_TYPE[17] = 'フラグ';
-$LANG_DATABOX_TYPE[9] = 'オプションリスト（マスター）';
-$LANG_DATABOX_TYPE[16] = 'ラジオボタンリスト（マスター）';
-$LANG_DATABOX_TYPE[18] = 'マルチセレクトリスト（マスター）';
+$LANG_DATABOX_TYPE[9] = 'セレクトボックス(マスター)';
+$LANG_DATABOX_TYPE[16] = 'ラジオボタン(マスター)';
+$LANG_DATABOX_TYPE[18] = 'マルチセレクトボックス(マスター)';
 
 
-$LANG_DATABOX_TYPE[11] = '画像（DB保存）';
-$LANG_DATABOX_TYPE[12] = '画像（ファイル保存）';
+$LANG_DATABOX_TYPE[11] = '画像(DB保存)';
+$LANG_DATABOX_TYPE[12] = '画像(ファイル保存)';
 $LANG_DATABOX_TYPE[13] = '添付ファイル';
 
 ###############################################################################
@@ -817,7 +816,7 @@ $LANG_confignames['databox']['hideuseroption'] = 'ユーザー情報に表示し
 
 $LANG_confignames['databox']['commentcode'] = '新規登録時のコメントのデフォルト';
 
-$LANG_confignames['databox']['sort_list_by'] = '管理者ページ（データ）の並べ替え';
+$LANG_confignames['databox']['sort_list_by'] = '管理者ページ(データ)の並べ替え';
 $LANG_confignames['databox']['default_cache_time'] = 'デフォルトキャッシュタイム';
 
 //--(1)
@@ -838,15 +837,15 @@ $LANG_confignames['databox']['additionsearch'] = '検索対象にするアトリ
 
 //---(3)
 $LANG_tab['databox'][tab_permissions] = 'パーミッション';
-$LANG_fs['databox'][fs_permissions] = 'データのパーミッションのデフォルト（[0]所有者 [1]グループ [2]メンバー [3]ゲスト）';
+$LANG_fs['databox'][fs_permissions] = 'データのパーミッションのデフォルト([0]所有者 [1]グループ [2]メンバー [3]ゲスト)';
 $LANG_confignames['databox']['default_permissions'] = 'パーミッション';
 
 //---(4)
 $LANG_tab['databox'][tab_autotag] = '自動タグ';
 $LANG_fs['databox'][fs_autotag] = '自動タグ';
-$LANG_confignames['databox']['intervalday']="表示期間（日）";
+$LANG_confignames['databox']['intervalday']="表示期間(日)";
 $LANG_confignames['databox']['limitcnt']="表示件数";//@@@@@
-$LANG_confignames['databox']['newmarkday']="新着マーク表示期間（日）";//@@@@@
+$LANG_confignames['databox']['newmarkday']="新着マーク表示期間(日)";//@@@@@
 $LANG_confignames['databox']['categories']="デフォルトカテゴリ";//@@@@@!!!!
 $LANG_confignames['databox']['new_img']="新着マーク";//@@@@@
 $LANG_confignames['databox']['rss_img']="RSSマーク";//@@@@@
@@ -863,10 +862,10 @@ $LANG_confignames['databox']['imgfile_frd'] = '画像';
 $LANG_confignames['databox']['imgfile_thumb_frd'] = 'サムネイル';
 
 $LANG_confignames['databox']['imgfile_thumb_ok'] = 'サムネイルを使用する？';
-$LANG_confignames['databox']['imgfile_thumb_w'] = 'サムネイルを作成する大きさ（w）';
-$LANG_confignames['databox']['imgfile_thumb_h'] = 'サムネイルを作成する大きさ（h）';
-$LANG_confignames['databox']['imgfile_thumb_w2'] = 'サムネイルリンク先画像の大きさ（w2）';
-$LANG_confignames['databox']['imgfile_thumb_h2'] = 'サムネイルリンク先画像の大きさ（h2）';
+$LANG_confignames['databox']['imgfile_thumb_w'] = 'サムネイルを作成する大きさ(w)';
+$LANG_confignames['databox']['imgfile_thumb_h'] = 'サムネイルを作成する大きさ(h)';
+$LANG_confignames['databox']['imgfile_thumb_w2'] = 'サムネイルリンク先画像の大きさ(w2)';
+$LANG_confignames['databox']['imgfile_thumb_h2'] = 'サムネイルリンク先画像の大きさ(h2)';
 $LANG_confignames['databox']['imgfile_smallw'] = '表示する画像の最大横幅';
 $LANG_confignames['databox']['imgfile_subdir'] = '画像保存URLにサブディレクトリを使用する';
 
@@ -879,19 +878,19 @@ $LANG_confignames['databox']['file_subdir'] = 'ファイル保存アドレスに
 
 //---(６)
 $LANG_tab['databox']['tab_autotag_permissions'] = '自動タグのパーミッション';
-$LANG_fs['databox']['fs_autotag_permissions'] = '自動タグのパーミッション （[0]所有者 [1]グループ [2]メンバー [3]ゲスト）';
+$LANG_fs['databox']['fs_autotag_permissions'] = '自動タグのパーミッション ([0]所有者 [1]グループ [2]メンバー [3]ゲスト)';
 $LANG_confignames['databox']['autotag_permissions_databox'] = '[databox: ] パーミッション';
 
 //---(９)
 $LANG_tab['databox']['tab_xml'] = 'XML';
-$LANG_fs['databox']['fs_xml'] = '（OPTION:XML）';
+$LANG_fs['databox']['fs_xml'] = '(OPTION:XML)';
 $LANG_confignames['databox']['path_xml'] = 'XML一括インポートディレクトリ';
 $LANG_confignames['databox']['path_xml_out'] = 'XMLエクスポートディレクトリ';
 $LANG_confignames['databox']['xml_default_fieldset_id'] = 'XML一括インポートデフォルトタイプ';
 
 //---(１０)
 $LANG_tab['databox']['tab_csv'] = 'CSV';
-$LANG_fs['databox']['fs_csv'] = '（OPTION:CSV）';
+$LANG_fs['databox']['fs_csv'] = '(OPTION:CSV)';
 $LANG_confignames['databox']['path_csv'] = 'CSV一括インポートディレクトリ';
 $LANG_confignames['databox']['path_csv_out'] = 'CSVエクスポートディレクトリ';
 $LANG_confignames['databox']['csv_default_fieldset_id'] = 'CSV一括インポートデフォルトタイプ';
@@ -904,7 +903,7 @@ $LANG_confignames['databox']['csv_cron_schedule_sel_id'] = 'スケジュール.�
 
 //---(１１)
 $LANG_tab['databox']['tab_maps'] = 'MAPS';
-$LANG_fs['databox']['fs_maps'] = '（OPTION:MAPS）';
+$LANG_fs['databox']['fs_maps'] = '(OPTION:MAPS)';
 $LANG_confignames['databox']['maps_mid'] = 'マップIDを登録するマスターの種別';
 $LANG_confignames['databox']['maps_lat'] = '緯度を登録するアトリビュートのテーマ変数';
 $LANG_confignames['databox']['maps_lng'] = '経度を登録するアトリビュートのテーマ変数';
@@ -942,12 +941,12 @@ $LANG_configselects['databox'][21] =array(
 );
 
 $LANG_configselects['databox'][22] =array(
-    'ヘッダ・フッタ・左ブロックあり' => 'standard'
+    'ヘッダ・フッタ・左ブロックあり(右ブロックはテーマ設定による)' => 'standard'
     , 'ヘッダ・フッタ・左右ブロックあり' => 'leftrightblocks'
-    , '全画面表示（ヘッダ・フッタ・ブロックなし）' => 'blankpage'
-    , 'ヘッダ・フッタあり（ブロックなし）' => 'noblocks'
-    , 'ヘッダ・フッタ・左ブロックあり（右ブロックなし）' => 'leftblocks'
-    , 'ヘッダ・フッタ・右ブロックあり（左ブロックなし）' => 'rightblocks'
+    , '全画面表示(ヘッダ・フッタ・ブロックなし)' => 'blankpage'
+    , 'ヘッダ・フッタあり(ブロックなし)' => 'noblocks'
+    , 'ヘッダ・フッタ・左ブロックあり(右ブロックなし)' => 'leftblocks'
+    , 'ヘッダ・フッタ・右ブロックあり(左ブロックなし)' => 'rightblocks'
 
     );
 

@@ -624,6 +624,8 @@ $LANG_DATABOX_NOYES = array(
 $LANG_DATABOX_INPUTTYPE = array(
     0 => 'Checkbox',
     1 => 'Multi Select List'
+    ,2 => 'Radio Button List'
+    ,3 => 'Option List'
 );
 
 
