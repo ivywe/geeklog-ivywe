@@ -139,7 +139,7 @@ function plugin_getwhatsnew_banner()
 
         $retval .= COM_makeList($newbanner, 'list-new-plugins');
     } else {
-        $retval .= $LANG_BANNER[88] . '<br' . XHTML . '>' . LB;
+        $retval .= $LANG_BANNER[88]  . LB;
     }
 
     return $retval;
@@ -195,7 +195,7 @@ function plugin_autotags_banner($op, $content = '', $autotag = '')
                 $result = DB_query("SELECT b.bid, b.title, b.description, b.url FROM {$_TABLES['banner']} AS b LEFT JOIN {$_TABLES['bannercategories']} AS c ON b.cid=c.cid WHERE c.cid='{$cid}' AND (b.publishstart IS NULL OR b.publishstart < NOW()) and (b.publishend IS NULL OR b.publishend > NOW())" . COM_getPermSQL('AND', 0, 2, 'c') . ' ORDER BY RAND()');
                 $nrows = DB_numRows($result);
                 if ($nrows > 0) {
-                    $format = '%s<br' . XHTML . '>';
+                    $format = '%s';
                     if (!empty($autotag['parm2']) && strpos($autotag['parm2'], '%s') !== false) {
                         $format = $autotag['parm2'];
                     }
@@ -1004,7 +1004,7 @@ function plugin_save_submit_banner($A)
 
     // pseudo-formatted banner description for the spam check
     $spamcheck = '<p>'. COM_createLink($A['title'], $A['url']) .' ('
-               . $A['categorydd'] . ')<br' . XHTML . '>' . $A['description']
+               . $A['categorydd'] . ')' . $A['description']
                . '</p>';
     $result = PLG_checkforSpam($spamcheck, $_CONF['spamx']);
     if ($result > 0) {
