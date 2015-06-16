@@ -1,5 +1,5 @@
 <div class="mgPluginAdmin">
-  <table class="uk-table uk-table-condensed">
+  <table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
   <tr>
     <td class="pluginCellTitle">{lang_configuration}</td>
   </tr>

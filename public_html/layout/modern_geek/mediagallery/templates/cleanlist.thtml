@@ -1,4 +1,4 @@
-<table class="uk-table uk-table-striped uk-table-condensed">  <tr>
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">  <tr>
     <th colspan="2" width="100%">
       {directory}
     </th>

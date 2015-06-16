@@ -1,13 +1,13 @@
-<table class="uk-table uk-table-condensed">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
 <tr>
 <th><span class="uk-text-bold">{lang_postcard_preview}</span></th>
 </tr>
 <tr>
 <td>
-<table class="uk-table uk-table-condensed">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
   <tr>
     <td>
-	  <table class="uk-table uk-table-condensed">
+	  <table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
         <tr>
           <td colspan="2" style="text-align:left;">
               <div style="font-family: arial,'lucida console',sans-serif;font-size:x-large;color:green">

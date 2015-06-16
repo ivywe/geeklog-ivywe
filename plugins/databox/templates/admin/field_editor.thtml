@@ -9,7 +9,7 @@
 
       <!-- data -->
       <div class="uk-overflow-container">
-        <table class="uk-table uk-table-condensed uk-table-striped">
+        <table class="uk-table uk-table-condensed uk-table-striped" style="background:#ffffff">
 
           <!-- id -->
           <tr>
@@ -82,7 +82,7 @@
 
         </table>
 
-        <table class="uk-table uk-table-condensed uk-table-striped uk-margin-large" id="attributetype">
+        <table class="uk-table uk-table-condensed uk-table-striped uk-margin-large" id="attributetype" style="background:#ffffff">
         <!-- type -->
           <tr style="background-color:#e28327">
             <th class="uk-text-nowrap" style="width:30%">{lang_type} {help_type}</th>

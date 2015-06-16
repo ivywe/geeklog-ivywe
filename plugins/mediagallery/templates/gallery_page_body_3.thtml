@@ -1,10 +1,10 @@
-  <table class="uk-table uk-table-condensed gl-tablelist">
+  <table class="uk-table uk-table-striped uk-table-condensed gl-tablelist" style="background:#ffffff">
     <!-- BEGIN AlbumRow -->
     <tr>
     <!-- BEGIN AlbumColumn -->
       <td style="width:{column_width};vertical-align:top;border:0;border:0;">
         <div>
-    	<table class="uk-table uk-table-condensed">
+    	<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
 		  <tr style="height:196px;">
 			<td align="center" style="vertical-align:middle;padding:0;border:0;border:0;">
               {media_item_thumbnail}

@@ -1197,7 +1197,7 @@ function DBMAN_createMenu($current_menu = 'list', $text = '', $noesc = true) {
 }
 
 function DBMAN_list($header_arr, $data_arr) {
-	$retval = '<table class="uk-table uk-table-striped uk-table-condensed">' . LB
+	$retval = '<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">' . LB
 			. '<tr>' . LB;
 	
 	foreach ($header_arr as $header) {

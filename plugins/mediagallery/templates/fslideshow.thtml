@@ -1,4 +1,4 @@
-<table class="uk-table uk-table-striped uk-table-condensed"
+<table class="uk-table uk-table-striped uk-table-condensed">
   <tr>
     <td style="text-align:left;width:75%;vertical-align:middle;padding:5px;">
       <span class="uk-text-bold">{album_title}</span>

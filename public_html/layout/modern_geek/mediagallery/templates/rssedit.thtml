@@ -1,5 +1,5 @@
 <form class="uk-form" method="post" action="{s_form_action}" name="mg_rss_form" enctype="multipart/form-data">
-  <table class="uk-table uk-table-condensed">
+  <table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
     <tr>
       <th colspan="2">
         {lang_rss_options}

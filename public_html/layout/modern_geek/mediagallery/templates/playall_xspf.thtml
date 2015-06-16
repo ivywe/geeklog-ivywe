@@ -1,4 +1,4 @@
-<table class="uk-table uk-table-striped uk-table-condensed gl-tablelist" style="width:100%">
+<table class="uk-table uk-table-striped uk-table-condensed gl-tablelist" style="background:#ffffff; width:100%">
 <tr>
 <td style="width:75%;vertical-align:middle;padding:5px;">
 <span class="uk-text-bold">{album_title}</span>

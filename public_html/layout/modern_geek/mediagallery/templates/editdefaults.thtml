@@ -14,7 +14,7 @@ function change(what) {
 <div class="uk-clearfix"></div>
 <form class="uk-form" enctype="multipart/form-data" method="post" action="{s_form_action}">
 <div id="pe_attributes">
-    <table class="uk-table uk-table-striped uk-table-condensed">
+    <table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
       <tr>
         <th colspan="2">
           {lang_album_attributes}
@@ -235,7 +235,7 @@ function change(what) {
 </div>
 
 <div id="pe_watermark" class="jsenabled_hide">
-    <table class="uk-table uk-table-striped uk-table-condensed">
+    <table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
       <tr>
         <th colspan="2">
           {lang_watermark}
@@ -276,7 +276,7 @@ function change(what) {
 {valid_formats}
 
 <div id="pe_useruploads" class="jsenabled_hide">
-    <table class="uk-table uk-table-striped uk-table-condensed">
+    <table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
       <tr>
         <th colspan="2">
           {lang_uploads}
@@ -310,7 +310,7 @@ function change(what) {
 </div>
 
 <div id="pe_access" class="jsenabled_hide">
-    <table class="uk-table uk-table-striped uk-table-condensed">
+    <table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
       <tr>
         <th colspan="2">
           {lang_accessrights}

@@ -1,6 +1,6 @@
 <form class="uk-form" name="galselect" method="post" action="{s_form_action}">
 <div class="plugin">
-  <table class="uk-table uk-table-striped uk-table-condensed gl-tablelist">
+  <table class="uk-table uk-table-striped uk-table-condensed gl-tablelist" style="background:#ffffff">
     <tr>
       <th style="width:100%">
         {lang_batch_delete}

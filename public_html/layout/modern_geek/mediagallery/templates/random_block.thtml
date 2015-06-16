@@ -1,6 +1,6 @@
 {framecss}
 <div>
-  <table class="uk-table uk-table-condensed">
+  <table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
     <tr>
       <td align="center" style="vertical-align:middle;">
         {media_thumbnail}

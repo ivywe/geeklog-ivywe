@@ -3,7 +3,7 @@
 <br{xhtml}>
 <form class="uk-form" name="staticsort" method="post" action="{s_form_action}">
 <div>
-  <table class="uk-table uk-table-striped uk-table-condensed gl-tablelist" style="width:100%">
+  <table class="uk-table uk-table-striped uk-table-condensed gl-tablelist" style="background:#ffffff; width:100%">
     <tr>
       <th colspan="2" style="width:100%;">
         {lang_sort_options}

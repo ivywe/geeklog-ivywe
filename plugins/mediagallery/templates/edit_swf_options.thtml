@@ -1,5 +1,5 @@
 <h2>{lang_playback_options}</h2>
-<table class="uk-table uk-table-striped uk-table-condensed">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
   <tr>
     <th style="width:20%;">{lang_option}</th>
     <th style="width:10%;text-align:left;">{lang_off}&nbsp;&nbsp;&nbsp;&nbsp;{lang_on}</th>

@@ -1,5 +1,5 @@
 
-  <table class="uk-table uk-table-condensed">
+  <table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
     <tr>
       <td class="pluginCellTitle" style="width:160px;" align="center">
         <span class="uk-text-bold">{lang_media_item}</span>

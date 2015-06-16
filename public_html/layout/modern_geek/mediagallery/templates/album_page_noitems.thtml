@@ -1,4 +1,4 @@
-<table class="uk-table uk-table-striped uk-table-condensed">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
     <tr>
         <td align="center" style="width:100%">
           {lang_no_image}

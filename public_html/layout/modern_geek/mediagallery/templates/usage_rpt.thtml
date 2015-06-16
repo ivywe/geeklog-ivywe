@@ -2,7 +2,7 @@
 <div>
   <div style="height:20px;">{report_date}</div>
 </div>
-  <table class="uk-table uk-table-striped uk-table-condensed gl-tablelist" style="width:100%">
+  <table class="uk-table uk-table-striped uk-table-condensed gl-tablelist" style="background:#ffffff; width:100%">
   <thead>
   <tr>
       <th>{lang_time}</th>

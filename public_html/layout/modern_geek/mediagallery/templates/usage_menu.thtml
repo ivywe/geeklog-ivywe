@@ -1,5 +1,5 @@
 <form class="uk-form" method="post" action="{s_form_action}">
-<table class="uk-table uk-table-condensed">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
   <tr>
     <td colspan="2">&nbsp;</td>
   </tr>

@@ -9,7 +9,7 @@
 			<fieldset style="width:98%">
 				<legend>CSV</legend>
 				<!--data -->
-        		<table class="uk-table uk-table-condensed uk-table-striped">
+        		<table class="uk-table uk-table-condensed uk-table-striped" style="background:#ffffff">
 				<!--seq -->
 				<tr>
 					<th class="uk-text-nowrap" style="width:30%">{lang_seq}</th>

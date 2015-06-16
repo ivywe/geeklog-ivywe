@@ -8,7 +8,7 @@
     <legend>XML</legend>
 	<div class="uk-overflow-container">
     <!-- data -->
-    <table class="uk-table uk-table-condensed uk-table-striped">
+    <table class="uk-table uk-table-condensed uk-table-striped" style="background:#ffffff">
         <!-- seq -->
         <tr>
             <th style="width:30%" class="uk-text-right">{lang_seq}</th>

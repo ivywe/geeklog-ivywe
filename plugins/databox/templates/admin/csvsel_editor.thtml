@@ -7,7 +7,7 @@
 			<fieldset style="width:98%">
 				<legend>{csv_select}</legend>
 				<!--data -->
-				<table class="uk-table uk-table-condensed uk-table-striped">
+				<table class="uk-table uk-table-condensed uk-table-striped" style="background:#ffffff">
 				<!--id -->
 				<tr>
 					<th class="uk-text-nowrap" style="width:30%">{lang_id}</th>

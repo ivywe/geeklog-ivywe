@@ -32,7 +32,7 @@ function updateButton()
 <div style="text-align:center;"><h1>{L_BATCH}</h1></div>
 <form class="uk-form" name="form_batch_progress" method="post" action="{S_BATCH_ACTION}">
 <div class="uk-overflow-container">
-<table class="uk-table uk-table-condensed">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
 	<tr>
 		<td class="uk-text-center"><span class="uk-text-bold">{L_BATCH_PROCESS}</span></td>
 	</tr>
@@ -43,7 +43,7 @@ function updateButton()
 	</tr>
 	<tr>
 		<td class="uk-text-center">
-			<table class="uk-table uk-table-condensed">
+			<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
 				<tr>
 					<td colspan="3">&nbsp;</td>
 				</tr>
@@ -61,7 +61,7 @@ function updateButton()
 	</tr>
 	<tr>
 		<td align="center">
-			<table class="uk-table uk-table-condensed">
+			<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
 				<tr>
 					<td align="center" colspan="2"><b>{L_PROCESSING_DETAILS}</b></td>
 				</tr>
@@ -91,7 +91,7 @@ function updateButton()
 
 	<tr>
 		<td align="center">
-			<table class="uk-table uk-table-condensed">
+			<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
 				<tr>
 					<td align="center" colspan="2"><b>{L_ACTIVE_PARAMETERS}</b></td>
 				</tr>

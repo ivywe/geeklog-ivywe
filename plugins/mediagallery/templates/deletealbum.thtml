@@ -3,7 +3,7 @@
 <form class="uk-form" method="post" action="{s_form_action}">
 <input type="hidden" name="album_id" value="{album_id}">
 <input type="hidden" name="action" value="confalbum">
-<table class="uk-table uk-table-striped uk-table-condensed">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
   <tr>
     <td style="width:15%;text-align:right;">
       <span class="uk-text-bold">{lang_title}</span>

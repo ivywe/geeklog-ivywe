@@ -1,4 +1,4 @@
-<table class="uk-table uk-table-striped uk-table-condensed">   	<!-- BEGIN ImageRow -->
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">   	<!-- BEGIN ImageRow -->
   	<!-- BEGIN ImageColumn -->
     <tr>
       <td class="uk-text-center">

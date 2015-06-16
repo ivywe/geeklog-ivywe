@@ -9,7 +9,7 @@
 
       <!-- data -->
       <div class="uk-overflow-container">
-        <table class="uk-table uk-table-condensed uk-table-striped">
+        <table class="uk-table uk-table-condensed uk-table-striped" style="background:#ffffff">
           <!-- id -->
           <tr>
             <th class="uk-text-nowrap" style="width:30%">{lang_id}</th>

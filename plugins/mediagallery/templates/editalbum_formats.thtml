@@ -1,5 +1,5 @@
 <div id="pe_media" class="jsenabled_hide">
-  <table class="uk-table uk-table-striped uk-table-condensed">
+  <table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
     <tr>
       <th colspan="3" style="width:100%;">
         {lang_allowed_formats}

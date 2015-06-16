@@ -12,7 +12,7 @@
     <fieldset style="width:98%">
       <legend>{lang_basicfields}</legend>
       <div class="uk-overflow-container">
-        <table class="uk-table uk-table-condensed uk-table-striped">
+        <table class="uk-table uk-table-condensed uk-table-striped" style="background:#ffffff">
           <!-- id -->
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_id} {help_id}</th>
@@ -91,7 +91,7 @@
     <fieldset style="width:98%">
       <legend>{lang_category}</legend>
       <div class="uk-overflow-container">
-        <table class="uk-table uk-table-condensed uk-table-striped">
+        <table class="uk-table uk-table-condensed uk-table-striped" style="background:#ffffff">
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_category} {help_category}</th>
             <td class="admin-list-field">{checklist_category}</td>
@@ -104,7 +104,7 @@
     <fieldset style="width:98%">
       <legend>{lang_additionfields}</legend>
       <div class="uk-overflow-container">
-        <table class="uk-table uk-table-condensed uk-table-striped">
+        <table class="uk-table uk-table-condensed uk-table-striped" style="background:#ffffff">
           {additionfields}
         </table>
       </div>

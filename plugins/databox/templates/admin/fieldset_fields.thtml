@@ -23,7 +23,7 @@ head.appendChild(lnk);
    <div class="uk-width-medium-2-5">
         
     <dl class="uk-description-list-line">
-      <dt><label for="admin-fieldsetfields-fieldFrom">{LANG_fieldlist}</label></dt>
+      <dt><label class="uk-text-nowrap" for="admin-fieldsetfields-fieldFrom">{LANG_fieldlist}</label></dt>
       <dd>
         <select multiple="multiple" size="10" 
                         onDblClick="moveSelectedOptions(this.form['fieldFrom'],this.form['fieldTo'],false)"                                 
@@ -53,7 +53,7 @@ head.appendChild(lnk);
    <div class="uk-width-medium-2-5">
 
     <dl class="uk-description-list-line">
-      <dt><label for="admin-groupmembers-fieldTo">{LANG_fieldsetfields}</label></dt>
+      <dt><label class="uk-text-nowrap" for="admin-groupmembers-fieldTo">{LANG_fieldsetfields}</label></dt>
       <dd>
         <select multiple="multiple" size="10" 
                 onDblClick="moveSelectedOptions(this.form['fieldTo'],this.form['fieldFrom'],false)" 

@@ -1,6 +1,6 @@
 <fieldset style="margin-bottom:6px">
   <legend>{exif_title}</legend>
-  <table class="uk-table uk-table-striped uk-table-condensed">
+  <table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
   <!-- BEGIN exifRow -->
     <tr>
     <!-- BEGIN exifColumn -->

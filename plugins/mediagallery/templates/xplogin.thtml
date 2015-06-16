@@ -1,6 +1,6 @@
     <form class="uk-form" method="post" id="login" action="{s_form_action}">
     <div style="text-align:center;">
-<table class="uk-table uk-table-condensed">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
     <tr>
         <td>{lang_username}:</td>
         <td><input type="text" name="loginname" value="" /></td>

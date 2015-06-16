@@ -1,7 +1,7 @@
 {# begin {templatelocation} #}
 
-<div id="navcontainer">
-  <ul id="navlist" class="uk-tab clearfix">
+<div>
+  <ul id="navlist" class="uk-tab uk-margin-top" data-uk-tab>
     {menuitems}
   </ul>
 </div>

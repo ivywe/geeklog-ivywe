@@ -1,4 +1,4 @@
-  <table class="uk-table gl-tablelist-remove">
+  <table class="uk-table uk-table-striped uk-table-condensed gl-tablelist-remove">
     <tbody>
     <tr>
       <th style="width:100%;" colspan="2">

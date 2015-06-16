@@ -1,5 +1,5 @@
 <form class="uk-form" method="post" action="{s_form_action}" name="mg_useredit_form" enctype="multipart/form-data">
-  <table class="uk-table uk-table-striped uk-table-condensed gl-tablelist" style="width:100%">
+  <table class="uk-table uk-table-striped uk-table-condensed gl-tablelist" style="background:#ffffff; width:100%">
     <tr>
       <th colspan="2" width="100%">
         {lang_user_edit} - {username}
