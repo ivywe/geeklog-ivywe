@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
 </head>
-<!-- admin/plugins/databox/docs/japanese/autotags.html 20150215 -->
+<!-- admin/plugins/databox/docs/japanese/autotags.html 20150618 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
@@ -21,7 +21,7 @@
 <h1><a href="index.html">DataBox プラグイン</h1>
 
 
-<h2><a name="autotags">自動タグ</a>(2015/02/05 update)</h2>
+<h2><a name="autotags">自動タグ</a>(2015/06/18 update)</h2>
 <table>
 <tr><th style="width:25%">自動タグ 引数</th>
     <th style="width:75%">説明</th>
@@ -107,11 +107,14 @@ expired:yes 公開終了日を過ぎたデータも表示します。<br />
 <td>[databox:attributedatacount ]<br /><br />
 templatesetvar:<br />
 value:<br />
+type_id:<br />
 </td>
 <td>
 指定アトリビュートが指定値のデータの件数<br />
 例１：[databox:attributedatacount] <br />
 例２：[databox:attributedatacount templatesetvar:pref value:27]<br />
+例３：[databox:attributedatacount templatesetvar:pref value:27 type_id:0]<br />
+type_id:0 タイプなし　省略時すべてのタイプ
 </td>
 </tr>
 
@@ -264,6 +267,26 @@ option:value2　{登録したテーマ変数名_mst_value2}と同じ <br />
 option:disp　{登録したテーマ変数名_mst_disp}と同じ <br />
 option:no　{登録したテーマ変数名_mst_no} と同じ <br />
 <a href="templatesetvars.html#notetext_add">各アトリビュートのテーマ変数</a>参照
+</td>
+</tr>
+<tr >
+<td>[databox:math ]<br /><br />
+method:<br />
+templatesetvar:<br />
+type_id:<br />
+category_id: または category_code:<br />
+mode:<br />
+</td>
+<td>
+指定アトリビュートのMAX MIN SUM COUNT AVERAGE<br />
+例１：[databox:math templatesetvar:number] <br />
+例２：[databox:math method:min templatesetvar:number ]<br />
+例３：[databox:math method:min templatesetvar:number type_id:0]<br />
+例４：[databox:math method:min templatesetvar:number type_id:0 category_code:AAA|BBB|CCC] カテゴリコードがAAA または BBB または CCC<br />
+例５：[databox:math templatesetvar:number type_id:0 category_code:AAA|BBB|CCC mode:and] カテゴリコードがAAA かつ BBB かつCCC<br />
+method:count max min sum average avg  省略時count<br />
+type_id:0 タイプなし　省略時すべてのタイプ
+
 </td>
 </tr>
 </tbody>

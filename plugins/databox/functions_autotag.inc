@@ -89,6 +89,7 @@ function plugin_autotags_databox (
         $parm2_ary[]="without_id";
         $parm2_ary[]="field_code";
         $parm2_ary[]="option";
+        $parm2_ary[]="method";
         $p=databox_parm2($p2,$parm2_ary);
         //各処理
         switch( $tag ) {
@@ -150,9 +151,11 @@ function plugin_autotags_databox (
                         );
                         break;
                     case 'attributedatacount':
-                        $rt=databox_count_each_afield(
-                            $p['templatesetvar']
-                            ,$p['value']
+                        $rt=DATABOX_count_each_afield(
+                            "databox"
+                            ,$p['templatesetvar']
+       	                    ,$p['value']
+                            ,$p['type_id']
                             );
                         break;
 
@@ -252,6 +255,17 @@ function plugin_autotags_databox (
                                 ,$p['field_id']
                                 ,$p['field_code']
                                 ,$p['option']
+                            );
+                        break;
+                    case 'math':
+                        $rt=DATABOX_math(
+                                "databox"
+                                ,$p['method']
+                                ,$p['templatesetvar']
+                                ,$p['type_id']
+                                ,$p['category_id']
+                                ,$p['category_code']
+                                ,$p['mode']
                             );
                         break;
                 }
@@ -1657,74 +1671,6 @@ function databox_grp(
 
 }
 
-// +---------------------------------------------------------------------------+
-// | 機能  指定追加項目の指定データに一致する件数表示
-// +---------------------------------------------------------------------------+
-// | 書式  databox_count_each_afield("class","1")
-// +---------------------------------------------------------------------------+
-// | 引数 $templatesetvar:追加項目のテーマ変数
-// | 引数 $value:指定データ値
-// +---------------------------------------------------------------------------+
-// | 戻値 nomal:指定追加項目の指定データに一致する件数
-// +---------------------------------------------------------------------------+
-
-function databox_count_each_afield(
-    $templatesetvar=""
-    ,$value=""
-)
-{
-    global $_TABLES;
-
-    if ($templatesetvar=="" OR $value=="" ){
-        return "";
-    }
-
-    //@@@@@type=7,type=8
-
-
-
-    //-----
-    $tbl1=$_TABLES['DATABOX_base'] ;
-    $tbl2=$_TABLES['DATABOX_addition'] ;
-    $tbl3=$_TABLES['DATABOX_def_field'];
-
-    //-----
-    $sql = "SELECT ".LB;
-
-    $sql .= " t1.id".LB;
-
-    $sql .= " FROM ".LB;
-
-    $sql .= " {$tbl1} AS t1 ".LB;
-    $sql .= " ,{$tbl2} AS t2 ".LB;
-    $sql .= " ,{$tbl3} AS t3 ".LB;
-
-    $sql .= " WHERE ".LB;
-
-    //@@@@@@@@@@@------>
-    //下書はのぞく
-    $sql .= " t1.draft_flag=0".LB;
-    //アクセス権のないデータ はのぞく
-    $sql .= COM_getPermSql('AND').LB;
-    //公開日以前のデータはのぞく
-    $sql .= " AND (released <= NOW())".LB;
-    //公開終了日を過ぎたデータはのぞく
-    $sql .= " AND (expired=0 OR expired > NOW())".LB;
-    //@@@@@@@@@@@<------
-
-    $sql .= " AND t1.id = t2.id ".LB;
-    $sql .= " AND t2.field_id= t3.field_id" .LB;
-    $sql .= " AND t3.templatesetvar='". $templatesetvar ."'".LB;
-
-    $sql .= " AND t2.value='". $value ."'".LB;
-
-    $result = DB_query ($sql);
-    $cnt = DB_numRows ($result);
-    $rt=COM_NumberFormat($cnt);
-
-    return $rt;
-
-}
 
 
 function databox_data(

@@ -5618,4 +5618,210 @@ function DATABOX_getFileTypeAry(
 	return $rt;
 }
 
+// +---------------------------------------------------------------------------+
+// | 機能  指定追加項目の指定データに一致する件数表示
+// +---------------------------------------------------------------------------+
+// | 書式  DATABOX_count_each_afield("class","1")
+// +---------------------------------------------------------------------------+
+// | 引数 $pi_name:plugin name 'databox' 'userbox' 'formbox'
+// | 引数 $templatesetvar:追加項目のテーマ変数
+// | 引数 $value:指定データ値
+// | 引数 $type_id:タイプID
+// +---------------------------------------------------------------------------+
+// | 戻値 nomal:指定追加項目の指定データに一致する件数
+// +---------------------------------------------------------------------------+
+
+function DATABOX_count_each_afield(
+    $pi_name="databox"
+    ,$templatesetvar=""
+    ,$value=""
+    ,$type_id=0
+)
+{
+    global $_TABLES;
+
+    if ($templatesetvar=="" OR $value=="" ){
+        return "";
+    }
+
+    if  ($type_id=="" OR  $type_id==NULL){
+        $type_id=0;
+    }
+    
+    //-----
+    $tbl1=$_TABLES[strtoupper($pi_name).'_base'] ;
+    $tbl2=$_TABLES[strtoupper($pi_name).'_addition'] ;
+    $tbl3=$_TABLES[strtoupper($pi_name).'_def_field'];
+
+    //-----
+    $sql = "SELECT ".LB;
+
+    $sql .= " t1.id".LB;
+
+    $sql .= " FROM ".LB;
+
+    $sql .= " {$tbl1} AS t1 ".LB;
+    $sql .= " ,{$tbl2} AS t2 ".LB;
+    $sql .= " ,{$tbl3} AS t3 ".LB;
+
+    $sql .= " WHERE ".LB;
+
+    //@@@@@@@@@@@------>
+    //下書はのぞく
+    $sql .= " t1.draft_flag=0".LB;
+    //アクセス権のないデータ はのぞく
+    $sql .= COM_getPermSql('AND').LB;
+    //公開日以前のデータはのぞく
+    $sql .= " AND (released <= NOW())".LB;
+    //公開終了日を過ぎたデータはのぞく
+    $sql .= " AND (expired=0 OR expired > NOW())".LB;
+    //@@@@@@@@@@@<------
+    $sql .= " AND fieldset_id = ".$type_id.LB;
+
+    $sql .= " AND t1.id = t2.id ".LB;
+    $sql .= " AND t2.field_id= t3.field_id" .LB;
+    $sql .= " AND t3.templatesetvar='". $templatesetvar ."'".LB;
+
+    $sql .= " AND t2.value='". $value ."'".LB;
+
+    $result = DB_query ($sql);
+    $cnt = DB_numRows ($result);
+    $rt=COM_NumberFormat($cnt);
+
+    return $rt;
+
+}
+function DATABOX_math(
+    $pi_name= 'databox'
+    ,$method= 'count'
+    ,$templatesetvar=""
+    ,$type_id=""
+    ,$category_id=null
+    ,$category_code=null
+    ,$mode=''
+)
+// +---------------------------------------------------------------------------+
+// | 機能  指定アトリビュートの指定値（count average max min sum）を取得する
+// |       複数カテゴリ条件選択が可能（OR と AND）
+// +---------------------------------------------------------------------------+
+// | 書式  DATABOX_math("databox","count","1")
+// +---------------------------------------------------------------------------+
+// | 引数 $pi_name:plugin name 'databox' 'userbox' 'formbox'
+// | 引数 $method:count average avg max min sum
+// | 引数 $templatesetvar:追加項目のテーマ変数
+// | 引数 $value:指定データ値
+// | 引数 $type_id:タイプID
+// | 引数 $category_id:カテゴリid
+// | 引数 $category_code :
+// | 引数 $mode          :ブランク　または　AND
+// +---------------------------------------------------------------------------+
+// | 戻値 nomal:指定値
+// +---------------------------------------------------------------------------+
+{
+    global $_TABLES;
+
+    if ($templatesetvar=="" ){
+        return "";
+    }
+    if  ($type_id=="" OR  $type_id==NULL){
+        $type_id=0;
+    }
+	
+	$method=strtoupper($method);
+    if  ($method=="MAX" OR $method=="MIN" OR $method=="SUM" OR $method=="AVG" OR $method=="COUNT" ){
+    }else if  ($method=="AVERAGE" ){
+	    $method="AVG";
+	}else{
+	    $method="COUNT";
+	}
+    //-----category check
+    $ids="";
+    $idsary=array();
+    if (is_null($category_id) OR $category_id==0){
+        if (is_null($category_code)){
+        }else{
+            $w=explode("|",$category_code);
+            foreach( $w as $val ){
+                if ($ids<>""){
+                    $ids.=",";
+                }
+                $w_id=DATABOX_codetoid($val,strtoupper($pi_name).'_def_category',"category_id");
+                $idsary[]=$w_id;
+                $ids.=$w_id;
+            }
+        }
+    }else{
+        $ids=$category_id;
+        $idsary[]=$category_id;
+    }
+    //-----
+    $tbl1=$_TABLES[strtoupper($pi_name).'_base'] ;
+    $tbl2=$_TABLES[strtoupper($pi_name).'_addition'] ;
+    $tbl3=$_TABLES[strtoupper($pi_name).'_def_field'];
+    $tbl4=$_TABLES[strtoupper($pi_name).'_category'] ;
+    $tbl5=$_TABLES[strtoupper($pi_name).'_def_category'] ;
+	
+    //-----
+    $sql = "SELECT ".LB;
+
+    $sql .= $method ."(t2.value) AS rt".LB;
+    $sql .= " FROM ".LB;
+
+    $sql .= " {$tbl1} AS t1 ".LB;
+    $sql .= " ,{$tbl2} AS t2 ".LB;
+    $sql .= " ,{$tbl3} AS t3 ".LB;
+
+    $sql .= " WHERE ".LB;
+
+    //@@@@@@@@@@@------>
+    //下書はのぞく
+    $sql .= " t1.draft_flag=0".LB;
+    //アクセス権のないデータ はのぞく
+    $sql .= COM_getPermSql('AND').LB;
+    //公開日以前のデータはのぞく
+    $sql .= " AND (released <= NOW())".LB;
+    //公開終了日を過ぎたデータはのぞく
+    $sql .= " AND (expired=0 OR expired > NOW())".LB;
+    //@@@@@@@@@@@<------
+    
+    $sql .= " AND fieldset_id=".$type_id;
+    $sql .= " AND t1.id = t2.id ".LB;
+    $sql .= " AND t2.field_id= t3.field_id" .LB;
+    $sql .= " AND t3.templatesetvar='". $templatesetvar ."'".LB;
+	
+    if (count($idsary)<>0){
+        if (strtoupper($mode)=="AND"){
+            $w="";
+            foreach( $idsary as $val ){
+                if ($w<>""){
+                    $w.=" AND ";
+                }
+                $w.=$val." IN (SELECT t4.category_id";
+                $w.=" FROM {$tbl4} AS t4 ,{$tbl5} AS t5";
+                $w.=" WHERE t1.id = t4.id AND t4.category_id = t5.category_id AND t5.allow_display<2)";
+            }
+        }else{
+            $w= "t1.id IN (SELECT id FROM {$tbl4} AS t4 ,{$tbl5} AS t5 ";
+            $w.="WHERE t4.category_id = t5.category_id AND t5.allow_display<2 AND t4.category_id IN ({$ids})) ";
+        }
+        $sql.=" AND ({$w})".LB;
+    }
+    $result = DB_query ($sql);
+    $numrows = DB_numRows ($result);
+	
+    if ($numrows > 0) {
+        $A = DB_fetchArray ($result);
+		$A = array_map('stripslashes', $A);
+		$rt=$A['rt'];;
+	}else{
+		if  ($method=="COUNT"){
+			$rt=0;
+		}else{
+			$rt="";
+		}
+	}
+    return $rt;
+
+}
+
 ?>
