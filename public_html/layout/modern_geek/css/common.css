@@ -267,13 +267,14 @@ form.compact dl dt {
   padding: 0;
 }
 
+/*
 form.compact dl dd {
   float: {left};
   width: 75%;
   margin: 0 0 0.5em 0;
   padding: 0;
 }
-
+*/
 /* Description */
 form.compact dl dd.description {
   margin: -0.5em 0 0.5em 25%;

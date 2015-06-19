@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-                                <tr class="pluginRow{cssid}" onmouseover="className='pluginRollOver';" onmouseout="className='pluginRow{cssid}';">
+                                <tr>
                                     {item_field}
                                 </tr>
 
