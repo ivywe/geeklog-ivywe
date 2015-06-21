@@ -45,9 +45,10 @@
         <dd{hide_meta}><textarea name="meta_keywords" cols="45" rows="2" id="sp-editor-meta_keywords" class="wide">{meta_keywords}</textarea></dd>
 
         <dt><label for="sp-editor-sp_content">{lang_content}</label></dt>
-        <dd><textarea name="sp_content" style="width:99.5%" cols="45" rows="24" id="sp-editor-sp_content" class="wide">{sp_content}</textarea><br{xhtml}>{lang_allowed_html}</dd>
+        <dd><textarea name="sp_content" style="width:99.5%" cols="45" rows="24" id="sp-editor-sp_content" class="wide">{sp_content}</textarea>
+			<div class="uk-text-small uk-text-warning uk-margin">{lang_allowed_html}</div></dd>
 
-        <dt><label for="sp-editor-draft_flag">{lang_draft}</label></dt>
+        <dt class="uk-margin-top"><label for="sp-editor-draft_flag">{lang_draft}</label></dt>
         <dd><input type="checkbox" name="draft_flag" id="sp-editor-draft_flag" {draft_flag_checked}{xhtml}></dd>
 
         <dt><label for="sp-editor-cache_time">{lang_cache_time}</label></dt>
@@ -88,8 +89,7 @@
         <dd><input type="checkbox" name="sp_inblock" id="sp-editor-sp_inblock" {inblock_checked}{xhtml}>&nbsp;&nbsp;{inblock_info}</dd>
 
         <dt><label for="sp-editor-sp_help">{lang_centerblock_help}</label></dt>
-        <dd><input type="text" name="sp_help" value="{centerblock_help}" id="sp-editor-sp_help" class="size5"{xhtml}>&nbsp;{lang_centerblock_include}
-            <br{xhtml}>{lang_centerblock_desc}</dd>
+        <dd><input type="text" name="sp_help" value="{centerblock_help}" id="sp-editor-sp_help" class="size5" placeholder="{lang_centerblock_include}"{xhtml}><br{xhtml}>{lang_centerblock_desc}</dd>
 
         <dt><label>{php_msg}</label></dt>
         <dd>{php_selector}&nbsp;&nbsp;{php_warn}</dd>
@@ -98,7 +98,7 @@
         <dd><input type="checkbox" name="sp_nf" id="sp-editor-sp_nf" {exit_checked}{xhtml}>&nbsp;&nbsp;{exit_info}</dd>
       </dl>
 
-      <fieldset>
+      <fieldset class="uk-margin-large-top">
         <legend>{lang_accessrights}</legend>
 
         <dl class="uk-description-list-horizontal">
