@@ -432,11 +432,6 @@ a img {
 Presentation Module
 ---------------------------------------*/
 
-hr {
-  display: block;
-  height: 2px;
-  margin: 0.5em auto;
-}
 
 sub {
   vertical-align: sub;
