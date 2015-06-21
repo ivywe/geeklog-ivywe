@@ -6,7 +6,7 @@
 <p >webmaster:{head_webmaster}</p>
 <p >copyright:{head_copyright}</p>
 
-<dl>
+<dl class="uk-description-list-horizontal">
 {rss_col}
 </dl>
 

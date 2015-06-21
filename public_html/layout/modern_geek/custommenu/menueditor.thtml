@@ -81,7 +81,7 @@
       </dl>
     </fieldset>
 
-    <div class="submit">
+    <div class="uk-subnav uk-flex-center uk-margin-top">
       <input type="submit" name="mode" value="{lang_save}" class="submit"{xhtml}>
       <input type="submit" name="mode" value="{lang_cancel}" class="submit"{xhtml}>
       <input type="submit" name="mode" value="{lang_delete}" class="submit" onclick="return confirm('{lang_confirm}');" {delete_disabled}{xhtml}>

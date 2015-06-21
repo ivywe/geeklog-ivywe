@@ -1,8 +1,8 @@
 {# begin {templatelocation} #}
 <div class="block-message uk-alert uk-alert-success" data-uk-alert="">
-                                <a href="#" class="uk-alert-close uk-close"></a>
-  <dl>
+  <a href="#" class="uk-alert-close uk-close"></a>
+  <dl class="uk-description-list-horizontal">
     <dt class="title">{showhide}{block_title}{block_help}</dt>
-    <dd class="message">
+    <dd class="uk-text-small">
 
 {# end {templatelocation} #}

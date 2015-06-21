@@ -2,17 +2,17 @@
 
 {start_block_loginagain}
 
-            <div class="uk-vertical-align uk-text-center uk-height-1-1">
+            <div class="uk-vertical-align uk-text-center">
                 <div class="uk-vertical-align-middle" style="width: 250px;">
                     <img style="width:auto; height:80px" src="{layout_url}/images/mark.png" alt="">
                     <form action="{site_url}/users.php" method="post" id="loginform" class="uk-panel uk-panel-box uk-form">
                         <div class="uk-form-row">
-                            <input type="text" value="" name="loginname" id="loginform-loginname" class="uk-width-1-1 uk-form-large" placeholder="{lang_username}"{xhtml}>
+                            <input type="text" value="" name="loginname" id="loginform-loginname" class="uk-form-large" placeholder="{lang_username}"{xhtml}>
 
                         </div>
                             {services}
                         <div class="uk-form-row">
-                            <input type="password" placeholder="{lang_password}" name="passwd" id="loginform-passwd" class="uk-width-1-1 uk-form-large"{xhtml}>
+                            <input type="password" placeholder="{lang_password}" name="passwd" id="loginform-passwd" class="uk-form-large"{xhtml}>
                         </div>
                         <div class="uk-form-row">
                         <input type="submit" value="{lang_login}" class="uk-width-1-1 uk-button uk-button-primary uk-button-large"{xhtml}>

@@ -1,14 +1,14 @@
 {# begin {templatelocation} #}
 
 <div class="block-comment-content level-{indent}">
-  <ul class="status">
+  <ul class="uk-subnav uk-flex-center">
     <li class="title">{title}</li>
     <li class="author">{lang_authoredby}{author_link}&nbsp;{lang_on}&nbsp;{date}</li>
   </ul>
 
   <div class="comment">{comments}</div>
 
-  <ul class="navi" {hide_if_preview}>
+  <ul class="uk-subnav uk-flex-center" {hide_if_preview}>
     <li>{reply_option}</li>
     <li>{parent_link}</li>
     <li>{delete_option}</li>

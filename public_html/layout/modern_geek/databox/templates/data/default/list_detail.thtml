@@ -176,7 +176,7 @@ fullname:<span  class="uk-text-success"> &#123;last_modify_fullname&#125;</span>
       <tr>
 		<th style="width:20%;" class="uk-text-right">{lang_field}<br{XHTML}>&#123;{lang_field}_name&#125;</th>
         <th style="width:40%; text-align:left" class="uk-text-left">
-	  		<dl><dt class="uk-text-success">{lang_templatesetvar}</dt>
+	  		<dl class="uk-description-list-horizontal"><dt class="uk-text-success">{lang_templatesetvar}</dt>
 	    	<dd>{lang_content}</dd></dl>
 		</th>
         <th class="uk-text-left">{lang_type}</th>

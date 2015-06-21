@@ -127,8 +127,6 @@
 
   <!-- } #header -->
 
-  <hr class="separator"{xhtml}>
-
   <!-- #wrapper { -->
   <div id="wrapper">
     {breadcrumb_trail}

@@ -1,9 +1,11 @@
 {# begin {templatelocation} #}
 
-<a href="{url}"{!if microdata} itemprop="url"{!endif}>
-    <span{!if microdata} itemprop="title"{!endif}>{name}</span>
-</a> {separator}
-{breadcrumb_child}
+<li>
+<a href="{url}">
+{name}{breadcrumb_child}
+</a>
+</li>
 
 {# end {templatelocation} #}
 
+ 

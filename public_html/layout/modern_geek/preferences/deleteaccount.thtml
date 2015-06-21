@@ -1,11 +1,11 @@
 {# begin {templatelocation} #}
 
-<dl class="notes">
+<dl class="uk-description-list-horizontal">
   <dt>{lang_deleteaccount}</dt>
-  <dd>{delete_text}</dd>
+  <dd class="uk-text-small">{delete_text}</dd>
 </dl>
 
-<dl>
+<dl class="uk-description-list-horizontal">
   <dt><label for="deleteaccount-submit">{lang_deleteoption}</label></dt>
   <dd>
     <input type="hidden" name="mode" value="{delete_mode}"{xhtml}>

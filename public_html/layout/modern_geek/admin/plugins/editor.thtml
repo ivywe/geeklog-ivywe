@@ -1,9 +1,9 @@
 {# begin {templatelocation} #}
 
 {start_block_editor}
-<form action="{site_admin_url}/plugins.php" method="post" class="compact uk-form">
-  <div class="admin_basic" id="admin-editor">
-    <dl>
+<form action="{site_admin_url}/plugins.php" method="post" class="uk-form">
+  <div id="admin-editor">
+    <dl class="uk-description-list-horizontal">
       <dt id="title">{title}</dt>
       <dd><img src="{pi_icon}" alt=""{xhtml}></dd>
 

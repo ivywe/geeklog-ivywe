@@ -7,10 +7,10 @@
 {filesystem_list}
 
 {!if phpinfo}
-<div class="block-center">
+<div class="uk-text-center">
     {# Mimic ADMIN_simpleList function output #}
     <h2>{lang_current_php_settings}</h2>
-    <div class="block-center-content">
+    <div class="uk-text-center">
         <div id="toggle_phpinfo">{lang_showhide_phpinfo}</div>
         <div id="panel_phpinfo">
             {phpinfo}

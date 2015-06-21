@@ -3,7 +3,7 @@
 <div id="trackback">
   <h3>{lang_trackback}</h3>
   <div class="block-trackback-content">
-    <dl>
+    <dl class="uk-description-list-horizontal">
       <dt>{lang_trackback_url}</dt>
       <dd>{trackback_url}</dd>
     </dl>

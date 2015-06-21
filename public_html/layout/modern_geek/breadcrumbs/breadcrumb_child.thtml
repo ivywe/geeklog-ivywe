@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-<span{!if microdata} itemprop="child" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"{!endif}>
-    {breadcrumb}
-</span>
+{breadcrumb}
 
 {# end {templatelocation} #}

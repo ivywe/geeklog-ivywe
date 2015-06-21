@@ -3,12 +3,12 @@
 <fieldset>
   <legend>{lang_exclude_title}</legend>
 
-  <dl class="notes">
+  <dl class="uk-description-list uk-text-small">
     <dt>{lang_excluded_items_title}</dt>
     <dd>{lang_excluded_items}</dd>
   </dl>
 
-  <dl>
+  <dl class="uk-description-list-horizontal">
     <dt>{lang_topics}</dt>
     <dd>{exclude_topic_checklist}</dd>
 

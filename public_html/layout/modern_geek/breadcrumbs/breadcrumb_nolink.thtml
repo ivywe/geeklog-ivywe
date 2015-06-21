@@ -1,6 +1,5 @@
 {# begin {templatelocation} #}
 
-    <span{!if microdata} itemprop="title"{!endif}>{name}</span> {separator}
-{breadcrumb_child}
+<li>{name}{breadcrumb_child}</li>
 
 {# end {templatelocation} #}

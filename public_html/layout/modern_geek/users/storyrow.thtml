@@ -1,5 +1,5 @@
 {# begin {templatelocation} #}
 
-<p class="storyrow">{row_number}&nbsp;{story_title}&nbsp;{story_date}</p>
+<dl class="uk-description-horizontal"><dt>{row_number} {story_date}</dt><dd>{story_title}</dd></dl>
 
 {# end {templatelocation} #}

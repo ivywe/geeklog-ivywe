@@ -3,12 +3,12 @@
 <fieldset>
   <legend>{lang_comment_title}</legend>
 
-  <dl class="notes">
+  <dl class="uk-description-list-horizontal">
     <dt>{lang_comment_help_title}</dt>
-    <dd><ul>{lang_comment_help}</ul></dd>
+    <dd><ul class="uk-text-small">{lang_comment_help}</ul></dd>
   </dl>
 
-  <dl>
+  <dl class="uk-description-list-horizontal">
     <dt><label for="commentmode">{lang_displaymode}</label></dt>
     <dd>{displaymode_selector}</dd>
 
@@ -16,7 +16,7 @@
     <dd>{sortorder_selector}</dd>
 
     <dt><label for="commentlimit">{lang_commentlimit}</label></dt>
-    <dd><input type="text" size="5" maxlength="5" value="{commentlimit_value}" name="commentlimit" id="commentlimit" class="text"{xhtml}></dd>
+    <dd><input type="text" size="5" maxlength="5" value="{commentlimit_value}" name="commentlimit" id="commentlimit"{xhtml}></dd>
   </dl>
 </fieldset>
 

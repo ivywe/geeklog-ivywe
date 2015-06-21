@@ -1,7 +1,7 @@
 {# begin {templatelocation} #}
-<nav class="breadcrumbs">
-<div {!if microdata}itemscope itemtype="http://data-vocabulary.org/Breadcrumb" {!endif}class="bc_navigation">
+
+<ul class="uk-breadcrumb">
     {breadcrumbs_list}
-</div>
-</nav>
+</ul>
+
 {# end {templatelocation} #}

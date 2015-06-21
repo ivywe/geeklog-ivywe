@@ -13,30 +13,30 @@
   </fieldset>
 </div>
 
-<form action="{site_url}/usersettings.php" method="post" {enctype} id="profile" class="linear uk-form">
+<form action="{site_url}/usersettings.php" method="post" {enctype} id="profile" class="uk-form">
 
 <div id="pe_namepass" class="jsenabled_show">
   <fieldset>
     <legend>{lang_name_legend}</legend>
 
-    <dl>
+    <dl class="uk-description-list-horizontal">
       {username_option}
 
       <dt><label for="profile-fullname">{lang_fullname}</label></dt>
-      <dd><input type="text" size="60" maxlength="80" value="{fullname_value}" name="fullname" id="profile-fullname" class="text"{xhtml}></dd>
+      <dd><input type="text" size="60" maxlength="80" value="{fullname_value}" name="fullname" id="profile-fullname"{xhtml}></dd>
     </dl>
   </fieldset>
 
   <fieldset>
     <legend>{lang_password_email_legend}</legend>
 
-    <dl class="notes">
+    <dl class="uk-description-list uk-text-small">
       <dt>{lang_password_help_title}</dt>
       <dd>{lang_password_help}</dd>
       <dd><strong>{lang_enter_current_password}</strong></dd>
     </dl>
 
-    <dl>
+    <dl class="uk-description-list-horizontal">
       {password_option}
       
       {resynch_option}      
@@ -45,11 +45,11 @@
       <dd>{cooktime_selector}</dd>
 
       <dt><label for="profile-email">{lang_email}</label></dt>
-      <dd><input type="text" size="60" maxlength="96" value="{email_value}" name="email" id="profile-email" class="text"{xhtml}></dd>
+      <dd><input type="text" size="60" maxlength="96" value="{email_value}" name="email" id="profile-email"{xhtml}></dd>
       <dd class="description">{lang_email_text}</dd>
 
       <dt><label for="profile-email_conf">{lang_email_conf}</label></dt>
-      <dd><input type="text" size="60" maxlength="96" value="{email_value}" name="email_conf" id="profile-email_conf" class="text"{xhtml}></dd>
+      <dd><input type="text" size="60" maxlength="96" value="{email_value}" name="email_conf" id="profile-email_conf"{xhtml}></dd>
 
       {current_password_option}
 
@@ -62,18 +62,18 @@
   <fieldset>
     <legend>{lang_personal_info_legend}</legend>
 
-    <dl class="notes">
+    <dl class="uk-description-list uk-text-small">
       <dt>{lang_userinfo_help_title}</dt>
       <dd>{lang_userinfo_help}</dd>
     </dl>
 
-    <dl>
+    <dl class="uk-description-list-horizontal">
       <dt><label for="profile-homepage">{lang_homepage}</label></dt>
-      <dd><input type="text" size="60" maxlength="96" value="{homepage_value}" name="homepage" id="profile-homepage" class="text"{xhtml}></dd>
+      <dd><input type="text" size="60" maxlength="96" value="{homepage_value}" name="homepage" id="profile-homepage"{xhtml}></dd>
       <dd class="description">{lang_homepage_text}</dd>
 
       <dt><label for="profile-location">{lang_location}</label></dt>
-      <dd><input type="text" size="60" maxlength="96" value="{location_value}" name="location" id="profile-location" class="text"{xhtml}></dd>
+      <dd><input type="text" size="60" maxlength="96" value="{location_value}" name="location" id="profile-location"{xhtml}></dd>
       <dd class="description">{lang_location_text}</dd>
 
       {userphoto_option}
@@ -95,7 +95,7 @@
 
 {prefs}
 
-<ul id="save_button" class="submit">
+<ul id="save_button" class="uk-subnav uk-flex-center uk-margin-top">
   <li>
     <input type="hidden" name="uid" value="{uid_value}"{xhtml}>
     <input type="hidden" name="mode" value="saveuser"{xhtml}>
