@@ -331,7 +331,7 @@ function TOPIC_checkList($selected_ids = '', $fieldname = '', $language_specific
 {
     global $_TOPICS;
 
-    $retval = '<ul class="checkboxes-list">' . LB;
+    $retval = '<ul class="uk-subnav">' . LB;
 
     if (!empty($selected_ids)) {
         $selected_ids = explode( ' ', $selected_ids );
