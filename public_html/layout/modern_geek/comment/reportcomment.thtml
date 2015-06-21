@@ -2,12 +2,12 @@
 
 <form action="{site_url}/comment.php" method="post" id="reportcomment" class="basic uk-form">
 
-  <div class="user_basic">
+  <div>
     <div class="comment">{comment}</div>
 
-    <p class="message">{lang_report_this}</p>
+    <p class="uk-text-small">{lang_report_this}</p>
 
-    <ul class="submit">
+    <ul class="uk-subnav uk-flex-center uk-margin-top">
       <li>
         <input type="hidden" name="cid" value="{cid}"{xhtml}>
         <input type="hidden" name="type" value="{type}"{xhtml}>

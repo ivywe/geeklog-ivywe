@@ -1,9 +1,9 @@
 {# begin {templatelocation} #}
 
-<form name="frmstory" action="{site_admin_url}/story.php" method="post" enctype="multipart/form-data" id="admin-storyeditor" class="compact uk-form">
+<form name="frmstory" action="{site_admin_url}/story.php" method="post" enctype="multipart/form-data" id="admin-storyeditor" class="uk-form">
 
-  <div class="admin_basic">
-    <dl>
+  <div>
+    <dl class="uk-description-list-horizontal">
       <dt>{lang_author}</dt>
       <dd>{story_author}</dd>
 
@@ -31,33 +31,33 @@
 
         {publishampm_selection}
       </dd>
-      <dd class="description">{publish_date_explanation}</dd>
+      <dd>{publish_date_explanation}</dd>
 
       <dt><label for="admin-storyeditor-title">{lang_title}</label></dt>
-      <dd><input type="text" size="48" maxlength="128" {!if titletoid}onkeyup="TitleToId('admin-storyeditor-title','admin-storyeditor-sid');" {!endif}value="{story_title}" name="title" id="admin-storyeditor-title" class="text"{xhtml}></dd>
+      <dd><input type="text" size="48" maxlength="128" {!if titletoid}onkeyup="TitleToId('admin-storyeditor-title','admin-storyeditor-sid');" {!endif}value="{story_title}" name="title" id="admin-storyeditor-title"{xhtml}></dd>
 
       <dt><label for="admin-storyeditor-page_title">{lang_page_title}</label></dt>
-      <dd><input type="text" size="48" maxlength="128" value="{page_title}" name="page_title" id="admin-storyeditor-page_title" class="text"{xhtml}></dd>
+      <dd><input type="text" size="48" maxlength="128" value="{page_title}" name="page_title" id="admin-storyeditor-page_title"{xhtml}></dd>
 
       <dt>{lang_topic}</dt>
       <dd>{topic_selection}</dd>
 
       <dt><label for="admin-storyeditor-show_topic_icon">{lang_show_topic_icon}</label></dt>
-      <dd><input type="checkbox" {show_topic_icon_checked} name="show_topic_icon" id="admin-storyeditor-show_topic_icon"{xhtml}></dd>
+      <dd><input type="checkbox" class="uk-margin-small-top" {show_topic_icon_checked} name="show_topic_icon" id="admin-storyeditor-show_topic_icon"{xhtml}></dd>
       
       <dt><label for="admin-storyeditor-cachetime">{lang_cachetime}</label></dt>
-      <dd><input type="text" size="8" value="{cache_time}" name="cache_time" id="admin-storyeditor-cachetime" class="text"{xhtml}></dd>
-      <dd class="description">{lang_cachetime_desc}</dd>         
+      <dd><input type="text" size="8" value="{cache_time}" name="cache_time" id="admin-storyeditor-cachetime"{xhtml}></dd>
+      <dd>{lang_cachetime_desc}</dd>         
 
       <dt><label for="admin-storyeditor-draft_flag">{lang_draft}</label></dt>
-      <dd><input type="checkbox" {is_checked} name="draft_flag" id="admin-storyeditor-draft_flag"{xhtml}></dd>
+      <dd><input type="checkbox" class="uk-margin-small-top" {is_checked} name="draft_flag" id="admin-storyeditor-draft_flag"{xhtml}></dd>
 
       <dt><label for="admin-storyeditor-archiveflag">{lang_archivetitle}</label></dt>
       <dd>
         <label for="admin-storyeditor-archiveflag">{lang_enabled}</label>&nbsp;
-        <input type="checkbox" value="1" {is_checked2} onclick="enablearchive(this);" name="archiveflag" id="admin-storyeditor-archiveflag"{xhtml}>
-        <input type="checkbox" name="statuscode" id="storycode10" value="10" {is_checked3}{xhtml}><label for="storycode10">{lang_optionarchive}</label>
-        &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="statuscode" id="storycode11" value="11" {is_checked4}{xhtml}>
+        <input type="checkbox" class="uk-margin-small-top" value="1" {is_checked2} onclick="enablearchive(this);" name="archiveflag" id="admin-storyeditor-archiveflag"{xhtml}>
+        <input type="checkbox" class="uk-margin-small-top" name="statuscode" id="storycode10" value="10" {is_checked3}{xhtml}><label for="storycode10">{lang_optionarchive}</label>
+        &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="uk-margin-small-top" name="statuscode" id="storycode11" value="11" {is_checked4}{xhtml}>
         &nbsp;<label for="storycode11">{lang_optiondelete}</label>
       </dd>
 
@@ -103,7 +103,7 @@
       <dt><label for="cmt_close_flag">{lang_cmt_disable}</label>:</dt>
       <dd>
         <label for="cmt_close_flag">{lang_enabled}</label>&nbsp;
-        <input type="checkbox" name="cmt_close_flag" id="cmt_close_flag" value="1" {is_checked5} onclick="enablecmtclose(this);"{xhtml}>
+        <input type="checkbox" class="uk-margin-small-top" name="cmt_close_flag" id="cmt_close_flag" value="1" {is_checked5} onclick="enablecmtclose(this);"{xhtml}>
            &nbsp;
            <span dir="ltr">
            <select name="cmt_close_month">
@@ -131,19 +131,20 @@
       </dd>
 
       <dt><label for="admin-storyeditor-sid">{lang_sid}</label></dt>
-      <dd><input type="text" size="48" maxlength="128" value="{story_id}" name="sid" id="admin-storyeditor-sid" class="text"{xhtml}></dd>
+      <dd><input type="text" size="48" maxlength="128" value="{story_id}" name="sid" id="admin-storyeditor-sid"{xhtml}></dd>
 
       <dt{hide_meta}><label for="admin-storyeditor-metadescription">{lang_metadescription}</label></dt>
       <dd{hide_meta}><textarea cols="70" rows="2" name="meta_description" id="admin-storyeditor-metadescription">{meta_description}</textarea></dd>
 
       <dt{hide_meta}><label for="admin-storyeditor-metakeywords">{lang_metakeywords}</label></dt>
       <dd{hide_meta}><textarea cols="70" rows="2" name="meta_keywords" id="admin-storyeditor-metakeywords">{meta_keywords}</textarea></dd>
-
+    </dl>
+    <dl class="uk-description-list">
       <dt><label for="admin-storyeditor-introtext">{lang_introtext}</label></dt>
-      <dd><textarea cols="70" rows="12" name="introtext" id="admin-storyeditor-introtext">{story_introtext}</textarea></dd>
+      <dd><textarea cols="70" rows="12" name="introtext" id="admin-storyeditor-introtext" style="width:95%">{story_introtext}</textarea></dd>
 
       <dt><label for="admin-storyeditor-bodytext">{lang_bodytext}</label></dt>
-      <dd><textarea cols="70" rows="20" name="bodytext" id="admin-storyeditor-bodytext">{story_bodytext}</textarea></dd>
+      <dd><textarea cols="70" rows="20" name="bodytext" id="admin-storyeditor-bodytext"  style="width:95%">{story_bodytext}</textarea></dd>
 
       <dt><label for="admin-storyeditor-postmode">{lang_postmode}</label></dt>
       <dd>
@@ -151,7 +152,7 @@
           {post_options}
         </select>
       </dd>
-      <dd class="description">{lang_allowed_html}</dd>
+      <dd>{lang_allowed_html}</dd>
 
       <dt>{lang_images}</dt>
       <dd>
@@ -160,7 +161,7 @@
       </dd>
 
       <dt>{lang_story_stats}</dt>
-      <dd><div class="clearfix">
+      <dd><div class="uk-clearfix">
             <span class="story_stats">{lang_hits}: {story_hits}</span>
             <span class="story_stats">{lang_comments}: {story_comments}</span>
             <span class="story_stats">{lang_trackbacks}: {story_trackbacks}</span>
@@ -174,7 +175,7 @@
 
     <h3>{lang_accessrights}</h3>
 
-    <dl>
+    <dl class="uk-description-list-horizontal">
       <dt>{lang_owner}</dt>
       <dd>{owner_name}</dd>
 
@@ -183,12 +184,12 @@
 
       <dt>{lang_permissions}</dt>
       <dd>{permissions_editor}</dd>
-      <dd class="description">{lang_perm_key}</dd>
-      <dd class="description">{lang_permissions_msg}</dd>
+      <dd>{lang_perm_key}</dd>
+      <dd>{lang_permissions_msg}</dd>
     </dl>
   </fieldset>
 
-  <ul class="submit">
+  <ul class="uk-subnav uk-flex-center uk-margin-top">
     <li><input type="submit" value="{lang_save}" name="mode"{xhtml}></li>
     <li><input type="submit" value="{lang_preview}" name="mode"{xhtml}></li>
     <li><input type="submit" value="{lang_cancel}" name="mode"{xhtml}></li>

@@ -5,8 +5,8 @@
 
 <form action="{form_url}" method="post" id="commentform" class="linear" class="uk-form">
 
-  <div class="user_basic">
-    <dl>
+  <div>
+    <dl class="uk-description-list-horizontal">
       <dt class="username">{lang_username}</dt>
       <dd class="username">{cid}
          <input type="hidden" name="order" value="{order}"{xhtml}>
@@ -20,7 +20,7 @@
          <span{hidewhenediting}><a href="{action_url}" rel="nofollow" class="logoutorcreateaccount">{lang_logoutorcreateaccount}</a></span>
       </dd>
       <dt class="title"><label for="commentform-title">{lang_title}</label></dt>
-      <dd class="title"><input type="text" size="32" value="{title}" maxlength="96" name="title" id="commentform-title" class="text"{xhtml}></dd>
+      <dd class="title"><input type="text" size="32" value="{title}" maxlength="96" name="title" id="commentform-title"{xhtml}></dd>
 
       <dt><label for="comment_text">{lang_comment}</label></dt>
       <dd><textarea rows="10" cols="90" name="comment" id="comment_text">{comment}</textarea></dd>
@@ -49,7 +49,7 @@
 
     {captcha}
     
-    <ul class="submit">
+    <ul class="uk-subnav uk-flex-center uk-margin-top">
       <li><input type="submit" name="{nprefix}mode" value="{lang_preview}" class="submit"{xhtml}></li>
       <li>
         <input type="hidden" name="formtype" value="{formtype}"{xhtml}>

@@ -1,19 +1,19 @@
 {# begin {templatelocation} #}
 
-<form action="{site_url}/profiles.php" method="post" id="contactuserform" class="compact uk-form">
+<form action="{site_url}/profiles.php" method="post" id="contactuserform" class="uk-form">
 
-  <div class="user_basic">
-    <p class="message">{lang_description}</p>
+  <div>
+    <p class="uk-text-small">{lang_description}</p>
 
-    <dl>
+    <dl class="uk-description-list-horizontal">
       <dt><label for="contactuserform-author">{lang_username}</label></dt>
-      <dd><input type="text" size="32" value="{username}" maxlength="32" name="author" id="contactuserform-author" class="text"{xhtml}></dd>
+      <dd><input type="text" size="32" value="{username}" maxlength="32" name="author" id="contactuserform-author"{xhtml}></dd>
 
       <dt><label for="contactuserform-authoremail">{lang_useremail}</label></dt>
-      <dd><input type="text" size="32" value="{useremail}" maxlength="96" name="authoremail" id="contactuserform-authoremail" class="text"{xhtml}></dd>
+      <dd><input type="text" size="32" value="{useremail}" maxlength="96" name="authoremail" id="contactuserform-authoremail"{xhtml}></dd>
 
       <dt><label for="contactuserform-subject">{lang_subject}</label></dt>
-      <dd><input type="text" size="32" maxlength="96" value="{subject}" name="subject" id="contactuserform-subject" class="text"{xhtml}></dd>
+      <dd><input type="text" size="32" maxlength="96" value="{subject}" name="subject" id="contactuserform-subject"{xhtml}></dd>
 
       <dt><label for="contactuserform-message">{lang_message}</label></dt>
       <dd><textarea rows="10" cols="50" name="message" id="contactuserform-message">{message}</textarea></dd>
@@ -26,7 +26,7 @@
 
     {captcha}
 
-    <ul class="submit">
+    <ul class="uk-subnav uk-flex-center uk-margin-top">
       <li>
         <input type="hidden" name="what" value="contact"{xhtml}>
         <input type="hidden" name="uid" value="{uid}"{xhtml}>

@@ -1,19 +1,15 @@
 {# begin {templatelocation} #}
 
-<form action="{form_url}" method="post" class="admin-topmenu basic uk-form uk-margin-bottom">
+<form action="{form_url}" method="post" class="uk-form uk-margin-bottom">
   <fieldset>
     <legend>{lang_search}</legend>
 
-    <ul class="filter">
-	  <li>{filter}</li>
-	</ul>
-
-    <dl>
-      <dt>{lang_search}</dt>
-      <dd><input type="text" size="20" value="{last_query}" name="q" class="text"{xhtml}></dd>
-
-      <dt>{lang_limit_results}</dt>
-      <dd>
+    <div class="uk-flex uk-flex-center uk-margin-top uk-margin-bottom">
+      <div class="uk-text-nowrap uk-text-bold uk-margin-left">{filter}</div>
+      <div class="uk-text-nowrap uk-text-bold uk-margin-left">{lang_search}</div>
+      <div class="uk-text-nowrap"><input type="text" size="20" value="{last_query}" name="q"{xhtml}></div>
+      <div class="uk-text-nowrap uk-text-bold uk-margin-left">{lang_limit_results}</div>
+      <div class="uk-text-nowrap">
         <select name="query_limit">
           <option value="10" {10_selected}>10</option>
           <option value="20" {20_selected}>20</option>
@@ -23,15 +19,12 @@
           <option value="200" {200_selected}>200</option>
           <option value="500" {500_selected}>500</option>
         </select>
-      </dd>
+      </div>
+      <div class="uk-text-nowrap uk-text-bold uk-margin-left">{lang_records_found}</div>
+      <div class="uk-text-nowrap">{records_found}</div>
+      <div class="uk-text-nowrap uk-margin-left"><input type="submit" value="{lang_submit}"{xhtml}></div>
+    </div>
 
-      <dt>{lang_records_found}</dt>
-      <dd>{records_found}</dd>
-    </dl>
-
-    <ul class="submit">
-      <li><input type="submit" value="{lang_submit}" class="submit"{xhtml}></li>
-    </ul>
   </fieldset>
 </form>
 

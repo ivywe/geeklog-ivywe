@@ -1,14 +1,14 @@
 {# begin {templatelocation} #}
 
-<form action="{site_url}/search.php" method="get" id="advsearchform" class="compact uk-form">
+<form action="{site_url}/search.php" method="get" id="advsearchform" class="uk-form">
 
-  <div class="user_basic">
-    <p class="message">{search_intro}</p>
+  <div>
+    <p class="uk-text-small">{search_intro}</p>
 
-    <dl>
+    <dl class="uk-description-list-horizontal">
       <dt><label for="advsearchform-query">{lang_keywords}</label></dt>
       <dd>
-        <input type="text" size="35" maxlength="35" value="{query}" name="query" id="advsearchform-query" class="text"{xhtml}>
+        <input type="text" size="35" maxlength="35" value="{query}" name="query" id="advsearchform-query"{xhtml}>
         <br{xhtml}>
         <select name="keyType" id="advsearchform-keyType">
           <option value="phrase" {key_phrase_selected}>{lang_exact_phrase}</option>
@@ -22,7 +22,7 @@
 
       <dt><label for="advsearchform-datestart">{lang_date}</label></dt>
       <dd>
-        <input type="text" size="10" maxlength="10" name="datestart" value="{datestart}" id="advsearchform-datestart" class="text"{xhtml}> {lang_to} <input type="text" size="10" maxlength="10" name="dateend" value="{dateend}" id="advsearchform-dateend" class="text"{xhtml}>
+        <input type="text" size="10" maxlength="10" name="datestart" value="{datestart}" id="advsearchform-datestart"{xhtml}> {lang_to} <input type="text" size="10" maxlength="10" name="dateend" value="{dateend}" id="advsearchform-dateend"{xhtml}>
       </dd>
       <dd class="description">{date_format}</dd>
 
@@ -51,7 +51,7 @@
       </dd>
     </dl>
 
-    <ul class="submit">
+    <ul class="uk-subnav uk-flex-center uk-margin-top">
       <li>
         <input type="hidden" name="mode" value="search"{xhtml}>
         <input type="submit" value="{lang_search}" class="submit"{xhtml}>

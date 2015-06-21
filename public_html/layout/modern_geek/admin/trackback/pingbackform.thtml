@@ -1,19 +1,19 @@
 {# begin {templatelocation} #}
 
-<form action="{site_admin_url}/trackback.php" method="post" id="pingbackform" class="compact uk-form">
+<form action="{site_admin_url}/trackback.php" method="post" id="pingbackform" class="uk-form">
   <fieldset>
-    <p class="message">{lang_explain}</p>
+    <p class="uk-text-small">{lang_explain}</p>
 
-    <dl>
+    <dl class="uk-description-list-horizontal">
       <dt><label for="pingbackform-target">{lang_pingback_url}</label></dt>
-      <dd><input type="text" size="50" maxlength="{max_url_length}" value="{target_url}" name="target" id="pingbackform-target" class="text"{xhtml}></dd>
+      <dd><input type="text" size="50" maxlength="{max_url_length}" value="{target_url}" name="target" id="pingbackform-target"{xhtml}></dd>
 
       <dt>{lang_site_url}</dt>
       <dd>{site_url}</dd>
     </dl>
 
-    <ul class="submit">
-      <li><input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}><input type="submit" value="{lang_send}" name="mode[2]" class="submit"{xhtml}></li>
+    <ul class="uk-subnav uk-flex-center uk-margin-top">
+      <li><input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}><input type="submit" value="{lang_send}" name="mode[2]"{xhtml}></li>
     </ul>
   </fieldset>
 </form>

@@ -4,9 +4,9 @@
 <div id="advanced_editor" style="display:none;">
   {start_block_postacomment}
   <div id="commenteditform">
-    <form action="{form_url}" method="post" onsubmit='set_postcontent();' id="commentform_advanced" class="linear uk-form">
-      <div class="user_basic">
-        <dl>
+    <form action="{form_url}" method="post" onsubmit='set_postcontent();' id="commentform_advanced" class="uk-form">
+      <div>
+        <dl class="uk-description-list-horizontal">
           <dt class="username">{lang_username}</dt>
           <dd class="username">{cid}
              <input type="hidden" name="order" value="{order}"{xhtml}>
@@ -20,7 +20,7 @@
              <span{hidewhenediting}><a href="{action_url}" rel="nofollow" class="logoutorcreateaccount">{lang_logoutorcreateaccount}</a></span>
           </dd>
           <dt class="title"><label for="commentform-title">{lang_title}</label></dt>
-          <dd class="title"><input type="text" size="32" value="{title}" maxlength="96" name="title" id="commentform-title" class="text"{xhtml}></dd>
+          <dd class="title"><input type="text" size="32" value="{title}" maxlength="96" name="title" id="commentform-title"{xhtml}></dd>
     
           <dt><label for="comment_text">{lang_comment}</label></dt>
           <dd>
@@ -56,15 +56,13 @@
         
         {captcha}
     
-        <ul class="submit">
-          <li><input type="submit" name="{nprefix}mode" value="{lang_preview}" class="submit"{xhtml}></li>
-          <li>
-            <input type="hidden" name="formtype" value="{formtype}"{xhtml}>
-            {save_option} 
-            <input type="submit" value="{lang_cancel}" name="{nprefix}mode"{xhtml}> 
-            {delete_option} 
-            {notification}
-          </li>
+        <ul class="uk-subnav uk-flex-center uk-margin-top">
+          <li><input type="submit" name="{nprefix}mode" value="{lang_preview}"{xhtml}></li>
+          <li><input type="hidden" name="formtype" value="{formtype}"{xhtml}></li>
+          <li>{save_option}</li>
+          <li><input type="submit" value="{lang_cancel}" name="{nprefix}mode"{xhtml}></li>
+          <li>{delete_option}</li>
+          <li>{notification}</li>
         </ul>
       </div>
     </form>

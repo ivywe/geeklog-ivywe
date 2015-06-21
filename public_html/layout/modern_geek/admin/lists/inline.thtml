@@ -2,7 +2,7 @@
 
                             {search_menu}
                             {formfields_top}
-                            <table class="uk-table uk-table-condensed uk-table-striped" style="background:#ffffff">
+                            <table class="uk-table uk-table-condensed uk-table-striped" style="background:#ffffff;width:100%">
                                 <tr style="background:#FFFFFF;">
                                  {header_row}
                                 </tr>

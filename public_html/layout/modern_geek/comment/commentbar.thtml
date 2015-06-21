@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<ul class="status">
+<ul class="uk-subnav uk-flex-center">
   <li>{start_storylink_anchortag}<strong>{story_title}</strong>{end_storylink_anchortag}</li>
   <li>{num_comments} {lang_comments}</li>
   <li>{user_nullname}<a href="{login_logout_url}" rel="nofollow">{lang_login_logout}</a></li>
@@ -8,8 +8,8 @@
 
 <form action="{parent_url}" method="post" id="commentbar-selector" class="basic uk-form">
 
-  <div class="user_basic">
-    <ul>
+  <div>
+    <ul class="uk-subnav uk-flex-center">
       <li>{order_selector}</li>
       <li>{mode_selector}</li>
       <li>
@@ -22,29 +22,26 @@
   </div>  
 </form>
 
-<form action="{editor_url}" method="post" id="commentbar-comment" class="basic">
-  <div class="user_basic">
-    <ul class="submit">
-      <li>
-        {hidden_field_reply}
-        <input type="hidden" name="{nprefix}sid" value="{sid}"{xhtml}>
+<form action="{editor_url}" method="post" id="commentbar-comment" class="uk-form">
+  <div>
+    <ul class="uk-subnav uk-flex-center uk-margin-top">
+      <li>{hidden_field_reply}</li>
+      <li><input type="hidden" name="{nprefix}sid" value="{sid}"{xhtml}>
         <input type="hidden" name="{nprefix}pid" value="0"{xhtml}>
         <input type="hidden" name="{nprefix}type" value="{comment_type}"{xhtml}>
         <input type="hidden" name="title" value="{comment_title}"{xhtml}>
-        <input type="{reply_hidden_or_submit}" name="reply" value="{lang_reply}" class="submit"{xhtml}>
-      </li>
+        <input type="{reply_hidden_or_submit}" name="reply" value="{lang_reply}" class="submit"{xhtml}></li>
     </ul>
-    {jump_link_for_commenteditform}
   </div>
 </form>
 
-<p class="disclaimer">{lang_disclaimer}</p>
+      {jump_link_for_commenteditform}
+
+<p class="uk-text-small">{lang_disclaimer}</p>
 
 <!-- BEGIN commenteditform_jumplink -->
     <div>
-        [
         <a class="button" href="#commenteditform">{lang_reply}</a>
-        ]
     </div>
 <!-- END commenteditform_jumplink -->
 

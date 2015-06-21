@@ -2,18 +2,18 @@
 
 <p>{lang_instruction}</p>
 
-<form action="{site_admin_url}/user.php?mode=batchdelete" method="post" id="admin-batchdelete" class="compact uk-form">
+<form action="{site_admin_url}/user.php?mode=batchdelete" method="post" id="admin-batchdelete" class="uk-form">
   <fieldset>
     <legend>{lang_updatelist}</legend>
 
-    <ul class="submit">
+    <ul class="uk-subnav uk-flex-center uk-margin-top">
       <li>
         <input type="hidden" name="mode" value="batchdelete"{xhtml}>
         <input type="hidden" name="usr_type" value="{usr_type}"{xhtml}>
         <input type="hidden" name="usr_time[{usr_type}]" value="{usr_time}"{xhtml}>
       </li>
     </ul>
-    <dl>
+    <dl class="uk-description-list-horizontal">
       <dt>
       {options_list}
       </dt>

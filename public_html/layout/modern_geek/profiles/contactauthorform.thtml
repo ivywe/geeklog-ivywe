@@ -1,24 +1,24 @@
 {# begin {templatelocation} #}
 
 {start_block_mailstory2friend}
-  <form action="{site_url}/profiles.php" method="post" id="contactauthorform" class="compact uk-form">
+  <form action="{site_url}/profiles.php" method="post" id="contactauthorform" class="uk-form">
 
-    <div class="user_basic">
-      <dl>
+    <div>
+      <dl class="uk-description-list-horizontal">
         <dt>{lang_title}</dt>
         <dd>{story_link}</dd>
 
         <dt><label for="contactauthorform-from">{lang_fromname}</label></dt>
-        <dd><input type="text" size="30" maxlength="96" value="{name}" name="from" id="contactauthorform-from" class="text"{xhtml}></dd>
+        <dd><input type="text" size="30" maxlength="96" value="{name}" name="from" id="contactauthorform-from"{xhtml}></dd>
 
         <dt><label for="contactauthorform-fromemail">{lang_fromemailaddress}</label></dt>
-        <dd><input type="text" size="30" maxlength="96" value="{email}" name="fromemail" id="contactauthorform-fromemail" class="text"{xhtml}></dd>
+        <dd><input type="text" size="30" maxlength="96" value="{email}" name="fromemail" id="contactauthorform-fromemail"{xhtml}></dd>
 
         <dt><label for="contactauthorform-to">{lang_toname}</label></dt>
-        <dd><input type="text" size="30" maxlength="96" value="{toname}" name="to" id="contactauthorform-to" class="text"{xhtml}></dd>
+        <dd><input type="text" size="30" maxlength="96" value="{toname}" name="to" id="contactauthorform-to"{xhtml}></dd>
 
         <dt><label for="contactauthorform-toemail">{lang_toemailaddress}</label></dt>
-        <dd><input type="text" size="30" maxlength="96" value="{toemail}" name="toemail" id="contactauthorform-toemail" class="text"{xhtml}></dd>
+        <dd><input type="text" size="30" maxlength="96" value="{toemail}" name="toemail" id="contactauthorform-toemail"{xhtml}></dd>
 
         <dt><label for="contactauthorform-shortmsg">{lang_shortmessage}</label></dt>
         <dd><textarea rows="8" cols="50" name="shortmsg" id="contactauthorform-shortmsg">{shortmsg}</textarea></dd>
@@ -31,7 +31,7 @@
 
       <p class="description">{lang_warning}</p>
 
-      <ul class="submit">
+      <ul class="uk-subnav uk-flex-center uk-margin-top">
         <li>
           <input type="hidden" name="sid" value="{story_id}"{xhtml}>
           <input type="hidden" name="what" value="sendstory"{xhtml}>
