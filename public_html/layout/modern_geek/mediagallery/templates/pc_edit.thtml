@@ -87,7 +87,7 @@
       <div style="color:red;">{errMsg}</div>
     </div>
     <div style="text-align:center;margin-top:10px">
-      {lang_ccself}<input type="checkbox" value="1" name="ccself"{ccself_checked} {xhtml}><br{xhtml}><br{xhtml}>
+      {lang_ccself}<input type="checkbox" class="uk-margin-small-top" value="1" name="ccself"{ccself_checked} {xhtml}><br{xhtml}><br{xhtml}>
       <input type="submit" class="uk-button" value="{lang_preview}"  name="mode"{xhtml}>
       <input type="submit" class="uk-button" value="{lang_cancel}" name="mode"{xhtml}>
       <input type="submit" class="uk-button" value="{lang_send}"  name="mode"{xhtml}>

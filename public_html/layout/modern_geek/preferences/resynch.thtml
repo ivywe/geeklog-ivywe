@@ -1,7 +1,6 @@
 {# begin {templatelocation} #}
 
       <dt><label for="profile-resynch">{lang_resynch}</label></dt>
-      <dd><input type="checkbox" {resynch_checked} name="resynch" id="profile-resynch"{xhtml}></dd>
-      <dd class="description">{lang_resynch_text}</dd>
+      <dd><input type="checkbox" class="uk-margin-small-top" {resynch_checked} name="resynch" id="profile-resynch" placeholder="{lang_resynch_text}"{xhtml}></dd>
 
 {# end {templatelocation} #}

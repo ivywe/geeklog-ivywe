@@ -16,7 +16,7 @@
           <option value="any" {key_any_selected}>{lang_any_word}</option>
         </select>
         <span>
-          {lang_titles} <input type="checkbox" value="true" name="title"{title_checked}{xhtml}>
+          {lang_titles} <input type="checkbox" class="uk-margin-small-top" value="true" name="title"{title_checked}{xhtml}>
         </span>
       </dd>
 

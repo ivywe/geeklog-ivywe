@@ -1,7 +1,6 @@
 {# begin {templatelocation} #}
 
 <dt><label for="profile-new_username">{lang_username}</label></dt>
-<dd><input type="text" size="16" maxlength="16" value="{new_username_value}" name="new_username" id="profile-new_username"{xhtml}></dd>
-<dd class="description">{lang_username_text}</dd>
+<dd><input type="text" size="16" maxlength="16" value="{new_username_value}" name="new_username" id="profile-new_username" placeholder="{lang_username_text}"{xhtml}></dd>
 
 {# end {templatelocation} #}

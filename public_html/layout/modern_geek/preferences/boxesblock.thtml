@@ -3,7 +3,7 @@
 <fieldset>
   <legend>{lang_boxes_title}</legend>
 
-  <dl class="notes">
+  <dl class="uk-description-list uk-text-small">
     <dt>{lang_boxes_help_title}</dt>
     <dd>{lang_boxes}</dd>
   </dl>
