@@ -19,7 +19,7 @@
       <dd><textarea rows="10" cols="50" name="message" id="contactuserform-message">{message}</textarea></dd>
 
       <dt{cc_enabled}><label for="contactuserform-cc">{lang_cc}</label></dt>
-      <dd{cc_enabled}><input type="checkbox" name="cc" id="contactuserform-cc"{cc}{xhtml}>&nbsp;{lang_cc_description}</dd>
+      <dd{cc_enabled}><input type="checkbox" class="uk-margin-small-top" name="cc" id="contactuserform-cc"{cc}{xhtml}>&nbsp;{lang_cc_description}</dd>
 
       <dd class="description">{lang_nohtml}</dd>
     </dl>

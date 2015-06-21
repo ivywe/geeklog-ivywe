@@ -23,7 +23,7 @@
           <br{xhtml}><div class="pluginMediumText">{lang_php_function_info}</div></dd>
 
       <dt><label for="cmeditor-is_enabled">{lang_is_enabled}</label></dt>
-      <dd><input type="checkbox" name="is_enabled" id="cmeditor-is_enabled" {val_is_enabled}{xhtml}></dd>
+      <dd><input type="checkbox" class="uk-margin-small-top" name="is_enabled" id="cmeditor-is_enabled" {val_is_enabled}{xhtml}></dd>
 
       <dt><label for="cmeditor-url">{lang_menuitemurl}</label></dt>
       <dd><input type="text" name="url" id="cmeditor-url" value="{val_menuitemurl}" size="48" class="size6"{xhtml}>
@@ -61,7 +61,7 @@
       <dt><label for="cmeditor-pattern">{lang_pattern}</label></dt>
       <dd><input type="text" name="pattern" id="cmeditor-pattern" value="{val_pattern}" size="48" class="size6"{xhtml}>
           &nbsp;{lang_is_preg}:
-          <input type="checkbox" name="is_preg" {val_is_preg}{xhtml}>
+          <input type="checkbox" class="uk-margin-small-top" name="is_preg" {val_is_preg}{xhtml}>
           <br{xhtml}><div class="pluginMediumText">{lang_pattern_info}</div></dd>
     </dl>
 

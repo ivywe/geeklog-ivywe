@@ -21,7 +21,7 @@
     <!-- BEGIN ImageColumn -->
     <tr>
       <td style="vertical-align:middle;text-align:center;">
-        <input type="checkbox" name="sel[]" value="{mid}"{xhtml}>
+        <input type="checkbox" class="uk-margin-small-top" name="sel[]" value="{mid}"{xhtml}>
         <input type="hidden" name="mid[]" value="{mid}"{xhtml}>
       </td>
       <td style="vertical-align:middle;text-align:center;">

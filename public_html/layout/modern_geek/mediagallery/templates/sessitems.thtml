@@ -12,7 +12,7 @@
     <tbody>
     <tr>
       <td align="center" style="vertical-align:middle;">
-        <input type="checkbox" name="sel[]" value="{session_id}"{xhtml}>
+        <input type="checkbox" class="uk-margin-small-top" name="sel[]" value="{session_id}"{xhtml}>
         <input type="hidden" name="session_id[]" value="{session_id}"{xhtml}>
       </td>
       <td align="left" style="vertical-align:middle;">

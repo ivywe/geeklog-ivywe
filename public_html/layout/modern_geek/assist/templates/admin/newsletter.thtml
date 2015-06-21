@@ -80,7 +80,7 @@
 			<br{xhtml}>{user_wkymlmguser}
 			<!-- オプション　ユーザの受信許可設定を無視して送る　 overstyr -->
 			<br{xhtml}>
-		    <input type="checkbox" name="overstyr" value="1" {is_checked_overstyr}{xhtml}>{lang_overstyr}{help_overstyr}
+		    <input type="checkbox" class="uk-margin-small-top" name="overstyr" value="1" {is_checked_overstyr}{xhtml}>{lang_overstyr}{help_overstyr}
 
             </td>
         </tr>

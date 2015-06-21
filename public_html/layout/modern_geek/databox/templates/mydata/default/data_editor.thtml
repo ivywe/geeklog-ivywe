@@ -25,7 +25,7 @@
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_draft} {help_draft}</th>
             <td class="admin-list-field">
-          <input type="checkbox" name="draft_flag" value="1" {draft_flag} {xhtml} disabled>{draft_msg}</td>
+          <input type="checkbox" class="uk-margin-small-top" name="draft_flag" value="1" {draft_flag} {xhtml} disabled>{draft_msg}</td>
           </tr>
 
           <!-- code -->
