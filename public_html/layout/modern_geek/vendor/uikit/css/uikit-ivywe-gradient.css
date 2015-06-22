@@ -1207,7 +1207,8 @@ iframe {
   text-decoration: none;
 }
 .uk-nav > li > a {
-  padding: 5px 15px;
+  padding: 0 12px;
+  font-size: 12px;
 }
 .uk-nav ul {
   padding-left: 15px;
