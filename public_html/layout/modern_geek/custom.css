@@ -289,8 +289,8 @@ h2.gl-h2-main {
 	}
 }
 
-form.uk-form div dl dt,
-form.uk-form div dl dd{
-  margin: 8px 0 0 0;
+form.uk-form dl dt,
+form.uk-form dl dd{
+  margin-top: 8px;
 }
 

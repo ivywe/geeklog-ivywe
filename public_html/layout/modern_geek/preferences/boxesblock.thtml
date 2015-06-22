@@ -3,12 +3,15 @@
 <fieldset>
   <legend>{lang_boxes_title}</legend>
 
-  <dl class="uk-description-list uk-text-small">
+  <dl class="uk-description-list-horizontal">
     <dt>{lang_boxes_help_title}</dt>
     <dd>{lang_boxes}</dd>
   </dl>
+  <dl class="uk-description-list-horizontal">
+    <dt class="uk-text-small"></dt>
+    <dd>{boxes_checklist}</dd>
+  </dl>
 
-    {boxes_checklist}
 </fieldset>
 
 {# end {templatelocation} #}
