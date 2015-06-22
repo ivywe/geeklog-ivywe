@@ -5,7 +5,7 @@
         {# <input style="border:0;height:22px;width:141px;padding:0;margin:0;" type="submit" value="" id="login_{oauth_service}"{xhtml}> #}
         
         {# OAuth Button Style 2: Login buttons with icons (uncomment line below) #}
-        <button type="submit" value="{lang_oauth_service}" style="padding: 8px 0" class="uk-width-1-1 uk-button uk-button-primary uk-button-small uk-margin-small-top"><img alt="" src="{oauth_sign_in_image}" style="margin:4px;"{xhtml}><span style="white-space: nowrap; line-height: 1.4">{lang_oauth_service}</span></button>
+        <button type="submit" value="{lang_oauth_service}" style="padding: 8px 0 8px 8px" class="uk-width-1-1 uk-button uk-button-small uk-margin-small-top uk-text-left"><img alt="" src="{oauth_sign_in_image}" style="margin:4px"{xhtml}><span style="white-space: nowrap; line-height: 1.4">{lang_oauth_service}</span></button>
 </form>
 
 {# end {templatelocation} #}

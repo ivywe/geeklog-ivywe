@@ -1,7 +1,7 @@
 {# begin {templatelocation} #}
 
-    <div class="uk-navbar-content uk-navbar-flip uk-hidden-small">
-      <a href="#modalOpen" class="uk-icon-button uk-button-primary" data-uk-modal=""><i class="uk-icon-sign-in"></i></a>
+    <div class="uk-navbar-content uk-navbar-flip uk-hidden-small uk-margin-right">
+      <a href="#modalOpen" class="uk-icon-button" style="margin-top:4px" data-uk-modal=""><i class="uk-icon-sign-in"></i></a>
     </div>
 
     <div id="modalOpen" class="uk-modal">
@@ -20,7 +20,7 @@
                             <input type="password" placeholder="{lang_password}" name="passwd" id="loginform-passwd" class="uk-width-1-1 uk-form-large"{xhtml}>
                         </div>
                         <div class="uk-form-row">
-                        <input type="submit" value="{lang_login}" class="uk-width-1-1 uk-button uk-button-primary uk-button-large"{xhtml}>
+                        <input type="submit" value="{lang_login}" class="uk-width-1-1 uk-button uk-button-large"{xhtml}>
                         </div>
                         <div class="uk-form-row uk-text-small">
                             {lang_signup}
