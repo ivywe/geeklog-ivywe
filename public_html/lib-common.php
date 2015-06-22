@@ -2621,7 +2621,7 @@ function COM_checkList($table, $selection, $where = '', $selected = '', $fieldna
 
         $S = array();
     }
-    $retval = '<ul class="checkboxes-list">' . LB;
+    $retval = '<ul class="uk-subnav">' . LB;
     for( $i = 0; $i < $nrows; $i++ )
     {
         $access = true;
@@ -2654,7 +2654,7 @@ function COM_checkList($table, $selection, $where = '', $selected = '', $fieldna
 
             if(( $table == $_TABLES['blocks'] ) && isset( $A[2] ) && ( $A[2] == 'gldefault' ))
             {
-                $retval .= XHTML . '><span class="gldefault">' . stripslashes( $A[1] ) . '</span></li>' . LB;
+                $retval .= XHTML . '><span>' . stripslashes( $A[1] ) . '</span></li>' . LB;
             }
             else
             {
@@ -4315,7 +4315,7 @@ function COM_olderStoriesBlock( $help = '', $title = '', $position = '' )
                         $daylist = COM_makeList( $oldnews, 'list-older-stories' );
                         $daylist = preg_replace( "/(\015\012)|(\015)|(\012)/",
                                                  '', $daylist );
-                        $string .= $daylist . '<div class="divider-older-stories"></div>';
+                        $string .= $daylist . '<div></div>';
                     }
 
                     $day2 = strftime( $dateonly, $A['day'] );
@@ -4883,7 +4883,7 @@ function COM_allowedHTML($permissions = 'story.edit', $list_only = false, $filte
     }
 
     if (!$list_only) {
-        $retval .= '<span class="warningsmall">'
+        $retval .= '<span class="uk-text-warning uk-text-small">'
                  . $description . '</span>';
     }
 
@@ -4908,7 +4908,7 @@ function COM_allowedHTML($permissions = 'story.edit', $list_only = false, $filte
         }
         $list = rtrim($list, ', ');
         if (!empty($list)) {
-            $retval .= '<div class="warningsmall">'
+            $retval .= '<div class="uk-text-warning uk-text-small">'
                      . $list . '</div>';
         }
     }
@@ -4937,7 +4937,7 @@ function COM_allowedAutotags($list_only = false, $allowed_tags = '')
 
     $retval = '';
     if (!$list_only) {
-        $retval .= '<span class="warningsmall">'
+        $retval .= '<span class="uk-text-warning uk-text-small">'
                  . $LANG01[140] // Allowed Autotags:
                  . '</span>';
     }
@@ -4962,7 +4962,7 @@ function COM_allowedAutotags($list_only = false, $allowed_tags = '')
     }
     $list = rtrim($list, ', ');
     if (!empty($list)) {
-        $retval .= '<div class="warningsmall">'
+        $retval .= '<div class="uk-text-warning uk-text-small">'
                  . $list . '</div>';
     }
 
@@ -5590,7 +5590,7 @@ function COM_showMessageText($message, $title = '')
         $timestamp = strftime($_CONF['daytime']);
         $retval .= COM_startBlock($title . ' - ' . $timestamp, '',
                                   COM_getBlockTemplate('_msg_block', 'header'))
-                . '<p class="sysmessage"><i class="uk-icon-warning uk-color-warning"></i> ' . $message . '</p>'
+                . '<p class="uk-text-warning"><i class="uk-icon-warning uk-color-warning"></i> ' . $message . '</p>'
                 . COM_endBlock(COM_getBlockTemplate('_msg_block', 'footer'));
     }
 
