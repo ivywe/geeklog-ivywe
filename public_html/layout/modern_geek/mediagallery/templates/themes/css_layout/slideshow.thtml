@@ -277,7 +277,7 @@ function setCaption(text) {
     }
     //]]>
     </script>
-    &nbsp;|&nbsp;&nbsp;{loop}:<input type="checkbox" class="uk-margin-small-top" name="loopCheck"  onclick="toggleLoop();"{xhtml}>
+    &nbsp;|&nbsp;&nbsp;{loop}:<input type="checkbox" name="loopCheck"  onclick="toggleLoop();"{xhtml}>
   </div>
 </form>
 

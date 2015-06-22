@@ -34,7 +34,7 @@ function doUnCheckAll()
     <!-- BEGIN exifRow -->
     <tr>
       <td align="center">
-        <input type="checkbox" class="uk-margin-small-top" name="sel[]" value="{tag}" {selected}{xhtml}>
+        <input type="checkbox" name="sel[]" value="{tag}" {selected}{xhtml}>
         <input type="hidden"   name="tag[]" value="{tag}"{xhtml}>
       </td>
       <td align="left">

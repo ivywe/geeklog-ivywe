@@ -306,13 +306,13 @@
       <tr>
         <th>{lang_popup_from_album}</th>
         <td class="mgAdminAlignLeft">
-          <input type="checkbox" class="uk-margin-small-top" name="popupfromalbum" value="1" {popupfromalbum_selected}{xhtml}>
+          <input type="checkbox" name="popupfromalbum" value="1" {popupfromalbum_selected}{xhtml}>
         </td>
       </tr>
       <tr>
         <th>{lang_autotag_caption}</th>
         <td class="mgAdminAlignLeft">
-          <input type="checkbox" class="uk-margin-small-top" name="autotag_caption" value="1" {autotag_caption_selected}{xhtml}>
+          <input type="checkbox" name="autotag_caption" value="1" {autotag_caption_selected}{xhtml}>
         </td>
       </tr>
       <tr>
@@ -416,25 +416,25 @@
       <tr>
         <th>{lang_display_rows_enabled}</th>
         <td class="mgAdminAlignLeft">
-          <input type="checkbox" class="uk-margin-small-top" name="up_display_rows_enabled" value="1" {up_dr_selected}{xhtml}>
+          <input type="checkbox" name="up_display_rows_enabled" value="1" {up_dr_selected}{xhtml}>
         </td>
       </tr>
       <tr>
         <th>{lang_display_columns_enabled}</th>
         <td class="mgAdminAlignLeft">
-          <input type="checkbox" class="uk-margin-small-top" name="up_display_columns_enabled" value="1" {up_dc_selected}{xhtml}>
+          <input type="checkbox" name="up_display_columns_enabled" value="1" {up_dc_selected}{xhtml}>
         </td>
       </tr>
       <tr>
         <th>{lang_av_playback_enabled}</th>
         <td class="mgAdminAlignLeft">
-          <input type="checkbox" class="uk-margin-small-top" name="up_av_playback_enabled" value="1" {up_playback_selected}{xhtml}>
+          <input type="checkbox" name="up_av_playback_enabled" value="1" {up_playback_selected}{xhtml}>
         </td>
       </tr>
       <tr>
         <th>{lang_thumbnail_size_enabled}</th>
         <td class="mgAdminAlignLeft">
-          <input type="checkbox" class="uk-margin-small-top" name="up_thumbnail_size_enabled" value="1" {up_tn_size_selected}{xhtml}>
+          <input type="checkbox" name="up_thumbnail_size_enabled" value="1" {up_tn_size_selected}{xhtml}>
         </td>
       </tr>
     </table>
@@ -452,7 +452,7 @@
       <tr>
         <th>{lang_jhead_enable}</th>
         <td class="mgAdminAlignLeft">
-          <input type="checkbox" class="uk-margin-small-top" name="enable_jhead" value="1" {jh_selected}{xhtml}>
+          <input type="checkbox" name="enable_jhead" value="1" {jh_selected}{xhtml}>
         </td>
       </tr>
       <tr>
@@ -464,7 +464,7 @@
       <tr>
         <th>{lang_jpegtran_enable}</th>
         <td class="mgAdminAlignLeft">
-          <input type="checkbox" class="uk-margin-small-top" name="enable_jpegtran" value="1" {jt_selected}{xhtml}>
+          <input type="checkbox" name="enable_jpegtran" value="1" {jt_selected}{xhtml}>
         </td>
       </tr>
       <tr>
@@ -476,7 +476,7 @@
       <tr>
         <th>{lang_ffmpeg_enable}</th>
         <td class="mgAdminAlignLeft">
-          <input type="checkbox" class="uk-margin-small-top" name="enable_ffmpeg" value="1" {ffmpeg_selected}{xhtml}>
+          <input type="checkbox" name="enable_ffmpeg" value="1" {ffmpeg_selected}{xhtml}>
         </td>
       </tr>
       <tr>
@@ -488,7 +488,7 @@
       <tr>
         <th>{lang_zip_enable}</th>
         <td class="mgAdminAlignLeft">
-          <input type="checkbox" class="uk-margin-small-top" name="enable_zip" value="1" {zip_selected}{xhtml}>
+          <input type="checkbox" name="enable_zip" value="1" {zip_selected}{xhtml}>
         </td>
       </tr>
       <tr>

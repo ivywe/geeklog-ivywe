@@ -6,7 +6,7 @@
 <!-- BEGIN fileRow -->
   <tr>
     <td style="width:10%;text-align:center;">
-        <input type="checkbox" class="uk-margin-small-top" name="sel[]" value="{filename}"{xhtml}>
+        <input type="checkbox" name="sel[]" value="{filename}"{xhtml}>
         <input type="hidden" name="dir[]" value="{dir}"{xhtml}>
     </td>
     <td style="width:90%;text-align:left;">

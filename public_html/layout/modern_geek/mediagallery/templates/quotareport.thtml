@@ -19,7 +19,7 @@
     <tbody>
       <!-- BEGIN UserRow -->
       <tr>
-        <td style="text-align:center"><input type="checkbox" class="uk-margin-small-top" value="{uid}" name="uid[]"{xhtml}></td>
+        <td style="text-align:center"><input type="checkbox" value="{uid}" name="uid[]"{xhtml}></td>
         <td style="text-align:left">{username}</td>
         <td style="text-align:center">{active}</td>
         <td style="text-align:right">{quota}</td>

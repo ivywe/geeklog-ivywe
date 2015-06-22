@@ -8,7 +8,7 @@
       <!-- BEGIN catRow -->
       <tr>
         <td align="center">
-          <input type="checkbox" class="uk-margin-small-top" name="sel[]" value="{cat_id}"{xhtml}>
+          <input type="checkbox" name="sel[]" value="{cat_id}"{xhtml}>
           <input type="hidden" name="cat_id[]" value="{cat_id}"{xhtml}>
         </td>
         <td align="center">

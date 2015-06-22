@@ -75,10 +75,10 @@
         <p><label for="original_filename">{lang_original_filename}</label><br{xhtml}>
         <input type="text" size="80" name="original_filename" id="original_filename" value="{original_filename}"{xhtml}></p>
 
-        <p><label for="attachtn">{lang_attached_thumbnail}</label><input type="checkbox" class="uk-margin-small-top" name="attachtn" id="attachtn" value="1" {at_tn_checked}{xhtml}><br{xhtml}>
+        <p><label for="attachtn">{lang_attached_thumbnail}</label><input type="checkbox" name="attachtn" id="attachtn" value="1" {at_tn_checked}{xhtml}><br{xhtml}>
         <input type="file" dir="ltr" name="attthumb" id="attthumb" size="60"{xhtml}></p>
 
-        <p><label for="replacefile">{lang_replacefile}</label><input type="checkbox" class="uk-margin-small-top" name="replacefile" id="replacefile" value="1"{xhtml}><br{xhtml}>
+        <p><label for="replacefile">{lang_replacefile}</label><input type="checkbox" name="replacefile" id="replacefile" value="1"{xhtml}><br{xhtml}>
         <input type="file" dir="ltr" name="repfilename" id="repfilename" size="60"{xhtml}></p>
 
         <p><label for="remoteurl">{lang_remote_url}</label><br{xhtml}>

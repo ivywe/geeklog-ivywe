@@ -11,7 +11,7 @@
     {month_select}&nbsp;
 	{day_select}&nbsp;
 	{year_select}&nbsp;&nbsp;
-	<input type="checkbox" class="uk-margin-small-top" name="alldates"{xhtml}><span class="uk-text-bold">{lang_all_dates}</span>
+	<input type="checkbox" name="alldates"{xhtml}><span class="uk-text-bold">{lang_all_dates}</span>
   </td>
 </tr>
 <tr>
