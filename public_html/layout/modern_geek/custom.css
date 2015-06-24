@@ -25,54 +25,6 @@ fieldset {
       color: #666;
 }
 
-div.social {
-  clear: both;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-  background: #efefef;
-  padding: 0.2em 1em;
-  margin: 2em;
-  min-height: 9em;
-}
-
-
-ul.socialbtn{
-  float:left;
-  padding:0;
-  margin:0 0 0.7em 2em;
-  list-style-type: none;
-  display: block;
-}
-ul.socialbtn li{float:left; width:81px !important; margin:0 0 0 8px !important;}
-ul.socialbtn li:first-child{width:65px !important; margin-left:0 !important;} 
-
-ul.socialbtn_right {
-  float:right; padding:0; margin:0;
-  list-style-type: none;
-  display: block;
-  padding: 0 6em 0 0;
-}
-ul.socialbtn_right li{float:left; width:81px !important; margin:0 0 0 8px !important;}
-ul.socialbtn_right li:first-child{width:70px !important; margin-left:0 !important;} 
-ul.socialbtn_right li.fblike{width:170px}
-
-@media only screen and (max-width: 519px) {
-
-ul.socialbtn {
-float: none;
-}
-
-ul.socialbtn li:first-child {
-width: auto;
-}
-
-ul.socialbtn li {
-float: none;
-margin-bottom: 5px;
-width: auto;
-}
-
-}
 
 
 /* Back to top navigation */
@@ -171,29 +123,6 @@ padding: 3px 10px;
 -o-transform: rotate(45deg);
 -ms-transform: rotate(45deg);
 }
-.side-corner-tag p:before {
-content: "";
-width: 0;
-height: 0;
-position: absolute;
-top: -17px;
-right: 69px;
-z-index: -1;
-border: 17px solid;
-border-color: transparent transparent #662121 transparent;
-}
-.side-corner-tag p:after {
-content: "";
-width: 0;
-height: 0;
-position: absolute;
-top: 74px;
-z-index: -1;
-right: -10px;
-border: 17px solid;
-border-color: #662121 transparent transparent transparent;
-}
-
 
 
 
@@ -219,28 +148,6 @@ bottom: 0;
 width:100%;
 background: #d93131;
 padding: 3px 10px;
-}
-.banner-tag p:before {
-content: "";
-width: 0;
-height: 0;
-position: absolute;
-top: -17px;
-right: 69px;
-z-index: -1;
-border: 17px solid;
-border-color: transparent transparent #662121 transparent;
-}
-.banner-tag p:after {
-content: "";
-width: 0;
-height: 0;
-position: absolute;
-top: 74px;
-z-index: -1;
-right: -10px;
-border: 17px solid;
-border-color: #662121 transparent transparent transparent;
 }
 
 
@@ -294,3 +201,15 @@ form.uk-form dl dd{
   margin-top: 8px;
 }
 
+
+#leftblocks  .uk-description-list-horizontal > dt {
+    width: 100%;
+    float: none;
+    clear: both;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+#leftblocks    .uk-description-list-horizontal > dd {
+    margin-left: 0;
+  }
