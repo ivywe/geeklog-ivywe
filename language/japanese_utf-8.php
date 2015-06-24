@@ -168,7 +168,7 @@ $LANG01 = array(
     116 => 'トラックバック',
     117 => '記事一覧',
     118 => '続きのページへ:',
-    119 => "<a href=\"{$_CONF['site_url']}/users.php?mode=getpassword\" rel=\"nofollow\"><i class=\"uk-icon-exclamation-circle\"></i> パスワードを忘れましたか?</a>?",
+    119 => "<a href=\"{$_CONF['site_url']}/users.php?mode=getpassword\" rel=\"nofollow\"><i class=\"uk-icon-exclamation-circle\"></i> パスワードを忘れましたか?</a>",
     120 => 'このコメントへのパーマリンク',
     121 => 'コメント (%d件)',
     122 => 'トラックバック (%d件)',
