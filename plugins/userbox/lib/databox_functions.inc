@@ -5699,6 +5699,8 @@ function DATABOX_math(
     ,$category_id=null
     ,$category_code=null
     ,$mode=''
+    ,$roundprecision=''
+    ,$numberformat=''
 )
 // +---------------------------------------------------------------------------+
 // | 機能  指定アトリビュートの指定値（count average max min sum）を取得する
@@ -5714,11 +5716,14 @@ function DATABOX_math(
 // | 引数 $category_id:カテゴリid
 // | 引数 $category_code :
 // | 引数 $mode          :ブランク　または　AND
+// | 引数 $roundprecision:〜-3,-2,-1,0,1,2,3
+// | 引数 $numberformat  :yes
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:指定値
 // +---------------------------------------------------------------------------+
 {
     global $_TABLES;
+    global $_CONF;
 
     if ($templatesetvar=="" ){
         return "";
@@ -5820,8 +5825,20 @@ function DATABOX_math(
 			$rt="";
 		}
 	}
+	
+    if ( is_numeric($rt) ) {
+        if  (!is_numeric($roundprecision)){
+            $roundprecision=0;
+        }
+        $rt=round($rt,$roundprecision);
+        if  (strtoupper($numberformat)=="YES"){
+            $rt=number_format( $rt, 
+                $roundprecision, $_CONF['decimal_separator'], $_CONF['thousand_separator'] );
+        }
+    }
     return $rt;
-
+	
+	
 }
 
 ?>

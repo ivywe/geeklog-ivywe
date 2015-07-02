@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
 </head>
-<!-- admin/plugins/userbox/docs/japanese/autotags.html 20150618 -->
+<!-- admin/plugins/userbox/docs/japanese/autotags.html 20150624 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
@@ -21,7 +21,7 @@
 <h1><a href="index.html">UserBox プラグイン</h1>
 
 
-<h2><a name="autotags">自動タグ</a>(2015/06/18 update)</h2>
+<h2><a name="autotags">自動タグ</a>(2015/06/24 update)</h2>
 <table>
 <tr><th style="width:25%">書式</th>
     <th style="width:75%">説明</th>
@@ -170,6 +170,8 @@ templatesetvar:<br />
 type_id:<br />
 category_id: または category_code:<br />
 mode:<br />
+roundprecision:<br />
+numberformat:<br />
 </td>
 <td>
 指定アトリビュートのMAX MIN SUM COUNT AVERAGE<br />
@@ -180,7 +182,16 @@ mode:<br />
 例５：[userbox:math templatesetvar:number type_id:0 category_code:AAA|BBB|CCC mode:and] カテゴリコードがAAA かつ BBB かつCCC<br />
 method:count max min sum average avg  省略時count<br />
 type_id:0 タイプなし　省略時すべてのタイプ
-
+<br />roundprecision 丸める桁数  数値の場合のみ有効
+<br />0の場合　3.4　→ 3
+<br />0の場合　3.5　→ 4
+<br />0の場合　3.6　→ 4
+<br />2の場合 1.95583 → 1.96
+<br />2の場合　5.045　→ 5.05
+<br />2の場合　5.055　→ 5.06
+<br />-3の場合 1241757 → 1242000
+<br />丸めの結果はPHPのバージョンに依存します
+<br />numberformat:yes 3桁ごとに区切る？ 数値の場合のみ有効
 </td>
 </tr></tbody>
 </table>
