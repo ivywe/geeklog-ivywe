@@ -91,8 +91,8 @@ $_MG_CONF['thumbnail_actual_size'] = 0;
  * themes, set the path to the template directory here.
  */
 
-$_MG_CONF['template_path'] = $_CONF['path'] . 'plugins/mediagallery/templates';
-//$_MG_CONF['template_path'] = $_CONF['path_layout'] . 'mediagallery/templates';
+//$_MG_CONF['template_path'] = $_CONF['path'] . 'plugins/mediagallery/templates';
+$_MG_CONF['template_path'] = $_CONF['path_layout'] . 'mediagallery/templates';
 
 /*
  * Disable Media Gallery's search integration with glFusion.
