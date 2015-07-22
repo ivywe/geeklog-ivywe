@@ -60,19 +60,19 @@
 <script src="{layout_url}/vendor/uikit/js/components/form-select.js"></script>
 <!-- } Front-end framework UIkit -->
 
-<!-- PDF図面表示 { -->
+<!-- PDF { -->
 <script type="text/javascript" src="{layout_url}/vendor/jquery-gdocsviewer/jquery.gdocsviewer.min.js"></script>
 <script type="text/javascript">
 /*<![CDATA[*/
 $(document).ready(function() {
-  $('a.embed-large').gdocsViewer({width: 960, height: 600});
-  $('a.embed-medium').gdocsViewer({width: 768, height: 500});
+  $('a.embed-large').gdocsViewer({width: 900, height: 600});
+  $('a.embed-medium').gdocsViewer({width: 500, height: 500});
   $('a.embed-small').gdocsViewer({width: 300, height: 240});
   $('#embedURL').gdocsViewer();
 });
 /*]]>*/
 </script>
-<!-- } PDF図面表示 -->
+<!-- } PDF -->
 
 <!-- jQuery isotope { -->
 <script type="text/javascript" src="{layout_url}/vendor/jquery-isotope-site/jquery.isotope.min.js"></script>

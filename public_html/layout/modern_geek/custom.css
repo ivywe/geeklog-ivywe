@@ -153,16 +153,15 @@ padding: 3px 10px;
 
 
 h2.uk-h2.gl-slider {
-  font-size:30px;
-  margin-bottom:10px
+  font-size:40px;
+  margin-top:200px
 }
 div.gl-slider {
-  margin-bottom:20px;
+  margin-top:20px;
 }
 
 h2.gl-h2-main {
   font-size: 24px;
-  margin-bottom: 0;
 }
 
 @media (max-width:959px) {
