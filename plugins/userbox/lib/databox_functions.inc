@@ -5764,12 +5764,18 @@ function DATABOX_math(
     $tbl2=$_TABLES[strtoupper($pi_name).'_addition'] ;
     $tbl3=$_TABLES[strtoupper($pi_name).'_def_field'];
     $tbl4=$_TABLES[strtoupper($pi_name).'_category'] ;
-    $tbl5=$_TABLES[strtoupper($pi_name).'_def_category'] ;
+	$tbl5=$_TABLES[strtoupper($pi_name).'_def_category'] ;
+	
+    $type=DB_getItem( $tbl3   ,"type","templatesetvar='{$templatesetvar}'");
 	
     //-----
     $sql = "SELECT ".LB;
-
-    $sql .= $method ."(t2.value) AS rt".LB;
+    
+    if  ($type==15  OR $type==21 OR strtoupper($numberformat)=="YES") {
+        $sql .= $method ."(t2.value + 0) AS rt".LB;
+    }else{
+        $sql .= $method ."(t2.value) AS rt".LB;
+    }
     $sql .= " FROM ".LB;
 
     $sql .= " {$tbl1} AS t1 ".LB;

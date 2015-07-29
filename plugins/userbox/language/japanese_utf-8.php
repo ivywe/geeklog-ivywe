@@ -77,13 +77,13 @@ $LANG_USERBOX['downloadrequired'] = 'クリックして、ダウンロードし�
 $LANG_USERBOX['display'] = '表示';
 $LANG_USERBOX['displayrequired'] = 'クリックして、表示してください。';
 
-$LANG_USERBOX['category_separater']=" / ";//テーマ変数でカテゴリ名称を列挙する際の区切り
-$LANG_USERBOX['category_separater_code']=" ";//テーマ変数でカテゴリコードを列挙する際の区切り
+$LANG_USERBOX['category_separater']=" / ";//テーマ変数でカテゴリ名称を列挙する際の区切
+$LANG_USERBOX['category_separater_code']=" ";//テーマ変数でカテゴリコードを列挙する際の区切
 
-$LANG_USERBOX['category_separater_text']=", ";//送信メールでカテゴリを列挙する際の区切り
+$LANG_USERBOX['category_separater_text']=", ";//送信メールでカテゴリを列挙する際の区切
 $LANG_USERBOX['field_separater']="|";
 
-$LANG_USERBOX['loginrequired'] = '(ログインしてください)';
+$LANG_USERBOX['loginrequired'] = '（ログインしてください）';
 
 $LANG_USERBOX['lastmodified'] = '%Y年%B%e日更新';
 $LANG_USERBOX['lastcreated'] = '%Y年%B%e日追加';
@@ -211,21 +211,21 @@ $LANG_USERBOX_ADMIN['allow_edit']='編集制限(ユーザ用編集画面)';
 
 $LANG_USERBOX_ADMIN['type']='タイプ';
 
-$LANG_USERBOX_ADMIN['size']='size(テキスト,マルチセレクトボックス)';
-$LANG_USERBOX_ADMIN['maxlength']='maxlength(テキスト)';
-$LANG_USERBOX_ADMIN['rows']='rows(複数行テキスト)';
-$LANG_USERBOX_ADMIN['br']='改行する(ラジオボタン)';
-$LANG_USERBOX_ADMIN['help_br']='0:しない,1～9:指定数毎に改行する';
+$LANG_USERBOX_ADMIN['size']='size（テキスト,マルチセレクトリスト）';
+$LANG_USERBOX_ADMIN['maxlength']='maxlength（テキスト）';
+$LANG_USERBOX_ADMIN['rows']='rows（複数行テキスト）';
+$LANG_USERBOX_ADMIN['br']='改行する（ラジオボタン）';
+$LANG_USERBOX_ADMIN['help_br']='0:しない,1〜9:指定数毎に改行する';
 
 
 //
 $LANG_USERBOX_ADMIN['language_id']="言語ID";
 $LANG_USERBOX_ADMIN['owner_id']="所有者ID";
 $LANG_USERBOX_ADMIN['group_id']="グループID";
-$LANG_USERBOX_ADMIN['perm_owner']="パーミッション(所有者)";
-$LANG_USERBOX_ADMIN['perm_group']="パーミッション(グループ)";;
-$LANG_USERBOX_ADMIN['perm_members']="パーミッション(メンバ)";
-$LANG_USERBOX_ADMIN['perm_anon']="パーミッション(ゲスト)";
+$LANG_USERBOX_ADMIN['perm_owner']="パーミッション（所有者）";
+$LANG_USERBOX_ADMIN['perm_group']="パーミッション（グループ）";;
+$LANG_USERBOX_ADMIN['perm_members']="パーミッション（メンバ）";
+$LANG_USERBOX_ADMIN['perm_anon']="パーミッション（ゲスト）";
 //
 
 //@@@@@
@@ -233,8 +233,8 @@ $LANG_USERBOX_ADMIN['selection']='選択肢';
 $LANG_USERBOX_ADMIN['selectlist']='マスターの種別';
 $LANG_USERBOX_ADMIN['checkrequried']='必須チェック';
 
-$LANG_USERBOX_ADMIN['textcheck']='入力チェック(テキスト)';
-$LANG_USERBOX_ADMIN['textconv']='入力値変換(テキスト)';
+$LANG_USERBOX_ADMIN['textcheck']='入力チェック（テキスト）';
+$LANG_USERBOX_ADMIN['textconv']='入力値変換（テキスト）';
 $LANG_USERBOX_ADMIN['searchtarget']='検索対象にする';
 
 $LANG_USERBOX_ADMIN['initial_value']='初期値';
@@ -501,13 +501,13 @@ $LANG_USERBOX_NOYES = array(
 );
 $LANG_USERBOX_INPUTTYPE = array(
     0 => 'チェックボックス',
-    1 => 'マルチセレクトボックス',
-    2 => 'ラジオボタン',
-    3 => 'セレクトボックス'
+    1 => 'マルチセレクトリスト'
+    ,2 => 'ラジオボタンリスト'
+    ,3 => 'オプションリスト'
 );
 $LANG_USERBOX_ALLOW_DISPLAY = array();
-$LANG_USERBOX_ALLOW_DISPLAY[0] ='表示する(一覧表示可能)';
-$LANG_USERBOX_ALLOW_DISPLAY[1] ='ログインユーザのみ表示する(一覧表示可能)';
+$LANG_USERBOX_ALLOW_DISPLAY[0] ='表示する（一覧表示可能）';
+$LANG_USERBOX_ALLOW_DISPLAY[1] ='ログインユーザのみ表示する（一覧表示可能）';
 $LANG_USERBOX_ALLOW_DISPLAY[2] ='グループ(所有者含)とadmin権のある人のみ表示';
 $LANG_USERBOX_ALLOW_DISPLAY[3] ='所有者とadmin権のある人のみ表示';
 $LANG_USERBOX_ALLOW_DISPLAY[4] ='admin権のある人のみ表示';
@@ -522,10 +522,10 @@ $LANG_USERBOX_ALLOW_EDIT[5] = '編集表示しない';
 
 $LANG_USERBOX_TEXTCHECK = array();
 $LANG_USERBOX_TEXTCHECK[0] = 'ノーチェック';
-$LANG_USERBOX_TEXTCHECK[11] = '半角数字のみ(半角に変換します)';
-$LANG_USERBOX_TEXTCHECK[12] = '半角英数字のみ(半角に変換します)';
-$LANG_USERBOX_TEXTCHECK[13] = '標準IDの範囲内(半角に変換します)';
-$LANG_USERBOX_TEXTCHECK[14] = '半角英数字記号のみ(半角に変換します)';
+$LANG_USERBOX_TEXTCHECK[11] = '半角数字のみ（半角に変換します）';
+$LANG_USERBOX_TEXTCHECK[12] = '半角英数字のみ（半角に変換します）';
+$LANG_USERBOX_TEXTCHECK[13] = '標準IDの範囲内（半角に変換します）';
+$LANG_USERBOX_TEXTCHECK[14] = '半角英数字記号のみ（半角に変換します）';
 
 $LANG_USERBOX_TEXTCONV = array();
 $LANG_USERBOX_TEXTCONV[0] = 'しない';
@@ -533,7 +533,7 @@ $LANG_USERBOX_TEXTCONV[10] = '半角に変換する';
 $LANG_USERBOX_TEXTCONV[20] = '全角に変換する';
 
 
-//TYPE (内容の変更不可)
+//TYPE （内容の変更不可）
 $LANG_USERBOX_TYPE = array();
 $LANG_USERBOX_TYPE[0] = '一行テキストフィールド';
 $LANG_USERBOX_TYPE[1] = '複数行テキストフィールド(HTML OK)';
@@ -547,18 +547,18 @@ $LANG_USERBOX_TYPE[3] = '日付';
 $LANG_USERBOX_TYPE[4] = '日時';
 $LANG_USERBOX_TYPE[5] = 'メールアドレス';
 $LANG_USERBOX_TYPE[6] = 'url';
-$LANG_USERBOX_TYPE[7] = 'セレクトボックス(選択肢)';
-$LANG_USERBOX_TYPE[8] = 'ラジオボタン(選択肢)';
-$LANG_USERBOX_TYPE[14] = 'マルチセレクトボックス(選択肢)';
+$LANG_USERBOX_TYPE[7] = 'オプションリスト（選択肢）';
+$LANG_USERBOX_TYPE[8] = 'ラジオボタンリスト（選択肢）';
+$LANG_USERBOX_TYPE[14] = 'マルチセレクトリスト（選択肢）';
 $LANG_USERBOX_TYPE[17] = 'フラグ';
-$LANG_USERBOX_TYPE[9] = 'セレクトボックス(マスター)';
-$LANG_USERBOX_TYPE[16] = 'ラジオボタン(マスター)';//@@@@@
-$LANG_USERBOX_TYPE[18] = 'マルチセレクトボックス(マスター)';//@@@@@
+$LANG_USERBOX_TYPE[9] = 'オプションリスト（マスター）';
+$LANG_USERBOX_TYPE[16] = 'ラジオボタンリスト（マスター）';//@@@@@
+$LANG_USERBOX_TYPE[18] = 'マルチセレクトリスト（マスター）';//@@@@@
 //$LANG_USERBOX_TYPE[19] = '';//@@@@@
 
-$LANG_USERBOX_TYPE[11] = '画像(DB保存)';
-$LANG_USERBOX_TYPE[12] = '画像(ファイル保存)';
-$LANG_USERBOX_TYPE[13] = '添付ファイル(準備中)';
+$LANG_USERBOX_TYPE[11] = '画像（DB保存）';
+$LANG_USERBOX_TYPE[12] = '画像（ファイル保存）';
+$LANG_USERBOX_TYPE[13] = '添付ファイル（準備中）';
 
 
 ###############################################################################
@@ -661,7 +661,7 @@ $LANG_confignames['userbox']['maxlength_meta_keywords'] = '入力制限文字数
 $LANG_confignames['userbox']['hideuseroption'] = 'ユーザー情報に表示しない';
 
 $LANG_confignames['userbox']['commentcode'] = '新規登録時のコメントのデフォルト';
-$LANG_confignames['userbox']['sort_list_by'] = '管理者ページ(プロフィール)の並べ替え';
+$LANG_confignames['userbox']['sort_list_by'] = '管理者ページ（プロフィール）の並べ替え';
 $LANG_confignames['userbox']['default_cache_time'] = 'デフォルトキャッシュタイム';
 
 //--(1)
@@ -680,15 +680,15 @@ $LANG_confignames['userbox']['additionsearch'] = '検索対象にする追加属
 
 //---(3)
 $LANG_tab['userbox'][tab_permissions] = 'パーミッション';
-$LANG_fs['userbox'][fs_permissions] = 'データのパーミッションのデフォルト([0]所有者 [1]グループ [2]メンバー [3]ゲスト)';
+$LANG_fs['userbox'][fs_permissions] = 'データのパーミッションのデフォルト（[0]所有者 [1]グループ [2]メンバー [3]ゲスト）';
 $LANG_confignames['userbox']['default_permissions'] = 'パーミッション';
 
 //---(4)
 $LANG_tab['userbox'][tab_autotag] = '自動タグ';
 $LANG_fs['userbox'][fs_autotag] = '自動タグ';
-$LANG_confignames['userbox']['intervalday']="表示期間(日)";
+$LANG_confignames['userbox']['intervalday']="表示期間（日）";
 $LANG_confignames['userbox']['limitcnt']="表示件数";//@@@@@
-$LANG_confignames['userbox']['newmarkday']="新着マーク表示期間(日)";//@@@@@
+$LANG_confignames['userbox']['newmarkday']="新着マーク表示期間（日）";//@@@@@
 $LANG_confignames['userbox']['categories']="デフォルトカテゴリ";//@@@@@!!!!
 $LANG_confignames['userbox']['new_img']="新着マーク";//@@@@@
 $LANG_confignames['userbox']['rss_img']="RSSマーク";//@@@@@
@@ -705,10 +705,10 @@ $LANG_confignames['userbox']['imgfile_frd'] = '画像保存';
 $LANG_confignames['userbox']['imgfile_thumb_frd'] = 'サムネイル';
 
 $LANG_confignames['userbox']['imgfile_thumb_ok'] = 'サムネイルを使用する？';
-$LANG_confignames['userbox']['imgfile_thumb_w'] = 'サムネイルを作成する大きさ(w)';
-$LANG_confignames['userbox']['imgfile_thumb_h'] = 'サムネイルを作成する大きさ(h)';
-$LANG_confignames['userbox']['imgfile_thumb_w2'] = 'サムネイルリンク先画像の大きさ(w2)';
-$LANG_confignames['userbox']['imgfile_thumb_h2'] = 'サムネイルリンク先画像の大きさ(h2)';
+$LANG_confignames['userbox']['imgfile_thumb_w'] = 'サムネイルを作成する大きさ（w）';
+$LANG_confignames['userbox']['imgfile_thumb_h'] = 'サムネイルを作成する大きさ（h）';
+$LANG_confignames['userbox']['imgfile_thumb_w2'] = 'サムネイルリンク先画像の大きさ（w2）';
+$LANG_confignames['userbox']['imgfile_thumb_h2'] = 'サムネイルリンク先画像の大きさ（h2）';
 $LANG_confignames['userbox']['imgfile_smallw'] = '表示する画像の最大横幅';
 $LANG_confignames['userbox']['imgfile_subdir'] = '画像保存URLにサブディレクトリを使用する';
 
@@ -718,12 +718,12 @@ $LANG_confignames['userbox']['file_type'] = 'ファイルタイプ';
 $LANG_confignames['userbox']['file_subdir'] = 'ファイル保存アドレスにサブディレクトリを使用する';
 //---(６)
 $LANG_tab['userbox']['tab_autotag_permissions'] = '自動タグのパーミッション';
-$LANG_fs['userbox']['fs_autotag_permissions'] = '自動タグのパーミッション ([0]所有者 [1]グループ [2]メンバー [3]ゲスト)';
+$LANG_fs['userbox']['fs_autotag_permissions'] = '自動タグのパーミッション （[0]所有者 [1]グループ [2]メンバー [3]ゲスト）';
 $LANG_confignames['userbox']['autotag_permissions_userbox'] = '[userbox: ] パーミッション';
 
 //---(９)
 $LANG_tab['userbox']['tab_xml'] = 'profesional版';
-$LANG_fs['userbox']['fs_xml'] = 'XML　(profesional版)';
+$LANG_fs['userbox']['fs_xml'] = 'XML　（profesional版）';
 $LANG_confignames['userbox']['path_xml'] = 'XML一括インポートディレクトリ';
 $LANG_confignames['userbox']['path_xml_out'] = 'XMLエクスポートディレクトリ';
 
@@ -754,12 +754,12 @@ $LANG_configselects['userbox'][21] =array(
 );
 
 $LANG_configselects['userbox'][22] =array(
-    'ヘッダ・フッタ・左ブロックあり(右ブロックはテーマ設定による)' => 'standard'
+    'ヘッダ・フッタ・左ブロックあり（右ブロックはテーマ設定による）' => 'standard'
     , 'ヘッダ・フッタ・左右ブロックあり' => 'leftrightblocks'
-    , '全画面表示(ヘッダ・フッタ・ブロックなし)' => 'blankpage'
-    , 'ヘッダ・フッタあり(ブロックなし)' => 'noblocks'
-    , 'ヘッダ・フッタ・左ブロックあり(右ブロックなし)' => 'leftblocks'
-    , 'ヘッダ・フッタ・右ブロックあり(左ブロックなし)' => 'rightblocks'
+    , '全画面表示（ヘッダ・フッタ・ブロックなし）' => 'blankpage'
+    , 'ヘッダ・フッタあり（ブロックなし）' => 'noblocks'
+    , 'ヘッダ・フッタ・左ブロックあり（右ブロックなし）' => 'leftblocks'
+    , 'ヘッダ・フッタ・右ブロックあり（左ブロックなし）' => 'rightblocks'
     );
 
 $LANG_configselects['userbox'][23] =array(

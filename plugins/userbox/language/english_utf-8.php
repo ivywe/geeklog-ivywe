@@ -527,9 +527,9 @@ $LANG_USERBOX_TEXTCONV[20] = 'change half-width';
 //TYPE (Chenge Disabled)
 $LANG_USERBOX_TYPE = array();
 $LANG_USERBOX_TYPE[0] = '1 Line Text Attribute';
-$LANG_USERBOX_TYPE[1] = 'Multi Line Text Attribute(HTML OK)';
-$LANG_USERBOX_TYPE[20] = 'Multi Line Text Attribute(HTML OK  TinyMCE)';
-$LANG_USERBOX_TYPE[10] = 'Multi Line Text Attribute(HTML NG)';
+$LANG_USERBOX_TYPE[1] = 'Multi Line Text Attribute(HTML)';
+$LANG_USERBOX_TYPE[20] = 'Multi Line Text Attribute(HTML/TinyMCE)';
+$LANG_USERBOX_TYPE[10] = 'Multi Line Text Attribute(TEXT)';
 $LANG_USERBOX_TYPE[15] = 'Numeric';
 $LANG_USERBOX_TYPE[21] = 'Currency';
 
