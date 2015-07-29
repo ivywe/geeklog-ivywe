@@ -90,6 +90,8 @@ function plugin_autotags_databox (
         $parm2_ary[]="field_code";
         $parm2_ary[]="option";
         $parm2_ary[]="method";
+        $parm2_ary[]="roundprecision";
+        $parm2_ary[]="numberformat";
         $p=databox_parm2($p2,$parm2_ary);
         //各処理
         switch( $tag ) {
@@ -266,6 +268,8 @@ function plugin_autotags_databox (
                                 ,$p['category_id']
                                 ,$p['category_code']
                                 ,$p['mode']
+                                ,$p['roundprecision']
+                                ,$p['numberformat']
                             );
                         break;
                 }

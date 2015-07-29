@@ -289,7 +289,7 @@ iframe {
   margin-left: -25px;
 }
 .uk-grid > * {
-  padding-left: 25px;
+/*  padding-left: 25px;*/
 }
 .uk-grid + .uk-grid,
 .uk-grid-margin,

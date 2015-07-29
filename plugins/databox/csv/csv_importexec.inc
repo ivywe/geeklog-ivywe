@@ -354,12 +354,14 @@ function databox_Insert(
     $additionfields_fnm=array();
     $additionfields_del=array();
     $additionfields_date=array();
+    $additionfields_alt=array();
     $additionfields=DATABOX_cleanaddtiondatas(
         $additionfields
         ,$addition_def
         ,$additionfields_fnm
         ,$additionfields_del
         ,$additionfields_date
+        ,$additionfields_alt
         ,false
         );
 
@@ -990,12 +992,14 @@ function databox_Update(
     $additionfields_fnm=array();
     $additionfields_del=array();
     $additionfields_date=array();
+    $additionfields_alt=array();
     $additionfields=DATABOX_cleanaddtiondatas(
         $additionfields
         ,$addition_def
         ,$additionfields_fnm
         ,$additionfields_del
         ,$additionfields_date
+        ,$additionfields_alt
         ,false
         );
 
@@ -1200,6 +1204,9 @@ function databox_Update(
         ($additionfields,$addition_def,$pi_name,$id);
     $dummy=DATABOX_saveaddtiondatas_update($id,$additionfields,$addition_def,$pi_name);
     $dummy=databox_sendmail ('data',$id);
+	
+    $cacheInstance = 'databox__' . $id . '__' ;
+    CACHE_remove_instance($cacheInstance); 
     
     $retval["ok"]=1;
     $retval["msg"]="Update id: ".$id." title:".$title;

@@ -174,12 +174,14 @@ function databox_Insert(
     $additionfields_fnm=array();
     $additionfields_del=array();
     $additionfields_date=array();
+    $additionfields_alt=array();
     $additionfields=DATABOX_cleanaddtiondatas(
         $additionfields
         ,$addition_def
         ,$additionfields_fnm
         ,$additionfields_del
         ,$additionfields_date
+        ,$additionfields_alt
         ,false
         );
 
