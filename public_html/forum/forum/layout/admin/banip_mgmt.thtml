@@ -2,8 +2,8 @@
 <!-- start banip_mgmt.thtml -->
 {startblock}
 {navbar}
-<form id="banform" name="frm_messages" action="{phpself}" method="post" style="margin:0px;">
-<table width="100%" border="0" cellspacing="1" cellpadding="3" class="pluginSolidOutline" style="margin-top:25px;">
+<form class="uk-form" id="banform" name="frm_messages" action="{phpself}" method="post">
+<table width="100%" border="0" cellspacing="1" cellpadding="3" class="" style="margin-top:25px;">
     <tr>
         <td class="pluginCellTitle" style="width:90% white-space:nowrap;">{LANG_IP}</td>
         <td class="pluginCellTitle" style="width:10%; padding-right:5px; white-space:nowrap;">{LANG_Actions}</td>

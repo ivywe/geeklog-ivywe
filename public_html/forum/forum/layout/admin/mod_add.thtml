@@ -18,7 +18,7 @@
     //  End -->
 </script>
 
-<form name="modform" action="{action_url}" method="post">
+<form class="uk-form" name="modform" action="{action_url}" method="post">
     <div>
         <input type="hidden" name="recid" value=""{xhtml}>
         <input type="hidden" name="operation" value="addrecord"{xhtml}>

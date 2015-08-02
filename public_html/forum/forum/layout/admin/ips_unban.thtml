@@ -1,6 +1,6 @@
 
 <!-- start ips_unban.thtml -->
-<form action="{phpself}" method="post">
+<form class="uk-form" action="{phpself}" method="post">
 <div>
     <input type="hidden" name="op" value="banip"{xhtml}>
     <input type="hidden" name="sure" value="yes"{xhtml}>

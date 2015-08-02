@@ -3,32 +3,32 @@
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
         <td>
-            <form action="{phpself}" method="post">
+            <form class="uk-form" action="{phpself}" method="post">
             
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                    <td class="pluginCellTitle alignleft">{LANG_gensettings}</td>
+                    <td class="">{LANG_gensettings}</td>
                 </tr>
             </table>
-            <table width="100%" border="0" cellspacing="1" cellpadding="3" class="pluginSolidOutline" style="margin-bottom:1em">
+            <table width="100%" border="0" cellspacing="1" cellpadding="3" class="" style="margin-bottom:1em">
                 {group1_options}
             </table>
 
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                    <td class="pluginCellTitle alignleft">{LANG_topicsettings}</td>
+                    <td class="">{LANG_topicsettings}</td>
                 </tr>
             </table>
-            <table width="100%" border="0" cellspacing="1" cellpadding="3" class="pluginSolidOutline" style="margin-bottom:1em">
+            <table width="100%" border="0" cellspacing="1" cellpadding="3" class="" style="margin-bottom:1em">
                 {group2_options}
             </table>
 
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                    <td class="pluginCellTitle alignleft">{LANG_cbsettings}</td>
+                    <td class="">{LANG_cbsettings}</td>
                 </tr>
             </table>
-            <table width="100%" border="0" cellspacing="1" cellpadding="3" class="pluginSolidOutline" style="margin-bottom:1em">
+            <table width="100%" border="0" cellspacing="1" cellpadding="3" class="" style="margin-bottom:1em">
                 {group3_options}
                 <tr>
                     <td class="pluginCellSubTitle" style="width:160;">{LANG_cbposition}</td>
@@ -45,19 +45,19 @@
 
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                    <td class="pluginCellTitle alignleft">{LANG_blocksettings}</td>
+                    <td class="">{LANG_blocksettings}</td>
                 </tr>
             </table>
-            <table width="100%" border="0" cellspacing="1" cellpadding="3" class="pluginSolidOutline" style="margin-bottom:1em">
+            <table width="100%" border="0" cellspacing="1" cellpadding="3" class="" style="margin-bottom:1em">
                 {group4_options}
             </table>
 
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                <tr>
-                   <td class="pluginCellTitle alignleft">{LANG_ranksettings}</td>
+                   <td class="">{LANG_ranksettings}</td>
                </tr>
             </table>
-            <table width="100%" border="0" cellspacing="1" cellpadding="3" class="pluginSolidOutline" style="margin-bottom:1em">
+            <table width="100%" border="0" cellspacing="1" cellpadding="3" class="" style="margin-bottom:1em">
                 {ranking_options}
             </table>
 

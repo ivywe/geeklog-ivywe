@@ -1,3 +1,3 @@
 <!-- start profile.thtml -->
-<td style="padding-top:3px; padding-right:3px;"><a class="profilebutton" href="{profilelink}">{profilelinktext}</a></td>
+	<a href="{profilelink}"><i class="uk-icon-user"></i></a>
 <!-- end profile.thtml -->

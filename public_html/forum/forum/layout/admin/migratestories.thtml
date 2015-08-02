@@ -24,20 +24,35 @@
 
     //  End -->
 </script>
-<form name="storymigrate" action="{action_url}" method="post">
+<form class="uk-form" name="storymigrate" action="{action_url}" method="post">
 <div><input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}></div>
+
+<dl>
+	<dd>
+		{filter_topic_selection}&nbsp;
+		<input type="submit" value="{LANG_filterlist}"{xhtml}>
+	</dd>
+	<dd>
+		<select name="selforum">
+			<option value="0">{LANG_selectforum}</option>
+			{select_filter_options}
+		</select>
+	</dd>
+	<dd>
+		<input type="checkbox" name="delPostMigrate" id="delPostMigrate" value="1"{xhtml}>
+		&nbsp;
+		<label for="delPostMigrate">{LANG_deleteafter}</label>
+	</dd>
+	<dd>
+		&nbsp;
+		<input type="submit" name="migrate" value="{LANG_migrate}"{xhtml}>
+	</dd>
+	<dd style="display:{show_message};">{status_message}</dd>
+</dl>
+
+
+
 <table cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-top:25px; margin-bottom:15px;">
-    <tr>
-        <td style="width:50%; padding-left:10px;">{filter_topic_selection}&nbsp;<input type="submit" value="{LANG_filterlist}"{xhtml}></td>
-        <td style="text-align:right;"><select name="selforum"><option value="0">{LANG_selectforum}</option>{select_filter_options}</select></td>
-        <td>&nbsp;<input type="submit" name="migrate" value="{LANG_migrate}"{xhtml}></td>
-        <td class="alignright" style="padding-right:10px; white-space:nowrap;"><input type="checkbox" name="delPostMigrate" id="delPostMigrate" value="1"{xhtml}>&nbsp;<label for="delPostMigrate">{LANG_deleteafter}</label></td>
-    </tr>
-</table>
-<table cellspacing="1" cellpadding="3" class="pluginSolidOutline" border="0" width="100%">
-    <tr style="display:{show_message};">
-        <td class="pluginAlert" colspan="5" style="padding:5px; white-space:nowrap;">{status_message}</td>
-    </tr>
     <tr>
         <td class="pluginCellTitle" style="width:5%; white-space:nowrap;"><input type="checkbox" name="cb_migrateall" id="cb_migrateall" value="y" onclick="if(!allChecked) checkAll(document.storymigrate.elements['cb_chkentry[]']); else uncheckAll(document.storymigrate.elements['cb_chkentry[]']);"{xhtml}>&nbsp;<label for="cb_migrateall">{LANG_all}</label></td>
         <td class="pluginCellTitle" style="width:20%; padding-top:5px; white-space:nowrap;">{LANG_topic}</td>

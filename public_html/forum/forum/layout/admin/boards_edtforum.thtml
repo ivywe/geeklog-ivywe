@@ -1,6 +1,6 @@
 
 <!-- start boards_editforum.thtml -->
-<form action="{PHP_SELF}" method="post" style="margin:0px;">
+<form class="uk-form" action="{PHP_SELF}" method="post">
     <!-- The following is a divider that works across all platforms and browsers -->
     <table width="100%" border="0" cellspacing="1" cellpadding="0" style="margin-top:10px;" class="plugin">
         <tr>

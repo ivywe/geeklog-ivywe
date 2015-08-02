@@ -2,9 +2,9 @@
 <!-- start submissionform_anontop.thtml -->
 <script type="text/javascript" src="{layout_url}/forum/javascript/createtopic.js"></script>
 
-    <table width="100%" border="0" cellspacing="1" cellpadding="4" class="pluginSolidOutline alignleft">
+    <table width="100%" border="0" cellspacing="1" cellpadding="4" class="">
         <tr>
-            <td colspan="2" class="pluginCellSubTitle" style="width:120px">&nbsp;<b>{post_message}</b></td>
+            <td colspan="2" class="pluginCellSubTitle" style="width:120px">&nbsp;<span class="uk-text-bold">{post_message}</span></td>
         </tr>
         <tr>
             <td class="pluginCellSubTitle" style="width:110px">&nbsp;{LANG_NAME}</td>

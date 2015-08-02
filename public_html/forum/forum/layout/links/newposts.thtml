@@ -1,3 +1,3 @@
 <!-- start newposts.thtml -->
-<td class="pluginButton" style="white-space:nowrap;">[&nbsp;<a {newpostslink}>{LANG_newposts}</a>&nbsp;]</td>
+[&nbsp;<a {newpostslink}>{LANG_newposts}</a>&nbsp;]
 <!-- end newposts.thtml -->
