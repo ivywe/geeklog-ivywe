@@ -27,7 +27,7 @@ function phpblock_showrights() {
     
 	$rights = $_RIGHTS;
 	sort($rights);
-    $retval = '<ul>' . LB;
+    $retval = '<ul class="uk-nav uk-nav-parent-icon" data-uk-nav="{ multiple: true }"><li class="uk-parent"><a href="#">Rights</a><ul class="uk-nav-sub">' . LB;
     
     foreach ($rights as $R) {
         $R = str_replace(
@@ -39,7 +39,7 @@ function phpblock_showrights() {
         $retval .=  '<li>' . $R . '</li>' . LB;
     }
     
-    $retval .= '</ul>' . LB;
+    $retval .= '</ul></li></ul>' . LB;
     
     return $retval;
 }
