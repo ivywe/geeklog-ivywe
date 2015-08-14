@@ -3,31 +3,31 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="Content-Style-Type" content="text/css">
-  <title>UserBox | Geeklog Document</title>
+  <title>UserBox | Geeklogドキュメント</title>
   <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="../../../../../docs/english/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="docstyle.css" title="Dev Stylesheet">
 </head>
-<!-- admin/plugins/userbox/docs/english/templatesetvars.html 20140331 -->
+<!-- admin/plugins/userbox/docs/japanese/templatesetvars.html 20150513 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
-<a href="../../../../../docs/english/index.html">Geeklogドキュメント</a>
-- <a href="index.html">UserBox Plugin</a>
+<a href="../../../../../docs/japanese/index.html">Geeklogドキュメント</a>
+- <a href="index.html">UserBox プラグイン</a>
 - 設定</div>
 <p>
-<a href="../../../../../">Top page</a>
+<a href="../../../../../">トップページ</a>
  <a href="../../../../../admin/plugins/userbox/">管理画面</a>
 </p>
 <h1><a href="index.html">UserBox プラグイン</h1>
 
 
-<h2><a name="templatesetvars">テーマ変数</a>(2014/03/31 update　書きかけです)</h2>
+<h2><a name="templatesetvars">テーマ変数</a>(2015/05/13 update)</h2>
 <table>
 <tr>
-	<th style="width:20%">Display </th>
-	<th style="width:20%">【Directory 】Template </th>
-    <th style="width:60%">Theme variables </th>
+	<th style="width:20%">画面</th>
+	<th style="width:20%">【フォルダ】テンプレート</th>
+    <th style="width:60%">テーマ変数</th>
 </tr>
 <tbody>
 <tr  >
@@ -215,6 +215,9 @@ imgfile_thumb_frd,data_thumb_img_url<br/>
  data_released,
  data_expired,
  data_remaingdays,
+ <br/>
+ data_title,
+ data_code,
  <br/>
  data_datefield(使用する日付 作成日付or編集日付or公開日),
  new_img (使用する日付と新着マーク表示期間で判定します)<br/>
@@ -424,6 +427,9 @@ imgfile_thumb_frd,data_thumb_img_url<br/>
  data_id,
  data_url,
  data_released,<br/>
+ data_title,
+ data_code,
+ <br/>
  data_releaaed_shortdate,
  data_expired_shortdate,
  data_hits<br/>
@@ -533,9 +539,9 @@ lang_imgfile_thumb_frd,
 imgfile_thumb_frd,data_thumb_img_url,
 lang_basicfields,
 lang_code,
-code,
+code<a title="=username" class="note_super" href="#notetext_9">*9</a>,
 lang_title,
-title,
+title<a title="=fullname" class="note_super" href="#notetext_9">*9</a>,,
 lang_description,
 description,
 lang_owner,
@@ -632,7 +638,7 @@ new_img
 </td>
 </tr>
 
-<tr>
+<tr class="r2">
 <td>
 マイプロフィール（一覧）<br/>
 public_html/myprofile/profile.php<br/>
@@ -720,11 +726,22 @@ dditionfield_name
 ,additionfield_description
 </td>
 </tr>
-
+<tr class="r2">
+<td>
+添付ファイルダウンロード<br/>
+public_html/dowmload.php?id=1&field_id<br/>
+<br/>
+添付ファイル表示(拡張子=pdfのみ)<br/>
+public_html/dowmload.php?id=1&field_id=&mode=display<br/>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
 </tbody>
 </table>
 
-<h2><a class="note_super" href="#notetext_add" id="notetext_add">各アトリビュートのテーマ変数</a>(2013/10/08 update　書きかけです)</h2>
+<h2><a class="note_super" href="#notetext_add" id="notetext_add">各アトリビュートのテーマ変数</a>(2015/02/24 update)</h2>
 <table>
 <tr>
 	<th style="width:30%"><a href="input_field.html#fieldtype">アトリビュートタイプ</a></th>
@@ -732,11 +749,23 @@ dditionfield_name
     <th style="width:40%">説明</th>
 	</tr>
 <tr>
-	<td>共通</td>
+	<td rowspan=3>共通</td>
 	<td>{additionfield<a title="id" class="note_super" href="#notetext_id">1</a></a>}
 	<br/>{登録したテーマ変数名}
 	</td>
 	<td>&nbsp;</td>
+	</tr>
+<tr>	
+	<td>
+	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>_name}
+	<br/>   {登録したテーマ変数名_name}	</td>
+	<td>名称</td>
+	</tr>
+<tr>	
+	<td>
+	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>_description}
+	<br/>   {登録したテーマ変数名_description}	</td>
+	<td>説明</td>
 	</tr>
 <tr>	
 	<td   rowspan=5>12:画像（ファイル保存）</td>
@@ -744,31 +773,31 @@ dditionfield_name
 	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>_tn}
 	<br/>{登録したテーマ変数名_tn}
 	</td>
-	<td>&nbsp;</td>
+	<td>サムネイルファイル名</td>
 	</tr>
 <tr>	
 	<td>
 	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>_noimage}
 	<br/>   {登録したテーマ変数名_noimage}	</td>
-	<td>イメージファイル名</td>
+	<td>NO PHOTO 画像ファイル名</td>
 	</tr>
 <tr>	
 	<td>
 	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>_tn_image}
 	<br/>   {登録したテーマ変数名_tn_image}</td>
-	<td>サムネイルイメージ</td>
+	<td>サムネイルファイル名</td>
 	</tr>
 <tr>	
 	<td>
 	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>_tn_noimage}
 	<br/>   {登録したテーマ変数名_tn_noimage}</td>
-	<td>サムネイルイメージ</td>
+	<td>NO PHOTO サムネイルファイル名</td>
 	</tr>
 <tr>	
 	<td>
 	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>_disp}
 	<br/>   {登録したテーマ変数名_disp}
-	<td>イメージ</td>
+	<td>画像表示HTMLタグ</td>
 	</tr>	
 <tr>	
 	<td   rowspan=3>9:オプションリスト（マスター）
@@ -792,7 +821,24 @@ dditionfield_name
 	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>:no}
 	<br/>   {登録したテーマ変数名_mst_no}	</td>
 	<td>マスターのNo.</td>
-	</tr>	
+</tr>
+<tr>	
+	<td >13:添付ファイル
+	<td>
+	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>_readfile} 
+	<br/>   {登録したテーマ変数名_readfile}</td>
+	<td>サーバーに記憶しているファイルの名前</td>
+    </tr>
+<tr>	
+	<td >文言
+	<td>
+	{lang_download}
+	<br/>{lang_downloadrequired}
+	<br/>{lang_display}
+	<br/>{lang_displayrequired}
+	</td>
+	<td></td>
+</tr>
 </table>	
 （注）No.以外のマルチセレクトリストの区切りはLANG_USERBOX['field_separater']で指定しています。
 
@@ -908,6 +954,8 @@ codeに指定される内容は、各データに登録されたアトリビュ�
 
 <br/><a class="note_super" href="#notetext_9" id="notetext_9">*9</a>
 Assist プラグイン Version 1.1.2.test20140331 以降がインストールされている必要があります
+<br/>ログインユーザー情報表示
+<br/>username fullname がログインユーザー情報になるので、それぞれ、code title 使用 
 
 <br/>
 <br/><a class="note_super" href="#notetext_featuredimage" id="notetext_featuredimage">featuredimage</a>
@@ -921,8 +969,8 @@ Assist プラグイン Version 1.1.2.test20140331 以降がインストールさ
 管理画面で指定したcodeの値
 
 <div class="footer">
-    <a href="http://wiki.geeklog.net/">Geeklog Document作成 Development Project</a>、<a href="http://wiki.geeklog.jp/">Geeklog Document Japanese Development Project</a><br />
-    All trademarks and copyrights on this page are owned by their respective owners.Geeklogis copyleft.
+    <a href="http://wiki.geeklog.net/">Geeklogドキュメント作成プロジェクト</a>、<a href="http://wiki.geeklog.jp/">Geeklogドキュメント日本語版作成プロジェクト</a><br />
+    本ページのすべての商標と著作権はそれぞれの所有者に帰属します。Geeklogはコピーレフトです。
 </div>
 
 </body>
