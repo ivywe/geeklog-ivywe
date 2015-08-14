@@ -27,7 +27,7 @@
 <link rel="stylesheet" type="text/css" href="{layout_url}/vendor/jquery-datatables/css/jquery.dataTables.min.css" />
 <!-- } jQuery Datatables -->
 
-<link rel="stylesheet" href="{layout_url}/vendor/uikit/css/uikit-ivywe-gradient.css"{xhtml}> 
+<link rel="stylesheet" href="{layout_url}/vendor/uikit/css/uikit-ivywe.gradient.css"{xhtml}> 
 
 {rel_links}
 
