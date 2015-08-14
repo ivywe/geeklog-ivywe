@@ -1,0 +1,24 @@
+<!-- plugins/databox/templates/attribute/default/navigation.thtml 20110204{ -->
+
+<div id="databox">
+
+  <div class='pagenav'>
+    {page_navigation}
+    <div class='count' style="float:left">{lang_view} [{lin}] / {cnt}</div>
+  </div>
+  <div style="clear:both"></div>
+
+  <ul class="contents" id="list">
+    <li>{lang_name} ({lang_count})</li>
+{row_var}
+  </ul>
+
+  <div class='pagenav'>
+    {page_navigation}
+    <div class='count' style="float:left">{lang_view} [{lin}] / {cnt} </div>
+  </div>
+  <div style="clear:both"></div>
+
+</div>
+
+<!-- } plugins/databox/templates/attribute/default/navigation.thtml -->

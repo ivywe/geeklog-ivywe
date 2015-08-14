@@ -1,0 +1,6 @@
+<!-- plugins/databox/templates/attribute/default/pagenavibation.thtml 20110204{ -->
+
+<div style="text-align:center">{begin_backlink} {lang_back} {end_backlink}&nbsp;[{lang_page_of}]&nbsp;{begin_nextlink} {lang_next} {end_nextlink}
+</div>
+
+<!-- } plugins/databox/templates/attribute/default/pagenavibation.thtml -->

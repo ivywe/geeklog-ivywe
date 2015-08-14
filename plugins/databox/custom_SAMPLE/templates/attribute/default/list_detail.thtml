@@ -1,0 +1,35 @@
+<!-- plugins/databox/templates/attribute/default/list_detail.thtml 20140328 { -->
+
+<div id="databox">
+
+  <p id="breadcrumbs"><a href="{site_url}/">{home}</a>{attribute_top} {field_top}</p>
+  <p><span style="color:green"> &#123;languageid&#125;</span>:{languageid}
+     <span style="color:green"> &#123;_languageid&#125;</span>:{_languageid}
+     <span style="color:green"> &#123;language&#125;</span>:{language}
+  </p>
+  <p><span style="color:green"> &#123;uid&#125;</span>:{uid}
+     <span style="color:green"> &#123;username&#125;</span>:{username}
+     <span style="color:green"> &#123;fullname&#125;</span>:{fullname}
+     <span style="color:green"> &#123;displayname&#125;</span>:{displayname}
+  </p>
+  <p>
+    {lang_imgfile_frd}
+    <span style="color:green"> &#123;imgfile_frd&#125;</span>:{imgfile_frd}
+    <span style="color:green"> &#123;data_img_url&#125;</span>:{data_img_url}
+  </p>
+  <p>
+    {lang_imgfile_thumb_frd}
+    <span style="color:green"> &#123;imgfile_thumb_frd&#125;</span>:{imgfile_thumb_frd}
+    <span style="color:green"> &#123;data_thumb_img_url&#125;</span>:{data_thumb_img_url}
+  </p>
+  <h2>{field_name}:{fieldvalue}</h2>
+  <p>{field_templatesetvar} {field_description}</p>
+  <p>{msg}</p>
+
+  <ul class="contents" id="list">
+{nav_var}
+  </ul>
+
+</div>
+
+<!-- } plugins/databox/templates/attribute/default/list_detail.thtml -->

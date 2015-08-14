@@ -1,0 +1,42 @@
+<!-- plugins/databox/templates/attribute/default/navigation_detail.thtml 20141224{ -->
+
+<div id="databox">
+
+    <div class='order'>
+        {order_date}|{order_orderno}|{order_code} |{order_title}|{order_description}|{order_id}|{order_released}|<!-- 下の行のテーマ変数　参考例です 登録されていない場合機能 -->
+{order_tel}|{order_zipcode}
+    </div>
+    <div class='order_random'>{order_random}</div>
+    <div class='cur_order'>{cur_order}</div>
+    <div class='pagenav' {pagenavinone}>
+    {page_navigation}
+    <div class='count' style="float:left">{lang_view} [{lin}] / {cnt}</div>
+  </div>
+  <div style="clear:both"></div>
+<!-- Maps Link mkids selectedMarkers-->
+{mkids}{selectedMarkers}
+
+  <ul class="contents" id="list">
+<li>{lang_title} ({lang_id}) ({lang_code})&nbsp;
+{lang_description}&nbsp;
+{lang_date}&nbsp;<!-- 使用する日付 作成日付or編集日付or公開日 -->
+{lang_released}&nbsp;
+{lang_expired}&nbsp;
+{lang_hits}&nbsp;
+{lang_addfield}&nbsp;<!-- ソート順に指定された追加属性項目 -->
+<!-- 下記テーマ変数　参考例です 登録されていない場合表示されません -->
+&nbsp;&nbsp;&nbsp;{name_zipcode} {name_tel} {name_additionfield1} {name_additionfield2}
+</li>
+    {row_var}
+  </ul>
+
+  <div class='pagenav' {pagenavinone}>
+    {page_navigation}
+    <div class='count' style="float:left">{lang_view} [{lin}] / {cnt} </div>
+  </div>
+  <div style="clear:both"></div>
+
+</div>
+
+
+<!-- } plugins/databox/templates/attribute/default/navigation_detail.thtml -->

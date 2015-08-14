@@ -1,0 +1,6 @@
+<!-- plugins/databox/templates/admin/data_col_detail.thtml  { -->
+
+<th class="admin-list-field">{additionfield_name}<span class="must">{lang_must_additionfield}</span></th>
+<td class="admin-list-field">{additionfield_value} {additionfield_description}</td>
+
+<!-- } plugins/databox/templates/admin/default/data_col_detail.thtml -->

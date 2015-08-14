@@ -1,0 +1,70 @@
+<!-- plugins/databox/templates/search/default/navigation_detail.thtml 20141203 { -->
+
+<fieldset>
+<legend>navigation_detail.thtml</legend>
+
+<div><span class="uk-text-danger"><strong>{cnt}</strong>件</span>の物件が見つかりました。</div
+
+<div class="uk-grid">
+    <div class="uk-width-1-1">
+		<nav class="uk-navbar">
+    		<ul class="uk-navbar-nav">
+				<li class="{!!if {cur_order}=='released' !!}uk-active{!endif}"><a href="" style="color:green">order_released</a></li>
+				<li class="{!!if {cur_order}=='date' !!} uk-active{!endif}"><a href="" style="color:green">order_date</a></li>
+				<li class="{!!if {cur_order}=='orderno' !!} uk-active{!endif}"><a href="" style="color:green">order_orderno</a></li>
+				<li class="{!!if {cur_order}=='code' !!} uk-active{!endif}"><a href="" style="color:green">order_code</a></li>
+				<li class="{!!if {cur_order}=='title' !!} uk-active{!endif}"><a href="" style="color:green">order_title</a></li>
+				<li class="{!!if {cur_order}=='description' !!} uk-active{!endif}"><a href="" style="color:green">order_description</a></li>
+				<li class="{!!if {cur_order}=='id' !!} uk-active{!endif}"><a href="" style="color:green">order_id</a></li>
+				<li class="{!!if {cur_order}=='random' !!} uk-active{!endif}"><a href="" style="color:green">order_random</a></li>
+				<!-- 下の行のテーマ変数　参考例です 登録されていない場合機能 -->
+				<li class="{!!if {cur_order}=='tel' !!} uk-active{!endif}"><a href="" style="color:green">e.g. order_additionalitem</a></li>
+			</ul>
+		</nav>
+
+		<nav class="uk-navbar">
+
+    		<ul class="uk-navbar-nav">
+				<li class="{!!if {cur_order}=='released' !!}uk-active{!endif}">{order_released}</li>
+				<li class="{!!if {cur_order}=='date' !!} uk-active{!endif}">{order_date}</li>
+				<li class="{!!if {cur_order}=='orderno' !!} uk-active{!endif}">{order_orderno}</li>
+				<li class="{!!if {cur_order}=='code' !!} uk-active{!endif}">{order_code}</li>
+				<li class="{!!if {cur_order}=='title' !!} uk-active{!endif}">{order_title}</li>
+				<li class="{!!if {cur_order}=='description' !!} uk-active{!endif}">{order_description}</li>
+				<li class="{!!if {cur_order}=='id' !!} uk-active{!endif}">{order_id}</li>
+				<li class="{!!if {cur_order}=='random' !!} uk-active{!endif}">{order_random}</li>
+				<!-- 下の行のテーマ変数　参考例です 登録されていない場合機能 -->
+				<li class="{!!if {cur_order}=='address1' !!} uk-active{!endif}">{order_address1}</li>
+				<li class="{!!if {cur_order}=='walk1' !!} uk-active{!endif}">{order_walk1}</li>
+			</ul>
+		</nav>
+    </div>
+    <div class="uk-width-1-1">
+	    <dl class="uk-description-list-horizontal">
+			<dt><span style="color:green">&#123;cur_order&#125;: </span></dt><dd>{cur_order}</dd>
+		</dl>
+	</div>
+    <div class="uk-width-1-1 pagenav" {pagenavinone}>
+    	{page_navigation}
+	    <div class="uk-width-1-1 count" style="float:left">{lang_view} [{lin}] / {cnt}</div>
+	</div>
+    <div class="uk-width-1-1">
+		<!-- Maps Link mkids selectedMarkers-->
+	    <dl class="uk-description-list-line">
+			<dt><span style="color:green">&#123;mkids&#125;: </span></dt><dd>{mkids}</dd>
+			<dt><span style="color:green">&#123;selectedMarkers&#125;: </span></dt><dd>{selectedMarkers}</dd>
+		</dl>
+	</div>
+    <div class="uk-width-1-1">
+		<ul class="uk-list uk-list-striped">
+		    {row_var}
+		</ul>
+	</div>
+    <div class="uk-width-1-1 pagenav" {pagenavinone}>
+    	{page_navigation}
+	    <div class="uk-width-1-1 count" style="float:left">{lang_view} [{lin}] / {cnt}</div>
+	</div>
+</div>
+</fieldset>
+
+<!-- } plugins/databox/templates/search/default/navigation_detail.thtml -->

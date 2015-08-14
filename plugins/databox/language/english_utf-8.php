@@ -26,6 +26,7 @@ $LANG_DATABOX_admin_menu['6']= 'Backup / Restore';
 $LANG_DATABOX_admin_menu['8']= 'XML';
 $LANG_DATABOX_admin_menu['9']= 'CSV';
 $LANG_DATABOX_admin_menu['10']= 'MAPS';
+$LANG_DATABOX_admin_menu['11']= 'SEL';
 
 ## User
 $LANG_DATABOX_user_menu = array();

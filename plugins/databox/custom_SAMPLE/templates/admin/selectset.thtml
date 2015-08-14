@@ -1,0 +1,13 @@
+<!--plugins/databox/templates/admin/selectset.thtml 20130219 { -->
+
+	<form action="{site_admin_url}/plugins/databox/data.php" method="post" id="admin-selectset">
+		<div class="admin_basic">
+			<p class="message">{lang_inst_newdata}</p>
+			{list_fieldset}
+			<input type="submit" value="{lang_new}" name="mode" class="submit"{xhtml}>
+			<input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
+			<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+		</div>
+	</form>
+
+<!--} plugins/databox/templates/admin/selectset.thtml -->

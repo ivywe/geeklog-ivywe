@@ -67,4 +67,9 @@ if (file_exists($maps)) {
     }
 }
 
+$csv=$_CONF['path'] . 'plugins/databox/sel/';
+if (file_exists($csv)) {
+    $navbarMenu[$LANG_DATABOX_admin_menu['11']]= $adminurl.'sel.php';
+}
+
 ?>

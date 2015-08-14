@@ -1,0 +1,16 @@
+<!--plugins/databox/templates/category/default/nohit.thtml 20120329{ -->
+
+<div>
+	<ul class="uk-breadcrumb">
+		<li>
+			<a href="{site_url}/">{home}</a>
+		</li>
+		<li>{category_top}</li>
+	</ul>
+
+	<h2>{category_name}</h2>
+	<p>{category_description}</p>
+	<p>{lang_nohit}</p>
+</div>
+
+<!--plugins/databox/templates/category/default/nohit.thtml { -->

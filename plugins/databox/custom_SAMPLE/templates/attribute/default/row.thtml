@@ -1,0 +1,3 @@
+<!-- plugins/databox/templates/attribute/default/row.thtml { -->
+{col_var}
+<!-- } plugins/databox/templates/attribute/default/row.thtml -->

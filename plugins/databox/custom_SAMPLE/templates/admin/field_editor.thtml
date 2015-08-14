@@ -1,0 +1,194 @@
+<!-- plugins/databox/templates/admin/field_editor.thtml  20141112 { -->
+
+<div id="databox_admin">
+  {about_thispage}
+  <a href="{document_url}input_field.html" target="_blank">{lang_document}</a>
+  <form name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
+	<div class="admin_basic">
+    <fieldset style="width:98%">
+      <legend>Attribute (addition field)</legend>
+
+      <!-- data -->
+      <div class="table-wrapper-fit">
+        <table class="admin-list-table">
+
+          <!-- id -->
+          <tr class="pluginRow1">
+            <th class="admin-list-field">{lang_field_id}</th>
+            <td class="admin-list-field" colspan="2">
+              {id}
+              <input type="hidden" name="id" value="{id}"{xhtml}>
+
+            </td>
+          </tr>
+
+          <!-- name -->
+          <tr class="pluginRow1">
+            <th class="admin-list-field">{lang_name}<span class="must">{lang_must}</span></th>
+            <td class="admin-list-field" colspan="2">
+              <input type="text" size="48" maxlength="160" name="name" value="{name}"{xhtml}>
+            </td>
+          </tr>
+
+          <!-- templatesetvar -->
+          <tr class="pluginRow1">
+            <th class="admin-list-field">{lang_templatesetvar}<span class="must">{lang_must}</span></th>
+            <td class="admin-list-field" colspan="2">
+              <input type="text" size="48" maxlength="160" name="templatesetvar" value="{templatesetvar}"{xhtml}>
+            </td>
+          </tr>
+
+          <!-- description -->
+          <tr class="pluginRow1">
+            <th class="admin-list-field">{lang_description} {help_description}</th>
+            <td class="admin-list-field" colspan="2">
+               <textarea name="description" style="width:95%" rows="2" id="databox_description">{description}</textarea>
+            </td>
+          </tr>
+
+          <!-- allow_display  -->
+          <tr class="pluginRow1">
+            <th class="admin-list-field">{lang_allow_display} {help_allow_display}</th>
+            <td class="admin-list-field" colspan="2">
+                {list_allow_display}
+            </td>
+          </tr>
+
+          <!-- allow_edit -->
+          <tr class="pluginRow1">
+            <th class="admin-list-field">{lang_allow_edit} {help_allow_edit}</th>
+            <td class="admin-list-field" colspan="2">
+                {list_allow_edit}
+            </td>
+          </tr>
+          <!-- searchtarget -->
+          <tr class="pluginRow1">
+            <th class="admin-list-field">{lang_searchtarget} {help_searchtarget}</th>
+            <td class="admin-list-field" colspan="2">{list_searchtarget}</td>
+          </tr>
+        </table>
+        <table class="admin-list-table" id="attributetype">
+          <!-- type -->
+          <tr class="pluginRow1">
+            <th class="admin-list-field">{lang_type} {help_type}</th>
+            <td class="admin-list-field" colspan="2">{list_type}</td>
+        </table>
+        <table class="admin-list-table" id="attributetype">
+          </tr>
+          <!-- initial value -->
+          <tr class="pluginRow2">
+            <th class="admin-list-field2" colspan="2">{lang_initial_value} {help_initial_value}</th>
+            <td class="admin-list-field" colspan="2">
+               <textarea name="initial_value" style="width:95%" rows="2" id="databox_initial_value">{initial_value}</textarea>
+            </td>
+          </tr>
+          <!-- range -->
+          <tr class="pluginRow2">
+            <th class="admin-list-field2" colspan="2">{lang_range}</th>
+            <td class="admin-list-field2">
+              <input type="text" size="40" maxlength="160" name="range_start" value="{range_start}"{xhtml}>
+              〜<input type="text" size="40" maxlength="160" name="range_end" value="{range_end}"{xhtml}>
+            </td>
+          </tr>
+          <!-- DateTime Format -->
+          <tr class="pluginRow2">
+            <th class="admin-list-field2" colspan="2">{lang_dfid} {help_dfid}</th>
+            <td class="admin-list-field2">{list_dfid}</td>
+          </tr>
+
+          <!-- textcheck -->
+          <tr class="pluginRow2">
+            <th class="admin-list-field2" colspan="2">{lang_textcheck} {help_textcheck}</th>
+            <td class="admin-list-field2">{list_textcheck}</td>
+          </tr>
+
+          <!-- textconv -->
+          <tr class="pluginRow2">
+            <th class="admin-list-field2" colspan="2">{lang_textconv} {help_textconv}</th>
+            <td class="admin-list-field2">{list_textconv}</td>
+          </tr>
+
+          <!-- checkrequried -->
+          <tr class="pluginRow2">
+            <th class="admin-list-field2" colspan="2">{lang_checkrequried} {help_checkrequried}</th>
+            <td class="admin-list-field2">{list_checkrequried}</td>
+          </tr>
+
+          <!-- size -->
+          <tr class="pluginRow2">
+            <th class="admin-list-field2" colspan="2">{lang_size}</th>
+            <td class="admin-list-field2">
+              <input type="text" size="48" maxlength="160" name="size" value="{size}"{xhtml}>
+            </td>
+          </tr>
+
+          <!-- maxlength -->
+          <tr class="pluginRow2">
+            <th class="admin-list-field2" colspan="2">{lang_maxlength}</th>
+            <td class="admin-list-field2">
+              <input type="text" size="48" maxlength="160" name="maxlength" value="{maxlength}"{xhtml}>
+            </td>
+          </tr>
+
+          <!-- rows -->
+          <tr class="pluginRow2">
+            <th class="admin-list-field2" colspan="2">{lang_rows}</th>
+            <td class="admin-list-field2">
+              <input type="text" size="48" maxlength="160" name="rows" value="{rows}"{xhtml}>
+            </td>
+          </tr>
+
+          <!-- br -->
+          <tr class="pluginRow2">
+            <th class="admin-list-field2" colspan="2">{lang_br}</th>
+            <td class="admin-list-field2">
+              <input type="text" size="1" maxlength="1" name="br" value="{br}"{xhtml}>{help_br}
+            </td>
+          </tr>
+
+          <!-- selection -->
+          <tr class="pluginRow2">
+            <th class="admin-list-field2" colspan="2">{lang_selection} {help_selection}</th>
+            <td class="admin-list-field2">
+              <textarea name="selection"style="width:95%" rows="10" id="databox_selection">{selection}</textarea>
+            </td>
+          </tr>
+
+          <!-- selectlist -->
+          <tr class="pluginRow2">
+            <th class="admin-list-field2" colspan="2">{lang_selectlist} {help_selectlist}</th>
+            <td class="admin-list-field2">{list_selectlist}</td>
+          </tr>
+
+        </table>
+        <table class="admin-list-table">
+
+          <!-- order -->
+          <tr class="pluginRow1">
+            <th class="admin-list-field">{lang_orderno}</th>
+            <td class="admin-list-field" colspan="2">
+              <input type="text" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
+            </td>
+          </tr>
+
+          <!-- Update time -->
+          <tr class="pluginRow1">
+            <th class="admin-list-field">{lang_udatetime}</th>
+            <td class="admin-list-field" colspan="2">{udatetime} {lang_uuid}:{uuid}</td>
+          </tr>
+
+        </table>
+      </div>
+    </fieldset>
+
+    <!-- Save Cancel Derete -->
+    <input type="submit" value="{lang_save}" name="mode"{xhtml}>
+    <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
+    <input type="hidden" value="{code}" name="old_code"{xhtml}>
+    {delete_option} {lang_delete_help}
+    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+	</div>
+  </form>
+</div>
+
+<!-- } plugins/databox/templates/admin/field_editor.thtml -->

@@ -1,0 +1,29 @@
+<!--plugins/databox/templates/admin/backuprestore.thtml 20141024 {  -->
+
+{about_thispage}
+<fieldset style="margin-top:10px;">
+	<legend>(1){config}</legend>
+	<dl class="uk-description-list-horizontal">
+		<dt><a href="{site_admin_url}/plugins/{script}?mode=configbackup">{config_backup}</a></dt>
+		<dd>{config_backup_help}</dd>
+		<dt><a href="{site_admin_url}/plugins/{script}?mode=configinit">{config_init}</a></dt>
+		<dd>{config_init_help}</dd>
+		<dt><a href="{site_admin_url}/plugins/{script}?mode=configrestore">{config_restore}</a></dt>
+		<dd>{config_restore_help}</dd>
+		<dt><a href="{site_admin_url}/plugins/{script}?mode=configupdate">{config_update}</a></dt>
+		<dd>{config_update_help}</dd>
+	</dl>
+	<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+</fieldset>
+<fieldset style="margin-top:10px;">
+	<legend>(2){datamaster}</legend>
+	<dl class="uk-description-list-horizontal">
+		<dt><a href="{site_admin_url}/plugins/{script}?mode=dataclear">{data_clear}</a></dt>
+		<dt><a href="{site_admin_url}/plugins/{script}?mode=allclear">{data_allclear}</a></dt>
+		<dt><a href="{site_admin_url}/plugins/{script}?mode=backupform">{data_backup}</a></dt>
+		<dt><a href="{site_admin_url}/plugins/{script}?mode=restoreform">{data_restore}</a></dt>
+	</dl>
+	<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+</fieldset>
+
+<!--} plugins/databox/templates/admin/backuprestore.thtml -->

@@ -1,0 +1,84 @@
+<!-- plugins/databox/templates/attribute/default/col_detail.thtml 20140114 { -->
+<li>
+<span style="color:green">&#123;data_link&#125;</span>{data_link}
+<span style="color:green">&#123;data_title&#125;</span>{data_title}
+(id: <span style="color:green">&#123;data_id&#125;</span>{data_id})(code: <span style="color:green">&#123;data_code&#125;</span>{data_code})&nbsp;
+<span style="color:green">&#123;data_description&#125;</span>{data_description}&nbsp;
+<span style="color:green">&#123;data_datefield&#125;</span>{data_datefield} {new_img}&nbsp;<!-- 使用する日付 作成日付or編集日付or公開日 -->
+<span style="color:green">&#123;data_datefield_shortdate&#125;</span>{data_datefield_shortdate} {new_img}&nbsp;<!-- 使用する日付 作成日付or編集日付or公開日 -->
+<span style="color:green">&#123;data_released&#125;</span>{data_released}&nbsp;
+<span style="color:green">&#123;data_released_shortdate&#125;</span>{data_released_shortdate}&nbsp;
+<span style="color:green">&#123;data_expired&#125;</span>{data_expired}&nbsp;
+<span style="color:green">&#123;data_expired_shortdate&#125;</span>{data_expired_shortdate}&nbsp;
+<span style="color:green">&#123;data_hits&#125;</span>{data_hits}&nbsp;
+<span style="color:green">&#123;data_remaingdays&#125;</span>{data_remaingdays}&nbsp;
+<span style="color:green">&#123;data_value&#125;</span>{data_value}&nbsp;<!-- ソート順に指定された追加属性項目 -->
+
+
+{data_edit}
+<!-- 下記テーマ変数　参考例です 登録されていない場合表示されません -->
+&nbsp;&nbsp;&nbsp;
+<span style="color:green">&#123;zipcode&#125;</span>{zipcode}  
+<span style="color:green">&#123;tel&#125;</span>{tel} 
+<span style="color:green">&#123;additionfield1&#125;</span>{additionfield1}
+<span style="color:green">&#123;additionfield2&#125;</span>{additionfield2}
+<span style="color:green">&#123;additionfield3&#125;</span>{additionfield3}
+<span style="color:green">&#123;additionfield4&#125;</span>{additionfield4}
+<span style="color:green">&#123;additionfield5&#125;</span>{additionfield5}
+<span style="color:green">&#123;additionfield6&#125;</span>{additionfield6}
+
+
+<!-- カテゴリ グループコードを使用するテーマ変数 -->
+&nbsp;&nbsp;&nbsp;
+<span style="color:green">&#123;group_city&#125;&#123;group_city_code&#125;</span>
+{group_city} {group_city_code}
+
+&nbsp;&nbsp;&nbsp;
+<span style="color:green">&#123;group_country&#125;&#123;group_country_code&#125;</span>
+{group_country} {group_country_code}
+
+&nbsp;&nbsp;&nbsp;
+<span style="color:green">&#123;group_team&#125;&#123;group_team_code&#125;</span>
+{group_type} {group_team_code}
+
+<!-- カテゴリ リンク付　グループコード使用テーマ変数 -->
+&nbsp;&nbsp;&nbsp;
+<span style="color:green">&#123;grouplink_city&#125;&#123;grouplink_city_code&#125;</span>
+{grouplink_city} {grouplink_city_code}
+
+&nbsp;&nbsp;&nbsp;
+<span style="color:green">&#123;grouplink_country&#125;&#123;grouplink_country_code&#125;</span>
+{grouplink_country} {grouplink_country_code}
+
+&nbsp;&nbsp;&nbsp;
+<span style="color:green">&#123;grouplink_team&#125;&#123;grouplink_team_code&#125;</span>
+{grouplink_team} {grouplink_team_code}
+
+<!-- カテゴリ グループID使用テーマ変数-->
+&nbsp;&nbsp;&nbsp;
+<span style="color:green">&#123;group_1&#125;&#123;group_1_code&#125;</span>
+{group_1} {group_1_code}
+
+&nbsp;&nbsp;&nbsp;
+<span style="color:green">&#123;group_2&#125;&#123;group_2_code&#125;</span>
+{group_2} {group_2_code}
+
+&nbsp;&nbsp;&nbsp;
+<span style="color:green">&#123;group_3&#125;&#123;group_3_code&#125;</span>
+{group_3} {group_3_code}
+
+<!-- カテゴリリンク　グループID使用テーマ変数-->
+&nbsp;&nbsp;&nbsp;
+<span style="color:green">&#123;grouplink_1&#125;&#123;grouplink_1_code&#125;</span>
+{grouplink_1} {grouplink_1_code}
+
+&nbsp;&nbsp;&nbsp;
+<span style="color:green">&#123;grouplink_2&#125;&#123;grouplink_2_code&#125;</span>
+{grouplink_2} {grouplink_2_code}
+
+&nbsp;&nbsp;&nbsp;
+<span style="color:green">&#123;grouplink_3&#125;&#123;grouplink_3_code&#125;</span>
+{grouplink_3} {grouplink_3_code}
+
+</li>
+<!-- } plugins/databox/templates/attribute/default/col_detail.thtml -->
