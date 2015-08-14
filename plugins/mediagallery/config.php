@@ -295,7 +295,7 @@ $_MG_CONF['js_lib'] = 'jquery';
  * Set a theme of template to use at the search results page
  */
 //$_MG_CONF['search_album_skin'] = 'css_layout';
-$_MG_CONF['search_album_skin'] = 'default';
+$_MG_CONF['search_album_skin'] = 'filelist';
 
 /*
  * Set a frame to use for thumbnails at the search results page
