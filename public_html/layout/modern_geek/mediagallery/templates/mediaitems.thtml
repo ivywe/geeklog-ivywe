@@ -43,9 +43,9 @@
         {include_ss}
       </td>
       <td  style="vertical-align:middle;" >
-        <textarea name="mtitle[]"     cols="40" rows="1">{media_title}</textarea><br{xhtml}>
-        <textarea name="mdesc[]"     cols="40" rows="5">{media_desc}</textarea><br{xhtml}>
-        <textarea name="mkeywords[]"     cols="40" rows="5">{media_keywords}</textarea><br{xhtml}>
+        <textarea placeholder="input Caption" name="mtitle[]"     cols="40" rows="1">{media_title}</textarea><br{xhtml}>
+        <textarea placeholder="input Description" name="mdesc[]" class="tinymce_enabled"    cols="40" rows="5">{media_desc}</textarea><br{xhtml}>
+        <textarea placeholder="input Keywords" name="mkeywords[]"     cols="40" rows="1">{media_keywords}</textarea><br{xhtml}>
         <div style="margin: 4px 2px;">{lang_category}:&nbsp;{cat_select}</div>
       </td>
    </tr>
@@ -70,8 +70,17 @@
 </tbody>
  </table>
 
-<div class="uk-margin-large uk-panel">
+<ul class="uk-nav uk-nav-parent-icon" data-uk-nav>
+    <li class="uk-parent">
+        <a href="#">Get HTML of &#91;medialist:{album_id}&#93;</a>
+        <ul class="uk-nav-sub">
+            <li>
+				<div class="uk-panel">
+					[medialist:{album_id} theme:admin]
+				</div>
+			</li>
+        </ul>
+    </li>
+</ul>
 
-
-		[medialist:{album_id} theme:admin]
 

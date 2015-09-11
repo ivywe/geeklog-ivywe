@@ -1,32 +1,36 @@
-<!-- plugins/userbox/templates/profile/default/col_detail.thtml 20141014{ -->
-<th style="width:20%" class="alignright">{additionfield_name}
-<dl class="databox_col_detail">
-<dt style=color:green;>&#123;additionfield{field_id}_name&#125; or &#123;{additionfield_templatesetvar}_name&#125;</dt>
-</dl>
-</th>
-<td style="width:70%; background:#f8f8f8">
-<dl class="databox_col_detail">
-<dt style=color:green;>&#123;additionfield{field_id}&#125; or &#123;{additionfield_templatesetvar}&#125;</dt><dd>{additionfield_value}</dd>
-<!-- (a_1) additionfield_value_tn -->
-<dt style="color:green; {display_a}">&#123;additionfield{field_id}_value_tn&#125; or &#123;{additionfield_templatesetvar}_value_tn&#125;</dt><dd>{additionfield_value_tn}</dd>
-<!-- (a_2) additionfield_value_noimage -->
-<dt style="color:green; {display_a}">&#123;additionfield{field_id}_value_noimage&#125; or &#123;{additionfield_templatesetvar}_noimage&#125;</dt><dd>{additionfield_value_noimage}</dd>
-<!-- (a_3) additionfield_value_tn_image -->
-<dt style="color:green; {display_a}">&#123;additionfield{field_id}_value_tn_image&#125; or &#123;{additionfield_templatesetvar}_tn_image&#125;</dt><dd>{additionfield_value_tn_image}</dd>
-<!-- (a_4) additionfield_value_tn_noimage -->
-<dt style="color:green; {display_a}">&#123;additionfield{field_id}_value_tn_noimage&#125; or &#123;{additionfield_templatesetvar}_tn_noimage&#125;</dt><dd>{additionfield_value_tn_noimage}</dd>
-<!-- (a_5) additionfield_value_disp -->
-<dt style="color:green; {display_a}">&#123;additionfield{field_id}_value_disp&#125; or &#123;{additionfield_templatesetvar}_disp&#125;</dt><dd>{additionfield_value_disp}</dd>
-<!-- (b_1) additionfield_value_mst_value2 -->
-<dt style="color:green; {display_b}"}>&#123;additionfield{field_id}_value_mst_value2&#125; or &#123;{additionfield_templatesetvar}_mst_value2&#125;</dt><dd>{additionfield_value_mst_value2}</dd>
-<!-- (b_2) additionfield_value_mst_disp -->
-<dt style="color:green; {display_b}">&#123;additionfield{field_id}_value_mst_disp&#125; or &#123;{additionfield_templatesetvar}_mst_disp&#125;</dt><dd>{additionfield_value_mst_disp}</dd>
-<!-- (b_3) additionfield_value_mst_no -->
-<dt style="color:green; {display_b}">&#123;additionfield{field_id}_value_mst_no&#125; or &#123;{additionfield_templatesetvar}_mst_no&#125;</dt><dd>{additionfield_value_mst_no}</dd>
+<!--plugins/userbox/templates/profile/default/col_detail.thtml 20141014{ -->
 
-</dl>
+<th style="width:20%" class="uk-text-left">
+	<dl>
+		<dt style=color:green;>&#123;{additionfield_templatesetvar}_name&#125;</dt>
+		<dd>{additionfield_name}</dd>
+	</dl>
+</th>
+<td style="width:70%">
+	<dl>
+		<dt style=color:green;>&#123;{additionfield_templatesetvar}&#125;</dt>
+		<dd>{additionfield_value}</dd>
+		<dt style="color:green; {display_a}">&#123;{additionfield_templatesetvar}_value_tn&#125;</dt>
+		<dd style="{display_a}">{additionfield_value_tn}</dd>
+		<dt style="color:green; {display_a}">&#123;{additionfield_templatesetvar}_noimage&#125;</dt>
+		<dd style="{display_a}">{additionfield_value_noimage}</dd>
+		<dt style="color:green; {display_a}">&#123;{additionfield_templatesetvar}_tn_image&#125;</dt>
+		<dd style="{display_a}">{additionfield_value_tn_image}</dd>
+		<dt style="color:green; {display_a}">&#123;{additionfield_templatesetvar}_tn_noimage&#12;
+		</dt>
+		<dd style="{display_a}">{additionfield_value_tn_noimage}</dd>
+		<dt style="color:green; {display_a}">&#123;{additionfield_templatesetvar}_disp&#125;</dt>
+		<dd style="{display_a}">{additionfield_value_disp}</dd>
+		<dt style="color:green; {display_b}"}>&#123;{additionfield_templatesetvar}_mst_value2&#15;</dt>
+		<dd style="{display_b}">{additionfield_value_mst_value2}</dd>
+		<dt style="color:green; {display_b}">&#123;{additionfield_templatesetvar}_mst_disp&#125;</dt>
+		<dd style="{display_b}">{additionfield_value_mst_disp}</dd>
+		<dt style="color:green; {display_b}">&#123;{additionfield_templatesetvar}_mst_no&#125;</dt>
+		<dd style="{display_b}">{additionfield_value_mst_no}</dd>
+	</dl>
+
 </td>
-<td style="width:10%; background:#f8f8f8">
-{field_type}
-</td>
-<!-- } plugins/userboxbox/templates/profile/default/col_detail.thtml -->
+<td style="width:10%">{field_type}</td>
+
+
+<!--} plugins/userboxbox/templates/profile/default/col_detail.thtml -->

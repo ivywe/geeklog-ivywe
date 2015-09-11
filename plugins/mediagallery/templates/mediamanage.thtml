@@ -63,10 +63,11 @@ jkpopwin.focus()
 <fieldset data-uk-margin>
 <input type="hidden" name="album_id" value="{album_id}"{xhtml}>
 {noitems}
+
 {mediaitems}
-<br{xhtml}><br{xhtml}>
+
 <span style="text-align:center;">{bottom_pagination}</span>
-<br{xhtml}><br{xhtml}>
+
 <div style="text-align:center;">
 <input type="hidden" name="action" value="media"{xhtml}>
 <input type="submit" class="uk-button" name="mode" value="{lang_save}"{xhtml}>
