@@ -5853,7 +5853,8 @@ function COM_getUserDateTimeFormat( $date='' )
 
     // Format the date
 
-    $date = strftime( $dateformat, $stamp );
+	$dateformat = mb_convert_encoding($dateformat, 'CP932', 'UTF-8');
+	$date = mb_convert_encoding(strftime($dateformat), 'UTF-8', 'CP932');
 
     return array( $date, $stamp );
 }
