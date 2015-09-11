@@ -541,7 +541,7 @@ default:
         setCalendarLanguage ($cal);
 
         require_once $_CONF['path'] . 'plugins/calendarjp/include/gltext.class.php';
-        $gltext = new GLText();
+        $gltext = new GLTextc();
 
         $currentmonth = '';
         for ($i = 0; $i < $nrows; $i++) {
