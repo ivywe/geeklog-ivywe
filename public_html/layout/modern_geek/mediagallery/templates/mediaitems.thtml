@@ -8,7 +8,7 @@
         <th class="uk-text-truncate">{lang_order}</th>
         <th class="uk-text-truncate">{lang_cover}</th>
         <th class="uk-text-truncate">{lang_include_ss}</th>
-        <th class="uk-text-nowrap" style="width:50%">{lang_title}/{lang_description}/{lang_keywords}</th>
+        <th class="uk-text-nowrap" style="width:50%">{lang_title}/{lang_description}</th>
       </tr>
 	</theader>
 	<tbody>
@@ -43,10 +43,16 @@
         {include_ss}
       </td>
       <td  style="vertical-align:middle;" >
-        <textarea placeholder="input Caption" name="mtitle[]"     cols="40" rows="1">{media_title}</textarea><br{xhtml}>
-        <textarea placeholder="input Description" name="mdesc[]" class="tinymce_enabled"    cols="40" rows="5">{media_desc}</textarea><br{xhtml}>
+        <textarea placeholder="{lang_title}" name="mtitle[]"     cols="40" rows="1">{media_title}</textarea><br{xhtml}>
+        <textarea placeholder="{lang_description}" name="mdesc[]" class="tinymce_enabled■" cols="40" rows="5">{media_desc}</textarea>
+
+<span class="uk-hidden■">
+<br{xhtml}>
         <textarea placeholder="input Keywords" name="mkeywords[]"     cols="40" rows="1">{media_keywords}</textarea><br{xhtml}>
-        <div style="margin: 4px 2px;">{lang_category}:&nbsp;{cat_select}</div>
+        <div style="margin: 4px 2px;">{lang_category}:&nbsp;{cat_select}
+</span>
+
+		</div>
       </td>
    </tr>
    <!-- END ImageColumn -->
@@ -72,11 +78,26 @@
 
 <ul class="uk-nav uk-nav-parent-icon" data-uk-nav>
     <li class="uk-parent">
-        <a href="#">Get HTML of &#91;medialist:{album_id}&#93;</a>
+        <a href="#">ノーマルレイアウトの自動タグ: &#91;medialist:{album_id}&#93;</a>
         <ul class="uk-nav-sub">
             <li>
 				<div class="uk-panel">
+					<div>以下のHTMLのうち必要な個所をコピーペーストして使うことも可能です。</div>
 					[medialist:{album_id} theme:admin]
+				</div>
+			</li>
+        </ul>
+    </li>
+</ul>
+
+<ul class="uk-nav uk-nav-parent-icon" data-uk-nav>
+    <li class="uk-parent">
+        <a href="#">サムネイルレイアウトの自動タグ: &#91;medialist:{album_id} theme:uikit_grid_js&#93;</a>
+        <ul class="uk-nav-sub">
+            <li>
+				<div class="uk-panel">
+					<div>以下のHTMLのうち必要な個所をコピーペーストして使うことも可能です。</div>
+					[medialist:{album_id} theme:admin_uikit_grid_js]
 				</div>
 			</li>
         </ul>
