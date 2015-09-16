@@ -24,9 +24,15 @@
         <dt><label for="sp-advanced_editor-sp_label">{lang_label}</label></dt>
         <dd><input type="text" name="sp_label" maxlength="64" value="{sp_label}" id="sp-advanced_editor-sp_label" class="size5"{xhtml}></dd>
 
+        <dt{hide_meta}><label for="sp-advanced_editor-meta_description">{lang_metadescription}</label></dt>
+        <dd{hide_meta}><textarea name="meta_description" cols="45" rows="2" id="sp-advanced_editor-meta_description" class="wide">{meta_description}</textarea></dd>
+
+        <dt{hide_meta}><label for="sp-advanced_editor-meta_keywords">{lang_metakeywords}</label></dt>
+        <dd{hide_meta}><textarea name="meta_keywords" cols="45" rows="2" id="sp-advanced_editor-meta_keywords" class="wide">{meta_keywords}</textarea></dd>
+
         <dt><label>{lang_topic}</label></dt>
         <dd>{topic_selection}</dd>
-        
+
         <dt><label for="sp-advanced_editor-sp_format">{lang_pageformat}</label></dt>
         <dd><select name="sp_format" id="sp-advanced_editor-sp_format">
               <option value="blankpage" {blankpage_selected}>{lang_blankpage}</option>
@@ -45,11 +51,6 @@
               {post_options}
             </select></dd>
 
-        <dt{hide_meta}><label for="sp-advanced_editor-meta_description">{lang_metadescription}</label></dt>
-        <dd{hide_meta}><textarea name="meta_description" cols="45" rows="2" id="sp-advanced_editor-meta_description" class="wide">{meta_description}</textarea></dd>
-
-        <dt{hide_meta}><label for="sp-advanced_editor-meta_keywords">{lang_metakeywords}</label></dt>
-        <dd{hide_meta}><textarea name="meta_keywords" cols="45" rows="2" id="sp-advanced_editor-meta_keywords" class="wide">{meta_keywords}</textarea></dd>
       </dl>
 
       <div class="story_editor">

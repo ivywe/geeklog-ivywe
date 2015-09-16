@@ -22,9 +22,15 @@
         <dt><label for="sp-editor-sp_label">{lang_label}</label></dt>
         <dd><input type="text" name="sp_label" maxlength="64" value="{sp_label}" id="sp-editor-sp_label" class="size5"{xhtml}></dd>
 
+        <dt{hide_meta}><label for="sp-editor-meta_description">{lang_metadescription}</label></dt>
+        <dd{hide_meta}><textarea name="meta_description" cols="45" rows="2" id="sp-editor-meta_description" class="wide">{meta_description}</textarea></dd>
+
+        <dt{hide_meta}><label for="sp-editor-meta_keywords">{lang_metakeywords}</label></dt>
+        <dd{hide_meta}><textarea name="meta_keywords" cols="45" rows="2" id="sp-editor-meta_keywords" class="wide">{meta_keywords}</textarea></dd>
+
         <dt><label>{lang_topic}</label></dt>
         <dd>{topic_selection}</dd>
-        
+
         <dt><label for="sp-editor-sp_format">{lang_pageformat}</label></dt>
         <dd><select name="sp_format" id="sp-editor-sp_format">
               <option value="blankpage" {blankpage_selected}>{lang_blankpage}</option>
@@ -37,12 +43,6 @@
         <dd><select name="commentcode" id="sp-editor-commentcode">
               {comment_options}
             </select></dd>
-
-        <dt{hide_meta}><label for="sp-editor-meta_description">{lang_metadescription}</label></dt>
-        <dd{hide_meta}><textarea name="meta_description" cols="45" rows="2" id="sp-editor-meta_description" class="wide">{meta_description}</textarea></dd>
-
-        <dt{hide_meta}><label for="sp-editor-meta_keywords">{lang_metakeywords}</label></dt>
-        <dd{hide_meta}><textarea name="meta_keywords" cols="45" rows="2" id="sp-editor-meta_keywords" class="wide">{meta_keywords}</textarea></dd>
 
         <dt><label for="sp-editor-sp_content">{lang_content}</label></dt>
         <dd><textarea name="sp_content" style="width:99.5%" cols="45" rows="24" id="sp-editor-sp_content" class="wide">{sp_content}</textarea>
