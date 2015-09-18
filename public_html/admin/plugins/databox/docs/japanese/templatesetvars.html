@@ -8,7 +8,7 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="docstyle.css" title="Dev Stylesheet">
 </head>
-<!-- admin/plugins/databox/docs/japanese/templatesetvars.html 20150224 -->
+<!-- admin/plugins/databox/docs/japanese/templatesetvars.html 20150916 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
@@ -914,7 +914,7 @@ site_url
 </tbody>
 </table>
 
-<h2><a class="note_super" href="#notetext_add" id="notetext_add">各アトリビュートのテーマ変数</a>(2015/02/24 update)</h2>
+<h2><a class="note_super" href="#notetext_add" id="notetext_add">各アトリビュートのテーマ変数</a>(2015/09/16 update)</h2>
 <table>
 <tr>
 	<th style="width:30%"><a href="input_field.html#fieldtype">アトリビュートタイプ</a></th>
@@ -922,7 +922,7 @@ site_url
     <th style="width:40%">説明</th>
 	</tr>
 <tr>
-	<td rowspan=3>共通</td>
+	<td rowspan=4>共通</td>
 	<td>{additionfield<a title="id" class="note_super" href="#notetext_id">1</a></a>}
 	<br/>{登録したテーマ変数名}
 	</td>
@@ -934,11 +934,17 @@ site_url
 	<br/>   {登録したテーマ変数名_name}	</td>
 	<td>名称</td>
 	</tr>
-<tr>	
+<tr>
 	<td>
 	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>_description}
 	<br/>   {登録したテーマ変数名_description}	</td>
 	<td>説明</td>
+	</tr>
+<tr>	
+	<td>
+	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>_requried}
+	<br/>   {登録したテーマ変数名_requried}	</td>
+	<td>必須チェック 1 or 0</td>
 	</tr>
 <tr>	
 	<td   rowspan=5>12:画像（ファイル保存）</td>

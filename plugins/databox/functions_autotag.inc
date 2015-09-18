@@ -92,6 +92,7 @@ function plugin_autotags_databox (
         $parm2_ary[]="method";
         $parm2_ary[]="roundprecision";
         $parm2_ary[]="numberformat";
+        $parm2_ary[]="permission";
         $p=databox_parm2($p2,$parm2_ary);
         //各処理
         switch( $tag ) {
@@ -102,6 +103,7 @@ function plugin_autotags_databox (
                             $p['category_id']
                             ,$p['category_code']
                             ,$p['mode']
+                            ,$p['permission']
                             );
                         break;
                     case 'newlist':
@@ -158,6 +160,7 @@ function plugin_autotags_databox (
                             ,$p['templatesetvar']
        	                    ,$p['value']
                             ,$p['type_id']
+                            ,$p['permission']
                             );
                         break;
 
@@ -218,6 +221,7 @@ function plugin_autotags_databox (
                              "databox"
                             ,$p['group_id']
                             ,$p['group_code']
+                            ,$p['permission']
                         );
                         break;
                     case 'categorycheck':
@@ -270,6 +274,7 @@ function plugin_autotags_databox (
                                 ,$p['mode']
                                 ,$p['roundprecision']
                                 ,$p['numberformat']
+                                ,$p['permission']
                             );
                         break;
                 }
@@ -875,6 +880,7 @@ function databox_count(
     $category_id =null
     ,$category_code =null
     ,$mode=''
+    ,$permission=''
 )
 // +---------------------------------------------------------------------------+
 // | 機能  件数表示                                                          |
@@ -886,6 +892,7 @@ function databox_count(
 // | 引数 $category_id:カテゴリid　（優先）
 // | 引数 $category_code:カテゴリコード
 // | 引数 $mode          :ブランク　または　AND
+// | 引数 $permission    :ブランク　または　ignore
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:データ総数、カテゴリ別データ件数
 // +---------------------------------------------------------------------------+
@@ -955,7 +962,10 @@ function databox_count(
     //下書はのぞく
     $sql .= " t1.draft_flag=0".LB;
     //アクセス権のないデータ はのぞく
-    $sql .= COM_getPermSql('AND').LB;
+    if  (strtoupper($permission)=="IGNORE"){
+    }else{
+        $sql .= COM_getPermSql('AND').LB;
+    }
     //公開日以前のデータはのぞく
     $sql .= " AND (released <= NOW())".LB;
     //公開終了日を過ぎたデータはのぞく
@@ -1143,10 +1153,9 @@ function databox_field(
     //}else{
        $sql .= " AND t2.draft_flag=0".LB;
     //}
-
+    
     //アクセス権のないデータ はのぞく
     $sql .= COM_getPermSql('AND',0,2,"t2");
-
     //公開日以前のデータはのぞく
     $sql .= " AND (released <= NOW())".LB;
     //公開終了日を過ぎたデータはのぞく

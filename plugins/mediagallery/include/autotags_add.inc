@@ -103,6 +103,7 @@ function MG_medialist (
 	}
 	$result = DB_query($sql);
 	
+	$counter = 0;
 	while ($row = DB_fetchArray($result)) {
 		switch ($src) {
 			case 'orig' :
@@ -190,11 +191,13 @@ function MG_medialist (
 		$T->set_var('media_category_name',$media_category_name);
 		$T->set_var('media_category_description',$media_category_description);
 		$T->set_var('released',$media_time[0]);
+		$T->set_var('counter',$counter);
 		
 		//=====
         $T->parse ('medialist_col', 'col', true);
-
+		$counter = $counter+1;
 	}
+	$T->set_var('count',$counter);
 	$T->parse ('output', 'tag');
     $rt= $T->finish ($T->get_var ('output'));
 	return $rt;

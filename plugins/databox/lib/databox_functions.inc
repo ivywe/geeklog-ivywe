@@ -2164,9 +2164,13 @@ function DATABOX_getaddtionfieldsDisp(
             //@@@@@ 準備中　$templates->set_var('additionfield'.$fid."_disptn", $fieldhtmldisp_tn);
             //@@@@@ 準備中　$templates->set_var($templatesetvar."_disptn", $fieldhtmldisp_tn);
 			
-			//添付ファイルの記憶ファイル名(templatesetvar_(id)_(timestamp))
+			//添付ファイルの記憶ファイル名(templatesetvar_(id)_(readfile))
             $templates->set_var('additionfield'.$fid."_readfile", $fieldhtml_readfile);
             $templates->set_var($templatesetvar."_readfile", $fieldhtml_readfile);
+			
+			//必須チェック(templatesetvar_(id)_(requied))
+            $templates->set_var('additionfield'.$fid."_requried", $checkrequried);
+            $templates->set_var($templatesetvar."_requried", $checkrequried);
 			
             //文言
             $templates->set_var('lang_download', $lang_box['download']);
@@ -4802,6 +4806,7 @@ function DATABOX_categorycount(
     $pi_name
     ,$categorygroup_id 
     ,$categorygroup_code 
+    ,$permission=""
 )
 // +---------------------------------------------------------------------------+
 // | 機能  カテゴリ件数表示
@@ -4815,6 +4820,7 @@ function DATABOX_categorycount(
 // | 引数 $group_code:カテゴリグループコード
 // | カテゴリグループid もカテゴリグループコードも指定ない場合は
 // | 親カテゴリグループなしのカテゴリの件数
+// | 引数 $permission    :ブランク　または　ignore
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:カテゴリ件数
 // | （アクセス権のあるデータが登録されていないカテゴリの件数は含みません）
@@ -4860,7 +4866,10 @@ function DATABOX_categorycount(
        $sql .= " AND t2.draft_flag=0".LB;
     //}
     //アクセス権のないデータ はのぞく
-    $sql .= COM_getPermSql('AND',0,2,"t2").LB;
+    if  (strtoupper($permission)=="IGNORE"){
+    }else{
+        $sql .= COM_getPermSql('AND',0,2,"t2").LB;
+    }
     //公開日以前のデータはのぞく
     $sql .= " AND (released <= NOW())".LB;
     //公開終了日を過ぎたデータはのぞく
@@ -5627,6 +5636,7 @@ function DATABOX_getFileTypeAry(
 // | 引数 $templatesetvar:追加項目のテーマ変数
 // | 引数 $value:指定データ値
 // | 引数 $type_id:タイプID
+// | 引数 $permission    :ブランク　または　ignore
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:指定追加項目の指定データに一致する件数
 // +---------------------------------------------------------------------------+
@@ -5636,6 +5646,7 @@ function DATABOX_count_each_afield(
     ,$templatesetvar=""
     ,$value=""
     ,$type_id=0
+    ,$permission=''
 )
 {
     global $_TABLES;
@@ -5670,7 +5681,10 @@ function DATABOX_count_each_afield(
     //下書はのぞく
     $sql .= " t1.draft_flag=0".LB;
     //アクセス権のないデータ はのぞく
-    $sql .= COM_getPermSql('AND').LB;
+    if  (strtoupper($permission)=="IGNORE"){
+    }else{
+        $sql .= COM_getPermSql('AND').LB;
+    }
     //公開日以前のデータはのぞく
     $sql .= " AND (released <= NOW())".LB;
     //公開終了日を過ぎたデータはのぞく
@@ -5701,6 +5715,7 @@ function DATABOX_math(
     ,$mode=''
     ,$roundprecision=''
     ,$numberformat=''
+    ,$permission=""
 )
 // +---------------------------------------------------------------------------+
 // | 機能  指定アトリビュートの指定値（count average max min sum）を取得する
@@ -5788,7 +5803,10 @@ function DATABOX_math(
     //下書はのぞく
     $sql .= " t1.draft_flag=0".LB;
     //アクセス権のないデータ はのぞく
-    $sql .= COM_getPermSql('AND').LB;
+    if  (strtoupper($permission)=="IGNORE"){
+    }else{
+        $sql .= COM_getPermSql('AND').LB;
+    }
     //公開日以前のデータはのぞく
     $sql .= " AND (released <= NOW())".LB;
     //公開終了日を過ぎたデータはのぞく

@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
 </head>
-<!-- admin/plugins/databox/docs/japanese/autotags.html 20150715 -->
+<!-- admin/plugins/databox/docs/japanese/autotags.html 20150918 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
@@ -21,7 +21,7 @@
 <h1><a href="index.html">DataBox プラグイン</h1>
 
 
-<h2><a name="autotags">自動タグ</a>(2015/07/15 update)</h2>
+<h2><a name="autotags">自動タグ</a>(2015/09/18 update)</h2>
 <table>
 <tr><th style="width:25%">自動タグ 引数</th>
     <th style="width:75%">説明</th>
@@ -31,6 +31,7 @@
 <td>[databox:count ]<br /><br />
 category_id:　category_code:<br />
 mode:<br />
+permission:ignore アクセス権のないデータもカウントします。省略時はカウントしません。<br />
 </td>
 <td>
 データ件数<br />
@@ -40,6 +41,7 @@ mode:<br />
 例４：[databox:count category_code:AAA|BBB] カテゴリコードがAAA またはBBB<br />
 例５：[databox:count category_code:AAA|BBB|CCC] カテゴリコードがAAA または BBB または CCC<br />
 例６：[databox:count category_code:AAA|BBB mode:and] カテゴリコードがAAA かつ BBB<br />
+例７：[databox:count permission:ignore]<br />
 </td>
 </tr>
 
@@ -108,6 +110,7 @@ expired:yes 公開終了日を過ぎたデータも表示します。<br />
 templatesetvar:<br />
 value:<br />
 type_id:<br />
+permission:ignore アクセス権のないデータもカウントします。省略時はカウントしません。<br />
 </td>
 <td>
 指定アトリビュートが指定値のデータの件数<br />
@@ -216,6 +219,7 @@ linktext<a title=""class="note_super" href="#notetext_2">*2</a>
 </tr>
 <tr class="r2">
 <td>[databox:categorycount　カテゴリグループid または　カテゴリグループコード]
+<br />permission:ignore アクセス権のないデータもカウントします。省略時はカウントしません。
 </td>
 
 <td>指定カテゴリグループのカテゴリ件数<br /> 
@@ -278,6 +282,7 @@ category_id: または category_code:<br />
 mode:<br />
 roundprecision:<br />
 numberformat:<br />
+permission:ignore アクセス権のないデータもカウントします。省略時はカウントしません。<br />
 </td>
 <td>
 指定アトリビュートのMAX MIN SUM COUNT AVERAGE<br />

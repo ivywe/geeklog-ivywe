@@ -74,7 +74,7 @@ function plugin_autotags_userbox (
         $parm2_ary[]="limitcnt";
         $parm2_ary[]="newmarkday";
         $parm2_ary[]="templatedir";
-        //$parm2_ary[]="id";
+        $parm2_ary[]="id";
         $parm2_ary[]="uid";
         $parm2_ary[]="username";
         $parm2_ary[]="code";
@@ -93,6 +93,7 @@ function plugin_autotags_userbox (
         $parm2_ary[]="method";
         $parm2_ary[]="roundprecision";
         $parm2_ary[]="numberformat";
+        $parm2_ary[]="permission";
         $p=userbox_parm2($p2,$parm2_ary);
 
         //各処理
@@ -104,6 +105,7 @@ function plugin_autotags_userbox (
                             $p['category_id']
                             ,$p['category_code']
                             ,$p['mode']
+                            ,$p['permission']
                             );
                         break;
                     case 'newlist':
@@ -159,6 +161,7 @@ function plugin_autotags_userbox (
                             ,$p['templatesetvar']
        	                    ,$p['value']
                             ,$p['type_id']
+                            ,$p['permission']
                             );
                         break;
                     case 'lastmodified':
@@ -200,6 +203,7 @@ function plugin_autotags_userbox (
                              "userbox"
                             ,$p['group_id']
                             ,$p['group_code']
+                            ,$p['permission']
                         );
                         break;
                     case 'attributevalue':
@@ -223,6 +227,7 @@ function plugin_autotags_userbox (
                                 ,$p['mode']
                                 ,$p['roundprecision']
                                 ,$p['numberformat']
+                                ,$p['permission']
                             );
                         break;
                 }
@@ -833,6 +838,7 @@ function userbox_count(
     $category_id =null
     ,$category_code =null
     ,$mode=''
+    ,$permission=""
 )
 // +---------------------------------------------------------------------------+
 // | 機能  件数表示
@@ -914,7 +920,10 @@ function userbox_count(
     //下書はのぞく
     $sql .= " t1.draft_flag=0".LB;
     //アクセス権のないデータ はのぞく
-    $sql .= COM_getPermSql('AND').LB;
+    if  (strtoupper($permission)=="IGNORE"){
+    }else{
+        $sql .= COM_getPermSql('AND').LB;
+    }
     //公開日以前のデータはのぞく
     $sql .= " AND (released <= NOW())".LB;
     //公開終了日を過ぎたデータはのぞく
