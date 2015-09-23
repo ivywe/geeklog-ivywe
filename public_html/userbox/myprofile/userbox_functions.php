@@ -5,12 +5,12 @@
 // $Id: userbox_function.php
 // public_html/userbox/mydata/userbox_function.php
 // 20101118 tsuchitani AT ivywe DOT co DOT jp
-// 2011/0905
+
 define ('THIS_PLUGIN', 'userbox');
 
 require_once('../../lib-common.php');
 if (!in_array('userbox', $_PLUGINS)) {
-    echo COM_refresh($_CONF['site_url'] . '/index.php');
+    COM_handle404();
     exit;
 }
 

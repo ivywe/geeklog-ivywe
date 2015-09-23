@@ -9,11 +9,10 @@ define ('THIS_SCRIPT', 'userbox/attribute.php');
 define ('NEXT_SCRIPT', 'userbox/profile.php');
 //define ('NEXT_SCRIPT', 'userbox/test.php');
 //20100820 tsuchitani AT ivywe DOT co DOT jp http://www.ivywe.co.jp/
-//20121017 update
 
 require_once ('../lib-common.php');
 if (!in_array('userbox', $_PLUGINS)) {
-    echo COM_refresh($_CONF['site_url'] . '/index.php');
+    COM_handle404();
     exit;
 }
 

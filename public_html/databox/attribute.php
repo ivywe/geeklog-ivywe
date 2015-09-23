@@ -9,11 +9,11 @@ define ('THIS_SCRIPT', 'databox/attribute.php');
 define ('NEXT_SCRIPT', 'databox/data.php');
 //define ('NEXT_SCRIPT', 'databox/test.php');
 //20100820 tsuchitani AT ivywe DOT co DOT jp http://www.ivywe.co.jp/
-//20121017 update
+
 
 require_once ('../lib-common.php');
 if (!in_array('databox', $_PLUGINS)) {
-    echo COM_refresh($_CONF['site_url'] . '/index.php');
+    COM_handle404();
     exit;
 }
 

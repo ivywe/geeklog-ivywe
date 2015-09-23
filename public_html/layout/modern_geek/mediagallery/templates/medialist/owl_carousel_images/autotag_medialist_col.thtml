@@ -1,8 +1,0 @@
-<!-- plugins/mediagallery/templates/medialist/owl_carousel_images/autotag_medialist_col.thtml 20150309 { -->
-
-
-	<div class="item">
-		<img data-src="{filename_tn}" class="lazyOwl" alt="{mediatitle}" title="{mediatitle}" style="margin:3px">
-	</div>
-
-<!-- } plugins/mediagallery/templates/medialist/owl_carousel_images/autotag_medialist_col.thtml -->

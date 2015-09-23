@@ -104,6 +104,7 @@ function plugin_autotags_databox (
                             ,$p['category_code']
                             ,$p['mode']
                             ,$p['permission']
+                            ,$p['numberformat']
                             );
                         break;
                     case 'newlist':
@@ -161,6 +162,7 @@ function plugin_autotags_databox (
        	                    ,$p['value']
                             ,$p['type_id']
                             ,$p['permission']
+                            ,$p['numberformat']
                             );
                         break;
 
@@ -222,6 +224,7 @@ function plugin_autotags_databox (
                             ,$p['group_id']
                             ,$p['group_code']
                             ,$p['permission']
+                            ,$p['numberformat']
                         );
                         break;
                     case 'categorycheck':
@@ -881,6 +884,7 @@ function databox_count(
     ,$category_code =null
     ,$mode=''
     ,$permission=''
+    ,$numberformat=''
 )
 // +---------------------------------------------------------------------------+
 // | 機能  件数表示                                                          |
@@ -893,6 +897,7 @@ function databox_count(
 // | 引数 $category_code:カテゴリコード
 // | 引数 $mode          :ブランク　または　AND
 // | 引数 $permission    :ブランク　または　ignore
+// | 引数 $numberformat  :ブランク　または　yes
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:データ総数、カテゴリ別データ件数
 // +---------------------------------------------------------------------------+
@@ -974,8 +979,13 @@ function databox_count(
 
     $result = DB_query ($sql);
     $cnt = DB_numRows ($result);
-    $rt=COM_NumberFormat($cnt);
-
+    
+    if  (strtoupper($numberformat)=="YES"){
+        $rt=COM_NumberFormat($cnt);
+    }else{
+        $rt=$cnt;
+    }
+    
     return $rt;
 
 }
@@ -1822,9 +1832,15 @@ function databox_data(
     
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
+    
+    if  ($m==="page"  OR  $m==="view"){
+        if ($numrows <= 0) {
+            COM_handle404();
+            exit;
+        }
+    }
 
     if ($numrows > 0) {
-
         $A = DB_fetchArray ($result);
         $A = array_map('stripslashes', $A);
 

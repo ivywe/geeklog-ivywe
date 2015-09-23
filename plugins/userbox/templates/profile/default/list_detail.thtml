@@ -292,6 +292,8 @@
 			<dd>{lang_content}</dd>
 			<dd>&#123;tel_name&#125;</dd>
 			<dd>{tel_name}</dd>
+			<dd>&#123;tel_requried&#125;</dd>
+			<dd>{tel_requied}</dd>
 			<dd>&#123;tel_description&#125;</dd>
 			<dd>{tel_description}</dd>
 			<dd>&#123;tel&#125;</dd>
@@ -330,6 +332,9 @@
 			<dt>1</dt>
 			<dd>&#123;additionfield1&#125;</dd>
 			<dd>{additionfield1}</dd>
+			<dt>1</dt>
+			<dd>&#123;additionfield1_requried&#125;</dd>
+			<dd>{additionfield1_requried}</dd>
 			<dt>1</dt>
 			<dd>&#123;additionfield1_noimage&#15;</dd>
 			<dd>{additionfield1_noimage}</dd>

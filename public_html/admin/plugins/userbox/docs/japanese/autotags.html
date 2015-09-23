@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
 </head>
-<!-- admin/plugins/userbox/docs/japanese/autotags.html 20150918 -->
+<!-- admin/plugins/userbox/docs/japanese/autotags.html 20150920 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
@@ -21,7 +21,7 @@
 <h1><a href="index.html">UserBox プラグイン</h1>
 
 
-<h2><a name="autotags">自動タグ</a>(2015/09/18 update)</h2>
+<h2><a name="autotags">自動タグ</a>(2015/09/20 update)</h2>
 <table>
 <tr><th style="width:25%">書式</th>
     <th style="width:75%">説明</th>
@@ -32,6 +32,7 @@
 category_id:　category_code:<br />
 mode:<br />
 permission:ignore アクセス権のないデータもカウントします。省略時はカウントしません。<br />
+numberformat:yes 千単位に区切ります（カンマ編集）。省略時は区切りません。<br />
 </td>
 <td>
 データ件数<br />
@@ -85,6 +86,7 @@ templatesetvar:<br />
 value:<br />
 type_id:<br />
 permission:ignore アクセス権のないデータもカウントします。省略時はカウントしません。<br />
+numberformat:yes 千単位に区切ります（カンマ編集）。省略時は区切りません。<br />
 </td>
 <td>
 指定アトリビュートが指定値のデータの件数<br />
@@ -144,6 +146,7 @@ perpage:(Number) 1ページあたりの表示件数。0のときは改ページ�
 <tr class="r2">
 <td>[userbox:categorycount　カテゴリグループid または　カテゴリグループコード]
 <br />permission:ignore アクセス権のないデータもカウントします。省略時はカウントしません。
+<br />numberformat:yes 千単位に区切ります（カンマ編集）。省略時は区切りません。
 </td>
 <td>指定カテゴリグループのカテゴリ件数<br /> 
 例１：[userbox:categorycount ] 親グループなしカテゴリの件数<br />
@@ -178,7 +181,7 @@ type_id:<br />
 category_id: または category_code:<br />
 mode:<br />
 roundprecision:<br />
-numberformat:<br />
+numberformat:yes 千単位に区切ります（カンマ編集）。省略時は区切りません。数値の場合のみ有効<br />
 permission:ignore アクセス権のないデータもカウントします。省略時はカウントしません。<br />
 </td>
 <td>
@@ -199,7 +202,6 @@ type_id:0 タイプなし　省略時すべてのタイプ
 <br />2の場合　5.055　→ 5.06
 <br />-3の場合 1241757 → 1242000
 <br />丸めの結果はPHPのバージョンに依存します
-<br />numberformat:yes 3桁ごとに区切る？ 数値の場合のみ有効
 <br />指定アトリビュートのタイプが数値または通貨、またはnumberformat:yesが指定された場合は、数値比較になります
 </td>
 </tr></tbody>

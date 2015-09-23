@@ -490,6 +490,9 @@ fullname:<span  class="uk-text-success"> &#123;last_modify_fullname&#125;</span>
         <th class="uk-text-success uk-text-left" style="width:20%;">&#123;tel_name&#125;</th>
         <td>{tel_name}</td>
       </tr>
+        <th style="width:20%; color:green" class="alignleft">&#123;tel_requried&#125;</th>
+        <td>{tel_requried}</td>
+      </tr>
       <tr>
         <th class="uk-text-success uk-text-left" style="width:20%;">&#123;tel_description&#125;</th>
         <td>{tel_description}</td>
@@ -573,6 +576,11 @@ fullname:<span  class="uk-text-success"> &#123;last_modify_fullname&#125;</span>
         <th style="width:20%" class="uk-text-right">1</th>
         <td class="uk-text-success uk-text-left" style="width:20%;">&#123;additionfield1&#125;</td>
         <td>{additionfield1}</td>
+      </tr>
+      <tr>
+        <th style="width:20%" class="alignright">1</th>
+        <td style="width:20%; color:green" class="alignleft">&#123;additionfield1_requried&#125;</td>
+        <td>{additionfield1_requried}</td>
       </tr>
       <tr>
         <th style="width:20%" class="uk-text-right">1</th>

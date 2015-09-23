@@ -11,7 +11,7 @@ define ('THIS_PLUGIN', 'databox');
 
 require_once('../../../lib-common.php');
 if (!in_array('databox', $_PLUGINS)) {
-    echo COM_refresh($_CONF['site_url'] . '/index.php');
+    COM_handle404();
     exit;
 }
 

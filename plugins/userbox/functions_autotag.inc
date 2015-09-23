@@ -106,6 +106,7 @@ function plugin_autotags_userbox (
                             ,$p['category_code']
                             ,$p['mode']
                             ,$p['permission']
+                            ,$p['numberformat']
                             );
                         break;
                     case 'newlist':
@@ -162,6 +163,7 @@ function plugin_autotags_userbox (
        	                    ,$p['value']
                             ,$p['type_id']
                             ,$p['permission']
+                            ,$p['numberformat']
                             );
                         break;
                     case 'lastmodified':
@@ -204,6 +206,7 @@ function plugin_autotags_userbox (
                             ,$p['group_id']
                             ,$p['group_code']
                             ,$p['permission']
+                            ,$p['numberformat']
                         );
                         break;
                     case 'attributevalue':
@@ -839,6 +842,7 @@ function userbox_count(
     ,$category_code =null
     ,$mode=''
     ,$permission=""
+    ,$numberformat=''
 )
 // +---------------------------------------------------------------------------+
 // | 機能  件数表示
@@ -932,7 +936,11 @@ function userbox_count(
 
     $result = DB_query ($sql);
     $cnt = DB_numRows ($result);
-    $rt=COM_NumberFormat($cnt);
+    if  (strtoupper($numberformat)=="YES"){
+        $rt=COM_NumberFormat($cnt);
+    }else{
+        $rt=$cnt;
+    }
 
     return $rt;
 
@@ -1176,6 +1184,13 @@ function userbox_profile(
 
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
+    
+    if  ($m==="page"  OR  $m==="view"){
+        if ($numrows <= 0) {
+            COM_handle404();
+            exit;
+        }
+    }
 
     if ($numrows > 0) {
 

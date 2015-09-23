@@ -4807,6 +4807,7 @@ function DATABOX_categorycount(
     ,$categorygroup_id 
     ,$categorygroup_code 
     ,$permission=""
+    ,$numberformat=''
 )
 // +---------------------------------------------------------------------------+
 // | 機能  カテゴリ件数表示
@@ -4821,6 +4822,7 @@ function DATABOX_categorycount(
 // | カテゴリグループid もカテゴリグループコードも指定ない場合は
 // | 親カテゴリグループなしのカテゴリの件数
 // | 引数 $permission    :ブランク　または　ignore
+// | 引数 $numberformat  :yes
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:カテゴリ件数
 // | （アクセス権のあるデータが登録されていないカテゴリの件数は含みません）
@@ -4880,7 +4882,11 @@ function DATABOX_categorycount(
     
     $result = DB_query ($sql);
     $cnt = DB_numRows ($result);
-    $rt=COM_NumberFormat($cnt);
+    if  (strtoupper($numberformat)=="YES"){
+        $rt=COM_NumberFormat($cnt);
+    }else{
+        $rt=$cnt;
+    }
 
     return $rt;
 
@@ -5637,6 +5643,7 @@ function DATABOX_getFileTypeAry(
 // | 引数 $value:指定データ値
 // | 引数 $type_id:タイプID
 // | 引数 $permission    :ブランク　または　ignore
+// | 引数 $numberformat  :ブランク　または　yes
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:指定追加項目の指定データに一致する件数
 // +---------------------------------------------------------------------------+
@@ -5647,6 +5654,7 @@ function DATABOX_count_each_afield(
     ,$value=""
     ,$type_id=0
     ,$permission=''
+    ,$numberformat=''
 )
 {
     global $_TABLES;
@@ -5700,7 +5708,11 @@ function DATABOX_count_each_afield(
 
     $result = DB_query ($sql);
     $cnt = DB_numRows ($result);
-    $rt=COM_NumberFormat($cnt);
+    if  (strtoupper($numberformat)=="YES"){
+        $rt=COM_NumberFormat($cnt);
+    }else{
+        $rt=$cnt;
+    }
 
     return $rt;
 
