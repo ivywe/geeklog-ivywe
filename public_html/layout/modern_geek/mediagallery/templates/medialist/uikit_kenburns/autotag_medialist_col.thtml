@@ -1,4 +1,4 @@
-<!--plugins/mediagallery/templates/medialist/list/autotag_medialist_col.thtml 20150309 { -->
+<!--plugins/mediagallery/templates/medialist/uikit_kenburns/autotag_medialist_col.thtml 20150309 { -->
 
 <li>
 	<img src="{filename_disp}" alt="{media_title}">
@@ -12,4 +12,4 @@
 	</div>
 </li>
 
-<!--} plugins/mediagallery/templates/medialist/list/autotag_medialist_col.thtml -->
+<!--} plugins/mediagallery/templates/medialist/uikit_kenburns/autotag_medialist_col.thtml -->

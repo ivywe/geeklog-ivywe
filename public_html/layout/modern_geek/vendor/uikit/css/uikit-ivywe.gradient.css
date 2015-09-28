@@ -4713,9 +4713,7 @@ a.uk-badge:hover {
   max-width: 100%;
   box-sizing: border-box;
   margin: 0;
-  padding: 4px;
-  border: 1px solid #dddddd;
-  background: #ffffff;
+  padding: 14px;
   border-radius: 4px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
