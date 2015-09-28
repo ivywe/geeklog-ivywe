@@ -68,6 +68,13 @@
                             <li><a href="#">Another item</a></li>
                             <li class="uk-nav-divider"></li>
                             <li><a href="#">Separated item</a></li>
+
+	    <?php if(SEC_inGroup('Root')){ ?>
+			<li><a type="button" href="{site_url}/admin/clearctl.php">Clear Cache</a></li>
+		<?php } ?>
+	    <?php if(SEC_inGroup('mediagallery Admin')){ ?>
+			<li><a type="button" href="{site_url}/mediagallery/">Gallery</a></li>
+		<?php } ?>
                         </ul>
                     </div>
 
@@ -107,6 +114,14 @@
                     <li><a href="{site_url}">menu1</a></li>
                     <li><a href="{site_url}">menu2</a></li>
                     <li><a href="{site_url}">menu3</a></li>
+
+	    <?php if(SEC_inGroup('Root')){ ?>
+			<li><a type="button" href="{site_url}/admin/clearctl.php">Clear Cache</a></li>
+		<?php } ?>
+	    <?php if(SEC_inGroup('mediagallery Admin')){ ?>
+			<li><a type="button" href="{site_url}/mediagallery/">Gallery</a></li>
+		<?php } ?>
+
                     <li><a href="{site_url}/search.php"><i class="uk-icon-search"></i> {$LANG01[70]}</a></li>
 
 <?php global $_USER, $_CONF; if (isset($_USER['uid']) && $_USER['uid'] > 1) { ?>
