@@ -1,13 +1,13 @@
-<!--plugins/mediagallery/templates/medialist/uikit_kenburns/autotag_medialist_col.thtml 20150309 { -->
+<!--plugins/mediagallery/templates/medialist/uikit_kenburns/autotag_medialist_col.thtml { -->
 
 <li>
 	<img src="{filename_disp}" alt="{media_title}">
 	<div class="uk-overlay-panel uk-overlay-fade">
 		<div>
-				<h2 class="uk-h2 uk-container-center gl-slider" style="text-shadow: 5px 5px 10px #1F1F1F; ">
+				<h2 class="uk-h2 uk-text-center gl-slider" style="text-shadow: 5px 5px 10px #444444; ">
 				{media_title}
 			</h2>
-			<div>{media_desc}</div>
+			<div style="text-shadow: 5px 5px 10px #444444; ">{media_desc}</div>
 		</div>
 	</div>
 </li>
