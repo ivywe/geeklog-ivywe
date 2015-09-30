@@ -9,6 +9,7 @@
 			</h2>
 			<div style="text-shadow: 5px 5px 10px #444444; ">{media_desc}</div>
 		</div>
+		<div class="uk-panel-badge uk-badge" style="top:initial; bottom:0">{media_keywords}</div>
 	</div>
 </li>
 
