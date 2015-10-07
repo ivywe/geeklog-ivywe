@@ -10,7 +10,7 @@
     <a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous" style="color: rgba(255,255,255,0.4)"></a>
     <a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next" style="color: rgba(255,255,255,0.4)"></a>
 
-    <ul class="uk-dotnav uk-dotnav-contrast uk-position-bottom uk-flex-center">
+    <ul class="uk-dotnav uk-dotnav-contrast uk-position-bottom uk-flex-center uk-hidden-small">
         <li data-uk-slideshow-item="0"><a href=""></a></li>
         <li data-uk-slideshow-item="1"><a href=""></a></li>
         <li data-uk-slideshow-item="2"><a href=""></a></li>

@@ -23,7 +23,7 @@
                         <input type="submit" value="{lang_login}" class="uk-width-1-1 uk-button uk-button-large"{xhtml}>
                         </div>
                         <div class="uk-form-row uk-text-small">
-                            {lang_signup}
+                            {lang_signup}<br{xhtml}>
                             {lang_forgetpassword}
                         </div>
                     </form>
