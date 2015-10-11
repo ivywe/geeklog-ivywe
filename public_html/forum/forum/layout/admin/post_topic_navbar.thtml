@@ -12,7 +12,8 @@
 </div>
 
 
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<div class="uk-overflow-container">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
     <tr>
         <td>{navbreadcrumbsimg}</td>
         <td class="alignleft" style="width:100%; white-space:nowrap;">&nbsp;<a href="{site_url}/forum/index.php">{forum_home}</a>&nbsp;&#62;&nbsp;<a href="{site_url}/forum/index.php">{cat_name}</a>&nbsp;&#62;&nbsp;<a href="{site_url}/forum/index.php?forum={forum_id}">{forum_name}</a></td>
@@ -21,6 +22,7 @@
         <td colspan="2" style="padding-bottom:5px;">{navtopicimg}&nbsp;<b><a href="viewtopic.php?showtopic={topic_id}">{subject}</a></b></td>
     </tr>
 </table>
+</div>
 
 <script type="text/Javascript">
 <!-- Begin

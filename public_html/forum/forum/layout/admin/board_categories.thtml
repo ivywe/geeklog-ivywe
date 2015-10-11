@@ -14,26 +14,21 @@
   </div>
 </div>
 
-
-<table width="100%" cellspacing="0" cellpadding="3" style="margin-top:10px; margin-bottom:20px; border:0 none;">
-    <tr>
-        <td style="padding:0px;">
-            <table width="100%" cellspacing="1" cellpadding="3" class="" style="border:0 none;">
+<div class="uk-overflow-container">
+			<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
                 <tr>
-                    <td class="pluginCellTitle aligncenter" style="padding-left:5px width:15%;">{LANG_action}</td>
-                    <td class="pluginCellTitle" style="width:70%;">{LANG_forumdesc}</td>
-                    <td class="pluginCellTitle aligncenter" style="width:5%; white-space:nowrap;">{LANG_posts}</td>
-                    <td class="pluginCellTitle aligncenter" style="width:10%;">{LANG_order}</td>
+                    <td class="uk-text-truncate">{LANG_action}</td>
+                    <td class="uk-text-truncate">{LANG_forumdesc}</td>
+                    <td class="uk-text-truncate">{LANG_posts}</td>
+                    <td class="uk-text-truncate">{LANG_order}</td>
                 </tr>
-{forum_records}
+				{forum_records}
             </table>
-        </td>
-    </tr>
-    <tr>
-        <td class=" pluginCellSubTitle">
-            <table width="100%" cellspacing="1" cellpadding="4" style="border:0 none;">
+</div>
+<div class="uk-overflow-container">
+			<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
                 <tr>
-                    <td style="white-space:nowrap;">
+                    <td class="uk-text-nowrap">
                         <form class="uk-form" action="{phpself}" method="post">
                             <fieldset><legend style="padding-bottom:5px;">Category</legend>
                                 <input type="hidden" name="type" value="category"{xhtml}>
@@ -46,10 +41,8 @@
                             </fieldset>
                         </form>
                     </td>
-                    <td class="alignright" style="width:60%; white-space:nowrap;">[&nbsp;<a href="{phpself}?mode=add&amp;type=forum&amp;category={catid}&amp;catname={catname}">{addforum}</a>&nbsp;]&nbsp;&nbsp;<br{xhtml}></td>
+                    <td class="alignright uk-text-nowrap">[&nbsp;<a href="{phpself}?mode=add&amp;type=forum&amp;category={catid}&amp;catname={catname}">{addforum}</a>&nbsp;]&nbsp;&nbsp;<br{xhtml}></td>
                 </tr>
             </table>
-        </td>
-    </tr>
-</table>
+</div>
 <!-- end board_categories.thtml -->

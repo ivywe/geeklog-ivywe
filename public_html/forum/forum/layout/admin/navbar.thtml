@@ -7,25 +7,29 @@
 </div>
 
 <!--
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<div class="uk-overflow-container">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
     <tr>
         <td colspan="5" style="padding-right:0px;">{navmenu}</td>
     </tr>
     <tr>
         <td colspan="5" style="padding-right:0px;">
-            <table width="100%" border="0" cellspacing="0" cellpadding="1">
+			<div class="uk-overflow-container">
+			<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
                 <tr>
-                    <td style="white-space:nowrap">
+                    <td  class="uk-text-nowrap">
                         {search_forum}
                     </td>
-                    <td class="alignright" style="white-space:nowrap; width:30%">
+                    <td  class="uk-text-right; uk-text-nowrap">
                         {select_forum}
                     </td>
                 </tr>
             </table>
+			</div>
         </td>
     </tr>
 </table>
+</div>
 -->
 
 <!-- end navbar.thtml -->

@@ -52,20 +52,24 @@
 
 
 
-<table cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-top:25px; margin-bottom:15px;">
+<div class="uk-overflow-container">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
     <tr>
-        <td class="pluginCellTitle" style="width:5%; white-space:nowrap;"><input type="checkbox" name="cb_migrateall" id="cb_migrateall" value="y" onclick="if(!allChecked) checkAll(document.storymigrate.elements['cb_chkentry[]']); else uncheckAll(document.storymigrate.elements['cb_chkentry[]']);"{xhtml}>&nbsp;<label for="cb_migrateall">{LANG_all}</label></td>
-        <td class="pluginCellTitle" style="width:20%; padding-top:5px; white-space:nowrap;">{LANG_topic}</td>
-        <td class="pluginCellTitle" style="width:55%; padding-top:5px; white-space:nowrap;">{LANG_title}</td>
-        <td class="pluginCellTitle" style="width:15%; padding-top:5px; white-space:nowrap;">{LANG_date}</td>
-        <td class="pluginCellTitle aligncenter" style="width:10%; padding-top:5px; white-space:nowrap;">{LANG_comments}</td>
+        <th class="uk-text-nowrap"><input type="checkbox" name="cb_migrateall" id="cb_migrateall" value="y" onclick="if(!allChecked) checkAll(document.storymigrate.elements['cb_chkentry[]']); else uncheckAll(document.storymigrate.elements['cb_chkentry[]']);"{xhtml}></th>
+        <th class="uk-text-nowrap">{LANG_topic}</th>
+        <th class="uk-text-nowrap">{LANG_title}</th>
+        <th class="uk-text-nowrap">{LANG_date}</th>
+        <th class="uk-text-nowrap">{LANG_comments}</th>
     </tr>
 {story_record}
 </table>
-<table cellspacing="0" cellpadding="4" border="0" width="100%" style="margin-top:10px;">
+</div>
+<div class="uk-overflow-container">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
     <tr>
-        <td class="aligncenter">{page_navigation}</td>
+        <td class="uk-text-center">{page_navigation}</td>
     </tr>
 </table>
+</div>
 </form>
 <!-- end migratestories.thtml -->

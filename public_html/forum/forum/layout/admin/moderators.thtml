@@ -36,28 +36,32 @@
 <input name="promptadd" type="submit" value="{LANG_addmod}" style="padding:3px;"{xhtml}></td>
 
 
-    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:10px;">
+<div class="uk-overflow-container">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
         <tr>
-            <td style="padding:2px 0px 2px 10px;">
+            <td>
 
         <tr>
             <td colspan="2">
-                <table border="0" width="100%" cellspacing="1" cellpadding="3" class="">
+				<div class="uk-overflow-container">
+				<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
                     <tr>
-                        <td class="pluginCellTitle" style="width:1%; white-space:nowrap;"><img src="{imgset}/trash.png" title="{LANG_deleteall}" onclick=' if(confirm("{LANG_DELCONFIRM}")) {document.modform.operation.value="delchecked"; document.modform.submit();}' alt=""{xhtml}></td>
-                        <td class="" style="width:10%; white-space:nowrap;">{LANG_HEADING2}</td>
-                        <td class="" style="width:35%; white-space:nowrap;">{LANG_FORUM}</td>
-                        <td class="pluginCellTitle aligncenter" style="width:1%; white-space:nowrap;">{LANG_DELETE}</td>
-                        <td class="pluginCellTitle aligncenter" style="width:1%; white-space:nowrap;">{LANG_BAN}</td>
-                        <td class="pluginCellTitle aligncenter" style="width:1%; white-space:nowrap;">{LANG_EDIT}</td>
-                        <td class="pluginCellTitle aligncenter" style="width:1%; white-space:nowrap;">{LANG_MOVE}</td>
-                        <td class="pluginCellTitle aligncenter" style="width:1%; white-space:nowrap;">{LANG_STICK}</td>
-                        <td class="pluginCellTitle aligncenter" style="width:1%; white-space:nowrap;">{LANG_OPERATION}</td>
+                        <th><img src="{imgset}/trash.png" title="{LANG_deleteall}" onclick=' if(confirm("{LANG_DELCONFIRM}")) {document.modform.operation.value="delchecked"; document.modform.submit();}' alt=""{xhtml}></th>
+                        <td class="uk-text-nowrap; uk-text-center">{LANG_HEADING2}</td>
+                        <td class="uk-text-nowrap; uk-text-center">{LANG_FORUM}</td>
+                        <td class="uk-text-nowrap; uk-text-center">{LANG_DELETE}</td>
+                        <td class="uk-text-nowrap; uk-text-center">{LANG_BAN}</td>
+                        <td class="uk-text-nowrap; uk-text-center">{LANG_EDIT}</td>
+                        <td class="uk-text-nowrap; uk-text-center">{LANG_MOVE}</td>
+                        <td class="uk-text-nowrap; uk-text-center">{LANG_STICK}</td>
+                        <td class="uk-text-nowrap; uk-text-center">{LANG_OPERATION}</td>
                     </tr>
 {moderator_records}
                 </table>
+				</div>
             </td>
         </tr>
     </table>
+	</div>
 </form>
 <!-- end moderators.thtml -->

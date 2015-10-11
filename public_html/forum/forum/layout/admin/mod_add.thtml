@@ -24,7 +24,8 @@
         <input type="hidden" name="operation" value="addrecord"{xhtml}>
         <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
     </div>
-    <table width="100%" border="0" cellspacing="1" cellpadding="0" class="plugin">
+<div class="uk-overflow-container">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
         <tr>
             <td colspan="4" class="pluginCellTitle" style="padding:10px 5px 10px 10px;">{LANG_ADDMessage}</td>
         </tr>
@@ -44,7 +45,8 @@
             <td id="selgroup" class="pluginCellText pluginCellFill" style="width:25%; padding:5px 5px 5px 10px; display:none;"><select name="sel_group" style="width:100px;" >{sel_groups}</select></td>
 
             <td class="pluginCellText pluginCellFill" style="width:25%; padding:5px 5px 5px 10px;">
-                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<div class="uk-overflow-container">
+				<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
                     <tr>
                         <td><input type="checkbox" name="chk_delete" id="chk_delete" value="1"{xhtml}></td><td><label for="chk_delete">{LANG_DELETE}</label></td>
                     </tr>
@@ -61,11 +63,13 @@
                         <td><input type="checkbox" name="chk_stick" id="chk_stick" value="1"{xhtml}></td><td><label for="chk_stick">{LANG_STICK}</label></td>
                     </tr>
                 </table>
+				</div>
             </td>
         </tr>
         <tr>
             <td colspan="4" class="pluginCellSubTitle" style="padding:5px;text-align:center;vertical-align:middle;"><input name="submit" type="submit" value="{LANG_addmod}" style="padding:3px;"{xhtml}></td>
         </tr>
     </table>
+	</div>
 </form>
 <!-- end mod_add.thtml -->
