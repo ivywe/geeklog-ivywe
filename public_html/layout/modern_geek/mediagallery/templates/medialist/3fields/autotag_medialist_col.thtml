@@ -1,7 +1,7 @@
 <!-- plugins/mediagallery/templates/medialist/3fields/autotag_medialist_col.thtml 20150309 { -->
 
 	<div class="uk-width-medium-1-3 uk-width-small-1-2  {class}">
-		<a href="{filename_disp}"  class="uk-text-center" data-uk-lightbox="{ group:'my-group{albumid}' }" title="{media_title}{!if media_desc}: {media_desc}{!endif}">
+		<a href="{filename_disp}"  class="uk-text-center" data-uk-lightbox="{ group:'my-group{albumid}' }" title="{media_title}">
 			<img src="{filename_disp}" alt="{media_title}" class="uk-container-center uk-overlay-scale uk-border-rounded  {class}"{xhtml}>
 
 			<div class="uk-text-bold uk-margin-min">{media_title}</div>

@@ -24,7 +24,6 @@
         <li data-uk-slideshow-item="10"><a href=""></a></li>
         <li data-uk-slideshow-item="11"><a href=""></a></li>
     </ul>
-
 </div>
 
 <!-- } plugins/mediagallery/templates/medialist/uikit_kenburns/autotag_medialist.thtml -->
