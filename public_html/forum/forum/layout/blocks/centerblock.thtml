@@ -3,7 +3,8 @@
 <h2>FORUM 新着リスト</h2>
 <div class="uk-grid" style="margin:0">
 
-<table class="uk-table-striped uk-width-1-1" style="max-width:100%">
+<div class="uk-overflow-container">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
 <thead>
 <tr class="uk-text-muted"><th>Topic</th><th>Category</th><th>Users</th><th>Posts</th><th>Views</th><th>Activity</th></tr>
 </thead>
@@ -11,6 +12,7 @@
         {block_records}
 </tbody>
 </table>
+</div>
 
 </div>
 <hr style="margin-bottom: 5em">

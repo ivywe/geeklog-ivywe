@@ -4,7 +4,7 @@
 	<div class="uk-overflow-container">
 	<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
         <tr>
-            <td class="pluginAlert pluginMediumText" style="padding:10px;">{deletenote1}</td>
+            <td class="pluginAlert pluginMediumText">{deletenote1}</td>
         </tr>
         <tr>
             <td class="uk-text-center">

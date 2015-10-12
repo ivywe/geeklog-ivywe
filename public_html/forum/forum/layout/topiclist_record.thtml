@@ -1,13 +1,13 @@
 <!-- start topiclist_record.thtml -->
 <tr>
-    <td style="width:25px;" ><i class="uk-icon-folder-o"></i></td>
-    <td style="width:65%; {topic_id}'">
+    <td><i class="uk-icon-folder-o"></i></td>
+    <td style="{topic_id}'">
         {moved}<a class="tooltip" style="text-decoration:none;" href="viewtopic.php?showtopic={topic_id}">{subject}<span style="left:50px;">{topicinfo}</span></a>{tooltip_subject}
 {gotomsg}&nbsp;{displaypageslink}
     </td>
-    <td class="aligncenter" style="width:45px; white-space:nowrap;">{views}</td>
-    <td class="aligncenter" style="width:45px; white-space:nowrap;">{replies}</td>
-    <td style="width:25%;" {topic_id} {lastpostid} {LANG_lastpost}">
+    <td class="uk-text-center; uk-text-nowrap">{views}</td>
+    <td class="uk-text-center; uk-text-nowrap">{replies}</td>
+    <td {topic_id} {lastpostid} {LANG_lastpost}">
             {LANG_BY}{lastposter}<br />{lastdate}
     </td>
 </tr>

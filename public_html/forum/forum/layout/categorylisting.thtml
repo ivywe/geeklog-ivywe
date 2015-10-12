@@ -15,7 +15,8 @@
   </div>
 </div>
 
-                            <table class="uk-table uk-table-hover" style="margin-bottom:8em;">
+	<div class="uk-overflow-container">
+		<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
                                 <thead>
                                     <tr>
                                         <th>
@@ -34,5 +35,6 @@
 {forum_records}
                                 </tbody>
                             </table>
+	</div>
 
 <!--end categorylisting.thtml -->

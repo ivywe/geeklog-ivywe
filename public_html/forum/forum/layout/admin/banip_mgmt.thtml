@@ -21,6 +21,7 @@
         <td class="uk-text-center">{pagenav}</td>
     </tr>
 </table>
+</div>
 
 <div>
     <fieldset>

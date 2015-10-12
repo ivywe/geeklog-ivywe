@@ -9,7 +9,7 @@
       </li>
     </ul>
   </div>
-  <div class="uk-width-1-2" style="text-align: right">
+  <div class="uk-width-1-2 uk-text-right">
     {catorder}:&nbsp;{order}
   </div>
 </div>
@@ -41,7 +41,7 @@
                             </fieldset>
                         </form>
                     </td>
-                    <td class="alignright uk-text-nowrap">[&nbsp;<a href="{phpself}?mode=add&amp;type=forum&amp;category={catid}&amp;catname={catname}">{addforum}</a>&nbsp;]&nbsp;&nbsp;<br{xhtml}></td>
+                    <td class="uk-text-right uk-text-nowrap">[&nbsp;<a href="{phpself}?mode=add&amp;type=forum&amp;category={catid}&amp;catname={catname}">{addforum}</a>&nbsp;]&nbsp;&nbsp;<br{xhtml}></td>
                 </tr>
             </table>
 </div>
