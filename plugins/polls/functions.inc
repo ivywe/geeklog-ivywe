@@ -40,6 +40,15 @@
 * @package Polls
 */
 
+//hack1 2015/10/13 
+//allow multipleanswers
+//If set to 1, users will be allowed multipleanswers (checkbox)
+//
+// ALTER TABLE `gl_pollquestions` ADD `allow_multipleanswers` TINYINT( 1 ) NULL DEFAULT NULL 
+//
+ 
+
+
 if (strpos(strtolower($_SERVER['PHP_SELF']), 'functions.inc') !== false) {
     die('This file can not be used on its own.');
 }
@@ -484,7 +493,7 @@ function POLLS_pollVote($pid, $showall = true, $displaytype = 0, $order = '', $m
     
     if ((!isset($_COOKIE[$pid]) && !POLLS_ipAlreadyVoted($pid)) or ($P['is_open'] == 1)) {
         if ($ntopics == 1) {
-            $questions_sql = "SELECT question,qid "
+            $questions_sql = "SELECT question,qid ,allow_multipleanswers "
                 . "FROM {$_TABLES['pollquestions']} "
                 . "WHERE pid='$pid' ORDER BY qid";
 
@@ -550,6 +559,14 @@ function POLLS_pollVote($pid, $showall = true, $displaytype = 0, $order = '', $m
                     $poll->set_var('poll_question', $Q['question']);
                     $poll->set_var('question_id', $j);
 
+                    if ($Q['allow_multipleanswers'] == 1) {
+						$poll->set_var('input_type', 'checkbox');
+						$checked=' checked';
+					}else{
+                        $poll->set_var('input_type', 'radio');
+						$checked=' checked="checked"' ;
+                    }
+
                     $notification = '';
                     $filter = '';
                     if (!$showall) {
@@ -572,7 +589,7 @@ function POLLS_pollVote($pid, $showall = true, $displaytype = 0, $order = '', $m
                     for($i=0; $i<$nanswers; $i++) {
                         $A = DB_fetchArray($answers );
                         if (($j < count($aid)) && ($aid[$j] == $A['aid'])) {
-                            $poll->set_var('selected', ' checked');
+                            $poll->set_var('selected', $checked);
                         }
                         $poll->set_var('answer_id', $A['aid']);
                         $poll->set_var('answer_text', $A['answer']);
@@ -721,17 +738,20 @@ function POLLS_pollsave($pid, $aid)
 
     DB_change($_TABLES['polltopics'],'voters',"voters + 1",'pid',$pid,'',true);
     // This call to DB-change will properly supress the insertion of quotes around $value in the sql
-    $answers = count($aid);
-    for ($i = 0; $i < $answers; $i++) {
-        DB_change(
+	
+	foreach( $aid as $qid => $avalueary ){
+		foreach( $avalueary as $j => $avalue ){
+			$avalue=COM_applyFilter($avalue, true);
+            DB_change(
             $_TABLES['pollanswers'],
             'votes',
             "votes + 1",
             array('pid', 'qid', 'aid'),
-            array($pid,  $i,    COM_applyFilter($aid[$i], true)),
+            array($pid,  $qid,    $avalue),
             '',
             true
-        );
+            );
+        }
     }
 
     // This always does an insert so no need to provide key_field and key_value args
@@ -812,8 +832,7 @@ function POLLS_pollResults($pid, $scale=400, $order='', $mode='', $page = 1, $di
 
         if ($nquestions > 0){
             $poll = COM_newTemplate($_CONF['path'] . 'plugins/polls/templates/' );
-            $poll->set_file(array(
-				'result' => 'pollresult.thtml',
+            $poll->set_file(array('result' => 'pollresult.thtml',
                 'question' => 'pollquestion.thtml',
                 'comments' => 'pollcomments.thtml',
                 'votes_bar' => 'pollvotes_bar.thtml',
@@ -843,7 +862,6 @@ function POLLS_pollResults($pid, $scale=400, $order='', $mode='', $page = 1, $di
             }
 
             for ($j = 0; $j < $nquestions; $j++) {
-
 
                 $poll->set_var('question_id', $j);
 

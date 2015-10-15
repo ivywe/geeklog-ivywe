@@ -1,28 +1,7 @@
 {# begin {templatelocation} #}
 
-<span class="floatright"></span><div class="poll-topic">{poll_topic}</div>
+<span class="floatright">{edit_icon}</span><div class="poll-topic">{poll_topic}</div>
 {poll_questions}
-{edit_icon}
-
-<script type="text/javascript">
-      google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
-
-        var data = google.visualization.arrayToDataTable([
-
-        var options = {
-          title: '{lang_question}{lang_question_number}{poll_question}'
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('{poll_id}_{question_id}'));
-
-        chart.draw(data, options);
-      }
-    </script>
-<div id="{poll_id}_{question_id}" style="overflow:hidden; width: 96%; min-height: 450px"></div>
-
-
 <div class="pluginTinyText">
     {notification} <a href="{site_url}/polls/index.php">{lang_polltopics}</a> | {num_votes} {lang_voters} {poll_comments}
 </div>
