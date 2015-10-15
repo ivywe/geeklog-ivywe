@@ -46,7 +46,12 @@
 //
 // ALTER TABLE `gl_pollquestions` ADD `allow_multipleanswers` TINYINT( 1 ) NULL DEFAULT NULL 
 //
- 
+//----------------
+//hack2 2015/10/14
+//description
+//
+// ALTER TABLE `gl_polltopics` ADD `description` MEDIUMTEXT NOT NULL 
+// ALTER TABLE `gl_pollquestions` ADD `description` MEDIUMTEXT NOT NULL  
 
 
 if (strpos(strtolower($_SERVER['PHP_SELF']), 'functions.inc') !== false) {
@@ -481,7 +486,7 @@ function POLLS_pollVote($pid, $showall = true, $displaytype = 0, $order = '', $m
     $retval = '';
     
     $result = DB_query("SELECT topic,voters,commentcode,is_open,hideresults,owner_id "
-        . ",group_id,perm_owner,perm_group,perm_anon,perm_members "
+        . ",group_id,perm_owner,perm_group,perm_anon,perm_members ,description "
         . "FROM {$_TABLES['polltopics']} WHERE pid='$pid'" . COM_getPermSql('AND'));
     $ntopics = DB_numRows($result);
 
@@ -493,7 +498,7 @@ function POLLS_pollVote($pid, $showall = true, $displaytype = 0, $order = '', $m
     
     if ((!isset($_COOKIE[$pid]) && !POLLS_ipAlreadyVoted($pid)) or ($P['is_open'] == 1)) {
         if ($ntopics == 1) {
-            $questions_sql = "SELECT question,qid ,allow_multipleanswers "
+            $questions_sql = "SELECT question,qid ,allow_multipleanswers ,description "
                 . "FROM {$_TABLES['pollquestions']} "
                 . "WHERE pid='$pid' ORDER BY qid";
 
@@ -509,6 +514,7 @@ function POLLS_pollVote($pid, $showall = true, $displaytype = 0, $order = '', $m
                                       'comments'   => 'pollcomments.thtml'));
                 $poll->set_var('poll_id', $pid );
                 $poll->set_var('poll_topic', $P['topic'] );
+                $poll->set_var('poll_topic_description', $P['description'] );
                 $poll->set_var('num_votes', COM_numberFormat($P['voters']));
                 $poll->set_var('poll_vote_url', $_CONF['site_url']
                                                 . '/polls/index.php');
@@ -557,6 +563,7 @@ function POLLS_pollVote($pid, $showall = true, $displaytype = 0, $order = '', $m
                 for ($j = 0; $j < $nquestions; $j++) {
                     $Q = DB_fetchArray($questions);
                     $poll->set_var('poll_question', $Q['question']);
+                    $poll->set_var('poll_description', $Q['description']);
                     $poll->set_var('question_id', $j);
 
                     if ($Q['allow_multipleanswers'] == 1) {
