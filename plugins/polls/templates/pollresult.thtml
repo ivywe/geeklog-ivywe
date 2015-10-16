@@ -2,7 +2,7 @@
 
 <ul class="uk-breadcrumb">
 <li><a href="{site_url}/">HOME</a></li>
-<li><a href="{site_url}/polls/">アンケートリスト</a></li>
+<li><a href="{site_url}/polls/"><?php global $LANG_POLLS; echo $LANG_POLLS['polls']; ?></a></li>
 <li class="uk-text-truncate">{poll_topic}</li>
 </ul>
 
@@ -12,10 +12,9 @@
 
 {poll_questions}
 
-<ul class="uk-subnav uk-subnav-line uk-flex-center">
-    <li>{notification} <a href="{site_url}/polls/index.php">{lang_polltopics}</a></li>
-	<li>{num_votes} {lang_voters} {poll_comments}</li>
-</ul>
+<div class="pluginTinyText">
+    {notification} <a href="{site_url}/polls/index.php">{lang_polltopics}</a> | {num_votes} {lang_voters} {poll_comments}
+</div>
 
 <script type="text/javascript">
       google.load("visualization", "1", {packages:["corechart"]});

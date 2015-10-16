@@ -41,7 +41,7 @@
 
 {plg_headercode}
 
-<!-- AJAX API のロード --> 
+<!-- AJAX API --> 
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
 <!-- media-queries.js -->

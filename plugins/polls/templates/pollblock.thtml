@@ -2,7 +2,7 @@
 
 <ul class="uk-breadcrumb">
 <li><a href="{site_url}/">HOME</a></li>
-<li><a href="{site_url}/polls/">アンケートリスト</a></li>
+<li><a href="{site_url}/polls/"><?php global $LANG_POLLS; echo $LANG_POLLS['polls']; ?></a></li>
 <li class="uk-text-truncate">{poll_topic}</li>
 </ul>
 
