@@ -13,16 +13,18 @@
     <div class="uk-form-row">
     	<input type="hidden" name="pid" value="{poll_id}"{xhtml}>
         {poll_questions}
-        <span class="pluginTinyText">{poll_notification}</span><br{xhtml}>
-        <input type="submit" value="{lang_vote}"{xhtml}>
-        {poll_results}
+		<div class="uk-text-warning">{poll_notification}</div>
+        <div class="uk-width-1-3 uk-container-center uk-margin-large-top">
+        	<input type="submit" value="{lang_vote}" class="uk-button-large uk-width-1-1"{xhtml}>
+		</div>
     </div>
 </form>
 </div>
 
-<ul class="uk-subnav uk-subnav-line uk-flex-center">
-    <li><a href="{site_url}/polls/index.php">{lang_polltopics}</a></li>
-	<li>{num_votes} {lang_voters} {poll_comments}</li>
+<ul class="uk-subnav uk-flex-center uk-margin-small-top">
+	<li><i class="uk-icon-pie-chart"></i> {poll_results}</li>
+    <li><i class="uk-icon-list"></i> <a href="{site_url}/polls/index.php">{lang_polltopics}</a></li>
+	<li><i class="uk-icon-thumbs-o-up"></i> {num_votes} {lang_voters} {poll_comments}</li>
 </ul>
 
 {# end {templatelocation} #}

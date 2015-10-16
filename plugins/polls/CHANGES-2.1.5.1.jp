@@ -1,0 +1,9 @@
+2015-10-16  TSUCHITANI Kazuko  <Tsuchi>
+
+	* MySQL 限定です。
+	
+	* 言語ファイルは、英語日本語のみ対応。
+
+	* 複数回答を許可する機能を追加しました。
+
+	* TOPIC およびQUESTIONS にそれぞれ　項目「description」を追加しました。

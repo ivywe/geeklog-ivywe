@@ -35,7 +35,7 @@
         <input type="checkbox" name="hideresults" id="polls-polleditor-hideresults" {poll_hideresults}{xhtml}><span class="uk-form-help-inline">{poll_hideresults_explain}</span></label>
       </div>
       <div class="uk-form-row uk-margin-bottom">
-		<label for="polls-polleditor-topic_description">説明(Description)</label>
+		<label for="polls-polleditor-topic_description">{lang_topic_description}</label>
         <div class="uk-form-controls">
 			<textarea name="topic_description" rows="2" class="uk-width-1-1"
         onKeyup="var n=1677215-this.value.length;var s=document.getElementById('topic_description_cnt');s.innerHTML='('+n+')';">{topic_description}</textarea>

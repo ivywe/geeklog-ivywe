@@ -452,14 +452,13 @@ function editpoll ($pid = '')
     $js = 'document.getElementById("advanced_editor").style.display="";';                 
     $_SCRIPTS->setJavaScript($js, true);    
     $_SCRIPTS->setJavaScriptFile('polls_editor', '/polls/polls_editor.js');
-
     $poll_templates->set_var('lang_pollid', $LANG25[6]);
     $poll_templates->set_var('poll_id', $T['pid']);
     $poll_templates->set_var('lang_donotusespaces', $LANG25[7]);
     $poll_templates->set_var('lang_topic', $LANG25[9]);
     $poll_templates->set_var('poll_topic', htmlspecialchars ($T['topic']));
     $poll_templates->set_var('lang_mode', $LANG25[1]);
-    $poll_templates->set_var('lang_description',$LANG_ADMIN['description']);
+    $poll_templates->set_var('lang_topic_description',$LANG25[1003]);
     $poll_templates->set_var('topic_description', $T['description']);
     
     $poll_templates->set_var('lang_metadescription',
@@ -542,11 +541,13 @@ function editpoll ($pid = '')
         $poll_templates->set_var('lang_question', $LANG25[31] . " $display_id");
 		$poll_templates->set_var('lang_saveaddnew', $LANG25[32]);
         $poll_templates->set_var('q_idx', $j);
+		$poll_templates->set_var('lang_allow_multipleanswers', $LANG25[1001]);
         if ($Q['allow_multipleanswers'] == 1) {
             $poll_templates->set_var('poll_allow_multipleanswers', 'checked="checked"');
         }else{
             $poll_templates->set_var('poll_allow_multipleanswers', '');
         }
+		$poll_templates->set_var('lang_questions_description', $LANG25[1002]);
         $poll_templates->set_var('description', $Q['description']);
 
         // answers

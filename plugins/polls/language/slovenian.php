@@ -113,7 +113,10 @@ $LANG25 = array(
     37 => 'Skrij rezultate, ko je anketa odprta',
     38 => 'Ko je anketa odprta, lahko vidita rezultate le lastnik in tisti z dostopom do korena (root)',
     39 => 'Tema bo prikazana le, èe ima anketa veè kot eno vprašanje.',
-    40 => 'Poglej vse odgovore'
+    40 => 'Poglej vse odgovore',
+    1001 => 'Allow multipleanswers',
+    1002 => 'Description',
+    1003 => 'Description'
 );
 
 $PLG_polls_MESSAGE15 = 'Tvoj komentar je odposlan v pregled in bo objavljen, ko ga odobri urednik.';

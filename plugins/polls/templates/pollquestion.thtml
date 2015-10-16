@@ -11,9 +11,6 @@
 
         {poll_votes}
 
-
-
-
         ]);
 
         var options = {
@@ -25,9 +22,8 @@
         chart.draw(data, options);
       }
     </script>
-<div id="{poll_id}_{question_id}" style="overflow:hidden; width: 96%; min-height: 450px"></div>
 
-
+	<div id="{poll_id}_{question_id}" class="uk-width-1-1" style="overflow:hidden; min-height:450px"></div>
 
 </div>
 

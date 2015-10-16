@@ -1,7 +1,8 @@
 {# begin {templatelocation} #}
 
 <div class="uk-form-row">
-    <span class="uk-form-label">{lang_question}{lang_question_number}{poll_question}</span>
+    <span class="uk-form-label uk-flex"><span class="uk-text-nowrap">{lang_question}{lang_question_number}</span><span class="uk-text-break">{poll_question}</span></span>
+	<div class="uk-margin">{poll_description}</div>
     <div class="uk-form-controls">
     {poll_answers}
     </div>

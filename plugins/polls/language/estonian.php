@@ -113,7 +113,10 @@ $LANG25 = array(
     37 => 'Peida tulemused kuni küsitlus on avatud',
     38 => 'Kuni küsitlus on avatud, näevad  &tulemusi ainult omanik amp; root ',
     39 => 'Rubriiki näidatakse vaid siis, kui selles on üle ühe küsimuse.',
-    40 => 'Vaata kõiki sellele küsitlusele antud vastuseid'
+    40 => 'Vaata kõiki sellele küsitlusele antud vastuseid',
+    1001 => 'Allow multipleanswers',
+    1002 => 'Description',
+    1003 => 'Description'
 );
 
 $PLG_polls_MESSAGE15 = 'Sinu kommentaar on suunatud läbivaatamiseks. See ilmub lehele pärast moderaatorite poolset kinnitamist.';

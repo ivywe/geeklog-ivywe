@@ -50,8 +50,8 @@
 //hack2 2015/10/14
 //description
 //
-// ALTER TABLE `gl_polltopics` ADD `description` MEDIUMTEXT NOT NULL 
-// ALTER TABLE `gl_pollquestions` ADD `description` MEDIUMTEXT NOT NULL  
+// ALTER TABLE `gl_polltopics` ADD `description` MEDIUMTEXT NULL 
+// ALTER TABLE `gl_pollquestions` ADD `description` MEDIUMTEXT NULL  
 
 
 if (strpos(strtolower($_SERVER['PHP_SELF']), 'functions.inc') !== false) {
@@ -796,7 +796,7 @@ function POLLS_pollResults($pid, $scale=400, $order='', $mode='', $page = 1, $di
     $retval = '';
     
     $topic_sql = "SELECT topic,voters,is_open,hideresults,commentcode,owner_id,group_id,"
-        . "perm_owner,perm_group,perm_members,perm_anon "
+        . "perm_owner,perm_group,perm_members,perm_anon,description "
         . "FROM {$_TABLES['polltopics']} WHERE pid='$pid'";
     $result = DB_query($topic_sql);
     $P = DB_fetchArray($result);
@@ -826,7 +826,7 @@ function POLLS_pollResults($pid, $scale=400, $order='', $mode='', $page = 1, $di
     
     $ntopic = DB_numRows($result);
     if ($ntopic == 1) {
-        $questions_sql = "SELECT qid,pid,question "
+        $questions_sql = "SELECT qid,pid,question,description "
             . "FROM {$_TABLES['pollquestions']} "
             . "WHERE pid='$pid' "
             . "ORDER BY qid";
@@ -845,6 +845,7 @@ function POLLS_pollResults($pid, $scale=400, $order='', $mode='', $page = 1, $di
                 'votes_bar' => 'pollvotes_bar.thtml',
                 'votes_num' => 'pollvotes_num.thtml' ));
             $poll->set_var('poll_topic', $P['topic']);
+            $poll->set_var('poll_topic_description', $P['description']);
             $poll->set_var('poll_id', $pid);
             $poll->set_var('num_votes', COM_numberFormat($P['voters']));
             $poll->set_var('lang_voters', $LANG_POLLS['voters']);
@@ -878,6 +879,7 @@ function POLLS_pollResults($pid, $scale=400, $order='', $mode='', $page = 1, $di
                     $counter = ($j + 1) . "/$nquestions: " ;
                 }
                 $poll->set_var('poll_question', $counter . $Q['question']);
+                $poll->set_var('poll_description', $counter . $Q['description']);
 
                 $answer_sql = "SELECT votes,answer,remark "
                     . "FROM {$_TABLES['pollanswers']} "
@@ -1311,6 +1313,17 @@ function plugin_upgrade_polls()
             }
 
             $current_version = '2.1.5';
+            break;             
+            
+        case '2.1.5':
+            if (isset($_UPDATES[$current_version])) {
+                $_SQL = $_UPDATES[$current_version];
+                foreach ($_SQL as $sql) {
+                    DB_query($sql);
+                }
+            }
+
+            $current_version = '2.1.5.1';
             break;             
 
         default:
