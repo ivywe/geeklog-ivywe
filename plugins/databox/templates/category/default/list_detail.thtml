@@ -1,5 +1,7 @@
 <!-- plugins/databox/templates/category/default/list_detail.thtml 20140328{ -->
 
+<?php if(SEC_inGroup('DataBox Admin')){ ?>
+
 <div>
 
   <p id="breadcrumbs"><a href="{site_url}/">{home}</a>{category_top}</p>
@@ -32,5 +34,9 @@
   </ul>
 
 </div>
+
+<?php } else { ?>
+このページは公開していません。
+<?php } ?>
 
 <!-- } plugins/databox/templates/category/default/list_detail.thtml -->

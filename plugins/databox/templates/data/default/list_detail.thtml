@@ -1,5 +1,7 @@
 <!-- plugins/databox/templates/data/default/list_detail.thtml 20150224 { -->
 
+<?php if(SEC_inGroup('DataBox Admin')){ ?>
+
 <div>
   <h2 class="uk-h2">{title}</h2>
   <p>{lang_id}: {id}</p>
@@ -839,5 +841,10 @@ fullname:<span  class="uk-text-success"> &#123;last_modify_fullname&#125;</span>
 
 
 </div>
+
+<?php } else { ?>
+このページは公開していません。
+<?php } ?>
+
 
 <!-- } plugins/databox/templates/data/default/list_detail.thtml -->
