@@ -8,7 +8,7 @@
 
 <span class="uk-float-right">{edit_icon}</span>
 <h2 class="uk-h2">{poll_topic}</h2>
-<div>{poll_topic_description}</div>
+<div class="uk-margin">{poll_topic_description}</div>
 
 {poll_questions}
 

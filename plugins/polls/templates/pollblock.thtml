@@ -9,7 +9,7 @@
 <span class="uk-float-right">{edit_icon}</span><h2 class="uk-h2">{poll_topic}</h2>
 
 <div class="uk-overflow-container">
-<form class="uk-form uk-form-horizontal" action="{poll_vote_url}" name="Vote" method="post">
+<form class="uk-form" action="{poll_vote_url}" name="Vote" method="post">
     <div class="uk-form-row">
     	<input type="hidden" name="pid" value="{poll_id}"{xhtml}>
         {poll_questions}
