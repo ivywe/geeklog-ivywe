@@ -6,9 +6,7 @@
   <li>{user_nullname}<a href="{login_logout_url}" rel="nofollow">{lang_login_logout}</a></li>
 </ul>
 
-<form action="{parent_url}" method="post" id="commentbar-selector" class="basic uk-form">
-
-  <div>
+<form action="{parent_url}" method="post" id="commentbar-selector" class="uk-form">
     <ul class="uk-subnav uk-flex-center">
       <li>{order_selector}</li>
       <li>{mode_selector}</li>
@@ -19,7 +17,6 @@
         <input type="submit" value="{lang_refresh}" class="submit"{xhtml}>
       </li>
     </ul>
-  </div>  
 </form>
 
 <form action="{editor_url}" method="post" id="commentbar-comment" class="uk-form">

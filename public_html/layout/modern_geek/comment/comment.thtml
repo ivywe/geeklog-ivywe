@@ -6,7 +6,7 @@
     <li class="author">{lang_authoredby}{author_link}&nbsp;{lang_on}&nbsp;{date}</li>
   </ul>
 
-  <div class="comment">{comments}</div>
+  <div class="uk-margin">{comments}</div>
 
   <ul class="uk-subnav uk-flex-center" {hide_if_preview}>
     <li>{reply_option}</li>
