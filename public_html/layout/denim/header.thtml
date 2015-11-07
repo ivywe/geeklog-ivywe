@@ -1,0 +1,57 @@
+{doctype}
+<html>
+
+<head>
+<meta charset="{charset}"{xhtml}>
+<title>{page_title_and_site_name}</title>
+
+<!-- Mobile Specific Metas -->
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"{xhtml}>
+
+<!-- Favicons -->
+<link rel="shortcut icon" href="{layout_url}/images/favicon.ico"{xhtml}>
+
+<!-- <meta http-equiv="Pragma" content="no-cache"{xhtml}> -->
+<link rel="start contents" href="{site_url}"{xhtml}>
+{feed_url}
+{rel_links}
+{plg_headercode}
+
+<!--[if lt IE 8]><link rel="stylesheet" type="text/css" href="{layout_url}/css_{direction}/ie8.css"{xhtml}><![endif]-->
+<!--[if lt IE 9]><script type="text/javascript" src="{layout_url}/javascript/respond.min.js"></script><![endif]-->
+<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+<body dir="{direction}" class="{layout_columns}">
+
+  <!-- #container { -->
+  <div id="container">
+
+    <header id="header" role="banner">
+      <div id="header-content" class="type1">
+        <h1 class="site_name"><a href="{site_url}" title="{site_name}">{site_name}</a></h1>
+        <p class="site_slogan">{site_slogan}</p>
+      </div>
+    </header>
+
+    <hr class="separator"{xhtml}>
+
+    <nav id="navigation" role="navigation">
+      <div class="navigation_content">
+        <ul id="navigation_ul">
+          {menu_elements}
+        </ul>
+      </div>
+    </nav>
+
+    <hr class="separator"{xhtml}>
+
+    <!-- #wrapper { -->
+    <div id="wrapper">
+
+      <!-- Center Block Container -->
+      <div id="centerblocks">
+        <div id="main-content" role="main">
+          <p class="welcome_msg">{welcome_msg}&nbsp;{datetime}</p>
+          {breadcrumb_trail}
+
