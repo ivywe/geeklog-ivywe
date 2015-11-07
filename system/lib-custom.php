@@ -58,7 +58,7 @@ $_CST_VERBOSE = false;
 * this is a sample function used by a PHP block.  This will show the rights that
 * a user has in the "What you have access to" block.
 *
-*/
+
 function phpblock_showrights()
 {
     global $_RIGHTS, $_CST_VERBOSE;
@@ -137,7 +137,7 @@ function CUSTOM_loginErrorHandler($msg='') {
 * @return   void
 * @see      PLG_templateSetVars
 *
-*/
+
 function CUSTOM_templateSetVars($templatename, &$template)
 {
     // define a {hello_world} variable available in header.thtml and
@@ -572,4 +572,42 @@ function CUSTOM_handleError($errno, $errstr, $errfile, $errline, $errcontext)
     exit;
 }
 */
+
+/**
+  * 日本語拡張版提供　PHPブロック関数およびカスタム関数
+  */
+
+/* テーマ変数をセットする */
+require_once( 'custom/custom_templatesetvars.php' );
+
+/* 静的ページコンテンツの内容を返す */
+require_once( 'custom/custom_getstaticpage.php' );
+
+/* テーマ変更時にデフォルトテーマをセットしているユーザのテーマも強制的に変更する */
+require_once( 'custom/custom_forcethemechange.php' );
+
+/* 新着記事リストを表示する */
+require_once( 'custom/phpblock_lastarticles.php' );
+
+/* ログインユーザの権限を表示する */
+require_once( 'custom/phpblock_showrights.php' );
+
+/* ブロック等にメニューとして、話題と記事すべてを展開して表示する */
+require_once( 'custom/phpblock_sitemapmenu.php' );
+
+/* サイトのテーマを変更する */
+require_once( 'custom/phpblock_themetester.php' );
+
+/* アクセス数を表示する */
+require_once( 'custom/phpblock_stats.php' );
+
+/* ユーザーエージェント判定のテンプレート変数を追加する */
+require_once( 'custom/useragent.class.php' );
+
+/* 404 */
+require_once( 'custom/custom_handle404.php' );
+
+/* Forum センターブロック */
+require_once( 'custom/custom_centerblock_forum.php' );
+
 ?>
