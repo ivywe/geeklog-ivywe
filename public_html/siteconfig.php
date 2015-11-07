@@ -22,6 +22,10 @@ $_CONF['site_enabled'] = true;
 // on and get detailed error messages. You can set this to 'force' (which the
 // Config UI won't allow you to do) to override hiding of password and cookie
 // items in the debug trace.
+// もしサイトがエラーになったら、あるいはログインできない、あるいはまたconfig UIが
+// 取得できなければ、このコメントされたデバッグオプション$_CONF['rootdebug'] = true;
+// を有効にしてください。
+
 // $_CONF['rootdebug'] = true;
 
 $_CONF['path'] = '/path/to/Geeklog/';
@@ -38,7 +42,7 @@ if (!defined('LB')) {
   define('LB',"\n");
 }
 if (!defined('VERSION')) {
-  define('VERSION', '2.1.0');
+  define('VERSION', '2.1.1');
 }
 
 ?>
