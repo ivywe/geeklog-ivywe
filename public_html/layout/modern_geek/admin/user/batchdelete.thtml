@@ -9,8 +9,6 @@
     <ul class="uk-subnav uk-flex-center uk-margin-top">
       <li>
         <input type="hidden" name="mode" value="batchdelete"{xhtml}>
-        <input type="hidden" name="usr_type" value="{usr_type}"{xhtml}>
-        <input type="hidden" name="usr_time[{usr_type}]" value="{usr_time}"{xhtml}>
       </li>
     </ul>
     <dl class="uk-description-list-horizontal">

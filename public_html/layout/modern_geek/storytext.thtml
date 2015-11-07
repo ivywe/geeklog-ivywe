@@ -1,39 +1,57 @@
 {# begin {templatelocation} #}
-<article class="storytext uk-article">
 
-  <ul class="uk-subnav uk-flex-right uk-margin-right">
-    <li><g:plusone href="{site_url}/article.php/{story_id}"></g:plusone></li>
-    <li><a href="http://twitter.com/share" class="twitter-share-button" data-url="{site_url}/article.php/{story_id}" data-text="{story_title}" data-count="horizontal" data-lang="ja">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></li>
-    <li><iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2F{!!autotag domain: !!}%2Farticle.php%2F{story_id}&amp;width=150&amp;height=20&amp;colorscheme=light&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;send=true&amp;appId={!!autotag conf:facebook_consumer_key !!}" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:150px; height:20px;" allowTransparency="true"></iframe></li>
+<div itemscope itemtype="http://schema.org/Article" class="storytext">
+  <h2 itemprop="name" class="story_title">{start_storylink_anchortag}{story_title}{end_storylink_anchortag}</h2>
+
+  <ul class="icon">
+    <li>{email_icon}</li>
+    <li>{print_icon}</li>
+    <li>{edit_icon}</li>
   </ul>
 
-  <h2 class="uk-article-title uk-margin-remove">{start_storylink_anchortag}{story_title}{end_storylink_anchortag}</h2>
+  <div style="clear:both"></div>
 
-  <span class="uk-float-right">{story_anchortag_and_image}</span>
+  <span class="story_image">{story_anchortag_and_image}</span>
 
-  <div class="uk-flex uk-text-small uk-margin-bottom">
-    <time datetime="{story_datetime}">{story_date}</time>
-    {lang_contributed_by}{start_contributedby_anchortag}{contributedby_author}{end_contributedby_anchortag}
-    {lang_views}{story_hits}
-    {email_icon} {print_icon} {edit_icon}
-  </div>
+  <ul class="status">
+    <li itemprop="datePublished">{story_date}</li>
+    <li>
+      <dl>
+        <dt>{lang_contributed_by}</dt>
+        <dd>{start_contributedby_anchortag}<span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{contributedby_author}</span></span>{end_contributedby_anchortag}</dd>
+      </dl>
+    </li>
+    <li>
+     <dl>
+        <dt>{lang_views}</dt>
+        <dd>{story_hits}</dd>
+      </dl>
+    </li>
+  </ul>
 
-  <div class="uk-margin-large-bottom">
+  <div style="clear:both"></div>
+
+  <div itemprop="articleBody" class="story_introtext">
     {story_text_no_br}
   </div>
-  
+
   {related_topics}
 
-  <div class="uk-flex">
-    {page_selector}
-    {readmore_link}
-    {post_comment_link}
-  </div>
+{!if navi_list}
+  <ul class="navi">
+    {!if page_selector}<li>{page_selector}</li>{!endif}
+    {!if readmore_link}<li>{readmore_link}</li>{!endif}
+    {!if post_comment_link}<li>{post_comment_link}</li>{!endif}
+  </ul>
+{!endif}
 
-  <div class="uk-flex">
-    {plugin_itemdisplay}
-    {comments_with_count}
-    {trackbacks_with_count}
-  </div>
-</article>
+{!if feedback_list}
+  <ul class="feedback">
+    {!if plugin_itemdisplay}<li>{plugin_itemdisplay}</li>{!endif}
+    {!if comments_with_count}<li>{comments_with_count}</li>{!endif}
+    {!if trackbacks_with_count}<li>{trackbacks_with_count}</li>{!endif}
+  </ul>
+{!endif}
+</div>
+
 {# end {templatelocation} #}
