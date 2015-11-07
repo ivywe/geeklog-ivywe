@@ -10,7 +10,7 @@
 // | API method and 2) implements all the common code needed by the Calendarjp |
 // | plugin's PHP files.                                                       |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2008-2014 by dengen - taharaxp AT gmail DOT com             |
+// | Copyright (C) 2008-2012 by dengen - taharaxp AT gmail DOT com             |
 // |                                                                           |
 // | Calendarjp plugin is based on prior work by:                              |
 // | Authors: Tony Bibbs       - tony AT tonybibbs DOT com                     |
@@ -469,8 +469,11 @@ function plugin_savesubmission_calendarjp($A)
 
     // check for missing textfields
     if (empty ($A['title']) || empty ($A['start_month']) || empty ($A['start_day']) || empty ($A['start_year'])) {
-        $retval .= COM_showMessageText($LANG12[23], $LANG12[22])
-                . plugin_submit_calendarjp($A['calendar_type']);
+        $retval .= COM_startBlock ($LANG12[22], '',
+                           COM_getBlockTemplate ('_msg_block', 'header'))
+            . $LANG12[23]
+            . COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'))
+            . plugin_submit_calendarjp ($A['calendar_type']);
         $retval = COM_createHTMLDocument($retval, array('pagetitle' => $LANG_CALJP_1[27]));
 
         return $retval;
@@ -712,7 +715,7 @@ function plugin_getheadercode_calendarjp()
 */
 function plugin_submit_calendarjp($mode = 'master')
 {
-    global $_CONF, $_CAJP_CONF, $LANG_CALJP_1, $LANG12, $MESSAGE, $_SCRIPTS;
+    global $_CONF, $_CAJP_CONF, $LANG_CALJP_1, $LANG12, $_SCRIPTS;
 
     if (isset($_POST['calendar_type'])) {
         $mode = $_POST['calendar_type'];
@@ -764,24 +767,19 @@ function plugin_submit_calendarjp($mode = 'master')
     }
     // otherwise non-admin or admin-personal. do personal form or public submission.
 
-    // Loads jQuery UI datepicker and timepicker-addon
-    $_SCRIPTS->setJavaScriptLibrary('jquery.ui.slider');
+    // Loads jQuery UI datepicker
     $_SCRIPTS->setJavaScriptLibrary('jquery.ui.datepicker');
     $_SCRIPTS->setJavaScriptLibrary('jquery-ui-i18n');
-    $_SCRIPTS->setJavaScriptLibrary('jquery-ui-timepicker-addon');
-    $_SCRIPTS->setJavaScriptLibrary('jquery-ui-timepicker-addon-i18n');
-    $_SCRIPTS->setJavaScriptFile('datetimepicker', '/javascript/datetimepicker.js');
+    $_SCRIPTS->setJavaScriptFile('datepicker', '/javascript/datepicker.js');
 
     $langCode = COM_getLangIso639Code();
-    $toolTip  = $MESSAGE[118];
+    $toolTip  = 'Click and select a date';	// Should be translated
     $imgUrl   = $_CONF['site_url'] . '/images/calendar.png';
 
     $_SCRIPTS->setJavaScript(
         "jQuery(function () {"
-        . "  geeklog.hour_mode = {$_CONF['hour_mode']};"
-        . "  geeklog.datetimepicker.options.stepMinute = 15;"
-        . "  geeklog.datetimepicker.set('start', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
-        . "  geeklog.datetimepicker.set('end', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
+        . "  geeklog.datepicker.set('start', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
+        . "  geeklog.datepicker.set('end', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
         . "});", TRUE, TRUE
     );
 
@@ -1262,21 +1260,15 @@ function plugin_autotags_calendarjp ($op, $content = '', $autotag = '')
     } else if ($op == 'parse') {
         $eid = COM_applyFilter($autotag['parm1']);
         if (! empty($eid)) {
-            $result = DB_query("SELECT COUNT(*) AS count "
-                . "FROM {$_TABLES['eventsjp']} "
-                . "WHERE eid = '$eid'");
-            $A = DB_fetchArray($result);
-            if ($A['count'] > 0) {
-                $url = $_CONF['site_url'] . '/calendarjp/event.php?eid=' . $eid;
-                if (empty ($autotag['parm2'])) {
-                    $linktext = stripslashes (DB_getItem ($_TABLES['eventsjp'],
-                                              'title', "eid = '$eid'"));
-                } else {
-                    $linktext = $autotag['parm2'];
-                }
-                $link = COM_createLink($linktext, $url);
-                $content = str_replace ($autotag['tagstr'], $link, $content);
+            $url = $_CONF['site_url'] . '/calendarjp/event.php?eid=' . $eid;
+            if (empty ($autotag['parm2'])) {
+                $linktext = stripslashes (DB_getItem ($_TABLES['eventsjp'],
+                                          'title', "eid = '$eid'"));
+            } else {
+                $linktext = $autotag['parm2'];
             }
+            $link = COM_createLink($linktext, $url);
+            $content = str_replace ($autotag['tagstr'], $link, $content);
         }
 
         return $content;
@@ -1706,11 +1698,6 @@ function plugin_upgrade_calendarjp()
             
             $current_version = '1.1.6';
             break;
-
-        case '1.1.6':
-
-            $current_version = '1.1.7';
-            break;            
 
         default:
             $done = true;

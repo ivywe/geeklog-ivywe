@@ -8,7 +8,7 @@
 // |                                                                           |
 // | Shows details of an event or events                                       |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2008-2014 by dengen - taharaxp AT gmail DOT com             |
+// | Copyright (C) 2008-2012 by dengen - taharaxp AT gmail DOT com             |
 // |                                                                           |
 // | Calendarjp plugin is based on prior work by:                              |
 // | Authors: Tony Bibbs        - tony AT tonybibbs DOT com                    |
@@ -36,7 +36,7 @@
 require_once '../lib-common.php';
 
 if (!in_array('calendarjp', $_PLUGINS)) {
-    COM_handle404();
+    echo COM_refresh($_CONF['site_url'] . '/index.php');
     exit;
 }
 
@@ -541,7 +541,7 @@ default:
         setCalendarLanguage ($cal);
 
         require_once $_CONF['path'] . 'plugins/calendarjp/include/gltext.class.php';
-        $gltext = new GLPText();
+        $gltext = new GLTextc();
 
         $currentmonth = '';
         for ($i = 0; $i < $nrows; $i++) {

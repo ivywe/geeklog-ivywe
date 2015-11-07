@@ -35,7 +35,7 @@ if (strpos(strtolower($_SERVER['PHP_SELF']), 'gltext.class.php') !== false) {
     die('This file can not be used on its own.');
 }
 
-class GLPText
+class GLTextc
 {
     // Variables:
 
@@ -49,7 +49,7 @@ class GLPText
     /**
      * Constructor
      */
-    function GLPText()
+    function GLText()
     {
         global $_CONF, $_USER;
 

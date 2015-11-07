@@ -8,7 +8,7 @@
 // |                                                                           |
 // | Geeklog Calendarjp Plugin administration page.                            |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2008-2014 by dengen - taharaxp AT gmail DOT com             |
+// | Copyright (C) 2008-2012 by dengen - taharaxp AT gmail DOT com             |
 // |                                                                           |
 // | Calendarjp plugin is based on prior work by:                              |
 // | Authors: Tony Bibbs        - tony AT tonybibbs DOT com                    |
@@ -79,34 +79,29 @@ function CALENDARJP_editEvent ($mode, $A, $msg = '')
            $LANG_CALJP_ADMIN, $LANG10, $LANG12, $LANG24, $LANG_ACCESS, $LANG_ADMIN,
            $MESSAGE, $_SCRIPTS;
 
-    // Loads jQuery UI datepicker and timepicker-addon
-    $_SCRIPTS->setJavaScriptLibrary('jquery.ui.slider');
+    // Loads jQuery UI datepicker
     $_SCRIPTS->setJavaScriptLibrary('jquery.ui.datepicker');
     $_SCRIPTS->setJavaScriptLibrary('jquery-ui-i18n');
-    $_SCRIPTS->setJavaScriptLibrary('jquery-ui-timepicker-addon');
-    $_SCRIPTS->setJavaScriptLibrary('jquery-ui-timepicker-addon-i18n');
-    $_SCRIPTS->setJavaScriptFile('datetimepicker', '/javascript/datetimepicker.js');
-
-    // Add JavaScript
-    $_SCRIPTS->setJavaScriptFile('postmode_control', '/javascript/postmode_control.js');
+    $_SCRIPTS->setJavaScriptFile('datepicker', '/javascript/datepicker.js');
 
     $langCode = COM_getLangIso639Code();
-    $toolTip  = $MESSAGE[118];
+    $toolTip  = 'Click and select a date';	// Should be translated
     $imgUrl   = $_CONF['site_url'] . '/images/calendar.png';
 
     $_SCRIPTS->setJavaScript(
         "jQuery(function () {"
-        . "  geeklog.hour_mode = {$_CONF['hour_mode']};"
-        . "  geeklog.datetimepicker.options.stepMinute = 15;"
-        . "  geeklog.datetimepicker.set('start', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
-        . "  geeklog.datetimepicker.set('end', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
+        . "  geeklog.datepicker.set('start', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
+        . "  geeklog.datepicker.set('end', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
         . "});", TRUE, TRUE
     );
 
     $retval = '';
 
     if (!empty ($msg)) {
-        $retval .= COM_showMessageText($msg, $LANG_CALJP_ADMIN[2]);
+        $retval .= COM_startBlock ($LANG_CALJP_ADMIN[2], '',
+                        COM_getBlockTemplate ('_msg_block', 'header'));
+        $retval .= $msg;
+        $retval .= COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
     }
 
     $ja = ($_CONF['language'] == 'japanese_utf-8');
@@ -118,14 +113,8 @@ function CALENDARJP_editEvent ($mode, $A, $msg = '')
     } else {
         $event_templates->set_file('editor','eventeditor' . ($ja ? '_ja' : '') . '.thtml');
     }
-
-    $allowed = '';
-    foreach (array('plaintext', 'html') as $pm) {
-        $allowed .= COM_allowedHTML('calendarjp.edit', false, 1, $pm);
-    }
-    $allowed .= COM_allowedAutotags();
-
-    $event_templates->set_var('lang_allowed_html', $allowed);
+    $event_templates->set_var('lang_allowed_html',
+                              COM_allowedHTML('calendarjp.edit'));
     $event_templates->set_var('lang_postmode', $LANG_CALJP_ADMIN[3]);
     $event_templates->set_var('lang_expandhelp', $LANG24[67]);
     $event_templates->set_var('lang_reducehelp', $LANG24[68]);
@@ -148,8 +137,10 @@ function CALENDARJP_editEvent ($mode, $A, $msg = '')
     }
 
     if ($advanced_editor) {
-        // Setup Advanced Editor
-        COM_setupAdvancedEditor('/calendarjp/adveditor.js', 'calendarjp.edit');
+        // Add JavaScript
+        $_SCRIPTS->setJavaScriptFile('fckeditor','/fckeditor/fckeditor.js');
+        $_SCRIPTS->setJavaScript($js, true);
+        $_SCRIPTS->setJavaScriptFile('eventeditor_fckeditor', '/calendarjp/eventeditor_fckeditor.js');
     }
 
     if ($mode <> 'editsubmission' AND !empty($A['eid'])) {
@@ -157,7 +148,10 @@ function CALENDARJP_editEvent ($mode, $A, $msg = '')
         $access = SEC_hasAccess($A['owner_id'],$A['group_id'],$A['perm_owner'],$A['perm_group'],$A['perm_members'],$A['perm_anon']);
         if ($access == 0 OR $access == 2) {
             // Uh, oh!  User doesn't have access to this object
-            $retval .= COM_showMessageText($LANG_CALJP_ADMIN[17], $LANG_ACCESS['accessdenied']);
+            $retval .= COM_startBlock ($LANG_ACCESS['accessdenied'], '',
+                               COM_getBlockTemplate ('_msg_block', 'header'));
+            $retval .= $LANG_CALJP_ADMIN[17];
+            $retval .= COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
             COM_accessLog("User {$_USER['username']} tried to illegally submit or edit event $eid.");
             return $retval;
         }
@@ -551,7 +545,10 @@ function CALENDARJP_saveEvent ($eid, $title, $event_type, $url, $allday,
         $datestart = $start_year . '-' . $start_month . '-' . $start_day;
         $timestart = $start_hour . ':' . $start_minute . ':00';
     } else {
-        $retval .= COM_showMessageText($LANG_CALJP_ADMIN[23], $LANG_CALJP_ADMIN[2]);
+        $retval .= COM_startBlock ($LANG_CALJP_ADMIN[2], '',
+                            COM_getBlockTemplate ('_msg_block', 'header'));
+        $retval .= $LANG_CALJP_ADMIN[23];
+        $retval .= COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
         $retval = COM_createHTMLDocument($retval, array('pagetitle' => $LANG_CALJP_ADMIN[2]));
 
         return $retval;
@@ -560,20 +557,26 @@ function CALENDARJP_saveEvent ($eid, $title, $event_type, $url, $allday,
         $dateend = $end_year . '-' . $end_month . '-' . $end_day;
         $timeend = $end_hour . ':' . $end_minute . ':00';
     } else {
-        $retval .= COM_showMessageText($LANG_CALJP_ADMIN[24], $LANG_CALJP_ADMIN[2]);
+        $retval .= COM_startBlock ($LANG_CALJP_ADMIN[2], '',
+                            COM_getBlockTemplate ('_msg_block', 'header'));
+        $retval .= $LANG_CALJP_ADMIN[24];
+        $retval .= COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
         $retval = COM_createHTMLDocument($retval, array('pagetitle' => $LANG_CALJP_ADMIN[2]));
 
         return $retval;
     }
     if ($allday == 0) {
-        if ($dateend < $datestart) {
-            $retval .= COM_showMessageText($LANG_CALJP_ADMIN[25], $LANG_CALJP_ADMIN[2]);
+        if (strtotime($dateend) < strtotime($datestart)) {
+            $retval .= COM_startBlock ($LANG_CALJP_ADMIN[2], '',
+                                COM_getBlockTemplate ('_msg_block', 'header'));
+            $retval .= $LANG_CALJP_ADMIN[25];
+            $retval .= COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
             $retval = COM_createHTMLDocument($retval, array('pagetitle' => $LANG_CALJP_ADMIN[2]));
 
             return $retval;
         }
     } else {
-        if ($dateend < $datestart) {
+        if (strtotime($dateend) < strtotime($datestart)) {
             // Force end date to be same as start date
             $dateend = $datestart;
         }
@@ -695,7 +698,10 @@ function CALENDARJP_saveEvent ($eid, $title, $event_type, $url, $allday,
             17
         );
     } else {
-        $retval .= COM_showMessageText($LANG_CALJP_ADMIN[10], $LANG_CALJP_ADMIN[2]);
+        $retval .= COM_startBlock ($LANG_CALJP_ADMIN[2], '',
+                            COM_getBlockTemplate ('_msg_block', 'header'));
+        $retval .= $LANG_CALJP_ADMIN[10];
+        $retval .= COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
         $retval = COM_createHTMLDocument($retval, array('pagetitle' => $LANG_CALJP_ADMIN[2]));
 
         return $retval;
