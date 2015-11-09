@@ -1,16 +1,16 @@
 
 <!-- admin/syndication/selecttype.thtml { -->
 
-<form action="{site_admin_url}/syndication.php" method="post" id="admin-selecttype" class="uk-form">
+<form action="{site_admin_url}/syndication.php" method="post" id="admin-selecttype" class="uk-form uk-form-horizontal">
   <fieldset>
-    <legend>{lang_go}</legend>
+        <legend>{lang_go}</legend>
 
-    <p class="form_message">{lang_explain}</p>
+            <p class="uk-margin-bottom">{lang_explain}</p>
 
-    <div class="submit">
-      {type_selection}
-      <input type="submit" value="{lang_go}" name="mode" class="submit"{xhtml}>
-    </div>
+            <div class="uk-flex uk-flex-left">
+                  <div>{type_selection}</div>
+                  <div><input type="submit" value="{lang_go}" name="mode" class="uk-submit"{xhtml}></div>
+            </div>
   </fieldset>
 </form>
 

@@ -20,14 +20,14 @@
          <input type="hidden" name="{nprefix}uid" value="{uid}"{xhtml}>{username}&nbsp;
          <span{hidewhenediting}>[<a href="{action_url}" rel="nofollow" class="logoutorcreateaccount">{lang_logoutorcreateaccount}</a>]</span>
       </dd>
-      <dt class="title"><label for="commentform-title">{lang_title}</label></dt>
-      <dd class="title"><input type="text" value="{title}" maxlength="96" name="title" id="commentform-title" class="size6"{xhtml}></dd>
+      <dt class="title"><label class="uk-form-label" for="commentform-title">{lang_title}</label></dt>
+      <dd class="title"><input type="text" value="{title}" maxlength="96" name="title" id="commentform-title" class="uk-width-1-1"{xhtml}></dd>
 
-      <dt><label for="comment_text">{lang_comment}</label></dt>
+      <dt><label class="uk-form-label" for="comment_text">{lang_comment}</label></dt>
       <dd><div class="text_editor"><textarea rows="10" cols="45" name="comment" id="comment_text" class="wide">{comment}</textarea></div></dd>
       <dd class="description">{allowed_html}</dd>
 
-      <dt><label for="commentform-postmode">{lang_postmode}</label></dt>
+      <dt><label class="uk-form-label" for="commentform-postmode">{lang_postmode}</label></dt>
       <dd>
         <select name="postmode" id="commentform-postmode">
           {postmode_options}
@@ -50,8 +50,8 @@
       </dd>
     </dl>
 
-    <div class="submit">
-      <input type="submit" name="{nprefix}mode" value="{lang_preview}" class="submit"{xhtml}>
+    <div class="uk-submit">
+      <input type="submit" name="{nprefix}mode" value="{lang_preview}" class="uk-submit"{xhtml}>
       <input type="hidden" name="formtype" value="{formtype}"{xhtml}>
       {save_option}
       <input type="submit" value="{lang_cancel}" name="{nprefix}mode"{xhtml}>

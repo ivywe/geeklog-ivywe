@@ -1,0 +1,7 @@
+<!-- plugins/mediagallery/templates/medialist/admin2/autotag_medialist_col.thtml 20150309 { -->
+
+        &#60;div class="uk-width-small-1-2 uk-width-medium-1-4"&#62;
+            &#91;media:{media_id} src:disp&#93;
+        &#60;/div&#62;<br />
+
+<!-- } plugins/mediagallery/templates/medialist/admin2/autotag_medialist_col.thtml -->

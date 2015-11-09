@@ -1,19 +1,17 @@
 
 <!-- preferences/boxesblock.thtml { -->
 
-<fieldset>
-  <legend>{lang_boxes_title}</legend>
+	<fieldset class="uk-margin-large-top">
+		<legend>{lang_boxes_title}</legend>
 
-  <div class="linear">
-    <dl class="profile_notes">
-      <dt>{lang_boxes_help_title}</dt>
-      <dd>{lang_boxes}</dd>
-    </dl>
-  </div>
+		<div class="uk-form-row profile_notes">
+			<label class="uk-form-label">{lang_boxes_help_title}</label>
+			<div class="uk-form-controls">{lang_boxes}</div>
+		</div>
 
-  <div id="boxesblock">
-    {boxes_checklist}
-  </div>
-</fieldset>
+  		<div id="boxesblock">
+    		{boxes_checklist}
+  		</div>
+	</fieldset>
 
 <!-- } preferences/boxesblock.thtml -->

@@ -1,0 +1,36 @@
+<!-- $Id -->
+<h1>4images Import to Media Gallery Wizard</h1>
+<p>Please enter the following information about the 4images installation.
+The 4images root path is the directory (absolute path) where the 4images
+website is located.<br{xhtml}>It is the path that contains the <b>data</b> directory,
+the import wizard will append 'data/media/' onto this directory to find your
+images.</p>
+<form class="uk-form" method="post" action="{form_action}">
+<fieldset style="border: none; border-top: 1px solid #000000">
+    <legend>Import Wizard</legend>
+    <div style="margin:10px 0">
+    <label class="uk-form-label" for="database">4images Database:</label>&nbsp;&nbsp;
+        <input type="text" id="database" name="database" size="20"{xhtml}>
+    </div>
+    <div style="padding-bottom:10px">
+    <label class="uk-form-label" for="table_prefix">4images Database Prefix:</label>&nbsp;&nbsp;
+        <input type="text" id="table_prefix" name="table_prefix" value="{dbprefix}" size="20"{xhtml}>
+    </div>
+    <div style="padding-bottom:10px">
+    <label class="uk-form-label" for="dbuser">4images Database User:</label>&nbsp;&nbsp;
+        <input type="text" id="dbuser" name="username" size="20"{xhtml}>
+    </div>
+    <div style="padding-bottom:10px">
+    <label class="uk-form-label" for="dbpasswd">4images Database Password:</label>&nbsp;&nbsp;
+        <input type="text" id="dbpasswd" name="password" size="20"{xhtml}>
+    </div>
+    <div style="padding-bottom:10px">
+    <label class="uk-form-label" for="installpath">4images Root Path:</label>&nbsp;&nbsp;
+        <input type="text" id="installpath" name="gallery_directory" size="60"{xhtml}>
+    </div>
+</fieldset>
+<div style="text-align:center;margin-top:10px">
+<input type="submit" class="uk-button" value="next" name="mode"{xhtml}>
+<input type="submit" class="uk-button" value="cancel" name="mode"{xhtml}>
+</div>
+</form>

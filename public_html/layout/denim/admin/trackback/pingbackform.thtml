@@ -1,22 +1,25 @@
 
 <!-- admin/trackback/pingbackform.thtml { -->
 
-<form action="{site_admin_url}/trackback.php" method="post" id="pingbackform" class="compact uk-form">
+<form action="{site_admin_url}/trackback.php" method="post" id="pingbackform" class="uk-form uk-form-horizontal">
   <fieldset>
-    <p class="form_message">{lang_explain}</p>
+    <p class="uk-margin-bottom">{lang_explain}</p>
 
-    <dl class="form_block">
-      <dt><label for="pingbackform-target">{lang_pingback_url}</label></dt>
-      <dd><input type="text" maxlength="{max_url_length}" value="{target_url}" name="target" id="pingbackform-target" class="size6"{xhtml}></dd>
-
-      <dt>{lang_site_url}</dt>
-      <dd><span class="url">{site_url}</span></dd>
-    </dl>
-
-    <div class="submit">
-      <input type="submit" value="{lang_send}" name="mode[2]" class="submit"{xhtml}>
-      <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+    <div class="form_block">
+        <div class="uk-form-row">
+            <label class="uk-form-label" for="pingbackform-target">{lang_pingback_url}</label>
+            <div class="uk-form-controls"><input type="text" maxlength="{max_url_length}" value="{target_url}" name="target" id="pingbackform-target" class="uk-width-1-1"{xhtml}></div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_site_url}</label>
+            <div class="uk-form-controls"><span class="uk-form-help-inline">{site_url}</span></div>
+        </div>
     </div>
+
+    <ul class="uk-subnav uk-flex-center uk-margin-large-top">
+        <li><input type="submit" value="{lang_send}" name="mode[2]" class="uk-submit"{xhtml}>
+            <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}></li>
+    </ul>
   </fieldset>
 </form>
 

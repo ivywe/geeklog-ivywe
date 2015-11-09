@@ -1,0 +1,107 @@
+
+  <table class="uk-table uk-table-striped uk-table-condensed gl-tablelist" style="background:#ffffff">
+    <theader>
+      <tr>
+        <th class="uk-text-truncate">{lang_select}</th>
+        <th class="uk-text-truncate">{lang_item}</th>
+        <th class="uk-text-truncate">{lang_watermarked}</th>
+        <th class="uk-text-truncate">{lang_order}</th>
+        <th class="uk-text-truncate">{lang_cover}</th>
+        <th class="uk-text-truncate">{lang_include_ss}</th>
+        <th class="uk-text-nowrap" style="width:50%">{lang_title}/{lang_description}</th>
+      </tr>
+    </theader>
+    <tbody>
+    <tr>
+      <td colspan="7" style="text-align:center;">
+        <input type="radio" name="cover" value="-2"{xhtml}>&nbsp;&nbsp;{lang_reset_cover}
+      </td>
+    </tr>
+    <!-- BEGIN ImageRow -->
+    <!-- BEGIN ImageColumn -->
+    <tr>
+      <td style="vertical-align:middle;text-align:center;">
+        <input type="checkbox" name="sel[]" value="{mid}"{xhtml}>
+        <input type="hidden" name="mid[]" value="{mid}"{xhtml}>
+      </td>
+      <td style="vertical-align:middle;text-align:center;">
+        {media_zoom}<img src="{u_thumbnail}" height="{height}" width="{width}" border="1" alt=""{xhtml}></a>
+        <br{xhtml}><a href="{media_edit}">{lang_edit}</a><br{xhtml}>
+        &#91;media:{media_id}<br{xhtml}> src:(tn/disp/orig) class...&#93;
+      </td>
+      <td style="vertical-align:middle;text-align:center;">
+        {watermarked}
+      </td>
+      <td style="vertical-align:middle;text-align:center;">
+        <input type="text" name="seq[]" value="{order}" size="3"{xhtml}>
+        <input type="hidden" name="oldseq[]" value="{order}"{xhtml}>
+      </td>
+      <td style="vertical-align:middle;text-align:center;">
+        {radio_box}
+      </td>
+      <td style="vertical-align:middle;text-align:center;">
+        {include_ss}
+      </td>
+      <td  style="vertical-align:middle;" >
+        <textarea placeholder="{lang_title}" name="mtitle[]"     cols="40" rows="1">{media_title}</textarea><br{xhtml}>
+        <textarea placeholder="{lang_description}" name="mdesc[]" class="tinymce_enabled■" cols="40" rows="5">{media_desc}</textarea>
+
+<span class="uk-hidden■">
+<br{xhtml}>
+        <textarea placeholder="input Keywords" name="mkeywords[]"     cols="40" rows="1">{media_keywords}</textarea><br{xhtml}>
+        <div style="margin: 4px 2px;">{lang_category}:&nbsp;{cat_select}
+</span>
+
+        </div>
+      </td>
+   </tr>
+   <!-- END ImageColumn -->
+   <!-- END ImageRow -->
+   <tr>
+     <td colspan="7" style="text-align:left;">
+       <input class="uk-button" onclick="javascript:doCheckAll()" type="button" value="{lang_checkall}"{xhtml}>
+       <input class="uk-button" onclick="javascript:doUnCheckAll()" type="button" value="{lang_uncheckall}"{xhtml}>
+     </td>
+   </tr>
+   <tr>
+     <td colspan="7" style="vertical-align:middle;text-align:left;">
+       {lang_albumsel}&nbsp;&nbsp;{albumselect}&nbsp;<input type="submit" class="uk-button" name="mode" value="{lang_move}"{xhtml}>
+     </td>
+   </tr>
+   <tr>
+    <td colspan="7" style="vertical-align:middle;text-align:left;">
+     {lang_batch_options}&nbsp;&nbsp;{batchoptionselect}&nbsp;<input type="submit" class="uk-button" name="mode" value="{lang_batch}"{xhtml}>
+     </td>
+   </tr>
+</tbody>
+ </table>
+
+<ul class="uk-nav uk-nav-parent-icon" data-uk-nav>
+    <li class="uk-parent">
+        <a href="#">ノーマルレイアウトの自動タグ: &#91;medialist:{album_id}&#93;</a>
+        <ul class="uk-nav-sub">
+            <li>
+                <div class="uk-panel">
+                    <div>以下のHTMLのうち必要な個所をコピーペーストして使うことも可能です。</div>
+                    [medialist:{album_id} theme:admin]
+                </div>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<ul class="uk-nav uk-nav-parent-icon" data-uk-nav>
+    <li class="uk-parent">
+        <a href="#">サムネイルレイアウトの自動タグ: &#91;medialist:{album_id} theme:uikit_grid_js&#93;</a>
+        <ul class="uk-nav-sub">
+            <li>
+                <div class="uk-panel">
+                    <div>以下のHTMLのうち必要な個所をコピーペーストして使うことも可能です。</div>
+                    [medialist:{album_id} theme:admin_uikit_grid_js]
+                </div>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+

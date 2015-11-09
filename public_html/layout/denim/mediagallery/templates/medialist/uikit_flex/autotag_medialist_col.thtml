@@ -1,0 +1,8 @@
+<!--plugins/mediagallery/templates/medialist/uikit_flex/autotag_medialist_col.thtml 20150309 { -->
+
+    <div class="uk-thumbnail">
+        <img src="{filename_disp}" alt="{media_keywords}" style="max-height: 220px">
+        <div class="uk-thumbnail-caption uk-dragover" style="color:#ffffff"><div class="uk-text-center uk-text-bold">{media_title}</div><div class="uk-text-center">{media_desc}</div></div>
+    </div>
+
+<!--} plugins/mediagallery/templates/medialist/uikit_flex/autotag_medialist_col.thtml -->

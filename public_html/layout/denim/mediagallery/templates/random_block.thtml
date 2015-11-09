@@ -1,0 +1,16 @@
+{framecss}
+<div>
+  <table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+    <tr>
+      <td align="center" style="vertical-align:middle;">
+        {media_thumbnail}
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:center;">
+        <div class="pluginSmallText">{media_title}</div>
+        <a href="{url_album}">{lang_browse_album}</a>
+      </td>
+    </tr>
+  </table>
+</div>

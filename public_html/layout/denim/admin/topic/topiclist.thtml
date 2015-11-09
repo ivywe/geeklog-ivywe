@@ -3,7 +3,7 @@
 
 {top_menu}
 
-<ul id="admin-topiclist" class="clearfix">
+<ul class="uk-clearfix uk-list">
 {list_row}
 </ul>
 

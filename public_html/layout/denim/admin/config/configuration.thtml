@@ -44,7 +44,7 @@
                         <div class="notes">
                             <h4>{tab_display}</h4>
                             <p class="last">{tab_help}</p>
-                            <span class="warningsmall">{tab_warning}</span>
+                            <span class="uk-text-warning uk-text-small">{tab_warning}</span>
                         </div>
                         <!-- END notes -->
 
@@ -54,10 +54,10 @@
                     <!-- END tab -->
 
                 </div>
-                <div id="bottom_buttons" class="aligncenter">
-                    <input type="submit" id="save_changes" value="{lang_save_changes}"{xhtml}>
-                    <input type="submit" id="form_reset" name="form_reset" value="{lang_reset_form}"{xhtml}>
-                </div>
+                <ul id="bottom_buttons" class="uk-subnav uk-flex-center uk-margin-large-top">
+                    <li><input type="submit" id="save_changes" value="{lang_save_changes}"{xhtml}></li>
+                    <li><input type="submit" id="form_reset" name="form_reset" value="{lang_reset_form}"{xhtml}></li>
+                </ul>
             </form>
         </div>
     </div>

@@ -1,15 +1,13 @@
 
 <!-- preferences/digestblock.thtml { -->
 
-<fieldset>
+<fieldset class="uk-margin-large-top">
   <legend>{lang_digest_top_header}</legend>
 
-  <div class="linear">
-    <dl class="profile_notes">
-      <dt>{lang_digest_help_header}</dt>
-      <dd>{lang_emailedtopics}</dd>
-    </dl>
-  </div>
+	<div class="uk-form-row profile_notes">
+        <label class="uk-form-label">{lang_digest_help_header}</label>
+        <div class="uk-form-controls">{lang_emailedtopics}</div>
+	</div>
 
   <div class="compact">
     <p class="checklist">

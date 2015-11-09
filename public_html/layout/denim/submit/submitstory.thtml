@@ -8,19 +8,19 @@
       <dt>{lang_username}</dt>
       <dd>{story_username} [ <a href="{status_url}" rel="nofollow">{lang_loginout}</a>{separator}{create_account} ]</dd>
 
-      <dt><label for="submitstory-title">{lang_title}</label></dt>
-      <dd><input type="text" maxlength="96" value="{story_title}" name="title" id="submitstory-title" class="size5"{xhtml}></dd>
+      <dt><label class="uk-form-label" for="submitstory-title">{lang_title}</label></dt>
+      <dd><input type="text" maxlength="96" value="{story_title}" name="title" id="submitstory-title" class="uk-form-width-medium"{xhtml}></dd>
 
       <dt><label>{lang_topic}</label></dt>
       <dd>{topic_selection}</dd>
 
-      <dt><label for="introtext">{lang_introtext}</label></dt>
+      <dt><label class="uk-form-label" for="introtext">{lang_introtext}</label></dt>
       <dd><textarea cols="45" rows="15" name="introtext" id="introtext" class="wide">{story_introtext}</textarea></dd>
 
-      <dt><label for="bodytext">{lang_bodytext}</label></dt>
+      <dt><label class="uk-form-label" for="bodytext">{lang_bodytext}</label></dt>
       <dd><textarea cols="45" rows="15" name="bodytext" id="bodytext" class="wide">{story_bodytext}</textarea></dd>
 
-      <dt><label for="submitstory-postmode">{lang_postmode}</label></dt>
+      <dt><label class="uk-form-label" for="submitstory-postmode">{lang_postmode}</label></dt>
       <dd>
         <select name="postmode" id="submitstory-postmode">
           {story_postmode_options}
@@ -31,8 +31,8 @@
 
     {captcha}
 
-    <div class="submit">
-      <input name="mode" type="submit" value="{lang_preview}" class="submit"{xhtml}>
+    <div class="uk-submit">
+      <input name="mode" type="submit" value="{lang_preview}" class="uk-submit"{xhtml}>
       <input type="hidden" name="type" value="story"{xhtml}>
       <input type="hidden" name="uid" value="{story_uid}"{xhtml}>
       <input type="hidden" name="sid" value="{story_sid}"{xhtml}>

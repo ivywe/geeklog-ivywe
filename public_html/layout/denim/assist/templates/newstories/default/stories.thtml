@@ -1,0 +1,7 @@
+<!-- plugins/assist/templates/newstories/default/stories.thtml  20131029 { -->
+
+<dl class="uk-description-list-horizontal uk-width-1-1">
+    {stories_col}
+</dl>
+
+<!-- } plugins/assist/templates/newstories/default/stories.thtml -->

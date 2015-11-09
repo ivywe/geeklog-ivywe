@@ -1,0 +1,12 @@
+<!-- plugins/mediagallery/templates/medialist/default/autotag_medialist.thtml 20150309 { -->
+
+<fieldset>
+<legend><a href="{site_url}/mediagallery/album.php?aid={album_id}&amp;page=1"><i class="uk-icon-file-image-o"></i> {album_title}</a></legend>
+
+<div>
+{medialist_col}
+</div>
+
+</fieldset>
+
+<!-- } plugins/mediagallery/templates/medialist/default/autotag_medialist.thtml -->

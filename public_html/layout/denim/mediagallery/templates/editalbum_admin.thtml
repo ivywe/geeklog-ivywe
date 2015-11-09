@@ -1,0 +1,24 @@
+    <tr>
+      <th class="uk-text-right">{lang_ri_enable}</th>
+      <td>
+        {ri_select}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_max_image_width}</th>
+      <td>
+        {width_input}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_max_image_height}</th>
+      <td>
+        {height_input}
+      </td>
+    </tr>
+    <tr>
+      <th class="uk-text-right">{lang_max_filesize}</th>
+      <td>
+        {max_size_input}&nbsp;Kb {lang_unlimited}
+      </td>
+    </tr>

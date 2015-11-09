@@ -1,0 +1,25 @@
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">       <!-- BEGIN ImageRow -->
+      <!-- BEGIN ImageColumn -->
+    <tr>
+      <td class="uk-text-center">
+        <img src="{u_thumbnail}" height="{height}" width="{width}" alt=""{xhtml}>
+      </td>
+      <td style="vertical-align:top;">
+        <table width="100%" border="0">
+          <tr>
+            <td class="uk-text-right"><span class="uk-text-bold">{lang_title}</span></td>
+            <td class="mgAdminAlignLeft">
+              <textarea name="media_title[]" cols="40" rows="2">{media_title}</textarea>
+              <input type="hidden" name="media_id[]" value="{media_id}"{xhtml}>
+            </td>
+          </tr>
+          <tr>
+            <td class="uk-text-right"><span class="uk-text-bold">{lang_description}</span></td>
+            <td class="mgAdminAlignLeft"><textarea name="media_desc[]" cols="40" rows="5">{media_desc}</textarea></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <!-- END ImageColumn -->
+    <!-- END ImageRow -->
+  </table>

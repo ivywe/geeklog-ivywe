@@ -1,6 +1,6 @@
 
 <!-- admin/user/batchdelete_options.thtml { -->
-<div class="clearfix">
+<div class="uk-clearfix">
   <div>
   <input type="radio" name="usr_type" value="{sel_id}"{selector}{xhtml}> <strong>{lang_description}:</strong>
   </div>

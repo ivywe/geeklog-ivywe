@@ -1,0 +1,10 @@
+<!-- plugins/databox/templates/newlist/default/list.thtml  { -->
+
+<dl class="uk-description-list-horizontal">
+{list_col}
+</dl>
+
+<p><a href="{rss_url}">{rss_title}</a></p>
+<p><a href="{more_url}">{more_title}</a></p>
+
+<!-- } plugins/databox/templates/newlist/default/list.thtml -->

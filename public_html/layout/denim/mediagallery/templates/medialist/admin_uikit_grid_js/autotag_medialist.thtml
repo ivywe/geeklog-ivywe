@@ -1,0 +1,17 @@
+<!-- plugins/mediagallery/templates/medialist/admin2/autotag_medialist.thtml 20150309 { -->
+
+<div class="uk-margin-large uk-panel uk-panel-box">
+
+  <h2>&#91;medialist:{album_id} theme:uikit_grid_js&#93;</h2>
+
+  <div class="uk-margin-large">
+
+    &#60;div data-uk-grid="{ gutter: 20 }"&#62;<br />
+{medialist_col}
+    &#60;/div&#62;
+
+  </div>
+
+</div>
+
+<!-- } plugins/mediagallery/templates/medialist/admin2/autotag_medialist.thtml -->

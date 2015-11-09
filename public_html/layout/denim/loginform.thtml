@@ -1,26 +1,29 @@
 
 <!-- loginform.thtml { -->
 
-<form action="{site_url}/users.php" method="post" id="loginform" class="uk-form">
+<form action="{site_url}/users.php" method="post" id="loginform" class="uk-form uk-form-stacked">
   <fieldset class="noborder_fieldset">
     <legend class="hidden_legend">{lang_login}</legend>
 
     <div class="loginform">
       <div class="form_part">
-        <label for="loginform-loginname">{lang_username}</label>
-        <input type="text" value="" name="loginname" id="loginform-loginname" class="size3"{xhtml}>
+        <label class="uk-form-label" for="loginform-loginname">{lang_username}</label>
+        <input type="text" value="" name="loginname" id="loginform-loginname" class="uk-form-width-medium"{xhtml}>
       </div>
 
       {services}
 
       <div class="form_part">
-        <label for="loginform-passwd">{lang_password}</label>
-        <input type="password" name="passwd" id="loginform-passwd" class="size3"{xhtml}>
+        <label class="uk-form-label" for="loginform-passwd">{lang_password}</label>
+        <div class="uk-form-password">
+			<input type="password" name="passwd" id="loginform-passwd" {xhtml}>
+			<a href="" class="uk-form-password-toggle" data-uk-form-password="">Show</a>
+		</div>
       </div>
     </div>
 
-    <div class="submit">
-      <input type="submit" value="{lang_login}" class="submit"{xhtml}>
+    <div class="uk-submit">
+      <input type="submit" value="{lang_login}" class="uk-submit"{xhtml}>
     </div>
 
     <div class="navi">
