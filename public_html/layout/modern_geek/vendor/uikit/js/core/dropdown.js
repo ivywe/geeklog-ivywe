@@ -1,53 +1,18 @@
-/*! UIkit 2.23.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.22.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(UI) {
 
     "use strict";
 
-    var active = false, hoverIdle, flips = {
-        'x': {
-            "bottom-left"   : 'bottom-right',
-            "bottom-right"  : 'bottom-left',
-            "bottom-center" : 'bottom-right',
-            "top-left"      : 'top-right',
-            "top-right"     : 'top-left',
-            "top-center"    : 'top-right',
-            "left-top"      : 'right',
-            "left-bottom"   : 'right-bottom',
-            "left-center"   : 'right-center',
-            "right-top"     : 'left',
-            "right-bottom"  : 'left-bottom',
-            "right-center"  : 'left-center'
-        },
-        'y': {
-            "bottom-left"   : 'top-left',
-            "bottom-right"  : 'top-right',
-            "bottom-center" : 'top-center',
-            "top-left"      : 'bottom-left',
-            "top-right"     : 'bottom-right',
-            "top-center"    : 'bottom-center',
-            "left-top"      : 'top-left',
-            "left-bottom"   : 'left-bottom',
-            "left-center"   : 'top-left',
-            "right-top"     : 'top-left',
-            "right-bottom"  : 'bottom-left',
-            "right-center"  : 'top-left'
-        },
-        'xy': {
-
-        }
-    };
+    var active = false, hoverIdle;
 
     UI.component('dropdown', {
 
         defaults: {
-           'mode'            : 'hover',
-           'pos'             : 'bottom-left',
-           'offset'          : 0,
-           'remaintime'      : 800,
-           'justify'         : false,
-           'boundary'        : UI.$win,
-           'delay'           : 0,
-           'dropdownSelector': '.uk-dropdown,.uk-dropdown-blank',
+           'mode'       : 'hover',
+           'remaintime' : 800,
+           'justify'    : false,
+           'boundary'   : UI.$win,
+           'delay'      : 0,
            'hoverDelayIdle'  : 250
         },
 
@@ -70,7 +35,7 @@
                         dropdown.element.trigger(triggerevent);
                     }
 
-                    if (dropdown.element.find(dropdown.options.dropdownSelector).length) {
+                    if (dropdown.element.find('.uk-dropdown').length) {
                         e.preventDefault();
                     }
                 }
@@ -81,31 +46,17 @@
 
             var $this = this;
 
-            this.dropdown     = this.find(this.options.dropdownSelector);
-            this.offsetParent = this.dropdown.parents().filter(function() {
-                return UI.$.inArray(UI.$(this).css('position'), ['relative', 'fixed', 'absolute']) !== -1;
-            }).slice(0,1);
+            this.dropdown  = this.find('.uk-dropdown');
 
             this.centered  = this.dropdown.hasClass('uk-dropdown-center');
             this.justified = this.options.justify ? UI.$(this.options.justify) : false;
 
             this.boundary  = UI.$(this.options.boundary);
+            this.flipped   = this.dropdown.hasClass('uk-dropdown-flip');
 
             if (!this.boundary.length) {
                 this.boundary = UI.$win;
             }
-
-            // legacy DEPRECATED!
-            if (this.dropdown.hasClass('uk-dropdown-up')) {
-                this.options.pos = 'top-left';
-            }
-            if (this.dropdown.hasClass('uk-dropdown-flip')) {
-                this.options.pos = this.options.pos.replace('left','right');
-            }
-            if (this.dropdown.hasClass('uk-dropdown-center')) {
-                this.options.pos = this.options.pos.replace(/(left|right)/,'center');
-            }
-            //-- end legacy
 
             // Init ARIA
             this.element.attr('aria-haspopup', 'true');
@@ -117,7 +68,7 @@
 
                     var $target = UI.$(e.target);
 
-                    if (!$target.parents($this.options.dropdownSelector).length) {
+                    if (!$target.parents(".uk-dropdown").length) {
 
                         if ($target.is("a[href='#']") || $target.parent().is("a[href='#']") || ($this.dropdown.length && !$this.dropdown.is(":visible")) ){
                             e.preventDefault();
@@ -277,93 +228,66 @@
 
             if (!this.dropdown.length) return;
 
-            // reset
-            this.dropdown.removeClass('uk-dropdown-top uk-dropdown-bottom uk-dropdown-left uk-dropdown-right uk-dropdown-stack').css({
-                'top-left':'',
-                'left':'',
-                'margin-left' :'',
-                'margin-right':''
-            });
-
             if (this.justified && this.justified.length) {
                 this.dropdown.css("min-width", "");
             }
 
-            var $this          = this,
-                pos            = UI.$.extend({}, this.offsetParent.offset(), {width: this.offsetParent[0].offsetWidth, height: this.offsetParent[0].offsetHeight}),
-                posoffset      = this.options.offset,
-                dropdown       = this.dropdown,
-                offset         = dropdown.show().offset(),
-                width          = dropdown.outerWidth(),
-                height         = dropdown.outerHeight(),
+            var $this     = this,
+                dropdown  = this.dropdown.css("margin-" + UI.langdirection, ""),
+                offset    = dropdown.show().offset(),
+                width     = dropdown.outerWidth(),
                 boundarywidth  = this.boundary.width(),
-                boundaryoffset = this.boundary.offset() ? this.boundary.offset(): {top:0, left:0},
-                dpos           = this.options.pos;
+                boundaryoffset = this.boundary.offset() ? this.boundary.offset().left:0;
 
-            var variants =  {
-                    "bottom-left"   : {top: 0 + pos.height + posoffset, left: 0},
-                    "bottom-right"  : {top: 0 + pos.height + posoffset, left: 0 + pos.width - width},
-                    "bottom-center" : {top: 0 + pos.height + posoffset, left: 0 + pos.width / 2 - width / 2},
-                    "top-left"      : {top: 0 - height - posoffset, left: 0},
-                    "top-right"     : {top: 0 - height - posoffset, left: 0 + pos.width - width},
-                    "top-center"    : {top: 0 - height - posoffset, left: 0 + pos.width / 2 - width / 2},
-                    "left-top"      : {top: 0, left: 0 - width - posoffset},
-                    "left-bottom"   : {top: 0 + pos.height - height, left: 0 - width - posoffset},
-                    "left-center"   : {top: 0 + pos.height / 2 - height / 2, left: 0 - width - posoffset},
-                    "right-top"     : {top: 0, left: 0 + pos.width + posoffset},
-                    "right-bottom"  : {top: 0 + pos.height - height, left: 0 + pos.width + posoffset},
-                    "right-center"  : {top: 0 + pos.height / 2 - height / 2, left: 0 + pos.width + posoffset}
-                },
-                css = {},
-                pp;
+            // centered dropdown
+            if (this.centered) {
+                dropdown.css("margin-" + UI.langdirection, (parseFloat(width) / 2 - dropdown.parent().width() / 2) * -1);
+                offset = dropdown.offset();
 
-            pp = dpos.split('-');
-            css = variants[dpos] ? variants[dpos] : variants['bottom-left'];
+                // reset dropdown
+                if ((width + offset.left) > boundarywidth || offset.left < 0) {
+                    dropdown.css("margin-" + UI.langdirection, "");
+                    offset = dropdown.offset();
+                }
+            }
 
             // justify dropdown
             if (this.justified && this.justified.length) {
-                justify(dropdown.css({left:0}), this.justified, boundarywidth);
-            } else {
-
-                switch(this.checkBoundary(pos.left + css.left, pos.top + css.top, width, height, boundarywidth)) {
-
-                    case "x":
-                        dpos = flips['x'][dpos] || 'right-top';
-                        break;
-                    case "y":
-                        dpos = flips['y'][dpos] || 'top-left';
-                        break;
-                    case "xy":
-                        dpos = flips['xy'][dpos] || 'right-bottom';
-                        break;
-                }
-
-                pp = dpos.split('-');
-                css = variants[dpos] ? variants[dpos] : variants['bottom-left'];
+                justify(dropdown, this.justified, boundarywidth, offset);
+                offset = dropdown.offset();
             }
 
-            if (width > boundarywidth) {
+            if ((width + (offset.left-boundaryoffset)) > boundarywidth) {
+                dropdown.addClass('uk-dropdown-flip');
+                offset = dropdown.offset();
+            }
+
+            if ((offset.left-boundaryoffset) < 0) {
+
                 dropdown.addClass("uk-dropdown-stack");
+
+                if (dropdown.hasClass('uk-dropdown-flip')) {
+
+                    if (!this.flipped) {
+                        dropdown.removeClass('uk-dropdown-flip');
+                        offset = dropdown.offset();
+                        dropdown.addClass('uk-dropdown-flip');
+                    }
+
+                    setTimeout(function(){
+
+                        if ((dropdown.offset().left-boundaryoffset) < 0 || !$this.flipped && (dropdown.outerWidth() + (offset.left-boundaryoffset)) < boundarywidth) {
+                            dropdown.removeClass('uk-dropdown-flip');
+                        }
+                    }, 0);
+                }
+
                 this.trigger('stack.uk.dropdown', [this]);
             }
 
-            dropdown.css(css).css("display", "").addClass('uk-dropdown-'+pp[0]);
-        },
-
-        checkBoundary: function(left, top, width, height, boundarywidth) {
-
-            var axis = "";
-
-            if (left < 0 || ((left - UI.$win.scrollLeft())+width) > boundarywidth) {
-               axis += "x";
-            }
-
-            if (top < 0 || ((top - UI.$win.scrollTop())+height) > window.innerHeight) {
-               axis += "y";
-            }
-
-            return axis;
+            dropdown.css("display", "");
         }
+
     });
 
 

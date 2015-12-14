@@ -112,7 +112,10 @@ $LANG25 = array(
     37 => 'Cacher les résultats pendant que le sondage est ouvert',
     38 => 'Pendant que le sondage est ouvert, seuls le propriétaire et l\'administrateur root peuvent voir les résultats',
     39 => 'The topic will only be displayed if there is more than 1 question.',
-    40 => 'Voir toutes les réponses à ce sondage'
+    40 => 'Voir toutes les réponses à ce sondage',
+    1001 => 'Allow multipleanswers',
+    1002 => 'Description',
+    1003 => 'Description'
 );
 
 $PLG_polls_MESSAGE15 = 'Votre commentaire à été soumis à validation et sera publié après avoir été approuvé par un modérateur';

@@ -1,7 +1,0 @@
-            <table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
-                <tr>
-                    <td align="center">
-                      <p>{lang_no_sessions}</p>
-                    </td>
-                </tr>
-            </table>

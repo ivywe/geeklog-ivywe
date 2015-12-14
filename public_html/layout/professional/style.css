@@ -1,3 +1,5 @@
+@charset "utf-8";
+
 /* STYLESHEET FORMAT GUIDE *****************************************************
 
   split into the following sections:
@@ -157,7 +159,7 @@ table {
 }
 textarea {
   color:#000000;
-  font-family:arial,verdana,tahoma,helvetica,sans-serif;
+  font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Osaka, "ＭＳ Ｐゴシック", Verdana, Arial, Helvetica, sans-serif;
   font-size:.9em;
 }
 th {

@@ -1,3 +1,0 @@
-<!-- plugins/databox/templates/category/default/grp.thtml 20121030 { -->
-    <h2 class="uk-h2"> {group_link} {group_name}</h2>
-<!-- } plugins/databox/templates/category/default/grp.thtml -->

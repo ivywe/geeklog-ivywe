@@ -3,7 +3,6 @@
     "options": {
         "culture": "en",
         "lang": "php",
-        "theme": "flat-dark",
         "defaultViewMode": "grid",
         "autoload": true,
         "showFullPath": false,
@@ -19,19 +18,15 @@
         "dateFormat": "d M Y H:i",
         "serverRoot": true,
         "fileRoot": false,
-        "baseUrl": false,
+        "relPath": false,
         "logger": false,
-        "capabilities": ["select", "download", "rename", "delete", "replace"],
+        "capabilities": ["select", "download", "rename", "move", "delete", "replace"],
         "plugins": []
     },
     "security": {
-        "allowFolderDownload": false,
-        "allowChangeExtensions": false,
-        "allowNoExtension": false,
         "uploadPolicy": "DISALLOW_ALL",
         "uploadRestrictions": [
             "jpg",
-            "jpe",
             "jpeg",
             "gif",
             "png",
@@ -48,42 +43,35 @@
             "xlsx",
             "ppt",
             "pptx",
-            "csv",
             "ogv",
             "mp4",
             "webm",
             "m4v",
             "ogg",
             "mp3",
-            "wav",
-            "zip",
-            "rar"
+            "wav"
         ]
     },
     "upload": {
-        "multiple": true,
-        "number": 5,
         "overwrite": false,
         "imagesOnly": false,
         "fileSizeLimit": 16
     },
     "exclude": {
         "unallowed_files": [
-            ".htaccess",
-            "web.config"
+            ".htaccess"
         ],
         "unallowed_dirs": [
             "_thumbs",
             ".CDN_ACCESS_LOGS",
             "cloudservers"
         ],
-        "unallowed_files_REGEXP": "/^\\./",
-        "unallowed_dirs_REGEXP": "/^\\./"
+        "unallowed_files_REGEXP": "/^\\./uis",
+        "unallowed_dirs_REGEXP": "/^\\./uis"
     },
     "images": {
         "imagesExt": [
             "jpg",
-            "jpe",
             "jpeg",
             "gif",
             "png",
@@ -114,31 +102,6 @@
             "wav"
         ]
     },
-    "pdfs": {
-        "showPdfReader": true,
-        "pdfsExt": [
-            "pdf",
-            "odp"
-        ],
-	    "pdfsReaderWidth": "640",
-        "pdfsReaderHeight": "480"	
-    },
-    "edit": {
-        "enabled": true,
-        "lineNumbers": true,
-        "lineWrapping": true,
-        "codeHighlight": false,
-        "theme": "elegant",
-        "editExt": [
-            "txt",
-            "csv"
-        ]
-    },
-    "customScrollbar": {
-    	"enabled": true,
-    	"theme": "inset-2-dark",
-    	"button": true
-    },
     "extras": {
         "extra_js": [],
         "extra_js_async": true
@@ -147,7 +110,5 @@
         "path": "images/fileicons/",
         "directory": "_Open.png",
         "default": "default.png"
-    },
-    "url": "https://github.com/simogeo/Filemanager",
-    "version": "2.0.0-dev"
+    }
 }

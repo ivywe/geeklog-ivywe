@@ -9,7 +9,7 @@
  * @author     Greg Beaver <cellog@php.net>
  * @copyright  1997-2009 The Authors
  * @license    http://opensource.org/licenses/bsd-license.php New BSD License
- * @version    CVS: $Id$
+ * @version    CVS: $Id: Dependency2.php 313023 2011-07-06 19:17:11Z dufuz $
  * @link       http://pear.php.net/package/PEAR
  * @since      File available since Release 1.4.0a1
  */
@@ -31,7 +31,7 @@ require_once 'PEAR/Validate.php';
  * @author     Greg Beaver <cellog@php.net>
  * @copyright  1997-2009 The Authors
  * @license    http://opensource.org/licenses/bsd-license.php New BSD License
- * @version    Release: 1.9.5
+ * @version    Release: 1.9.4
  * @link       http://pear.php.net/package/PEAR
  * @since      Class available since Release 1.4.0a1
  */
@@ -541,7 +541,7 @@ class PEAR_Dependency2
      */
     function getPEARVersion()
     {
-        return '1.9.5';
+        return '1.9.4';
     }
 
     function validatePearinstallerDependency($dep)
@@ -607,7 +607,7 @@ class PEAR_Dependency2
      * @param boolean whether this is a required dependency
      * @param array a list of downloaded packages to be installed, if any
      * @param boolean if true, then deps on pear.php.net that fail will also check
-     *                against pecl.php.net packages to accommodate extensions that have
+     *                against pecl.php.net packages to accomodate extensions that have
      *                moved to pecl.php.net from pear.php.net
      */
     function validatePackageDependency($dep, $required, $params, $depv1 = false)

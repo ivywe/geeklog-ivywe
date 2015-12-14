@@ -1,4 +1,4 @@
-/*! UIkit 2.23.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.22.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(UI) {
 
     "use strict";
@@ -186,7 +186,6 @@
                             UI.Utils.checkDisplay(next, true);
 
                             $this.animating = false;
-
                         });
                 });
             }
@@ -269,8 +268,6 @@
             clsOut = cls[1] || cls[0];
         }
 
-        UI.$body.css('overflow-x', 'hidden'); // fix scroll jumping in iOS
-
         release = function() {
 
             if (current) current.hide().removeClass('uk-active '+clsOut+' uk-animation-reverse');
@@ -280,8 +277,6 @@
                 next.removeClass(''+clsIn+'').css({opacity:'', display:''});
 
                 d.resolve();
-
-                UI.$body.css('overflow-x', '');
 
                 if (current) current.css({opacity:'', display:''});
 

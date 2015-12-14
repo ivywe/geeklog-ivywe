@@ -1,0 +1,7 @@
+{# begin {templatelocation} #}
+
+<label class="uk-text-nowrap">
+<input type="{input_type}" id="form-{question_id}-{answer_id}" name="aid[{question_id}][]" value="{answer_id}"{selected}{xhtml}>
+{answer_text}</label>
+
+{# end {templatelocation} #}

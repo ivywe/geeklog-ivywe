@@ -151,8 +151,8 @@ function listpolls()
 */
 function savepoll($pid, $old_pid, $Q, $mainpage, $topic, $meta_description, $meta_keywords, $statuscode, $open,
                   $hideresults, $commentcode, $A, $V, $R, $owner_id, $group_id,
-                  $perm_owner, $perm_group, $perm_members, $perm_anon)
-
+                  $perm_owner, $perm_group, $perm_members, $perm_anon,
+                  $allow_multipleanswers,$topic_description,$description)
 {
     global $_CONF, $_TABLES, $_USER, $LANG21, $LANG25, $MESSAGE, $_POLL_VERBOSE,
            $_PO_CONF;
@@ -164,6 +164,7 @@ function savepoll($pid, $old_pid, $Q, $mainpage, $topic, $meta_description, $met
 
     $topic = COM_stripslashes($topic);
     $topic = COM_checkHTML($topic);
+    $topic_description = strip_tags(COM_stripslashes($topic_description));
     $meta_description = strip_tags(COM_stripslashes($meta_description));
     $meta_keywords = strip_tags(COM_stripslashes($meta_keywords));
     $pid = COM_sanitizeID($pid);
@@ -241,12 +242,13 @@ function savepoll($pid, $old_pid, $Q, $mainpage, $topic, $meta_description, $met
     if ($created_date == '') {
         $created_date = date ('Y-m-d H:i:s');
     }
-
+    
     DB_delete($_TABLES['polltopics'], 'pid', $del_pid);
     DB_delete($_TABLES['pollanswers'], 'pid', $del_pid);
     DB_delete($_TABLES['pollquestions'], 'pid', $del_pid);
 
     $topic = DB_escapeString($topic);
+    $topic_description = DB_escapeString($topic_description);
     $meta_description = DB_escapeString($meta_description);
     $meta_keywords = DB_escapeString($meta_keywords);
 
@@ -258,13 +260,20 @@ function savepoll($pid, $old_pid, $Q, $mainpage, $topic, $meta_description, $met
     for ($i = 0; $i < $num_questions; $i++) {
         $Q[$i] = COM_stripslashes($Q[$i]);
         $Q[$i] = COM_checkHTML($Q[$i]);
-
+        $allow_multipleanswers[$i] = COM_stripslashes($allow_multipleanswers[$i]);
+		$description[$i] = COM_checkHTML(COM_stripslashes($description[$i]));
+        if ($allow_multipleanswers[$i] == 'on') {
+            $allow_multipleanswers[$i]=1;
+        } else {
+            $allow_multipleanswers[$i]=0;
+        }
+		
         if (strlen($Q[$i]) > 0) { // only insert questions that exist
             $num_questions_exist++;
-
+            
             $Q[$i] = DB_escapeString($Q[$i]);
-            DB_save($_TABLES['pollquestions'], 'qid, pid, question',
-                                               "'$k', '$pid', '$Q[$i]'");
+            DB_save($_TABLES['pollquestions'], 'qid, pid, question,allow_multipleanswers,description',
+                                               "'$k', '$pid', '$Q[$i]','$allow_multipleanswers[$i]','$description[$i]'");
             // within the questions, we have another dimensions with answers,
             // votes and remarks
             $num_answers = count($A[$i]);
@@ -283,14 +292,14 @@ function savepoll($pid, $old_pid, $Q, $mainpage, $topic, $meta_description, $met
                     $sql = "INSERT INTO {$_TABLES['pollanswers']} (pid, qid, aid, answer, votes, remark) VALUES "
                         . "('$pid', '$k', " . ($j+1) . ", '{$A[$i][$j]}', {$V[$i][$j]}, '{$R[$i][$j]}');";
                     DB_query($sql);
-
+                    
                     $num_total_votes = $num_total_votes + $V[$i][$j];
                 }
             }
             $k++;
         }
     }
-
+    
     // determine the number of voters (cannot use records in pollvoters table since they get deleted after a time $_PO_CONF['polladdresstime'])
     if ($num_questions_exist > 0) {
         $numvoters = $num_total_votes / $num_questions_exist;
@@ -298,7 +307,7 @@ function savepoll($pid, $old_pid, $Q, $mainpage, $topic, $meta_description, $met
         // This shouldn't happen
         $numvoters = $num_total_votes;
     }
-
+    
     // save topics after the questions so we can include question count into table
     $sql = "'$pid','$topic','$meta_description','$meta_keywords',$numvoters, $k, '$created_date', '" . date ('Y-m-d H:i:s');
 
@@ -318,19 +327,19 @@ function savepoll($pid, $old_pid, $Q, $mainpage, $topic, $meta_description, $met
         $sql .= ",0";
     }
 
-    $sql .= ",'$statuscode','$commentcode',$owner_id,$group_id,$perm_owner,$perm_group,$perm_members,$perm_anon";
+    $sql .= ",'$statuscode','$commentcode',$owner_id,$group_id,$perm_owner,$perm_group,$perm_members,$perm_anon,'$topic_description'";
 
     // Save poll topic
-    DB_save($_TABLES['polltopics'], "pid, topic, meta_description, meta_keywords, voters, questions, created, modified, display, is_open, hideresults, statuscode, commentcode, owner_id, group_id, perm_owner, perm_group, perm_members, perm_anon", $sql);
+    DB_save($_TABLES['polltopics'], "pid, topic, meta_description, meta_keywords, voters, questions, created, modified, display, is_open, hideresults, statuscode, commentcode, owner_id, group_id, perm_owner, perm_group, perm_members, perm_anon,description", $sql);
 
     if (empty($old_pid) || ($old_pid == $pid)) {
         PLG_itemSaved($pid, 'polls');
     } else {
         DB_change($_TABLES['comments'], 'sid', DB_escapeString($pid),
                   array('sid', 'type'), array(DB_escapeString($old_pid), 'polls'));
-
+        
         DB_change($_TABLES['pollvoters'], 'pid', DB_escapeString($pid), 'pid', DB_escapeString($old_pid));
-
+        
         PLG_itemSaved($pid, 'polls', $old_pid);
     }
 
@@ -400,7 +409,8 @@ function editpoll ($pid = '')
     );
     $retval .= SEC_getTokenExpiryNotice($token);
 
-    $poll_templates = COM_newTemplate(CTL_plugin_templatePath('polls', 'admin'));
+    $poll_templates = COM_newTemplate($_CONF['path']
+                                    . 'plugins/polls/templates/admin/');
     $poll_templates->set_file (array ('editor' => 'polleditor.thtml',
                                       'question' => 'pollquestions.thtml',
                                       'answer' => 'pollansweroption.thtml'));
@@ -416,6 +426,7 @@ function editpoll ($pid = '')
     } else {
         $T['pid'] = COM_makeSid ();
         $T['topic'] = '';
+        $T['description'] = '';
         $T['meta_description'] = '';
         $T['meta_keywords'] = '';
         $T['voters'] = 0;
@@ -433,22 +444,23 @@ function editpoll ($pid = '')
         $T['commentcode'] = $_CONF['comment_code'];
         $access = 3;
     }
-
-    $poll_templates->set_var('noscript', COM_getNoScript(false, ''));
-
+    
+    $poll_templates->set_var('noscript', COM_getNoScript(false, ''));        
+    
     // Add JavaScript
     // Hide the Advanced Editor as Javascript is required. If JS is enabled then the JS below will un-hide it
-    $js = 'document.getElementById("advanced_editor").style.display="";';
-    $_SCRIPTS->setJavaScript($js, true);
+    $js = 'document.getElementById("advanced_editor").style.display="";';                 
+    $_SCRIPTS->setJavaScript($js, true);    
     $_SCRIPTS->setJavaScriptFile('polls_editor', '/polls/polls_editor.js');
-
     $poll_templates->set_var('lang_pollid', $LANG25[6]);
     $poll_templates->set_var('poll_id', $T['pid']);
     $poll_templates->set_var('lang_donotusespaces', $LANG25[7]);
     $poll_templates->set_var('lang_topic', $LANG25[9]);
     $poll_templates->set_var('poll_topic', htmlspecialchars ($T['topic']));
     $poll_templates->set_var('lang_mode', $LANG25[1]);
-
+    $poll_templates->set_var('lang_topic_description',$LANG25[1003]);
+    $poll_templates->set_var('topic_description', $T['description']);
+    
     $poll_templates->set_var('lang_metadescription',
                              $LANG_ADMIN['meta_description']);
     $poll_templates->set_var('lang_metakeywords', $LANG_ADMIN['meta_keywords']);
@@ -456,7 +468,7 @@ function editpoll ($pid = '')
         $poll_templates->set_var('meta_description', $T['meta_description']);
     }
     if (!empty($T['meta_keywords'])) {
-        $poll_templates->set_var('meta_keywords', $T['meta_keywords']);
+        $poll_templates->set_var('meta_keywords', $T['meta_keywords']);        
     }
     if (($_CONF['meta_tags'] > 0) && ($_PO_CONF['meta_tags'] > 0)) {
         $poll_templates->set_var('hide_meta', '');
@@ -506,7 +518,7 @@ function editpoll ($pid = '')
 
     // repeat for several questions
 
-    $question_sql = "SELECT question,qid "
+    $question_sql = "SELECT question,qid ,allow_multipleanswers ,description "
         . "FROM {$_TABLES['pollquestions']} WHERE pid='$pid' ORDER BY qid;";
     $questions = DB_query($question_sql);
     include ($_CONF['path_system'] . 'classes/navbar.class.php');
@@ -527,7 +539,16 @@ function editpoll ($pid = '')
         $poll_templates->set_var('question_text', $Q['question']);
         $poll_templates->set_var('question_id', $j);
         $poll_templates->set_var('lang_question', $LANG25[31] . " $display_id");
-        $poll_templates->set_var('lang_saveaddnew', $LANG25[32]);
+		$poll_templates->set_var('lang_saveaddnew', $LANG25[32]);
+        $poll_templates->set_var('q_idx', $j);
+		$poll_templates->set_var('lang_allow_multipleanswers', $LANG25[1001]);
+        if ($Q['allow_multipleanswers'] == 1) {
+            $poll_templates->set_var('poll_allow_multipleanswers', 'checked="checked"');
+        }else{
+            $poll_templates->set_var('poll_allow_multipleanswers', '');
+        }
+		$poll_templates->set_var('lang_questions_description', $LANG25[1002]);
+        $poll_templates->set_var('description', $Q['description']);
 
         // answers
         $answer_sql = "SELECT answer,aid,votes,remark "
@@ -642,7 +663,8 @@ if ($mode == 'edit') {
         $hideresults = '';
         if (isset ($_POST['hideresults'])) {
             $hideresults = COM_applyFilter ($_POST['hideresults']);
-        }
+		}
+
         $display .= savepoll ($pid, $old_pid, $_POST['question'], $mainpage,
                         $_POST['topic'], $_POST['meta_description'],
                         $_POST['meta_keywords'], $statuscode, $open,
@@ -652,8 +674,11 @@ if ($mode == 'edit') {
                         COM_applyFilter ($_POST['owner_id'], true),
                         COM_applyFilter ($_POST['group_id'], true),
                         $_POST['perm_owner'], $_POST['perm_group'],
-                        $_POST['perm_members'], $_POST['perm_anon']);
-    } else {
+                        $_POST['perm_members'], $_POST['perm_anon'],
+                        $_POST['allow_multipleanswers'],
+                        COM_applyFilter($_POST['topic_description']),
+                        $_POST['description']);
+	} else {
         $display .= COM_showMessageText($LANG25[17], $LANG21[32])
                  .  editpoll();
         $display = COM_createHTMLDocument($display, array('pagetitle' => $LANG25[5]));

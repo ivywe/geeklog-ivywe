@@ -52,8 +52,8 @@ $LANG_POLLS = array(
     'upgrade1'          => 'You installed a new version of the Polls plugin. Please',
     'upgrade2'          => 'upgrade',
     'editinstructions'  => 'Please fill in the Poll ID, at least one question and two answers for it.',
-    'pollclosed'        => 'This poll is closed for voting.',
-    'pollhidden'        => 'You have already voted. This poll results will only be shown when voting is closed.',
+    'pollclosed'        => 'This poll is closed for voting.', 
+    'pollhidden'        => 'You have already voted. This poll results will only be shown when voting is closed.', 
     'start_poll'        => 'Start Poll',
     'no_new_polls'      => 'No new polls',
     'autotag_desc_poll'              => '[poll: id alternate title] - Displays a link to a poll using the Poll Topic as the title. An alternate title may be specified but is not required.',
@@ -105,7 +105,10 @@ $LANG25 = array(
     37 => 'Hide results while poll is open',
     38 => 'While the poll is open, only the owner &amp; root can see the results',
     39 => 'The topic will only be displayed if there is more than 1 question.',
-    40 => 'See all answers to this poll'
+    40 => 'See all answers to this poll',
+    1001 => 'Allow multipleanswers',
+    1002 => 'Description',
+    1003 => 'Description'
 );
 
 $PLG_polls_MESSAGE15 = 'Your comment has been submitted for review and will be published when approved by a moderator.';
@@ -121,7 +124,7 @@ $PLG_polls_MESSAGE3002 = $LANG32[9];
 $LANG_configsections['polls'] = array(
     'label' => 'Polls',
     'title' => 'Polls Configuration'
-);
+);  
 
 $LANG_confignames['polls'] = array(
     'pollsloginrequired' => 'Polls Login Required?',
@@ -136,7 +139,7 @@ $LANG_confignames['polls'] = array(
     'default_permissions' => 'Poll Default Permissions',
     'autotag_permissions_poll' => '[poll: ] Permissions',
     'autotag_permissions_poll_vote' => '[poll_vote: ] Permissions',
-    'autotag_permissions_poll_result' => '[poll_result: ] Permissions',
+    'autotag_permissions_poll_result' => '[poll_result: ] Permissions',    
     'newpollsinterval' => 'New Polls Interval',
     'hidenewpolls' => 'New Polls',
     'title_trim_length' => 'Title Trim Length',
@@ -157,17 +160,17 @@ $LANG_configsubgroups['polls'] = array(
 $LANG_tab['polls'] = array(
     'tab_main' => 'General Polls Settings',
     'tab_whatsnew' => 'What\'s New Block',
-    'tab_permissions' => 'Default Permissions',
-    'tab_autotag_permissions' => 'Autotag Usage Permissions',
+    'tab_permissions' => 'Default Permissions', 
+    'tab_autotag_permissions' => 'Autotag Usage Permissions', 
     'tab_poll_block' => 'Poll Block'
 );
 
 $LANG_fs['polls'] = array(
     'fs_main' => 'General Polls Settings',
     'fs_whatsnew' => 'What\'s New Block',
-    'fs_permissions' => 'Default Permissions',
-    'fs_autotag_permissions' => 'Autotag Usage Permissions',
-    'fs_block_settings' => 'Block Settings',
+    'fs_permissions' => 'Default Permissions', 
+    'fs_autotag_permissions' => 'Autotag Usage Permissions', 
+    'fs_block_settings' => 'Block Settings', 
     'fs_block_permissions' => 'Block Permissions'
 );
 

@@ -1,5 +1,0 @@
-{# begin {templatelocation} #}
-
-<th class="{class}"{th_subtags}>{header_text}</th>
-
-{# end {templatelocation} #}

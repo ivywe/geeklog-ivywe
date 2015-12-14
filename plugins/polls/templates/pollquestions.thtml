@@ -1,0 +1,11 @@
+{# begin {templatelocation} #}
+
+<div class="uk-form-row">
+    <span class="uk-form-label uk-flex"><span class="uk-text-nowrap">{lang_question}{lang_question_number}</span><span class="uk-text-break">{poll_question}</span></span>
+    <div class="uk-form-controls uk-margin-large-left">
+	{!if poll_description}<div>{poll_description}</div>{!endif}
+    {poll_answers}
+    </div>
+</div>
+
+{# end {templatelocation} #}

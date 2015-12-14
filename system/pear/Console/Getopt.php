@@ -17,7 +17,7 @@
  * @package  Console_Getopt
  * @author   Andrei Zmievski <andrei@php.net>
  * @license  http://www.php.net/license/3_0.txt PHP 3.0
- * @version  CVS: $Id$
+ * @version  CVS: $Id: Getopt.php 306067 2010-12-08 00:13:31Z dufuz $
  * @link     http://pear.php.net/package/Console_Getopt
  */
 
@@ -68,8 +68,9 @@ class Console_Getopt
      *
      * @return array two-element array containing the list of parsed options and
      * the non-option arguments
+     * @access public
      */
-    public static function getopt2($args, $short_options, $long_options = null, $skip_unknown = false)
+    function getopt2($args, $short_options, $long_options = null, $skip_unknown = false)
     {
         return Console_Getopt::doGetopt(2, $args, $short_options, $long_options, $skip_unknown);
     }
@@ -86,7 +87,7 @@ class Console_Getopt
      * @return array two-element array containing the list of parsed options and
      * the non-option arguments
      */
-    public static function getopt($args, $short_options, $long_options = null, $skip_unknown = false)
+    function getopt($args, $short_options, $long_options = null, $skip_unknown = false)
     {
         return Console_Getopt::doGetopt(1, $args, $short_options, $long_options, $skip_unknown);
     }
@@ -102,7 +103,7 @@ class Console_Getopt
      *
      * @return array
      */
-    public static function doGetopt($version, $args, $short_options, $long_options = null, $skip_unknown = false)
+    function doGetopt($version, $args, $short_options, $long_options = null, $skip_unknown = false)
     {
         // in case you pass directly readPHPArgv() as the first arg
         if (PEAR::isError($args)) {
@@ -181,9 +182,10 @@ class Console_Getopt
      * @param string[]   &$args
      * @param boolean    $skip_unknown suppresses Console_Getopt: unrecognized option
      *
+     * @access private
      * @return void
      */
-    protected static function _parseShortOption($arg, $short_options, &$opts, &$args, $skip_unknown)
+    function _parseShortOption($arg, $short_options, &$opts, &$args, $skip_unknown)
     {
         for ($i = 0; $i < strlen($arg); $i++) {
             $opt     = $arg{$i};
@@ -218,11 +220,11 @@ class Console_Getopt
                         if (Console_Getopt::_isShortOpt($opt_arg)
                             || Console_Getopt::_isLongOpt($opt_arg)) {
                             $msg = "option requires an argument --$opt";
-                            return PEAR::raiseError("Console_Getopt: " . $msg);
+                            return PEAR::raiseError("Console_Getopt:" . $msg);
                         }
                     } else {
                         $msg = "option requires an argument --$opt";
-                        return PEAR::raiseError("Console_Getopt: " . $msg);
+                        return PEAR::raiseError("Console_Getopt:" . $msg);
                     }
                 }
             }
@@ -236,9 +238,10 @@ class Console_Getopt
      *
      * @param string $arg Argument to check
      *
+     * @access private
      * @return bool
      */
-    protected static function _isShortOpt($arg)
+    function _isShortOpt($arg)
     {
         return strlen($arg) == 2 && $arg[0] == '-'
                && preg_match('/[a-zA-Z]/', $arg[1]);
@@ -249,9 +252,10 @@ class Console_Getopt
      *
      * @param string $arg Argument to check
      *
+     * @access private
      * @return bool
      */
-    protected static function _isLongOpt($arg)
+    function _isLongOpt($arg)
     {
         return strlen($arg) > 2 && $arg[0] == '-' && $arg[1] == '-' &&
                preg_match('/[a-zA-Z]+$/', substr($arg, 2));
@@ -265,9 +269,10 @@ class Console_Getopt
      * @param string[][] &$opts
      * @param string[]   &$args
      *
+     * @access private
      * @return void|PEAR_Error
      */
-    protected static function _parseLongOption($arg, $long_options, &$opts, &$args, $skip_unknown)
+    function _parseLongOption($arg, $long_options, &$opts, &$args, $skip_unknown)
     {
         @list($opt, $opt_arg) = explode('=', $arg, 2);
 
@@ -339,9 +344,10 @@ class Console_Getopt
      * Safely read the $argv PHP array across different PHP configurations.
      * Will take care on register_globals and register_argc_argv ini directives
      *
+     * @access public
      * @return mixed the $argv PHP array or PEAR error if not registered
      */
-    public static function readPHPArgv()
+    function readPHPArgv()
     {
         global $argv;
         if (!is_array($argv)) {

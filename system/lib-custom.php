@@ -53,12 +53,19 @@ if (strpos(strtolower($_SERVER['PHP_SELF']), 'lib-custom.php') !== false) {
 $_CST_VERBOSE = false;
 
 /**
+ * ã‚±ãƒ¼ã‚¿ã‚¤å¯¾å¿œ
+ *
+ * UAã§åˆ¤æ–­ã—ã¦ã‚±ãƒ¼ã‚¿ã‚¤å‘ã‘ã®ãƒšãƒ¼ã‚¸ã‚’ç”Ÿæˆã—ã¾ã™ã€‚
+ */
+// require_once('custom/custom_cellular.php');
+
+
+/**
 * Sample PHP Block function
 *
 * this is a sample function used by a PHP block.  This will show the rights that
 * a user has in the "What you have access to" block.
 *
-
 function phpblock_showrights()
 {
     global $_RIGHTS, $_CST_VERBOSE;
@@ -81,7 +88,7 @@ function phpblock_showrights()
 
     return $retval;
 }
-
+*/
 
 /**
 * Include any code in this function that will be called by the internal CRON API
@@ -137,7 +144,6 @@ function CUSTOM_loginErrorHandler($msg='') {
 * @return   void
 * @see      PLG_templateSetVars
 *
-
 function CUSTOM_templateSetVars($templatename, &$template)
 {
     // define a {hello_world} variable available in header.thtml and
@@ -155,6 +161,7 @@ function CUSTOM_templateSetVars($templatename, &$template)
         break;
     }
 }
+*/
 
 
 /*  Sample Custom Member Functions to create and update Custom Membership registration and profile
@@ -574,40 +581,41 @@ function CUSTOM_handleError($errno, $errstr, $errfile, $errline, $errcontext)
 */
 
 /**
-  * “ú–{ŒêŠg’£”Å’ñ‹Ÿ@PHPƒuƒƒbƒNŠÖ”‚¨‚æ‚ÑƒJƒXƒ^ƒ€ŠÖ”
+  * æ—¥æœ¬èªžæ‹¡å¼µç‰ˆæä¾›ã€€PHPãƒ–ãƒ­ãƒƒã‚¯é–¢æ•°ãŠã‚ˆã³ã‚«ã‚¹ã‚¿ãƒ é–¢æ•°
   */
-
-/* ƒe[ƒ}•Ï”‚ðƒZƒbƒg‚·‚é */
+/*
+// ãƒ†ãƒ¼ãƒžå¤‰æ•°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ 
 require_once( 'custom/custom_templatesetvars.php' );
 
-/* Ã“Iƒy[ƒWƒRƒ“ƒeƒ“ƒc‚Ì“à—e‚ð•Ô‚· */
+// é™çš„ãƒšãƒ¼ã‚¸ã‚³ãƒ³ãƒ†ãƒ³ãƒ„ã®å†…å®¹ã‚’è¿”ã™ 
 require_once( 'custom/custom_getstaticpage.php' );
 
-/* ƒe[ƒ}•ÏXŽž‚ÉƒfƒtƒHƒ‹ƒgƒe[ƒ}‚ðƒZƒbƒg‚µ‚Ä‚¢‚éƒ†[ƒU‚Ìƒe[ƒ}‚à‹­§“I‚É•ÏX‚·‚é */
+// ãƒ†ãƒ¼ãƒžå¤‰æ›´æ™‚ã«ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ†ãƒ¼ãƒžã‚’ã‚»ãƒƒãƒˆã—ã¦ã„ã‚‹ãƒ¦ãƒ¼ã‚¶ã®ãƒ†ãƒ¼ãƒžã‚‚å¼·åˆ¶çš„ã«å¤‰æ›´ã™ã‚‹ 
 require_once( 'custom/custom_forcethemechange.php' );
 
-/* V’…‹LŽ–ƒŠƒXƒg‚ð•\Ž¦‚·‚é */
+// æ–°ç€è¨˜äº‹ãƒªã‚¹ãƒˆã‚’è¡¨ç¤ºã™ã‚‹ 
 require_once( 'custom/phpblock_lastarticles.php' );
 
-/* ƒƒOƒCƒ“ƒ†[ƒU‚ÌŒ ŒÀ‚ð•\Ž¦‚·‚é */
+// ãƒ­ã‚°ã‚¤ãƒ³ãƒ¦ãƒ¼ã‚¶ã®æ¨©é™ã‚’è¡¨ç¤ºã™ã‚‹ 
 require_once( 'custom/phpblock_showrights.php' );
 
-/* ƒuƒƒbƒN“™‚Éƒƒjƒ…[‚Æ‚µ‚ÄA˜b‘è‚Æ‹LŽ–‚·‚×‚Ä‚ð“WŠJ‚µ‚Ä•\Ž¦‚·‚é */
+// ãƒ–ãƒ­ãƒƒã‚¯ç­‰ã«ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¨ã—ã¦ã€è©±é¡Œã¨è¨˜äº‹ã™ã¹ã¦ã‚’å±•é–‹ã—ã¦è¡¨ç¤ºã™ã‚‹ 
 require_once( 'custom/phpblock_sitemapmenu.php' );
 
-/* ƒTƒCƒg‚Ìƒe[ƒ}‚ð•ÏX‚·‚é */
+// ã‚µã‚¤ãƒˆã®ãƒ†ãƒ¼ãƒžã‚’å¤‰æ›´ã™ã‚‹ 
 require_once( 'custom/phpblock_themetester.php' );
 
-/* ƒAƒNƒZƒX”‚ð•\Ž¦‚·‚é */
+// ã‚¢ã‚¯ã‚»ã‚¹æ•°ã‚’è¡¨ç¤ºã™ã‚‹ 
 require_once( 'custom/phpblock_stats.php' );
 
-/* ƒ†[ƒU[ƒG[ƒWƒFƒ“ƒg”»’è‚Ìƒeƒ“ƒvƒŒ[ƒg•Ï”‚ð’Ç‰Á‚·‚é */
+// ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚¨ãƒ¼ã‚¸ã‚§ãƒ³ãƒˆåˆ¤å®šã®ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆå¤‰æ•°ã‚’è¿½åŠ ã™ã‚‹ 
 require_once( 'custom/useragent.class.php' );
 
-/* 404 */
+// 404 
 require_once( 'custom/custom_handle404.php' );
 
-/* Forum ƒZƒ“ƒ^[ƒuƒƒbƒN */
+// Forum ã‚»ãƒ³ã‚¿ãƒ¼ãƒ–ãƒ­ãƒƒã‚¯ 
 require_once( 'custom/custom_centerblock_forum.php' );
+*/
 
 ?>

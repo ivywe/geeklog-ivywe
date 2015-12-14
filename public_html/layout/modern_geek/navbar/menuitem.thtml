@@ -1,5 +1,5 @@
 {# begin {templatelocation} #}
 
-<li{!!if {csscurrent} !!} class="uk-active"{!endif}><a {csscurrent} class="uk-clearfix" href="{link}{parms}"{onclick}><span class="label">{label}</span></a></li>
+<li{!if csscurrent} class="uk-active"{!endif}><a {csscurrent} href="{link}{parms}"{onclick}>{label}</a></li>
 
 {# end {templatelocation} #}

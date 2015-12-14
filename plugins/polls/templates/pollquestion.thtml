@@ -1,0 +1,31 @@
+{# begin {templatelocation} #}
+
+<div class="uk-overflow-container poll-questions">
+
+<script type="text/javascript">
+      google.load("visualization", "1", { packages:[ "corechart"] });
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([[ '{poll_question}', 'Votes'],
+
+        {poll_votes}
+
+        ]);
+
+        var options = {
+          title: '{lang_question}{lang_question_number}{poll_question}'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('{poll_id}_{question_id}'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
+	<div id="{poll_id}_{question_id}" class="uk-width-1-1" style="overflow:hidden; min-height:450px"></div>
+
+</div>
+
+
+{# end {templatelocation} #}

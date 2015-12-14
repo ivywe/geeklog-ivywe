@@ -1,0 +1,5 @@
+{# begin {templatelocation} #}
+
+<li>{name}{breadcrumb_child}</li>
+
+{# end {templatelocation} #}

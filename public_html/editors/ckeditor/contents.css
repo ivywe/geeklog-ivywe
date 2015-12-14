@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
+Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.md or http://ckeditor.com/license
 */
 
@@ -93,8 +93,6 @@ pre
 {
 	white-space: pre-wrap; /* CSS 2.1 */
 	word-wrap: break-word; /* IE7 */
-	-moz-tab-size: 4;
-	tab-size: 4;
 }
 
 .marker
@@ -104,7 +102,7 @@ pre
 
 span[lang]
 {
-	font-style: italic;
+   font-style: italic;
 }
 
 figure
@@ -115,18 +113,11 @@ figure
 	background: rgba(0,0,0,0.05);
 	padding: 10px;
 	margin: 10px 20px;
-	display: inline-block;
-}
-
-figure > figcaption
-{
-	text-align: center;
 	display: block; /* For IE8 */
 }
 
-a > img {
-	padding: 1px;
-	margin: 1px;
-	border: none;
-	outline: 1px solid #0782C1;
+figure figcaption
+{
+	text-align: center;
+	display: block; /* For IE8 */
 }

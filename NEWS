@@ -4,6 +4,46 @@ NEWS
 
 このファイルではGeeklog日本語版のリリースに関する情報を簡潔に紹介します。
 
+Geeklog 2.1.1-jp-1.0					2015年 12月 11日
+
+  o Geeklog 2.1.0-jp-1.1からの変更
+
+     * Geeklog 2.1.1にアップグレードしました。
+     * mobile hackを削除しました。
+     * phpblock関数sitemapmenuを削除しました。
+     * テーマprofessional_cssは、Modern Geekに取り込まれたため廃止しました。
+
+
+Geeklog 2.1.0-jp-1.1					2015年 7月 6日
+
+  o Geeklog 2.1.0-jp-1.0からの変更
+
+    セキュリティ
+
+	* ファイルマネージャーが使用しているWideImageライブラリに付属のデモと
+	  テストのコードにXSSが含まれているため削除しました。
+
+    全般
+
+	* エラーメッセージのhead要素内のメタタグで、charsetにUTF-8を指定する
+	  ようにしました。
+
+    テーマ
+
+	* テーマWAIproCSS 2.7.1: 検索フォーム部分にtitle属性を追記してアクセシ
+          ブルにしました。
+
+	* テーマprofessional_cssとWAIproCSSでlang属性を表示するようにしました。
+
+    rescue
+
+	* Geeklog 2.1から不要になった'path_themes'を削除しました。
+
+    calendarプラグイン
+
+	* calendarプラグイン バージョン1.1.4の変更をマージしました。
+
+
 Geeklog 2.1.0-jp-1.0					2014年 7月23日
 
   o Geeklog 2.0.0-jp-1.0からの変更

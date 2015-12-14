@@ -10,7 +10,7 @@
  * @author     Greg Beaver <cellog@php.net>
  * @copyright  1997-2009 The Authors
  * @license    http://opensource.org/licenses/bsd-license.php New BSD License
- * @version    CVS: $Id$
+ * @version    CVS: $Id: RunTest.php 313024 2011-07-06 19:51:24Z dufuz $
  * @link       http://pear.php.net/package/PEAR
  * @since      File available since Release 1.3.3
  */
@@ -38,7 +38,7 @@ putenv("PHP_PEAR_RUNTESTS=1");
  * @author     Greg Beaver <cellog@php.net>
  * @copyright  1997-2009 The Authors
  * @license    http://opensource.org/licenses/bsd-license.php New BSD License
- * @version    Release: 1.9.5
+ * @version    Release: 1.9.4
  * @link       http://pear.php.net/package/PEAR
  * @since      Class available since Release 1.3.3
  */
@@ -275,8 +275,10 @@ class PEAR_RunTest
      */
     function run($file, $ini_settings = array(), $test_number = 1)
     {
-        $this->_restorePHPBinary();
-
+        if (isset($this->_savephp)) {
+            $this->_php = $this->_savephp;
+            unset($this->_savephp);
+        }
         if (empty($this->_options['cgi'])) {
             // try to see if php-cgi is in the path
             $res = $this->system_with_timeout('php-cgi -v');
@@ -338,7 +340,7 @@ class PEAR_RunTest
                 }
                 return 'SKIPPED';
             }
-            $this->_savePHPBinary();
+            $this->_savephp = $this->_php;
             $this->_php = $this->_options['cgi'];
         }
 
@@ -492,6 +494,8 @@ class PEAR_RunTest
         }
         chdir($cwd); // in case the test moves us around
 
+        $this->_testCleanup($section_text, $temp_clean);
+
         /* when using CGI, strip the headers from the output */
         $output = $this->_stripHeadersCGI($output);
 
@@ -512,9 +516,6 @@ class PEAR_RunTest
                 $output .= "\n====EXPECTHEADERS FAILURE====:\n$changed";
             }
         }
-
-        $this->_testCleanup($section_text, $temp_clean);
-
         // Does the output match what is expected?
         do {
             if (isset($section_text['EXPECTF']) || isset($section_text['EXPECTREGEX'])) {
@@ -953,8 +954,6 @@ $text
     function _testCleanup($section_text, $temp_clean)
     {
         if ($section_text['CLEAN']) {
-            $this->_restorePHPBinary();
-
             // perform test cleanup
             $this->save_text($temp_clean, $section_text['CLEAN']);
             $output = $this->system_with_timeout("$this->_php $temp_clean  2>&1");
@@ -964,20 +963,6 @@ $text
             if (file_exists($temp_clean)) {
                 unlink($temp_clean);
             }
-        }
-    }
-
-    function _savePHPBinary()
-    {
-        $this->_savephp = $this->_php;
-    }
-
-    function _restorePHPBinary()
-    {
-        if (isset($this->_savephp))
-        {
-            $this->_php = $this->_savephp;
-            unset($this->_savephp);
         }
     }
 }

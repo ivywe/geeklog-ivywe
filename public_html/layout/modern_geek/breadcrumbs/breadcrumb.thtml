@@ -1,0 +1,11 @@
+{# begin {templatelocation} #}
+
+<li>
+<a href="{url}">
+{name}{breadcrumb_child}
+</a>
+</li>
+
+{# end {templatelocation} #}
+
+ 
