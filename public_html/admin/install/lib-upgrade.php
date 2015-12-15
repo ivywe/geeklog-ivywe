@@ -49,10 +49,6 @@ function INST_doDatabaseUpgrades($current_gl_version)
 
     $_DB->setDisplayError(true);
 
-    // Disable incompatible plugins beforehand to prevent an error
-    require_once 'disable-plugins.php';
-    GEEKLOGJP_disablePlugins();
-
     // Because the upgrade sql syntax can vary from dbms-to-dbms we are
     // leaving that up to each Geeklog database driver
 
@@ -476,7 +472,7 @@ function INST_doDatabaseUpgrades($current_gl_version)
             update_ConfValuesFor180();
 
             update_ConfigSecurityFor180();
-            
+
             update_UsersFor180();
 
             $current_gl_version = '1.8.0';
@@ -490,13 +486,13 @@ function INST_doDatabaseUpgrades($current_gl_version)
 
             require_once $_CONF['path'] . 'sql/updates/' . $_DB_dbms . '_1.8.2_to_2.0.0.php';
             INST_updateDB($_SQL);
-            
+
             update_ConfValuesFor200();
-            
+
             update_BlockTopicAssignmentsFor200();
-            
+
             update_StoryTopicAssignmentsFor200();
-            
+
             $current_gl_version = '2.0.0';
             $_SQL = '';
             break;
@@ -511,7 +507,7 @@ function INST_doDatabaseUpgrades($current_gl_version)
             $current_gl_version = '2.1.0';
             $_SQL = '';
             break;
-            
+
         default:
             $done = true;
         }
@@ -592,7 +588,7 @@ function INST_identifyGeeklogVersion()
         break;
 
     case 'mssql':
-	    $test = array(
+        $test = array(
             // as of 1.5.1, we should have the 'database_version' entry
             '1.5.0'  => array("SELECT c.name FROM syscolumns c JOIN sysobjects o ON o.id = c.id WHERE c.name='bodytext' AND o.name='{$_TABLES['storysubmission']}'",'bodytext'),
             '1.4.1'  => array("SELECT ft_name FROM {$_TABLES['features']} WHERE ft_name = 'syndication.edit'", 'syndication.edit')
@@ -895,8 +891,6 @@ function INST_autoinstallNewPlugins()
         }
     }
 
-    require_once 'disable-plugins.php';
-
     // automatically install all new plugins that come with a autoinstall.php
     foreach ($newplugins as $pi_name) {
         $plugin_inst = $_CONF['path'] . 'plugins/' . $pi_name
@@ -920,10 +914,6 @@ function INST_autoinstallNewPlugins()
 
             $inst_parms = $auto_install($pi_name);
             if (($inst_parms === false) || empty($inst_parms)) {
-                continue; // with next plugin
-            }
-
-            if ($_GEEKLOGJP_pi_preinstall[$pi_name] == FALSE) {
                 continue; // with next plugin
             }
 

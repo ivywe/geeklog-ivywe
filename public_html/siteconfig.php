@@ -24,6 +24,16 @@ $_CONF['site_enabled'] = true;
 // items in the debug trace.
 // $_CONF['rootdebug'] = true;
 
+/**
+ * Developer mode
+ *
+ * If you set this mode to true, detailed information will be displayed and/or logged.
+ *
+ * @var boolean
+ * @since 2.1.2
+ */
+// $_CONF['developer_mode'] = true;
+
 $_CONF['path'] = '/path/to/Geeklog/';
 $_CONF['path_system'] = $_CONF['path'] . 'system/';
 
@@ -38,7 +48,7 @@ if (!defined('LB')) {
   define('LB',"\n");
 }
 if (!defined('VERSION')) {
-  define('VERSION', '2.1.0');
+  define('VERSION', '2.1.1');
 }
 
 ?>

@@ -1,3 +1,5 @@
+{# begin {templatelocation} #}
+
                             <form name="frmstory" action="{site_admin_url}/story.php" method="post" enctype="multipart/form-data">
                                 <table cellspacing="0" cellpadding="3" width="100%">
                                     <tr>
@@ -11,15 +13,16 @@
                                             <select name="publish_year">
                                                 {publish_year_options}
                                             </select>
-                                            年
+                                            /
                                             <select name="publish_month">
                                                 {publish_month_options}
                                             </select>
-                                            月
+                                            /
                                             <select name="publish_day">
                                                 {publish_day_options}
                                             </select>
-                                            日&nbsp;&nbsp;
+                                            &nbsp;&nbsp;
+
                                             <select name="publish_hour">
                                                 {publish_hour_options}
                                             </select>
@@ -35,7 +38,7 @@
                                     </tr>
                                     <tr>
                                         <td class="alignright">{lang_title}:</td>
-                                        <td><input type="text" size="48" maxlength="128" name="title" value="{story_title}"{xhtml}></td>
+                                        <td><input type="text" size="48" maxlength="128" {!if titletoid}onkeyup="TitleToId();" {!endif}value="{story_title}" id="title" name="title"{xhtml}></td>
                                     </tr>
                                     <tr>
                                         <td class="alignright">{lang_page_title}:</td>
@@ -52,6 +55,10 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td class="alignright" style="vertical-align:top">{lang_cachetime}:</td>
+                                        <td><input type="text" size="8" name="cache_time" value="{cache_time}"{xhtml}><div class="pluginMediumText">{lang_cachetime_desc}</div></td>
+                                    </tr>
+                                    <tr>
                                         <td class="alignright">{lang_draft}:</td>
                                         <td><input type="checkbox" name="draft_flag" {is_checked}{xhtml}></td>
                                     </tr>
@@ -63,14 +70,11 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="alignright" style="padding-right:5px; width:20%">{lang_option}:</td>
-                                                    <td style="width:20%">{lang_enabled}:<input type="checkbox" name="archiveflag" value="1" {is_checked2} onclick="enablearchive(this);"{xhtml}></td>
+                                                    <td style="width:20%"><label for="admin-storyeditor-archiveflag">{lang_enabled}</label>:<input type="checkbox" name="archiveflag" value="1" {is_checked2} id="admin-storyeditor-archiveflag" onclick="enablearchive(this);"{xhtml}></td>
                                                     <td class="alignleft">
-                                                        <label for="storycode10">
-                                                            <input type="radio" name="statuscode" id="storycode10" value="10" {is_checked3}{xhtml}>{lang_optionarchive}
-                                                        </label>&nbsp;
-                                                        <label for="storycode11">
-                                                            <input type="radio" name="statuscode" id="storycode11" value="11" {is_checked4}{xhtml}>{lang_optiondelete}
-                                                        </label>
+                                                        <input type="checkbox" name="statuscode" id="storycode10" value="10" {is_checked3}{xhtml}><label for="storycode10">{lang_optionarchive}</label>
+                                                        &nbsp;
+                                                        <input type="checkbox" name="statuscode" id="storycode11" value="11" {is_checked4}{xhtml}><label for="storycode11">{lang_optiondelete}</label>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -80,15 +84,16 @@
                                                         <select name="expire_year">
                                                             {expire_year_options}
                                                         </select>
-                                                        年
+                                                        /
                                                         <select id="expire_month" name="expire_month">
                                                             {expire_month_options}
                                                         </select>
-                                                        月
+                                                        /
                                                         <select name="expire_day">
                                                             {expire_day_options}
                                                         </select>
-                                                        日&nbsp;&nbsp;
+                                                        &nbsp;&nbsp;
+
                                                         <select name="expire_hour">
                                                             {expire_hour_options}
                                                         </select>
@@ -121,21 +126,21 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="alignright" style="vertical-align:top;">{lang_cmt_disable}:</td>
-                                        <td class="alignleft" style="vertical-align:top;" colspan="1">{lang_enabled}:<input type="checkbox" name="cmt_close_flag" value="1" {is_checked5} onclick="enablecmtclose(this);"{xhtml}>
+                                        <td class="alignright" style="vertical-align:top;"><label for="cmt_close_flag">{lang_cmt_disable}</label>:</td>
+                                        <td class="alignleft" style="vertical-align:top;" colspan="1"><label for="cmt_close_flag">{lang_enabled}</label>:<input type="checkbox" name="cmt_close_flag" id="cmt_close_flag" value="1" {is_checked5} onclick="enablecmtclose(this);"{xhtml}>
                                             <span dir="ltr">
                                                  <select name="cmt_close_year">
                                                     {cmt_close_year_options}
                                                  </select>
-                                                 年
+                                                 /
                                                  <select name="cmt_close_month">
                                                     {cmt_close_month_options}
                                                  </select>
-                                                 月
+                                                 /
                                                  <select name="cmt_close_day">
                                                     {cmt_close_day_options}
                                                  </select>
-                                                 日&nbsp;&nbsp;
+                                                 &nbsp;&nbsp;
                                                  <select name="cmt_close_hour">
                                                      {cmt_close_hour_options}
                                                  </select>
@@ -150,7 +155,7 @@
                                     </tr>
                                     <tr>
                                         <td class="alignright" style="vertical-align:top;">{lang_sid}:</td>
-                                        <td><input type="text" dir="ltr" size="40" maxlength="40" name="sid" value="{story_id}"{xhtml}></td>
+                                        <td><input type="text" dir="ltr" size="48" maxlength="128" id="id" name="sid" value="{story_id}"{xhtml}></td>
                                     </tr>
                                     <tr{hide_meta}>
                                         <td valign="top" align="right">{lang_metadescription}:</td>
@@ -254,3 +259,4 @@
                                 </table>
                             </form>
 
+{# end {templatelocation} #}
