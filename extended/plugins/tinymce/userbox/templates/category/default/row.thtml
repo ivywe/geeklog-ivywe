@@ -1,0 +1,4 @@
+<!-- plugins/userbox/templates/category/default/row.thtml { -->
+{grp_var}
+{col_var}
+<!-- } plugins/userbox/templates/category/default/row.thtml -->

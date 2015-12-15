@@ -11,7 +11,7 @@
 // | Based on the prior work by:                                              |
 // | Author:                                                                  |
 // | Tim Strehle                - tim@digicol.de                              |
-// | AndrÅEBasse                - andre@digicol.de                            |
+// | Andr„ÉªBasse                - andre@digicol.de                            |
 // |                                                                          |
 // | Based on + inspired by the Gallery (http://gallery.menalto.com/)         |
 // | XP Publishing Wizard implementation, written by                          |

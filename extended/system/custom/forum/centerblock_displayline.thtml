@@ -1,13 +1,13 @@
 <!-- start centerblock_displayline.thtml -->
 
 <tr>
-  <td class="uk-text-nowrap">
-     <a href="{site_url}/forum/viewtopic.php?showtopic={topic_id}"><i class="uk-icon-arrow-circle-right"></i> <span class="uk-text-nowrap uk-text-truncate">{topic_subject}</a></a><br /
+  <td class="uk-text-truncate" style="max-width:320px">
+     <a href="{site_url}/forum/viewtopic.php?showtopic={topic_id}"><i class="uk-icon-arrow-circle-right"></i> {topic_subject}</a>
   </td>
-  <td class="uk-text-truncate">
+  <td class="uk-text-truncate" style="max-width:180px">
      <span class="uk-text-truncate"><a href="{site_url}/forum/index.php?forum={forum_id}" class="uk-text-truncate uk-text-success uk-text-bold" style="max-width:100px"><i class="uk-icon-folder-o"></i> {forum_name}</a></span>
   </td>
-  <td class="uk-text-truncate">
+  <td class="uk-text-truncate" style="max-width:120px">
 {topicinfo}{!if replies}...{lastpostuser}{!endif}
   </td>
   <td class="uk-text-truncate">

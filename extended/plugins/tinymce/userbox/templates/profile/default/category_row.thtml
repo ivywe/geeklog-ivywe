@@ -1,0 +1,3 @@
+<!-- plugins/userbox/templates/profile/default/category_row.thtml { -->
+{category_var}
+<!-- } plugins/userbox/templates/profile/default/category_row.thtml -->

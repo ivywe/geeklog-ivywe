@@ -2,7 +2,7 @@
 /*
 TinyBrowser 1.40 Beta 3 - A TinyMCE file browser (C) 2008  Bryn Jones
 Language 'pt'
-Author: Francis Rebouças e MEM
+Author: Francis Rebouè»‹s e MEM
 email: francisreboucas[at]gmail[dot]com e talofo[at]gmail[dot]com
 */
 		define("TB_BROWSE", "Procurar");
@@ -56,7 +56,7 @@ email: francisreboucas[at]gmail[dot]com e talofo[at]gmail[dot]com
 		define("TB_MSGROTATE", "%s imagens foram rodadas com sucesso.");
 		define("TB_MSGEDITERR", "%s arquivos encontraram erros durante a opera&ccedil;&atilde;o solicitada.");
 		define("TB_MSGUPGOOD", "%s arquivos foram enviados com sucesso.");
-		define("TB_MSGUPBAD", "%s arquivos n&atilde;o foram enviados, devido a restri&ccedil;&otilde;es de segurança.");
+		define("TB_MSGUPBAD", "%s arquivos n&atilde;o foram enviados, devido a restri&ccedil;&otilde;es de seguranè»‹.");
  		define("TB_MSGUPDUP", "%s ficheiro(s) n&atilde;o foram enviados para o servidor. Ficheiros com o mesmo nome j&aacute; existem. - apague or renomeie o ficheiro original.");
 		define("TB_MSGUPFAIL", "Falha no upload de arquivo - Seleccionou algum arquivo?");
 		define("TB_MSGMAXSIZE", "n&atilde;o pode ser colocado em fila para carregar quando o tamanho exceder o limite m&aacute;ximo de");

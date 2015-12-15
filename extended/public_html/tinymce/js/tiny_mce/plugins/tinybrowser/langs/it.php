@@ -43,8 +43,8 @@ email: bryn[at]lunarvis[dot]com
 		define("TB_TYPEIMG", "Immagini");
 		define("TB_TYPEMEDIA", "Media");
 		define("TB_TYPEFILE", "Tutti i files");
-		define("TB_ROTATECW", "Ruota 90° orario");
-		define("TB_ROTATECCW", "Ruota 90° antiorario");
+		define("TB_ROTATECW", "Ruota 90ï½° orario");
+		define("TB_ROTATECCW", "Ruota 90ï½° antiorario");
 		define("TB_MSGNEWTHUMBS", "%s nuove anteprime sono state generate.");
 		define("TB_MSGMKDIR", "Le '%s' cartelle sono state create.");
 		define("TB_MSGMKDIRFAIL", "Impossibile creare la cartella '%s' - controlla i tuoi permessi.");

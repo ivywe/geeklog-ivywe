@@ -8,7 +8,7 @@
 // |                                                                           |
 // | Geeklog calendarjp plugin                                                 |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2008-2012 by dengen - taharaxp AT gmail DOT com             |
+// | Copyright (C) 2008-2014 by dengen - taharaxp AT gmail DOT com             |
 // |                                                                           |
 // | Calendarjp plugin is based on prior work by:                              |
 // | Authors: Tony Bibbs        - tony AT tonybibbs DOT com                    |
@@ -36,7 +36,7 @@
 require_once '../lib-common.php';
 
 if (!in_array('calendarjp', $_PLUGINS)) {
-    echo COM_refresh($_CONF['site_url'] . '/index.php');
+    COM_handle404();
     exit;
 }
 
@@ -920,13 +920,9 @@ if ($mode == 'personal') {
 
 $smallcal_prev = getSmallCalendar ($prevmonth, $prevyear, $mode);
 $cal_templates->set_var ('previous_months_calendar', $smallcal_prev);
-$cal_templates->set_var ('previous_months_cal',
-                         '<div style="font-size:80%;">' . LB . $smallcal_prev . '</div>');
 
 $smallcal_next = getSmallCalendar ($nextmonth, $nextyear, $mode);
 $cal_templates->set_var ('next_months_calendar', $smallcal_next);
-$cal_templates->set_var ('next_months_cal',
-                         '<div style="font-size:80%;">' . LB . $smallcal_next . '</div>');
 
 $cal_templates->set_var('cal_prevmo_num', $prevmonth);
 $cal_templates->set_var('cal_prevyr_num', $prevyear);

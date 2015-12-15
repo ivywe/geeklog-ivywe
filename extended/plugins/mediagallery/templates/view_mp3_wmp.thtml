@@ -3,7 +3,7 @@
 </span>
 <br{xhtml}>
 <span class="uk-text-center">
-<object id="Player" codeBase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,0,02,902" type="application/x-oleobject" height="{height}" width="{width}" standby="Loading Microsoft® Windows® Media Player components..." classid="CLSID:22D6F312-B0F6-11D0-94AB-0080C74C7E95">
+<object id="Player" codeBase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,0,02,902" type="application/x-oleobject" height="{height}" width="{width}" standby="Loading Microsoftï½® Windowsï½® Media Player components..." classid="CLSID:22D6F312-B0F6-11D0-94AB-0080C74C7E95">
 <param name="Filename" value="{movie}">
 <param name="URL" value="{movie}">
 <param name="ShowStatusBar" value= "{showstatusbar}">

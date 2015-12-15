@@ -1,0 +1,12 @@
+<!-- plugins/userbox/templates/admin/changeset.thtml 20120912 { -->
+
+<form action="{site_admin_url}/plugins/userbox/profile.php" method="post" id="admin-changeset" class="basic">
+  <input type="hidden" name="id" value="{id}"{xhtml}>
+  <p class="message">{lang_inst_changeset}</p>
+  {lang_fieldset}{list_fieldset}
+  <input type="submit" value="{lang_changeset}" name="mode" class="submit"{xhtml}>
+  <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
+  <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+</form>
+
+<!-- } plugins/userbox/templates/admin/changeset.thtml -->

@@ -6,8 +6,8 @@
   <p class="skip"><a href="#skipcalendar">{lang_skipcalendar}</a></p>
 <!--/not_for_mobile-->
 <!--mobile_only
-        <a href="{prevmonth}" title="{lang_prevmonth}" class="prevmonth">先月</a>|
-        <a href="{nextmonth}" title="{lang_nextmonth}" class="nextmonth">翌月</a>|
+        <a href="{prevmonth}" title="{lang_prevmonth}" class="prevmonth">蜈域怦</a>|
+        <a href="{nextmonth}" title="{lang_nextmonth}" class="nextmonth">鄙梧怦</a>|
         {title_1}|{title_2}<br{xhtml}>
 /mobile_only-->
   <table style="text-align:center" class="mycaljp2" summary="Site Calendar">

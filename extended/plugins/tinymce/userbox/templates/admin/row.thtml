@@ -1,0 +1,3 @@
+<!-- plugins/userbox/templates/admin/row.thtml { -->
+<tr class="pluginRow1">{col_var}</tr>
+<!-- } plugins/userbox/templates/admmin/row.thtml -->
