@@ -97,6 +97,13 @@ $_UPDATES = array(
         "ALTER TABLE {$_TABLES['pollquestions']} CHANGE `pid` `pid` VARCHAR(128) NOT NULL DEFAULT ''",
         "ALTER TABLE {$_TABLES['polltopics']} CHANGE `pid` `pid` VARCHAR(128) NOT NULL DEFAULT ''",
         "ALTER TABLE {$_TABLES['pollvoters']} CHANGE `pid` `pid` VARCHAR(128) NOT NULL"
+    ),
+
+    '2.1.5' => array(
+        // New field post-2.1.5
+        "ALTER TABLE {$_TABLES['pollquestions']} ADD `allow_multipleanswers` TINYINT( 1 ) NULL DEFAULT NULL",
+        "ALTER TABLE {$_TABLES['polltopics']} ADD `description` MEDIUMTEXT NULL ",
+        "ALTER TABLE {$_TABLES['pollquestions']} ADD `description` MEDIUMTEXT NULL"
     )
 
 );

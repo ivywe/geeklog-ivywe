@@ -111,7 +111,10 @@ $LANG25 = array(
     37 => 'Ergebnisse ausblenden wenn Umfrage läuft',
     38 => 'Während diese Umfrage läuft, können nur der Eigentümer &amp; Root die Ergebnisse sehen.',
     39 => 'Die Kategorie wird nur angezeigt, wenn sie mehr als eine Frage enthält.',
-    40 => 'Alle Antworten zu dieser Umfrage ansehen'
+    40 => 'Alle Antworten zu dieser Umfrage ansehen',
+    1001 => 'Allow multipleanswers',
+    1002 => 'Description',
+    1003 => 'Description'
 );
 
 $PLG_polls_MESSAGE15 = 'Der Kommentar wurde gespeichert, muss aber noch von einem Moderator freigegeben werden.';

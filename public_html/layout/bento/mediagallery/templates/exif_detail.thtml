@@ -1,0 +1,13 @@
+<fieldset style="margin-bottom:6px">
+  <legend>{exif_title}</legend>
+  <table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+  <!-- BEGIN exifRow -->
+    <tr>
+    <!-- BEGIN exifColumn -->
+      <td style="font-weight:bold;width:20%;height:25px;text-align:right;padding-right:5px;">{label}:</td>
+      <td style="text-align:left;width:30%;">{value}</td>
+    <!-- END exifColumn -->
+    </tr>
+  <!-- END exifRow -->
+  </table>
+</fieldset>

@@ -54,9 +54,9 @@ $_UPDATES = array(
           [pid] [varchar] (20) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
           [question] [varchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
           CONSTRAINT [PK_{$_TABLES['pollquestions']}] PRIMARY KEY  CLUSTERED
-          (
-            [qid]
-          )  ON [PRIMARY]
+	      (
+		    [qid]
+	      )  ON [PRIMARY]
         ) ON [PRIMARY]",
         // in 1.4.1, "don't display poll" was equivalent to "closed"
         "UPDATE {$_TABLES['polltopics']} SET is_open = 0 WHERE display = 0"

@@ -1,0 +1,14 @@
+		<li id="{menuitem_id}" class="uk-parent {menuitem_class}" data-uk-dropdown="{}" aria-haspopup="true" aria-expanded="false">
+			<a href="" class="">{menuitem_text}</a>
+			<div class="uk-dropdown uk-dropdown-navbar uk-dropdown-width-1 uk-dropdown-center uk-dropdown-bottom" style="top: 40px; left: -64px;">
+				<div class="uk-grid uk-dropdown-grid">
+					<div class="uk-width-1-1">
+						<ul class="uk-nav uk-nav-navbar">
+							<li>
+								{menu_elements}
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</li>

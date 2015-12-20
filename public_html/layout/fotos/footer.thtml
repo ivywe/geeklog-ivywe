@@ -1,0 +1,67 @@
+
+        </div>
+      </div>
+
+      {left_blocks}
+
+      {right_blocks}
+
+    </div>
+    <!-- } #wrapper -->
+  </div>
+</div>
+
+		<div id="tm-footer" class="tm-block-footer">
+            <div class="uk-container uk-container-center">
+
+                        <footer class="tm-footer tm-link-muted">
+
+                                <a id="tm-anchor-bottom" class="tm-totop-scroller" data-uk-smooth-scroll="" href="#"></a>
+                
+                <div class="uk-panel widget_text">{copyright_notice}&nbsp;<a href="http://www.geeklog.net/">Geeklog</a></span><br{xhtml}>
+          <span>{execution_textandtime}</span></div>
+            </footer>
+            
+            </div>
+        </div>
+
+
+	<div class="tm-search uk-hidden-small">
+		<form class="uk-search" id="searchform" action="{site_url}/search.php" method="get" role="search" data-uk-search>
+			<input class="uk-search-field" type="text" size="15" maxlength="255" value="{button_search}" name="query"
+			onfocus="if (this.value == '{button_search}') this.value = ''"
+			onblur="if (this.value == '') this.value = '{button_search}'"{xhtml}>
+			<input type="hidden" value="all" name="type"{xhtml}>
+			<input type="hidden" value="all" name="keyType"{xhtml}>
+			<input type="hidden" value="search" name="mode"{xhtml}>
+			<div class="uk-dropdown uk-dropdown-flip uk-dropdown-search" aria-expanded="false">
+			</div>
+		</form>
+	</div>
+
+
+  <!-- } #container -->
+
+  {plg_footercode}
+
+<script type="text/javascript">
+$(document).ready(function(){
+$.UIkit.modal('#gl-login').show();
+});
+</script>
+
+
+  <!-- Depending on the situation, HTML body element's class attribute to specify a value by JavaScript
+       The argument from the left, the right block container, the middle block left the right block id attribute value -->
+  <script type="text/javascript">
+  <!--
+    FixHTML('leftblocks', 'centerblocks', 'rightblocks');
+  -->
+  </script>
+
+
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+
+</body>
+
+</html>

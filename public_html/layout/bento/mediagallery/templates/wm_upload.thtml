@@ -1,0 +1,37 @@
+{lang_wmupload_help}
+<br{xhtml}><br{xhtml}>
+<form class="uk-form" method="post" enctype="multipart/form-data" name="watermarkupload" action="{s_form_action}">
+<div>
+{max_file_size}
+<input type="hidden" name="album_id" value="0"{xhtml}>
+<input type="hidden" name="action" value="{action}"{xhtml}>
+    <table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+      <tr>
+        <th colspan="2" style="width:100%;">
+          {lang_watermark_upload}
+        </th>
+      </tr>
+      <tr>
+        <td class="required uk-text-right" style="width:20%;">{lang_file}</td>
+        <td class="uk-text-right">
+		  {max_file_size}
+	      <input type="file" dir="ltr" name="newmedia[]" size="45"{xhtml}>
+	    </td>
+      </tr>
+      <tr>
+        <td class="uk-text-right uk-text-warning" style="width:20%;">{lang_description}</td>
+        <td class="uk-text-left">
+		  <textarea name="description[]" cols="45" rows="2"></textarea>
+	    </td>
+      </tr>
+      <tr>
+        <td colspan="2" class="uk-text-left uk-text-warning" style="width:50%;">{public}</td>
+      </tr>
+    </table>
+
+<div style="text-align:center;">
+  <input type="submit" class="uk-button" value="{lang_save}" name="mode"{xhtml}>
+  <input type="submit" class="uk-button" value="{lang_cancel}" name="mode"{xhtml}>
+</div>
+</div>
+</form>

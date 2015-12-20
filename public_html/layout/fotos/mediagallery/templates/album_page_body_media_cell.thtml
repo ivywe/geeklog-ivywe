@@ -1,0 +1,39 @@
+<a name="{media_id}"></a>
+<div class="uk-margin-right uk-margin-bottom">
+  <div class="uk-container-center">
+    {media_item_thumbnail}
+    {mp3_podcast}
+  </div>
+  <div class="uk-text-center">
+      <div class="pluginMediumText">
+        {media_title}
+        {!if musicalbum}
+        &nbsp;/&nbsp;{musicalbum}
+        {!endif}
+      </div>
+        {!if artist}
+        <div class="pluginMediumText">
+        {artist}
+        </div>
+        {!endif}
+      {!if search_album}
+      <div class="pluginSmallText">{search_album}</div>
+      {!endif}
+      <div class="pluginSmallText">{media_time}</div>
+      {!if media_comments}
+      <div class="pluginSmallText">{media_comments}</div>
+      {!endif}
+      {!if media_views}
+      <div class="pluginSmallText">{media_views}</div>
+      {!endif}
+      {!if rating_box}
+      {rating_box}
+      {!endif}
+      {!if edit_link}
+      <div class="mgMediaEdit">{edit_link}</div>
+      {!endif}
+      {!if media_cell_keywords}
+      <div class="mgMediaKeywords">{media_cell_keywords}</div>
+      {!endif}
+  </div>
+</div>

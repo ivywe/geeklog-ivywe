@@ -57,10 +57,10 @@
 
         <nav class="tm-navbar uk-navbar uk-navbar-attached">
 
-            <a class="uk-navbar-brand uk-hidden-small" href="{site_url}"><img class="uk-margin uk-margin-remove" src="{layout_url}/images/logo.png" width="140" height="30" title="{site_name}" alt="{site_name}"></a>
+            <a class="uk-navbar-brand uk-hidden-small" href="{site_url}"><img class="uk-margin uk-margin-remove" src="{layout_url}/images/logo.png" style="width:auto; height:33px; margin-bottom:3px" title="{site_name}" alt="{site_name}"></a>
 
             <ul class="uk-navbar-nav">
-                <li class="uk-parent uk-active uk-hidden-small" data-uk-dropdown>
+                <li class="uk-parent uk-hidden-small" data-uk-dropdown>
                     <a href=""><i class="uk-icon-home"></i> Level1</a>
 
                     <div class="uk-dropdown uk-dropdown-navbar">
@@ -83,7 +83,7 @@
                     </div>
 
                 </li>
-                <li class="uk-parent uk-active uk-hidden-small">
+                <li class="uk-parent uk-hidden-small">
 		  <a href="{site_url}/index.php?topic=General" class="parent">General</a>
 		</li>
             </ul>
@@ -109,7 +109,7 @@
 			<?php } ?>
 
             <a href="#uk-offcanvas" class="uk-navbar-toggle uk-visible-small" data-uk-offcanvas="{target:'#uk-offcanvas'}"></a>
-            <div class="uk-navbar-content uk-navbar-center uk-visible-small"><a href="{site_url}"><img src="{layout_url}/images/logo.png" width="140" height="30" title="{site_name}" alt="{site_name}"></a></div>
+            <div class="uk-navbar-content uk-navbar-center uk-visible-small"><a href="{site_url}"><img src="{layout_url}/images/logo.png"  style="width:auto; height:33px; margin-bottom:3px" title="{site_name}" alt="{site_name}"></a></div>
 
         </nav>
 

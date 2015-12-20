@@ -1,0 +1,19 @@
+<!--plugins/mediagallery/templates/medialist/uikit_overlay_banner/autotag_medialist.thtml 20150309 { -->
+{!if edit}
+<fieldset>
+<legend><a href="{site_url}/mediagallery/album.php?aid={album_id}&page=1"><i class="uk-icon-file-image-o"></i> {album_title}</a></legend>
+{!endif}
+
+<div class="uk-slidenav-position" data-uk-slideshow="{ autoplay:true }">
+    <ul class="uk-slideshow uk-overlay-active">
+	{medialist_col}
+	</ul>
+    <a href="{class}" class="uk-slidenav-banner uk-slidenav-contrast uk-slidenav-next-banner" target="_blank"></a>
+
+</div>
+
+{!if edit}
+</fieldset>
+{!endif}
+
+<!--} plugins/mediagallery/templates/medialist/uikit_overlay_banner/autotag_medialist.thtml -->

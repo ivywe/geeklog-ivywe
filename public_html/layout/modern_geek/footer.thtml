@@ -37,16 +37,6 @@
 
 <!-- } #container -->
 
-<nav id="ivm-page-nav" class="uk-flex uk-flex-middle uk-flex-center">
-<ul class="uk-dotnav uk-flex-column" data-uk-scrollspy-nav="{ closest:'li', smoothscroll:true}">
-    <li><a href="#top"></a></li>
-    <li><a href="#leftblocks"></a></li>
-    <li><a href="#footer2"></a></li>
-    <li><a href="#footer"></a></li>
-</ul>
-</nav>
-
-
 
 
 	<div id="modalOpen" class="uk-modal">

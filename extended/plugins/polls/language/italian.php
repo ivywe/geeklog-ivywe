@@ -109,7 +109,10 @@ $LANG25 = array(
     37 => 'Nascondi risultati mentre il sondaggio é aperto',
     38 => 'Mentre il sondaggio é aperto solo il proprietario e l\'utente root possono vedere i risultati',
     39 => 'Il tema verrá visualizzato se ci sará piú di una domanda.',
-    40 => 'Visualizza tutte le risposte a questo sondaggio'
+    40 => 'Visualizza tutte le risposte a questo sondaggio',
+    1001 => 'Allow multipleanswers',
+    1002 => 'Description',
+    1003 => 'Description'
 );
 
 $PLG_polls_MESSAGE15 = 'Il tuo commento é stato salvato e verrá pubblicato appena approvato da un moderatore.';

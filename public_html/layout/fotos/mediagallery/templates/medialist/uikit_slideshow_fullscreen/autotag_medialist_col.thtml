@@ -1,0 +1,16 @@
+<!-- plugins/mediagallery/templates/medialist/uikit_overlay/autotag_medialist_col.thtml 20150309 { -->
+
+		<li>
+			<img src="{filename_disp}" alt="{media_title}" style="width: 100%; height: auto;">
+			<div class="uk-overlay-panel uk-flex uk-flex-center uk-flex-middle uk-text-center uk-overlay-fade">
+            	<div>
+					<h3 class="uk-h4">{media_title}</h3>
+					<div class=" uk-margin">
+						{media_desc}
+					</div>
+				</div>
+			</div>
+		</li>
+
+
+<!-- } plugins/mediagallery/templates/medialist/uikit_overlay/autotag_medialist_col.thtml 20150309 -->
