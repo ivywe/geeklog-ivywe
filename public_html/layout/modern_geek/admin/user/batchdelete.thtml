@@ -1,27 +1,20 @@
-{# begin {templatelocation} #}
 
-<p>{lang_instruction}</p>
+<!-- admin/user/batchdelete.thtml { -->
 
-<form action="{site_admin_url}/user.php?mode=batchdelete" method="post" id="admin-batchdelete" class="uk-form">
-  <fieldset>
-    <legend>{lang_updatelist}</legend>
+{lang_instruction}
 
-    <ul class="uk-subnav uk-flex-center uk-margin-top">
-      <li>
-        <input type="hidden" name="mode" value="batchdelete"{xhtml}>
-        <input type="hidden" name="usr_type" value="{usr_type}"{xhtml}>
-        <input type="hidden" name="usr_time[{usr_type}]" value="{usr_time}"{xhtml}>
-      </li>
-    </ul>
-    <dl class="uk-description-list-horizontal">
-      <dt>
-      {options_list}
-      </dt>
-      <dd>
-        <input type="submit" name="submit" value="{lang_updatelist}"{xhtml}>
-      </dd>
-    </dl>
-  </fieldset>
+<form style="display:inline" action="{site_admin_url}/user.php?mode=batchdelete" method="post" class="uk-form uk-form-horizontal">
+
+        <div class="uk-form-row">
+            {options_list}
+        </div>
+        <div class="uk-form-row uk-margin-large-top">
+            <div class="uk-form-controls">
+                <input type="hidden" name="mode" value="batchdelete" class="uk-button uk-button-primary uk-button-large"{xhtml}>
+                <input type="submit" name="submit" value="{lang_updatelist}"{xhtml}>
+            </div>
+        </div>
+
 </form>
 
-{# end {templatelocation} #}
+<!-- } admin/user/batchdelete.thtml -->

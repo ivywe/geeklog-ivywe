@@ -1,8 +1,9 @@
-{# begin {templatelocation} #}
+
+<!-- admin/trackback/autodetectitem.thtml { -->
 
 <tr>
   <td><a href="{autodetect_link}">{link_text}</a></td>
   <td>{link_url}</td>
 </tr>
 
-{# end {templatelocation} #}
+<!-- } admin/trackback/autodetectitem.thtml -->

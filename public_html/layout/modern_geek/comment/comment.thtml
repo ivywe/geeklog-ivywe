@@ -1,19 +1,16 @@
-{# begin {templatelocation} #}
 
-<div class="block-comment-content level-{indent}">
-  <ul class="uk-subnav uk-flex-center">
-    <li class="title">{title}</li>
-    <li class="author">{lang_authoredby}{author_link}&nbsp;{lang_on}&nbsp;{date}</li>
+<!-- comment/comment.thtml { -->
+
+<div class="level-{indent}">
+  <ul class="uk-list">
+    <li class="comment_title">{title}</li>
+    <li class="comment_author">{lang_authoredby}&nbsp;{author_link}&nbsp;{lang_on}&nbsp;{date}</li>
   </ul>
 
   <div class="uk-margin">{comments}</div>
 
-  <ul class="uk-subnav uk-flex-center" {hide_if_preview}>
-    <li>{reply_option}</li>
-    <li>{parent_link}</li>
-    <li>{delete_option}</li>
-    <li class="permlink"><a href="{site_url}/comment.php?mode=view&amp;cid={cid}" rel="self bookmark">{lang_permlink}</a></li>
-  </ul>
+  <ul class="uk-subnav uk-flex-left" role="navigation" {hide_if_preview}>
+    <li>[{reply_option}</li>{!if parent_link}<li>{parent_link}</li>{!endif}<li>{delete_option}</li><li><a href="{site_url}/comment.php?mode=view&amp;cid={cid}" rel="bookmark" title="{lang_permlink}">#</a>]</li></ul>
 </div>
 
-{# end {templatelocation} #}
+<!-- } comment/comment.thtml -->

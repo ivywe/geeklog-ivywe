@@ -1,8 +1,9 @@
-{# begin {templatelocation} #}
+
+<!-- admin/lists/searchmenu.thtml { -->
 
 <form action="{form_url}" method="post" class="uk-form uk-margin-bottom">
   <fieldset>
-    <legend>{lang_search}</legend>
+    <!-- <legend>{lang_search}</legend> -->
 
     <div class="uk-flex uk-flex-center uk-margin-top uk-margin-bottom">
       <div class="uk-text-nowrap uk-text-bold uk-margin-left">{filter}</div>
@@ -22,10 +23,12 @@
       </div>
       <div class="uk-text-nowrap uk-text-bold uk-margin-left">{lang_records_found}</div>
       <div class="uk-text-nowrap">{records_found}</div>
-      <div class="uk-text-nowrap uk-margin-left"><input type="submit" value="{lang_submit}"{xhtml}></div>
+      <div class="uk-text-nowrap uk-margin-left">
+        <input type="submit" value="{lang_submit}"{xhtml}>
+      </div>
     </div>
 
   </fieldset>
 </form>
 
-{# end {templatelocation} #}
+<!-- } admin/lists/searchmenu.thtml -->

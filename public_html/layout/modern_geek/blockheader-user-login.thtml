@@ -1,4 +1,7 @@
 {# begin {templatelocation} #}
 
+<section class="block-list">
+  <nav class="block-list-content" role="navigation">
+    <ul class="uk-list">
 
 {# end {templatelocation} #}

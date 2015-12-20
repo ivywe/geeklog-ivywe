@@ -1,11 +1,12 @@
-{# begin {templatelocation} #}
 
-<div id="admin-instructions" class="uk-overflow-container">
+<!-- admin/lists/topmenu.thtml { -->
+
+<div id="admin-topmenu" class="uk-panel uk-panel-box">
   {icon}
-  <p id="menu_fields">
+  <div id="admin-menu-fields">
     {menu_fields_pre}{menu_fields}{menu_fields_aft}
-  </p>
+  </div>
   <div id="instructions">{lang_instructions}</div>
 </div>
 
-{# end {templatelocation} #}
+<!-- } admin/lists/topmenu.thtml -->

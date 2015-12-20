@@ -1,5 +1,6 @@
-{# begin {templatelocation} #}
 
-<dl class="uk-description-horizontal"><dt>{row_number} {story_date}</dt><dd>{story_title}</dd></dl>
+<!-- users/storyrow.thtml { -->
 
-{# end {templatelocation} #}
+<p>{row_number}&nbsp;{story_title}&nbsp;{story_date}</p>
+
+<!-- } users/storyrow.thtml -->

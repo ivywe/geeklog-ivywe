@@ -5,15 +5,15 @@
 <!-- BEGIN ccgroup -->
 <h2>{lang_group}</h2>
 
-<div class="uk-grid">
-  {cc_rows}
-</div>
+<ul class="admin-commandcontrol uk-clearfix">
+{cc_rows}
+</ul>
 <!-- END ccgroup -->
 <!-- BEGIN ccrow -->
 {cc_main_options}
 <!-- END ccrow -->
 <!-- BEGIN ccitem -->
-<div class="uk-width-1-5 uk-text-center"><div><a href="{page_url}"{target}><img src="{page_image}" alt=""{xhtml}></a></div><div><a href="{page_url}"{target}>{option_label}</a></div></div>
+<li><a href="{page_url}" style="text-align:center"{target}><img src="{page_image}" style="display:block;margin:5px auto" alt=""{xhtml}>{option_label}</a></li>
 <!-- END ccitem -->
 
 {# end {templatelocation} #}

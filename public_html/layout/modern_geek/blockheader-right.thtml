@@ -1,8 +1,8 @@
-{# begin {templatelocation} #}
-<!-- block-right -->
 
-    <aside class="block-right">
-      <h2>{block_title}{block_help}</h2>
+<!-- blockheader-right.thtml { -->
+
+    <section class="block-right">
+      <h2 class="uk-h2 block-title">{block_title}{block_help}</h2>
       <div class="block-right-content">
 
-{# end {templatelocation} #}
+<!-- } blockheader-right.thtml -->

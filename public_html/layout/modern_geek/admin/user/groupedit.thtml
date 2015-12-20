@@ -1,8 +1,9 @@
-{# begin {templatelocation} #}
 
-<dd>
-  <p class="groupinstructions">{lang_groupinstructions}</p>
-  {group_options}
-</dd>
+<!-- admin/user/groupedit.thtml { -->
 
-{# end {templatelocation} #}
+        <div class="uk-form-row">
+            <p>{lang_groupinstructions}</p>
+            <div class="uk-overflow-container">{group_options}</div>
+        </div>
+
+<!-- } admin/user/groupedit.thtml -->

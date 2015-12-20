@@ -1,189 +1,60 @@
-/*==============================================================================
-  Theme    : Modern Geek
-  Update   : 2014/05/27
-  Version  : 0.9
-  Copyright (C) 2012-2014 by Ivy
-  Author   : Ivy (komma AT ivywe DOT co DOT jp)
-  License  : GPLv2
-  Homepage : http://www.ivywe.co.jp/
-==============================================================================*/
+
+// +---------------------------------------------------------------------------+
+// | Geeklog 2.1.1                                                             |
+// +---------------------------------------------------------------------------+
+// | Horizon Geeklog Theme                                                     |
+// +---------------------------------------------------------------------------+
+// | Copyright (C) 2012-2014 by the following authors:                         |
+// |                                                                           |
+// | Authors: Tetsuko Konma - http://www.ivywe.co.jp/                          |
+// |                                                                           |
+// | Horizon theme is based on prior work by:                                  |
+// | Authors: Fumito Arakawa   - http://phize.net/                             |
+// |          Geeklog Japan    - http://www.geeklog.jp/                        |
+// |          Yoshinori Tahara - taharaxp AT gmail DOT com                     |
+// +---------------------------------------------------------------------------+
+// |                                                                           |
+// | This program is free software; you can redistribute it and/or             |
+// | modify it under the terms of the GNU General Public License               |
+// | as published by the Free Software Foundation; either version 2            |
+// | of the License, or (at your option) any later version.                    |
+// |                                                                           |
+// | This program is distributed in the hope that it will be useful,           |
+// | but WITHOUT ANY WARRANTY; without even the implied warranty of            |
+// | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the             |
+// | GNU General Public License for more details.                              |
+// |                                                                           |
+// | You should have received a copy of the GNU General Public License         |
+// | along with this program; if not, write to the Free Software Foundation,   |
+// | Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.           |
+// |                                                                           |
+// +---------------------------------------------------------------------------+
 
 
 /*==============================================================================
-  Profile
+  Pofile
 ==============================================================================*/
 
-Geeklog Theme using frontend framework "UIKIT",
-HTML 5 Transitional+CSS 3.0 and Responsive Web Design.
-Design is based on Winkey14 based on Modern Curve.
-Geeklog 2.1 Hack is required for HTML 5.
-
-Feature
-* HTML5+CSS3 
-  <article> <aside> tags
-* Responsive Web Design by using CSS3 Media Queries.
-* Error 0 html5 validation check
-* Use UIKIT : License MIT License
-  http://www.getuikit.com/
-* View rightblocks bellow in frontpage.
-
-/*==============================================================================
-  Install
-==============================================================================*/
-
-winkey14_uikit_ivy  --> <public_html>/layout/
-
-Geeklog Admin:
-Configuration - Theme - 
- Theme: Winkey14 Uikit Ivy
- DOCTYPE: HTML5 with XHTML syntax
-
-/*==============================================================================
-  hack for HTML 5 
-==============================================================================*/
-
-1. a tag: remove "rel=category"
-
-1-1. private/system/lib-story.php  : 129
-
-from:
-<code>
-            $article->set_var( 'story_anchortag_and_image',
-                COM_createLink(
-                    $topicimage,
-                    $topicurl,
-                    array('rel'=>"category")
-                )
-                , false, true
-            );
-</code>
-
-to:
-<code>
-            $article->set_var( 'story_anchortag_and_image',
-                COM_createLink(
-                    $topicimage,
-                    $topicurl,
-                    array()
-                )
-                , false, true
-            );
-</code>
-
-
-1-2. private/system/lib-story.php  : 140
-
-from:
-<code>
-            $article->set_var( 'story_anchortag_and_image_no_align',
-                COM_createLink(
-                    $topicimage_noalign,
-                    $topicurl,
-                    array('rel'=>"category")
-                )
-                , false, true
-            );
-</code>
-
-to:
-<code>
-            $article->set_var( 'story_anchortag_and_image_no_align',
-                COM_createLink(
-                    $topicimage_noalign,
-                    $topicurl,
-                    array()
-                )
-                , false, true
-            );
-</code>
-
-
-2. HTML 5 time tag for datetime
-
-2-1. private/system/lib-story.php : 107
-
-from:
-<code>
-    // Date formatting set by user therefore cannot be cached
-    $article->set_var('story_date', $story->DisplayElements('date'), false, true);
-</code>
-
-to:
-<code>
-    // Date formatting set by user therefore cannot be cached
-    $article->set_var('story_date', $story->DisplayElements('date'), false, true);
-    $article->set_var('story_datetime', $story->DisplayElements('datetime'), false, true );
-</code>
-
-
-2-2. private/system/classes/story.class.php : 1807
-
-from:
-<code>
-        case 'date':
-            $return = COM_getUserDateTimeFormat($this->_date);
-
-            $return = $return[0];
-            break;
-
-        case 'unixdate':
-            $return = $this->_date;
-</code>
-
-to:
-<code>
-        case 'date':
-            $return = COM_getUserDateTimeFormat($this->_date);
-
-            $return = $return[0];
-            break;
-
-        case 'datetime':
-            $return = strftime('%FT%T', $this->_date);
-
-            break;
-
-        case 'unixdate':
-            $return = $this->_date;
-</code>
-
-
-2-3. public_html/lib-common.php 1189, 1881
-
-add:
-<code>
-    $header->set_var( 'theme', $_CONF['theme'] );
-
-    $header->set_var('charset', COM_getCharset());
-</code>
-
-to:
-<code>
-    $header->set_var( 'theme', $_CONF['theme'] );
-    $header->set_var( 'datetime_html5', strftime('%FT%T', $curtime[1]) );
-
-    $header->set_var('charset', COM_getCharset());
-</code>
+Geeklog theme using HTML5 + CSS 3.0 and eliminate table tags.
+This theme is adopted the Responsive Web Design.
+This theme is mobile friendly.
 
 
 /*==============================================================================
-  History
+  Basic Markup
 ==============================================================================*/
 
-0.9.1  2014/05/25
- * Release
+Basic markup is following:
 
-/*==============================================================================
-  Download site
-==============================================================================*/
-
-IVYWE CO.,LTD.: http://www.ivywe.co.jp/
-
-
-/*==============================================================================
-  Special thanks!
-==============================================================================*/
-
-hiroron: http://winkey.jp
-milk: http://white-stage.com/
-
+<div id="container">
+    <header id="header">Header</header>
+    <nav id="navigation">Navigation</nav>
+    <div id="wrapper">
+        <div id="centerblocks">
+            <main id="main-content">Main Content</main>
+        </div>
+        <div id="leftblocks">Left Blocks</div>
+        <div id="rightblocks">Right Blocks</div>
+    </div>
+    <footer id="footer">Footer</footer>
+</div>

@@ -1,11 +1,12 @@
 {# begin {templatelocation} #}
 
-<form class="uk-form third-party-login" action="{site_url}/users.php?oauth_login={oauth_service}" method="post">
-        {# OAuth Button Style 1: Image buttons (uncomment line below) #}
-        {# <input style="border:0;height:22px;width:141px;padding:0;margin:0;" type="submit" value="" id="login_{oauth_service}"{xhtml}> #}
-        
-        {# OAuth Button Style 2: Login buttons with icons (uncomment line below) #}
-        <button type="submit" value="{lang_oauth_service}" style="padding: 8px 0 8px 8px" class="uk-width-1-1 uk-button uk-button-small uk-margin-small-top uk-text-left"><img alt="" src="{oauth_sign_in_image}" style="margin:4px"{xhtml}><span style="white-space: nowrap; line-height: 1.4">{lang_oauth_service}</span></button>
+<!-- {lang_oauth_service} -->
+
+<form class="uk-float-left" action="{site_url}/users.php?oauth_login={oauth_service}" method="post">
+            {# <input type="submit" value="" id="login_{oauth_service}"{xhtml}> #}
+
+            {# OAuth Button Style 1: Login buttons with icons (uncomment line below) #}
+            <input type="submit" value="" style="background: url({oauth_sign_in_image}) left top no-repeat; border: none; margin-top:10px"{xhtml}>
 </form>
 
 {# end {templatelocation} #}

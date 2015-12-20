@@ -1,7 +1,8 @@
-{# begin {templatelocation} #}
 
-<article class="block-center">
-  <h2>{block_title}{block_help}</h2>
+<!-- blockheader.thtml { -->
+
+<section class="block-center">
+  <h1 class="uk-h1">{block_title}{block_help}</h1>
   <div class="block-center-content">
 
-{# end {templatelocation} #}
+<!-- } blockheader.thtml -->

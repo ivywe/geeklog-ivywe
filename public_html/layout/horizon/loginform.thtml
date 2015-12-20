@@ -20,7 +20,7 @@
         </div>
 
         <div class="uk-form-row uk-text-small">
-            <label class="uk-float-left"><i class="uk-icon-plus-circle"></i> {lang_signup}</label>
+            {!if lang_signup}<label class="uk-float-left"><i class="uk-icon-plus-circle"></i> {lang_signup}</label>{!endif}
             {lang_forgetpassword}
         </div>
     </fieldset>

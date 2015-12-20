@@ -1,4 +1,5 @@
-{# begin {templatelocation} #}
+
+<!-- admin/trackback/pingitem.thtml { -->
 
 <tr>
   <td><a href="{service_url}">{service_name}</a></td>
@@ -6,4 +7,4 @@
   <td>{resend}</td>
 </tr>
 
-{# end {templatelocation} #}
+<!-- } admin/trackback/pingitem.thtml -->

@@ -1,8 +1,9 @@
-{# begin {templatelocation} #}
 
-<aside class="block-list">
-    <h2>{block_title}{block_help}</h2>
-      <div class="block-list-content">
-      <ul class="uk-list">
+<!-- blockheader-list.thtml { -->
 
-{# end {templatelocation} #}
+<section class="block-list">
+  <h2 class="uk-h2 block-title">{block_title}{block_help}</h2>
+  <nav class="block-list-content" role="navigation">
+    <ul class="uk-list">
+
+<!-- } blockheader-list.thtml -->

@@ -1,23 +1,27 @@
-{# begin {templatelocation} #}
 
-<fieldset>
+<!-- preferences/commentblock.thtml { -->
+
+<fieldset class="uk-margin-large-top">
   <legend>{lang_comment_title}</legend>
 
-  <dl class="uk-description-list">
-    <dt>{lang_comment_help_title}</dt>
-    <dd><ul class="uk-text-small">{lang_comment_help}</ul></dd>
-  </dl>
+        <div class="uk-form-row uk-panel-box">
+            <p class="uk-text-bold">{lang_comment_help_title}</p>
+            <div class="uk-margin-left"><ul>{lang_comment_help}</ul></div>
+        </div>
 
-  <dl class="uk-description-list-horizontal">
-    <dt><label for="commentmode">{lang_displaymode}</label></dt>
-    <dd>{displaymode_selector}</dd>
+        <div class="uk-form-row">
+            <label class="uk-form-label" for="commentmode">{lang_displaymode}</label>
+            <div class="uk-form-controls">{displaymode_selector}</div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label" for="commentorder">{lang_sortorder}</label>
+            <div class="uk-form-controls">{sortorder_selector}</div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label" for="commentlimit">{lang_commentlimit}</label>
+            <div class="uk-form-controls"><input type="text" maxlength="5" value="{commentlimit_value}" name="commentlimit" id="commentlimit" class="uk-form-width-small"{xhtml}></div>
+        </div>
 
-    <dt><label for="commentorder">{lang_sortorder}</label></dt>
-    <dd>{sortorder_selector}</dd>
-
-    <dt><label for="commentlimit">{lang_commentlimit}</label></dt>
-    <dd><input type="text" size="5" maxlength="5" value="{commentlimit_value}" name="commentlimit" id="commentlimit"{xhtml}></dd>
-  </dl>
 </fieldset>
 
-{# end {templatelocation} #}
+<!-- } preferences/commentblock.thtml -->

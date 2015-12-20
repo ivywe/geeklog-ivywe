@@ -1,10 +1,8 @@
-                              <li id="{menuitem_id}" class="menuitem {menuitem_class}">
-                                <div class="uk-button-dropdown" data-uk-dropdown="">
-                                    <span>{menuitem_text} <i class="uk-icon-caret-down" style="color: #666"></i></span>
-                                    <div class="uk-dropdown">
-                                      <ul class="uk-nav uk-nav-dropdown">
-                                         {menu_elements}
-                                        </ul>
-                                    </div>
-                                </div>
-                              </li>
+		<li id="{menuitem_id}" class="uk-parent" data-uk-dropdown>
+			<a href="">{menuitem_text}</a>
+			<div class="uk-dropdown uk-dropdown-width-2 uk-dropdown-navbar uk-dropdown-bottom">
+				<ul class="uk-nav uk-nav-navbar">
+					{menu_elements}
+				</ul>
+			</div>
+		</li>

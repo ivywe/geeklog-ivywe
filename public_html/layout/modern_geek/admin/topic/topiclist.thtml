@@ -1,9 +1,10 @@
-{# begin {templatelocation} #}
+
+<!-- admin/topic/topiclist.thtml { -->
 
 {top_menu}
 
-<ul id="admin-topiclist">
-  {list_row}
+<ul class="uk-clearfix uk-list">
+{list_row}
 </ul>
 
-{# end {templatelocation} #}
+<!-- } admin/topic/topiclist.thtml -->

@@ -1,11 +1,12 @@
-{# begin {templatelocation} #}
 
-<p class="trackback-message">{lang_trackback_explain}</p>
+<!-- admin/trackback/autodetectlist.thtml { -->
 
-<table class="uk-table uk-table-condensed uk-table-striped" style="background:#ffffff">
+<p class="uk-margin-bottom">{lang_trackback_explain}</p>
+
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
   <tbody>
     {autodetect_items}
   </tbody>
 </table>
 
-{# end {templatelocation} #}
+<!-- } admin/trackback/autodetectlist.thtml -->

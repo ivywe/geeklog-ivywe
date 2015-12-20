@@ -1,16 +1,6 @@
-{# begin {templatelocation} #}
 
-<!--[if !IE]> Using conditional comments to avoid Win IE 6 bugs. <![endif]-->
-<!--[if !IE]> (When combined with multiple floating elements, floating bug duplicate last element content) <![endif]-->
-<!--[if !IE]> rightblocks.thtml { <![endif]-->
-
-    <hr class="separator"{xhtml}>
-
-    <!--[if !IE]> #rightblocks { <![endif]-->
-    <!--[if !IE]> Right Blocks Container <![endif]-->
-    <div id="rightblocks">
+    <div<?php if(SEC_inGroup('Root')){ ?> class="gl-edit"<?php } ?> id="rightblocks" role="complementary">
+      <?php if(SEC_inGroup('Root')){ ?><a href="{site_url}/admin/block.php" class="editlink" title="Edit"><img src="{layout_url}/images/edit.png" title="Edit" alt="Edit"></a><?php } ?>
       {geeklog_blocks}
     </div>
-    <!-- } #rightblocks -->
 
-{# end {templatelocation} #}

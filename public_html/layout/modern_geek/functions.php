@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 2.1                                                               |
+// | Geeklog 2.0                                                               |
 // +---------------------------------------------------------------------------+
 // | functions.php                                                             |
 // |                                                                           |
@@ -46,9 +46,9 @@ function theme_config_modern_geek()
 {
     return array(
         'image_type' => 'png',
-        'doctype' => 'xhtml5',
+        'doctype'    => 'html5',
         'etag' => true,
-        'supported_version_theme' => '2.1.0' // support new theme format for the later Geeklog 2.1.0
+        'supported_version_theme' => '2.0.0' // support new theme format for the later Geeklog 2.0.0
     );
 }
 
@@ -58,57 +58,49 @@ function theme_config_modern_geek()
 function theme_css_modern_geek()
 {
     global $_CONF, $LANG_DIRECTION;
-         
-    /* // Sample css settings
-    return array(        
-         array(
-             'name' => 'theme', // Not required but if set to theme then will always be loaded first
-             'file' => '/layout/' . $_CONF['theme'] . '/style.css.php?dir=' . $LANG_DIRECTION, 
-             'attributes' => array('media' => 'all'), // Not requred
-             'priority'   => 100  // Not requred, default = 100
-         )
-    );         
-     */    
 
-    // Instead of importing all files in a single css file we will load them seperately 
-    // since each file needs to be processed by style.css.php for language template vars
     return array(
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/compatible.css', 'priority' => 1.00),
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/default.css', 'priority' => 1.01),
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/common.css', 'priority' => 1.02),
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/layout.css', 'priority' => 1.03),
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/block.css', 'priority' => 1.04),
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/option.css', 'priority' => 1.05),
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/form.css', 'priority' => 1.06),
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/story.css', 'priority' => 1.07),
+        array('file' => '/vendor/uikit/css' . $direction . '/uikit.gradient.css', 'attributes' => array('media' => 'all'), 'priority' => 80),
+        array('file'       => '/layout/' . $_CONF['theme'] . '/css/add_to_uikit.css',  'priority' => 90),
+
+         array('file' => '/layout/' . $_CONF['theme'] . '/css/compatible.css', 'priority' => 100),
+         array('file' => '/layout/' . $_CONF['theme'] . '/css/default.css', 'priority' => 101),
+         array('file' => '/layout/' . $_CONF['theme'] . '/css/common.css', 'priority' => 102),
+         array('file' => '/layout/' . $_CONF['theme'] . '/css/layout.css', 'priority' => 103),
+         array('file' => '/layout/' . $_CONF['theme'] . '/css/block.css', 'priority' => 104),
+         array('file' => '/layout/' . $_CONF['theme'] . '/css/option.css', 'priority' => 105),
+         array('file' => '/layout/' . $_CONF['theme'] . '/css/form.css', 'priority' => 106),
+         array('file' => '/layout/' . $_CONF['theme'] . '/css/story.css', 'priority' => 107),
          
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/article/article.css', 'priority' => 1.08),
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/comment/comment.css', 'priority' => 1.09),
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/navbar/navbar.css', 'priority' => 1.10),
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/preferences/preferences.css', 'priority' => 1.11),
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/search/search.css', 'priority' => 1.12),
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/stats/stats.css', 'priority' => 1.13),
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/submit/submit.css', 'priority' => 1.14),
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/trackback/trackback.css', 'priority' => 1.15),
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/users/users.css', 'priority' => 1.16),
+         array('file' => '/layout/' . $_CONF['theme'] . '/css/article/article.css', 'priority' => 108),
+         array('file' => '/layout/' . $_CONF['theme'] . '/css/comment/comment.css', 'priority' => 109),
+         array('file' => '/layout/' . $_CONF['theme'] . '/css/navbar/navbar.css', 'priority' => 110),
+         array('file' => '/layout/' . $_CONF['theme'] . '/css/preferences/preferences.css', 'priority' => 111),
+         array('file' => '/layout/' . $_CONF['theme'] . '/css/search/search.css', 'priority' => 112),
+         array('file' => '/layout/' . $_CONF['theme'] . '/css/stats/stats.css', 'priority' => 113),
+         array('file' => '/layout/' . $_CONF['theme'] . '/css/submit/submit.css', 'priority' => 114),
+         array('file' => '/layout/' . $_CONF['theme'] . '/css/trackback/trackback.css', 'priority' => 115),
+         array('file' => '/layout/' . $_CONF['theme'] . '/css/users/users.css', 'priority' => 116),
          
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/admin/common.css', 'priority' => 1.17),
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/admin/block.css', 'priority' => 1.18),
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/admin/envcheck.css', 'priority' => 1.19),
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/admin/group.css', 'priority' => 1.20),
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/admin/lists.css', 'priority' => 1.21),
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/admin/commandcontrol.css', 'priority' => 1.22),
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/admin/plugins.css', 'priority' => 1.23),
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/admin/story.css', 'priority' => 1.24),
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/admin/topic.css', 'priority' => 1.25),
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/admin/trackback.css', 'priority' => 1.26),
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/admin/user.css', 'priority' => 1.27),
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/admin/configuration.css', 'priority' => 1.28),
+         array('file' => '/layout/' . $_CONF['theme'] . '/css/admin/common.css', 'priority' => 117),
+         array('file' => '/layout/' . $_CONF['theme'] . '/css/admin/block.css', 'priority' => 118),
+         array('file' => '/layout/' . $_CONF['theme'] . '/css/admin/envcheck.css', 'priority' => 119),
+         array('file' => '/layout/' . $_CONF['theme'] . '/css/admin/group.css', 'priority' => 120),
+         array('file' => '/layout/' . $_CONF['theme'] . '/css/admin/lists.css', 'priority' => 121),
+         array('file' => '/layout/' . $_CONF['theme'] . '/css/admin/commandcontrol.css', 'priority' => 122),
+         array('file' => '/layout/' . $_CONF['theme'] . '/css/admin/plugins.css', 'priority' => 123),
+         array('file' => '/layout/' . $_CONF['theme'] . '/css/admin/story.css', 'priority' => 124),
+         array('file' => '/layout/' . $_CONF['theme'] . '/css/admin/topic.css', 'priority' => 125),
+         array('file' => '/layout/' . $_CONF['theme'] . '/css/admin/trackback.css', 'priority' => 126),
+         array('file' => '/layout/' . $_CONF['theme'] . '/css/admin/user.css', 'priority' => 127),
+         array('file' => '/layout/' . $_CONF['theme'] . '/css/admin/configuration.css', 'priority' => 128),
          
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/plugin/japanize.css', 'priority' => 1.29),
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/plugin/sitecalendar.css', 'priority' => 1.30),
+         array('file' => '/layout/' . $_CONF['theme'] . '/css/plugin/japanize.css', 'priority' => 129),
+         array('file' => '/layout/' . $_CONF['theme'] . '/css/plugin/sitecalendar.css', 'priority' => 130),
          
-         array('file' => '/layout/' . $_CONF['theme'] . '/css/tooltips/tooltips.css', 'priority' => 1.31),
+         array('file' => '/layout/' . $_CONF['theme'] . '/css/tooltips/tooltips.css', 'priority' => 131),
+
+        array('file' => '/layout/' . $_CONF['theme'] . '/custom.css', 'priority' => 200)
     );
 }
 
@@ -119,8 +111,8 @@ function theme_js_libs_modern_geek()
 {
     return array(
        array(
-            'library'  => 'jquery',
-            'footer' => true // Not requred, default = true
+            'library' => 'jquery',
+            'footer'  => false // Not requred, default = true
         )
     );
 }
@@ -131,19 +123,74 @@ function theme_js_libs_modern_geek()
 function theme_js_files_modern_geek()
 {
     global $_CONF;
-    
+
     return array(
+
        array(
-            'file'      => '/layout/' . $_CONF['theme'] . '/javascript/fix_html.js',
+            'file'      => '/layout/' . $_CONF['theme'] . '/javascript/script.js',
             'footer'    => false, // Not requred, default = true
             'priority'  => 100 // Not requred, default = 100
         ),
-        array(
-            'file'     => '/layout/' . $_CONF['theme'] . '/javascript/confirm.js',
+       array(
+            'file'      => '/vendor/uikit/js/uikit.js',
+            'footer'    => false, // Not requred, default = true
+            'priority'  => 110 // Not requred, default = 100
         ),
-        array(
-            'file'     => '/layout/' . $_CONF['theme'] . '/javascript/search.js',
-        )        
+       array(
+            'file'      => '/vendor/uikit/js/components/datepicker.js',
+            'footer'    => false, // Not requred, default = true
+            'priority'  => 120 // Not requred, default = 100
+        ),
+       array(
+            'file'      => '/vendor/uikit/js/components/form-password.js',
+            'footer'    => false, // Not requred, default = true
+            'priority'  => 130 // Not requred, default = 100
+        ),
+       array(
+            'file'      => '/vendor/uikit/js/components/form-select.js',
+            'footer'    => false, // Not requred, default = true
+            'priority'  => 140 // Not requred, default = 100
+        ),
+       array(
+            'file'      => '/vendor/uikit/js/components/grid.js',
+            'footer'    => false, // Not requred, default = true
+            'priority'  => 150 // Not requred, default = 100
+        ),
+       array(
+            'file'      => '/vendor/uikit/js/components/lightbox.js',
+            'footer'    => false, // Not requred, default = true
+            'priority'  => 160 // Not requred, default = 100
+        ),
+       array(
+            'file'      => '/vendor/uikit/js/components/slideshow.js',
+            'footer'    => false, // Not requred, default = true
+            'priority'  => 170 // Not requred, default = 100
+        ),
+       array(
+            'file'      => '/vendor/uikit/js/components/slideshow-fx.js',
+            'footer'    => false, // Not requred, default = true
+            'priority'  => 180 // Not requred, default = 100
+        ),
+       array(
+            'file'      => '/vendor/uikit/js/components/slideset.js',
+            'footer'    => false, // Not requred, default = true
+            'priority'  => 190 // Not requred, default = 100
+        ),
+       array(
+            'file'      => '/vendor/uikit/js/components/sticky.js',
+            'footer'    => false, // Not requred, default = true
+            'priority'  => 200 // Not requred, default = 100
+        ),
+       array(
+            'file'      => '/vendor/uikit/js/components/tooltip.js',
+            'footer'    => false, // Not requred, default = true
+            'priority'  => 210 // Not requred, default = 100
+        ),
+       array(
+            'file'      => '/layout/' . $_CONF['theme'] . '/javascript/theme.js',
+            'footer'    => true, // Not requred, default = true
+            'priority'  => 220 // Not requred, default = 100
+        ),
     );
 }
 
@@ -153,13 +200,8 @@ function theme_js_files_modern_geek()
 function theme_init_modern_geek()
 {
     global $_BLOCK_TEMPLATE, $_CONF;
-    $_CONF['left_blocks_in_footer'] = 1;
 
-    if( COM_onFrontpage() ) {
-      $_CONF['show_right_blocks'] = true;
-    } else {
-      $_CONF['show_right_blocks'] = false;
-    }
+    $_CONF['left_blocks_in_footer'] = 1;
 
     /*
      * For left/right block support there is no longer any need for the theme to
@@ -170,6 +212,7 @@ function theme_init_modern_geek()
      * and right templates from admin_block, just create blockheader-list-left.thtml
      * etc.
      */
+
     $_BLOCK_TEMPLATE['_msg_block'] = 'blockheader-message.thtml,blockfooter-message.thtml';
     $_BLOCK_TEMPLATE['configmanager_block'] = 'blockheader-config.thtml,blockfooter-config.thtml';
     $_BLOCK_TEMPLATE['configmanager_subblock'] = 'blockheader-config.thtml,blockfooter-config.thtml';

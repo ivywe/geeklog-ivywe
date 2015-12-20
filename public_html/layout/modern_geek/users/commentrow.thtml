@@ -1,5 +1,6 @@
-{# begin {templatelocation} #}
 
-<p class="commentrow">{row_number}{comment_title}{comment_date}</p>
+<!-- users/commentrow.thtml { -->
 
-{# end {templatelocation} #}
+<p>{row_number} {comment_title}{comment_date}</p>
+
+<!-- } users/commentrow.thtml -->

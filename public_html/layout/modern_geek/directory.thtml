@@ -1,8 +1,9 @@
-{# begin {templatelocation} #}
+
+<!-- directory.thtml { -->
 
 {current_month}
 {blockheader}
-<form class="floatright" action="{url}" method="post" style="margin:0" class="uk-form">
+<form class="uk-float-right uk-form uk-margin-remove" action="{url}" method="post">
   <div>
     <select name="topic" onchange="this.form.submit()">
     {topic_list}
@@ -12,13 +13,13 @@
   </div>
 </form>
 <!-- BEGIN section-title -->
-<h3>{section_title}</h3>
+<h2 class="uk-h2">{section_title}</h2>
 <!-- END section-title -->
-{directory}
+<div class="uk-margin-left">{directory}</div>
 <!-- BEGIN no-articles -->
 <p>{lang_no_articles}</p>
 <!-- END no-articles -->
-<div class="pagenav">{page_navigation}</div>
+<div class="uk-flex uk-flex-center">{page_navigation}</div>
 {blockfooter}
 
-{# end {templatelocation} #}
+<!-- } directory.thtml -->

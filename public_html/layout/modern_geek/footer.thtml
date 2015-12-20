@@ -46,6 +46,24 @@
 </ul>
 </nav>
 
+
+
+
+	<div id="modalOpen" class="uk-modal">
+    	<div class="uk-modal-dialog">
+            <a href="" class="uk-modal-close uk-close"></a>
+            <div class="uk-vertical-align uk-text-center uk-height-1-1">
+                <div class="uk-vertical-align-middle" style="width: 250px;">
+					<?php echo COM_showBlock('user_block'); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
 {plg_footercode}
 
 <!-- Front-end framework UIkit { -->

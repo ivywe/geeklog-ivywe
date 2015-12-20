@@ -1,69 +1,82 @@
-{# begin {templatelocation} #}
 
-<form action="{site_admin_url}/block.php" method="post" id="admin-blockeditor" class="uk-form">
+<!-- admin/block/defaultblockeditor.thtml { -->
 
-  <div>
-    <dl class="uk-description-list-horizontal">
-      <dt><label for="admin-blockeditor-title">{lang_blocktitle}</label></dt>
-      <dd><input type="text" name="title" value="{block_title}" size="48" id="admin-blockeditor-title"{xhtml}></dd>
+<form action="{site_admin_url}/block.php" method="post" id="admin-blockeditor" class="uk-form uk-form-horizontal">
 
-      <dt><label for="admin-blockeditor-is_enabled">{lang_enabled}</label></dt>
-      <dd><input type="checkbox" class="uk-margin-small-top" name="is_enabled" {is_enabled} id="admin-blockeditor-is_enabled"{xhtml}></dd>
+        <div class="uk-form-row">
+            <label class="uk-form-label" for="admin-blockeditor-title">{lang_blocktitle}</label>
+            <div class="uk-form-controls"><input type="text" name="title" value="{block_title}" id="admin-blockeditor-title" class="uk-width-1-1"{xhtml}></div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label" for="admin-blockeditor-is_enabled">{lang_enabled}</label>
+            <div class="uk-form-controls"><input type="checkbox" name="is_enabled" {is_enabled} id="admin-blockeditor-is_enabled"{xhtml}></div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label" for="admin-blockeditor-help">{lang_blockhelpurl}</label>
+            <div class="uk-form-controls"><input type="text" name="help" value="{block_help}" maxlength="{max_url_length}" id="admin-blockeditor-help" class="uk-form-width-medium" aria-describedby="admin-blockeditor-d1 admin-blockeditor-d2"{xhtml}>
+                  <span class="uk-form-help-inline" id="admin-blockeditor-d1">{lang_includehttp}</span>
+                  <span class="uk-form-help-inline" id="admin-blockeditor-d2">{lang_explanation}</span></div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_blockname}</label>
+            <div class="uk-form-controls">{block_name}
+                <input type="hidden" name="name" value="{block_name}" class="uk-form-width-medium"{xhtml}>
+            </div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_topic}</label>
+            <div class="uk-form-controls">{topic_selection}</div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label" for="admin-blockeditor-onleft">{lang_side}</label>
+            <div class="uk-form-controls">
+                <select name="onleft" id="admin-blockeditor-onleft">
+                  <option value="1" {left_selected}>{lang_left}</option>
+                  <option value="0" {right_selected}>{lang_right}</option>
+                </select>
+            </div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label" for="admin-blockeditor-blockorder">{lang_blockorder}</label>
+            <div class="uk-form-controls">
+                <input type="text" name="blockorder" value="{block_order}" id="admin-blockeditor-blockorder" class="uk-form-width-mini" aria-describedby="admin-blockeditor-d3"{xhtml}>
+				<span class="uk-form-help-inline" id="admin-blockeditor-d3">0 - 9999{lang_blocktype}</span>
+            </div>
+        </div>
+        <input type="hidden" name="type" value="gldefault"{xhtml}>
 
-      <dt><label for="admin-blockeditor-help">{lang_blockhelpurl}</label></dt>
-      <dd><input type="text" name="help" value="{block_help}" size="48" maxlength="{max_url_length}" id="admin-blockeditor-help"{xhtml}></dd>
-      <dd>{lang_includehttp}<br{xhtml}>
-                              {lang_explanation}</dd>
+    <fieldset class="uk-margin-large-top">
+      <legend>{lang_accessrights}</legend>
 
-      <dt><label for="admin-blockeditor-name">{lang_blockname}</label></dt>
-      <dd>{block_name}
-        <input type="hidden" name="name" value="{block_name}" id="admin-blockeditor-name"{xhtml}></dd>
+        <div class="uk-form-row">
+              <label class="uk-form-label">{lang_owner}</label>
+              <div class="uk-form-controls">{owner_name}
+                <input type="hidden" name="owner_id" value="{owner_id}"{xhtml}></div>
+        </div>
+        <div class="uk-form-row">
+              <label class="uk-form-label" for="group_id">{lang_group}</label>
+              <div class="uk-form-controls">{group_dropdown}</div>
+        </div>
+        <div class="uk-form-row">
+              <label class="uk-form-label">{lang_permissions}</label>
+              <div class="uk-form-controls">{permissions_editor}
+                <span class="uk-form-help-inline">{lang_perm_key}</span>
+                <span class="uk-form-help-inline">{permissions_msg}</span>
+              </div>
+        </div>
 
-      <dt>{lang_topic}</dt>
-      <dd>{topic_selection}</dd>
+    </fieldset>
 
-      <dt><label for="admin-blockeditor-onleft">{lang_side}</label></dt>
-      <dd><select name="onleft" id="admin-blockeditor-onleft">
-          <option value="1" {left_selected}>{lang_left}</option>
-          <option value="0" {right_selected}>{lang_right}</option>
-        </select>
-      </dd>
+        <div class="uk-form-row uk-margin-large-top">
+            <div class="uk-form-controls">
+                <input type="submit" value="{lang_save}" name="mode"{xhtml}>
+                <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
+                <input type="hidden" name="bid" value="{block_id}"{xhtml}>
+                <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+            </div>
+        </div>
 
-      <dt><label for="admin-blockeditor-blockorder">{lang_blockorder}</label></dt>
-      <dd><input type="text" size="4" name="blockorder" value="{block_order}" id="admin-blockeditor-blockorder"{xhtml}>
-        0 - 9999</dd>
-
-      <dt><label for="admin-blockeditor-type">{lang_blocktype}</label></dt>
-      <dd>gldefault
-        <input type="hidden" name="type" value="gldefault" id="admin-blockeditor-type"{xhtml}></dd>
-    </dl>
-  </div>
-
-  <fieldset>
-    <legend>{lang_accessrights}</legend>
-
-    <dl class="uk-description-list-horizontal">
-      <dt>{lang_owner}</dt>
-      <dd>{owner_name}<input type="hidden" name="owner_id" value="{owner_id}"{xhtml}></dd>
-
-      <dt><label for="group_id">{lang_group}</label></dt>
-      <dd>{group_dropdown}</dd>
-
-      <dt>{lang_permissions}</dt>
-      <dd>{permissions_editor}</dd>
-      <dd>{lang_perm_key}</dd>
-      <dd>{permissions_msg}</dd>
-    </dl>
-  </fieldset>
-
-  <ul class="uk-subnav uk-flex-center uk-margin-top">
-    <li><input type="submit" value="{lang_save}" name="mode"{xhtml}></li>
-    <li><input type="submit" value="{lang_cancel}" name="mode"{xhtml}></li>
-    <li>
-        <input type="hidden" name="bid" value="{block_id}"{xhtml}>
-        <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
-      </li>
-    </ul>
 </form>
 
-{# end {templatelocation} #}
+<!-- } admin/block/defaultblockeditor.thtml -->
+

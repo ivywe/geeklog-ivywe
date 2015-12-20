@@ -1,4 +1,5 @@
-{# begin {templatelocation} #}
+
+<!-- lists/inline/list.thtml { -->
 
                             {list_top}
                             <div class="admin-list-search">
@@ -15,9 +16,8 @@
                                 </form>
                             </div>
                             {item_row}
-                            <p class="aligncenter" style="{show_message}"><strong>{message}</strong></p>
-                            <br{xhtml}>
+                            <p class="uk-text-center uk-text-bold" style="{show_message}">{message}</p>
                             {google_paging}
                             {list_bottom}
 
-{# end {templatelocation} #}
+<!-- } lists/inline/list.thtml -->

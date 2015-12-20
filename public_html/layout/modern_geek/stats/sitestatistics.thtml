@@ -1,6 +1,7 @@
-{# begin {templatelocation} #}
 
-<table class="sitestatistics">
+<!-- stats/sitestatistics.thtml { -->
+
+<table class="uk-table uk-table-condensed uk-table-striped uk-width-1-1" style="background:#ffffff;">
   <tbody>
     <tr>
       <th>{lang_totalhitstosystem}</th>
@@ -20,4 +21,4 @@
 
 </table>
 
-{# end {templatelocation} #}
+<!-- } stats/sitestatistics.thtml -->

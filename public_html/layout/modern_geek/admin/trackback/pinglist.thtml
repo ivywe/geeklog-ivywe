@@ -1,11 +1,12 @@
-{# begin {templatelocation} #}
 
-<p class="trackback-message">{lang_results}</p>
+<!-- admin/trackback/pinglist.thtml { -->
 
-<table class="uk-table uk-table-condensed uk-table-striped" style="background:#ffffff">
+<p class="uk-margin-bottom">{lang_results}</p>
+
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
   <tbody>
     {ping_results}
   </tbody>
 </table>
 
-{# end {templatelocation} #}
+<!-- } admin/trackback/pinglist.thtml -->

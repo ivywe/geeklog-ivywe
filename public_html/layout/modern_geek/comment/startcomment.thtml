@@ -1,13 +1,14 @@
-{# begin {templatelocation} #}
 
-<div id="{area_id}">
-  <div id="comments" class="comments">
+<!-- comment/startcomment.thtml { -->
+
+<aside id="{area_id}">
+  <div id="comments">
     {commentbar}
     {comments}
 
-    <p class="pagenav">{pagenav}</p>
+    <p class="uk-text-center">{pagenav}</p>
   </div>
   {commenteditor}
-</div>
+</aside>
 
-{# end {templatelocation} #}
+<!-- } comment/startcomment.thtml -->

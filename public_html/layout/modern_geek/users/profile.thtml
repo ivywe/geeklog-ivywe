@@ -1,9 +1,10 @@
-{# begin {templatelocation} #}
+
+<!-- users/profile.thtml { -->
 
 {start_block_userprofile}
-  <dl id="profile-userprofile">
+  <dl id="profile-userprofile" class="uk-description-list-horizontal">
     <dt>{lang_username}</dt>
-    <dd>{username}&nbsp;{user_fullname}{edit_link}</dd>
+    <dd>{username}&nbsp;{user_fullname} {edit_link}</dd>
     <dd id="profile-user_photo">{user_photo}</dd>
 
     <dt>{lang_membersince}</dt>
@@ -12,7 +13,7 @@
     {email_option}
 
     <dt>{lang_homepage}</dt>
-    <dd><a href="{user_homepage}">{user_homepage}</a></dd>
+    <dd><span class="url"><a href="{user_homepage}">{user_homepage}</a></span></dd>
 
     <dt>{lang_location}</dt>
     <dd>{user_location}</dd>
@@ -34,7 +35,7 @@
 {end_block}
 
 {start_block_postingstats}
-  <dl id="profile-postingstats">
+  <dl id="profile-postingstats" class="uk-description-list-horizontal">
     <dt>{lang_number_stories}</dt>
     <dd>{number_stories}</dd>
 
@@ -42,9 +43,9 @@
     <dd>{number_comments}</dd>
   </dl>
 
-  <ul id="profile-all_postings_by">
-    <li><a href="{site_url}/search.php?type=all&amp;author={user_id}&amp;mode=search">{lang_all_postings_by}</a></li>
-  </ul>
+  <div id="profile-all_postings_by">
+    <a href="{site_url}/search.php?type=all&amp;author={user_id}&amp;mode=search">{lang_all_postings_by}</a>
+  </div>
 {end_block}
 
-{# end {templatelocation} #}
+<!-- } users/profile.thtml -->

@@ -1,17 +1,17 @@
-{# begin {templatelocation} #}
 
-<fieldset>
-  <legend>{lang_boxes_title}</legend>
+<!-- preferences/boxesblock.thtml { -->
 
-  <dl class="uk-description-list-horizontal">
-    <dt>{lang_boxes_help_title}</dt>
-    <dd>{lang_boxes}</dd>
-  </dl>
-  <dl class="uk-description-list-horizontal">
-    <dt class="uk-text-small"></dt>
-    <dd>{boxes_checklist}</dd>
-  </dl>
+    <fieldset class="uk-margin-large-top">
+        <legend>{lang_boxes_title}</legend>
 
-</fieldset>
+        <div class="uk-form-row uk-panel-box">
+            <p class="uk-text-bold">{lang_boxes_help_title}</p>
+            <div class="uk-margin-left">{lang_boxes}</div>
+        </div>
 
-{# end {templatelocation} #}
+          <div id="boxesblock">
+            {boxes_checklist}
+          </div>
+    </fieldset>
+
+<!-- } preferences/boxesblock.thtml -->

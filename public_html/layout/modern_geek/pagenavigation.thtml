@@ -1,25 +1,23 @@
 {# begin {templatelocation} #}
 
-<div class="gl-pagenav">
-{message}<span>{start_first_anchortag}{lang_first}{end_first_anchortag}</span> |
-<span>{start_previous_anchortag}{lang_previous}{end_previous_anchortag}</span> |
+<ul class="uk-pagination uk-margin-large-top">{!if message}<li class="uk-margin-top">{message}</li>{!endif}
+
+<li{!if start_first_anchortag}{!else} class="uk-disabled"{!endif}>{!if start_first_anchortag}{!else}<span>{!endif}{start_first_anchortag}<i class="uk-icon-angle-double-left"></i>{end_first_anchortag}{!if start_first_anchortag}{!else}</span>{!endif}</li>
+<li{!if start_previous_anchortag}{!else} class="uk-disabled"{!endif}>{!if start_previous_anchortag}{!else}<span>{!endif}{start_previous_anchortag}<i class="uk-icon-angle-left"></i>{end_previous_anchortag}{!if start_previous_anchortag}{!else}</span>{!endif}</li>
 {pages}
-</div>
-<!-- BEGIN message -->
-<p>{message_text}</p>
-<!-- END message -->
-<!-- BEGIN page -->
-{page_number}
-<!-- END page -->
-<!-- BEGIN page-current -->
-<b>{page_number}</b>
-<!-- END page-current -->
+
+<!-- BEGIN message -->{!if message_text}<p>{message_text}</p>{!endif}<!-- END message -->
+
+<!-- BEGIN page --><li>{page_number}</li><!-- END page -->
+
+<!-- BEGIN page-current --><li class="uk-active"><span>{page_number}</span></li><!-- END page-current -->
+
 <!-- BEGIN nav-end -->
-| <span>{start_next_anchortag}{lang_next}{end_next_anchortag}</span>
-| <span>{start_last_anchortag}{lang_last}{end_last_anchortag}</span>
+<li{!if start_next_anchortag}{!else} class="uk-disabled"{!endif}>{!if start_next_anchortag}{!else}<span>{!endif}{start_next_anchortag}<i class="uk-icon-angle-right"></i>{end_next_anchortag}{!if next_anchortag}{!else}</span>{!endif}</li>
+<li{!if start_last_anchortag}{!else} class="uk-disabled"{!endif}>{!if start_last_anchortag}{!else}<span>{!endif}{start_last_anchortag}<i class="uk-icon-angle-double-right"></i>{end_last_anchortag}{!if start_last_anchortag}{!else}</span>{!endif}</li>
+</ul>
 <!-- END nav-end -->
-<!-- BEGIN nav-open-ended -->
-| {open_ended}
-<!-- END nav-open-ended -->
+
+<!-- BEGIN nav-open-ended -->{open_ended}<!-- END nav-open-ended -->
 
 {# end {templatelocation} #}

@@ -1,7 +1,6 @@
-{# begin {templatelocation} #}
 
-<tr>
-  {item_field}
-</tr>
+<!-- admin/lists/listitem.thtml { -->
 
-{# end {templatelocation} #}
+<tr>{item_field}</tr>
+
+<!-- } admin/lists/listitem.thtml -->
