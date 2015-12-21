@@ -1,6 +1,6 @@
-<!-- plugins/databox/templates/attribute/default/list_detail.thtml 20140328 { -->
-
-<div id="databox">
+{# begin {templatelocation} #}
+{#  plugins/databox/templates/attribute/default/list_detail.thtml 20151106 #}
+<div >
 
   <p id="breadcrumbs"><a href="{site_url}/">{home}</a>{attribute_top} {field_top}</p>
   <p><span style="color:green"> &#123;languageid&#125;</span>:{languageid}
@@ -31,5 +31,4 @@
   </ul>
 
 </div>
-
-<!-- } plugins/databox/templates/attribute/default/list_detail.thtml -->
+{# end {templatelocation} #}

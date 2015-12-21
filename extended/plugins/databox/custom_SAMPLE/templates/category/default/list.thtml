@@ -1,10 +1,8 @@
-<!-- plugins/databox/templates/category/default/list.thtml 20140328{ -->
+{# begin {templatelocation} #}
+{# plugins/databox/templates/category/default/list.thtml 20151106 #}
+<div >
 
-<div>
-
-  <ul class="uk-breadcrumb">
-	<li><a href="{site_url}/">{home}</a></li>
-  </ul>
+  <p id="breadcrumbs"><a href="{site_url}/">{home}</a></p>
 
   <h2>{lang_category_list_h2}</h2>
   <p>{msg}</p>
@@ -23,5 +21,4 @@
   </ul>
 
 </div>
-
-<!-- } plugins/databox/templates/category/default/list.thtml -->
+{# end {templatelocation} #}

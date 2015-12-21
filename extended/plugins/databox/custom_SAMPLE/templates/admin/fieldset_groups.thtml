@@ -1,4 +1,5 @@
-<!-- plugins/databox/templates/admin/fieldset_group.thtml 20131025 { -->
+{# begin {templatelocation} #}
+{# plugins/databox/templates/admin/fieldset_group.thtml 20151109 #}
 <script type="text/JavaScript" src="{site_url}/javascript/moveusers.js"></script>
 
 <script type="text/javascript">
@@ -15,7 +16,7 @@ head.appendChild(lnk);
 
 <form name="fieldsetgroups" 
         action="{site_admin_url}/plugins/{script}" method="post"
-        id="admin-fieldsetfields"
+        id="admin-fieldsetgroups"
          >
 
   <div class="admin_basic">
@@ -61,16 +62,17 @@ head.appendChild(lnk);
 
 
     <ul class="submit">
-      <li><input type="submit" value="{lang_save}" 
-          onclick="return setUsers(this.form)" class="submit"{xhtml}></li>
-      <li><input type="button" value="{lang_cancel}" 
+      <li>
+        <input type="submit" value="{lang_save}" 
+          onclick="return setUsers(this.form)" class="submit"{xhtml}>
+        <input type="button" value="{lang_cancel}" 
           onclick="javascript:history.go(-1)" class="submit"{xhtml}>
         <input type="hidden" name="mode" value="savefieldsetgroups"{xhtml}>
         <input type="hidden" name="groupmembers"{xhtml}>
         <input type="hidden" name="id" value="{id}"{xhtml}>
-        <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}></li>
+        <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+      </li>
     </ul>
   </div>
 </form>
-
-<!-- } plugins/databox/templates/admin/fieldset_groups.thtml -->
+{# end {templatelocation} #}

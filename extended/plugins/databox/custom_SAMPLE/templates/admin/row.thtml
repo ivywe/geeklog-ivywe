@@ -1,3 +1,4 @@
-<!-- plugins/databox/templates/admin/row.thtml { -->
+{# begin {templatelocation} #}
+{# plugins/databox/templates/admin/row.thtml 20151109 #}
 <tr class="pluginRow1">{col_var}</tr>
-<!-- } plugins/databox/templates/admmin/row.thtml -->
+{# end {templatelocation} #}

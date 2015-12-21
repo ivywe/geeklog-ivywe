@@ -1,5 +1,6 @@
-<!-- plugins/databox/templates/attribute/default/col2.thtml 20110204 { -->
+{# begin {templatelocation} #}
+{# plugins/databox/templates/attribute/default/col2.thtml 20151106 #}
     <li>{value_link}&nbsp;({count})
     &nbsp;{field_description} &nbsp;{field_name}&nbsp;{field_url}
     &nbsp;{value_url}&nbsp;{value}</li>
-<!-- } plugins/databox/templates/attribute/default/col2.thtml -->
+{# end {templatelocation} #}

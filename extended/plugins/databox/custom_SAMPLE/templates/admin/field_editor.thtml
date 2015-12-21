@@ -1,18 +1,17 @@
-<!-- plugins/databox/templates/admin/field_editor.thtml  20141112 { -->
-
+{# begin {templatelocation} #}
+{# plugins/databox/templates/admin/field_editor.thtml  20151109 #}
 <div id="databox_admin">
   {about_thispage}
   <a href="{document_url}input_field.html" target="_blank">{lang_document}</a>
   <form name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
-	<div class="admin_basic">
     <fieldset style="width:98%">
       <legend>Attribute (addition field)</legend>
 
-      <!-- data -->
+      {# data #}
       <div class="table-wrapper-fit">
         <table class="admin-list-table">
 
-          <!-- id -->
+          {# id #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_field_id}</th>
             <td class="admin-list-field" colspan="2">
@@ -22,7 +21,7 @@
             </td>
           </tr>
 
-          <!-- name -->
+          {# name #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_name}<span class="must">{lang_must}</span></th>
             <td class="admin-list-field" colspan="2">
@@ -30,7 +29,7 @@
             </td>
           </tr>
 
-          <!-- templatesetvar -->
+          {# templatesetvar #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_templatesetvar}<span class="must">{lang_must}</span></th>
             <td class="admin-list-field" colspan="2">
@@ -38,7 +37,7 @@
             </td>
           </tr>
 
-          <!-- description -->
+          {# description #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_description} {help_description}</th>
             <td class="admin-list-field" colspan="2">
@@ -46,7 +45,7 @@
             </td>
           </tr>
 
-          <!-- allow_display  -->
+          {# allow_display #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_allow_display} {help_allow_display}</th>
             <td class="admin-list-field" colspan="2">
@@ -54,35 +53,35 @@
             </td>
           </tr>
 
-          <!-- allow_edit -->
+          {# allow_edit #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_allow_edit} {help_allow_edit}</th>
             <td class="admin-list-field" colspan="2">
                 {list_allow_edit}
             </td>
           </tr>
-          <!-- searchtarget -->
+          {# 検索対象にする searchtarget #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_searchtarget} {help_searchtarget}</th>
             <td class="admin-list-field" colspan="2">{list_searchtarget}</td>
           </tr>
         </table>
         <table class="admin-list-table" id="attributetype">
-          <!-- type -->
+          {# type #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_type} {help_type}</th>
             <td class="admin-list-field" colspan="2">{list_type}</td>
         </table>
         <table class="admin-list-table" id="attributetype">
           </tr>
-          <!-- initial value -->
+          {# 初期値 initial value #}
           <tr class="pluginRow2">
             <th class="admin-list-field2" colspan="2">{lang_initial_value} {help_initial_value}</th>
             <td class="admin-list-field" colspan="2">
                <textarea name="initial_value" style="width:95%" rows="2" id="databox_initial_value">{initial_value}</textarea>
             </td>
           </tr>
-          <!-- range -->
+          {# 範囲 range #}
           <tr class="pluginRow2">
             <th class="admin-list-field2" colspan="2">{lang_range}</th>
             <td class="admin-list-field2">
@@ -90,31 +89,31 @@
               〜<input type="text" size="40" maxlength="160" name="range_end" value="{range_end}"{xhtml}>
             </td>
           </tr>
-          <!-- DateTime Format -->
+          {# 日時のフォーマット DateTime Format #}
           <tr class="pluginRow2">
             <th class="admin-list-field2" colspan="2">{lang_dfid} {help_dfid}</th>
             <td class="admin-list-field2">{list_dfid}</td>
           </tr>
 
-          <!-- textcheck -->
+          {# 入力チェック textcheck #}
           <tr class="pluginRow2">
             <th class="admin-list-field2" colspan="2">{lang_textcheck} {help_textcheck}</th>
             <td class="admin-list-field2">{list_textcheck}</td>
           </tr>
 
-          <!-- textconv -->
+          {# 入力値変換 textconv #}
           <tr class="pluginRow2">
             <th class="admin-list-field2" colspan="2">{lang_textconv} {help_textconv}</th>
             <td class="admin-list-field2">{list_textconv}</td>
           </tr>
 
-          <!-- checkrequried -->
+          {# checkrequried #}
           <tr class="pluginRow2">
             <th class="admin-list-field2" colspan="2">{lang_checkrequried} {help_checkrequried}</th>
             <td class="admin-list-field2">{list_checkrequried}</td>
           </tr>
 
-          <!-- size -->
+          {# size #}
           <tr class="pluginRow2">
             <th class="admin-list-field2" colspan="2">{lang_size}</th>
             <td class="admin-list-field2">
@@ -122,7 +121,7 @@
             </td>
           </tr>
 
-          <!-- maxlength -->
+          {# maxlength #}
           <tr class="pluginRow2">
             <th class="admin-list-field2" colspan="2">{lang_maxlength}</th>
             <td class="admin-list-field2">
@@ -130,7 +129,7 @@
             </td>
           </tr>
 
-          <!-- rows -->
+          {# rows #}
           <tr class="pluginRow2">
             <th class="admin-list-field2" colspan="2">{lang_rows}</th>
             <td class="admin-list-field2">
@@ -138,7 +137,7 @@
             </td>
           </tr>
 
-          <!-- br -->
+          {# br #}
           <tr class="pluginRow2">
             <th class="admin-list-field2" colspan="2">{lang_br}</th>
             <td class="admin-list-field2">
@@ -146,7 +145,7 @@
             </td>
           </tr>
 
-          <!-- selection -->
+          {# selection #}
           <tr class="pluginRow2">
             <th class="admin-list-field2" colspan="2">{lang_selection} {help_selection}</th>
             <td class="admin-list-field2">
@@ -154,7 +153,7 @@
             </td>
           </tr>
 
-          <!-- selectlist -->
+          {# selectlist #}
           <tr class="pluginRow2">
             <th class="admin-list-field2" colspan="2">{lang_selectlist} {help_selectlist}</th>
             <td class="admin-list-field2">{list_selectlist}</td>
@@ -163,7 +162,7 @@
         </table>
         <table class="admin-list-table">
 
-          <!-- order -->
+          {# order #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_orderno}</th>
             <td class="admin-list-field" colspan="2">
@@ -171,7 +170,7 @@
             </td>
           </tr>
 
-          <!-- Update time -->
+          {# 保存日 #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_udatetime}</th>
             <td class="admin-list-field" colspan="2">{udatetime} {lang_uuid}:{uuid}</td>
@@ -181,14 +180,12 @@
       </div>
     </fieldset>
 
-    <!-- Save Cancel Derete -->
+    {# 【保存 キャンセル  削除】 #}
     <input type="submit" value="{lang_save}" name="mode"{xhtml}>
     <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
     <input type="hidden" value="{code}" name="old_code"{xhtml}>
     {delete_option} {lang_delete_help}
     <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
-	</div>
   </form>
 </div>
-
-<!-- } plugins/databox/templates/admin/field_editor.thtml -->
+{# end {templatelocation} #}

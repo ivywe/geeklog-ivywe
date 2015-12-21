@@ -1,5 +1,6 @@
-<!-- plugins/databox/templates/data/default/row.thtml { -->
+{# begin {templatelocation} #}
+{# plugins/databox/templates/data/default/row.thtml 20151109 #}
       <tr>
         {col_var}
       </tr>
-<!-- } plugins/databox/templates/data/default/row.thtml -->
+{# end {templatelocation} #}

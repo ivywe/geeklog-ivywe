@@ -1,6 +1,5 @@
-<!-- plugins/databox/templates/mydata/default/data_col_detail.thtml 20111119 { -->
-
+{# begin {templatelocation} #}
+{# plugins/databox/templates/mydata/default/data_col_detail.thtml 20151109 #}
     <th class="admin-list-field">{additionfield_name}<span class="must">{lang_must_additionfield}</span></th>
     <td class="admin-list-field">{additionfield_value} {additionfield_description}</td>
-
-<!-- } plugins/databox/templates/mydata/default/data_col_detail.thtml -->
+{# end {templatelocation} #}
