@@ -1,0 +1,40 @@
+<!-- plugins/userbox/templates/profile/default/col_detail.thtml 20130924{ -->
+
+<th style="width:20%" class="alignright">{additionfield_name}</th>
+<td style="width:70%" colspan="2" style="color:green" class="alignleft">
+<dl>
+<dt>&#123;additionfield{field_id}&#125; or &#123;{additionfield_templatesetvar}&#125;</dt><dd>"{additionfield_value}"</dd>
+{!if additionfield_value_tn}
+<dt>&#123;additionfield{field_id}_value_tn&#125; or &#123;{additionfield_templatesetvar}_value_tn&#125;</dt><dd>"{additionfield_value_tn}"</dd>
+{!endif}
+{!if additionfield_value_noimage}
+<dt>&#123;additionfield{field_id}_value_noimage&#125; or &#123;{additionfield_templatesetvar}_noimage&#125;</dt><dd>"{additionfield_value_noimage}"</dd>
+{!endif}
+{!if additionfield_value_tn_image}
+<dt>&#123;additionfield{field_id}_value_tn_image&#125; or &#123;{additionfield_templatesetvar}_tn_image&#125;</dt><dd>"{additionfield_value_tn_image}"</dd>
+{!endif}
+{!if additionfield_value_tn_noimage}
+<dt>&#123;additionfield{field_id}_value_tn_noimage&#125; or &#123;{additionfield_templatesetvar}_tn_noimage&#125;</dt><dd>"{additionfield_value_tn_noimage}"</dd>
+{!endif}
+{!if additionfield_value_disp}
+<dt>&#123;additionfield{field_id}_value_disp&#125; or &#123;{additionfield_templatesetvar}_disp&#125;</dt><dd>"{additionfield_value_disp}"</dd>
+{!endif}
+{!if additionfield_value_mst_value2}
+<dt>&#123;additionfield{field_id}_value_mst_value2&#125; or &#123;{additionfield_templatesetvar}_mst_value2&#125;</dt><dd>"{additionfield_value_mst_value2}"</dd>
+{!endif}
+{!if additionfield_value_mst_disp}
+<dt>&#123;additionfield{field_id}_value_mst_disp&#125; or &#123;{additionfield_templatesetvar}_mst_disp&#125;</dt><dd>"{additionfield_value_mst_disp}"</dd>
+{!endif}
+{!if additionfield_value_mst_no}
+<dt>&#123;additionfield{field_id}_value_mst_no&#125; or &#123;{additionfield_templatesetvar}_mst_no&#125;</dt><dd>"{additionfield_value_mst_no}"</dd>
+{!endif}
+{!if additionfield_value_flag}
+<dt>&#123;additionfield{field_id}_value_flag&#125; or &#123;{additionfield_templatesetvar}_flag&#125;</dt><dd>"{additionfield_value_flag}"</dd>
+{!endif}
+</dl>
+</td>
+<td style="width:10%">
+{field_type}
+</td>
+
+<!-- } plugins/userboxbox/templates/profile/default/col_detail.thtml -->

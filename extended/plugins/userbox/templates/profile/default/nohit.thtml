@@ -1,3 +1,4 @@
-<!-- plugins/userbox/templates/profile/default/nohit.thtml 20120125{ -->
+{# begin {templatelocation} #}
+{# plugins/userbox/templates/profile/default/nohit.thtml 20151111 #}
 {lang_nohit}
-<!-- plugins/userbox/templates/profile/default/nohit.thtml { -->
+{# end {templatelocation} #}

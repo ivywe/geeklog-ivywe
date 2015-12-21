@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
 </head>
-<!-- admin/plugins/databox/docs/japanese/inputfield.html 20150518 -->
+<!-- admin/plugins/databox/docs/japanese/inputfield.html 20151209 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
@@ -174,7 +174,7 @@
 
 </tbody></table>
 
-<h3><a name="fieldtype">アトリビュートタイプ</a>(2015/05/18 update)</h3>
+<h3><a name="fieldtype">アトリビュートタイプ</a>(2015/10/06 update)</h3>
 <table>
 <tr><th style="width:2%">No.</th>
     <th style="width:20%">名称</th>
@@ -277,10 +277,29 @@ Geeklogのコアのコンフィギュレーション設定の「千単位の区�
   <br />指定された場合範囲チェックをおこなう
   </td>
   <td valign="top">
-   date picker対応(GL2.0.0以降)
+   date picker(標準)対応
   </td>
 </tr>  
-
+<tr>
+  <td ><a name="fieldtype22">22</a></td>
+  <td valign="top">日付</td>
+  <td valign="top">日付のみ
+  <br />指定された場合範囲チェックをおこなう
+  </td>
+  <td valign="top">
+   date (jquery ui datepicker)
+  </td>
+</tr>  <tr>
+  <td ><a name="fieldtype23">23</a></td>
+  <td valign="top">日付</td>
+  <td valign="top">日付のみ
+  <br />指定された場合範囲チェックをおこなう
+  <br />UIkitが使われている(IVYWE Editionなど)サイトでのみ機能します
+  </td>
+  <td valign="top">
+   date (Uikit datepicker)
+  </td>
+</tr>  
 <tr>
   <td ><a name="fieldtype04">04</a></td>
   <td valign="top">日時</td>
@@ -288,7 +307,7 @@ Geeklogのコアのコンフィギュレーション設定の「千単位の区�
   <br />指定された場合範囲チェックをおこなう
   </td>
   <td valign="top">
-   date picker対応(GL2.0.0以降)
+   date time picker(標準)対応
   </td>
 </tr>  
 

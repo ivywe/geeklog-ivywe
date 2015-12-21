@@ -1,5 +1,5 @@
-<!-- plugins/databox/templates/admin/information.thtml  20120924{ -->
-
+{# begin {templatelocation} #}
+{# plugins/databox/templates/admin/information.thtml  20151109 #}
 {about_thispage}
 <p>Ver:{version}</p>
 <p> <a href="{document_url}" target="_blank">{lang_document}</a>
@@ -17,9 +17,8 @@
 
 
 
-<form class="uk-form" name='databox_conf_link' action='{site_admin_url}/configuration.php' method='POST'>
+<form name='databox_conf_link' action='{site_admin_url}/configuration.php' method='POST'>
 <input type='hidden' name='conf_group' value='databox'></form>
 <p> <a style='text-decoration: none;' href='#' onclick="document.databox_conf_link.submit()">{lang_configuration}</a></p>
-
-<!-- } plugins/databox/templates/admin/information.thtml -->
+{# end {templatelocation} #}
 

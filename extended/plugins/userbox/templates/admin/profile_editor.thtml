@@ -1,5 +1,5 @@
-<!-- plugins/userbox/templates/admin/profile_editor.thtml 20150305 { -->
-
+{# begin {templatelocation} #}
+{# plugins/userbox/templates/admin/profile_editor.thtml 20151111 #}
 <div id="userbox_admin">
   {about_thispage}
     | <a href="{site_admin_url}/plugins/userbox/view.php?id={id}">{lang_view}</a>
@@ -10,19 +10,19 @@
     <input type="hidden" name="fieldset" value="{fieldset_id}"{xhtml}>
     <input type="hidden" name="fieldset_name" value="{fieldset_name}"{xhtml}>
 
-    <!-- data -->
+    {# data #}
     <fieldset style="width:98%">
       <legend>Core</legend>
       <div class="table-wrapper-fit">
         <table class="admin-list-table">
 
-          <!-- uid -->
+          {# uid #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_uid}{help_uid}</th>
             <td class="admin-list-field">{id}</td>
           </tr>
 
-          <!-- username -->
+          {# username #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_username}{help_username}</th>
             <td class="admin-list-field">
@@ -30,7 +30,7 @@
             </td>
           </tr>
 
-          <!-- fullname -->
+          {# fullname #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_fullname}{help_fullname}</th>
             <td class="admin-list-field">
@@ -41,13 +41,13 @@
       </div>
     </fieldset>
 
-    <!-- data -->
+    {# data #}
     <fieldset style="width:98%">
       <legend>{lang_basicfields}</legend>
       <div class="table-wrapper-fit">
         <table class="admin-list-table">
 
-          <!-- id -->
+          {# id #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_id}{help_id}</th>
             <td class="admin-list-field">
@@ -56,7 +56,7 @@
             </td>
          </tr>
  
-          <!-- DRAFT -->
+          {# DRAFT #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_draft}{help_draft}</th>
             <td class="admin-list-field">
@@ -64,7 +64,7 @@
             </td>
           </tr>
  
-          <!-- page title -->
+          {# page title #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_page_title}{help_page_title}</th>
             <td class="admin-list-field">
@@ -72,7 +72,7 @@
             </td>
           </tr>
  
-          <!-- description -->
+          {# description #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_description}{help_description}</th>
             <td class="admin-list-field">
@@ -80,7 +80,7 @@
             </td>
           </tr>
  
-          <!-- defaulttemplatesdirectory -->
+          {# defaulttemplatesdirectory #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_defaulttemplatesdirectory}{help_defaulttemplatesdirectory}</th>
             <td class="admin-list-field">
@@ -88,7 +88,7 @@
             </td>
           </tr>
  
-          <!-- meta_description -->
+          {# meta_description #}
           <tr{hide_meta}>
           <th class="admin-list-field">{lang_meta_description}{help_meta_description}</th>
             <td class="admin-list-field">
@@ -97,7 +97,7 @@
             </td>
           </tr>
  
-          <!-- meta_keywords -->
+          {# meta_keywords #}
           <tr{hide_meta}>
             <th class="admin-list-field">{lang_meta_keywords}{help_meta_keywords}</th>
             <td class="admin-list-field">
@@ -106,7 +106,7 @@
             </td>
           </tr>
  
-          <!-- language_id  -->
+          {# language_id #}
           <tr{hide_language_id}>
             <th class="admin-list-field">{lang_language_id}{help_language_id}</th>
             <td class="admin-list-field">
@@ -114,21 +114,21 @@
             </td>
           </tr>
  
-          <!-- hits -->
+          {# hits #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_hits}{help_hits}</th>
             <td class="admin-list-field"><input type="hidden" name="hits" value="{hits}"{xhtml}>{hits}
             </td>
           </tr>
  
-          <!-- comments -->
+          {# comments #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_comments}{help_comments}</th>
             <td class="admin-list-field"><input type="hidden" name="comments" value="{comments}"{xhtml}>{comments}
             </td>
           </tr>
  
-          <!-- commentcode -->
+          {# commentcode #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_commentcode}{help_commentcode}</th>
             <td class="admin-list-field">
@@ -138,32 +138,32 @@
             </td>
           </tr>
  
-          <!-- comment_expire -->
+          {# comment_expire -->
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_comment_expire}{help_comment_expire}</th>
             <td class="admin-list-field">{lang_enabled}:<input type="checkbox"name="comment_expire_flag" value="1" {is_checked_comment_expire} onclick="enable_comment_expire(this);"{xhtml}>{datetime_comment_expire}</td>
           </tr>
  
-          <!-- 編集日付 -->
+          {# 編集日付 #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_modified}{help_modified}</th>
             <td class="admin-list-field">{lang_modified_autoupdate}:<input type="checkbox" name="modified_autoupdate" value="1" checked="checked" {xhtml}>
  {datetime_modified} </td>
           </tr>
  
-          <!-- 公開日 -->
+          {# 公開日 #}
           <tr class="pluginRow1">
           <th class="admin-list-field">{lang_released}{help_released}</th>
             <td class="admin-list-field">{datetime_released} </td>
           </tr>
    
-          <!-- 公開終了日 -->
+          {# 公開終了日 #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_expired}{help_expire}</th>
             <td class="admin-list-field">{lang_enabled}:<input type="checkbox"name="expired_flag" value="1" {is_checked_expired} onclick="enable_expired(this);"{xhtml}>{datetime_expired}</td>
           </tr>
   
-          <!-- order -->
+          {# order #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_orderno}{help_orderno}</th>
             <td class="admin-list-field">
@@ -171,7 +171,7 @@
             </td>
           </tr>
   
-          <!-- trackbackcode -->
+          {# trackbackcode #}
           <tr class="pluginRow1">
              <th class="admin-list-field">{lang_trackbackcode}{help_trackbackcode}</th>
                <td class="admin-list-field">
@@ -180,7 +180,7 @@
                </select>
              </td>
           </tr>
-            <!-- cache_time -->
+            {# cache_time #}
             <tr class="pluginRow1">
               <th class="admin-list-field">{lang_cache_time} {help_cache_time}</th>
               <td class="admin-list-field">
@@ -191,13 +191,13 @@
       </div>
     </fieldset>
 
-    <!-- category -->
+    {# category #}
     <fieldset style="width:98%">
       <legend>{lang_category}</legend>
       <div class="table-wrapper-fit">
         <table class="admin-list-table">
 
-          <!-- category -->
+          {# category #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_category}{help_category}</th>
             <td class="admin-list-field">{checklist_category}
@@ -207,7 +207,7 @@
       </div>
     </fieldset>
 
-    <!-- 追加項目 -->
+    {# 追加項目 #}
     <fieldset style="width:98%">
       <legend>{lang_additionfields}</legend>
       <div class="table-wrapper-fit">
@@ -217,7 +217,7 @@
       </div>
     </fieldset>
 
-    <!-- アクセス権 -->
+    {# アクセス権 #}
     <fieldset style="width:98%">
       <legend>{lang_accessrights}</legend>
       <div class="table-wrapper-fit">
@@ -247,7 +247,7 @@
           </tr>
           <tr class="pluginRow1"><td colspan="2">&nbsp;</td></tr>
 
-          <!-- タイムスタンプ -->
+          {# タイムスタンプ #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_udatetime}</th>
             <td class="admin-list-field">{udatetime} {lang_uuid}:{uuid}</td>
@@ -263,9 +263,7 @@
       </div>
     </fieldset>
 
-
-    <!-- 【LINE】 -->
-    <!-- 【保存 キャンセル  削除】 -->
+    {# 【保存 キャンセル  削除】 #}
     <input type="submit" value="{lang_save}" name="mode"{xhtml}>
     <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
     <input type="hidden" value="{code}" name="old_code"{xhtml}>
@@ -275,6 +273,5 @@
 
   </form>
 </div>
-
-<!-- } plugins/userbox/templates/admin/profile_editor.thtml -->
+{# end {templatelocation} #}
 

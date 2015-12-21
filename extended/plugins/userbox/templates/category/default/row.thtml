@@ -1,4 +1,5 @@
-<!-- plugins/userbox/templates/category/default/row.thtml { -->
+{# begin {templatelocation} #}
+{# plugins/userbox/templates/category/default/row.thtml 20151111 #}
 {grp_var}
 {col_var}
-<!-- } plugins/userbox/templates/category/default/row.thtml -->
+{# end {templatelocation} #}

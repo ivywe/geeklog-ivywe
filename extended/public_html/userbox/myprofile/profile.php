@@ -290,16 +290,17 @@ function fncEdit(
                 'col'   => "profile_col_detail.thtml",
             ));
 	
-	// Loads jQuery UI datepicker
-	if (version_compare(VERSION, '2.0.0') >= 0) {
-		$_SCRIPTS->setJavaScriptLibrary('jquery.ui.datepicker');
-		$_SCRIPTS->setJavaScriptLibrary('jquery-ui-i18n');
-		$_SCRIPTS->setJavaScriptFile('datepicker', '/javascript/datepicker.js');
+    // Loads jQuery UI datepicker geeklog >=2.1.0
+    $_SCRIPTS->setJavaScriptLibrary('jquery.ui.datepicker');
+    $_SCRIPTS->setJavaScriptLibrary('jquery-ui-i18n');
+    $_SCRIPTS->setJavaScriptLibrary('jquery-ui-timepicker-addon');
+    $_SCRIPTS->setJavaScriptLibrary('jquery-ui-timepicker-addon-i18n');
+    $_SCRIPTS->setJavaScriptFile('datepicker', '/javascript/datepicker.js');
+    $_SCRIPTS->setJavaScriptFile('datetimepicker', '/javascript/datetimepicker.js');
 
-		$langCode = COM_getLangIso639Code();
-		$toolTip  = 'Click and select a date';	// Should be translated
-		$imgUrl   = $_CONF['site_url'] . '/images/calendar.png';
-	}
+	$langCode = COM_getLangIso639Code();
+    $toolTip  = $MESSAGE[118];
+	$imgUrl   = $_CONF['site_url'] . '/images/calendar.png';
 	
     //--
     if (($_CONF['meta_tags'] > 0) && ($_USERBOX_CONF['meta_tags'] > 0)) {
@@ -428,8 +429,6 @@ function fncEdit(
 		,$fieldset_id
 		,$additionfields_date
 		);
-
-    $rt=DATABOX_getaddtionfieldsJS($additionfields,$addition_def,9999,$pi_name);
 
     //保存日時
     $templates->set_var ('lang_udatetime', $LANG_USERBOX_ADMIN['udatetime']);

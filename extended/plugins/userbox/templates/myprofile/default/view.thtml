@@ -1,3 +1,4 @@
-<!-- plugins/userbox/templates/myprofile/default/view.thtml  { -->
+{# begin {templatelocation} #}
+{# plugins/userbox/templates/myprofile/default/view.thtml 20151111 #}
 {about_thispage}
-<!-- } plugins/userbox/templates/myprofile/default/view.thtml -->
+{# end {templatelocation} #}

@@ -505,37 +505,15 @@ function plugin_user_create_userbox (
 function plugin_getheadercode_userbox()
 // +---------------------------------------------------------------------------+
 // | 機能  ヘッダコード編集：
-// | jQueryプラグインのjquery_datepickerを使えるようにする
-// | jQueryプラグインが有効であること
+// | set css 
 // +---------------------------------------------------------------------------+
 //
 {
-    global $_PLUGINS;
 	global $_SCRIPTS;
-	global $_CONF;
 	
 	$css = '/userbox/css/style.css';
 	$_SCRIPTS->setCSSFile('userbox_style_css', $css, true);
 	
-	//jquery があれば〜
-	//$_SCRIPTS->setJavaScriptLibrary('jquery');
-	//$datepicker=$_CONF['path_html'].'/jquery/datepicker/datepicker.js'
-	//if  (file_exists($datepicker) ){
-	
-	//GL のバージョンが1.8.0 より新しければ
-	//jquery 有効であれば〜
-	if (version_compare(VERSION, '1.8.0') >= 0) {
-		if (in_array("jquery", $_PLUGINS)){
-			$jsfooter=$_SCRIPTS->getFooter();
-			$datepicker=mb_strpos($jsfooter,"datepicker");
-			if (!$datepicker) {
-				$strext= '/jquery/datepicker/datepicker.js';
-				$_SCRIPTS->setJavaScriptFile('jquery_datepicker', $strext);
-				$css = '/jquery/datepicker/datepicker.css';
-				$_SCRIPTS->setCSSFile('jquery_datepicker_css', $css, true);
-			}
-		}
-	}
 	return;
 }
 

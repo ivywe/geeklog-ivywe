@@ -1,5 +1,5 @@
-<!--plugins/userbox/templates/profile/default/col_detail.thtml 20141014{ -->
-
+{# begin {templatelocation} #}
+{# plugins/userbox/templates/profile/default/col_detail.thtml 20151111 #}
 <th style="width:20%" class="uk-text-left">
 	<dl>
 		<dt style=color:green;>&#123;{additionfield_templatesetvar}_name&#125;</dt>
@@ -31,6 +31,4 @@
 
 </td>
 <td style="width:10%">{field_type}</td>
-
-
-<!--} plugins/userboxbox/templates/profile/default/col_detail.thtml -->
+{# end {templatelocation} #}

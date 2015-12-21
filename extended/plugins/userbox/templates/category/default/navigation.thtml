@@ -1,5 +1,5 @@
-<!-- plugins/userbox/templates/category/default/navigation.thtml { -->
-
+{# begin {templatelocation} #}
+{# plugins/userbox/templates/category/default/navigation.thtml 20151111 #}
 <div class="userbox">
 
   <div class="pagenav">
@@ -20,5 +20,4 @@
   <div style="clear:both"></div>
 
 </div>
-
-<!-- } plugins/userbox/templates/category/default/navigation.thtml -->
+{# end {templatelocation} #}

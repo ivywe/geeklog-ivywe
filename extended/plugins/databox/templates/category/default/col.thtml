@@ -1,3 +1,4 @@
-<!-- plugins/databox/templates/category/default/col.thtml 20131009 { -->
+{# begin {templatelocation} #}
+{# plugins/databox/templates/category/default/col.thtml 20151106 #}
     <li>{category_link} {category_description}({count}) &nbsp;{category_name} &nbsp;{category_url}&nbsp;{category_id}&nbsp;{category_code}</li>
-<!-- } plugins/databox/templates/category/default/col.thtml -->
+{# end {templatelocation} #}

@@ -1,5 +1,5 @@
-<!-- plugins/userbox/templates/category/default/list.thtml 20140328{ -->
-
+{# begin {templatelocation} #}
+{# plugins/userbox/templates/category/default/list.thtml 20151111 #}
 <div id="userbox">
 
   <p id="breadcrumbs"><a href="{site_url}/">{home}</a></p>
@@ -21,5 +21,4 @@
   </ul>
 
 </div>
-
-<!-- } plugins/userbox/templates/category/default/list.thtml -->
+{# end {templatelocation} #}

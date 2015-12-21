@@ -1,5 +1,6 @@
-<!-- plugins/userbox/templates/attribute/default/col.thtml 20121029 { -->
+{# begin {templatelocation} #}
+{# plugins/userbox/templates/attribute/default/col.thtml 20151111  #}
     <li>{field_link}：{value_link}&nbsp;({count})
     &nbsp;{field_description} &nbsp;{field_name}&nbsp;{field_url}
     &nbsp;{value_url}&nbsp;{value}</li>
-<!-- } plugins/userbox/templates/attribute/default/col.thtml -->
+{# end {templatelocation} #}

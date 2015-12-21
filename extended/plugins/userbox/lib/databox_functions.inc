@@ -153,11 +153,8 @@ function DATABOX_templatePath (
         if (is_dir($tmplfld)) {
 
         }else{
-
-            $tmplfld=$_CONF['path'] .'plugins/'.$pi_name.'/templates/'.$kind;
-            if ($kind<>"admin"){
-                $tmplfld.="/default";
-            }
+            COM_handle404();
+            exit;
         }
     }else if  ($conf_templates==="custom"){
 
@@ -172,13 +169,8 @@ function DATABOX_templatePath (
         if (is_dir($tmplfld)){
 
         }else{
-
-            $tmplfld=$_CONF['path'] .'plugins/'.$pi_name.'/templates/'.$kind;
-            if ($kind<>"admin"){
-
-                $tmplfld.="/default";
-
-            }
+            COM_handle404();
+            exit;
         }
     }else{
 
@@ -999,7 +991,8 @@ function DATABOX_getaddtionfieldsEdit(
     global $_TABLES;
     global $_SCRIPTS;
     global $_CONF;
-    
+    global $MESSAGE;
+	
     if ($pi_name==""){
         $pi_name="databox";
     }
@@ -1017,11 +1010,9 @@ function DATABOX_getaddtionfieldsEdit(
     $lang_admin=$$lang_admin;
     $lang_noyes=$$lang_noyes;
     
-    if (version_compare(VERSION, '2.0.0') >= 0) {
-        $langCode = COM_getLangIso639Code();
-        $toolTip  = 'Click and select a date';    // Should be translated
-        $imgUrl   = $_CONF['site_url'] . '/images/calendar.png';
-    }
+    $langCode = COM_getLangIso639Code();
+    $toolTip  = $MESSAGE[118];
+    $imgUrl   = $_CONF['site_url'] . '/images/calendar.png';
     
     $fieldsetfields=DATABOX_getfields($pi_name, $fieldset_id);
     
@@ -1192,8 +1183,7 @@ function DATABOX_getaddtionfieldsEdit(
                     
                         $_SCRIPTS->setJavaScript(
                         "jQuery(function () {"
-                            . "  geeklog.datepicker.set(
-                            '{$filedname}', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
+                            . "  geeklog.datepicker.set('{$filedname}', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
                             . "});", TRUE, TRUE
                             );
                         if  (is_array($fields_date)){
@@ -1218,10 +1208,11 @@ function DATABOX_getaddtionfieldsEdit(
                     
                         $_SCRIPTS->setJavaScript(
                         "jQuery(function () {"
-                            . "  geeklog.datepicker.set(
-                            '{$filedname}', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
+                            . "  geeklog.hour_mode = {$_CONF['hour_mode']};"
+                            . "  geeklog.datetimepicker.set('{$filedname}', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
                             . "});", TRUE, TRUE
                             );
+					
                         if  (is_array($fields_date)){
                             $fieldhtml.=DATABOX_datetimeedit_R($fields_date[$fid],$lang_admin_x,$filedname);
                         }else{
@@ -1233,6 +1224,71 @@ function DATABOX_getaddtionfieldsEdit(
                         $wk .= " value=\"".$fvalue."\"";
                         $wk .= " ".XHTML.">";
                         $fieldhtml.=$wk;
+                    }else{
+                        $fieldhtml .=$fvalue;
+                    }
+                    break;
+                case 22://日付
+                if ($disabled===""){
+                        if  ($fvalue=="")  {
+                            $fvalue_date="";
+                        }else{
+                            $fvalue_date=date( $box_conf['dateformat'], $fvalue );
+                        }
+                        $filedname="afield".$fid;
+
+                        $_SCRIPTS->setJavaScript(
+                            "$(function() {
+                            $( \"#afield".$fid."\" ).datepicker();
+                            });"
+                            , TRUE, TRUE
+                            );
+                        $wk =  " <input ";
+                        $wk .= " type=\"hidden\"";
+                        $wk .= " name=\"afield[".$fid."]\" ";
+                        $wk .= " value=\"".$fvalue."\"";
+                        $wk .= " ".XHTML.">";
+                        $fieldhtml.=$wk;
+                        
+                        $fieldhtml .= "        <input ";
+                        $fieldhtml .= " type=\"text\"";
+                        $fieldhtml .= "  id=\"afield".$fid."\"";
+                        $fieldhtml .= " size=\"".$size."\"";
+                        $fieldhtml .= " maxlength=\"".$maxlength."\" ";
+                        $fieldhtml .= " name=\"afield[".$fid."]\" ";
+                        $fieldhtml .= " style=\"max-width:95%\"";
+                        $fieldhtml .= " value=\"".$fvalue_date."\"";
+                        $fieldhtml .= " ".XHTML.">";
+                    }else{
+                        $fieldhtml .=$fvalue;
+                    }
+                    break;
+                case 23://日付
+                    if ($disabled===""){
+                        if  ($fvalue=="")  {
+                            $fvalue_date="";
+                        }else{
+                            $fvalue_date=date( $box_conf['dateformat'], $fvalue );
+                        }
+                        $filedname="afield".$fid;
+                        
+                        $wk =  " <input ";
+                        $wk .= " type=\"hidden\"";
+                        $wk .= " name=\"afield[".$fid."]\" ";
+                        $wk .= " value=\"".$fvalue."\"";
+                        $wk .= " ".XHTML.">";
+                        $fieldhtml.=$wk;
+
+                        $fieldhtml .= "        <input ";
+                        $fieldhtml .= " data-uk-datepicker=\"{format:'YYYY/MM/DD'}\"";
+                        $fieldhtml .= " type=\"text\"";
+                        $fieldhtml .= "  id=\"afield".$fid."\"";
+                        $fieldhtml .= " size=\"".$size."\"";
+                        $fieldhtml .= " maxlength=\"".$maxlength."\" ";
+                        $fieldhtml .= " name=\"afield[".$fid."]\" ";
+                        $fieldhtml .= " style=\"max-width:95%\"";
+                        $fieldhtml .= " value=\"". $fvalue_date."\"";
+                        $fieldhtml .= " ".XHTML.">";
                     }else{
                         $fieldhtml .=$fvalue;
                     }
@@ -1492,203 +1548,6 @@ function DATABOX_imagehtml(
     return $retval;
 }
 
-
-function DATABOX_getaddtionfieldsJS(
-    $fields
-    ,$addition_def
-    ,$chk_user
-    ,$pi_name=""
-)
-// +---------------------------------------------------------------------------+
-// | 機能  追加項目入力用JavaScript作成
-// | 書式 DATABOX_getaddtionfieldsJS
-//          ($additionfields,$addition_def,$templates,$chk_user)
-// +---------------------------------------------------------------------------+
-// | 引数 $fields:
-// | 引数 $addition_def:
-// | 引数 $templates:
-// | 引数 $chk_user:
-// | 引数 $pi_name:plugin name 'databox' 'userbox' 'formbox'
-// +---------------------------------------------------------------------------+
-// | 戻値 nomal:追加項目入力用 JavaScript (DatePicker )
-// +---------------------------------------------------------------------------+
-// 20101206 日付
-{
-    global $_CONF;
-    //GL のバージョンが1.8.0 より新しくなければおわり
-    if (version_compare(VERSION, '1.8.0') >= 0) {
-    }else{
-        return ;
-    }
-    $scriptclass=$_CONF['path_system'] .'classes/scripts.class.php';
-    if  (!file_exists($scriptclass) ){
-        return;
-    }
-    
-    global $_SCRIPTS;
-    global $_TABLES;
-
-    $table_def_field=$_TABLES[strtoupper($pi_name).'_def_field'];
-
-    $lang_box_admin="LANG_".strtoupper($pi_name)."_ADMIN";
-    global $$lang_box_admin;
-    $lang_box_admin=$$lang_box_admin;
-
-    $box_conf="_".strtoupper($pi_name)."_CONF";
-    global $$box_conf;
-    $box_conf=$$box_conf;
-    
-    $dateformat=$box_conf['dateformat'];
-
-    $js= '';
-
-    if (is_array($fields)){
-            $S = $fields;
-    }else{
-        if( !empty( $selected ))    {
-            $S = explode( ' ', $fields );
-        }else {
-            $S = array();
-        }
-    }
-    foreach( $S as $fid => $fvalue ){
-        $name=$addition_def[$fid]['name'];
-        $checkrequried=$addition_def[$fid]['checkrequried'];
-        $type=$addition_def[$fid]['type'];
-        $selectionary=$addition_def[$fid]['selectionary'];
-
-        $size=$addition_def[$fid]['size'];
-        $maxlength=$addition_def[$fid]['maxlength'];
-        $rows=$addition_def[$fid]['rows'];
-        $br=$addition_def[$fid]['br'];
-
-        $templatesetvar=$addition_def[$fid]['templatesetvar'];
-
-        $description=$addition_def[$fid]['description'];
-
-        $chk=false;
-        $disabled="disabled";
-        if ($chk_user===9999){
-            $chk=true;
-            $disabled="";
-        }else{
-            //編集可能
-            if  ($addition_def[$fid]['allow_edit']==='0') {
-                $chk=true;
-                $disabled="";
-            //グループとadmin権のある人のみ表示
-            }else if ($addition_def[$fid]['allow_edit']==='2'){
-                if  ($chk_user>=1010) {
-                    $chk=true;
-                    $disabled="";
-                }
-            //所有者とadmin権のある人のみ
-            }else if ($addition_def[$fid]['allow_edit']==='3'){
-                if  ($chk_user>=1011) {
-                    $chk=true;
-                    $disabled="";
-                }
-            //編集不可表示のみ
-            }else if ($addition_def[$fid]['allow_edit']==='4'){
-                $chk=true;
-            }
-        }
-
-        if ($chk) {
-
-            switch ($type) {
-
-                case 3://日付（DatePicker 対応）
-                    if ($disabled===""){
-                        $js.=DATABOX_getaddtionfieldsJS_date($fid,$dateformat);
-                    }
-                    break;
-            }
-            //=====
-        }
-    }
-    
-    
-    $_SCRIPTS->setJavaScript($js, true);
-
-    return ;
-}
-
-function DATABOX_getaddtionfieldsJS_date(
-    $fid
-    ,$dateformat
-){
-    global $_SCRIPTS;
-    //GL のバージョンが1.8.0 より新しくなければおわり
-    if (version_compare(VERSION, '1.8.0') >= 0) {
-    }else{
-        return ;
-    }
-    $jquery="";
-    if (function_exists('plugin_chkVersion_jquery')) {
-        $jquery=plugin_chkVersion_jquery();
-    }
-    if ($jquery==="") {
-        return;
-    }
-    $jsfooter=$_SCRIPTS->getFooter();
-    $datepicker=mb_strpos($jsfooter,"datepicker");
-    if (!$datepicker) {
-        return;
-    }
-    
-    $str="".LB;
-    $str .= "    jQuery(function() {".LB;
-    $str .= "        jQuery('#afield{$fid}').DatePicker({".LB;
-    $str .= "            format:'{$dateformat}',".LB;
-    $str .= "            date: jQuery('#afield{$fid}').val(),".LB;
-    $str .= "            current: jQuery('#afield{$fid}').val(),".LB;
-    $str .= "            starts: 1,".LB;
-    $str .= "            position: 'top',".LB;
-    
-//    $str .= "            onBeforeShow: function(){".LB;
-//    $str .= "                    jQuery('#afield{$fid}').DatePickerSetDate(jQuery('#afield{$fid}').val(), true);".LB;
-//    $str .= "            },".LB;
-    
-    $str .= "            onChange: function(formated){".LB;
-    $str .= "                    jQuery('#afield{$fid}').val(formated);".LB;
-    $str .= "                    jQuery('#afield{$fid}').DatePickerHide();".LB;
-    $str .= "            }".LB;
-    $str .= "        });".LB;
-    $str .= "   });".LB;
-    
-    
-    return $str;
-}
-
-function DATABOX_getenableexpired(
-    $field
-    ,$flg
-    ,$pi_name
-){
-    //GL のバージョンが1.8.0 より新しくなければおわり
-    if (version_compare(VERSION, '2.0.0') >= 0) {
-    }else{
-        return ;
-    }
-    
-    global $_CONF;
-    global $_SCRIPTS;
-    
-    $langCode = COM_getLangIso639Code();
-    $toolTip  = 'Click and select a date';    // Should be translated
-    $imgUrl   = $_CONF['site_url'] . '/images/calendar.png';
-
-    $_SCRIPTS->setJavaScript(
-        "jQuery(function () {"
-        . "  geeklog.datepicker.set('$field', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
-        . "});", TRUE, TRUE
-    );
-    
-    return ;
-}
-
-
 function DATABOX_getaddtionfieldsText(
     $fields
     ,$addition_def
@@ -1821,6 +1680,8 @@ function DATABOX_getaddtionfieldsText(
                         $w=COM_getUserDateTimeFormat($fvalue);
                         $retval .= $w[0];
                         break;
+                    case 22://日付
+                    case 23://日付
                     case 3://日付
                         if  ($fvalue<>""){
                             $retval .=strftime( $_CONF['shortdate'], $fvalue );
@@ -2070,7 +1931,9 @@ function DATABOX_getaddtionfieldsDisp(
                         $fieldhtml .= $w[0];
                     }
                     break;
-                case 3://日付（準備中）
+                case 22://日付
+                case 23://日付
+                case 3://日付
                     if  ($fvalue<>""){
                         $fieldhtml .=strftime( $_CONF['shortdate'], $fvalue );
                     }
@@ -3025,6 +2888,20 @@ function DATABOX_cleanaddtiondatas(
                     $dateary[$field_id]['month']=$wk_month;//@@@@@
                     $dateary[$field_id]['day']=$wk_day;//@@@@@
                     break;
+                case 22://日付
+                case 23://日付
+                    $ary_wk=date_parse( $wk);
+                    if  ($ary_wk[error_count]==0){
+                        $dateary[$field_id]['month']= $ary_wk[month];
+                        $dateary[$field_id]['day']= $ary_wk[day];
+                        $dateary[$field_id]['year']= $ary_wk[year];
+                    }else{
+                        $wk="";
+                        $dateary[$field_id]['month']= "";
+                        $dateary[$field_id]['day']= "";
+                        $dateary[$field_id]['year']= "";
+                    }
+                    break;
                 case 4://日時
                     $wk_year=$_POST['afield'.$field_id.'_year'];
                     $wk_month=$_POST['afield'.$field_id.'_month'];
@@ -3247,7 +3124,8 @@ function DATABOX_checkaddtiondatas(
             }
 
             //日付 日時
-            if ($addition_def[$field_id]['type']==3 OR $addition_def[$field_id]['type']==4){//日付
+            if ($addition_def[$field_id]['type']==3 OR $addition_def[$field_id]['type']==4
+                     OR $addition_def[$field_id]['type']==22 OR $addition_def[$field_id]['type']==23){//日付
                 if ($value ===""){
                 }else{
                     $w=strtotime($value);
@@ -5228,6 +5106,7 @@ function DATABOX_fieldvalue(
 {
     global $_TABLES;
     global $_CONF;
+    global $_PLUGINS;
     
     $lang_noyes="LANG_".strtoupper($pi_name)."_NOYES";
     global $$lang_noyes;
@@ -5307,6 +5186,14 @@ function DATABOX_fieldvalue(
             $rt=$A['name'];
         }else if ($option=="description"){
             $rt=$A['description'];
+        }else if ($option=="datatitle"){
+            if (in_array('databox', $_PLUGINS)) {
+                $rt=COM_applyFilter(DB_getItem( $_TABLES['DATABOX_base'] ,"title","code='{$A['value']}'"));
+            }
+        }else if ($option=="datadescription"){
+            if (in_array('databox', $_PLUGINS)) {
+				$rt=COM_applyFilter(DB_getItem( $_TABLES['DATABOX_base'] ,"description","code='{$A['value']}'"));
+            }
         }else{
             $selectionary=DATABOX_getselectionary($A['selection']);
             $selectlist=$A['selectlist'];

@@ -551,6 +551,8 @@ $LANG_USERBOX_TYPE[11] = 'Image(DB Save)';
 $LANG_USERBOX_TYPE[12] = 'Image(File Save)';
 $LANG_USERBOX_TYPE[13] = 'File(In Preparation )';
 
+$LANG_USERBOX_TYPE[22] = 'date (jquery ui datepicker)';
+$LANG_USERBOX_TYPE[23] = 'date (Uikit datepicker)';
 
 ###############################################################################
 #

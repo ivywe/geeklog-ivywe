@@ -1,6 +1,6 @@
-<!-- plugins/userbox/templates/category/default/nohit.thtml 20120403{ -->
-
-<div id="userbox">
+{# begin {templatelocation} #}
+{# plugins/userbox/templates/category/default/nohit.thtml 20151111 #}
+<div >
   <p id="breadcrumbs"><a href="{site_url}/">{home}</a>{category_top}</p>
 
   <h2>{category_name}</h2>
@@ -8,5 +8,4 @@
   <p>{lang_nohit}</p>
 
 </div>
-
-<!-- plugins/userbox/templates/category/default/nohit.thtml { -->
+{# end {templatelocation} #}

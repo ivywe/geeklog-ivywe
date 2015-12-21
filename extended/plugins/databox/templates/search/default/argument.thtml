@@ -1,94 +1,93 @@
-<!-- plugins/databox/templates/search/default/argument.thtml 20150108{ -->
+{# begin {templatelocation} #}
+{# plugins/databox/templates/search/default/argument.thtml 20151106 #}
 
-<form class="uk-form" action="{site_url}/{this_script}" method="get">
+<form action="{site_url}/{this_script}" method="get" >
 <div >
-<!-- argument example -->
-<!-- 以下は参考例です ない場合は表示されません -->
+{# argument example #}
+{# 以下は参考例です ない場合は表示されません #}
 
-  <p><span class="uk-text-success"> &#123;fieldset&#125;</span>:{fieldset}
-  <span class="uk-text-success"> &#123;fieldset_name&#125;</span>:{fieldset_name}
+  <p><span style="color:green"> &#123;fieldset&#125;</span>:{fieldset}
+  <span style="color:green"> &#123;fieldset_name&#125;</span>:{fieldset_name}
   </p>
 
-  <p><span class="uk-text-success"> &#123;t&#125;</span>:{t}
-  <span class="uk-text-success"> &#123;teq&#125;</span>:{teq}
+  <p><span style="color:green"> &#123;t&#125;</span>:{t}
+  <span style="color:green"> &#123;teq&#125;</span>:{teq}
   </p>
 
-  <p><span class="uk-text-success"> &#123;fieldset&#125;</span>:{fieldset}
-  <span class="uk-text-success"> &#123;fieldset_name&#125;</span>:{fieldset_name}
+  <p><span style="color:green"> &#123;fieldset&#125;</span>:{fieldset}
+  <span style="color:green"> &#123;fieldset_name&#125;</span>:{fieldset_name}
   </p>
 
-  <p><span class="uk-text-success"> &#123;gor_3&#125;</span>:{gor_3}
+  <p><span style="color:green"> &#123;gor_3&#125;</span>:{gor_3}
   <input name="gor_3[]" value="" type="hidden">
   </p>
 
-  <p><span class="uk-text-success"> &#123;gand_8&#125;</span>:{gand_8}
+  <p><span style="color:green"> &#123;gand_8&#125;</span>:{gand_8}
   <input name="gand_8[]" value="" type="hidden">
   </p>
 
-  <p><span class="uk-text-success"> &#123;gor_3_names&#125;</span>:{gor_3_names}
+  <p><span style="color:green"> &#123;gor_3_names&#125;</span>:{gor_3_names}
   </p>
-  <p><span class="uk-text-success"> &#123;gor_3_1_id&#125;</span>:{gor_3_1_id}
+  <p><span style="color:green"> &#123;gor_3_1_id&#125;</span>:{gor_3_1_id}
   </p>
-  <p><span class="uk-text-success"> &#123;gor_3_2_id&#125;</span>:{gor_3_2_id}
+  <p><span style="color:green"> &#123;gor_3_2_id&#125;</span>:{gor_3_2_id}
   </p>
-  <p><span class="uk-text-success"> &#123;gor_3_1_name&#125;</span>:{gor_3_1_name}
+  <p><span style="color:green"> &#123;gor_3_1_name&#125;</span>:{gor_3_1_name}
   </p>
-  <p><span class="uk-text-success"> &#123;gor_3_2_name&#125;</span>:{gor_3_2_name}
-  </p>
-
-  <p><span class="uk-text-success"> &#123;gand_8_names&#125;</span>:{gand_8_names}
-  </p>
-  <p><span class="uk-text-success"> &#123;gand_8_1_id&#125;</span>:{gand_8_1_id}
-  </p>
-  <p><span class="uk-text-success"> &#123;gand_8_2_id&#125;</span>:{gand_8_2_id}
-  </p>
-  <p><span class="uk-text-success"> &#123;gand_8_1_name&#125;</span>:{gand_8_1_name}
-  </p>
-  <p><span class="uk-text-success"> &#123;gand_8_2_name&#125;</span>:{gand_8_2_name}
+  <p><span style="color:green"> &#123;gor_3_2_name&#125;</span>:{gor_3_2_name}
   </p>
 
-  <p><span class="uk-text-success"> &#123;aeq_4&#125;</span>:{aeq_4}
+  <p><span style="color:green"> &#123;gand_8_names&#125;</span>:{gand_8_names}
   </p>
-  <p><span class="uk-text-success"> &#123;a_4&#125;</span>:{a_4}
+  <p><span style="color:green"> &#123;gand_8_1_id&#125;</span>:{gand_8_1_id}
+  </p>
+  <p><span style="color:green"> &#123;gand_8_2_id&#125;</span>:{gand_8_2_id}
+  </p>
+  <p><span style="color:green"> &#123;gand_8_1_name&#125;</span>:{gand_8_1_name}
+  </p>
+  <p><span style="color:green"> &#123;gand_8_2_name&#125;</span>:{gand_8_2_name}
   </p>
 
-  <p><span class="uk-text-success"> &#123;afr_6&#125;</span>:{afr_6}
+  <p><span style="color:green"> &#123;aeq_4&#125;</span>:{aeq_4}
+  </p>
+  <p><span style="color:green"> &#123;a_4&#125;</span>:{a_4}
   </p>
 
-  <p><span class="uk-text-success"> &#123;ato_6&#125;</span>:{ato_6}
+  <p><span style="color:green"> &#123;afr_6&#125;</span>:{afr_6}
   </p>
 
-  <p><span class="uk-text-success"> &#123;ams_47&#125;</span>:{ams_47}
+  <p><span style="color:green"> &#123;ato_6&#125;</span>:{ato_6}
+  </p>
+
+  <p><span style="color:green"> &#123;ams_47&#125;</span>:{ams_47}
   <input name="ams_47[]" value="" type="hidden">
   </p>
-  <p><span class="uk-text-success"> &#123;ams_47_names&#125;</span>:{ams_47_names}
+  <p><span style="color:green"> &#123;ams_47_names&#125;</span>:{ams_47_names}
   </p>
-  <p><span class="uk-text-success"> &#123;ams_47_1_no&#125;</span>:{ams_47_1_no}
+  <p><span style="color:green"> &#123;ams_47_1_no&#125;</span>:{ams_47_1_no}
   </p>
-  <p><span class="uk-text-success"> &#123;ams_47_2_no&#125;</span>:{ams_47_2_no}
+  <p><span style="color:green"> &#123;ams_47_2_no&#125;</span>:{ams_47_2_no}
   </p>
-  <p><span class="uk-text-success"> &#123;ams_47_1_name&#125;</span>:{ams_47_1_name}
+  <p><span style="color:green"> &#123;ams_47_1_name&#125;</span>:{ams_47_1_name}
   </p>
-  <p><span class="uk-text-success"> &#123;ams_47_2_name&#125;</span>:{ams_47_2_name}
-  </p>
-
-  <p><span class="uk-text-success"> &#123;templatedir&#125;</span>:{templatedir}
+  <p><span style="color:green"> &#123;ams_47_2_name&#125;</span>:{ams_47_2_name}
   </p>
 
-  <p><span class="uk-text-success"> &#123;perpage&#125;</span>:{perpage}
+  <p><span style="color:green"> &#123;templatedir&#125;</span>:{templatedir}
   </p>
 
-  <p><span class="uk-text-success"> &#123;page&#125;</span>:{page}
+  <p><span style="color:green"> &#123;perpage&#125;</span>:{perpage}
   </p>
 
-  <p><span class="uk-text-success"> &#123;nohitmsg&#125;</span>:{nohitmsg}
+  <p><span style="color:green"> &#123;page&#125;</span>:{page}
   </p>
-  <p><span class="uk-text-success"> &#123;order&#125;</span>:{order}
+
+  <p><span style="color:green"> &#123;nohitmsg&#125;</span>:{nohitmsg}
+  </p>
+  <p><span style="color:green"> &#123;order&#125;</span>:{order}
   </p>
 
 </div>
-<p><input value="{lang_search}" type="submit"></p>
+<p><input value="{lang_search}" class="submit" type="submit"></p>
 </form>
-
-
-<!-- } plugins/databox/templates/search/default/argument.thtml -->
+{# end {templatelocation} #}

@@ -1,26 +1,12 @@
-<!-- plugins/databox/templates/search/default/nohit.thtml 2010929{ -->
+{# begin {templatelocation} #}
+{# plugins/databox/templates/search/default/nohit.thtml 20151109 #}
+<div>
+  <p id="breadcrumbs"><a href="{site_url}/">{home}</a>|<a href="{referer}">{lang_referer}</p>
 
-<div class="uk-grid">
-	<div class="uk-width-1-1">
-		<ul class="uk-breadcrumb">
-			<li><a href="{site_url}/">{home}</a></li>
-    		<li>{fieldset_name}</li>
-		</ul>
-	</div>
 
-	{arg_var}
-
-	<div class="uk-width-1-1">
-		<div class="uk-panel uk-panel-box" data-uk-alert>
-			<a href="" class="uk-alert-close uk-close uk-float-right"></a>
-			{arg_var}
-		</div>
-	</div>
-
-	<div class="uk-width-1-1 uk-margin-large">
-		<p>{lang_nohit}</p>
-	</div>
+  {arg_var}
 
   <p>{lang_nohit}</p>
 
-<!-- plugins/databox/templates/search/default/nohit.thtml { -->
+</div>
+{# end {templatelocation} #}

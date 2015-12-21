@@ -1,6 +1,5 @@
-<!-- plugins/databox/templates/category/default/row.thtml { -->
-
+{# begin {templatelocation} #}
+{# plugins/databox/templates/category/default/row.thtml 20151106 #}
 {grp_var}
 {col_var}
-
-<!-- } plugins/databox/templates/category/default/row.thtml -->
+{# end {templatelocation} #}

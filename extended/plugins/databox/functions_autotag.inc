@@ -611,7 +611,6 @@ function databox_category(
             'nav'   => 'navigation_detail.thtml',
             'row'   => 'row.thtml',
             'col'   => "col_detail.thtml",
-            'pagenav'  => 'pagenavigation.thtml'
             ));
 
         $languageid=COM_getLanguageId();
@@ -1224,7 +1223,6 @@ function databox_field(
             'nav'   => 'navigation_detail.thtml',
             'row'   => 'row.thtml',
             'col'   => "col_detail.thtml",
-            'pagenav'  => 'pagenavigation.thtml'
             ));
         
         $languageid=COM_getLanguageId();
@@ -2937,7 +2935,7 @@ function databox_detail_link(
         }
 	}
     $return['url']=  COM_buildUrl( $url );
-    $return['link']= COM_createLink($title, $url);
+    $return['link']= COM_createLink($title, $return['url']);
     return $return;
 }
 
@@ -3240,7 +3238,6 @@ function databox_search(
             'nav'   => 'navigation_detail.thtml',
             'row'   => 'row.thtml',
             'col'   => "col_detail.thtml",
-            'pagenav'  => 'pagenavigation.thtml'
             ));
         
         $dummy=databox_searchargedit($argary,$templates);

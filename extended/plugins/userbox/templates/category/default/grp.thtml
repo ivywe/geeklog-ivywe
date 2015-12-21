@@ -1,3 +1,4 @@
-<!-- plugins/userbox/templates/category/default/grp.thtml 20121030 { -->
+{# begin {templatelocation} #}
+{# plugins/userbox/templates/category/default/grp.thtml 20151111 #}
     <h3>{group_link}{group_name} </h3>
-<!-- } plugins/userbox/templates/category/default/grp.thtml -->
+{# end {templatelocation} #}

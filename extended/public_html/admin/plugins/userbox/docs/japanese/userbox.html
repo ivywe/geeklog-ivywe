@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
 </head>
-<!-- admin/plugins/userbox/docs/japanese/userbox.html 20150302 -->
+<!-- admin/plugins/userbox/docs/japanese/userbox.html 20151019 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
@@ -25,7 +25,7 @@
 <form name='userbox_conf_link' action='../../../../../admin/configuration.php' method='POST'>
 <input type='hidden' name='conf_group' value='userbox'></form>
  <a style='text-decoration: none;' href='#' onclick="document.userbox_conf_link.submit()">コンフィギュレーション管理画面</a>「管理者用メニュー - コンフィギュレーション - UserBox」から変更できます。</p>
-<h3><a name="public">メイン設定(2014/03/02 update)</a></h3>
+<h3><a name="public">メイン設定(2015/10/19 update)</a></h3>
 
 <table>
 <tr><th style="width:25%">項目(変数)</th>
@@ -92,7 +92,7 @@
     <li>カスタム(custom): private/plugins/userbox/custom/templates/以下</li>
     <li>テーマ(theme): public_html/テーマ/テーマテンプレートパス/以下</li>
     </ul>
-<strong>注意:</strong> カスタムまたはテーマを指定している場合でもフォルダがなければ標準のテンプレートフォルダを使用します
+<strong>注意:</strong> カスタムまたはテーマを指定している場合フォルダがなければ、表示されません。（$LANG_404(3)）　
 </td>
 </tr>
 
@@ -105,7 +105,7 @@
     <li>カスタム(custom): private/plugins/userbox/custom/templates/以下</li>
     <li>テーマ(theme): public_html/テーマ/テーマテンプレートパス/以下</li>
     </ul>
-<strong>注意:</strong> カスタムまたはテーマを指定している場合でもフォルダがなければ標準のテンプレートフォルダを使用します　</td>
+<strong>注意:</strong> カスタムまたはテーマを指定している場合フォルダがなければ、表示されません。（$LANG_404(3)）　</td>
 </tr>
 <tr class="r2">
   <td valign="top"><a name="desc_themespath">テーマテンプレートパス(themespath)</a></td>

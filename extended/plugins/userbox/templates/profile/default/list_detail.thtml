@@ -1,22 +1,23 @@
-<!--plugins/userbox/templates/profile/default/list_detail.thtml { -->
+{# begin {templatelocation} #}
+{# plugins/userbox/templates/profile/default/list_detail.thtml 20151111 #}
 <div class="userbox">
 	<h2>{title}</h2>
 	<dl class="uk-description-list-horizontal">
 	<!--xhtml,layout_url,site_admin_url,site_url, site_name,site_mail draft, lang_id, id, lang_fields, lang_field, lang_templatesetvar, lang_content, lang_byusingid, lang_byusingcode, lang_byusingtemplatesetvar, lang_group, lang_withlink, lang_uid lang_username username lang_fullname fullname lang_imgfile_frd, imgfile_frd,,data_img_url, lang_imgfile_thumb_frd, imgfile_thumb_frd,data_thumb_img_url, lang_basicfields, lang_code, code*9, lang_title, title*9,, lang_description, description, lang_owner, owner_name, owner_id, lang_hits, hits, lang_category, lang_additionfields, lang_modified,	modified,modified_shortdate, lang_created, created,created_shortdate, lang_released, released,released_shortdate, lang_expired, expired,expired_shortdate, lang_uuid, uuid, lang_udatetime, last_modify_uid, last_modify_name, last_modify_fullname, edit
 	-->
-	<!--Core Items -->
+	{# Core Items #}
 	<fieldset style="width:94%">
 		<legend>Core</legend>
 		<dl>
-			<!--uid -->
+			{# uid #}
 			<dt>{lang_id}{help_uid}</dt>
 			<dd style="width:100px;height:1.5em">&#123;id&#125;</dd>
 			<dd style="margin-left:100px;margin-top:-1.5em;height:1.5em">{id}</dd>
-			<!--code -->
+			{# code #}
 			<dt>{lang_code}</dt>
 			<dd style="width:100px;height:1.5em">&#123;code&#125;</dd>
 			<dd style="margin-left:100px;margin-top:-1.5em;height:1.5em">{code}</dd>
-			<!--title -->
+			{# title -->
 			<dt>{lang_title}</dt>
 			<dd style="width:100px;height:1.5em">&#123;title&#125;</dd>
 			<dd style="margin-left:100px;margin-top:-1.5em;height:1.5em">{title}</dd>
@@ -25,11 +26,11 @@
 			<dd style="margin-left:100px;margin-top:-1.5em;height:1.5em">{uuid}</dd>
 		</dl>
 	</fieldset>
-	<!--Login users -->
+	{# Login users #}
 	<fieldset style="width:94%">
 		<legend>Login user</legend>
 		<dl>
-			<!--login user's username -->
+			{# login user's username #}
 			<dt>{lang_username}{help_username}</dt>
 			<dd style="width:100px;height:1.5em">&#123;username&#125;</dd>
 			<dd style="margin-left:100px;margin-top:-1.5em">{username}</dd>
@@ -39,7 +40,7 @@
 			<dd style="margin-left:100px;margin-top:-1.5em">{fullname}</dd>
 		</dl>
 	</fieldset>
-	<!--Basic Items -->
+	{# Basic Items #}
 	<fieldset style="width:94%">
 		<legend>{lang_basicfields}</legend>
 		<dl>
@@ -61,7 +62,7 @@
 			<dt>{lang_expired}</dt>
 			<dd>&#123;expired&#125;&nbsp;&#123;expired_shortdate&#125;</dd>
 			<dd>{expired}&nbsp;{expired_shortdate}</dd>
-			<!--@@@@@@ -->
+			{# @@@@@@ #}
 			<dt>
 			{lang_udatetime}
 			</dd>
@@ -102,18 +103,18 @@
 			<dd>{data_thumb_img_url}</dd>
 		</dl>
 	</fieldset>
-	<!--Category -->
+	{# Category #}
 	<fieldset style="width:94%">
 		<legend>{lang_category}</legend>
 		<dl>
 			<dt>{lang_field}</dt>
 			<dd>{lang_templatesetvar}</dd>
 			<dd>{lang_content}</dd>
-			<!--カテゴリ名称列挙 -->
+			{# カテゴリ名称列挙 -->
 			<dt>{lang_category}</dt>
 			<dd>&#123;categories&#125;</dd>
 			<dd>{categories}</dd>
-			<!--カテゴリ名称列挙リンク付 -->
+			{# カテゴリ名称列挙リンク付 -->
 			<dt>{lang_category} {lang_withlink}</dt>
 			<dd>&#123;categorieslink&#125;</dd>
 			<dd>{categorieslink}</dd>
@@ -125,7 +126,7 @@
 			<dd>{categorieslinkid}</dd>
 		</dl>
 	</fieldset>
-	<!--Additional Items -->
+	{# Additional Items #}
 	<fieldset style="width:94%">
 		<legend>{lang_additionfields}</legend>
 		<table class="uk-table uk-table-condensed uk-table-striped">
@@ -145,8 +146,8 @@
 	</fieldset>
 	{draft} {edit}
 	<h3 style="margin-top:10em">* Example *</h3>
-	<!--以下は参考例です 登録されていない場合表示されません -->
-	<!--グループ別カテゴリ　グループコードを使用する -->
+	{# 以下は参考例です 登録されていない場合表示されません #}
+	{# グループ別カテゴリ　グループコードを使用する #}
 	<fieldset style="width:94%">
 		<legend>{lang_groupbygroup} {lang_category} {lang_byusingcode}</legend>
 		<dl>
@@ -185,7 +186,7 @@
 			<dd>{group_team_pipeline}</dd>
 		</dl>
 	</fieldset>
-	<!--グループ別カテゴリ列挙リンク付き　グループコードを使用する -->
+	{# グループ別カテゴリ列挙リンク付き　グループコードを使用する #}
 	<fieldset style="width:94%">
 		<legend>{lang_groupbygroup} {lang_category} {lang_withlink} {lang_byusingcode}</legend>
 		<dl>
@@ -199,14 +200,14 @@
 			<dt>　</dt>
 			<dd>&#123;grouplink_city_code&#12</dd>
 			<dd>{grouplink_city_code}</dd>
-			<!--country -->
+			{# country #}
 			<dt>country</dt>
 			<dd>&#123;grouplink_country&#125;</dd>
 			<dd>{grouplink_country}</dd>
 			<dt>　</dt>
 			<dd>&#123;grouplink_country_code&125</dd>
 			<dd>{grouplink_country_code}</dd>
-			<!--team -->
+			{# team #}
 			<dt>team</dt>
 			<dd>&#123;grouplink_team&#125;</dd>
 			<dd>{grouplink_team}</dd>
@@ -215,7 +216,7 @@
 			<dd>{grouplink_team_code}</dd>
 		</dl>
 	</fieldset>
-	<!--グループ別カテゴリ　グループIDを使用する -->
+	{# グループ別カテゴリ　グループIDを使用する #}
 	<fieldset style="width:94%">
 		<legend>{lang_groupbygroup} {lang_category}  {lang_byusingid}</legend>
 		<dl>
@@ -232,7 +233,7 @@
 			<dt>　</dt>
 			<dd>&#123;group_1_pipeline&#125</dd>
 			<dd>{group_1_pipeline}</dd>
-			<!--2 -->
+			{# 2 #}
 			<dt>2</dt>
 			<dd>&#123;group_2&#125;</dd>
 			<dd>{group_2}</dd>
@@ -242,7 +243,7 @@
 			<dt>　</dt>
 			<dd>&#123;group_2_pipeline&#125</dd>
 			<dd>{group_2_pipeline}</dd>
-			<!--3 -->
+			{# 3 #}
 			<dt>3</dt>
 			<dd>&#123;group_3&#125;</dd>
 			<dd>{group_3}</dd>
@@ -254,7 +255,7 @@
 			<dd>{group_3_pipeline}</dd>
 		</dl>
 	</fieldset>
-	<!--グループ別カテゴリ リンク付　グループIDを使用する -->
+	{# グループ別カテゴリ リンク付　グループIDを使用する #}
 	<fieldset style="width:94%">
 		<legend>{lang_groupbygroup} {lang_category} {lang_withlink} {lang_byusingid}</legend>
 		<dl>
@@ -284,7 +285,7 @@
 			<dd>{grouplink_3_code}</dd>
 		</dl>
 	</fieldset>
-	<!--アトリビュート（追加項目） 登録したテーマ変数を使用する　テーマ変数 例-->
+	{# アトリビュート（追加項目） 登録したテーマ変数を使用する　テーマ変数 例 #}
 	<fieldset style="width:94%">
 		<legend>{lang_additionfields} {lang_byusingtemplatesetvar}</legend>
 		<dl>
@@ -294,7 +295,7 @@
 			<dd>{tel_name}</dd>
 			<dd>&#123;tel_requried&#125;</dd>
 			<dd>{tel_requied}</dd>
-			<dd>&#123;tel_description&#125;</dd>
+			<dd>&#123;tel_requried&#125;</dd>
 			<dd>{tel_description}</dd>
 			<dd>&#123;tel&#125;</dd>
 			<dd>{tel}</dd>
@@ -322,7 +323,7 @@
 			<dd>{fg12_tn_image}</dd>
 		</dl>
 	</fieldset>
-	<!--アトリビュート（追加項目） IDを使用する　テーマ変数 例-->
+	{# アトリビュート（追加項目） IDを使用する　テーマ変数 例 #}
 	<fieldset style="width:94%">
 		<legend>{lang_additionfields} {lang_byusingid}</legend>
 		<dl>
@@ -350,37 +351,37 @@
 			<dt>1</dt>
 			<dd>
 				&#123;additionfield1:2&#125;
-				<!--タイプが既定リストの場合表示されます　マスタのvalue2　の値 -->
+				{# タイプが既定リストの場合表示されます　マスタのvalue2　の値 #}
 			</dd>
 			<dd>{additionfield1:2}</dd>
 			<dt>1</dt>
 			<dd>
 				&#123;additionfield1:disp&#125;
-				<!--タイプが既定リストの場合表示されます　マスタのdisp　の値 例-->
+				{# タイプが既定リストの場合表示されます　マスタのdisp　の値 例 #}
 			</dd>
 			<dd>{additionfield1:disp}</dd>
 			<dt>1</dt>
 			<dd>
 				&#123;additionfield1:no&#125;
-				<!--タイプが既定リストの場合表示されます　マスタno　の値 例-->
+				{# タイプが既定リストの場合表示されます　マスタno　の値 例 #}
 			</dd>
 			<dd>{additionfield1:no}</dd>
 			<dt>1</dt>
 			<dd>
 				&#123;additionfield1_mst_value2&#125;
-				<!--タイプが既定リストの場合表示されます　マスタのvalue2　の値 -->
+				{# タイプが既定リストの場合表示されます　マスタのvalue2　の値 #}
 			</dd>
 			<dd>{additionfield1_mst_value2}</dd>
 			<dt>1</dt>
 			<dd>
 				&#123;additionfield1_mst_disp&#125;
-				<!--タイプが既定リストの場合表示されます　マスタのdisp　の値 例-->
+				{# タイプが既定リストの場合表示されます　マスタのdisp　の値 例-->
 			</dd>
 			<dd>{additionfield1_mst_disp}</dd>
 			<dt>1</dt>
 			<dd>
 				&#123;additionfield1_mst_no&#125;
-				<!--タイプが既定リストの場合表示されます　マスタno　の値 例-->
+				{# タイプが既定リストの場合表示されます　マスタno　の値 例 #}
 			</dd>
 			<dd>{additionfield1_mst_no}</dd>
 			<dt>1</dt>
@@ -466,4 +467,4 @@
 	</fieldset>
 </div>
 {edit}
-<!--} plugins/userbox/templates/profile/default/list_detail.thtml -->
+{# end {templatelocation} #}

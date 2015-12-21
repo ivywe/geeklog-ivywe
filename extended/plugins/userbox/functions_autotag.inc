@@ -1098,7 +1098,6 @@ function userbox_profile(
     global $LANG_confignames;
     
     $layout=$_DATABOX_CONF['layout'];
-
     //-----
     if (is_null($id) AND (is_null($code))){
         $id=$_USER['uid'];
@@ -1895,6 +1894,16 @@ function userbox_field(
             }else{
                 $templates->set_var ('new_img', '');
             }
+
+            if (isset($A['photo']) && empty($A['photo'])) {
+                $A['photo'] = '(none)'; // user does not have a photo
+                $templates->set_var('data_photo', "");
+            }else{
+                $templates->set_var('data_photo', $A['photo']);
+            }
+            $photo = USER_getPhoto($uid, $A['photo'], $A['email'], -1);
+            $templates->set_var('data_user_photo', $photo);
+
             $hits=COM_applyFilter(DB_getItem( $tbl5 ,"hits","id={$id}"),true);
             $templates->set_var('lang_hits', $LANG_USERBOX_ADMIN['hits']);
             $templates->set_var('data_hits', $hits);

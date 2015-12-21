@@ -1,17 +1,17 @@
-<!-- plugins/userbox/templates/newlist/default/list_col.thtml  20130331 { -->
-
+{# begin {templatelocation} #}
+{# plugins/userbox/templates/newlist/default/list_col.thtml  20151111 #}
 <dt class="userbox_date">{day}</dt>
 <dd class="userbox_list"><a  class="gl-tooltip" style="cursor: pointer; " href="{url}">{title}<span class="classic" style="top: 2.2em; left: 2.2em;">{description}</span></a>{new_img}
 
-<!--  カテゴリ名称列挙 -->
+{# カテゴリ名称列挙 #}
 		<span style="color:green">&#123;categories&#125;</span>{categories}
-<!--  カテゴリ名称列挙リンク付 -->
+{# カテゴリ名称列挙リンク付 #}
         <span style="color:green">&#123;categorieslink&#125;</span>{categorieslink}
         <span style="color:green">&#123;categorieslinkcode&#125</span>{categorieslinkcode}
         <span style="color:green">&#123;categorieslinkid&#125;</span>{categorieslinkid}
 
-<!-- 下記テーマ変数　参考例です 登録されていない場合表示されません -->
-<!-- カテゴリ グループコードを使用するテーマ変数 -->
+{# 下記テーマ変数　参考例です 登録されていない場合表示されません #}
+{# カテゴリ グループコードを使用するテーマ変数 #}
 &nbsp;&nbsp;&nbsp;
 <span style="color:green">&#123;group_city&#125;&#123;group_city_code&#125;</span>
 {group_city} {group_city_code}
@@ -24,7 +24,7 @@
 <span style="color:green">&#123;group_team&#125;&#123;group_team_code&#125;</span>
 {group_type} {group_team_code}
 
-<!-- カテゴリ リンク付　グループコード使用テーマ変数 -->
+{# カテゴリ リンク付　グループコード使用テーマ変数 #}
 &nbsp;&nbsp;&nbsp;
 <span style="color:green">&#123;grouplink_city&#125;&#123;grouplink_city_code&#125;</span>
 {grouplink_city} {grouplink_city_code}
@@ -37,7 +37,7 @@
 <span style="color:green">&#123;grouplink_team&#125;&#123;grouplink_team_code&#125;</span>
 {grouplink_team} {grouplink_team_code}
 
-<!-- カテゴリ グループID使用テーマ変数-->
+{# カテゴリ グループID使用テーマ変数 #}
 &nbsp;&nbsp;&nbsp;
 <span style="color:green">&#123;group_1&#125;&#123;group_1_code&#125;</span>
 {group_1} {group_1_code}
@@ -50,7 +50,7 @@
 <span style="color:green">&#123;group_3&#125;&#123;group_3_code&#125;</span>
 {group_3} {group_3_code}
 
-<!-- カテゴリリンク　グループID使用テーマ変数-->
+{# カテゴリリンク　グループID使用テーマ変数 #}
 &nbsp;&nbsp;&nbsp;
 <span style="color:green">&#123;grouplink_1&#125;&#123;grouplink_1_code&#125;</span>
 {grouplink_1} {grouplink_1_code}
@@ -64,5 +64,4 @@
 {grouplink_3} {grouplink_3_code}
 
 </dd>
-
-<!-- } plugins/userbox/templates/newlist/default/list_col.thtml -->
+{# end {templatelocation} #}

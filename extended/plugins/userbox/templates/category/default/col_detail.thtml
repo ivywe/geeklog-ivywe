@@ -1,5 +1,5 @@
-<!-- plugins/userbox/templates/category/default/col_detail.thtml 20150513{ -->
-
+{# begin {templatelocation} #}
+{# plugins/userbox/templates/category/default/col_detail.thtml 20151111 #}
 <li>
 <span style= "color:green" > &#123;data_link&#125;</span>{data_link}&nbsp;
 <span style= "color:green" > &#123;data_url&#125;</span>{data_url}&nbsp;
@@ -11,28 +11,28 @@
 <span style= "color:green" > &#123;data_user_photo&#125;</span>{data_user_photo}&nbsp;
 <span style= "color:green" > &#123;data_photo&#125;</span>{data_photo}&nbsp;
 <span style= "color:green" > &#123;data_description&#125;</span>{data_description}&nbsp;
-<span style= "color:green" > &#123;data_datefield&#125;</span>{data_datefield}{new_img}&nbsp;<!-- 使用する日付 作成日付or編集日付or公開日 -->
-<span style="color:green">&#123;data_datefield_shortdate&#125;</span>{data_datefield_shortdate} {new_img}&nbsp;<!-- 使用する日付 作成日付or編集日付or公開日 --><span style= "color:green" > &#123;data_released&#125;</span>{data_released}&nbsp;
+<span style= "color:green" > &#123;data_datefield&#125;</span>{data_datefield}{new_img}&nbsp;{# 使用する日付 作成日付or編集日付or公開日 #}
+<span style="color:green">&#123;data_datefield_shortdate&#125;</span>{data_datefield_shortdate} {new_img}&nbsp;{# 使用する日付 作成日付or編集日付or公開日 --><span style= "color:green" > &#123;data_released&#125;</span>{data_released}&nbsp;
 <span style="color:green">&#123;data_released_shortdate&#125;</span>{data_released_shortdate}&nbsp;
 <span style= "color:green" > &#123;data_expired&#125;</span>{data_expired}&nbsp;
 <span style="color:green">&#123;data_expired_shortdate&#125;</span>{data_expired_shortdate}&nbsp;
 <span style="color:green">&#123;data_hits&#125;</span>{data_hits}&nbsp;
 <span style= "color:green" > &#123;data_remaingdays&#125;</span>{data_remaingdays}&nbsp;
 
-<span style= "color:green" > &#123;data_value&#125;</span>{data_value}&nbsp;<!-- ソート順に指定された追加属性項目 -->
+<span style= "color:green" > &#123;data_value&#125;</span>{data_value}&nbsp;{# ソート順に指定された追加属性項目  #}
 <span style= "color:green" > &#123;zipcode&#125;</span>{zipcode}&nbsp;
 <span style= "color:green" > &#123;tel&#125;</span>{tel}&nbsp;
 <span style= "color:green" > &#123;additionfield1&#125;</span>{additionfield1}&nbsp;
 <span style= "color:green" > &#123;additionfield2&#125;</span>{additionfield2}&nbsp;
 {data_edit}
-<!-- 下記テーマ変数　参考例です 登録されていない場合表示されません -->
+{# 下記テーマ変数　参考例です 登録されていない場合表示されません #}
 &nbsp;&nbsp;&nbsp;
 <span style= "color:green" > &#123;zipcode&#125;</span>{zipcode}&nbsp;
 <span style= "color:green" > &#123;tel&#125;</span>{tel}&nbsp;
 <span style= "color:green" > &#123;additionfield1&#125;</span>{additionfield1}&nbsp;
 <span style= "color:green" > &#123;additionfield2&#125;</span>{additionfield2}&nbsp;
 
-<!-- カテゴリ グループコードを使用するテーマ変数 -->
+{# カテゴリ グループコードを使用するテーマ変数 #}
 &nbsp;&nbsp;&nbsp;
 <span style="color:green">&#123;group_city&#125;&#123;group_city_code&#125;</span>
 {group_city}{group_city_code}
@@ -45,7 +45,7 @@
 <span style="color:green">&#123;group_team&#125;&#123;group_team_code&#125;</span>
 {group_type}{group_team_code}
 
-<!-- カテゴリ リンク付　グループコード使用テーマ変数 -->
+{# カテゴリ リンク付　グループコード使用テーマ変数 #}
 &nbsp;&nbsp;&nbsp;
 <span style="color:green">&#123;grouplink_city&#125;&#123;grouplink_city_code&#125;</span>
 {grouplink_city}{grouplink_city_code}
@@ -58,7 +58,7 @@
 <span style="color:green">&#123;grouplink_team&#125;&#123;grouplink_team_code&#125;</span>
 {grouplink_team}{grouplink_team_code}
 
-<!-- カテゴリ グループID使用テーマ変数-->
+{# カテゴリ グループID使用テーマ変数 #}
 &nbsp;&nbsp;&nbsp;
 <span style="color:green">&#123;group_1&#125;&#123;group_1_code&#125;</span>
 {group_1}{group_1_code}
@@ -71,7 +71,7 @@
 <span style="color:green">&#123;group_3&#125;&#123;group_3_code&#125;</span>
 {group_3}{group_3_code}
 
-<!-- カテゴリリンク　グループID使用テーマ変数-->
+{# カテゴリリンク　グループID使用テーマ変数 #}
 &nbsp;&nbsp;&nbsp;
 <span style="color:green">&#123;grouplink_1&#125;&#123;grouplink_1_code&#125;</span>
 {grouplink_1}{grouplink_1_code}
@@ -85,4 +85,4 @@
 {grouplink_3}{grouplink_3_code}
 
 </li>
-<!-- } plugins/userbox/templates/category/default/col_detail.thtml -->
+{# end {templatelocation} #}

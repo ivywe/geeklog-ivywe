@@ -14,7 +14,8 @@
 define ('THIS_SCRIPT', 'databox/mydata/data.php');
 //define ('THIS_SCRIPT', 'databox/mydata/test.php');
 
-include_once('databox_functions.php');
+require_once('databox_functions.php');
+require_once( $_CONF['path_system'] . 'lib-admin.php' );
 
 if ($_DATABOX_CONF['allow_data_update']==1 ){
 }else{
@@ -43,8 +44,6 @@ function fncList(
     global $LANG_DATABOX_ADMIN;
     global $LANG_DATABOX;
     global $_DATABOX_CONF;
-
-    require_once( $_CONF['path_system'] . 'lib-admin.php' );
 
 	$retval = '';
 	
@@ -75,27 +74,6 @@ function fncList(
 
     $filter .="</select>";
 	
-
-	//MENU1:管理画面
-    $url1=$_CONF['site_url'] . '/'.THIS_SCRIPT.'?mode=new';
-	if  ($template<>""){
-		$url1.="&amp;template=".$template;
-	}
-    $url2=$_CONF['site_url'] . '/databox/list.php';
-
-    if ($_DATABOX_CONF['allow_data_insert']
-            OR SEC_hasRights('databox.submit')){
-        $menu_arr[]=array('url' => $url1,'text' => $LANG_DATABOX_ADMIN["new"]);
-    }
-    $menu_arr[]=array('url' => $url2,'text' => $LANG_DATABOX['list']);
-    $retval .= COM_startBlock($LANG_DATABOX_ADMIN['admin_list'], '',
-                              COM_getBlockTemplate('_admin_block', 'header'));//@@@@@
-    $retval .= ADMIN_createMenu(
-        $menu_arr,
-        $LANG_DATABOX_ADMIN['instructions'],
-        plugin_geticon_databox()
-    );
-
 
     //ヘッダ：編集～
     $header_arr[]=array('text' => $LANG_DATABOX_ADMIN['orderno'], 'field' => 'orderno', 'sort' => true);
@@ -190,8 +168,6 @@ function fncList(
 			, true
 			);
 	}
-
-    $retval .= COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
 
     return $retval;
 }
@@ -481,16 +457,29 @@ function fncEdit(
 		
         //作成日付
         $created=0;
+        $created_un=0;
+        //公開日
+        $released_month=$modified_month;
+        $released_day = $modified_day;
+        $released_year = $modified_year;
+        $released_hour = $modified_hour;
+        $released_minute = $modified_minute;
+        //公開終了日
+        $expired_flag=0;
+        $w = mktime(0, 0, 0, date('m'),
+             date('d') + $_CONF['article_comment_close_days'], date('Y'));
+        $expired_year=date('Y', $w);
+        $expired_month=date('m', $w);
+        $expired_day=date('d', $w);
+        $expired_hour=0;
+        $expired_minute=0;
+
         //
         $delflg=false;
         $old_mode="copy";
     }
 
     $chk_user=DATABOX_chkuser($group_id,$owner_id,"databox.admin");
-
-    //-----
-    $retval .= COM_startBlock ($LANG_DATABOX_ADMIN['edit'], '',
-                               COM_getBlockTemplate ('_admin_block', 'header'));
 
 	//template フォルダ
     if (is_null($template) or ($template==="")){
@@ -515,13 +504,16 @@ function fncEdit(
                 'row'   => 'row.thtml',
                 'col'   => "data_col_detail.thtml",
             ));
-    // Loads jQuery UI datepicker
+    // Loads jQuery UI datepicker geeklog >=2.1.0
     $_SCRIPTS->setJavaScriptLibrary('jquery.ui.datepicker');
     $_SCRIPTS->setJavaScriptLibrary('jquery-ui-i18n');
+    $_SCRIPTS->setJavaScriptLibrary('jquery-ui-timepicker-addon');
+    $_SCRIPTS->setJavaScriptLibrary('jquery-ui-timepicker-addon-i18n');
+    $_SCRIPTS->setJavaScriptFile('datetimepicker', '/javascript/datetimepicker.js');
     $_SCRIPTS->setJavaScriptFile('datepicker', '/javascript/datepicker.js');
 
     $langCode = COM_getLangIso639Code();
-    $toolTip  = 'Click and select a date';	// Should be translated
+    $toolTip  = $MESSAGE[118];
     $imgUrl   = $_CONF['site_url'] . '/images/calendar.png';
 
 	//--
@@ -641,7 +633,7 @@ function fncEdit(
 		,$fieldset_id
 		,$additionfields_date
 		);
-    $rt=DATABOX_getaddtionfieldsJS($additionfields,$addition_def,$chk_user,$pi_name);
+    //$rt=DATABOX_getaddtionfieldsJS($additionfields,$addition_def,$chk_user,$pi_name);
 
     //保存日時
     $templates->set_var ('lang_udatetime', $LANG_DATABOX_ADMIN['udatetime']);
@@ -672,7 +664,6 @@ function fncEdit(
     //
     $templates->parse('output', 'editor');
     $retval .= $templates->finish($templates->get_var('output'));
-    $retval .= COM_endBlock (COM_getBlockTemplate ('_admin_block', 'footer'));
 
     return $retval;
 }
@@ -1214,9 +1205,6 @@ function fncNew (
     $retval = '';
 	
 	//-----
-    $retval .= COM_startBlock ($LANG_DATABOX_ADMIN["new"], '',
-                               COM_getBlockTemplate ('_admin_block', 'header'));
-	
     $tmplfld=DATABOX_templatePath('mydata',$template,$pi_name);
 
     $templates = new Template($tmplfld);
@@ -1250,9 +1238,49 @@ function fncNew (
 
 	$templates->parse('output', 'editor');
     $retval .= $templates->finish($templates->get_var('output'));
-    $retval .= COM_endBlock (COM_getBlockTemplate ('_admin_block', 'footer'));
 	
 	return $retval;
+}
+function fncMenu(
+    $pi_name
+)
+// +---------------------------------------------------------------------------+
+// | 機能  menu表示  
+// | 書式 fncMenu("databox")
+// +---------------------------------------------------------------------------+
+// | 引数 $pi_name:plugin name 'databox' 'userbox' 'formbox'
+// +---------------------------------------------------------------------------+
+// | 戻値 menu 
+// +---------------------------------------------------------------------------+
+{
+
+    global $_CONF;
+    global $LANG_ADMIN;
+
+    global $LANG_DATABOX_ADMIN;
+
+    global $LANG_DATABOX;
+
+    $retval = '';
+	//MENU1:管理画面
+    $url1=$_CONF['site_url'] . '/'.THIS_SCRIPT.'?mode=new';
+	if  ($template<>""){
+		$url1.="&amp;template=".$template;
+	}
+    $url2=$_CONF['site_url'] . '/databox/list.php';
+
+    if ($_DATABOX_CONF['allow_data_insert']
+            OR SEC_hasRights('databox.submit')){
+        $menu_arr[]=array('url' => $url1,'text' => $LANG_DATABOX_ADMIN["new"]);
+    }
+    $menu_arr[]=array('url' => $url2,'text' => $LANG_DATABOX['list']);
+    $retval .= ADMIN_createMenu(
+        $menu_arr,
+        $LANG_DATABOX_ADMIN['instructions'],
+        plugin_geticon_databox()
+    );
+
+    return $retval;
 }
 
 
@@ -1354,7 +1382,6 @@ switch ($mode) {
                 OR SEC_hasRights('databox.submit')){
 
             $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
-            $display .=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
             $display .= fncNew($template);
             break;
         }
@@ -1365,12 +1392,10 @@ switch ($mode) {
                 OR SEC_hasRights('databox.submit')){
 
             $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
-            $display .=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
             $display .= fncEdit("", $edt_flg,$msg,"","new",$fieldset_id,$template);
             break;
         }
     case 'save':// 保存
-		$display.=ppNavbarjp($navbarMenu,$LANG_ASSIST_admin_menu[$menuno]);
         $retval= fncSave ($edt_flg ,$navbarMenu ,$menuno,$template);
         $information['pagetitle']=$retval['title'];
 		$display.=$retval['display'];
@@ -1389,9 +1414,6 @@ switch ($mode) {
     case 'edit':// 編集
         if ($id<>""  ) {
             $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['edit'];
-            if ($edt_flg==FALSE){
-                $display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
-            }
             $rt=databox_chk_loaddata($id);
             if ($rt==="OK"){
                 $display .= fncEdit($id, $edt_flg,$msg,"",$mode,$fieldset_id,$template);
@@ -1407,12 +1429,17 @@ switch ($mode) {
         if (isset ($msg)) {
             $display .= COM_showMessage ($msg,'databox');
         }
-        $display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
 
         $display .= fncList($template);
 
 
 }
+$display =COM_startBlock($LANG_DATABOX_ADMIN['piname'],''
+            ,COM_getBlockTemplate('_admin_block', 'header'))
+         .ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno])
+         .fncMenu($pi_name)
+         .$display
+         .COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
 
 $display=DATABOX_displaypage($pi_name,'_admin',$display,$information);
 

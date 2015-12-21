@@ -1,10 +1,9 @@
-<!-- plugins/userbox/templates/newlist/default/list.thtml  { -->
-
+{# begin {templatelocation} #}
+{# plugins/userbox/templates/newlist/default/list.thtml 20151111 #}
 <dl class="userbox_newlist">
 {list_col}
 </dl>
 
 <p class="userbox_rss"><a href="{rss_url}">{rss_title}</a></p>
 <p class="userbox_more"><a href="{more_url}">{more_title}</a></p>
-
-<!-- } plugins/userbox/templates/newlist/default/list.thtml -->
+{# end {templatelocation} #}

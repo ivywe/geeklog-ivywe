@@ -1,3 +1,4 @@
-<!-- plugins/userbox/templates/admin/row.thtml { -->
+{# begin {templatelocation} #}
+{# plugins/userbox/templates/admin/row.thtml 20151111 #}
 <tr class="pluginRow1">{col_var}</tr>
-<!-- } plugins/userbox/templates/admmin/row.thtml -->
+{# end {templatelocation} #}

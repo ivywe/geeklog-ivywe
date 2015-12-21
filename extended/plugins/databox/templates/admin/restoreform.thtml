@@ -1,21 +1,18 @@
-<!-- plugins/databox/templates/admin/restoreform.thtml  20140717 { -->
-
-<h3 class="uk-h3">{actionname}</h3>
-
-<form class="uk-form" action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data">
+{# begin {templatelocation} #}
+{# plugins/databox/templates/admin/restoreform.thtml  20151109 #}
+<h1>{actionname}</h1>
+<form action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data">
 <div>
 <td class="admin-list-field">
 {select_filename}
 </td>
 <input type='submit' name='action' value='{lang_submit}'{xhtml}>
 <input type='submit' name='action' value='{lang_cancel}'{xhtml}>
-<input type="hidden" name="mode" value="{mode}"{xhtml}>
+<input type="hidden" name="mode" value="{mode}" {xhtml}>
 <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
 </div>
 <div>
 {help}
 </div>
-
 </form>
-
-<!-- } plugins/databox/templates/admin/restoreform.thtml -->
+{# end {templatelocation} #}

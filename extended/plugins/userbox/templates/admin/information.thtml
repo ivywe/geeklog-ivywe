@@ -1,5 +1,5 @@
-<!-- plugins/userbox/templates/admin/information.thtml 20121023{ -->
-
+{# begin {templatelocation} #}
+{# plugins/userbox/templates/admin/information.thtml 20151111 #}
 {about_thispage}
 <p>Ver:{version}</p>
 <p> <a href="{document_url}" target="_blank">{lang_document}</a>
@@ -19,6 +19,4 @@
 <form name='userbox_conf_link' action='{site_admin_url}/configuration.php' method='POST'>
 <input type='hidden' name='conf_group' value='userbox'></form>
 <p> <a style='text-decoration: none;' href='#' onclick="document.userbox_conf_link.submit()">{lang_configuration}</a></p>
-
-<!-- } plugins/userbox/templates/admin/information.thtml -->
-
+{# end {templatelocation} #}

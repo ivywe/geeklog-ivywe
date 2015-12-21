@@ -1,4 +1,5 @@
-<!-- plugins/userbox/templates/attribute/default/navigation.thtml 20121019{ -->
+{# begin {templatelocation} #}
+{# plugins/userbox/templates/attribute/default/navigation.thtml 20151111 #}
 
 <div class="userbox">
 
@@ -20,5 +21,4 @@
   <div style="clear:both"></div>
 
 </div>
-
-<!-- } plugins/userbox/templates/attribute/default/navigation.thtml -->
+{# end {templatelocation} #}

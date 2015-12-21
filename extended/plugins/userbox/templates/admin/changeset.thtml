@@ -1,5 +1,6 @@
-<!-- plugins/userbox/templates/admin/changeset.thtml 20120912 { -->
-
+{# begin {templatelocation} #}
+{# plugins/userbox/templates/admin/changeset.thtml 20151111 #}
+<h3>{actionname}</h3>
 <form action="{site_admin_url}/plugins/userbox/profile.php" method="post" id="admin-changeset" class="basic">
   <input type="hidden" name="id" value="{id}"{xhtml}>
   <p class="message">{lang_inst_changeset}</p>
@@ -8,5 +9,4 @@
   <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
   <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
 </form>
-
-<!-- } plugins/userbox/templates/admin/changeset.thtml -->
+{# end {templatelocation} #}

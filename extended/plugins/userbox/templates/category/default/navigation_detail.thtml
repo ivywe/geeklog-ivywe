@@ -1,8 +1,8 @@
-<!-- plugins/userbox/templates/category/default/navigation_detail.thtml 20130204{ -->
-
+{# begin {templatelocation} #}
+{# plugins/userbox/templates/category/default/navigation_detail.thtml 20151111 #}
 <div class="userbox">
     <div class="order">
-        {order_date}|{order_orderno}|{order_username}|{order_fullname}|{order_description}|{order_id}|{order_released}|<!-- 下の行のテーマ変数　参考例です 登録されていない場合機能 -->
+        {order_date}|{order_orderno}|{order_username}|{order_fullname}|{order_description}|{order_id}|{order_released}|{# 下の行のテーマ変数　参考例です 登録されていない場合機能 #}
 {order_tel}|{order_zipcode}
     </div>
     <div class="order_random">{order_random}</div>
@@ -16,12 +16,12 @@
   <ul class="contents">
 <li> ({lang_uid}) ({lang_username})|{lang_fullname}&nbsp;
 {lang_description}&nbsp;
-{lang_date}&nbsp;<!-- 使用する日付 作成日付or編集日付or公開日 -->
+{lang_date}&nbsp;{# 使用する日付 作成日付or編集日付or公開日 #}
 {lang_released}&nbsp;
 {lang_expired}&nbsp;
 {lang_remaingdays}&nbsp;
-{lang_addfield}&nbsp;<!-- ソート順に指定された追加属性項目 -->
-<!-- 下記テーマ変数　参考例です 登録されていない場合表示されません -->
+{lang_addfield}&nbsp;{# ソート順に指定された追加属性項目 #}
+{# 下記テーマ変数　参考例です 登録されていない場合表示されません #}
 &nbsp;&nbsp;&nbsp;{name_zipcode}{name_tel}{name_additionfield1}{name_additionfield2}
 </li>
     {row_var}
@@ -34,5 +34,4 @@
   <div style="clear:both"></div>
 
 </div>
-
-<!-- } plugins/userbox/templates/category/default/navigation_detail.thtml -->
+{# end {templatelocation} #}

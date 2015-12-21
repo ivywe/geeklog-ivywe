@@ -414,32 +414,15 @@ function plugin_user_delete_databox ($uid)
 function plugin_getheadercode_databox()
 // +---------------------------------------------------------------------------+
 // | 機能  ヘッダコード編集：
-// | jQueryプラグインのjquery_datepickerを使えるようにする
-// | jQueryプラグインが有効であること
+// | set css 
 // +---------------------------------------------------------------------------+
 //
 {
-    global $_PLUGINS;
 	global $_SCRIPTS;
-	global $_CONF;
 	
 	$css = '/databox/css/style.css';
 	$_SCRIPTS->setCSSFile('databox_style_css', $css, true);
-	
-	//GL のバージョンが1.8.0 より新しければ
-	//jquery 有効であれば〜datepicker セット
-	if (version_compare(VERSION, '1.8.0') >= 0) {
-		if (in_array("jquery", $_PLUGINS)){
-			$jsfooter=$_SCRIPTS->getFooter();
-			$datepicker=mb_strpos($jsfooter,"datepicker");
-			if (!$datepicker) {
-				$strext= '/jquery/datepicker/datepicker.js';
-				$_SCRIPTS->setJavaScriptFile('jquery_datepicker', $strext);
-				$css = '/jquery/datepicker/datepicker.css';
-				$_SCRIPTS->setCSSFile('jquery_datepicker_css', $css, true);
-			}
-		}
-	}
+
 	return;
 }
 

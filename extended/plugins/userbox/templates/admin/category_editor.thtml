@@ -1,16 +1,16 @@
-<!-- plugins/userbox/templates/admin/category_editor.thtml 20140401{ -->
-
+{# begin {templatelocation} #}
+{# plugins/userbox/templates/admin/category_editor.thtml 20151111 #}
 <div id="userbox_admin">
   {about_thispage}
   <form name="frmuserbox" action="{site_admin_url}/plugins/{script}" method="post">
     <fieldset style="width:98%">
       <legend>Category</legend>
 
-      <!-- data -->
+      {# data #}
       <div class="table-wrapper-fit">
         <table class="admin-list-table">
 
-          <!-- id -->
+          {# id #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_category_id}</th>
             <td class="admin-list-field">
@@ -19,7 +19,7 @@
             </td>
           </tr>
 
-          <!-- code -->
+          {# code #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_code}{help_code}</th>
             <td class="admin-list-field">
@@ -27,7 +27,7 @@
             </td>
           </tr>
 
-          <!-- name -->
+          {# name #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_name}<span class="must">{lang_must}</span></th>
             <td class="admin-list-field">
@@ -35,7 +35,7 @@
             </td>
           </tr>
 
-          <!-- description -->
+          {# description #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_description}{help_description}</th>
             <td class="admin-list-field">
@@ -43,7 +43,7 @@
             </td>
           </tr>
 
-          <!-- defaulttemplatesdirectory -->
+          {# defaulttemplatesdirectory #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_defaulttemplatesdirectory}{help_defaulttemplatesdirectory}</th>
             <td class="admin-list-field">
@@ -51,7 +51,7 @@
             </td>
           </tr>
 
-          <!-- parent -->
+          {# parent #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_parent}{help_parent}</th>
             <td class="admin-list-field">
@@ -59,7 +59,7 @@
             </td>
           </tr>
 
-          <!-- group -->
+          {# group #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_group}{help_group}</th>
             <td class="admin-list-field">
@@ -67,14 +67,14 @@
             </td>
           </tr>
 
-          <!-- order -->
+          {# order #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_orderno}</th>
             <td class="admin-list-field">
               <input type="text" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
             </td>
           </tr>
-          <!-- allow_display  -->
+          {# allow_display #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_allow_display} {help_allow_display}</th>
             <td class="admin-list-field">
@@ -82,7 +82,7 @@
             </td>
           </tr>
 
-          <!-- 保存日 -->
+          {# 保存日 #}
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_udatetime}</th>
             <td class="admin-list-field">{udatetime} {lang_uuid}:{uuid}</td>
@@ -92,7 +92,7 @@
       </div>
     </fieldset>
 
-    <!-- 【保存 キャンセル  削除】 -->
+    {# 【保存 キャンセル  削除】 #}
     <input type="submit" value="{lang_save}" name="mode"{xhtml}>
     <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
     <input type="hidden" value="{code}" name="old_code"{xhtml}>
@@ -100,6 +100,4 @@
     <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
   </form>
 </div>
-
-<!-- } plugins/userbox/templates/admin/category_editor.thtml -->
-
+{# end {templatelocation} #}
