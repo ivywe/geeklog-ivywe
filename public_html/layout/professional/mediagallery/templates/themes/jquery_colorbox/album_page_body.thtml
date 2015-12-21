@@ -1,0 +1,8 @@
+<script type="text/javascript">
+var surl = "{site_url}/album_items.php?aid={album_id}";
+</script>
+<div id="mg_colorbox">
+<div class="header"></div>
+<div class="contents"></div>
+<div class="footer"></div>
+</div>

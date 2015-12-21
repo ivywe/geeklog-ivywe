@@ -1,0 +1,44 @@
+<script type="text/javascript">
+  function onAlbumChange() {
+    if (document.form_album.album_id.selectedIndex >= 0) {
+      document.applets['JUpload'].setProperty('albumId', document.form_album.album_id.value);
+    } else {
+      document.JUpload.setProperty('albumId', '');
+    }
+  }
+</script>
+
+<div style="text-align:left;">
+<form class="uk-form" method="post" name="form_album" action="{s_form_action}">
+<div style="margin:5px 2px">
+<span class="uk-text-bold">{lang_destination}:</span> {album_select}
+</div>
+<applet title="JUpload"
+        name="JUpload"
+        code="wjhk.jupload2.JUploadApplet"
+        archive="{jupload_archive}"
+        width="640"
+        height="400"
+        mayscript="mayscript">
+
+    <param name="CODE" value="wjhk.jupload2.JUploadApplet"{xhtml}>
+    <param name="ARCHIVE" value="{jupload_archive}"{xhtml}>
+    <param name="type" value="application/x-java-applet;version=1.4"{xhtml}>
+    <param name="scriptable" value="false"{xhtml}>
+    <param name="postURL" value="{s_form_action}"{xhtml}>
+    <param name="nbFilesPerRequest" value="1"{xhtml}>
+    <param name="uploadPolicy" value="MediaGalleryUploadPolicy"{xhtml}>
+    <param name="allowedfileextensions" value=""{xhtml}>
+    <param name="debugLevel" value="0"{xhtml}>
+    <param name="lang" value="ja"{xhtml}>
+Java 1.4 or higher plugin required.
+</applet>
+</form>
+</div>
+<hr{xhtml}>
+<div style="float:right">
+{jumpbox}
+</div>
+<script type="text/JavaScript">
+onAlbumChange();
+</script>

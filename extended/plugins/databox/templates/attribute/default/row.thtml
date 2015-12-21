@@ -1,4 +1,3 @@
-{# begin {templatelocation} #}
-{# plugins/databox/templates/attribute/default/row.thtml 20151106 #}
+<!-- plugins/databox/templates/attribute/default/row.thtml { -->
 {col_var}
-{# end {templatelocation} #}
+<!-- } plugins/databox/templates/attribute/default/row.thtml -->

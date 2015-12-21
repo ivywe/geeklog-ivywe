@@ -1,0 +1,35 @@
+<!-- plugins/mediagallery/templates/medialist/sample/autotag_medialist_col.thtml 20150309 { -->
+
+	<div class="uk-margin-top-large {class}">
+
+		<fieldset>
+		<legend>autotag_medialist_col.thtml</legend>
+		{edit}
+		{!if media_title}<h3 class="uk-container-center">{media_title}</h3>{!endif}
+
+		<dl class="uk-description-list-line">
+			<img src="{filename_tn}" alt="{media_title}" class="uk-border-rounded uk-align-center" style="max-width:200px" />
+			<img src="{filename_disp}" alt="{media_title}" class="uk-border-rounded uk-align-center" style="max-width:300px" />
+			<img src="{filename_orig}" alt="{media_title}" class="uk-border-rounded uk-align-center" style="max-width:400px" />
+			<dt>class</dt><dd>{class}</dd>
+			<dt>album_id</dt><dd>{album_id}</dd>
+			<dt>album_title</dt><dd>{album_title}</dd>
+			<dt>album_desc</dt><dd>{album_desc}</dd>
+			<dt>media_id</dt><dd>{media_id}</dd>
+			<dt>media_filename</dt><dd class="uk-text-truncate" style="max-width:400px">{media_filename}</dd>
+			<dt>filename_tn</dt><dd class="uk-text-truncate" style="max-width:400px">{filename_tn}</dd>
+			<dt>filename_disp</dt><dd class="uk-text-truncate" style="max-width:400px">{filename_disp}</dd>
+			<dt>filename_orig</dt><dd class="uk-text-truncate" style="max-width:400px">{filename_orig}</dd>
+			<dt>media_title</dt><dd>{media_title}</dd>
+			<dt>media_desc</dt><dd>{media_desc}</dd>
+			<dt>media_keywords</dt><dd>{media_keywords}</dd>
+			<dt>media_category</dt><dd>{media_category}</dd>
+			<dt>media_category_name</dt><dd>{media_category_name}</dd>
+			<dt>media_category_description</dt><dd>{media_category_description}</dd>
+			<dt>released</dt><dd>{released}</dd>
+		</dl>
+		{edit}
+		</fieldset>
+	</div>
+
+<!-- } plugins/mediagallery/templates/medialist/sample/autotag_medialist_col.thtml -->

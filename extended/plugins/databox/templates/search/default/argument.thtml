@@ -1,10 +1,9 @@
-{# begin {templatelocation} #}
-{# plugins/databox/templates/search/default/argument.thtml 20151106 #}
+<!-- plugins/databox/templates/search/default/argument.thtml 20150108{ -->
 
 <form action="{site_url}/{this_script}" method="get" >
 <div >
-{# argument example #}
-{# 以下は参考例です ない場合は表示されません #}
+<!-- argument example -->
+<!-- 以下は参考例です ない場合は表示されません -->
 
   <p><span style="color:green"> &#123;fieldset&#125;</span>:{fieldset}
   <span style="color:green"> &#123;fieldset_name&#125;</span>:{fieldset_name}
@@ -90,4 +89,6 @@
 </div>
 <p><input value="{lang_search}" class="submit" type="submit"></p>
 </form>
-{# end {templatelocation} #}
+
+
+<!-- } plugins/databox/templates/search/default/argument.thtml -->

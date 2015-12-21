@@ -1,5 +1,3 @@
-{# begin {templatelocation} #}
-{# plugins/databox/templates/data/default/nohit.thtml 20151109 #}
+<!-- plugins/databox/templates/data/default/nohit.thtml 20120124{ -->
 {lang_nohit}
-
-{# end {templatelocation} #}
+<!-- plugins/databox/templates/data/default/nohit.thtml { -->

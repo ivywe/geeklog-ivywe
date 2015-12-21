@@ -1,5 +1,4 @@
-{# begin {templatelocation} #}
-{# plugins/databox/templates/admin/view.thtml 20151109 #}
+<!-- plugins/databox/templates/admin/view.thtml 20110627 { -->
 {about_thispage}
-{# end {templatelocation} #}
+<!-- } plugins/databox/templates/admin/view.thtml -->
 

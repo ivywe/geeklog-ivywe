@@ -1,0 +1,33 @@
+    <table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+<tr>
+<td rowspan="2" style="width:60px;text-align:left;"><img src="{img}" style="border:none;" alt="" {xhtml}></td>
+<td class="pluginHeader" style="text-align:left;">
+{install_header}
+</td>
+</tr>
+<tr>
+<td><span class="uk-text-bold">{readme}</span>&nbsp;
+</td>
+</tr>
+</table>
+<p>
+  {lang_overview}
+</p>
+
+<p><span class="uk-text-bold">{mg_requirements}</span></p>
+<p>&nbsp;&nbsp;&nbsp;{gl_version}</p>
+<p>&nbsp;&nbsp;&nbsp;{php_version}</p>
+
+<p><span class="uk-text-bold">{lang_env_check}</span>
+  {version_check}
+  {memory_check}
+<span style="font-size:1.2em;font-weight:bold;">{errormessage}</span>
+</p>
+{install_doc}
+<br{xhtml}><br{xhtml}>
+<form class="uk-form" method="post" action="{cgiurl}">
+<div>
+<input type="submit" class="uk-button" value="{btnmsg}" name="B1"{xhtml}>
+<input type="hidden" value="{action}" name="action"{xhtml}>
+</div>
+</form>

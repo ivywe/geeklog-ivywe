@@ -1,0 +1,18 @@
+<!-- BEGIN AlbumRow -->
+<div style="width:100%;clear:both">
+<!-- BEGIN AlbumColumn -->
+  <div style="width:{column_width};vertical-align:top;float:left;padding: 10px 0;">
+    <div style="text-align:center;width:100%;vertical-align:top;padding: 10px 0;">
+      {media_item_thumbnail}
+    </div>
+    <div style="text-align:center;vertical-align:top;">
+      <div style="padding-top:10px;padding-bottom:5px;"><span class="uk-text-bold">{album_title}</span> ({subalbum_media_count})</div>
+      <div style="padding-bottom:5px;"><span class="pluginSmallText">{album_desc}</span></div>
+      <div style="padding-bottom:5px;"><span class="uk-text-bold">{updated_prompt}</span> {album_last_update}</div>
+      <div style="padding-bottom:5px;">{subalbumlist}</div>
+    </div>
+  </div>
+<!-- END AlbumColumn -->
+</div>
+<!-- END AlbumRow -->
+<div class="pluginRow2 mg_gallery_bottom_pagination">{bottom_pagination}</div>

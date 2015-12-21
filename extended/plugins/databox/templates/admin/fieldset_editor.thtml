@@ -1,66 +1,66 @@
-{# begin {templatelocation} #}
-{# plugins/databox/templates/admin/fieldset_editor.thtml 20151109 #}
-<div id="databox_admin">
+<!-- plugins/databox/templates/admin/fieldset_editor.thtml 20130221 { -->
+
+<div>
   {about_thispage}
-  <form name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
+  <form class="uk-form" name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
   <fieldset style="width:98%">
       <legend>Data Type (fieldset)</legend>
   
-      {# data #}
-      <div class="table-wrapper-fit">
-        <table class="admin-list-table">
+      <!-- data -->
+      <div class="uk-overflow-container">
+        <table class="uk-table uk-table-condensed uk-table-striped" style="background:#ffffff">
 
-          {# id #}
-          <tr class="pluginRow1">
-            <th class="admin-list-field">{lang_fieldset_id}</th>
-            <td class="admin-list-field">
+          <!-- id -->
+          <tr>
+            <th class="uk-text-nowrap" style="width:30%">{lang_fieldset_id}</th>
+            <td style="width:70%">
               {id}
                <input type="hidden" name="id" value="{id}"{xhtml}>
             </td>
           </tr>
   
-          {# name #}
-          <tr class="pluginRow1">
-             <th class="admin-list-field">{lang_name}<span class="must">{lang_must}</span></th>
-             <td class="admin-list-field">
+          <!-- name -->
+          <tr>
+             <th class="uk-text-nowrap" style="width:30%">{lang_name}<span class="uk-text-danger">{lang_must}</span></th>
+             <td style="width:70%">
                <input type="text" size="48" maxlength="160" name="name" value="{name}"{xhtml}>
              </td>
           </tr>
   
-          {# description #}
-          <tr class="pluginRow1">
-            <th class="admin-list-field">{lang_description} {help_description}</th>
-            <td class="admin-list-field">
+          <!-- description -->
+          <tr>
+            <th class="uk-text-nowrap" style="width:30%">{lang_description} {help_description}</th>
+            <td style="width:70%">
               <textarea name="description" style="width:95%" rows="2" id="databox_description">{description}</textarea>
             </td>
           </tr>
   
-          {# layout #}
-          <tr class="pluginRow1">
-            <th class="admin-list-field">{lang_layout} {help_layout}</th>
-            <td class="admin-list-field">
+          <!-- layout -->
+          <tr>
+            <th class="uk-text-nowrap" style="width:30%">{lang_layout} {help_layout}</th>
+            <td style="width:70%">
                   {list_layout}
             </td>
           </tr>
   
-          {# defaulttemplatesdirectory #}
-          <tr class="pluginRow1">
-            <th class="admin-list-field">{lang_defaulttemplatesdirectory} {help_defaulttemplatesdirectory}</th>
-            <td class="admin-list-field">
+          <!-- defaulttemplatesdirectory -->
+          <tr>
+            <th class="uk-text-nowrap" style="width:30%">{lang_defaulttemplatesdirectory} {help_defaulttemplatesdirectory}</th>
+            <td style="width:70%">
               {select_defaulttemplatesdirectory}
             </td>
           </tr>
   
-          {# 保存日 #}
-          <tr class="pluginRow1">
-            <th class="admin-list-field">{lang_udatetime}</th>
-            <td class="admin-list-field">{udatetime} {lang_uuid}:{uuid}</td>
+          <!-- 保存日 -->
+          <tr>
+            <th class="uk-text-nowrap" style="width:30%">{lang_udatetime}</th>
+            <td style="width:70%">{udatetime} {lang_uuid}:{uuid}</td>
           </tr>
         </table>
       </div>
     </fieldset>
   
-    {# 【保存 キャンセル  削除】 #}
+    <!-- 【保存 キャンセル  削除】 -->
     <input type="submit" value="{lang_save}" name="mode"{xhtml}>
     <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
     <input type="hidden" value="{code}" name="old_code"{xhtml}>
@@ -68,4 +68,5 @@
     <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
   </form>
 </div>
-{# end {templatelocation} #}
+
+<!-- } plugins/databox/templates/admin/fieldset.thtml -->

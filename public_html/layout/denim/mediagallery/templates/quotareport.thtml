@@ -1,0 +1,36 @@
+<form class="uk-form" name="quotareport" action="{site_admin_url}/quotareport.php" method="post">
+  <table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+    <tr>
+      <td>{lang_quota} &gt;=&nbsp;<input type="text" name="quota" value="{quota}" size="3"{xhtml}>&nbsp;Mb&nbsp;
+      <input type="submit" class="uk-button" value="{lang_go}" name="go"{xhtml}></td>
+    </tr>
+  </table>
+</form>
+<form class="uk-form" name="quotaedit" action="{site_admin_url}/quotareport.php" method="post">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">    <thead>
+      <tr>
+        <th>&nbsp;</th>
+        <th>{lang_username}</th>
+        <th>{lang_active}</th>
+        <th>{lang_quota}</th>
+        <th>{lang_used}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- BEGIN UserRow -->
+      <tr>
+        <td style="text-align:center"><input type="checkbox" value="{uid}" name="uid[]"{xhtml}></td>
+        <td style="text-align:left">{username}</td>
+        <td style="text-align:center">{active}</td>
+        <td style="text-align:right">{quota}</td>
+        <td style="text-align:right">{used}</td>
+      </tr>
+      <!-- END UserRow -->
+      <tr>
+        <td colspan="5">{lang_batch_update} <input type="text" size="3" name="bquota" value=""{xhtml}>&nbsp;Mb&nbsp;
+        <input type="submit" class="uk-button" value="{lang_update}" name="mode"{xhtml}></td>
+      </tr>
+    </tbody>
+</table>
+</form>
+<div style="text-align:center">{pagenav}</div>

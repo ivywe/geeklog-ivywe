@@ -1,0 +1,44 @@
+<div class="block-center">
+	<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+        <tr>
+            <td class="h2topic">
+              <h2>{featured_album}</h2>
+            </td>
+        </tr>
+    </table>
+	<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+      <tr>
+        <td style="vertical-align:middle;text-align:center;width:100%;">
+			<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+
+            <tr>
+              <td style="width:100%;">
+				<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+                  <tr>
+                  <td style="vertical-align:top;text-align:center;width:{column_width}px;">
+    				<div class="out" style="width:{border_width}px">
+    				<div class="in2">
+    				<div class="in">
+    				<a href="{u_viewalbum}"><img src="{album_last_image}" {media_size}  style="border:none;" alt=""{xhtml}></a>
+    				</div></div></div>
+    				</td>
+    				<td style="vertical-align:top;width:40%;text-align:left;"><br{xhtml}>
+                      <span class="uk-text-bold">{album_title}</span> ({subalbum_media_count})
+                      <br{xhtml}><br{xhtml}>
+                      {album_desc}
+                      <br{xhtml}><br{xhtml}>
+                      <span class="uk-text-bold">{updated_prompt}</span> {album_last_update}
+                    </td>
+                    <td style="vertical-align:top;text-align:left;"><br{xhtml}>
+                      <span class="uk-text-bold">{lang_subalbums}</span> {subalbumcount}<br{xhtml}>&nbsp;<div class="pluginSmallText">{saulstart}{subalbumlist}{saulend}</div>
+                    </td>
+                    </tr>
+                    </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+    <br{xhtml}>
+</div>

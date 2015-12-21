@@ -1,11 +1,11 @@
-{# begin {templatelocation} #}
-{# plugins/databox/templates/admin/exportform.thtml  20151109 #}
-<h3>{actionname}</h3>
-<form action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data">
-  <p class="message">{lang_inst}</p>
+<!-- plugins/databox/templates/admin/exportform.thtml  20120913 { -->
+
+<form class="uk-form" action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data">
+  <p class="uk-text-primary">{lang_inst}</p>
   {lang_fieldset} {list_fieldset}
-  <input type="submit" value="{lang_export}" name="mode" class="submit"{xhtml}>
+  <input type="submit" value="{lang_export}" name="mode"{xhtml}>
   <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
   <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
 </form>
-{# end {templatelocation} #}
+
+<!-- } plugins/databox/templates/admin/exportform.thtml -->

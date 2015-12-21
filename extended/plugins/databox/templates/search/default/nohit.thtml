@@ -1,6 +1,5 @@
-{# begin {templatelocation} #}
-{# plugins/databox/templates/search/default/nohit.thtml 20151109 #}
-<div>
+<!-- plugins/databox/templates/search/default/nohit.thtml 2010929{ -->
+<div id="databox">
   <p id="breadcrumbs"><a href="{site_url}/">{home}</a>|<a href="{referer}">{lang_referer}</p>
 
 
@@ -9,4 +8,5 @@
   <p>{lang_nohit}</p>
 
 </div>
-{# end {templatelocation} #}
+
+<!-- plugins/databox/templates/search/default/nohit.thtml { -->

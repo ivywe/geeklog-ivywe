@@ -1,0 +1,19 @@
+<h2 style="padding-bottom:0px;margin-bottom:0px;">{media_title}</h2>
+<div class="pluginSmallText">
+ {lang_published} {media_owner} {lang_on} {media_time}
+</div>
+{!if media_cell_keywords}
+<div>{media_cell_keywords}</div>
+{!endif}
+<div>{media_item_thumbnail}</div>
+<p>{media_description}</p>
+<div class="uk-clearfix"></div>
+{mp3_podcast}
+<div>
+{lang_comments} {media_comments_count}&nbsp;{edit_link}
+{!if rating_box}
+{rating_box}
+{!endif}
+</div>
+<hr{xhtml}>
+<div class="uk-clearfix"></div>

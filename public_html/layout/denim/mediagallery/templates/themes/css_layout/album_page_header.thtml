@@ -1,0 +1,46 @@
+<div class="mg_album_header">
+<div class="mg_album_title"><strong>{album_title}</strong>{!if rsslink}&nbsp;&nbsp;{rsslink}{!endif}</div>
+<div class="mg_search">
+<form class="uk-form" name="mgsearch" method="post" action="{site_url}/search.php">
+<div>
+  <input type="text" name="keywords" value="{keywords}"{xhtml}>
+  <input type="hidden" name="mode" value="search"{xhtml}>
+  <input type="hidden" name="swhere" value="0"{xhtml}>
+  <input type="submit" class="uk-button" value="{lang_search}"{xhtml}>
+</div>
+</form>
+</div>
+{!if select_adminbox}
+<div class="mg_adminbox">
+{select_adminbox}
+</div>
+{!endif}
+</div>
+
+<div class="mg_birdseed">
+{birdseed}
+</div>
+
+<div class="mg_navbar">
+
+  {!if url_slideshow}
+  <div id="mgslideshow" class="jsenabled_show" style="display:none;">
+    <a href="{url_slideshow}">{lang_slideshow}</a>
+  </div>&nbsp;&nbsp;
+  {!endif}
+  
+  {!if edit_album}
+  {edit_album}
+  {!endif}
+
+  {!if top_pagination}
+  <div class="mg_pagination">{top_pagination}</div>
+  {!endif}
+
+</div>
+
+{!if album_description}
+<div style="text-align:center;font-size:small;text-indent:0;padding-top:2px;">
+   {album_description}
+</div>
+{!endif}

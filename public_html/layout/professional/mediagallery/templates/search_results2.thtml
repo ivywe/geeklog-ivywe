@@ -1,0 +1,64 @@
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+  <tr>
+    <td class="uk-text-left">
+      {lang_search_results}: <span class="uk-text-normal">{search_keywords}</span>
+    </td>
+    <td class="uk-text-right uk-vertical-middle uk-text-nowrap" colspan="2">
+      <form class="uk-form" name="mgsearch" method="post" action="{site_url}/search.php" style="margin:0;padding:0">
+      <div>
+      <input type="text" name="keywords" value="{keywords}"{xhtml}>
+      <input type="hidden" name="mode" value="search"{xhtml}>
+      <input type="hidden" name="swhere" value="0"{xhtml}>
+      <input type="submit" class="uk-button" value="{lang_search}"{xhtml}>
+      </div>
+      </form>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3">
+      <span class="uk-float-left uk-vertical-middle"><a href="{return_url}">{lang_return_to_index}</a></span>
+      <span class="uk-float-right uk-vertical-middle">{top_pagination}</span>
+    </td>
+  </tr>
+</table>
+
+<div style="margin:10px auto;">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+<!-- BEGIN ImageRow -->
+<tr>
+<!-- BEGIN ImageColumn -->
+<td style="width:{table_column_width};vertical-align:top;text-align:center;">
+{CELL_DISPLAY_IMAGE}
+</td>
+<!-- END ImageColumn -->
+</tr>
+<!-- END ImageRow -->
+</table>
+</div>
+      {album_noimages}
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+  <tr class="pluginFooter">
+    <td colspan="2" style="text-align:center;vertical-align:middle;padding:2px 5px 2px 0px;">
+      <span class="uk-text-bold">{page_number}</span>
+    </td>
+  </tr>
+  <tr>
+    <td style="width:40%;text-align:left;vertical-align:top;"><div style="float:left;">{bottom_pagination}</div></td>
+    <td style="text-align:right;vertical-align:top;white-space:nowrap;">{jumpbox}</td>
+  </tr>
+</table>
+
+<!-- JS Functions which will execute only if JS enabled will un-hide the special features that enhance the profile editor -->
+<script type="text/javascript">
+//<![CDATA[
+var el;
+el=document.getElementsByTagName('div');
+for(i=0;i<el.length;i++){
+	if(el[i].className == 'jsenabled_show'){
+		el[i].style.display = '';
+	} else if(el[i].className == 'jsenabled_hide'){
+		el[i].style.display = 'none';
+	}
+}
+//]]>
+</script>

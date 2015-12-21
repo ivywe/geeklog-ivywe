@@ -1,0 +1,69 @@
+<!-- start view_video.thtml -->
+{lbslideshow}
+<div class="mg_album_header">
+  <div class="mg_album_title"><strong>{album_title}</strong>{!if rsslink}&nbsp;{rsslink}{!endif}</div>
+  <div class="mg_search">
+    <form class="uk-form" name="mgsearch" method="post" action="{site_url}/search.php"><div>
+      <input type="text" name="keywords" value="{keywords}"{xhtml}>
+      <input type="hidden" name="mode" value="search"{xhtml}>
+      <input type="hidden" name="swhere" value="0"{xhtml}>
+      <input type="submit" class="uk-button" value="{lang_search}"{xhtml}>
+    </div></form>
+  </div>
+</div>
+<div class="mg_birdseed">{birdseed}</div>
+<div class="mg_navbar">
+{!if prev_link}<a href="{prev_link}">{lang_prev}</a>&nbsp;&nbsp;&nbsp;{!endif}
+{!if next_link}<a href="{next_link}">{lang_next}</a>&nbsp;&nbsp;&nbsp;{!endif}
+{!if slide_show}{slide_show}&nbsp;&nbsp;&nbsp;{!endif}
+{!if download}{download}&nbsp;&nbsp;&nbsp;{!endif}
+{!if lang_property}<a href="#" onclick="return popitup('{property}')">{lang_property}</a>&nbsp;&nbsp;&nbsp;{!endif}
+{!if postcard_url}<a href="{postcard_url}">{lang_postcard}</a>&nbsp;&nbsp;&nbsp;{!endif}
+{!if switch_size_link}{switch_size_link}&nbsp;&nbsp;&nbsp;{!endif}
+{!if edit_item}{edit_item}{!endif}
+{!if pagination}<div class="mg_right_nav">{item_number}&nbsp;{lang_of}&nbsp;{total_items}</div>{!endif}
+</div>
+<div class="mg_media_title">{!if media_title}{media_title}{!else}&nbsp;{!endif}</div>
+<div class="mg_media_detail">{image_detail}</div>
+<div class="mg_media_desc">{!if media_desc}{media_desc}{!else}&nbsp;{!endif}</div>
+<div class="mg_info pluginRow1">
+  <div class="mg_info_left">
+    <p><strong>ID:</strong>&nbsp;{media_id}</p>
+    {!if media_properties}<p>{getid3}{media_properties}{getid3end}</p>{!endif}
+  </div>
+  <div class="mg_info_right">
+    <p><strong>{lang_uploaded_by}:</strong>&nbsp;{owner_username}</p>
+    <div style="margin-top:1em;">{shutterfly_submit}</div>
+  </div>
+  <div class="mg_info_center">
+    <p>{media_time}</p>
+    <p>{lang_views} {media_views}</p>
+    <div>{rating_box}</div>
+    {!if media_keywords}<p><strong>{lang_keywords}</strong> {media_keywords}</p>{!endif}
+  </div>
+  {!if exif_info}
+  <div class="pluginRow1 mg_exif_info" style="clear:both;margin:0 5px">
+  {exif_info}
+  </div>
+  {!endif}
+</div>
+{!if jumpbox}<div style="text-align:right;margin:4px 0">{jumpbox}</div>{!endif}
+<script type="text/javascript">
+//<![CDATA[
+function popitup(url)
+{
+    newwindow=window.open(url,'name','height=600,width=450,resizable=yes,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes');
+    if (window.focus) {newwindow.focus()}
+    return false;
+}
+var el;
+el=document.getElementsByTagName('span');
+for(i=0;i<el.length;i++){
+    if(el[i].className == 'jsenabled_show'){
+        el[i].style.display = '';
+    } else if(el[i].className == 'jsenabled_hide'){
+        el[i].style.display = 'none';
+    }
+}
+//]]>
+</script>

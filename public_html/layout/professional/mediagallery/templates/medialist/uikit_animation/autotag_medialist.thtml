@@ -1,0 +1,34 @@
+<!--plugins/mediagallery/templates/medialist/uikit_animation/autotag_medialist.thtml 20150309 { -->
+
+{!if edit}
+<fieldset>
+<legend><a href="{site_url}/mediagallery/album.php?aid={album_id}&page=1"><i class="uk-icon-file-image-o"></i> {album_title}</a></legend>
+{!endif}
+
+<div class="uk-slidenav-position" data-uk-slideshow="{ autoplay:true , animation: '{class}'}">
+    <ul class="uk-slideshow">
+		{medialist_col}
+	</ul>
+    <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous"></a>
+    <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next"></a>
+
+    <ul class="uk-dotnav uk-dotnav-contrast uk-position-bottom uk-flex-center">
+        <li data-uk-slideshow-item="0"><a href=""></a></li>
+        <li data-uk-slideshow-item="1"><a href=""></a></li>
+        <li data-uk-slideshow-item="2"><a href=""></a></li>
+        <li data-uk-slideshow-item="3"><a href=""></a></li>
+        <li data-uk-slideshow-item="4"><a href=""></a></li>
+        <li data-uk-slideshow-item="5"><a href=""></a></li>
+        <li data-uk-slideshow-item="6"><a href=""></a></li>
+        <li data-uk-slideshow-item="7"><a href=""></a></li>
+        <li data-uk-slideshow-item="8"><a href=""></a></li>
+        <li data-uk-slideshow-item="9"><a href=""></a></li>
+    </ul>
+
+</div>
+
+{!if edit}
+</fieldset>
+{!endif}
+
+<!--} plugins/mediagallery/templates/medialist/uikit_animation/autotag_medialist.thtml -->

@@ -1,4 +1,3 @@
-{# begin {templatelocation} #}
-{# plugins/databox/templates/mydata/default/row.thtml 20151109 #}
+<!-- plugins/databox/templates/mydata/default/row.thtml { -->
 <tr class="pluginRow1">{col_var}</tr>
-{# end {templatelocation} #}
+<!-- } plugins/databox/templates/mydata/default/row.thtml -->

@@ -1,0 +1,39 @@
+<script type="text/javascript"><!--
+function doCheckAll()
+{
+  with (document.filecheck) {
+    for (var i=0; i < elements.length; i++ ) {
+      if (elements[i].type == 'checkbox')
+        elements[i].checked = true;
+    }
+  }
+}
+function doUnCheckAll()
+{
+  with (document.filecheck) {
+    for (var i=0; i < elements.length; i++ ) {
+      if (elements[i].type == 'checkbox')
+        elements[i].checked = false;
+    }
+  }
+}
+// End script --></script>
+
+<br{xhtml}>
+<br{xhtml}>
+{lang_filecheck_disclaimer}
+<br{xhtml}>
+<br{xhtml}>
+<form class="uk-form" name="filecheck" method="post" action="{s_form_action}">
+{noitems}
+{filelist}
+   <input class="uk-button" onclick="doCheckAll();" type="button" value="{lang_checkall}" />
+   <input class="uk-button" onclick="doUnCheckAll();" type="button" value="{lang_uncheckall}" />
+
+<br{xhtml}>
+<center>
+<input type="hidden" name="action" value="category">
+<input type="submit" class="uk-button" name="mode"   value="{lang_cancel}">
+<input type="submit" class="uk-button" name="mode"   value="{lang_delete}"  onclick="return confirm('{lang_delete_confirm}');">
+</center>
+</form>

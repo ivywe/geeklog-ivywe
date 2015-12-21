@@ -1,0 +1,7 @@
+{# begin {templatelocation} #}
+  <tr>
+    <td>{media_item_thumbnail}</td>
+    <td><h3 class="uk-text-center-small">{media_link_start}<i class="uk-icon-image"></i> {media_title}{media_link_end}</h3><p>{media_description}</p></td>
+    <td class="uk-text-center-small">{filesize}<br>{media_owner}<br>{media_time}</td>
+  </tr>
+{# end {templatelocation} #}

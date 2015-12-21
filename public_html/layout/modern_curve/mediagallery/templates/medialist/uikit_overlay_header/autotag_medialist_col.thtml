@@ -1,0 +1,14 @@
+<!-- plugins/mediagallery/templates/medialist/uikit_overlay_banner/autotag_medialist_col.thtml 20150309 { -->
+
+                                    <li>
+                                        <img src="{filename_disp}" width="960" height="354"{xhtml}>
+
+                                        <div class="uk-vertical-align uk-overlay-panel uk-overlay-top uk-overlay-fade uk-text-center">
+										    <div>
+                                                <h2 class="uk-h2 uk-container-center gl-slider" style="text-shadow: 5px 5px 10px #1F1F1F; ">{media_title}</h2>
+												<div class="gl-slider" style="text-shadow: 5px 5px 10px #1F1F1F;">{media_desc}</div>
+											</div>
+                                        </div>
+                                    </li>
+
+<!-- } plugins/mediagallery/templates/medialist/uikit_overlay_banner/autotag_medialist_col.thtml 20150309 -->

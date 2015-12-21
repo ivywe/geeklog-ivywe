@@ -1,5 +1,5 @@
-{# begin {templatelocation} #}
-{# plugins/databox/templates/attribute/default/navigation.thtml 20151106 #}
+<!-- plugins/databox/templates/attribute/default/navigation.thtml 20110204{ -->
+
 <div class="databox">
 
   <div class="pagenav">
@@ -20,4 +20,5 @@
   <div style="clear:both"></div>
 
 </div>
-{# end {templatelocation} #}
+
+<!-- } plugins/databox/templates/attribute/default/navigation.thtml -->
