@@ -75,7 +75,7 @@
                 <nav class="tm-navbar-container">
 					<div class="tm-nav-logo uk-hidden-small">
                         <a class="tm-logo uk-navbar-brand uk-responsive-width uk-responsive-height" href="{site_url}">
-							<img src="{layout_url}/images/logomark.png" alt="{site_name}" style="max-height:40px">
+							<img src="{layout_url}/images/logomark.svg" alt="{site_name}" style="height:40px; width:auto">
 							<img class="tm-logo-sticky" src="{layout_url}/images/logomark-sticky.png" alt="Sticky Logo" style="max-height:40px">
 						</a>
                     </div>
@@ -88,7 +88,7 @@
 					<a href="#offcanvas" class="uk-navbar-toggle uk-visible-small" data-uk-offcanvas=""></a>
 					<div class="uk-navbar-content uk-navbar-center uk-visible-small">
                         <a class="uk-responsive-width uk-responsive-height" href="{site_url}">
-							<img src="{layout_url}/images/logomark.png" width="140" height="40" alt="{site_name}" style="max-height:60px">
+							<img src="{layout_url}/images/logomark.svg" alt="{site_name}" style="height:60px; width:auto">
 						</a>
                     </div>
                 </nav>
@@ -114,7 +114,7 @@
 <?php } else { if ($_CONF['disable_new_user_registration']==0) { ?>
                     <li><a href="{site_url}/users.php?mode=new"><i class="uk-icon-user"></i> {$LANG04[27]}</a></li>
 <?php } ?>
-                	<li><a href="{site_url}/staticpages/index.php/loginform"><i class="uk-icon-sign-in"></i> {$LANG01[58]}</a></li>
+                	<li><a href="{site_url}/users.php"><i class="uk-icon-sign-in"></i> {$LANG01[58]}</a></li>
 <?php } ?>
 
             </ul>
