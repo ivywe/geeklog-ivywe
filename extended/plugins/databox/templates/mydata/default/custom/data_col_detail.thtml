@@ -1,0 +1,6 @@
+<!-- plugins/databox/templates/mydata/default/data_col_detail.thtml 20111119 { -->
+
+    <th>{additionfield_name}<span class="must">{lang_must_additionfield}</span></th>
+    <td>{additionfield_value} <span class="uk-form-help-inline">{additionfield_description}</span></td>
+
+<!-- } plugins/databox/templates/mydata/default/data_col_detail.thtml -->

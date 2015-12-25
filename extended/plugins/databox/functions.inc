@@ -17,12 +17,16 @@ require_once ($_CONF['path'] . "plugins/{$pi_name}/config.php");
 //言語ファイル
 $langfile = $_CONF['path'] . "plugins/{$pi_name}/language/"
           . $_CONF['language'] . '.php';
+$customlangfile = $_CONF['path'] . "plugins/{$pi_name}/language/custom/"
+          . $_CONF['language'] . '.php';
 
 if (file_exists ($langfile)) {
     require_once ($langfile);
-
 } else {
     require_once ($_CONF['path'] . "plugins/{$pi_name}/language/japanese_utf-8.php");
+}
+if (file_exists ($customlangfile)) {
+    require_once ($customlangfile);
 }
 
 //custom 言語ファイル
