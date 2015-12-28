@@ -1,3 +1,45 @@
+2015-07-06  Takahiro Kambe  <tacahi>
+
+	* geeklog-2.1.0-jp-1.1をリリースします。
+
+2015-07-06  Kenji ITO <mystralkk>
+
+	* クロスサイトスクリプティングを防ぐために、ファイルマネージャーで
+	  使用されているWideImageライブラリー付属のデモ・テスト用のコードを
+	  削除しました。
+
+2015-02-13  Tetsuko Komma  <ivysoho>
+
+	* lib-common.php エラーメッセージのヘッダーをエンコードをUTF-8にして
+	  文字化けしないように修正等しました。
+
+2015-02-05  Tetsuko Komma  <ivysoho>
+
+	* Autotagsプラグインのいくつかのファイルの改行コードをLFに調整しました。
+	* public_html/admin/install/rescue.phpのコンフィギュレーション設定から
+	  Geeklog 2.1から再び不要になった'path_themes'を削除しました。
+
+2014-12-24  Masuko Koeda  <milk851>
+	* テーマWAIproCSSのバージョンを修正しました。
+
+2014-10-03  Masuko Koeda  <milk851>
+	* テーマprofessional_cssとWAIproCSSでlang属性が表示されなかったので、
+	  表示されるよう変数を修正しました。
+
+2014-10-02  Masuko Koeda  <milk851>
+	* テーマWAIproCSSで検索フォーム部分がアクセシブルではなかったので、
+	  title属性を追記しました。
+	* 修正したので、バージョンをVer.2.7.1に変更しました。
+
+2014-08-03  Yoshinori Tahara  <dengen>
+
+	* calendarjpプラグイン: calendarプラグイン バージョン1.1.4の変更を
+	  マージしました。
+
+2014-07-26  Takahiro Kambe  <tacahi>
+
+	* geeklog-2.1.0-jp-1.1.beta1としました。
+
 2014-07-23  Takahiro Kambe  <tacahi>
 
 	* geeklog-2.1.0-jp-1.0をリリースします。

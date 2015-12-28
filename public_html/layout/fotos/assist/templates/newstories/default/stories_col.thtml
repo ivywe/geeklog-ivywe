@@ -1,6 +1,0 @@
-<!-- plugins/assist/templates/newstories/default/stories_col.thtml  20120502{ -->
-
-<dt>{day}</dt>
-<dd><a href="{url}">{title}</a>{new_img}</dd>
-
-<!-- } plugins/assist/templates/newstories/default/stories_col.thtml -->

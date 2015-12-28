@@ -48,7 +48,8 @@ function theme_config_modern_geek()
         'image_type' => 'png',
         'doctype'    => 'html5',
         'etag' => true,
-        'supported_version_theme' => '2.0.0' // support new theme format for the later Geeklog 2.0.0
+        'supported_version_theme' => '2.0.0', // support new theme format for the later Geeklog 2.0.0
+		'theme_default' => 'default'
     );
 }
 

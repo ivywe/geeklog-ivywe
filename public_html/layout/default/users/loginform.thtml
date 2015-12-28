@@ -22,6 +22,7 @@
 				<ul class="uk-subnav uk-subnav-line uk-flex-center">
 					{!if lang_newreglink}<li><i class="uk-icon-plus-circle"></i> {lang_newreglink}</li>{!endif}
                 	{!if lang_forgetpassword}<li><a class="uk-float-right uk-link uk-text-small" href="{site_url}/users.php?mode=getpassword" rel="nofollow"><i class="uk-icon-exclamation-triangle"></i> {lang_forgetpassword}</a></li>{!endif}
+				</ul>
             </div>
         </form>
 		{!if openid_login}<div>{openid_login}</div>{!endif}

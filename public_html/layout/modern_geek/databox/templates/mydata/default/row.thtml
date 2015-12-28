@@ -1,3 +1,0 @@
-<!-- plugins/databox/templates/mydata/default/row.thtml { -->
-<tr class="pluginRow1">{col_var}</tr>
-<!-- } plugins/databox/templates/mydata/default/row.thtml -->

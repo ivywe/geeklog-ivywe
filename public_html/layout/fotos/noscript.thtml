@@ -1,9 +1,0 @@
-<!-- noscript.thtml { -->
-
-<noscript>
-    <div class="uk-panel uk-text-center uk-text-danger">{lang_nojavascript}
-        <p{hide_link}>{no_javascript_return_link}</p>
-    </div>
-</noscript>
-
-<!-- } noscript.thtml -->

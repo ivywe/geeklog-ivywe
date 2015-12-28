@@ -1,7 +1,0 @@
-<!--plugins/mediagallery/templates/medialist/uikit_slideshow_fullscreen/autotag_medialist.thtml 20150309 { -->
-
-    <ul class="uk-slideshow uk-slideshow-fullscreen uk-overlay-active">
-		{medialist_col}
-	</ul>
-
-<!--} plugins/mediagallery/templates/medialist/uikit_slideshow_fullscreen/autotag_medialist.thtml -->

@@ -11,10 +11,10 @@
 
 	<div class="uk-width-1-6">
 		<div class="uk-width-large-1-1 uk-text-center">
-			<div class="uk-thumbnail uk-overlay-toggle uk-border-circle">
+			<div class="uk-overlay-toggle">
 				<div class="uk-overlay">
 					{avatar}
-					<div class="uk-overlay-area uk-border-circle">
+					<div class="uk-overlay-area" style="background:none">
 						<div class="uk-overlay-area-content">
 							{magical_image}
 							{profile_link}
@@ -43,7 +43,7 @@
 	</div>
 	<div class="uk-width-5-6">
 		<div class="uk-text-right">{mod_functions}</div>
-		<div class="uk-panel uk-panel-box uk-width-medium-1-1 uk-panel-box-primary uk-text-break" style="margin: 1em 0; min-height: 120px">{topic_comment}
+		<div class="uk-panel uk-panel-box uk-width-medium-1-1 uk-text-break" style="margin: 1em 0; min-height: 120px">{topic_comment}
 		</div>
 		<div class="uk-text-right">
 			{edittopic_link}

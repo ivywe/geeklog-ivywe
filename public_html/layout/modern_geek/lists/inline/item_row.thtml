@@ -1,8 +1,0 @@
-
-<!-- lists/inline/item_row.thtml { -->
-
-                                <div>
-                                    {item_field}
-                                </div>
-
-<!-- } lists/inline/iitem_row.thtml -->

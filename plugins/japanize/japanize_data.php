@@ -698,7 +698,7 @@ $_JAPANIZE_DATA[4] = array(
 				'en' => ", コメント投稿者: <a href=\"%s\">%s</a>",
 			),
 		),
-		/* Ignore calendar plugin {
+		
 		'calendar' => array(
 			'event_types' => array(
 				'ja' => array(
@@ -714,7 +714,6 @@ $_JAPANIZE_DATA[4] = array(
 				),
 			),
 		),
-		} */
 	),
 	
 	'set_default' => array(

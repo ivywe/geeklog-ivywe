@@ -6,7 +6,7 @@
             {# <input type="submit" value="" id="login_{oauth_service}"{xhtml}> #}
 
             {# OAuth Button Style 1: Login buttons with icons (uncomment line below) #}
-            <input type="submit" value="" style="background: url({oauth_sign_in_image}) left top no-repeat; border: none; margin-top:10px"{xhtml}>
+            <input type="submit" value="" style="background: url({oauth_sign_in_image}) left top no-repeat; border: none; margin-top:10px; width:2em"{xhtml}>
 </form>
 
 {# end {templatelocation} #}

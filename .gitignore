@@ -1,5 +1,2 @@
-*.db
 *.BAK
-*.db
-public_html/mediagallery/mediaobjects/Thumbs.db
-public_html/mediagallery/docs/Thumbs.db
+Thumbs.db

@@ -2,8 +2,7 @@
 
 {noscript}
 <div id="advanced_editor" style="display:none;">
-  <form action="{site_admin_url}/plugins/polls/index.php" method="post" id="polls-polleditor" class="compact uk-form">
-    <div class="admin_basic">
+  <form class="uk-form uk-form-horizontal" action="{site_admin_url}/plugins/polls/index.php" method="post" id="polls-polleditor">
       <dl class="form_block">
         <dt><label for="polls-polleditor-pid">{lang_pollid}</label></dt>
         <dd><input type="text" dir="ltr" name="pid" value="{poll_id}" maxlength="128" id="polls-polleditor-pid" class="size5"{xhtml}> {lang_donotusespaces}</dd>
@@ -59,7 +58,6 @@
         <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
         <input type="hidden" value="{poll_id}" name="old_pid"{xhtml}>
       </div>
-    </div>
   </form>
 </div>
 

@@ -1,0 +1,38 @@
+{# begin {templatelocation} #}
+
+<ul class="uk-breadcrumb">
+<li><a href="{site_url}/">HOME</a></li>
+<li><a href="{site_url}/polls/"><?php global $LANG_POLLS; echo $LANG_POLLS['polls']; ?></a></li>
+<li class="uk-text-truncate">{poll_topic}</li>
+</ul>
+
+<span class="uk-float-right">{edit_icon}</span>
+<h2 class="uk-h2">{poll_topic}</h2>
+<div class="uk-margin">{poll_topic_description}</div>
+
+{poll_questions}
+
+<div class="pluginTinyText">
+    {notification} <a href="{site_url}/polls/index.php">{lang_polltopics}</a> | {num_votes} {lang_voters} {poll_comments}
+</div>
+
+<script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+
+        var options = {
+          title: '{lang_question}{lang_question_number}{poll_question}'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('{poll_id}_{question_id}'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
+	<div id="{poll_id}_{question_id}" style="overflow:hidden"></div>
+
+{# end {templatelocation} #}
