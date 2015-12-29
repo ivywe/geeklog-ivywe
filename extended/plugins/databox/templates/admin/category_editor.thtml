@@ -1,104 +1,108 @@
-<!-- plugins/databox/templates/admin/category_editor.thtml 20140401{ -->
+{# start {templatelocation} #}
 
 <div>
   {about_thispage}
-  <form class="uk-form" name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
+  <form class="uk-form uk-form-horizontal" name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
 
     <fieldset style="width:98%">
       <legend>Category</legend>
 
       <!-- data -->
-      <div class="uk-overflow-container">
-        <table class="uk-table uk-table-condensed uk-table-striped" style="background:#ffffff">
 
           <!-- id -->
-          <tr>
-            <th class="uk-text-nowrap" style="width:30%">{lang_category_id}</th>
-            <td style="width:70%">
+    <div class="uk-form-row">
+        <label class="uk-form-label" for="">{lang_category_id}</label>
+        <div class="uk-form-controls">
               {id}
               <input type="hidden" name="id" value="{id}"{xhtml}>
-            </td>
-          </tr>
+        </div>
+    </div>
 
           <!-- code -->
-          <tr>
-            <th class="uk-text-nowrap" style="width:30%">{lang_code} {help_code}</th>
-            <td style="width:70%">
+    <div class="uk-form-row">
+        <label class="uk-form-label" for="">{lang_code} {help_code}</label>
+        <div class="uk-form-controls">
               <input type="text" size="48" maxlength="160" name="code" value="{code}"{xhtml}>
-            </td>
-          </tr>
+        </div>
+    </div>
 
           <!-- name -->
-          <tr>
-            <th class="uk-text-nowrap" style="width:30%">{lang_name}<span class="uk-text-danger">{lang_must}</span></th>
-            <td style="width:70%">
+    <div class="uk-form-row">
+        <label class="uk-form-label" for="">{lang_name}<span class="uk-text-danger">{lang_must}</span></label>
+        <div class="uk-form-controls">
               <input type="text" size="48" maxlength="160" name="name" value="{name}"{xhtml}>
-            </td>
-          </tr>
+        </div>
+    </div>
 
           <!-- description -->
-          <tr>
-            <th class="uk-text-nowrap" style="width:30%">{lang_description} {help_description}</th>
-            <td style="width:70%">
-              <textarea name="description" style="width:95%" rows="2" id="databox_description">{description}</textarea>
-            </td>
-          </tr>
+    <div class="uk-form-row">
+        <label class="uk-form-label" for="">{lang_description} {help_description}</label>
+        <div class="uk-form-controls">
+			<textarea name="description" style="width:95%" rows="2" id="databox_description">{description}</textarea>
+        </div>
+    </div>
 
           <!-- defaulttemplatesdirectory -->
-          <tr>
-            <th class="uk-text-nowrap" style="width:30%">{lang_defaulttemplatesdirectory} {help_defaulttemplatesdirectory}</th>
-            <td style="width:70%">
-              {select_defaulttemplatesdirectory}
-            </td>
-          </tr>
+    <div class="uk-form-row">
+        <label class="uk-form-label" for="">{lang_defaulttemplatesdirectory} {help_defaulttemplatesdirectory}</label>
+        <div class="uk-form-controls">
+			{select_defaulttemplatesdirectory}
+        </div>
+    </div>
 
           <!-- parent -->
-          <tr>
-            <th class="uk-text-nowrap" style="width:30%">{lang_parent} {help_parent}</th>
-            <td style="width:70%">
-              {list_parent}
-            </td>
-          </tr>
+    <div class="uk-form-row">
+        <label class="uk-form-label" for="">{lang_parent} {help_parent}</label>
+        <div class="uk-form-controls">
+			{list_parent}
+        </div>
+    </div>
+
           <!-- group -->
-          <tr>
-            <th class="uk-text-nowrap" style="width:30%">{lang_group} {help_group}</th>
-            <td style="width:70%">
-                {list_group}
-            </td>
-          </tr>
+    <div class="uk-form-row">
+        <label class="uk-form-label" for="">{lang_group} {help_group}</label>
+        <div class="uk-form-controls">
+			{list_group}
+        </div>
+    </div>
 
           <!-- order -->
-          <tr>
-            <th class="uk-text-nowrap" style="width:30%">{lang_orderno}</th>
-            <td style="width:70%">
-              <input type="text" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
-            </td>
-          </tr>
+    <div class="uk-form-row">
+        <label class="uk-form-label" for="">{lang_orderno}</label>
+        <div class="uk-form-controls">
+			<input type="text" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
+        </div>
+    </div>
+
           <!-- allow_display  -->
-          <tr>
-            <th class="uk-text-nowrap" style="width:30%">{lang_allow_display} {help_allow_display}</th>
-            <td style="width:70%">
-                {list_allow_display}
-            </td>
-          </tr>
+    <div class="uk-form-row">
+        <label class="uk-form-label" for="">{lang_allow_display} {help_allow_display}</label>
+        <div class="uk-form-controls">
+			{list_allow_display}
+        </div>
+    </div>
 
           <!-- 保存日 -->
-          <tr>
-            <th class="uk-text-nowrap" style="width:30%">{lang_udatetime}</th>
-            <td style="width:70%">{udatetime} {lang_uuid}:{uuid}</td>
-          </tr>
-        </table>
-      </div>
+    <div class="uk-form-row">
+        <label class="uk-form-label" for="">{lang_udatetime}</label>
+        <div class="uk-form-controls">
+			{udatetime} {lang_uuid}:{uuid}
+        </div>
+    </div>
     </fieldset>
 
-    <!-- 【保存 キャンセル  削除】 -->
-    <input type="submit" value="{lang_save}" name="mode"{xhtml}>
-    <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
-    <input type="hidden" value="{code}" name="old_code"{xhtml}>
-    {delete_option} {lang_delete_help}
-    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+    <div class="uk-form-row">
+        <label class="uk-form-label" for=""></label>
+        <div class="uk-form-controls">
+		    <!-- 【保存 キャンセル  削除】 -->
+		    <input type="submit" value="{lang_save}" name="mode"{xhtml}>
+		    <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
+		    <input type="hidden" value="{code}" name="old_code"{xhtml}>
+		    {delete_option}<span class="uk-text-danger">{lang_delete_help}</span>
+		    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+        </div>
+    </div>
   </form>
 </div>
 
-<!-- } plugins/databox/templates/admin/category_editor.thtml -->
-
+{# end {templatelocation} #}

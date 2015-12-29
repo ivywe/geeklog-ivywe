@@ -1,7 +1,7 @@
-<!-- plugins/databox/templates/admin/confirmation.thtml  20140917 { -->
+{# start {templatelocation} #}
 
 <h3 class="uk-h3">{actionname}</h3>
-<form class="uk-form" action="{actionprg}" method="post">
+<form class="uk-form uk-form-horizontal" action="{actionprg}" method="post">
   <div>
     <div>{lang_checklist} {checklist}</div>
 	<hr{xhtml}>
@@ -15,4 +15,4 @@
   </div>
 </form>
 
-<!-- } plugins/databox/templates/admin/confirmation.thtml -->
+{# end {templatelocation} #}

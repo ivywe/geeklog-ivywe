@@ -1,4 +1,9 @@
-<!-- plugins/databox/templates/admin/data_col_detail.thtml  { -->
-<th class="uk-text-nowrap" style="width:30%">{additionfield_name}<span class="uk-text-danger">{lang_must_additionfield}</span></th>
-<td style="width:70%">{additionfield_value} {additionfield_description}</td>
-<!-- } plugins/databox/templates/admin/default/data_col_detail.thtml -->
+{# plugins/databox/templates/admin/data_col_detail.thtml  #}
+    <div class="uk-form-row">
+        <label class="uk-form-label" for="">{additionfield_name}<span class="uk-text-danger">{lang_must_additionfield}</span></label>
+        <div class="uk-form-controls">
+        	{additionfield_value}<span class="uk-form-help-inline">{additionfield_description}</span>
+        </div>
+    </div>
+
+{# plugins/databox/templates/admin/default/data_col_detail.thtml #}

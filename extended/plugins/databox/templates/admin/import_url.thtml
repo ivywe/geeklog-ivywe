@@ -1,4 +1,5 @@
-<!-- plugins/databox/templates/admin/import_url.thtml  20110420 { -->
+{# start {templatelocation} #}
+
 <form class="uk-form" action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data">
 <div>
 <input type="text" dir="ltr" name="importurl" size="80"{xhtml}>
@@ -13,4 +14,5 @@
 
 
 </form>
-<!-- } plugins/databox/templates/admin/import_url.thtml -->
+
+{# end {templatelocation} #}

@@ -1,4 +1,5 @@
-<!-- plugins/databox/templates/admin/backupform.thtml  20140717 { -->
+{# start {templatelocation} #}
+
 <h3 class="uk-h3">{actionname}</h3>
 <form class="uk-form" action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data">
 <div>
@@ -11,6 +12,6 @@
 {help}
 </div>
 
-
 </form>
-<!-- } plugins/databox/templates/admin/backupform.thtml -->
+
+{# end {templatelocation} #}
