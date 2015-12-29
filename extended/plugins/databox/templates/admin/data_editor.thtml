@@ -5,6 +5,7 @@
     <li>{about_thispage}</li>
 	<li><a href="{site_admin_url}/plugins/databox/view.php?id={id}">{lang_view}</a></li>
 	<li><a href="{site_admin_url}/plugins/databox/view.php?id={id}&template=standard">{lang_ref}</a></li>
+    <li>{view}</li>
 	<li>{lang_fieldset}: {fieldset_name}(id: {fieldset_id})</li>
   </ul>
 
@@ -270,7 +271,7 @@
                 <input type="hidden" name="created_un" value="{created_un}"{xhtml}>
       </fieldset>
 
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-margin-large-top">
         <div class="uk-form-controls">
 	      <!-- 【LINE】 -->
 	      <!-- 【保存 キャンセル  削除】 -->
@@ -281,11 +282,10 @@
 	      <input type="hidden" value="{old_mode}" name="old_mode"{xhtml}>
         </div>
     </div>
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-margin-large-top">
         <div class="uk-form-controls">
-	      <span class="uk-text-danger uk-margin-left uk-margin-right">{delete_option}</span>
+	      <span class="uk-text-danger">{delete_option}</span>
 	      <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
-	      {view}
 	  </div>
     </div>
 

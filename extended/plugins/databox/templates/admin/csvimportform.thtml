@@ -1,22 +1,19 @@
-<!--plugins/databox/templates/admin/csvimportform.thtml  20141010 { -->
-
+<!-- plugins/databox/templates/admin/csvimportform.thtml  20141010 { -->
 <h3>{lang_import}</h3>
+<form action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data">
 
 <div>
-  <form class="uk-form" action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data" class="uk-form">
-	<div>
-		<dl class="uk-description-list-horizontal">
-			<dt>{lang_unlink}:</dt><dd><input name="unlink" value="1" checked="checked" type="checkbox"></dd>
-			<dt>{lang_sel}:</dt><dd>{list_sel}</dd>
-			<dt>PATH:</dt><dd><input type="text" dir="ltr" name="importurl" value="{defaultpath}" size="48"{xhtml}></dd>
-			<dd>{help}</dd>
-		</dl>
-
-		<input type="hidden" name="mode" value="{mode}"{xhtml}>
-		<input type="submit" value="{submit}" name="submin"{xhtml}>
-		<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
-	</div>
-  </form>
+<div>{lang_unlink}<input name="unlink" value="1" checked="checked" type="checkbox"></div>
+<div>{lang_sel} {list_sel}</div>
+<input type="text" dir="ltr" name="importurl" value="{defaultpath}" size="80" {xhtml}>
+<input type="hidden" name="mode" value="{mode}" {xhtml}>
+<input type="submit" value="{submit}" name="submin"{xhtml}>
+<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+</div>
+<div>
+{help}
 </div>
 
-<!--} plugins/databox/templates/admin/csvimportform.thtml -->
+
+</form>
+<!-- } plugins/databox/templates/admin/csvimportform.thtml -->
