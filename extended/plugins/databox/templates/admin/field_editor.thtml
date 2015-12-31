@@ -1,4 +1,4 @@
-<!-- plugins/databox/templates/admin/field_editor.thtml  20141112 { -->
+{# begin {templatelocation} #}
 
 <div>
   <ul class="uk-subnav uk-subnav-line uk-flex-center">
@@ -194,7 +194,7 @@
     </div>
 
     </fieldset>
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-margin-large-top">
         <div class="uk-form-controls">
 		    <!-- 【保存 キャンセル  削除】 -->
 		    <input type="submit" value="{lang_save}" name="mode"{xhtml}>
@@ -202,7 +202,7 @@
 		    <input type="hidden" value="{code}" name="old_code"{xhtml}>
         </div>
     </div>
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-margin-large-top uk-text-danger">
         <div class="uk-form-controls">
 		    {delete_option}<span class="uk-text-danger uk-margin-left">{lang_delete_help}</span>
 		    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
@@ -211,4 +211,4 @@
   </form>
 </div>
 
-<!-- } plugins/databox/templates/admin/field_editor.thtml -->
+{# end {templatelocation} #}

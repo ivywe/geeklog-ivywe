@@ -1,14 +1,13 @@
-<!-- plugins/databox/templates/admin/csv_editor.thtml 20140520{ -->
+{# begin {templatelocation} #}
 
-<div id="databox_admin">
+<div>
 {about_thispage}
-<form name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
+<form class="uk-form uk-form-horizontal" name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
 
   <fieldset style="width:94%">
     <legend>CSV</legend>
 
     <!-- data -->
-    <table>
         <!-- seq -->
         <tr>
             <th style="width:30%" class="alignright">{lang_seq}</th>
@@ -66,6 +65,4 @@
 </form>
 </div>
 
-
-<!-- } plugins/databox/templates/admin/csv_editor.thtml -->
-
+{# end {templatelocation} #}

@@ -1,4 +1,4 @@
-<!-- plugins/databox/templates/attribute/default/navigation.thtml 20110204{ -->
+{# begin {templatelocation} #}
 
 <div class="databox">
 
@@ -8,7 +8,7 @@
   </div>
   <div style="clear:both"></div>
 
-  <ul class="contents">
+  <ul>
     <li>{lang_name} ({lang_count})</li>
 {row_var}
   </ul>
@@ -21,4 +21,4 @@
 
 </div>
 
-<!-- } plugins/databox/templates/attribute/default/navigation.thtml -->
+{# end {templatelocation} #}

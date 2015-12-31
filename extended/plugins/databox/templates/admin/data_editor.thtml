@@ -1,4 +1,4 @@
-<!-- plugins/databox/templates/admin/data_editor.thtml 2015/03/05 { -->
+{# begin {templatelocation} #}
 
 <div>
   <ul class="uk-subnav uk-subnav-line uk-flex-center">
@@ -282,7 +282,7 @@
 	      <input type="hidden" value="{old_mode}" name="old_mode"{xhtml}>
         </div>
     </div>
-    <div class="uk-form-row uk-margin-large-top">
+    <div class="uk-form-row uk-margin-large-top uk-text-danger">
         <div class="uk-form-controls">
 	      <span class="uk-text-danger">{delete_option}</span>
 	      <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
@@ -292,4 +292,4 @@
   </form>
 </div>
 
-<!-- } plugins/databox/templates/admin/data_editor.thtml -->
+{# end {templatelocation} #}

@@ -1,3 +1,5 @@
-<!-- plugins/databox/templates/data/default/nohit.thtml 20120124{ -->
+{# begin {templatelocation} #}
+
 {lang_nohit}
-<!-- plugins/databox/templates/data/default/nohit.thtml { -->
+
+{# end {templatelocation} #}

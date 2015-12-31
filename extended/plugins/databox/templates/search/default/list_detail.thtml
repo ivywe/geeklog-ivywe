@@ -1,4 +1,4 @@
-<!-- plugins/databox/templates/search/default/list_detail.thtml 20141021{ -->
+{# begin {templatelocation} #}
 
 <div id="databox_outer">
 
@@ -26,10 +26,10 @@
   <p>{msg}</p>
 
 {arg_var}
-  <ul class="contents" id="list">
+  <ul>
 {nav_var}
   </ul>
 
 </div>
 
-<!-- } plugins/databox/templates/search/default/list_detail.thtml -->
+{# end {templatelocation} #}

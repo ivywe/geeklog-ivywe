@@ -1,4 +1,4 @@
-<!-- plugins/databox/templates/admin/selectset.thtml 20130219 { -->
+{# begin {templatelocation} #}
 
 <form class="uk-form" action="{site_admin_url}/plugins/databox/data.php" method="post" id="admin-selectset">
 
@@ -10,4 +10,4 @@
 
 </form>
 
-<!-- } plugins/databox/templates/admin/selectset.thtml -->
+{# end {templatelocation} #}

@@ -1,4 +1,4 @@
-<!-- plugins/databox/templates/search/default/navigation_detail.thtml 20141203{ -->
+{# begin {templatelocation} #}
 
 <div id="databox">
     <div class="order">
@@ -16,17 +16,17 @@
 <!-- Maps Link mkids selectedMarkers-->
 {mkids}{selectedMarkers}
 
-  <ul class="contents">
-<li>{lang_title} ({lang_id}) ({lang_code})&nbsp;
-{lang_description}&nbsp;
-{lang_date}&nbsp;<!-- 使用する日付 作成日付or編集日付or公開日 -->
-{lang_released}&nbsp;
-{lang_expired}&nbsp;
-{lang_remaingdays}&nbsp;
-{lang_addfield}&nbsp;<!-- ソート順に指定された追加属性項目 -->
-<!-- 下記テーマ変数　参考例です 登録されていない場合表示されません -->
-&nbsp;&nbsp;&nbsp;{name_zipcode} {name_tel} {name_additionfield1} {name_additionfield2}
-</li>
+  <ul>
+	<li>{lang_title} ({lang_id}) ({lang_code})&nbsp;
+	{lang_description}&nbsp;
+	{lang_date}&nbsp;<!-- 使用する日付 作成日付or編集日付or公開日 -->
+	{lang_released}&nbsp;
+	{lang_expired}&nbsp;
+	{lang_remaingdays}&nbsp;
+	{lang_addfield}&nbsp;<!-- ソート順に指定された追加属性項目 -->
+	<!-- 下記テーマ変数　参考例です 登録されていない場合表示されません -->
+	&nbsp;&nbsp;&nbsp;{name_zipcode} {name_tel} {name_additionfield1} {name_additionfield2}
+	</li>
     {row_var}
   </ul>
 
@@ -38,4 +38,4 @@
 
 </div>
 
-<!-- } plugins/databox/templates/search/default/navigation_detail.thtml -->
+{# end {templatelocation} #}

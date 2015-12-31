@@ -1,4 +1,4 @@
-<!-- plugins/databox/templates/admin/fieldset_editor.thtml 20130221 { -->
+{# begin {templatelocation} #}
 
 <div>
   {about_thispage}
@@ -58,7 +58,7 @@
     </div>
 
     </fieldset>
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-margin-large-top">
         <label class="uk-form-label" for=""></label>
         <div class="uk-form-controls">
 		    <input type="submit" value="{lang_save}" name="mode"{xhtml}>
@@ -66,7 +66,7 @@
 		    <input type="hidden" value="{code}" name="old_code"{xhtml}>
         </div>
     </div>
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-margin-large-top uk-text-danger">
         <div class="uk-form-controls">
 
 		    {delete_option}<span class="uk-text-danger">{lang_delete_help}</span>
@@ -78,4 +78,4 @@
   </form>
 </div>
 
-<!-- } plugins/databox/templates/admin/fieldset.thtml -->
+{# end {templatelocation} #}

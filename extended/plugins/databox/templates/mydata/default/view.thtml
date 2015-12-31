@@ -1,4 +1,6 @@
-<!-- plugins/databox/templates/mydata/view.thtml 20110627 { -->
+{# begin {templatelocation} #}
+
 {about_thispage}
-<!-- } plugins/databox/templates/mydata/view.thtml -->
+
+{# end {templatelocation} #}
 

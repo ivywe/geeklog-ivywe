@@ -1,4 +1,4 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 <h3 class="uk-h3">{actionname}</h3>
 <form class="uk-form uk-form-horizontal" action="{actionprg}" method="post">

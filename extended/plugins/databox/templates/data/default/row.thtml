@@ -1,5 +1,7 @@
-<!-- plugins/databox/templates/data/default/row.thtml { -->
+{# begin {templatelocation} #}
+
       <tr>
         {col_var}
       </tr>
-<!-- } plugins/databox/templates/data/default/row.thtml -->
+
+{# end {templatelocation} #}

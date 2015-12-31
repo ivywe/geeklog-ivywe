@@ -1,26 +1,11 @@
-<!-- plugins/databox/templates/data/default/list_detail.thtml 20150224 { -->
+{# begin {templatelocation} #}
 
-<?php if(SEC_inGroup('DataBox Admin')){ ?>
+<div class="uk-form">
+	<h2 class="uk-h2">{title}</h2>
+	{!if lang_id}<p class="uk-text-right">{lang_id}: {id}</p>{!endif}
 
-<div>
-  <h2 class="uk-h2">{title}</h2>
-  <p>{lang_id}: {id}</p>
-  <p><span class="uk-text-success"> &#123;languageid&#125;</span>:{languageid}
-     <span class="uk-text-success"> &#123;_languageid&#125;</span>:{_languageid}
-     <span class="uk-text-success"> &#123;language&#125;</span>:{language}
-  </p>
-  <p><span class="uk-text-success"> &#123;uid&#125;</span>:{uid}
-     <span class="uk-text-success"> &#123;username&#125;</span>:{username}
-     <span class="uk-text-success"> &#123;fullname&#125;</span>:{fullname}
-     <span class="uk-text-success"> &#123;displayname&#125;</span>:{displayname}
-  </p>
-  <p><span class="uk-text-success"> &#123;lang_download&#125;</span>:{lang_download}
-     <span class="uk-text-success"> &#123;lang_downloadrequired&#125;</span>:{lang_downloadrequired}
-     <span class="uk-text-success"> &#123;lang_display&#125;</span>:{lang_display}
-     <span class="uk-text-success"> &#123;lang_displayrequired&#125;</span>:{lang_displayrequired}
-  </p>
 <!-- Basic Items -->
-  <fieldset style="width:98%">
+  <fieldset class="uk-margin-large-top" style="width:98%">
     <legend>{lang_basicfields}</legend>
     <table class="uk-table uk-table-condensed uk-table-striped">
       <tr>
@@ -128,7 +113,7 @@ fullname:<span  class="uk-text-success"> &#123;last_modify_fullname&#125;</span>
   </fieldset>
 
 <!-- Category -->
-  <fieldset style="width:98%">
+  <fieldset class="uk-margin-large-top" style="width:98%">
     <legend>{lang_category} </legend>
     <table class="uk-table uk-table-condensed uk-table-striped">
 		<tr>
@@ -172,7 +157,7 @@ fullname:<span  class="uk-text-success"> &#123;last_modify_fullname&#125;</span>
   </fieldset>
 
 <!-- Additional Items -->
-  <fieldset style="width:98%">
+  <fieldset class="uk-margin-large-top" style="width:98%">
     <legend>{lang_additionfields} </legend>
     <table class="uk-table uk-table-condensed uk-table-striped">
       <tr>
@@ -189,6 +174,31 @@ fullname:<span  class="uk-text-success"> &#123;last_modify_fullname&#125;</span>
 
 {draft} {edit}
 
+<!-- Basic Items -->
+  <fieldset class="uk-margin-large-top" style="width:98%">
+    <legend>etc.</legend>
+
+	<ul class="uk-subnav uk-subnav-line uk-flex-center">
+		<li><span class="uk-text-success"> &#123;languageid&#125;</span>:{languageid}</li>
+		<li><span class="uk-text-success"> &#123;_languageid&#125;</span>:{_languageid}</li>
+		<li><span class="uk-text-success"> &#123;language&#125;</span>:{language}</li>
+	</ul>
+	<ul class="uk-subnav uk-subnav-line uk-flex-center">
+		<li><span class="uk-text-success"> &#123;lang_download&#125;</span>:{lang_download}</li>
+		<li><span class="uk-text-success"> &#123;lang_downloadrequired&#125;</span>:{lang_downloadrequired}</li>
+		<li><span class="uk-text-success"> &#123;lang_display&#125;</span>:{lang_display}</li>
+		<li><span class="uk-text-success"> &#123;lang_displayrequired&#125;</span>:{lang_displayrequired}</li>
+	</ul>
+
+</fieldset>
+
+
+
+
+
+
+
+<div class="uk-margin-large-top uk-panel uk-panelbox">
 
 
 <h3 class="uk-margin-large-top">* Example *</h3> 
@@ -332,519 +342,9 @@ fullname:<span  class="uk-text-success"> &#123;last_modify_fullname&#125;</span>
     </table>
   </fieldset>
 
-<!-- グループ別カテゴリ　グループIDを使用する -->
-  <fieldset style="width:94%">
-    <legend>{lang_groupbygroup} {lang_category}  {lang_byusingid}</legend>
-    <table class="uk-table uk-table-condensed uk-table-striped">
-      <tr>
-        <th style="width:20%;" class="uk-text-right">{lang_group} {lang_id}</th>
-        <th style="width:20%; color:green;" class="uk-text-left">{lang_templatesetvar}</th>
-        <th class="uk-text-left">{lang_content}</th>
-      </tr>
-	  <!-- 1 -->
-	  <tr>
-        <th style="width:20%" class="uk-text-right">1</th>
-		<td class="uk-text-success" style="width:20%;">
-		&#123;group_1&#125;
-		</td>
-		<td>{group_1} </td>
-        </tr>
-	  <tr>
-		<th style="width:20%" class="uk-text-right">　	</th>
-		<td class="uk-text-success" style="width:20%;">
-		&#123;group_1_code&#125
-		</td>
-		<td>{group_1_code} </td>
-	  </tr>
-	  <tr>
-		<th style="width:20%" class="uk-text-right">　	</th>
-		<td class="uk-text-success" style="width:20%;">
-		&#123;group_1_pipeline&#125
-		</td>
-		<td>{group_1_pipeline} </td>
-	  </tr>
-	  <!-- 2 -->
-	  <tr>
-        <th style="width:20%" class="uk-text-right">2</th>
-		<td class="uk-text-success" style="width:20%;">
-		&#123;group_2&#125;
-		</td>
-		<td>{group_2} </td>
-        </tr>
-	  <tr>
-		<th style="width:20%" class="uk-text-right">　	</th>
-		<td class="uk-text-success" style="width:20%;">
-		&#123;group_2_code&#125
-		</td>
-		<td>{group_2_code} </td>
-	  </tr>
-	  <tr>
-		<th style="width:20%" class="uk-text-right">　	</th>
-		<td class="uk-text-success" style="width:20%;">
-		&#123;group_2_pipeline&#125
-		</td>
-		<td>{group_2_pipeline} </td>
-	    </tr>
-	  <!-- 3 -->
-	  <tr>
-        <th style="width:20%" class="uk-text-right">3</th>
-		<td class="uk-text-success" style="width:20%;">
-		&#123;group_3&#125;
-		</td>
-		<td>{group_3} </td>
-        </tr>
-	  <tr>
-		<th style="width:20%" class="uk-text-right">　	</th>
-		<td class="uk-text-success" style="width:20%;">
-		&#123;group_3_code&#125
-		</td>
-		<td>{group_3_code} </td>
-	  </tr>
-	  <tr>
-		<th style="width:20%" class="uk-text-right">　	</th>
-		<td class="uk-text-success" style="width:20%;">
-		&#123;group_3_pipeline&#125
-		</td>
-		<td>{group_3_pipeline} </td>
-        </tr>
-
-    </table>
-  </fieldset>
 
 
-<!-- グループ別カテゴリ リンク付　グループIDを使用する -->
-  <fieldset style="width:94%">
-    <legend>{lang_groupbygroup} {lang_category} {lang_withlink} {lang_byusingid}</legend>
-    <table class="uk-table uk-table-condensed uk-table-striped">
-      <tr>
-        <th style="width:20%;" class="uk-text-right">{lang_group} {lang_id}</th>
-        <th style="width:20%; color:green;" class="uk-text-left">{lang_templatesetvar}</td>
-        <th class="uk-text-left">{lang_content}</th>
-      </tr>
-	  <!-- 1 -->
-	  <tr>
-        <th style="width:20%" class="uk-text-right">1</th>
-		<td class="uk-text-success" style="width:20%;">
-		&#123;grouplink_1&#125;
-		</td>
-		<td>{grouplink_1} </td>
-        </tr>
-	  <tr>
-		<th style="width:20%" class="uk-text-right">　	</th>
-		<td class="uk-text-success" style="width:20%;">
-		&#123;grouplink_1_code&#125
-		</td>
-		<td>{grouplink_1_code} </td>
-	  </tr>
-	  <!-- 2 -->
-	  <tr>
-        <th style="width:20%" class="uk-text-right">2</th>
-		<td class="uk-text-success" style="width:20%;">
-		&#123;grouplink_2&#125;
-		</td>
-		<td>{grouplink_2} </td>
-        </tr>
-	  <tr>
-		<th style="width:20%" class="uk-text-right">　	</th>
-		<td class="uk-text-success" style="width:20%;">
-		&#123;grouplink_2_code&#125
-		</td>
-		<td>{grouplink_2_code} </td>
-	  </tr>
-	  <!-- 3 -->
-	  <tr>
-        <th style="width:20%" class="uk-text-right">3</th>
-		<td class="uk-text-success" style="width:20%;">
-		&#123;grouplink_3&#125;
-		</td>
-		<td>{grouplink_3} </td>
-        </tr>
-	  <tr>
-		<th style="width:20%" class="uk-text-right">　	</th>
-		<td class="uk-text-success" style="width:20%;">
-		&#123;grouplink_3_code&#125
-		</td>
-		<td>{grouplink_3_code} </td>
-	  </tr>
-    </table>
-</fieldset>
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- アトリビュート（追加項目） 登録したテーマ変数を使用する　テーマ変数 例-->
-  <fieldset style="width:94%">
-    <legend>{lang_additionfields} {lang_byusingtemplatesetvar}</legend>
-    <table class="uk-table uk-table-condensed uk-table-striped">
-      <tr>
-        <th style="width:20%; color:green;" class="uk-text-left">{lang_templatesetvar}</th>
-        <th class="uk-text-left">{lang_content}</th>
-      </tr>
-      <tr>
-        <th class="uk-text-success uk-text-left" style="width:20%;">&#123;tel_name&#125;</th>
-        <td>{tel_name}</td>
-      </tr>
-        <th style="width:20%; color:green" class="alignleft">&#123;tel_requried&#125;</th>
-        <td>{tel_requried}</td>
-      </tr>
-      <tr>
-        <th class="uk-text-success uk-text-left" style="width:20%;">&#123;tel_description&#125;</th>
-        <td>{tel_description}</td>
-      </tr>
-      <tr>
-        <th class="uk-text-success uk-text-left" style="width:20%;">&#123;tel&#125;</th>
-        <td>{tel}</td>
-      </tr>
-	
-      <tr>
-        <th class="uk-text-success uk-text-left" style="width:20%;">&#123;pref&#125;</th>
-        <td>{pref}</td>
-      </tr>
-	
-      <tr>
-        <th class="uk-text-success uk-text-left" style="width:20%;">&#123;pref_mst_value2&#125;</th>
-        <td>{pref_mst_value2}</td>
-      </tr>
-      <tr>
-        <th class="uk-text-success uk-text-left" style="width:20%;">&#123;pref_mst_disp&#125;</th>
-        <td>{pref_mst_disp}</td>
-      </tr>
-      <tr>
-        <th class="uk-text-success uk-text-left" style="width:20%;">&#123;pref_mst_no&#125;</th>
-        <td>{pref_mst_no}</td>
-      </tr>
-      <tr>
-        <th class="uk-text-success uk-text-left" style="width:20%;">&#123;yesno&#125;</th>
-        <td>{yesno}</td>
-      </tr>
-      <tr>
-        <th class="uk-text-success uk-text-left" style="width:20%;">&#123;fg12&#125;</th>
-        <td>{fg12}</td>
-      </tr>
-      <tr>
-        <th class="uk-text-success uk-text-left" style="width:20%;">&#123;fg12_tn&#125;</th>
-        <td>{fg12_tn}</td>
-      </tr>
-      <tr>
-        <th class="uk-text-success uk-text-left" style="width:20%;">&#123;fg12_noimage&#125;</th>
-        <td>{fg12_noimage}</td>
-      </tr>
-      <tr>
-        <th class="uk-text-success uk-text-left" style="width:20%;">&#123;fg12_tn_noimage&#125;</th>
-        <td>{fg12_tn_noimage}</td>
-      </tr>
-      <tr>
-        <th class="uk-text-success uk-text-left" style="width:20%;">&#123;fg12_disp&#125;</th>
-        <td>{fg12_disp}</td>
-      </tr>
-      <tr>
-        <th class="uk-text-success uk-text-left" style="width:20%;">&#123;fg12_tn_image&#125;</th>
-        <td>{fg12_tn_image}</td>
-      </tr>
-      <tr>
-		<!-- タイプが添付ファイルの場合表示されます　記憶ファイル名 -->
-        <th class="uk-text-success uk-text-left" style="width:20%;">&#123;file_readfile&#125;</th>
-		<td>{file_readfile}
-		<!-- ダウンロードのリンク例 -->
-        <a href="{site_url}/databox/download.php?id=394&field_id=84" 
-         title="{lang_downloadrequired}">{file} {lang_download}</a>
-		<!-- 添付ファイルがpdfの場合の 表示のリンク例-->
-		<a href="{site_url}/databox/download.php?id=394&field_id=84&mode=display" 
-         title="{lang_displayrequired}">{file} {lang_display}</a>
-      </td>
-      </tr>
-
-    </table>
-  </fieldset>
-
-<!-- アトリビュート（追加項目） IDを使用する　テーマ変数 例-->
-  <fieldset style="width:94%">
-    <legend>{lang_additionfields} {lang_byusingid}</legend>
-    <table class="uk-table uk-table-condensed uk-table-striped">
-      <tr>
-        <th style="width:20%;" class="uk-text-right">{lang_additionfields} {lang_id}</th>
-        <th style="width:20%; color:green;" class="uk-text-left">{lang_templatesetvar}</th>
-        <th class="uk-text-left">{lang_content}</th>
-      </tr>
-      <tr>
-        <th style="width:20%" class="uk-text-right">1</th>
-        <td class="uk-text-success uk-text-left" style="width:20%;">&#123;additionfield1&#125;</td>
-        <td>{additionfield1}</td>
-      </tr>
-      <tr>
-        <th style="width:20%" class="alignright">1</th>
-        <td style="width:20%; color:green" class="alignleft">&#123;additionfield1_requried&#125;</td>
-        <td>{additionfield1_requried}</td>
-      </tr>
-      <tr>
-        <th style="width:20%" class="uk-text-right">1</th>
-        <td class="uk-text-success uk-text-left" style="width:20%;">&#123;additionfield1_noimage&#125;</td>
-        <td>{additionfield1_noimage}</td>
-      </tr>
-      <tr>
-        <th style="width:20%" class="uk-text-right">1</th>
-        <td class="uk-text-success uk-text-left" style="width:20%;">&#123;additionfield1_tn&#125;</td>
-        <td>{additionfield1_tn}</td>
-      </tr>
-      <tr>
-        <th style="width:20%" class="uk-text-right">1</th>
-        <td class="uk-text-success uk-text-left" style="width:20%;">&#123;additionfield1_tn_noimage&#125;</td>
-        <td>{additionfield1_tn_noimage}</td>
-      </tr>
-	
-      <tr>
-        <th style="width:20%" class="uk-text-right">1</th>
-        <td class="uk-text-success uk-text-left" style="width:20%;">&#123;additionfield1_disp&#125;</td>
-        <td>{additionfield1_disp}</td>
-      </tr>
-
-      <tr>
-        <th style="width:20%" class="uk-text-right">1</th>
-		<td class="uk-text-success uk-text-left" style="width:20%;">&#123;additionfield1:2&#125;
-		<!-- タイプが既定リストの場合表示されます　マスタのvalue2　の値 -->
-		</td>
-        <td>{additionfield1:2}</td>
-      </tr>
-
-      <tr>
-        <th style="width:20%" class="uk-text-right">1</th>
-		<td class="uk-text-success uk-text-left" style="width:20%;">&#123;additionfield1:disp&#125;
-		<!-- タイプが既定リストの場合表示されます　マスタのdisp　の値 例-->
-		</td>
-        <td>{additionfield1:disp}</td>
-      </tr>
-
-      <tr>
-        <th style="width:20%" class="uk-text-right">1</th>
-		<td class="uk-text-success uk-text-left" style="width:20%;">&#123;additionfield1:no&#125;
-		<!-- タイプが既定リストの場合表示されます　マスタno　の値 例-->
-		</td>
-        <td>{additionfield1:no}</td>
-      </tr>
-
-      <tr>
-        <th style="width:20%" class="uk-text-right">1</th>
-		<td class="uk-text-success uk-text-left" style="width:20%;">&#123;additionfield1_mst_value2&#125;
-		<!-- タイプが既定リストの場合表示されます　マスタのvalue2　の値 -->
-		</td>
-        <td>{additionfield1_mst_value2}</td>
-      </tr>
-
-      <tr>
-        <th style="width:20%" class="uk-text-right">1</th>
-		<td class="uk-text-success uk-text-left" style="width:20%;">&#123;additionfield1_mst_disp&#125;
-		<!-- タイプが既定リストの場合表示されます　マスタのdisp　の値 例-->
-		</td>
-        <td>{additionfield1_mst_disp}</td>
-      </tr>
-
-      <tr>
-        <th style="width:20%" class="uk-text-right">1</th>
-		<td class="uk-text-success uk-text-left" style="width:20%;">&#123;additionfield1_mst_no&#125;
-		<!-- タイプが既定リストの場合表示されます　マスタno　の値 例-->
-		</td>
-        <td>{additionfield1_mst_no}</td>
-      </tr>
-
-      <tr>
-        <th style="width:20%" class="uk-text-right">1</th>
-		<td class="uk-text-success uk-text-left" style="width:20%;">&#123;additionfield1_yes&#125;
-		</td>
-        <td>{additionfield1_yes}</td>
-      </tr>
-
-
-      <tr>
-        <th style="width:20%" class="uk-text-right">1</th>
-		<td class="uk-text-success uk-text-left" style="width:20%;">&#123;additionfield1_tns&#125;
-		</td>
-        <td>{additionfield1_tn}</td>
-      </tr>
-      <tr>
-        <th style="width:20%" class="uk-text-right">1</th>
-		<td class="uk-text-success uk-text-left" style="width:20%;">&#123;additionfield1_noimage&#125;
-		</td>
-        <td>{additionfield1_noimage}</td>
-      </tr>
-      <tr>
-        <th style="width:20%" class="uk-text-right">1</th>
-		<td class="uk-text-success uk-text-left" style="width:20%;">&#123;additionfield1_tn_image&#125;
-		</td>
-        <td>{additionfield1_tn_image}</td>
-      </tr>
-      <tr>
-        <th style="width:20%" class="uk-text-right">1</th>
-		<td class="uk-text-success uk-text-left" style="width:20%;">&#123;additionfield1_tn_noimage&#125;
-		</td>
-        <td>{additionfield1_tn_noimage}</td>
-      </tr>
-      <tr>
-        <th style="width:20%" class="uk-text-right">1</th>
-		<td class="uk-text-success uk-text-left" style="width:20%;">&#123;additionfield1_disp&#125;
-		</td>
-	    <td>{additionfield1_disp}</td>
-      </tr>
-      <tr>
-        <th style="width:20%" class="uk-text-right">1</th>
-		<td class="uk-text-success uk-text-left" style="width:20%;">&#123;additionfield1_name&#125;
-		</td>
-	    <td>{additionfield1_name}</td>
-      </tr>
-      <tr>
-        <th style="width:20%" class="uk-text-right">1</th>
-		<td class="uk-text-success uk-text-left" style="width:20%;">&#123;additionfield1_description&#125;
-		</td>
-	    <td>{additionfield1_description}</td>
-      </tr>
-      <tr>
-        <th style="width:20%" class="uk-text-right">11</th>
-		<td class="uk-text-success uk-text-left" style="width:20%;">
-		&#123;additionfield11&#125;
-		</td>
-		<td>{additionfield11}
-		</td>
-	  </tr>
-
-      <tr>
-        <th style="width:20%" class="uk-text-right">11</th>
-		<td class="uk-text-success uk-text-left" style="width:20%;">
-		&#123;additionfield11:2&#125
-		</td>
-		<td>{additionfield11:2}
-		</td>
-	  </tr>
-
-      <tr>
-        <th style="width:20%" class="uk-text-right">11</th>
-		<td class="uk-text-success uk-text-left" style="width:20%;">
-		&#123;additionfield11:disp&#125 
-		</td>
-		<td>{additionfield11:disp} 
-		</td>
-	  </tr>
-
-      <tr>
-        <th style="width:20%" class="uk-text-right">11</th>
-		<td class="uk-text-success uk-text-left" style="width:20%;">
-		&#123;additionfield11:no&#125
-		</td>
-		<td>{additionfield11:no}
-		</td>
-	  </tr>
-
-      <tr>
-        <th style="width:20%" class="uk-text-right">11</th>
-		<td class="uk-text-success uk-text-left" style="width:20%;">
-		&#123;additionfield11_mst_value2&#125
-		</td>
-		<td>{additionfield11_mst_value2}
-		</td>
-	  </tr>
-
-      <tr>
-        <th style="width:20%" class="uk-text-right">11</th>
-		<td class="uk-text-success uk-text-left" style="width:20%;">
-		&#123;additionfield11_mst_disp&#125 
-		</td>
-		<td>{additionfield11_mst_disp} 
-		</td>
-	  </tr>
-
-      <tr>
-        <th style="width:20%" class="uk-text-right">11</th>
-		<td class="uk-text-success uk-text-left" style="width:20%;">
-		&#123;additionfield11_mst_no&#125
-		</td>
-		<td>{additionfield11_mst_no}
-		</td>
-	  </tr>
-
-      <tr>
-        <th style="width:20%" class="uk-text-right">16</th>
-		<td class="uk-text-success uk-text-left" style="width:20%;">
-		&#123;additionfield16&#125
-		</td>
-		<td>{additionfield16}
-		</td>
-	  </tr>
-      <tr>
-        <th style="width:20%" class="uk-text-right">16</th>
-		<td class="uk-text-success uk-text-left" style="width:20%;">
-		&#123;additionfield16_yes&#125
-		</td>
-		<td>{additionfield16_yes}
-		</td>
-	
-      <tr>
-        <th style="width:20%" class="uk-text-right">18</th>
-		<td class="uk-text-success uk-text-left" style="width:20%;">
-		&#123;additionfield18&#125
-		</td>
-		<td>{additionfield18}
-		</td>
-	  </tr>
-      <tr>
-        <th style="width:20%" class="uk-text-right">18</th>
-		<td class="uk-text-success uk-text-left" style="width:20%;">
-		&#123;additionfield18_tn&#125
-		</td>
-		<td>{additionfield18_tn}
-		</td>
-      <tr>
-        <th style="width:20%" class="uk-text-right">18</th>
-		<td class="uk-text-success uk-text-left" style="width:20%;">
-		&#123;additionfield18_noimage&#125
-		</td>
-		<td>{additionfield18_noimage}
-		</td>
-      <tr>
-        <th style="width:20%" class="uk-text-right">18</th>
-		<td class="uk-text-success uk-text-left" style="width:20%;">
-		&#123;additionfield18_tn_noimage&#125
-		</td>
-		<td>{additionfield18_tn_noimage}
-		</td>
-
-      <tr>
-        <th style="width:20%" class="uk-text-right">18</th>
-		<td class="uk-text-success uk-text-left" style="width:20%;">
-		&#123;additionfield18_disp&#125
-		</td>
-		<td>{additionfield18_disp}
-		</td>
-      <tr>
-        <th style="width:20%" class="uk-text-right">18</th>
-		<td class="uk-text-success uk-text-left" style="width:20%;">
-		&#123;additionfield18_tn_image&#125
-		</td>
-		<td>{additionfield18_tn_image}
-		</td>
-      <tr>
-		<!-- タイプが添付ファイルの場合表示されます　記憶ファイル名 -->
-        <th style="width:20%" class="uk-text-right">84</th>
-		<td class="uk-text-success uk-text-left" style="width:20%;">
-		&#123;additionfield84_readfile&#125
-		</td>
-		<td>{additionfield84_readfile}
-      </tr>
-
-	</table>
-  </fieldset>
-
-
+  </div>
 </div>
 
-<?php } else { ?>
-このページは公開していません。
-<?php } ?>
-
-
-<!-- } plugins/databox/templates/data/default/list_detail.thtml -->
+{# end {templatelocation} #}

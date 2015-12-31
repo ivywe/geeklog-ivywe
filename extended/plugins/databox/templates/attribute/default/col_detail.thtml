@@ -1,4 +1,5 @@
-<!-- plugins/databox/templates/attribute/default/col_detail.thtml 20140114 { -->
+{# begin {templatelocation} #}
+
 <li>
 <span style="color:green">&#123;data_link&#125;</span>{data_link}
 <span style="color:green">&#123;data_title&#125;</span>{data_title}
@@ -81,4 +82,5 @@
 {grouplink_3} {grouplink_3_code}
 
 </li>
-<!-- } plugins/databox/templates/attribute/default/col_detail.thtml -->
+
+{# end {templatelocation} #}

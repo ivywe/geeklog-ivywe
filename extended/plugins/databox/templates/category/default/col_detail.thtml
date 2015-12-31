@@ -1,4 +1,5 @@
-<!-- plugins/databox/templates/category/default/col_detail.thtml 20140114 { -->
+{# begin {templatelocation} #}
+
 <li>
 <span style="color:green">&#123;data_link&#125;</span>{data_link}
 <span style="color:green">&#123;data_title&#125;</span>{data_title}
@@ -15,7 +16,7 @@
 <span style="color:green">&#123;data_value&#125;</span>{data_value}&nbsp;<!-- ソート順に指定された追加属性項目 -->
 
 {data_edit}
-<!-- 下記テーマ変数　参考例です 登録されていない場合表示されません -->
+{# 下記テーマ変数　参考例です 登録されていない場合表示されません #}
 &nbsp;&nbsp;&nbsp;
 <span style="color:green">&#123;zipcode&#125;</span>{zipcode}  
 <span style="color:green">&#123;tel&#125;</span>{tel} 
@@ -39,6 +40,7 @@
 &nbsp;&nbsp;&nbsp;
 <span style="color:green">&#123;group_team&#125;&#123;group_team_code&#125;</span>
 {group_type} {group_team_code}
+
 
 <!-- カテゴリ リンク付　グループコード使用テーマ変数 -->
 &nbsp;&nbsp;&nbsp;
@@ -80,4 +82,5 @@
 {grouplink_3} {grouplink_3_code}
 
 </li>
-<!-- } plugins/databox/templates/category/default/col_detail.thtml -->
+
+{# end {templatelocation} #}

@@ -1,4 +1,4 @@
-<!-- plugins/databox/templates/newlist/default/list_col.thtml 20140331 { -->
+{# begin {templatelocation} #}
 
 <dt class="databox_date">{day}</dt>
 <dd class="databox_list"><a  class="gl-tooltip" style="cursor: pointer; " href="{url}">{title}<span class="classic" style="top: 2.2em; left: 2.2em;">{description}</span></a>{new_img}
@@ -64,4 +64,5 @@
 {grouplink_3} {grouplink_3_code}
 
 </dd>
-<!-- } plugins/databox/templates/newlist/default/list_col.thtml -->
+
+{# end {templatelocation} #}

@@ -1,4 +1,4 @@
-<!-- plugins/databox/templates/admin/restoreform.thtml  20140717 { -->
+{# begin {templatelocation} #}
 
 <h3 class="uk-h3">{actionname}</h3>
 
@@ -18,4 +18,4 @@
 
 </form>
 
-<!-- } plugins/databox/templates/admin/restoreform.thtml -->
+{# end {templatelocation} #}

@@ -1,4 +1,4 @@
-<!-- plugins/databox/templates/admin/xml_editor.thtml 20110318{ -->
+{# begin {templatelocation} #}
 
 <div id="databox_admin">
 {about_thispage}

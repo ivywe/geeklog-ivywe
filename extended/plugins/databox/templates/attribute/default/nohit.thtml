@@ -1,4 +1,5 @@
-<!-- plugins/databox/templates/attribute/default/nohit.thtml 20120329{ -->
+{# begin {templatelocation} #}
+
 <div id="databox">
   <p id="breadcrumbs"><a href="{site_url}/">{home}</a>{attribute_top} {field_top}</p>
 
@@ -7,4 +8,5 @@
   <p>{lang_nohit}</p>
 
 </div>
-<!-- plugins/databox/templates/attribute/default/nohit.thtml { -->
+
+{# end {templatelocation} #}

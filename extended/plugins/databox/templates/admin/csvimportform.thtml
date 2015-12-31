@@ -1,4 +1,5 @@
-<!-- plugins/databox/templates/admin/csvimportform.thtml  20141010 { -->
+{# begin {templatelocation} #}
+
 <h3>{lang_import}</h3>
 <form action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data">
 
@@ -16,4 +17,5 @@
 
 
 </form>
-<!-- } plugins/databox/templates/admin/csvimportform.thtml -->
+
+{# end {templatelocation} #}

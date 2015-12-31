@@ -1,4 +1,4 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 {about_thispage}
 <p>Ver:{version}</p>

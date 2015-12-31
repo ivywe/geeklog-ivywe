@@ -1,6 +1,9 @@
-<!-- plugins/databox/templates/mydata/default/data_col_detail.thtml 20111119 { -->
+{# begin {templatelocation} #}
 
-    <th>{additionfield_name}<span class="must">{lang_must_additionfield}</span></th>
-    <td>{additionfield_value} <span class="uk-form-help-inline">{additionfield_description}</span></td>
-
-<!-- } plugins/databox/templates/mydata/default/data_col_detail.thtml -->
+    <div class="uk-form-row">
+        <label class="uk-form-label" for="">{additionfield_name}<span class="uk-form-help-inline uk-text-danger">{lang_must_additionfield}</span></label>
+        <div class="uk-form-controls">
+			{additionfield_value} <span class="uk-form-help-inline">{additionfield_description}</span>
+		</div>
+    </div>
+{# end {templatelocation} #}
