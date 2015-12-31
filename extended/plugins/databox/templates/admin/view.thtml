@@ -1,5 +1,6 @@
 {# begin {templatelocation} #}
 
 {about_thispage}
-<!-- } plugins/databox/templates/admin/view.thtml -->
+
+{# end {templatelocation} #}
 

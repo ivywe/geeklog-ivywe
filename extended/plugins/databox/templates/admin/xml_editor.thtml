@@ -63,6 +63,4 @@
 </form>
 </div>
 
-
-<!-- } plugins/databox/templates/admin/xml_editor.thtml -->
-
+{# end {templatelocation} #}
