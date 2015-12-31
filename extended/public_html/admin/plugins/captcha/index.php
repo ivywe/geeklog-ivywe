@@ -78,7 +78,7 @@ $display = '';
 $T = new Template($_CONF['path'] . 'plugins/captcha/templates');
 $T->set_file (array ('admin' => 'admin.thtml'));
 
-$link = "<form name='captcha_conf_link' action='{$_CONF['site_admin_url']}/configuration.php' method='POST'>"
+$link = "<form name='captcha_conf_link uk-form' action='{$_CONF['site_admin_url']}/configuration.php' method='POST'>"
 				 . "<input type='hidden' name='conf_group' value='captcha'></form>"
 				 . "<a href='#' onclick=\"document.captcha_conf_link.submit()\">"
 				 . "{$LANG_CP00['conf_link']}</a>";
@@ -117,7 +117,7 @@ $T->set_var(array(
 ));
 
 $retval .= "<br" . XHTML . '><p>' . $LANG_CP00['view_log'] . '</p>';
-$retval .= "<form method=\"post\" action=\"{$_CONF['site_admin_url']}/plugins/captcha/index.php\">";
+$retval .= "<form class=\"uk-form\" method=\"post\" action=\"{$_CONF['site_admin_url']}/plugins/captcha/index.php\">";
 $retval .= "{$LANG_CP00['file']}&nbsp;&nbsp;&nbsp;";
 $files = array();
 
