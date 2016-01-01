@@ -1,5 +1,9 @@
 {# begin {templatelocation} #}
 
+
+<?php if(SEC_inGroup('Root')){ ?><div class="gl-edit"><?php } ?>
+{!!if {edit}||{draft} !!}<div class="uk-float-right">{edit} {draft}</div>{!endif}
+
 <div class="uk-form">
 	<h2 class="uk-h2">{title}</h2>
 	{!if lang_id}<p class="uk-text-right">{lang_id}: {id}</p>{!endif}
@@ -172,7 +176,6 @@ fullname:<span  class="uk-text-success"> &#123;last_modify_fullname&#125;</span>
     </table>
   </fieldset>
 
-{draft} {edit}
 
 <!-- Basic Items -->
   <fieldset class="uk-margin-large-top" style="width:98%">
@@ -193,6 +196,9 @@ fullname:<span  class="uk-text-success"> &#123;last_modify_fullname&#125;</span>
 </fieldset>
 
 
+
+{!!if {edit}||{draft} !!}<div class="uk-float-right">{edit} {draft}</div>{!endif}
+<?php if(SEC_inGroup('Root')){ ?></div><?php } ?>
 
 
 
