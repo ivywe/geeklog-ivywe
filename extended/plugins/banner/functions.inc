@@ -1141,9 +1141,10 @@ function plugin_getBannerField_banner($fieldname, $fieldvalue, $A, $icon_arr)
         switch($fieldname) {
             case 'edit':
                 if ($access == 3) {
+		            $attr = array('class' => 'editlink');
                     $retval = COM_createLink(
                         $icon_arr['edit'],
-                        "{$_CONF['site_admin_url']}/plugins/banner/index.php?mode=edit&amp;bid={$A['bid']}"
+                        "{$_CONF['site_admin_url']}/plugins/banner/index.php?mode=edit&amp;bid={$A['bid']}",$attr
                     );
                 }
                 break;
@@ -1201,9 +1202,10 @@ function plugin_getListField_bannercategories($fieldname, $fieldvalue, $A, $icon
         switch($fieldname) {
             case 'edit':
                 if ($access == 3) {
+		            $attr = array('class' => 'editlink');
                     $retval = COM_createLink(
                         $icon_arr['edit'],
-                        "{$_CONF['site_admin_url']}/plugins/banner/bannercategory.php?mode=edit&amp;cid=" . urlencode($A['cid'])
+                        "{$_CONF['site_admin_url']}/plugins/banner/bannercategory.php?mode=edit&amp;cid=" . urlencode($A['cid']), $attr
                     );
                 }
                 break;
@@ -1223,9 +1225,10 @@ function plugin_getListField_bannercategories($fieldname, $fieldvalue, $A, $icon
                 break;
             case 'addchild';
                 if ($access == 3) {
+					$attr = array('class' => 'editlink');
                     $retval = COM_createLink(
                         $icon_arr['addchild'],
-                        "{$_CONF['site_admin_url']}/plugins/banner/bannercategory.php?mode=edit&amp;pid=" . urlencode($A['cid'])
+                        "{$_CONF['site_admin_url']}/plugins/banner/bannercategory.php?mode=edit&amp;pid=" . urlencode($A['cid']), $attr
                     );
                 }
                 break;
@@ -1479,7 +1482,8 @@ function banner_buildBanner ($bid, $title, $img, $link=true)
             $A = DB_fetchArray($result);
             if ( SEC_hasAccess($A['owner_id'], $A['group_id'], $A['perm_owner'], $A['perm_group'], $A['perm_members'], $A['perm_anon']) == 3 ) {
                 $icon_edit = COM_createImage( "{$_CONF['layout_url']}/images/edit.$_IMAGE_TYPE", $LANG_ADMIN['edit'] );
-                $link_edit = COM_createLink( $icon_edit, "{$_CONF['site_admin_url']}/plugins/banner/index.php?mode=edit&amp;bid={$bid}" );
+            	$attr = array('class' => 'editlink');
+                $link_edit = COM_createLink( $icon_edit, "{$_CONF['site_admin_url']}/plugins/banner/index.php?mode=edit&amp;bid={$bid}", $attr );
             }
         }
     }
@@ -1492,7 +1496,7 @@ function banner_buildBanner ($bid, $title, $img, $link=true)
     }
     $attr = array(
                 'title' => $title,
-                'class' => $class
+                'class' => $class. " editlink"
                  );
     return COM_createLink($img, $url, $attr) . $link_edit;
 }

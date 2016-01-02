@@ -359,7 +359,8 @@ function prepare_banner_item ($A, &$template)
         $template->set_var ('banner_edit', COM_createLink($LANG_ADMIN['edit'],$editurl));
         $edit_icon = "<img src=\"{$_CONF['layout_url']}/images/edit.$_IMAGE_TYPE\" "
             . "alt=\"{$LANG_ADMIN['edit']}\" title=\"{$LANG_ADMIN['edit']}\"" . XHTML . ">";
-        $template->set_var ('edit_icon', COM_createLink($edit_icon, $editurl));
+        $attr = array('class' => 'editlink');
+        $template->set_var ('edit_icon', COM_createLink($edit_icon, $editurl, $attr));
     } else {
         $template->set_var ('banner_edit', '');
         $template->set_var ('edit_icon', '');
