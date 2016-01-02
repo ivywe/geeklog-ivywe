@@ -1,11 +1,11 @@
-<!--plugins/mediagallery/templates/medialist/uikit_slideset/autotag_medialist.thtml { -->
+{# begin {templatelocation} #}
 
 {!if edit}
 <fieldset>
 <legend><a href="{site_url}/mediagallery/album.php?aid={album_id}&page=1"><i class="uk-icon-file-image-o"></i> {album_title}</a></legend>
 {!endif}
 
-<div class="uk-margin" data-uk-slideset="{ small: 2, medium: 4, large: 6 }">
+<div class="uk-margin" data-uk-slideset="{small: 2, medium: 4, large: 6}">
 	<div class="uk-slidenav-position uk-margin">
 			<ul class="uk-slideset uk-grid uk-flex-center uk-grid-width-1-1 uk-grid-width-large-1-6 uk-grid-width-medium-1-4 uk-grid-width-small-1-2">
 
@@ -34,4 +34,4 @@
 </fieldset>
 {!endif}
 
-<!--} plugins/mediagallery/templates/medialist/uikit_slideset/autotag_medialist.thtml -->
+{# end {templatelocation} #}

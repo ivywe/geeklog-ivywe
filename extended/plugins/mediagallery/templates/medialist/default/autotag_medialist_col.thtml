@@ -1,4 +1,4 @@
-<!-- plugins/mediagallery/templates/medialist/default/autotag_medialist_col.thtml 20150309 { -->
+{# begin {templatelocation} #}
 
 	<div class="uk-margin-large uk-text-center {class}">
 		<a href="{filename_disp}" data-uk-lightbox="{ group:'my-group{albumid}' }" title="{media_title}">
@@ -8,4 +8,4 @@
 		<div class="uk-text-left uk-margin">{media_desc}</div>
 	</div>
 
-<!-- } plugins/mediagallery/templates/medialist/default/autotag_medialist_col.thtml -->
+{# end {templatelocation} #}

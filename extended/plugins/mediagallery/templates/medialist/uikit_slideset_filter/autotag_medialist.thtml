@@ -1,4 +1,4 @@
-<!--plugins/mediagallery/templates/medialist/uikit_slideset_filter/autotag_medialist.thtml { -->
+{# begin {templatelocation} #}
 
 {!if edit}
 <fieldset>
@@ -32,4 +32,4 @@
 </fieldset>
 {!endif}
 
-<!--} plugins/mediagallery/templates/medialist/uikit_slideset_filter/autotag_medialist.thtml -->
+{# end {templatelocation} #}

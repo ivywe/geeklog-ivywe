@@ -1,4 +1,4 @@
-<!-- plugins/mediagallery/templates/medialist/uikit_overlay_banner/autotag_medialist_col.thtml 20150309 { -->
+{# begin {templatelocation} #}
 
                                     <li>
                                         <img src="{filename_disp}" width="960" height="354"{xhtml}>
@@ -11,4 +11,4 @@
                                         </div>
                                     </li>
 
-<!-- } plugins/mediagallery/templates/medialist/uikit_overlay_banner/autotag_medialist_col.thtml 20150309 -->
+{# end {templatelocation} #}

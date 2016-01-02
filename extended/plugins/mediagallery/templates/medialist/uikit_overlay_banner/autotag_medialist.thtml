@@ -1,4 +1,5 @@
-<!--plugins/mediagallery/templates/medialist/uikit_overlay_banner/autotag_medialist.thtml 20150309 { -->
+{# begin {templatelocation} #}
+
 {!if edit}
 <fieldset>
 <legend><a href="{site_url}/mediagallery/album.php?aid={album_id}&page=1"><i class="uk-icon-file-image-o"></i> {album_title}</a></legend>
@@ -16,4 +17,4 @@
 </fieldset>
 {!endif}
 
-<!--} plugins/mediagallery/templates/medialist/uikit_overlay_banner/autotag_medialist.thtml -->
+{# end {templatelocation} #}

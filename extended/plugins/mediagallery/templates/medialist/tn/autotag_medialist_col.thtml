@@ -1,4 +1,4 @@
-<!-- plugins/mediagallery/templates/medialist/default/autotag_medialist_col.thtml 20150309 { -->
+{# begin {templatelocation} #}
 
 	<div class="uk-width-small-1-2 uk-width-medium-1-4 uk-float-left" style="margin:0 0 17px 0">
 
@@ -14,4 +14,4 @@
 
 	</div>
 
-<!-- } plugins/mediagallery/templates/medialist/default/autotag_medialist_col.thtml -->
+{# end {templatelocation} #}

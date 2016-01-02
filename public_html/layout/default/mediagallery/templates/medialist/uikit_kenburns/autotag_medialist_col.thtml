@@ -1,16 +1,7 @@
-<!--plugins/mediagallery/templates/medialist/uikit_kenburns/autotag_medialist_col.thtml { -->
+{# begin {templatelocation} #}
 
-<li>
-	<img src="{filename_disp}" alt="{media_title}">
-	<div class="uk-overlay-panel uk-overlay-fade">
-		<div>
-				<h2 class="uk-h2 uk-text-center gl-slider" style="text-shadow: 5px 5px 10px #444444; ">
-				{media_title}
-			</h2>
-			<div style="text-shadow: 5px 5px 10px #444444; ">{media_desc}</div>
-		</div>
-		<div class="uk-panel-badge uk-badge" style="top:initial; bottom:0">{media_keywords}</div>
-	</div>
-</li>
+	<li>
+		<img src="{filename_disp}" alt="{media_title}">
+    </li>
 
-<!--} plugins/mediagallery/templates/medialist/uikit_kenburns/autotag_medialist_col.thtml -->
+{# end {templatelocation} #}

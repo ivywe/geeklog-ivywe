@@ -1,11 +1,11 @@
-<!-- plugins/mediagallery/templates/medialist/2fields/autotag_medialist.thtml 20150309 { -->
+{# begin {templatelocation} #}
 
 {!if edit}
 <fieldset>
 <legend><a href="{site_url}/mediagallery/album.php?aid={album_id}&page=1"><i class="uk-icon-file-image-o"></i> {album_title}</a></legend>
 {!endif}
 
-<div class="uk-grid" data-uk-grid="{ gutter: 20}">
+<div class="uk-grid" data-uk-grid="{gutter: 20}">
 {medialist_col}
 </div>
 
@@ -13,4 +13,4 @@
 </fieldset>
 {!endif}
 
-<!-- } plugins/mediagallery/templates/medialist/2fields/autotag_medialist.thtml -->
+{# end {templatelocation} #}

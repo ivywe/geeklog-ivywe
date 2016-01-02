@@ -1,4 +1,4 @@
-<!--plugins/mediagallery/templates/medialist/uikit_grid_js/autotag_medialist.thtml 20150309 { -->
+{# begin {templatelocation} #}
 
 {!if edit}
 <fieldset>
@@ -13,4 +13,4 @@
 </fieldset>
 {!endif}
 
-<!--} plugins/mediagallery/templates/medialist/uikit_grid_js/autotag_medialist.thtml -->
+{# end {templatelocation} #}

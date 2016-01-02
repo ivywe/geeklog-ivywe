@@ -1,4 +1,4 @@
-<!-- plugins/mediagallery/templates/medialist/admin2/autotag_medialist.thtml 20150309 { -->
+{# begin {templatelocation} #}
 
 <div class="uk-margin-large uk-panel uk-panel-box">
 
@@ -14,4 +14,4 @@
 
 </div>
 
-<!-- } plugins/mediagallery/templates/medialist/admin2/autotag_medialist.thtml -->
+{# end {templatelocation} #}

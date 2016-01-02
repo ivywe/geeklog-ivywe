@@ -1,4 +1,4 @@
-<!-- plugins/mediagallery/templates/medialist/list/autotag_medialist_col.thtml 20150309 { -->
+{# begin {templatelocation} #}
 
 	<div class="uk-margin-large {class}">
 		{!if media_title}<h3 class="uk-container-center">{media_title}</h3>{!endif}
@@ -14,4 +14,4 @@
 		</a>
 	</div>
 
-<!-- } plugins/mediagallery/templates/medialist/list/autotag_medialist_col.thtml -->
+{# end {templatelocation} #}

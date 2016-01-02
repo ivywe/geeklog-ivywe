@@ -1,13 +1,13 @@
-<!--plugins/mediagallery/templates/medialist/uikit_animation/autotag_medialist.thtml 20150309 { -->
+{# begin {templatelocation} #}
 
 {!if edit}
 <fieldset>
 <legend><a href="{site_url}/mediagallery/album.php?aid={album_id}&page=1"><i class="uk-icon-file-image-o"></i> {album_title}</a></legend>
 {!endif}
 
-<div class="uk-slidenav-position" data-uk-slideshow="{ autoplay:true , animation: '{class}'}">
+<div class="uk-slidenav-position" data-uk-slideshow="{ animation: '{class}' }">
     <ul class="uk-slideshow">
-		{medialist_col}
+	{medialist_col}
 	</ul>
     <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous"></a>
     <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next"></a>
@@ -31,4 +31,4 @@
 </fieldset>
 {!endif}
 
-<!--} plugins/mediagallery/templates/medialist/uikit_animation/autotag_medialist.thtml -->
+{# end {templatelocation} #}

@@ -1,4 +1,4 @@
-<!-- plugins/mediagallery/templates/medialist/uikit_kenburns/autotag_medialist.thtml 20150309 { -->
+{# begin {templatelocation} #}
 
 {!if edit}
 <fieldset>
@@ -17,4 +17,4 @@
 </fieldset>
 {!endif}
 
-<!-- } plugins/mediagallery/templates/medialist/uikit_kenburns/autotag_medialist.thtml -->
+{# end {templatelocation} #}

@@ -1,7 +1,7 @@
-<!-- plugins/mediagallery/templates/medialist/uikit_grid_js/autotag_medialist_col.thtml 20150309 { -->
+{# begin {templatelocation} #}
 
 		<div class="uk-width-small-1-2 uk-width-medium-1-4">
 			<img src="{filename_disp}" alt="{media_title}">
 		</div>
 
-<!-- } plugins/mediagallery/templates/medialist/uikit_grid_js/autotag_medialist_col.thtml 20150309 -->
+{# end {templatelocation} #}

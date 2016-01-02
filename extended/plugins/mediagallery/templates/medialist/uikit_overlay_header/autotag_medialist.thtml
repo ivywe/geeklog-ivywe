@@ -1,4 +1,4 @@
-<!--plugins/mediagallery/templates/medialist/uikit_overlay_header/autotag_medialist.thtml 20150309 { -->
+{# begin {templatelocation} #}
 
 <div class="uk-slidenav-position" data-uk-slideshow="{ autoplay:true }">
     <ul class="uk-slideshow uk-overlay-active">
@@ -35,4 +35,4 @@
 </fieldset>
 {!endif}
 
-<!--} plugins/mediagallery/templates/medialist/uikit_overlay_header/autotag_medialist.thtml -->
+{# end {templatelocation} #}

@@ -1,4 +1,4 @@
-<!--plugins/mediagallery/templates/medialist/sample/autotag_medialist.thtml 20150309 { -->
+{# begin {templatelocation} #}
 
 {!if edit}
 <fieldset>
@@ -21,4 +21,4 @@
 </fieldset>
 {!endif}
 
-<!--} plugins/mediagallery/templates/medialist/sample/autotag_medialist.thtml -->
+{# end {templatelocation} #}
