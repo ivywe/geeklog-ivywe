@@ -87,10 +87,7 @@ $_ASSIST_DEFAULT['aftersave'] = 'item';
 //データ保存後の画面遷移　管理画面
 $_ASSIST_DEFAULT['aftersave_admin'] = 'item';
 
-$_ASSIST_DEFAULT['xmlns'] = 
-' xmlns:fb="http://www.facebook.com/2008/fbml"'.LB
-.' xmlns:og="http://ogp.me/ns#"'.LB
-.' xmlns:mixi="http://mixi-platform.com/ns#"'.LB;
+$_ASSIST_DEFAULT['xmlns'] = '';
 
 //デフォルト画像URL
 $_ASSIST_DEFAULT['default_img_url'] = "";
