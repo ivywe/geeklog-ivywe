@@ -883,11 +883,10 @@ function ADMIN_getListField_users($fieldname, $fieldvalue, $A, $icon_arr)
         case 'username':
             $photoico = '';
             if (!empty ($A['photo'])) {
-                $photoico = "&nbsp;<img class"uk-border-circle\" src=\"{$_CONF['site_url']}/images/userphotos/."
-                          . $A['photo'] . '" alt="{$LANG04[77]}"' . XHTML . '>';
-            } else {
-                $photoico = "&nbsp;<img class"uk-border-circle\" src=\"{$_CONF['layout_url']}/images/smallcamera."
+                $photoico = "&nbsp;<img src=\"{$_CONF['layout_url']}/images/smallcamera."
                           . $_IMAGE_TYPE . '" alt="{$LANG04[77]}"' . XHTML . '>';
+            } else {
+                $photoico = '';
             }
             $retval = COM_createLink($fieldvalue, $_CONF['site_url']
                     . '/users.php?mode=profile&amp;uid=' .  $A['uid']) . $photoico;
