@@ -141,6 +141,18 @@ function contactemail($uid,$cc,$author,$authoremail,$subject,$message)
                 $sent = COM_mail($from, $subject, $ccmessage, $from);
             }
 
+
+			/* to conf email { */
+                $ccmessage = sprintf($LANG08[38], COM_getDisplayName($uid,
+                                            $A['username'], $A['fullname']));
+                $ccmessage .= "\nfor webmaster from:".$from." to: ".$to."\n\n" . $message;
+
+                $sent = COM_mail($_CONF['site_mail'], $subject, $ccmessage, $from);
+			/* to conf email { */
+
+
+
+
             COM_updateSpeedlimit('mail');
 
             $retval .= COM_refresh($_CONF['site_url']
