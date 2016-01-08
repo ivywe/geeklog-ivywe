@@ -5965,32 +5965,40 @@ function phpblock_whosonline()
                             . '/images/smallcamera.' . $_IMAGE_TYPE
                             . '" alt="" height="30" width="30" data-uk-tooltip title="' . $username . ' "' . XHTML . '>';
 
+        	$num_reg++;
             if( !empty( $A['photo'] ) AND $_CONF['allow_user_photo'] == 1 AND ( $_CONF['whosonline_photo'] == true ) ) {
+
+				if(!COM_isAnonUser()){
                     $usrimg = '<img class="uk-border-circle" src="' . $_CONF['site_url']
                             . '/images/userphotos/' . $A['photo']
                             . '" alt="" height="30" width="30" data-uk-tooltip title="' . $username . ' "' . XHTML . '>';
-            }
-            $retval .= '<li>' . COM_createLink($usrimg, $url) . '</li>';
-
-            $num_reg++;
+				}
+            } else 
+			{
+			}
+			if(!COM_isAnonUser()){
+	            $retval .= '<li>' . COM_createLink($usrimg, $url) . '</li>';
+			} else {
+			}
         }
         else
         {
-            // this user does not want to show up in Who's Online
-            $num_anon++; // count as anonymous
+	    	// this user does not want to show up in Who's Online
+        	$num_anon++; // count as anonymous
         }
     }
     $retval .= '</ul>';
 
     $num_anon += DB_count($_TABLES['sessions'], array('uid', 'whos_online'), array(1, 1));
 
-    if(( $_CONF['whosonline_anonymous'] == 1 ) &&
-            COM_isAnonUser() )
+    if(( $_CONF['whosonline_anonymous'] == 1 ) && COM_isAnonUser() )
     {
+            $retval = '';
+
         // note that we're overwriting the contents of $retval here
         if( $num_reg > 0 )
         {
-            $retval = '<li><img class="uk-border-circle" src="' . $_CONF['layout_url']
+            $retval = '<ul class="uk-subnav uk-flex-left"><li><img class="uk-border-circle" src="' . $_CONF['layout_url']
                             . '/images/smallcamera.' . $_IMAGE_TYPE
                             . '" alt="" height="30" width="30" data-uk-tooltip title="' . $LANG01[112] . ': ' . COM_numberFormat($num_reg) . ' "' . XHTML . '>' . $LANG01[112] . ': ' . COM_numberFormat($num_reg).'</li>';
         }
