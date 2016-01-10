@@ -1,6 +1,5 @@
 {# begin {templatelocation} #}
 
-
 <form style="display:inline" action="{site_admin_url}/plugins/calendarjp/index.php?mode=batchdelete" method="post">
     <div style="display: inline;">
         <input type="hidden" name="mode" value="batchdelete"{xhtml}>
@@ -9,9 +8,5 @@
         <input type="submit" name="submit" value="{lang_updatelist}"{xhtml}>
     </div>
 </form>
-
-{# end {templatelocation} #}
-
-
 
 {# end {templatelocation} #}

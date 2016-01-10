@@ -1,6 +1,5 @@
 {# begin {templatelocation} #}
 
-
 {explanation}
 <form action="{site_url}{submit_url}" name="events" class="form-theme" method="post">
     <table border="0" cellspacing="0" cellpadding="3" class="events">
@@ -125,9 +124,5 @@
         </tr>
     </table>
 </form>
-
-{# end {templatelocation} #}
-
-
 
 {# end {templatelocation} #}

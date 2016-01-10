@@ -1,6 +1,5 @@
 {# begin {templatelocation} #}
 
-
 <table cellpadding="2" cellspacing="2">
     <tr>
         <td colspan="2">{intro_msg}</td>
@@ -38,9 +37,5 @@
         </td>
     </tr>
 </table>
-
-{# end {templatelocation} #}
-
-
 
 {# end {templatelocation} #}

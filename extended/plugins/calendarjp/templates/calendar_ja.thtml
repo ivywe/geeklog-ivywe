@@ -1,6 +1,5 @@
 {# begin {templatelocation} #}
 
-
 <!-- Begin Calendar -->
 {navbar}
 <table width="100%" cellpadding="5" cellspacing="1" border="0" class="cal-body">
@@ -92,9 +91,5 @@
     </tr>
 </table></div>
 <!-- End Calendar -->
-
-{# end {templatelocation} #}
-
-
 
 {# end {templatelocation} #}
