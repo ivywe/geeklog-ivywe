@@ -1,3 +1,5 @@
+{# begin {templatelocation} #}
+
 
                                 <!-- Begin Calendar -->
 
@@ -107,3 +109,5 @@
                                 </table>
 
                                 <!-- End Calendar -->
+
+{# end {templatelocation} #}

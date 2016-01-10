@@ -1,3 +1,5 @@
+{# begin {templatelocation} #}
+
 <h2>{lang_pagetitle}</h2>
 
 <div class="admin-list-icon">
@@ -30,6 +32,7 @@
                 <td width="20" class="box"></td>
             </tr>
 
-
 {sitelist}
         </table>
+
+{# end {templatelocation} #}
