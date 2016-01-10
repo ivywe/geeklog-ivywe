@@ -1,6 +1,10 @@
-<div>
+{# begin {templatelocation} #}
+
+<div class="captcha_admin">
 	<h2>{title}</h2>
-	<div>
+	<div class="captcha_admin_body">
 		{admin_body}
 	</div>
 </div>
+
+{# end {templatelocation} #}

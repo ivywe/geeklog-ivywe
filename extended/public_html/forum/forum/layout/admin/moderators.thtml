@@ -1,5 +1,5 @@
+{# begin {templatelocation} #}
 
-<!-- start moderators.thtml -->
 <script type="text/javascript">
     <!-- Begin
     function confirmSubmit(text) { 
@@ -64,4 +64,5 @@
     </table>
 	</div>
 </form>
-<!-- end moderators.thtml -->
+
+{# end {templatelocation} #}

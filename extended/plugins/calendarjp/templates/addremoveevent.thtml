@@ -1,2 +1,10 @@
+{# begin {templatelocation} #}
+
 
 &nbsp;<span style="font-size:80%;">[{lang_addremovefromcal}]</span>
+
+{# end {templatelocation} #}
+
+
+
+{# end {templatelocation} #}

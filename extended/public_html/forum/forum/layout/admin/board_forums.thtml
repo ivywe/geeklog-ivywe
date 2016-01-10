@@ -1,5 +1,5 @@
+{# begin {templatelocation} #}
 
-                <!-- start board_forums.thtml -->
                 <tr>
                     <th>
                         <form class="uk-form" action="{phpself}" method="post">
@@ -38,4 +38,5 @@
                         </form>
                     </th>
                 </tr>
-                <!-- end board_forums.thtml -->
+
+{# end {templatelocation} #}

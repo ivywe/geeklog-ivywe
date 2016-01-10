@@ -1,11 +1,11 @@
 <?php
 
 // Reminder: always indent with 4 spaces (no tabs).
-// +--------------------------------------------------------------------------
+// +---------------------------------------------------------------------------+
 // | CustomMenu Editor Plugin for Geeklog                                      |
-// +--------------------------------------------------------------------------|
+// +---------------------------------------------------------------------------|
 // | plugins/custommenu/install_defaults.php                                   |
-// +--------------------------------------------------------------------------|
+// +---------------------------------------------------------------------------|
 // | Copyright (C) 2008-2013 dengen - taharaxp AT gmail DOT com                |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
@@ -17,7 +17,7 @@
 // | Modified by:                                                              |
 // | mystral-kk                -    geeklog AT mystral-kk DOT net              |
 // | dengen                    -    taharaxp AT gmail DOT com                  |
-// +--------------------------------------------------------------------------
+// +---------------------------------------------------------------------------+
 // |                                                                           |
 // | This program is free software; you can redistribute it and/or             |
 // | modify it under the terms of the GNU General Public License               |
@@ -33,7 +33,7 @@
 // | along with this program; if not, write to the Free Software Foundation,   |
 // | Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.           |
 // |                                                                           |
-// +--------------------------------------------------------------------------
+// +---------------------------------------------------------------------------+
 
 if (strpos(strtolower($_SERVER['PHP_SELF']), 'install_defaults.php') !== false) {
     die('This file can not be used on its own!');
@@ -63,7 +63,7 @@ $_CMED_DEFAULT['aftersave'] = 'list';
  * Define default permissions for new custommenu created from the Admin panel.
  * Permissions are perm_owner, perm_group, perm_members, perm_anon (in that
  * order). Possible values:
- * - 3 = read  write permissions (perm_owner and perm_group only)
+ * - 3 = read + write permissions (perm_owner and perm_group only)
  * - 2 = read-only
  * - 0 = neither read nor write permissions
  * (a value of 1, ie. write-only, does not make sense and is not allowed)

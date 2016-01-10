@@ -1,5 +1,5 @@
+{# begin {templatelocation} #}
 
-    <!-- start migrate_records.thtml -->
     <tr>
         <td><input type="checkbox" name="cb_chkentry[]" value="{sid}"{xhtml}></td>
         <td>{topic}</td>
@@ -8,3 +8,5 @@
         <td class="uk-text-center">{num_comments}</td>
     </tr>
     <!-- end migrate_records.thtml -->
+
+{# end {templatelocation} #}

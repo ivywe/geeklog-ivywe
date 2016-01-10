@@ -1,3 +1,5 @@
+{# begin {templatelocation} #}
+
 <!-- start centerblock_displayline.thtml -->
 
 <tr>
@@ -22,3 +24,5 @@
 </tr>
 
 <!-- end centerblock_displayline.thtml -->
+
+{# end {templatelocation} #}

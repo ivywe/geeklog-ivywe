@@ -1,5 +1,5 @@
+{# begin {templatelocation} #}
 
-<!-- start messages.thtml -->
 {startblock}
 {navbar}
 <form class="uk-form"  name="frm_messages" action="{phpself}" method="post">
@@ -40,4 +40,5 @@
 </table>
 </form>
 {endblock}
-<!-- end messages.thtml -->
+
+{# end {templatelocation} #}

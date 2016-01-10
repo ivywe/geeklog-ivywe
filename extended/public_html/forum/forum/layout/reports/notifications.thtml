@@ -1,3 +1,5 @@
+{# begin {templatelocation} #}
+
 <!-- notifications.thtml -->
 {navmenu}
 
@@ -43,3 +45,5 @@
     </tr>
 </table>
 </div>
+
+{# end {templatelocation} #}

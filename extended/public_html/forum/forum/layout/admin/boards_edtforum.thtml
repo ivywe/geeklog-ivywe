@@ -1,5 +1,5 @@
+{# begin {templatelocation} #}
 
-<!-- start boards_editforum.thtml -->
 <form class="uk-form" action="{PHP_SELF}" method="post">
     <!-- The following is a divider that works across all platforms and browsers -->
 	<div class="uk-overflow-container">
@@ -65,4 +65,5 @@
     </table>
 	</div>
 </form>
-<!-- end boards_editforum.thtml -->
+
+{# end {templatelocation} #}

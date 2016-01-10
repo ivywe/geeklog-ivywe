@@ -1,4 +1,5 @@
-<!-- start topiclisting.thtml -->
+{# begin {templatelocation} #}
+
 {outline_header}
 
 <ul class="uk-breadcrumb">
@@ -33,4 +34,5 @@
 
 {pagenavigation}
 {outline_footer}
-<!-- end topiclisting.thtml -->
+
+{# end {templatelocation} #}

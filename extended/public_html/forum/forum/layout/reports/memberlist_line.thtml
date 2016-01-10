@@ -1,3 +1,5 @@
+{# begin {templatelocation} #}
+
 <!-- memberlist_line.thtml -->
 <tr>
     <td class="aligncenter">{member_uid}</td>
@@ -9,3 +11,5 @@
     <td class="uk-text-nowrap">{website_link}</td>
     <td class="uk-text-nowrap">{lastposts_link}</td>
 </tr>
+
+{# end {templatelocation} #}

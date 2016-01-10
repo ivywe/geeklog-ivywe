@@ -1,5 +1,5 @@
+{# begin {templatelocation} #}
 
-<!-- start settings.thtml -->
 <div class="uk-overflow-container">
 <table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
     <tr>
@@ -95,4 +95,5 @@
     </tr>
 </table>
 </div>
-<!-- end settings.thtml -->
+
+{# end {templatelocation} #}

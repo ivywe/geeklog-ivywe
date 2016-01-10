@@ -1,5 +1,5 @@
+{# begin {templatelocation} #}
 
-<!-- start submissionform_membertop.thtml -->
 <script type="text/javascript" src="{layout_url}/forum/javascript/createtopic.js"></script>
 
 	<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
@@ -8,4 +8,5 @@
             <td><input type="hidden" name="name" size="35" value="{xusername}"{xhtml}>{username}</td>
         </tr>
         <tr>
-<!-- end submissionform_membertop.thtml -->
+
+{# end {templatelocation} #}

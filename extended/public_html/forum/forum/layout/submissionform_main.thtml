@@ -1,5 +1,5 @@
+{# begin {templatelocation} #}
 
-<!-- start submissionform_main.thtml -->
             </tr>
             <tr>
                 <th>&nbsp;{LANG_SUBJECT}:</th>
@@ -46,4 +46,5 @@
                 </td>
             </tr>
         </table>
-<!-- end submissionform_main.thtml -->
+
+{# end {templatelocation} #}

@@ -1,5 +1,5 @@
+{# begin {templatelocation} #}
 
-<!-- start banip_mgmt.thtml -->
 {startblock}
 {navbar}
 <form class="uk-form" id="banform" name="frm_messages" action="{phpself}" method="post">
@@ -51,4 +51,5 @@
 </div>
 </form>
 {endblock}
-<!-- end banip_mgmt.thtml -->
+
+{# end {templatelocation} #}

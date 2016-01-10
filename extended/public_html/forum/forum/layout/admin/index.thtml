@@ -1,5 +1,6 @@
+{# begin {templatelocation} #}
 
-<!-- start index.thtml --><!-- The following is a divider that works across all platforms and browsers -->
+<!-- The following is a divider that works across all platforms and browsers -->
 <div class="uk-overflow-container">
 <table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
     <tr>
@@ -77,4 +78,5 @@
         </tr>
 </table>
 </div>
-<!-- end header.thtml -->
+
+{# end {templatelocation} #}

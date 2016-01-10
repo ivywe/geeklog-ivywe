@@ -1,5 +1,4 @@
-
-<!-- start board_categories.thtml -->
+{# begin {templatelocation} #}
 
 <div class="uk-grid">
   <div class="uk-width-1-2">
@@ -45,4 +44,5 @@
                 </tr>
             </table>
 </div>
-<!-- end board_categories.thtml -->
+
+{# end {templatelocation} #}

@@ -1,3 +1,5 @@
+{# begin {templatelocation} #}
+
 
 <table cellpadding="2" cellspacing="2">
     <tr>
@@ -36,3 +38,9 @@
         </td>
     </tr>
 </table>
+
+{# end {templatelocation} #}
+
+
+
+{# end {templatelocation} #}

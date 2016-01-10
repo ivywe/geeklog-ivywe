@@ -1,5 +1,5 @@
+{# begin {templatelocation} #}
 
-<!-- start userprefs/user_settings.thtml -->
 {navmenu}
 <form class="uk-form" action="{PHP_SELF}" method="post">
 <div><input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}></div>
@@ -137,4 +137,5 @@
 </div>
 
 </form>
-<!-- end userprefs/user_settings.thtml -->
+
+{# end {templatelocation} #}

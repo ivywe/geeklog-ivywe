@@ -1,5 +1,5 @@
+{# begin {templatelocation} #}
 
-<!-- start boards_editcategory.thtml -->
 <form class="uk-form" action="{PHP_SELF}" method="post">
 <div class="uk-overflow-container">
 <table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
@@ -48,4 +48,5 @@
     </table>
 </div>
 </form>
-<!-- end boards_editcategory.thtml -->
+
+{# end {templatelocation} #}

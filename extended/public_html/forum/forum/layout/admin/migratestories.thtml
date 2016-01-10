@@ -1,5 +1,5 @@
+{# begin {templatelocation} #}
 
-<!-- start migratestories.thtml -->
 <script type="text/javascript">
     <!-- Begin
     var allChecked;
@@ -72,4 +72,5 @@
 </table>
 </div>
 </form>
-<!-- end migratestories.thtml -->
+
+{# end {templatelocation} #}

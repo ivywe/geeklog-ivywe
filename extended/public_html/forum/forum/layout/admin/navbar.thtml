@@ -1,5 +1,4 @@
-
-<!-- start navbar.thtml -->
+{# begin {templatelocation} #}
 
 <div class="uk-grid">
   <div class="uk-width-5-10">{search_forum}</div>
@@ -32,4 +31,4 @@
 </div>
 -->
 
-<!-- end navbar.thtml -->
+{# end {templatelocation} #}

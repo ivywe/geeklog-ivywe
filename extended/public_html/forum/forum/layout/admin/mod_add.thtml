@@ -1,5 +1,5 @@
+{# begin {templatelocation} #}
 
-<!-- start mod_add.thtml -->
 <script type="text/javascript">
     <!-- Begin
     function toggleModeratorMode(mode) { 
@@ -72,4 +72,5 @@
     </table>
 	</div>
 </form>
-<!-- end mod_add.thtml -->
+
+{# end {templatelocation} #}

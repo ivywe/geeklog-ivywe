@@ -758,7 +758,7 @@ function is_Japanese_Holiday($timestamp)
               if ( $year >= 2007 ) return true; //みどりの日
               if ( $year >= 1986 )
               {
-                  // 5/4が日曜日は『只の日曜』、月曜日は『憲法記念日の振替休日』(～2006年)
+                  // 5/4が日曜日は『只の日曜』､月曜日は『憲法記念日の振替休日』(～2006年)
                   if ( $weekday > 1 ) return true; //国民の休日
               }
           }

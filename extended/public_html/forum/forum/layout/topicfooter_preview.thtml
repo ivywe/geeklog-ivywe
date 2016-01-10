@@ -1,4 +1,5 @@
-<!-- start topicfooter_preview.thtml -->
+{# begin {templatelocation} #}
+
 </table>
 <p></p>
 <div class="uk-overflow-container">
@@ -8,4 +9,5 @@
         </tr>
 </table>
 </div>
-<!-- end topicfooter_preview.thtml -->
+
+{# end {templatelocation} #}

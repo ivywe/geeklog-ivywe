@@ -1,5 +1,4 @@
-
-<!-- start forum_jump.thtml -->
+{# begin {templatelocation} #}
 
 <form class="uk-form" action="{action}" method="post" name="jumpbox" onsubmit="if(document.jumpbox.forum.value == -1){return false;}">
 	<div>
@@ -10,5 +9,4 @@
 	</div>
 </form>
 
-
-<!-- end forum_jump.thtml -->
+{# end {templatelocation} #}

@@ -1,4 +1,4 @@
-<!--start categorylisting.thtml -->
+{# begin {templatelocation} #}
 
 <div class="uk-grid uk-width-large-1-1 uk-visible-large">
   <div class="uk-width-1-2">
@@ -37,4 +37,4 @@
                             </table>
 	</div>
 
-<!--end categorylisting.thtml -->
+{# end {templatelocation} #}

@@ -1,3 +1,5 @@
-<!-- start blockheader.thtml -->
+{# begin {templatelocation} #}
+
 <h2>{block_title}</h2>
-<!-- end blockheader.thtml -->
+
+{# end {templatelocation} #}

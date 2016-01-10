@@ -1,3 +1,5 @@
+{# begin {templatelocation} #}
+
 <!-- start latestpostsblock.thtml -->
 <dl>
     <dt>
@@ -7,3 +9,5 @@
             {block_records}
 </dl>
 <!-- end latestpostsblock.thtml -->
+
+{# end {templatelocation} #}

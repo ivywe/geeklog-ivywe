@@ -1,6 +1,14 @@
+{# begin {templatelocation} #}
+
 <div id="sitemap">
     <a name="PAGE_TOP" id="PAGE_TOP"></a>
     <h2>{lang_sitemap}</h2>
     {selector}
     {data_sources}
 </div>
+
+{# end {templatelocation} #}
+
+
+
+{# end {templatelocation} #}

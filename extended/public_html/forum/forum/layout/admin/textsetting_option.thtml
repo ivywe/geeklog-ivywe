@@ -1,5 +1,5 @@
+{# begin {templatelocation} #}
 
-<!-- start textsetting_option.thtml -->
 <tr style="vertical-align:middle;">
 <th>{LANG_title}</th>
 <td>
@@ -13,4 +13,5 @@
 	</div>
 </td>
 </tr>
-<!-- end textsetting_option.thtml -->
+
+{# end {templatelocation} #}

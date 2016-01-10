@@ -1,4 +1,5 @@
-<!--start topic.thtml -->
+{# begin {templatelocation} #}
+
 <hr>
 <div class="uk-grid">
 	<div class="uk-width-1-1">
@@ -51,4 +52,5 @@
 		</div>
 	</div>
 </div>
-<!--end topic.thtml -->
+
+{# end {templatelocation} #}

@@ -1,4 +1,4 @@
-<!--start forumlisting_record.thtml -->
+{# begin {templatelocation} #}
 
 <tr><td>
 <div class="uk-grid">
@@ -16,4 +16,4 @@
 
 </td></tr>
 
-<!--end forumlisting_record.thtml -->
+{# end {templatelocation} #}

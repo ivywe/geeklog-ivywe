@@ -1,1 +1,9 @@
+{# begin {templatelocation} #}
+
 <li><span class="sitemap_item">{date}{item}</span></li>
+
+{# end {templatelocation} #}
+
+
+
+{# end {templatelocation} #}

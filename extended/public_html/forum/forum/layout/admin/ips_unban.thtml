@@ -1,5 +1,5 @@
+{# begin {templatelocation} #}
 
-<!-- start ips_unban.thtml -->
 <form class="uk-form" action="{phpself}" method="post">
 <div>
     <input type="hidden" name="op" value="banip"{xhtml}>
@@ -13,4 +13,5 @@
 <center><input type="submit" value="{ban}"{xhtml}></center>
 </div>
 </form>
-<!-- end ips_unban.thtml -->
+
+{# end {templatelocation} #}

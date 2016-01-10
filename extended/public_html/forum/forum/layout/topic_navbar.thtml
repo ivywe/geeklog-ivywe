@@ -1,5 +1,4 @@
-<!-- start topic_navbar.thtml -->
-
+{# begin {templatelocation} #}
 
 <ul class="uk-breadcrumb">
         <li class="uk-text-success uk-text-bold"><i class="uk-icon-folder-open-o"></i></li>
@@ -18,5 +17,4 @@
 
 <div>{pagenavigation}</div>
 
-
-<!-- end topic_navbar.thtml -->
+{# end {templatelocation} #}

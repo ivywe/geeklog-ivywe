@@ -1,3 +1,5 @@
+{# begin {templatelocation} #}
+
 <!-- start memberlist.thtml -->
 {navmenu}
 <form class="uk-form" method="post" action="{site_url}/forum/memberlist.php">
@@ -30,3 +32,5 @@
 </div>
 </form>
 <!-- start memberlist.thtml -->
+
+{# end {templatelocation} #}
