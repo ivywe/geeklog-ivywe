@@ -1,77 +1,53 @@
-<!-- start view_image.thtml -->
+{# begin {templatelocation} #}
+
 {lbslideshow}
-
-<div class="uk-grid">
-  <div class="uk-width-1-1 uk-margin">
-    {birdseed}
-  </div>
-  <div class="uk-width-1-1 uk-margin">
-      <h3>{album_title}</h3>
-  </div>
-</div>
-
-<div class="uk-text-right">{pagination}</div>
-
-<div>
-  <h2 class="uk-text-center">{media_title}</h2>
-  <div class="uk-text-center">{image_detail}</div>
-</div>
-<div class="uk-margin-large-bottom uk-margin">
-    {media_desc}
-</div>
-<div class="uk-grid">
-  <div class="uk-width-medium-1-3">
-{media_number}
-  </div>
-  <div class="uk-width-medium-1-3">
- Media id: {media_id}
-  </div>
-  <div class="uk-width-medium-1-3 uk-text-right">
-{getid3}{media_properties}{getid3end}
-    {media_time} {lang_views} {media_views}<br>
-	<span class="uk-text-bold">{lang_uploaded_by}:</span>&nbsp;{owner_username}
-  </div>
-  <div class="uk-width-1-1 uk-margin uk-text-right">
-
-      <form class="uk-form" name="mgsearch" id="mgsearch" method="post" action="{site_url}/search.php" style="margin:0;padding:0">
-      <div>
+<ul class="uk-breadcrumb">{birdseed}</ul>
+<div class="mg_album_header">
+  <div class="mg_album_title"><strong>{album_title}</strong>{!if rsslink}&nbsp;{rsslink}{!endif}</div>
+  <div class="mg_search">
+    <form name="mgsearch" method="post" action="{site_url}/search.php" class="uk-form"><div>
       <input type="text" name="keywords" value="{keywords}"{xhtml}>
       <input type="hidden" name="mode" value="search"{xhtml}>
       <input type="hidden" name="swhere" value="0"{xhtml}>
-      <input type="submit" class="uk-button" value="{lang_search}"{xhtml}>
-      </div>
-      </form>
-
-      {!if url_slideshow}
-      <a href="{url_slideshow}" class="uk-button">{lang_slideshow}</a>
-      {!else}
-      {!endif}
-      {!if postcard_link}
-      {postcard_link}
-      {!endif}
-
+      <input type="submit" value="{lang_search}"{xhtml}>
+    </div></form>
   </div>
 </div>
-<div class="uk-text-center">
-      {rating_box}
+<div class="mg_navbar">
+{!if prev_link}<a class="button left" href="{prev_link}">{lang_prev}</a>{!endif}
+{!if next_link}<a class="button right" href="{next_link}">{lang_next}</a>{!endif}
+{!if url_slideshow}<a class="button" href="{url_slideshow}">{lang_slideshow}</a>{!endif}
+{!if download_link}<a class="button" href="{download_link}">{lang_download}</a>{!endif}
+{!if property}<a class="button" href="#" onclick="return popitup('{property}')">{lang_property}</a>{!endif}
+{!if switch_size}<a class="button" href="{switch_size}">{lang_switch_size}</a>{!endif}
+{!if edit_item_link}<a class="button" href="{edit_item_link}">{lang_edit}</a>{!endif}
+&nbsp;
+{!if pagination}<div class="mg_right_nav">{item_number}&nbsp;{lang_of}&nbsp;{total_items}</div>{!endif}
 </div>
-<div class="uk-text-center">
-	{lang_keywords} {media_keywords}
+<div class="mg_media_title">{!if media_title}{media_title}{!else}&nbsp;{!endif}</div>
+<div class="mg_media_detail">{image_detail}</div>
+<div class="mg_media_desc">{!if media_desc}{media_desc}{!else}&nbsp;{!endif}</div>
+<div class="mg_info">
+  <div class="mg_info_left">
+    <p><strong>ID:</strong>&nbsp;{media_id}</p>
+    {!if media_properties}<p>{getid3}{media_properties}{getid3end}</p>{!endif}
+  </div>
+  <div class="mg_info_right">
+    <p><strong>{lang_uploaded_by}:</strong>&nbsp;{owner_username}</p>
+  </div>
+  <div class="mg_info_center">
+    <p>{media_time}</p>
+    <p>{lang_views} {media_views}</p>
+    <div>{rating_box}</div>
+    {!if media_keywords}<p><strong>{lang_keywords}</strong> {media_keywords}</p>{!endif}
+  </div>
+  {!if exif_info}
+  <div class="mg_exif_info" style="clear:both;margin:0 5px">
+  {exif_info}
+  </div>
+  {!endif}
 </div>
-<div class="uk-text-center">
-	<a href="#" onclick="return popitup('{property}')">{lang_property}</a>
-</div>
-<div class="uk-text-center">
-	{edit_item}
-</div>
-<div class="uk-text-center">
-      {download} {shutterfly_submit}
-</div>
-<div class="uk-text-center">
-	{exif_info}
-</div>
-
-{!if jumpbox}<div style="text-align:right;margin:4px 0">{jumpbox}</div>{!endif}
+{!if jumpbox}<div class="mg_jumpbox">{jumpbox}</div>{!endif}
 <script type="text/javascript">
 //<![CDATA[
 function popitup(url)
@@ -82,17 +58,5 @@ function popitup(url)
 }
 //]]>
 </script>
-<!-- JS Functions which will execute only if JS enabled will un-hide the special features that enhance the profile editor -->
-<script type="text/javascript">
-//<![CDATA[
-var el;
-el=document.getElementsByTagName('span');
-for(i=0;i<el.length;i++){
-    if(el[i].className == 'jsenabled_show'){
-        el[i].style.display = '';
-    } else if(el[i].className == 'jsenabled_hide'){
-        el[i].style.display = 'none';
-    }
-}
-//]]>
-</script>
+
+{# end {templatelocation} #}

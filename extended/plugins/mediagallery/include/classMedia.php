@@ -1,13 +1,16 @@
 <?php
 // +--------------------------------------------------------------------------+
-// | Media Gallery Plugin - glFusion CMS                                      |
+// | Media Gallery Plugin - Geeklog                                           |
 // +--------------------------------------------------------------------------+
 // | classMedia.php                                                           |
 // |                                                                          |
 // | Media objects class and handling routines                                |
 // +--------------------------------------------------------------------------+
-// | $Id:: classMedia.php 2869 2008-07-31 14:38:32Z mevans0263               $|
-// +--------------------------------------------------------------------------+
+// | Copyright (C) 2015 by the following authors:                             |
+// |                                                                          |
+// | Yoshinori Tahara       taharaxp AT gmail DOT com                         |
+// |                                                                          |
+// | Based on the Media Gallery Plugin for glFusion CMS                       |
 // | Copyright (C) 2002-2008 by the following authors:                        |
 // |                                                                          |
 // | Mark R. Evans          mark AT glfusion DOT org                          |
@@ -62,16 +65,11 @@ class Media {
     var $remote;
     var $remote_url;
     var $access;
-
     var $media_thumbnail;
     var $media_thumbnail_file;
     var $media_size;
 
-    function Media () {
-    }
-
-    function constructor(&$M, &$aid)
-    {
+    function Media(&$M, &$aid) {
         $this->id   = $M['media_id'];
         $this->type = $M['media_type'];
         if ($this->type != -1) {
@@ -105,187 +103,318 @@ class Media {
         }
     }
 
-    function setAccessRights()
+    static public function hasAccess($owner_id, $group_id, $perm_owner, $perm_group, $perm_members, $perm_anon)
     {
-        global $MG_albums;
-        $this->access = $MG_albums[$this->album_id]->access;
+        global $_USER, $_GROUPS;
+
+        if (SEC_hasRights('mediagallery.admin') || SEC_inGroup('Root')) return 3;
+
+        $uid = empty($_USER['uid']) ? 1 : $_USER['uid'];
+
+        if ($uid == $owner_id) return $perm_owner;
+
+        if (in_array($group_id, $_GROUPS)) return $perm_group;
+
+        if ($uid == 1) return $perm_anon;
+
+        return $perm_members;
     }
 
-    function getMediaExt($path_and_filename)
+    private function setAccessRights()
+    {
+        global $_TABLES;
+
+        $sql = "SELECT owner_id,group_id,perm_owner,perm_group,perm_members,perm_anon "
+             . "FROM {$_TABLES['mg_albums']} "
+             . "WHERE album_id = " . $this->album_id;
+        $result = DB_query($sql);
+        $A = DB_fetchArray($result);
+        $this->access = self::hasAccess($A['owner_id'], $A['group_id'], $A['perm_owner'],
+                                        $A['perm_group'], $A['perm_members'], $A['perm_anon']);
+    }
+
+    private function setMediaThumbnail()
+    {
+        global $_TABLES, $_MG_CONF;
+
+        $info = array(
+            'media_type'        => $this->type,
+            'mime_type'         => $this->mime_type,
+            'media_filename'    => $this->filename,
+            'media_mime_ext'    => $this->mime_ext,
+            'remote_media'      => $this->remote_url,
+            'media_tn_attached' => $this->tn_attached,
+        );
+        $tn_size = DB_getItem($_TABLES['mg_albums'], 'tn_size', 'album_id=' . $this->album_id);
+        list($this->media_thumbnail,
+             $this->media_thumbnail_file,
+             $this->media_size) = self::getThumbInfo($info, $tn_size);
+    }
+
+    static public function getMediaExt($path_and_filename)
     {
         global $_MG_CONF;
-        $ext = '';
+        $retval = 'jpg';
         foreach ($_MG_CONF['validExtensions'] as $ext)
-            if (file_exists($path_and_filename . $ext)) break;
-        return $ext;
+            if (file_exists($path_and_filename . $ext)) {
+                $retval = $ext;
+                break;
+            }
+        return $retval;
     }
 
-    // --- get the default thumbnail
-    function getDefaultThumbnail()
+    static public function getThumbInfo(&$info, $tn_size='')
     {
         global $_MG_CONF;
 
-        switch($this->type) {
-            case 0 :    // standard image
-                $tmpstr = 'tn/' . $this->filename[0] . '/' . $this->filename;
-                $default_thumbnail = $tmpstr . '.' . $this->mime_ext;
-                if (!file_exists($_MG_CONF['path_mediaobjects'] . $default_thumbnail)) {
-                    $default_thumbnail = $tmpstr . '.jpg';
-                    $ext = $this->getMediaExt($_MG_CONF['path_mediaobjects'] . $tmpstr);
+        if ($info['media_tn_attached'] == 1) {
+            $pimage = self::getFilePath('tn', $info['media_filename'], 'jpg', 1);
+            $image  = self::getFileUrl ('tn', $info['media_filename'], 'jpg', 1);
+        } else {
+            $fname = self::getDefaultThumbnail($info, $tn_size);
+            $pimage = $_MG_CONF['path_mediaobjects']      . $fname;
+            $image  = $_MG_CONF['mediaobjects_url'] . '/' . $fname;
+        }
+        $size = @getimagesize($pimage);
+        if ($size == false) {
+            $fname = 'missing.png';
+            $pimage = $_MG_CONF['path_mediaobjects']      . $fname;
+            $image  = $_MG_CONF['mediaobjects_url'] . '/' . $fname;
+            $size = @getimagesize($pimage);
+        }
+
+        return array($image, $pimage, $size);
+    }
+
+    // get the default thumbnail
+    static public function getDefaultThumbnail($info='', $tn_size='')
+    {
+        global $_MG_CONF;
+
+        switch ($info['media_type']) {
+            case 0:    // standard image
+                $retval = 'generic.png';
+                $filename = $info['media_filename'];
+                if (!empty($filename)) {
+                    $fname = 'tn/' . $filename[0] . '/' . $filename;
+
+                    // testing!!
+                    if ($tn_size !== '') {
+                        $fname = self::getThumbPath($fname, $tn_size);
+                        $fname = rtrim($fname, '.');
+                    }
+
+                    $ext = self::getMediaExt($_MG_CONF['path_mediaobjects'] . $fname);
                     if (!empty($ext)) {
-                        $default_thumbnail = $tmpstr . $ext;
+                        $retval = $fname . $ext;
                     }
                 }
                 break;
-            case 1 :    // video file
-                switch ($this->mime_type) {
 
-                    case 'video/x-flv' :
-                        $default_thumbnail = 'flv.png';
+            case 1:    // video file
+                switch ($info['mime_type']) {
+                    case 'video/x-flv':
+                        $retval = 'flv.png';
                         break;
                     case 'application/x-shockwave-flash' :
-                        $default_thumbnail = 'flash.png';
+                        $retval = 'flash.png';
                         break;
-                    case 'video/mpeg' :
-                    case 'video/x-mpeg' :
-                    case 'video/x-mpeq2a' :
+                    case 'video/mpeg':
+                    case 'video/x-mpeg':
+                    case 'video/x-mpeq2a':
                         if ($_MG_CONF['use_wmp_mpeg'] == 1) {
-                            $default_thumbnail = 'wmp.png';
+                            $retval = 'wmp.png';
                             break;
                         }
-                    case 'video/x-motion-jpeg' :
-                    case 'video/quicktime' :
-                    case 'video/x-qtc' :
-                    case 'audio/mpeg' :
-                    case 'video/x-m4v' :
-                        $default_thumbnail = 'quicktime.png';
+                    case 'video/x-motion-jpeg':
+                    case 'video/quicktime':
+                    case 'video/x-qtc':
+                    case 'audio/mpeg':
+                    case 'video/x-m4v':
+                        $retval = 'quicktime.png';
                         break;
-                    case 'asf' :
-                    case 'video/x-ms-asf' :
-                    case 'video/x-ms-asf-plugin' :
-                    case 'video/avi' :
-                    case 'video/msvideo' :
-                    case 'video/x-msvideo' :
-                    case 'video/avs-video' :
-                    case 'video/x-ms-wmv' :
-                    case 'video/x-ms-wvx' :
-                    case 'video/x-ms-wm' :
-                    case 'application/x-troff-msvideo' :
-                    case 'application/x-ms-wmz' :
-                    case 'application/x-ms-wmd' :
-                        $default_thumbnail = 'wmp.png';
+                    case 'asf':
+                    case 'video/x-ms-asf':
+                    case 'video/x-ms-asf-plugin':
+                    case 'video/avi':
+                    case 'video/msvideo':
+                    case 'video/x-msvideo':
+                    case 'video/avs-video':
+                    case 'video/x-ms-wmv':
+                    case 'video/x-ms-wvx':
+                    case 'video/x-ms-wm':
+                    case 'application/x-troff-msvideo':
+                    case 'application/x-ms-wmz':
+                    case 'application/x-ms-wmd':
+                        $retval = 'wmp.png';
                         break;
                     default :
-                        $default_thumbnail = 'video.png';
+                        $retval = 'video.png';
                         break;
                 }
                 break;
-            case 2 :    // music file
-                $default_thumbnail = 'audio.png';
+
+            case 2:    // music file
+                $retval = 'audio.png';
                 break;
-            case 4 :    // other files
-                switch ($this->mime_type) {
-                    case 'application/zip' :
-                    case 'zip' :
-                    case 'arj' :
-                    case 'rar' :
-                    case 'gz'  :
-                        $default_thumbnail = 'zip.png';
+
+            case 4:    // other files
+                switch ($info['mime_type']) {
+                    case 'application/zip':
+                    case 'application/x-compressed':
+                    case 'application/x-gzip':
+                    case 'multipart/x-gzip':
+                    case 'application/arj':
+                        $retval = 'zip.png';
                         break;
-                    case 'pdf' :
-                    case 'application/pdf' :
-                        $default_thumbnail = 'pdf.png';
+                    case 'application/pdf':
+                        $retval = 'pdf.png';
                         break;
                     default :
-                        if (isset($_MG_CONF['dt'][$this->mime_ext])) {
-                            $default_thumbnail = $_MG_CONF['dt'][$this->mime_ext];
-                        } else {
-                            switch ($this->mime_ext) {
-                                case 'pdf' :
-                                    $default_thumbnail = 'pdf.png';
-                                    break;
-                                case 'arj' :
-                                    $default_thumbnail = 'zip.png';
-                                    break;
-                                case 'gz' :
-                                    $default_thumbnail = 'zip.png';
-                                    break;
-                                default :
-                                    $default_thumbnail = 'generic.png';
-                                    break;
+                        $retval = 'generic.png';
+                        $ext = $info['media_mime_ext'];
+                        if (!empty($ext)) {
+                            if (isset($_MG_CONF['dt'][$ext])) {
+                                $retval = $_MG_CONF['dt'][$ext];
+                            } else {
+                                switch ($ext) {
+                                    case 'pdf':
+                                        $retval = 'pdf.png';
+                                        break;
+                                    case 'zip':
+                                    case 'arj':
+                                    case 'rar':
+                                    case 'gz':
+                                        $retval = 'zip.png';
+                                        break;
+                                }
                             }
                         }
                         break;
                 }
                 break;
-            case 5 :
-                case 'embed' :
-                    if (preg_match("/youtube/i", $this->remote_url)) {
-                        $default_thumbnail = 'youtube.png';
-                    } else if (preg_match("/google/i", $this->remote_url)) {
-                        $default_thumbnail = 'googlevideo.png';
-                    } else {
-                        $default_thumbnail = 'remote.png';
-                    }
-                    break;
 
+            case 5:
+            case 'embed':
+                $retval = 'remote.png';
+                if (!empty($info['remote_media'])) {
+                    if (preg_match("/youtube/i", $info['remote_media'])) {
+                        $retval = 'youtube.png';
+                    } else if (preg_match("/google/i", $info['remote_media'])) {
+                        $retval = 'googlevideo.png';
+                    }
+                }
+                break;
+
+            default:
+                $retval = 'missing.png';
+                break;
         }
-        return $default_thumbnail;
+
+        return $retval;
     }
 
-    function setMediaThumbnail()
+    // Testing!
+    static public function getThumbPath($path, $tn_size)
+    {
+        switch ($tn_size) {
+            case '0':
+                $postfix = '_100.';
+                break;
+            case '1':
+                $postfix = '_150.';
+                break;
+            case '2':
+                $postfix = '_200.';
+                break;
+            case '3':
+                $postfix = '_custom.';
+                break;
+            case '10':
+                $postfix = '_100x100.';
+                break;
+            case '11':
+                $postfix = '_150x150.';
+                break;
+            case '12':
+                $postfix = '_200x200.';
+                break;
+            case '13':
+                $postfix = '_cropcustom.';
+        }
+
+        $p = pathinfo($path);
+        $retval = $p['dirname'] . '/' . $p['filename'] . $postfix;
+        if (isset($p['extension'])) {
+            $retval .= $p['extension'];
+        }
+
+        return $retval;
+    }
+
+    static public function getFilePath($type, $filename, $ext = '', $atttn = 0)
     {
         global $_MG_CONF;
 
-        $default_thumbnail = $this->getDefaultThumbnail();
-        $this->media_thumbnail      = $_MG_CONF['mediaobjects_url'] . '/' . $default_thumbnail;
-        $this->media_thumbnail_file = $_MG_CONF['path_mediaobjects']      . $default_thumbnail;
-        if ($this->tn_attached == 1) {
-            $tmpstr = 'tn/' . $this->filename[0] . '/tn_' . $this->filename;
-            $ext = $this->getMediaExt($_MG_CONF['path_mediaobjects'] . $tmpstr);
-            if (!empty($ext)) {
-                $this->media_thumbnail      = $_MG_CONF['mediaobjects_url'] . '/' . $tmpstr . $ext;
-                $this->media_thumbnail_file = $_MG_CONF['path_mediaobjects']      . $tmpstr . $ext;
-            }
+        $tn = ($atttn == 1) ? 'tn_' : '';
+
+        $path_and_filename = $_MG_CONF['path_mediaobjects'] . $type
+                           . '/' . $filename[0] . '/' . $tn . $filename;
+        if ($atttn == 1) {
+            $ext = 'jpg';
+        } else if (empty($ext)) {
+            $ext = ltrim(self::getMediaExt($path_and_filename), '.');
         }
-        $this->media_size = @getimagesize($this->media_thumbnail_file);
-        if ($this->media_size == false) {
-            $default_thumbnail = 'missing.png';
-            $this->media_thumbnail      = $_MG_CONF['mediaobjects_url'] . '/' . $default_thumbnail;
-            $this->media_thumbnail_file = $_MG_CONF['path_mediaobjects']      . $default_thumbnail;
-            $this->media_size = @getimagesize($this->media_thumbnail_file);
-        }
+
+        return $path_and_filename . '.' . $ext;
     }
 
-    function displayThumb($s, $sortOrder, $force=0)
+    static public function getFileUrl($type, $filename, $ext = '', $atttn = 0)
     {
-        global $_USER, $_CONF, $_MG_CONF, $MG_albums, $_TABLES, $_MG_USERPREFS,
-               $LANG_MG03, $LANG_MG01, $ratedIds;
+        global $_MG_CONF;
 
-        $T = MG_templateInstance( MG_getTemplatePath($this->album_id) );
-        $media_cell_image_template = 'album_page_body_media_cell.thtml';
-        if ($MG_albums[$this->album_id]->display_columns == 1 && $force == 0) {
-            $media_cell_image_template = 'album_page_body_media_cell_1.thtml';
+        $tn = ($atttn == 1) ? 'tn_' : '';
+
+        $tmpstr = $type . '/' . $filename[0] . '/' . $tn . $filename;
+        $path_and_filename = $_MG_CONF['path_mediaobjects'] . $tmpstr;
+
+        if ($atttn == 1) {
+            $ext = 'jpg';
+        } else if (empty($ext)) {
+            $ext = ltrim(self::getMediaExt($path_and_filename), '.');
         }
-        $T->set_file (array(
-            'media_cell_image'      => $media_cell_image_template,
-            'media_rate_results'    => 'album_page_body_media_cell_rating.thtml',
-            'media_comments'        => 'album_page_body_media_cell_comment.thtml',
-            'media_views'           => 'album_page_body_media_cell_view.thtml',
-            'media_cell_keywords'   => 'album_page_body_media_cell_keywords.thtml',
-            'mp3_podcast'           => 'mp3_podcast.thtml',
-        ));
 
-        // type == 1 video
-        // type == 2 audio
-        if (($this->type == 1 || $this->type == 2 || $this->type == 5)
-                && ($MG_albums[$this->album_id]->playback_type == 0 || $MG_albums[$this->album_id]->playback_type == 1)
+        return $_MG_CONF['mediaobjects_url'] . '/' . $tmpstr . '.' . $ext;
+    }
+
+    public function displayThumb($opt = array())
+    {
+        global $_USER, $_CONF, $_MG_CONF, $_TABLES, $LANG_MG03, $LANG_MG01;
+
+        $sortOrder  = isset($opt['sortorder'])  ? $opt['sortorder']  : 0;
+        $searchmode = isset($opt['searchmode']) ? $opt['searchmode'] : 0;
+        $album      = isset($opt['album_id'])   ? $opt['album_id']   : NULL;
+        $mode       = isset($opt['imageonly'])  ? $opt['imageonly']  : 0; // $mode = 1 return image only
+
+        if ($album === NULL) {
+            $album = new mgAlbum($this->album_id);
+        }
+
+        $type = $this->type;
+
+        $_MG_USERPREFS = MG_getUserPrefs();
+
+        // $type == 1 video
+        // $type == 2 audio
+        if (($type == 1 || $type == 2 || $type == 5)
+                && ($album->playback_type == 0 || $album->playback_type == 1)
                 && $_MG_CONF['popup_from_album'] == 1) {
-            if ($MG_albums[$this->album_id]->playback_type == 0) {
-                if ($this->type == 2){
+
+            if ($album->playback_type == 0) {
+                if ($type == 2){
                     // determine what type of player we will use (WMP, QT or Flash)
                     $player = $_MG_CONF['mp3_player'];
-                    if ( isset($_MG_USERPREFS['mp3_player']) && $_MG_USERPREFS['mp3_player'] != -1 ) {
+                    if (isset($_MG_USERPREFS['mp3_player']) && $_MG_USERPREFS['mp3_player'] != -1) {
                         $player = $_MG_USERPREFS['mp3_player'];
                     }
                     switch ($player) {
@@ -302,119 +431,209 @@ class Media {
                             $new_x = 580;
                             break;
                     }
-                    if ( $this->mime_type == 'audio/mpeg' ) {
+                    if ($this->mime_type == 'audio/mpeg') {
                         $new_y = 360;
                         $new_x = 580;
                     }
-                    if ( $this->tn_attached == 1 && $player != 2) {
+                    if ($this->tn_attached == 1 && $player != 2) {
                         $tnsize = $this->media_size;
                         $new_y += $tnsize[0];
-                        if ( $tnsize[1] > $new_x ) {
+                        if ($tnsize[1] > $new_x) {
                             $new_x = $tnsize[1];
                         }
                     }
-                    if ( $MG_albums[$this->album_id]->playback_type == 0 ) {
-                        $url_display_item = "javascript:showVideo('" . $_MG_CONF['site_url'] . '/video.php?n=' . $this->id . "'," . $new_y . ',' . $new_x . ')';
+                    if ($album->playback_type == 0) {
+                        $url_display_item = self::getHref_showvideo($this->id, $new_y, $new_x);
                     } else {
                         $url_display_item = $_MG_CONF['site_url'] . '/download.php?mid=' . $this->id;
                     }
                     $resolution_x = $new_x;
                     $resolution_y = $new_y;
                 } else { // must be a video...
-                    // set the default playback options...
-                    $playback_options['play']    = $_MG_CONF['swf_play'];
-                    $playback_options['menu']    = $_MG_CONF['swf_menu'];
-                    $playback_options['quality'] = $_MG_CONF['swf_quality'];
-                    $playback_options['height']  = $_MG_CONF['swf_height'];
-                    $playback_options['width']   = $_MG_CONF['swf_width'];
-                    $playback_options['loop']    = $_MG_CONF['swf_loop'];
-                    $playback_options['scale']   = $_MG_CONF['swf_scale'];
-                    $playback_options['wmode']   = $_MG_CONF['swf_wmode'];
-                    $playback_options['allowscriptaccess'] = $_MG_CONF['swf_allowscriptaccess'];
-                    $playback_options['bgcolor']    = $_MG_CONF['swf_bgcolor'];
-                    $playback_options['swf_version'] = $_MG_CONF['swf_version'];
-                    $playback_options['flashvars']   = $_MG_CONF['swf_flashvars'];
 
-                    $poResult = DB_query("SELECT * FROM {$_TABLES['mg_playback_options']} WHERE media_id='" . addslashes($this->id) . "'");
-                    while ( $poRow = DB_fetchArray($poResult) ) {
+                    $playback_options['height'] = $_MG_CONF['swf_height'];
+                    $playback_options['width']  = $_MG_CONF['swf_width'];
+                    $poResult = DB_query("SELECT * FROM {$_TABLES['mg_playback_options']} "
+                                       . "WHERE media_id='" . addslashes($this->id) . "'");
+                    while ($poRow = DB_fetchArray($poResult)) {
                         $playback_options[$poRow['option_name']] = $poRow['option_value'];
                     }
 
-                    if ( $this->resolution_x > 0 ) {
+                    if ($this->resolution_x > 0) {
                         $resolution_x = $this->resolution_x;
                         $resolution_y = $this->resolution_y;
                     } else {
-                        if ( $this->media_resolution_x == 0 && $this->remote_media != 1) {
-                            $size = @filesize($_MG_CONF['path_mediaobjects'] . 'orig/' . $this->filename[0] . '/' . $this->filename . '.' . $this->mime_ext);
+                        if ($this->resolution_x == 0 && $this->remote_media != 1) {
+                            $filepath = self::getFilePath('orig', $this->filename, $this->mime_ext);
+                            $size = @filesize($filepath);
+                            
                             // skip files over 8M in size..
-                            if ( $size < 8388608 ) {
-                                $ThisFileInfo = MG_getMediaMetaData($_MG_CONF['path_mediaobjects'] . 'orig/' . $this->filename[0] . '/' . $this->filename . '.' . $this->mime_ext);
-                                if ( $ThisFileInfo['video']['resolution_x'] < 1 || $ThisFileInfo['video']['resolution_y'] < 1 ) {
-                                    if (isset($ThisFileInfo['meta']['onMetaData']['width']) && isset($ThisFileInfo['meta']['onMetaData']['height']) ) {
-                                        $resolution_x = $ThisFileInfo['meta']['onMetaData']['width'];
-                                        $resolution_y = $ThisFileInfo['meta']['onMetaData']['height'];
-                                    } else {
-                                        $resolution_x = -1;
-                                        $resolution_y = -1;
-                                    }
-                                } else {
-                                    $resolution_x = $ThisFileInfo['video']['resolution_x'];
-                                    $resolution_y = $ThisFileInfo['video']['resolution_y'];
-                                }
-                                if ( $resolution_x != 0 ) {
-                                    $sql = "UPDATE " . $_TABLES['mg_media'] . " SET media_resolution_x=" . intval($resolution_x) . ",media_resolution_y=" . intval($resolution_y) . " WHERE media_id='" . addslashes($this->id) . "'";
-                                    DB_query( $sql,1 );
-                                }
+                            if ($size < 8388608) {
+                                list($resolution_x, $resolution_y) = self::getResolutionID3($filepath);
                             }
                         } else {
                             $resolution_x = $this->resolution_x;
                             $resolution_y = $this->resolution_y;
                         }
                     }
+
                     $resolution_x = $playback_options['width'];
                     $resolution_y = $playback_options['height'];
-                    if ( $resolution_x < 1 || $resolution_y < 1 ) {
+                    if ($resolution_x < 1 || $resolution_y < 1) {
                         $resolution_x = 480;
                         $resolution_y = 320;
                     } else {
                         $resolution_x = $resolution_x + 40;
                         $resolution_y = $resolution_y + 40;
                     }
-                    if ( $this->mime_type == 'video/x-flv' && $_MG_CONF['use_flowplayer'] != 1) {
+                    if ($this->mime_type == 'video/x-flv' && $_MG_CONF['use_flowplayer'] != 1) {
                         $resolution_x = $resolution_x + 60;
-                        if ( $resolution_x < 590 ) {
+                        if ($resolution_x < 590) {
                             $resolution_x = 590;
                         }
                         $resolution_y = $resolution_y + 80;
-                        if ( $resolution_y < 500 ) {
+                        if ($resolution_y < 500) {
                             $resolution_y = 500;
                         }
                     }
-                    if ( $this->type == 5 ) {
+                    if ($type == 5) {
                         $resolution_x = 460;
                         $resolution_y = 380;
                     }
-                    $url_display_item = "javascript:showVideo('" . $_MG_CONF['site_url'] . '/video.php?n=' . $this->id . "'," . $resolution_y . ',' . $resolution_x . ')';
+                    $url_display_item = self::getHref_showvideo($this->id, $resolution_y, $resolution_x);
                 }
             } else {
                 $url_display_item = $_MG_CONF['site_url'] . '/download.php?mid=' . $this->id;
             }
-            // check to see if comments and rating are enabled, if not, put a link to edit...
-
-            if ( $MG_albums[$this->album_id]->access == 3 ) {
-                $T->set_var('edit_link', '<br' . XHTML . '><a href="' . $_MG_CONF['site_url'] . '/admin.php?mode=mediaedit&amp;s=1&amp;album_id=' . $this->album_id . '&amp;mid=' . $this->id . '">' . $LANG_MG01['edit'] . '</a>');
-            } else {
-                $T->set_var('edit_link', '');
-            }
         } else {
-            if ($MG_albums[$this->album_id]->useAlternate == 1 && $this->type != 5 && !empty($this->remote_url)) {
+            if ($album->useAlternate == 1 && $type != 5 && !empty($this->remote_url)) {
                 $url_display_item = $this->remote_url;
             } else {
-                $url_display_item  = $_MG_CONF['site_url'] . '/media.php?f=0' . '&amp;sort=' . $sortOrder . '&amp;s=' . $this->id ;
+                $url_display_item = $_MG_CONF['site_url'] . '/media.php?f=0' . '&amp;sort=' . $sortOrder . '&amp;s=' . $this->id ;
             }
         }
-        if ($this->type == 4) { // other
-            $url_display_item  = $_MG_CONF['site_url'] . '/download.php?mid=' . $this->id ;
+
+        $url_media_item = $url_display_item;
+
+        // -- decide what thumbnail size to use, small, medium, large...
+
+        if (isset($_MG_USERPREFS['tn_size']) && $_MG_USERPREFS['tn_size'] != -1) {
+            $tn_size = $_MG_USERPREFS['tn_size'];
+        } else {
+            if ($searchmode == 1) {
+                $tn_size = $_MG_CONF['search_tn_size'];
+            } else {
+                $tn_size = $album->tn_size;
+            }
+        }
+
+        list($tn_width, $tn_height) = self::getTNSize($tn_size, $album->tnWidth, $album->tnHeight);
+
+        list($newwidth, $newheight) = self::getImageWH($this->media_size[0], $this->media_size[1], $tn_width, $tn_height);
+        if (!isset($resolution_x)) {
+            $resolution_x = $newwidth;
+        }
+        if (!isset($resolution_y)) {
+            $resolution_y = $newheight;
+        }
+
+        $username = 'anonymous';
+        if ($this->owner_id != '' && $this->owner_id > 1) {
+            $username = DB_getItem($_TABLES['users'], 'username', "uid=" . intval($this->owner_id));
+        }
+
+        $filepath = self::getFilePath('orig', $this->filename, $this->mime_ext);
+        $fs_bytes = @filesize($filepath);
+
+        $fileSize = MG_getSize($fs_bytes);
+
+        $direct_url = self::getFileUrl('disp', $this->filename, $this->mime_ext);
+        $direct_path = self::getFilePath('disp', $this->filename, $this->mime_ext);
+        if (!file_exists($direct_path)) {
+            $direct_url = self::getFileUrl('disp', $this->filename, 'jpg');
+        }
+
+        $edit_item = '';
+        if ($album->access == 3) {
+            $edit_item = '<a href="' . $_MG_CONF['site_url']
+                       . '/admin.php?mode=mediaedit&amp;s=1&amp;album_id=' . $this->album_id
+                       . '&amp;mid=' . $this->id . '">' . $LANG_MG01['edit'] . '</a>';
+        }
+
+        // build the small rating bar
+        $rating_box = '';
+        if ($album->enable_rating > 0) {
+            require_once $_CONF['path'] . 'plugins/mediagallery/include/lib-rating.php';
+            $starSize = ($_MG_CONF['use_large_stars'] == 1) ? '' : 'sm';
+            $rating_box = MG_getRatingBar(
+                $album->enable_rating,
+                $this->owner_id,
+                $this->id,
+                $this->votes,
+                $this->rating,
+                $starSize
+            );
+        }
+
+        $hrefdirect = '';
+        if ($this->type == 0) { // standard image
+            if ($this->remote == 1) {
+                $hrefdirect = $this->remote_url;
+            } else {
+                $hrefdirect = $direct_url;
+            }
+        }
+        $caption = PLG_replaceTags(str_replace('$', '&#36;', $this->title));
+
+        if ($searchmode == 1) {
+            $templatePath = MG_getTemplatePath_byName($_MG_CONF['search_album_skin']);
+        } else {
+            $templatePath = MG_getTemplatePath($this->album_id);
+        }
+        $L = COM_newTemplate($templatePath);
+        $L->set_file('media_link','medialink.thtml');
+        $L->set_var(array(
+            'hrefdirect' => $hrefdirect,
+            'href'       => $url_media_item,
+            'caption'    => $caption,
+            'id'         => 'id' . rand(),
+        ));
+        $media_start_link = $L->finish($L->parse('media_link_start', 'media_link'));
+
+        if ($searchmode == 1) {
+            $skin = $_MG_CONF['search_frame_skin'];
+            $info = array(
+                'media_type'        => $this->type,
+                'mime_type'         => $this->mime_type,
+                'media_filename'    => $this->filename,
+                'media_mime_ext'    => $this->mime_ext,
+                'remote_media'      => $this->remote_url,
+                'media_tn_attached' => $this->tn_attached,
+            );
+            list($media_thumbnail,
+                 $media_thumbnail_file,
+                 $media_size) = self::getThumbInfo($info, $tn_size);
+        } else {
+            $skin = $album->image_skin;
+            $media_thumbnail = $this->media_thumbnail;
+        }
+        $media_item_thumbnail = MG_getFramedImage($skin, $this->title, $url_media_item,
+                                                  $media_thumbnail, $newwidth, $newheight, $media_start_link);
+
+        if ($mode == 1) {
+            return $media_item_thumbnail;
+        }
+
+        $edit_link = '';
+        if (($type == 1 || $type == 2 || $type == 5)
+                && ($album->playback_type == 0 || $album->playback_type == 1)
+                && $_MG_CONF['popup_from_album'] == 1) {
+            // check to see if comments and rating are enabled, if not, put a link to edit...
+            if ($album->access == 3) {
+                $edit_link = '<br' . XHTML . '><a href="' . $_MG_CONF['site_url']
+                           . '/admin.php?mode=mediaedit&amp;s=1&amp;album_id=' . $this->album_id
+                           . '&amp;mid=' . $this->id . '">' . $LANG_MG01['edit'] . '</a>';
+            }
         }
 
         if ($_MG_CONF['use_upload_time'] == 1) {
@@ -423,80 +642,17 @@ class Media {
             $media_time = MG_getUserDateTimeFormat($this->time);
         }
 
-        $url_media_item = $url_display_item;
+        $media_title = (!empty($this->title)) ? PLG_replaceTags($this->title) : 'No Name';
 
-        // -- decide what thumbnail size to use, small, medium, large...
+        $T = COM_newTemplate($templatePath);
+        $T->set_file(array(
+            'media_cell_image' => 'album_page_media_cell.thtml',
+            'mp3_podcast'      => 'mp3_podcast.thtml',
+        ));
 
-        if (isset($_MG_USERPREFS['tn_size']) && $_MG_USERPREFS['tn_size'] != -1 ) {
-            $tn_size = $_MG_USERPREFS['tn_size'];
-        } else {
-            $tn_size = $MG_albums[$this->album_id]->tn_size;
-        }
-
-        switch ($tn_size) {
-            case '0' :      //small
-                $tn_height = 100;
-                $tn_width  = 100;
-                break;
-            case '1' :      //medium
-                $tn_height = 150;
-                $tn_width  = 150;
-                break;
-            case '2' :
-                $tn_height = 200;
-                $tn_width  = 200;
-                break;
-            case '3' :
-                $tn_height = $MG_albums[$this->album_id]->tnHeight;
-                $tn_width  = $MG_albums[$this->album_id]->tnWidth;
-                if ( $tn_height == 0 ) {
-                    $tn_height = 200;
-                }
-                if ( $tn_width == 0 ) {
-                    $tn_width = 200;
-                }
-                break;
-            default :
-                $tn_height = 150;
-                $tn_width  = 150;
-                break;
-        }
-        if ( $this->media_size[0] > $this->media_size[1] ) { // landscape
-            $ratio = $this->media_size[0] / $tn_width;
-            $newwidth = $tn_width;
-            $newheight = round($this->media_size[1] / $ratio);
-        } else {
-            $ratio = $this->media_size[1] / $tn_height;
-            $newheight = $tn_height;
-            $newwidth = round($this->media_size[0] / $ratio);
-        }
-/*
-        if ( $this->media_size[0] > $this->media_size[1] ) {
-            $ratio = $this->media_size[0] / 50;
-            $smallwidth = 50;
-            $smallheight = round($this->media_size[1] / $ratio);
-        } else {
-            $ratio = $this->media_size[1] / 50;
-            $smallheight = 50;
-            $smallwidth = round($this->media_size[0] / $ratio);
-        }
-*/
-
-        $username = 'anonymous';
-        if ($this->owner_id != '' && $this->owner_id > 1) {
-            $username = DB_getItem($_TABLES['users'], 'username', "uid=" . intval($this->owner_id));
-        }
-
-        if (!isset($resolution_x)) {
-            $resolution_x = $newwidth;
-        }
-        if (!isset($resolution_y)) {
-            $resolution_y = $newheight;
-        }
-
-        if ($this->mime_type == 'audio/mpeg' && $MG_albums[$this->album_id]->mp3ribbon) {
+        if ($this->mime_type == 'audio/mpeg' && $album->mp3ribbon) {
             $T->set_var(array(
-                'mp3_file' => $_MG_CONF['mediaobjects_url'] . '/orig/' . $this->filename[0] . '/' . $this->filename . '.' . $this->mime_ext,
+                'mp3_file' => self::getFileUrl('orig', $this->filename, $this->mime_ext),
                 'site_url' => $_MG_CONF['site_url'],
                 'id'       => $this->mime_ext . rand(),
             ));
@@ -505,60 +661,18 @@ class Media {
             $T->set_var('mp3_podcast', '');
         }
 
-        $fs_bytes = @filesize($_MG_CONF['path_mediaobjects'] . 'orig/' . $this->filename[0] . '/' . $this->filename . '.' . $this->mime_ext);
-        $fileSize = MG_get_size($fs_bytes);
-
-        $direct_url = 'disp/' . $this->filename[0] . '/' . $this->filename . '.' . $this->mime_ext;
-        if (!file_exists($_MG_CONF['path_mediaobjects'] . $direct_url)) {
-            $direct_url = 'disp/' . $this->filename[0] . '/' . $this->filename . '.jpg';
-        }
-
-        $edit_item = '';
-        if ($MG_albums[$this->album_id]->access == 3) {
-            $edit_item = '<a href="' . $_MG_CONF['site_url'] . '/admin.php?mode=mediaedit&amp;s=1&amp;album_id=' . $this->album_id . '&amp;mid=' . $this->id . '">' . $LANG_MG01['edit'] . '</a>';
-        }
-
-        $L = MG_templateInstance(MG_getTemplatePath($this->album_id));
-        $L->set_file('media_link','medialink.thtml');
-        $hrefdirect = '';
-        if ($this->type == 0) {
-            if ($this->remote == 1) {
-                $hrefdirect = $this->remote_url;
-            } else {
-                $hrefdirect = $_MG_CONF['mediaobjects_url'] . '/' . $direct_url;
-            }
-        }
-        $caption = PLG_replaceTags(str_replace('$', '&#36;', $this->title));
-        if ($this->owner_id == $_USER['uid'] || SEC_hasRights('mediagallery.admin')) {
-            $caption .= '<br ' . XHTML . '>(' . $this->id . ')';
-        }
-        $L->set_var(array(
-            'hrefdirect' => $hrefdirect,
-            'href'       => $url_media_item,
-            'caption'    => $caption,
-            'id'         => 'id' . rand(),
-            'xhtml'      => XHTML,
-        ));
-        $media_start_link = $L->finish($L->parse('media_link_start','media_link'));
-
-        // build the small rating bar
-        $rating_box = '';
-        if ($MG_albums[$this->album_id]->enable_rating > 0) {
-            require_once $_CONF['path'] . 'plugins/mediagallery/include/lib-rating.php';
-            $starSize = ($_MG_CONF['use_large_stars'] == 1) ? '' : 'sm';
-            $rating_box = MG_getRatingBar($this->album_id, $this->owner_id, $this->id, $this->votes, $this->rating, $starSize);
-        }
-
         $T->set_var(array(
+            'edit_link'         => $edit_link,
             'play_now'          => '',
             'download_now'      => $_MG_CONF['site_url'] . '/download.php?mid=' . $this->id,
-            'play_in_popup'     => "javascript:showVideo('" . $_MG_CONF['site_url'] . '/video.php?n=' . $this->id . "'," . $resolution_y . ',' . $resolution_x . ')',
-            'row_height'        => $tn_height + 40,
-            'media_title'       => PLG_replaceTags($this->title),
+            'play_in_popup'     => self::getHref_showvideo($this->id, $resolution_y, $resolution_x),
+            'row_height'        => $tn_height,
+            'media_title'       => $media_title,
             'media_description' => PLG_replaceTags(nl2br($this->description)),
             'media_tag'         => strip_tags($this->title),
             'media_time'        => $media_time[0],
             'media_owner'       => $username,
+            'media_item_thumbnail' => $media_item_thumbnail,
             'site_url'          => $_MG_CONF['site_url'],
             'lang_published'    => $LANG_MG03['published'],
             'lang_on'           => $LANG_MG03['on'],
@@ -572,245 +686,215 @@ class Media {
             'filesize'          => $fileSize,
             'media_id'          => $this->id,
             'rating_box'        => $rating_box,
-            'xhtml'             => XHTML,
         ));
 
-        $F = new Template($_MG_CONF['template_path']);
-        $F->set_var('media_frame', $MG_albums[$this->album_id]->imageFrameTemplate);
-        $F->set_var(array(
-            'media_id'          => $this->id,
-            'media_link_start'  => $media_start_link,
-            'media_link_end'    => '</a>',
-            'url_media_item'    => $url_media_item,
-            'url_display_item'  => $url_display_item,
-            'media_thumbnail'   => $this->media_thumbnail,
-            'media_size'        => 'width="' . $newwidth . '" height="' . $newheight . '"',
-            'media_height'      => $newheight,
-            'media_width'       => $newwidth,
-            'border_width'      => $newwidth  + (($MG_albums[$this->album_id]->image_skin == 'mgShadow') ? 12 : 18),
-            'border_height'     => $newheight + (($MG_albums[$this->album_id]->image_skin == 'mgShadow') ? 12 : 18),
-            'row_height'        => $tn_height + 40,
-            'frWidth'           => $newwidth  - $MG_albums[$this->album_id]->frWidth,
-            'frHeight'          => $newheight - $MG_albums[$this->album_id]->frHeight,
-            'media_tag'         => strip_tags($this->description),
-            'filesize'          => $fileSize,
-            'xhtml'             => XHTML,
-        ));
-
-        $T->set_var('media_item_thumbnail', $F->finish($F->parse('media', 'media_frame')));
-
-        if ($MG_albums[$this->album_id]->enable_keywords) {
+        if ($album->enable_keywords) {
             if (!empty($this->keywords)) {
                 $kwText = '';
                 $keyWords = array();
-                $keyWords = explode(' ',$this->keywords);
+                $keyWords = explode(' ', $this->keywords);
                 $numKeyWords = count($keyWords);
-                for ( $i=0;$i<$numKeyWords;$i++ ) {
-                    $keyWords[$i] = str_replace('"',' ',$keyWords[$i]);
+                for ($i=0; $i<$numKeyWords; $i++) {
+                    $keyWords[$i] = str_replace('"', ' ', $keyWords[$i]);
                     $searchKeyword = $keyWords[$i];
-                    $keyWords[$i] = str_replace('_',' ',$keyWords[$i]);
-                    $kwText .= '<a href="' . $_MG_CONF['site_url'] . '/search.php?mode=search&amp;swhere=1&amp;keywords=' . $searchKeyword . '&amp;keyType=any">' . $keyWords[$i] . '</a>';
+                    $keyWords[$i] = str_replace('_', ' ', $keyWords[$i]);
+                    $kwText .= '<a href="' . $_MG_CONF['site_url']
+                             . '/search.php?mode=search&amp;swhere=1&amp;keywords=' . $searchKeyword
+                             . '&amp;keyType=any">' . $keyWords[$i] . '</a>';
                 }
                 $T->set_var(array(
-                    'media_keywords'  =>  $kwText,
-                    'lang_keywords'   =>  $LANG_MG01['keywords'],
+                    'enable_keywords' => 1,
+                    'media_keywords'  => $kwText,
+                    'lang_keywords'   => $LANG_MG01['keywords'],
                 ));
-                $T->parse('media_cell_keywords','media_cell_keywords');
             } else {
                 $T->set_var('lang_keywords', '');
             }
         } else {
             $T->set_var(array(
-                'media_cell_keywords' => '',
+                'enable_keywords'     => '',
                 'lang_keywords'       => '',
             ));
         }
 
-        if ( $MG_albums[$this->album_id]->enable_rating) {
-            $rating = $LANG_MG03['rating'] . ': <strong> ' . $this->rating / 2 .'</strong>/5 ('.$this->votes.' ' . $LANG_MG03['votes'] . ')';
-            $T->set_var('media_rating',$rating);
-            $T->parse('media_rate_results','media_rate_results');
-        }
-
-        if ($MG_albums[$this->album_id]->enable_comments) {
-            if ( $this->type == 4 || ($this->type == 1 && $MG_albums[$this->album_id]->playback_type != 2) || ($this->type == 2 && $MG_albums[$this->album_id]->playback_type != 2) || ($this->type == 5 && $MG_albums[$this->album_id]->playback_type != 2)) {
-                $cmtLink  = '<a href="' . $_MG_CONF['site_url'] . '/media.php?f=0' . '&amp;sort=' . $sortOrder . '&amp;s=' . $this->id . '">' . $LANG_MG03['comments'] . '</a>';
+        if ($album->enable_comments) {
+            $link = '<a href="' . $_MG_CONF['site_url'] . '/media.php?f=0'
+                  . '&amp;sort=' . $sortOrder
+                  . '&amp;s=' . $this->id . '">'
+                  . $LANG_MG03['comments'] . '</a>';
+            $cmtLink = $LANG_MG03['comments'];
+            $cmtLink_alt  = $link;
+            if ($type == 4 ||
+                    ($type == 1 && $album->playback_type != 2) ||
+                    ($type == 2 && $album->playback_type != 2) ||
+                    ($type == 5 && $album->playback_type != 2)) {
+                $cmtLink  = $link;
                 $cmtLink_alt = '';
-            }  else {
-                $cmtLink = $LANG_MG03['comments'];
-                $cmtLink_alt  = '<a href="' . $_MG_CONF['site_url'] . '/media.php?f=0' . '&amp;sort=' . $sortOrder . '&amp;s=' . $this->id . '">' . $LANG_MG03['comments'] . '</a>';
             }
             $T->set_var(array(
-                'media_comments_count'  =>  $this->comments,
-                'lang_comments'         =>  $cmtLink,
-                'lang_comments_hot'     =>  $cmtLink_alt,
+                'media_comments_count' => $this->comments,
+                'lang_comments'        => $cmtLink,
+                'lang_comments_hot'    => $cmtLink_alt,
             ));
-            $T->parse('media_comments', 'media_comments');
+
+            $T->set_var('media_comments', $album->enable_comments);
         }
 
-        if ($MG_albums[$this->album_id]->enable_views) {
+        if ($album->enable_views) {
             $T->set_var(array(
-                'media_views_count'     =>  $this->views,
-                'lang_views'            =>  $LANG_MG03['views']
+                'media_views_count' => $this->views,
+                'lang_views'        => $LANG_MG03['views']
             ));
-            $T->parse('media_views', 'media_views');
+            $T->set_var('media_views', $album->enable_views);
         }
         PLG_templateSetVars('mediagallery', $T);
 
         return $T->finish($T->parse('media_cell', 'media_cell_image'));
     }
-/*
+
     function displayRawThumb($namesOnly=0)
     {
         if ($namesOnly == 1) {
             return array($this->media_thumbnail, $this->media_thumbnail_file);
         }
 
-        $tn_height = 100;
-        if ($this->media_size[0] > $this->media_size[1]) {
-            $ratio = $this->media_size[0] / $tn_height;
-            $newwidth = $tn_height;
-            $newheight = round($this->media_size[1] / $ratio);
-        } else {
-            $ratio = $this->media_size[1] / $tn_height;
-            $newheight = $tn_height;
-            $newwidth = round($this->media_size[0] / $ratio);
-        }
+        list($newwidth, $newheight) = self::getImageWH($this->media_size[0], $this->media_size[1], 100, 100);
         $media_dim = 'width="' . $newwidth . '" height="' . $newheight . '"';
-        return '<img src="' .$this->media_thumbnail . '" ' . $media_dim . ' style="border:none;" alt="' . strip_tags($this->title) . '" title="' . strip_tags($this->title) . '"' . XHTML . '>';
+        $title = strip_tags($this->title);
+        return '<img src="' .$this->media_thumbnail . '" ' . $media_dim
+               . ' style="border:none;" alt="' . $title . '" title="' . $title . '"' . XHTML . '>';
     }
-*/
 
-    function displayRawThumb($namesOnly=0)
+    static public function getTNSize($val, $custom_width=0, $custom_height=0)
     {
-        global $_CONF, $_MG_CONF, $MG_albums, $_MG_USERPREFS, $LANG_MG03;
-
-        switch ($this->type) {
-            case 0 : // standard image
-                $default_thumbnail = 'tn/' . $this->filename[0] . '/' . $this->filename . '.jpg';
-                foreach ($_MG_CONF['validExtensions'] as $ext ) {
-                    if ( file_exists($_MG_CONF['path_mediaobjects'] . 'tn/'. $this->filename[0] . '/' . $this->filename . $ext) ) {
-                        $default_thumbnail = 'tn/'. $this->filename[0] . '/' . $this->filename . $ext;
-                        break;
-                    }
-                }
+        switch ($val) {
+            case '0' :      // include small
+            case '10' :     // crop small
+                $tn_width  = 100;
+                $tn_height = 100;
                 break;
-            case 1 : // video file
-                switch ( $this->mime_type ) {
-                    case 'video/x-flv' :
-                        $default_thumbnail = 'flv.png';
-                        break;
-                    case 'application/x-shockwave-flash' :
-                        $default_thumbnail = 'flash.png';
-                        break;
-                        break;
-                    case 'video/mpeg' :
-                    case 'video/x-motion-jpeg' :
-                    case 'video/quicktime' :
-                    case 'video/mpeg' :
-                    case 'video/x-mpeg' :
-                    case 'video/x-mpeq2a' :
-                    case 'video/x-qtc' :
-                    case 'video/x-m4v' :
-                        $default_thumbnail = 'quicktime.png';
-                        break;
-                    case 'video/x-ms-asf' :
-                    case 'video/x-ms-asf-plugin' :
-                    case 'video/avi' :
-                    case 'video/msvideo' :
-                    case 'video/x-msvideo' :
-                    case 'video/avs-video' :
-                    case 'video/x-ms-wmv' :
-                    case 'video/x-ms-wvx' :
-                    case 'video/x-ms-wm' :
-                    case 'application/x-troff-msvideo' :
-                    case 'application/x-ms-wmz' :
-                    case 'application/x-ms-wmd' :
-                        $default_thumbnail = 'wmp.png';
-                        break;
-                    default :
-                        $default_thumbnail = 'video.png';
-                        break;
-                }
+            case '1' :      // include medium
+            case '11' :     // crop medium
+                $tn_width  = 150;
+                $tn_height = 150;
                 break;
-            case 2 : // music file
-                $default_thumbnail = 'audio.png';
+            case '2' :      // include large
+            case '12' :     // crop large
+                $tn_width  = 200;
+                $tn_height = 200;
                 break;
-            case 4 : // other files
-                switch ($this->mime_type ) {
-                    case 'application/zip' :
-                    case 'application/x-gzip' :
-                    case 'application/x-tar' :
-                    case 'arj' :
-                    case 'rar' :
-                    case 'gz' :
-                        $default_thumbnail = 'zip.png';
-                        break;
-                    case 'application/pdf' :
-                    case 'pdf' :
-                        $default_thumbnail = 'pdf.png';
-                        break;
-                    case 'application/octet-stream' :
-                        if ( $this->mime_ext == 'pdf' ) {
-                            $default_thumbnail = 'pdf.png';
-                        } else if ( $this->mime_ext == 'arj' ) {
-                            $default_thumbnail = 'zip.png';
-                        } else if ( $this->mime_ext == 'rar' ) {
-                            $default_thumbnail = 'zip.png';
-                        } else {
-                            $default_thumbnail = 'generic.png';
-                        }
-                        break;
-                    default :
-                        $default_thumbnail = 'generic.png';
-                        break;
-                }
+            case '3' :      // include custom
+            case '13' :     // crop custom
+                $tn_width  = ($custom_width  == 0) ? 200 : $custom_width;
+                $tn_height = ($custom_height == 0) ? 200 : $custom_height;
                 break;
-            case 5 :
-                $default_thumbnail = 'remote.png';
+            default :
+                $tn_width  = 150;
+                $tn_height = 150;
                 break;
         }
 
-        if ( $this->tn_attached == 1 ) {
-            $media_thumbnail = '';
-            $media_thumbnail_file = '';
-            foreach ($_MG_CONF['validExtensions'] as $ext ) {
-                if ( file_exists($_MG_CONF['path_mediaobjects'] . 'tn/'. $this->filename[0] . '/tn_' . $this->filename . $ext) ) {
-                    $media_thumbnail = $_MG_CONF['mediaobjects_url'] . '/tn/'. $this->filename[0] . '/tn_' . $this->filename . $ext;
-                    $media_thumbnail_file = $_MG_CONF['path_mediaobjects'] . 'tn/'. $this->filename[0] . '/tn_' . $this->filename . $ext;
-                    break;
+        return array($tn_width, $tn_height);
+    }
+
+    static public function getImageWH($imgwidth, $imgheight, $maxwidth, $maxheight, $stretch=true)
+    {
+        if ($imgwidth > $maxwidth || $imgheight > $maxheight) {
+
+            $ratio_width  = $imgwidth / $maxwidth;
+            $ratio_height = $imgheight / $maxheight;
+            if ($ratio_width > $ratio_height) {
+                $newwidth = $maxwidth;
+                $newheight = round($imgheight / $ratio_width);
+            } else {
+                $newheight = $maxheight;
+                $newwidth = round($imgwidth / $ratio_height);
+            }
+
+        } else {
+            if ($stretch == true) {
+
+                if ($imgwidth > $imgheight) {
+                    $ratio_width  = $imgwidth / $maxwidth;
+                    $newwidth = $maxwidth;
+                    $newheight = round($imgheight / $ratio_width);
+                } else {
+                    $ratio_height = $imgheight / $maxheight;
+                    $newheight = $maxheight;
+                    $newwidth = round($imgwidth / $ratio_height);
+                }
+
+            } else {
+                $newwidth  = $imgwidth;
+                $newheight = $imgheight;
+            }
+        }
+        return array($newwidth, $newheight);
+    }
+
+    static public function getHref_showvideo($mid, $height, $width, $mqueue=0)
+    {
+        global $_MG_CONF;
+
+        $queue = ($mqueue == 1) ? '&amp;s=q' : '';
+        return "javascript:showVideo('" . $_MG_CONF['site_url']
+             . '/view.php?n=' . $mid . $queue . "'," . $height . ',' . $width . ')';
+    }
+
+    static public function getID3($filepath)
+    {
+        global $_CONF;
+
+        // include getID3() library
+        require_once $_CONF['path'] . 'plugins/mediagallery/include/lib/getid3/getid3.php';
+        // Needed for windows only
+        if (!defined('GETID3_HELPERAPPSDIR')) {
+            define('GETID3_HELPERAPPSDIR', 'C:/helperapps/');
+        }
+
+        $getID3 = new getID3;
+
+        // Analyze file and store returned data in $FileInfo
+        $FileInfo = $getID3->analyze($filepath);
+        getid3_lib::CopyTagsToComments($FileInfo);
+
+        if (isset($FileInfo['error'])) {
+            if (is_array($FileInfo['error'])) {
+                foreach ($FileInfo['error'] AS $error) {
+                    COM_errorLog("Media::getID3: " . $error);
                 }
             }
-        } else {
-            $media_thumbnail = $_MG_CONF['mediaobjects_url'] . '/' . $default_thumbnail;
-            $media_thumbnail_file = $_MG_CONF['path_mediaobjects'] . $default_thumbnail;
         }
 
-        $media_size = @getimagesize($media_thumbnail_file);
+        return $FileInfo;
+    }
 
-        if ( $media_thumbnail == '' || $media_size == false ) {
-            $default_thumbnail = 'generic.png';
-            $media_thumbnail = $_MG_CONF['mediaobjects_url'] . '/' . $default_thumbnail;
-            $media_thumbnail_file = $_MG_CONF['path_mediaobjects'] . $default_thumbnail;
-            $media_size = @getimagesize($media_thumbnail_file);
+    static public function getResolutionID3($filepath)
+    {
+        global $_TABLES;
+
+        $FileInfo = self::getID3($filepath);
+
+        $resolution_x = $FileInfo['video']['resolution_x'];
+        $resolution_y = $FileInfo['video']['resolution_y'];
+        if ($resolution_x < 1 || $resolution_y < 1) {
+            $resolution_x = -1;
+            $resolution_y = -1;
+            if (isset($FileInfo['meta']['onMetaData']['width']) &&
+                isset($FileInfo['meta']['onMetaData']['height'])) {
+                $resolution_x = $FileInfo['meta']['onMetaData']['width'];
+                $resolution_y = $FileInfo['meta']['onMetaData']['height'];
+            }
+        }
+        if ($resolution_x != 0) {
+            $sql = "UPDATE " . $_TABLES['mg_media']
+                 . " SET media_resolution_x=" . intval($resolution_x)
+                     . ",media_resolution_y=" . intval($resolution_y)
+                 . " WHERE media_id='" . addslashes($I['media_id']) . "'";
+            DB_query($sql);
         }
 
-        if ( $namesOnly == 1 ) {
-            return array($media_thumbnail,$media_thumbnail_file);
-        }
-
-        $tn_height = 100;
-        if ( $media_size[0] > $media_size[1] ) {
-            $ratio = $media_size[0] / $tn_height;
-            $newwidth = $tn_height;
-            $newheight = round($media_size[1] / $ratio);
-        } else {
-            $ratio = $media_size[1] / $tn_height;
-            $newheight = $tn_height;
-            $newwidth = round($media_size[0] / $ratio);
-        }
-        $media_dim = 'width="' . $newwidth . '" height="' . $newheight . '"';
-        return '<img src="' .$media_thumbnail . '" ' . $media_dim . ' style="border:none;" alt="' . strip_tags($this->title) . '" title="' . strip_tags($this->title) . '"' . XHTML . '>';
+        return array($resolution_x, $resolution_y);
     }
 }
 ?>

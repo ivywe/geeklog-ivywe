@@ -1,13 +1,16 @@
 <?php
 // +--------------------------------------------------------------------------+
-// | Media Gallery Plugin - glFusion CMS                                      |
+// | Media Gallery Plugin - Geeklog                                           |
 // +--------------------------------------------------------------------------+
 // | download.php                                                             |
 // |                                                                          |
 // | Download objects directly                                                |
 // +--------------------------------------------------------------------------+
-// | $Id:: download.php 5614 2010-03-19 19:08:33Z mevans0263                 $|
-// +--------------------------------------------------------------------------+
+// | Copyright (C) 2015 by the following authors:                             |
+// |                                                                          |
+// | Yoshinori Tahara       taharaxp AT gmail DOT com                         |
+// |                                                                          |
+// | Based on the Media Gallery Plugin for glFusion CMS                       |
 // | Copyright (C) 2002-2010 by the following authors:                        |
 // |                                                                          |
 // | Mark R. Evans          mark AT glfusion DOT org                          |
@@ -36,86 +39,63 @@ if (!in_array('mediagallery', $_PLUGINS)) {
     exit;
 }
 
-if ( COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1 )  {
+if (COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1) {
     $display = SEC_loginRequiredForm();
     $display = MG_createHTMLDocument($display);
-    echo $display;
+    COM_output($display);
     exit;
 }
 
-if ( !isset($_GET['mid'] ) ) {
-    return;
-}
-
-MG_initAlbums();
+require_once $_CONF['path'] . 'plugins/mediagallery/include/common.php';
 
 // Implements a poor mans hotlink protection, if the request
 // did not originate at our site, don't allow it.
-$allowblank = 1;
-$alloweddomains = array($_CONF['site_url']);
-if (isset($_SERVER['HTTP_REFERER'])) {
-    $referrer = $_SERVER['HTTP_REFERER'];
-} else {
-    $referrer = "";
-}
+$referrer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
 $allowed = 0;
-if ($allowblank > 0) {
-    if($referrer=="") {
+if ($referrer == '') {
+    $allowed = 1;
+} else {
+    if (strpos($referrer, $_CONF['site_url']) !== false) {
         $allowed = 1;
     }
 }
-$domains = count($alloweddomains);
-for($y=0;$y<$domains;$y++) {
-    if (strpos($referrer, $alloweddomains[$y]) !== false) {
-        $allowed = 1;
-        break;
-    }
-}
-if ( $allowed == 0 ) {
-    return;
-}
+if ($allowed == 0) return;
 
+$mid = isset($_GET['mid']) ? COM_applyFilter($_GET['mid']) : '';
+if (empty($mid)) return;
 
-$mid = COM_applyFilter($_GET['mid']);
-
-$aid  = DB_getItem($_TABLES['mg_media_albums'], 'album_id','media_id="' . addslashes($mid) . '"');
-
-if ( $MG_albums[$aid]->access == 0 ) {
-    $display = COM_startBlock ($LANG_ACCESS['accessdenied'], '',COM_getBlockTemplate ('_msg_block', 'header'))
-             . '<br />' . $LANG_MG00['access_denied_msg']
-             . COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
+$aid = DB_getItem($_TABLES['mg_media_albums'], 'album_id', 'media_id="' . addslashes($mid) . '"');
+$album_data = MG_getAlbumData($aid, array('album_id'), true);
+if ($album_data['access'] == 0) {
+    $display = COM_startBlock($LANG_ACCESS['accessdenied'], '',COM_getBlockTemplate('_msg_block', 'header'))
+             . '<br' . XHTML . '>' . $LANG_MG00['access_denied_msg']
+             . COM_endBlock(COM_getBlockTemplate('_msg_block', 'footer'));
     $display = MG_createHTMLDocument($display);
-    echo $display;
+    COM_output($display);
     exit;
 }
 
 $sql = "SELECT * FROM {$_TABLES['mg_media']} WHERE media_id='" . addslashes($mid) . "'";
 $result = DB_query($sql);
-$numRows = DB_numRows($result);
-if ( $numRows > 0 ) {
-    $row = DB_fetchArray($result);
-    if ( $row['media_original_filename'] != "" ) {
-        $filename = $row['media_original_filename'];
-    } else {
-        $filename = $row['media_filename'] . '.' . $row['media_mime_ext'];
+while ($A = DB_fetchArray($result)) {
+    $filename = $A['media_original_filename'];
+    if (empty($filename)) {
+        $filename = $A['media_filename'] . '.' . $A['media_mime_ext'];
     }
-    if ( $row['mime_type'] == 'application/octet-stream' ) {
-        switch ($row['media_mime_ext']) {
-            case 'pdf' :
-            case 'PDF' :
-                $mime_type = 'application/pdf';
-                break;
-            default :
-                $mime_type = $row['mime_type'];
-                break;
-        }
-    } else {
-        $mime_type = $row['mime_type'];
+
+    $mime_type = $A['mime_type'];
+    if ($mime_type == 'application/octet-stream' &&
+            strtolower($A['media_mime_ext']) == 'pdf') {
+        $mime_type = 'application/pdf';
     }
-    if (!$MG_albums[0]->owner_id) {
-        $media_views = $row['media_views'] + 1;
-        DB_query("UPDATE " . $_TABLES['mg_media'] . " SET media_views=" . $media_views . " WHERE media_id='" . addslashes($mid) . "'");
+
+    if (!SEC_hasRights('mediagallery.admin')) {
+        $media_views = $A['media_views'] + 1;
+        DB_change($_TABLES['mg_media'], 'media_views', $media_views, 'media_id', addslashes($mid));
     }
+
+    $path = MG_getFilePath('orig', $A['media_filename'], $A['media_mime_ext']);
+
     header("Pragma: public");
     header("Expires: 0");
     header("Cache-Control: must-revalidate, post-check=0,pre-check=0");
@@ -123,10 +103,9 @@ if ( $numRows > 0 ) {
     header("Content-type:" . $mime_type);
     header("Content-Disposition: attachment; filename=\"" . $filename . "\";");
     header("Content-Transfer-Encoding: binary");
-    header("Content-Length: " . filesize($_MG_CONF['path_mediaobjects'] . 'orig/' . $row['media_filename'][0] . '/' . $row['media_filename'] . '.' . $row['media_mime_ext']));
-
-    $fp = fopen($_MG_CONF['path_mediaobjects'] . 'orig/' . $row['media_filename'][0] . '/' . $row['media_filename'] . '.' . $row['media_mime_ext'],'r');
-    if ( $fp != NULL ) {
+    header("Content-Length: " . filesize($path));
+    $fp = fopen($path, 'r');
+    if ($fp != NULL) {
         while (!feof($fp)) {
             $buf = fgets($fp, 8192);
             echo $buf;

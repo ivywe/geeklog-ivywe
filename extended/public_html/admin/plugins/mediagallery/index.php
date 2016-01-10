@@ -1,10 +1,14 @@
 <?php
 // +--------------------------------------------------------------------------+
-// | Media Gallery Plugin for glFusion CMS                                    |
+// | Media Gallery Plugin - Geeklog                                           |
 // +--------------------------------------------------------------------------+
-// | $Id:: index.php 5847 2010-04-09 13:16:50Z mevans0263                    $|
 // | Set configuration options for Media Gallery Plugin.                      |
 // +--------------------------------------------------------------------------+
+// | Copyright (C) 2015 by the following authors:                             |
+// |                                                                          |
+// | Yoshinori Tahara       taharaxp AT gmail DOT com                         |
+// |                                                                          |
+// | Based on the Media Gallery Plugin for glFusion CMS                       |
 // | Copyright (C) 2005-2010 by the following authors:                        |
 // |                                                                          |
 // | Mark R. Evans          mark AT glfusion DOT org                          |
@@ -29,255 +33,74 @@
 
 require_once '../../../lib-common.php';
 require_once '../../auth.inc.php';
-require_once $_MG_CONF['path_admin'] . 'navigation.php';
-
-$display = '';
 
 // Only let admin users access this page
 if (!SEC_hasRights('mediagallery.config')) {
     // Someone is trying to illegally access this page
-    COM_errorLog("Someone has tried to illegally access the Media Gallery Configuration page.  User id: {$_USER['uid']}, Username: {$_USER['username']}, IP: " . $_SERVER['REMOTE_ADDR'],1);
-    $display .= COM_startBlock($LANG_MG00['access_denied']);
+    COM_errorLog("Someone has tried to illegally access the Media Gallery Configuration page. "
+               . "User id: {$_USER['uid']}, Username: {$_USER['username']}, IP: " . $_SERVER['REMOTE_ADDR'], 1);
+    $display = COM_startBlock($LANG_MG00['access_denied']);
     $display .= $LANG_MG00['access_denied_msg'];
     $display .= COM_endBlock();
-    $display = MG_createHTMLDocument($display, array('what' => 'menu', 'rightblock' => true));
-    echo $display;
+    $display = COM_createHTMLDocument($display);
+    COM_output($display);
     exit;
 }
 
-//MG_initAlbums();
-
-function MG_versionCheck() {
-    global $_MG_CONF, $LANG_MG01;
-
-    $this_version_info = explode(".",$_MG_CONF['version']);
-    $this_head_revision = (int) $this_version_info[0];
-    $this_branch_revision = (int) $this_version_info[1];
-    $this_minor_revision  = $this_version_info[2];
-
-    $errno = 0;
-    $errstr = $version_info = '';
-
-    $version_info = MG_readRemoteURL("http://www.glfusion.org/updatecheck/16x.txt");
-    if ( $version_info == false ) {
-        $version_msg = $LANG_MG01['no_version_info'];
-        return $version_msg;
-    }
-    $version_info = explode("\n", $version_info);
-    $latest_head_revision   = (int) $version_info[0];
-    $latest_branch_revision = (int) $version_info[1];
-    $latest_minor_revision  = $version_info[2];
-    $latest_version = (int) $version_info[0] . '.' . (int) $version_info[1] . '.' . $version_info[2];
-
-    $version_msg = '<p style="color:green">' . $LANG_MG01['up_to_date'] . '</p>';
-
-    $yVersion = $latest_head_revision . '.' . $latest_branch_revision . '.' . $latest_minor_revision;
-
-    if ( $this_head_revision < $latest_head_revision) {
-        $version_msg = sprintf("<p style=\"color:red\">" . $LANG_MG01['out_of_date'] . "</p>",$yVersion, $_MG_CONF['version']);
-    }
-    if ( ($this_head_revision == $latest_head_revision) && ($this_branch_revision < $latest_branch_revision) ) {
-        $version_msg = sprintf("<p style=\"color:red\">" . $LANG_MG01['out_of_date'] . "</p>",$yVersion, $_MG_CONF['version']);
-    }
-    if ( ($this_head_revision == $latest_head_revision) && ($this_branch_revision == $latest_branch_revision) && ($this_minor_revision < $latest_minor_revision)  ) {
-        $version_msg = sprintf("<p style=\"color:red\">" . $LANG_MG01['out_of_date'] . "</p>",$yVersion, $_MG_CONF['version']);
-
-    }
-    $retval = $version_msg;
-    return $retval;
-}
-
-function MG_adminBox($mode) {
-    global $_MG_CONF, $LANG_MG08;
-
-    $retval = '';
-
-    if ( $mode == 'install' ) {
-        $retval .= '<br' . XHTML . '>' . '<h3>' . $LANG_MG08['success'] . '</h3><br' . XHTML . '>' . $LANG_MG08['review'] . '<br' . XHTML . '><br' . XHTML . '>';
-    }
-
-//    $retval .= $LANG_MG08['support'] . '<br' . XHTML . '><br' . XHTML . '>';
-
-    return $retval;
-}
-
-function mg_readRemoteURL( $url ) {
-
-	$fopen_url = ini_get('allow_url_fopen');
-
-	// make sure curl is installed
-	if (function_exists('curl_init')) {
-	   // initialize a new curl resource
-	   $ch = curl_init();
-
-	   // set the url to fetch
-	   curl_setopt($ch, CURLOPT_URL, $url);
-
-	   // don't give me the headers just the content
-	   curl_setopt($ch, CURLOPT_HEADER, 0);
-
-	   // return the value instead of printing the response to browser
-	   curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-	   // use a user agent to mimic a browser
-	   curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.5) Gecko/20041107 Firefox/1.0');
-
-	   $content = @curl_exec($ch);
-
-	   // remember to always close the session and free all resources
-
-	   curl_close($ch);
-
-	   return $content;
-
-	} else if ( $fopen_url == 1 ) {
-		$content = @file_get_contents($url);
-		if ($content !== false) {
-	   		// do something with the content
-	   		return $content;
-		} else {
-			return false;
-	   		// an error happened
-		}
-	} else {
-	   // get the host name and url path
-	   $parsedUrl = parse_url($url);
-	   $host = $parsedUrl['host'];
-	   if (isset($parsedUrl['path'])) {
-	      $path = $parsedUrl['path'];
-	   } else {
-	      // the url is pointing to the host like http://www.mysite.com
-	      $path = '/';
-	   }
-
-	   if (isset($parsedUrl['query'])) {
-	      $path .= '?' . $parsedUrl['query'];
-	   }
-
-	   if (isset($parsedUrl['port'])) {
-	      $port = $parsedUrl['port'];
-	   } else {
-	      // most sites use port 80
-	      $port = '80';
-	   }
-
-	   $timeout = 5;
-	   $response = '';
-
-	   // connect to the remote server
-	   $fp = @fsockopen($host, '80', $errno, $errstr, $timeout );
-
-	   if( !$fp ) {
-	      return false;
-	   } else {
-	      // send the necessary headers to get the file
-	      fputs($fp, "GET $path HTTP/1.0\r\n" .
-	                 "Host: $host\r\n" .
-	                 "User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.0.3) Gecko/20060426 Firefox/1.5.0.3\r\n" .
-	                 "Accept: */*\r\n" .
-	                 "Accept-Language: en-us,en;q=0.5\r\n" .
-	                 "Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7\r\n" .
-	                 "Keep-Alive: 300\r\n" .
-	                 "Connection: keep-alive\r\n" .
-	                 "Referer: " . $_MG_CONF['site_url'] . "\r\n\r\n");
-
-	      // retrieve the response from the remote server
-	      while ( $line = fread( $fp, 4096 ) ) {
-	         $response .= $line;
-	      }
-
-	      fclose( $fp );
-
-	      // strip the headers
-	      $pos      = strpos($response, "\r\n\r\n");
-	      $response = substr($response, $pos + 4);
-	   }
-
-	   // return the file content
-	   return $response;
-	}
-}
-
-if (!function_exists(COM_showMessageText))
-{
-    /**
-    * Displays a message text in a "System Message" block
-    *
-    * @param    string  $message    Message text; may contain HTML
-    * @param    string  $title      (optional) alternative block title
-    * @return   string              HTML block with message
-    *
-    */
-    function COM_showMessageText($message, $title = '')
-    {
-        global $_CONF, $MESSAGE, $_IMAGE_TYPE;
-
-        $retval = '';
-
-        if (!empty($message)) {
-            if (empty($title)) {
-                $title = $MESSAGE[40];
-            }
-            $timestamp = strftime($_CONF['daytime']);
-            $retval .= COM_startBlock($title . ' - ' . $timestamp, '',
-                                      COM_getBlockTemplate('_msg_block', 'header'))
-                    . '<p class="sysmessage"><img src="' . $_CONF['layout_url']
-                    . '/images/sysmessage.' . $_IMAGE_TYPE . '" alt="" ' . XHTML
-                    . '>' . $message . '</p>'
-                    . COM_endBlock(COM_getBlockTemplate('_msg_block', 'footer'));
-        }
-
-        return $retval;
-    }
-}
+require_once $_MG_CONF['path_admin'] . 'navigation.php';
 
 // main menu for media gallery administration
 
-$display = '';
+$sub  = isset($_GET['s'])    ? COM_applyFilter($_GET['s'])         : '';
+$msg  = isset($_GET['msg'])  ? COM_applyFilter($_GET['msg'], true) : 0;
+$mode = isset($_GET['mode']) ? COM_applyFilter($_GET['mode'])      : '';
 
-if ( isset($_GET['mode']) ) {
-    $mode = COM_applyFilter($_GET['mode']);
-} else {
-    $mode = '';
+$sub_menu = '';
+switch ($sub) {
+    case 'm': $sub_menu = 'member_albums';  break;
+    case 'b': $sub_menu = 'batch_sessions'; break;
+    case 'c': $sub_menu = 'miscellaneous';  break;
 }
 
-if (isset($_GET['msg']) ) {
-    $msg = COM_applyFilter($_GET['msg'],true);
-} else {
-    $msg = 0;
+$home_url = $_CONF['site_url'] . '/admin/moderation.php';
+
+if ($mode == 'editsubmission') {
+    $media_id = COM_applyFilter($_GET['id']);
+    $album_id = DB_getItem($_TABLES['mg_media_album_queue'], 'album_id', 'media_id="' . $media_id . '"');
+    if (empty($media_id) || empty($album_id)) {
+        echo COM_refresh($home_url);
+        exit;
+    }
+    require_once $_CONF['path'] . 'plugins/mediagallery/include/mediamanage.php';
+    $actionURL = $_CONF['site_url'] . '/admin/plugins/mediagallery/index.php?mode=savemedia';
+    $display = MG_mediaEdit($album_id, $media_id, $actionURL, 1);
+    $display = COM_createHTMLDocument($display);
+    COM_output($display);
+    exit;
+} else if ($mode == 'savemedia') {
+    $post_mode = COM_applyFilter($_POST['mode']);
+    if (!empty($LANG_MG01['save']) && $post_mode == $LANG_MG01['save']) {
+        $album_id = COM_applyFilter($_POST['album_id'], true);
+        $media_id = COM_applyFilter($_POST['mid']);
+        if (!empty($media_id) && !empty($album_id)) {
+            require_once $_CONF['path'] . 'plugins/mediagallery/include/mediamanage.php';
+            MG_saveMediaEdit($album_id, $media_id, $home_url);
+        }
+    }
+    echo COM_refresh($home_url);
+    exit;
 }
 
-if ( $msg > 0 ) {
-    $statusMsg = COM_showMessageText($LANG_MG09[$msg]);
-} else {
-    $statusMsg = '';
+$display = COM_startBlock($LANG_MG00['admin'], '', COM_getBlockTemplate('_admin_block', 'header'));
+$display .= MG_showAdminMenu($sub_menu);
+if ($msg > 0) {
+    $display .= COM_showMessageText($LANG_MG09[$msg]);
 }
+$display .= COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
+if (empty($sub_menu)) {
+    $display .= plugin_showstats_mediagallery(0);
+}
+$display = COM_createHTMLDocument($display);
 
-require_once $_CONF['path'] . 'system/lib-admin.php';
-
-$T = new Template($_MG_CONF['template_path']);
-$T->set_file (array ('admin' => 'administration.thtml'));
-
-$T->set_var(array(
-    'site_admin_url'    => $_CONF['site_admin_url'],
-    'site_url'          => $_MG_CONF['site_url'],
-//    'admin_body'        => MG_adminBox($mode),
-    'status_msg'        => $statusMsg,
-    'mg_navigation'     => MG_navigation(),
-    'lang_admin'        => $LANG_MG00['admin'],
-    'version'           => $_MG_CONF['pi_version'],
-    'admin_body'             => plugin_showstats_mediagallery(0),
-    'xhtml'             => XHTML,
-));
-//    if ( $_MG_CONF['disable_version_check'] == 0 ) {
-//        $T->set_var('version_msg','<h1>' . $LANG_MG01['version_info'] . '</h1>' . MG_versionCheck() . '<hr' . XHTML . '>');
-//    }
-
-
-$T->parse('output', 'admin');
-$display .= $T->finish($T->get_var('output'));
-$display = MG_createHTMLDocument($display, array('what' => 'menu', 'rightblock' => false));
-echo $display;
-exit;
-
+COM_output($display);
 ?>

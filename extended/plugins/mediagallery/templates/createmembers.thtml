@@ -1,18 +1,20 @@
+{# begin {templatelocation} #}
+
 <script type="text/javascript">
 //<![CDATA[
-function doCheckAll()
+function doCheckAll_members()
 {
   with (document.members) {
-    for (var i=0; i < elements.length; i++ ) {
+    for (var i=0; i < elements.length; i++) {
       if (elements[i].type == 'checkbox')
         elements[i].checked = true;
     }
   }
 }
-function doUnCheckAll()
+function doUnCheckAll_members()
 {
   with (document.members) {
-    for (var i=0; i < elements.length; i++ ) {
+    for (var i=0; i < elements.length; i++) {
       if (elements[i].type == 'checkbox')
         elements[i].checked = false;
     }
@@ -20,31 +22,31 @@ function doUnCheckAll()
 }
 //]]>
 </script>
-<form class="uk-form" name="members" method="post" action="{s_form_action}">
-  <table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+<form name="members" method="post" action="{s_form_action}" class="uk-form">
+  <table class="uk-table uk-table-condensed uk-table-striped uk-width-1-1" style="background:#ffffff;">
     <tr>
-      <th align="left" style="width:20px;">{lang_select}</th>
-      <th align="center">{lang_username}</th>
+      <th style="width:50px;">{lang_select}</th>
+      <th>{lang_username}</th>
     </tr>
     <!-- BEGIN UserRow -->
     <tr class="{rowclass}">
-      <td align="center">{select}</td>
-      <td align="left">{username}</td>
+      <td>{select}</td>
+      <td>{username}</td>
     </tr>
     <!-- END UserRow -->
-    <tr>
-      <td colspan="2" align="left">
-        <input class="uk-button" onclick="javascript:doCheckAll()" type="button" value="{lang_checkall}"{xhtml}>
-        <input class="uk-button" onclick="javascript:doUnCheckAll()" type="button" value="{lang_uncheckall}"{xhtml}>
-      </td>
-    </tr>
   </table>
-<div style="text-align:center;">
-{pagenav}
-</div>
-<div style="text-align:center;">
-<input type="submit" class="uk-button" value="{lang_save}"  name="mode"{xhtml}>
-<input type="submit" class="uk-button" value="{lang_cancel}" name="mode"{xhtml}>
-<input type="reset"  value="{lang_reset}"  name="mode"{xhtml}>
-</div>
+  <div style="margin-top:5px;">
+    <input onclick="javascript:doCheckAll_members()" type="button" value="{lang_checkall}"{xhtml}>
+    <input onclick="javascript:doUnCheckAll_members()" type="button" value="{lang_uncheckall}"{xhtml}>
+  </div>
+  <div style="text-align:center;">
+    {pagenav}
+  </div>
+  <div class="mg_submit_center">
+    <input type="submit" value="{lang_save}" name="mode"{xhtml}>
+    <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
+    <input type="reset" value="{lang_reset}" name="mode"{xhtml}>
+  </div>
 </form>
+
+{# end {templatelocation} #}

@@ -1,9 +1,11 @@
+{# begin {templatelocation} #}
+
 <script type="text/javascript">
-	var flashvars = {};
+    var flashvars = {};
     var params = {
     wmode: "transparent"
     };
-	var attributes = {};
+    var attributes = {};
     params.play="{play}";
     params.quality="{quality}";
     params.menu="{menu}";
@@ -18,8 +20,10 @@
 </script>
 <div id="{id2}" style="width:{resolution_x}px;height:{resolution_y}px;">
   <div id="{id}">
-	<a href="http://www.adobe.com/go/getflashplayer">
-		<img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player"{xhtml}>
-	</a>
+    <a href="http://www.adobe.com/go/getflashplayer">
+        <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player"{xhtml}>
+    </a>
   </div>
 </div>
+
+{# end {templatelocation} #}

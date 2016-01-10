@@ -1,120 +1,132 @@
+{# begin {templatelocation} #}
+
 <h2>{lang_playback_options}</h2>
-<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+<table class="uk-table uk-table-condensed uk-table-striped uk-width-1-1" style="background:#ffffff;">
   <tr>
     <th style="width:20%;">{lang_option}</th>
     <th style="width:10%;text-align:left;">{lang_off}&nbsp;&nbsp;&nbsp;&nbsp;{lang_on}</th>
     <th>{lang_description}</th>
   </tr>
+
   <tr>
-    <th>{lang_auto_start}</th>
-    <td style="vertical-align:middle;">
+    <td class="mg_alignright">{lang_auto_start}</td>
+    <td>
       <input type="radio" name="play" value="0" {play_disabled}>&nbsp;&nbsp;
       <input type="radio" name="play" value="1" {play_enabled}>
     </td>
-    <td class="uk-text-left">
+    <td>
       {lang_auto_start_help}
     </td>
   </tr>
 
   <tr>
-    <th>{lang_menu}</th>
-    <td style="vertical-align:middle;">
+    <td class="mg_alignright">{lang_menu}</td>
+    <td>
       <input type="radio" name="menu" value="0" {menu_disabled}>&nbsp;&nbsp;
       <input type="radio" name="menu" value="1" {menu_enabled}>
     </td>
-    <td class="uk-text-left">
+    <td>
       {lang_menu_help}
     </td>
   </tr>
+
   <tr>
-    <th>{lang_scale}</th>
-    <td style="vertical-align:middle;">
+    <td class="mg_alignright">{lang_scale}</td>
+    <td>
       {scale_select}
     </td>
-    <td class="uk-text-left">
+    <td>
       {lang_swf_scale_help}
     </td>
   </tr>
+
   <tr>
-    <th>{lang_wmode}</th>
-    <td style="vertical-align:middle;">
+    <td class="mg_alignright">{lang_wmode}</td>
+    <td>
       {wmode_select}
     </td>
-    <td class="uk-text-left">
+    <td>
       {lang_wmode_help}
     </td>
   </tr>
+
   <tr>
-    <th>{lang_asa}</th>
-    <td style="vertical-align:middle;">
+    <td class="mg_alignright">{lang_asa}</td>
+    <td>
       {asa_select}
     </td>
-    <td class="uk-text-left">
+    <td>
       {lang_asa_help}
     </td>
   </tr>
 
   <tr>
-    <th>{lang_quality}</th>
-    <td style="vertical-align:middle;">
+    <td class="mg_alignright">{lang_quality}</td>
+    <td>
       {quality_select}
     </td>
-    <td class="uk-text-left">
+    <td>
       {lang_quality_help}
     </td>
   </tr>
 
   <tr>
-    <th>{lang_loop}</th>
-    <td style="vertical-align:middle;">
+    <td class="mg_alignright">{lang_loop}</td>
+    <td>
       <input type="radio" name="loop" value="0" {loop_disabled}>&nbsp;&nbsp;
       <input type="radio" name="loop" value="1" {loop_enabled}>
     </td>
-    <td class="uk-text-left">
+    <td>
       {lang_loop_help}
     </td>
   </tr>
 
   <tr>
-    <th>{lang_bgcolor}</th>
-    <td style="vertical-align:middle;">
+    <td class="mg_alignright">{lang_bgcolor}</td>
+    <td>
       <input type="text" name="bgcolor" value="{bgcolor}" size="8">
     </td>
-    <td class="uk-text-left">
+    <td>
       {lang_bgcolor_help}
     </td>
   </tr>
+
   <tr>
-    <th>{lang_width}</th>
-    <td style="vertical-align:middle;">
+    <td class="mg_alignright">{lang_width}</td>
+    <td>
       <input type="text" name="width" value="{width}" size="3">
     </td>
-    <td class="uk-text-left">
+    <td>
       {lang_width_help}
     </td>
   </tr>
+
   <tr>
-    <th>{lang_height}</th>
-    <td style="vertical-align:middle;">
+    <td class="mg_alignright">{lang_height}</td>
+    <td>
       <input type="text" name="height" value="{height}" size="3">
     </td>
-    <td class="uk-text-left">
+    <td>
       {lang_height_help}
     </td>
   </tr>
+
   <tr>
-    <th>{lang_flash_vars}</th>
+    <td class="mg_alignright">{lang_flash_vars}</td>
     <td colspan="2">
       <input type="text" name="flashvars" value="{flashvars}" size="100">
     </td>
   </tr>
+
   <tr>
-    <th>{lang_codebase}</th>
+    <td class="mg_alignright">{lang_codebase}</td>
     <td colspan="1">
       <input type="text" name="swf_version" value='{swf_version}' size="3">
     </td>
-    <td style="vertical-align:middle;">
+    <td>
       {lang_swf_version_help}
     </td>
   </tr>
 </table>
+
+{# end {templatelocation} #}

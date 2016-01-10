@@ -4,12 +4,12 @@
 {updated} {album_last_update}
 </div>
 <br{xhtml}>
-<div style="float:left;padding-right:3px;">{media_item_thumbnail}</div>
+<div class="mgPluginMI" style="float:left;padding-right:3px;">{media_item_thumbnail}</div>
 {album_desc}
-<div class="uk-clearfix"></div>
+<div style="clear:both;"></div>
 <div class="pluginItemFooter">
-<span class="uk-text-bold">{lang_subalbums}</span> {subalbumcount}
+<span style="font-weight:bold;">{lang_subalbums}</span> {subalbumcount}
 </div>
 <hr{xhtml}>
-<div class="uk-clearfix"></div>
+<div style="clear:both;"></div>
 {# end {templatelocation} #}

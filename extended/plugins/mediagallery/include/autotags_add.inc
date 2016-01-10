@@ -47,9 +47,6 @@ function MG_medialist (
 	
 	$rt="";
     if (empty($album_id)) return $rt;
-    if (!isset($MG_albums[$album_id]->id) || $MG_albums[$album_id]->access == 0) {
-       return $rt;
-	}
 	if  (empty($theme)){
 		$theme='default';
 	}
@@ -68,8 +65,7 @@ function MG_medialist (
         $tmplfld=$_MG_CONF['template_path']."/medialist/default";
     }
 	$src = $_MG_CONF['at_src'];
-
-    $T = MG_templateInstance($tmplfld);
+    $T = COM_newTemplate($tmplfld);
     $T->set_file (array (
         'tag' => 'autotag_medialist.thtml',
         'col' => 'autotag_medialist_col.thtml',
@@ -102,47 +98,40 @@ function MG_medialist (
 		$sql .= " LIMIT $limitcnt".LB;
 	}
 	$result = DB_query($sql);
-	
-	$counter = 0;
 	while ($row = DB_fetchArray($result)) {
-		switch ($src) {
-			case 'orig' :
-				$media_size = @getimagesize($_MG_CONF['path_mediaobjects'] . 'orig/' 
-						. $row['media_filename'][0] . '/' 
-						. $row['media_filename'] . '.' 
-						. $row['media_mime_ext']);
-				$ext = $row['media_mime_ext'];
-                break;
-            case 'disp' :
-                $mfn = 'disp/' . $row['media_filename'][0] . '/' . $row['media_filename'];
-                $tnext = MG_getMediaExt($_MG_CONF['path_mediaobjects'] . $mfn);
-                $media_size = @getimagesize($_MG_CONF['path_mediaobjects'] . $mfn . $tnext);
-                $ext = substr($tnext,1,3); // no use ?
-                break;
-            default :
-                $mfn = 'tn/' . $row['media_filename'][0] . '/' . $row['media_filename'];
-                $tnext = MG_getMediaExt($_MG_CONF['path_mediaobjects'] . $mfn);
-                $media_size = @getimagesize($_MG_CONF['path_mediaobjects'] . $mfn . $tnext);
-                $ext = substr($tnext,1,3); // no use ?
-                $src = 'tn';
-                break;
-        }
-        if ($media_size == false) {
+        if  ($row['media_type']==0)  {
+        }else{
             continue;
         }
-
-		$filename=$_MG_CONF['mediaobjects_url'] 
-			. '/' . $src . '/' . $row['media_filename'][0] . '/' 
-			. $row['media_filename'] . '.' . $ext;
-		$filename_tn=$_MG_CONF['mediaobjects_url'] 
-			. '/' . "tn" . '/' . $row['media_filename'][0] . '/' 
-			. $row['media_filename'] . '.' . $ext;
-		$filename_disp=$_MG_CONF['mediaobjects_url'] 
-			. '/' . "disp" . '/' . $row['media_filename'][0] . '/' 
-			. $row['media_filename'] . '.' . $ext;
-		$filename_orig=$_MG_CONF['mediaobjects_url'] 
-			. '/' . "orig" . '/' . $row['media_filename'][0] . '/' 
-			. $row['media_filename'] . '.' . $ext;
+		$fn ='/'.$row['media_filename'][0].'/'.$row['media_filename'];
+		$filename_orig=$_MG_CONF['mediaobjects_url'].'/'."orig".$fn.".".$row['media_mime_ext'];
+		//
+		$wk=$_MG_CONF['path_mediaobjects']."disp".$fn;
+		$tnext = MG_getMediaExt($wk);
+        $media_size = @getimagesize($wk . $tnext);
+        $ext = substr($tnext,1,3); 
+        if ($media_size == false) {
+			$filename_disp="";
+		}else{
+			$filename_disp=$_MG_CONF['mediaobjects_url'].'/'."disp".$fn. '.' . $ext;
+		}
+		//
+		$wk=$_MG_CONF['path_mediaobjects']."tn".$fn.'_cropcustom';
+		$tnext = MG_getMediaExt($wk);
+        $media_size = @getimagesize($wk . $tnext);
+        $ext = substr($tnext,1,3); 
+        if ($media_size == false) {
+			$filename_tn="";
+		}else{
+			$filename_tn=$_MG_CONF['mediaobjects_url'].'/'."tn".$fn.'_cropcustom'. '.' . $ext;
+		}
+		if  ($src=="orig"){
+			$filename=$filename_orig;
+		}else if ($src=="disp"){
+			$filename=$filename_disp;
+		}else{
+			$filename=$filename_tn;
+		}
 		$media_id=$row['media_id'];
 		$media_filename=$row['media_filename'];
 		$media_title= $row['media_title'];
@@ -191,13 +180,11 @@ function MG_medialist (
 		$T->set_var('media_category_name',$media_category_name);
 		$T->set_var('media_category_description',$media_category_description);
 		$T->set_var('released',$media_time[0]);
-		$T->set_var('counter',$counter);
 		
 		//=====
         $T->parse ('medialist_col', 'col', true);
-		$counter = $counter+1;
+
 	}
-	$T->set_var('count',$counter);
 	$T->parse ('output', 'tag');
     $rt= $T->finish ($T->get_var ('output'));
 	return $rt;
@@ -241,7 +228,8 @@ function MG_albumlist (
     }else{
         $tmplfld=$_MG_CONF['template_path']."/albumlist/default";
     }
-    $T = MG_templateInstance($tmplfld);
+    //$T = MG_templateInstance($tmplfld);
+    $T = COM_newTemplate($tmplfld);
     $T->set_file (array (
         'tag' => 'autotag_albumlist.thtml',
         'col' => 'autotag_albumlist_col.thtml',
@@ -265,13 +253,12 @@ function MG_albumlist (
 	}
 	$result = DB_query ($sql);
     $numrows = DB_numRows ($result);
-	
 	$display="";
 	if ($numrows > 0) {
         for ($i = 0; $i < $numrows; $i++) {
             $A = DB_fetchArray ($result);
 			$A = array_map('stripslashes', $A);
-			$img=MG_albumThumbnail($A['album_cover_filename']);
+			$img=MG_albumlastimage($A['album_cover_filename']);
 			$album_last_update = MG_getUserDateTimeFormat($A['last_update']);
 			
 	        $url=$_CONF['site_url'] . "/mediagallery/album.php";
@@ -313,7 +300,7 @@ function MG_albumlist (
 	return $rt;
 	
 }
-function MG_albumThumbnail (
+function MG_albumlastimage(
 	$filename
 )
 {
@@ -325,9 +312,10 @@ function MG_albumThumbnail (
     } else {
         $mediasize = false;
 		foreach ($_MG_CONF['validExtensions'] as $ext ) {
-           if ( file_exists($_MG_CONF['path_mediaobjects'] . 'tn/' . $filename[0] .'/' . $filename . $ext) ) {
-                $album_last_image = $_MG_CONF['mediaobjects_url'] . '/tn/' . $filename[0] .'/' . $filename . $ext;
-                $mediasize = @getimagesize($_MG_CONF['path_mediaobjects'] . 'tn/' . $filename[0] .'/' . $filename . $ext);
+           $fn='tn/' . $filename[0] .'/' . $filename .'_cropcustom'. $ext;
+           if ( file_exists($_MG_CONF['path_mediaobjects'] . $fn) ) {
+                $album_last_image = $_MG_CONF['mediaobjects_url'] ."/". $fn;
+                $mediasize = @getimagesize($_MG_CONF['path_mediaobjects'] . $fn);
                 break;
            }
         }

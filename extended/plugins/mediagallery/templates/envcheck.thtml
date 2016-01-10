@@ -1,14 +1,21 @@
-<form class="uk-form" method="post" action="{s_form_action}">
-<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
-<!-- BEGIN CheckRow -->
-<tr>
-  <td>{config_item}</td>
-  <td>{status}</td>
-</tr>
-<!-- END CheckRow -->
-</table>
-<div style="text-align:center">
-<input type="submit" class="uk-button" name="mode" value="{lang_recheck}"{xhtml}>&nbsp;&nbsp;
-<input type="submit" class="uk-button" name="mode" value="{lang_continue}"{xhtml}>
-</div>
+{# begin {templatelocation} #}
+
+<form action="{s_form_action}" method="post" class="compact uk-form">
+  <div class="admin_basic" id="admin-editor">
+<!-- BEGIN CheckRow1 -->
+    <h3>{config_title}</h3>
+    <dl class="form_block">
+<!-- BEGIN CheckRow2 -->
+      <dt>{config_item}</dt>
+      <dd>{status}</dd>
+<!-- END CheckRow2 -->
+    </dl>
+<!-- END CheckRow1 -->
+    <div class="mg_submit">
+      <input type="submit" name="mode" value="{lang_recheck}"{xhtml}>&nbsp;&nbsp;
+      <input type="submit" name="mode" value="{lang_continue}"{xhtml}>
+    </div>
+  </div>
 </form>
+
+{# end {templatelocation} #}

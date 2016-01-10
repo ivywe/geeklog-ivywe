@@ -1,10 +1,13 @@
+{# begin {templatelocation} #}
 
+{start_block}
+{navbar}
 <div id="divSWFUploadMessage">
   {swfupload_usage}
 </div>
 <div id="divSWFUploadAlbumSelect">
-  <form class="uk-form" method="post" name="form_album" action=""><div>
-    <span class="uk-text-bold">{lang_destination}:</span> {album_select}
+  <form method="post" name="form_album" action="" class="uk-form"><div>
+    <span style="font-weight:bold;">{lang_destination}:</span> {album_select}
   </div></form>
 </div>
 <div id="divSWFUploadAllowedTypes">
@@ -15,10 +18,10 @@
 </div>
 
 <div id="swfupload-form">
-  <form class="uk-form" id="form1" action="admin.php" method="post" enctype="multipart/form-data">
+  <form id="form1" action="admin.php" method="post" enctype="multipart/form-data" class="uk-form">
     <div id="divSWFUploadUI">
       <div class="fieldset  flash" id="fsUploadProgress">
-      <span class="legend">{swfupload_queue}</span>
+        <span class="legend">{swfupload_queue}</span>
       </div>
       <div id="divSWFUploadStatus">
         <span id="divSWFUploadStatusFiles">0 {sfwupload_files} {swfupload_uploaded}</span>
@@ -36,11 +39,11 @@
   </form>
 
   <div id="divSWFThumbnails">
-    <form class="uk-form" name="captions" method="post" action="{site_url}/mediagallery/admin.php?album_id=0">
+    <form name="captions" method="post" action="{site_url}/mediagallery/admin.php?album_id=0" class="uk-form">
       <div id="thumbnails" style="vertical-align:middle;"></div>
       <div style="clear:both;">
       <input type="hidden" name="action" value="batchcaptionsave"{xhtml}>
-      <input type="submit" class="uk-button" name="mode"   value="{save_exit}"{xhtml}>
+      <input type="submit" name="mode"   value="{save_exit}"{xhtml}>
       </div>
     </form>
   </div>
@@ -116,54 +119,34 @@ function onAlbumChange() {
   var size_limit_span = document.getElementById("swfu_size_limit");
   var size_limit = "{swfupload_size_limit}";
   var post_params = { "uid" : uid, "sid" : sid, "aid": aid };
-  var url = "{site_url}/mediagallery/album_rpc.php";
-  var query = "aid=" + aid;
-  var js_lib = "{js_lib}";
+//  var url = "{site_url}/mediagallery/album_rpc.php";
+//  var query = "aid=" + aid;
+//  var js_lib = "{js_lib}";
 
   if (aid_index >= 0) {
 
     /* retrieve the parameters that change on a per-album basis */
 
-    if (js_lib == "jquery") {
+    /* this is the jquery method */
+    $.ajax({
+      url: "{site_url}/mediagallery/album_rpc.php?aid=" + aid,
+      async: true,
+      cache: false,
+      dataType: "text",
+      success: function(rtext) {
+        var responsetext = rtext;
+        var response = responsetext.split( "%" );
+        size_limit_display = (response[0] / 1024 ) / 1024 + " M";
+        size_limit = response[0];
+        file_types = response[1];
+        swfu.setPostParams( post_params );
+        file_types_span.innerHTML = file_types;
+        swfu.setFileTypes( file_types, file_types_desc );
+        size_limit_span.innerHTML = size_limit_display;
+        swfu.setFileSizeLimit( size_limit );
+      }
+    });
 
-      /* this is the jquery method */
-      $.ajax({
-        url: "{site_url}/mediagallery/album_rpc.php?aid={album_id}",
-        async: true,
-        cache: false,
-        dataType: "text",
-        success: function(rtext) {
-          var responsetext = rtext;
-          var response = responsetext.split( "%" );
-          size_limit_display = (response[0] / 1024 ) / 1024 + " M";
-          size_limit = response[0];
-          file_types = response[1];
-          swfu.setPostParams( post_params );
-          file_types_span.innerHTML = file_types;
-          swfu.setFileTypes( file_types, file_types_desc );
-          size_limit_span.innerHTML = size_limit_display;
-          swfu.setFileSizeLimit( size_limit );
-        }
-      });
-
-    } else {
-
-      /* this is the mootools 1.1 XHR method */
-      var myXHR = new XHR( {
-        onSuccess: function() {
-          var responsetext = myXHR.response.text;
-          var response = responsetext.split( "%" );
-          size_limit_display = (response[0] / 1024 ) / 1024 + " M";
-          size_limit = response[0];
-          file_types = response[1];
-          swfu.setPostParams( post_params );
-          file_types_span.innerHTML = file_types;
-          swfu.setFileTypes( file_types, file_types_desc );
-          size_limit_span.innerHTML = size_limit_display;
-          swfu.setFileSizeLimit( size_limit );
-        }
-      }).send( url, query );
-    }
   }
   return;
 }
@@ -193,3 +176,6 @@ lang["swfupload_file"] = "{swfupload_file}";
 lang["swfupload_files"] = "{swfupload_files}";
 lang["swfupload_uploaded"] = "{swfupload_uploaded}";
 </script>
+{end_block}
+
+{# end {templatelocation} #}

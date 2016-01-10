@@ -1,26 +1,9 @@
-<div style="width:100%;vertical-align:middle;height:48px;position:relative;">
-  <div style="position:absolute;top:0;left:3px;verticaal-align:bottom;">
-    <a href="{site_admin_url}/plugins/mediagallery/index.php">
-      <img src="{site_url}/images/mediagallery.png" style="border:none;" alt=""{xhtml}>
-    </a>
-  </div>
-  <div style="position:absolute;top:0;left:65px;height:48px;line-height:48px;vertical-align:middle">
-    <h2 style="margin:0;">{lang_admin}&nbsp;&nbsp;&nbsp;{title}</h2>
-  </div>
+{# begin {templatelocation} #}
+
+<h3>{title}</h3>
+<div>
+{status_msg}
+{admin_body}
 </div>
 
-<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
-
-<tr>
-  <td style="vertical-align:top;width:75%;">
-     <div style="padding:5px 5px 0 0">
-     {status_msg}
-     {admin_body}
-     </div>
-  </td>
-  <td class="plugin" style="vertical-align:top;">
-    {mg_navigation}
-  </td>
-</tr>
-</table>
-
+{# end {templatelocation} #}

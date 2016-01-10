@@ -1,44 +1,34 @@
 <?php
 // +--------------------------------------------------------------------------+
-// | Media Gallery Plugin - glFusion CMS                                      |
+// | Media Gallery Plugin - Geeklog                                           |
 // +--------------------------------------------------------------------------+
 // | rater.php                                                                |
 // |                                                                          |
-// | non AJAX based rating script                                             |
+// | This page handles the 'AJAX' type response.                              |
 // +--------------------------------------------------------------------------+
-// | $Id:: rater.php 4426 2009-04-30 15:58:31Z mevans0263                    $|
-// +--------------------------------------------------------------------------+
-// | Copyright (C) 2002-2009 by the following authors:                        |
+// | Copyright (C) 2015 by the following authors:                             |
+// |                                                                          |
+// | Yoshinori Tahara       taharaxp AT gmail DOT com                         |
+// |                                                                          |
+// | Based on the Media Gallery Plugin for glFusion CMS                       |
+// | Copyright (C) 2002-2008 by the following authors:                        |
 // |                                                                          |
 // | Mark R. Evans          mark AT glfusion DOT org                          |
 // +--------------------------------------------------------------------------+
-// | Copyright (C) 2006,2007,2008 by the following authors:                   |
 // |                                                                          |
-// | Authors:                                                                 |
-// | Ryan Masuga, masugadesign.com  - ryan@masugadesign.com                   |
-// | Masuga Design                                                            |
-// |http://masugadesign.com/the-lab/scripts/unobtrusive-ajax-star-rating-bar/ |
-// | Komodo Media (http://komodomedia.com)                                    |
-// | Climax Designs (http://slim.climaxdesigns.com/)                          |
-// | Ben Nolan (http://bennolan.com/behaviour/) for Behavio(u)r!              |
+// | This program is free software; you can redistribute it and/or            |
+// | modify it under the terms of the GNU General Public License              |
+// | as published by the Free Software Foundation; either version 2           |
+// | of the License, or (at your option) any later version.                   |
 // |                                                                          |
-// | Homepage for this script:                                                |
-// |http://www.masugadesign.com/the-lab/scripts/unobtrusive-ajax-star-rating-bar/
-// +--------------------------------------------------------------------------+
-// | This (Unobtusive) AJAX Rating Bar script is licensed under the           |
-// | Creative Commons Attribution 3.0 License                                 |
-// |  http://creativecommons.org/licenses/by/3.0/                             |
+// | This program is distributed in the hope that it will be useful,          |
+// | but WITHOUT ANY WARRANTY; without even the implied warranty of           |
+// | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            |
+// | GNU General Public License for more details.                             |
 // |                                                                          |
-// | What that means is: Use these files however you want, but don't          |
-// | redistribute without the proper credits, please. I'd appreciate hearing  |
-// | from you if you're using this script.                                    |
-// |                                                                          |
-// | Suggestions or improvements welcome - they only serve to make the script |
-// | better.                                                                  |
-// +--------------------------------------------------------------------------+
-// |                                                                          |
-// | Licensed under a Creative Commons Attribution 3.0 License.               |
-// | http://creativecommons.org/licenses/by/3.0/                              |
+// | You should have received a copy of the GNU General Public License        |
+// | along with this program; if not, write to the Free Software Foundation,  |
+// | Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.          |
 // |                                                                          |
 // +--------------------------------------------------------------------------+
 
@@ -49,80 +39,115 @@ if (!in_array('mediagallery', $_PLUGINS)) {
     exit;
 }
 
-MG_initAlbums();
+require_once $_CONF['path'] . 'plugins/mediagallery/include/common.php';
+
+function rater_sendResponse($response) {
+    if ($response['error'] == true) {
+        $response['server'] = '<strong>ERROR :</strong> ' . $response['server'];
+    }
+    echo json_encode($response); // send json datas to the js file
+    exit;
+}
+
+$action = isset($_POST['action']) ? COM_applyFilter($_POST['action']) : '';
+
+if ($action != 'rating') {
+    rater_sendResponse(array('error' => true,
+        'server' => '"action" post data not equal to \'rating\''));
+}
+
+$uid = isset($_USER['uid']) ? $_USER['uid'] : 1;
+
+if ($uid < 2 && $_MG_CONF['loginrequired'] == 1) {
+    rater_sendResponse(array('error' => true,
+        'server' => 'Sorry, user must login first'));
+}
 
 //getting the values
-$vote_sent  = preg_replace("/[^0-9]/","",$_REQUEST['j']);
-$id_sent    = preg_replace("/[^0-9a-zA-Z]/","",$_REQUEST['q']);
-$ip_num     = preg_replace("/[^0-9\.]/","",$_REQUEST['t']);
-$units      = preg_replace("/[^0-9]/","",$_REQUEST['c']);
-$ip         = $_SERVER['REMOTE_ADDR'];
-$referer    = $_SERVER['HTTP_REFERER'];
-$ratingdate = time();
-$uid        = isset($_USER['uid']) ? $_USER['uid'] : 1;
+//$ip_num = preg_replace("/[^0-9\.]/","",$_REQUEST['t']); // omit the check of IP address
+$id_sent = isset($_POST['dataid']) ? COM_applyFilter($_POST['dataid']) : '';
+$ip = $_SERVER['REMOTE_ADDR'];
 
-if ($vote_sent > $units) {
-    die("Sorry, vote appears to be invalid."); // kill the script because normal users will never see this.
+$sql = "SELECT media_votes, media_rating, media_user_id "
+     . "FROM {$_TABLES['mg_media']} "
+     . "WHERE media_id='" . addslashes($id_sent) . "'";
+$result = DB_query($sql);
+if (DB_numRows($result) == 0) {
+    rater_sendResponse(array('error' => true,
+        'server' => 'An error occured during the request'));
 }
+list($votes, $rating, $owner_id) = DB_fetchArray($result);
+$total_value = $rating * $votes;
 
-if ( (!isset($_USER['uid']) || $_USER['uid'] < 2) && $_MG_CONF['loginrequired'] == 1 )  {
-    die("Sorry, user must login first");
-}
-
-$sql = "SELECT media_votes,media_rating,media_user_id FROM {$_TABLES['mg_media']} WHERE media_id='" . addslashes($id_sent) . "'";
-$result         = DB_query($sql);
-$row            = DB_fetchArray($result);
-$count          = $row['media_votes'];
-$current_rating = $row['media_rating'];
-$owner_id       = $row['media_user_id'];
-if ( !isset($owner_id) || $owner_id == '' ) {
+if (!isset($owner_id) || $owner_id == '') {
     $owner_id = 2;
 }
 
-$sql = "SELECT id FROM {$_TABLES['mg_rating']} WHERE (uid=".intval($uid)." OR ip_address='".addslashes($ip)."') AND media_id='".addslashes($id)."'";
+if ($uid == 1) {
+    $sql = "SELECT id FROM {$_TABLES['mg_rating']} "
+         . "WHERE ip_address='" . addslashes($ip) . "' "
+         . "AND media_id='" . addslashes($id_sent) . "'";
+} else {
+    $sql = "SELECT id FROM {$_TABLES['mg_rating']} "
+         . "WHERE (uid=" . intval($uid) . " OR ip_address='" . addslashes($ip) . "') "
+         . "AND media_id='" . addslashes($id_sent) . "'";
+}
 $checkResult = DB_query($sql);
-if ( DB_numRows($checkResult) > 0 ) {
-    $voted = 1;
-} else {
-    $voted = 0;
-}
+$voted = (DB_numRows($checkResult) > 0) ? 1 : 0;
 
-COM_clearSpeedlimit($_MG_CONF['rating_speedlimit'],'mgrate');
-$last = COM_checkSpeedlimit ('mgrate');
-if ( $last > 0 ) {
-    $speedlimiterror = 1;
-} else {
-    $speedlimiterror = 0;
-}
+COM_clearSpeedlimit($_MG_CONF['rating_speedlimit'], 'mgrate');
+$last = COM_checkSpeedlimit('mgrate');
+$speedlimiterror = ($last > 0) ? 1 : 0;
 
-$sum = ($vote_sent * 2) + $current_rating; // add together the current vote value and the total vote value
-$tense = ($count==1) ? $LANG_MG03['vote'] : $LANG_MG03['votes']; //plural form votes/vote
+$vote_sent = isset($_POST['rate']) ? floatval($_POST['rate']) : 0;
+if ($vote_sent == 0) {
+    rater_sendResponse(array('error' => true,
+        'server' => 'An error occured during the request'));
+}
+$sum = ($vote_sent * 2) + $total_value; // add together the current vote value and the total vote value
+$units = $_MG_CONF['rater_units_num'];
 
 // checking to see if the first vote has been tallied
 // or increment the current number of votes
-($sum==0 ? $added=0 : $added=$count+1);
+$added = ($sum == 0) ? 0 : $votes + 1;
 
 $new_rating = $sum / $added;
 
-if(!$voted  && !$speedlimiterror) {
-    if (($vote_sent >= 1 && $vote_sent <= ($units * 2) ) && ($ip == $ip_num)) { // keep votes within range
-        $sql = "UPDATE {$_TABLES['mg_media']} SET media_votes = $added, media_rating = '$new_rating'
-                        WHERE media_id='" . addslashes($id_sent) . "'";
-        DB_query($sql);
-
-        $sql = "SELECT MAX(id) + 1 AS newid FROM " . $_TABLES['mg_rating'];
-        $result = DB_query( $sql );
-        $row = DB_fetchArray( $result );
-        $newid = $row['newid'];
-        if ( $newid < 1 ) {
-            $newid = 1;
-        }
-        $sql = "INSERT INTO {$_TABLES['mg_rating']} (id,ip_address,uid,media_id,ratingdate,owner_id) VALUES (" . $newid . ", '" . addslashes($ip) . "'," . $uid . ",'" . addslashes($id_sent) . "'," . $ratingdate . "," . $owner_id . " )";
-        DB_query($sql);
-        COM_updateSpeedlimit ('mgrate');
-    }
-    header("Location: " . $referer); // go back to the page we came from
-    exit;
+if ($voted) { // prevent multiple voting
+    rater_sendResponse(array('error' => true,
+        'server' => 'You have already voted'));
 }
-header("Location: $referer");
+if ($speedlimiterror) {
+    rater_sendResponse(array('error' => true,
+        'server' => 'Speed limit error'));
+}
+if ($vote_sent < 1 || $vote_sent > $units) { // keep votes within range
+    rater_sendResponse(array('error' => true,
+        'server' => 'An error occured during the request'));
+}
+/* 
+if ($ip != $ip_num) { // make sure IP matches // omit the check of IP address
+    rater_sendResponse(array('error' => true,
+        'server' => 'An error occured during the request'));
+}
+*/
+DB_change($_TABLES['mg_media'], 'media_votes', $added, 'media_id', addslashes($id_sent));
+DB_change($_TABLES['mg_media'], 'media_rating', $new_rating, 'media_id', addslashes($id_sent));
+$sql = "SELECT MAX(id) + 1 AS newid FROM " . $_TABLES['mg_rating'];
+$result = DB_query($sql);
+list($newid) = DB_fetchArray($result);
+if ($newid < 1) {
+    $newid = 1;
+}
+$sql = "INSERT INTO {$_TABLES['mg_rating']} (id, ip_address, uid, media_id, ratingdate, owner_id) "
+     . "VALUES (" . $newid . ", '" . addslashes($ip) . "', " . $uid . ", '"
+     . addslashes($id_sent) . "', " . time() . ", " . $owner_id . ")";
+DB_query($sql);
+COM_updateSpeedlimit('mgrate');
+
+rater_sendResponse(array('error' => false,
+    'server' => '<strong>Thanks for your rate.</strong><br' . XHTML . '/>'
+              . '<strong>Rate received : ' . $vote_sent . '</strong>'));
+exit;
+
 ?>

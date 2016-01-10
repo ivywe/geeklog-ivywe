@@ -10,10 +10,12 @@ Create a static page
 
 Make the following 2 lines the contents of the static page
 
-	global $MG_albums;
-	echo $MG_albums[0]->showTree(0);
+    $album_id = 0;
+    $depth = 0;
+    echo MG_showAlbumTree($album_id, $depth);
 
-The showTree(##) is the depth.  0 prints all albums in Media Gallery,
+The $album_id is the album ID. The $depth is the depth of tree level.
+0 prints all albums in Media Gallery,
 1 prints the first level of albums, 2 - print 2 levels deep...
 
 Make sure you select the following for the static page:
@@ -28,30 +30,39 @@ the page is loaded.
 
 Add the following to your lib-custom.php
 
-function phpblock_mg_fsplash($aid, $width, $height, $delay, $transition, $enable_link=0){
-    global $MG_albums, $_MG_CONF, $_CONF, $LANG_MG03, $swfjsinclude;
+function phpblock_mg_fsplash($aid, $width, $height, $delay, $transition, $enable_link=0)
+{
+    global $_MG_CONF, $_CONF;
 
-    if ( $MG_albums[$aid]->access == 0 ) {
+    require_once $_CONF['path'].'plugins/mediagallery/include/classAlbum.php';
+    $album = new mgAlbum($aid);
+
+    if ($album->access == 0) {
         return 'No access';
     }
-    if ( $MG_albums[$aid]->hidden || $enable_link == 0 ) {
+    $nolink = 'false';
+    if ($album->hidden == 1 || $enable_link == 0) {
         $nolink = 'true';
-    } else {
-        $nolink = 'false';
     }
 
     $swfobject  = '<script type="text/javascript">' . LB;
-    $swfobject .= '	var flashvars = {};' . LB;
-    $swfobject .= '	var params = {};' . LB;
-    $swfobject .= '	var attributes = {};' . LB;
-    $swfobject .= '	flashvars.action="true";' . LB;
-    $swfobject .= '	flashvars.xmlUrl="' . $_MG_CONF['site_url'] . '/xml.php?aid=' . $aid . '%26src=disp&amp;showDropShadow=false&amp;dely=' . $delay . '&amp;transInType=Fade&amp;transOutType=Fade&amp;noLink=' . $nolink . '&amp;showtitle=bottom";' . LB;
-    $swfobject .= '    swfobject.embedSWF("' . $_MG_CONF['site_url'] . '/players/minislideshow.swf", "fsplash", "' . $width . '", "' . $height . '", "9.0.0", "expressInstall.swf", flashvars, params, attributes);' . LB;
+    $swfobject .= '  var flashvars = {};' . LB;
+    $swfobject .= '  var params = {};' . LB;
+    $swfobject .= '  var attributes = {};' . LB;
+    $swfobject .= '  flashvars.action="true";' . LB;
+    $swfobject .= '  flashvars.xmlUrl="' . $_MG_CONF['site_url'] . '/xml.php?aid=' . $aid . '%26src=disp&amp;'
+                       . 'showDropShadow=false&amp;'
+                       . 'dely=' . $delay . '&amp;'
+                       . 'transInType=' . $transition . '&amp;'
+                       . 'transOutType=' . $transition . '&amp;'
+                       . 'noLink=' . $nolink . '&amp;'
+                       . 'showtitle=bottom";' . LB;
+    $swfobject .= '  swfobject.embedSWF("' . $_MG_CONF['site_url'] . '/players/minislideshow.swf", "fsplash", "' . $width . '", "' . $height . '", "9.0.0", "expressInstall.swf", flashvars, params, attributes);' . LB;
     $swfobject .= '</script>' . LB;
     $swfobject .= '<div id="fsplash">' . LB;
-    $swfobject .= '	<a href="http://www.adobe.com/go/getflashplayer">' . LB;
-    $swfobject .= '		<img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player">' . LB;
-    $swfobject .= '	</a>' . LB;
+    $swfobject .= '  <a href="http://www.adobe.com/go/getflashplayer">' . LB;
+    $swfobject .= '    <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player"' . XHTML . '>' . LB;
+    $swfobject .= '  </a>' . LB;
     $swfobject .= '</div>' . LB;
 
     return $swfobject;
@@ -66,7 +77,7 @@ Set the static page to execute PHP.
 
 The parameters are:
 
-    album-Id = The album id to use
+    album-Id = The album ID to use
     width
     height
     delay

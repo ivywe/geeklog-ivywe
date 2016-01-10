@@ -1,13 +1,16 @@
 <?php
 // +--------------------------------------------------------------------------+
-// | Media Gallery Plugin - glFusion CMS                                      |
+// | Media Gallery Plugin - Geeklog                                           |
 // +--------------------------------------------------------------------------+
 // | swfupload.php                                                            |
 // |                                                                          |
 // | Processes media files uploaded via SWFUpload                             |
 // +--------------------------------------------------------------------------+
-// | $Id:: swfupload.php 5202 2009-12-04 02:41:47Z mevans0263                $|
-// +--------------------------------------------------------------------------+
+// | Copyright (C) 2015 by the following authors:                             |
+// |                                                                          |
+// | Yoshinori Tahara       taharaxp AT gmail DOT com                         |
+// |                                                                          |
+// | Based on the Media Gallery Plugin for glFusion CMS                       |
 // | Copyright (C) 2002-2009 by the following authors:                        |
 // |                                                                          |
 // | Mark R. Evans          mark AT glfusion DOT org                          |
@@ -40,25 +43,25 @@ if (!in_array('mediagallery', $_PLUGINS)) {
     exit;
 }
 
-$uid = (isset($_POST['uid'])) ? COM_applyFilter( $_POST['uid'], true ) : '';
-$sid = (isset($_POST['sid'])) ? COM_applyFilter( $_POST['sid'], false ) : '';
-$aid = (isset($_POST['aid'])) ? COM_applyFilter( $_POST['aid'], true ) : '';
+$uid = (isset($_POST['uid'])) ? COM_applyFilter($_POST['uid'], true)  : '';
+$sid = (isset($_POST['sid'])) ? COM_applyFilter($_POST['sid'], false) : '';
+$aid = (isset($_POST['aid'])) ? COM_applyFilter($_POST['aid'], true)  : '';
 
-if( $_MG_CONF['verbose'] ) {
-    COM_errorLog( '***Inside SWFUpload main()***', 1 );
-    COM_errorLog( 'received uid=' . $uid, 1 );
-    COM_errorLog( 'received sid=' . $sid, 1 );
-    COM_errorLog( 'received aid=' . $aid, 1 );
+if ($_MG_CONF['verbose']) {
+    COM_errorLog('***Inside SWFUpload main()***', 1);
+    COM_errorLog('received uid=' . $uid, 1);
+    COM_errorLog('received sid=' . $sid, 1);
+    COM_errorLog('received aid=' . $aid, 1);
 }
 
 // let's try to set the $_USER array
-$_USER = SESS_getUserDataFromId( $uid );
-if( $_USER['error'] == '1' ) {
-    COM_errorLog( 'SWFUpload: User identified by uid=' . $uid . ' not found.', 1 );
+$_USER = SESS_getUserDataFromId($uid);
+if ($_USER['error'] == '1') {
+    COM_errorLog('SWFUpload: User identified by uid=' . $uid . ' not found.', 1);
     echo $LANG_MG01['swfupload_err_session'];
     exit (0);
-} elseif(!isset($_USER['uid']) || $_USER['uid'] < 2 ) {
-    COM_errorLog( 'SWFUpload: Anonymous upload rejection.', 1 );
+} elseif(!isset($_USER['uid']) || $_USER['uid'] < 2) {
+    COM_errorLog('SWFUpload: Anonymous upload rejection.', 1);
     echo 'Anonymous upload rejected';
     exit(0);
 }
@@ -73,23 +76,20 @@ if( $_USER['error'] == '1' ) {
 
 // the upload is authenticated
 
-if ( $_MG_CONF['verbose'] ) {
-    COM_errorLog( 'The upload is authentic', 1 );
-    COM_errorLog( 'Retrieved ' . count($_USER) . ' user data values', 1 );
-    COM_errorLog( '***Leaving SWFUpload main()***', 1 );
+if ($_MG_CONF['verbose']) {
+    COM_errorLog('The upload is authentic', 1);
+    COM_errorLog('Retrieved ' . count($_USER) . ' user data values', 1);
+    COM_errorLog('***Leaving SWFUpload main()***', 1);
 }
 
-$_GROUPS = SEC_getUserGroups( $_USER['uid'] );
-$_RIGHTS = explode( ',', SEC_getUserPermissions() );
-
-MG_initAlbums();
+$_GROUPS = SEC_getUserGroups($_USER['uid']);
+$_RIGHTS = explode(',', SEC_getUserPermissions());
 
 // now that we're sure we have the right user
 
-require_once $_CONF['path'] . 'plugins/mediagallery/include/lib-upload.php';
 require_once $_CONF['path'] . 'plugins/mediagallery/include/newmedia.php';
 
-$rc = MG_saveSWFUpload( $aid );
+$rc = MG_saveSWFUpload($aid);
 echo $rc;
 exit(0);
 ?>

@@ -1,12 +1,16 @@
-<h1>{lang_title}</h1>
-<form class="uk-form" name="confirm" method="post" action="{s_form_action}">
+{# begin {templatelocation} #}
+
+<h2>{lang_title}</h2>
+<form name="confirm" method="post" action="{s_form_action}" class="uk-form">
 <div>
-<input type="hidden" name="aid" value="{aid}"{xhtml}>
 {message}
-<br{xhtml}>
-<br{xhtml}>
+</div>
+<div class="mg_submit">
+<input type="hidden" name="aid" value="{aid}"{xhtml}>
 <input type="hidden" name="action" value="{action}"{xhtml}>
-<input type="submit" class="uk-button" name="mode" value="{lang_process}"{xhtml}>
-<input type="submit" class="uk-button" name="mode" value="{lang_cancel}"{xhtml}>
+<input type="submit" name="mode" value="{lang_next}"{xhtml}>
+<input type="submit" name="mode" value="{lang_cancel}"{xhtml}>
 </div>
 </form>
+
+{# end {templatelocation} #}

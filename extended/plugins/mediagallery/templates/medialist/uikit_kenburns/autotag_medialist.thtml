@@ -5,12 +5,27 @@
 <legend><a href="{site_url}/mediagallery/album.php?aid={album_id}&page=1"><i class="uk-icon-file-image-o"></i> {album_title}</a></legend>
 {!endif}
 
-<div class="uk-slidenav-position" data-uk-slideshow="{ kenburns:true, autoplay:true}">
-    <ul class="uk-slideshow">
+<div class="uk-slidenav-position" data-uk-slideshow="{ kenburns:true, autoplay:true }">
+    <ul class="uk-slideshow uk-overlay-active">
 		{medialist_col}
 	</ul>
     <a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous" style="color: rgba(255,255,255,0.4)"></a>
     <a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next" style="color: rgba(255,255,255,0.4)"></a>
+
+    <ul class="uk-dotnav uk-dotnav-contrast uk-position-bottom uk-flex-center uk-hidden-small">
+        <li data-uk-slideshow-item="0"><a href=""></a></li>
+        <li data-uk-slideshow-item="1"><a href=""></a></li>
+        <li data-uk-slideshow-item="2"><a href=""></a></li>
+        <li data-uk-slideshow-item="3"><a href=""></a></li>
+        <li data-uk-slideshow-item="4"><a href=""></a></li>
+        <li data-uk-slideshow-item="5"><a href=""></a></li>
+        <li data-uk-slideshow-item="6"><a href=""></a></li>
+        <li data-uk-slideshow-item="7"><a href=""></a></li>
+        <li data-uk-slideshow-item="8"><a href=""></a></li>
+        <li data-uk-slideshow-item="9"><a href=""></a></li>
+        <li data-uk-slideshow-item="10"><a href=""></a></li>
+        <li data-uk-slideshow-item="11"><a href=""></a></li>
+    </ul>
 </div>
 
 {!if edit}

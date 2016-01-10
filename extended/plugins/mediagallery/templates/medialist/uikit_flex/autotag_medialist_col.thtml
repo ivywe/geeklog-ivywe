@@ -1,0 +1,8 @@
+{# begin {templatelocation} #}
+
+	<div class="uk-thumbnail">
+	    <img src="{filename_disp}" alt="{media_title}">
+	    <div class="uk-thumbnail-caption"><div class="uk-text-center uk-text-bold">{media_title}</div><div>{media_desc}</div></div>
+	</div>
+
+{# end {templatelocation} #}

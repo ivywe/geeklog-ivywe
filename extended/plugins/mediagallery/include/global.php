@@ -1,13 +1,16 @@
 <?php
 // +--------------------------------------------------------------------------+
-// | Media Gallery Plugin - glFusion CMS                                      |
+// | Media Gallery Plugin - Geeklog                                           |
 // +--------------------------------------------------------------------------+
 // | global.php                                                               |
 // |                                                                          |
 // | Global album edit/perm administration routines                           |
 // +--------------------------------------------------------------------------+
-// | $Id:: global.php 3070 2008-09-07 02:40:49Z mevans0263                   $|
-// +--------------------------------------------------------------------------+
+// | Copyright (C) 2015 by the following authors:                             |
+// |                                                                          |
+// | Yoshinori Tahara       taharaxp AT gmail DOT com                         |
+// |                                                                          |
+// | Based on the Media Gallery Plugin for glFusion CMS                       |
 // | Copyright (C) 2002-2008 by the following authors:                        |
 // |                                                                          |
 // | Mark R. Evans          mark AT glfusion DOT org                          |
@@ -33,46 +36,27 @@ if (strpos(strtolower($_SERVER['PHP_SELF']), strtolower(basename(__FILE__))) !==
     die('This file can not be used on its own!');
 }
 
-require_once $_CONF['path'] . 'plugins/mediagallery/include/classFrame.php';
-
 /**
 * Global album attribute editor
 *
 * @return   string              HTML
 *
 **/
-function MG_globalAlbumPermEditor($adminMenu=0) {
+function MG_globalAlbumPermEditor($adminMenu=0)
+{
     global $_CONF, $_MG_CONF, $LANG_MG00, $LANG_MG01, $LANG_ACCESS;
 
     $retval = '';
 
     if (!SEC_hasRights('mediagallery.admin')) {
-        $display .= COM_startBlock ('', '',COM_getBlockTemplate ('_admin_block', 'header'));
-        $T = new Template($_MG_CONF['template_path']);
-        $T->set_file('admin','error.thtml');
-        $T->set_var('site_url', $_CONF['site_url']);
-        $T->set_var('site_admin_url', $_CONF['site_admin_url']);
-        $T->set_var('errormessage',$LANG_MG00['access_denied_msg']);
-        $T->parse('output', 'admin');
-        $display .= $T->finish($T->get_var('output'));
-        $display .= COM_endBlock (COM_getBlockTemplate ('_admin_block', 'footer'));
-        return $display;
+        return COM_showMessageText($LANG_MG00['access_denied_msg']);
     }
 
-    $T = MG_templateInstance( MG_getTemplatePath(0) );
-    $T->set_var('site_url', $_CONF['site_url']);
-    $T->set_var('site_admin_url', $_CONF['site_admin_url']);
-
-    $A['moderate']          = 0;
-    $A['member_uploads']    = 0;
-    $A['email_mod']         = 0;
+    $A['moderate']       = 0;
+    $A['member_uploads'] = 0;
+    $A['email_mod']      = 0;
 
     // If edit, pull up the existing album information...
-
-    $T->set_file(array(
-        'admin' =>  'global_album_perm.thtml'
-    ));
-    $T->set_var('xhtml',XHTML);
 
     $usergroups = SEC_getUserGroups();
     for ($i = 0; $i < count($usergroups); $i++) {
@@ -82,10 +66,10 @@ function MG_globalAlbumPermEditor($adminMenu=0) {
         }
         next($usergroups);
     }
-    $A['perm_owner'] = 3;
-    $A['perm_group'] = 3;
+    $A['perm_owner']   = 3;
+    $A['perm_group']   = 3;
     $A['perm_members'] = 2;
-    $A['perm_anon'] = 2;
+    $A['perm_anon']    = 2;
 
     $usergroups = SEC_getUserGroups();
     $groupdd = '';
@@ -94,7 +78,7 @@ function MG_globalAlbumPermEditor($adminMenu=0) {
     $groupdd .= '<select name="group_id">';
     $moddd .= '<select name="mod_id">';
     for ($i = 0; $i < count($usergroups); $i++) {
-        if ( $usergroups[key($usergroups)] != 2 && $usergroups[key($usergroups)] != 13 ) {
+        if ($usergroups[key($usergroups)] != 2 && $usergroups[key($usergroups)] != 13) {
             $groupdd .= '<option value="' . $usergroups[key($usergroups)] . '"';
             $moddd   .= '<option value="' . $usergroups[key($usergroups)] . '"';
             if ($A['group_id'] == $usergroups[key($usergroups)]) {
@@ -112,6 +96,8 @@ function MG_globalAlbumPermEditor($adminMenu=0) {
     $groupdd .= '</select>';
     $moddd .= '</select>';
 
+    $T = COM_newTemplate(MG_getTemplatePath(0));
+    $T->set_file('admin', 'global_album_perm.thtml');
     $T->set_var(array(
         'action'                => 'globalperm',
         'permissions_editor'    => SEC_getPermissionsHTML($A['perm_owner'],$A['perm_group'],$A['perm_members'],$A['perm_anon']),
@@ -135,8 +121,10 @@ function MG_globalAlbumPermEditor($adminMenu=0) {
         'lang_email_mods_on_submission' => $LANG_MG01['email_mods_on_submission']
     ));
 
-    $T->parse('output', 'admin');
-    $retval .= $T->finish($T->get_var('output'));
+    $retval .= COM_startBlock($LANG_MG01['global_perm_editor'], '',
+                              COM_getBlockTemplate('_admin_block', 'header'));
+    $retval .= $T->finish($T->parse('output', 'admin'));
+    $retval .= COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
     return $retval;
 }
 
@@ -146,36 +134,38 @@ function MG_globalAlbumPermEditor($adminMenu=0) {
 * @return   string              HTML
 *
 */
-function MG_saveGlobalAlbumPerm() {
-    global $_CONF, $_TABLES, $_MG_CONF, $LANG_MG00, $LANG_MG01, $_POST;
+function MG_saveGlobalAlbumPerm()
+{
+    global $_CONF, $_TABLES, $_MG_CONF, $LANG_MG00;
 
     if (!SEC_hasRights('mediagallery.admin')) {
         COM_errorLog("Media Gallery user attempted to edit global album attributes without proper accss.");
-        return(MG_genericError($LANG_MG00['access_denied_msg']));
+        return COM_showMessageText($LANG_MG00['access_denied_msg']);
     }
 
-    $A['group_id']          = COM_applyFilter($_POST['group_id'],true);
-    $A['member_uploads']    = COM_applyFilter($_POST['member_upload'],true);
-    $A['moderate']          = COM_applyFilter($_POST['moderation'],true);
-    $A['mod_group_id']      = COM_applyFilter($_POST['mod_id'],true);
-    $A['email_mod']         = COM_applyFilter($_POST['email_mod'],true);
-    $adminMenu              = COM_applyFilter($_POST['admin_menu'],true);
+    $A['group_id']       = COM_applyFilter($_POST['group_id'],true);
+    $A['member_uploads'] = COM_applyFilter($_POST['member_upload'],true);
+    $A['moderate']       = COM_applyFilter($_POST['moderation'],true);
+    $A['mod_group_id']   = COM_applyFilter($_POST['mod_id'],true);
+    $A['email_mod']      = COM_applyFilter($_POST['email_mod'],true);
+    $adminMenu           = COM_applyFilter($_POST['admin_menu'],true);
 
-    $perm_owner     = $_POST['perm_owner'];
-    $perm_group     = $_POST['perm_group'];
-    $perm_members   = $_POST['perm_members'];
-    $perm_anon      = $_POST['perm_anon'];
-    $group_id       = $_POST['group_id'];
+    $perm_owner   = $_POST['perm_owner'];
+    $perm_group   = $_POST['perm_group'];
+    $perm_members = $_POST['perm_members'];
+    $perm_anon    = $_POST['perm_anon'];
+    $group_id     = $_POST['group_id'];
 
     // Convert array values to numeric permission values
-    list($A['perm_owner'],$A['perm_group'],$A['perm_members'],$A['perm_anon']) = SEC_getPermissionValues($perm_owner,$perm_group,$perm_members,$perm_anon);
+    list($A['perm_owner'],$A['perm_group'],$A['perm_members'],$A['perm_anon'])
+        = SEC_getPermissionValues($perm_owner,$perm_group,$perm_members,$perm_anon);
 
-    $group_active           = COM_applyFilter($_POST['group_active'],true);
-    $perm_active            = COM_applyFilter($_POST['perm_active'],true);
-    $upload_active          = COM_applyFilter($_POST['upload_active'],true);
-    $moderate_active        = COM_applyFilter($_POST['moderate_active'],true);
-    $mod_group_active       = COM_applyFilter($_POST['mod_group_active'],true);
-    $email_mod_active       = COM_applyFilter($_POST['email_mod_active'],true);
+    $group_active     = COM_applyFilter($_POST['group_active'],true);
+    $perm_active      = COM_applyFilter($_POST['perm_active'],true);
+    $upload_active    = COM_applyFilter($_POST['upload_active'],true);
+    $moderate_active  = COM_applyFilter($_POST['moderate_active'],true);
+    $mod_group_active = COM_applyFilter($_POST['mod_group_active'],true);
+    $email_mod_active = COM_applyFilter($_POST['email_mod_active'],true);
 
     $updateSQL = '';
     $updateSQL .= ($group_active     ? "group_id=$group_id" : '');
@@ -185,15 +175,13 @@ function MG_saveGlobalAlbumPerm() {
     $updateSQL .= ($mod_group_active ? ($updateSQL != '' ? ',' : '') . "mod_group_id={$A['mod_group_id']}" : '');
     $updateSQL .= ($email_mod_active ? ($updateSQL != '' ? ',' : '') . "email_mod={$A['email_mod']}" : '');
 
-    if ($updateSQL != '' ) {
+    if ($updateSQL != '') {
         $sql = "UPDATE {$_TABLES['mg_albums']} SET " . $updateSQL;
-        DB_query( $sql );
+        DB_query($sql);
         require_once $_CONF['path'] . 'plugins/mediagallery/include/rssfeed.php';
-        MG_buildFullRSS( );
-        MG_GlobalrebuildAllAlbumsRSS( 0 );
+        MG_buildFullRSS();
+        MG_GlobalrebuildAllAlbumsRSS(0);
     }
-
-
 
     if ($adminMenu == 1 ) {
         echo COM_refresh($_MG_CONF['admin_url'] . '/index.php?msg=10');
@@ -210,33 +198,18 @@ function MG_saveGlobalAlbumPerm() {
 * @return   string              HTML
 *
 **/
-function MG_globalAlbumAttributeEditor($adminMenu=0) {
-    global $_CONF, $_TABLES, $_MG_CONF, $LANG_MG00, $LANG_MG01, $REMOTE_ADDR;
-    global $MG_albums, $album_jumpbox;
+function MG_globalAlbumAttributeEditor($adminMenu=0)
+{
+    global $_CONF, $_MG_CONF, $LANG_MG00, $LANG_MG01;
 
     $retval = '';
-    $valid_albums = 0;
 
     if (!SEC_hasRights('mediagallery.admin')) {
-        $display .= COM_startBlock ('', '',COM_getBlockTemplate ('_admin_block', 'header'));
-        $T = new Template($_MG_CONF['template_path']);
-        $T->set_file('admin','error.thtml');
-        $T->set_var('site_url', $_CONF['site_url']);
-        $T->set_var('site_admin_url', $_CONF['site_admin_url']);
-        $T->set_var('errormessage',$LANG_MG00['access_denied_msg']);
-        $T->parse('output', 'admin');
-        $display .= $T->finish($T->get_var('output'));
-        $display .= COM_endBlock (COM_getBlockTemplate ('_admin_block', 'footer'));
-        return $display;
+        return COM_showMessageText($LANG_MG00['access_denied_msg']);
     }
-
-    $T = MG_templateInstance( MG_getTemplatePath(0) );
-    $T->set_var('site_url', $_CONF['site_url']);
-    $T->set_var('site_admin_url', $_CONF['site_admin_url']);
 
     $A['enable_slideshow']   = 0;
     $A['enable_random']      = 0;
-    $A['enable_shutterfly']  = 0;
     $A['enable_views']       = 0;
     $A['enable_keywords']    = 0;
     $A['enable_sort']        = 0;
@@ -255,13 +228,8 @@ function MG_globalAlbumAttributeEditor($adminMenu=0) {
     $A['rsschildren']        = 1;
     $A['skin']               = '';
 
-    $retval .= COM_startBlock ($LANG_MG01['global_attr_editor'], '',
-                               COM_getBlockTemplate ('_admin_block', 'header'));
-
-    $T->set_file(array(
-        'admin' =>  'global_album_attr.thtml'
-    ));
-    $T->set_var('xhtml',XHTML);
+    $retval .= COM_startBlock($LANG_MG01['global_attr_editor'], '',
+                              COM_getBlockTemplate('_admin_block', 'header'));
 
     // build exif select box...
 
@@ -291,14 +259,13 @@ function MG_globalAlbumAttributeEditor($adminMenu=0) {
     $filename_title_select = '<input type="checkbox" name="filename_title" value="1"' . XHTML . '>';
 
     $comment_select = '<input type="checkbox" name="enable_comments" value="1"' . XHTML . '>';
-    $ss_select		= '<select name="enable_slideshow">';
-    $ss_select		.= '<option value="0">' . $LANG_MG01['disabled'] . '</option>';
-    $ss_select		.= '<option value="1">' . $LANG_MG01['js_slideshow'] . '</option>';
-    $ss_select		.= '<option value="2">' . $LANG_MG01['lightbox'] . '</option>';
+    $ss_select      = '<select name="enable_slideshow">';
+    $ss_select      .= '<option value="0">' . $LANG_MG01['disabled'] . '</option>';
+    $ss_select      .= '<option value="1">' . $LANG_MG01['js_slideshow'] . '</option>';
+    $ss_select      .= '<option value="2">' . $LANG_MG01['lightbox'] . '</option>';
     $ss_select      .= '</select>';
 
     $ri_select      = '<input type="checkbox" name="enable_random" value="1"' . XHTML . '>';
-    $sf_select      = '<input type="checkbox" name="enable_shutterfly" value="1"' . XHTML . '>';
     $views_select   = '<input type="checkbox" name="enable_views" value="1"' . XHTML . '>';
     $keywords_select = '<input type="checkbox" name="enable_keywords" value="1"' . XHTML . '>';
     $sort_select    = '<input type="checkbox" name="enable_sort" value="1"' . XHTML . '>';
@@ -306,10 +273,14 @@ function MG_globalAlbumAttributeEditor($adminMenu=0) {
     $album_views_select   = '<input type="checkbox" name="enable_album_views" value="1"' . XHTML . '>';
 
     $tn_size_select  = '<select name="tn_size">';
-    $tn_size_select .= '<option value="0">' . $LANG_MG01['small'] . '</option>';
-    $tn_size_select .= '<option value="1">' . $LANG_MG01['medium'] . '</option>';
-    $tn_size_select .= '<option value="2">' . $LANG_MG01['large'] . '</option>';
-    $tn_size_select .= '<option value="3">' . $LANG_MG01['custom'] . '</option>';
+    $tn_size_select .= '<option value="0">' . $LANG_MG01['include_small'] . '</option>';
+    $tn_size_select .= '<option value="1">' . $LANG_MG01['include_medium'] . '</option>';
+    $tn_size_select .= '<option value="2">' . $LANG_MG01['include_large'] . '</option>';
+    $tn_size_select .= '<option value="3">' . $LANG_MG01['include_custom'] . '</option>';
+    $tn_size_select .= '<option value="10">' . $LANG_MG01['crop_small'] . '</option>';
+    $tn_size_select .= '<option value="11">' . $LANG_MG01['crop_medium'] . '</option>';
+    $tn_size_select .= '<option value="12">' . $LANG_MG01['crop_large'] . '</option>';
+    $tn_size_select .= '<option value="12">' . $LANG_MG01['crop_custom'] . '</option>';
     $tn_size_select .= '</select>';
 
     $tnheight_input = '<input type="text" size="3" name="tnheight" value=""' . XHTML . '>';
@@ -345,44 +316,38 @@ function MG_globalAlbumAttributeEditor($adminMenu=0) {
     $rss_select     = '<input type="checkbox" name="enable_rss" value="1"' . XHTML . '>';
     $display_album_desc_select     = '<input type="checkbox" name="display_album_desc" value="1"' . XHTML . '>';
 
-    $postcard_select  = '<select name="enable_postcard">';
-    $postcard_select .= '<option value="0">' . $LANG_MG01['disabled'] . '</option>';
-    $postcard_select .= '<option value="1">' . $LANG_MG01['members_only']  . '</option>';
-    $postcard_select .= '<option value="2">' . $LANG_MG01['all_users'] . '</option>';
-    $postcard_select .= '</select>';
-
     $allow_download_select     = '<input type="checkbox" name="allow_download" value="1"' . XHTML . '>';
 
     // build album list for starting point...
 
     $album_jumpbox  = '<select name="startaid">';
     $album_jumpbox .= '<option value="0">------</option>';
-    $valid_albums  += $MG_albums[0]->buildJumpBox(0,3);
+    $root_album = new mgAlbum(0);
+    $root_album->buildJumpBox($album_jumpbox, 0, 3);
     $album_jumpbox .= '</select>';
 
-    $frames = new mgFrame();
-    $skins = array();
-    $skins = $frames->getFrames();
-
-    $skin_select = '<select name="skin">';
+    $skins = MG_getFrames();
+    $skin_select  = '<select name="skin">';
     $askin_select = '<select name="askin">';
     $dskin_select = '<select name="dskin">';
-    for ( $i=0; $i < count($skins); $i++ ) {
-        $skin_select .= '<option value="' . $skins[$i]['dir'] . '"' . ($_MG_CONF['ad_image_skin'] == $skins[$i]['dir'] ? ' selected="selected" ': '') .'>' . $skins[$i]['name'] .  '</option>';
-        $askin_select .= '<option value="' . $skins[$i]['dir'] . '"' . ($_MG_CONF['ad_album_skin'] == $skins[$i]['dir'] ? ' selected="selected" ': '') .'>' . $skins[$i]['name'] .  '</option>';
+    for ($i=0; $i < count($skins); $i++) {
+        $skin_select  .= '<option value="' . $skins[$i]['dir'] . '"' . ($_MG_CONF['ad_image_skin']   == $skins[$i]['dir'] ? ' selected="selected" ': '') .'>' . $skins[$i]['name'] .  '</option>';
+        $askin_select .= '<option value="' . $skins[$i]['dir'] . '"' . ($_MG_CONF['ad_album_skin']   == $skins[$i]['dir'] ? ' selected="selected" ': '') .'>' . $skins[$i]['name'] .  '</option>';
         $dskin_select .= '<option value="' . $skins[$i]['dir'] . '"' . ($_MG_CONF['ad_display_skin'] == $skins[$i]['dir'] ? ' selected="selected" ': '') .'>' . $skins[$i]['name'] .  '</option>';
     }
-    $skin_select .= '</select>';
+    $skin_select  .= '</select>';
     $askin_select .= '</select>';
     $dskin_select .= '</select>';
 
     $themes = MG_getThemes();
     $album_theme_select = '<select name="album_theme">';
-    for ( $i = 0; $i < count($themes); $i++ ) {
-    	$album_theme_select .= '<option value="' . $themes[$i] . '"' . ($A['skin'] == $themes[$i] ? 'selected="selected"' : '') . '>' . $themes[$i] . '</option>';
+    for ($i = 0; $i < count($themes); $i++) {
+        $album_theme_select .= '<option value="' . $themes[$i] . '"' . ($A['skin'] == $themes[$i] ? 'selected="selected"' : '') . '>' . $themes[$i] . '</option>';
     }
     $album_theme_select .= '</select>';
 
+    $T = COM_newTemplate(MG_getTemplatePath(0));
+    $T->set_file('admin', 'global_album_attr.thtml');
     $T->set_var(array(
         'action'                => 'globalattr',
         'album_list'            => $album_jumpbox,
@@ -393,15 +358,13 @@ function MG_globalAlbumAttributeEditor($adminMenu=0) {
         'comment_select'        => $comment_select,
         'exif_select'           => $exif_select,
         'ranking_select'        => $ranking_select,
-        'podcast_select'		=> $podcast_select,
+        'podcast_select'        => $podcast_select,
         'mp3ribbon_select'      => $mp3ribbon_select,
         'rsschildren_select'    => $rsschildren_select,
         'ss_select'             => $ss_select,
         'full_select'           => $full_select,
         'ri_select'             => $ri_select,
-        'sf_select'             => $sf_select,
         'rss_select'            => $rss_select,
-        'postcard_select'       => $postcard_select,
         'views_select'          => $views_select,
         'keywords_select'       => $keywords_select,
         'album_theme_select'    => $album_theme_select,
@@ -410,8 +373,8 @@ function MG_globalAlbumAttributeEditor($adminMenu=0) {
         'sort_select'           => $sort_select,
         'afirst_select'         => $afirst_select,
         'tn_size_select'        => $tn_size_select,
-        'tnheight_input'		=> $tnheight_input,
-        'tnwidth_input'			=> $tnwidth_input,
+        'tnheight_input'        => $tnheight_input,
+        'tnwidth_input'         => $tnwidth_input,
         'rows_input'            => $rows_input,
         'height_input'          => $max_image_height_input,
         'width_input'           => $max_image_width_input,
@@ -483,36 +446,33 @@ function MG_globalAlbumAttributeEditor($adminMenu=0) {
         'lang_display_image_size' => $LANG_MG01['display_image_size'],
         'lang_starting_album'   => $LANG_MG01['starting_album'],
         'lang_enable_rss'       => $LANG_MG01['enable_rss'],
-        'lang_enable_postcard'  => $LANG_MG01['enable_postcard'],
         'lang_allow_download'   => $LANG_MG01['allow_download'],
         'lang_display_album_desc' => $LANG_MG01['display_album_desc'],
         'lang_filename_title'   => $LANG_MG01['filename_title'],
-        'lang_theme_select'		=> $LANG_MG01['album_theme'],
-        'lang_podcast'			=> $LANG_MG01['podcast'],
+        'lang_theme_select'     => $LANG_MG01['album_theme'],
+        'lang_podcast'          => $LANG_MG01['podcast'],
         'lang_mp3ribbon'        => $LANG_MG01['mp3ribbon'],
         'lang_rsschildren'      => $LANG_MG01['rsschildren'],
-        'lang_tnheight'			=> $LANG_MG01['tn_height'],
-        'lang_tnwidth'			=> $LANG_MG01['tn_width'],
+        'lang_tnheight'         => $LANG_MG01['tn_height'],
+        'lang_tnwidth'          => $LANG_MG01['tn_width'],
     ));
-
-    $T->parse('output', 'admin');
-    $retval .= $T->finish($T->get_var('output'));
-    $retval .= COM_endBlock (COM_getBlockTemplate ('_admin_block', 'footer'));
+    $retval .= $T->finish($T->parse('output', 'admin'));
+    $retval .= COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
     return $retval;
 }
 
 
-function MG_saveGlobalAlbumAttrChildren($aid, $sql) {
-    global $_TABLES, $MG_albums;
+function MG_saveGlobalAlbumAttrChildren($aid, $sql)
+{
+    global $_TABLES;
 
-    $sqltmp = "UPDATE {$_TABLES['mg_albums']} SET " . $sql . " WHERE album_id=" . $aid;
-    DB_query( $sqltmp );
+    $sqltmp = "UPDATE {$_TABLES['mg_albums']} SET " . $sql . " WHERE album_id=" . intval($aid);
+    DB_query($sqltmp);
 
-    if ( !empty($MG_albums[$aid]->children)) {
-        $children = $MG_albums[$aid]->getChildren();
-        foreach($children as $child) {
-            MG_saveGlobalAlbumAttrChildren($MG_albums[$child]->id,$sql);
-        }
+    $album = new mgAlbum($aid);
+    $children = $album->getChildren();
+    foreach ($children as $child) {
+        MG_saveGlobalAlbumAttrChildren($child, $sql);
     }
 }
 
@@ -523,183 +483,171 @@ function MG_saveGlobalAlbumAttrChildren($aid, $sql) {
 * @return   string              HTML
 *
 */
-function MG_saveGlobalAlbumAttr() {
-    global $_USER, $_CONF, $_TABLES, $_MG_CONF, $LANG_MG00, $LANG_MG01, $_POST;
+function MG_saveGlobalAlbumAttr()
+{
+    global $_USER, $_CONF, $_TABLES, $_MG_CONF, $LANG_MG00, $LANG_MG01;
 
     if (!SEC_hasRights('mediagallery.admin')) {
         COM_errorLog("Media Gallery user attempted to edit global album attributes without proper accss.");
-        return(MG_genericError($LANG_MG00['access_denied_msg']));
+        return COM_showMessageText($LANG_MG00['access_denied_msg']);
     }
 
     $startaid = COM_applyFilter($_POST['startaid'],true);
 
-    $A['enable_comments']   = isset($_POST['enable_comments']) ? COM_applyFilter($_POST['enable_comments'],true) : 0;
-    $A['exif_display']      = isset($_POST['enable_exif']) ? COM_applyFilter($_POST['enable_exif'],true) : 0;
-    $A['enable_rating']     = isset($_POST['enable_rating']) ? COM_applyFilter($_POST['enable_rating'],true) : 0;
-    $A['rsschildren']       = isset($_POST['rsschildren']) ? COM_applyFilter($_POST['rsschildren'],true) : 0;
-    $A['podcast']           = isset($_POST['podcast']) ? COM_applyFilter($_POST['podcast'],true) : 0;
-    $A['mp3ribbon']         = isset($_POST['mp3ribbon']) ? COM_applyFilter($_POST['mp3ribbon'],true) : 0;
-    $A['playback_type']     = isset($_POST['playback_type']) ? COM_applyFilter($_POST['playback_type'],true) : 0;
-    $A['enable_slideshow']  = isset($_POST['enable_slideshow']) ? COM_applyFilter($_POST['enable_slideshow'],true) : 0;
-    $A['enable_random']     = isset($_POST['enable_random']) ? COM_applyFilter($_POST['enable_random'],true) : 0;
-    $A['enable_shutterfly'] = isset($_POST['enable_shutterfly']) ? COM_applyFilter($_POST['enable_shutterfly'],true) : 0;
-    $A['enable_views']      = isset($_POST['enable_views']) ? COM_applyFilter($_POST['enable_views'],true) : 0;
-    $A['enable_keywords']   = isset($_POST['enable_keywords']) ? COM_applyFilter($_POST['enable_keywords'],true) : 0;
-    $A['enable_sort']       = isset($_POST['enable_sort']) ? COM_applyFilter($_POST['enable_sort'],true) : 0;
-    $A['albums_first']      = isset($_POST['albums_first']) ? COM_applyFilter($_POST['albums_first'],true) : 0;
-    $A['tn_size']           = isset($_POST['tn_size']) ? COM_applyFilter($_POST['tn_size'],true) : 0;
-    $A['tn_height']         = isset($_POST['tnheight']) ? COM_applyFilter($_POST['tnheight'],true) : 200;
-    $A['tn_width']          = isset($_POST['tnwidth']) ? COM_applyFilter($_POST['tnwidth'],true) : 200;
-    if ( $A['tn_height'] == 0 ) {
-        $A['tn_height'] = 200;
-    }
-    if ( $A['tn_width'] == 0 ) {
-        $A['tn_width'] = 200;
-    }
-    $A['display_rows']      = isset($_POST['display_rows']) ? COM_applyFilter($_POST['display_rows'],true) : 0;
-    $A['display_columns']   = isset($_POST['display_columns']) ? COM_applyFilter($_POST['display_columns'],true) : 0;
-    $A['full_display']      = isset($_POST['full_display']) ? COM_applyFilter($_POST['full_display'],true) : 0;
-    $A['max_image_height']  = isset($_POST['max_image_height']) ? COM_applyFilter($_POST['max_image_height'],true) : 0;
-    $A['max_image_width']   = isset($_POST['max_image_width']) ? COM_applyFilter($_POST['max_image_width'],true) : 0;
-    $A['max_filesize']      = isset($_POST['max_filesize']) ? COM_applyFilter($_POST['max_filesize'],true) : 0;
-    $A['display_image_size'] = isset($_POST['display_image_size']) ? COM_applyFilter($_POST['display_image_size'],true) : 0;
-    $A['enable_album_views'] = isset($_POST['enable_album_views']) ? COM_applyFilter($_POST['enable_album_views'],true) : 0;
-    $A['enable_rss']         = isset($_POST['enable_rss']) ? COM_applyFilter($_POST['enable_rss'],true) : 0;
-    $A['enable_postcard']    = isset($_POST['enable_postcard']) ? COM_applyFilter($_POST['enable_postcard'],true) : 0;
-    $A['allow_download']     = isset($_POST['allow_download']) ? COM_applyFilter($_POST['allow_download'],true) : 0;
-    $A['display_album_desc'] = isset($_POST['display_album_desc']) ? COM_applyFilter($_POST['display_album_desc'],true) : 0;
-    $A['filename_title']     = isset($_POST['filename_title']) ? COM_applyFilter($_POST['filename_title'],true) : 0;
+    $A['enable_comments']   = isset($_POST['enable_comments'])   ? COM_applyFilter($_POST['enable_comments'],   true) : 0;
+    $A['exif_display']      = isset($_POST['enable_exif'])       ? COM_applyFilter($_POST['enable_exif'],       true) : 0;
+    $A['enable_rating']     = isset($_POST['enable_rating'])     ? COM_applyFilter($_POST['enable_rating'],     true) : 0;
+    $A['rsschildren']       = isset($_POST['rsschildren'])       ? COM_applyFilter($_POST['rsschildren'],       true) : 0;
+    $A['podcast']           = isset($_POST['podcast'])           ? COM_applyFilter($_POST['podcast'],           true) : 0;
+    $A['mp3ribbon']         = isset($_POST['mp3ribbon'])         ? COM_applyFilter($_POST['mp3ribbon'],         true) : 0;
+    $A['playback_type']     = isset($_POST['playback_type'])     ? COM_applyFilter($_POST['playback_type'],     true) : 0;
+    $A['enable_slideshow']  = isset($_POST['enable_slideshow'])  ? COM_applyFilter($_POST['enable_slideshow'],  true) : 0;
+    $A['enable_random']     = isset($_POST['enable_random'])     ? COM_applyFilter($_POST['enable_random'],     true) : 0;
+    $A['enable_views']      = isset($_POST['enable_views'])      ? COM_applyFilter($_POST['enable_views'],      true) : 0;
+    $A['enable_keywords']   = isset($_POST['enable_keywords'])   ? COM_applyFilter($_POST['enable_keywords'],   true) : 0;
+    $A['enable_sort']       = isset($_POST['enable_sort'])       ? COM_applyFilter($_POST['enable_sort'],       true) : 0;
+    $A['albums_first']      = isset($_POST['albums_first'])      ? COM_applyFilter($_POST['albums_first'],      true) : 0;
+    $A['tn_size']           = isset($_POST['tn_size'])           ? COM_applyFilter($_POST['tn_size'],           true) : 0;
+    $A['tn_height']         = isset($_POST['tnheight'])          ? COM_applyFilter($_POST['tnheight'],          true) : 200;
+    $A['tn_width']          = isset($_POST['tnwidth'])           ? COM_applyFilter($_POST['tnwidth'],           true) : 200;
+    if ($A['tn_height'] == 0) $A['tn_height'] = 200;
+    if ($A['tn_width']  == 0) $A['tn_width']  = 200;
+    $A['display_rows']       = isset($_POST['display_rows'])       ? COM_applyFilter($_POST['display_rows'],       true) : 0;
+    $A['display_columns']    = isset($_POST['display_columns'])    ? COM_applyFilter($_POST['display_columns'],    true) : 0;
+    $A['full_display']       = isset($_POST['full_display'])       ? COM_applyFilter($_POST['full_display'],       true) : 0;
+    $A['max_image_height']   = isset($_POST['max_image_height'])   ? COM_applyFilter($_POST['max_image_height'],   true) : 0;
+    $A['max_image_width']    = isset($_POST['max_image_width'])    ? COM_applyFilter($_POST['max_image_width'],    true) : 0;
+    $A['max_filesize']       = isset($_POST['max_filesize'])       ? COM_applyFilter($_POST['max_filesize'],       true) : 0;
+    $A['display_image_size'] = isset($_POST['display_image_size']) ? COM_applyFilter($_POST['display_image_size'], true) : 0;
+    $A['enable_album_views'] = isset($_POST['enable_album_views']) ? COM_applyFilter($_POST['enable_album_views'], true) : 0;
+    $A['enable_rss']         = isset($_POST['enable_rss'])         ? COM_applyFilter($_POST['enable_rss'],         true) : 0;
+    $A['allow_download']     = isset($_POST['allow_download'])     ? COM_applyFilter($_POST['allow_download'],     true) : 0;
+    $A['display_album_desc'] = isset($_POST['display_album_desc']) ? COM_applyFilter($_POST['display_album_desc'], true) : 0;
+    $A['filename_title']     = isset($_POST['filename_title'])     ? COM_applyFilter($_POST['filename_title'],     true) : 0;
     $A['image_skin']         = COM_applyFilter($_POST['skin']);
     $A['album_skin']         = COM_applyFilter($_POST['askin']);
     $A['display_skin']       = COM_applyFilter($_POST['dskin']);
     $A['skin']               = COM_applyFilter($_POST['album_theme']);
     // valid media formats....
-    $format_jpg                 = isset($_POST['format_jpg']) ? COM_applyFilter($_POST['format_jpg'],true) : 0;
-    $format_png                 = isset($_POST['format_png']) ? COM_applyFilter($_POST['format_png'],true) : 0;
-    $format_tif                 = isset($_POST['format_tif']) ? COM_applyFilter($_POST['format_tif'],true) : 0;
-    $format_gif                 = isset($_POST['format_gif']) ? COM_applyFilter($_POST['format_gif'],true) : 0;
-    $format_bmp                 = isset($_POST['format_bmp']) ? COM_applyFilter($_POST['format_bmp'],true) : 0;
-    $format_tga                 = isset($_POST['format_tga']) ? COM_applyFilter($_POST['format_tga'],true) : 0;
-    $format_psd                 = isset($_POST['format_psd']) ? COM_applyFilter($_POST['format_psd'],true) : 0;
-    $format_mp3                 = isset($_POST['format_mp3']) ? COM_applyFilter($_POST['format_mp3'],true) : 0;
-    $format_ogg                 = isset($_POST['format_ogg']) ? COM_applyFilter($_POST['format_ogg'],true) : 0;
-    $format_asf                 = isset($_POST['format_asf']) ? COM_applyFilter($_POST['format_asf'],true) : 0;
-    $format_swf                 = isset($_POST['format_swf']) ? COM_applyFilter($_POST['format_swf'],true) : 0;
-    $format_mov                 = isset($_POST['format_mov']) ? COM_applyFilter($_POST['format_mov'],true) : 0;
-    $format_mp4                 = isset($_POST['format_mp4']) ? COM_applyFilter($_POST['format_mp4'],true) : 0;
-    $format_mpg                 = isset($_POST['format_mpg']) ? COM_applyFilter($_POST['format_mpg'],true) : 0;
-    $format_zip                 = isset($_POST['format_zip']) ? COM_applyFilter($_POST['format_zip'],true) : 0;
-    $format_other               = isset($_POST['format_other']) ? COM_applyFilter($_POST['format_other'],true) : 0;
-    $format_flv                 = isset($_POST['format_flv']) ? COM_applyFilter($_POST['format_flv'],true) : 0;
-    $format_rflv                = isset($_POST['format_rflv']) ? COM_applyFilter($_POST['format_rflv'],true) : 0;
-    $format_emb                 = isset($_POST['format_emb']) ? COM_applyFilter($_POST['format_emb'],true) : 0;
+    $format_jpg                = isset($_POST['format_jpg'])                ? COM_applyFilter($_POST['format_jpg'],               true) : 0;
+    $format_png                = isset($_POST['format_png'])                ? COM_applyFilter($_POST['format_png'],               true) : 0;
+    $format_tif                = isset($_POST['format_tif'])                ? COM_applyFilter($_POST['format_tif'],               true) : 0;
+    $format_gif                = isset($_POST['format_gif'])                ? COM_applyFilter($_POST['format_gif'],               true) : 0;
+    $format_bmp                = isset($_POST['format_bmp'])                ? COM_applyFilter($_POST['format_bmp'],               true) : 0;
+    $format_tga                = isset($_POST['format_tga'])                ? COM_applyFilter($_POST['format_tga'],               true) : 0;
+    $format_psd                = isset($_POST['format_psd'])                ? COM_applyFilter($_POST['format_psd'],               true) : 0;
+    $format_mp3                = isset($_POST['format_mp3'])                ? COM_applyFilter($_POST['format_mp3'],               true) : 0;
+    $format_ogg                = isset($_POST['format_ogg'])                ? COM_applyFilter($_POST['format_ogg'],               true) : 0;
+    $format_asf                = isset($_POST['format_asf'])                ? COM_applyFilter($_POST['format_asf'],               true) : 0;
+    $format_swf                = isset($_POST['format_swf'])                ? COM_applyFilter($_POST['format_swf'],               true) : 0;
+    $format_mov                = isset($_POST['format_mov'])                ? COM_applyFilter($_POST['format_mov'],               true) : 0;
+    $format_mp4                = isset($_POST['format_mp4'])                ? COM_applyFilter($_POST['format_mp4'],               true) : 0;
+    $format_mpg                = isset($_POST['format_mpg'])                ? COM_applyFilter($_POST['format_mpg'],               true) : 0;
+    $format_zip                = isset($_POST['format_zip'])                ? COM_applyFilter($_POST['format_zip'],               true) : 0;
+    $format_other              = isset($_POST['format_other'])              ? COM_applyFilter($_POST['format_other'],             true) : 0;
+    $format_flv                = isset($_POST['format_flv'])                ? COM_applyFilter($_POST['format_flv'],               true) : 0;
+    $format_rflv               = isset($_POST['format_rflv'])               ? COM_applyFilter($_POST['format_rflv'],              true) : 0;
+    $format_emb                = isset($_POST['format_emb'])                ? COM_applyFilter($_POST['format_emb'],               true) : 0;
+    $comment_active            = isset($_POST['comment_active'])            ? COM_applyFilter($_POST['comment_active'],           true) : 0;
+    $exif_active               = isset($_POST['exif_active'])               ? COM_applyFilter($_POST['exif_active'],              true) : 0;
+    $rating_active             = isset($_POST['rating_active'])             ? COM_applyFilter($_POST['rating_active'],            true) : 0;
+    $rsschildren_active        = isset($_POST['rsschildren_active'])        ? COM_applyFilter($_POST['rsschildren_active'],       true) : 0;
+    $podcast_active            = isset($_POST['podcast_active'])            ? COM_applyFilter($_POST['podcast_active'],           true) : 0;
+    $mp3ribbon_active          = isset($_POST['mp3ribbon_active'])          ? COM_applyFilter($_POST['mp3ribbon_active'],         true) : 0;
+    $playback_active           = isset($_POST['playback_active'])           ? COM_applyFilter($_POST['playback_active'],          true) : 0;
+    $slideshow_active          = isset($_POST['slideshow_active'])          ? COM_applyFilter($_POST['slideshow_active'],         true) : 0;
+    $random_active             = isset($_POST['random_active'])             ? COM_applyFilter($_POST['random_active'],            true) : 0;
+    $shutterfly_active         = isset($_POST['shutterfly_active'])         ? COM_applyFilter($_POST['shutterfly_active'],        true) : 0;
+    $views_active              = isset($_POST['views_active'])              ? COM_applyFilter($_POST['views_active'],             true) : 0;
+    $keywords_active           = isset($_POST['keywords_active'])           ? COM_applyFilter($_POST['keywords_active'],          true) : 0;
+    $sort_active               = isset($_POST['sort_active'])               ? COM_applyFilter($_POST['sort_active'],              true) : 0;
+    $afirst_active             = isset($_POST['afirst_active'])             ? COM_applyFilter($_POST['afirst_active'],            true) : 0;
+    $thumbnail_active          = isset($_POST['thumbnail_active'])          ? COM_applyFilter($_POST['thumbnail_active'],         true) : 0;
+    $tnheight_active           = isset($_POST['tnheight_active'])           ? COM_applyFilter($_POST['tnheight_active'],          true) : 0;
+    $tnwidth_active            = isset($_POST['tnwidth_active'])            ? COM_applyFilter($_POST['tnwidth_active'],           true) : 0;
+    $rows_active               = isset($_POST['rows_active'])               ? COM_applyFilter($_POST['rows_active'],              true) : 0;
+    $columns_active            = isset($_POST['columns_active'])            ? COM_applyFilter($_POST['columns_active'],           true) : 0;
+    $full_display_active       = isset($_POST['full_display_active'])       ? COM_applyFilter($_POST['full_display_active'],      true) : 0;
+    $max_image_height_active   = isset($_POST['max_image_height_active'])   ? COM_applyFilter($_POST['max_image_height_active'],  true) : 0;
+    $max_image_width_active    = isset($_POST['max_image_width_active'])    ? COM_applyFilter($_POST['max_image_width_active'],   true) : 0;
+    $max_filesize_active       = isset($_POST['max_filesize_active'])       ? COM_applyFilter($_POST['max_filesize_active'],      true) : 0;
+    $display_image_size_active = isset($_POST['display_image_size_active']) ? COM_applyFilter($_POST['display_image_size_active'],true) : 0;
+    $album_views_active        = isset($_POST['album_views_active'])        ? COM_applyFilter($_POST['album_views_active'],       true) : 0;
+    $enable_rss_active         = isset($_POST['enable_rss_active'])         ? COM_applyFilter($_POST['enable_rss_active'],        true) : 0;
+    $allow_download_active     = isset($_POST['allow_download_active'])     ? COM_applyFilter($_POST['allow_download_active'],    true) : 0;
+    $display_album_desc_active = isset($_POST['display_album_desc_active']) ? COM_applyFilter($_POST['display_album_desc_active'],true) : 0;
+    $formats_active            = isset($_POST['formats_active'])            ? COM_applyFilter($_POST['formats_active'],           true) : 0;
+    $filename_title_active     = isset($_POST['filename_title_active'])     ? COM_applyFIlter($_POST['filename_title_active'],    true) : 0;
+    $image_skin_active         = isset($_POST['image_skin_active'])         ? COM_applyFilter($_POST['image_skin_active'],        true) : 0;
+    $album_skin_active         = isset($_POST['album_skin_active'])         ? COM_applyFilter($_POST['album_skin_active'],        true) : 0;
+    $display_skin_active       = isset($_POST['display_dkin_active'])       ? COM_applyFilter($_POST['display_skin_active'],      true) : 0;
+    $admin_menu                = isset($_POST['admin_menu'])                ? COM_applyFilter($_POST['admin_menu'],               true) : 0;
+    $album_theme_active        = isset($_POST['album_theme_active'])        ? COM_applyFilter($_POST['album_theme_active'],       true) : 0;
+
     $valid_formats = ($format_jpg + $format_png + $format_tif + $format_gif + $format_bmp + $format_tga + $format_psd + $format_mp3 + $format_ogg + $format_asf + $format_swf + $format_mov + $format_mp4 + $format_mpg + $format_zip + $format_other + $format_flv + $format_rflv + $format_emb);
 
-    $comment_active         = isset($_POST['comment_active']) ? COM_applyFilter($_POST['comment_active'],true) : 0;
-    $exif_active            = isset($_POST['exif_active']) ? COM_applyFilter($_POST['exif_active'],true) : 0;
-    $rating_active          = isset($_POST['rating_active']) ? COM_applyFilter($_POST['rating_active'],true) : 0;
-    $rsschildren_active     = isset($_POST['rsschildren_active']) ? COM_applyFilter($_POST['rsschildren_active'],true) : 0;
-    $podcast_active         = isset($_POST['podcast_active']) ? COM_applyFilter($_POST['podcast_active'],true) : 0;
-    $mp3ribbon_active       = isset($_POST['mp3ribbon_active']) ? COM_applyFilter($_POST['mp3ribbon_active'],true) : 0;
-    $playback_active        = isset($_POST['playback_active']) ? COM_applyFilter($_POST['playback_active'],true) : 0;
-    $slideshow_active       = isset($_POST['slideshow_active']) ? COM_applyFilter($_POST['slideshow_active'],true) : 0;
-    $random_active          = isset($_POST['random_active']) ? COM_applyFilter($_POST['random_active'],true) : 0;
-    $shutterfly_active      = isset($_POST['shutterfly_active']) ? COM_applyFilter($_POST['shutterfly_active'],true) : 0;
-    $views_active           = isset($_POST['views_active']) ? COM_applyFilter($_POST['views_active'],true) : 0;
-    $keywords_active        = isset($_POST['keywords_active']) ? COM_applyFilter($_POST['keywords_active'],true) : 0;
-    $sort_active            = isset($_POST['sort_active']) ? COM_applyFilter($_POST['sort_active'],true) : 0;
-    $afirst_active          = isset($_POST['afirst_active']) ? COM_applyFilter($_POST['afirst_active'],true) : 0;
-    $thumbnail_active       = isset($_POST['thumbnail_active']) ? COM_applyFilter($_POST['thumbnail_active'],true) : 0;
-    $tnheight_active        = isset($_POST['tnheight_active']) ? COM_applyFilter($_POST['tnheight_active'],true) : 0;
-    $tnwidth_active         = isset($_POST['tnwidth_active']) ? COM_applyFilter($_POST['tnwidth_active'],true) : 0;
-    $rows_active            = isset($_POST['rows_active']) ? COM_applyFilter($_POST['rows_active'],true) : 0;
-    $columns_active         = isset($_POST['columns_active']) ? COM_applyFilter($_POST['columns_active'],true) : 0;
-    $full_display_active    = isset($_POST['full_display_active']) ? COM_applyFilter($_POST['full_display_active'],true) : 0;
-    $max_image_height_active= isset($_POST['max_image_height_active']) ? COM_applyFilter($_POST['max_image_height_active'],true) : 0;
-    $max_image_width_active = isset($_POST['max_image_width_active']) ? COM_applyFilter($_POST['max_image_width_active'],true) : 0;
-    $max_filesize_active    = isset($_POST['max_filesize_active']) ? COM_applyFilter($_POST['max_filesize_active'],true) : 0;
-    $display_image_size_active = isset($_POST['display_image_size_active']) ? COM_applyFilter($_POST['display_image_size_active'],true) : 0;
-    $album_views_active     = isset($_POST['album_views_active']) ? COM_applyFilter($_POST['album_views_active'],true) : 0;
-    $enable_rss_active      = isset($_POST['enable_rss_active']) ? COM_applyFilter($_POST['enable_rss_active'],true) : 0;
-    $enable_postcard_active = isset($_POST['enable_postcard_active'])? COM_applyFilter($_POST['enable_postcard_active'],true) : 0;
-    $allow_download_active  = isset($_POST['allow_download_active']) ? COM_applyFilter($_POST['allow_download_active'],true) : 0;
-    $display_album_desc_active = isset($_POST['display_album_desc_active']) ? COM_applyFilter($_POST['display_album_desc_active'],true) : 0;
-    $formats_active         = isset($_POST['formats_active']) ? COM_applyFilter($_POST['formats_active'],true) : 0;
-    $filename_title_active  = isset($_POST['filename_title_active']) ? COM_applyFIlter($_POST['filename_title_active'],true) : 0;
-    $image_skin_active      = isset($_POST['image_skin_active']) ? COM_applyFilter($_POST['image_skin_active'],true) : 0;
-    $album_skin_active      = isset($_POST['album_skin_active']) ? COM_applyFilter($_POST['album_skin_active'],true) : 0;
-    $display_skin_active    = isset($_POST['display_dkin_active']) ? COM_applyFilter($_POST['display_skin_active'],true) : 0;
-    $admin_menu             = isset($_POST['admin_menu']) ? COM_applyFilter($_POST['admin_menu'],true) : 0;
-    $album_theme_active     = isset($_POST['album_theme_active']) ? COM_applyFilter($_POST['album_theme_active'],true) : 0;
-
-    if ($A['display_rows'] < 1 || $A['display_rows'] > 99 ) {
+    if ($A['display_rows'] < 1 || $A['display_rows'] > 99) {
         $A['display_rows'] = 4;
     }
-    if ($A['display_columns'] < 1 || $A['display_columns'] > 9 ) {
+    if ($A['display_columns'] < 1 || $A['display_columns'] > 9) {
         $A['display_columns'] = 3;
     }
 
     $updateSQL = '';
-    $updateSQL .= ($comment_active ? "enable_comments={$A['enable_comments']}" : '');
-    $updateSQL .= ($exif_active    ? ($updateSQL != '' ? ',' : '') . "exif_display={$A['exif_display']}" : '');
-    $updateSQL .= ($rating_active  ? ($updateSQL != '' ? ',' : '') . "enable_rating={$A['enable_rating']}" : '');
-    $updateSQL .= ($rsschildren_active  ? ($updateSQL != '' ? ',' : '') . "rsschildren={$A['rsschildren']}" : '');
-    $updateSQL .= ($podcast_active  ? ($updateSQL != '' ? ',' : '') . "podcast={$A['podcast']}" : '');
-    $updateSQL .= ($mp3ribbon_active  ? ($updateSQL != '' ? ',' : '') . "mp3ribbon={$A['mp3ribbon']}" : '');
-    $updateSQL .= ($playback_active ? ($updateSQL != '' ? ',' : '') . "playback_type={$A['playback_type']}" : '');
-    $updateSQL .= ($slideshow_active ? ($updateSQL != '' ? ',' : '') . "enable_slideshow={$A['enable_slideshow']}" : '');
-    $updateSQL .= ($random_active ? ($updateSQL != '' ? ',' : '') . "enable_random={$A['enable_random']}" : '');
-    $updateSQL .= ($shutterfly_active ? ($updateSQL != '' ? ',' : '') . "enable_shutterfly={$A['enable_shutterfly']}" : '');
-    $updateSQL .= ($views_active ? ($updateSQL != '' ? ',' : '') . "enable_views={$A['enable_views']}" : '');
-    $updateSQL .= ($keywords_active ? ($updateSQL != '' ? ',' : '') . "enable_keywords={$A['enable_keywords']}" : '');
-    $updateSQL .= ($sort_active ? ($updateSQL != '' ? ',' : '') . "enable_sort={$A['enable_sort']}" : '');
-    $updateSQL .= ($afirst_active ? ($updateSQL != '' ? ',' : '') . "albums_first={$A['albums_first']}" : '');
-    $updateSQL .= ($thumbnail_active ? ($updateSQL != '' ? ',' : '') . "tn_size={$A['tn_size']}" : '');
-    $updateSQL .= ($tnheight_active ? ($updateSQL != '' ? ',' : '') . "tnheight={$A['tn_height']}" : '');
-    $updateSQL .= ($tnwidth_active ? ($updateSQL != '' ? ',' : '') . "tnwidth={$A['tn_width']}" : '');
-    $updateSQL .= ($rows_active ? ($updateSQL != '' ? ',' : '') . "display_rows={$A['display_rows']}" : '');
-    $updateSQL .= ($columns_active ? ($updateSQL != '' ? ',' : '') . "display_columns={$A['display_columns']}" : '');
-    $updateSQL .= ($full_display_active ? ($updateSQL != '' ? ',' : '') . "full_display={$A['full_display']}" : '');
-    $updateSQL .= ($allow_download_active ? ($updateSQL != '' ? ',' : '') . "allow_download={$A['allow_download']}" : '');
+    $updateSQL .= ($comment_active            ? "enable_comments={$A['enable_comments']}"                                       : '');
+    $updateSQL .= ($exif_active               ? ($updateSQL != '' ? ',' : '') . "exif_display={$A['exif_display']}"             : '');
+    $updateSQL .= ($rating_active             ? ($updateSQL != '' ? ',' : '') . "enable_rating={$A['enable_rating']}"           : '');
+    $updateSQL .= ($rsschildren_active        ? ($updateSQL != '' ? ',' : '') . "rsschildren={$A['rsschildren']}"               : '');
+    $updateSQL .= ($podcast_active            ? ($updateSQL != '' ? ',' : '') . "podcast={$A['podcast']}"                       : '');
+    $updateSQL .= ($mp3ribbon_active          ? ($updateSQL != '' ? ',' : '') . "mp3ribbon={$A['mp3ribbon']}"                   : '');
+    $updateSQL .= ($playback_active           ? ($updateSQL != '' ? ',' : '') . "playback_type={$A['playback_type']}"           : '');
+    $updateSQL .= ($slideshow_active          ? ($updateSQL != '' ? ',' : '') . "enable_slideshow={$A['enable_slideshow']}"     : '');
+    $updateSQL .= ($random_active             ? ($updateSQL != '' ? ',' : '') . "enable_random={$A['enable_random']}"           : '');
+    $updateSQL .= ($views_active              ? ($updateSQL != '' ? ',' : '') . "enable_views={$A['enable_views']}"             : '');
+    $updateSQL .= ($keywords_active           ? ($updateSQL != '' ? ',' : '') . "enable_keywords={$A['enable_keywords']}"       : '');
+    $updateSQL .= ($sort_active               ? ($updateSQL != '' ? ',' : '') . "enable_sort={$A['enable_sort']}"               : '');
+    $updateSQL .= ($afirst_active             ? ($updateSQL != '' ? ',' : '') . "albums_first={$A['albums_first']}"             : '');
+    $updateSQL .= ($thumbnail_active          ? ($updateSQL != '' ? ',' : '') . "tn_size={$A['tn_size']}"                       : '');
+    $updateSQL .= ($tnheight_active           ? ($updateSQL != '' ? ',' : '') . "tnheight={$A['tn_height']}"                    : '');
+    $updateSQL .= ($tnwidth_active            ? ($updateSQL != '' ? ',' : '') . "tnwidth={$A['tn_width']}"                      : '');
+    $updateSQL .= ($rows_active               ? ($updateSQL != '' ? ',' : '') . "display_rows={$A['display_rows']}"             : '');
+    $updateSQL .= ($columns_active            ? ($updateSQL != '' ? ',' : '') . "display_columns={$A['display_columns']}"       : '');
+    $updateSQL .= ($full_display_active       ? ($updateSQL != '' ? ',' : '') . "full_display={$A['full_display']}"             : '');
+    $updateSQL .= ($allow_download_active     ? ($updateSQL != '' ? ',' : '') . "allow_download={$A['allow_download']}"         : '');
     $updateSQL .= ($display_album_desc_active ? ($updateSQL != '' ? ',' : '') . "display_album_desc={$A['display_album_desc']}" : '');
-    $updateSQL .= ($formats_active ? ($updateSQL != '' ? ',' : '') . "valid_formats=$valid_formats" : '');
-    $updateSQL .= ($filename_title_active ? ($updateSQL != '' ? ',' : '') . "filename_title={$A['filename_title']}" : '');
-    $updateSQL .= ($album_theme_active ? ($updateSQL != '' ? ',' : '') . "skin=\"{$A['skin']}\"" : '');
-
-
-    $updateSQL .= ($max_image_height_active ? ($updateSQL != '' ? ',' : '') . "max_image_height={$A['max_image_height']}" : '');
-    $updateSQL .= ($max_image_width_active ? ($updateSQL != '' ? ',' : '') . "max_image_width={$A['max_image_width']}" : '');
-    $updateSQL .= ($max_filesize_active ? ($updateSQL != '' ? ',' : '') . "max_filesize={$A['max_filesize']}" : '');
+    $updateSQL .= ($formats_active            ? ($updateSQL != '' ? ',' : '') . "valid_formats=$valid_formats"                  : '');
+    $updateSQL .= ($filename_title_active     ? ($updateSQL != '' ? ',' : '') . "filename_title={$A['filename_title']}"         : '');
+    $updateSQL .= ($album_theme_active        ? ($updateSQL != '' ? ',' : '') . "skin=\"{$A['skin']}\""                         : '');
+    $updateSQL .= ($max_image_height_active   ? ($updateSQL != '' ? ',' : '') . "max_image_height={$A['max_image_height']}"     : '');
+    $updateSQL .= ($max_image_width_active    ? ($updateSQL != '' ? ',' : '') . "max_image_width={$A['max_image_width']}"       : '');
+    $updateSQL .= ($max_filesize_active       ? ($updateSQL != '' ? ',' : '') . "max_filesize={$A['max_filesize']}"             : '');
     $updateSQL .= ($display_image_size_active ? ($updateSQL != '' ? ',' : '') . "display_image_size={$A['display_image_size']}" : '');
-    $updateSQL .= ($album_views_active ? ($updateSQL != '' ? ',' : '') . "enable_album_views={$A['enable_album_views']}" : '');
+    $updateSQL .= ($album_views_active        ? ($updateSQL != '' ? ',' : '') . "enable_album_views={$A['enable_album_views']}" : '');
+    $updateSQL .= ($enable_rss_active         ? ($updateSQL != '' ? ',' : '') . "enable_rss={$A['enable_rss']}"                 : '');
+    $updateSQL .= ($image_skin_active         ? ($updateSQL != '' ? ',' : '') . "image_skin=\"{$A['image_skin']}\""             : '');
+    $updateSQL .= ($album_skin_active         ? ($updateSQL != '' ? ',' : '') . "album_skin=\"{$A['album_skin']}\""             : '');
+    $updateSQL .= ($display_skin_active       ? ($updateSQL != '' ? ',' : '') . "display_skin=\"{$A['display_skin']}\""         : '');
 
-    $updateSQL .= ($enable_rss_active ? ($updateSQL != '' ? ',' : '') . "enable_rss={$A['enable_rss']}" : '');
-    $updateSQL .= ($enable_postcard_active ? ($updateSQL != '' ? ',' : '') . "enable_postcard={$A['enable_postcard']}" : '');
-
-    $updateSQL .= ($image_skin_active ? ($updateSQL != '' ? ',' : '') . "image_skin=\"{$A['image_skin']}\"" : '');
-    $updateSQL .= ($album_skin_active ? ($updateSQL != '' ? ',' : '') . "album_skin=\"{$A['album_skin']}\"" : '');
-    $updateSQL .= ($display_skin_active ? ($updateSQL != '' ? ',' : '') . "display_skin=\"{$A['display_skin']}\"" : '');
-
-    if ($updateSQL != '' ) {
-        if ( $startaid == 0 ) {
+    if ($updateSQL != '') {
+        if ($startaid == 0) {
             $sql = "UPDATE {$_TABLES['mg_albums']} SET " . $updateSQL;
-            DB_query( $sql );
-            if ( $enable_rss_active ) {
+            DB_query($sql);
+            if ($enable_rss_active) {
                 require_once $_CONF['path'] . 'plugins/mediagallery/include/rssfeed.php';
-                MG_buildFullRSS( );
-                MG_GlobalrebuildAllAlbumsRSS( 0 );
+                MG_buildFullRSS();
+                MG_GlobalrebuildAllAlbumsRSS(0);
             }
         } else {
             MG_saveGlobalAlbumAttrChildren($startaid, $updateSQL);
-            if ( $enable_rss_active ) {
+            if ($enable_rss_active) {
                 require_once $_CONF['path'] . 'plugins/mediagallery/include/rssfeed.php';
-                MG_buildFullRSS( );
-                MG_GlobalrebuildAllAlbumsRSS( $startaid );
+                MG_buildFullRSS();
+                MG_GlobalrebuildAllAlbumsRSS($startaid);
             }
         }
     }
 
-    if ( $admin_menu == 1 ) {
+    if ($admin_menu == 1) {
         echo COM_refresh($_MG_CONF['admin_url'] . 'index.php?msg=11');
     } else {
         echo COM_refresh($_MG_CONF['site_url'] . '/index.php');
@@ -707,15 +655,14 @@ function MG_saveGlobalAlbumAttr() {
     exit;
 }
 
-function MG_GlobalrebuildAllAlbumsRSS( $aid ){
-    global $MG_albums;
-
+function MG_GlobalrebuildAllAlbumsRSS($aid)
+{
     MG_buildAlbumRSS($aid);
-    if ( !empty($MG_albums[$aid]->children)) {
-        $children = $MG_albums[$aid]->getChildren();
-        foreach($children as $child) {
-            MG_GlobalrebuildAllAlbumsRSS($MG_albums[$child]->id);
-        }
+
+    $album = new mgAlbum($aid);
+    $children = $album->getChildren();
+    foreach ($children as $child) {
+        MG_GlobalrebuildAllAlbumsRSS($child);
     }
 }
 

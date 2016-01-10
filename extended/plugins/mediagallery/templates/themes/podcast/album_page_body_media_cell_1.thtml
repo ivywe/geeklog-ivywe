@@ -1,4 +1,5 @@
 {# begin {templatelocation} #}
+
 <a name="{media_id}"></a>
 <h1 style="padding-bottom:0px;margin-bottom:0px;">{media_title}</h1>
 <h2 style="padding-top:0px;padding-bottom:2px;margin-top:2px;margin-bottom:2px;">{musicalbum} {lang_hyphen} {artist}</h2>
@@ -8,10 +9,10 @@
 {!if media_cell_keywords}
 <div class="pluginMediumText">{media_cell_keywords}</div>
 {!endif}
-<table style="border:none;">
+<table class="uk-table uk-table-condensed uk-table-striped uk-width-1-1" style="background:#ffffff;">
   <tr>
     <td style="vertical-align:top;">
-     <div style="padding-right:3px;padding-top:5px;">{media_item_thumbnail}</div>
+     <div class="mgPluginMI" style="padding-right:3px;padding-top:5px;">{media_item_thumbnail}</div>
      <div class="pluginItemFooter" style="clear:both;">
       {!if media_comments}
       <div class="pluginMediumText">{media_comments}</div>
@@ -32,8 +33,9 @@
     </td>
   </tr>
 </table>
-<div class="uk-clearfix"></div>
+<div style="clear:both;"></div>
 {mp3_podcast}
 <hr{xhtml}>
-<div class="uk-clearfix"></div>
+<div style="clear:both;"></div>
+
 {# end {templatelocation} #}

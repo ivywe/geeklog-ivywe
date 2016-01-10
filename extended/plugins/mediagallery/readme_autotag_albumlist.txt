@@ -1,6 +1,6 @@
  --------------------------------------------------------------------------------
  Add Media album list and Media list autotags to Media Gallery WKZ plugin.
- Based on Media Gallery WKZ plugin (Ver 1.6.14) 
+ Based on Media Gallery WKZ plugin (Ver 1.7.0) 
  2012/12/17 Ver 1.6.13 Based on Media Gallery WKZ plugin
  2013/04/22 Ver 1.6.14 Based on Media Gallery WKZ plugin
  2013/05/13 Ver 1.6.16 Based on Media Gallery WKZ plugin
@@ -9,6 +9,7 @@
  2015/04/07 Change autotags albumlist medialist limitcnt default
  2015/04/07 Change autotags medialist sort
  2015/04/09 Add medialist template: admin for display HTML
+ 2016/01/08 Ver 1.7.0 Based on Media Gallery WKZ plugin
  -------------------------------------------------------------------------------
   Format:　[albumlist:albumid limitcnt:xx order:xx XXXX]
 		Display sub album of album:albumid.

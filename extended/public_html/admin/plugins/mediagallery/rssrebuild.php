@@ -1,10 +1,14 @@
 <?php
 // +--------------------------------------------------------------------------+
-// | Media Gallery Plugin for glFusion CMS                                    |
+// | Media Gallery Plugin - Geeklog                                           |
 // +--------------------------------------------------------------------------+
-// | $Id:: rssrebuild.php 5847 2010-04-09 13:16:50Z mevans0263               $|
 // | Media Gallery Maintenance Routines                                       |
 // +--------------------------------------------------------------------------+
+// | Copyright (C) 2015 by the following authors:                             |
+// |                                                                          |
+// | Yoshinori Tahara       taharaxp AT gmail DOT com                         |
+// |                                                                          |
+// | Based on the Media Gallery Plugin for glFusion CMS                       |
 // | Copyright (C) 2005-2010 by the following authors:                        |
 // |                                                                          |
 // | Mark R. Evans          mark AT glfusion DOT org                          |
@@ -29,33 +33,34 @@
 
 require_once '../../../lib-common.php';
 require_once '../../auth.inc.php';
-require_once $_CONF['path'] . 'plugins/mediagallery/include/rssfeed.php';
-require_once $_MG_CONF['path_admin'] . 'navigation.php';
 
 // Only let admin users access this page
 if (!SEC_hasRights('mediagallery.config')) {
     // Someone is trying to illegally access this page
-    COM_errorLog("Someone has tried to illegally access the Media Gallery Configuration page.  User id: {$_USER['uid']}, Username: {$_USER['username']}, IP: " . $_SERVER['REMOTE_ADDR'],1);
-    $display .= COM_startBlock($LANG_MG00['access_denied']);
+    COM_errorLog("Someone has tried to illegally access the Media Gallery Configuration page. "
+               . "User id: {$_USER['uid']}, Username: {$_USER['username']}, IP: " . $_SERVER['REMOTE_ADDR'], 1);
+    $display = COM_startBlock($LANG_MG00['access_denied']);
     $display .= $LANG_MG00['access_denied_msg'];
     $display .= COM_endBlock();
-    $display = MG_createHTMLDocument($display, array('what' => 'menu', 'rightblock' => true));
-    echo $display;
+    $display = COM_createHTMLDocument($display);
+    COM_output($display);
     exit;
 }
 
-MG_initAlbums();
+require_once $_CONF['path'] . 'plugins/mediagallery/include/common.php';
+require_once $_CONF['path'] . 'plugins/mediagallery/include/rssfeed.php';
+require_once $_CONF['path'] . 'plugins/mediagallery/include/classAlbum.php';
+require_once $_MG_CONF['path_admin'] . 'navigation.php';
 
-function MG_rebuildAllAlbumsRSS( $aid ){
-    global $MG_albums;
+function MG_rebuildAllAlbumsRSS($aid)
+{
+    if (!$aid == 0) {
+        MG_buildAlbumRSS($aid);
+    }
 
-    MG_buildAlbumRSS($aid);
-
-    if ( !empty($MG_albums[$aid]->children)) {
-        $children = $MG_albums[$aid]->getChildren();
-        foreach($children as $child) {
-            MG_rebuildAllAlbumsRSS($MG_albums[$child]->id);
-        }
+    $children = MG_getAlbumChildren($aid);
+    foreach ($children as $child) {
+        MG_rebuildAllAlbumsRSS($child);
     }
 }
 

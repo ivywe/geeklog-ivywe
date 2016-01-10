@@ -1,12 +1,15 @@
 <?php
 // +--------------------------------------------------------------------------+
-// | Media Gallery Plugin - glFusion CMS                                      |
+// | Media Gallery Plugin - Geeklog                                           |
 // +--------------------------------------------------------------------------+
 // | albim_items.php                                                          |
 // |                                                                          |
 // +--------------------------------------------------------------------------+
-// | $Id:: lightbox.php 4919 2009-09-13 17:49:49Z mevans0263                 $|
-// +--------------------------------------------------------------------------+
+// | Copyright (C) 2015 by the following authors:                             |
+// |                                                                          |
+// | Yoshinori Tahara       taharaxp AT gmail DOT com                         |
+// |                                                                          |
+// | Based on the Media Gallery Plugin for glFusion CMS                       |
 // | Copyright (C) 2002-2009 by the following authors:                        |
 // |                                                                          |
 // | Mark R. Evans          mark AT glfusion DOT org                          |
@@ -35,102 +38,58 @@ if (!in_array('mediagallery', $_PLUGINS)) {
     exit;
 }
 
-MG_initAlbums();
+require_once $_CONF['path'] . 'plugins/mediagallery/include/common.php';
 
-function MG_getItems ($mode='sv')
+function MG_getThumbCropPath($path)
 {
-    global $MG_albums, $_TABLES, $_MG_CONF;
+    $p = pathinfo($path);
+    return $p['dirname'] . '/' . $p['filename'] . '_150x150.' . $p['extension'];
+}
 
-    $retval = '';
+$aid  = isset($_REQUEST['aid'])   ? COM_applyFilter($_REQUEST['aid'], true) : 0;
+$src  = isset($_REQUEST['src'])   ? COM_applyFilter($_REQUEST['src'])       : 'disp';
+if ($src != 'disp' && $src != 'orig') {
+    $src = 'tn';
+}
 
-    if ( isset($_REQUEST['aid']) ) {
-        $aid = COM_applyFilter($_REQUEST['aid'],true);
-    } else {
-        $aid = 0;
-    }
-    if ( isset($_REQUEST['src']) ) {
-        $src = COM_applyFilter($_REQUEST['src']);
-    } else {
-        $src = 'disp';
-    }
-    if ( isset($_REQUEST['type']) ) {
-        $type = COM_applyFilter($_REQUEST['type']);
-    } else {
-        $type = 'mini';
-    }
+$album_data = MG_getAlbumData($aid, array('album_id'), true);
 
-    if ( $src != 'disp' && $src != 'orig' ) {
-        $src = 'tn';
-    }
-    if ( $type != 'full' || $type != 'mini' ) {
-        $type = 'mini';
-    }
+$xml = "<album>\n";
+if (isset($album_data['album_id']) && $album_data['access'] >= 1) {
+    $encoding = COM_getCharset();
+    $sql = MG_buildMediaSql(array(
+        'album_id'  => $aid,
+        'fields'    => array('media_type', 'media_filename', 'remote_media',
+                             'remote_url', 'media_id', 'media_title', 'media_desc'),
+        'where'     => 'm.include_ss = 1'
+    ));
+    $result = DB_query($sql);
+    while ($A = DB_fetchArray($result)) {
+        if ($A['media_type'] == 0) {
+            $PhotoPath = MG_getFilePath($src, $A['media_filename']);
+            $ext = pathinfo($PhotoPath, PATHINFO_EXTENSION);
+            $PhotoURL  = MG_getFileUrl($src,  $A['media_filename'], $ext);
+            $TnURL     = MG_getFileUrl('tn',  $A['media_filename'], $ext);
+            $TnCropURL = MG_getThumbCropPath($TnURL);
 
-    if ( isset($MG_albums[$aid]->id ) ) {
-        if ( $MG_albums[$aid]->access >= 1 ) {
-            $orderBy = MG_getSortOrder($aid, 0);
-
-            $sql = "SELECT * FROM {$_TABLES['mg_media_albums']} as ma INNER JOIN " . $_TABLES['mg_media'] . " as m " .
-                    " ON ma.media_id=m.media_id WHERE ma.album_id=" . intval($aid) . " AND m.include_ss=1 " . $orderBy;
-
-            $result = DB_query( $sql );
-            $nRows  = DB_numRows( $result );
-            $encoding = COM_getEncodingt();
-            $mediaRows = 0;
-            if ( $nRows > 0 ) {
-                while ( $row = DB_fetchArray($result)) {
-                    if ( $row['media_type'] == 0 ) {
-                        foreach ($_MG_CONF['validExtensions'] as $ext ) {
-                            if ( file_exists($_MG_CONF['path_mediaobjects'] . $src . '/' . $row['media_filename'][0] . '/' . $row['media_filename'] . $ext) ) {
-                                $PhotoURL  = $_MG_CONF['mediaobjects_url'] . '/' . $src . '/' . $row['media_filename'][0] .'/' . $row['media_filename'] . $ext;
-                                $PhotoPath = $_MG_CONF['path_mediaobjects'] . $src . '/' . $row['media_filename'][0] .'/' . $row['media_filename'] . $ext;
-
-                                $TnURL     = $_MG_CONF['mediaobjects_url'] . '/tn/' . $row['media_filename'][0] .'/' . $row['media_filename'] . $ext;
-                                $TnCropURL = $_MG_CONF['mediaobjects_url'] . '/tn/' . $row['media_filename'][0] .'/' . $row['media_filename'] . '_150x150'. $ext;
-                                break;
-                            }
-                        }
-                        if ( $row['remote_url'] != '' ) {
-                            $viewURL = $row['remote_url'];
-                        } else {
-                            $viewURL   = $_MG_CONF['site_url']  . "/media.php?s=" . $row['media_id'];
-                        }
-                        $imgsize   = @getimagesize($PhotoPath);
-                        if ( $imgsize == false && $row['remote_media'] != 1) {
-                            continue;
-                        }
-                        if ( $row['remote_media'] == 1 ) {
-                            $PhotoURL = $row['remote_url'];
-                        }
-                        $retval .= '<item>'
-                                 . '<url>' . $PhotoURL . '</url>'
-                                 . '<tnurl>' . $TnURL . '</tnurl>'
-                                 . '<tncropurl>' . $TnCropURL . '</tncropurl>'
-                                 . '<title>' . htmlentities(strip_tags($row['media_title']), ENT_QUOTES, $encoding) . '</title>'
-                                 . '<desc>' . htmlentities(strip_tags($row['media_desc']), ENT_QUOTES, $encoding) . '</desc>'
-                                 . '</item>' . "\n";
-                    }
-                }
+            $imgsize = @getimagesize($PhotoPath);
+            if ($imgsize == false && $A['remote_media'] != 1) {
+                continue;
             }
+            if ($A['remote_media'] == 1) {
+                $PhotoURL = $A['remote_url'];
+            }
+            $xml .= '<item>'
+                  . '<url>' . $PhotoURL . '</url>'
+                  . '<tnurl>' . $TnURL . '</tnurl>'
+                  . '<tncropurl>' . $TnCropURL . '</tncropurl>'
+                  . '<title>' . htmlentities(strip_tags($A['media_title']), ENT_QUOTES, $encoding) . '</title>'
+                  . '<desc>'  . htmlentities(strip_tags($A['media_desc']),  ENT_QUOTES, $encoding) . '</desc>'
+                  . '</item>' . "\n";
         }
-        return $retval;
     }
 }
-
-function MG_xml() {
-    global $MG_albums,$_MG_CONF,$LANG_CHARSET;
-
-    if ( isset($_REQUEST['aid']) ) {
-        $aid = COM_applyFilter($_REQUEST['aid'],true);
-    } else {
-        $aid = 0;
-    }
-    $xml = '';
-    header( "Content-type: text/xml" );
-    $xml .= "<album>\n";
-    $xml .= MG_getItems();
-    $xml .= "</album>\n";
-    echo $xml;
-}
-MG_xml();
+$xml .= "</album>\n";
+header("Content-type: text/xml");
+echo $xml;
 ?>

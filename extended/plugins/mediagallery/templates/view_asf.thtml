@@ -1,5 +1,6 @@
-<object classid="CLSID:6BF52A52-394A-11D3-B153-00C04F79FAA6"
-        width="{width}" height="{height}">
+{# begin {templatelocation} #}
+
+<object classid="CLSID:6BF52A52-394A-11D3-B153-00C04F79FAA6" width="{width}" height="{height}">
   <param name="src" value="{movie}"{xhtml}>
   <param name="Filename" value="{movie}"{xhtml}>
   <param name="URL" value="{movie}"{xhtml}>
@@ -28,3 +29,5 @@
    alt : <a href="{movie}">Download</a>
   <![endif]-->
 </object>
+
+{# end {templatelocation} #}

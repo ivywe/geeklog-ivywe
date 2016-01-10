@@ -1,13 +1,16 @@
 <?php
 // +--------------------------------------------------------------------------+
-// | Media Gallery Plugin - glFusion CMS                                      |
+// | Media Gallery Plugin - Geeklog                                           |
 // +--------------------------------------------------------------------------+
 // | xspf.php                                                                 |
 // |                                                                          |
 // | Generates feed for XSPF players                                          |
 // +--------------------------------------------------------------------------+
-// | $Id:: xspf.php 5614 2010-03-19 19:08:33Z mevans0263                     $|
-// +--------------------------------------------------------------------------+
+// | Copyright (C) 2015 by the following authors:                             |
+// |                                                                          |
+// | Yoshinori Tahara       taharaxp AT gmail DOT com                         |
+// |                                                                          |
+// | Based on the Media Gallery Plugin for glFusion CMS                       |
 // | Copyright (C) 2002-2010 by the following authors:                        |
 // |                                                                          |
 // | Mark R. Evans          mark AT glfusion DOT org                          |
@@ -36,147 +39,121 @@ if (!in_array('mediagallery', $_PLUGINS)) {
     exit;
 }
 
-MG_initAlbums();
+if (COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1) {
+    exit;
+}
 
-function MG_getMP3Items ($aid)
+require_once $_CONF['path'] . 'plugins/mediagallery/include/common.php';
+
+function MG_getMP3Items(&$album_data)
 {
-    global $MG_albums, $_TABLES, $_MG_CONF;
+    global $_TABLES, $_MG_CONF;
 
     $retval = '';
 
-	if ( isset($MG_albums[$aid]->id ) ) {
-        if ( $MG_albums[$aid]->access >= 1 ) {
-			if ( $MG_albums[$aid]->cover_filename != '' && $MG_albums[$aid]->cover_filename != '0') {
-			    if ( substr($MG_albums[$aid]->cover_filename,0,3) == 'tn_' ) {
-			        $offset = 3;
-			    } else {
-			        $offset = 0;
-			    }
-                foreach ($_MG_CONF['validExtensions'] as $ext ) {
-                    if ( file_exists($_MG_CONF['path_mediaobjects'] . 'tn/' . $MG_albums[$aid]->cover_filename[$offset] .'/' . $MG_albums[$aid]->cover_filename . $ext) ) {
-                        $image = $_MG_CONF['mediaobjects_url'] . '/tn/' . $MG_albums[$aid]->cover_filename[$offset] .'/' . $MG_albums[$aid]->cover_filename . $ext;
+    if (isset($album_data['album_id'])) {
+        $aid = $album_data['album_id'];
+        if ($album_data['access'] >= 1) {
+            $albumCover = MG_getAlbumCover($aid);
+            if ($albumCover != '') {
+                if (substr($albumCover,0,3) == 'tn_') {
+                    $offset = 3;
+                } else {
+                    $offset = 0;
+                }
+                foreach ($_MG_CONF['validExtensions'] as $ext) {
+                    if (file_exists($_MG_CONF['path_mediaobjects'] . 'tn/' . $albumCover[$offset] .'/' . $albumCover . $ext)) {
+                        $image = $_MG_CONF['mediaobjects_url'] . '/tn/' . $albumCover[$offset] .'/' . $albumCover . $ext;
                         break;
                     }
                 }
-			} else {
-				$albumCover = $MG_albums[$aid]->findCover();
-				if ( $albumCover != '' ) {
-			    	if ( substr($albumCover,0,3) == 'tn_' ) {
-			        	$offset = 3;
-			    	} else {
-			        	$offset = 0;
-			    	}
-                    foreach ($_MG_CONF['validExtensions'] as $ext ) {
-                        if ( file_exists($_MG_CONF['path_mediaobjects'] . 'tn/' . $albumCover[$offset] .'/' . $albumCover . $ext) ) {
-                            $image = $_MG_CONF['mediaobjects_url'] . '/tn/' . $albumCover[$offset] .'/' . $albumCover . $ext;
+            } else {
+                $image = '';
+            }
+
+            if ($album_data['tn_attached'] == 1) {
+                foreach ($_MG_CONF['validExtensions'] as $ext) {
+                    if (file_exists($_MG_CONF['path_mediaobjects'] . 'covers/cover_' . $aid . $ext)) {
+                        $image = $_MG_CONF['mediaobjects_url'] . '/covers/cover_' . $aid . $ext;
+                        break;
+                    }
+                }
+            }
+
+            $sql = MG_buildMediaSql(array(
+                'album_id'  => $aid,
+                'fields'    => array('media_type', 'media_filename', 'media_mime_ext',
+                                     'media_tn_attached', 'media_title', 'artist',
+                                     'album', 'media_id'),
+                'where'     => "m.media_type = 2 AND m.mime_type = 'audio/mpeg'"
+            ));
+            $result = DB_query($sql);
+            while ($row = DB_fetchArray($result)) {
+                if ($row['media_type'] == 0) {
+                    $PhotoURL = MG_getFileUrl($src, $row['media_filename']);
+                } else {
+                    $PhotoURL = MG_getFileUrl('orig', $row['media_filename'], $row['media_mime_ext']);
+                }
+
+                if ($row['media_tn_attached'] == 1) {
+                    foreach ($_MG_CONF['validExtensions'] as $ext) {
+                        if (file_exists($_MG_CONF['path_mediaobjects'] . 'tn/'.  $row['media_filename'][0] . '/tn_' . $row['media_filename'] . $ext)) {
+                            $media_thumbnail = $_MG_CONF['mediaobjects_url'] . '/tn/'.  $row['media_filename'][0] . '/tn_' . $row['media_filename'] . $ext;
+                            $media_thumbnail_file = $_MG_CONF['path_mediaobjects'] . 'tn/'.  $row['media_filename'][0] . '/tn_' . $row['media_filename'] . $ext;
                             break;
                         }
                     }
-				} else {
-					$image = '';
-				}
-			}
-
-			if ( $MG_albums[$aid]->tn_attached == 1 ) {
-                foreach ($_MG_CONF['validExtensions'] as $ext ) {
-                    if ( file_exists($_MG_CONF['path_mediaobjects'] . 'covers/cover_' . $MG_albums[$aid]->id . $ext) ) {
-                        $image = $_MG_CONF['mediaobjects_url'] . '/covers/cover_' . $MG_albums[$aid]->id . $ext;
-                        break;
+                } else {
+                    $media_thumbnail = '';
+                }
+                if ($media_thumbnail != '') {
+                    if (!file_exists($media_thumbnail_file)) {
+                        $medai_thumbnail = '';
                     }
                 }
-			}
 
-			$orderBy = MG_getSortOrder($aid, 0);
-
-			$sql = "SELECT * FROM {$_TABLES['mg_media_albums']} as ma INNER JOIN " . $_TABLES['mg_media'] . " as m " .
-			        " ON ma.media_id=m.media_id WHERE ma.album_id=" . intval($aid) . " AND m.media_type=2 AND m.mime_type='audio/mpeg' " . $orderBy;
-
-			$result = DB_query( $sql );
-			$nRows  = DB_numRows( $result );
-			$mediaRows = 0;
-			if ( $nRows > 0 ) {
-			    while ( $row = DB_fetchArray($result)) {
-			    	if ( $row['media_type'] == 0 ) {
-                        foreach ($_MG_CONF['validExtensions'] as $ext ) {
-                            if ( file_exists($_MG_CONF['path_mediaobjects'] . $src . "/" . $row['media_filename'][0] .'/' . $row['media_filename'] . $ext) ) {
-                                $PhotoURL = $_MG_CONF['mediaobjects_url'] . '/' . $src . "/" . $row['media_filename'][0] .'/' . $row['media_filename'] . $ext;
-                                break;
-                            }
-                        }
-		            } else {
-		            	$PhotoURL  = $_MG_CONF['mediaobjects_url'] . '/orig/' . $row['media_filename'][0] . '/' . $row['media_filename'] . '.' . $row['media_mime_ext'];
-					}
-
-			        if ( $row['media_tn_attached'] == 1 ) {
-                        foreach ($_MG_CONF['validExtensions'] as $ext ) {
-                            if ( file_exists($_MG_CONF['path_mediaobjects'] . 'tn/'.  $row['media_filename'][0] . '/tn_' . $row['media_filename'] . $ext) ) {
-                                $media_thumbnail = $_MG_CONF['mediaobjects_url'] . '/tn/'.  $row['media_filename'][0] . '/tn_' . $row['media_filename'] . $ext;
-                                $media_thumbnail_file = $_MG_CONF['path_mediaobjects'] . 'tn/'.  $row['media_filename'][0] . '/tn_' . $row['media_filename'] . $ext;
-                                break;
-                            }
-                        }
-			        } else {
-			            $media_thumbnail      = '';
-			        }
-			        if ( $media_thumbnail != '' ) {
-			        	if ( !file_exists($media_thumbnail_file) ) {
-			        		$medai_thumbnail = '';
-			        	}
-			        }
-
-					$retval .= "        <track>\n";
-				    $retval .= "            <title>" . MG_escape($row['media_title']) . "</title>\n";
-				    $retval .= "            <annotation>" . MG_escape($row['media_title']) . "</annotation>\n";
-				    if ( $row['artist'] != '' ) {
-				    	$retval .= "            <creator>" . MG_escape($row['artist']) . "</creator>\n";
-				    }
-				    if ( $row['album'] != '' ) {
-				    	$retval .= "            <album>" . MG_escape($row['album']) . "</album>\n";
-				    }
-					$retval .= "            <identifier>" . $row['media_id'] . "</identifier>\n";
-				    $retval .= "            <location>" . $PhotoURL . "</location>\n";
-				    if ( $media_thumbnail != '' ) {
-				    	$retval .= "            <image>" . $media_thumbnail . "</image>\n";
-				    } else {
-    					if ( $image != '' ) {
-    						$retval .= "            <image>" . $image . "</image>\n";
-    					}
-    				}
-					$retval .= "        </track>\n";
-			    }
-			}
+                $retval .= "        <track>\n";
+                $retval .= "            <title>" . MG_escape($row['media_title']) . "</title>\n";
+                $retval .= "            <annotation>" . MG_escape($row['media_title']) . "</annotation>\n";
+                if ($row['artist'] != '') {
+                    $retval .= "            <creator>" . MG_escape($row['artist']) . "</creator>\n";
+                }
+                if ($row['album'] != '') {
+                    $retval .= "            <album>" . MG_escape($row['album']) . "</album>\n";
+                }
+                $retval .= "            <identifier>" . $row['media_id'] . "</identifier>\n";
+                $retval .= "            <location>" . $PhotoURL . "</location>\n";
+                if ($media_thumbnail != '') {
+                    $retval .= "            <image>" . $media_thumbnail . "</image>\n";
+                } else {
+                    if ($image != '') {
+                        $retval .= "            <image>" . $image . "</image>\n";
+                    }
+                }
+                $retval .= "        </track>\n";
+            }
         }
-		return $retval;
+        return $retval;
     }
-}
-
-function MG_xspf($aid) {
-	global $MG_albums,$_MG_CONF,$LANG_CHARSET;
-
-	$xml = '';
-	header("Content-type: text/xml; charset=" . $LANG_CHARSET );
-	$xml .= "<?xml version=\"1.0\" encoding=\"" . $LANG_CHARSET . "\"?>\n";
-	$xml .= "<playlist version=\"1\" xmlns=\"http://xspf.org/ns/0/\">\n";
-	$xml .= "<title>" . MG_escape($MG_albums[$aid]->title) . "</title>";
-	$xml .= "    <trackList>\n";
-	$xml .= MG_getMP3Items($aid);
-	$xml .= "    </trackList>\n";
-	$xml .= "</playlist>\n";
-	echo $xml;
 }
 
 /*
  * Main processing
  */
 
-if ( COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1 )  {
-    exit;
-}
+$aid = isset($_REQUEST['aid']) ? COM_applyFilter($_REQUEST['aid'], true) : 0;
 
-if ( isset($_REQUEST['aid']) ) {
-    $aid = COM_applyFilter($_REQUEST['aid'],true);
-} else {
-    $aid = 0;
-}
-MG_xspf($aid);
+$album_data = MG_getAlbumData($aid, array('skin', 'album_id', 'album_title', 'tn_attached'), true);
+
+$xml = '';
+$charset = COM_getCharset();
+$xml .= "<?xml version=\"1.0\" encoding=\"" . $charset . "\"?>\n";
+$xml .= "<playlist version=\"1\" xmlns=\"http://xspf.org/ns/0/\">\n";
+$xml .= "<title>" . MG_escape($album_data['album_title']) . "</title>";
+$xml .= "    <trackList>\n";
+$xml .= MG_getMP3Items($album_data);
+$xml .= "    </trackList>\n";
+$xml .= "</playlist>\n";
+header("Content-type: text/xml; charset=" . $charset);
+echo $xml;
 ?>

@@ -1,6 +1,6 @@
 <?php
 // +--------------------------------------------------------------------------+
-// | Media Gallery Plugin - glFusion CMS                                      |
+// | Media Gallery Plugin - Geeklog                                           |
 // +--------------------------------------------------------------------------+
 // | functions.inc                                                            |
 // |                                                                          |
@@ -8,8 +8,11 @@
 // | API method and 2) implements all the common code needed by the Media     |
 // | Gallery PHP files.                                                       |
 // +--------------------------------------------------------------------------+
-// | $Id:: functions.inc 5953 2010-04-17 14:51:22Z mevans0263                $|
-// +--------------------------------------------------------------------------+
+// | Copyright (C) 2015 by the following authors:                             |
+// |                                                                          |
+// | Yoshinori Tahara       taharaxp AT gmail DOT com                         |
+// |                                                                          |
+// | Based on the Media Gallery Plugin for glFusion CMS                       |
 // | Copyright (C) 2002-2010 by the following authors:                        |
 // |                                                                          |
 // | Mark R. Evans          mark AT glfusion DOT org                          |
@@ -36,21 +39,207 @@ if (strpos(strtolower($_SERVER['PHP_SELF']), strtolower(basename(__FILE__))) !==
 }
 
 /**
-* Language file Include
+* Include language file
 */
-$langfile = $_CONF['path'] . 'plugins/mediagallery/language/' . $_CONF['language'] . '.php';
-
-if (file_exists ($langfile)) {
-    include_once $langfile;
+$plugin_path = $_CONF['path'] . 'plugins/mediagallery/';
+$langfile = $plugin_path . 'language/' . $_CONF['language'] . '.php';
+if (file_exists($langfile)) {
+    require_once $langfile;
 } else {
-    include_once $_CONF['path'] . 'plugins/mediagallery/language/english.php';
+    require_once $plugin_path . 'language/english.php';
 }
 
-/*
-* Include MediaGallery config file
+//global $_MG_CONF;
+$_MG_CONF = array();
+$_MG_CONF['pi_version'] = '1.7.0';
+$_MG_CONF['installed_version'] = DB_getItem($_TABLES['plugins'], 'pi_version', "pi_name = 'mediagallery'");
+$_MG_CONF['var_current_code'] = version_compare($_MG_CONF['installed_version'], $_MG_CONF['pi_version'], '>=');
+
+/**
+* Add to $_TABLES array the tables mediagallery plugin uses
 */
-//require_once $_CONF['path'].'plugins/mediagallery/mediagallery.php';
-require_once $_CONF['path'].'plugins/mediagallery/config.php';
+$_TABLES['mg_albums']           = $_DB_table_prefix . 'mg_albums';
+$_TABLES['mg_media']            = $_DB_table_prefix . 'mg_media';
+$_TABLES['mg_media_albums']     = $_DB_table_prefix . 'mg_media_albums';
+$_TABLES['mg_usage_tracking']   = $_DB_table_prefix . 'mg_usage_tracking';
+$_TABLES['mg_mediaqueue']       = $_DB_table_prefix . 'mg_mediaqueue'; // renamed from mg_media_queue to mg_mediaqueue
+$_TABLES['mg_media_album_queue']= $_DB_table_prefix . 'mg_media_album_queue';
+$_TABLES['mg_playback_options'] = $_DB_table_prefix . 'mg_playback_options';
+$_TABLES['mg_userprefs']        = $_DB_table_prefix . 'mg_userprefs';
+$_TABLES['mg_exif_tags']        = $_DB_table_prefix . 'mg_exif_tags';
+$_TABLES['mg_watermarks']       = $_DB_table_prefix . 'mg_watermarks';
+$_TABLES['mg_category']         = $_DB_table_prefix . 'mg_category';
+$_TABLES['mg_sessions']         = $_DB_table_prefix . 'mg_sessions';
+$_TABLES['mg_session_items']    = $_DB_table_prefix . 'mg_session_items';
+$_TABLES['mg_session_log']      = $_DB_table_prefix . 'mg_session_log';
+$_TABLES['mg_sort']             = $_DB_table_prefix . 'mg_sort';
+$_TABLES['mg_rating']           = $_DB_table_prefix . 'mg_rating';
+//$_TABLES['mg_mediasubmission']  = $_DB_table_prefix . 'mg_mediaqueue';
+//$_TABLES['mg_mediasubmission']  = $_DB_table_prefix . 'mg_media_queue';
+
+$_TABLES['mg_old_mediaqueue']   = $_DB_table_prefix . 'mg_media_queue';
+$_TABLES['mg_config']           = $_DB_table_prefix . 'mg_config';
+
+/**
+ * Media Gallery Global Configuration Options
+ */
+
+/*
+ * Media Gallery Path Configuration. If you want to move the directory where
+ * the Media Gallery programs are stored and accessed, change the
+ * $_MG_CONF['path_mg'] to the new directory name.
+ *
+ * You normally do not need to change any of the other paths.
+ */
+$_MG_CONF['path_html']  = $_CONF['path_html'] . 'mediagallery/';
+$_MG_CONF['site_url']   = $_CONF['site_url'] . '/mediagallery';
+$_MG_CONF['admin_url']  = $_CONF['site_admin_url'] . '/plugins/mediagallery/';
+$_MG_CONF['path_admin'] = $_CONF['path_html'] . 'admin/plugins/mediagallery/';
+
+$_MG_CONF['path_mediaobjects'] = $_CONF['path_html'] . 'mediagallery/mediaobjects/';
+$_MG_CONF['mediaobjects_url']  = $_CONF['site_url']  . '/mediagallery/mediaobjects';
+
+$_MG_CONF['template_path']     = $_CONF['path'] . 'plugins/mediagallery/templates';
+
+$_MG_CONF['watermark_types'] = array('image/jpeg','image/jpg','image/png','image/bmp');
+
+$_MG_CONF['link_to_member_album'] = 1;
+
+
+/*
+ * By default, Media Gallery plays MP4 video files as QuickTime
+ * videos, using the QuickTime player.
+ *
+ * If you prefer to use the Flash Video Player for MP4 files,
+ * set this value to true.
+ *
+ */
+$_MG_CONF['play_mp4_flv'] = false;
+//$_MG_CONF['play_mp4_flv'] = true;
+
+/*
+ * Number of seconds to wait between ratings
+ */
+$_MG_CONF['rating_speedlimit'] = 45;
+
+/*
+ * Set the maximum number of media items to display in the Media Manage Screen
+ */
+
+$_MG_CONF['mediamanage_items'] = 200;
+
+/*
+ * If set to 1, MG will not automatically populate the video playback
+ *  resolution, instead it will use the default settings
+ */
+
+$_MG_CONF['use_default_resolution'] = 0;
+
+/*
+ * if set to 1, MG will use the larger stars in the album view for ratings
+ */
+
+$_MG_CONF['use_large_stars'] = 0;
+
+/*
+ * By default, Media Gallery will play MPEG videos with Apple's QuickTime
+ * player. If you wish to use Microsoft's Windows Media Player instead,
+ * set this variable to 1.
+ */
+
+$_MG_CONF['use_wmp_mpeg'] = 0;
+
+/*
+ * By default, Media Gallery will attempt to extract the actual image capture
+ * date from the meta data included by many digital cameras and graphics
+ * packages.  If you prefer to always use the upload date (the date you added
+ * the image to your Media Gallery album) as the displayed date, set this
+ * variable to 1.
+ */
+
+$_MG_CONF['use_upload_time'] = 0;
+
+/**
+ * FFMPEG Command line options
+ *
+ * There are lots of versions of ffmpeg out there, some work with one set of
+ * switches and some don't.  You can easily modify the commands used to create
+ * thumbnails from videos by modifying the arguments below.  The first %s is
+ * the source video and the second %s is the destination thumbnail, both %s
+ * need to be in the command.
+ */
+
+$_MG_CONF['ffmpeg_command_args'] = ' -i %s -f mjpeg -t 0.01 -y %s';
+
+// $_MG_CONF['ffmpeg_command_args'] = ' -i %s -f mjpeg -an -r 1 -ss 00:00:03 -vframes 1 -y %s';
+// $_MG_CONF['ffmpeg_command_args'] = ' -i %s -f singlejpeg -an -r 1 -ss 00:00:03 -vframes 1 -y %s';
+// --- RIVA FLV Encoded / converter for Windows command line
+// $_MG_CONF['ffmpeg_command_args'] = ' -an -y  -i "%s" -t 0.001 -s 640x480 -deinterlace   -hq -f image2 "%s"';
+
+
+/*
+ * Default thumbnails for non-media type files
+ *
+ * This allows you to specify new default thumbnails for non-media file types.
+ * Place the thumbnail image in the mediaobjects/ directory.
+ *
+ */
+
+$_MG_CONF['dt']['pdf'] = 'pdf.png';
+$_MG_CONF['dt']['zip'] = 'zip.png';
+
+/*
+ * The JavaScript used by the lightbox slideshow can cause
+ * conflicts with other JS libraries.  You can set this to true to disable
+ * the lightbox slideshow feature.
+ */
+$_MG_CONF['disable_lightbox'] = false;
+
+/*
+ * If you want Media Gallery to update the 'last updated' time for all parent
+ * albums, set this to true.
+ */
+$_MG_CONF['update_parent_lastupdated'] = true; //false;
+
+/*
+ * If you want to allow users who 'own' (uploaded) a media item to be able
+ * to also edit the media item, set this value to true.
+ */
+$_MG_CONF['allow_user_edit'] = false; // Do we need this?
+
+/*
+ * Media Gallery provides limited support for including remotely hosted
+ * images in your albums.  Your web host must support the CURL PHP extension
+ * or allow opening remote URLs to take full advantage of this features.
+ * To enable remote image support, set this value to true.
+ */
+$_MG_CONF['enable_remote_images'] = true;
+
+/*
+ * Set whether or not click image and go next image
+ *   true: display the next image
+ *   false: change the display size (full size or normal size)
+ */
+$_MG_CONF['click_image_and_go_next'] = true;
+
+/*
+ * Set whether or not hide the dialog select the destination album, on the media display page
+ */
+$_MG_CONF['hide_jumpbox_on_mediaview'] = true;
+
+/*
+ * Set whether or not loop turning over the media display page at the top or the end
+ */
+$_MG_CONF['enable_loop_pagination'] = true;
+
+/*
+ * Set the default of the shape (aspect ratio) of a random image on the side block area
+ * 0:original, 1:square
+ */
+$_MG_CONF['random_img_ratio'] = 0;
+
+
+/* --------------------------------------------------------------------------------- */
 
 define("MG_JPG",1);
 define("MG_PNG",2);
@@ -73,6 +262,11 @@ define("MG_FLV",131072);
 define("MG_RFLV",262144);
 define("MG_EMB",524288);
 
+if (!defined ('UC_SELECTED')) define('UC_SELECTED', (XHTML == '') ? 'selected' : 'selected="selected"');
+if (!defined ('UC_CHECKED'))  define('UC_CHECKED',  (XHTML == '') ? 'checked'  : 'checked="checked"'  );
+if (!defined ('UC_READONLY')) define('UC_READONLY', (XHTML == '') ? 'readonly' : 'readonly="readonly"');
+if (!defined ('UC_DISABLED')) define('UC_DISABLED', (XHTML == '') ? 'disabled' : 'disabled="disabled"');
+
 // This is a list of valid extensions for image media thumbnails / display images
 $_MG_CONF['validExtensions'] = array('.jpg','.png','.gif','.bmp');
 
@@ -81,29 +275,33 @@ $_MG_CONF['ad_shopping_cart'] = 0;
 
 $swfjsinclude = 0;
 $mgLightBox = 0;
-$themeStyle = '';
 
 $_MG_CONF['random_skin'] = 'default';
 
 $_MG_CONF['tmp_path'] = $_CONF['path'] . 'plugins/mediagallery/tmp/';
 
-// Read config data
-$result = DB_query("SELECT * FROM " . $_TABLES['mg_config'], 1);
-if (!empty($result)) {
-    while ($row = DB_fetchArray($result)) {
-        $_MG_CONF[$row['config_name']] = $row['config_value'];
-    }
+$_MG_CONF['rater_units_num'] = 5;
+
+/**
+* Load the plugin configuration
+*/
+
+require_once $_CONF['path_system'] . 'classes/config.class.php';
+$plg_config = config::get_instance();
+$temp = $plg_config->get_config('mediagallery');
+if (is_array($temp)) {
+    $_MG_CONF = array_merge($_MG_CONF, $temp);
 }
 
 if ($_CONF['loginrequired'] == 1) {
     $_MG_CONF['loginrequired'] = 1;
 }
 
+/*
 $_MG_CONF['up_mp3_player_enabled'] = 0;
 
-$_MG_CONF['installed_version'] = DB_getItem($_TABLES['plugins'], 'pi_version', "pi_name = 'mediagallery'");
-
 if ($_MG_CONF['installed_version']) {
+    $_MG_CONF['dfid'] = '19';
     $_MG_CONF['dateformat'] = DB_getItem($_TABLES['dateformats'], 'format', "dfid = {$_MG_CONF['dfid']}");
     // safety checks....
     if ($_MG_CONF['album_display_columns'] < 1) {
@@ -112,9 +310,10 @@ if ($_MG_CONF['installed_version']) {
     if ($_MG_CONF['album_display_rows'] < 1) {
         $_MG_CONF['album_display_rows'] = 9;
     }
-    if ($_MG_CONF['js_lib'] != 'mootools') {
-        $_MG_CONF['js_lib'] = 'jquery';
-    }
+}
+*/
+if (version_compare($_MG_CONF['installed_version'], '1.7.0', '>=')) {
+    $_MG_CONF['dateformat'] = DB_getItem($_TABLES['dateformats'], 'format', "dfid = {$_MG_CONF['dfid']}");
 }
 
 $_MG_CONF['path_to_imagemagick'] = '';
@@ -129,9 +328,54 @@ if ($_CONF['image_lib'] == 'imagemagick') {
     $_MG_CONF['path_to_imagemagick'] = $tmpstr;
 }
 
-$_MG_CONF['verbose'] = false;
 
-require_once $_MG_CONF['path_html'] . 'common.php';
+$_MG_CONF['ad_valid_formats'] =
+    $_MG_CONF['ad_valid_format_jpg'] * MG_JPG +
+    $_MG_CONF['ad_valid_format_png'] * MG_PNG +
+    $_MG_CONF['ad_valid_format_tif'] * MG_TIF +
+    $_MG_CONF['ad_valid_format_gif'] * MG_GIF +
+    $_MG_CONF['ad_valid_format_bmp'] * MG_BMP +
+    $_MG_CONF['ad_valid_format_tga'] * MG_TGA +
+    $_MG_CONF['ad_valid_format_psd'] * MG_PSD +
+    $_MG_CONF['ad_valid_format_mp3'] * MG_MP3 +
+    $_MG_CONF['ad_valid_format_ogg'] * MG_OGG +
+    $_MG_CONF['ad_valid_format_asf'] * MG_ASF +
+    $_MG_CONF['ad_valid_format_swf'] * MG_SWF +
+    $_MG_CONF['ad_valid_format_mov'] * MG_MOV +
+    $_MG_CONF['ad_valid_format_mp4'] * MG_MP4 +
+    $_MG_CONF['ad_valid_format_mpg'] * MG_MPG +
+    $_MG_CONF['ad_valid_format_flv'] * MG_FLV +
+    $_MG_CONF['ad_valid_format_rflv'] * MG_RFLV +
+    $_MG_CONF['ad_valid_format_emb'] * MG_EMB +
+    $_MG_CONF['ad_valid_format_zip'] * MG_ZIP +
+    $_MG_CONF['ad_valid_format_other'] * MG_OTHER;
+
+$_MG_CONF['member_valid_formats'] =
+    $_MG_CONF['member_valid_format_jpg'] * MG_JPG +
+    $_MG_CONF['member_valid_format_png'] * MG_PNG +
+    $_MG_CONF['member_valid_format_tif'] * MG_TIF +
+    $_MG_CONF['member_valid_format_gif'] * MG_GIF +
+    $_MG_CONF['member_valid_format_bmp'] * MG_BMP +
+    $_MG_CONF['member_valid_format_tga'] * MG_TGA +
+    $_MG_CONF['member_valid_format_psd'] * MG_PSD +
+    $_MG_CONF['member_valid_format_mp3'] * MG_MP3 +
+    $_MG_CONF['member_valid_format_ogg'] * MG_OGG +
+    $_MG_CONF['member_valid_format_asf'] * MG_ASF +
+    $_MG_CONF['member_valid_format_swf'] * MG_SWF +
+    $_MG_CONF['member_valid_format_mov'] * MG_MOV +
+    $_MG_CONF['member_valid_format_mp4'] * MG_MP4 +
+    $_MG_CONF['member_valid_format_mpg'] * MG_MPG +
+    $_MG_CONF['member_valid_format_flv'] * MG_FLV +
+    $_MG_CONF['member_valid_format_rflv'] * MG_RFLV +
+    $_MG_CONF['member_valid_format_emb'] * MG_EMB +
+    $_MG_CONF['member_valid_format_zip'] * MG_ZIP +
+    $_MG_CONF['member_valid_format_other'] * MG_OTHER;
+
+if ($_MG_CONF['usage_tracking']) {
+    $_MG_CONF['last_usage_purge'] = DB_getItem($_TABLES['vars'], 'value', "name = 'mg_last_usage_purge'");
+}
+
+$_MG_CONF['verbose'] = false;
 
 /**
 * Check to see if this Plugin uses comments
@@ -143,7 +387,6 @@ function plugin_commentsupport_mediagallery()
 {
     return true;
 }
-
 
 /**
  * Plugin function to save a comment
@@ -177,13 +420,8 @@ function plugin_savecomment_mediagallery($title, $comment, $id, $pid, $postmode)
     if ($ret > 0) { // failure //FIXME: some failures should not return to comment form
         $retval .= CMT_commentForm($title, $comment, $id, $pid, 'mediagallery',
                                   $LANG03[14], $postmode);
-        
-        if (!defined('COMMENT_ON_SAME_PAGE')) {
+        if (!defined('COMMENT_ON_SAME_PAGE') || !COMMENT_ON_SAME_PAGE) {
             $retval = COM_createHTMLDocument($retval, array('pagetitle' => $LANG03[1]));
-        } else {
-            if (!COMMENT_ON_SAME_PAGE) {
-                $retval = COM_createHTMLDocument($retval, array('pagetitle' => $LANG03[1]));
-            }
         }
         return $retval;
     } else { // success
@@ -197,13 +435,14 @@ function plugin_savecomment_mediagallery($title, $comment, $id, $pid, $postmode)
 
 /**
  * Plugin function to delete a comment
- * $cid    Comment to be deleted
- * $id     Item id to which $cid belongs
  *
+ * @param   int     $cid    Comment to be deleted
+ * @param   string  $id     Item id to which $cid belongs
+ * @return  mixed   false for failure, HTML string (redirect?) for success
  */
 function plugin_deletecomment_mediagallery($cid, $id)
 {
-    global $_CONF, $_MG_CONF, $_TABLES, $MG_albums;
+    global $_CONF, $_MG_CONF, $_TABLES;
 
     // find the album that holds this peice of media
     $sql = "SELECT album_id FROM {$_TABLES['mg_media_albums']} WHERE media_id='" . addslashes($id) . "'";
@@ -211,30 +450,29 @@ function plugin_deletecomment_mediagallery($cid, $id)
     $nRows  = DB_numRows($result);
     $access = 0;
     if ($nRows > 0) {
-
-        MG_initAlbums();
-
         $row = DB_fetchArray($result);
-        $aid = $row['album_id'];
+        require_once $_CONF['path'].'plugins/mediagallery/include/classAlbum.php';
+        $root_album = new mgAlbum(0);                // root album
+        $album      = new mgAlbum($row['album_id']); // current album
         $access = 3;
-        if (! $MG_albums[0]->owner_id) {
-            $access = $MG_albums[$aid]->access;
+        if (!$root_album->owner_id) {
+            $access = $album->access;
         }
     }
 
-    if ($access == 3 || SEC_hasRights('mediagallery.admin')) {
+    if ($access == 3 && SEC_hasRights('mediagallery.admin')) {
         if (CMT_deleteComment($cid, $id, 'mediagallery') == 0) {
-            //reduce count in media table
-            $comments = DB_count ($_TABLES['comments'], array('sid','type'), array(addslashes($id), 'mediagallery'));
-            DB_change($_TABLES['mg_media'],'media_comments', $comments, 'media_id', addslashes($id));
-            // Now redirect the program flow to the view of the file and its comments
-            return (COM_refresh($_MG_CONF['site_url'] . "/media.php?s=$id"));
+            $comments = DB_count($_TABLES['comments'], array('sid', 'type'), array(addslashes($id), 'mediagallery'));
+            DB_change($_TABLES['mg_media'], 'media_comments', $comments, 'media_id', addslashes($id));
+            return COM_refresh($_MG_CONF['site_url'] . "/media.php?s=$id");
         }
     }
+
     return false;
 }
 
-function plugin_getcommenturlid_mediagallery( ) {
+function plugin_getcommenturlid_mediagallery()
+{
     global $_CONF, $_MG_CONF;
     $retval = array();
     $retval[] = $_MG_CONF['site_url'] . '/media.php';
@@ -244,38 +482,51 @@ function plugin_getcommenturlid_mediagallery( ) {
 }
 
 /**
- * Plugin function to display a specific comment thread
- * $id      Unique idenifier for item comment belongs to
- * $cid     Comment id to display (possibly including sub-comments)
- * $title   Page/comment title
- * $order   'ASC' or 'DSC' or blank
- * $format  'threaded', 'nested', or 'flat'
- * $page    Page number of comments to display
- * $view    True to view comment (by cid), false to display (by $pid)
+ * Plugin should display [a] comment[s]
+ *
+ * @param   string  $id     Unique idenifier for item comment belongs to
+ * @param   int     $cid    Comment id to display (possibly including sub-comments)
+ * @param   string  $title  Page/comment title
+ * @param   string  $order  'ASC' or 'DESC' or blank
+ * @param   string  $format 'threaded', 'nested', or 'flat'
+ * @param   int     $page   Page number of comments to display
+ * @param   boolean $view   True to view comment (by cid), false to display (by $pid)
+ * @return  mixed   results of calling the plugin_displaycomment_ function
  */
-function plugin_displaycomment_mediagallery($id, $commentid, $title, $order, $format, $page, $view)
+function plugin_displaycomment_mediagallery($id, $cid, $title, $order, $format, $page, $view)
 {
-    global $_CONF, $_USER, $_MG_CONF, $LANG_LOGIN;
+    global $_TABLES, $LANG_ACCESS, $LANG_MG00;
 
-    if (COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1)  {
-        $display = SEC_loginRequiredForm();
-        $display = MG_createHTMLDocument($display);
-        echo $display;
-        exit;
+    $retval = '';
+
+    $sql = "SELECT COUNT(*) AS count, a.enable_comments, "
+         . "a.owner_id, a.group_id, a.perm_owner, "
+         . "a.perm_group, a.perm_members, a.perm_anon "
+         . "FROM {$_TABLES['mg_albums']} AS a "
+         . "LEFT JOIN {$_TABLES['mg_media_albums']} AS ma ON a.album_id = ma.album_id "
+         . "WHERE ma.media_id = '$id'" . COM_getPermSQL('AND')
+         . " GROUP BY ma.media_id";
+    $result = DB_query($sql);
+    $A = DB_fetchArray($result);
+    $allowed = $A['count'];
+
+    if ($allowed == 1 && $A['enable_comments'] == 1) {
+        $delete_option = (SEC_hasRights('mediagallery.admin') &&
+                (SEC_hasAccess($A['owner_id'], $A['group_id'],
+                    $A['perm_owner'], $A['perm_group'], $A['perm_members'],
+                    $A['perm_anon']) == 3));
+        $commentcode = 0;
+        $retval .= CMT_userComments($id, $title, 'mediagallery', $order, $format,
+                       $cid, $page, $view, $delete_option, $commentcode);
+    } else {
+        $retval .= COM_startBlock($LANG_ACCESS['accessdenied'], '',
+                        COM_getBlockTemplate('_msg_block', 'header'))
+                . $LANG_MG00['deny_msg']
+                . COM_endBlock(COM_getBlockTemplate ('_msg_block', 'footer'));
     }
-
-    MG_initAlbums();
-    require_once $_CONF['path'] . 'plugins/mediagallery/include/lib-media.php';
-    list($ptitle,$retval,$themeCSS,$album_id) =  MG_displayMediaImage( $id, 0, 0, 0 );
-
-    $retval = $themeCSS . $retval;
-    $delete_option = SEC_hasRights('mediagallery.admin');
-    $view_comment = ($view == 1);
-    $retval .= CMT_userComments($id, $title, 'mediagallery', $order, $format, $commentid, $page, $view_comment, $delete_option);
 
     return $retval;
 }
-
 
 /**
 * Returns the items for this plugin that should appear on the main menu
@@ -289,14 +540,13 @@ function plugin_displaycomment_mediagallery($id, $commentid, $title, $order, $fo
 *
 */
 
-function plugin_getmenuitems_mediagallery() {
-    global $_CONF, $_USER, $_MG_CONF;
+function plugin_getmenuitems_mediagallery()
+{
+    global $_CONF, $_USER, $_MG_CONF, $LANG_MG03;
 
-    if ( COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1 )  {
-        return '';
-    }
+    if (COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1) return '';
 
-    $menulabel = $_MG_CONF['menulabel'];
+    $menulabel = $LANG_MG03['menulabel'];
     $menurul   = $_MG_CONF['site_url'] . "/index.php";     // Menu url here
 
     $menuitems = array();
@@ -308,207 +558,120 @@ function plugin_getmenuitems_mediagallery() {
 
 function plugin_getheadercode_mediagallery()
 {
-    global $_CONF, $_MG_CONF, $_SCRIPTS, $mgLightBox, $swfjsinclude, $themeStyle;
+    global $_CONF, $_MG_CONF, $_SCRIPTS, $mgLightBox, $swfjsinclude;
 
-    $mg_header = '';
-
-    $f_gl18orlater = function_exists('COM_versionCompare');
+    $retval = '';
 
     //
     // Check to see if the template path is using the plugins/ directory, if yes,
     // we must point to the stylesheet in public_html/mediagallery/
     //
-    if ( $_MG_CONF['template_path'] == $_CONF['path'] . 'plugins/mediagallery/templates' ) {
-        if ($_MG_CONF['js_lib'] == 'mootools') {
-            $styleFile = $_MG_CONF['site_url'] . '/style.css';
-        } else {
-            $styleFile = $_MG_CONF['site_url'] . '/style2.css';
-        }
+    if ($_MG_CONF['template_path'] == $_CONF['path'] . 'plugins/mediagallery/templates') {
+        $styleFile = $_MG_CONF['site_url'] . '/style.css';
     } else {
-        if ($_MG_CONF['js_lib'] == 'mootools') {
-            $styleFile = $_CONF['layout_url'] . '/mediagallery/style.css';
-        } else {
-            $styleFile = $_CONF['layout_url'] . '/mediagallery/style2.css';
-        }
+        $styleFile = $_CONF['layout_url'] . '/mediagallery/style.css';
+    }
+    $retval .= LB . '<link rel="stylesheet" type="text/css" href="' . $styleFile . '"' . XHTML . '>' . LB;
+
+    $_SCRIPTS->setJavaScriptFile('swfobject', '/mediagallery/js/swfobject_2.1.js', false);
+
+    $_SCRIPTS->setJavaScriptFile('mediagallery', '/mediagallery/js/mediagallery.js');
+
+    $_SCRIPTS->setJavaScriptLibrary('jquery');
+
+    if (! $_MG_CONF['disable_lightbox']) {
+        $_SCRIPTS->setJavaScriptFile('jquery.slimbox2', '/mediagallery/js/slimbox2.js');
     }
 
-    $mg_header .= LB . '<link rel="stylesheet" type="text/css" href="' . $styleFile . '"' . XHTML . '>' . LB;
-    $mg_header .= '<script type="text/javascript" src="' . $_MG_CONF['site_url'] . '/js/swfobject.js"></script>' . LB;
-    $mg_header .= '<script type="text/javascript" src="' . $_MG_CONF['site_url'] . '/js/mediagallery.js"></script>' . LB;
-
-    if ($_MG_CONF['js_lib'] == 'mootools') {
-        if ( $_MG_CONF['load_mootools'] ) { // MooTools
-            $mg_header .= '<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/mootools/1.11/mootools-yui-compressed.js"></script>' . LB;
-        }
-    } else {
-        if ( $_MG_CONF['load_jquery'] ) {   // JQuery
-            if ($f_gl18orlater) {
-                $_SCRIPTS->setJavaScriptLibrary('jquery');
-
-            } else {
-                $mg_header .= '<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>' . LB;
-            }
-        }
-    }
-
-    if ( ! $_MG_CONF['disable_lightbox'] ) {
-        if ($_MG_CONF['js_lib'] == 'mootools') {
-            // Slimbox for MooTools
-            $mg_header .= '<script type="text/javascript" src="' . $_MG_CONF['site_url'] . '/js/slimbox.js"></script>' . LB;
-        } else {
-            // Slimbox 2 for JQuery
-            if ($f_gl18orlater) {
-                $_SCRIPTS->setJavaScriptFile('jquery.slimbox2', '/mediagallery/js/slimbox2.js');
-            } else {
-                $mg_header .= '<script type="text/javascript" src="' . $_MG_CONF['site_url'] . '/js/slimbox2.js"></script>' . LB;
-            }
-        }
-    }
-
-    if ($_MG_CONF['js_lib'] == 'mootools') {
-        $mg_header .= '<script type="text/javascript" src="' . $_MG_CONF['site_url'] . '/js/slideshow.js"></script>' . LB;
-//      $mg_header .= '<script type="text/javascript" src="' . $_MG_CONF['site_url'] . '/js/rating.js"></script>' . LB;
-    } else {
-        if ($f_gl18orlater) {
-            $_SCRIPTS->setJavaScriptFile('jquery.cyclelite', '/mediagallery/js/jquery.cycle.lite.min.js');
-//          $_SCRIPTS->setJavaScriptFile('jquery.rating', '/mediagallery/js/jquery.rating.js');
-        } else {
-            $mg_header .= '<script type="text/javascript" src="' . $_MG_CONF['site_url'] . '/js/jquery.cycle.lite.min.js"></script>' . LB;
-//          $mg_header .= '<script type="text/javascript" src="' . $_MG_CONF['site_url'] . '/js/jquery.rating.js"></script>' . LB;
-        }
-    }
-
-    if (substr_count($_SERVER['PHP_SELF'], '/mediagallery/slideshow.php') > 0) {
-        $using_jquery = ($_MG_CONF['js_lib'] == 'mootools') ? 'false' : 'true';
-        $script = '<script type="text/javascript">var using_jquery = ' . $using_jquery . ';</script>';
-        if ($f_gl18orlater) {
-            $_SCRIPTS->setJavaScript($script);
-            $_SCRIPTS->setJavaScriptFile('mg.slideshow', '/mediagallery/js/bootloader.js');
-        } else {
-            $mg_header .= $script . LB;
-            $mg_header .= '<script type="text/javascript" src="' . $_MG_CONF['site_url'] . '/js/bootloader.js"></script>' . LB;
-        }
-    }
+    $_SCRIPTS->setJavaScriptFile('jquery.cyclelite', '/mediagallery/js/jquery.cycle.lite.min.js');
 
     $swfjsinclude = 1;
 
-    if (!empty($themeStyle)) {
-        $mg_header .= $themeStyle;
-    }
+    $_SCRIPTS->setCSSFile('mg.framecss' . $_MG_CONF['random_skin'] , '/mediagallery/frames/' . $_MG_CONF['random_skin'] . '/style.css', false);
 
-    require_once $_CONF['path'] . 'plugins/mediagallery/include/classFrame.php';
-    $nFrame = new mgFrame();
-    $nFrame->constructor( $_MG_CONF['random_skin'] );
-    $fCSS= $nFrame->getCSS();
-    $mg_header .= $fCSS;
-
-    return $mg_header;
+    return $retval;
 }
 
 /**
   * Whats New Block API Support
   * Return the Headline and Byline for the new section in the Whatsnew Block
 */
-function plugin_whatsnewsupported_mediagallery() {
+function plugin_whatsnewsupported_mediagallery()
+{
     global $_CONF, $_MG_CONF, $LANG_MG00;
 
+    if ($_MG_CONF['whatsnew'] == 0) return '';
+    if ($_MG_CONF['installed_version'] != $_MG_CONF['pi_version']) return '';
+    if (COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1) return '';
 
-    if ( $_MG_CONF['whatsnew'] == 0 ) {
-        return '';
-    }
+    $label = sprintf($LANG_MG00['whatsnew_prompt'], $_MG_CONF['whatsnew_time']);
 
-    if ( $_MG_CONF['installed_version'] != $_MG_CONF['pi_version'] ) {
-        return '';
-    }
-
-    if ( COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1 )  {
-        return '';
-    }
-
-    $label = sprintf($LANG_MG00['whatsnew_prompt'],$_MG_CONF['whatsnew_time']);
-
-    return array($LANG_MG00['whatsnew_title'],$label);
+    return array($LANG_MG00['whatsnew_title'], $label);
 }
+
 /**
   * API function provides the content of our "What's New" feed
 */
-function plugin_getwhatsnew_mediagallery() {
-    global $MG_albums, $_TABLES, $_CONF, $_MG_CONF, $_USER, $LANG_MG03;
+function plugin_getwhatsnew_mediagallery()
+{
+    global $_TABLES, $_CONF, $_MG_CONF, $_USER, $LANG_MG03;
+
+    require_once $_CONF['path'].'plugins/mediagallery/include/classAlbum.php';
 
     $retval = '';
-
-    if ($_MG_CONF['whatsnew'] == 0 ) {
-        return;
-    }
-
-    if ( $_MG_CONF['installed_version'] != $_MG_CONF['pi_version'] ) {
-        return;
-    }
-
-    if ( COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1 )  {
-        return;
-    }
-
-    MG_initAlbums();
-
-    $newMediaCount    = 0;
+    $newMediaCount = 0;
     $newCommentCount = 0;
-
     $items = array();
-
     $newAge = time() - ($_MG_CONF['whatsnew_time'] * 86400);
-
     $sql = "SELECT album_id FROM {$_TABLES['mg_albums']} WHERE last_update >= '" . $newAge . "' ORDER BY last_update DESC";
     $result = DB_query($sql,1);
     while ($row = DB_fetchArray($result)) {
-        $aid = $row['album_id'];
-
-        if ( $MG_albums[$aid]->access > 0 && $MG_albums[$aid]->hidden != 1 && $MG_albums[$aid]->getOffset() != -1) {
-            $title = $MG_albums[$aid]->title;
-            if ( strlen($title) > $_MG_CONF['title_length'] ) {
+        $album = new mgAlbum($row['album_id']);
+        if ($album->access > 0 && $album->hidden != 1 && $album->getOffset() != -1) {
+            $title = $album->title;
+            if (strlen($title) > $_MG_CONF['title_length']) {
                 $dTitle = substr($title,0,$_MG_CONF['title_length'] - 3) . '...';
             } else {
                 $dTitle = $title;
             }
-            $items[] = '<a href="' . $_MG_CONF['site_url'] . '/album.php?aid=' . $aid . '" title="'.htmlspecialchars($title,ENT_COMPAT,COM_getEncodingt()).'">' . $dTitle . '</a>';
+            $items[] = COM_createLink($dTitle,
+                                      $_MG_CONF['site_url'] . '/album.php?aid=' . $row['album_id'],
+                                      array('title' => htmlspecialchars($title, ENT_COMPAT, COM_getCharset())));
             $newMediaCount++;
         }
-
     }
-    if ( $newMediaCount == 0 ) {
+    if ($newMediaCount == 0) {
         $retval .= $LANG_MG03['no_new_items'] . '<br' . XHTML . '>' . LB;
     }
-    if ( $_MG_CONF['disable_whatsnew_comments'] == 0 ) {
-        $sql = "SELECT * FROM {$_TABLES['comments']} AS c LEFT JOIN {$_TABLES['mg_media_albums']} AS ma ON c.sid=ma.media_id LEFT JOIN {$_TABLES['mg_albums']} AS a ON ma.album_id=a.album_id WHERE c.date >=  DATE_SUB(NOW(), INTERVAL " . $_MG_CONF['whatsnew_time'] . " DAY ) AND c.type='mediagallery' GROUP BY c.sid ORDER BY c.date DESC LIMIT 15";
+    if ($_MG_CONF['disable_whatsnew_comments'] == 0) {
+        $sql = "SELECT * FROM {$_TABLES['comments']} AS c "
+             . "LEFT JOIN {$_TABLES['mg_media_albums']} AS ma ON c.sid=ma.media_id "
+             . "LEFT JOIN {$_TABLES['mg_albums']} AS a ON ma.album_id=a.album_id "
+             . "WHERE c.date >=  DATE_SUB(NOW(), INTERVAL " . $_MG_CONF['whatsnew_time'] . " DAY ) "
+             . "AND c.type='mediagallery' GROUP BY c.sid ORDER BY c.date DESC LIMIT 15";
 
-        $result = DB_query( $sql,1);
-        $nrows2 = DB_numRows( $result );
-        if( $nrows2 == 0 ) {
+        $result = DB_query($sql, 1);
+        $nrows2 = DB_numRows($result);
+        if ($nrows2 == 0) {
             $retval .= '' . '<br' . XHTML . '>' . LB;
         } else {
             while ($A = DB_fetchArray($result)) {
-                $access = SEC_hasAccess ($A['owner_id'],
-                                         $A['group_id'],
-                                         $A['perm_owner'],
-                                         $A['perm_group'],
-                                         $A['perm_members'],
-                                         $A['perm_anon']);
-                if ( $access > 0 ) {
+                $access = SEC_hasAccess($A['owner_id'],$A['group_id'],$A['perm_owner'],
+                                        $A['perm_group'],$A['perm_members'],$A['perm_anon']);
+                if ($access > 0) {
                     $titleLength = $_MG_CONF['title_length'];        // Compensate for the added HTML
-                    $title = "<b>C:</b>&nbsp;".$A['title'];
-                    $str = "<a href=\"{$_CONF['site_url']}/comment.php?mode=view&amp;cid={$A['cid']}&amp;sid={$A['sid']}&amp;type=mediagallery\">";
-                    $str .= substr($title,0,$titleLength);
-                    $str .= '</a>';
-                    $items[] = $str;
+                    $title = "<strong>C:</strong>&nbsp;" . $A['title'];
+                    $items[] = COM_createLink(substr($title, 0, $titleLength),
+                               "{$_CONF['site_url']}/comment.php?mode=view&amp;cid={$A['cid']}&amp;sid={$A['sid']}&amp;type=mediagallery");
                     $newCommentCount++;
                 }
             }
         }
-        if ( $newCommentCount == 0 ) {
+        if ($newCommentCount == 0) {
             $retval .= $LANG_MG03['no_comments'] . '<br' . XHTML . '>' . LB;
         }
     }
-    if ( $newMediaCount == 0 && $newCommentCount == 0 ) {
+    if ($newMediaCount == 0 && $newCommentCount == 0) {
         return $retval;
     } else {
         return $items;
@@ -530,18 +693,16 @@ function plugin_showstats_mediagallery($showsitestats)
 {
     global $_CONF;
 
-    MG_initAlbums();
     require_once $_CONF['path'] . 'plugins/mediagallery/include/statistics.php';
     return MG_showstats($showsitestats);
 }
 
 
-function plugin_statssummary_mediagallery() {
+function plugin_statssummary_mediagallery()
+{
     global $_CONF, $_MG_CONF, $_TABLES, $LANG_MG00, $_USER;
 
-    if ( COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1 )  {
-        return;
-    }
+    if (COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1) return '';
 
     // This shows in the summary box
     $total_items=DB_count($_TABLES['mg_media']);
@@ -562,16 +723,30 @@ function plugin_statssummary_mediagallery() {
 *
 */
 
-function plugin_cclabel_mediagallery() {
+function plugin_cclabel_mediagallery()
+{
     global $_CONF, $_MG_CONF, $LANG_MG00;
 
-    if (SEC_hasRights('mediagallery.config') ) {
+    if (SEC_hasRights('mediagallery.config')) {
         return array($LANG_MG00['plugin'],
             $_MG_CONF['admin_url'] . 'index.php',
-            MG_getImageFile('mediagallery.png'));
-    } else {
-        return '';
+            plugin_geticon_mediagallery());
     }
+
+    return false;
+}
+
+/**
+* Returns the URL of the plugin's icon
+*
+* @return   string      URL of the icon
+*
+*/
+function plugin_geticon_mediagallery()
+{
+    global $_CONF;
+
+    return $_CONF['site_url'] . '/mediagallery/images/mediagallery.png';
 }
 
 /**
@@ -584,7 +759,8 @@ function plugin_cclabel_mediagallery() {
 * @return   array   Array containing (plugin name, plugin admin url, # of items in plugin or '')
 *
 */
-function plugin_getadminoption_mediagallery() {
+function plugin_getadminoption_mediagallery()
+{
     global $_CONF, $_TABLES, $LANG_MG00, $_MG_CONF;
 
     if (SEC_hasRights('mediagallery.config')) {
@@ -593,25 +769,23 @@ function plugin_getadminoption_mediagallery() {
 }
 
 
-
 function plugin_autotags_mediagallery ($op, $content = '', $autotag = '')
 {
     global $_CONF, $_TABLES, $_MG_CONF;
 
-    if ( $_MG_CONF['installed_version'] != $_MG_CONF['pi_version'] ) {
+    if ($_MG_CONF['installed_version'] != $_MG_CONF['pi_version']) {
         return $content;
     }
     if ($op == 'tagname') {
         return array('album','media','img','slideshow','fslideshow','video','audio',
-				'download','image','oimage','mlink','alink','playall','medialist'
-				,'albumlist');//@@@@@
+                     'download','image','oimage','mlink','alink','playall',
+                     'gallery'
+					 ,'medialist','albumlist');//@@@@@
     } else if ($op == 'parse') {
-        MG_initAlbums();
         require_once $_CONF['path'] . 'plugins/mediagallery/include/autotags.php';
         return MG_autotags($op, $content, $autotag);
     }
 }
-
 
 
 /**
@@ -623,8 +797,20 @@ function plugin_autotags_mediagallery ($op, $content = '', $autotag = '')
 * @return       array        Returns array of useful moderation values
 *
 */
-function plugin_moderationvalues_mediagallery() {
-    return;
+function plugin_moderationvalues_mediagallery()
+{
+    global $_TABLES;
+
+    return array (
+        'media_id',
+        $_TABLES['mg_media'],
+        'media_id, media_filename, media_original_filename, media_mime_ext, media_exif, mime_type, '
+        . 'media_title, media_desc, media_keywords, media_time, media_views, media_comments, '
+        . 'media_votes, media_rating, media_resolution_x, media_resolution_y, remote_media, '
+        . 'remote_url, media_tn_attached, media_tn_image, include_ss, media_user_id, '
+        . 'media_user_ip, media_approval, media_type, media_upload_time, media_category, '
+        . 'media_watermarked, artist, album, genre, v100, maint',
+        $_TABLES['mg_mediaqueue']);
 }
 
 /**
@@ -636,7 +822,25 @@ function plugin_moderationvalues_mediagallery() {
 * @return       Plugin       return Plugin class containing submission data
 *
 */
-function plugin_itemlist_mediagallery() {
+function plugin_itemlist_mediagallery()
+{
+    global $_CONF, $_TABLES, $LANG_MG01;
+
+    if (plugin_ismoderator_mediagallery()) {
+        $plugin = new Plugin();
+        $plugin->submissionlabel = $LANG_MG01['media_submissions'];
+        if (file_exists($_CONF['path_html'] . 'help/ccmediagallerysubmission.html')) {
+            $plugin->submissionhelpfile = 'ccmediagallerysubmission.html';
+        }
+        $plugin->getsubmissionssql = "SELECT media_id AS id, media_title AS title, FROM_UNIXTIME(media_upload_time), mime_type "
+                                   . "FROM {$_TABLES['mg_mediaqueue']} ORDER BY media_title ASC";
+
+        $plugin->addSubmissionHeading($LANG_MG01['title']);
+        $plugin->addSubmissionHeading($LANG_MG01['date']);
+        $plugin->addSubmissionHeading($LANG_MG01['mime_type']);
+
+        return $plugin;
+    }
     return;
 }
 
@@ -648,7 +852,8 @@ function plugin_itemlist_mediagallery() {
 * @return       string       The HTML form
 *
 */
-function plugin_submit_mediagallery() {
+function plugin_submit_mediagallery()
+{
     $retval = '<h1>submit file</h1>';
     $retval .= '<p>This would be the input form for uploading files. ';
     $retval .= 'But that functionality is already implemented elsewhere.</p>';
@@ -664,7 +869,8 @@ function plugin_submit_mediagallery() {
 * @return        boolean       Returns true if moderator
 *
 */
-function plugin_ismoderator_mediagallery() {
+function plugin_ismoderator_mediagallery()
+{
     return SEC_hasRights('mediagallery.admin');
 }
 
@@ -676,8 +882,22 @@ function plugin_ismoderator_mediagallery() {
 *
 * @return      int       number of submissions awaiting moderation
 */
-function plugin_submissioncount_mediagallery() {
-    return;
+function plugin_submissioncount_mediagallery()
+{
+    global $_MG_CONF, $_TABLES;
+
+    $retval = 0;
+
+    $table = $_TABLES['mg_old_mediaqueue'];
+    if (version_compare($_MG_CONF['installed_version'], $_MG_CONF['pi_version']) >= 0) {
+        $table = $_TABLES['mg_mediaqueue'];
+    }
+
+    if (plugin_ismoderator_mediagallery()) {
+        $retval = DB_count($table);
+    }
+
+    return $retval;
 }
 
 /**
@@ -693,6 +913,11 @@ function plugin_submissioncount_mediagallery() {
 */
 function plugin_moderationapprove_mediagallery($id)
 {
+    global $_CONF;
+
+    require_once $_CONF['path'] . 'plugins/mediagallery/include/moderate.php';
+    MG_approveSubmission($id);
+
     return '';
 }
 
@@ -707,7 +932,13 @@ function plugin_moderationapprove_mediagallery($id)
 * @return     string       Any wanted HTML output
 *
 */
-function plugin_moderationdelete_mediagallery($id) {
+function plugin_moderationdelete_mediagallery($id)
+{
+    global $_CONF;
+
+    require_once $_CONF['path'] . 'plugins/mediagallery/include/moderate.php';
+    MG_deleteSubmission($id);
+
     return '';
 }
 
@@ -721,7 +952,8 @@ function plugin_moderationdelete_mediagallery($id) {
 * @return      boolean     returns true if successful
 *
 */
-function plugin_savesubmission_mediagallery($A) {
+function plugin_savesubmission_mediagallery($A)
+{
     return false;
 }
 
@@ -729,12 +961,7 @@ function plugin_searchtypes_mediagallery()
 {
     global $_MG_CONF, $LANG_MG00;
 
-    if ($_MG_CONF['disable_search_integration'] == 1) {
-        return '';
-    }
-    if (COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1)  {
-        return '';
-    }
+    if (COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1) return '';
 
     $tmp['mediagallery'] = $LANG_MG00['plugin'];
     return $tmp;
@@ -754,35 +981,38 @@ function plugin_searchtypes_mediagallery()
 * @author           string          Get all results by this author
 *
 */
-function plugin_dopluginsearch_mediagallery($query, $datestart, $dateend, $topic, $type, $author, $keyType, $page, $perpage) {
+function plugin_dopluginsearch_mediagallery($query, $datestart, $dateend, $topic, $type, $author, $keyType, $page, $perpage)
+{
     global $_TABLES, $_CONF, $_MG_CONF, $LANG_MG00, $LANG_MG01, $LANG09;
 
-    if ($_MG_CONF['disable_search_integration'] == 1) {
-        return '';
-    }
-    if (COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1)  {
-        return '';
-    }
+    if (COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1) return '';
 
     $query = trim(addslashes(htmlspecialchars($query)));
 
-    $sql = "SELECT DISTINCT a.*,ma.album_id,a.perm_anon, m.media_id AS id,m.media_user_id AS uid,m.media_desc AS description ,m.media_title AS title,m.media_time AS date,m.media_views AS hits, CONCAT('/mediagallery/media.php?s=',m.media_id) AS url  FROM " .
-            $_TABLES['mg_media'] . " as m " .
-            " INNER JOIN " . $_TABLES['mg_media_albums'] . " as ma " .
-            " ON m.media_id=ma.media_id " .
-            " INNER JOIN {$_TABLES['mg_albums']} AS a ON ma.album_id=a.album_id " .
-            " WHERE 1=1 ";
+    $sql = "SELECT DISTINCT "
+         . "m.media_id AS id, "
+         . "m.media_user_id AS uid, "
+         . "m.media_desc AS description, "
+         . "m.media_title AS title, "
+         . "m.media_time AS date, "
+         . "m.media_views AS hits, "
+         . "CONCAT('/mediagallery/media.php?s=', m.media_id) AS url "
+         . "FROM {$_TABLES['mg_media']} AS m "
+         . "INNER JOIN {$_TABLES['mg_media_albums']} AS ma ON m.media_id = ma.media_id "
+         . "INNER JOIN {$_TABLES['mg_albums']} AS a ON ma.album_id = a.album_id "
+         . "WHERE 1=1 ";
     $sql .= COM_getPermSQL('AND') . ' ';
 
-    if( !SEC_inGroup( 'Root')) {
-        $sql .= ' AND hidden=0 ';
+    if (!SEC_inGroup('Root')) {
+        $sql .= "AND hidden = 0 ";
     }
 
-    if (!empty ($author))
-        $sql .= "AND (m.media_user_id = '$author') ";
+    if (!empty($author)) {
+        $sql .= "AND m.media_user_id = '$author' ";
+    }
 
     $search = new SearchCriteria('mediagallery', $LANG_MG00['plugin']);
-    $columns = array('m.media_desc','m.media_title');
+    $columns = array('title' => 'm.media_title', 'm.media_desc');
     $sql .= $search->getDateRangeSQL('AND', 'm.media_time', $datestart, $dateend);
     list($sql,$ftsql) = $search->buildSearchSQL($keyType, $query, $columns, $sql);
     $search->setSQL($sql);
@@ -803,7 +1033,8 @@ function plugin_dopluginsearch_mediagallery($query, $datestart, $dateend, $topic
 * @return   array   Array containing (plugin name, plugin user url, 0)
 *
 */
-function plugin_getuseroption_mediagallery() {
+function plugin_getuseroption_mediagallery()
+{
     global $_CONF, $_MG_CONF, $_USER, $LANG_MG01, $LANG_MG03, $_TABLES;
 
     if (COM_isAnonUser()) return '';
@@ -819,33 +1050,38 @@ function plugin_getuseroption_mediagallery() {
     }
 
     if ($_MG_CONF['member_albums'] == 1 && $_MG_CONF['link_to_member_album'] == 1) {
-        $sql = "SELECT album_id FROM {$_TABLES['mg_albums']} WHERE owner_id=" . $_USER['uid'] . " AND album_parent='" . $_MG_CONF['member_album_root'] . "' LIMIT 1";
+        $sql = "SELECT album_id FROM {$_TABLES['mg_albums']} WHERE owner_id=" . $_USER['uid']
+             . " AND album_parent='" . $_MG_CONF['member_album_root'] . "' LIMIT 1";
         $result = DB_query($sql);
         $numRows = DB_numRows($result);
-        if ( $numRows > 0 ) {
+        if ($numRows > 0) {
             $A = DB_fetchArray($result);
             $album_id = $A['album_id'];
             $menuitems[] = array($LANG_MG03['your_member_album'], $_MG_CONF['site_url'] . '/album.php?aid=' . $album_id, 0);
         }
     }
+
     return $menuitems;
 }
 
-function phpblock_mg_randommedia($parm1=array(), $parm2='') {
+function phpblock_mg_randommedia($parm1=array(), $parm2='')
+{
     global $_CONF, $_MG_CONF, $_TABLES, $_USER, $LANG_MG03, $_DB_dbms;
+
+    require_once $_CONF['path'] . 'plugins/mediagallery/include/common.php';
 
     $retval = '';
 
-    if ( $_MG_CONF['installed_version'] != $_MG_CONF['pi_version'] ) {
+    if ($_MG_CONF['installed_version'] != $_MG_CONF['pi_version']) {
         return $retval;
     }
 
-    if ( !isset($_MG_CONF['random_width']) || $_MG_CONF['random_width'] == 0 ) {
-        $_MG_CONF['random_width'] = 120;
+    $tn_size = 120;
+    if (!empty($_MG_CONF['random_width'])) {
+        $tn_size = intval($_MG_CONF['random_width']);
     }
 
     $tn_mode = $_MG_CONF['random_img_ratio'];
-    $tn_size = intval($_MG_CONF['random_width']);
     if (!empty($parm2)) {
         $args = explode(',', $parm2);
         switch ($args[0]) {
@@ -868,42 +1104,23 @@ function phpblock_mg_randommedia($parm1=array(), $parm2='') {
     if ($tn_size > 200) $tn_size = 200;
     $tn_fname_add = ($tn_mode == 1) ? '_150x150' : '';
 
-    if ( $_DB_dbms == 'mssql' ) {
-        $randomSelect = "NewID() ";
-    } else {
-        $randomSelect = "RAND(NOW()) ";
-    }
-    $sql = "SELECT ma.album_id,m.media_id,m.media_filename,m.media_title FROM {$_TABLES['mg_albums']} as a LEFT JOIN {$_TABLES['mg_media_albums']} as ma
-            on a.album_id=ma.album_id LEFT JOIN {$_TABLES['mg_media']} as m on ma.media_id=m.media_id WHERE
-            m.media_type=0 AND a.enable_random=1 AND a.hidden=0 " . COM_getPermSQL('and') . " ORDER BY " . $randomSelect . " LIMIT 1";
-    $result = DB_query( $sql,1 );
-    $nRows  = DB_numRows( $result );
+    $randomSelect = ($_DB_dbms == 'mssql') ? "NewID()" : "RAND(NOW())";
+    $sql = "SELECT ma.album_id,m.media_id,m.media_filename,m.media_title "
+         . "FROM {$_TABLES['mg_albums']} AS a LEFT JOIN {$_TABLES['mg_media_albums']} AS ma "
+         . "ON a.album_id=ma.album_id LEFT JOIN {$_TABLES['mg_media']} AS m ON ma.media_id=m.media_id "
+         . "WHERE m.media_type=0 AND a.enable_random=1 AND a.hidden=0 " . COM_getPermSQL('and')
+         . " ORDER BY " . $randomSelect . " LIMIT 1";
+    $result = DB_query($sql,1);
+    $nRows  = DB_numRows($result);
     if ($nRows <= 0) return '';
     $row = DB_fetchArray($result);
-
-    require_once $_CONF['path'] . 'plugins/mediagallery/include/classFrame.php';
-    $nFrame = new mgFrame();
-    $nFrame->constructor( $_MG_CONF['random_skin'] );
-    $imageFrameTemplate = $nFrame->getTemplate();
-    $frWidth = $nFrame->frame['wHL'] + $nFrame->frame['wHR'];
-    $frHeight = $nFrame->frame['hVT'] + $nFrame->frame['hVB'];
-//    $fCSS= $nFrame->getCSS();
-
-    $F = new Template($_MG_CONF['template_path']);
-    $F->set_var('xhtml',XHTML);
-    $F->set_var('media_frame',$imageFrameTemplate);
-
-    $T = MG_templateInstance( MG_getTemplatePath(0) );
-    $T->set_file('rblock', 'random_block.thtml');
-    $T->set_var('site_url', $_CONF['site_url']);
-    $T->set_var('site_admin_url', $_CONF['site_admin_url']);
 
     $url_media = $_MG_CONF['site_url'] . '/media.php?s=' . $row['media_id'];
     $url_album = $_MG_CONF['site_url'] . '/album.php?aid=' . $row['album_id'] .'&amp;s='.$row['media_id'].'#'.$row['media_id'];
 
     $msize = false;
     foreach ($_MG_CONF['validExtensions'] as $ext) {
-        if ( file_exists($_MG_CONF['path_mediaobjects'] . 'tn/' . $row['media_filename'][0] .'/' . $row['media_filename'] . $tn_fname_add . $ext) ) {
+        if (file_exists($_MG_CONF['path_mediaobjects'] . 'tn/' . $row['media_filename'][0] .'/' . $row['media_filename'] . $tn_fname_add . $ext)) {
             $media_thumbnail= $_MG_CONF['mediaobjects_url'] . '/tn/' . $row['media_filename'][0] .'/' . $row['media_filename'] . $tn_fname_add . $ext;
             $msize = @getimagesize($_MG_CONF['path_mediaobjects'] . 'disp/' . $row['media_filename'][0] .'/' . $row['media_filename'] . $ext);
             break;
@@ -912,77 +1129,49 @@ function phpblock_mg_randommedia($parm1=array(), $parm2='') {
 
     if ($msize == false) return '';
 
-    $imgwidth  = $msize[0];
-    $imgheight = $msize[1];
     if ($tn_mode == 1) {
-        $imgwidth  = $tn_size;
-        $imgheight = $tn_size;
-    }
-
-    if ( $imgwidth > $imgheight ) {
-        $ratio = $imgwidth / $tn_size;
-        $width = $tn_size;
-        $height = round($imgheight / $ratio);
-    } else {
-        $ratio = $imgheight / $tn_size;
+        $width  = $tn_size;
         $height = $tn_size;
-        $width = round($imgwidth / $ratio);
+    } else {
+        require_once $_CONF['path'] . 'plugins/mediagallery/include/classMedia.php';
+        list($width, $height) = Media::getImageWH($msize[0], $msize[1], $tn_size, $tn_size);
     }
 
-    if ( $parm2 == 'album' ) {
+    if ($parm2 == 'album') {
         $url_media = $url_album;
     }
 
-    // frame template variables
-    $F->set_var(array(
-        'media_link_start'  => '<a href="' . $url_media . '">',
-        'media_link_end'    => '</a>',
-        'url_display_item'  =>  $url_media,
-        'media_thumbnail'   =>  $media_thumbnail,
-        'media_size'        =>  'width="' . $width . '" height="' . $height . '"',
-        'media_height'      =>  $height,
-        'media_width'       =>  $width,
-        'border_width'      =>  $width  + (($_MG_CONF['random_skin'] == 'mgShadow') ? 12 : 18),
-        'border_height'     =>  $height + (($_MG_CONF['random_skin'] == 'mgShadow') ? 12 : 18),
-        'row_height'        =>  $height + 40,
-        'frWidth'           =>  $width  - $frWidth,
-        'frHeight'          =>  $height - $frHeight,
-        'media_tag'         =>  '',
-    ));
-    $F->parse('media','media_frame');
-    $media_item_thumbnail = $F->finish($F->get_var('media'));
+    $media_item_thumbnail = MG_getFramedImage($_MG_CONF['random_skin'], $row['media_title'], $url_media, $media_thumbnail, $width, $height);
 
+    $T = COM_newTemplate(MG_getTemplatePath(0));
+    $T->set_file('rblock', 'random_block.thtml');
     $T->set_var(array(
-        'url_media'         =>  $url_media,
-        'url_album'         =>  $url_album,
-        'media_thumbnail'   =>  $media_item_thumbnail,
-        'media_height'      =>  $height,
-        'media_width'       =>  $width,
-        'border_width'      =>  $width + 14,
-        'media_title'       =>  PLG_replaceTags(strip_tags($row['media_title'])),
-        'lang_browse_album' =>  $LANG_MG03['browse_album'],
-        'xhtml'             =>  XHTML,
-        'framecss'          =>  '', //$fCSS,
+        'url_media'         => $url_media,
+        'url_album'         => $url_album,
+        'media_thumbnail'   => $media_item_thumbnail,
+        'media_height'      => $height,
+        'media_width'       => $width,
+        'media_title'       => PLG_replaceTags(strip_tags($row['media_title'])),
+        'lang_browse_album' => $LANG_MG03['browse_album'],
     ));
-
     $T->parse('output', 'rblock');
     $retval .= $T->finish($T->get_var('output'));
 
     return $retval;
 }
 
-function phpblock_mg_maenroll(){
-    global $_CONF, $_MG_CONF, $_MG_USERPREFS, $_TABLES, $_USER, $LANG_MG03;
+function phpblock_mg_maenroll()
+{
+    global $_CONF, $_MG_CONF, $_TABLES, $_USER, $LANG_MG03;
 
-    if ( COM_isAnonUser() )  {
-        return;
-    }
+    if (COM_isAnonUser()) return;
 
     $_MG_USERPREFS = MG_getUserPrefs();
-    if ( $_MG_CONF['member_albums'] != 1 || $_MG_USERPREFS['member_gallery'] == 1 || $_USER['uid'] < 3) {
+    if ($_MG_CONF['member_albums'] != 1 || $_MG_USERPREFS['member_gallery'] == 1 || $_USER['uid'] < 3) {
         return;
     }
-    if ( SEC_inGroup("Remote Users") && $_MG_CONF['allow_remote'] != 1 ) {
+
+    if (SEC_inGroup("Remote Users") && $_MG_CONF['allow_remote'] != 1) {
         return;
     }
 
@@ -990,16 +1179,15 @@ function phpblock_mg_maenroll(){
     return $url;
 }
 
-
+/* Discard
 function plugin_centerblock_mediagallery($where=1, $page=1, $topic ='')
 {
     global $_CONF;
 
-    MG_initAlbums();
     require_once $_CONF['path'] . 'plugins/mediagallery/include/centerblock.php';
-    return MG_centerblock($op, $content, $autotag);
+    return MG_centerblock($where, $page, $topic);
 }
-
+*/
 
 function plugin_chkVersion_mediagallery()
 {
@@ -1011,7 +1199,7 @@ function plugin_chkVersion_mediagallery()
 
 function MG_clean_directories($path, $needle = '')
 {
-    if ( $path[strlen($path)-1] != '/' ) {
+    if ($path[strlen($path)-1] != '/') {
         $path .= '/';
     }
     if ($dir = @opendir($path)) {
@@ -1029,12 +1217,17 @@ function MG_clean_directories($path, $needle = '')
     }
 }
 
-function plugin_upgrade_mediagallery() {
+function plugin_upgrade_mediagallery()
+{
     global $_CONF, $_TABLES, $_MG_CONF;
-
+/*
     require_once $_CONF['path'].'plugins/mediagallery/upgrade.php';
 
     return mediagallery_upgrade();
+*/
+    require_once $_CONF['path'].'plugins/mediagallery/autoinstall.php';
+
+    return MG_upgrade();
 }
 
 /**
@@ -1049,19 +1242,22 @@ function plugin_upgrade_mediagallery() {
 * foreseen by the core code (interactions with other plugins for example)
 *
 */
-function plugin_autouninstall_mediagallery ()
+function plugin_autouninstall_mediagallery()
 {
     $out = array (
         /* give the name of the tables, without $_TABLES[] */
-        'tables' => array('mg_albums','mg_media','mg_media_albums','mg_usage_tracking','mg_config', 'mg_mediaqueue', 'mg_media_album_queue','mg_playback_options','mg_userprefs','mg_exif_tags', 'mg_watermarks', 'mg_category', 'mg_sessions', 'mg_session_items', 'mg_session_items2','mg_session_log', 'mg_sort', 'mg_postcard','mg_rating'),
+        'tables' => array('mg_albums', 'mg_media', 'mg_media_albums', 'mg_usage_tracking',
+                          'mg_mediaqueue', 'mg_media_album_queue', 'mg_playback_options',
+                          'mg_userprefs', 'mg_exif_tags', 'mg_watermarks', 'mg_category', 'mg_sessions',
+                          'mg_session_items', 'mg_session_log', 'mg_sort', 'mg_rating'),
         /* give the full name of the group, as in the db */
-        'groups' => array('mediagallery Admin','mediagallery Config'),
+        'groups' => array('mediagallery Admin', 'mediagallery Config'),
         /* give the full name of the feature, as in the db */
-        'features' => array('mediagallery.admin','mediagallery.config'),
+        'features' => array('mediagallery.admin', 'mediagallery.config'),
         /* give the full name of the block, including 'phpblock_', etc */
-        'php_blocks' => array('phpblock_mg_randommedia','phpblock_mg_maenroll'),
+        'php_blocks' => array('phpblock_mg_randommedia', 'phpblock_mg_maenroll'),
         /* give all vars with their name */
-        'vars'=> array('mediagallery_gid','mediagallery_cid')
+        'vars'=> array('mediagallery_gid', 'mediagallery_cid', 'mg_last_usage_purge')
     );
     return $out;
 }
@@ -1081,7 +1277,8 @@ function plugin_autouninstall_mediagallery ()
 * @return   boolean True if successful false otherwise
 *
 */
-function plugin_uninstall_mediagallery($installCheck='') {
+function plugin_uninstall_mediagallery($installCheck='')
+{
     global $_CONF, $_DB_table_prefix, $_TABLES, $LANG_MG00;
 
     // Check and see if plugin is still enabled - if so display warning and exit
@@ -1101,19 +1298,21 @@ function plugin_uninstall_mediagallery($installCheck='') {
     return $rc;
 }
 
-function plugin_user_create_mediagallery( $uid, $force = 0 ) {
+function plugin_user_create_mediagallery($uid, $force = 0)
+{
     global $_TABLES, $_MG_CONF, $LANG_MG01, $_CONF;
 
-    $sql = "INSERT INTO {$_TABLES['mg_userprefs']} (uid, active, display_rows, display_columns, mp3_player, playback_mode, tn_size, quota, member_gallery) VALUES (" . intval($uid) . ",1,0,0,-1,-1,-1," . $_MG_CONF['member_quota'] . ",0)";
-    DB_query($sql,1);
+    $sql = "INSERT INTO {$_TABLES['mg_userprefs']} (uid, active, display_rows, display_columns, mp3_player, playback_mode, tn_size, quota, member_gallery) "
+         . "VALUES (" . intval($uid) . ",1,0,0,-1,-1,-1," . $_MG_CONF['member_quota'] . ",0)";
+    DB_query($sql, 1);
 
     $retval = -1;
-    if ( $force == 1 || ($_MG_CONF['member_albums'] == 1 && $_MG_CONF['member_auto_create'] == 1) ) {
-        $username               = DB_getItem($_TABLES['users'],'username','uid=' . intval($uid));
-        $fullname               = DB_getItem($_TABLES['users'],'fullname','uid=' . intval($uid));
-        $grp_id                 = DB_getItem($_TABLES['groups'],'grp_id','grp_name="mediagallery Admin"');
+    if ($force == 1 || ($_MG_CONF['member_albums'] == 1 && $_MG_CONF['member_auto_create'] == 1)) {
+        $username  = DB_getItem($_TABLES['users'], 'username', 'uid=' . intval($uid));
+        $fullname  = DB_getItem($_TABLES['users'], 'fullname', 'uid=' . intval($uid));
+        $grp_id    = DB_getItem($_TABLES['groups'], 'grp_id', 'grp_name="mediagallery Admin"');
 
-        if ( $grp_id == NULL || $grp_id == '' || $grp_id < 2 ) {
+        if ($grp_id == NULL || $grp_id == '' || $grp_id < 2) {
             $grp_id = 2;
         }
 
@@ -1121,9 +1320,10 @@ function plugin_user_create_mediagallery( $uid, $force = 0 ) {
         $album = new mgAlbum();
 
         $title = $username . $LANG_MG01['member_album_postfix'];
-        if ( !empty($fullname) && $_MG_CONF['member_use_fullname'] == 1 ) {
+        if (!empty($fullname) && $_MG_CONF['member_use_fullname'] == 1) {
             $title = $fullname . $LANG_MG01['member_album_postfix'];
         }
+        
         $album->title           = htmlspecialchars(strip_tags(COM_checkWords($title)));
         $album->parent          = $_MG_CONF['member_album_root'];
         $album->group_id        = $grp_id;
@@ -1131,77 +1331,66 @@ function plugin_user_create_mediagallery( $uid, $force = 0 ) {
         $album->owner_id        = $uid;
         $album->moderate        = $_MG_CONF['member_moderate'];
         $album->email_mod       = $_MG_CONF['member_email_mod'];
-        $album->perm_owner      = $_MG_CONF['member_perm_owner'];
-        $album->perm_group      = $_MG_CONF['member_perm_group'];
-        $album->perm_members    = $_MG_CONF['member_perm_members'];
-        $album->perm_anon       = $_MG_CONF['member_perm_anon'];
-        $album->id              = $album->createAlbumID();
+        $album->perm_owner      = $_MG_CONF['member_permissions'][0];
+        $album->perm_group      = $_MG_CONF['member_permissions'][1];
+        $album->perm_members    = $_MG_CONF['member_permissions'][2];
+        $album->perm_anon       = $_MG_CONF['member_permissions'][3];
         $retval = $album->id;
         $album->saveAlbum();
-        $result = DB_query("UPDATE {$_TABLES['mg_userprefs']} SET member_gallery=1 WHERE uid=" . intval($uid),1);
+        DB_change($_TABLES['mg_userprefs'], 'member_gallery', 1, 'uid', intval($uid));
     }
     return $retval;
 }
 
-function plugin_user_delete_mediagallery( $uid ) {
+function plugin_user_delete_mediagallery($uid)
+{
     global $_USER, $_CONF, $_TABLES, $_MG_CONF, $LANG_MG00, $LANG_MG01;
 
     // remove any user preferences in the database
 
-    $sql = "DELETE FROM {$_TABLES['mg_userprefs']} WHERE uid=" . intval($uid);
-    DB_query($sql,1);
+    DB_delete($_TABLES['mg_userprefs'], 'uid', intval($uid));
 
-    if ( $_MG_CONF['member_albums'] ) {
-        if ( $_MG_CONF['member_album_archive'] == 0 ) {
+    if ($_MG_CONF['member_albums']) {
+        if ($_MG_CONF['member_album_archive'] == 0) {
             $sql = "SELECT album_id FROM {$_TABLES['mg_albums']} WHERE owner_id=" . intval($uid);
             $result = DB_query($sql);
-            while ( $A = DB_fetchArray($result) ) {
+            while ($A = DB_fetchArray($result)) {
                 MG_deleteMemberAlbums($A['album_id']);
             }
         } else {
             // update parent album to be archive album
-            $sql = "UPDATE {$_TABLES['mg_albums']} SET album_parent=" . $_MG_CONF['member_album_archive'] . " WHERE owner_id=" . intval($uid) . " AND album_parent='" . $_MG_CONF['member_album_root'] ."'";
-            DB_query($sql);
+            DB_change($_TABLES['mg_albums'], 'album_parent', $_MG_CONF['member_album_archive'],
+                      array('owner_id', 'album_parent'),
+                      array(intval($uid), $_MG_CONF['member_album_root']));
         }
     }
 }
 
-function MG_deleteMemberAlbums( $album_id ){
+function MG_deleteMemberAlbums($album_id) 
+{
     global $_CONF, $_MG_CONF, $_TABLES, $_USER;
 
-    $sql = "SELECT ma.media_id, m.media_filename, m.media_mime_ext
-            FROM " . $_TABLES['mg_media_albums'] .
-            " as ma LEFT JOIN " . $_TABLES['mg_media'] .
-            " as m ON ma.media_id=m.media_id
-            WHERE ma.album_id = '" . addslashes($album_id) ."'";
-
-    $result = DB_query( $sql );
-    $nRows = DB_numRows( $result );
-    $mediarow = array();
-    for ( $i=0; $i < $nRows; $i++) {
-      $row = DB_fetchArray( $result );
-      $mediarow[] = $row;
-    }
-    if ( count( $mediarow ) != 0 ) {
-        for ( $i = 0; $i < count( $mediarow ); $i++ ) {
-            $sql = "SELECT COUNT(media_id) AS count FROM " . $_TABLES['mg_media_albums'] . "  WHERE media_id = '" . addslashes($mediarow[$i]['media_id']) . "'";
-            $result = DB_query( $sql );
-            $row = DB_fetchArray( $result );
-            if ( $row['count'] <= 1 ) {
-                @unlink($_MG_CONF['path_mediaobjects'] . 'tn/'   . $mediarow[$i]['media_filename'][0] .'/' . $mediarow[$i]['media_filename'] . '.*');
-                @unlink($_MG_CONF['path_mediaobjects'] . 'disp/' . $mediarow[$i]['media_filename'][0] .'/' . $mediarow[$i]['media_filename'] . '.*');
-                @unlink($_MG_CONF['path_mediaobjects'] . 'orig/' . $mediarow[$i]['media_filename'][0] .'/' . $mediarow[$i]['media_filename'] . '.' . $mediarow[$i]['media_mime_ext']);
-                $sql = "DELETE FROM " . $_TABLES['mg_media'] . "  WHERE media_id = '" . addslashes($mediarow[$i]['media_id']) . "'";
-                DB_query( $sql );
-                DB_delete($_TABLES['comments'], 'sid', addslashes($mediarow[$i]['media_id']));
-                DB_delete($_TABLES['mg_playback_options'],'media_id', addslashes($mediarow[$i]['media_id']));
-            }
+    require_once $_CONF['path'] . 'plugins/mediagallery/include/common.php';
+    $sql = MG_buildMediaSql(array(
+        'album_id'  => $album_id,
+        'fields'    => array('media_id', 'media_filename', 'media_mime_ext'),
+        'sortorder' => -1
+    ));
+    $result = DB_query($sql);
+    while ($A = DB_fetchArray($result)) {
+        $count = DB_count($_TABLES['mg_media_albums'], 'media_id', addslashes($A['media_id']));
+        if ($count <= 1) {
+            $fn = $A['media_filename'];
+            @unlink($_MG_CONF['path_mediaobjects'] . 'tn/'   . $fn[0] . '/' . $fn . '.*');
+            @unlink($_MG_CONF['path_mediaobjects'] . 'disp/' . $fn[0] . '/' . $fn . '.*');
+            @unlink($_MG_CONF['path_mediaobjects'] . 'orig/' . $fn[0] . '/' . $fn . '.' . $A['media_mime_ext']);
+            DB_delete($_TABLES['mg_media'], 'media_id', addslashes($A['media_id']));
+            DB_delete($_TABLES['comments'], 'sid', addslashes($A['media_id']));
+            DB_delete($_TABLES['mg_playback_options'], 'media_id', addslashes($A['media_id']));
         }
     }
-    $sql = "DELETE FROM " . $_TABLES['mg_media_albums'] . " WHERE album_id = '" . addslashes($album_id) ."'";
-    DB_query( $sql );
-    $sql = "DELETE FROM " . $_TABLES['mg_albums'] . " WHERE album_id = '" . addslashes($album_id)."'";
-    DB_query( $sql );
+    DB_delete($_TABLES['mg_media_albums'], 'album_id', intval($album_id));
+    DB_delete($_TABLES['mg_albums'], 'album_id', intval($album_id));
 }
 
 
@@ -1211,7 +1400,6 @@ function plugin_profileblocksdisplay_mediagallery( $uid )
 {
     global $_CONF;
 
-    MG_initAlbums();
     require_once $_CONF['path'] . 'plugins/mediagallery/include/profile.php';
     return MG_profileblocksdisplay($uid);
 }
@@ -1220,13 +1408,14 @@ function plugin_profileblocksdisplay_mediagallery( $uid )
  * Helper functions for executing external programs...
  */
 
-function MG_exec($cmd) {
+function MG_exec($cmd)
+{
     global $_CONF, $_MG_CONF;
 
     $debugfile = "";
     $status="";
     $results=array();
-    if ($_MG_CONF['verbose'] ) {
+    if ($_MG_CONF['verbose']) {
         COM_errorLog(sprintf("MG_exec: Executing: %s",$cmd));
     }
 
@@ -1234,8 +1423,8 @@ function MG_exec($cmd) {
 
     if (PHP_OS == "WINNT") {
         $cmd .= ">NUL 2>&1";
-//        exec("cmd.exe /c " . $cmd, $results, $status);
-        exec('"' . $cmd . '"',$results,$status);
+//      exec("cmd.exe /c " . $cmd, $results, $status);
+        exec('"' . $cmd . '"', $results, $status);
     } else {
         exec($cmd, $results, $status);
     }
@@ -1244,11 +1433,11 @@ function MG_exec($cmd) {
 }
 
 // Used in climport.php, lib-batch.php and lib-upload.php
-function MG_execWrapper($cmd) {
-
+function MG_execWrapper($cmd)
+{
     list($results, $status) = MG_exec($cmd);
 
-    if ( $status == 0 ) {
+    if ($status == 0) {
         return true;
     } else {
         COM_errorLog("MG_execWrapper: Failed Command: " . $cmd);
@@ -1268,7 +1457,7 @@ function MG_execWrapper($cmd) {
 */
 function plugin_getiteminfo_mediagallery($id, $what, $uid = 0, $options = array())
 {
-    global $_CONF, $_TABLES, $_MG_CONF, $LANG_MG00;
+    global $_CONF, $_TABLES, $_MG_CONF, $LANG_MG00, $LANG_MG03;
 
     $properties = explode(',', $what);
     $fields = array();
@@ -1353,7 +1542,7 @@ function plugin_getiteminfo_mediagallery($id, $what, $uid = 0, $options = array(
                         }
                         break;
                     case 'label':
-                        $props['label'] = $LANG_MG00['menulabel'];
+                        $props['label'] = $LANG_MG03['menulabel'];
                         break;
                     case 'status':
                         $props['status'] = 1; // stub - default
@@ -1391,67 +1580,208 @@ function plugin_getiteminfo_mediagallery($id, $what, $uid = 0, $options = array(
     return $retval;
 }
 
-if (!function_exists('COM_truncate'))
+/**
+* Provide URL of a documentation file
+*
+* @param    string  $file   documentation file being requested, e.g. 'config'
+* @return   mixed           URL or false when not available
+*
+*/
+function plugin_getdocumentationurl_mediagallery($file)
 {
-    function COM_truncate( $text, $maxlen, $filler = '' ) {
-        $newlen = $maxlen - strlen( $filler );
-        $len = strlen( $text );
-        if( $len > $maxlen ) {
-            $text = substr( $text, 0, $newlen ) . $filler;
+    global $_CONF;
+
+    static $docurl;
+
+    switch ($file) {
+    case 'index':
+    case 'config':
+        if (isset($docurl)) {
+            $retval = $docurl;
+        } else {
+            $doclang = COM_getLanguageName();
+            $docs = 'mediagallery/docs/' . $doclang . '/mediagallery.html';
+            if (file_exists($_CONF['path_html'] . $docs)) {
+                $retval = $_CONF['site_url'] . '/' . $docs;
+            } else {
+                $retval = $_CONF['site_url'] . '/mediagallery/docs/english/mediagallery.html';
+            }
+            $docurl = $retval;
         }
-        return $text;
+        break;
+
+    default:
+        $retval = false;
+        break;
     }
+
+    return $retval;
 }
 
+/**
+* Provides text for a Configuration tooltip
+*
+* @param    string  $id     Id of config value
+* @return   mixed           Text to use regular tooltip, NULL to use config 
+*                           tooltip hack, or empty string when not available
+*
+*/
+function plugin_getconfigtooltip_mediagallery($id)
+{   
+    // Use config tooltip hack where tooltip is read from the config documentation
+    return;
+}
 
-if (!function_exists('COM_isAnonUser'))
+function plugin_configmanager_select_dfid_mediagallery()
 {
-    /**
-      * Checks to see if a specified user, or the current user if non-specified
-      * is the anonymous user.
-      *
-      * @param  int $uid    ID of the user to check, or none for the current user.
-      * @return boolean     true if the user is the anonymous user.
-      */
-    function COM_isAnonUser($uid = '')
-    {
-        global $_USER;
+    global $_TABLES, $LANG_MG00, $LANG_dateformats;
 
-        /* If no user was specified, fail over to the current user if there is one */
-        if (empty($uid)) {
-            if (isset($_USER['uid'])) {
-                $uid = $_USER['uid'];
+    $retval = array();
+    $retval[$LANG_MG00['no_date']] = 99;
+    $result = DB_query("SELECT dfid,description FROM {$_TABLES['dateformats']}");
+    while ($A = DB_fetchArray($result)) {
+        if ($A['dfid'] == 0) {
+            $retval[$LANG_dateformats[0]] = $A['dfid'];
+        } else {
+            $retval[$A['description']] = $A['dfid'];
+        }
+    }
+    return $retval;
+}
+
+function plugin_configmanager_select_indextheme_mediagallery()
+{
+    global $_CONF;
+
+    require_once $_CONF['path'] . 'plugins/mediagallery/include/common.php';
+    $retval = array();
+    $themes = MG_getThemes();
+    foreach ($themes as $theme) {
+        $words = explode('_', $theme);
+        $bwords = array();
+        foreach ($words as $th) {
+            if ((strtolower($th[0]) == $th[0]) &&
+                (strtolower($th[1]) == $th[1])) {
+                $bwords[] = ucfirst($th);
+            } else {
+                $bwords[] = $th;
             }
         }
-
-        if (!empty($uid)) {
-            return ($uid == 1);
-        } else {
-            return true;
-        }
+        $retval[implode(' ', $bwords)] = $theme;
     }
+    return $retval;
+}
+function plugin_configmanager_select_ad_skin_mediagallery()
+{
+    return plugin_configmanager_select_indextheme_mediagallery();
+}
+function plugin_configmanager_select_search_album_skin_mediagallery()
+{
+    return plugin_configmanager_select_indextheme_mediagallery();
 }
 
-if (!function_exists('SEC_loginRequiredForm'))
+function plugin_configmanager_select_indexskin_mediagallery()
 {
-    function SEC_loginRequiredForm()
-    {
-        global $_CONF, $LANG_LOGIN;
-        
-        $retval = COM_startBlock ($LANG_LOGIN[1], '',
-                  COM_getBlockTemplate ('_msg_block', 'header'));
-        $login = new Template($_CONF['path_layout'] . 'submit');
-        $login->set_file (array ('login'=>'submitloginrequired.thtml'));
-        $login->set_var ('login_message', $LANG_LOGIN[2]);
-        $login->set_var ('site_url', $_CONF['site_url']);
-        $login->set_var ('lang_login', $LANG_LOGIN[3]);
-        $login->set_var ('lang_newuser', $LANG_LOGIN[4]);
-        $login->parse ('output', 'login');
-        $retval .= $login->finish ($login->get_var('output'));
-        $retval .= COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
+    global $_CONF;
 
-        return $retval;
+    require_once $_CONF['path'] . 'plugins/mediagallery/include/common.php';
+    $retval = array();
+    $frames = MG_getFrames();
+    foreach ($frames as $frame) {
+        $retval[$frame['name']] = $frame['dir'];
     }
+    return $retval;
+}
+function plugin_configmanager_select_random_skin_mediagallery()
+{
+    return plugin_configmanager_select_indexskin_mediagallery();
+}
+function plugin_configmanager_select_ad_image_skin_mediagallery()
+{
+    return plugin_configmanager_select_indexskin_mediagallery();
+}
+function plugin_configmanager_select_ad_display_skin_mediagallery()
+{
+    return plugin_configmanager_select_indexskin_mediagallery();
+}
+function plugin_configmanager_select_ad_album_skin_mediagallery()
+{
+    return plugin_configmanager_select_indexskin_mediagallery();
+}
+function plugin_configmanager_select_search_frame_skin_mediagallery()
+{
+    return plugin_configmanager_select_indexskin_mediagallery();
+}
+
+function plugin_configmanager_select_ad_wm_id_mediagallery()
+{
+    global $_TABLES, $LANG_MG01, $_USER;
+
+    $retval = array();
+    $retval[$LANG_MG01['no_watermark']] = '0';
+
+    // now select what watermarks we have permission to use...
+    $where = " WHERE wm_id<>0";
+    if (!SEC_hasRights('mediagallery.config')) {
+        $where .= " AND (owner_id=" . $_USER['uid'] . " OR owner_id=0)";
+    }
+    $sql = "SELECT wm_id, filename FROM {$_TABLES['mg_watermarks']}" . $where . " ORDER BY owner_id";
+    $result = DB_query($sql);
+    while ($A = DB_fetchArray($result)) {
+        $retval[$A['filename']] = $A['wm_id'];
+    }
+
+    return $retval;
+}
+
+function plugin_configmanager_select_ad_mod_group_id_mediagallery()
+{
+    $retval = array();
+    $groups = SEC_getUserGroups();
+    foreach ($groups as $key => $val) {
+        if ($val == 2 || $val == 13) continue;
+        $retval[$key] = $val;
+    }
+    return $retval;
+}
+function plugin_configmanager_select_ad_group_id_mediagallery()
+{
+    return plugin_configmanager_select_ad_mod_group_id_mediagallery();
+}
+function plugin_configmanager_select_member_mod_group_id_mediagallery()
+{
+    return plugin_configmanager_select_ad_mod_group_id_mediagallery();
+}
+
+function plugin_configmanager_select_member_album_root_mediagallery()
+{
+    global $_CONF, $_MG_CONF;
+
+    require_once $_CONF['path'].'plugins/mediagallery/include/classAlbum.php';
+    $retval = array();
+    $root_album = new mgAlbum(0);
+    $root_album->getAlbumArray($retval, 1, -1);
+
+    return $retval;
+}
+function plugin_configmanager_select_member_album_archive_mediagallery()
+{
+    global $_CONF, $_MG_CONF, $LANG_MG01;
+
+    require_once $_CONF['path'].'plugins/mediagallery/include/classAlbum.php';
+    $retval = array();
+    $retval[$LANG_MG01['do_not_archive']] = '0';
+    $root_album = new mgAlbum(0);
+    $root_album->getAlbumArray($retval, 1, 0, -1);
+
+    return $retval;
+}
+
+function MG_showAlbumTree($aid=0, $depth=0)
+{
+    global $_CONF;
+    require_once $_CONF['path'].'plugins/mediagallery/include/common.php';
+    return MG_showTree($aid, $depth);
 }
 
 ?>

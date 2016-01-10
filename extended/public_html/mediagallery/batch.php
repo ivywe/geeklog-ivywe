@@ -1,13 +1,16 @@
 <?php
 // +--------------------------------------------------------------------------+
-// | Media Gallery Plugin - glFusion CMS                                      |
+// | Media Gallery Plugin - Geeklog                                           |
 // +--------------------------------------------------------------------------+
 // | batch.php                                                                |
 // |                                                                          |
 // | Batch system interface                                                   |
 // +--------------------------------------------------------------------------+
-// | $Id:: batch.php 5614 2010-03-19 19:08:33Z mevans0263                    $|
-// +--------------------------------------------------------------------------+
+// | Copyright (C) 2015 by the following authors:                             |
+// |                                                                          |
+// | Yoshinori Tahara       taharaxp AT gmail DOT com                         |
+// |                                                                          |
+// | Based on the Media Gallery Plugin for glFusion CMS                       |
 // | Copyright (C) 2002-2010 by the following authors:                        |
 // |                                                                          |
 // | Mark R. Evans          mark AT glfusion DOT org                          |
@@ -30,17 +33,19 @@
 // +--------------------------------------------------------------------------+
 
 require_once '../lib-common.php';
-require_once $_CONF['path'] . 'plugins/mediagallery/include/lib-batch.php';
 
 if (!in_array('mediagallery', $_PLUGINS)) {
     echo COM_refresh($_CONF['site_url'] . '/index.php');
     exit;
 }
 
-if ( COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1 ) {
+require_once $_CONF['path'] . 'plugins/mediagallery/include/common.php';
+require_once $_CONF['path'] . 'plugins/mediagallery/include/lib-batch.php';
+
+if (COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1) {
     $display = SEC_loginRequiredForm();
     $display = MG_createHTMLDocument($display);
-    echo $display;
+    COM_output($display);
     exit;
 }
 
@@ -48,60 +53,42 @@ if ( COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1 ) {
 * Main
 */
 
-MG_initAlbums();
+$mode       = isset($_REQUEST['mode']) ? COM_applyFilter($_REQUEST['mode']) : '';
+$session_id = isset($_GET['sid'])      ? COM_applyFilter($_GET['sid'])      : '';
 
-$mode = COM_applyFilter ($_REQUEST['mode']);
-
-$display = '';
-
-if ( isset ($_POST['cancel_button'] ) ) {
-    $session_id = COM_applyFilter($_GET['sid']);
-    // Pull the session status info
-    $sql = "SELECT * FROM {$_TABLES['mg_sessions']} WHERE session_id='" . addslashes($session_id) . "'";
-    $result = DB_query($sql,1);
-    if ( DB_error() ) {
+if (isset($_POST['cancel_button'])) {
+    $session_origin = DB_getItem($_TABLES['mg_sessions'], 'session_origin', 'session_id = ' . addslashes($session_id));
+    if (empty($session_origin)) { // no session found
         COM_errorLog("Media Gallery Error - Unable to retrieve batch session data");
         echo COM_refresh($_MG_CONF['site_url'] . '/index.php');
         exit;
     }
-    $nRows = DB_numRows($result);
-    if ( $nRows > 0 ) {
-        $session = DB_fetchArray($result);
-    } else {
-        COM_errorLog("Media Gallery Error: Unable to find batch session id");
-        echo COM_refresh($_MG_CONF['site_url'] . '/index.php');
-        exit;       // no session found
-    }
-    echo COM_refresh($session['session_origin']);
+    echo COM_refresh($session_origin);
     exit;
 }
 
-if (($mode == 'continue') ) {
-    if ( isset($_GET['sid']) ) {
-        $sid = COM_applyFilter($_GET['sid']);
-        if ( isset($_POST['refresh_rate']) ) {
-            $refresh_rate = COM_applyFilter($_POST['refresh_rate'],true);
-        } else {
-            if ( isset($_GET['refresh']) ) {
-                $refresh_rate = COM_applyFilter($_GET['refresh'],true);
-            } else {
-                $refresh_rate = $_MG_CONF['def_refresh_rate'];
-            }
-        }
-        if ( isset($_POST['item_limit']) ) {
-            $item_limit = intval(COM_applyFilter($_POST['item_limit'],true));
-        } else {
-            if ( isset($_GET['limit']) ) {
-                $item_limit = intval(COM_applyFilter($_GET['limit'],true));
-            } else {
-                $item_limit = $_MG_CONF['def_item_limit'];
-            }
-        }
-        $display .= MG_continueSession( $sid, $item_limit, $refresh_rate );
-    }
-    $display = MG_createHTMLDocument($display);
-    echo $display;
+if ($mode != 'continue' || empty($session_id)) {
+    echo COM_refresh($_MG_CONF['site_url'] . '/index.php');
     exit;
 }
-echo COM_refresh($_MG_CONF['site_url'] . '/index.php');
+
+$refresh_rate = $_MG_CONF['def_refresh_rate'];
+if (isset($_POST['refresh_rate'])) {
+    $refresh_rate = COM_applyFilter($_POST['refresh_rate'], true);
+} else if (isset($_GET['refresh'])) {
+    $refresh_rate = COM_applyFilter($_GET['refresh'], true);
+}
+
+$item_limit = $_MG_CONF['def_item_limit'];
+if (isset($_POST['item_limit'])) {
+    $item_limit = COM_applyFilter($_POST['item_limit'], true);
+} else if (isset($_GET['limit'])) {
+    $item_limit = COM_applyFilter($_GET['limit'], true);
+}
+
+$display = MG_continueSession($session_id, $item_limit, $refresh_rate);
+$display = MG_createHTMLDocument($display);
+COM_output($display);
+exit;
+
 ?>

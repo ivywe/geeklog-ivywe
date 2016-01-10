@@ -1,31 +1,26 @@
-<form class="uk-form" method="post" action="{s_form_action}">
-<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+{# begin {templatelocation} #}
+
+<form method="post" action="{s_form_action}" class="uk-form">
+<table class="uk-table uk-table-condensed uk-table-striped uk-width-1-1" style="background:#ffffff;">
   <tr>
-    <td colspan="2">&nbsp;</td>
+    <td class="alignright" style="white-space:nowrap; width:100px;">{lang_select_date}:</td>
+    <td>
+      {month_select}&nbsp;/
+      {day_select}&nbsp;/
+      {year_select}&nbsp;&nbsp;
+      <input type="checkbox" name="alldates"{xhtml}>{lang_all_dates}
+    </td>
   </tr>
   <tr>
-    <td style="width:30%;text-align:right;">
-      <span class="uk-text-bold">{lang_select_date}</span>
-  </td>
-  <td align="left">
-    {month_select}&nbsp;
-	{day_select}&nbsp;
-	{year_select}&nbsp;&nbsp;
-	<input type="checkbox" name="alldates"{xhtml}><span class="uk-text-bold">{lang_all_dates}</span>
-  </td>
-</tr>
-<tr>
-  <td align="right">
-    <span class="uk-text-bold">{lang_select_user}</span>
-  </td>
-  <td align="left">
-    {user_select}
-  </td>
-</tr>
-<tr>
-  <td colspan="2" align="center">
-    <input type="submit" class="uk-button" name="mode" value="{lang_submit}"{xhtml}>
-  </td>
-</tr>
+    <td align="right">{lang_select_user}:</td>
+    <td>
+      {user_select}
+    </td>
+  </tr>
 </table>
+<div class="mg_submit">
+  <input type="submit" name="mode" value="{lang_submit}"{xhtml}>
+</div>
 </form>
+
+{# end {templatelocation} #}

@@ -1,13 +1,16 @@
 <?php
 // +--------------------------------------------------------------------------+
-// | Media Gallery Plugin - glFusion CMS                                      |
+// | Media Gallery Plugin - Geeklog                                           |
 // +--------------------------------------------------------------------------+
 // | media.php                                                                |
 // |                                                                          |
 // | Handles the display of various media types                               |
 // +--------------------------------------------------------------------------+
-// | $Id:: media.php 5614 2010-03-19 19:08:33Z mevans0263                    $|
-// +--------------------------------------------------------------------------+
+// | Copyright (C) 2015 by the following authors:                             |
+// |                                                                          |
+// | Yoshinori Tahara       taharaxp AT gmail DOT com                         |
+// |                                                                          |
+// | Based on the Media Gallery Plugin for glFusion CMS                       |
 // | Copyright (C) 2002-2010 by the following authors:                        |
 // |                                                                          |
 // | Mark R. Evans          mark AT glfusion DOT org                          |
@@ -29,8 +32,6 @@
 // |                                                                          |
 // +--------------------------------------------------------------------------+
 
-global $_MG_CONF, $_USER, $LANG_LOGIN;
-
 require_once '../lib-common.php';
 
 if (!in_array('mediagallery', $_PLUGINS)) {
@@ -38,77 +39,32 @@ if (!in_array('mediagallery', $_PLUGINS)) {
     exit;
 }
 
-if ( COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1 )  {
+if (COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1) {
     $display = SEC_loginRequiredForm();
-    $display = MG_createHTMLDocument($display);
-    echo $display;
+    $display .= MG_createHTMLDocument($display);
+    COM_output($display);
     exit;
 }
 
-MG_initAlbums();
+require_once $_CONF['path'] . 'plugins/mediagallery/include/common.php';
+require_once $_CONF['path'] . 'plugins/mediagallery/include/lib-media.php';
 
-require_once $_CONF['path'].'plugins/mediagallery/include/lib-media.php';
+$msg       = isset($_REQUEST['msg'])  ? COM_applyFilter($_REQUEST['msg'], true) : '';
+$full      = isset($_REQUEST['f'])    ? COM_applyFilter($_REQUEST['f'],   true) : 0;
+$mid       = isset($_REQUEST['s'])    ? COM_applyFilter($_REQUEST['s'],   true) : 0;
+$sortOrder = isset($_REQUEST['sort']) ? COM_applyFilter($_REQUEST['sort'],true) : 0;
+$page      = isset($_REQUEST['p'])    ? COM_applyFilter($_REQUEST['p'],   true) : 0;
 
-/*
-* Main Function
-*/
+list($ptitle, $content, $album_id) = MG_displayMedia($mid, $full, $sortOrder, 1, $page);
 
+$skin = DB_getItem($_TABLES['mg_albums'], 'skin', "album_id = ". intval($album_id));
+MG_getThemePublicJSandCSS($skin);
 $display = '';
-
-if ( isset($_REQUEST['msg']) ) {
-    $msg = COM_applyFilter($_REQUEST['msg'],true);
-} else {
-    $msg = '';
-}
-
-if (isset($_REQUEST['aid'])) {
-    $album_id = COM_applyFilter($_REQUEST['aid']);
-} else {
-    $album_id = 0;
-}
-
-if ( isset($_REQUEST['f'])) {
-    $full = COM_applyFilter($_REQUEST['f'],true);
-} else {
-    $full = 0;
-}
-
-if ( isset($_REQUEST['s'])) {
-    $mediaObject = COM_applyFilter($_REQUEST['s'],true);
-} else {
-    $mediaObject = 0;
-}
-
-if ( isset($_REQUEST['sort'])) {
-    $sortOrder = COM_applyFilter($_REQUEST['sort'],true);
-} else {
-    $sortOrder = 0;
-}
-
-if ( isset($_REQUEST['i'])) {
-    $sortID = COM_applyFilter($_REQUEST['i'],true);
-} else {
-    $sortID = 0;
-}
-
-if ( isset($_REQUEST['p'])) {
-    $page = COM_applyFilter($_REQUEST['p'],true);
-} else {
-    $page = 0;
-}
-
-list($ptitle, $content, $themeCSS, $album_id) = MG_displayMediaImage($mediaObject, $full, $sortOrder, 1, $sortID, $page);
-$themeStyle .= MG_getThemePublicJSandCSS($MG_albums[$album_id]->skin); // Quicker than MG_getThemeCSS
-$themeStyle .= MG_getThemeCSS($MG_albums[$album_id]->skin);
-
-$themeStyle .= $themeCSS;
-
-if ( $msg != '' ) {
+if ($msg != '') {
     $display .= COM_showMessage($msg, 'mediagallery');
 }
-
 $display .= $content;
-$display = MG_createHTMLDocument($display, array('pagetitle' => $ptitle));
+$display = MG_createHTMLDocument($display, $ptitle);
 
-echo $display;
+COM_output($display);
 ?>

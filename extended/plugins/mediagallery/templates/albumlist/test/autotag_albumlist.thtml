@@ -1,6 +1,5 @@
-<!-- plugins/mediagallery/templates/albumlist/test/autotag_medialist.thtml 20150317 { -->
+{# begin {templatelocation} #}
 
 {albumlist_col}
 
-
-<!-- } plugins/mediagallery/templates/albumlist/test/autotag_medialist.thtml -->
+{# end {templatelocation} #}

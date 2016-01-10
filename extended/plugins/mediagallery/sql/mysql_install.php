@@ -1,14 +1,17 @@
 <?php
 // +--------------------------------------------------------------------------+
-// | Media Gallery Plugin - glFusion CMS                                      |
+// | Media Gallery Plugin - Geeklog                                           |
 // +--------------------------------------------------------------------------+
 // | mysql_install.php                                                        |
 // |                                                                          |
 // | MySQL SQL for Media Gallery installation.                                |
 // +--------------------------------------------------------------------------+
-// | $Id:: mysql_install.php 4029 2009-02-25 15:00:21Z mevans0263            $|
-// +--------------------------------------------------------------------------+
-// | Copyright (C)  2005-2009 by the following authors:                       |
+// | Copyright (C) 2015 by the following authors:                             |
+// |                                                                          |
+// | Yoshinori Tahara       taharaxp AT gmail DOT com                         |
+// |                                                                          |
+// | Based on the Media Gallery Plugin for glFusion CMS                       |
+// | Copyright (C) 2005-2009 by the following authors:                        |
 // |                                                                          |
 // | Mark R. Evans          mark AT glfusion DOT org                          |
 // +--------------------------------------------------------------------------+
@@ -32,7 +35,9 @@
 if (strpos(strtolower($_SERVER['PHP_SELF']), strtolower(basename(__FILE__))) !== false) {
     die('This file can not be used on its own!');
 }
-$_SQL['mg_albums'] = "CREATE TABLE {$_TABLES['mg_albums']} (
+
+// va_playback is not used anymore.
+$_SQL[] = "CREATE TABLE {$_TABLES['mg_albums']} (
   `album_id` int(11) NOT NULL default '0',
   `album_title` varchar(255) NOT NULL default '',
   `album_desc` text NOT NULL,
@@ -50,9 +55,9 @@ $_SQL['mg_albums'] = "CREATE TABLE {$_TABLES['mg_albums']} (
   `album_views` int(11) NOT NULL default '0',
   `enable_album_views` tinyint(4) NOT NULL default '0',
   `album_view_type` tinyint(4) NOT NULL default '0',
-  `image_skin` varchar(255) NOT NULL default 'mgShadow',
-  `album_skin` varchar(255) NOT NULL default 'mgAlbum',
-  `display_skin` varchar(255) NOT NULL default 'mgShadow',
+  `image_skin` varchar(255) NOT NULL default 'default',
+  `album_skin` varchar(255) NOT NULL default 'default',
+  `display_skin` varchar(255) NOT NULL default 'default',
   `enable_comments` tinyint(4) NOT NULL default '0',
   `exif_display` tinyint(4) NOT NULL default '0',
   `enable_rating` tinyint(4) NOT NULL default '0',
@@ -64,13 +69,11 @@ $_SQL['mg_albums'] = "CREATE TABLE {$_TABLES['mg_albums']} (
   `tnwidth` INT NOT NULL DEFAULT '0',
   `enable_slideshow` tinyint(4) NOT NULL default '0',
   `enable_random` tinyint(4) NOT NULL default '0',
-  `enable_shutterfly` tinyint(4) NOT NULL default '0',
   `enable_views` tinyint(4) NOT NULL default '0',
   `enable_keywords` tinyint(4) NOT NULL default '0',
   `display_album_desc` tinyint(4) NOT NULL default '0',
   `enable_sort` tinyint(4) NOT NULL default '0',
   `enable_rss` tinyint(4) NOT NULL default '0',
-  `enable_postcard` tinyint(4) NOT NULL default '0',
   `albums_first` tinyint(4) NOT NULL default '1',
   `allow_download` tinyint(4) NOT NULL default '0',
   `full_display` tinyint(4) NOT NULL default '0',
@@ -109,14 +112,7 @@ $_SQL['mg_albums'] = "CREATE TABLE {$_TABLES['mg_albums']} (
 ) ENGINE=MyISAM
 ";
 
-$_SQL['mg_config']="CREATE TABLE {$_TABLES['mg_config']} (
-  `config_name` varchar(255) NOT NULL default '',
-  `config_value` varchar(255) NOT NULL default '',
-  PRIMARY KEY  (`config_name`)
-) ENGINE=MyISAM
-";
-
-$_SQL['mg_media']="CREATE TABLE {$_TABLES['mg_media']} (
+$_SQL[]="CREATE TABLE {$_TABLES['mg_media']} (
   `media_id` varchar(40) NOT NULL default '0',
   `media_filename` varchar(255) NOT NULL default '',
   `media_original_filename` varchar(255) NOT NULL default '',
@@ -155,7 +151,7 @@ $_SQL['mg_media']="CREATE TABLE {$_TABLES['mg_media']} (
 ) ENGINE=MyISAM
 ";
 
-$_SQL['mg_mediaqueue']="CREATE TABLE {$_TABLES['mg_mediaqueue']} (
+$_SQL[]="CREATE TABLE {$_TABLES['mg_mediaqueue']} (
   `media_id` varchar(40) NOT NULL default '0',
   `media_filename` varchar(255) NOT NULL default '',
   `media_original_filename` varchar(255) NOT NULL default '',
@@ -194,7 +190,7 @@ $_SQL['mg_mediaqueue']="CREATE TABLE {$_TABLES['mg_mediaqueue']} (
 ) ENGINE=MyISAM
 ";
 
-$_SQL['mg_media_albums']="CREATE TABLE {$_TABLES['mg_media_albums']} (
+$_SQL[]="CREATE TABLE {$_TABLES['mg_media_albums']} (
   `album_id` int(11) NOT NULL default '0',
   `media_id` varchar(40) NOT NULL default '0',
   `media_order` int(11) NOT NULL default '0',
@@ -203,7 +199,7 @@ $_SQL['mg_media_albums']="CREATE TABLE {$_TABLES['mg_media_albums']} (
 ) ENGINE=MyISAM
 ";
 
-$_SQL['mg_media_album_queue']="CREATE TABLE {$_TABLES['mg_media_album_queue']} (
+$_SQL[]="CREATE TABLE {$_TABLES['mg_media_album_queue']} (
   `album_id` int(11) NOT NULL default '0',
   `media_id` varchar(40) NOT NULL default '0',
   `media_order` int(11) NOT NULL default '0',
@@ -212,7 +208,7 @@ $_SQL['mg_media_album_queue']="CREATE TABLE {$_TABLES['mg_media_album_queue']} (
 ) ENGINE=MyISAM
 ";
 
-$_SQL['mg_playback_options']="CREATE TABLE {$_TABLES['mg_playback_options']} (
+$_SQL[]="CREATE TABLE {$_TABLES['mg_playback_options']} (
   `media_id` varchar(40) NOT NULL default '',
   `option_name` varchar(255) NOT NULL default '',
   `option_value` varchar(255) NOT NULL default '',
@@ -221,7 +217,7 @@ $_SQL['mg_playback_options']="CREATE TABLE {$_TABLES['mg_playback_options']} (
 ) ENGINE=MyISAM
 ";
 
-$_SQL['mg_usage_tracking']="CREATE TABLE {$_TABLES['mg_usage_tracking']} (
+$_SQL[]="CREATE TABLE {$_TABLES['mg_usage_tracking']} (
   `time` int(11) NOT NULL default '0',
   `user_id` int(11) NOT NULL default '0',
   `user_name` varchar(127) NOT NULL default '',
@@ -234,7 +230,7 @@ $_SQL['mg_usage_tracking']="CREATE TABLE {$_TABLES['mg_usage_tracking']} (
 ) ENGINE=MyISAM
 ";
 
-$_SQL['mg_userprefs']="CREATE TABLE {$_TABLES['mg_userprefs']} (
+$_SQL[]="CREATE TABLE {$_TABLES['mg_userprefs']} (
   `uid` mediumint(8) NOT NULL default '0',
   `active` tinyint(4) NOT NULL default '1',
   `display_rows` tinyint(4) NOT NULL default '0',
@@ -248,7 +244,7 @@ $_SQL['mg_userprefs']="CREATE TABLE {$_TABLES['mg_userprefs']} (
 ) ENGINE=MyISAM
 ";
 
-$_SQL['mg_watermarks']="CREATE TABLE {$_TABLES['mg_watermarks']} (
+$_SQL[]="CREATE TABLE {$_TABLES['mg_watermarks']} (
   `wm_id` int(11) NOT NULL default 0,
   `owner_id` int(11) NOT NULL default '0',
   `filename` varchar(255) NOT NULL default '',
@@ -257,9 +253,7 @@ $_SQL['mg_watermarks']="CREATE TABLE {$_TABLES['mg_watermarks']} (
 ) ENGINE=MyISAM
 ";
 
-
-
-$_SQL['mg_session_items'] = "CREATE TABLE {$_TABLES['mg_session_items']} (
+$_SQL[] = "CREATE TABLE {$_TABLES['mg_session_items']} (
   `id` bigint(20) unsigned NOT NULL auto_increment,
   `session_id` varchar(40) NOT NULL default '',
   `mid` varchar(40) NOT NULL default '',
@@ -273,29 +267,14 @@ $_SQL['mg_session_items'] = "CREATE TABLE {$_TABLES['mg_session_items']} (
 ) ENGINE=MyISAM
 ";
 
-$_SQL['mg_session_items2'] = "CREATE TABLE {$_TABLES['mg_session_items2']} (
-  `id` bigint(20) NOT NULL,
-  `data1` varchar(255) NOT NULL,
-  `data2` varchar(255) NOT NULL,
-  `data3` varchar(255) NOT NULL,
-  `data4` varchar(255) NOT NULL,
-  `data5` varchar(255) NOT NULL,
-  `data6` varchar(255) NOT NULL,
-  `data7` varchar(255) NOT NULL,
-  `data8` varchar(255) NOT NULL,
-  `data9` varchar(255) NOT NULL,
-  KEY `id` (`id`)
-) ENGINE=MyISAM
-";
-
-$_SQL['mg_session_log'] = "CREATE TABLE {$_TABLES['mg_session_log']} (
+$_SQL[] = "CREATE TABLE {$_TABLES['mg_session_log']} (
   `session_id` varchar(40) NOT NULL default '',
   `session_log` varchar(255) NOT NULL default '',
   KEY `session_id` (`session_id`)
 ) ENGINE=MyISAM
 ";
 
-$_SQL['mg_sessions'] = "CREATE TABLE {$_TABLES['mg_sessions']} (
+$_SQL[] = "CREATE TABLE {$_TABLES['mg_sessions']} (
   `session_id` varchar(40) NOT NULL default '',
   `session_uid` mediumint(8) NOT NULL default '0',
   `session_description` varchar(255) NOT NULL default '',
@@ -314,7 +293,7 @@ $_SQL['mg_sessions'] = "CREATE TABLE {$_TABLES['mg_sessions']} (
 ) ENGINE=MyISAM
 ";
 
-$_SQL['mg_category'] = "CREATE TABLE {$_TABLES['mg_category']} (
+$_SQL[] = "CREATE TABLE {$_TABLES['mg_category']} (
   `cat_id` mediumint(9) NOT NULL default '0',
   `cat_name` varchar(255) NOT NULL default '',
   `cat_description` varchar(255) NOT NULL default '',
@@ -323,7 +302,7 @@ $_SQL['mg_category'] = "CREATE TABLE {$_TABLES['mg_category']} (
 ) ENGINE=MyISAM
 ";
 
-$_SQL['mg_sort'] = "CREATE TABLE {$_TABLES['mg_sort']} (
+$_SQL[] = "CREATE TABLE {$_TABLES['mg_sort']} (
   `sort_id` varchar(40) NOT NULL default '',
   `sort_user` varchar(40) NOT NULL default '',
   `sort_query` text NOT NULL,
@@ -334,22 +313,7 @@ $_SQL['mg_sort'] = "CREATE TABLE {$_TABLES['mg_sort']} (
 ) ENGINE=MyISAM
 ";
 
-$_SQL['mg_postcard'] = "CREATE TABLE {$_TABLES['mg_postcard']} (
-  `pc_id` varchar(40) NOT NULL default '',
-  `mid` varchar(40) NOT NULL default '',
-  `to_name` varchar(255) NOT NULL default '',
-  `to_email` varchar(255) NOT NULL default '',
-  `from_name` varchar(255) NOT NULL default '',
-  `from_email` varchar(255) NOT NULL default '',
-  `subject` varchar(255) NOT NULL default '',
-  `message` text NOT NULL,
-  `pc_time` int(11) NOT NULL default '0',
-  `uid` mediumint(9) NOT NULL default '0',
-   PRIMARY KEY  (`pc_id`)
-) ENGINE=MyISAM
-";
-
-$_SQL['mg_rating'] = "CREATE TABLE {$_TABLES['mg_rating']} (
+$_SQL[] = "CREATE TABLE {$_TABLES['mg_rating']} (
   `id` int(11) unsigned NOT NULL default '0',
   `ip_address` varchar(14) NOT NULL,
   `uid` mediumint(8) NOT NULL,
@@ -361,16 +325,16 @@ $_SQL['mg_rating'] = "CREATE TABLE {$_TABLES['mg_rating']} (
 ) ENGINE=MyISAM
 ";
 
-$_SQL['mg_exif_tags']="CREATE TABLE {$_TABLES['mg_exif_tags']} (
+$_SQL[]="CREATE TABLE {$_TABLES['mg_exif_tags']} (
   `name` varchar(255) NOT NULL default '',
   `selected` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`name`)
 ) ENGINE=MyISAM
 ";
 
-$_SQL['mg_watermark_data']="INSERT INTO {$_TABLES['mg_watermarks']} VALUES (0, 0, 'blank.png', '---');";
+$_SQL[]="INSERT INTO {$_TABLES['mg_watermarks']} VALUES (0, 0, 'blank.png', '---');";
 
-$_SQL['exif_tag_data']="INSERT INTO {$_TABLES['mg_exif_tags']} (`name`, `selected`) VALUES ('ApertureValue', 1),
+$_SQL[]="INSERT INTO {$_TABLES['mg_exif_tags']} (`name`, `selected`) VALUES ('ApertureValue', 1),
 ('ShutterSpeedValue', 1),
 ('ISO', 1),
 ('FocalLength', 0),

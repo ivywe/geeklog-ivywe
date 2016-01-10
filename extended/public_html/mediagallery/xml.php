@@ -1,13 +1,16 @@
 <?php
 // +--------------------------------------------------------------------------+
-// | Media Gallery Plugin - glFusion CMS                                      |
+// | Media Gallery Plugin - Geeklog                                           |
 // +--------------------------------------------------------------------------+
 // | xml.php                                                                  |
 // |                                                                          |
 // | Generates XML feed of album elements                                     |
 // +--------------------------------------------------------------------------+
-// | $Id:: xml.php 5739 2010-03-29 03:32:59Z mevans0263                      $|
-// +--------------------------------------------------------------------------+
+// | Copyright (C) 2015 by the following authors:                             |
+// |                                                                          |
+// | Yoshinori Tahara       taharaxp AT gmail DOT com                         |
+// |                                                                          |
+// | Based on the Media Gallery Plugin for glFusion CMS                       |
 // | Copyright (C) 2002-2010 by the following authors:                        |
 // |                                                                          |
 // | Mark R. Evans          mark AT glfusion DOT org                          |
@@ -36,154 +39,116 @@ if (!in_array('mediagallery', $_PLUGINS)) {
     exit;
 }
 
-MG_initAlbums();
+require_once $_CONF['path'] . 'plugins/mediagallery/include/common.php';
 
-function MG_getAlbumList ()
-{
-	global $MG_albums;
-	$aid = COM_applyFilter($_REQUEST['aid']);
-	$retval = '';
+$aid  = isset($_GET['aid'])  ? COM_applyFilter($_GET['aid'], true) : 0;
+$src  = isset($_GET['src'])  ? COM_applyFilter($_GET['src'])       : 'tn';
+$type = isset($_GET['type']) ? COM_applyFilter($_GET['type'])      : 'mini';
 
-	if ( isset($MG_albums[$aid]->id ) ) {
-	    $retval .="    <album>\n";
-	    $retval .= "        <title><![CDATA[" . $MG_albums[$aid]->title . "]]></title>\n";
-		$retval .= "        <parentId><![CDATA[" . $MG_albums[$aid]->parent . "]]></parentId>\n";
-		$retval .= "        <owner><![CDATA[" . $MG_albums[$aid]->owner_id . "]]></owner>\n";
-		$retval .= "        <id><![CDATA[" . $MG_albums[$aid]->id . "]]></id>\n";
-		$retval .="    </album>\n";
-		$children = $MG_albums[$aid]->getChildren();
-        foreach($children as $child) {
-            if ( $MG_albums[$child]->access >= 1 ) {
-			    $retval .="    <album>\n";
-			    $retval .= "        <title><![CDATA[" . $MG_albums[$child]->title . "]]></title>\n";
-				$retval .= "        <parentId><![CDATA[" . $MG_albums[$child]->parent . "]]></parentId>\n";
-				$retval .= "        <owner><![CDATA[" . $MG_albums[$child]->owner_id . "]]></owner>\n";
-				$retval .= "        <id><![CDATA[" . $MG_albums[$child]->id . "]]></id>\n";
-				$retval .="    </album>\n";
-            }
-		}
-	}
-	return $retval;
+if ($src != 'disp' && $src != 'orig') {
+    $src = 'tn';
 }
 
-function MG_getItems ()
-{
-    global $MG_albums, $_TABLES, $_MG_CONF;
+if ($type != 'full' || $type != 'mini') {
+    $type = 'mini';
+}
 
-    $retval = '';
+$album_data = MG_getAlbumData($aid, array('album_id', 'album_title', 'album_parent'), true);
 
-    if ( isset($_GET['aid']) ) {
-	    $aid = COM_applyFilter($_GET['aid'],true);
-	} else {
-	    $aid = 0;
-	}
-	if ( isset($_GET['src']) ) {
-	    $src = COM_applyFilter($_GET['src']);
-	} else {
-	    $src = 'tn';
-	}
-	if ( isset($_GET['type']) ) {
-	    $type = COM_applyFilter($_GET['type']);
-	} else {
-	    $type = 'mini';
-	}
+$xml = '';
+$charset = COM_getCharset();
+$xml .= "<?xml version=\"1.0\" encoding=\"" . $charset . "\"?>\n";
+$xml .= "<rss version=\"2.0\">\n";
+$xml .= "    <channel>\n";
+$xml .= "        <title><![CDATA[ XML for Media Gallery ]]></title>\n";
+$xml .= "        <link>" . $_MG_CONF['site_url'] . "</link>\n";
+$xml .= "        <description>XML Mini SlideShow for Media Gallery</description>\n";
+$xml .= "        <language>en-us</language>\n";
+$xml .= "        <generator>Media Gallery</generator>\n";
+$xml .= "        <lastBuildDate>" . date('r', time()) . "</lastBuildDate>\n";
+$xml .= "        <ttl>120</ttl>\n";
 
-	if ( $src != 'disp' && $src != 'orig' ) {
-		$src = 'tn';
-	}
-	if ( $type != 'full' || $type != 'mini' ) {
-	    $type = 'mini';
-	}
 
-	if ( isset($MG_albums[$aid]->id ) ) {
-        if ( $MG_albums[$aid]->access >= 1 ) {
-			$orderBy = MG_getSortOrder($aid, 0);
-
-			$sql = "SELECT * FROM {$_TABLES['mg_media_albums']} as ma INNER JOIN " . $_TABLES['mg_media'] . " as m " .
-			        " ON ma.media_id=m.media_id WHERE ma.album_id=" . intval($aid) . " AND m.include_ss=1 " . $orderBy;
-
-			$result = DB_query( $sql );
-			$nRows  = DB_numRows( $result );
-			$mediaRows = 0;
-			if ( $nRows > 0 ) {
-			    while ( $row = DB_fetchArray($result)) {
-			    	if ( $row['media_type'] == 0 ) {
-                        foreach ($_MG_CONF['validExtensions'] as $ext ) {
-                            if ( file_exists($_MG_CONF['path_mediaobjects'] . $src . '/' . $row['media_filename'][0] . '/' . $row['media_filename'] . $ext) ) {
-            		            $PhotoURL  = $_MG_CONF['mediaobjects_url'] . '/' . $src . "/" . $row['media_filename'][0] .'/' . $row['media_filename'] . $ext;
-            		            $PhotoPath = $_MG_CONF['path_mediaobjects'] . $src . "/" . $row['media_filename'][0] .'/' . $row['media_filename'] . $ext;
-                                break;
-                            }
-                        }
-        				if ( $type == 'mini' ) {
-        				    $ThumbURL  = $_MG_CONF['mediaobjects_url'] . '/' . $src . "/" . $row['media_filename'][0] .'/' . $row['media_filename'] . $ext;
-        				} else {
-                            foreach ($_MG_CONF['validExtensions'] as $ext ) {
-                                if ( file_exists($_MG_CONF['path_mediaobjects'] . 'tn/' . $row['media_filename'][0] . '/' . $row['media_filename'] . $ext) ) {
-                		            $ThumbURL  = $_MG_CONF['mediaobjects_url'] . '/tn/' . $row['media_filename'][0] .'/' . $row['media_filename'] . $ext;
-                                    break;
-                                }
-                            }
-        				}
-        				if ( $row['remote_url'] != '' ) {
-        				    $viewURL = $row['remote_url'];
-        				} else {
-        				    $viewURL   = $_MG_CONF['site_url']  . "/media.php?s=" . $row['media_id'];
-        				}
-			            $imgsize   = @getimagesize($PhotoPath);
-        				if ( $imgsize == false ) {
-            				continue;
-        				}
-						$retval .= "        <item>\n";
-					    $retval .= "            <title>" . $row['media_title'] . "</title>\n";;
-						$retval .= "            <id>" . $row['media_id'] . "</id>\n";
-						$retval .= "            <link>" . $viewURL . "</link>\n";
-					    $retval .= "            <view>" . $PhotoURL . "</view>\n";
-					    $retval .= "            <thumbUrl>" . $ThumbURL . "</thumbUrl>\n";
-					    $retval .= "            <width>" . $imgsize[0] . "</width>\n";
-					    $retval .= "            <height>" . $imgsize[1] . "</height>\n";
-						$retval .= "            <mime>" . $row['mime_type'] . "</mime>\n";
-						$retval .= "            <guid isPermaLink=\"false\">" . $viewURL . "</guid>\n";
-						$retval .= "            <pubDate>" . date('r', $row['media_upload_time']) . "</pubDate>\n";
-                    	$retval .= "            <media:content url=\"" . $PhotoURL . "\" type=\"" . $row['mime_type'] . "\" width=\"" . $imgsize[0] . "\" height=\"" . $imgsize[1] . "\">\n";
-                	    $retval .= "               <media:title type=\"plain\">" . cdata($row['media_title']) . "</media:title>\n";
-                	    $retval .= "               <media:thumbnail url=\"" . $ThumbURL . "\" width=\"" . $imgsize[0] . "\" height=\"" . $imgsize[1] . "\" time=\"" . date('r', $row['media_upload_time']) . "\"/>\n";
-                	    $retval .= "            </media:content>\n";
-						$retval .= "        </item>\n";
-			    	}
-			    }
-			}
+if (isset($album_data['album_id'])) {
+    $xml .="    <album>\n";
+    $xml .= "        <title><![CDATA[" . $album_data['album_title'] . "]]></title>\n";
+    $xml .= "        <parentId><![CDATA[" . $album_data['album_parent'] . "]]></parentId>\n";
+    $xml .= "        <owner><![CDATA[" . $album_data['owner_id'] . "]]></owner>\n";
+    $xml .= "        <id><![CDATA[" . $album_data['album_id'] . "]]></id>\n";
+    $xml .="    </album>\n";
+    $children = MG_getAlbumChildren($aid);
+    foreach ($children as $child) {
+        $child_data = MG_getAlbumData($child, array('album_id', 'album_title', 'album_parent'), true);
+        if ($child_data['access'] >= 1) {
+            $xml .="    <album>\n";
+            $xml .= "        <title><![CDATA[" . $child_data['album_title'] . "]]></title>\n";
+            $xml .= "        <parentId><![CDATA[" . $child_data['album_parent'] . "]]></parentId>\n";
+            $xml .= "        <owner><![CDATA[" . $child_data['owner_id'] . "]]></owner>\n";
+            $xml .= "        <id><![CDATA[" . $child_data['album_id'] . "]]></id>\n";
+            $xml .="    </album>\n";
         }
-		return $retval;
     }
 }
 
-function cdata($text) {
-    return '<![CDATA[' . $text . ']]>';
+
+if (isset($album_data['album_id']) && $album_data['access'] >= 1) {
+    $sql = MG_buildMediaSql(array(
+        'album_id'  => $aid,
+        'fields'    => array('media_type', 'media_filename', 'remote_url', 'media_id',
+                             'media_title', 'mime_type', 'media_upload_time'),
+        'where'     => 'm.include_ss = 1'
+    ));
+    $result = DB_query($sql);
+    while ($row = DB_fetchArray($result)) {
+        if ($row['media_type'] == 0) {
+            foreach ($_MG_CONF['validExtensions'] as $ext) {
+                if (file_exists($_MG_CONF['path_mediaobjects'] . $src . '/' . $row['media_filename'][0] . '/' . $row['media_filename'] . $ext)) {
+                    $PhotoURL  = $_MG_CONF['mediaobjects_url'] . '/' . $src . '/' . $row['media_filename'][0] .'/' . $row['media_filename'] . $ext;
+                    $PhotoPath = $_MG_CONF['path_mediaobjects'] . $src . '/' . $row['media_filename'][0] .'/' . $row['media_filename'] . $ext;
+                    break;
+                }
+            }
+            if ($type == 'mini') {
+                $ThumbURL = $_MG_CONF['mediaobjects_url'] . '/' . $src . '/' . $row['media_filename'][0] .'/' . $row['media_filename'] . $ext;
+            } else {
+                foreach ($_MG_CONF['validExtensions'] as $ext) {
+                    if (file_exists($_MG_CONF['path_mediaobjects'] . 'tn/' . $row['media_filename'][0] . '/' . $row['media_filename'] . $ext)) {
+                        $ThumbURL  = $_MG_CONF['mediaobjects_url'] . '/tn/' . $row['media_filename'][0] .'/' . $row['media_filename'] . $ext;
+                        break;
+                    }
+                }
+            }
+            if ($row['remote_url'] != '') {
+                $viewURL = $row['remote_url'];
+            } else {
+                $viewURL   = $_MG_CONF['site_url']  . "/media.php?s=" . $row['media_id'];
+            }
+            $imgsize   = @getimagesize($PhotoPath);
+            if ($imgsize == false) {
+                continue;
+            }
+            $xml .= "        <item>\n";
+            $xml .= "            <title>" . $row['media_title'] . "</title>\n";;
+            $xml .= "            <id>" . $row['media_id'] . "</id>\n";
+            $xml .= "            <link>" . $viewURL . "</link>\n";
+            $xml .= "            <view>" . $PhotoURL . "</view>\n";
+            $xml .= "            <thumbUrl>" . $ThumbURL . "</thumbUrl>\n";
+            $xml .= "            <width>" . $imgsize[0] . "</width>\n";
+            $xml .= "            <height>" . $imgsize[1] . "</height>\n";
+            $xml .= "            <mime>" . $row['mime_type'] . "</mime>\n";
+            $xml .= "            <guid isPermaLink=\"false\">" . $viewURL . "</guid>\n";
+            $xml .= "            <pubDate>" . date('r', $row['media_upload_time']) . "</pubDate>\n";
+            $xml .= "            <media:content url=\"" . $PhotoURL . "\" type=\"" . $row['mime_type'] . "\" width=\"" . $imgsize[0] . "\" height=\"" . $imgsize[1] . "\">\n";
+            $xml .= "               <media:title type=\"plain\"><![CDATA[" . $row['media_title'] . "]]></media:title>\n";
+            $xml .= "               <media:thumbnail url=\"" . $ThumbURL . "\" width=\"" . $imgsize[0] . "\" height=\"" . $imgsize[1] . "\" time=\"" . date('r', $row['media_upload_time']) . "\"/>\n";
+            $xml .= "            </media:content>\n";
+            $xml .= "        </item>\n";
+        }
+    }
 }
 
-function MG_xml() {
-	global $MG_albums,$_MG_CONF,$LANG_CHARSET;
-
-	$xml = '';
-	header("Content-type: text/xml; charset=" . $LANG_CHARSET );
-	echo "<?xml version=\"1.0\" encoding=\"" . $LANG_CHARSET . "\"?>\n";
-	$xml .= "<rss version=\"2.0\">\n";
-	$xml .= "    <channel>\n";
-	$xml .= "        <title><![CDATA[ XML for Media Gallery ]]></title>\n";
-	$xml .= "        <link>" . $_MG_CONF['site_url'] . "</link>\n";
-	$xml .= "        <description>XML Mini SlideShow for Media Gallery</description>\n";
-	$xml .= "        <language>en-us</language>\n";
-	$xml .= "        <generator>Media Gallery version 1.4</generator>\n";
-	$xml .= "        <lastBuildDate>" . date('r', time()) . "</lastBuildDate>\n";
-	$xml .= "        <ttl>120</ttl>\n";
-	$xml .= MG_getAlbumList ();
-	$xml .= MG_getItems();
-	$xml .= "    </channel>\n";
-	$xml .= "</rss>\n";
-	echo $xml;
-}
-
-
-MG_xml();
+$xml .= "    </channel>\n";
+$xml .= "</rss>\n";
+header("Content-type: text/xml; charset=" . $charset);
+echo $xml;
 ?>

@@ -115,7 +115,7 @@ function fileDialogComplete(numFilesSelected, numFilesQueued) {
 		
 		/* I want auto start the upload and I can do that here */
 		this.startUpload();
-	} catch (ex)  {
+	} catch (ex) {
         this.debug(ex);
 	}
 }
@@ -155,7 +155,7 @@ function uploadSuccess(file, serverData) {
         if (serverData.substring(0, 7) === "FILEID:") {
         	var thumbnails = document.getElementById("divSWFThumbnails");
         	thumbnails.style.display = "block";
-    	    addImage(lang["site_url"] + "/mediagallery/thumbnail.php?id=" + serverData.substring(7), serverData.substring(7), file.name);
+    	    addImage(lang["site_url"] + "/mediagallery/swfupload/thumbnail.php?id=" + serverData.substring(7), serverData.substring(7), file.name);
     	    progress.setStatus(lang["swfupload_complete"]);
     	    progress.toggleCancel(false);
     	} else {
@@ -185,7 +185,7 @@ function addImage(src, id, filename ) {
 
     imgDiv.innerHTML = '<span style="font-weight:bold;vertical-align:top;">' + filename + '</span>';
     inputDiv.innerHTML = '<span style="font-weight:bold;vertical-align:top;">' + lang["title"] + '</span><br' + lang["xhtml"] + '>'
-	                   + '<textarea rows="2" cols="60" name="media_title[]" style="width:80%;"></textarea><br' + lang["xhtml"] + '>'
+	                   + '<input type="text" name="media_title[]" style="width:80%;" value=""><br' + lang["xhtml"] + '>'
 	                   + '<span style="font-weight:bold;vertical-align:top;">' + lang["description"] + '</span><br' + lang["xhtml"] + '>'
 	                   + '<textarea rows="2" cols="60" name="media_desc[]" style="width:80%;"></textarea>'
 	                   + '<input type="hidden" name="media_id[]" value="' + id + '"' + lang["xhtml"] + '>';

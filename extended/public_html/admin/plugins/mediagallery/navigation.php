@@ -1,10 +1,14 @@
 <?php
 // +--------------------------------------------------------------------------+
-// | Media Gallery Plugin for glFusion CMS                                    |
+// | Media Gallery Plugin - Geeklog                                           |
 // +--------------------------------------------------------------------------+
-// | $Id:: navigation.php 5847 2010-04-09 13:16:50Z mevans0263               $|
 // | Admin menu.                                                              |
 // +--------------------------------------------------------------------------+
+// | Copyright (C) 2015 by the following authors:                             |
+// |                                                                          |
+// | Yoshinori Tahara       taharaxp AT gmail DOT com                         |
+// |                                                                          |
+// | Based on the Media Gallery Plugin for glFusion CMS                       |
 // | Copyright (C) 2005-2010 by the following authors:                        |
 // |                                                                          |
 // | Mark R. Evans          mark AT glfusion DOT org                          |
@@ -31,73 +35,95 @@ if (strpos(strtolower($_SERVER['PHP_SELF']), strtolower(basename(__FILE__))) !==
     die('This file can not be used on its own!');
 }
 
-function MG_navigation() {
-    global $_MG_CONF, $_CONF, $_TABLES, $LANG_MG01;
+function MG_showAdminMenu($sub_menu='')
+{
+    global $_CONF, $_TABLES, $_MG_CONF, $LANG_MG01, $LANG_ADMIN;
 
-    $retval = '';
-    $T = new Template($_MG_CONF['template_path']);
-    $T->set_file ('admin','mg_navigation.thtml');
+    require_once $_CONF['path'] . 'system/lib-admin.php';
 
-    $queue_count = DB_count($_TABLES['mg_media_album_queue'],'','');
+    $menu_arr = array(
+        array('url'  => $_MG_CONF['admin_url'] . 'category.php',
+              'text' => $LANG_MG01['category_manage_help']),
 
-    $T->set_var(array(
-        'site_url'                  => $_MG_CONF['site_url'],
-        'site_admin_url'            => $_CONF['site_admin_url'],
-        'admin_url'                 => $_MG_CONF['admin_url'],
-        'lang_configuration'        => $LANG_MG01['configuration'],
-        'lang_system_options'       => $LANG_MG01['system_options'],
-        'lang_exif_iptc'            => $LANG_MG01['exif_admin_header'],
-        'lang_categories'           => $LANG_MG01['category_manage_help'],
-        'lang_system_defaults'      => $LANG_MG01['system_default_editor'],
-        'lang_album_defaults'       => $LANG_MG01['album_default_editor'],
-        'lang_av_defaults'          => $LANG_MG01['av_default_editor'],
-        'lang_media_queue'          => sprintf("%s (%d)",$LANG_MG01['media_queue'],$queue_count),
-        'lang_reports'              => $LANG_MG01['reports'],
-        'lang_usage_reports'        => $LANG_MG01['usage_reports'],
-        'lang_quota_reports'        => $LANG_MG01['quota_reports'],
-        'lang_batch_sessions'       => $LANG_MG01['batch_sessions'],
-        'lang_paused_sessions'      => $LANG_MG01['paused_sessions'],
-        'lang_rebuild_thumbs'       => $LANG_MG01['rebuild_thumb'],
-        'lang_resize_images'        => $LANG_MG01['resize_display'],
-        'lang_remove_originals'     => $LANG_MG01['discard_originals'],
-        'lang_utilities'            => $LANG_MG01['utilities'],
-        'lang_logviewer'            => $LANG_MG01['log_viewer'],
-        'lang_php_info'             => $LANG_MG01['phpinfo'],
-        'lang_documentation'        => $LANG_MG01['documentation'],
-        'lang_import_wizards'       => $LANG_MG01['import_wizards'],
-        'lang_inmemoriam'           => $LANG_MG01['inm_import'],
-        'lang_4images'              => $LANG_MG01['fourimages_import'],
-        'lang_gallery1'             => $LANG_MG01['gallery_import'],
-        'lang_gallery2'             => $LANG_MG01['gallery_v2_import'],
-        'lang_coppermine'           => $LANG_MG01['coppermine_import'],
-        'lang_geekary'              => $LANG_MG01['geekary_import'],
-        'lang_xp_publishing'        => $LANG_MG01['xppubwizard_install'],
-        'session_count'             => DB_count($_TABLES['mg_sessions'],'session_status','1'),
-        'lang_member_album_options' => $LANG_MG01['member_album_options'],
-        'lang_rebuild_quota'        => $LANG_MG01['rebuild_quota'],
-        'lang_batch_create_members' => $LANG_MG01['batch_create_members'],
-        'lang_member_albums'        => $LANG_MG01['member_albums'],
-        'lang_static_sort_albums'   => $LANG_MG01['static_sort_albums'],
-        'lang_static_sort_media'    => $LANG_MG01['static_sort_media'],
-        'lang_mass_delete'          => $LANG_MG01['batch_delete_albums'],
-        'lang_rss_options'          => $LANG_MG01['rss_options'],
-        'lang_reset_member_attr'    => $LANG_MG01['reset_members'],
-        'lang_rss_rebuild_all'      => $LANG_MG01['rss_rebuild_all'],
-        'lang_rss_rebuild_album'    => $LANG_MG01['rss_rebuild_album'],
-        'lang_rss_feeds'            => $LANG_MG01['rss_feeds'],
-        'lang_album_sort'           => $LANG_MG01['sort_albums'],
-        'lang_global_attr'          => $LANG_MG01['globalattr'],
-        'lang_global_perm'          => $LANG_MG01['globalperm'],
-        'lang_member_purge_album'   => $LANG_MG01['purge_member_albums'],
-        'lang_reset_defaults'       => $LANG_MG01['reset_defaults'],
-        'lang_filecheck'            => $LANG_MG01['filecheck'],
-        'lang_4images'              => $LANG_MG01['fourimages_import'],
-        'lang_glstory'              => $LANG_MG01['gl_story'],
-        'lang_env_check'            => $LANG_MG01['env_check'],
-    ));
+        array('url'  => $_MG_CONF['admin_url'] . 'index.php?s=m',
+              'text' => $LANG_MG01['member_albums']),
 
-    $T->parse('output', 'admin');
-    $retval .= $T->finish($T->get_var('output'));
-    return $retval;
+        array('url'  => $_MG_CONF['admin_url'] . 'index.php?s=b',
+              'text' => $LANG_MG01['batch_sessions']),
+
+        array('url'  => $_MG_CONF['admin_url'] . 'index.php?s=c',
+              'text' => $LANG_MG01['miscellaneous']),
+
+        array('url'  => $_CONF['site_admin_url'],
+              'text' => $LANG_ADMIN['admin_home']));
+
+    $menu = ADMIN_createMenu(
+        $menu_arr,
+        '',
+        $_MG_CONF['site_url'] . '/images/mediagallery.png'
+    );
+
+    $menu .= MG_showAdminSubMenu($sub_menu);
+
+    return $menu;
 }
+
+function MG_showAdminSubMenu($sub_menu)
+{
+    global $_CONF, $_TABLES, $_MG_CONF, $LANG_MG01, $LANG_ADMIN, $LANG27;
+
+    $menu = '';
+    $admin_url = $_MG_CONF['admin_url'];
+    switch ($sub_menu) {
+        case 'member_albums':
+            $menu .= '<h3>' . $LANG_MG01['member_albums'] . '</h3>' . LB;
+            $menu .= '<ul>' . LB
+                   . '<li><a href="' . $admin_url . 'createmembers.php">' . $LANG_MG01['batch_create_members'] . '</a></li>' . LB
+                   . '<li><a href="' . $admin_url . 'purgealbums.php">'   . $LANG_MG01['purge_member_albums']  . '</a></li>' . LB
+                   . '<li><a href="' . $admin_url . 'resetmembers.php">'  . $LANG_MG01['reset_members']        . '</a></li>' . LB
+                   . '<li><a href="' . $admin_url . 'quotareport.php">'   . $LANG_MG01['quota_reports']        . '</a></li>' . LB
+                   . '</ul>' . LB;
+            break;
+
+        case 'rss_feeds':
+            $menu .= '<h3>' . $LANG_MG01['rss_feeds'] . '</h3>' . LB;
+            $menu .= '<ul>' . LB
+                   . '<li><a href="' . $admin_url . 'rssrebuild.php?mode=full">'  . $LANG_MG01['rss_rebuild_all']   . '</a></li>' . LB
+                   . '<li><a href="' . $admin_url . 'rssrebuild.php?mode=album">' . $LANG_MG01['rss_rebuild_album'] . '</a></li>' . LB
+                   . '</ul>' . LB;
+            break;
+
+        case 'batch_sessions':
+            $session_count = DB_count($_TABLES['mg_sessions'],'session_status','1');
+            $menu .= '<h3>' . $LANG_MG01['batch_sessions'] . '</h3>' . LB;
+            $menu .= '<ul>' . LB
+                   . '<li><a href="' . $admin_url . 'sessions.php">'                       . $LANG_MG01['paused_sessions']
+                                                                                           . ' (' . $session_count .  ')'      . '</a></li>' . LB
+                   . '<li><a href="' . $admin_url . 'maint.php?mode=thumbs&amp;step=one">' . $LANG_MG01['rebuild_thumb']       . '</a></li>' . LB
+                   . '<li><a href="' . $admin_url . 'maint.php?mode=resize&amp;step=one">' . $LANG_MG01['resize_display']      . '</a></li>' . LB
+                   . '<li><a href="' . $admin_url . 'maint.php?mode=remove&amp;step=one">' . $LANG_MG01['discard_originals']   . '</a></li>' . LB
+                   . '<li><a href="' . $admin_url . 'quota.php">'                          . $LANG_MG01['rebuild_quota']       . '</a></li>' . LB
+                   . '<li><a href="' . $admin_url . 'staticsortalbums.php">'               . $LANG_MG01['static_sort_albums']  . '</a></li>' . LB
+                   . '<li><a href="' . $admin_url . 'staticsortmedia.php">'                . $LANG_MG01['static_sort_media']   . '</a></li>' . LB
+                   . '<li><a href="' . $admin_url . 'massdelete.php">'                     . $LANG_MG01['batch_delete_albums'] . '</a></li>' . LB
+
+                   . '<li><a href="' . $_MG_CONF['site_url'] . '/admin.php?album_id=0&amp;mode=globalperm&amp;a=1">' . $LANG_MG01['globalperm'] . '</a></li>' . LB
+                   . '<li><a href="' . $_MG_CONF['site_url'] . '/admin.php?album_id=0&amp;mode=globalattr&amp;a=1">' . $LANG_MG01['globalattr'] . '</a></li>' . LB
+                   . '</ul>' . LB;
+            break;
+
+        case 'miscellaneous':
+            $menu .= '<h3>' . $LANG_MG01['miscellaneous'] . '</h3>' . LB;
+            $menu .= '<ul>' . LB
+                   . '<li><a href="' . $admin_url . 'usage_rpt.php">'             . $LANG_MG01['usage_reports']     . '</a></li>' . LB
+                   . '<li><a href="' . $admin_url . 'exif_admin.php">'            . $LANG_MG01['exif_admin_header'] . '</a></li>' . LB
+                   . '<li><a href="' . $admin_url . 'rssrebuild.php?mode=full">'  . $LANG_MG01['rss_rebuild_all']   . '</a></li>' . LB
+                   . '<li><a href="' . $admin_url . 'rssrebuild.php?mode=album">' . $LANG_MG01['rss_rebuild_album'] . '</a></li>' . LB
+                   . '<li><a href="' . $admin_url . 'envcheck.php">'              . $LANG_MG01['env_check']         . '</a></li>' . LB
+                   . '</ul>' . LB;
+            break;
+    }
+    return $menu;
+}
+
 ?>

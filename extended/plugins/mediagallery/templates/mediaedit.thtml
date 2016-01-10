@@ -1,122 +1,115 @@
+{# begin {templatelocation} #}
 
-  <table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
-    <tr>
-      <td class="pluginCellTitle" style="width:160px;" align="center">
-        <span class="uk-text-bold">{lang_media_item}</span>
-      </td>
-      <td  class="pluginCellTitle" align="center" style="width:160px;vertical-align:top;">
-        <span class="uk-text-bold">{lang_attached_thumbnail}</span>&nbsp;
-      </td>
-    </tr>
-    <tr>
-      <td align="center" style="width:160px;padding-top:10px;">
-        {preview}
-        <img src="{media_thumbnail}" alt=""{xhtml}>{preview_end}&nbsp;
-        <table width="200" border="0" style="margin:0px auto;">
-          <tr>
-            <td style="text-align:left;vertical-align:top;">
-              {s_rotate_left}
-            </td>
-            <td style="text-align:right;vertical-align:top;">
-              {s_rotate_right}
-            </td>
-          </tr>
-        </table>
-      </td>
-      <td align="center" style="width:160px;vertical-align:top;padding-top:10px;">
-        &nbsp;{attached_thumbnail}
-      </td>
-    </tr>
-  </table>
-
-  <fieldset>
-    <legend>{lang_media_attributes}</legend>
-
-
-
-    <p><label>{lang_comments}</label>
-    {media_comments}</p>
-    <form class="uk-form" name="resetviews" id="resetviews" method="post" action="{site_url}/admin.php">
-    <div>
-      <input type="hidden" value="{album_id}" name="album_id"{xhtml}>
-      <input type="hidden" value="{media_id}" name="mid"{xhtml}>
-      <input type="hidden" value="{queue}" name="queue"{xhtml}>
-      <input type="hidden" name="action" value="resetviews"{xhtml}>
-      <p><label>{views}</label>&nbsp;{media_views}&nbsp;&nbsp;
-      <input type="submit" class="uk-button" name="mode" value="{lang_reset_views}"{xhtml}></p>
-    </div>
-    </form>
-
-    <form class="uk-form" name="resetrate" id="resetrate" method="post" action="{site_url}/admin.php">
-      <div>
-      <input type="hidden" value="{album_id}" name="album_id"{xhtml}>
-      <input type="hidden" value="{media_id}" name="mid"{xhtml}>
-      <input type="hidden" value="{queue}" name="queue"{xhtml}>
-      <input type="hidden" name="action" value="resetrating"{xhtml}>
-      <p><label>{lang_rating}</label>&nbsp;{media_rating}&nbsp;/&nbsp;{media_rating_max}&nbsp;({media_votes} {lang_votes})
-      <input type="submit" class="uk-button" name="mode" value="{lang_reset_rating}"{xhtml}></p>
+<table class="uk-table uk-table-condensed uk-table-striped uk-width-1-1" style="background:#ffffff;">
+  <tr>
+    <th class="pluginCellTitle" style="width:50%;text-align:center;" >{lang_media_item}</th>
+    <th class="pluginCellTitle" style="width:50%;text-align:center;">{lang_attached_thumbnail}</th>
+  </tr>
+  <tr>
+    <td align="center" style="padding:10px;">
+      {preview}
+      <img src="{media_thumbnail}" alt=""{xhtml}>{preview_end}&nbsp;
+      <div style="width:200px;height:25px;margin:0px auto;">
+        <div style="float:left;">{s_rotate_left}</div>
+        <div style="float:right;">{s_rotate_right}</div>
       </div>
-   </form>
-  </fieldset>
+    </td>
+    <td align="center" style="padding:10px;">
+      &nbsp;{attached_thumbnail}
+    </td>
+  </tr>
+</table>
 
-  <form class="uk-form" class="MG_editform uk-form" name="media" enctype="multipart/form-data" method="post" action="{s_form_action}">
-    <div>
-    <input type="hidden" name="rpath" value="{rpath}"{xhtml}>
+<form method="post" action="{site_url}/admin.php" class="compact uk-form">
+  <div class="admin_basic">
+    <fieldset>
+      <legend>{lang_media_attributes}</legend>
+      <dl class="form_block">
+        <dt><label>{lang_comments}</label></dt>
+        <dd>{media_comments}</dd>
+
+        <dt><label>{views}</label></dt>
+        <dd>{media_views}&nbsp;&nbsp;
+            <input type="submit" name="mode" value="{lang_reset_views}"{xhtml}>
+            <input type="hidden" name="action" value="resetviews"{xhtml}></dd>
+
+        <dt><label>{lang_rating}</label></dt>
+        <dd>{media_rating}&nbsp;/&nbsp;{media_rating_max}&nbsp;({media_votes} {lang_votes})&nbsp;&nbsp;
+            <input type="submit" name="mode" value="{lang_reset_rating}"{xhtml}>
+            <input type="hidden" name="action" value="resetrating"{xhtml}></dd>
+
+      </dl>
+    </fieldset>
     <input type="hidden" value="{album_id}" name="album_id"{xhtml}>
     <input type="hidden" value="{media_id}" name="mid"{xhtml}>
     <input type="hidden" value="{queue}" name="queue"{xhtml}>
-    <input type="hidden" name="action" value="savemedia"{xhtml}>
-    </div>
+  </div>
+</form>
+
+<form name="media" enctype="multipart/form-data" method="post" action="{s_form_action}" class="MG_editform compact uk-form">
+  <div class="admin_basic">
     <fieldset>
       <legend>{lang_mediaattributes}</legend>
-        <p><label>{uploaded_by}</label>
-        {username}</p>
+      <dl class="form_block">
+        <dt><label>{uploaded_by}</label></dt>
+        <dd>{username}</dd>
 
-        <p><label for="original_filename">{lang_original_filename}</label><br{xhtml}>
-        <input type="text" size="80" name="original_filename" id="original_filename" value="{original_filename}"{xhtml}></p>
+        <dt><label>{lang_original_filename}</label></dt>
+        <dd><input type="text" name="original_filename" id="original_filename" value="{original_filename}" class="size6"{xhtml}></dd>
 
-        <p><label for="attachtn">{lang_attached_thumbnail}</label><input type="checkbox" name="attachtn" id="attachtn" value="1" {at_tn_checked}{xhtml}><br{xhtml}>
-        <input type="file" dir="ltr" name="attthumb" id="attthumb" size="60"{xhtml}></p>
+        <dt><label>{lang_attached_thumbnail}</label></dt>
+        <dd><input type="checkbox" name="attachtn" id="attachtn" value="1" {at_tn_checked}{xhtml}>
+            <input type="file" name="attthumb" id="attthumb"{xhtml}></dd>
 
-        <p><label for="replacefile">{lang_replacefile}</label><input type="checkbox" name="replacefile" id="replacefile" value="1"{xhtml}><br{xhtml}>
-        <input type="file" dir="ltr" name="repfilename" id="repfilename" size="60"{xhtml}></p>
+        <dt><label>{lang_replacefile}</label></dt>
+        <dd><input type="checkbox" name="replacefile" id="replacefile" value="1"{xhtml}>
+            <input type="file" name="repfilename" id="repfilename"{xhtml}></dd>
 
-        <p><label for="remoteurl">{lang_remote_url}</label><br{xhtml}>
-        <textarea name="remoteurl" id="remoteurl" cols="60" rows="5" style="width:95%;">{remoteurl}</textarea></p>
+        <dt><label>{lang_remote_url}</label></dt>
+        <dd><input type="text" name="remoteurl" id="remoteurl" value="{remoteurl}" class="size6"{xhtml}></dd>
 
-        <p><label for="media_title">{lang_title}</label><br{xhtml}>
-        <textarea name="media_title" id="media_title" cols="60" rows="2" style="width:95%;">{media_title}</textarea></p>
+        <dt><label>{lang_title}</label></dt>
+        <dd><input type="text" name="media_title" id="media_title" value="{media_title}" class="size6"{xhtml}></dd>
 
-        <p><label for="media_desc">{description}</label><br{xhtml}>
-        <textarea name="media_desc" id="media_desc" cols="60" rows="5" style="width:95%;">{media_desc}</textarea></p>
+        <dt><label>{description}</label></dt>
+        <dd><textarea name="media_desc" id="media_desc" cols="60" rows="2" class="size6">{media_desc}</textarea></dd>
 
-        <p><label for="media_keywords">{lang_keywords}</label><br{xhtml}>
-        <textarea name="media_keywords" id="media_keywords" cols="60" rows="2" style="width:95%;">{media_keywords}</textarea></p>
+        <dt><label>{lang_keywords}</label></dt>
+        <dd><input type="text" name="media_keywords" id="media_keywords" value="{media_keywords}" class="size6"{xhtml}></dd>
 
-        <p><label for="artist">{lang_artist}</label><br{xhtml}>
-        <input type="text" name="artist" id="artist" size="80" value="{artist}"{xhtml}></p>
+        <dt><label>{lang_artist}</label></dt>
+        <dd><input type="text" name="artist" id="artist" value="{artist}" class="size6"{xhtml}></dd>
 
-        <p><label for="musicalbum">{lang_music_album}</label><br{xhtml}>
-        <input type="text" name="musicalbum" id="musicalbum" size="80" value="{musicalbum}"{xhtml}></p>
+        <dt><label>{lang_music_album}</label></dt>
+        <dd><input type="text" name="musicalbum" id="musicalbum" value="{musicalbum}" class="size6"{xhtml}></dd>
 
-        <p><label for="genre">{lang_genre}</label><br{xhtml}>
-        <input type="text" name="genre" id="genre" size="80" value="{genre}"{xhtml}></p>
+        <dt><label>{lang_genre}</label></dt>
+        <dd><input type="text" name="genre" id="genre" value="{genre}" class="size6"{xhtml}></dd>
 
-        <p><label for="cat_id">{lang_category}</label>
-        {cat_select}</p>
+        <dt><label>{lang_category}</label></dt>
+        <dd>{cat_select}</dd>
 
-        <p><label>{capture_time}</label>
-        {media_time}
-        <br{xhtml}>
-        <label>&nbsp;</label>{month_select} {day_select} {year_select}&nbsp;&nbsp;{hour_select}&nbsp;:&nbsp;{minute_select}</p>
-      </fieldset>
+        <dt><label>{capture_time}</label></dt>
+        <dd>{media_time}<br{xhtml}>
+          {month_select} / {day_select} / {year_select}&nbsp;&nbsp;&nbsp;{hour_select}&nbsp;:&nbsp;{minute_select}</dd>
+      </dl>
+    </fieldset>
+    <div class="mg_submit">
+      <input type="submit" name="mode" value="{lang_save}"{xhtml}>
+      <input type="submit" name="mode" value="{lang_cancel}"{xhtml}>
+      <input type="submit" name="mode" value="{lang_delete}" onclick="return confirm('{lang_delete_confirm}');"{xhtml}>
+      <input type="reset"  value="{lang_reset}"{xhtml}>
+      <input type="hidden" name="rpath" value="{rpath}"{xhtml}>
+      <input type="hidden" value="{album_id}" name="album_id"{xhtml}>
+      <input type="hidden" value="{media_id}" name="mid"{xhtml}>
+      <input type="hidden" value="{queue}" name="queue"{xhtml}>
+      <input type="hidden" name="action" value="savemedia"{xhtml}>
+    </div>
+  </div>
 
-      {playback_options}
-      {media_exif_info}
+  {playback_options}
+  {media_exif_info}
 
-      <div style="text-align:center;">
-        <input type="submit" class="uk-button" name="mode" value="{lang_save}"{xhtml}>
-        <input type="submit" class="uk-button" name="mode" value="{lang_cancel}"{xhtml}>
-        <input type="reset"  value="{lang_reset}"{xhtml}>
-      </div>
-    </form>
+</form>
+
+{# end {templatelocation} #}

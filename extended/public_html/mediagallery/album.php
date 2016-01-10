@@ -1,13 +1,16 @@
 <?php
 // +--------------------------------------------------------------------------+
-// | Media Gallery Plugin - glFusion CMS                                      |
+// | Media Gallery Plugin - Geeklog                                           |
 // +--------------------------------------------------------------------------+
 // | album.php                                                                |
 // |                                                                          |
 // | Displays the contents of a MG album                                      |
 // +--------------------------------------------------------------------------+
-// | $Id:: album.php 5614 2010-03-19 19:08:33Z mevans0263                    $|
-// +--------------------------------------------------------------------------+
+// | Copyright (C) 2015 by the following authors:                             |
+// |                                                                          |
+// | Yoshinori Tahara       taharaxp AT gmail DOT com                         |
+// |                                                                          |
+// | Based on the Media Gallery Plugin for glFusion CMS                       |
 // | Copyright (C) 2002-2010 by the following authors:                        |
 // |                                                                          |
 // | Mark R. Evans          mark AT glfusion DOT org                          |
@@ -36,634 +39,418 @@ if (!in_array('mediagallery', $_PLUGINS)) {
     exit;
 }
 
-if ( COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1 )  {
+if (COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1) {
     $display = SEC_loginRequiredForm();
     $display = MG_createHTMLDocument($display);
-    echo $display;
+    COM_output($display);
     exit;
 }
 
-MG_initAlbums();
+require_once $_CONF['path'] . 'plugins/mediagallery/include/common.php';
+require_once $_CONF['path'] . 'plugins/mediagallery/include/classAlbum.php';
+require_once $_CONF['path'] . 'plugins/mediagallery/include/classMedia.php';
 
-require_once $_CONF['path'].'plugins/mediagallery/include/classMedia.php';
-require_once $_CONF['path'].'plugins/mediagallery/include/classFrame.php';
+// construct the adminbox
+function MG_buildAdminbox(&$album, &$root_album, &$T)
+{
+    global $_TABLES, $_MG_CONF, $_USER, $LANG_MG01, $LANG_MG03;
+
+    $_MG_USERPREFS = MG_getUserPrefs();
+
+    $uploadMenu = 0;
+    $adminMenu  = 0;
+    if ($root_album->owner_id) {
+        $uploadMenu = 1;
+        $adminMenu  = 1;
+    } else if ($album->access == 3) {
+        $uploadMenu = 1;
+        $adminMenu  = 1;
+        if ($_MG_CONF['member_albums']) {
+            if ($_MG_USERPREFS['active'] != 1) {
+                $uploadMenu = 0;
+                $adminMenu  = 0;
+            } else {
+                $uploadMenu = 1;
+                $adminMenu  = 1;
+            }
+        }
+    } else if ($album->member_uploads == 1 &&
+               isset($_USER['uid']) && $_USER['uid'] >= 2) {
+        $uploadMenu = 1;
+        $adminMenu  = 0;
+    }
+
+    $admin_box_option = '';
+    if ($uploadMenu == 1) {
+        $admin_box_option .= MG_options(array(
+            'current' => '',
+            'values'  => array(
+                'upload' => $LANG_MG01['add_media']
+            )
+        ));
+    }
+    if ($adminMenu == 1) {
+        $admin_box_option .= MG_options(array(
+            'current' => '',
+            'values'  => array(
+                'edit'       => $LANG_MG01['edit_album'],
+                'create'     => $LANG_MG01['create_album'],
+                'staticsort' => $LANG_MG01['static_sort_media'],
+                'media'      => $LANG_MG01['manage_media'],
+                'resize'     => $LANG_MG01['resize_display'],
+                'rebuild'    => $LANG_MG01['rebuild_thumb'],
+            )
+        ));
+    } else if ($_MG_CONF['member_albums'] == 1 &&
+               !empty($_USER['username']) &&
+               $_MG_CONF['member_create_new'] == 1 &&
+               $_MG_USERPREFS['active'] == 1 &&
+               $album->id == $_MG_CONF['member_album_root']) {
+        $admin_box_option .= MG_options(array(
+            'current' => '',
+            'values'  => array(
+                'upload' => $LANG_MG01['create_album']
+            )
+        ));
+
+        $adminMenu = 1;
+    }
+
+    $admin_box = '';
+    if ($uploadMenu == 1 || $adminMenu == 1) {
+        $action = $_MG_CONF['site_url'] . '/admin.php';
+        $admin_box = '<form name="adminbox" id="adminbox" action="' . $action . '" method="get" class="uk-form"><div>' . LB;
+        $admin_box .= '<input type="hidden" name="album_id" value="' . $album->id . '"' . XHTML . '>' . LB;
+        $admin_box .= '<select name="mode" onchange="forms[\'adminbox\'].submit()">' . LB;
+        $admin_box .= '<option label="Options" value="">' . $LANG_MG01['options'] .'</option>' . LB;
+        $admin_box .= $admin_box_option;
+        $admin_box .= '</select>' . LB;
+        $admin_box .= '<input type="submit" value="' . $LANG_MG03['go'] . '"' . XHTML . '>' . LB;
+        $admin_box .= '</div></form>' . LB;
+    }
+
+    $edit_album = '';
+    if ($adminMenu == 1) {
+        $url_edit = $_MG_CONF['site_url'] . '/admin.php?album_id=' . $album->id . '&amp;mode=edit';
+        $lang_edit = $LANG_MG01['edit'];
+        $edit_album = '<a href="' . $url_edit . '"' . '>' . $lang_edit . '</a>';
+    }
+
+    $T->set_var(array(
+        'select_adminbox' => $admin_box,
+        'url_edit'        => $url_edit,
+        'lang_edit'       => $lang_edit,
+        'edit_album'      => $edit_album
+    ));
+}
+
+// construct the sortbox
+function MG_buildSortbox($album_id, $sortOrder, $page)
+{
+    global $_MG_CONF, $LANG_MG03;
+
+    $action = $_MG_CONF['site_url'] . '/album.php';
+    $retval = '<form name="sortbox" id="sortbox" action="' . $action . '" method="get" class="uk-form"><div>' . LB;
+    $retval .= '<input type="hidden" name="aid" value="' . $album_id . '"' . XHTML . '>' . LB;
+    $retval .= '<input type="hidden" name="page" value="' . $page . '"' . XHTML . '>' . LB;
+    $retval .= $LANG_MG03['sort_by'] . ':&nbsp;'
+             . '<select name="sort" onchange="forms[\'sortbox\'].submit()">' . LB;
+    $retval .= MG_options(array(
+        'current' => $sortOrder,
+        'values'  => array(
+            '0'  => $LANG_MG03['sort_default'],
+            '1'  => $LANG_MG03['sort_default_asc'],
+            '2'  => $LANG_MG03['sort_upload'],
+            '3'  => $LANG_MG03['sort_upload_asc'],
+            '4'  => $LANG_MG03['sort_capture'],
+            '5'  => $LANG_MG03['sort_capture_asc'],
+            '6'  => $LANG_MG03['sort_rating'],
+            '7'  => $LANG_MG03['sort_rating_asc'],
+            '8'  => $LANG_MG03['sort_views'],
+            '9'  => $LANG_MG03['sort_views_asc'],
+            '10' => $LANG_MG03['sort_alpha'],
+            '11' => $LANG_MG03['sort_alpha_asc'],
+        )
+    ));
+    $retval .= '</select>' . LB;
+    $retval .= '<input type="submit" value="' . $LANG_MG03['go'] . '"' . XHTML . '>' . LB;
+    $retval .= '</div></form>' . LB;
+
+    return $retval;
+}
 
 /*
-* Main Function
+* Main
 */
 
-if ( isset($_GET['aid']) ) {
-    $album_id  = intval(COM_applyFilter($_GET['aid'],true));
-} else {
-    $album_id = 0;
-}
+$album_id  = isset($_GET['aid'])  ? COM_applyFilter($_GET['aid'],  true) : 0;
+$page      = isset($_GET['page']) ? COM_applyFilter($_GET['page'], true) : 0;
+$sortOrder = isset($_GET['sort']) ? COM_applyFilter($_GET['sort'], true) : 0;
+$media_id  = isset($_GET['s'])    ? COM_applyFilter($_GET['s'])          : '';
 
-if (isset($_GET['page']) ) {
-    $page      = intval(COM_applyFilter($_GET['page'],true));
-} else {
-    $page = 0;
-}
-
-if ( isset($_GET['sort']) ) {
-    $sortOrder = intval(COM_applyFilter($_GET['sort'],true));
-} else {
-    $sortOrder = 0;
-}
-
-if ( isset($_GET['s']) ) {
-    $media_id = COM_applyFilter($_GET['s'],true);
-} else {
-    $media_id = 0;
+if ($album_id == 0) {
+    header('HTTP/1.1 301 Moved Permanently');
+    header('Location: ' . $_MG_CONF['site_url'] . '/index.php');
+    exit;
 }
 
 $_MG_USERPREFS = MG_getUserPrefs();
 
-if ( $page != 0 ) {
+$root_album = new mgAlbum(0);         // root album
+$album      = new mgAlbum($album_id); // current album
+
+$columns_per_page = ($album->display_columns == 0) ? $_MG_CONF['ad_display_columns'] : $album->display_columns;
+$rows_per_page    = ($album->display_rows    == 0) ? $_MG_CONF['ad_display_rows']    : $album->display_rows;
+if (isset($_MG_USERPREFS['display_rows']) && $_MG_USERPREFS['display_rows'] > 0) {
+    $rows_per_page = $_MG_USERPREFS['display_rows'];
+}
+if (isset($_MG_USERPREFS['display_columns'] ) && $_MG_USERPREFS['display_columns'] > 0) {
+    $columns_per_page = $_MG_USERPREFS['display_columns'];
+}
+$media_per_page = $columns_per_page * $rows_per_page;
+
+if ($page != 0) {
     $page = $page - 1;
-} else if ($media_id != 0 ) {
-
-    $mid = $media_id;
-    $aid = $album_id;
-
-    $orderBy = MG_getSortOrder($aid,$sortOrder);
-
-    $sql = "SELECT * FROM {$_TABLES['mg_media_albums']} as ma LEFT JOIN " . $_TABLES['mg_media'] . " as m " .
-            " ON ma.media_id=m.media_id WHERE ma.album_id=" . $aid . $orderBy;
-    $result = DB_query( $sql );
-    $nRows = DB_numRows( $result );
-    $total_media = $nRows;
-    $media = array();
-    while ( $row = DB_fetchArray($result) ) {
-        $media[] = $row;
-        $ids[] = $row['media_id'];
+} else if ($media_id != 0) {
+    $sql = MG_buildMediaSql(array(
+        'album_id'  => $album_id,
+        'fields'    => array('media_id'),
+        'sortorder' => $sortOrder
+    ));
+    $result = DB_query($sql);
+    $mediaOffset = 0;
+    while ($row = DB_fetchArray($result)) {
+        if ($media_id == $row['media_id']) break;
+        $mediaOffset++;
     }
-    $key = array_search($mid,$ids);
-    if ( $key === false ) {
-        // didn't find it, very odd...
-    }
-    $mediaOffset = $key;
-    $columns_per_page   = ($MG_albums[$aid]->display_columns == 0 ? $_MG_CONF['ad_display_columns'] : $MG_albums[$aid]->display_columns);
-    $rows_per_page      = ($MG_albums[$aid]->display_rows == 0 ? $_MG_CONF['ad_display_rows'] : $MG_albums[$aid]->display_rows);
-
-    if (isset($_MG_USERPREFS['display_rows']) && $_MG_USERPREFS['display_rows'] > 0 ) {
-        $rows_per_page = $_MG_USERPREFS['display_rows'];
-    }
-    if (isset($_MG_USERPREFS['display_columns'] ) && $_MG_USERPREFS['display_columns'] > 0 ) {
-        $columns_per_page = $_MG_USERPREFS['display_columns'];
-    }
-    $media_per_page     = $columns_per_page * $rows_per_page;
-
-    if ( $MG_albums[$aid]->albums_first ) {
-        $childCount = $MG_albums[$aid]->getChildCount();
-        $page = intval(($mediaOffset + $childCount) / $media_per_page) + 1;
+    if ($album->albums_first) {
+        $childCount = $album->getChildCount();
+        $page = intval(($mediaOffset + $childCount) / $media_per_page);
     } else {
-        $page = intval(($mediaOffset)  / $media_per_page) + 1;
+        $page = intval($mediaOffset / $media_per_page);
     }
-    $page = $page - 1;
 }
 
-$lbSlideShow = '';
 $errorMessage = '';
-
-if ( $album_id == 0 ) {
-	$errorMessage = $LANG_MG02['generic_error'];
-}
-if ( !isset($MG_albums[$album_id]->id) ) {
-	$errorMessage = $LANG_MG02['albumaccessdeny'];
-} else if ( $MG_albums[$album_id]->access == 0 || ($MG_albums[$album_id]->hidden == 1 && $MG_albums[$album_id]->access !=3 )) {
-	$errorMessage = $LANG_MG02['albumaccessdeny'];
+if (!isset($album->id)) {
+    $errorMessage = $LANG_MG02['albumaccessdeny'];
+} else if ($album->access == 0 || ($album->hidden == 1 && $album->access != 3)) {
+    $errorMessage = $LANG_MG02['albumaccessdeny'];
 } else {
-    $aOffset = $MG_albums[$album_id]->getOffset();
-    if ( $aOffset == -1 ) {
+    $aOffset = $album->getOffset();
+    if ($aOffset == -1) {
         $errorMessage = $LANG_MG02['albumaccessdeny'];
     }
 }
-
-if ( $errorMessage != '' ) {
+if ($errorMessage != '') {
     COM_errorLog("Media Gallery Error - User attempted to view an album that does not exist.");
-    $display .= COM_startBlock ($LANG_MG02['error_header'], '',COM_getBlockTemplate ('_admin_block', 'header'));
-    $T = new Template($_MG_CONF['template_path']);
-    $T->set_file('error','error.thtml');
-    $T->set_var('site_url', $_CONF['site_url']);
-    $T->set_var('errormessage',$errorMessage);
-    $T->parse('output', 'error');
-    $display .= $T->finish($T->get_var('output'));
-    $display .= COM_endBlock (COM_getBlockTemplate ('_admin_block', 'footer'));
+    $display .= COM_showMessageText($errorMessage);
     $display = MG_createHTMLDocument($display);
-    echo $display;
+    COM_output($display);
     exit;
 }
 
-MG_usage('album_view', $MG_albums[$album_id]->title, '',0);
+if ($_MG_CONF['usage_tracking']) {
+    MG_updateUsage('album_view', $album->title, '', 0);
+}
 
 // update views counter....
 
-if (!$MG_albums[0]->owner_id && $page == 0) {
-    $album_views = $MG_albums[$album_id]->views + 1;
-    DB_query("UPDATE " . $_TABLES['mg_albums'] . " SET album_views=" . $album_views . " WHERE album_id='" . $album_id . "'");
+if (!$root_album->owner_id && $page == 0) {
+    $album_views = $album->views + 1;
+    DB_change($_TABLES['mg_albums'], 'album_views', intval($album_views), 'album_id', intval($album_id));
 }
 
-$columns_per_page   = ($MG_albums[$album_id]->display_columns == 0 ? $_MG_CONF['ad_display_columns'] : $MG_albums[$album_id]->display_columns);
-$rows_per_page      = ($MG_albums[$album_id]->display_rows == 0 ? $_MG_CONF['ad_display_rows'] : $MG_albums[$album_id]->display_rows);
-
-if (isset($_MG_USERPREFS['display_rows']) && $_MG_USERPREFS['display_rows'] > 0 ) {
-    $rows_per_page = $_MG_USERPREFS['display_rows'];
-}
-if (isset($_MG_USERPREFS['display_columns'] ) && $_MG_USERPREFS['display_columns'] > 0 ) {
-    $columns_per_page = $_MG_USERPREFS['display_columns'];
-}
-$media_per_page     = $columns_per_page * $rows_per_page;
-
-// image frame setup
-
-$nFrame = new mgFrame();
-$nFrame->constructor( $MG_albums[$album_id]->image_skin );
-$MG_albums[$album_id]->imageFrameTemplate = $nFrame->getTemplate();
-$MG_albums[$album_id]->frWidth = $nFrame->frame['wHL'] + $nFrame->frame['wHR'];
-$MG_albums[$album_id]->frHeight = $nFrame->frame['hVT'] + $nFrame->frame['hVB'];
-
-$aFrame = new mgFrame();
-$aFrame->constructor( $MG_albums[$album_id]->album_skin );
-$MG_albums[$album_id]->albumFrameTemplate = $aFrame->getTemplate();
-$MG_albums[$album_id]->afrWidth = $aFrame->frame['wHL'] + $aFrame->frame['wHR'];
-$MG_albums[$album_id]->afrHeight = $aFrame->frame['hVT'] + $aFrame->frame['hVB'];
-
-//$MG_albums[$album_id]->imageFrameTemplate = file_get_contents($_MG_CONF['path_html'] . 'frames/new_shadow/frame.thtml');
-//$MG_albums[$album_id]->albumFrameTemplate = file_get_contents($_MG_CONF['path_html'] . 'frames/new_shadow/frame.thtml');
-
-// construct the album jumpbox...
-$level = 0;
-$album_jumpbox = '<form name="jumpbox" id="jumpbox" action="' . $_MG_CONF['site_url'] . '/album.php' . '" method="get"><div>';
-$album_jumpbox .= $LANG_MG03['jump_to'] . ':&nbsp;<select name="aid" onchange="forms[\'jumpbox\'].submit()">';
-$MG_albums[0]->buildJumpBox($album_id);
-$album_jumpbox .= '</select>';
-$album_jumpbox .= '&nbsp;<input type="submit" value="' . $LANG_MG03['go'] . '"' . XHTML . '>';
-$album_jumpbox .= '<input type="hidden" name="page" value="1"' . XHTML . '>';
-$album_jumpbox .= '</div></form>';
-
-// initialize our variables
-
-$total_media = 0;
-$arrayCounter = 0;
-$total_object_count = 0;
-$mediaObject = array();
+// initialize variables
 
 $begin = $media_per_page * $page;
 $end   = $media_per_page;
+
+$total_media = 0;
 $MG_media = array();
 
-$cCount   = $MG_albums[$album_id]->getChildcount();
+if ($album->albums_first == 1) {
+    $children = $album->getChildrenVisible();
+    $cCount = count($children);
 
-if ($MG_albums[$album_id]->albums_first == 1 ) {
-    $subRows = 0;
-    if ( !empty($MG_albums[$album_id]->children ) ) {
-        $children = $MG_albums[$album_id]->getChildren();
-        /*
-         * remove hidden albums since we don't need them here.
-         */
-        $realChildCount = count($children);
-        if ( $realChildCount != $cCount ) {
-            for ($i=0;$i<$realChildCount; $i++) {
-                if ( $MG_albums[$children[$i]]->hidden == 1 && $MG_albums[$children[$i]]->access != 3 ) {
-                    unset($MG_albums[$album_id]->children[$children[$i]]);
-                }
-            }
-            $children = $MG_albums[$album_id]->getChildren();
-        }
-
-        for ($i=$begin; $i < $begin+$end; $i++ ) {
-            if ( $i >= $cCount) {
-                continue;
-            }
-            if ( !isset($MG_albums[$children[$i]]->id) || ($MG_albums[$children[$i]]->hidden == 1 && $MG_albums[$children[$i]]->access != 3) ) {
-                continue;
-            }
-            if ( $MG_albums[$children[$i]]->access > 0 ) {
-                $A['media_id'] = $MG_albums[$children[$i]]->id;
-                $A['media_type'] = -1;
-                $media = new Media();
-                $media->constructor($A,$album_id);
-                $MG_media[$arrayCounter] = $media;
-                $arrayCounter++;
-                $total_media++;
-                $subRows++;
-            }
-        }
-        $begin = $begin - $cCount;
-        if ($begin < 0 ) {
-            $begin = 0;
-        }
-        $end = $end - $subRows;
+    for ($i=$begin; $i < $begin + $end; $i++) {
+        if ($i >= $cCount) continue;
+        $MG_media[] = array(
+            'type' => 0, // A sub album
+            'obj'  => $children[$i]);
+        $total_media++;
     }
+
+    $begin = $begin - $cCount;
+    if ($begin < 0) $begin = 0;
+    $end = $end - $total_media;
+} else {
+    $cCount = $album->getChildcount();
 }
 
-if ( $MG_albums[$album_id]->enable_slideshow == 2 && $_MG_CONF['disable_lightbox'] == true) {
-    $MG_albums[$album_id]->enable_slideshow = 1;
-}
-
-if ( $MG_albums[$album_id]->enable_slideshow == 2 ) {
-    $mgLightBox = 1;
-    $lbSlideShow = '<noscript><div class="pluginAlert">' . $LANG04[150] . '</div></noscript>' . LB;
-    $lbSlideShow .= '<script type="text/javascript">' . LB;
-    $lbSlideShow .= 'function openGallery1() {' . LB;
-    $lbSlideShow .= '    return loadXMLDoc("' . $_MG_CONF['site_url'] . '/lightbox.php?aid=' . $album_id . '");';
-    $lbSlideShow .= '}' . LB;
-    $lbSlideShow .= '</script>' . LB;
-}
-
-$orderBy = MG_getSortOrder($album_id, $sortOrder);
-
-$sql = "SELECT * FROM {$_TABLES['mg_media_albums']} as ma INNER JOIN " . $_TABLES['mg_media'] . " as m " .
-        " ON ma.media_id=m.media_id WHERE ma.album_id=" . $album_id . $orderBy;
-
-$sql .= ' LIMIT ' . $begin . ',' . $end;
-
-$result = DB_query( $sql );
-$nRows  = DB_numRows( $result );
+$sql = MG_buildMediaSql(array(
+    'album_id'  => $album_id,
+    'sortorder' => $sortOrder,
+    'offset'    => $begin,
+    'limit'     => $end
+));
+$result = DB_query($sql);
 $mediaRows = 0;
-$lbss_count = 0;
-$posCount = 0;
-if ( $nRows > 0 ) {
-    while ( $row = DB_fetchArray($result)) {
-        $media = new Media();
-        $media->constructor($row,$album_id);
-        $MG_media[$arrayCounter] = $media;
-        $arrayCounter++;
-        $mediaRows++;
-    }
+while ($row = DB_fetchArray($result)) {
+    $MG_media[] = array(
+        'type' => 1, // regular media type
+        'obj'  => new Media($row, $album_id));
+    $total_media++;
+    $mediaRows++;
 }
 
-if ($MG_albums[$album_id]->albums_first == 0 && !empty($MG_albums[$album_id]->children) ) {
-    if ( ($begin + $mediaRows) >= $MG_albums[$album_id]->media_count ) {
-        $startingPoint = $begin - $MG_albums[$album_id]->media_count;
-        if ($startingPoint < 0 ) {
+if ($album->albums_first == 0) {
+    if (($begin + $mediaRows) >= $album->media_count) {
+        $startingPoint = $begin - $album->media_count;
+        if ($startingPoint < 0) {
             $startingPoint = 0;
         }
         $numToProcess = $end - $mediaRows;
-        $subRows = 0;
-        $children = $MG_albums[$album_id]->getChildren();
 
-        /*
-         * remove hidden albums since we don't need them here.
-         */
+        $children = $album->getChildrenVisible();
 
-        $realChildCount = count($children);
-        if ( $realChildCount != $cCount ) {
-            for ($i=0;$i<$realChildCount; $i++) {
-                if ( $MG_albums[$children[$i]]->hidden == 1 && $MG_albums[$children[$i]]->access != 3 ) {
-                    unset($MG_albums[$album_id]->children[$children[$i]]);
-                }
-            }
-            $children = $MG_albums[$album_id]->getChildren();
-        }
         $endPoint = $startingPoint + $numToProcess;
-        if ( $endPoint > count($children) ) {
+        if ($endPoint > count($children)) {
             $endPoint = count($children);
         }
+
         for ($i=$startingPoint; $i < $endPoint; $i++) {
-            if ( $MG_albums[$children[$i]]->access > 0 ) {
-                if ( $MG_albums[$children[$i]]->hidden == 1 && $MG_albums[$children[$i]]->access != 3 ) {
-                    continue;
-                }
-                $A['media_id'] = $MG_albums[$children[$i]]->id;
-                $A['media_type'] = -1;
-                $media = new Media();
-                $media->constructor($A,$album_id);
-                $MG_media[$arrayCounter] = $media;
-                $arrayCounter++;
-                $total_media++;
-                $subRows++;
-            }
+            $MG_media[] = array(
+                'type' => 0, // A sub album
+                'obj'  => $children[$i]);
+            $total_media++;
         }
     }
 }
 
-$total_media = $total_media + $mediaRows;
-$total_items_in_album = $MG_albums[$album_id]->media_count + $cCount;
-$total_pages = ceil($total_items_in_album/($media_per_page));
+$total_items_in_album = $album->media_count + $cCount;
+$total_pages = ceil($total_items_in_album / $media_per_page);
 
-if ( $page >= $total_pages ) {
+if ($page >= $total_pages) {
     $page = $total_pages - 1;
 }
 
 $start = $page * $media_per_page;
 
-$current_print_page = ( floor( $start / $media_per_page ) + 1 );
-$total_print_pages  = ceil($total_items_in_album/($media_per_page));
+$current_print_page = floor($start / $media_per_page) + 1;
+if ($current_print_page == 0) $current_print_page = 1;
 
+$total_print_pages = $total_pages;
+if ($total_print_pages == 0) $total_print_pages = 1;
 
-if ( $current_print_page == 0 ) {
-    $current_print_page = 1;
-}
-if ( $total_print_pages == 0 ) {
-    $total_print_pages = 1;
-}
-
-//$aOffset = $MG_albums[$album_id]->getOffset();
-if ( $aOffset > 0 ) {
-    $aPage = intval(($aOffset)  / ($_MG_CONF['album_display_columns'] * $_MG_CONF['album_display_rows'])) + 1;
-} else {
-    $aPage = 1;
+$aPage = 1;
+if ($aOffset > 0) {
+    $aPage = intval($aOffset / ($root_album->display_columns * $root_album->display_rows)) + 1;
 }
 
-$birdseed = '<a href="' . $_CONF['site_url'] . '/index.php">' . $LANG_MG03['home'] . '</a> ' .
-            ($_MG_CONF['gallery_only'] == 1 ? '' : $_MG_CONF['seperator'] . ' <a href="' . $_MG_CONF['site_url'] . '/index.php?page=' . $aPage . '">' . $_MG_CONF['menulabel'] . '</a> ') .
-            $MG_albums[$album_id]->getPath(0,$sortOrder);
+$birdseed = MG_getBirdseed($album_id, 0, $sortOrder, $aPage);
 
-switch ( $MG_albums[$album_id]->enable_slideshow ) {
-    case 0 :
-        $url_slideshow = '';
-        $lang_slideshow = '';
-        break;
-    case 1 :
-        $url_slideshow = $_MG_CONF['site_url'] . '/slideshow.php?aid=' . $album_id . '&amp;sort=' . $sortOrder;
-        $lang_slideshow = $LANG_MG03['slide_show'];
-        break;
-    case 2:
-        $lbss_count = DB_count($_TABLES['mg_media'],'media_type',0);
-        $sql = "SELECT COUNT(m.media_id) as lbss_count FROM {$_TABLES['mg_media_albums']} as ma INNER JOIN " . $_TABLES['mg_media'] . " as m " .
-                                " ON ma.media_id=m.media_id WHERE m.media_type = 0 AND ma.album_id=" . $album_id;
-        $res = DB_query($sql);
-        list($lbss_count) = DB_fetchArray($res);
-    	if ( $lbss_count != 0 ) {
-        	$url_slideshow = '#" onclick="return openGallery1()';
-        	$lang_slideshow = $LANG_MG03['slide_show'];
-        } else {
-        	$url_slideshow = '';
-        	$MG_albums[$album_id]->enable_slideshow = 0;
-        	$lang_slideshow = '';
-        }
-        break;
-    case 3:
-        $url_slideshow = $_MG_CONF['site_url'] . '/fslideshow.php?aid=' . $album_id . '&amp;src=disp';
-        $lang_slideshow = $LANG_MG03['slide_show'];
-        break;
-    case 4:
-        $url_slideshow = $_MG_CONF['site_url'] . '/fslideshow.php?aid=' . $album_id . '&amp;src=orig';
-        $lang_slideshow = $LANG_MG03['slide_show'];
-        break;
-    case 5:
-    	$url_slideshow = $_MG_CONF['site_url'] . '/playall.php?aid=' . $album_id;
-    	$lang_slideshow = $LANG_MG03['play_full_album'];
-    	break;
-}
+$ownername = DB_getItem($_TABLES['users'], 'username', "uid=" . intval($album->owner_id));
+$album_last_update = MG_getUserDateTimeFormat($album->last_update);
+$pagination = COM_printPageNavigation($_MG_CONF['site_url'] . '/album.php?aid=' . $album_id
+                                    . '&amp;sort=' . $sortOrder, $page + 1, $total_pages);
 
-// now build the admin select...
-
-$uploadMenu = 0;
-$adminMenu  = 0;
-if ( $MG_albums[0]->owner_id ) {
-    $uploadMenu = 1;
-    $adminMenu  = 1;
-} else if ( $MG_albums[$album_id]->access == 3 ) {
-    $uploadMenu = 1;
-    $adminMenu  = 1;
-    if ( $_MG_CONF['member_albums'] ) {
-        if ( $_MG_USERPREFS['active'] != 1 ) {
-            $uploadMenu = 0;
-            $adminMenu  = 0;
-        } else {
-            $uploadMenu = 1;
-            $adminMenu  = 1;
-        }
-    }
-} else if ( $MG_albums[$album_id]->member_uploads == 1 && isset($_USER['uid']) && $_USER['uid'] >= 2 ) {
-    $uploadMenu = 1;
-    $adminMenu  = 0;
-}
-
-$admin_box_option = '';
-if ( $uploadMenu == 1 ) {
-    $admin_box_option .= '<option value="upload">' . $LANG_MG01['add_media'] . '</option>' . LB;
-}
-if ( $adminMenu == 1 ) {
-    $admin_box_option .= '<option value="edit">'   . $LANG_MG01['edit_album'] . '</option>' . LB;
-    $admin_box_option .= '<option value="create">' . $LANG_MG01['create_album'] . '</option>' . LB;
-    $admin_box_option .= '<option value="batchcaption">' . $LANG_MG01['batch_caption'] . '</option>' . LB;
-    $admin_box_option .= '<option value="staticsort">' . $LANG_MG01['static_sort_media'] . '</option>' . LB;
-    $admin_box_option .= '<option value="media">' . $LANG_MG01['manage_media'] .'</option>' . LB;
-    $admin_box_option .= '<option value="resize">' . $LANG_MG01['resize_display'] . '</option>' . LB;
-    $admin_box_option .= '<option value="rebuild">' . $LANG_MG01['rebuild_thumb'] . '</option>' . LB;
-} elseif ($_MG_CONF['member_albums'] == 1 && !empty ($_USER['username']) && $_MG_CONF['member_create_new'] == 1 && $_MG_USERPREFS['active'] == 1 && ($album_id == $_MG_CONF['member_album_root'])) {
-    $admin_box_option .= '<option value="create">' . $LANG_MG01['create_album'] . '</option>' . LB;
-    $adminMenu = 1;
-}
-// now check for moderation capabilities....
-if ( $MG_albums[$album_id]->member_uploads == 1 && $MG_albums[$album_id]->moderate == 1 ){
-    // check to see if we are in the album_mod_group
-    if ( SEC_inGroup($MG_albums[$album_id]->mod_group_id) || $MG_albums[0]->owner_id /*SEC_hasRights('mediagallery.admin')*/ ) {
-        $queue_count = DB_count($_TABLES['mg_media_album_queue'],'album_id',$album_id);
-        $admin_box_option .= '<option value="moderate">' . $LANG_MG01['media_queue'] . ' (' . $queue_count . ')</option>' . LB;
-        $adminMenu = 1;
-    }
-}
-
-$admin_box = '';
-if ($uploadMenu == 1 || $adminMenu == 1) {
-    $admin_box = '<form name="adminbox" id="adminbox" action="' . $_MG_CONF['site_url'] . '/admin.php" method="get"><div>' . LB;
-    $admin_box .= '<input type="hidden" name="album_id" value="' . $album_id . '"' . XHTML . '>' . LB;
-    $admin_box .= '<select name="mode" onchange="forms[\'adminbox\'].submit()">' . LB;
-    $admin_box .= '<option label="'. $LANG_MG01['options'] .'" value="">' . $LANG_MG01['options'] .'</option>' . LB;
-    $admin_box .= '<option value="search">' . $LANG_MG01['search'] . '</option>' . LB;
-    $admin_box .= $admin_box_option;
-    $admin_box .= '</select>' . LB;
-    $admin_box .= '&nbsp;<input type="submit" value="' . $LANG_MG03['go'] . '"' . XHTML . '>' . LB;
-    $admin_box .= '</div></form>' . LB;
-}
-
-$edit_album_link = '';
-if ( $adminMenu == 1 ) {
-    $edit_album_link = '<a href="' . $_MG_CONF['site_url'] . '/admin.php?album_id=' . $album_id . '&amp;mode=edit' . '"' . '>' . $LANG_MG01['edit'] . '</a>';
-}
-
-if ( $MG_albums[$album_id]->enable_sort == 1 ) {
-    $sort_box = '<form name="sortbox" id="sortbox" action="' . $_MG_CONF['site_url'] . '/album.php" method="get"><div>';
-    $sort_box .= '<input type="hidden" name="aid" value="' . $album_id . '"' . XHTML . '>';
-    $sort_box .= '<input type="hidden" name="page" value="' . $page . '"' . XHTML . '>';
-    $sort_box .= $LANG_MG03['sort_by'] . ':&nbsp;<select name="sort" onchange="forms[\'sortbox\'].submit()">';
-    $sort_box .= '<option value="0" ' . ($sortOrder==0 ? ' selected="selected" ' : '') . '>' . $LANG_MG03['sort_default'] . '</option>';
-    $sort_box .= '<option value="1" ' . ($sortOrder==1 ? ' selected="selected" ' : '') . '>' . $LANG_MG03['sort_default_asc'] . '</option>';
-    $sort_box .= '<option value="2" ' . ($sortOrder==2 ? ' selected="selected" ' : '') . '>' . $LANG_MG03['sort_upload'] . '</option>';
-    $sort_box .= '<option value="3" ' . ($sortOrder==3 ? ' selected="selected" ' : '') . '>' . $LANG_MG03['sort_upload_asc'] . '</option>';
-    $sort_box .= '<option value="4" ' . ($sortOrder==4 ? ' selected="selected" ' : '') . '>' . $LANG_MG03['sort_capture'] . '</option>';
-    $sort_box .= '<option value="5" ' . ($sortOrder==5 ? ' selected="selected" ' : '') . '>' . $LANG_MG03['sort_capture_asc'] . '</option>';
-    $sort_box .= '<option value="6" ' . ($sortOrder==6 ? ' selected="selected" ' : '') . '>' . $LANG_MG03['sort_rating'] . '</option>';
-    $sort_box .= '<option value="7" ' . ($sortOrder==7 ? ' selected="selected" ' : '') . '>' . $LANG_MG03['sort_rating_asc'] . '</option>';
-    $sort_box .= '<option value="8" ' . ($sortOrder==8 ? ' selected="selected" ' : '') . '>' . $LANG_MG03['sort_views'] . '</option>';
-    $sort_box .= '<option value="9" ' . ($sortOrder==9 ? ' selected="selected" ' : '') . '>' . $LANG_MG03['sort_views_asc'] . '</option>';
-    $sort_box .= '<option value="10" ' . ($sortOrder==10 ? ' selected="selected" ' : '') . '>' . $LANG_MG03['sort_alpha'] . '</option>';
-    $sort_box .= '<option value="11" ' . ($sortOrder==11 ? ' selected="selected" ' : '') . '>' . $LANG_MG03['sort_alpha_asc'] . '</option>';
-    $sort_box .= '</select>';
-    $sort_box .= '&nbsp;<input type="submit" value="' . $LANG_MG03['go'] . '"' . XHTML . '>';
-    $sort_box .= '</div></form>';
-} else {
-    $sort_box = '';
-}
-
-$owner_id = $MG_albums[$album_id]->owner_id;
-
-if ( $owner_id == '' || !isset($MG_albums[$album_id]->owner_id) ) {
-    $owner_id = 0;
-}
-$ownername = DB_getItem ($_TABLES['users'],'username', "uid=".intval($owner_id));
-$album_last_update = MG_getUserDateTimeFormat($MG_albums[$album_id]->last_update);
-
-$T = MG_templateInstance( MG_getTemplatePath($album_id) );
-
-$T->set_file (array(
-    'page'      => 'album_page.thtml',
-    'header'    => 'album_page_header.thtml',
-    'body'      => 'album_page_body.thtml',
-    'noitems'   => 'album_page_noitems.thtml',
-    'footer'    => 'album_page_footer.thtml',
-));
-
-$T->set_var(array(
-    'site_url'              => $_MG_CONF['site_url'],
-    'birdseed'              => $birdseed,
-    'album_title'           => PLG_replaceTags($MG_albums[$album_id]->title),
-    'url_slideshow'         => $url_slideshow,
-    'table_columns'         => $columns_per_page,
-    'table_column_width'    => intval(100 / $columns_per_page) . '%',
-    'top_pagination'        => COM_printPageNavigation($_MG_CONF['site_url'] . '/album.php?aid=' . $album_id . '&amp;sort=' . $sortOrder, $page+1,ceil($total_items_in_album  / $media_per_page)),
-    'bottom_pagination'     => COM_printPageNavigation($_MG_CONF['site_url'] . '/album.php?aid=' . $album_id . '&amp;sort=' . $sortOrder, $page+1,ceil($total_items_in_album  / $media_per_page)),
-    'page_number'           => sprintf("%s %d %s %d",$LANG_MG03['page'], $current_print_page, $LANG_MG03['of'], $total_print_pages),
-    'jumpbox'               => $album_jumpbox,
-    'album_id'              => $album_id,
-	'lbslideshow'           => $lbSlideShow,
-	'album_description' 	=> ($MG_albums[$album_id]->display_album_desc ? PLG_replaceTags($MG_albums[$album_id]->description) : ''),
-	'album_id_display'  	=> ($MG_albums[0]->owner_id || $_MG_CONF['enable_media_id'] == 1 ? $LANG_MG03['album_id_display'] . $album_id : ''),
-	'lang_slideshow'        => $lang_slideshow,
-	'select_adminbox'		=> $admin_box,
-	'select_sortbox'		=> $sort_box,
-	'album_last_update'		=> $album_last_update[0],
-	'album_owner'			=> $ownername,
-	'media_count'			=> $MG_albums[$album_id]->getMediaCount(),
-	'lang_search'           => $LANG_MG01['search'],
-	'xhtml'                 => XHTML,
-	'edit_album'			=> $edit_album_link,
-));
-
-if ( $MG_albums[$album_id]->enable_rss ) {
+$rsslink = '';
+if ($album->enable_rss) {
     $rssfeedname = sprintf($_MG_CONF['rss_feed_name'] . "%06d", $album_id);
-    $feedUrl = MG_getFeedUrl($rssfeedname.'.rss');
-    $rsslink = '<a href="' . $feedUrl . '"' . ' type="application/rss+xml">';
-    $rsslink .= '<img src="' . MG_getImageFile('feed.png')  . '" style="border:none;" alt=""' . XHTML . '></a>';
-    $T->set_var('rsslink', $rsslink);
-} else {
-	$T->set_var('rsslink','');
+    $rsslink = COM_createLink(COM_createImage(MG_getImageFile('feed.png'), '', array('class' => 'mg_rssimg')),
+                              MG_getFeedUrl($rssfeedname . '.rss'),
+                              array('type' => 'application/rss+xml'));
 }
+
+$T = COM_newTemplate(MG_getTemplatePath_byName($album->skin));
+$T->set_file('page', 'album_page.thtml');
+$T->set_var(array(
+    'site_url'           => $_MG_CONF['site_url'],
+    'birdseed'           => $birdseed,
+    'album_title'        => PLG_replaceTags($album->title),
+    'table_columns'      => $columns_per_page,
+    'table_column_width' => intval(100 / $columns_per_page) . '%',
+    'top_pagination'     => $pagination,
+    'bottom_pagination'  => $pagination,
+    'page_number'        => sprintf("%s %d %s %d", $LANG_MG03['page'], $current_print_page, $LANG_MG03['of'], $total_print_pages),
+    'jumpbox'            => MG_buildAlbumJumpbox($root_album, $album_id, 1, -1),
+    'album_id'           => $album_id,
+    'album_description'  => ($album->display_album_desc ? PLG_replaceTags($album->description) : ''),
+    'album_id_display'   => ($root_album->owner_id || $_MG_CONF['enable_media_id'] == 1 ? $LANG_MG03['album_id_display'] . $album_id : ''),
+    'select_sortbox'     => ($album->enable_sort == 1 ? MG_buildSortbox($album_id, $sortOrder, $page) : ''),
+    'album_last_update'  => $album_last_update[0],
+    'album_owner'        => $ownername,
+    'media_count'        => $album->getMediaCount(),
+    'lang_search'        => $LANG_MG01['search'],
+    'rsslink'            => $rsslink,
+    'list_title'         => $LANG_MG03['list_title'],
+    'list_desc'          => $LANG_MG03['list_desc'],
+    'list_size'          => $LANG_MG03['list_size'],
+    'list_user'          => $LANG_MG03['list_user'],
+    'list_updated'       => $LANG_MG03['list_updated'],
+));
+MG_buildAdminbox($album, $root_album, $T);
+MG_buildSlideshow($album, $T, $sortOrder);
 
 // completed setting header / footer vars, parse them
 
-PLG_templateSetVars('mediagallery',$T);
+PLG_templateSetVars('mediagallery', $T);
 
-$T->parse('album_header', 'header');
-$T->parse('album_footer', 'footer');
+//$T->parse('album_header', 'header');
 
-if ( $total_media == 0 ) {
-    $T->set_var(array(
-        'lang_no_image'       =>  $LANG_MG03['no_media_objects']
-    ));
-    $T->parse('album_noimages', 'noitems');
-}
-
-//
 // main processing of the album contents.
-//
 
-$noParse = 0;
-$needFinalParse = 0;
-
-if ( $total_media > 0 ) {
+if ($total_media > 0) {
     $k = 0;
     $col = 0;
+    $opt = array('sortOrder' => $sortOrder);
+    $T->set_block('page', 'ImageColumn', 'IColumn');
+    $T->set_block('page', 'ImageRow', 'IRow');
+    for ($i = 0; $i < $media_per_page; $i += $columns_per_page) {
 
-    $T->set_block('body', 'ImageColumn', 'IColumn');
-    $T->set_block('body', 'ImageRow', 'IRow');
+        $next_columns = $i + $columns_per_page;
+        for ($j = $i; $j < $next_columns; $j++) {
 
-    for ( $i = 0; $i < ($media_per_page ); $i += $columns_per_page ) {
+            if ($j >= $total_media) {
+                $T->parse('IRow', 'ImageRow', true);
+                $T->set_var('IColumn', '');
+                break 2;
+            }
 
-        for ($j = $i; $j < ($i + $columns_per_page); $j++) {
-            if ($j >= $total_media)
-            {
-                $k = ($i+$columns_per_page) - $j;
-                $m = $k % $columns_per_page;
-                for ( $z = $m; $z > 0; $z--) {
-                    $T->set_var(array(
-                        'CELL_DISPLAY_IMAGE'  =>  '',
-                    ));
-                    $T->parse('IColumn', 'ImageColumn',true);
-                        $needFinalParse = 1;
-                }
-                if ( $needFinalParse == 1 ) {
-                    $T->parse('IRow','ImageRow',true);
-                    $T->set_var('IColumn','');
-                }
-                $noParse = 1;
-	            break;
-            }
-            $previous_image = $i - 1;
-            if ( $previous_image < 0 )
-            {
-                $previous_image = -1;
-            }
-            $next_image = $i + 1;
-            if ( $next_image >= $total_media - 1 )
-            {
-                $next_image = -1;
-            }
-            if ( $MG_media[$j]->type == -1 ) {  // A sub album
-                $celldisplay = $MG_albums[$MG_media[$j]->id]->albumThumbnail();
-            } else {  // regular media type
-                if ($MG_albums[$album_id]->albums_first == 1 ) {
-                    $z = ($j+$start) - $cCount;
-                } else {
-                    $z = $j+$start;
-                }
-                $celldisplay = $MG_media[$j]->displayThumb($z,$sortOrder);
-                if ( $MG_media[$j]->type == 1 ) {
-                    $PhotoURL = $_MG_CONF['mediaobjects_url'] . '/disp/' . $MG_media[$j]->filename[0] .'/' . $MG_media[$j]->filename . '.jpg';
-                    $T->set_var(array(
-                        'URL' => $PhotoURL,
-                    ));
+            if ($MG_media[$j]['type'] == 0) {  // a sub album
+                $celldisplay = MG_albumThumbnail($MG_media[$j]['obj']);
+            } else {                           // regular media type
+                $celldisplay = $MG_media[$j]['obj']->displayThumb($opt);
+                if ($MG_media[$j]['obj']->type == 1) {
+                    $T->set_var('URL', MG_getFilePath('disp', $MG_media[$j]['obj']->filename, 'jpg'));
                 }
             }
-            $T->set_var('clear_float','');
+
+            $T->set_var('clear_float', '');
             if ($col == $columns_per_page) {
-                $T->set_var('clear_float',' clear:both;');
+                $T->set_var('clear_float', ' clear:both;');
                 $col = 0;
             }
-            $T->set_var(array(
-                'CELL_DISPLAY_IMAGE'  =>  $celldisplay,
-            ));
-            $T->parse('IColumn', 'ImageColumn',true);
+            $T->set_var('CELL_DISPLAY_IMAGE', $celldisplay);
+            $T->parse('IColumn', 'ImageColumn', true);
             $col++;
         }
-        if ( $noParse == 1 ) {
-            break;
-        }
-        $T->parse('IRow','ImageRow',true);
-        $T->set_var('IColumn','');
+        $T->parse('IRow', 'ImageRow', true);
+        $T->set_var('IColumn', '');
     }
-    $T->parse('album_body', 'body');
+    $T->set_var('album_body', 1);
+} else {
+    $T->set_var('lang_no_image', $LANG_MG03['no_media_objects']);
 }
 
-$T->parse('output','page');
-$themeStyle .= MG_getThemePublicJSandCSS($MG_albums[$album_id]->skin); // Quicker than MG_getThemeCSS
-$themeStyle .= MG_getThemeCSS($MG_albums[$album_id]->skin);
-
-$fCSS = $nFrame->getCSS();
-if ($nFrame->name != $aFrame->name ) {
-    $fCSS .= $aFrame->getCSS();
+MG_getThemePublicJSandCSS($album->skin);
+MG_getCSS($album->image_skin);
+if ($album->image_skin != $album->album_skin) {
+    MG_getCSS($album->album_skin);
 }
+$display = $T->finish($T->parse('output', 'page'));
+$display = MG_createHTMLDocument($display);
 
-//$fCSS = '<link rel="stylesheet" type="text/css" href="' . $_MG_CONF['site_url'] . '/frames/new_shadow/style.css"' . XHTML . '>' . LB;
-$themeStyle .= $fCSS;
-
-$title = strip_tags($MG_albums[$album_id]->title);
-$display = $T->finish($T->get_var('output'));
-$display = MG_createHTMLDocument($display, array('pagetitle' => $title));
-echo $display;
-
+COM_output($display);
 ?>

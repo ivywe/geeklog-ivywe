@@ -1,13 +1,16 @@
 <?php
 // +--------------------------------------------------------------------------+
-// | Media Gallery Plugin - glFusion CMS                                      |
+// | Media Gallery Plugin - Geeklog                                           |
 // +--------------------------------------------------------------------------+
 // | lib-exif.php                                                             |
 // |                                                                          |
 // | EXIF/IPTC Reading routines                                               |
 // +--------------------------------------------------------------------------+
-// | $Id:: lib-exif.php 2869 2008-07-31 14:38:32Z mevans0263                 $|
-// +--------------------------------------------------------------------------+
+// | Copyright (C) 2015 by the following authors:                             |
+// |                                                                          |
+// | Yoshinori Tahara       taharaxp AT gmail DOT com                         |
+// |                                                                          |
+// | Based on the Media Gallery Plugin for glFusion CMS                       |
 // | Copyright (C) 2002-2008 by the following authors:                        |
 // |                                                                          |
 // | Mark R. Evans          mark AT glfusion DOT org                          |
@@ -39,11 +42,12 @@ if (strpos(strtolower($_SERVER['PHP_SELF']), strtolower(basename(__FILE__))) !==
     die('This file can not be used on its own!');
 }
 
-require_once $_CONF['path'] . 'plugins/mediagallery/include/exif.php';
-require_once $_CONF['path'] . 'plugins/mediagallery/include/JPEG.php';
+require_once $_CONF['path'] . 'plugins/mediagallery/include/lib/exif.php';
+require_once $_CONF['path'] . 'plugins/mediagallery/include/lib/JPEG.php';
 
 
-function MG_haveEXIF( $mid ) {
+function MG_haveEXIF($mid)
+{
     global $_CONF, $_MG_CONF, $_TABLES, $LANG_MG04;
 
     $count      = 0;
@@ -54,19 +58,19 @@ function MG_haveEXIF( $mid ) {
     if ( $media_exif == 0 )
         return 0;
 
-    if ( $media_filename == '' ) {
+    if ($media_filename == '') {
         return 0;
     }
 
     $exif = array();
-    if ( $_MG_CONF['discard_original'] == 1 ) {
-        $exif = ExifProcessor( $_MG_CONF['path_mediaobjects'] . 'disp/' . $media_filename[0] .'/' . $media_filename . '.jpg' );
+    if ($_MG_CONF['discard_original'] == 1) {
+        $exif = ExifProcessor($_MG_CONF['path_mediaobjects'] . 'disp/' . $media_filename[0] .'/' . $media_filename . '.jpg');
     } else {
-        $exif = ExifProcessor( $_MG_CONF['path_mediaobjects'] . 'orig/' . $media_filename[0] .'/' . $media_filename . '.' . $media_mime_ext );
+        $exif = ExifProcessor($_MG_CONF['path_mediaobjects'] . 'orig/' . $media_filename[0] .'/' . $media_filename . '.' . $media_mime_ext);
     }
 
-    if ( count($exif) == 0 ) {
-        DB_query("UPDATE {$_TABLES['mg_media']} SET media_exif=0 WHERE media_id='" . addslashes($mid) . "'");
+    if (count($exif) == 0) {
+        DB_change($_TABLES['mg_media'], 'media_exif', 0, 'media_id', addslashes($mid));
         return 0;
     }
 
@@ -84,7 +88,8 @@ function MG_haveEXIF( $mid ) {
 * @return       string  HTML (table) or null string if no metadata available
 *
 */
-function MG_readEXIF( $mid, $columns = 2, $mqueue=0) {
+function MG_readEXIF($mid, $columns = 2, $mqueue=0)
+{
     global $_CONF, $_MG_CONF, $_TABLES, $LANG_MG01,$LANG_MG04;
 
     $count      = 0;
@@ -93,35 +98,37 @@ function MG_readEXIF( $mid, $columns = 2, $mqueue=0) {
 
     $retval = '';
 
-    $media_filename = DB_getItem($mqueue ? $_TABLES['mg_mediaqueue'] : $_TABLES['mg_media'],'media_filename',"media_id='" .addslashes($mid)."'");
-    if ( $media_filename == '' ) {
+    $table = $mqueue ? $_TABLES['mg_mediaqueue'] : $_TABLES['mg_media'];
+    $media_filename = DB_getItem($table,
+        'media_filename', "media_id='" . addslashes($mid) . "'");
+    if ($media_filename == '') {
         return '';
     }
-    $media_mime_ext = DB_getItem($mqueue ? $_TABLES['mg_mediaqueue'] : $_TABLES['mg_media'],'media_mime_ext',"media_id='" . addslashes($mid) . "'");
+    $media_mime_ext = DB_getItem($table,
+        'media_mime_ext', "media_id='" . addslashes($mid) . "'");
 
-    $aid  = DB_getItem($_TABLES['mg_media_albums'], 'album_id','media_id="' . addslashes($mid) . '"');
+    $aid  = DB_getItem($_TABLES['mg_media_albums'], 'album_id', 'media_id="' . addslashes($mid) . '"');
 
     // setup the template...
-    $T = MG_templateInstance( MG_getTemplatePath($aid) );
-    $T->set_file (array ('exif' => 'exif_detail.thtml'));
-
+    $T = COM_newTemplate(MG_getTemplatePath($aid));
+    $T->set_file('exif', 'exif_detail.thtml');
     $T->set_block('exif', 'exifColumn', 'eColumn');
     $T->set_block('exif', 'exifRow', 'eRow');
 
     $exif = array();
-    if ( $_MG_CONF['discard_original'] == 1 ) {
+    if ($_MG_CONF['discard_original'] == 1) {
         $exif = ExifProcessor( $_MG_CONF['path_mediaobjects'] . 'disp/' . $media_filename[0] .'/' . $media_filename . '.jpg' );
     } else {
         $exif = ExifProcessor( $_MG_CONF['path_mediaobjects'] . 'orig/' . $media_filename[0] .'/' . $media_filename . '.' . $media_mime_ext );
     }
-    for ($i=0; $i < count($exif); $i++ ) {
+    for ($i=0; $i < count($exif); $i++) {
         $T->set_var(array(
             'label' => $exif[$i]['title'],
             'value' => $exif[$i]['value']
         ));
         $T->parse('eColumn', 'exifColumn',true);
         $count++;
-        if ( $count == $columns ) {
+        if ($count == $columns) {
             $T->set_var('rowclass',($rowclass % 2)+1);
             $rowclass++;
             $count = 0;
@@ -130,7 +137,7 @@ function MG_readEXIF( $mid, $columns = 2, $mqueue=0) {
         }
         $exifItems++;
     }
-    if ( $count != 0 ) {
+    if ($count != 0) {
         $T->parse('eRow','exifRow',true);
     }
     $T->set_var('lang_exifheader',$LANG_MG04['exif_header']);
@@ -138,7 +145,7 @@ function MG_readEXIF( $mid, $columns = 2, $mqueue=0) {
     $T->parse('output','exif');
     $retval .= $T->finish($T->get_var('output'));
 
-    if ( $exifItems == 0 ) {
+    if ($exifItems == 0) {
         return '';
     } else {
         return $retval;
@@ -160,26 +167,26 @@ function MG_readEXIF( $mid, $columns = 2, $mqueue=0) {
 *       Georg Rehfeld <rehfeld@georg-rehfeld.de>
 *
 */
-function ExifProcessor( $file ) {
-
+function ExifProcessor($file)
+{
     $rawExifData = array();
 
-    $iptc = new JPEG( $file );
+    $iptc = new JPEG($file);
 
-    $rawExifData = read_exif_data_raw( $file, false );
+    $rawExifData = read_exif_data_raw($file, false);
 
     $exifKeys   = getExifKeys();    // builds an array of the EXIF data we care about...
     $properties = getProperties( );
     $results    = array();
 
     $pCount = count($properties);
-    if ( $pCount > 0 ) {
-        foreach( $properties as $property ) {
+    if ($pCount > 0) {
+        foreach ($properties as $property) {
             $title = $exifKeys[$property][0];
             for ($i=1; $i < sizeof($exifKeys[$property]); $i++) {
                 $value = getExifValue($rawExifData, explode('.', $exifKeys[$property][$i]));
                 if (!isset($value)) {
-                    $value = getIptcValue($iptc,explode('.',$exifKeys[$property][$i]));
+                    $value = getIptcValue($iptc,explode('.', $exifKeys[$property][$i]));
                 }
                 if (isset($value)) {
                     $value = postProcessValue($property, $value);
@@ -189,10 +196,11 @@ function ExifProcessor( $file ) {
             }
         }
     }
-    return( $results );
+    return ($results);
 }
 
-function postProcessValue(  $property, $value ) {
+function postProcessValue($property, $value)
+{
     switch($property) {
     case 'ShutterSpeedValue':
         /* Convert "25/10000 sec" to "1/400 sec" */
@@ -241,7 +249,8 @@ function postProcessValue(  $property, $value ) {
     return $value;
 }
 
-function getExifValue(&$source, $keyPath) {
+function getExifValue(&$source, $keyPath)
+{
     $key = array_shift($keyPath);
     if (!isset($source[$key])) {
         return null;
@@ -254,7 +263,8 @@ function getExifValue(&$source, $keyPath) {
     return getExifValue($source[$key], $keyPath);
 }
 
-function getIptcValue(&$object, $keyPath, $sourceEncoding=null) {
+function getIptcValue(&$object, $keyPath, $sourceEncoding=null)
+{
     if ($keyPath[0] != 'IPTC') {
         return null;
     }
@@ -268,7 +278,8 @@ function getIptcValue(&$object, $keyPath, $sourceEncoding=null) {
     return $result;
 }
 
-function getOriginationTimestamp($file) {
+function getOriginationTimestamp($file)
+{
     $rawExifData = array();
     $rawExifData = read_exif_data_raw( $file, false );
     /*
@@ -310,7 +321,8 @@ function getOriginationTimestamp($file) {
     return null;
 }
 
-function getExifKeys() {
+function getExifKeys()
+{
     global $LANG_MG04;
     static $data;
 
@@ -695,8 +707,8 @@ function getExifKeys() {
     return $data;
 }
 
-
-function getProperties ( ) {
+function getProperties()
+{
     global $_TABLES;
 
     $result = DB_query("SELECT * FROM {$_TABLES['mg_exif_tags']} WHERE selected=1");

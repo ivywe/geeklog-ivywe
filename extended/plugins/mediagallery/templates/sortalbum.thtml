@@ -1,35 +1,31 @@
-{parent_album}
-<form class="uk-form" name="sortalbum" method="post" action="{s_form_action}">
-  <div>
-  <table class="uk-table uk-table-striped uk-table-condensed gl-tablelist" style="background:#ffffff; width:100%">
-	<thead>
+{# begin {templatelocation} #}
+
+<div>{lang_parent_album}: {parent_album}</div>
+<form name="sortalbum" method="post" action="{s_form_action}" class="uk-form">
+  <table class="uk-table uk-table-condensed uk-table-striped uk-width-1-1" style="background:#ffffff;">
     <tr>
-      <th style="text-align:left;">{lang_album_name_desc}</th>
-      <th>{lang_count}</th>
-      <th>{lang_order}</th>
+      <th style="width:50px">{lang_order}</th>
+      <th>{lang_album_name_desc}</th>
+      <th style="width:50px">{lang_count}</th>
     </tr>
-	</thead>
     <!-- BEGIN AlbumRow -->
-	<tbody>
     <tr>
-      <td style="width:80%;height:25px;">{album_title}</td>
-      <td style="text-align:center;">{media_count}</td>
-      <td style="text-align:right">
+      <td>
         <input type="text" name="seq[]" value="{album_order}" size="4"{xhtml}>
         <input type="hidden" name="aid[]" value="{album_id}"{xhtml}>
       </td>
+      <td style="height:25px;">{album_title}</td>
+      <td>{media_count}</td>
     </tr>
     <!-- END AlbumRow -->
-	</tbody>
   </table>
-<br{xhtml}>
-<div style="text-align:center;">
-<input type="hidden" name="parent_id" value="{parent_id}"{xhtml}>
-<input type="hidden" name="action" value="albumsort"{xhtml}>
-<input type="hidden" name="album_id" value="0"{xhtml}>
-<input type="submit" class="uk-button" name="mode" value="{lang_save}"{xhtml}>
-<input type="submit" class="uk-button" name="mode" value="{lang_cancel}"{xhtml}>
-<input type="reset"  name="mode" value="{lang_reset}"{xhtml}>
-</div>
-</div>
+  <div class="mg_submit_center">
+    <input type="hidden" name="parent_id" value="{parent_id}"{xhtml}>
+    <input type="hidden" name="action" value="albumsort"{xhtml}>
+    <input type="hidden" name="album_id" value="0"{xhtml}>
+    <input type="submit" name="mode" value="{lang_save}"{xhtml}>
+    <input type="submit" name="mode" value="{lang_cancel}"{xhtml}>
+  </div>
 </form>
+
+{# end {templatelocation} #}

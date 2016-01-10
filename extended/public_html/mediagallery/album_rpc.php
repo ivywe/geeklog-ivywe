@@ -1,13 +1,16 @@
 <?php
 // +--------------------------------------------------------------------------+
-// | Media Gallery Plugin - glFusion CMS                                      |
+// | Media Gallery Plugin - Geeklog                                           |
 // +--------------------------------------------------------------------------+
 // | album_rpc.php                                                            |
 // |                                                                          |
 // | AJAX component to retrieve album attributes                              |
 // +--------------------------------------------------------------------------+
-// | $Id:: album_rpc.php 5614 2010-03-19 19:08:33Z mevans0263                $|
-// +--------------------------------------------------------------------------+
+// | Copyright (C) 2015 by the following authors:                             |
+// |                                                                          |
+// | Yoshinori Tahara       taharaxp AT gmail DOT com                         |
+// |                                                                          |
+// | Based on the Media Gallery Plugin for glFusion CMS                       |
 // | Copyright (C) 2009-2010 by the following authors:                        |
 // |                                                                          |
 // | Mark A. Howard         mark AT usable-web DOT com                        |
@@ -32,57 +35,48 @@
 
 require_once '../lib-common.php';
 
-global $_CONF, $_MG_CONF, $MG_albums;
-
-// main
-
-if ( COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1 )  {
+if (COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1) {
     exit;
 }
 
-if( $_MG_CONF['verbose'] ) {
-    COM_errorLog( 'album_rpc.php: invocation ------------------------' );
+require_once $_CONF['path'] . 'plugins/mediagallery/include/common.php';
+
+if ($_MG_CONF['verbose']) {
+    COM_errorLog('album_rpc.php: invocation ------------------------');
 }
 
-if( isset( $_REQUEST['aid'] ) ) {
+if (!isset($_REQUEST['aid'])) {
+    COM_errorLog('album_rpc.php: invocation with no album parameter');
+    exit(0);
+}
 
-    // retrieve the album_id passed
-    $album_id = COM_applyFilter( $_REQUEST['aid'], true );
-    if( $_MG_CONF['verbose'] ) {
-        COM_errorLog( 'album_id=' . $album_id );
+// retrieve the album_id passed
+$album_id = COM_applyFilter($_REQUEST['aid'], true);
+
+$album_data = MG_getAlbumData($album_id, array('album_id'), false);
+
+// check to ensure we have a valid album_id
+if (isset($album_data['album_id']) && $album_data['album_id'] == $album_id) {
+    // retrieve the upload filesize limit
+    $size_limit = MG_getUploadLimit($album_id);
+
+    // retrieve the valid filetypes
+    $valid_types = MG_getValidFileTypes($album_id);
+
+    if ($_MG_CONF['verbose']) {
+        COM_errorLog('album_id = ' . $album_id);
+        COM_errorLog('size_limit = ' . $size_limit);
+        COM_errorLog('valid_types = ' . $valid_types);
+        COM_errorLog('album_rpc.php: normal termination ----------------');
     }
-
-    // initialize the $MG_albums array
-    MG_initAlbums();
-    $albums = sizeof( $MG_albums );
-    if( $_MG_CONF['verbose'] ) {
-        COM_errorLog( 'initialized ' . $albums . ' albums' );
-    }
-
-    // check to ensure we have a valid album_id
-    if ( isset($MG_albums[$album_id]->id) && $MG_albums[$album_id]->id == $album_id ) {
-        // retrieve the upload filesize limit
-        $size_limit = MG_getUploadLimit( $album_id );
-
-        // retrieve the valid filetypes
-        $valid_types = MG_getValidFileTypes( $album_id );
-    } else {
-        COM_errorLog( 'album_rpc.php: invalid album id' );
-        $size_limit = 0;
-        $valid_types = '';
-    }
-
-    // return the album-specific data
-    echo $size_limit . '%' . $valid_types;
-
-    if( $_MG_CONF['verbose'] ) {
-        COM_errorLog( 'size_limit=' . $size_limit );
-        COM_errorLog( 'valid_types=' . $valid_types );
-        COM_errorLog( 'album_rpc.php: normal termination ----------------' );
-    }
-
 } else {
-    COM_errorLog( 'album_rpc.php: invocation with no album parameter' );
+    COM_errorLog('album_rpc.php: invalid album id = ' . $album_id);
+    $size_limit = 0;
+    $valid_types = '';
 }
+
+// return the album-specific data
+echo $size_limit . '%' . $valid_types;
+
 exit(0);
 ?>

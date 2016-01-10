@@ -1,13 +1,16 @@
 <?php
 // +--------------------------------------------------------------------------+
-// | Media Gallery Plugin - glFusion CMS                                      |
+// | Media Gallery Plugin - Geeklog                                           |
 // +--------------------------------------------------------------------------+
 // | fslideshow.php                                                           |
 // |                                                                          |
 // | Flash slideshow                                                          |
 // +--------------------------------------------------------------------------+
-// | $Id:: fslideshow.php 5614 2010-03-19 19:08:33Z mevans0263               $|
-// +--------------------------------------------------------------------------+
+// | Copyright (C) 2015 by the following authors:                             |
+// |                                                                          |
+// | Yoshinori Tahara       taharaxp AT gmail DOT com                         |
+// |                                                                          |
+// | Based on the Media Gallery Plugin for glFusion CMS                       |
 // | Copyright (C) 2002-2010 by the following authors:                        |
 // |                                                                          |
 // | Mark R. Evans          mark AT glfusion DOT org                          |
@@ -36,145 +39,110 @@ if (!in_array('mediagallery', $_PLUGINS)) {
     exit;
 }
 
-if ( COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1 )  {
+if (COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1) {
     $display = SEC_loginRequiredForm();
     $display = MG_createHTMLDocument($display);
-    echo $display;
+    COM_output($display);
     exit;
 }
+
+require_once $_CONF['path'] . 'plugins/mediagallery/include/common.php';
 
 /*
 * Main Function
 */
 
-MG_initAlbums();
+$album_id  = isset($_GET['aid'])  ? COM_applyFilter($_GET['aid'],  true) : NULL;
+$src       = isset($_GET['src'])  ? COM_applyFilter($_GET['src'])        : '';
+$sortOrder = isset($_GET['sort']) ? COM_applyFilter($_GET['sort'], true) : 0;
+$full      = isset($_GET['f'])    ? COM_applyFilter($_GET['f'],    true) : 0;
 
-$album_id    = COM_applyFilter($_GET['aid'],true);
-$src         = COM_applyFilter($_GET['src']);
-if ( isset($_GET['sort'])) {
-    $sortOrder = COM_applyFilter($_GET['sort'],true);
-} else {
-    $sortOrder = 0;
-}
-
-if ( isset($_GET['f']) ) {
-    $full = COM_applyFilter($_GET['f'],true);
-} else {
-    $full = 0;
-}
-
-if ( $src != 'disp' && $src != 'orig' ) {
+if ($src != 'disp' && $src != 'orig') {
     $src = 'disp';
 }
 
+$album_data = MG_getAlbumData(
+    $album_id, 
+    array(
+        'skin', 
+        'album_title', 
+        'album_desc', 
+        'album_parent', 
+        'full_display', 
+        'display_image_size'),
+    true
+);
+
 $noFullOption = 0;
-if ( $MG_albums[$album_id]->full == 2 || $_MG_CONF['discard_original'] == 1 ||
-    ($MG_albums[$album_id]->full == 1 && empty($_USER['username']))) {
+if ($album_data['full_display'] == 2 || $_MG_CONF['discard_original'] == 1 ||
+    ($album_data['full_display'] == 1 && empty($_USER['username']))) {
     $src = 'disp';
     $noFullOption = 1;
 }
 
-$themeStyle .= MG_getThemePublicJSandCSS($MG_albums[$album_id]->skin); // Quicker than MG_getThemeCSS
-$themeStyle .= MG_getThemeCSS($MG_albums[$album_id]->skin);
-$title = strip_tags($MG_albums[$album_id]->title);
+MG_getThemePublicJSandCSS($album_data['skin']);
 
-$T = MG_templateInstance( MG_getTemplatePath($album_id) );
-$T->set_file (array(
-    'page'  =>  'fslideshow.thtml',
-    'empty' =>  'slideshow_empty.thtml'
-));
-$T->set_var('header', $LANG_MG00['plugin']);
-$T->set_var('site_url', $_MG_CONF['site_url']);
-$T->set_var('plugin', 'mediagallery');
-$T->set_var('xhtml', XHTML);
+$T = COM_newTemplate(MG_getTemplatePath($album_id));
+$T->set_file('page', 'fslideshow.thtml');
+$T->set_block('page', 'slideItems', 'sItems');
+$T->set_block('page', 'noItems', 'nItems');
 
-if ($MG_albums[$album_id]->access == 0 ) {
-    $display .= COM_startBlock ($LANG_ACCESS['accessdenied'], '',COM_getBlockTemplate ('_msg_block', 'header'))
-              . '<br' . XHTML . '>' . $LANG_MG00['access_denied_msg']
-              . COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
-    $display = MG_createHTMLDocument($display, array('pagetitle' => $title));
-    echo $display;
+if ($album_data['access'] == 0) {
+    $display = COM_startBlock($LANG_ACCESS['accessdenied'], '', COM_getBlockTemplate('_msg_block', 'header'))
+             . '<br' . XHTML . '>' . $LANG_MG00['access_denied_msg']
+             . COM_endBlock(COM_getBlockTemplate('_msg_block', 'footer'));
+    $title = strip_tags($album_data['album_title']);
+    $display = MG_createHTMLDocument($display, $title);
+    COM_output($display);
     exit;
 }
 
-$album_title  = $MG_albums[$album_id]->title;
-$album_desc   = $MG_albums[$album_id]->description;
-$album_parent = $MG_albums[$album_id]->parent;
+$sql = MG_buildMediaSql(array(
+    'album_id'  => $album_id,
+    'sortorder' => $sortOrder
+));
+$result = DB_query($sql);
+$total_media = DB_numRows($result);
 
-MG_usage('slideshow',$album_title,'','');
+$album_title  = $album_data['album_title'];
+$album_desc   = $album_data['album_desc'];
+$album_parent = $album_data['album_parent'];
 
-$birdseed = '<a href="' . $_CONF['site_url'] . '/index.php">' . $LANG_MG03['home'] . '</a> ' . $_MG_CONF['seperator']
-          . ' <a href="' . $_MG_CONF['site_url'] . '/index.php">' . $_MG_CONF['menulabel'] . '</a> '
-          . $MG_albums[$album_id]->getPath(1,$sortOrder,1);
-
-switch ( $MG_albums[$album_id]->display_image_size ) {
-    case 0 :
-        $dImageWidth = 500;
-        $dImageHeight = 375;
-        break;
-    case 1 :
-        $dImageWidth = 600;
-        $dImageHeight = 450;
-        break;
-    case 2 :
-        $dImageWidth = 620;
-        $dImageHeight = 465;
-        break;
-    case 3 :
-        $dImageWidth = 720;
-        $dImageHeight = 540;
-        break;
-    case 4 :
-        $dImageWidth = 800;
-        $dImageHeight = 600;
-        break;
-    case 5 :
-        $dImageWidth = 912;
-        $dImageHeight = 684;
-        break;
-    case 6 :
-        $dImageWidth = 1024;
-        $dImageHeight = 768;
-        break;
-    case 7 :
-        $dImageWidth = 1152;
-        $dImageHeight = 804;
-        break;
-    case 8 :
-        $dImageWidth = 1280;
-        $dImageHeight = 1024;
-        break;
-    case 9 :
-        $dImageWidth = $_MG_CONF['custom_image_width'];
-        $dImageHeight = $_MG_CONF['custom_image_height'];
-        break;
-    default :
-        $dImageWidth  = 620;
-        $dImageHeight = 465;
-        break;
+if ($_MG_CONF['usage_tracking']) {
+    MG_updateUsage('slideshow', $album_title, '', '');
 }
 
+list($dImageWidth, $dImageHeight) = MG_getImageSize($album_data['display_image_size']);
+
 $T->set_var(array(
-    'birdseed'              => $birdseed,
-    'pagination'            => '<a href="' . $_MG_CONF['site_url'] . '/album.php?aid=' . $album_id . '&amp;page=1&amp;sort=' . $sortOrder . '">' . $LANG_MG03['return_to_album'] .'</a>',
-    'slideshow'             => $_MG_CONF['site_url'] . '/slideshow.php?aid=' . $album_id . '&amp;f=' . ($full ? '0' : '1') . '&amp;sort=' . $sortOrder ,
-    'slideshow_size'        => ($full ? $LANG_MG03['normal_size'] : $LANG_MG03['full_size']),
-    'album_title'           => $album_title,
-    'aid'                   => $album_id,
-    'site_url'              => $_MG_CONF['site_url'],
-    'home'                  => $LANG_MG03['home'],
-    'return_to_album'       => $LANG_MG03['return_to_album'],
-    'no_flash'              => $LANG_MG03['no_flash'],
-    'src'                   => $src,
-    'fullscreen'            => ($noFullOption == 1) ? 'false' : 'true',
-    'height'                => $dImageHeight,
-    'width'                 => $dImageWidth,
+    'header'          => $LANG_MG00['plugin'],
+    'site_url'        => $_MG_CONF['site_url'],
+    'plugin'          => 'mediagallery',
+    'pagination'      => '<a href="' . $_MG_CONF['site_url'] . '/album.php?aid=' . $album_id . '&amp;page=1&amp;sort=' . $sortOrder . '">' . $LANG_MG03['return_to_album'] .'</a>',
+    'slideshow'       => $_MG_CONF['site_url'] . '/slideshow.php?aid=' . $album_id . '&amp;f=' . ($full ? '0' : '1') . '&amp;sort=' . $sortOrder ,
+    'slideshow_size'  => ($full ? $LANG_MG03['normal_size'] : $LANG_MG03['full_size']),
+    'album_title'     => $album_title,
+    'aid'             => $album_id,
+    'site_url'        => $_MG_CONF['site_url'],
+    'home'            => $LANG_MG03['home'],
+    'return_to_album' => $LANG_MG03['return_to_album'],
+    'no_flash'        => $LANG_MG03['no_flash'],
+    'src'             => $src,
+    'fullscreen'      => ($noFullOption == 1) ? 'false' : 'true',
+    'height'          => $dImageHeight,
+    'width'           => $dImageWidth,
+    'no_images'       => '<br' . XHTML . '>' . $LANG_MG03['no_media_objects']
 ));
 
-$T->parse('output','page');
+if ($total_media > 0) {
+    $T->parse('sItems', 'slideItems');
+} else {
+    $T->parse('nItems', 'noItems');
+}
 
-$display .= $T->finish($T->get_var('output'));
-$display = MG_createHTMLDocument($display, array('pagetitle' => $title));
+$display = $T->finish($T->parse('output', 'page'));
+$title = strip_tags($album_title);
+$display = MG_createHTMLDocument($display, $title);
 
-echo $display;
+COM_output($display);
 ?>

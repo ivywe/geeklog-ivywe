@@ -1,8 +1,10 @@
+{# begin {templatelocation} #}
+
 <span style="padding:5px;{margin-right}width:{framewidth}px;border:silver solid;border-width:1px;text-align:center;">
 {u_pic}
 </span>
 <br{xhtml}>
-<span class="uk-text-center">
+<span style="text-align:center;">
 <object id="Player" codeBase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,0,02,902" type="application/x-oleobject" height="{height}" width="{width}" standby="Loading Microsoftｮ Windowsｮ Media Player components..." classid="CLSID:22D6F312-B0F6-11D0-94AB-0080C74C7E95">
 <param name="Filename" value="{movie}">
 <param name="URL" value="{movie}">
@@ -22,3 +24,5 @@
   <param name="autoStart" value="0">
 </object>
 <!--<![endif]-->
+
+{# end {templatelocation} #}

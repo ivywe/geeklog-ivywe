@@ -1,3 +1,5 @@
+{# begin {templatelocation} #}
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN">
 <html>
 <head>
@@ -21,32 +23,73 @@ td {
 div.mg-block-exif {
   margin: 0px;
 }
-.mgPluginRow1 {
-  background:#E7E7E7;
-  color:#1A3955;
+
+.mg_mediaitems_table {
+  margin: 0;
+  width: 100%;
+  text-align: left;
+  border-collapse: separate;
+  border-spacing: 1px;
+  border: none;
 }
-.mgPluginRow2 {
-  background:#F7F7F7;
-  color:#1A3955;
+
+.mg_mediaitems_table th,
+.mg_mediaitems_table td {
+  vertical-align: middle;
+  padding: 5px;
 }
+
+.mg_mediaitems_table th {
+  background-color: #DAE0ED;
+}
+
+.mg_mediaitems_table tr:nth-child(even) {
+  background-color: #f7f7f7;
+}
+
+.mg_mediaitems_table tr:nth-child(odd) {
+  background-color: #e7e7e7;
+}
+
+.mg_exif_table {
+  margin: 0 auto;
+  width: 100%;
+  border-collapse: collapse;
+  border: 0;
+}
+.mg_exif_table th,
+.mg_exif_table td {
+  vertical-align: middle;
+  padding: 4px 2px;
+}
+.mg_exif_table tr:nth-child(even) {
+  background-color: #f7f7f7;
+}
+
+.mg_exif_table tr:nth-child(odd) {
+  background-color: #e7e7e7;
+}
+
 </style>
 </head>
 <body>
-<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+<table class="uk-table uk-table-condensed uk-table-striped uk-width-1-1" style="background:#ffffff;">
  <tr>
    <td style="text-align:center;width:100%;">
      {media_thumbnail}
    </td>
  </tr>
  <tr>
-   <td style="width:100%;">{exif_info}</td>
+   <td>{exif_info}</td>
  </tr>
- </table>
- <br>
- <form class="uk-form" action="PHP_SELF">
+</table>
+<br>
+<form action="PHP_SELF" class="uk-form">
  <div style="text-align:center;">
  <input type="button" value="{lang_close}" onclick="javascript:window.close();">
  </div>
- </form>
- </body>
- </html>
+</form>
+</body>
+</html>
+
+{# end {templatelocation} #}

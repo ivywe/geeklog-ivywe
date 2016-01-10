@@ -1,12 +1,15 @@
 <?php
 // +--------------------------------------------------------------------------+
-// | Media Gallery Plugin - glFusion CMS                                      |
+// | Media Gallery Plugin - Geeklog                                           |
 // +--------------------------------------------------------------------------+
 // | statistics.php                                                           |
 // |                                                                          |
 // +--------------------------------------------------------------------------+
-// | $Id:: lib-media.php 3093 2008-09-10 23:53:51Z mevans0263                $|
-// +--------------------------------------------------------------------------+
+// | Copyright (C) 2015 by the following authors:                             |
+// |                                                                          |
+// | Yoshinori Tahara       taharaxp AT gmail DOT com                         |
+// |                                                                          |
+// | Based on the Media Gallery Plugin for glFusion CMS                       |
 // | Copyright (C) 2002-2008 by the following authors:                        |
 // |                                                                          |
 // | Mark R. Evans          mark AT glfusion DOT org                          |
@@ -32,6 +35,8 @@ if (strpos(strtolower($_SERVER['PHP_SELF']), strtolower(basename(__FILE__))) !==
     die('This file can not be used on its own!');
 }
 
+require_once $_CONF['path'] . 'plugins/mediagallery/include/common.php';
+
 /**
 * Shows the statistics for the plugin on stats.php.  If
 * $showsitestats is 1 then we are to only print the overall stats in the 'site
@@ -45,102 +50,100 @@ if (strpos(strtolower($_SERVER['PHP_SELF']), strtolower(basename(__FILE__))) !==
 */
 function MG_showstats($showsitestats)
 {
-    global $_CONF, $_MG_CONF, $_TABLES, $LANG_MG00, $MG_albums, $_USER;
+    global $_CONF, $_MG_CONF, $_TABLES, $LANG_MG00, $_USER;
 
-    if ( COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1 )  {
+    if (COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1) {
         return;
     }
-    $previd = -1;
-    $loopcounter = 0;
 
     $retval='';
-    if ($showsitestats == 1) {
-        // This shows in the summary box
-        $total_pages=DB_count($_TABLES['mg_media']);
-        $summary_label = $LANG_MG00['items_in'] . ' ' .  $LANG_MG00['plugin'];
-
-        $retval = "<table border = '0' width='100%' cellspacing='0' cellpadding='0'>";
-        $retval .= "<tr><td>$summary_label</td>";
-        $retval .= "<td align='right'>" . $total_pages . "&nbsp;&nbsp </td></tr></table>";
-    } else {
-
+    $sql = "SELECT a.album_id,m.media_original_filename,m.media_title,m.media_id,m.media_rating "
+         . "FROM {$_TABLES['mg_albums']} AS a "
+         . "LEFT JOIN {$_TABLES['mg_media_albums']} AS ma ON a.album_id=ma.album_id "
+         . "LEFT JOIN {$_TABLES['mg_media']} AS m ON ma.media_id=m.media_id "
+         . "WHERE m.media_rating <> 0 AND a.hidden=0 " . COM_getPermSQL('and')
+         . " ORDER BY m.media_rating DESC LIMIT 10";
+    $result = DB_query($sql);
+    $numrows = DB_numRows($result);
+    if ($numrows > 0) {
         $header_arr = array(
-            array('text' => $LANG_MG00['media_col_header'], 'field' => 'title','header_class' => 'stats-header-title'),
-            array('text' => $LANG_MG00['rating'], 'field' => 'rating','field_class' => 'stats-list-count'),
+            array('text'         => $LANG_MG00['media_col_header'],
+                  'field'        => 'title',
+                  'header_class' => 'stats-header-title'
+            ),
+            array('text'         => $LANG_MG00['rating'],
+                  'field'        => 'rating',
+                  'field_class'  => 'stats-list-count'
+            )
         );
         $data_arr = array();
-        $text_arr = array('has_menu'     => false,
-                          'title'        => $LANG_MG00['stats_rate_title'],
+        $text_arr = array('has_menu' => false,
+                          'title'    => $LANG_MG00['stats_rate_title'],
         );
-        $sql = "SELECT a.album_id,m.media_original_filename,m.media_title,m.media_id,m.media_rating FROM {$_TABLES['mg_albums']} as a LEFT JOIN {$_TABLES['mg_media_albums']} as ma
-                on a.album_id=ma.album_id LEFT JOIN {$_TABLES['mg_media']} as m on ma.media_id=m.media_id WHERE
-                m.media_rating <> 0 AND a.hidden=0 " . COM_getPermSQL('and') . " ORDER BY m.media_rating DESC LIMIT 10";
+        for ($i = 0; $i < $numrows; $i++) {
+            $A = DB_fetchArray($result);
+            if ($A['media_title'] == '' || $A['media_title'] == " ") {
+                if ($A['media_original_filename'] == '') {
+                    $album_data = MG_getAlbumData($A['album_id'], array('album_title'));
+                    $title = '<b>' . $LANG_MG00['album'] . '</b>'
+                           . '<em>' . strip_tags($album_data['album_title'])
+                           . ' - ' . $LANG_MG00['no_title'] . '</em>';
+                } else {
+                    $title = $A['media_original_filename'];
+                }
+            } else {
+                $title = strip_tags($A['media_title']);
+            }
+            $S['title'] = '<a href="' . $_MG_CONF['site_url'] . '/media.php?s=' . $A['media_id'] . '">' . $title . '</a>';
+            $S['rating'] = @number_format($A['media_rating']/2, 2) . '/5.00';
+            $data_arr[] = $S;
+        }
+        $retval .= ADMIN_simpleList("", $header_arr, $text_arr, $data_arr);
+    }
 
-        $result = DB_query($sql);
-        $numrows = DB_numRows($result);
-        if ($numrows > 0) {
-            for ($i = 0; $i < $numrows && $i < 10; $i++) {
-                $A = DB_fetchArray($result);
-                $aid = $A['album_id'];
-                if ( $A['media_title'] == '' || $A['media_title'] == " ") {
-                    if ( $A['media_original_filename'] == '' ) {
-                        $title = '<b>' . $LANG_MG00['album'] . '</b>' . '<em>' . strip_tags($MG_albums[$aid]->title) . ' - ' . $LANG_MG00['no_title'] . '</em>';
+    $sql = "SELECT DISTINCT m.media_id,m.media_title,ma.album_id,m.media_original_filename,m.media_views "
+         . "FROM {$_TABLES['mg_media']} AS m "
+         . "LEFT JOIN {$_TABLES['mg_media_albums']} AS ma ON m.media_id=ma.media_id "
+         . "WHERE m.media_views > 0 "
+         . "ORDER BY m.media_views DESC LIMIT 10";
+    $result = DB_query($sql);
+    $numrows = DB_numRows($result);
+    if ($numrows > 0) {
+        $header_arr = array(
+            array('text'         => $LANG_MG00['media_col_header'],
+                  'field'        => 'title',
+                  'header_class' => 'stats-header-title'
+            ),
+            array('text'         => $LANG_MG00['hitsmsg'],
+                  'field'        => 'views',
+                  'field_class'  => 'stats-list-count'
+            )
+        );
+        $data_arr = array();
+        $text_arr = array('has_menu' => false,
+                          'title'    => $LANG_MG00['stats_title'],
+        );
+        for ($i = 0; $i < $numrows; $i++) {
+            $A = DB_fetchArray($result);
+            $album_data = MG_getAlbumData($A['album_id'], array('album_title'), true);
+            if ($A['media_id'] != '' && $album_data['access'] > 0) {
+                if ($A['media_title'] == '' || $A['media_title'] == " ") {
+                    if ($A['media_original_filename'] == '') {
+                        $title = '<b>' . $LANG_MG00['album'] . '</b>'
+                               . '<em>' . strip_tags($album_data['album_title'])
+                               . ' - ' . $LANG_MG00['no_title'] . '</em>';
                     } else {
                         $title = $A['media_original_filename'];
                     }
                 } else {
-                     $title = strip_tags($A['media_title']);
+                    $title = strip_tags($A['media_title']);
                 }
-
                 $S['title'] = '<a href="' . $_MG_CONF['site_url'] . '/media.php?s=' . $A['media_id'] . '">' . $title . '</a>';
-                $S['rating'] = @number_format($A['media_rating']/2,2) . '/5.00';
+                $S['views'] = $A['media_views'];
                 $data_arr[] = $S;
             }
-            $retval .= ADMIN_simpleList("", $header_arr, $text_arr, $data_arr);
         }
-
-        $previd = '';
-
-        $header_arr = array(
-            array('text' => $LANG_MG00['media_col_header'], 'field' => 'title','header_class' => 'stats-header-title'),
-            array('text' => $LANG_MG00['hitsmsg'], 'field' => 'views','field_class' => 'stats-list-count'),
-        );
-        $data_arr = array();
-        $text_arr = array('has_menu'     => false,
-                          'title'        => $LANG_MG00['stats_title'],
-        );
-        $sql    =  "SELECT DISTINCT m.media_id,m.media_title,ma.album_id,m.media_original_filename,m.media_views
-                    FROM " . $_TABLES['mg_media'] . " as m" .
-                    " LEFT JOIN " . $_TABLES['mg_media_albums'] . " as ma" .
-                    " ON m.media_id=ma.media_id " .
-                    " WHERE m.media_views > 0 " .
-                    " ORDER BY m.media_views DESC LIMIT 10";
-        $result  = DB_query($sql);
-        $numrows = DB_numRows($result);
-        if ($numrows > 0) {
-            for ($i = 0; $i < $numrows && $i < 10; $i++) {
-                $A = DB_fetchArray($result);
-                if ( $A['media_id'] == $previd )
-                    continue;
-                $aid = $A['album_id'];
-                $previd = $A['media_id'];
-                if ( $A['media_id'] != '' && $MG_albums[$aid]->access > 0 ) {
-                    if ( $A['media_title'] == '' || $A['media_title'] == " ") {
-                        if ( $A['media_original_filename'] == '' ) {
-                            $title = '<b>' . $LANG_MG00['album'] . '</b>' . '<em>' . strip_tags($MG_albums[$aid]->title) . ' - ' . $LANG_MG00['no_title'] . '</em>';
-                        } else {
-                            $title = $A['media_original_filename'];
-                        }
-                    } else {
-                         $title = strip_tags($A['media_title']);
-                    }
-                    $S['title'] = '<a href="' . $_MG_CONF['site_url'] . '/media.php?s=' . $A['media_id'] . '">' . $title . '</a>';
-                    $S['views']  = $A['media_views'];
-                    $data_arr[] = $S;
-                }
-            }
-            $retval .= ADMIN_simpleList("", $header_arr, $text_arr, $data_arr);
-        }
+        $retval .= ADMIN_simpleList("", $header_arr, $text_arr, $data_arr);
     }
     return $retval;
 }

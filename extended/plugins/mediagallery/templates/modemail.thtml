@@ -1,3 +1,5 @@
+{# begin {templatelocation} #}
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN">
 <html>
 <head>
@@ -8,7 +10,7 @@
 {lang_new_upload}
 <br>
 <br>
-<span class="uk-text-bold">{lang_details}</span>
+<span style="font-weight:bold;">{lang_details}</span>
 <br><br>
 {lang_album_title} - {album_title}<br>
 {lang_uploaded_by} - {username}<br>
@@ -21,3 +23,5 @@
 </div>
 </body>
 </html>
+
+{# end {templatelocation} #}

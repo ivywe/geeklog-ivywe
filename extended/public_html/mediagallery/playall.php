@@ -1,13 +1,16 @@
 <?php
 // +--------------------------------------------------------------------------+
-// | Media Gallery Plugin - glFusion CMS                                      |
+// | Media Gallery Plugin - Geeklog                                           |
 // +--------------------------------------------------------------------------+
 // | playall.php                                                              |
 // |                                                                          |
 // | Displays MP3 player with full album feed                                 |
 // +--------------------------------------------------------------------------+
-// | $Id:: playall.php 5614 2010-03-19 19:08:33Z mevans0263                  $|
-// +--------------------------------------------------------------------------+
+// | Copyright (C) 2015 by the following authors:                             |
+// |                                                                          |
+// | Yoshinori Tahara       taharaxp AT gmail DOT com                         |
+// |                                                                          |
+// | Based on the Media Gallery Plugin for glFusion CMS                       |
 // | Copyright (C) 2002-2010 by the following authors:                        |
 // |                                                                          |
 // | Mark R. Evans          mark AT glfusion DOT org                          |
@@ -36,66 +39,62 @@ if (!in_array('mediagallery', $_PLUGINS)) {
     exit;
 }
 
-if ( COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1 )  {
+if (COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1) {
     $display = SEC_loginRequiredForm();
     $display = MG_createHTMLDocument($display);
-    echo $display;
+    COM_output($display);
     exit;
 }
 
-MG_initAlbums();
+require_once $_CONF['path'] . 'plugins/mediagallery/include/common.php';
 
 /*
-* Main Function
+* Main
 */
 
-COM_setArgNames(array('aid','f','sort'));
-$album_id    = COM_applyFilter(COM_getArgument('aid'),true);
+COM_setArgNames(array('aid', 'f', 'sort'));
+$album_id = COM_applyFilter(COM_getArgument('aid'), true);
 
-$T = MG_templateInstance( MG_getTemplatePath($album_id) );
-$T->set_file (array(
-    'page'  =>  'playall_xspf.thtml',
-));
-$T->set_var( 'xhtml', XHTML );
+$album_data = MG_getAlbumData($album_id, array('skin', 'album_title', 'album_desc'), true);
 
-if ($MG_albums[$album_id]->access == 0 ) {
-    $display = COM_startBlock ($LANG_ACCESS['accessdenied'], '',COM_getBlockTemplate ('_msg_block', 'header'))
-             . '<br />' . $LANG_MG00['access_denied_msg']
-             . COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
-    $display = MG_createHTMLDocument($display);
-    echo $display;
+if ($album_data['access'] == 0) {
+    $display = COM_startBlock($LANG_ACCESS['accessdenied'], '', COM_getBlockTemplate('_msg_block', 'header'))
+             . '<br' . XHTML . '>' . $LANG_MG00['access_denied_msg']
+             . COM_endBlock(COM_getBlockTemplate('_msg_block', 'footer'));
+    $title = strip_tags($album_data['album_title']);
+    $display = MG_createHTMLDocument($display, $title);
+    COM_output($display);
     exit;
 }
 
-$album_title  = $MG_albums[$album_id]->title;
-$album_desc   = $MG_albums[$album_id]->description;
+if ($_MG_CONF['usage_tracking']) {
+    MG_updateUsage('playalbum', $album_data['album_title'], '', '');
+}
 
-MG_usage('playalbum',$album_title,'','');
+$pagination = '<a href="' . $_MG_CONF['site_url'] . '/album.php?aid='
+            . $album_id . '&amp;page=1&amp;sort=' . '0' . '">'
+            . $LANG_MG03['return_to_album'] .'</a>';
 
-$birdseed = '<a href="' . $_CONF['site_url'] . '/index.php">' . $LANG_MG03['home'] . '</a> ' .
-            ($_MG_CONF['gallery_only'] == 1 ? '' : $_MG_CONF['seperator'] . ' <a href="' . $_MG_CONF['site_url'] . '/index.php">' . $_MG_CONF['menulabel'] . '</a> ') .
-            $MG_albums[$album_id]->getPath(1,0,1);
-
+$T = COM_newTemplate(MG_getTemplatePath($album_id));
+$T->set_file('page', 'playall_xspf.thtml');
 $T->set_var(array(
-	'site_url'			=> $_MG_CONF['site_url'],
-    'birdseed'          => $birdseed,
-    'pagination'        => '<a href="' . $_MG_CONF['site_url'] . '/album.php?aid=' . $album_id . '&amp;page=1&amp;sort=' . '0' . '">' . $LANG_MG03['return_to_album'] .'</a>',
-    'album_title'       => $album_title,
-    'album_desc'		=> $album_desc,
-    'aid'				=> $album_id,
-    'home'              => $LANG_MG03['home'],
-    'return_to_album'   => $LANG_MG03['return_to_album'],
+    'site_url'        => $_MG_CONF['site_url'],
+    'pagination'      => $pagination,
+    'album_title'     => $album_data['album_title'],
+    'album_desc'      => $album_data['album_desc'],
+    'aid'             => $album_id,
+    'home'            => $LANG_MG03['home'],
+    'return_to_album' => $LANG_MG03['return_to_album'],
 ));
 
 /*
  * Need to handle empty albums a little better
  */
 
-$themeStyle .= MG_getThemePublicJSandCSS($MG_albums[$album_id]->skin); // Quicker than MG_getThemeCSS
-$themeStyle .= MG_getThemeCSS($MG_albums[$album_id]->skin);
-$title = strip_tags($MG_albums[$album_id]->title);
-$T->parse('output','page');
-$display = $T->finish($T->get_var('output'));
-$display = MG_createHTMLDocument($display, array('pagetitle' => $title));
-echo $display;
+MG_getThemePublicJSandCSS($album_data['skin']);
+$display = $T->finish($T->parse('output', 'page'));
+$title = strip_tags($album_data['album_title']);
+$display = MG_createHTMLDocument($display, $title);
+
+COM_output($display);
 ?>

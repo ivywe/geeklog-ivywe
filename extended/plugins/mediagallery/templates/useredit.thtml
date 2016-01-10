@@ -1,28 +1,31 @@
-<form class="uk-form" method="post" action="{s_form_action}" name="mg_useredit_form" enctype="multipart/form-data">
-  <table class="uk-table uk-table-striped uk-table-condensed gl-tablelist" style="background:#ffffff; width:100%">
+{# begin {templatelocation} #}
+
+<form method="post" action="{s_form_action}" name="mg_useredit_form" enctype="multipart/form-data" class="uk-form">
+  <table class="uk-table uk-table-condensed uk-table-striped uk-width-1-1" style="background:#ffffff;">
     <tr>
       <th colspan="2" width="100%">
         {lang_user_edit} - {username}
       </th>
     </tr>
     <tr>
-      <td class="required uk-text-right" width="40%">{lang_active}</td>
-      <td class="mgAdminAlignLeft">
+      <td class="mg_alignright" width="40%">{lang_active}</td>
+      <td>
         {active}
       </td>
     </tr>
     <tr>
-      <td class="required uk-text-right" width="40%">{lang_quota}</td>
-      <td class="mgAdminAlignLeft">
+      <td class="mg_alignright" width="40%">{lang_quota}</td>
+      <td>
         <input type="text" maxlength="4" size="4" name="quota" value="{quota}" align="right"{xhtml}>&nbsp;Mb&nbsp;&nbsp;{lang_unlimited}
       </td>
     </tr>
   </table>
-<br{xhtml}>
-<div style="text-align:center;">
-<input type="submit" class="uk-button" value="{lang_save}"   name="mode"{xhtml}>
-<input type="submit" class="uk-button" value="{lang_cancel}" name="mode"{xhtml}>
-<input type="reset"  value="{lang_reset}"  name="mode"{xhtml}>
-<input type="hidden" value="{uid}"         name="uid"{xhtml}>
+<div class="mg_submit_center">
+  <input type="submit" value="{lang_save}"   name="mode"{xhtml}>
+  <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
+  <input type="reset"  value="{lang_reset}"  name="mode"{xhtml}>
+  <input type="hidden" value="{uid}"         name="uid"{xhtml}>
 </div>
 </form>
+
+{# end {templatelocation} #}
