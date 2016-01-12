@@ -78,7 +78,7 @@ function plugin_getheadercode_maps()
     $_SCRIPTS->setJavaScriptFile('maps_iconmaker', '/' . $_MAPS_CONF['maps_folder'] . '/js/mapiconmaker.js', false);
 	$_SCRIPTS->setJavaScriptLibrary('jquery');
 	
-	$js = '<script src= "http://maps.googleapis.com/maps/api/js?language='.COM_getLanguageId().'&key=' . $_MAPS_CONF['google_api_key'] . '&libraries=adsense&sensor=false" type="text/javascript"> </script>';
+	$js = '<script src= "http://maps.googleapis.com/maps/api/js?language='.COM_getLanguageId().'&key=' . $_MAPS_CONF['google_api_key'] . '&libraries=adsense" type="text/javascript"> </script>';
 	
 	$_SCRIPTS->setJavaScript($js, false, false);
 	
@@ -758,7 +758,7 @@ $type = 'TERRAIN'; // komma
 
 
             $c->set('global_type', $type, $_MAPS_DEFAULT['pi_name']);
-            $c->set('url_geocode', 'http://maps.googleapis.com/maps/api/geocode/json?address=%address%&sensor=false', $_MAPS_DEFAULT['pi_name']);
+            $c->set('url_geocode', 'http://maps.googleapis.com/maps/api/geocode/json?address=%address%', $_MAPS_DEFAULT['pi_name']);
 			
 			COM_errorLog( "Updated map config to type $type", 1 );
 			
