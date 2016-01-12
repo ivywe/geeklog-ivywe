@@ -1,5 +1,6 @@
+{# begin {templatelocation} #}
 <div style="width: 99%;">
-	<form id="tmce_admin_editor" name="tmce_admin_editor" action="{action}" method="post">
+	<form class="uk-form" id="tmce_admin_editor" name="tmce_admin_editor" action="{action}" method="post">
 		<table style="width: 99%;">
 			<tr>
 				<th style="width: 80px; text-align: right;">{lang_admin_title}:</th>
@@ -127,4 +128,6 @@
 				</td>
 		</table>
 	</form>
-</div>
+</div
+
+{# end {templatelocation} #}

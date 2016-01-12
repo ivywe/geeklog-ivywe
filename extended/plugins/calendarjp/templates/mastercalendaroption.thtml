@@ -1,6 +1,8 @@
 {# begin {templatelocation} #}
 
-        <form method="post" action="{site_url}/calendarjp/index.php">
+
+
+        <form class="uk-form" method="post" action="{site_url}/calendarjp/index.php">
             <div>
                 <input type="submit" name="action" value="{lang_mastercal}"{xhtml}>
             </div>

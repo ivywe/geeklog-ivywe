@@ -1,3 +1,4 @@
+{# begin {templatelocation} #}
 
 <!-- start filelisting_record.thtml -->
 
@@ -50,4 +51,6 @@
         </div>
     </div>
 </div>
-<!-- end filelisting_record.thtml -->
+<!-- end filelisting_record.thtml --
+
+{# end {templatelocation} #}

@@ -1,4 +1,4 @@
-<!-- plugins/assist/templates/admin/information.thtml 20130430{ -->
+{# begin {templatelocation} #}
 
 <h2>{piname}</h2>
 <h3>information</h3>
@@ -13,8 +13,8 @@
 :<a href="{document_url}templatesetvars.html" target="_blank">{lang_templatesetvar}</a>
 )</p>
 
-<form name='assist_conf_link' action='{site_admin_url}/configuration.php' method='POST'>
+<form class="uk-form" name='assist_conf_link' action='{site_admin_url}/configuration.php' method='POST'>
 <input type='hidden' name='conf_group' value='assist'></form>
 <p> <a style='text-decoration: none;' href='#' onclick="document.assist_conf_link.submit()">{lang_configuration}</a></p>
 
-<!-- } plugins/assist/templates/admin/information.thtml -->
+{# end {templatelocation} #}

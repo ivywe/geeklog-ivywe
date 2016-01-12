@@ -1,5 +1,6 @@
+{# begin {templatelocation} #}
 <div style="width: 99%;">
-	<form action="{action}" method="post">
+	<form class="uk-form" action="{action}" method="post">
 		<table style="width: 99%;">
 			<tr>
 				<th style="width: 100px; text-align: right;">{lang_title}:</th>
@@ -29,4 +30,6 @@
 			</tr>
 		</table>
 	</form>
-</div>
+</div
+
+{# end {templatelocation} #}

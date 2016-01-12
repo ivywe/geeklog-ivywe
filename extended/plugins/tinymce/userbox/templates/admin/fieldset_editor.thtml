@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/admin/fieldset_editor.thtml 20120905 { -->
+{# begin {templatelocation} #}
 
 <div id="userbox_admin">
   {about_thispage}
@@ -69,4 +69,4 @@
   </form>
 </div>
 
-<!-- } plugins/userbox/templates/admin/fieldset.thtml -->
+{# end {templatelocation} #}

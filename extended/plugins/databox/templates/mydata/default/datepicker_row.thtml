@@ -1,1 +1,4 @@
+{# begin {templatelocation} #}
 {date_col_var}
+
+{# end {templatelocation} #}

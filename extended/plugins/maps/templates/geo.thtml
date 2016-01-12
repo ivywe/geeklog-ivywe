@@ -1,3 +1,4 @@
+{# begin {templatelocation} #}
 <style type="text/css">		
 		#map_canvas{gid} {
 		  height:{map_height_geotag}
@@ -128,3 +129,5 @@
 </div>
 <a id="directions_{gid}_table"></a>
 <div id="directions{gid}"></div>
+
+{# end {templatelocation} #}

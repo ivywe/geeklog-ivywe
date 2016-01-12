@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <div class="element {class}" style="min-height: 120px">
 
   <a href="#my-{filename_id}" data-uk-modal><img src="{filename_tn}" alt="{media_title}" title="{media_title}" /></a>
@@ -19,5 +21,7 @@
 		{!endif}
     </div>
 </div>
+
+
 
 {# end {templatelocation} #}

@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 			<tr>
 				<td>
 					{topic}<input type="hidden" name="tid{n}" value="{tid}"{xhtml}>
@@ -14,5 +16,7 @@
 					<label for="chk{n}">{lang_change_writer}</label>
 				</td>
 			</tr>
+
+
 
 {# end {templatelocation} #}

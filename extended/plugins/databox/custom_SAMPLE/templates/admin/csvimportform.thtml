@@ -1,4 +1,4 @@
-<!--plugins/databox/templates/admin/csvimportform.thtml  20141010 { -->
+{# begin {templatelocation} #}
 
 <h3>{lang_import}</h3>
 
@@ -19,4 +19,4 @@
   </form>
 </div>
 
-<!--} plugins/databox/templates/admin/csvimportform.thtml -->
+{# end {templatelocation} #}

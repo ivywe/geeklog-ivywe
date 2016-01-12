@@ -1223,7 +1223,7 @@ function DBMAN_list($header_arr, $data_arr) {
 }
 
 function DBMAN_form() {
-	return '<form action="' . DBMAN_BASE_URL . '/index.php" method="post">' . LB;
+	return '<form class="uk-form" action="' . DBMAN_BASE_URL . '/index.php" method="post">' . LB;
 }
 
 function DBMAN_checkbox($name, $id, $value, $label, $checked = true) {

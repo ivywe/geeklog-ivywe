@@ -1,7 +1,7 @@
-<!-- plugins/assist/templates/admin/confirmation.thtml  20110606 { -->
+{# begin {templatelocation} #}
 
 <h1>{actionname}</h1>
-<form action="{actionprg}" method="post">
+<form class="uk-form" action="{actionprg}" method="post">
 <div>{lang_checklist}{checklist}</div>
 <div>
 <input type='submit' name='action' value='{lang_submit}'{xhtml}>
@@ -11,4 +11,4 @@
 </div>
 </form>
 
-<!-- } plugins/assist/templates/admin/confirmation.thtml -->
+{# end {templatelocation} #}

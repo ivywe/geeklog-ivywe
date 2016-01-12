@@ -1,5 +1,5 @@
-<!-- plugins/assist/templates/btn/default/tweet.thtml  { -->
+{# begin {templatelocation} #}
 
 <a href="http://twitter.com/share" class="twitter-share-button" data-url="{site_url}/article.php/{story_id}" data-text="[Ivy SOHO .net]" data-count="horizontal" data-lang="ja">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
 
-<!-- } plugins/assist/templates/btn/default/tweet.thtml -->
+{# end {templatelocation} #}

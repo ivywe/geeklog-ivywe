@@ -1,1 +1,4 @@
-{category_row}
+{# begin {templatelocation} #}
+{category_row
+
+{# end {templatelocation} #}

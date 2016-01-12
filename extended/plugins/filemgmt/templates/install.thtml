@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <a href="{admin_url}"><img src="{img}" border="0"{xhtml}></a>
 &nbsp;&nbsp; <b><font size="4"> {install_header} </font></b>
 <p>{installmsg1}</p>

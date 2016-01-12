@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <tr>
     <td><input type="checkbox" name="chkrecid[]" value="{id}"{xhtml}></td>
     <td class="uk-text-left uk-text-nowrap">{forum}</td>
@@ -10,5 +12,7 @@
     <td>{replies}</td>
     <td><a href="notify.php?submit=delete&amp;id={notify_id}&amp;filter={notifytype}">{LANG_REMOVE}</a></td>
 </tr>
+
+
 
 {# end {templatelocation} #}

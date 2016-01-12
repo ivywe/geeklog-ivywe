@@ -1,4 +1,6 @@
 {# begin {templatelocation} #}
+
+
 {# plugins/databox/templates/attribute/default/col_detail.thtml 20151106 #}
 <li>
 <span style="color:green">&#123;data_link&#125;</span>{data_link}

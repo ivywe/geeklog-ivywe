@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 {start_block}
 {navbar}
 <script type="text/javascript">
@@ -55,5 +57,7 @@ function doUnCheckAll_ftpinput()
   </div>
 </form>
 {end_block}
+
+
 
 {# end {templatelocation} #}

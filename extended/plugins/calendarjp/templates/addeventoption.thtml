@@ -1,6 +1,8 @@
 {# begin {templatelocation} #}
 
-<form method="post" action="{site_url}{addevent_formurl}">
+
+
+<form class="uk-form" method="post" action="{site_url}{addevent_formurl}">
     <div>
         <input type="submit" name="action" value="{lang_addevent}"{xhtml}>
         <input type="hidden" name="month" value="{cal_curmo_num}"{xhtml}>

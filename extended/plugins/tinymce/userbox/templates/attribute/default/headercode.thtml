@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/attribute/default/headercode.thtml 20130321{ -->
+{# begin {templatelocation} #}
 
 <meta property="og:type" content="{og_type}" {xhtml}>
 <meta property="og:title" content="{og_title}" {xhtml}>
@@ -9,4 +9,4 @@
 <meta property="fb:app_id" content="{facebook_consumer_key}" {xhtml}>
 <meta name="twitter:card" content="summary">
 
-<!-- plugins/userbox/templates/attribute/default/headercode.thtml { -->
+{# end {templatelocation} #}

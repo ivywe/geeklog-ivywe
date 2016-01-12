@@ -1,4 +1,6 @@
 {# begin {templatelocation} #}
+
+
 {# plugins/databox/templates/category/default/nohit.thtml 20151106 #}
 <div >
   <p id="breadcrumbs"><a href="{site_url}/">{home}</a>{category_top}</p>

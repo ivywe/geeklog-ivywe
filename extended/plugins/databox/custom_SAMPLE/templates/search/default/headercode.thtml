@@ -1,4 +1,6 @@
 {# begin {templatelocation} #}
+
+
 {# plugins/databox/templates/search/default/headercode.thtml 20151109 #}
 <meta property="og:type" content="{og_type}" {xhtml}>
 <meta property="og:title" content="{og_title}" {xhtml}>

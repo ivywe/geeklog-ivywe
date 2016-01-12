@@ -1,7 +1,8 @@
+{# begin {templatelocation} #}
 
 
 <div>
-	<form action="#" onsubmit="codeAddress(); return false">
+	<form class="uk-form" action="#" onsubmit="codeAddress(); return false">
 	  <h1>{submit_marker}</h1>
 	  <p>{submit_marker_text}        
 	  </p>
@@ -60,4 +61,6 @@
 			{mkid}
 		</div>
 	</form>
-</div>
+</div
+
+{# end {templatelocation} #}

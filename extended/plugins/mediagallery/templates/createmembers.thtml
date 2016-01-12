@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <script type="text/javascript">
 //<![CDATA[
 function doCheckAll_members()
@@ -48,5 +50,7 @@ function doUnCheckAll_members()
     <input type="reset" value="{lang_reset}" name="mode"{xhtml}>
   </div>
 </form>
+
+
 
 {# end {templatelocation} #}

@@ -1,3 +1,4 @@
+{# begin {templatelocation} #}
 <!-- plugins/userbox/templates/admin/backuprestore.thtml 20141024 {  -->
 {about_thispage}
 <fieldset style="margin-top:10px;">
@@ -19,5 +20,4 @@
 </fieldset>
 
 
-<!-- } plugins/userbox/templates/admin/backuprestore.thtml -->
-
+{# end {templatelocation} #}

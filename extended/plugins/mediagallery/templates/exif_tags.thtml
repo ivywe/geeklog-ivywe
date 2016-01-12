@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <script type="text/javascript">
 //<![CDATA[
 function doCheckAll_exif()
@@ -50,5 +52,7 @@ function doUnCheckAll_exif()
     <input type="submit" name="mode" value="{lang_cancel}"{xhtml}>
   </div>
 </form>
+
+
 
 {# end {templatelocation} #}

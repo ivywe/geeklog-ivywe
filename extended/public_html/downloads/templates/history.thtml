@@ -1,6 +1,7 @@
+{# begin {templatelocation} #}
 
 <!-- start vote.thtml -->
-<form method="post" action="ratefile.php">
+<form class="uk-form" method="post" action="ratefile.php">
     <div style="width:100%" class="plugin">
         <p class="pluginHeader" style="padding:10px 0 0 10px;">{lang_file}:&nbsp;{val_title}</p>
         <p style="padding:0 0 0 10px;">{lang_ratefiletitle}</p>
@@ -52,4 +53,6 @@
         <td bgcolor='#f5f5f5' width=20%>{remote_ip}</td>
     </tr>
 </table>
-<br>
+<br
+
+{# end {templatelocation} #}

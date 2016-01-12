@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 {noscript}
 <div id="advanced_editor" style="display:none;">
   <form class="uk-form uk-form-horizontal" action="{site_admin_url}/plugins/polls/index.php" method="post" id="polls-polleditor">
@@ -60,5 +62,7 @@
       </div>
   </form>
 </div>
+
+
 
 {# end {templatelocation} #}

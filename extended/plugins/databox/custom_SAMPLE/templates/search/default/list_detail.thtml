@@ -1,4 +1,6 @@
 {# begin {templatelocation} #}
+
+
 {# plugins/databox/templates/search/default/list_detail.thtml 20151109 #}
 <div id="databox_outer">
 

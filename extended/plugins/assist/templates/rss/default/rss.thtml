@@ -1,3 +1,4 @@
+{# begin {templatelocation} #}
 <!-- plugins/assist/templates/rss/default/rss.thtml  { -->
 
 <p><a href="{head_link}">{head_title}</a></p>
@@ -10,4 +11,6 @@
 {rss_col}
 </dl>
 
-<!-- } plugins/assist/templates/rss/default/rss.thtml -->
+
+
+{# end {templatelocation} #}

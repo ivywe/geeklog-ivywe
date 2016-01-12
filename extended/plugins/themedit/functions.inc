@@ -826,7 +826,7 @@ function THM_list($header_arr, $data_arr) {
 }
 
 function THM_form() {
-    return '<form action="' . THEMEDIT_BASE_URL . '/index.php" method="post">' . LB;
+    return '<form class="uk-form" action="' . THEMEDIT_BASE_URL . '/index.php" method="post">' . LB;
 }
 
 function THM_checkbox($name, $id, $value, $label, $checked = TRUE) {

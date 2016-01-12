@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 {navmenu}
 <form class="uk-form" action="{PHP_SELF}" method="post">
 <div><input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}></div>
@@ -137,5 +139,7 @@
 </div>
 
 </form>
+
+
 
 {# end {templatelocation} #}

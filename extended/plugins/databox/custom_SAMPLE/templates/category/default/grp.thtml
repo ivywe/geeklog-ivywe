@@ -1,4 +1,6 @@
 {# begin {templatelocation} #}
+
+
 {# plugins/databox/templates/category/default/grp.thtml 20151106 #}
     <h3> {group_link} {group_name}</h3>
 {# end {templatelocation} #}

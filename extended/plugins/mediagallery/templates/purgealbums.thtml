@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <script type="text/javascript">
 //<![CDATA[
 function doCheckAll_purgealbums()
@@ -49,5 +51,7 @@ function doUnCheckAll_purgealbums()
     <input type="reset"  value="{lang_reset}" name="mode"{xhtml}>
   </div>
 </form>
+
+
 
 {# end {templatelocation} #}

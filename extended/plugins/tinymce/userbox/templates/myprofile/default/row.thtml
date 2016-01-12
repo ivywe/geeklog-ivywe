@@ -1,3 +1,3 @@
-<!-- plugins/userbox/templates/myprofile/default/row.thtml { -->
+{# begin {templatelocation} #}
 <tr class="pluginRow1">{col_var}</tr>
-<!-- } plugins/userbox/templates/myprofile/default/row.thtml -->
+{# end {templatelocation} #}

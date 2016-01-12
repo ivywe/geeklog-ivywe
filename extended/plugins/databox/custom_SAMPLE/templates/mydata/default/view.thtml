@@ -1,5 +1,6 @@
 {# begin {templatelocation} #}
+
+
 {# plugins/databox/templates/mydata/view.thtml 20151109  #}
 {about_thispage}
 {# end {templatelocation} #}
-

@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <!-- start setting_option.thtml -->
 <tr style="vertical-align:middle;">
     <td class="pluginCellSubTitle"width="160">{LANG_title}</td>
@@ -16,5 +18,7 @@
     </td>
 </tr>
 <!-- end setting_option.thtml -->
+
+
 
 {# end {templatelocation} #}

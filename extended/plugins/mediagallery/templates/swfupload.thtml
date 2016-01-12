@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 {start_block}
 {navbar}
 <div id="divSWFUploadMessage">
@@ -177,5 +179,7 @@ lang["swfupload_files"] = "{swfupload_files}";
 lang["swfupload_uploaded"] = "{swfupload_uploaded}";
 </script>
 {end_block}
+
+
 
 {# end {templatelocation} #}

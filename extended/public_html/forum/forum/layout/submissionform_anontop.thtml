@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <script type="text/javascript" src="{layout_url}/forum/javascript/createtopic.js"></script>
 
 		<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
@@ -12,5 +14,7 @@
         </tr>
         <tr>
 <!-- end submissionform_anontop.thtml -->
+
+
 
 {# end {templatelocation} #}

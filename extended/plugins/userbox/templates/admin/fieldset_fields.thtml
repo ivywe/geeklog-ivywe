@@ -1,4 +1,6 @@
 {# begin {templatelocation} #}
+
+
 {# plugins/userbox/templates/admin/fieldset_fields.thtml 20151111 #}
 <script type="text/JavaScript" src="{site_url}/javascript/moveusers.js"></script>
 
@@ -76,4 +78,6 @@ head.appendChild(lnk);
   </div>
 
 </form>
+
+
 {# end {templatelocation} #}

@@ -1,3 +1,4 @@
+{# begin {templatelocation} #}
 <!-- plugins/userbox/templates/admin/category_editor.thtml 20140401{ -->
 
 <div id="userbox_admin">
@@ -101,5 +102,4 @@
   </form>
 </div>
 
-<!-- } plugins/userbox/templates/admin/category_editor.thtml -->
-
+{# end {templatelocation} #}

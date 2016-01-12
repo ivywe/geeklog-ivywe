@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/admin/confirmation.thtml  20140917 { -->
+{# begin {templatelocation} #}
 
 <h3>{actionname}</h3>
 <form action="{actionprg}" method="post">
@@ -14,4 +14,6 @@
   </div>
 </form>
 
-<!-- } plugins/userbox/templates/admin/confirmation.thtml -->
+
+
+{# end {templatelocation} #}

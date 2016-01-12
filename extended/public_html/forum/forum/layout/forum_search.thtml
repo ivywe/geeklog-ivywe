@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <div class="uk-width-1-2">
 	<form class="uk-form uk-text-nowrap" action="index.php" method="post" name="searchbox" onsubmit="return (this.query.value != '');">
 		<input type="hidden" name="op" value="search"{xhtml}>
@@ -8,5 +10,7 @@
 		<input type="submit" name="btnsubmit" value="{search}"{xhtml}>
 	</form>
 </div>
+
+
 
 {# end {templatelocation} #}

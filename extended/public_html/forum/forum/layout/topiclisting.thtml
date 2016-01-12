@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 {outline_header}
 
 <ul class="uk-breadcrumb">
@@ -34,5 +36,7 @@
 
 {pagenavigation}
 {outline_footer}
+
+
 
 {# end {templatelocation} #}

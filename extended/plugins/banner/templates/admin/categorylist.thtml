@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <h2>{lang_pagetitle}</h2>
 
 <div class="admin-list-icon">

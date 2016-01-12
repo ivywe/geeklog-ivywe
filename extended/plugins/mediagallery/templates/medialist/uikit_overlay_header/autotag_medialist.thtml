@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <div class="uk-slidenav-position" data-uk-slideshow="{ autoplay:true }">
     <ul class="uk-slideshow uk-overlay-active">
 	{medialist_col}
@@ -34,5 +36,7 @@
 {!if edit}
 </fieldset>
 {!endif}
+
+
 
 {# end {templatelocation} #}

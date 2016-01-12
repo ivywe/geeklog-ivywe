@@ -1,10 +1,12 @@
 {# begin {templatelocation} #}
 
+
+
 <div class="block-center">
 	<h2>{lang_title}</h2>
 	{done}
 	
-	<form action="{this_script}" method="post">
+	<form class="uk-form" action="{this_script}" method="post">
 		<table style="padding-bottom: 5px;">
 			{items}
 		</table>
@@ -18,5 +20,7 @@
 		</div>
 	</form>
 </div>
+
+
 
 {# end {templatelocation} #}

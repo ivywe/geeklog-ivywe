@@ -1,3 +1,4 @@
+{# begin {templatelocation} #}
 
 <!-- start filelisting.thtml -->
 {block_header}
@@ -19,4 +20,6 @@
 {comment_records}
 
 {block_footer}
-<!-- end filelisting.thtml -->
+<!-- end filelisting.thtml --
+
+{# end {templatelocation} #}

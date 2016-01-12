@@ -223,7 +223,7 @@ function LIB_Disply(
     $retval .= "</head>".LB;
     $retval .= "<body   bgcolor='#ffffff'>".LB;
     $retval .= "<h1>{$title}</h1>".LB;
-    $retval .= "<form action="."'".THIS_SCRIPT."'"."method='post'>".LB;
+    $retval .= "<form class=\"uk-form\" action="."'".THIS_SCRIPT."'"."method='post'>".LB;
     $retval .= "    <input type='submit' name='action' value='submit'>".LB;
     $retval .= "    <input type='submit' name='action' value='cancel'>".LB;
     $retval .= "</form>".LB;

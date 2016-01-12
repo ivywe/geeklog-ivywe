@@ -1,8 +1,8 @@
-<!-- plugins/assist/templates/admin/xml_editor.thtml 20110408{ -->
+{# begin {templatelocation} #}
 
 <div id="databox_admin">
 {about_thispage}
-<form name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
+<form class="uk-form" name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
 
   <fieldset style="width:94%">
     <legend>XML</legend>
@@ -63,5 +63,4 @@
 </form>
 </div>
 
-<!-- } plugins/assist/templates/admin/xml_editor.thtml -->
-
+{# end {templatelocation} #}

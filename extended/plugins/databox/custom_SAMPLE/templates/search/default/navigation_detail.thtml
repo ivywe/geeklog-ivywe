@@ -1,4 +1,6 @@
 {# begin {templatelocation} #}
+
+
 {# plugins/databox/templates/search/default/navigation_detail.thtml 20151109 #}
 <div >
     <div class="order">

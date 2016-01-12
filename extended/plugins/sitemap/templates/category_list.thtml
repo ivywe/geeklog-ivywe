@@ -1,7 +1,11 @@
 {# begin {templatelocation} #}
 
+
+
 <ul>
 	{categories}
 </ul>
+
+
 
 {# end {templatelocation} #}

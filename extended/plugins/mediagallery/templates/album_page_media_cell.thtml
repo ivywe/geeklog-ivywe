@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <div class="mg_thumbnail" style="height:{row_height}px">
   <div class="mg_thumbnail_wrapper">{media_item_thumbnail}{mp3_podcast}</div>
 </div>
@@ -40,5 +42,7 @@
 {!if enable_keywords}
 <div class="mgMediaKeywords"><span class="uk-text-small"><span class="uk-text-bold">{lang_keywords}</span> {media_keywords}</span></div>
 {!endif}
+
+
 
 {# end {templatelocation} #}

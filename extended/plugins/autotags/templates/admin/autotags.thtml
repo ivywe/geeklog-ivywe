@@ -1,7 +1,9 @@
 {# begin {templatelocation} #}
 
+
+
   {start_block_editor}
-  <form action="{site_admin_url}/plugins/autotags/index.php" method="post">
+  <form class="uk-form" action="{site_admin_url}/plugins/autotags/index.php" method="post">
       <table border="0" cellspacing="0" cellpadding="3" width="100%">
           <tr>
               <td align="right" valign="top" style="white-space:nowrap;">{lang_tag}:</td>

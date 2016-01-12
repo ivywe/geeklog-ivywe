@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 {start_block}
 <form action="{s_form_action}" method="post" id="mg-userprefs" class="compact uk-form">
   <div class="admin_basic">
@@ -17,5 +19,7 @@
   </div>
 </form>
 {end_block}
+
+
 
 {# end {templatelocation} #}

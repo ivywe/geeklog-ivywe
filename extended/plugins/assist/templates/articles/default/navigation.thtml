@@ -1,4 +1,4 @@
-<!-- plugins/assist/templates/articles/default/navigation.thtml { -->
+{# begin {templatelocation} #}
 
 <div id="databox">
 
@@ -21,4 +21,4 @@
 
 </div>
 
-<!-- } plugins/assist/templates/articles/default/navigation.thtml -->
+{# end {templatelocation} #}

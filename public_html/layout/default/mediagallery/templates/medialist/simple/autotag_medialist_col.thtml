@@ -1,5 +1,0 @@
-{# begin {templatelocation} #}
-
-<img src="{filename_tn}" alt="{media_title}" class="uk-container-center uk-overlay-scale uk-border-rounded  {class}" style="margin:0 7px 15px 0"{xhtml}>
-
-{# end {templatelocation} #}

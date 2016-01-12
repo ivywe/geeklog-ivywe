@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/profile/default/col_detail.thtml 20130924{ -->
+{# begin {templatelocation} #}
 
 <th style="width:20%" class="alignright">{additionfield_name}</th>
 <td style="width:70%" colspan="2" style="color:green" class="alignleft">
@@ -37,4 +37,4 @@
 {field_type}
 </td>
 
-<!-- } plugins/userboxbox/templates/profile/default/col_detail.thtml -->
+{# end {templatelocation} #}

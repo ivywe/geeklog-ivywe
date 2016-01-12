@@ -1,4 +1,6 @@
 {# begin {templatelocation} #}
+
+
 {# plugins/userbox/templates/category/default/list_detail.thtml 20151111 #}
 <div id="userbox_outer">
 
@@ -22,4 +24,6 @@
   </ul>
 
 </div>
+
+
 {# end {templatelocation} #}

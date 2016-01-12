@@ -1,1 +1,4 @@
-<!--no-space-and-no-line-break-please--><div style="overflow:auto;width:250px;height:160px"><button class="uk-button uk-button-primary uk-button-small" type="reset" style="width:100%"><a href="{site_url}/databox/data.php/{item_10}/code" target="_blank"><i class="uk-icon-chevron-circle-right"></i> {name}</a></button>{description}<div style="text-align: right"><div style="text-align:center"><a href="{site_url}/databox/data.php/{item_10}/code" target="_blank"><i class="uk-icon-chevron-circle-right" style="font-size:300%"></i></a></div>{edit}</div>
+{# begin {templatelocation} #}
+<!--no-space-and-no-line-break-please--><div style="overflow:auto;width:250px;height:160px"><button class="uk-button uk-button-primary uk-button-small" type="reset" style="width:100%"><a href="{site_url}/databox/data.php/{item_10}/code" target="_blank"><i class="uk-icon-chevron-circle-right"></i> {name}</a></button>{description}<div style="text-align: right"><div style="text-align:center"><a href="{site_url}/databox/data.php/{item_10}/code" target="_blank"><i class="uk-icon-chevron-circle-right" style="font-size:300%"></i></a></div>{edit}</div
+
+{# end {templatelocation} #}

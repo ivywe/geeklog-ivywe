@@ -1,7 +1,11 @@
 {# begin {templatelocation} #}
 
+
+
 <div id="owl-oneslide" class="owl-carousel owl-theme">
 {medialist_col}
 </div>
+
+
 
 {# end {templatelocation} #}

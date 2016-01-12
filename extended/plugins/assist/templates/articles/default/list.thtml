@@ -1,4 +1,4 @@
-<!-- plugins/assist/templates/articles/default/list.thtml { -->
+{# begin {templatelocation} #}
 
 <div id="assist">
 
@@ -13,4 +13,4 @@
 
 </div>
 
-<!-- } plugins/assist/templates/articles/default/list.thtml -->
+{# end {templatelocation} #}

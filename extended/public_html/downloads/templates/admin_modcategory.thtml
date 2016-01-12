@@ -1,6 +1,7 @@
+{# begin {templatelocation} #}
 
 <!-- start admin_modcategory.thtml -->
-<form enctype="multipart/form-data" action="index.php" method="post" class="compact">
+<form enctype="multipart/form-data" action="index.php" method="post" class="uk-form compact">
   <div class="admin_basic">
     <dl class="form_block">
       <dt><label for="downloads-cid">{lang_catid}</label></dt>
@@ -39,4 +40,6 @@
 {hidden_values}
   </div>
 </form>
-<!-- end admin_modcategory.thtml -->
+<!-- end admin_modcategory.thtml --
+
+{# end {templatelocation} #}

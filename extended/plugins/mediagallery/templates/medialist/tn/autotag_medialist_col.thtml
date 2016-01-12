@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 	<div class="uk-width-small-1-2 uk-width-medium-1-4 uk-float-left" style="margin:0 0 17px 0">
 
 <!-- This example is spinning the image and sliding in the overlay panel from the bottom -->
@@ -13,5 +15,7 @@
 </figure>
 
 	</div>
+
+
 
 {# end {templatelocation} #}

@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN">
 <html>
 <head>
@@ -23,5 +25,7 @@
 </div>
 </body>
 </html>
+
+
 
 {# end {templatelocation} #}

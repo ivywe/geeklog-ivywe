@@ -1,4 +1,6 @@
 {# begin {templatelocation} #}
+
+
 {# plugins/databox/templates/search/default/nohit.thtml 20151109 #}
 <div>
   <p id="breadcrumbs"><a href="{site_url}/">{home}</a>|<a href="{referer}">{lang_referer}</p>

@@ -1,6 +1,6 @@
-<!-- plugins/assist/templates/stories_col.thtml  { -->
+{# begin {templatelocation} #}
 
 <dt>{day}{new_img}</dt>
 <dd><a href="{url}">{title}</a></dd>
 
-<!-- } plugins/assist/templates/stories_col.thtml -->
+{# end {templatelocation} #}

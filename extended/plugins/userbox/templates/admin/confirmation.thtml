@@ -1,4 +1,6 @@
 {# begin {templatelocation} #}
+
+
 {# plugins/userbox/templates/admin/confirmation.thtml  20151111 #}
 <h3>{actionname}</h3>
 <form action="{actionprg}" method="post">
@@ -13,4 +15,6 @@
     {help}
   </div>
 </form>
+
+
 {# end {templatelocation} #}

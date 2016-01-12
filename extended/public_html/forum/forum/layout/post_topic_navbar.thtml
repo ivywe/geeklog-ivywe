@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <ul class="uk-breadcrumb">
         <li class="uk-text-success uk-text-bold"><i class="uk-icon-folder-open-o"></i></li>
         <li class="uk-text-success uk-text-bold"><a href="{site_url}/forum/index.php">{forum_home}</a></li>
@@ -44,5 +46,7 @@ h_help = "{LANG_hhelp}";
     <input type="hidden" name="page" value="{page}"{xhtml}>
     <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
 </div>
+
+
 
 {# end {templatelocation} #}

@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <!-- start report_results.thtml -->
 {navmenu}
 
@@ -15,5 +17,7 @@
 </table>
 </div>
 <!-- end report_results.thtml -->
+
+
 
 {# end {templatelocation} #}

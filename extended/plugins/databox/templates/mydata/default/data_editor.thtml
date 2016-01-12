@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <div>
   <h1>{fieldset_name}を編集する</h1>
   <form enctype="multipart/form-data" name="frmdatabox" action="{site_url}/{script}" method="post" class="uk-form uk-form-horizontal">

@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <form class="uk-form" action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data">
   <p class="uk-text-primary">{lang_inst}</p>
   {lang_fieldset} {list_fieldset}

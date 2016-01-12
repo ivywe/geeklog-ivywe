@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 {lbslideshow}
 <ul class="uk-breadcrumb">{birdseed}</ul>
 <div class="mg_album_header">
@@ -58,5 +60,7 @@ function popitup(url)
 }
 //]]>
 </script>
+
+
 
 {# end {templatelocation} #}

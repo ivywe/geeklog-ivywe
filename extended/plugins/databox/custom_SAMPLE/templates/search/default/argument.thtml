@@ -1,4 +1,6 @@
 {# begin {templatelocation} #}
+
+
 {# plugins/databox/templates/search/default/argument.thtml 20151106 #}
 
 <form action="{site_url}/{this_script}" method="get" >

@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/admin/mst_editor.thtml 20121210{ -->
+{# begin {templatelocation} #}
 
 <div id="userbox_admin">
   {about_thispage}
@@ -92,5 +92,4 @@
   </form>
 </div>
 
-
-<!-- } plugins/userbox/templates/admin/mst_editor.thtml -->
+{# end {templatelocation} #}

@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/admin/group_editor.thtml 20120903 { -->
+{# begin {templatelocation} #}
 
 <div id="userbox_admin">
   {about_thispage}
@@ -81,6 +81,4 @@
   </form>
 </div>
 
-<!-- } plugins/userbox/templates/admin/
-.thtml -->
-
+{# end {templatelocation} #}

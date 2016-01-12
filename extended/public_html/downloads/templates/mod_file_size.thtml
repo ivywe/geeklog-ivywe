@@ -1,3 +1,4 @@
+{# begin {templatelocation} #}
 
 <!-- start mod_file_size.thtml -->
       <dt>{lang_filesize}</dt>
@@ -5,4 +6,6 @@
 
       <dt>{lang_md5}</dt>
       <dd><input type="hidden" name="md5" value="{md5}"{xhtml}>{md5}</dd>
-<!-- end mod_file_size.thtml -->
+<!-- end mod_file_size.thtml --
+
+{# end {templatelocation} #}

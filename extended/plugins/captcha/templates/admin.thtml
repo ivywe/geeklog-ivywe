@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <h2>{lang_msg}</h2>
 <table width="100%" cellspacing="5" cellpadding="5">
 <tr>

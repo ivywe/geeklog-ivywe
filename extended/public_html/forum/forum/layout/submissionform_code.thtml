@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
             <th>&nbsp;{LANG_code}:</th>
             <td>&nbsp;
                 <input type="button" class="button" accesskey="b" name="addbbcode0" value=" B " style="font-weight:bold; width: 30px" onclick="bbstyle(0)" onmouseover="helpline('b')"{xhtml}>
@@ -44,5 +46,7 @@
                 <br{xhtml}><br{xhtml}>
                 <input type="text" name="helpbox" size="80" maxlength="100" class="helpline" value="{LANG_codetip}"{xhtml}>
             </td>
+
+
 
 {# end {templatelocation} #}

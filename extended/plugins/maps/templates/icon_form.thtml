@@ -1,5 +1,6 @@
+{# begin {templatelocation} #}
 <div id="icon_form">
-	<form name="icon_edit" action="{site_url}/admin/plugins/maps/icons.php" method="POST"  enctype="multipart/form-data">
+	<form class="uk-form" name="icon_edit" action="{site_url}/admin/plugins/maps/icons.php" method="POST"  enctype="multipart/form-data">
 		<fieldset style="margin-top: 10px;padding:10px;">
 		<legend><b>{informations}</b></legend>
 		<p>{icon_presentation}</p>
@@ -20,3 +21,5 @@
 		</div>
 	</form>
 </div>
+
+{# end {templatelocation} #}

@@ -1,3 +1,4 @@
+{# begin {templatelocation} #}
 <div>
 
 	<p>{edit_marker_text}        
@@ -11,7 +12,7 @@
 </div>
 &nbsp;
 <div id="marker_form">
-	<form name="marker_edit" action="{site_url}/markers.php" method="POST">
+	<form class="uk-form" name="marker_edit" action="{site_url}/markers.php" method="POST">
 		<fieldset style="margin-top: 10px;padding:10px;">
 		<legend>{arrow}<a style="text-decoration: none;" onClick="elementToggle('informations'); return false;" href="#"><b>{informations}</b></a></legend>
 			<div id="informations">
@@ -51,4 +52,6 @@
 			{mkid}
 		</div>
 	</form>
-</div>
+</div
+
+{# end {templatelocation} #}

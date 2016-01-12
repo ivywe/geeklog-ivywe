@@ -1,4 +1,6 @@
 {# begin {templatelocation} #}
+
+
 {# plugins/databox/templates/mydata/default/row.thtml 20151109 #}
 <tr class="pluginRow1">{col_var}</tr>
 {# end {templatelocation} #}

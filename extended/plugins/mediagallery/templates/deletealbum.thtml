@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <span style="font-weight:bold;">{lang_edit_title}</span>
 <form method="post" action="{s_form_action}" class="uk-form">
 <div>
@@ -31,5 +33,7 @@
 </table>
 </div>
 </form>
+
+
 
 {# end {templatelocation} #}

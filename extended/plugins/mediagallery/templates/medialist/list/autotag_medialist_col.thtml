@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 	<div class="uk-margin-large {class}">
 		{!if media_title}<h3 class="uk-container-center">{media_title}</h3>{!endif}
 		<a href="{filename_disp}" data-uk-lightbox="{ group:'my-group{albumid}' }" title="{media_title}{!if media_desc}: {media_desc}{!endif}">
@@ -13,5 +15,7 @@
 			</figure>
 		</a>
 	</div>
+
+
 
 {# end {templatelocation} #}

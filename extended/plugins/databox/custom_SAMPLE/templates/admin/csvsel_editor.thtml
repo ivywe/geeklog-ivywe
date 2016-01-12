@@ -1,4 +1,4 @@
-<!--plugins/databox/templates/admin/csvsel_editor.thtml 20140728{ -->
+{# begin {templatelocation} #}
 
 <div>
 	{about_thispage}
@@ -57,4 +57,4 @@
 	</form>
 </div>
 
-<!--} plugins/databox/templates/admin/csvsel_editor.thtml -->
+{# end {templatelocation} #}

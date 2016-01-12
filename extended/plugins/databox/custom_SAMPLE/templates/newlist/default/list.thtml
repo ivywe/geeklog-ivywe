@@ -1,4 +1,6 @@
 {# begin {templatelocation} #}
+
+
 {# plugins/databox/templates/newlist/default/list.thtml 20151109 #}
 
 <dl class="databox_newlist">

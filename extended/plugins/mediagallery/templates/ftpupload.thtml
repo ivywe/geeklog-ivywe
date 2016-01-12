@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 {start_block}
 {navbar}
 <p>{lang_ftp_help}</p>
@@ -27,5 +29,7 @@
 </div>
 </form>
 {end_block}
+
+
 
 {# end {templatelocation} #}

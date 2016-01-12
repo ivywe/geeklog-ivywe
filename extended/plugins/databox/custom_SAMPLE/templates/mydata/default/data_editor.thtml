@@ -1,4 +1,6 @@
 {# begin {templatelocation} #}
+
+
 {# plugins/databox/templates/mydata/default/data_editor.thtml 20140414 { -->
 
 <div id="databox_admin">
@@ -121,4 +123,3 @@
   </form>
 </div>
 {# end {templatelocation} #}
-

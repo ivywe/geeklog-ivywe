@@ -1,3 +1,4 @@
+{# begin {templatelocation} #}
 <div style="padding-top:15px;">
 <h1>{name}</h1>
 
@@ -43,5 +44,6 @@
 	</tr>
 </table>
 
-</div>
+</div
 
+{# end {templatelocation} #}

@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <!-- start forum_legend.thtml -->
 
 <!--
@@ -22,5 +24,7 @@
 
 -->
 <!-- end forum_legend.thtml -->
+
+
 
 {# end {templatelocation} #}

@@ -1,4 +1,4 @@
-<!-- plugins/assist/templates/newstories/default/stories.thtml  20131029 { -->
+{# begin {templatelocation} #}
 
 <dl class="assist_stories">
 {stories_col}
@@ -7,4 +7,4 @@
 <p class="assist_rss"><a href="{rss_url}">{rss_title}</a></p>
 <p class="more"><a href="{more_url}">{more_title}</a></p>
 
-<!-- } plugins/assist/templates/newstories/default/stories.thtml -->
+{# end {templatelocation} #}

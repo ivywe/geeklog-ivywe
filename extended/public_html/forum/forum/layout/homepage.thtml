@@ -1,7 +1,11 @@
 {# begin {templatelocation} #}
 
+
+
     {outline_header}
     {category_records}
     {outline_footer}
+
+
 
 {# end {templatelocation} #}

@@ -1,8 +1,12 @@
 {# begin {templatelocation} #}
 
+
+
 <div class="uk-grid">
   <div class="uk-width-1-2">{search_forum}</div>
   <div class="uk-width-1-2 uk-text-right">{select_forum}</div>
 </div>
+
+
 
 {# end {templatelocation} #}

@@ -1,3 +1,4 @@
+{# begin {templatelocation} #}
 <!-- plugins/assist/templates/newstories/default/stories_col.thtml  20120502{ -->
 
 <dt class="assist_date">{day}</dt>
@@ -7,4 +8,4 @@
 {introtext}
  -->
 
-<!-- } plugins/assist/templates/newstories/default/stories_col.thtml -->
+{# end {templatelocation} #}

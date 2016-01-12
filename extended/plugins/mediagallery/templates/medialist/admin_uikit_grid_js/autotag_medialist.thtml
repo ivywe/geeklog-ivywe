@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <div class="uk-margin-large uk-panel uk-panel-box">
 
   <h2>&#91;medialist:{album_id} theme:uikit_grid_js&#93;</h2>
@@ -13,5 +15,7 @@
   </div>
 
 </div>
+
+
 
 {# end {templatelocation} #}

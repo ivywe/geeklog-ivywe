@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <div class="mg_random_block">
   {media_thumbnail}
 {!if media_title}
@@ -9,5 +11,7 @@
     <a href="{url_album}">{lang_browse_album}</a>
   </div>
 </div>
+
+
 
 {# end {templatelocation} #}

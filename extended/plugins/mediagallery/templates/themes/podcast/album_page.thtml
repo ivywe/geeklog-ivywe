@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 {lbslideshow}
 <script type="text/javascript" src="{site_url}/players/audio-player.js"></script>
 
@@ -45,5 +47,7 @@
 </div>
 <div class="mg_jumpbox">{jumpbox}</div>
 <div class="mg_sortbox">{select_sortbox}</div>
+
+
 
 {# end {templatelocation} #}

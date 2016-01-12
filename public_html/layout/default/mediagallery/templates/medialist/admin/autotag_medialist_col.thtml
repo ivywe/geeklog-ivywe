@@ -1,6 +1,0 @@
-{# begin {templatelocation} #}
-
-&#60;div class="uk-margin-large"&#62;&#60;div class="uk-text-center"&#62;&#91;media:{media_id} src:disp&#93;&#60;/div&#62;{!if media_title}&#60;div class="uk-text-bold uk-text-center"&#62;{media_title}&#60;/div&#62;{!endif}{!if media_desc}&#60;p&#62;{media_desc}&#60;/p&#62;{!endif}&#60;/div&#62;
-<br />
-
-{# end {templatelocation} #}

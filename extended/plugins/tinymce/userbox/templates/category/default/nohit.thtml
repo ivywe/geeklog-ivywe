@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/category/default/nohit.thtml 20120403{ -->
+{# begin {templatelocation} #}
 
 <div id="userbox">
   <p id="breadcrumbs"><a href="{site_url}/">{home}</a>{category_top}</p>
@@ -9,4 +9,4 @@
 
 </div>
 
-<!-- plugins/userbox/templates/category/default/nohit.thtml { -->
+{# end {templatelocation} #}

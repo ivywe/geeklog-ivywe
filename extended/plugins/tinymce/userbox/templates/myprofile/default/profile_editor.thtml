@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/myprofile/default/profile_editor.thtml 20130328 { -->
+{# begin {templatelocation} #}
 
 <div id="userbox_admin">
   {about_thispage}
@@ -131,5 +131,4 @@
   </form>
 </div>
 
-<!-- } plugins/userbox/templates/myprofile/default/profile_editor.thtml -->
-
+{# end {templatelocation} #}

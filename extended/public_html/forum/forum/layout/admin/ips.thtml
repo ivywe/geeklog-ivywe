@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <tr width="100%" class="forumClass3">
     <td>
 		<div class="uk-overflow-container">
@@ -12,5 +14,7 @@
 		</div>
     </td>
 </tr>
+
+
 
 {# end {templatelocation} #}

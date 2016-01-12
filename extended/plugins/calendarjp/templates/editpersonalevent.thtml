@@ -1,6 +1,8 @@
 {# begin {templatelocation} #}
 
-<form action="{site_url}/calendarjp/event.php" name="events" class="form-theme" method="post">
+
+
+<form class="uk-form" action="{site_url}/calendarjp/event.php" name="events" method="post">
     <table border="0" cellspacing="0" cellpadding="3" class="events">
         <tr>
             <td align="right" style="width:10em">{lang_title}:</td>

@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <h3 class="uk-h3">{actionname}</h3>
 <form class="uk-form" action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data">
 <div>

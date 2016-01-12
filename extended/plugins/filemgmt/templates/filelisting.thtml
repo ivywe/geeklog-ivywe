@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 {block_header}
 
 {category_path_link}
@@ -20,9 +22,5 @@
 
 {comment_records}
 {block_footer}
-
-{# end {templatelocation} #}
-
-
 
 {# end {templatelocation} #}

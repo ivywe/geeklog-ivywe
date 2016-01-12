@@ -1,7 +1,9 @@
 {# begin {templatelocation} #}
 
+
+
 <h3>{lang_import}</h3>
-<form action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data">
+<form class="uk-form" action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data">
 
 <div>
 <div>{lang_unlink}<input name="unlink" value="1" checked="checked" type="checkbox"></div>

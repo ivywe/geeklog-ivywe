@@ -1,3 +1,4 @@
+{# begin {templatelocation} #}
 
 <!-- start mod_access.thtml -->
   <fieldset>
@@ -16,4 +17,6 @@
       <dd class="description">{lang_permmsg}</dd>
     </dl>
   </fieldset>
-<!-- end mod_access.thtml -->
+<!-- end mod_access.thtml --
+
+{# end {templatelocation} #}

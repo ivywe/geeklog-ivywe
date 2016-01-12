@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <!-- start forum_rules.thtml -->
 
 <div class="uk-width-4-10 uk-text-right">
@@ -12,5 +14,7 @@
 </div>
 
 <!-- end forum_rules.thtml -->
+
+
 
 {# end {templatelocation} #}

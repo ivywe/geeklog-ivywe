@@ -1,3 +1,4 @@
+{# begin {templatelocation} #}
     jQuery('#{date_field}').DatePicker({
         format:'{dateformat}',
         date: jQuery('#{date_field}').val(),
@@ -12,3 +13,5 @@
             jQuery('#{date_field}').DatePickerHide();
         }
     });
+
+{# end {templatelocation} #}

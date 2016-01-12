@@ -1,3 +1,4 @@
+{# begin {templatelocation} #}
 
 <!-- calendar.thtml -->
 
@@ -44,4 +45,6 @@
   </noscript>
   <p class="skip"><a name="skipcalendar" id="skipcalendar"> </a></p>
 <!--/not_for_mobile-->
-</div>
+</div
+
+{# end {templatelocation} #}

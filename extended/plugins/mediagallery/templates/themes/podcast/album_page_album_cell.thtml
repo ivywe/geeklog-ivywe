@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <h1>{lang_album} {album_title}</h1>
 <div class="mgPluginMeta">
 {updated} {album_last_update}
@@ -18,5 +20,7 @@
 <hr{xhtml}>
 
 <div style="clear:both;"></div>
+
+
 
 {# end {templatelocation} #}

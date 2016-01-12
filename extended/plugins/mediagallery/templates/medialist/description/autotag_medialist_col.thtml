@@ -1,4 +1,6 @@
 {# begin {templatelocation} #}
+
+
 -->
 
 	<div class="uk-margin-large uk-text-center {class}">
@@ -8,5 +10,7 @@
 		</a>
 		<div class="uk-text-left uk-margin">{media_desc}</div>
 	</div>
+
+
 
 {# end {templatelocation} #}

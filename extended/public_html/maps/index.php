@@ -145,7 +145,7 @@ function MAPS_displayFrontPage ()
 			//hits
 		    $map->set_var('hits',  ' | ' . $A['hits'] . ' ' . $LANG_MAPS_1['hits']);
 				if (SEC_hasRights('maps.admin')){
-	        $map->set_var('edit_button', '<form id="edit_map" action="' . $_CONF['site_admin_url'] . '/plugins/maps/map_edit.php" method="POST">
+	        $map->set_var('edit_button', '<form class="uk-form" id="edit_map" action="' . $_CONF['site_admin_url'] . '/plugins/maps/map_edit.php" method="POST">
 	        <div style="float:right">
 	          <input type="image" src="' . $_CONF['site_admin_url'] . '/plugins/maps/images/edit.png" align="absmiddle" />
 			  <input type="hidden" name="mode" value="edit" />

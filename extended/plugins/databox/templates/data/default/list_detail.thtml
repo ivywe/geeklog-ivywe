@@ -1,6 +1,8 @@
 {# begin {templatelocation} #}
 
 
+
+
 <?php if(SEC_inGroup('Root')){ ?><div class="gl-edit"><?php } ?>
 {!!if {edit}||{draft} !!}<div class="uk-float-right">{edit} {draft}</div>{!endif}
 

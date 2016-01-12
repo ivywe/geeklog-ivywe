@@ -1,3 +1,4 @@
+{# begin {templatelocation} #}
 
 <!-- start mod_votes.thtml -->
 <div class="aligncenter">
@@ -5,4 +6,6 @@
 </div>
 {regvotesinfo}
 {unregvotesinfo}
-<!-- end mod_votes.thtml -->
+<!-- end mod_votes.thtml --
+
+{# end {templatelocation} #}

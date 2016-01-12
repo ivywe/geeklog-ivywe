@@ -1,4 +1,4 @@
-<!--plugins/databox/templates/admin/csv_editor.thtml 20140520{ -->
+{# begin {templatelocation} #}
 
 <h3>{about_thispage}</h3>
 
@@ -67,4 +67,4 @@
 	</form>
 </div>
 
-<!--} plugins/databox/templates/admin/csv_editor.thtml -->
+{# end {templatelocation} #}

@@ -1,3 +1,4 @@
+{# begin {templatelocation} #}
 
 <!-- start filedetail_no_tn.thtml -->
 {block_header}
@@ -58,4 +59,6 @@
 {project_filelist}
 {comment_records}
 {block_footer}
-<!-- end filedetail_no_tn.thtml -->
+<!-- end filedetail_no_tn.thtml --
+
+{# end {templatelocation} #}

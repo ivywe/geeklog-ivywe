@@ -1,6 +1,6 @@
-<!-- plugins/assist/templates/admin/newsletter.thtml 20111220{ -->
+{# begin {templatelocation} #}
 
-<form name="frmmailsetting" action="{site_admin_url}/plugins/{script}" method="post">
+<form class="uk-form" name="frmmailsetting" action="{site_admin_url}/plugins/{script}" method="post">
   <fieldset style="width:94%; border:none">
     {mail_msg}
   </fieldset>
@@ -141,4 +141,4 @@
     {list_reserv}
 </form>
 
-<!-- } plugins/assist/templates/admin/newsletter.thtml -->
+{# end {templatelocation} #}

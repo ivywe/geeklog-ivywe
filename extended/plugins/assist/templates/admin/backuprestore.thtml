@@ -1,4 +1,4 @@
-<!-- plugins/assist/templates/admin/backuprestore.thtml 20120203 {  -->
+{# begin {templatelocation} #}
 
 <h2>Assist</h2>
 <h3>backup & restore </h3>
@@ -6,7 +6,7 @@
 <fieldset style="margin-top:10px;">
 <legend>(1){config}</legend>
 <blockquote>
-<form action='backuprestore.php'method='post'>
+<form class="uk-form" action='backuprestore.php'method='post'>
 {err_backup_file}
 <li><input type='submit' name='action' value='{config_backup}' {xhtml}>  {config_backup_help}</li>
 
@@ -21,5 +21,4 @@
 </blockquote>
 </fieldset>
 
-<!-- } plugins/assist/templates/admin/backuprestore.thtml -->
-
+{# end {templatelocation} #}

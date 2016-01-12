@@ -1,4 +1,6 @@
 {# begin {templatelocation} #}
+
+
 {# plugins/databox/templates/data/default/nohit.thtml 20151109 #}
 {lang_nohit}
 

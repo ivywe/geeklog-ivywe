@@ -1,1 +1,4 @@
-<li><div class="icon">{category_link}</div>&nbsp;<a href="{site_url}/downloads/index.php?cid={cid}">{chtitle}</a>&nbsp;({totaldownload})</li>
+{# begin {templatelocation} #}
+<li><div class="icon">{category_link}</div>&nbsp;<a href="{site_url}/downloads/index.php?cid={cid}">{chtitle}</a>&nbsp;({totaldownload})</li
+
+{# end {templatelocation} #}

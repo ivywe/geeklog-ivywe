@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <h2>{lang_media_manage_title}</h2>
 <p>{lang_media_manage_help}</p>
 <form id="MG_mediamanage" name="media" method="post" action="{s_form_action}" class="uk-form">
@@ -16,5 +18,7 @@
     <input type="submit" name="mode" value="{lang_delete}" onclick="return confirm('{lang_delete_confirm}');"{xhtml}>
   </div>
 </form>
+
+
 
 {# end {templatelocation} #}

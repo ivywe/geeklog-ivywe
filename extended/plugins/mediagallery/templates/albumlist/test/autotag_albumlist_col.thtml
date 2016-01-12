@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <div class="{class}">
 			
 <a href="{album_url}"><img src="{album_img}"></a>
@@ -17,5 +19,7 @@
 <p><span style="color:green"> &#123;album_cover_filename&#125;</span>{album_cover_filename}</p>
 {edit}
 </div>
+
+
 
 {# end {templatelocation} #}

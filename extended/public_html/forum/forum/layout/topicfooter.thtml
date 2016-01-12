@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <hr>
 
 <div>
@@ -9,5 +11,7 @@
 <div class="uk-text-right" style="margin: 1em 0;">
 <!-- {page_generated_time} -->{newtopic_link}{replytopic_link}
 </div>
+
+
 
 {# end {templatelocation} #}

@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/attribute/default/navigation_detail.thtml 20121019{ -->
+{# begin {templatelocation} #}
 
 <div class="userbox">
     <div class="order">
@@ -32,4 +32,4 @@
   <div style="clear:both"></div>
 
 </div>
-<!-- } plugins/userbox/templates/attribute/default/navigation_detail.thtml -->
+{# end {templatelocation} #}

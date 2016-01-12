@@ -1,3 +1,4 @@
+{# begin {templatelocation} #}
 <script language="JavaScript">
     checked = false;
     function checkedAllExport () {
@@ -22,7 +23,7 @@
     }
 </script>	
 <div id="import_form">
-	<form name="import" id="import" action="{site_url}/admin/plugins/maps/import_export.php" method="POST"  enctype="multipart/form-data">
+	<form class="uk-form" name="import" id="import" action="{site_url}/admin/plugins/maps/import_export.php" method="POST"  enctype="multipart/form-data">
 		<fieldset style="margin-top: 10px;padding:10px;">
 		<legend><b>{import}</b></legend>
 			<p>{import_message}</p>
@@ -55,3 +56,5 @@
 		
 	</form>
 </div>
+
+{# end {templatelocation} #}

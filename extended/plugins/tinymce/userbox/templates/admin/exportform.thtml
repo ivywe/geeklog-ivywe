@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/admin/exportform.thtml  20120913 { -->
+{# begin {templatelocation} #}
 
 <form action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data">
   <p class="message">{lang_inst}</p>
@@ -8,4 +8,4 @@
   <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
 </form>
 
-<!-- } plugins/userbox/templates/admin/exportform.thtml -->
+{# end {templatelocation} #}

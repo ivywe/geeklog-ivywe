@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <form action="{s_form_action}" method="post" class="compact uk-form">
   <div class="admin_basic" id="admin-editor">
 <!-- BEGIN CheckRow1 -->
@@ -17,5 +19,7 @@
     </div>
   </div>
 </form>
+
+
 
 {# end {templatelocation} #}

@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <form class="uk-form" action="{phpself}" method="post">
 <div>
     <input type="hidden" name="op" value="banip"{xhtml}>
@@ -13,5 +15,7 @@
 <center><input type="submit" value="{ban}"{xhtml}></center>
 </div>
 </form>
+
+
 
 {# end {templatelocation} #}

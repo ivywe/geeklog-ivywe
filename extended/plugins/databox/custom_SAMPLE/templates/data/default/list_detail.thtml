@@ -1,4 +1,6 @@
 {# begin {templatelocation} #}
+
+
 {# plugins/databox/templates/data/default/list_detail.thtml 20151109 #}
 <div class="databox">
   <h2>{title}</h2>

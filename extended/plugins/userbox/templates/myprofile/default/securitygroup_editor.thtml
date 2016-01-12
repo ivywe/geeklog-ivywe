@@ -1,4 +1,6 @@
 {# begin {templatelocation} #}
+
+
 {# plugins/userbox/templates/myprofile/default/securitygroup_editor.thtml 20151111 #}
 <form name="frmuserbox" action="{site_url}/{script}" method="post">
   <div class="table-wrapper-fit">
@@ -24,4 +26,6 @@
     </table>
   </div>
 </form>
+
+
 {# end {templatelocation} #}

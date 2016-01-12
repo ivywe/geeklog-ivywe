@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <div>
 {about_thispage}
 <form class="uk-form uk-form-horizontal" name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">

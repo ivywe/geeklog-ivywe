@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/newlist/default/list_col.thtml  20130331 { -->
+{# begin {templatelocation} #}
 
 <dt class="userbox_date">{day}</dt>
 <dd class="userbox_list"><a  class="gl-tooltip" style="cursor: pointer; " href="{url}">{title}<span class="classic" style="top: 2.2em; left: 2.2em;">{description}</span></a>{new_img}
@@ -65,4 +65,4 @@
 
 </dd>
 
-<!-- } plugins/userbox/templates/newlist/default/list_col.thtml -->
+{# end {templatelocation} #}

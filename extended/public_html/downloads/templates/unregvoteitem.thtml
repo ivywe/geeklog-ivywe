@@ -1,3 +1,4 @@
+{# begin {templatelocation} #}
 
 <!-- start unregvoteitem.thtml -->
         <tr class="pluginRow{cssid}" style="vertical-align:bottom;">
@@ -9,4 +10,6 @@
             onclick='if (confirm("Delete this record")) {this.form.op.value="delVote";this.form.lid.value="{lid}";this.form.rid.value="{ratingid}";return true};return false;' value="Delete"></input>
           </td>
         </tr>
-<!-- end unregvoteitem.thtml -->
+<!-- end unregvoteitem.thtml --
+
+{# end {templatelocation} #}

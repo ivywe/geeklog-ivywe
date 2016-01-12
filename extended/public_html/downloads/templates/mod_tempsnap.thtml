@@ -1,4 +1,7 @@
+{# begin {templatelocation} #}
 
 <!-- start mod_tempsnap.thtml -->
             &nbsp;<a href="{tempsnapurl}">{lang_tempfile}</a>
-<!-- end mod_tempsnap.thtml -->
+<!-- end mod_tempsnap.thtml --
+
+{# end {templatelocation} #}

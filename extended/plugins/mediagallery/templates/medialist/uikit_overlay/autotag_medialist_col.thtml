@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
                                     <li>
                                         <img src="{filename_disp}" width="960" height="300">
 
@@ -12,5 +14,7 @@
                                         </div>
 {!endif}
                                     </li>
+
+
 
 {# end {templatelocation} #}

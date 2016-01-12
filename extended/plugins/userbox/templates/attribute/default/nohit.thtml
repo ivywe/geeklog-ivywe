@@ -1,4 +1,6 @@
 {# begin {templatelocation} #}
+
+
 {# plugins/userbox/templates/attribute/default/nohit.thtml 20151111 #}
 <div >
   <p id="breadcrumbs"><a href="{site_url}/">{home}</a>{attribute_top}{field_top}</p>
@@ -8,4 +10,6 @@
   <p>{lang_nohit}</p>
 
 </div>
+
+
 {# end {templatelocation} #}

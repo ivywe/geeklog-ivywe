@@ -1,4 +1,5 @@
- <form style="display: inline" action="{paypal_url}/cgi-bin/webscr" method="post">
+{# begin {templatelocation} #}
+ <form class="uk-form" style="display: inline" action="{paypal_url}/cgi-bin/webscr" method="post">
   <input type="hidden" name="cmd" value="_xclick" />
   <input type="hidden" name="notify_url" value="{notify_url}" />
   <input type="hidden" name="cancel_return" value="{cancel_return}" />
@@ -13,3 +14,5 @@
   <input type="hidden" name="return" value="{return}" />
   <input type="submit" value="{buy_now_button}" name="submit" />
  </form>
+
+{# end {templatelocation} #}

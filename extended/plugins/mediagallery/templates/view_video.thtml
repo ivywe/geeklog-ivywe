@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <!-- start view_video.thtml -->
 {lbslideshow}
 <ul class="uk-breadcrumb">{birdseed}</ul>
@@ -59,5 +61,7 @@ function popitup(url)
 }
 //]]>
 </script>
+
+
 
 {# end {templatelocation} #}

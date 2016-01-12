@@ -1,3 +1,4 @@
+{# begin {templatelocation} #}
 
 <!-- start filelisting_record_no_tn.thtml -->
 
@@ -60,4 +61,6 @@
 
 
 
-<!-- end filelisting_record_no_tn.thtml -->
+<!-- end filelisting_record_no_tn.thtml --
+
+{# end {templatelocation} #}

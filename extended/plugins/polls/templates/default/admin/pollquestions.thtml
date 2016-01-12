@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <div id="po_{question_id}" {style} class="wide">
   <dl class="form_block">
     <dt><label>{lang_question}</label></dt>
@@ -12,5 +14,7 @@
 </div>
 
 <hr class="separator"{xhtml}>
+
+
 
 {# end {templatelocation} #}

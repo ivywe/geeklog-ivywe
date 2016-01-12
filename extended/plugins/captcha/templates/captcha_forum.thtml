@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
   <tr>
     <td class="pluginCellSubTitle" colspan="2">
 	    {slider}

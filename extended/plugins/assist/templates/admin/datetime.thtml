@@ -1,6 +1,6 @@
-<!-- plugins/assist/templates/admin/datetime.thtml { -->
+{# begin {templatelocation} #}
 
-<form action="{datetime_script}" method="post" >
+<form class="uk-form" action="{datetime_script}" method="post" >
     {datetime_title}
     <select name="{datetime}_year">
         {datetime_year_options}
@@ -22,5 +22,4 @@
     <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
 </form>
 
-<!-- } plugins/assist/templates/admin/datetime.thtml -->
-
+{# end {templatelocation} #}

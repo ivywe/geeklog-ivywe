@@ -1,4 +1,6 @@
 {# begin {templatelocation} #}
+
+
 {# plugins/databox/templates/data/default/col_detail.thtml 20151109 #}
 <th style="width:20%" class="alignright">{additionfield_name}
 <dl class="databox_col_detail">

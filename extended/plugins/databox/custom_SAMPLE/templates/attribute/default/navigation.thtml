@@ -1,4 +1,6 @@
 {# begin {templatelocation} #}
+
+
 {# plugins/databox/templates/attribute/default/navigation.thtml 20151106 #}
 <div class="databox">
 

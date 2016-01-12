@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/admin/information.thtml 20121023{ -->
+{# begin {templatelocation} #}
 
 {about_thispage}
 <p>Ver:{version}</p>
@@ -20,5 +20,6 @@
 <input type='hidden' name='conf_group' value='userbox'></form>
 <p> <a style='text-decoration: none;' href='#' onclick="document.userbox_conf_link.submit()">{lang_configuration}</a></p>
 
-<!-- } plugins/userbox/templates/admin/information.thtml -->
 
+
+{# end {templatelocation} #}

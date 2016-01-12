@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/attribute/default/list_detail.thtml 20140328 { -->
+{# begin {templatelocation} #}
 
 <div id="userbox">
 
@@ -33,4 +33,4 @@
 
 </div>
 
-<!-- } plugins/userbox/templates/attribute/default/list_detail.thtml -->
+{# end {templatelocation} #}

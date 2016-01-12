@@ -1,3 +1,4 @@
+{# begin {templatelocation} #}
 {noscript}
 <div id="pe_navbar" style="display:none">
 {navbar}
@@ -117,3 +118,4 @@
     </form>
 </div>
 
+{# end {templatelocation} #}

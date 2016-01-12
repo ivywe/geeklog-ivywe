@@ -1,4 +1,5 @@
-<!--plugins/userbox/templates/profile/default/list_detail.thtml { -->
+{# begin {templatelocation} #}
+
 <div class="userbox">
 	<h2>{title}</h2>
 	<dl class="uk-description-list-horizontal">
@@ -466,4 +467,5 @@
 	</fieldset>
 </div>
 {edit}
-<!--} plugins/userbox/templates/profile/default/list_detail.thtml -->
+
+{# end {templatelocation} #}

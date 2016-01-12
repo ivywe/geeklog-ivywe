@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/myprofile/default/profile_editor.thtml 20101118 { -->
+{# begin {templatelocation} #}
 
 <tr class="pluginRow1">
   <td colspan="2">
@@ -6,4 +6,4 @@
   </td>
 </tr>
 
-<!-- } plugins/userbox/templates/myprofile/default/profile_editor.thtml -->
+{# end {templatelocation} #}

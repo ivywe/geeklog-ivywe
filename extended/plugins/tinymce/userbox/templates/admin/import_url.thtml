@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/admin/import_url.thtml  20110420 { -->
+{# begin {templatelocation} #}
 
 <form action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data">
   <div>
@@ -13,4 +13,4 @@
   </div>
 </form>
 
-<!-- } plugins/userbox/templates/admin/import_url.thtml -->
+{# end {templatelocation} #}

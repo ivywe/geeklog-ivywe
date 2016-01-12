@@ -1,3 +1,4 @@
+{# begin {templatelocation} #}
 <div class="tabs">
 <!-- tabs -->
 <ul class="tabNavigation">
@@ -7,7 +8,7 @@
 
 <!-- tab containers -->
 <div id="map_infos" style="padding:5px 10px;">
-	<form id="map_form" action="{site_url}/admin/plugins/maps/map_edit.php" enctype="multipart/form-data"   method="POST">
+	<form class="uk-form" id="map_form" action="{site_url}/admin/plugins/maps/map_edit.php" enctype="multipart/form-data"   method="POST">
 	{mid}
 	<fieldset style="margin-top: 10px;"><legend>{arrow}<a style="text-decoration: none;" onClick="elementToggle('informations'); return false;" href="#"><b>{informations}</b></a></legend>
 		<div id="informations">
@@ -107,4 +108,6 @@
 	</div>
 </div>
 
-</div>
+</div
+
+{# end {templatelocation} #}

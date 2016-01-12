@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 {about_thispage}
 <p>Ver:{version}</p>
 <p><a href="{document_url}" target="_blank">{lang_document}</a>
@@ -22,4 +24,3 @@
 <p> <a style='text-decoration: none;' href='#' onclick="document.databox_conf_link.submit()">{lang_configuration}</a></p>
 
 {# end {templatelocation} #}
-

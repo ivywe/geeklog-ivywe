@@ -1,7 +1,11 @@
 {# begin {templatelocation} #}
 
+
+
 		&#60;div class="uk-width-small-1-2 uk-width-medium-1-4"&#62;
 			&#91;media:{media_id} src:disp&#93;
 		&#60;/div&#62;<br />
+
+
 
 {# end {templatelocation} #}

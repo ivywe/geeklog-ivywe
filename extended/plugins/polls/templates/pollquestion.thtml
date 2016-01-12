@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <div class="uk-overflow-container poll-questions">
 
 <script type="text/javascript">
@@ -26,6 +28,8 @@
 	<div id="{poll_id}_{question_id}" class="uk-width-1-1" style="overflow:hidden; min-height:450px"></div>
 
 </div>
+
+
 
 
 {# end {templatelocation} #}

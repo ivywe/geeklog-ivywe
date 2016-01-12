@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <ul class="uk-breadcrumb">
 <li><a href="{site_url}/">HOME</a></li>
 <li><a href="{site_url}/polls/">アンケートリスト</a></li>
@@ -32,5 +34,7 @@
 <div class="uk-overflow-container">
 	<div id="{poll_id}_{question_id}" style="min-width:500px ; min-height: 450px"></div>
 </div>
+
+
 
 {# end {templatelocation} #}

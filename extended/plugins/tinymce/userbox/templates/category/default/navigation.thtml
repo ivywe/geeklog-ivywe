@@ -1,4 +1,4 @@
-<!-- plugins/userbox/templates/category/default/navigation.thtml { -->
+{# begin {templatelocation} #}
 
 <div class="userbox">
 
@@ -21,4 +21,4 @@
 
 </div>
 
-<!-- } plugins/userbox/templates/category/default/navigation.thtml -->
+{# end {templatelocation} #}

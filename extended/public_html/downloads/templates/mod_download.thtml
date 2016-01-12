@@ -1,7 +1,8 @@
+{# begin {templatelocation} #}
 
 <!-- start mod_download.thtml -->
 {js_script}
-<form enctype="multipart/form-data" action="{action}" method="post" onsubmit="set_postcontent();" class="compact">
+<form enctype="multipart/form-data" action="{action}" method="post" onsubmit="set_postcontent();" class="uk-form compact">
   <div class="admin_basic">
     <dl class="form_block">
 {mod_submitter}
@@ -109,4 +110,6 @@
   </div>
 </form>
 {mod_votes}
-<!-- end mod_download.thtml -->
+<!-- end mod_download.thtml --
+
+{# end {templatelocation} #}

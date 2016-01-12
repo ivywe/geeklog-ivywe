@@ -1,3 +1,6 @@
+{# begin {templatelocation} #}
   <tr class="day">
 {calendar_days}
-  </tr>
+  </tr
+
+{# end {templatelocation} #}

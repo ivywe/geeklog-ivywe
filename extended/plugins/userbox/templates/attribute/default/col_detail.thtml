@@ -1,4 +1,6 @@
 {# begin {templatelocation} #}
+
+
 {# plugins/userbox/templates/attribute/default/col_detail.thtml 20151111 #}
 <li>
 <span style= "color:green" > &#123;data_link&#125;</span>{data_link}&nbsp;
@@ -91,4 +93,6 @@
 {grouplink_3} {grouplink_3_code}
 
 </li>
+
+
 {# end {templatelocation} #}

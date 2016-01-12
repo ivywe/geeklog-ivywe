@@ -1,4 +1,4 @@
-<!-- plugins/assist/templates/stories.thtml  { -->
+{# begin {templatelocation} #}
 
 <dl>
 
@@ -8,4 +8,4 @@
 <p><a href="{rss_url}">{rss_title}</a></p>
 <p class="more"><a href="{more_url}">{more_title}</a></p>
 
-<!-- } plugins/assist/templates/stories.thtml -->
+{# end {templatelocation} #}

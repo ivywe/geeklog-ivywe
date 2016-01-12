@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <table cellpadding="2" cellspacing="2">
     <tr>
         <td colspan="2">{intro_msg}</td>
@@ -26,7 +28,7 @@
     </tr>
     <tr>
         <td colspan="2">
-            <form name="userevent" method="post" action="{site_url}/calendarjp/event.php">
+            <form class="uk-form" name="userevent" method="post" action="{site_url}/calendarjp/event.php">
                 <div>
                     <input type="submit" value="{lang_addtomycalendar}"{xhtml}>
                     <input type="hidden" name="action" value="saveuserevent"{xhtml}>

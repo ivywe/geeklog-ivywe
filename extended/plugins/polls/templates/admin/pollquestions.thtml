@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+
+
 <div id="po_{question_id}" {style}>
   <div class="uk-form-row uk-margin-small-bottom">
     <label>{lang_question}</label>
@@ -26,5 +28,7 @@
 </div>
 
 <hr class="separator"{xhtml}>
+
+
 
 {# end {templatelocation} #}
