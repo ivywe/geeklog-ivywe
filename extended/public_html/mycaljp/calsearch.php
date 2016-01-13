@@ -305,7 +305,7 @@ foreach ($drivers as $driver_name) {
     }
 }
 
-$T->set_var('lang_site_calendar_result', $LANG_MYCALJP['pickup_title']); // ãƒãƒ¼ãƒ‰ã‚³ãƒ¼ãƒ‰
+$T->set_var('lang_site_calendar_result', $LANG_MYCALJP['pickup_title']); // ƒn[ƒhƒR[ƒh
 $T->parse('output', 't_index');
 $display = $T->finish($T->get_var('output'));
 $display = COM_createHTMLDocument($display, array('rightblock' => $_MYCALJP2_CONF['enablesrblocks']));

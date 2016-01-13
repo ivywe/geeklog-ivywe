@@ -1,6 +1,7 @@
 {# begin {templatelocation} #}
+
 <ul>
 {items}
-</ul
+</ul>
 
 {# end {templatelocation} #}
