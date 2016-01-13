@@ -115,6 +115,7 @@ function MG_imageAdmin($album_id, $page, $actionURL = '')
     $batchOptionSelect .= '</select>&nbsp;';
 
     $T->set_var(array(
+        'album_id'               => $album_id,
         'lang_albumsel'           => $LANG_MG01['destination_album'],
         'albumselect'             => $album_selectbox,
         'lang_save'               => $LANG_MG01['save'],

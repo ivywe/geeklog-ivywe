@@ -91,7 +91,7 @@ function doUnCheckAll_mediaitems() {
             <li>
 				<div class="uk-panel">
 					<div>html</div>
-					{!!autotag medialist:{album_id} theme:admin !!}
+					{!!autotag medialist:'.{album_id}.' theme:admin !!}
 				</div>
 			</li>
         </ul>
@@ -105,7 +105,7 @@ function doUnCheckAll_mediaitems() {
             <li>
 				<div class="uk-panel">
 					<div>html</div>
-					{!!autotag medialist:{album_id} theme:admin_uikit_grid_js !!}
+					{!!autotag medialist:'.{album_id}.' theme:admin_uikit_grid_js !!}
 				</div>
 			</li>
         </ul>
