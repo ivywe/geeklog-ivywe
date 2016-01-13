@@ -1093,7 +1093,7 @@ function MG_autotags($op, $content = '', $autotag = '')
             } else {
                 $filename = MG_getAlbumCover($parm1);
                 if ($filename != '') {
-                    $tfn = 'tn/' . $filename[0] . '/' . $filename;
+                    $tfn = 'tn/' . $filename[0] . '/' . $filename.'_cropcustom';
                     $ext = MG_getMediaExt($_MG_CONF['path_mediaobjects'] . $tfn);
                     $tnImage = $_MG_CONF['mediaobjects_url'] . '/' . $tfn . $ext;
                     $tnFileName = $_MG_CONF['path_mediaobjects'] . $tfn . $ext;
