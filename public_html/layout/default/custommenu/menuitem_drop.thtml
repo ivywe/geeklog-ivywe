@@ -1,8 +1,8 @@
 {# begin {templatelocation} #}
 
-		<li class="u{menuitem_class}" aria-expanded="false">
+		<li class="uk-parent {menuitem_class}" data-uk-dropdown>
 			<a href="#"><i class="uk-icon-caret-down"></i> {menuitem_text}</a>
-			<div class="class="uk-hidden">
+			<div class="uk-dropdown uk-dropdown-navbar">
 				<ul class="uk-nav uk-nav-navbar">
 					{menu_elements}
 				</ul>
