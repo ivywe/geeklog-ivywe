@@ -2,7 +2,7 @@
 
 
 
-<table cellpadding="0" cellspacing="0" class="admin-list-smalltable">
+<table class="uk-table uk-table-condensed uk-table-striped uk-width-1-1" style="background:#ffffff;">
     <tr>
         <th class="edit-perm-up admin-list-headerfield">{lang_owner}</th>
         <th class="edit-perm-up admin-list-headerfield">{lang_group}</th>

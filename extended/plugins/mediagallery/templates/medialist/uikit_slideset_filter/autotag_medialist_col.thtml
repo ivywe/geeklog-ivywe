@@ -1,7 +1,7 @@
 {# begin {templatelocation} #}
 
                                     <li data-uk-filter="filter-{media_category}">
-                                        <img src="{filename_disp}" alt="{media_title}" width="" height="">
+                                        <img src="{filename_disp}" alt="{media_title}"{xhtml}>
                                     </li>
 
 {# end {templatelocation} #}

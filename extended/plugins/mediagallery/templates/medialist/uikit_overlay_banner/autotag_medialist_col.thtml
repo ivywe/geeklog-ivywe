@@ -1,7 +1,7 @@
 {# begin {templatelocation} #}
 
                                     <li>
-                                        <img src="{filename_disp}"{xhtml}>
+                                        <img src="{filename_disp}"  alt="{media_title}" {xhtml}>
 
                                         <div class="uk-vertical-align uk-overlay-panel uk-overlay-bottom uk-overlay-fade uk-text-center">
 										    <div>

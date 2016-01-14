@@ -1,7 +1,7 @@
 {# begin {templatelocation} #}
 
                                     <li>
-                                        <img src="{filename_disp}" width="960" height="300">
+                                        <img src="{filename_disp}" alt="{media_title}" >
 
 {!if media_title}
                                         <div class="uk-overlay-panel uk-overlay-background uk-overlay-top uk-overlay-slide-top uk-overlay-fade">
