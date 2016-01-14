@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 {start_block}
 {navbar}
 <script type="text/javascript">
@@ -211,7 +209,5 @@ function formControl(){
 formControl();
 </script>
 {end_block}
-
-
 
 {# end {templatelocation} #}

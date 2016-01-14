@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <form name="quotareport" action="{site_admin_url}/quotareport.php" method="post" class="uk-form">
   <div style="margin-bottom:10px">
     {lang_quota} &gt;=&nbsp;<input type="text" name="quota" value="{quota}" size="3"{xhtml}>&nbsp;Mb&nbsp;
@@ -33,7 +31,5 @@
   </div>
 </form>
 <div style="text-align:center">{pagenav}</div>
-
-
 
 {# end {templatelocation} #}

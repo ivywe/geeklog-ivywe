@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <form action="{s_form_action}" method="post" id="mg-editcategory" class="compact uk-form">
   <div class="admin_basic">
     <dl class="form_block">
@@ -20,7 +18,5 @@
     </div>
   </div>
 </form>
-
-
 
 {# end {templatelocation} #}

@@ -1,12 +1,8 @@
 {# begin {templatelocation} #}
 
-
-
 <div class="uk-thumbnail" style="width:{framewidth}px;">
     {autotag}
     {!if caption}<div class="uk-thumbnail-caption" style="width:{width}px;">{caption}</div>{!endif}
 </div>
-
-
 
 {# end {templatelocation} #}

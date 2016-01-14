@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <table class="uk-table uk-table-condensed uk-table-striped uk-width-1-1" style="background:#ffffff;">
 <!-- BEGIN dirRow -->
 <tr>
@@ -27,7 +25,5 @@
 </tr>
 <!-- END fileRow -->
 </table>
-
-
 
 {# end {templatelocation} #}

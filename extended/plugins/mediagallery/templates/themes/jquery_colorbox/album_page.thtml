@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 {lbslideshow}
 <script type="text/javascript" src="{site_url}/players/audio-player.js"></script>
 
@@ -32,7 +30,5 @@ var surl = "{site_url}/album_items.php?aid={album_id}";
 <div class="contents"></div>
 <div class="footer"></div>
 </div>
-
-
 
 {# end {templatelocation} #}

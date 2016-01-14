@@ -1,9 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 {albumlist_col}
-
-
 
 {# end {templatelocation} #}

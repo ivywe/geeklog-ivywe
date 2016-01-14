@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset={charset}">
@@ -26,7 +24,5 @@ HEIGHT={height} WIDTH={width}>
 </EMBED></OBJECT>
 </body>
 </html>
-
-
 
 {# end {templatelocation} #}

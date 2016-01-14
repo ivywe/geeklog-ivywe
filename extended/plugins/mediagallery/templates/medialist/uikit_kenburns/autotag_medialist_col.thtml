@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <li>
 	<img src="{filename_disp}" alt="{media_title}">
 	<div class="uk-overlay-panel uk-overlay-fade">
@@ -14,7 +12,5 @@
 		<div class="uk-panel-badge uk-badge" style="top:initial; bottom:0">{media_keywords}</div>
 	</div>
 </li>
-
-
 
 {# end {templatelocation} #}

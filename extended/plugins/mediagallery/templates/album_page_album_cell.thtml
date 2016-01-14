@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <div class="mg_thumbnail" style="height:{row_height}px">
   <div class="mg_thumbnail_wrapper">{media_item_thumbnail}</div>
 </div>
@@ -21,7 +19,5 @@
 {!if lang_subalbums}
 <div class="uk-text-small"><span class="uk-text-bold">{lang_subalbums}</span> {subalbumcount}</div>
 {!endif}
-
-
 
 {# end {templatelocation} #}

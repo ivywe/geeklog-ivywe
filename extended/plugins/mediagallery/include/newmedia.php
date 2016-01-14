@@ -548,7 +548,7 @@ function MG_saveFileUpload($album_id)
         $filesize    = $object['size'];
         $filetmp     = $object['tmp_name'];
         $error       = $object['error'];
-        $caption     = 'No Name';
+        $caption     = '';
         $description = 'No Description';
         $attachtn    = '';
         $thumbnail   = '';

@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <form method="post" action="{s_form_action}" class="uk-form">
 <table class="uk-table uk-table-condensed uk-table-striped uk-width-1-1" style="background:#ffffff;">
 <tr>
@@ -17,7 +15,5 @@
 </tr>
 </table>
 </form>
-
-
 
 {# end {templatelocation} #}

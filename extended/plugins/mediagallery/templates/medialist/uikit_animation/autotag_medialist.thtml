@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 {!if edit}
 <fieldset>
 <legend><a href="{site_url}/mediagallery/album.php?aid={album_id}&page=1"><i class="uk-icon-file-image-o"></i> {album_title}</a></legend>
@@ -32,7 +30,5 @@
 {!if edit}
 </fieldset>
 {!endif}
-
-
 
 {# end {templatelocation} #}

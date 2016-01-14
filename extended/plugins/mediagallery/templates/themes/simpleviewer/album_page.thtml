@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 {lbslideshow}
 <script type="text/javascript" src="{site_url}/players/audio-player.js"></script>
 
@@ -28,7 +26,6 @@
 {!endif}
 </div>
 
-
 <div class="uk-text-center">
 
   <!--START SIMPLEVIEWER EMBED.-->
@@ -49,14 +46,11 @@
 
 </div>
 
-
 <div class="mg_navbar">
   <span>{album_id_display}</span><span class="mg_separator" style="">|</span><span>{page_number}</span>
   <div class="mg_pagination">{bottom_pagination}</div>
 </div>
 <div class="mg_jumpbox">{jumpbox}</div>
 <div class="mg_sortbox">{select_sortbox}</div>
-
-
 
 {# end {templatelocation} #}

@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 {lang_static_sort_help}
 <form name="staticsort" method="post" action="{s_form_action}" class="uk-form">
 <div>
@@ -67,7 +65,5 @@
   <input type="submit" name="mode" value="{lang_cancel}"{xhtml}>
 </div>
 </form>
-
-
 
 {# end {templatelocation} #}

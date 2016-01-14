@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <fieldset>
   <legend>{lang_playback_options}</legend>
 
@@ -55,7 +53,5 @@
   <br{xhtml}>
 
 </fieldset>
-
-
 
 {# end {templatelocation} #}

@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 {start_block_useralbums}
   <table class="uk-table uk-table-condensed uk-table-striped uk-width-1-1" style="background:#ffffff;">
     <tr>
@@ -18,7 +16,5 @@
     <!-- END itemRow -->
   </table>
 {end_block}
-
-
 
 {# end {templatelocation} #}

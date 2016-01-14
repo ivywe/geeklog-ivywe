@@ -642,7 +642,7 @@ class Media {
             $media_time = MG_getUserDateTimeFormat($this->time);
         }
 
-        $media_title = (!empty($this->title)) ? PLG_replaceTags($this->title) : 'No Name';
+        $media_title = (!empty($this->title)) ? PLG_replaceTags($this->title) : '';
 
         $T = COM_newTemplate($templatePath);
         $T->set_file(array(

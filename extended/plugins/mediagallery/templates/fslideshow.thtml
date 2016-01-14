@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <div class="mg_album_header">
   <div class="mg_album_title"><strong>{album_title}</strong></div>
   <div class="mg_search">{pagination}</div>
@@ -31,7 +29,5 @@
 </div>
 </div>
 <!-- END slideItems -->
-
-
 
 {# end {templatelocation} #}

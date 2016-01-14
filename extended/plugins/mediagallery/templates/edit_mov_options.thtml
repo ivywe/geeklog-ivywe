@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <fieldset>
   <legend>{lang_playback_options}</legend>
 
@@ -130,7 +128,5 @@
   <div style="clear:both;"></div>
   <br{xhtml}>
 </fieldset>
-
-
 
 {# end {templatelocation} #}

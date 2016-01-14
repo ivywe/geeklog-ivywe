@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 {lbslideshow}
 <script type="text/javascript" src="{site_url}/players/audio-player.js"></script>
 
@@ -28,7 +26,6 @@
 {!endif}
 </div>
 
-
 <table class="uk-table uk-table-condensed uk-table-striped uk-width-1-1" style="background:#ffffff;">
 <!-- BEGIN ImageRow -->
 <!-- BEGIN ImageColumn -->
@@ -47,7 +44,5 @@
 </div>
 <div class="mg_jumpbox">{jumpbox}</div>
 <div class="mg_sortbox">{select_sortbox}</div>
-
-
 
 {# end {templatelocation} #}

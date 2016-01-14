@@ -112,6 +112,4 @@ function doUnCheckAll_mediaitems() {
     </li>
 </ul>
 
-
-
 {# end {templatelocation} #}

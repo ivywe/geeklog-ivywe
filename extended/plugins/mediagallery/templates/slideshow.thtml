@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <div class="mg_album_header">
   <div class="mg_album_title"><strong>{album_title}</strong></div>
   <div class="mg_search">{pagination}</div>
@@ -302,7 +300,5 @@ function setCaption(text) {
 {URL}
 {CAPTION}
 <!-- END photo_url -->
-
-
 
 {# end {templatelocation} #}

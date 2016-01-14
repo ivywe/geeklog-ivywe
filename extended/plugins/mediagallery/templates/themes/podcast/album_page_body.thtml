@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <table style="width:100%;border:none;margin:0px auto;">
 <!-- BEGIN ImageRow -->
 <!-- BEGIN ImageColumn -->
@@ -13,7 +11,5 @@
 <!-- END ImageColumn -->
 <!-- END ImageRow -->
 </table>
-
-
 
 {# end {templatelocation} #}

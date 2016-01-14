@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <h2>{lang_playback_options}</h2>
 <table class="uk-table uk-table-condensed uk-table-striped uk-width-1-1" style="background:#ffffff;">
   <tr>
@@ -130,7 +128,5 @@
     </td>
   </tr>
 </table>
-
-
 
 {# end {templatelocation} #}

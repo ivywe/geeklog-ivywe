@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 {lbslideshow}
 <script type="text/javascript" src="{site_url}/players/audio-player.js"></script>
 
@@ -46,7 +44,7 @@
 
 <table class="uk-table uk-table-condensed uk-table-striped uk-width-1-1" style="background:#ffffff;">
 <tr>
-  <th class="uk-text-center" style="width:52px;">&nbsp;</th>
+  <th class="uk-text-center">&nbsp;</th>
   <th>{list_title}</th>
   <th>{list_desc}</th>
   <th>{list_size}</th>
@@ -62,8 +60,6 @@
 
 {!if lang_no_image}<div class="noitems">{lang_no_image}</div>{!endif}
 
-
-
 <ul class="uk-subnav uk-subnav-line uk-flex-center">
   <li>{album_id_display}</li>
   <li>{page_number}</li>
@@ -71,7 +67,5 @@
 </ul>
 <div class="uk-float-right">{jumpbox}</div>
 <div class="uk-float-left">{select_sortbox}</div>
-
-
 
 {# end {templatelocation} #}

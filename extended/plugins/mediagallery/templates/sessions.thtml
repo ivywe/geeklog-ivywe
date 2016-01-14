@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 {!if noitems}
 {!else}
 <script type="text/javascript">
@@ -79,7 +77,5 @@ function doUnCheckAll_sessions()
   <input type="submit" name="mode"   value="{lang_delete}"{xhtml}>
 </div>
 </form>
-
-
 
 {# end {templatelocation} #}

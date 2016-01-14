@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <form name="globalattr" enctype="multipart/form-data" method="post" action="{s_form_action}" class="uk-form">
 <div>
 <input type="hidden" name="action" value="{action}"{xhtml}>
@@ -282,7 +280,5 @@
   <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
 </div>
 </form>
-
-
 
 {# end {templatelocation} #}

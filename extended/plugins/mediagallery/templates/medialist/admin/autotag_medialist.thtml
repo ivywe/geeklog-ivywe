@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <div class="uk-margin-large uk-panel uk-panel-box">
 
   <h2>&#91;medialist:{album_id}&#93;</h2>
@@ -11,7 +9,5 @@
   </div>
 
 </div>
-
-
 
 {# end {templatelocation} #}

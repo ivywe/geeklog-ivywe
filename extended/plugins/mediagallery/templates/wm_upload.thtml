@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 {start_block}
 <form action="{s_form_action}" method="post" enctype="multipart/form-data" id="watermarkupload" class="compact uk-form">
   <div class="admin_basic">
@@ -26,7 +24,5 @@
   </div>
 </form>
 {end_block}
-
-
 
 {# end {templatelocation} #}

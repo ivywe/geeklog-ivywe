@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <script type="text/javascript">
     var flashvars = {};
     var params = {
@@ -29,7 +27,5 @@
     </a>
   </div>
 </div>
-
-
 
 {# end {templatelocation} #}

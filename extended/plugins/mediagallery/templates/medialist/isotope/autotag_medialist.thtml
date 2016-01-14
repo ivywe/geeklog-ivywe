@@ -1,9 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 {medialist_col}
-
-
 
 {# end {templatelocation} #}

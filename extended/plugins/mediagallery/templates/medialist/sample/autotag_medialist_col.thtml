@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 	<div class="uk-margin-top-large {class}">
 
 		<fieldset>
@@ -33,7 +31,5 @@
 		{edit}
 		</fieldset>
 	</div>
-
-
 
 {# end {templatelocation} #}
