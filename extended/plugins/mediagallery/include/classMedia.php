@@ -166,10 +166,14 @@ class Media {
     static public function getThumbInfo(&$info, $tn_size='')
     {
         global $_MG_CONF;
-
-        if ($info['media_tn_attached'] == 1) {
-            $pimage = self::getFilePath('tn', $info['media_filename'], 'jpg', 1);
-            $image  = self::getFileUrl ('tn', $info['media_filename'], 'jpg', 1);
+		if ($info['media_tn_attached'] == 1) {
+            $filename = $info['media_filename'];
+            $fname = 'tn/' . $filename[0] . '/tn_' . $filename;
+            $ext = MG_getMediaExt($_MG_CONF['path_mediaobjects'] . $fname);
+            $pimage = $_MG_CONF['path_mediaobjects']      . $fname. $ext;
+			$image  = $_MG_CONF['mediaobjects_url'] . '/' . $fname. $ext;
+            //$pimage = self::getFilePath('tn', $info['media_filename'], 'jpg', 1);
+            //$image  = self::getFileUrl ('tn', $info['media_filename'], 'jpg', 1);
         } else {
             $fname = self::getDefaultThumbnail($info, $tn_size);
             $pimage = $_MG_CONF['path_mediaobjects']      . $fname;
@@ -642,7 +646,7 @@ class Media {
             $media_time = MG_getUserDateTimeFormat($this->time);
         }
 
-        $media_title = (!empty($this->title)) ? PLG_replaceTags($this->title) : '';
+        $media_title = (!empty($this->title)) ? PLG_replaceTags($this->title) : 'No Name';
 
         $T = COM_newTemplate($templatePath);
         $T->set_file(array(
