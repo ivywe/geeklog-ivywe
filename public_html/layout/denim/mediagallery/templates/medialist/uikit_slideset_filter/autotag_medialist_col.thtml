@@ -1,7 +1,0 @@
-<!-- plugins/mediagallery/templates/medialist/uikit_slideset/autotag_medialist_col.thtml { -->
-
-                                    <li data-uk-filter="filter-{media_category}">
-                                        <img src="{filename_disp}" alt="{media_title}" width="" height="">
-                                    </li>
-
-<!-- } plugins/mediagallery/templates/medialist/uikit_slideset/autotag_medialist_col.thtml -->

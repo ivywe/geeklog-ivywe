@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <form action="{site_admin_url}/plugins/custommenu/index.php" method="post" class="uk-form compact">
   <div class="admin_basic">
     <dl class="form_block">
