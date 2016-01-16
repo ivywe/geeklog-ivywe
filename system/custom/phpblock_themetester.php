@@ -348,7 +348,7 @@ function phpblock_themetester() {
 
 	// Displays a form in which users change the theme
 	$retval .= '<div id="themetester">' . LB
-			.  '  <form action="' . $url . '" method="post">' . LB
+			.  '  <form action="' . $url . '" method="post" class="uk-form">' . LB
 			.  '    <select name="themetester_theme" onchange="this.form.submit()">' . LB;
 
 	foreach ($installed_themes as $theme) {

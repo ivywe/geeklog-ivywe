@@ -13,7 +13,7 @@
 	</div>
 	{msgs}
 	<div>
-	<form method="post" action="">
+	<form method="post" action="" class="uk-form">
 		<input type="hidden" name="A[]" value="0"{xhtml}>
 		<input type="checkbox" id="ch1" name="A[]" value="1"{checked1}{xhtml}>
 		<label for="ch1">1. テーブル構造・データの日本語化</label>

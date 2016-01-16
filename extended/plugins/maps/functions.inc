@@ -1522,7 +1522,7 @@ function MAPS_getMap ($mid, $zoom='', $address='')
         $T->set_var('date_and_hits', $LANG_MAPS_1['last_modification'] . ' ' . $update[0] . ' | ' . $A['hits'] . ' ' . $LANG_MAPS_1['hits']);
 
         if (SEC_hasRights('maps.admin')){
-            $T->set_var('edit_button', '<form id="edit_map" action="' . $_CONF['site_admin_url'] . '/plugins/maps/map_edit.php" method="POST">
+            $T->set_var('edit_button', '<form class="uk-form" id="edit_map" action="' . $_CONF['site_admin_url'] . '/plugins/maps/map_edit.php" method="POST">
             <div style="float:right"> <input type="image" src="' . $_CONF['site_admin_url'] . '/plugins/maps/images/edit.png" name="submit" align="absmiddle" /></div>
             <input type="hidden" name="mode" value="edit" /><input type="hidden" name="mid" value="' . $mid . '" />
         </form>');

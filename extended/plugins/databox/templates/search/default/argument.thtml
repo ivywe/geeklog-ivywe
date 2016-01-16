@@ -2,7 +2,7 @@
 
 
 
-<form action="{site_url}/{this_script}" method="get" >
+<form class="uk-form" action="{site_url}/{this_script}" method="get" >
 <div >
 <!-- argument example -->
 <!-- 以下は参考例です ない場合は表示されません -->

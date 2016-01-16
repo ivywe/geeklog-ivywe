@@ -10,7 +10,7 @@
             {preview}
         </fieldset>
     </div>
-    <form action="{site_url}/usersettings.php" method="post" {enctype}>
+    <form class="uk-form" action="{site_url}/usersettings.php" method="post" {enctype}>
     <div id="pe_namepass" class="jsenabled_show">
         <fieldset style="margin-top:10px;"><legend>{lang_name_legend}</legend>
             <table class="inputTable">
