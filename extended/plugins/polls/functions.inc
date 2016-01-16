@@ -1153,7 +1153,10 @@ function plugin_getheadercode_polls()
     // You normally only set the css file when needed but with the possibility of
     // the poll block or autotag being displayed after COM_SiteHeader being called
     // we need to set it just in case
-    $_SCRIPTS->setCSSFile('polls', '/polls/style.css');
+
+	$header = '<!-- AJAX API のロード -->' .LB. '<script type="text/javascript" src="//www.google.com/jsapi"></script>' . LB;
+	return $header;
+
 }
 
 
