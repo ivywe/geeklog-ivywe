@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
-
-
-{# plugins/userbox/templates/attribute/default/col_detail.thtml 20151111 #}
+{# plugins/userbox/templates/attribute/default/col_detail.thtml 20160122 #}
 <li>
 <span style= "color:green" > &#123;data_link&#125;</span>{data_link}&nbsp;
 <span style= "color:green" > &#123;data_url&#125;</span>{data_url}&nbsp;
@@ -53,6 +51,32 @@
 <span style="color:green">&#123;group_team&#125;&#123;group_team_code&#125;</span>
 {group_type} {group_team_code}
 
+{# アトリビュート（追加項目） 登録したテーマ変数を使用する　テーマ変数 例 #}
+
+<span style="color:green">&#123;tel_name&#125;</span>{tel_name}
+<span style="color:green">&#123;tel_requried&#125;</span>{tel_requried}
+
+<span style="color:green">&#123;tel_description&#125;</span>{tel_description}
+<span style="color:green">&#123;tel&#125;</span>{tel}
+<span style="color:green">&#123;tel_requried&#125;</span>{tel_requried}
+<span style="color:green">&#123;pref&#125;</span>{pref}
+<span style="color:green">&#123;pref_mst_value2&#125;</span>{pref_mst_value2}
+<span style="color:green">&#123;pref_mst_disp&#125;</span>{pref_mst_disp}
+<span style="color:green">&#123;pref_mst_nop&#125;</span>{pref_mst_no}
+<span style="color:green">&#123;yesno&#125;</span>{yesno}
+<span style="color:green">&#123;fg12&#125;</span>{fg12}
+<span style="color:green">&#123;fg12_tn&#125;</span>{fg12_tn}
+<span style="color:green">&#123;fg12_noimage&#125;</span>{fg12_noimage}
+<span style="color:green">&#123;fg12_tn_noimage&#125;</span>{fg12_tn_noimage}
+<span style="color:green">&#123;fg12_disp&#125;</span>{fg12_disp}
+<span style="color:green">&#123;fg12_tn_image&#125;</span>{fg12_tn_image}
+{# タイプが添付ファイルの場合表示されます　記憶ファイル名 #}
+<span style="color:green">&#123;file_readfile&#125;</span>{file_readfile}
+{# ダウンロードのリンク例 #}
+<a href="{site_url}/databox/download.php?id=394&field_id=84" 		title="{lang_downloadrequired}">{file} {lang_download}</a>
+{# 添付ファイルがpdfの場合の 表示のリンク例 #}
+<a href="{site_url}/databox/download.php?id=394&field_id=84&mode=display"title="{lang_displayrequired}">{file} {lang_display}</a>
+
 {# カテゴリ リンク付　グループコード使用テーマ変数 #}
 &nbsp;&nbsp;&nbsp;
 <span style="color:green">&#123;grouplink_city&#125;&#123;grouplink_city_code&#125;</span>
@@ -93,6 +117,4 @@
 {grouplink_3} {grouplink_3_code}
 
 </li>
-
-
 {# end {templatelocation} #}

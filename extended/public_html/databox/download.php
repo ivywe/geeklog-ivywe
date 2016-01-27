@@ -43,6 +43,7 @@ if (COM_isAnonUser()){
 
 //引数
 //public_html/download.php?id=1&field_id=
+//public_html/download.php?id=1&code=
 $id = '';
 if (isset ($_REQUEST['id'])) {
     $id = COM_applyFilter ($_REQUEST['id'], true);
@@ -57,7 +58,7 @@ if (isset ($_REQUEST['field_id'])) {
 }
 $field_code = '';
 if (isset ($_REQUEST['field_code'])) {
-    $field_id = COM_applyFilter ($_REQUEST['field_code'], false);
+    $field_code = COM_applyFilter ($_REQUEST['field_code'], false);
 }
 $mode = '';
 if (isset ($_REQUEST['mode'])) {

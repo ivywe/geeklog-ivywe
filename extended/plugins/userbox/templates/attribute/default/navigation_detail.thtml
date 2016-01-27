@@ -1,6 +1,4 @@
 {# begin {templatelocation} #}
-
-
 {# plugins/userbox/templates/attribute/default/navigation_detail.thtml 20151111 #}
 <div class="userbox">
     <div class="order">
@@ -34,6 +32,4 @@
   <div style="clear:both"></div>
 
 </div>
-
-
 {# end {templatelocation} #}

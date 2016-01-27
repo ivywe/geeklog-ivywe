@@ -1815,7 +1815,8 @@ function DATABOX_getaddtionfieldsDisp(
             $fieldhtmldisp_tn="";//外画像　画像表示　（準備中）
             $fieldhtml_noimage="";
             $fieldhtml_tn_noimage="";
-            $fieldhtml_tn_image="";//サムネイル
+			$fieldhtml_tn_image="";//サムネイル
+			$fieldhtml_readfile="";//添付ファイルreadfile
             $mstitems=array();
             $fieldhtml_yes="";
             switch ($type) {
@@ -1866,7 +1867,7 @@ function DATABOX_getaddtionfieldsDisp(
 
                     break;
                 case 13://添付ファイル
-                    if  ($fvalue===""){
+                    if  ($fvalue==""){
                     }else{
                         $a=explode("|",$fvalue);
                         $fieldhtml .= $a[1];
@@ -1874,7 +1875,7 @@ function DATABOX_getaddtionfieldsDisp(
                     }
                     break;
                 case 11://画像（DB記憶)
-                    if  ($fvalue===""){
+                    if  ($fvalue==""){
                     }else{
                         $fieldhtml .="<img src=\"data:image/jpg;base64,";
                         $fieldhtml .="{$fvalue}\"".XHTML.">";
@@ -2027,7 +2028,13 @@ function DATABOX_getaddtionfieldsDisp(
             //@@@@@ 準備中　$templates->set_var('additionfield'.$fid."_disptn", $fieldhtmldisp_tn);
             //@@@@@ 準備中　$templates->set_var($templatesetvar."_disptn", $fieldhtmldisp_tn);
 			
-			//添付ファイルの記憶ファイル名(templatesetvar_(id)_(readfile))
+            if  ( $type==13  ){
+                $templates->set_var('display_c', 'display:');
+            }else{
+                $templates->set_var('display_c', 'display:none');
+            }
+			//(c)添付ファイルの記憶ファイル名(templatesetvar_(id)_(readfile))
+            $templates->set_var('additionfield_value_readfile', $fieldhtml_readfile);
             $templates->set_var('additionfield'.$fid."_readfile", $fieldhtml_readfile);
             $templates->set_var($templatesetvar."_readfile", $fieldhtml_readfile);
 			
@@ -5412,7 +5419,6 @@ function DATABOX_fieldownload(
     $sql .= " AND (expired=0 OR expired > NOW())";
     //アクセス権のないデータ はのぞく
     $sql .= COM_getPermSql('AND');
-	
 	$result = DB_query ($sql);
     $num = DB_numRows ($result);
     $rt="Target file is not found";

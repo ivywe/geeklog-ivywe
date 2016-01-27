@@ -1,6 +1,4 @@
 {# begin {templatelocation} #}
-
-
 {# plugins/userbox/templates/profile/default/list_detail.thtml 20151111 #}
 <div class="userbox">
 	<h2>{title}</h2>
@@ -469,6 +467,4 @@
 	</fieldset>
 </div>
 {edit}
-
-
 {# end {templatelocation} #}

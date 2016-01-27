@@ -1,6 +1,4 @@
 {# begin {templatelocation} #}
-
-
 {# plugins/userbox/templates/attribute/default/list.thtml 20151111 #}
 <div >
 
@@ -23,6 +21,4 @@
   </ul>
 
 </div>
-
-
 {# end {templatelocation} #}

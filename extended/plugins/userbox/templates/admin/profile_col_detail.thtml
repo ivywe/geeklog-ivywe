@@ -1,9 +1,5 @@
 {# begin {templatelocation} #}
-
-
 {# plugins/userbox/templates/admin/profile_col_detail.thtml 20151111 #}
     <th class="admin-list-field">{additionfield_name}<span class="must">{lang_must_additionfield}</span></th>
     <td class="admin-list-field">{additionfield_value}{additionfield_description}</td>
-
-
 {# end {templatelocation} #}

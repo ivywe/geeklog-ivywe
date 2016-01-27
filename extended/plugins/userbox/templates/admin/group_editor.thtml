@@ -1,6 +1,4 @@
 {# begin {templatelocation} #}
-
-
 {# plugins/userbox/templates/admin/group_editor.thtml 20151111 #}
 <div id="userbox_admin">
   {about_thispage}
@@ -82,6 +80,4 @@
     <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
   </form>
 </div>
-
-
 {# end {templatelocation} #}

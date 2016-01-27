@@ -30,35 +30,8 @@ function LIB_List(
     $lang_box=$$lang_box;
 
     $table=$_TABLES[strtoupper($pi_name).'_def_fieldset'];
-
-    require_once( $_CONF['path_system'] . 'lib-admin.php' );
-
-    $retval = '';
-    //MENU1:管理画面
-    $url1=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=new';
-    $url2=$_CONF['site_url'] . '/'.$pi_name.'/list.php';
-    $url5=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=export';
-    $url6=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=import';
-
-    $menu_arr[]=array('url' => $url1,'text' => $lang_box_admin['new']);
-    $menu_arr[]=array('url' => $url2,'text' => $lang_box['list']);
-    $menu_arr[]=array('url' => $url5,'text' => $lang_box_admin['export']);
-    //$menu_arr[]=array('url' => $url6,'text' => $lang_box['export']);
-    $menu_arr[]=array('url' => $_CONF['site_admin_url'],'text' => $LANG_ADMIN['admin_home']);
-
-
-    $retval .= COM_startBlock($lang_box_admin['admin_list'], '',
-                              COM_getBlockTemplate('_admin_block', 'header'));
-
-    $function="plugin_geticon_".$pi_name;
-    $icon=$function();
-    $retval .= ADMIN_createMenu(
-        $menu_arr,
-        $lang_box_admin['instructions'],
-        $icon
-    );
-
-    //ヘッダ：編集～
+	
+	//ヘッダ：編集～
     $header_arr[]=array('text' => $LANG_ADMIN['edit'], 'field' => 'editid', 'sort' => false);
     $header_arr[]=array('text' => $LANG_ADMIN['copy'], 'field' => 'copy', 'sort' => false);
     $header_arr[]=array('text' => $lang_box_admin['fieldset_id'], 'field' => 'fieldset_id', 'sort' => true);
@@ -99,8 +72,6 @@ function LIB_List(
         , $query_arr
         , $defsort_arr
         );
-
-    $retval .= COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
 
     return $retval;
 }
@@ -292,10 +263,6 @@ function LIB_Edit(
         $delflg=false;
     }
 
-    $retval .= COM_startBlock ($lang_box_admin['edit'], '',
-                               COM_getBlockTemplate ('_admin_block', 'header'));
-
-
     $tmplfld=DATABOX_templatePath('admin','default',$pi_name);
     $templates = new Template($tmplfld);
     $templates->set_file('editor',"fieldset_editor.thtml");
@@ -367,7 +334,6 @@ function LIB_Edit(
     //
     $templates->parse('output', 'editor');
     $retval .= $templates->finish($templates->get_var('output'));
-    $retval .= COM_endBlock (COM_getBlockTemplate ('_admin_block', 'footer'));
 
     return $retval;
 }
@@ -592,7 +558,6 @@ function LIB_delete (
     if ($err<>"") {
         $pagetitle = $lang_box_admin['err'];
         $retval .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
-
         $retval .= COM_startBlock ($lang_box_admin['err'], '',
                             COM_getBlockTemplate ('_msg_block', 'header'));
         $retval .= $err;
@@ -692,8 +657,6 @@ function LIB_import (
     $import = $tmpl->finish ($tmpl->get_var ('output'));
 
     $retval="";
-    $retval .= COM_startBlock ($lang_box_admin['import'], '',
-                            COM_getBlockTemplate ('_admin_block', 'header'));
     $retval .= $import;
     $retval .= COM_endBlock (COM_getBlockTemplate ('_admin_block', 'footer'));
 
@@ -823,24 +786,6 @@ function LIB_ListFields(
     require_once( $_CONF['path_system'] . 'lib-admin.php' );
 
     $retval = '';
-    //MENU1:管理画面
-    $url2=$_CONF['site_url'] . '/admin/plugins/'.$pi_name.'/fieldset.php';
-	
-    $menu_arr[]=array('url' => $url2,'text' => $lang_box_admin['fieldsetlist']);
-    $menu_arr[]=array('url' => $_CONF['site_admin_url'],'text' => $LANG_ADMIN['admin_home']);
-
-
-    $retval .= COM_startBlock($lang_box_admin['admin_list'], '',
-                              COM_getBlockTemplate('_admin_block', 'header'));
-
-    $function="plugin_geticon_".$pi_name;
-    $icon=$function();
-    $retval .= ADMIN_createMenu(
-        $menu_arr,
-        $lang_box_admin['instructions'],
-        $icon
-    );
-
    //ヘッダ：編集～
     $header_arr[]=array('text' => $lang_box_admin['orderno'], 'field' => 'orderno', 'sort' => true);
     $header_arr[]=array('text' => $LANG_ADMIN['edit'], 'field' => 'editid', 'sort' => false);
@@ -1002,28 +947,11 @@ function LIB_editfields(
 	
     $menu_arr[]=array('url' => $url2,'text' => $lang_box_admin['fieldsetlist']);
     $menu_arr[]=array('url' => $_CONF['site_admin_url'],'text' => $LANG_ADMIN['admin_home']);
-
-    $retval .= COM_startBlock($lang_box_admin['admin_list']. " - $fieldset_name", '',
-                              COM_getBlockTemplate('_admin_block', 'header'));
-
-	
-	$function="plugin_geticon_".$pi_name;
-    $icon=$function();
-    $retval .= ADMIN_createMenu(
-        $menu_arr,
-        $lang_box_admin['inst_fieldsetfields'],
-        $icon
-    );
 	
     $tmplfld=DATABOX_templatePath('admin','default',$pi_name);
     $templates = new Template($tmplfld);
 	$templates->set_file('editor',"fieldset_fields.thtml");
-	
-	
     //--
-	
-	
-	
     $templates->set_var('site_url', $_CONF['site_url']);
     $templates->set_var('site_admin_url', $_CONF['site_admin_url']);
 
@@ -1196,23 +1124,6 @@ function LIB_ListGroups(
     require_once( $_CONF['path_system'] . 'lib-admin.php' );
 
     $retval = '';
-    //MENU1:管理画面
-    $url2=$_CONF['site_url'] . '/admin/plugins/'.$pi_name.'/fieldset.php';
-	
-    $menu_arr[]=array('url' => $url2,'text' => $lang_box_admin['fieldsetlist']);
-    $menu_arr[]=array('url' => $_CONF['site_admin_url'],'text' => $LANG_ADMIN['admin_home']);
-
-
-    $retval .= COM_startBlock($lang_box_admin['admin_list'], '',
-                              COM_getBlockTemplate('_admin_block', 'header'));
-
-    $function="plugin_geticon_".$pi_name;
-    $icon=$function();
-    $retval .= ADMIN_createMenu(
-        $menu_arr,
-        $lang_box_admin['instructions'],
-        $icon
-    );
 
    //ヘッダ：編集～
     $header_arr[]=array('text' => $lang_box_admin['orderno'], 'field' => 'orderno', 'sort' => true);
@@ -1331,24 +1242,6 @@ function LIB_editgroups(
 
     $fieldset_listing_url=$_CONF['site_admin_url'] . "/plugins/".THIS_SCRIPT;
 	
-    //MENU1:管理画面
-    $url2=$_CONF['site_url'] . '/admin/plugins/'.$pi_name.'/fieldset.php';
-	
-    $menu_arr[]=array('url' => $url2,'text' => $lang_box_admin['fieldsetlist']);
-    $menu_arr[]=array('url' => $_CONF['site_admin_url'],'text' => $LANG_ADMIN['admin_home']);
-
-    $retval .= COM_startBlock($lang_box_admin['admin_list']. " - $fieldset_name", '',
-                              COM_getBlockTemplate('_admin_block', 'header'));
-
-	
-	$function="plugin_geticon_".$pi_name;
-    $icon=$function();
-    $retval .= ADMIN_createMenu(
-        $menu_arr,
-        $lang_box_admin['inst_fieldsetgroups'],
-        $icon
-    );
-	
     $tmplfld=DATABOX_templatePath('admin','default',$pi_name);
     $templates = new Template($tmplfld);
 	$templates->set_file('editor',"fieldset_groups.thtml");
@@ -1389,8 +1282,6 @@ function LIB_editgroups(
 	
     $templates->parse('output', 'editor');
     $retval .= $templates->finish($templates->get_var('output'));
-	
-    $retval .= COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
 
     return $retval;
 }
@@ -1583,6 +1474,53 @@ function LIB_templatesdirectory (
 
     return $selection;
 
+}
+function LIB_Menu(
+    $pi_name
+)
+// +---------------------------------------------------------------------------+
+// | 機能  menu表示  
+// | 書式 LIB_Menu("databox")
+// +---------------------------------------------------------------------------+
+// | 引数 $pi_name:plugin name 'databox' 'userbox' 'formbox'
+// +---------------------------------------------------------------------------+
+// | 戻値 menu 
+// +---------------------------------------------------------------------------+
+{
+
+    global $_CONF;
+    global $LANG_ADMIN;
+
+    $lang_box_admin="LANG_".strtoupper($pi_name)."_ADMIN";
+    global $$lang_box_admin;
+    $lang_box_admin=$$lang_box_admin;
+
+    $lang_box="LANG_".strtoupper($pi_name);
+    global $$lang_box;
+    $lang_box=$$lang_box;
+
+    $retval = '';
+    //MENU1:管理画面
+    $url1=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=new';
+    $url2=$_CONF['site_url'] . '/'.$pi_name.'/list.php';
+    $url5=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=export';
+    $url6=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=import';
+
+    $menu_arr[]=array('url' => $url1,'text' => $lang_box_admin['new']);
+    $menu_arr[]=array('url' => $url2,'text' => $lang_box['list']);
+    $menu_arr[]=array('url' => $url5,'text' => $lang_box_admin['export']);
+    //$menu_arr[]=array('url' => $url6,'text' => $lang_box['export']);
+    $menu_arr[]=array('url' => $_CONF['site_admin_url'],'text' => $LANG_ADMIN['admin_home']);
+
+    $function="plugin_geticon_".$pi_name;
+    $icon=$function();
+    $retval .= ADMIN_createMenu(
+        $menu_arr,
+        $lang_box_admin['instructions'],
+        $icon
+    );
+
+    return $retval;
 }
 
 ?>

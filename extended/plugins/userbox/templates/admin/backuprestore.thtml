@@ -1,6 +1,4 @@
 {# begin {templatelocation} #}
-
-
 {# plugins/userbox/templates/admin/backuprestore.thtml 20151111 #}
 {about_thispage}
 <fieldset style="margin-top:10px;">
@@ -20,6 +18,5 @@
 </form>
 </blockquote>
 </fieldset>
-
-
 {# end {templatelocation} #}
+
