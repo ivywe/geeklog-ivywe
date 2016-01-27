@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
     <li>{category_link} {category_description}({count}) &nbsp;{category_name} &nbsp;{category_url}&nbsp;{category_id}&nbsp;{category_code}</li>
 
 {# end {templatelocation} #}

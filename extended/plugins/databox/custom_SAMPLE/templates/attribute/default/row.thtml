@@ -1,6 +1,7 @@
 {# begin {templatelocation} #}
 
 
-{# plugins/databox/templates/attribute/default/row.thtml 20151106 #}
+
 {col_var}
+
 {# end {templatelocation} #}

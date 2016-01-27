@@ -1,3 +1,7 @@
 {# begin {templatelocation} #}
+
+
+
 {category_var}
+
 {# end {templatelocation} #}

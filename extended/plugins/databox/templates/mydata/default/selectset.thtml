@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <form class="uk-form" action="{site_url}/{script}" method="post" id="admin-selectset" class="basic">
   <p class="message">{lang_inst_newdata}</p>
   {lang_fieldset} {list_fieldset}

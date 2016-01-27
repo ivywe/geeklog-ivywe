@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
     <h3> {group_link} {group_name}</h3>
 
 {# end {templatelocation} #}

@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <div id="databox_admin">
 {about_thispage}
 <form class="uk-form" name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
@@ -21,7 +19,6 @@
 		         id={name}{id}
             </td>
         </tr>
-
 
         <!-- csvheader -->
         <tr>

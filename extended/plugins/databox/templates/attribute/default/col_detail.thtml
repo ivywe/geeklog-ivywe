@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <li>
 <span style="color:green">&#123;data_link&#125;</span>{data_link}
 <span style="color:green">&#123;data_title&#125;</span>{data_title}
@@ -17,7 +15,6 @@
 <span style="color:green">&#123;data_remaingdays&#125;</span>{data_remaingdays}&nbsp;
 <span style="color:green">&#123;data_value&#125;</span>{data_value}&nbsp;<!-- ソート順に指定された追加属性項目 -->
 
-
 {data_edit}
 <!-- 下記テーマ変数　参考例です 登録されていない場合表示されません -->
 &nbsp;&nbsp;&nbsp;
@@ -29,7 +26,6 @@
 <span style="color:green">&#123;additionfield4&#125;</span>{additionfield4}
 <span style="color:green">&#123;additionfield5&#125;</span>{additionfield5}
 <span style="color:green">&#123;additionfield6&#125;</span>{additionfield6}
-
 
 <!-- カテゴリ グループコードを使用するテーマ変数 -->
 &nbsp;&nbsp;&nbsp;

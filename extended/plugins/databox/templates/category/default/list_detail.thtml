@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <div>
 
   <p id="breadcrumbs"><a href="{site_url}/">{home}</a>{category_top}</p>

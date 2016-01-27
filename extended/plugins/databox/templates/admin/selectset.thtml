@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <form class="uk-form" action="{site_admin_url}/plugins/databox/data.php" method="post" id="admin-selectset">
 
   <p class="uk-text-primary">{lang_inst_newdata}</p>

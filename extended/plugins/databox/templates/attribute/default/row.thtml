@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 {col_var}
 
 {# end {templatelocation} #}

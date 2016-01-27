@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <script type="text/JavaScript" src="{site_url}/javascript/moveusers.js"></script>
 
 <script type="text/javascript">

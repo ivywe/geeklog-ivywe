@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <li>
 <span style="color:green">&#123;data_link&#125;</span>{data_link}
 <span style="color:green">&#123;data_title&#125;</span>{data_title}
@@ -29,7 +27,6 @@
 <span style="color:green">&#123;additionfield5&#125;</span>{additionfield5}
 <span style="color:green">&#123;additionfield6&#125;</span>{additionfield6}
 
-
 <!-- カテゴリ グループコードを使用するテーマ変数 -->
 &nbsp;&nbsp;&nbsp;
 <span style="color:green">&#123;group_city&#125;&#123;group_city_code&#125;</span>
@@ -42,7 +39,6 @@
 &nbsp;&nbsp;&nbsp;
 <span style="color:green">&#123;group_team&#125;&#123;group_team_code&#125;</span>
 {group_type} {group_team_code}
-
 
 <!-- カテゴリ リンク付　グループコード使用テーマ変数 -->
 &nbsp;&nbsp;&nbsp;

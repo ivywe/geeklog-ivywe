@@ -1,9 +1,8 @@
 {# begin {templatelocation} #}
 
 
-{# plugins/databox/templates/category/default/list_detail.thtml 20151106 #}
 
-<div id="databox_outer">
+<div>
 
   <p id="breadcrumbs"><a href="{site_url}/">{home}</a>{category_top}</p>
   <p><span style="color:green"> &#123;languageid&#125;</span>:{languageid}
@@ -30,9 +29,10 @@
   <p>{category_description}</p>
   <p>{msg}</p>
 
-  <ul class="contents" id="list">
+  <ul>
 {nav_var}
   </ul>
 
 </div>
+
 {# end {templatelocation} #}

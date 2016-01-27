@@ -1,8 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
-
 <?php if(SEC_inGroup('Root')){ ?><div class="gl-edit"><?php } ?>
 {!!if {edit}||{draft} !!}<div class="uk-float-right">{edit} {draft}</div>{!endif}
 
@@ -178,7 +175,6 @@ fullname:<span  class="uk-text-success"> &#123;last_modify_fullname&#125;</span>
     </table>
   </fieldset>
 
-
 <!-- Basic Items -->
   <fieldset class="uk-margin-large-top" style="width:98%">
     <legend>etc.</legend>
@@ -197,17 +193,10 @@ fullname:<span  class="uk-text-success"> &#123;last_modify_fullname&#125;</span>
 
 </fieldset>
 
-
-
 {!!if {edit}||{draft} !!}<div class="uk-float-right">{edit} {draft}</div>{!endif}
 <?php if(SEC_inGroup('Root')){ ?></div><?php } ?>
 
-
-
-
-
 <div class="uk-margin-large-top uk-panel uk-panelbox">
-
 
 <h3 class="uk-margin-large-top">* Example *</h3> 
 <!-- 以下は参考例です 登録されていない場合表示されません -->
@@ -349,8 +338,6 @@ fullname:<span  class="uk-text-success"> &#123;last_modify_fullname&#125;</span>
 
     </table>
   </fieldset>
-
-
 
   </div>
 </div>
