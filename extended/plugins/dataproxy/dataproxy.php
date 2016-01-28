@@ -356,7 +356,7 @@ class Dataproxy
 	static private $_supported_drivers = array(
 			'article', 'comments', 'trackback',
 			'staticpages', 'calendar', 'links', 'polls',
-			'dokuwiki', 'forum', 'filemgmt', 'faqman',
+			'dokuwiki', 'forum', 'filemgmt', 'faqman', 'mediagallery',
 			'calendarjp', 'downloads',
 		);
 	
