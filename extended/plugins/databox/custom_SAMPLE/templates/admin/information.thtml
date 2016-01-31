@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 {about_thispage}
 <p>Ver:{version}</p>
 <p><a href="{document_url}" target="_blank">{lang_document}</a>
@@ -14,10 +12,6 @@
   <li><a href="{document_url}tables.html" target="_blank">{lang_tables}</a></li>
   <li><a href="{document_url}input.html" target="_blank">{lang_input}</a></li>
 </ul>
-
-
-
-
 
 <form class="uk-form" name='databox_conf_link' action='{site_admin_url}/configuration.php' method='POST'>
 <input type='hidden' name='conf_group' value='databox'></form>

@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<div class="databox">
+<div>
 
     <div class="order">
         {order_date}|{order_orderno}|{order_code} |{order_title}|{order_description}|{order_id}|{order_released}|<!-- 下の行のテーマ変数　参考例です 登録されていない場合機能 -->

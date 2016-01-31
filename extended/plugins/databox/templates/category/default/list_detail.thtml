@@ -2,7 +2,11 @@
 
 <div>
 
-  <p id="breadcrumbs"><a href="{site_url}/">{home}</a>{category_top}</p>
+  <ul class="uk-breadcrumb">
+	<li><a href="{site_url}/">{home}</a></li>
+	<li>{category_top}</li>
+  </ul>
+
   <p><span style="color:green"> &#123;languageid&#125;</span>:{languageid}
      <span style="color:green"> &#123;_languageid&#125;</span>:{_languageid}
      <span style="color:green"> &#123;language&#125;</span>:{language}

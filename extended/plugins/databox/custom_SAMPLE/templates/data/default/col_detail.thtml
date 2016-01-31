@@ -1,7 +1,7 @@
 {# begin {templatelocation} #}
 
 <th style="width:20%" class="uk-text-left">{additionfield_name}</th>
-<td style="width:70%">
+<td style="width:75%">
 	<dl class="uk-description-list-horizontal">
 		<dt class="uk-text-success">&#123;{additionfield_templatesetvar}&#125;</dt>
 		<dd>{additionfield_value}</dd>
@@ -67,6 +67,6 @@
 		{!endif}
 	</dl>
 </td>
-<td style="width:10%">{field_type}</td>
+<td class="uk-text-small" style="width:5%">{field_type}</td>
 
 {# end {templatelocation} #}

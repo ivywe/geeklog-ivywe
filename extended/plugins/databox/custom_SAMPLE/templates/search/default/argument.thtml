@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <form class="uk-form" action="{site_url}/{this_script}" method="get" >
 <div >
 <!-- argument example -->

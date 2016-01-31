@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<div class="databox">
+<div>
 
   <div class="pagenav">
     {page_navigation}

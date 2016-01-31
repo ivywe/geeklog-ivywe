@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <div>
   <ul class="uk-subnav uk-subnav-line uk-flex-center">
     <li>{about_thispage}</li>
@@ -42,7 +40,6 @@
         	<input type="text" size="48" maxlength="160" name="code" value="{code}"{xhtml}>
         </div>
     </div>
-
 
             <!-- title -->
     <div class="uk-form-row">
@@ -123,7 +120,6 @@
         </div>
     </div>
 
-
             <!-- commentcode -->
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_commentcode} {help_commentcode}</label>
@@ -157,7 +153,6 @@
         	{datetime_released}
         </div>
     </div>
-
 
             <!-- 公開終了日 -->
     <div class="uk-form-row">

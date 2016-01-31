@@ -1,10 +1,10 @@
 {# begin {templatelocation} #}
 
-
-
 <div>
 
-  <p id="breadcrumbs"><a href="{site_url}/">{home}</a></p>
+  <ul class="uk-breadcrumb">
+	<li><a href="{site_url}/">{home}</a></li>
+  </ul>
 
   <h2>{lang_category_list_h2}</h2>
   <p>{msg}</p>

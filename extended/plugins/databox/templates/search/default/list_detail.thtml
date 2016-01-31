@@ -1,8 +1,12 @@
 {# begin {templatelocation} #}
 
-<div id="databox_outer">
+<div>
 
-  <p id="breadcrumbs"><a href="{site_url}/">{home}</a>|<a href="{referer}">{lang_referer}</a></p>
+  <ul class="uk-breadcrumb">
+	<li><a href="{site_url}/">{home}</a></li>
+	<li><a href="{referer}">{lang_referer}</li>
+  </ul>
+
   <p><span style="color:green"> &#123;languageid&#125;</span>:{languageid}
      <span style="color:green"> &#123;_languageid&#125;</span>:{_languageid}
      <span style="color:green"> &#123;language&#125;</span>:{language}

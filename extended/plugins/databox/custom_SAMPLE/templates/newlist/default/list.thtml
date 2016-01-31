@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <dl class="uk-description-list-horizontal">
 {list_col}
 </dl>
