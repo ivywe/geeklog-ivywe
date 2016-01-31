@@ -1,5 +1,5 @@
 {doctype}
-<html{html_attribute}>
+<html{lang_attribute}>
 
 <head>
 <meta charset="{charset}"{xhtml}>
