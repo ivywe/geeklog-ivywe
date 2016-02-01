@@ -122,7 +122,7 @@ function MG_buildAdminbox(&$album, &$root_album, &$T)
         $admin_box = '<form name="adminbox" id="adminbox" action="' . $action . '" method="get" class="uk-form"><div>' . LB;
         $admin_box .= '<input type="hidden" name="album_id" value="' . $album->id . '"' . XHTML . '>' . LB;
         $admin_box .= '<select name="mode" onchange="forms[\'adminbox\'].submit()">' . LB;
-        $admin_box .= '<option label="Options" value="">' . $LANG_MG01['options'] .'</option>' . LB;
+        $admin_box .= '<option label="' . $LANG_MG01['options'] .'" value="">Options</option>' . LB;
         $admin_box .= $admin_box_option;
         $admin_box .= '</select>' . LB;
         $admin_box .= '<input type="submit" value="' . $LANG_MG03['go'] . '"' . XHTML . '>' . LB;

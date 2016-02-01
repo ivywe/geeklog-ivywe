@@ -75,7 +75,7 @@ function MG_buildAdminbox(&$root_album)
     $retval = '';
     $retval .= '<form name="adminbox" id="adminbox" action="' . $_MG_CONF['site_url'] . '/admin.php" method="get" class="uk-form"><div>' . LB;
     $retval .= '<select onchange="javascript:forms[\'adminbox\'].submit();" name="mode">' . LB;
-    $retval .= '<option label="Options" value="">' . $LANG_MG01['options'] . '</option>' . LB;
+    $retval .= '<option label="' . $LANG_MG01['options'] . '" value="">Options</option>' . LB;
     $retval .= $options;
     $retval .= '</select>' . LB;
     $retval .= '<input type="hidden" name="album_id" value="0"' . XHTML . '>' . LB;
