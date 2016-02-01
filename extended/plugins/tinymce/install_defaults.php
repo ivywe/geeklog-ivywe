@@ -43,7 +43,7 @@ global $_TMCE_DEFAULT;
 $_TMCE_DEFAULT = array();
 
 // Currently, 'auto', 'all', 'css_class' and 'css_id' are supported
-$_TMCE_DEFAULT['targets'] = 'auto';
+$_TMCE_DEFAULT['targets'] = 'css_class';
 
 // CSS Class name of textarea tags to attach TinyMCE to when
 // $_TMCE_CONF['targets'] is 'css_class'
