@@ -55,7 +55,6 @@ $LANG_MAPS_1 = array(
     'plugin_doc'            => 'インストール、アップグレードと利用方法のドキュメントは',
     'map'                   => 'マップ',
     'online'                => 'こちら',
-    'plugin_conf'           => 'Mapsプラグインのコンフィギュレーションは',
     'google_maps_API'       => '<a href="">Google Maps API</a>',
     'need_google_api'       => 'まずはじめに、<a href="http://code.google.com/apis/maps/signup.html" target="_blank">Google Maps API</a>をコンフィギュレーションにセットしてください。',
     'profile_title'         => '位置情報',
@@ -290,7 +289,27 @@ $LANG_MAPS_1 = array(
 	'group_overlay_name_label'   => 'オーバーレイグループ名',
 	'group_label'           => 'グループ (オプション)',
 	'choose_group'          => 'グループ選択',
-	'group'                 => 'グループ'
+	'group'                 => 'グループ',
+	//v1.3
+	'geo_fail'              => 'The address you entered does not seem to be valid',
+	'on_map'                => 'On the map',
+	'read_more'             => 'Read more',
+	'from_map'              => 'On map',
+	'show_hide_overlays'    => 'Show / hide overlays',
+	'fields_presentation'   => 'Edit an existing category to add or edit a field.',
+	'overlays_added'        => 'Overlays present on this map',
+	'overlays_to_add'       => 'Overlays you can add to this map',
+	'marker_modification'   => 'Marker modification',
+	'from_owner'            => 'from',
+	'marker_limited'        => 'Sorry but access to this marker is limited...',
+	'events_map'            => 'Map of the next events',
+	'info_events_map'       => '',
+	'from_cal'              => 'From',
+	'to_cal'                => 'to',
+	'on_cal'                => 'On',
+    //v1.4
+    'configuration'         => 'Configuration',
+
 );
 
 $LANG_MAPS_MESSAGE = array(
@@ -402,6 +421,8 @@ $LANG_confignames['maps'] = array(
     'marker_edition'        => 'マーカー編集',
     'infos_label'           => 'インフォラベル (プロバージョン)',
 	'use_cluster'           => 'マーカークラスターを利用する',
+	'zoom_profile'          => 'Zoom for map on user\'s profile (0-21)',
+	'display_events_map'    => 'Display events map',
 );
 
 /**

@@ -1,4 +1,5 @@
 {# begin {templatelocation} #}
+
 <style type="text/css">		
 		#map_canvas_m{mid} {
 		width:{map_width};
@@ -47,6 +48,6 @@
 <small>{date_and_hits}</small>
 {footer}
 
-{edit_button
+{edit_button}
 
 {# end {templatelocation} #}

@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Maps Plugin 1.0                                                           |
+// | Maps Plugin 1.4                                                           |
 // +---------------------------------------------------------------------------+
 // | index.php                                                                 |
 // |                                                                           |
@@ -219,9 +219,7 @@ switch ($mode) {
     }
 
     $display .= '<img src="' . $_CONF['site_admin_url'] . '/plugins/maps/images/maps.png" alt="" align="left" hspace="5">' 
-		     . '<p>' .$LANG_MAPS_1['plugin_doc'] . ' <a href="http://geeklog.fr/wiki/plugins:maps" target="_blank">'. $LANG_MAPS_1['online']
-		     . '</a>.</p>'
-		     . '<p> ' . $LANG_MAPS_1['plugin_conf'] . ' <a href="' . $_CONF['site_admin_url'] . '/configuration.php">'. $LANG_MAPS_1['online']
+		     . '<p>' .$LANG_MAPS_1['plugin_doc'] . ' <a href="http://geeklog.fr/downloads/index.php/maps" target="_blank">'. $LANG_MAPS_1['online']
 		     . '</a>.</p>';
 
     $display .= '<br /><h1>' . $LANG_MAPS_1['maps_list'] . '</h1>';

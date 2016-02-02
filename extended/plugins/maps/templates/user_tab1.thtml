@@ -1,4 +1,1 @@
-{# begin {templatelocation} #}
-<!--no-space-and-no-line-break-please-->{username}{fullname}{location}{regdate
-
-{# end {templatelocation} #}
+<!--no-space-and-no-line-break-please-->{username}{fullname}{location}{regdate}

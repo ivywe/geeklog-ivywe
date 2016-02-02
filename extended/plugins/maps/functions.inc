@@ -78,34 +78,34 @@ function plugin_getheadercode_maps()
     $_SCRIPTS->setJavaScriptFile('maps_iconmaker', '/' . $_MAPS_CONF['maps_folder'] . '/js/mapiconmaker.js', false);
 	$_SCRIPTS->setJavaScriptLibrary('jquery');
 	
-	$js = '<script src= "http://maps.googleapis.com/maps/api/js?language='.COM_getLanguageId().'&key=' . $_MAPS_CONF['google_api_key'] . '&libraries=adsense" type="text/javascript"> </script>';
+	$js = '<script src= "http://maps.googleapis.com/maps/api/js?key=' . $_MAPS_CONF['google_api_key'] . '&amp;libraries=adsense&amp;sensor=false" type="text/javascript"> </script>';
 	
 	$_SCRIPTS->setJavaScript($js, false, false);
-	
-	//maps for event page (calendar plugin)
-	if(in_array('calendar', $_PLUGINS) && $_MAPS_CONF['display_events_map'] ){
+	$url = COM_getCurrentURL();
+    
+    if ( ( stripos($url, 'calendar/index.php') !== FALSE  || stripos($url, 'event.php') !== FALSE && $_GET['eid'] != '') && in_array('calendar', $_PLUGINS) && $_MAPS_CONF['display_events_map'] )
+    {
+        $js_events_map = MAPS_displayEventsMap(false);
+        
+        $_SCRIPTS->setJavaScript($js_events_map, false, false);
+        
+        $str .= '    jQuery(document).ready(function() {' . LB;
+        
+        if (stripos($url, 'calendar/index.php') !== FALSE ) {
+            $str .= '        jQuery(\'.cal-header\').after(\'<div id="map_contener_mevents"><div id="map_canvas_mevents"></div></div>\');' . LB;
+        }
 
-		$js_events_map = MAPS_displayEventsMap(false);
-		
-		$_SCRIPTS->setJavaScript($js_events_map, false, false);
-		
-		$str .= '    jQuery(document).ready(function() {' . LB;
-		$str .= '        jQuery(\'.cal-header\').after(\'<div id="map_contener_mevents"><div id="map_canvas_mevents"></div></div>\');' . LB;
-		
-		// check if we are on an calendar/event.php page
-		$url = COM_getCurrentURL();
-		
-		if (stripos($url, 'event.php') !== FALSE && $_GET['eid'] != '') {
-			// get eid
-			$eid = addslashes ($_GET['eid']);
-			
-			$js_one_event = MAPS_displayEventsMap(false, $eid);
-    		$_SCRIPTS->setJavaScript($js_one_event, false, false);
+        if (stripos($url, 'event.php') !== FALSE && $_GET['eid'] != '') {
+            // get eid
+            $eid = addslashes ($_GET['eid']);
+            
+            $js_one_event = MAPS_displayEventsMap(false, $eid);
+            $_SCRIPTS->setJavaScript($js_one_event, false, false);
 
-			if ($eid != '')  $str .= '        jQuery(\'.location\').append(\'<div style="margin:10px 0px;" id="map_contener_mevents"><div id="map_canvas_mevents"></div></div>\');' . LB;
-		}
-		$str .= '    });' . LB;
-	}
+            if ($eid != '')  $str .= '        jQuery(\'.location\').append(\'<div style="margin:10px 0px;" id="map_contener_mevents"><div id="map_canvas_mevents"></div></div>\');' . LB;
+        }
+        $str .= '    });' . LB;
+    }
 	
 	$_SCRIPTS->setJavaScript($str, true, true);
 
@@ -117,7 +117,7 @@ function plugin_getheadercode_maps()
 */
 function plugin_getdocumentationurl_maps() {
     
-    return 'http://geeklog.fr/wiki/plugins:maps';
+    return 'http://geeklog.fr/downloads/index.php/maps';
 }
 
 /**
@@ -753,12 +753,8 @@ function plugin_upgrade_maps()
 			if ($_MAPS_CONF['global_type'] == 'G_SATELLITE_MAP') $type = 'SATELLITE';
 			if ($_MAPS_CONF['global_type'] == 'G_PHYSICAL_MAP ') $type = 'TERRAIN';
 			if ($_MAPS_CONF['global_type'] == 'G_HYBRID_MAP') $type = 'HYBRID';
-
-$type = 'TERRAIN'; // komma
-
-
             $c->set('global_type', $type, $_MAPS_DEFAULT['pi_name']);
-            $c->set('url_geocode', 'http://maps.googleapis.com/maps/api/geocode/json?address=%address%', $_MAPS_DEFAULT['pi_name']);
+            $c->set('url_geocode', 'http://maps.googleapis.com/maps/api/geocode/json?address=%address%&sensor=false', $_MAPS_DEFAULT['pi_name']);
 			
 			COM_errorLog( "Updated map config to type $type", 1 );
 			
@@ -805,6 +801,7 @@ $type = 'TERRAIN'; // komma
 			$c->add('display_events_map', true, 
                 'select', 1, 8, 3, 8, true, $_MAPS_DEFAULT['pi_name']);
 		case '1.3.5':
+        case '1.4.0':
 			
         default :
             // update plugin version number
@@ -1069,6 +1066,7 @@ function MAPS_admin_menu() {
     // generate the menu from the template
     $menu = COM_newTemplate($_CONF['path'] . 'plugins/maps/templates');
     $menu->set_file(array('menu' => 'admin_menu.thtml'));
+    $menu->set_var('site_admin_url', $_CONF['site_admin_url']);
     $menu->set_var('site_url', $_CONF['site_url']);
     $menu->set_var('admin_home', $LANG_MAPS_1['maps']);
     $menu->set_var('markers', $LANG_MAPS_1['markers']);
@@ -1077,6 +1075,7 @@ function MAPS_admin_menu() {
 	$menu->set_var('import_export', $LANG_MAPS_1['import_export']);
     $menu->set_var('geocoder', $LANG_MAPS_1['geocoder']);
     $menu->set_var('set_user_geo', $LANG_MAPS_1['set_user_geo']);
+    $menu->set_var('configuration', $LANG_MAPS_1['configuration']);
 
     $display .= $menu->parse('output', 'menu');
 

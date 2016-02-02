@@ -1,4 +1,5 @@
 {# begin {templatelocation} #}
+
  <tr>
   <td valign="top" style="width:100%;">
    <b><a onClick="elementToggle('map-detail{mid}'); return false;" href="#">{name}</a>&nbsp;</b>

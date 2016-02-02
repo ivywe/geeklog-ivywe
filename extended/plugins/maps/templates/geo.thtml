@@ -1,4 +1,5 @@
 {# begin {templatelocation} #}
+
 <style type="text/css">		
 		#map_canvas{gid} {
 		  height:{map_height_geotag}

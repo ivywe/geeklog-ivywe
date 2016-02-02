@@ -1,4 +1,5 @@
 {# begin {templatelocation} #}
+
 <div>
 	<form class="uk-form" action="#" onsubmit="codeAddress(); return false">
 	  <p>{edit_marker_text}        
@@ -16,7 +17,7 @@
 </div>
 &nbsp;
 <div id="marker_form">
-	<form class="uk-form" name="marker_edit" action="{site_url}/admin/plugins/maps/marker_edit.php" method="POST">
+	<form name="marker_edit" action="{site_url}/admin/plugins/maps/marker_edit.php" method="POST">
 		<fieldset style="margin-top: 10px;padding:10px;">
 		<legend>{arrow}<a style="text-decoration: none;" onClick="elementToggle('informations'); return false;" href="#"><b>{informations}</b></a></legend>
 			<div id="informations">
@@ -125,6 +126,6 @@
 			{mkid}
 		</div>
 	</form>
-</div
+</div>
 
 {# end {templatelocation} #}

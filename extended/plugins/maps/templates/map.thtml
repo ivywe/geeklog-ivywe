@@ -1,4 +1,5 @@
 {# begin {templatelocation} #}
+
 <style type="text/css">		
 		#map_canvas_m{mid} {
 		  width:{map_width};

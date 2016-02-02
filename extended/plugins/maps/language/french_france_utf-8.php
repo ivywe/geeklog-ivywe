@@ -54,7 +54,6 @@ $LANG_MAPS_1 = array(
     'plugin_doc'            => 'La documentation concernant l\'installation, la mise à jour et l\'usage est disponible',
     'map'                   => 'carte',
     'online'                => 'en ligne',
-    'plugin_conf'           => 'La configuration du plugin Maps est aussi',
     'google_maps_API'       => '<a href="">Google Maps API</a>',
     'need_google_api'       => 'Attention, vous avez besoin d\'une <a href="http://code.google.com/apis/maps/signup.html" target="_blank">API Google Maps</a> pour commencer.',
     'profile_title'         => 'Géolocalisation',
@@ -308,6 +307,8 @@ $LANG_MAPS_1 = array(
 	'from_cal'              => 'Du',
 	'to_cal'                => 'au',
 	'on_cal'                => 'Le',
+    //v1.4
+    'configuration'         => 'Configuration',
 );
 
 $LANG_MAPS_MESSAGE = array(

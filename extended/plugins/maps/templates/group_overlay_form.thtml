@@ -1,4 +1,5 @@
 {# begin {templatelocation} #}
+
 <div id="group_overlay_form">
 	<form class="uk-form" name="group_overlay_edit" action="{site_url}/admin/plugins/maps/overlay_group_edit.php" method="POST">
 		<fieldset style="margin-top: 10px;padding:10px;">

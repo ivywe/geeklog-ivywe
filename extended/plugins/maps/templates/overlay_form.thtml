@@ -1,4 +1,5 @@
 {# begin {templatelocation} #}
+
 <div id="overlay_form">
 	<form class="uk-form" name="overlay_edit" action="{site_url}/admin/plugins/maps/overlay_edit.php" method="POST"  enctype="multipart/form-data">
 		<fieldset style="margin-top: 10px;padding:10px;">
@@ -38,6 +39,6 @@
 			{oid}
 		</div>
 	</form>
-</div
+</div>
 
 {# end {templatelocation} #}

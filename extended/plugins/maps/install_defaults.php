@@ -75,7 +75,7 @@ $_MAPS_DEFAULT['maxAdsOnMap'] = '1';
 
 //Google maps API
 $_MAPS_DEFAULT['google_api_key'] = '';   // User must supply their own
-$_MAPS_DEFAULT['url_MAPScode']  = 'http://maps.googleapis.com/maps/api/geocode/json?address=%address%';
+$_MAPS_DEFAULT['url_MAPScode']  = 'http://maps.googleapis.com/maps/api/geocode/json?address=%address%&sensor=false';
 
 // Set the default permissions
 $_MAPS_DEFAULT['default_permissions'] =  array (3, 3, 2, 2);
