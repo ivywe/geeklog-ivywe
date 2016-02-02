@@ -1,6 +1,5 @@
 {# begin {templatelocation} #}
 
-<!-- start filelisting.thtml -->
 {block_header}
 
 <div id="dlm_cat_path">{category_path_link}</div>
@@ -20,6 +19,5 @@
 {comment_records}
 
 {block_footer}
-<!-- end filelisting.thtml --
 
 {# end {templatelocation} #}

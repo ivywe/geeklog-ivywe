@@ -2,7 +2,7 @@
 
 
 
-<!-- start memberlist.thtml -->
+
 {navmenu}
 <form class="uk-form" method="post" action="{site_url}/forum/memberlist.php">
 <div class="uk-overflow-container">
@@ -33,7 +33,7 @@
 </table>
 </div>
 </form>
-<!-- start memberlist.thtml -->
+
 
 
 

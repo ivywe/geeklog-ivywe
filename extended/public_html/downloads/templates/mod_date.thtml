@@ -1,6 +1,5 @@
 {# begin {templatelocation} #}
 
-<!-- start mod_date.thtml -->
       <dt>{lang_release_date}</dt>
       <dd><span dir="ltr">
             <select name="release_year">
@@ -23,6 +22,5 @@
               {second_options}
             </select>
           </span></dd>
-<!-- end mod_date.thtml --
 
 {# end {templatelocation} #}

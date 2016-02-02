@@ -2,7 +2,7 @@
 
 
 
-<!-- start report_results.thtml -->
+
 {navmenu}
 
 <div class="uk-overflow-container">
@@ -16,7 +16,7 @@
         {report_records}
 </table>
 </div>
-<!-- end report_results.thtml -->
+
 
 
 

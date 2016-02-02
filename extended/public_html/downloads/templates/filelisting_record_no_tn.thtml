@@ -1,13 +1,6 @@
 {# begin {templatelocation} #}
 
-<!-- start filelisting_record_no_tn.thtml -->
-
-
-
-
 <div class="pluginRow{cssid}" style="padding:10px; height:1%; overflow:hidden;">
-
-
 
     <div class="dlm_filelist_down_btn">
         <a href="{visitfile_url}" title="{download_title}" class="dlbtn-green">{lang_download_button}</a>
@@ -58,9 +51,5 @@
         </div>
     </div>
 </div>
-
-
-
-<!-- end filelisting_record_no_tn.thtml --
 
 {# end {templatelocation} #}

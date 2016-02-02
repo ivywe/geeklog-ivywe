@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<!-- start regvotesinfo.thtml -->
+
     <h2>{totalvotes}</h2>
     <div style="margin-top:10px;">{votes}</div>
     <form class="uk-form" method="post" action="index.php">
@@ -23,6 +23,5 @@
 
       </table>
     </form>
-<!-- end regvotesinfo.thtml --
 
 {# end {templatelocation} #}

@@ -2,9 +2,9 @@
 
 
 
-<!-- start forum_users.thtml -->
+
 <dl><dt>{LANG_msg07}</dt><dd>{onlineusers}</dd>
-<!-- end forum_users.thtml -->
+
 
 
 

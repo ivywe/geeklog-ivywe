@@ -2,9 +2,9 @@
 
 
 
-<!-- start quotetopic.thtml -->
+
 <a class="uk-button uk-button-primary" href="{quotelink}">{quotelinktext}</a>
-<!-- end quotetopic.thtml -->
+
 
 
 

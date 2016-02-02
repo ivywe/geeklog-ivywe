@@ -2,7 +2,7 @@
 
 
 
-<!-- lastposts.thtml -->
+
 <a class="pluginButton" {lastpostslink}>{LANG_lastposts}</a>
 
 

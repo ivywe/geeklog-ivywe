@@ -1,9 +1,8 @@
 {# begin {templatelocation} #}
 
-<!-- start mod_newfile2.thtml -->
+
       <dt>{lang_dlfilename}</dt>
       <dd><input type="file" name="newfile" size="48" maxlength="200"{xhtml}>
           <input type="hidden" name="url" value="{url}"{xhtml}></dd>
-<!-- end mod_newfile2.thtml --
 
 {# end {templatelocation} #}

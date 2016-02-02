@@ -2,7 +2,7 @@
 
 
 
-<!-- start centerblock.thtml -->
+
 <!-- startblock -->
 <h2>FORUM 新着リスト</h2>
 <div class="uk-grid" style="margin:0">
@@ -21,7 +21,7 @@
 </div>
 <hr style="margin-bottom: 5em">
 <!-- endblock -->
-<!-- end centerblock.thtml -->
+
 
 
 

@@ -2,6 +2,6 @@
 <h1>{lang_admin_head} &raquo; {lang_sub_mode}</h1>
 {header}
 {msg}
-{content
+{content}
 
 {# end {templatelocation} #}

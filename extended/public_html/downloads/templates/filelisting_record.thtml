@@ -1,10 +1,5 @@
 {# begin {templatelocation} #}
 
-<!-- start filelisting_record.thtml -->
-
-
-
-
 <div class="pluginRow{cssid}" style="padding:10px; height:1%; overflow:hidden;">
     <div class="dlm_snap_wrapper">
 {snapshot}{mg_autotag}
@@ -51,6 +46,5 @@
         </div>
     </div>
 </div>
-<!-- end filelisting_record.thtml --
 
 {# end {templatelocation} #}

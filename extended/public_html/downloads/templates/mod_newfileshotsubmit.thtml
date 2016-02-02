@@ -1,8 +1,7 @@
 {# begin {templatelocation} #}
 
-<!-- start mod_newfileshotsubmit.thtml -->
+
       <dt>{lang_shotimage}</dt>
       <dd><input type="file" name="newfileshot" size="48"{xhtml}></dd>
-<!-- end mod_newfileshotsubmit.thtml --
 
 {# end {templatelocation} #}

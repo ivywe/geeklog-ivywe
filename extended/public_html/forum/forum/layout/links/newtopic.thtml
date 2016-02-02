@@ -2,11 +2,11 @@
 
 
 
-<!-- start newtopic.thtml -->
+
   <a class="uk-button uk-button-primary uk-text-nowrap" href="{newtopiclink}">
     {newtopiclinktext}
   </a>
-<!-- end newtopic.thtml -->
+
 
 
 
