@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | monitor plugin 1.1                                                        |
+// | monitor plugin 1.3                                                        |
 // +---------------------------------------------------------------------------+
 // | install_defaults.php                                                      |
 // |                                                                           |
@@ -10,7 +10,7 @@
 // | records. These settings are only used during the initial installation     |
 // | and not referenced any more once the plugin is installed.                 |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2012 by the following authors:                              |
+// | Copyright (C) 2014-2016 by the following authors:                         |
 // |                                                                           |
 // | Authors: Ben        - cordiste AT free DOT fr                             |
 // +---------------------------------------------------------------------------+
@@ -69,6 +69,7 @@ $_monitor_DEFAULT = array();
 *   Main settings
 */
 $_monitor_DEFAULT['emails']    = $_CONF['site_mail'];
+$_monitor_DEFAULT['repository']    = 'Geeklog-Plugins';
 
 
 
@@ -94,7 +95,9 @@ function plugin_initconfig_monitor()
 		//Main settings   
 		$c->add('fs_main', NULL, 'fieldset', 0, 0, NULL, 0, true, 'monitor');
         $c->add('emails', $_monitor_DEFAULT['emails'],
-                'text', 0, 0, 0, 10, true, 'monitor');
+        'text', 0, 0, 0, 10, true, 'monitor');
+        $c->add('repository', $_monitor_DEFAULT['repository'],
+                'text', 0, 0, 0, 20, true, 'monitor');
 
     }				
 

@@ -2,13 +2,13 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Monitor Plugin 1.0                                                        |
+// | Monitor Plugin 1.3                                                        |
 // +---------------------------------------------------------------------------+
 // | autoinstall.php                                                           |
 // |                                                                           |
 // | This file provides helper functions for the automatic plugin install.     |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2011 by the following authors:                              |
+// | Copyright (C) 2014-2016 by the following authors:                         |
 // |                                                                           |
 // | Authors: Ben - ben AT geeklog DOT fr                                      |
 // +---------------------------------------------------------------------------+
@@ -51,8 +51,8 @@ function plugin_autoinstall_monitor($pi_name)
     $info = array(
         'pi_name'         => $pi_name,
         'pi_display_name' => $pi_display_name,
-        'pi_version'      => '1.1',
-        'pi_gl_version'   => '2.0.0',
+        'pi_version'      => '1.3.1',
+        'pi_gl_version'   => '1.8.0',
         'pi_homepage'     => 'http://geeklog.fr'
     );
 
@@ -71,6 +71,7 @@ function plugin_autoinstall_monitor($pi_name)
     );
 
     $tables = array(
+	    'monitor_ban'
     );
 
     $inst_parms = array(
@@ -110,16 +111,4 @@ function plugin_compatible_with_this_version_monitor($pi_name)
     return true;
 }
 
-function plugin_postinstall_monitor($pi_name)
-{
-    global $_CONF, $_TABLES;
-	
-	/* This code is for statistics ONLY */
-    $message =  'Completed monitor plugin install: ' .date('m d Y',time()) . "   AT " . date('H:i', time()) . "\n";
-    $message .= 'Site: ' . $_CONF['site_url'] . ' and Sitename: ' . $_CONF['site_name'] . "\n";
-    $pi_version = DB_getItem($_TABLES['plugins'], 'pi_version', "pi_name = 'monitor'");
-    COM_mail("ben@geeklog.fr","$pi_name Version:$pi_version Install successfull",$message);
-	
-	return true;
-}
 ?>

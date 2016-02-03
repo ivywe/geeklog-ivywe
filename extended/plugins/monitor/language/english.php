@@ -2,13 +2,13 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Monitor Plugin 1.0                                                        |
+// | Monitor Plugin 1.3                                                        |
 // +---------------------------------------------------------------------------+
 // | english.php                                                               |
 // |                                                                           |
 // | English language file                                                     |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2011 by the following authors:                              |
+// | Copyright (C) 2014-2016 by the following authors:                         |
 // |                                                                           |
 // | Authors: Ben - ben AT geeklog DOT fr                                      |
 // +---------------------------------------------------------------------------+
@@ -50,15 +50,37 @@ global $LANG32;
 // +---------------------------------------------------------------------------+
 
 $LANG_MONITOR_1 = array(
-    'plugin_name'   => 'Monitor',
-	'doc'           => 'The monitor plugin use the Cron Schedule Interval to send by email the log files (access, error, spamx, captcha...) and to clear those files. You can also display and clear the log files online. ',
-    'configuration' => 'Display monitor configuration',
-	'file'          => 'File:',
-	'view_log'      => 'View Log file',
-	'clear_log'     => 'Clear Log file',
-	'log_file'      => 'Log file:',
-	'view_clear'    => 'View/Clear the Log Files.',
-	'set_cron'      => 'First, you need to set cron interval in the core config to use monitor',
+    'plugin_name'         => 'Monitor',
+    'home'                => 'Home', // change 1.3.0
+    'view_clear_logs'     => 'View/Clear the Log Files',
+    'file'                => 'File:',
+    'log_file'            => 'Log file :',
+    'view_logs'           => 'View logs',
+    'clear_logs'          => 'Clear logs',
+    'images_folder'       => 'Images from public_html/images folder',
+    'resize'              => 'Resize images',
+    'resize_images'       => 'Resize all images',
+    'resize_images_help'  => 'Monitor plugin can resize pictures bigger than 1600px from your public_html/images folder. The width-height ratio will be kept. ',
+    'no_images_to_resize' => 'There is no image bigger than 1600px in your public_html/images folder.',
+    'change_user_photo'   => 'Change user photo',
+    'comments'            => 'Comments',
+    'comments_list'       => 'Comments list',
+    'anonymous'           => 'Anonymous',
+    'configuration'       => 'Configuration',
+    'images'              => 'Images',
+    'images_list'         => 'Images list',
+    'main'                => 'Monitor main page',
+    'logs'                => 'Log files',
+    'updates'             => 'Updates',
+    'available_updates'   => 'Available updates are from:',
+    'plugin_list'         => 'Plugin updates',
+    'no_update'           => 'This plugin can not be updated',
+    'up_to_date'          => 'This plugin is already up to date',
+    'update_to'           => 'Update to',
+    'need_upgrade'        => 'You need to upgrade to Geeklog v',
+    'before_update'       => 'before you can update to',
+    'not_available'       => 'Plugin not avaible in this repository',
+    'ask_author'          => 'This plugin do not support this feature. Ask his author to change this.',
 );
 
 // Messages for the plugin upgrade
@@ -87,7 +109,8 @@ $LANG_fs['monitor'] = array(
 */
 $LANG_confignames['monitor'] = array(
     //Main settings
-	'emails'  => 'List of emails to send the logs to (separated with a coma if more than on email is needed)'
+    'emails'  => 'List of emails to send the logs to (separated with a coma if more than on email is needed)',
+    'repository'  => 'Name of the repository owner you want to use for plugins updates on Github (default is Geeklog-Plugins). Leave blank to disable this feature.'
 )
 
 ?>

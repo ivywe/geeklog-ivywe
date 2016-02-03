@@ -2,13 +2,13 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Monitor Plugin 1.0                                                        |
+// | Monitor Plugin 1.3                                                        |
 // +---------------------------------------------------------------------------+
 // | japanese_utf-8.php                                                        |
 // |                                                                           |
 // | Japanese language file                                                    |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2011 by the following authors:                              |
+// | Copyright (C) 2014-2016 by the following authors:                         |
 // |                                                                           |
 // | Authors: Ben - ben AT geeklog DOT fr                                      |
 // |          Ivy - ivy AT geeklog DOT jp                                      |
@@ -51,15 +51,37 @@ global $LANG32;
 // +---------------------------------------------------------------------------+
 
 $LANG_MONITOR_1 = array(
-    'plugin_name'   => 'Monitor',
-	'doc'           => 'モニタープラグインはログ (access, error, spamx, captcha...)の送信とログ削除にGeeklogの疑似CRONを利用しています。 また、ログファイルをブラウザ上で閲覧と削除ができます。 ',
-    'configuration' => 'モニタープラグインのコンフィギュレーション',
-	'file'          => 'ファイル:',
-	'view_log'      => 'ログファイルを見る',
-	'clear_log'     => 'ログファイルを削除する',
-	'log_file'      => 'ログファイル:',
-	'view_clear'    => 'ログファイルを閲覧/削除する。',
-	'set_cron'      => 'モニタープラグインの活用には、最初にCRONを設定してください。',
+    'plugin_name'         => 'Monitor',
+    'home'                => 'Home', // change 1.3.0
+    'view_clear_logs'     => 'View/Clear the Log Files',
+	'file'                => 'ファイル:',
+	'log_file'            => 'ログファイル:',
+	'view_logs'           => 'ログファイルを見る',
+    'clear_logs'          => 'ログファイルを削除する',
+    'images_folder'       => 'public_html/images 画像フォルダ',
+    'resize'              => 'リサイズ',
+    'resize_images'       => '全画像をリサイズする',
+    'resize_images_help'  => 'public_html/images画像フォルダの1600px以上の大きさのファイルを縦横比率を変えずに縮小できます。',
+    'no_images_to_resize' => 'public_html/images フォルダ以下に1600px以上の大きさの画像はありません。',
+    'change_user_photo'   => 'ユーザーの写真を変更する',
+    'comments'            => 'コメント',
+    'comments_list'       => 'コメントリスト',
+    'anonymous'           => 'ゲスト',
+    'configuration'       => 'モニタープラグインのコンフィギュレーション',
+    'images'              => '画像',
+    'images_list'         => '画像リスト',
+    'main'                => 'メインページ',
+    'logs'                => 'ログファイル',
+    'updates'             => 'アップデート',
+    'available_updates'   => 'アップデートが有効:',
+    'plugin_list'         => 'プラグインアップデート',
+    'no_update'           => 'このプラグインはアップデートできません',
+    'up_to_date'          => 'このプラグインはアップデートされています',
+    'update_to'           => 'アップデート',
+    'need_upgrade'        => 'アップグレードが必要です。Geeklog v',
+    'before_update'       => 'アップデートする前に',
+    'not_available'       => 'プラグインはこのリポジトリにありません',
+    'ask_author'          => 'このプラグインはこの機能をサポートしていません。所有者に問い合わせてください。',
 );
 
 // Messages for the plugin upgrade
@@ -88,7 +110,8 @@ $LANG_fs['monitor'] = array(
 */
 $LANG_confignames['monitor'] = array(
     //Main settings
-	'emails'  => 'ログを送信するメールリスト (必要なメールリストをカンマ区切りで)'
+	'emails'  => 'ログを送信するメールリスト (必要なメールリストをカンマ区切りで)',
+    'repository'  => 'リポジトリーオーナーの名前は Github (default is Geeklog-Plugins)です。この機能を無効にするにはブランクのままにしておいてください。'
 )
 
 ?>
