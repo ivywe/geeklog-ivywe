@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 {startblock}
 {navbar}
 <form class="uk-form"  name="frm_messages" action="{phpself}" method="post">
@@ -42,7 +40,5 @@
 </table>
 </form>
 {endblock}
-
-
 
 {# end {templatelocation} #}

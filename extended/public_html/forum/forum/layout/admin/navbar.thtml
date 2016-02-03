@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <div class="uk-grid">
   <div class="uk-width-5-10">{search_forum}</div>
   <div class="uk-width-5-10 uk-text-right">{select_forum}</div>
@@ -32,7 +30,5 @@
 </table>
 </div>
 -->
-
-
 
 {# end {templatelocation} #}

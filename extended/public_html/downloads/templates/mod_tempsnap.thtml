@@ -1,6 +1,5 @@
 {# begin {templatelocation} #}
 
-
             &nbsp;<a href="{tempsnapurl}">{lang_tempfile}</a>
 
 {# end {templatelocation} #}

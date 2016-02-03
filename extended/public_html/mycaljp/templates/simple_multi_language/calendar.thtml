@@ -1,8 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
-
 <div id="mycaljp">
 <!--not_for_mobile-->
   <p class="skip"><a href="#skipcalendar">{lang_skipcalendar}</a></p>

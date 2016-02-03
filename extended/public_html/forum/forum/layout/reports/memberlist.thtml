@@ -1,8 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
-
 {navmenu}
 <form class="uk-form" method="post" action="{site_url}/forum/memberlist.php">
 <div class="uk-overflow-container">
@@ -33,8 +30,5 @@
 </table>
 </div>
 </form>
-
-
-
 
 {# end {templatelocation} #}

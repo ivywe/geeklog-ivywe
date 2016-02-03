@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <!-- The following is a divider that works across all platforms and browsers -->
 <div class="uk-overflow-container">
 <table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
@@ -80,7 +78,5 @@
         </tr>
 </table>
 </div>
-
-
 
 {# end {templatelocation} #}

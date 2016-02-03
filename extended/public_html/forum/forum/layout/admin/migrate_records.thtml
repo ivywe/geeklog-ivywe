@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
     <tr>
         <td><input type="checkbox" name="cb_chkentry[]" value="{sid}"{xhtml}></td>
         <td>{topic}</td>
@@ -10,7 +8,5 @@
         <td class="uk-text-center">{num_comments}</td>
     </tr>
     
-
-
 
 {# end {templatelocation} #}

@@ -1,6 +1,5 @@
 {# begin {templatelocation} #}
 
-
         <tr class="pluginRow{cssid}" style="vertical-align:bottom;">
           <td colspan="2">{ratinghostname}</td>
           <td colspan="3">{rating}</td>

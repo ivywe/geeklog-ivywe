@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <form class="uk-form" action="{action}" method="post" name="jumpbox" onsubmit="if(document.jumpbox.forum.value == -1){return false;}">
 	<div>
 		<select name="forum" style="width:170px" onchange="this.form.submit();">
@@ -10,7 +8,5 @@
 		</select>
 	</div>
 </form>
-
-
 
 {# end {templatelocation} #}

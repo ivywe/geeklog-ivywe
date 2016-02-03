@@ -1,11 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
-
 <a>{LANG_website}</a>
-
-
-
 
 {# end {templatelocation} #}

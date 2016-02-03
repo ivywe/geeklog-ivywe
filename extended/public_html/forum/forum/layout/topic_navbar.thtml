@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <ul class="uk-breadcrumb">
         <li class="uk-text-success uk-text-bold"><i class="uk-icon-folder-open-o"></i></li>
         <li class="uk-text-success uk-text-bold"><a href="{site_url}/forum/index.php">{forum_home}</a></li>
@@ -16,9 +14,6 @@
 {prevtopic_link} {nexttopic_link} </div>
 </div>
 
-
 <div>{pagenavigation}</div>
-
-
 
 {# end {templatelocation} #}

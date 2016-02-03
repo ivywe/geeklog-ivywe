@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
                     <tr>
                         <td class="uk-text-left"><input type="checkbox" name="chk_moddelete[]" value="{id}"{xhtml}></td>
                         <td class="uk-text-left" style="width:15%;">{name}</td>
@@ -16,7 +14,5 @@
                             [&nbsp;<a href="#" onclick="document.modform.recid.value='{id}';document.modform.operation.value='delete';document.modform.submit();return false;">{LANG_DELETE}</a>&nbsp;]
                         </td>
                     </tr>
-
-
 
 {# end {templatelocation} #}

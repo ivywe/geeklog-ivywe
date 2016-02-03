@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <tr>
     <td><i class="uk-icon-folder-o"></i></td>
     <td style="{topic_id}'">
@@ -14,7 +12,5 @@
             {LANG_BY}{lastposter}<br />{lastdate}
     </td>
 </tr>
-
-
 
 {# end {templatelocation} #}

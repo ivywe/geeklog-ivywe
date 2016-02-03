@@ -1,8 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
-
 {navmenu}
 
 <div class="uk-overflow-container">
@@ -16,8 +13,5 @@
         {report_records}
 </table>
 </div>
-
-
-
 
 {# end {templatelocation} #}

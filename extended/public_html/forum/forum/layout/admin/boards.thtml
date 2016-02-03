@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <div class="uk-overflow-container">
 <table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
     <tr>
@@ -10,7 +8,5 @@
 </table>
 </div>
 {forum_listing_records}
-
-
 
 {# end {templatelocation} #}

@@ -1,11 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
-
 [&nbsp;<a {newpostslink}>{LANG_newposts}</a>&nbsp;]
-
-
-
 
 {# end {templatelocation} #}

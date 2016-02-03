@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <tr><td>
 <div class="uk-grid">
   <div class="uk-width-1-2">
@@ -17,7 +15,5 @@
 {!endif}
 
 </td></tr>
-
-
 
 {# end {templatelocation} #}

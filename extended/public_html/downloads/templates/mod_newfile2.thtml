@@ -1,6 +1,5 @@
 {# begin {templatelocation} #}
 
-
       <dt>{lang_dlfilename}</dt>
       <dd><input type="file" name="newfile" size="48" maxlength="200"{xhtml}>
           <input type="hidden" name="url" value="{url}"{xhtml}></dd>

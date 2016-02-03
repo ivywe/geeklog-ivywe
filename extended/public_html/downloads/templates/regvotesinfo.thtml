@@ -1,6 +1,5 @@
 {# begin {templatelocation} #}
 
-
     <h2>{totalvotes}</h2>
     <div style="margin-top:10px;">{votes}</div>
     <form class="uk-form" method="post" action="index.php">

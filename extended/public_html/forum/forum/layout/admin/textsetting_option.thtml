@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <tr style="vertical-align:middle;">
 <th>{LANG_title}</th>
 <td>
@@ -15,7 +13,5 @@
 	</div>
 </td>
 </tr>
-
-
 
 {# end {templatelocation} #}

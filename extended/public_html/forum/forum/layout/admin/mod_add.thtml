@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <script type="text/javascript">
     <!-- Begin
     function toggleModeratorMode(mode) { 
@@ -74,7 +72,5 @@
     </table>
 	</div>
 </form>
-
-
 
 {# end {templatelocation} #}

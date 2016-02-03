@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 </table>
 <p></p>
 <div class="uk-overflow-container">
@@ -11,7 +9,5 @@
         </tr>
 </table>
 </div>
-
-
 
 {# end {templatelocation} #}

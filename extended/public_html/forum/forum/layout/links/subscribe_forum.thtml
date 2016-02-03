@@ -1,8 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
-
 <form class="uk-form" action="{subscribelink}" method="post"><div>
     <span>{LANG_subscribe_state}&nbsp;</span>
     <input type="submit" name="subscribelink" value="{LANG_subscribe}"{xhtml}>
@@ -13,8 +10,5 @@
     <a class="profilebutton" href="{subscribelink}">{subscribelinktext}</a>  
 </div>
 -->
-
-
-
 
 {# end {templatelocation} #}

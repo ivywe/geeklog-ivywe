@@ -1,8 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
-
 <tr style="vertical-align:middle;">
     <td class="pluginCellSubTitle"width="160">{LANG_title}</td>
     <td class="pluginCellText pluginCellFill">
@@ -17,8 +14,5 @@
 		</div>
     </td>
 </tr>
-
-
-
 
 {# end {templatelocation} #}

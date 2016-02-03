@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <div class="uk-grid">
   <div class="uk-width-1-2">
     <ul class="uk-breadcrumb" style="margin:0">
@@ -46,7 +44,5 @@
                 </tr>
             </table>
 </div>
-
-
 
 {# end {templatelocation} #}

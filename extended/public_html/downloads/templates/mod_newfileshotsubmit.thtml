@@ -1,6 +1,5 @@
 {# begin {templatelocation} #}
 
-
       <dt>{lang_shotimage}</dt>
       <dd><input type="file" name="newfileshot" size="48"{xhtml}></dd>
 

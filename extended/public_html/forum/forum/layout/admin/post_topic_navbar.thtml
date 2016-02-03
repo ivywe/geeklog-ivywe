@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <ul class="uk-breadcrumb">
         <li class="uk-text-success uk-text-bold"><i class="uk-icon-folder-open-o"></i></li>
         <li class="uk-text-success uk-text-bold"><a href="{site_url}/forum/index.php">{forum_home}</a></li>
@@ -13,7 +11,6 @@
   <div class="uk-width-7-10"><i class="uk-icon-arrow-circle-right"></i> <b><a href="viewtopic.php?showtopic={topic_id}">{subject}</a></b></div>
   <div class="uk-width-3-10 uk-text-right"></div>
 </div>
-
 
 <div class="uk-overflow-container">
 <table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
@@ -60,7 +57,5 @@ h_help = "{LANG_hhelp}";
     <input type="hidden" name="page" value="{page}"{xhtml}>
     <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
 </div>
-
-
 
 {# end {templatelocation} #}

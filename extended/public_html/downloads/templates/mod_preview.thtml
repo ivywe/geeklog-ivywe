@@ -1,6 +1,5 @@
 {# begin {templatelocation} #}
 
-
 <div class="dlm_main">
     <div class="dlm_description">{file_description}</div>
     <div class="dlm_detail">{file_detail}</div>

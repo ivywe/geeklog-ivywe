@@ -1,11 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
-
 	<a href="{websitelink}"><i class="uk-icon-home"></i></a>
-
-
-
 
 {# end {templatelocation} #}

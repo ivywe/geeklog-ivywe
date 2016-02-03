@@ -1,11 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
-
 	<a href="{profilelink}"><i class="uk-icon-user"></i></a>
-
-
-
 
 {# end {templatelocation} #}

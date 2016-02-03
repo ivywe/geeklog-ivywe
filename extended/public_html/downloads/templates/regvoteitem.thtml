@@ -1,6 +1,5 @@
 {# begin {templatelocation} #}
 
-
         <tr class="pluginRow{cssid}">
           <td>{ratinguname}</td>
           <td>{ratinghostname}</td>

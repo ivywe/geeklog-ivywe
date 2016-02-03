@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
                 <tr>
                     <th>
                         <form class="uk-form" action="{phpself}" method="post">
@@ -40,7 +38,5 @@
                         </form>
                     </th>
                 </tr>
-
-
 
 {# end {templatelocation} #}

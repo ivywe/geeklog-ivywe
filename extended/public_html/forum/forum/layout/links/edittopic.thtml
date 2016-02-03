@@ -1,11 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
-
 <a class="uk-icon-button uk-icon-edit" href="{editlink}"></a>                    
-
-
-
 
 {# end {templatelocation} #}

@@ -1,10 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
-
 <a class="pluginButton" {lastpostslink}>{LANG_lastposts}</a>
-
-
 
 {# end {templatelocation} #}

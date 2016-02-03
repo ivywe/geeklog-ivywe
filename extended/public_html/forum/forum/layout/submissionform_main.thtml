@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
             </tr>
             <tr>
                 <th>&nbsp;{LANG_SUBJECT}:</th>
@@ -48,7 +46,5 @@
                 </td>
             </tr>
         </table>
-
-
 
 {# end {templatelocation} #}

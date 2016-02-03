@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <div class="uk-grid uk-width-large-1-1 uk-visible-large">
   <div class="uk-width-1-2">
     <ul class="uk-breadcrumb" style="margin:0">
@@ -38,7 +36,5 @@
                                 </tbody>
                             </table>
 	</div>
-
-
 
 {# end {templatelocation} #}
