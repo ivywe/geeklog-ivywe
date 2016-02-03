@@ -1318,7 +1318,8 @@ function MG_autotags($op, $content = '', $autotag = '')
                     $newwidth = round($mediaSize[0] / $ratio);
                 }
             }
-            $tagtext = '<img src="' . $media_thumbnail . '" ' . $alttag . ' style="width:' . $newwidth . 'px;height:' . $newheight . 'px;border:none;vertical-align:bottom;"' . XHTML . '>';
+//          $tagtext = '<img src="' . $media_thumbnail . '" ' . $alttag . ' style="width:' . $newwidth . 'px;height:' . $newheight . 'px;border:none;vertical-align:bottom;"' . XHTML . '>';
+            $tagtext = '<img src="' . $media_thumbnail . '" ' . $alttag . ' style="border:none;vertical-align:bottom;"' . XHTML . '>';
 
             $link = '';
             if ($alt == 1 && $row['remote_url'] != '') {
