@@ -3374,8 +3374,10 @@ function DATABOX_uploadaddtiondatas(
                 $imgfld=$_CONF['path_html'].$box_conf['imgfile_frd'];
                 $imgfld_thmb=$_CONF['path_html'].$box_conf['imgfile_thumb_frd'];
                 $filename=$fldary[$field_id];
-                $filename_old=$fldary_old[$field_id];
-                
+                $a=explode("|",$fldary[$field_id]);
+                $filename=$a[0];
+                $a=explode("|",$fldary_old[$field_id]);
+                $filename_old=$a[0];
                 if (is_array($fldary_del) AND $fldary_del[$field_id]){
                     $rt=DATABOX_deleteFile($imgfld.$filename);
                     $thumbname=DATABOX_getthumbname($filename);
@@ -3709,7 +3711,8 @@ function DATABOX_deleteaddtionfiles(
             
             //図 外記憶
             if ($addition_def[$field_id]['type']==12){//図
-                $filename=$fldary[$field_id];
+                $a=explode("|",$fldary[$field_id]);
+                $filename=$a[0];
                 if ($filename<>""){
                     $imgfld=$_CONF['path_html'].$box_conf['imgfile_frd'];
                     $imgfld_thmb=$_CONF['path_html'].$box_conf['imgfile_thumb_frd'];
