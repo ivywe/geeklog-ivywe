@@ -38,8 +38,6 @@
             </td>
         </tr>
 
-
-
         <!-- 冒頭文　本文　 introhtml  or bodyhtml -->
         <tr>
             <th style="width:30%; text-align:right">{lang_introbody}{help_introbody}</th>
@@ -85,7 +83,6 @@
             </td>
         </tr>
 
-
     </table>
   </fieldset>
   <fieldset style="width:94%">
@@ -128,8 +125,6 @@
 				<br{xhtml}>{lang_reserv_datetime_remarks}
             </td>
         </tr>
-
-
 
     </table>
   </fieldset>

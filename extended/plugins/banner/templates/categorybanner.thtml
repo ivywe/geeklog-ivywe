@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <h3>{banner_category}</h3>
 <ul>
   {banner_details}

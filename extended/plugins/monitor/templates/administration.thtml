@@ -1,4 +1,5 @@
 {# begin {templatelocation} #}
+
 <h2 style="margin:0;">{title}</h2>
 <p>{doc}</p>
 {cron}
@@ -16,6 +17,6 @@
   </td>
 
 </tr>
-</table
+</table>
 
 {# end {templatelocation} #}

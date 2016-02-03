@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <!-- plugins/filemgmt/templates/filelisting_record.thtml { -->
 
 <tr class="pluginRow{cssid}">

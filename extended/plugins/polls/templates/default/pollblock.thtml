@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <ul class="uk-breadcrumb">
 <li><a href="{site_url}/">HOME</a></li>
 <li><a href="{site_url}/polls/">アンケートリスト</a></li>
@@ -26,7 +24,5 @@
     <li><a href="{site_url}/polls/index.php">{lang_polltopics}</a></li>
 	<li>{num_votes} {lang_voters} {poll_comments}</li>
 </ul>
-
-
 
 {# end {templatelocation} #}

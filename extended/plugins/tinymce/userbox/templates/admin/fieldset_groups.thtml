@@ -33,7 +33,6 @@ head.appendChild(lnk);
       </dd>
     </dl>
 
-
     <ul class="move">
       <li>
         <input type="button" name="right" 

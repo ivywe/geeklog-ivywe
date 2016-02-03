@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <ul class="uk-breadcrumb">
 <li><a href="{site_url}/">HOME</a></li>
 <li><a href="{site_url}/polls/"><?php global $LANG_POLLS; echo $LANG_POLLS['polls']; ?></a></li>
@@ -27,7 +25,5 @@
 	<li class="uk-button"><i class="uk-icon-pie-chart"></i> {poll_results}</li>
 	<li><i class="uk-icon-thumbs-o-up"></i> {num_votes} {lang_voters} {poll_comments}</li>
 </ul>
-
-
 
 {# end {templatelocation} #}

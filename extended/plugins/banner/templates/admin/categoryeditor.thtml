@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <p>{instructions}</p>
     <form class="uk-form" action="{site_admin_url}/plugins/banner/bannercategory.php" method="post">
         <table border="0" cellspacing="0" cellpadding="2" width="100%">

@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <script type="text/javascript">
 // Setup editor path for FCKeditor JS Functions
 geeklogEditorBasePath = "{site_url}/fckeditor/" ;
@@ -15,8 +13,6 @@ window.onload = function() {
 }
 </script>
 <p>{instructions}</p>
-
-
 
                                 <form class="uk-form" action="{site_admin_url}/plugins/banner/index.php" method="post">
                                     <table border="0" cellspacing="0" cellpadding="2" width="100%">

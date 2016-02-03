@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <form class="uk-form" style="display:inline" action="{site_admin_url}/plugins/calendarjp/index.php?mode=batchdelete" method="post">
     <div style="display: inline;">
         <input type="hidden" name="mode" value="batchdelete"{xhtml}>

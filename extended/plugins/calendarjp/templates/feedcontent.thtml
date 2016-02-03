@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <dl>
   <dt><strong>{lang_when}:</strong></dt>
   <dd>{event_start} - {event_end}</dd>

@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <form class="uk-form" action="{site_url}/banner/index.php" method="post">
 <table width="100%">
   <tr>

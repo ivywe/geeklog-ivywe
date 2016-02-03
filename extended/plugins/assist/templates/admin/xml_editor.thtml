@@ -19,7 +19,6 @@
             </td>
         </tr>
 
-
         <!-- tag -->
         <tr>
             <th style="width:30%" class="alignright">{lang_tag}<span class="must">{lang_must}</span></th>

@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <form class="uk-form" action="{site_url}/calendarjp/index.php" method="post">
     <div>
         <input type="hidden" name="view" value="addentry"{xhtml}>

@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <h2>{lang_categories}</h2>
 
 <table width="100%">

@@ -1,7 +1,6 @@
 {# begin {templatelocation} #}
 
 
-
 <div class="uk-overflow-container poll-questions">
 
 <script type="text/javascript">
@@ -12,7 +11,6 @@
         var data = google.visualization.arrayToDataTable([[ '{poll_question}', 'Votes'],
 
         {poll_votes}
-
 
 
 
@@ -32,8 +30,5 @@
 
 
 </div>
-
-
-
 
 {# end {templatelocation} #}

@@ -20,6 +20,4 @@
 <input type='hidden' name='conf_group' value='userbox'></form>
 <p> <a style='text-decoration: none;' href='#' onclick="document.userbox_conf_link.submit()">{lang_configuration}</a></p>
 
-
-
 {# end {templatelocation} #}

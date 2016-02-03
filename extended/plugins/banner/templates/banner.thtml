@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 {blockheader}
 
 {category_dropdown}

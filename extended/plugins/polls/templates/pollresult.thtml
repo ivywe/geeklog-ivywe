@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <ul class="uk-breadcrumb">
 <li><a href="{site_url}/">HOME</a></li>
 <li><a href="{site_url}/polls/"><?php global $LANG_POLLS; echo $LANG_POLLS['polls']; ?></a></li>
@@ -36,7 +34,5 @@
     </script>
 
 	<div id="{poll_id}_{question_id}" style="overflow:hidden"></div>
-
-
 
 {# end {templatelocation} #}

@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 {block_header}
 
 {category_path_link}
@@ -18,7 +16,6 @@
                     <td style="padding:10px;">{page_navigation}</td>
                 </tr>
             </table>
-
 
 {comment_records}
 {block_footer}

@@ -10,7 +10,6 @@
 
 <li><input type='submit' name='action' value='{config_init}' {xhtml}>  {config_init_help}</li>
 
-
 <li><input type='submit' name='action' value='{config_restore}' {restore_disabled} {xhtml}>  {config_restore_help}
 <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}></li>
 <li><input type='submit' name='action' value='{config_update}' {xhtml}>  {config_update_help}</li>
@@ -18,6 +17,5 @@
 </form>
 </blockquote>
 </fieldset>
-
 
 {# end {templatelocation} #}

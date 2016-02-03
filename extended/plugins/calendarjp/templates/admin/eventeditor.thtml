@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-
-
 <form class="uk-form compact" action="{site_admin_url}/plugins/calendarjp/index.php" name="events" method="post" id="calendar-eventeditor">
   <div class="admin_basic">
     <dl class="form_block">
