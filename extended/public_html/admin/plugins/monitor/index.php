@@ -1072,7 +1072,7 @@ $display .= '<p><a href="' . $_CONF['site_admin_url'] . '/plugins/monitor/index.
             | <a href="' . $_CONF['site_admin_url'] . '/plugins/monitor/index.php?action=change_user_photo">' . $LANG_MONITOR_1['change_user_photo'] . '</a>
             | <a href="' . $_CONF['site_admin_url'] . '/plugins/monitor/index.php?action=comments_list">' . $LANG_MONITOR_1['comments'] . '</a>
             | <a href="#" onclick="document.monitor_conf_link.submit()">' . $LANG_MONITOR_1['configuration'] . "</a></p>
-    <form name='monitor_conf_link' action='" . $_CONF['site_admin_url'] . "/configuration.php' method='POST'>
+    <form class=\"uk-form\" name='monitor_conf_link' action='" . $_CONF['site_admin_url'] . "/configuration.php' method='POST'>
     <input type='hidden' name='conf_group' value='monitor'></form>";
  
 $T = new Template($_CONF['path'] . 'plugins/monitor/templates');
@@ -1117,7 +1117,7 @@ switch ($action) {
     
     case 'resize_images' :	
     
-        $content .= "<form method=\"post\" action=\"{$_CONF['site_admin_url']}/plugins/monitor/index.php?action=resize_images\">";
+        $content .= "<form class=\"uk-form\" method=\"post\" action=\"{$_CONF['site_admin_url']}/plugins/monitor/index.php?action=resize_images\">";
         
         //List images from images folder
         $images_files = MONITOR_recursiveFiles();
@@ -1171,7 +1171,7 @@ switch ($action) {
                             $_CONF['max_photo_size'], $scaling);
                 
                 //Form for new photo
-                $content .= "<form method=\"post\" action=\"{$_CONF['site_admin_url']}/plugins/monitor/index.php\" enctype=\"multipart/form-data\">";
+                $content .= "<form class=\"uk-form\" method=\"post\" action=\"{$_CONF['site_admin_url']}/plugins/monitor/index.php\" enctype=\"multipart/form-data\">";
                 $content .= '<p>' . $display_photo . '</p><p>' . $photo_max_dimensions . '</p>';
                 $content .= '<p><input type="file" dir="ltr" id="photo" name="photo" size="30"' . XHTML .'></p>';
                 $content .= "<input type=\"hidden\" name=\"action\" value=\"upload_user_photo\">";
@@ -1186,7 +1186,7 @@ switch ($action) {
                 'title'        => 'Select user id',
             ));
         
-            $content .= "<form method=\"post\" action=\"{$_CONF['site_admin_url']}/plugins/monitor/index.php\">";
+            $content .= "<form class=\"uk-form\" method=\"post\" action=\"{$_CONF['site_admin_url']}/plugins/monitor/index.php\">";
             $content .= "User uid: <input type=\"text\" name=\"uid\" value=\"\">";
             $content .= "<input type=\"hidden\" name=\"action\" value=\"change_user_photo\">";
             $content .= "<input type=\"submit\" value=\"Go\">";
@@ -1205,7 +1205,7 @@ switch ($action) {
             'title'        => $LANG_MONITOR_1['view_clear_logs'],
         ));
         
-        $content .= "<form method=\"post\" action=\"{$_CONF['site_admin_url']}/plugins/monitor/index.php?action=logs\">";
+        $content .= "<form class=\"uk-form\" method=\"post\" action=\"{$_CONF['site_admin_url']}/plugins/monitor/index.php?action=logs\">";
         $content .= "<p>{$LANG_MONITOR_1['file']}&nbsp;&nbsp;&nbsp;";
         $files = array();
         if ($dir = @opendir($_CONF['path_log'])) {
