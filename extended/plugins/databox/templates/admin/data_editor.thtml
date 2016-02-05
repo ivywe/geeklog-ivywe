@@ -272,15 +272,10 @@
         <div class="uk-form-controls">
 	      <!-- 【LINE】 -->
 	      <!-- 【保存 キャンセル  削除】 -->
-		  <div class="uk-margin">
-	      <input type="submit" value="{lang_save}" name="mode"{xhtml}>
+	      <input type="submit" value="            {lang_save}            " name="mode"{xhtml}>
 	      <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
 	      <input type="hidden" value="{code}" name="old_code"{xhtml}>
 	      <input type="hidden" value="{old_mode}" name="old_mode"{xhtml}>
-        </div>
-    </div>
-    <div class="uk-form-row uk-margin-large-top uk-text-danger">
-        <div class="uk-form-controls">
 	      <span class="uk-text-danger">{delete_option}</span>
 	      <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
 	  </div>
