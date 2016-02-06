@@ -15,7 +15,7 @@
       <input type="hidden" name="fieldset_name" value="{fieldset_name}"{xhtml}>
 
       <!-- data -->
-      <fieldset>
+      <fieldset class="uk-margin-large-top">
         <legend>{lang_basicfields}</legend>
 
             <!-- id -->
@@ -191,7 +191,7 @@
       </fieldset>
 
       <!-- category -->
-      <fieldset>
+      <fieldset class="uk-margin-large-top">
         <legend>{lang_category}</legend>
 
     <div class="uk-form-row">
@@ -204,13 +204,13 @@
       </fieldset>
 
       <!-- 追加項目 -->
-      <fieldset>
+      <fieldset class="uk-margin-large-top">
         <legend>{lang_additionfields}</legend>
             {additionfields}
       </fieldset>
 
       <!-- アクセス権 -->
-      <fieldset>
+      <fieldset class="uk-margin-large-top">
         <legend>{lang_accessrights}</legend>
 
     <div class="uk-form-row">
@@ -268,7 +268,7 @@
                 <input type="hidden" name="created_un" value="{created_un}"{xhtml}>
       </fieldset>
 
-    <div class="uk-form-row uk-margin-large-top">
+    <div class="uk-form-row uk-margin-large uk-margin-large-bottom">
         <div class="uk-form-controls">
 	      <!-- 【LINE】 -->
 	      <!-- 【保存 キャンセル  削除】 -->
