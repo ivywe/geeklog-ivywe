@@ -1,5 +1,0 @@
-{# begin {templatelocation} #}
-  <a class="uk-button uk-button-primary uk-text-nowrap" href="{replytopiclink}">
-    {replytopiclinktext}
-  </a>
-{# end {templatelocation} #}

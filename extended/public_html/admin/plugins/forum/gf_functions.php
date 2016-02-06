@@ -49,9 +49,9 @@ if (!in_array('forum', $_PLUGINS)) {
 require_once '../../auth.inc.php';
 
 if (!SEC_hasRights('forum.edit')) {
-    $display = COM_showMessageText($MESSAGE[29], $MESSAGE[30]) . adminfooter();
+    $display = COM_showMessageText($MESSAGE[29], $MESSAGE[30]);
     $display = COM_createHTMLDocument($display, array('pagetitle' => $MESSAGE[30]));
-    COM_accessLog("User {$_USER['username']} tried to illegally access the links administration screen.");
+    COM_accessLog("User {$_USER['username']} tried to illegally access the forum administration.");
     COM_output($display);
     exit;
 }
@@ -67,18 +67,6 @@ $navbar->add_menuitem($LANG_GF06['5'], $_CONF['site_admin_url'] .'/plugins/forum
 $navbar->add_menuitem($LANG_GF06['6'], $_CONF['site_admin_url'] .'/plugins/forum/messages.php');
 $navbar->add_menuitem($LANG_GF06['7'], $_CONF['site_admin_url'] .'/plugins/forum/ips.php');
 $navbar->add_menuitem($LANG_GF06['2'], $_CONF['site_admin_url'] .'/plugins/forum/settings.php');
-
-// Site admin can add common footer code here
-function adminfooter() {
-    global $_CONF, $LANG_GF01, $CONF_FORUM;
-    
-    $footertemplate = COM_newTemplate($CONF_FORUM['path_layout'] . 'forum/layout/admin');
-    $footertemplate->set_file (array ('footertemplate'=>'footer.thtml'));
-    $footertemplate->set_var ('forumname', $LANG_GF01['forumname']);
-    $footertemplate->parse ('output', 'footertemplate');
-    return $footertemplate->finish ($footertemplate->get_var('output'));
-}
-
 
 function gf_resyncforum($id) {
     global $_CONF,$_TABLES;

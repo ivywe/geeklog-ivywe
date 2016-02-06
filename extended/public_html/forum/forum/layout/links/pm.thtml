@@ -1,5 +1,0 @@
-{# begin {templatelocation} #}
-
-<a class="uk-icon-button uk-external-link-square" href="{pmlink}" alt="{pmlinktext}"></a>
-
-{# end {templatelocation} #}

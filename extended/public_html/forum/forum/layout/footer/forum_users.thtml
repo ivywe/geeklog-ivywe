@@ -1,5 +1,0 @@
-{# begin {templatelocation} #}
-
-<dl><dt>{LANG_msg07}</dt><dd>{onlineusers}</dd>
-
-{# end {templatelocation} #}

@@ -1,5 +1,0 @@
-{# begin {templatelocation} #}
-
-<a  class="uk-icon-button uk-icon-envelope" {emaillink}>{LANG_email}</a>
-
-{# end {templatelocation} #}

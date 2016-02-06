@@ -1,6 +1,0 @@
-{# begin {templatelocation} #}
-
-</table>
-{endblock}
-
-{# end {templatelocation} #}

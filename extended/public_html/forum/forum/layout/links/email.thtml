@@ -1,5 +1,0 @@
-{# begin {templatelocation} #}
-
-<a href="{emaillink}"><i class="uk-icon-envelope"></i></a>
-
-{# end {templatelocation} #}

@@ -1,3 +1,0 @@
-{# begin {templatelocation} #}
-<a class="uk-button" {returnlink}>{LANG_return}</a>
-{# end {templatelocation} #}

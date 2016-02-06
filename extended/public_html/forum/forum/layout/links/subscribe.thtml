@@ -1,5 +1,0 @@
-{# begin {templatelocation} #}
-
-<a class="uk-button" href="{notifylink}">{notifylinktext}</a>
-
-{# end {templatelocation} #}

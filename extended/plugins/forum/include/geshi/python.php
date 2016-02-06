@@ -177,9 +177,9 @@ $language_data = array (
             )
         ),
     'SYMBOLS' => array(
-        '<', '>', '=', '!', '<=', '>=',             //揃comparison揃operators
-        '~', '@',                                   //揃unary揃operators
-        ';', ','                                    //揃statement揃separator
+        '<', '>', '=', '!', '<=', '>=',             //·comparison·operators
+        '~', '@',                                   //·unary·operators
+        ';', ','                                    //·statement·separator
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
