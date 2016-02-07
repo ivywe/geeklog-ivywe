@@ -104,8 +104,15 @@ $_UPDATES = array(
         "ALTER TABLE {$_TABLES['pollquestions']} ADD `allow_multipleanswers` TINYINT( 1 ) NULL DEFAULT NULL", 
         "ALTER TABLE {$_TABLES['polltopics']} ADD `description` MEDIUMTEXT NULL ",
         "ALTER TABLE {$_TABLES['pollquestions']} ADD `description` MEDIUMTEXT NULL"
-    )
+    ),
  
+    '2.1.6' => array(
+        // New field post-2.1.6
+        "ALTER TABLE {$_TABLES['pollquestions']} ADD `allow_multipleanswers` TINYINT( 1 ) NULL DEFAULT NULL", 
+        "ALTER TABLE {$_TABLES['polltopics']} ADD `description` MEDIUMTEXT NULL ",
+        "ALTER TABLE {$_TABLES['pollquestions']} ADD `description` MEDIUMTEXT NULL"
+    )
+
 );
 
 /**

@@ -51,8 +51,8 @@ function plugin_autoinstall_polls($pi_name)
     $info = array(
         'pi_name'         => $pi_name,
         'pi_display_name' => $pi_display_name,
-        'pi_version'      => '2.1.5.1',
-        'pi_gl_version'   => '2.1.0',
+        'pi_version'      => '2.1.6.1',
+        'pi_gl_version'   => '2.1.1',
         'pi_homepage'     => 'http://www.geeklog.net/'
     );
 
@@ -161,6 +161,10 @@ function plugin_compatible_with_this_version_polls($pi_name)
     }
 
     if (! function_exists('SEC_loginRequiredForm')) {
+        return false;
+    }
+
+    if (! function_exists('CTL_plugin_templatePath')) {
         return false;
     }
 

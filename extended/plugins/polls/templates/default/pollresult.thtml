@@ -1,13 +1,19 @@
 {# begin {templatelocation} #}
 
+
+
 <ul class="uk-breadcrumb">
 <li><a href="{site_url}/">HOME</a></li>
-<li><a href="{site_url}/polls/">アンケートリスト</a></li>
+<li><a href="{site_url}/polls/"><?php global $LANG_POLLS; echo $LANG_POLLS['polls']; ?></a></li>
 <li class="uk-text-truncate">{poll_topic}</li>
 </ul>
 
-<span class="uk-float-right">{edit_icon}</span><h2 class="uk-h2">{poll_topic}</h2>
+<span class="uk-float-right">{edit_icon}</span>
+<h2 class="uk-h2">{poll_topic}</h2>
+<div class="uk-margin">{poll_topic_description}</div>
+
 {poll_questions}
+
 <div class="pluginTinyText">
     {notification} <a href="{site_url}/polls/index.php">{lang_polltopics}</a> | {num_votes} {lang_voters} {poll_comments}
 </div>
@@ -29,8 +35,8 @@
       }
     </script>
 
-<div class="uk-overflow-container">
-	<div id="{poll_id}_{question_id}" style="min-width:500px ; min-height: 450px"></div>
-</div>
+	<div id="{poll_id}_{question_id}" style="overflow:hidden"></div>
+
+
 
 {# end {templatelocation} #}
