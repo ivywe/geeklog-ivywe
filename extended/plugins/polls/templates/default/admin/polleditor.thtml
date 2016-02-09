@@ -1,4 +1,4 @@
-{# begin {templatelocation} komma #}
+{# begin {templatelocation} #}
 
 {noscript}
 <div id="advanced_editor" style="display:none;">
@@ -48,29 +48,37 @@
       </div>
       {question_list}
 
-      <fieldset>
-        <legend>{lang_accessrights}</legend>
+	<fieldset class="uk-margin-large-top uk-form-horizontal">
+		<legend>{lang_accessrights}</legend>
+		<div class="uk-form-row">
+			<label class="uk-form-label">{lang_owner}</label>
+			<div class="uk-form-controls">
+				{owner_name}
+				<input type="hidden" name="owner_id" value="{owner_id}"{xhtml}>
+			</div>
+		</div>
+		<div class="uk-form-row">
+			<label class="uk-form-label" for="group_id">{lang_group}</label>
+			<div class="uk-form-controls">{group_dropdown}</div>
+		</div>
+		<div class="uk-form-row">
+			<label class="uk-form-label" for="admin-permissions">{lang_permissions}</label>
+			<div class="uk-form-controls">
+				{permissions_editor}
+				<span class="uk-form-help-inline">{lang_perm_key}</span>
+				<span class="uk-form-help-inline">{lang_permissions_msg}</span>
+			</div>
+		</div>
+	</fieldset>
 
-        <dl class="uk-description-list-horizontal">
-          <dt>{lang_owner}</dt>
-          <dd>{owner_name}<input type="hidden" name="owner_id" value="{owner_id}"{xhtml}></dd>
-
-          <dt><label for="group_id">{lang_group}</label></dt>
-          <dd>{group_dropdown}</dd>
-
-          <dt><label for="admin-permissions">{lang_permissions}</label></dt>
-          <dd>{permissions_editor}</dd>
-          <dd class="uk-width-1-1">{lang_perm_key}</dd>
-          <dd class="uk-width-1-1">{lang_permissions_msg}</dd>
-        </dl>
-      </fieldset>
-
-      <div class="submit">
-        <input type="submit" name="mode" value="{lang_save}" class="submit"{xhtml}>
-        <input type="submit" name="mode" value="{lang_cancel}" class="submit"{xhtml}>
-        {delete_option}
-        <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
-        <input type="hidden" value="{poll_id}" name="old_pid"{xhtml}>
+      <div class="uk-form-row uk-margin-large-top">
+        <div class="uk-form-controls">
+          <input type="submit" name="mode" value="{lang_save}" class="submit"{xhtml}>
+          <input type="submit" name="mode" value="{lang_cancel}" class="submit"{xhtml}>
+          {delete_option}
+          <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+          <input type="hidden" value="{poll_id}" name="old_pid"{xhtml}>
+      	</div>
       </div>
   </form>
 </div>

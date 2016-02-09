@@ -40,18 +40,18 @@
 * @package Polls
 */
 
-//hack1 2015/10/13 
+//hack1 2015/10/13
 //allow multipleanswers
 //If set to 1, users will be allowed multipleanswers (checkbox)
 //
-// ALTER TABLE `gl_pollquestions` ADD `allow_multipleanswers` TINYINT( 1 ) NULL DEFAULT NULL 
+// ALTER TABLE `gl_pollquestions` ADD `allow_multipleanswers` TINYINT( 1 ) NULL DEFAULT NULL
 //
 //----------------
 //hack2 2015/10/14
 //description
 //
-// ALTER TABLE `gl_polltopics` ADD `description` MEDIUMTEXT NULL 
-// ALTER TABLE `gl_pollquestions` ADD `description` MEDIUMTEXT NULL  
+// ALTER TABLE `gl_polltopics` ADD `description` MEDIUMTEXT NULL
+// ALTER TABLE `gl_pollquestions` ADD `description` MEDIUMTEXT NULL
 
 
 if (strpos(strtolower($_SERVER['PHP_SELF']), 'functions.inc') !== false) {
@@ -72,10 +72,10 @@ if (file_exists($langfile)) {
 
 /**
 * Check and see if we need to load the plugin configuration
-*/ 
+*/
 if (!isset($_PO_CONF['pollsloginrequired'])) {
     require_once $_CONF['path_system'] . 'classes/config.class.php';
-    
+
     $po_config = config::get_instance();
     $_PO_CONF = $po_config->get_config('polls');
 }
@@ -134,14 +134,14 @@ function plugin_savecomment_polls($title, $comment, $id, $pid, $postmode)
     if ($ret > 0) { // failure //FIXME: some failures should not return to comment form
         $retval .= CMT_commentForm ($title, $comment, $id, $pid, 'polls',
                                    $LANG03[14], $postmode);
-        
+
         if (!defined('COMMENT_ON_SAME_PAGE')) {
             $retval = COM_createHTMLDocument($retval, array('pagetitle' => $LANG03[1]));
         } else {
             if (!COMMENT_ON_SAME_PAGE) {
                 $retval = COM_createHTMLDocument($retval, array('pagetitle' => $LANG03[1]));
             }
-        }        
+        }
     } else { // success
         $retval = COM_refresh ($_CONF['site_url']
                                 . "/polls/index.php?pid=$id");
@@ -377,9 +377,9 @@ function plugin_chkVersion_polls()
 {
     global $_CONF;
 
-    require_once $_CONF['path'] . 'plugins/polls/autoinstall.php';          
+    require_once $_CONF['path'] . 'plugins/polls/autoinstall.php';
 
-    $inst_parms = plugin_autoinstall_polls('polls'); 
+    $inst_parms = plugin_autoinstall_polls('polls');
 
     return $inst_parms['info']['pi_version'];
 }
@@ -421,7 +421,7 @@ function plugin_autouninstall_polls ()
         /* give the full name of the group, as in the db */
         'groups' => array('Polls Admin'),
         /* give the full name of the feature, as in the db */
-        'features' => array('polls.edit', 
+        'features' => array('polls.edit',
                             'config.polls.tab_whatsnew',
                             'config.polls.tab_main',
                             'config.polls.tab_permissions',
@@ -454,7 +454,7 @@ function POLLS_pollVote($pid, $showall = true, $displaytype = 0, $order = '', $m
            $_IMAGE_TYPE;
 
     $retval = '';
-    
+
     $result = DB_query("SELECT topic,voters,commentcode,is_open,hideresults,owner_id "
         . ",group_id,perm_owner,perm_group,perm_anon,perm_members ,description "
         . "FROM {$_TABLES['polltopics']} WHERE pid='$pid'" . COM_getPermSql('AND'));
@@ -465,7 +465,7 @@ function POLLS_pollVote($pid, $showall = true, $displaytype = 0, $order = '', $m
     }
 
     $P = DB_fetchArray($result);
-    
+
     if ((!isset($_COOKIE[$pid]) && !POLLS_ipAlreadyVoted($pid)) or ($P['is_open'] == 1)) {
         if ($ntopics == 1) {
             $questions_sql = "SELECT question,qid ,allow_multipleanswers ,description "
@@ -636,7 +636,7 @@ function POLLS_showPoll($size, $pid = '', $showall = false, $displaytype = 0)
     global $_CONF, $_TABLES, $_PO_CONF, $LANG_POLLS;
 
     $retval = '';
-    
+
     DB_query("DELETE FROM {$_TABLES['pollvoters']} WHERE date < UNIX_TIMESTAMP() - {$_PO_CONF['polladdresstime']}");
 
     if (!empty($pid)) {
@@ -1280,8 +1280,8 @@ function plugin_upgrade_polls()
             }
 
             $current_version = '2.1.5';
-            break;             
-            
+            break;
+
         case '2.1.5':
             if (isset($_UPDATES[$current_version])) {
                 $_SQL = $_UPDATES[$current_version];
@@ -1291,7 +1291,7 @@ function plugin_upgrade_polls()
             }
 
             $current_version = '2.1.5.1';
-            break;             
+            break;
         case '2.1.5.1':
             if (isset($_UPDATES[$current_version])) {
                 $_SQL = $_UPDATES[$current_version];
@@ -1301,7 +1301,7 @@ function plugin_upgrade_polls()
             }
 
             $current_version = '2.1.6.1';
-            break;             
+            break;
         case '2.1.6':
             if (isset($_UPDATES[$current_version])) {
                 $_SQL = $_UPDATES[$current_version];
@@ -1311,7 +1311,7 @@ function plugin_upgrade_polls()
             }
 
             $current_version = '2.1.6.1';
-            break;             
+            break;
 
         default:
             $done = true;
