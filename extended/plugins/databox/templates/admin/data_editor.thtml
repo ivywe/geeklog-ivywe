@@ -1,6 +1,5 @@
 {# begin {templatelocation} #}
 
-<div>
   <ul class="uk-subnav uk-subnav-line uk-flex-center">
     <li>{about_thispage}</li>
 	<li><a href="{site_admin_url}/plugins/databox/view.php?id={id}">{lang_view}</a></li>
@@ -21,8 +20,8 @@
             <!-- id -->
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_id} {help_id}</label>
-        <div class="uk-form-controls">{id}
-                <input type="hidden" name="id" value="{id}"{xhtml}>
+        <div class="uk-form-controls">
+			{id}<input type="hidden" name="id" value="{id}"{xhtml}>
         </div>
     </div>
 
@@ -282,6 +281,5 @@
     </div>
 
   </form>
-</div>
 
 {# end {templatelocation} #}

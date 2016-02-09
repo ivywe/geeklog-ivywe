@@ -1,12 +1,16 @@
 {# begin {templatelocation} #}
 
-<form class="uk-form" action="{site_admin_url}/plugins/databox/data.php" method="post" id="admin-selectset">
+<form class="uk-form uk-form-horizontal" action="{site_admin_url}/plugins/databox/data.php" method="post" id="admin-selectset">
 
-  <p class="uk-text-primary">{lang_inst_newdata}</p>
-  {list_fieldset}
-  <input type="submit" value="{lang_new}" name="mode"{xhtml}>
-  <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
-  <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+    <div class="uk-form-row">
+        <label class="uk-form-label" for="">{lang_inst_newdata}</label>
+        <div class="uk-form-controls">
+			{list_fieldset}
+			<input type="submit" value="{lang_new}" name="mode"{xhtml}>
+			<input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
+			<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+        </div>
+    </div>
 
 </form>
 

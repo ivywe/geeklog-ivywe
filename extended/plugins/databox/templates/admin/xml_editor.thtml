@@ -1,65 +1,63 @@
 {# begin {templatelocation} #}
 
-<div id="databox_admin">
 {about_thispage}
-<form class="uk-form" name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
+<form class="uk-form uk-form-horizontal" name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
 
   <fieldset style="width:94%">
     <legend>XML</legend>
 
     <!-- data -->
-    <table>
         <!-- seq -->
-        <tr>
-            <th style="width:30%" class="alignright">{lang_seq}</th>
-            <td style="width:70%">
+    <div class="uk-form-row">
+        <label class="uk-form-label" for="">{lang_seq}</label>
+        <div class="uk-form-controls">
                 {seq}
                 <input type="hidden" name="seq" value="{seq}"{xhtml}>
-
-            </td>
-        </tr>
+        </div>
+    </div>
 
         <!-- tag -->
-        <tr>
-            <th style="width:30%" class="alignright">{lang_tag}<span class="must">{lang_must}</span></th>
-            <td style="width:70%">
+    <div class="uk-form-row">
+        <label class="uk-form-label" for="">{lang_tag}<span class="must">{lang_must}</span></label>
+        <div class="uk-form-controls">
                 <input type="text" size="60" maxlength="160" name="tag" value="{tag}"{xhtml}>
-            </td>
-        </tr>
+        </div>
+    </div>
 
         <!-- value -->
-        <tr>
-            <th style="width:30%" class="alignright">{lang_value}</th>
-            <td style="width:70%">
-                <input type="text" size="60" maxlength="160" name="value" value="{value}"{xhtml}>
-            </td>
-        </tr>
+    <div class="uk-form-row">
+        <label class="uk-form-label" for="">{lang_value}</label>
+        <div class="uk-form-controls">
+                <input type="text" size="60" maxlength="160" name="value" value="{value}"{xhtml}>    </div>
 
         <!-- field -->
-        <tr>
-            <th style="width:30%" class="alignright">{lang_field}<span class="must">{lang_must}</span></th>
-            <td style="width:70%">
+    <div class="uk-form-row">
+        <label class="uk-form-label" for="">{lang_field}<span class="must">{lang_must}</span></label>
+        <div class="uk-form-controls">
                 {list_field}
-            </td>
-        </tr>
+        </div>
+    </div>
 
         <!-- 保存日 -->
-        <tr>
-            <th style="width:30%" class="alignright">{lang_udatetime}</th>
-            <td style="width:70%">{udatetime} {lang_uuid}:{uuid}</td>
-        </tr>
+    <div class="uk-form-row">
+        <label class="uk-form-label" for="">{lang_udatetime}</label>
+        <div class="uk-form-controls">
+			{udatetime} {lang_uuid}:{uuid}
+        </div>
+    </div>
 
-    </table>
   </fieldset>
 
+    <div class="uk-form-row uk-margin-large-top">
+        <div class="uk-form-controls">
         <!-- 【保存 キャンセル  削除】 -->
-                <input type="submit" value="{lang_save}" name="mode"{xhtml}>
-
+                <input type="submit" value="{lang_save}" name="mode" style="min-width:10em"{xhtml}>
                 <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
                 <input type="hidden" value="{code}" name="old_code"{xhtml}>
                 {delete_option}{lang_delete_help}
                 <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+	  </div>
+    </div>
 </form>
-</div>
 
 {# end {templatelocation} #}

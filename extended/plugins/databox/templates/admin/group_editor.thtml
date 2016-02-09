@@ -1,6 +1,5 @@
 {# begin {templatelocation} #}
 
-<div>
   {about_thispage}
   <form class="uk-form uk-form-horizontal" name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
     <fieldset style="width:98%">
@@ -77,19 +76,14 @@
         <label class="uk-form-label" for=""></label>
         <div class="uk-form-controls">
 		    <!-- 【保存 キャンセル  削除】 -->
-		    <input type="submit" value="{lang_save}" name="mode"{xhtml}>
+		    <input type="submit" value="{lang_save}" name="mode" style="min-width:10em"{xhtml}>
 		    <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
 		    <input type="hidden" value="{code}" name="old_code"{xhtml}>
-        </div>
-    </div>
-    <div class="uk-form-row">
-        <div class="uk-form-controls">
 		    {delete_option}<span class="uk-text-danger">{lang_delete_help}</span>
 		    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
         </div>
     </div>
 
   </form>
-</div>
 
 {# end {templatelocation} #}

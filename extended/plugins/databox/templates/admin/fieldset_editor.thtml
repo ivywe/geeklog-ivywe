@@ -61,14 +61,9 @@
     <div class="uk-form-row uk-margin-large-top">
         <label class="uk-form-label" for=""></label>
         <div class="uk-form-controls">
-		    <input type="submit" value="{lang_save}" name="mode"{xhtml}>
+		    <input type="submit" value="{lang_save}" name="mode" style="min-width:10em"{xhtml}>
 		    <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
 		    <input type="hidden" value="{code}" name="old_code"{xhtml}>
-        </div>
-    </div>
-    <div class="uk-form-row uk-margin-large-top uk-text-danger">
-        <div class="uk-form-controls">
-
 		    {delete_option}<span class="uk-text-danger">{lang_delete_help}</span>
 		    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
 		    <!-- 【保存 キャンセル  削除】 -->

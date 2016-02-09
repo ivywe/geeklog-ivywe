@@ -1,16 +1,17 @@
 {# begin {templatelocation} #}
 
 <h3 class="uk-h3">{actionname}</h3>
-<form class="uk-form" action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data">
-<div>
-<input type='submit' name='action' value='{lang_submit}'{xhtml}>
-<input type='submit' name='action' value='{lang_cancel}'{xhtml}>
-<input type="hidden" name="mode" value="{mode}"{xhtml}>
-<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
-</div>
-<div>
-{help}
-</div>
+<form class="uk-form uk-form-horizontal" action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data">
+
+	<div>
+		<input type='submit' name='action' value='{lang_submit}'{xhtml}>
+		<input type='submit' name='action' value='{lang_cancel}'{xhtml}>
+		<input type="hidden" name="mode" value="{mode}"{xhtml}>
+		<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+	</div>
+	<span class="uk-form-help-inline">
+		{help}
+	</span>
 
 </form>
 
