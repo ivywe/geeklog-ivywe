@@ -92,7 +92,7 @@ $LANG_MAPS_1 = array(
     'message'               => 'メッセージ',
     'general_settings'      => '一般設定',
     'map_width'             => 'マップの横幅 (% または px, 最小 550px): ',
-    'map_height'             => 'マップの高さ (px のみ, 最小 350px): ',
+    'map_height'            => 'マップの高さ (px のみ, 最小 350px): ',
     'map_zoom'              => 'マップズーム (0-21): ',
     'map_type'              => 'マップタイプ: ',
     'active'                => 'マップ有効: ',
@@ -291,24 +291,24 @@ $LANG_MAPS_1 = array(
 	'choose_group'          => 'グループ選択',
 	'group'                 => 'グループ',
 	//v1.3
-	'geo_fail'              => 'The address you entered does not seem to be valid',
-	'on_map'                => 'On the map',
-	'read_more'             => 'Read more',
-	'from_map'              => 'On map',
-	'show_hide_overlays'    => 'Show / hide overlays',
-	'fields_presentation'   => 'Edit an existing category to add or edit a field.',
-	'overlays_added'        => 'Overlays present on this map',
-	'overlays_to_add'       => 'Overlays you can add to this map',
-	'marker_modification'   => 'Marker modification',
-	'from_owner'            => 'from',
-	'marker_limited'        => 'Sorry but access to this marker is limited...',
-	'events_map'            => 'Map of the next events',
+	'geo_fail'              => '住所の入力エラーです。',
+	'on_map'                => '地図上',
+	'read_more'             => '詳しくはこちら',
+	'from_map'              => '地図から',
+	'show_hide_overlays'    => 'オーバーレイ 表示 / 非表示',
+	'fields_presentation'   => 'カテゴリの編集またはフィールドを追加する。',
+	'overlays_added'        => '地図にオーバーレイを追加する',
+	'overlays_to_add'       => '地図にオーバーレイを追加',
+	'marker_modification'   => 'マーカーの編集',
+	'from_owner'            => 'から',
+	'marker_limited'        => 'マーカー制限です',
+	'events_map'            => 'イベントマップ',
 	'info_events_map'       => '',
 	'from_cal'              => 'From',
 	'to_cal'                => 'to',
 	'on_cal'                => 'On',
     //v1.4
-    'configuration'         => 'Configuration',
+    'configuration'         => 'コンフィギュレーション',
 
 );
 
@@ -320,7 +320,7 @@ $LANG_MAPS_MESSAGE = array(
 );
 
 $LANG_MAPS_EMAIL = array(
-    'hello_admin'           => 'Hello admin,',
+    'hello_admin'           => 'ようこそ、管理者さん,',
     'new_marker'            => '承認待ちのマーカーが作成されました。',
     'name'                  => '名称:',
     'on_map'                => 'マップ上:',
@@ -421,8 +421,8 @@ $LANG_confignames['maps'] = array(
     'marker_edition'        => 'マーカー編集',
     'infos_label'           => 'インフォラベル (プロバージョン)',
 	'use_cluster'           => 'マーカークラスターを利用する',
-	'zoom_profile'          => 'Zoom for map on user\'s profile (0-21)',
-	'display_events_map'    => 'Display events map',
+	'zoom_profile'          => 'ユーザープロファイルのマップのズーム (0-21)',
+	'display_events_map'    => 'イベントマップを表示する',
 );
 
 /**
