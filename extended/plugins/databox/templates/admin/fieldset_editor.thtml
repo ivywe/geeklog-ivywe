@@ -28,7 +28,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_description} {help_description}</label>
         <div class="uk-form-controls">
-              <textarea name="description" style="width:95%" rows="2" id="databox_description"><span class="uk-text-danger">{description}</span></textarea>
+              <textarea name="description" style="width:95%" rows="2" id="databox_description">{description}</textarea>
         </div>
     </div>
   
