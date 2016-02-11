@@ -1,5 +1,5 @@
 {doctype}
-<html{lang_attribute}{xmlns}>
+<html{lang_attribute}>
 
 <head>
 <meta charset="{charset}"{xhtml}>
@@ -62,15 +62,15 @@
       </div>
     </div>
 
-  <!-- #container { -->
+  {# begin #container #}
   <div id="container" class="uk-container uk-container-center uk-margin-large-bottom">
 
-    <!-- #wrapper { -->
+    {# begin #wrapper #}
     <div id="wrapper">
 
       {!!autotag assist:staticpage_content id:-top mode:home !!}
 
-      <!-- Center Block Container -->
+      {# begin Center Block Container #}
       <div id="centerblocks">
         <main id="main-content" role="main">
           <p class="uk-text-left uk-margin-small-top">{welcome_msg}&nbsp;{datetime}</p>

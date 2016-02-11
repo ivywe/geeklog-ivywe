@@ -505,7 +505,7 @@ function CMT_getComment( &$comments, $mode, $type, $order, $delete_option = fals
 
             // always place edit option first, if available
             if (! empty($edit)) {
-                $deloption .= $edit;
+                $deloption .= "<li>".$edit."</li>";
             }
 
             // actual delete option
