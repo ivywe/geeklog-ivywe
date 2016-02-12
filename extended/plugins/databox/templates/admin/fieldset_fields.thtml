@@ -20,31 +20,32 @@ head.appendChild(lnk);
 		<div class="uk-width-medium-2-5">
         
 			<dl class="uk-description-list-line">
-		      <dt><label class="uk-text-nowrap" for="admin-fieldsetfields-fieldFrom">{LANG_fieldlist}</label></dt>
-		      <dd>
-		        <select multiple="multiple" size="10" 
-		                        onDblClick="moveSelectedOptions(this.form['fieldFrom'],this.form['fieldTo'],false)"                                 
-		                        name="fieldFrom" 
-		                        id="admin-groupmembers-fieldFrom" style="min-width:150px">
-		          {field_list}
-		        </select>
-		      </dd>
-		    </dl>
+	      <dt><label class="uk-text-nowrap" for="admin-fieldsetfields-fieldFrom">{LANG_fieldlist}</label></dt>
+	      <dd>
+	        <select multiple="multiple" size="10" 
+	                        onDblClick="moveSelectedOptions(this.form['fieldFrom'],this.form['fieldTo'],false)"                                 
+	                        name="fieldFrom" 
+	                        id="admin-groupmembers-fieldFrom" style="min-width:150px">
+	          {field_list}
+	        </select>
+	      </dd>
+	    </dl>
 
-	   </div>
-	   <div class="uk-width-medium-1-5">
+		</div>
+		<div class="uk-width-medium-1-5">
 
-		    <ul class="uk-list uk-margin-large-top uk-margin-small-bottom">
-		      <li>
-		        <input type="button" name="right" 
-		                        value="{LANG_add}" 
-		                        onclick="moveSelectedOptions(this.form['fieldFrom'],this.form['fieldTo'],false)"                         
-		                        class="uk-margin-small-bottom"{xhtml}></li>
-		      <li>
-		        <input type="button" name="left"  
-		                        value="{LANG_remove}" 
-		                        onclick="moveSelectedOptions(this.form['fieldTo'],this.form['fieldFrom'],false)"{xhtml}></li>
-		    </ul>
+			<ul class="uk-list uk-margin-large-top uk-margin-small-bottom">
+				<li>
+					<input type="button" name="right" 
+					value="{LANG_add}" 
+					onclick="moveSelectedOptions(this.form['fieldFrom'],this.form['fieldTo'],false)"                         
+					class="uk-margin-small-bottom"{xhtml}></li>
+				<li>
+				<input type="button" name="left"  
+				value="{LANG_remove}" 
+				onclick="moveSelectedOptions(this.form['fieldTo'],this.form['fieldFrom'],false)"{xhtml}>
+				</li>
+			</ul>
 
 	   </div>
 	   <div class="uk-width-medium-2-5">
@@ -62,19 +63,21 @@ head.appendChild(lnk);
 			</dl>
 
 		</div>
-	    <div class="uk-form-row uk-margin-large-top">
-	        <div class="uk-form-controls">
-		        <input type="submit" value="{lang_save}" 
-		                onclick="return setUsers(this.form)" style="min-width:10em"{xhtml}>
-		        <input type="button" value="{lang_cancel}" 
-		                onclick="javascript:history.go(-1)"{xhtml}>
-		        <input type="hidden" name="mode" value="savefieldsetfields"{xhtml}>
-		        <input type="hidden" name="groupmembers"{xhtml}>
-		        <input type="hidden" name="id" value="{id}"{xhtml}>
-		        <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
-			</div>
+	</div>
+
+	<div class="uk-form-row uk-margin-large-top">
+		<div class="uk-form-controls">
+			<input type="submit" value="{lang_save}" 
+			        onclick="return setUsers(this.form)" style="min-width:10em"{xhtml}>
+			<input type="button" value="{lang_cancel}" 
+			        onclick="javascript:history.go(-1)"{xhtml}>
+			<input type="hidden" name="mode" value="savefieldsetfields"{xhtml}>
+			<input type="hidden" name="groupmembers"{xhtml}>
+			<input type="hidden" name="id" value="{id}"{xhtml}>
+			<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
 		</div>
 	</div>
+
 </form>
 
 {# end {templatelocation} #}
