@@ -780,6 +780,7 @@ $LANG_confignames['databox']['hideuseroption'] = 'hide useroption';
 $LANG_confignames['databox']['commentcode'] = 'Comment Default';
 
 $LANG_confignames['databox']['sort_list_by'] = 'Sort Admin List by';
+$LANG_confignames['databox']['sort_list_by_my'] = 'Sort My Data List by';
 $LANG_confignames['databox']['default_cache_time'] = 'default cache time';
 
 //--(1)
@@ -1001,4 +1002,15 @@ $LANG_configselects['databox'][28] =array();
             $LANG_configselects['databox'][29][$name]=$csv_sel_id;
         }
     }
+$LANG_configselects['databox'][30] =array(
+    'Order' => 'orderno'
+    ,'ID' => 'id'
+    , 'Code' => 'code'
+    , 'Title' => 'title'
+    , 'Data Type' => 'fieldset_name'
+    , 'remaining days' => 'remaingdays'
+    , 'Time Stamp (descending)' => 'udatetime'
+    , 'Draft' => 'draft_flag'
+        );
+
 ?>

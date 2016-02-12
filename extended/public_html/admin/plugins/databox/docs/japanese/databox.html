@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
 </head>
-<!-- admin/plugins/databox/docs/japanese/databox.html 20151019 -->
+<!-- admin/plugins/databox/docs/japanese/databox.html 20160212 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
@@ -25,7 +25,7 @@
 <form name='databox_conf_link' action='../../../../../admin/configuration.php' method='POST'>
 <input type='hidden' name='conf_group' value='databox'></form>
  <a style='text-decoration: none;' href='#' onclick="document.databox_conf_link.submit()">コンフィギュレーション管理画面</a>「管理者用メニュー - コンフィギュレーション - DataBox」から変更できます。</p>
- <h3><a name="public">メイン設定</a>(2015/10/19 update)</h3>
+ <h3><a name="public">メイン設定</a>(2016/02/12 update)</h3>
 
 <table>
 <tr><th style="width:25%">項目(変数)</th>
@@ -315,6 +315,21 @@
  </td>
 </tr>
 <tr class="r2">
+  <td valign="top"><a name="desc_sort_list_by_my">マイデータの並べ替え(sort_list_by_my)</a></td>
+  <td valign="top">表示位置(order)</td>
+  <td valign="top">マイデータで表示するソート順のデフォルトを指定します。   <ul>
+  <li>表示位置（orderno）</li>
+  <li>ID（id）</li>
+  <li>コード（code）</li>
+  <li>タイトル（title）</li>
+  <li>タイプ（fieldset）</li>
+  <li>残日数（remaingdays）</li>
+  <li>タイムスタンプ降順（udatetime）</li>
+  <li>ドラフト（draft）</li>
+  </ul>
+ </td>
+</tr>
+<tr>
 	<td valign="top"><a name="desc_default_cache_time">キャッシュデフォルトタイム(default_cache_time)</a></td>
   <td valign="top">0</td>
   <td valign="top">キャッシュする期間のデフォルトを指定します。可能な値は:
@@ -417,7 +432,7 @@
 
 
 
-<h3><a name="uploadfile">アップロードファイル</a>(2015/02/25 update)</h3>
+<h3><a name="uploadfile">アップロードファイル</a>(2016/02/08 update)</h3>
 <table>
 <tr><th style="width:25%">項目(変数)</th>
     <th style="width:25%">デフォルト</th>
@@ -458,6 +473,7 @@
   <li>image/jpg</li>
   <li>image/pjpeg</li>
   <li>image/x-png</li>
+  <li>image/svg+xml</li>
   </ul>
   </td>
   <td></td>

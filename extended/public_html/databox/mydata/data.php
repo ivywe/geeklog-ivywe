@@ -136,7 +136,11 @@ function fncList(
         'query_fields' => array('id','title','code','draft_flag','orderno','t2.name'),
         'default_filter' => $exclude);
     //デフォルトソート項目:
-    $defsort_arr = array('field' => 'orderno', 'direction' => 'ASC');
+    if  ($_DATABOX_CONF["sort_list_by_my"]=="udatetime"){
+        $defsort_arr = array('field' => 'udatetime', 'direction' => 'DESC');
+    }else{
+        $defsort_arr = array('field' => $_DATABOX_CONF["sort_list_by_my"], 'direction' => 'ASC');
+    }
 	$form_arr = array('bottom' => '', 'top' => '');
     $pagenavurl = '&amp;filter_val=' . $filter_val;
    //List 取得

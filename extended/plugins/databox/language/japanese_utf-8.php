@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20151209
+# Last Update 20160212
 
 ###############################################################################
 ## 管理画面 menu
@@ -821,6 +821,7 @@ $LANG_confignames['databox']['hideuseroption'] = 'ユーザー情報に表示し
 $LANG_confignames['databox']['commentcode'] = '新規登録時のコメントのデフォルト';
 
 $LANG_confignames['databox']['sort_list_by'] = '管理者ページ（データ）の並べ替え';
+$LANG_confignames['databox']['sort_list_by_my'] = 'マイデータの並べ替え';
 $LANG_confignames['databox']['default_cache_time'] = 'デフォルトキャッシュタイム';
 
 //--(1)
@@ -1052,4 +1053,15 @@ $LANG_configselects['databox'][29] =array();
             $LANG_configselects['databox'][29][$name]=$csv_sel_id;
         }
     }
+$LANG_configselects['databox'][30] =array(
+    '表示位置' => 'orderno'
+    ,'ID' => 'id'
+    , 'コード' => 'code'
+    , 'タイトル' => 'title'
+    , 'タイプ' => 'fieldset_name'
+    , '残日数' => 'remaingdays'
+    , 'タイムスタンプ降順' => 'udatetime'
+    , 'ドラフト' => 'draft_flag'
+        );
+
 ?>
