@@ -6,7 +6,7 @@
 
   <div class="uk-margin-large">
 
-	&#60;div data-uk-grid="{ gutter: 20 }"&#62;<br />
+	&#60;div data-uk-grid="{ gutter: 20 }"&#62;<br{xhtml}>
 {medialist_col}
 	&#60;/div&#62;
 

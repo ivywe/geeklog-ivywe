@@ -1,8 +1,8 @@
 {# begin {templatelocation} #}
 
-                                    <li>
-										<div class="uk-cover-background uk-position-cover" style="background-image: url({filename_disp});"></div>
-                                        <img src="{filename_disp}" alt="{media_title}" width="" height="">
-                                    </li>
+  <li>
+		<div class="uk-cover-background uk-position-cover" style="background-image: url({filename_disp});"></div>
+		<img src="{filename_disp}" alt="{media_title}" width="" height="" alt="{media_title}"{xhtml}>
+  </li>
 
 {# end {templatelocation} #}

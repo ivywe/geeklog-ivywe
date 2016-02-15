@@ -91,7 +91,7 @@
     </div>
     </fieldset>
 
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-margin-large-top">
         <label class="uk-form-label" for=""></label>
         <div class="uk-form-controls">
 		    <!-- 【保存 キャンセル  削除】 -->

@@ -2,22 +2,20 @@
 
 <div class="element {class}" style="min-height: 120px">
 
-  <a href="#my-{filename_id}" data-uk-modal><img src="{filename_tn}" alt="{media_title}" title="{media_title}" /></a>
+  <a href="#my-{filename_id}" data-uk-modal><img src="{filename_tn}" alt="{media_title}" title="{media_title}"{xhtml}></a>
 
-{!if media_title}
-<p class="name">{media_title}</p>
-{!endif}
+	{!if media_title}
+	<p class="name">{media_title}</p>
+	{!endif}
 
 </div>
 
 <div id="my-{filename_id}" class="uk-modal">
-    <div class="uk-modal-dialog uk-modal-dialog-frameless">
-        <a class="uk-modal-close uk-close"></a>
-        <img src="{filename_disp}" alt="{media_title}" title="{media_title}" />
-		{!if media_desc}
-		<div>{media_desc}</div>
-		{!endif}
-    </div>
+  <div class="uk-modal-dialog uk-modal-dialog-frameless">
+    <a class="uk-modal-close uk-close"></a>
+    <img src="{filename_disp}" alt="{media_title}" title="{media_title}" alt="{media_title}"{xhtml}>
+		{!if media_desc}<div>{media_desc}</div>{!endif}
+  </div>
 </div>
 
 {# end {templatelocation} #}

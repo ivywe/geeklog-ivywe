@@ -29,7 +29,7 @@ For more detailed directions, see the <a href="http://www.gllabs.org/wiki/doku.p
         Destination System:
       </td>
       <td>
-        <input type="radio" name="unix" value=0 />Windows&nbsp;&nbsp;
+        <input type="radio" name="unix" value=0{xhtml}>Windows&nbsp;&nbsp;
         <input type="radio" name="unix" value=1>Unix
       </td>
     </tr>
@@ -38,7 +38,7 @@ For more detailed directions, see the <a href="http://www.gllabs.org/wiki/doku.p
         Move or Copy:
       </td>
       <td>
-        <input type="radio" name="moveorcopy" value=0 />Move&nbsp;&nbsp;
+        <input type="radio" name="moveorcopy" value=0{xhtml}>Move&nbsp;&nbsp;
         <input type="radio" name="moveorcopy" value=1>Copy
       </td>
     </tr>

@@ -5,7 +5,7 @@
   <h2>&#91;medialist:{album_id}&#93;</h2>
 
   <div class="uk-margin-large">
-{medialist_col}
+		{medialist_col}
   </div>
 
 </div>
