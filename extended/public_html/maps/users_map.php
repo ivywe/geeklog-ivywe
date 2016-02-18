@@ -140,21 +140,21 @@ function getUsersMap () {
 		
 		    $markers .= LB . 'var image' . $marker['mkid'] . ' = {
 				url: "' . $_MAPS_CONF['site_url'] . '/timthumb.php?src='
-				. $_CONF['site_url'] . '/' . substr($_CONF['path_images'], strlen($_CONF['path_html']), -1) . '/userphotos/' . $marker['photo'] . '&w=48&amp;q=70&amp;zc=1",
-				size: new google.maps.Size(48,48),
+				. $_CONF['site_url'] . '/' . substr($_CONF['path_images'], strlen($_CONF['path_html']), -1) . '/userphotos/' . $marker['photo'] . '&w=30&h=30&q=90",
+				size: new google.maps.Size(30,30),
 				// The origin for this image
 				origin: new google.maps.Point(0,0),
 				// The anchor for this image
-				anchor: new google.maps.Point(24, 48)
+				anchor: new google.maps.Point(15, 30)
 			};';
 		} else {
      		$markers .= LB . 'var image' . $marker['mkid'] . ' = {
 				url: "' . $_MAPS_CONF['site_url'] . '/images/usermarker.png",
-				size: new google.maps.Size(48, 48),
+				size: new google.maps.Size(37, 37),
 				// The origin for this image
 				origin: new google.maps.Point(0,0),
 				// The anchor for this image
-				anchor: new google.maps.Point(24, 48)
+				anchor: new google.maps.Point(17,37)
 			};';
 		}
 		
