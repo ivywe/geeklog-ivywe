@@ -1,4 +1,9 @@
 
+$(document).ready(function() {
+  $('pre > code').each(function(i, e) { hljs.highlightBlock(e) });
+});
+
+
 $(function(){
     $("input[ type=text ]").change(function() {
         $(window).on('beforeunload', function() {
