@@ -1,13 +1,12 @@
 {# begin {templatelocation} #}
 
-<?php if(SEC_inGroup('Root')){ ?><div class="gl-edit"><?php } ?>
+<div<?php if(SEC_inGroup('Root')){ ?> class="uk-form gl-edit"<?php } ?>>
 {!!if {edit}||{draft} !!}<div class="uk-float-right">{edit} {draft}</div>{!endif}
 
-<div class="uk-form">
   <h2 class="uk-h2">{title}</h2>
   {!if lang_id}<p class="uk-text-right">{lang_id}: {id}</p>{!endif}
 
-<!-- Basic Items -->
+	<!-- Basic Items -->
   <fieldset class="uk-margin-large-top" style="width:98%">
     <legend>{lang_basicfields}</legend>
     <table class="uk-table uk-table-condensed uk-table-striped">
@@ -50,19 +49,19 @@
         <th style="width:20%" class="uk-text-right">{lang_released}</th>
         <td class="uk-text-success" style="width:20%;">&#123;released&#125;&nbsp;&#123;released_shortdate&#125;</td>
         <td>{released}&nbsp;{released_shortdate}</td>
-    </tr>
+    	</tr>
       <tr>
         <th style="width:20%" class="uk-text-right">{lang_expired}</th>
-    <td class="uk-text-success" style="width:20%;">&#123;expired&#125;&nbsp;&#123;expired_shortdate&#125;</td>
+		    <td class="uk-text-success" style="width:20%;">&#123;expired&#125;&nbsp;&#123;expired_shortdate&#125;</td>
         <td>{expired}&nbsp;{expired_shortdate}</td>
-    </tr>
+    	</tr>
 
       <tr>
         <th style="width:20%" class="uk-text-right">{lang_owner}</th>
         <td class="uk-text-success" style="width:20%;">&#123;owner_name&#125;</td>
         <td>{owner_name}<input type="hidden" name="owner_id" value="{owner_id}"{xhtml}>
-        ( UID: <span  class="uk-text-success"> &#123;owner_id&#125;</span>: {owner_id} )</td>
-  　</tr>
+        	( UID: <span  class="uk-text-success"> &#123;owner_id&#125;</span>: {owner_id} )</td>
+  　	</tr>
   
       <tr>
         <th style="width:20%" class="uk-text-right">{lang_udatetime}</th>
@@ -72,7 +71,7 @@
 name:<span  class="uk-text-success"> &#123;last_modify_name&#125;</span>: {last_modify_name}  
 fullname:<span  class="uk-text-success"> &#123;last_modify_fullname&#125;</span>: {last_modify_fullname}  
     )</td>
-    </tr>
+    	</tr>
 
       <tr>
         <th style="width:20%" class="uk-text-right">Maps Plugin mkid</th>
@@ -82,7 +81,7 @@ fullname:<span  class="uk-text-success"> &#123;last_modify_fullname&#125;</span>
     </table>
 
     <table class="uk-table uk-table-condensed uk-table-striped">
-    <tr>
+    	<tr>
         <th style="width:20%;" class="uk-text-right">{lang_field} PATH</th>
         <th style="width:20%; color:green;">{lang_templatesetvar}</th>
         <th style="width:60%;">{lang_content}</th>
@@ -115,172 +114,172 @@ fullname:<span  class="uk-text-success"> &#123;last_modify_fullname&#125;</span>
     </table>
   </fieldset>
 
-<!-- Category -->
+	<!-- Category -->
   <fieldset class="uk-margin-large-top" style="width:98%">
     <legend>{lang_category} </legend>
     <table class="uk-table uk-table-condensed uk-table-striped">
-    <tr>
+    	<tr>
         <th style="width:20%;" class="uk-text-right">{lang_field}</th>
         <th style="width:20%; color:green;">{lang_templatesetvar}</th>
         <th style="width:60%;">{lang_content}</th>
       </tr>
-    <!--  カテゴリ名称列挙 -->
+    	<!--  カテゴリ名称列挙 -->
       <tr>
         <th style="width:20%" class="uk-text-right">{lang_category}</th>
-    <td class="uk-text-success" style="width:20%;">&#123;categories&#125;<br{xhtml}></td>
+    		<td class="uk-text-success" style="width:20%;">&#123;categories&#125;<br{xhtml}></td>
         <td>{categories}</td>
       </tr>
-    <!--  カテゴリ名称列挙リンク付 -->
+    	<!--  カテゴリ名称列挙リンク付 -->
       <tr>
         <th style="width:20%" class="uk-text-right">
-    {lang_category} {lang_withlink}
-    </th>
-    <td class="uk-text-success" style="width:20%;">
-    &#123;categorieslink&#125;
-    </td>
-    <td>{categorieslink} </td>
-        </tr>
-    <tr>
-    <th style="width:20%" class="uk-text-right">CODE形式</th>
-    <td class="uk-text-success" style="width:20%;">
-    &#123;categorieslinkcode&#125
-    </td>
-    <td>{categorieslinkcode}</td>
-    </tr>
-    <tr>
-    <th style="width:20%" class="uk-text-right">ID形式</th>
-    <td class="uk-text-success" style="width:20%;">
-    &#123;categorieslinkid&#125;
-    </td>
-    <td>{categorieslinkid}</td>
-    </tr>
+    			{lang_category} {lang_withlink}
+    		</th>
+    		<td class="uk-text-success" style="width:20%;">
+    			&#123;categorieslink&#125;
+		    </td>
+		    <td>{categorieslink} </td>
+       </tr>
+    	<tr>
+		    <th style="width:20%" class="uk-text-right">CODE形式</th>
+		    <td class="uk-text-success" style="width:20%;">
+		    &#123;categorieslinkcode&#125
+		    </td>
+		    <td>{categorieslinkcode}</td>
+		    </tr>
+		    <tr>
+		    <th style="width:20%" class="uk-text-right">ID形式</th>
+		    <td class="uk-text-success" style="width:20%;">
+		    &#123;categorieslinkid&#125;
+		    </td>
+		    <td>{categorieslinkid}</td>
+    	</tr>
   
 
     </table>
   </fieldset>
 
-<!-- Additional Items -->
+	<!-- Additional Items -->
   <fieldset class="uk-margin-large-top" style="width:98%">
     <legend>{lang_additionfields} </legend>
     <table class="uk-table uk-table-condensed uk-table-striped">
       <tr>
-    <th style="width:20%;" class="uk-text-right">{lang_field}<br{XHTML}>&#123;{lang_field}_name&#125;</th>
-        <th style="width:75%; text-align:left" class="uk-text-left">
-        <dl><dt class="uk-text-success">{lang_templatesetvar}</dt>
-        <dd>{lang_content}</dd></dl>
-    </th>
+    		<th style="width:20%;" class="uk-text-right">{lang_field}<br{XHTML}>&#123;{lang_field}_name&#125;</th>
+				<th style="width:75%; text-align:left" class="uk-text-left">
+	        <dl><dt class="uk-text-success">{lang_templatesetvar}</dt>
+	        <dd>{lang_content}</dd></dl>
+    		</th>
         <th class="uk-text-left uk-text-nowrap" style="width:5%;>{lang_type}</th>
       </tr>
-       {additionfields}
+      {additionfields}
     </table>
   </fieldset>
 
-<!-- Basic Items -->
+	<!-- Basic Items -->
   <fieldset class="uk-margin-large-top" style="width:98%">
     <legend>etc.</legend>
 
-  <ul class="uk-subnav uk-subnav-line uk-flex-center">
-    <li><span class="uk-text-success"> &#123;languageid&#125;</span>:{languageid}</li>
-    <li><span class="uk-text-success"> &#123;_languageid&#125;</span>:{_languageid}</li>
-    <li><span class="uk-text-success"> &#123;language&#125;</span>:{language}</li>
-  </ul>
-  <ul class="uk-subnav uk-subnav-line uk-flex-center">
-    <li><span class="uk-text-success"> &#123;lang_download&#125;</span>:{lang_download}</li>
-    <li><span class="uk-text-success"> &#123;lang_downloadrequired&#125;</span>:{lang_downloadrequired}</li>
-    <li><span class="uk-text-success"> &#123;lang_display&#125;</span>:{lang_display}</li>
-    <li><span class="uk-text-success"> &#123;lang_displayrequired&#125;</span>:{lang_displayrequired}</li>
-  </ul>
+	  <ul class="uk-subnav uk-subnav-line uk-flex-center">
+	    <li><span class="uk-text-success"> &#123;languageid&#125;</span>:{languageid}</li>
+	    <li><span class="uk-text-success"> &#123;_languageid&#125;</span>:{_languageid}</li>
+	    <li><span class="uk-text-success"> &#123;language&#125;</span>:{language}</li>
+	  </ul>
+	  <ul class="uk-subnav uk-subnav-line uk-flex-center">
+	    <li><span class="uk-text-success"> &#123;lang_download&#125;</span>:{lang_download}</li>
+	    <li><span class="uk-text-success"> &#123;lang_downloadrequired&#125;</span>:{lang_downloadrequired}</li>
+	    <li><span class="uk-text-success"> &#123;lang_display&#125;</span>:{lang_display}</li>
+	    <li><span class="uk-text-success"> &#123;lang_displayrequired&#125;</span>:{lang_displayrequired}</li>
+	  </ul>
 
-</fieldset>
+	</fieldset>
 
 {!!if {edit}||{draft} !!}<div class="uk-float-right">{edit} {draft}</div>{!endif}
-<?php if(SEC_inGroup('Root')){ ?></div><?php } ?>
+</div>
 
 <div class="uk-margin-large-top uk-panel uk-panelbox">
 
-<h3 class="uk-margin-large-top">* Example *</h3> 
-<!-- 以下は参考例です 登録されていない場合表示されません -->
+	<h3 class="uk-margin-large-top">* Example *</h3> 
+	<!-- 以下は参考例です 登録されていない場合表示されません -->
 
-<!-- グループ別カテゴリ　グループコードを使用する -->
+	<!-- グループ別カテゴリ　グループコードを使用する -->
   <fieldset style="width:94%">
     <legend>{lang_groupbygroup} {lang_category} {lang_byusingcode}</legend>
     <table class="uk-table uk-table-condensed uk-table-striped">
-      <tr>
-        <th style="width:20%;" class="uk-text-right">{lang_group} {lang_code}</th>
-        <th style="width:20%; color:green;" class="uk-text-left">{lang_templatesetvar}</th>
-        <th class="uk-text-left">{lang_content}</th>
-      </tr>
-  
-    <!-- city -->
-    <tr>
-        <th style="width:20%" class="uk-text-right">city</th>
-    <td class="uk-text-success" style="width:20%;">
-    &#123;group_city&#125;
-    </td>
-    <td>{group_city} </td>
-        </tr>
-    <tr>
-    <th style="width:20%" class="uk-text-right">　  </th>
-    <td class="uk-text-success" style="width:20%;">
-    &#123;group_city_code&#125
-    </td>
-    <td>{group_city_code} </td>
-    </tr>
-    <tr>
-    <th style="width:20%" class="uk-text-right">　  </th>
-    <td class="uk-text-success" style="width:20%;">
-    &#123;group_city_pipeline&#125
-    </td>
-    <td>{group_city_pipeline} </td>
-    </tr>
-    <!-- country -->
-    <tr>
-        <th style="width:20%" class="uk-text-right">country</th>
-    <td class="uk-text-success" style="width:20%;">
-    &#123;group_country&#125;
-    </td>
-    <td>{group_country} </td>
-        </tr>
-    <tr>
-    <th style="width:20%" class="uk-text-right">　  </th>
-    <td class="uk-text-success" style="width:20%;">
-    &#123;group_country_code&#125
-    </td>
-    <td>{group_country_code} </td>
-    </tr>
-    <tr>
-    <th style="width:20%" class="uk-text-right">　  </th>
-    <td class="uk-text-success" style="width:20%;">
-    &#123;group_country_pipeline&#125
-    </td>
-    <td>{group_country_pipeline} </td>
-      </tr>
-    <!-- team -->
-    <tr>
-        <th style="width:20%" class="uk-text-right">team</th>
-    <td class="uk-text-success" style="width:20%;">
-    &#123;group_team&#125;
-    </td>
-    <td>{group_team} </td>
-        </tr>
-    <tr>
-    <th style="width:20%" class="uk-text-right">　  </th>
-    <td class="uk-text-success" style="width:20%;">
-    &#123;group_team_code&#125
-    </td>
-    <td>{group_team_code} </td>
-    </tr>
-    <tr>
-    <th style="width:20%" class="uk-text-right">　  </th>
-    <td class="uk-text-success" style="width:20%;">
-    &#123;group_team_pipeline&#125
-    </td>
-    <td>{group_team_pipeline} </td>
-        </tr>
+			<tr>
+			<th style="width:20%;" class="uk-text-right">{lang_group} {lang_code}</th>
+			<th style="width:20%; color:green;" class="uk-text-left">{lang_templatesetvar}</th>
+			<th class="uk-text-left">{lang_content}</th>
+			</tr>
+
+			<!-- city -->
+			<tr>
+			<th style="width:20%" class="uk-text-right">city</th>
+			<td class="uk-text-success" style="width:20%;">
+			&#123;group_city&#125;
+			</td>
+			<td>{group_city} </td>
+			</tr>
+			<tr>
+			<th style="width:20%" class="uk-text-right">　  </th>
+			<td class="uk-text-success" style="width:20%;">
+			&#123;group_city_code&#125
+			</td>
+			<td>{group_city_code} </td>
+			</tr>
+			<tr>
+			<th style="width:20%" class="uk-text-right">　  </th>
+			<td class="uk-text-success" style="width:20%;">
+			&#123;group_city_pipeline&#125
+			</td>
+			<td>{group_city_pipeline} </td>
+			</tr>
+			<!-- country -->
+			<tr>
+			<th style="width:20%" class="uk-text-right">country</th>
+			<td class="uk-text-success" style="width:20%;">
+			&#123;group_country&#125;
+			</td>
+			<td>{group_country} </td>
+			</tr>
+			<tr>
+			<th style="width:20%" class="uk-text-right">　  </th>
+			<td class="uk-text-success" style="width:20%;">
+			&#123;group_country_code&#125
+			</td>
+			<td>{group_country_code} </td>
+			</tr>
+			<tr>
+			<th style="width:20%" class="uk-text-right">　  </th>
+			<td class="uk-text-success" style="width:20%;">
+			&#123;group_country_pipeline&#125
+			</td>
+			<td>{group_country_pipeline} </td>
+			</tr>
+			<!-- team -->
+			<tr>
+			<th style="width:20%" class="uk-text-right">team</th>
+			<td class="uk-text-success" style="width:20%;">
+			&#123;group_team&#125;
+			</td>
+			<td>{group_team} </td>
+			</tr>
+			<tr>
+			<th style="width:20%" class="uk-text-right">　  </th>
+			<td class="uk-text-success" style="width:20%;">
+			&#123;group_team_code&#125
+			</td>
+			<td>{group_team_code} </td>
+			</tr>
+			<tr>
+			<th style="width:20%" class="uk-text-right">　  </th>
+			<td class="uk-text-success" style="width:20%;">
+			&#123;group_team_pipeline&#125
+			</td>
+			<td>{group_team_pipeline} </td>
+			</tr>
     </table>
   </fieldset>
 
-<!-- グループ別カテゴリ列挙リンク付き　グループコードを使用する -->
+	<!-- グループ別カテゴリ列挙リンク付き　グループコードを使用する -->
   <fieldset style="width:94%">
     <legend>{lang_groupbygroup} {lang_category} {lang_withlink} {lang_byusingcode} </legend>
     <table class="uk-table uk-table-condensed uk-table-striped">
@@ -289,57 +288,56 @@ fullname:<span  class="uk-text-success"> &#123;last_modify_fullname&#125;</span>
         <th style="width:20%; color:green;" class="uk-text-left">{lang_templatesetvar}</th>
         <th class="uk-text-left">{lang_content}</th>
       </tr>
-  
-    <!-- city -->
-    <tr>
-          <th style="width:20%" class="uk-text-right">city</th>
-    <td class="uk-text-success" style="width:20%;">
-    &#123;grouplink_city&#125;
-    </td>
-    <td>{grouplink_city} </td>
-        </tr>
-    <tr>
-    <th style="width:20%" class="uk-text-right">　  </th>
-    <td class="uk-text-success" style="width:20%;">
-    &#123;grouplink_city_code&#125
-    </td>
-    <td>{grouplink_city_code} </td>
-    </tr>
-    <!-- country -->
-    <tr>
-          <th style="width:20%" class="uk-text-right">country</th>
-    <td class="uk-text-success" style="width:20%;">
-    &#123;grouplink_country&#125;
-    </td>
-    <td>{grouplink_country} </td>
-        </tr>
-    <tr>
-    <th style="width:20%" class="uk-text-right">　  </th>
-    <td class="uk-text-success" style="width:20%;">
-    &#123;grouplink_country_code&#125
-    </td>
-    <td>{grouplink_country_code} </td>
-    </tr>
-    <!-- team -->
-    <tr>
-          <th style="width:20%" class="uk-text-right">team</th>
-    <td class="uk-text-success" style="width:20%;">
-    &#123;grouplink_team&#125;
-    </td>
-    <td>{grouplink_team} </td>
-        </tr>
-    <tr>
-    <th style="width:20%" class="uk-text-right">　  </th>
-    <td class="uk-text-success" style="width:20%;">
-    &#123;grouplink_team_code&#125
-    </td>
-    <td>{grouplink_team_code} </td>
-    </tr>
+	  
+	    <!-- city -->
+	    <tr>
+	          <th style="width:20%" class="uk-text-right">city</th>
+	    <td class="uk-text-success" style="width:20%;">
+	    &#123;grouplink_city&#125;
+	    </td>
+	    <td>{grouplink_city} </td>
+	        </tr>
+	    <tr>
+	    <th style="width:20%" class="uk-text-right">　  </th>
+	    <td class="uk-text-success" style="width:20%;">
+	    &#123;grouplink_city_code&#125
+	    </td>
+	    <td>{grouplink_city_code} </td>
+	    </tr>
+	    <!-- country -->
+	    <tr>
+	          <th style="width:20%" class="uk-text-right">country</th>
+	    <td class="uk-text-success" style="width:20%;">
+	    &#123;grouplink_country&#125;
+	    </td>
+	    <td>{grouplink_country} </td>
+	        </tr>
+	    <tr>
+	    <th style="width:20%" class="uk-text-right">　  </th>
+	    <td class="uk-text-success" style="width:20%;">
+	    &#123;grouplink_country_code&#125
+	    </td>
+	    <td>{grouplink_country_code} </td>
+	    </tr>
+	    <!-- team -->
+	    <tr>
+	          <th style="width:20%" class="uk-text-right">team</th>
+	    <td class="uk-text-success" style="width:20%;">
+	    &#123;grouplink_team&#125;
+	    </td>
+	    <td>{grouplink_team} </td>
+	        </tr>
+	    <tr>
+	    <th style="width:20%" class="uk-text-right">　  </th>
+	    <td class="uk-text-success" style="width:20%;">
+	    &#123;grouplink_team_code&#125
+	    </td>
+	    <td>{grouplink_team_code} </td>
+	    </tr>
 
     </table>
   </fieldset>
 
-  </div>
 </div>
 
 {# end {templatelocation} #}
