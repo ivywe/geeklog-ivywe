@@ -5,17 +5,15 @@
 
     <div class="uk-form-row">
         <div class="uk-form-controls">
-			<div>{lang_unlink}<input name="unlink" value="1" checked="checked" type="checkbox"></div>
-			<div>{lang_sel} {list_sel}</div>
-			<input type="text" dir="ltr" name="importurl" value="{defaultpath}" size="80" {xhtml}>
-			<input type="hidden" name="mode" value="{mode}" {xhtml}>
-			<input type="submit" value="{submit}" name="submin"{xhtml}>
-			<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
-			<span class="uk-form-help-inline">{help}</span>
+          <div>{lang_unlink}<input name="unlink" value="1" checked="checked" type="checkbox"></div>
+          <div>{lang_sel} {list_sel}</div>
+          <input type="text" dir="ltr" name="importurl" value="{defaultpath}" size="80" {xhtml}>
+          <input type="hidden" name="mode" value="{mode}" {xhtml}>
+          <input type="submit" value="{submit}" name="submin"{xhtml}>
+          <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+          <span class="uk-form-help-inline">{help}</span>
         </div>
     </div>
-
-</div>
 
 </form>
 

@@ -3,7 +3,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{additionfield_name}<span class="uk-text-danger">{lang_must_additionfield}</span></label>
         <div class="uk-form-controls">
-        	{additionfield_value}<span class="uk-form-help-inline">{additionfield_description}</span>
+          {additionfield_value}<span class="uk-form-help-inline">{additionfield_description}</span>
         </div>
     </div>
 

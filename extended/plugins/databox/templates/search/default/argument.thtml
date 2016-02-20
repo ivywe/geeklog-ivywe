@@ -1,93 +1,63 @@
 {# begin {templatelocation} #}
 
 <form class="uk-form" action="{site_url}/{this_script}" method="get" >
-<div >
 <!-- argument example -->
-<!-- 以下は参考例です ない場合は表示されません -->
+<!-- example -->
 
-  <p><span style="color:green"> &#123;fieldset&#125;</span>:{fieldset}
-  <span style="color:green"> &#123;fieldset_name&#125;</span>:{fieldset_name}
-  </p>
+  <ul class="uk-list uk-list-line">
+    <li><span style="color:green"> &#123;fieldset&#125;</span>:{fieldset}
+    <span style="color:green"> &#123;fieldset_name&#125;</span>:{fieldset_name}</li>
 
-  <p><span style="color:green"> &#123;t&#125;</span>:{t}
-  <span style="color:green"> &#123;teq&#125;</span>:{teq}
-  </p>
+    <li><span style="color:green"> &#123;t&#125;</span>:{t}
+    <span style="color:green"> &#123;teq&#125;</span>:{teq}</li>
 
-  <p><span style="color:green"> &#123;fieldset&#125;</span>:{fieldset}
-  <span style="color:green"> &#123;fieldset_name&#125;</span>:{fieldset_name}
-  </p>
+    <li><span style="color:green"> &#123;fieldset&#125;</span>:{fieldset}
+    <span style="color:green"> &#123;fieldset_name&#125;</span>:{fieldset_name}</li>
 
-  <p><span style="color:green"> &#123;gor_3&#125;</span>:{gor_3}
-  <input name="gor_3[]" value="" type="hidden">
-  </p>
+    <li><span style="color:green"> &#123;gor_3&#125;</span>:{gor_3}
+    <input name="gor_3[]" value="" type="hidden"></li>
 
-  <p><span style="color:green"> &#123;gand_8&#125;</span>:{gand_8}
-  <input name="gand_8[]" value="" type="hidden">
-  </p>
+    <li><span style="color:green"> &#123;gand_8&#125;</span>:{gand_8}
+    <input name="gand_8[]" value="" type="hidden"></li>
 
-  <p><span style="color:green"> &#123;gor_3_names&#125;</span>:{gor_3_names}
-  </p>
-  <p><span style="color:green"> &#123;gor_3_1_id&#125;</span>:{gor_3_1_id}
-  </p>
-  <p><span style="color:green"> &#123;gor_3_2_id&#125;</span>:{gor_3_2_id}
-  </p>
-  <p><span style="color:green"> &#123;gor_3_1_name&#125;</span>:{gor_3_1_name}
-  </p>
-  <p><span style="color:green"> &#123;gor_3_2_name&#125;</span>:{gor_3_2_name}
-  </p>
+    <li><span style="color:green"> &#123;gor_3_names&#125;</span>:{gor_3_names}</li>
+    <li><span style="color:green"> &#123;gor_3_1_id&#125;</span>:{gor_3_1_id}</li>
+    <li><span style="color:green"> &#123;gor_3_2_id&#125;</span>:{gor_3_2_id}</li>
+    <li><span style="color:green"> &#123;gor_3_1_name&#125;</span>:{gor_3_1_name}</li>
+    <li><span style="color:green"> &#123;gor_3_2_name&#125;</span>:{gor_3_2_name}</li>
 
-  <p><span style="color:green"> &#123;gand_8_names&#125;</span>:{gand_8_names}
-  </p>
-  <p><span style="color:green"> &#123;gand_8_1_id&#125;</span>:{gand_8_1_id}
-  </p>
-  <p><span style="color:green"> &#123;gand_8_2_id&#125;</span>:{gand_8_2_id}
-  </p>
-  <p><span style="color:green"> &#123;gand_8_1_name&#125;</span>:{gand_8_1_name}
-  </p>
-  <p><span style="color:green"> &#123;gand_8_2_name&#125;</span>:{gand_8_2_name}
-  </p>
+    <li><span style="color:green"> &#123;gand_8_names&#125;</span>:{gand_8_names}</li>
+    <li><span style="color:green"> &#123;gand_8_1_id&#125;</span>:{gand_8_1_id}</li>
+    <li><span style="color:green"> &#123;gand_8_2_id&#125;</span>:{gand_8_2_id}</li>
+    <li><span style="color:green"> &#123;gand_8_1_name&#125;</span>:{gand_8_1_name}</li>
+    <li><span style="color:green"> &#123;gand_8_2_name&#125;</span>:{gand_8_2_name}</li>
 
-  <p><span style="color:green"> &#123;aeq_4&#125;</span>:{aeq_4}
-  </p>
-  <p><span style="color:green"> &#123;a_4&#125;</span>:{a_4}
-  </p>
+    <li><span style="color:green"> &#123;aeq_4&#125;</span>:{aeq_4}</li>
+    <li><span style="color:green"> &#123;a_4&#125;</span>:{a_4}</li>
 
-  <p><span style="color:green"> &#123;afr_6&#125;</span>:{afr_6}
-  </p>
+    <li><span style="color:green"> &#123;afr_6&#125;</span>:{afr_6}</li>
 
-  <p><span style="color:green"> &#123;ato_6&#125;</span>:{ato_6}
-  </p>
+    <li><span style="color:green"> &#123;ato_6&#125;</span>:{ato_6}</li>
 
-  <p><span style="color:green"> &#123;ams_47&#125;</span>:{ams_47}
-  <input name="ams_47[]" value="" type="hidden">
-  </p>
-  <p><span style="color:green"> &#123;ams_47_names&#125;</span>:{ams_47_names}
-  </p>
-  <p><span style="color:green"> &#123;ams_47_1_no&#125;</span>:{ams_47_1_no}
-  </p>
-  <p><span style="color:green"> &#123;ams_47_2_no&#125;</span>:{ams_47_2_no}
-  </p>
-  <p><span style="color:green"> &#123;ams_47_1_name&#125;</span>:{ams_47_1_name}
-  </p>
-  <p><span style="color:green"> &#123;ams_47_2_name&#125;</span>:{ams_47_2_name}
-  </p>
+    <li><span style="color:green"> &#123;ams_47&#125;</span>:{ams_47}
+    <input name="ams_47[]" value="" type="hidden"></li>
+    <li><span style="color:green"> &#123;ams_47_names&#125;</span>:{ams_47_names}</li>
+    <li><span style="color:green"> &#123;ams_47_1_no&#125;</span>:{ams_47_1_no}</li>
+    <li><span style="color:green"> &#123;ams_47_2_no&#125;</span>:{ams_47_2_no}</li>
+    <li><span style="color:green"> &#123;ams_47_1_name&#125;</span>:{ams_47_1_name}</li>
+    <li><span style="color:green"> &#123;ams_47_2_name&#125;</span>:{ams_47_2_name}</li>
 
-  <p><span style="color:green"> &#123;templatedir&#125;</span>:{templatedir}
-  </p>
+    <li><span style="color:green"> &#123;templatedir&#125;</span>:{templatedir}</li>
 
-  <p><span style="color:green"> &#123;perpage&#125;</span>:{perpage}
-  </p>
+    <li><span style="color:green"> &#123;perpage&#125;</span>:{perpage}</li>
 
-  <p><span style="color:green"> &#123;page&#125;</span>:{page}
-  </p>
+    <li><span style="color:green"> &#123;page&#125;</span>:{page}</li>
 
-  <p><span style="color:green"> &#123;nohitmsg&#125;</span>:{nohitmsg}
-  </p>
-  <p><span style="color:green"> &#123;order&#125;</span>:{order}
-  </p>
+    <li><span style="color:green"> &#123;nohitmsg&#125;</span>:{nohitmsg}</li>
+    <li><span style="color:green"> &#123;order&#125;</span>:{order}</li>
 
-</div>
-<p><input value="{lang_search}" class="submit" type="submit"></p>
+    <li><input value="{lang_search}" class="submit" type="submit"></li>
+  </ul>
 </form>
 
 {# end {templatelocation} #}

@@ -5,7 +5,7 @@
   <p class="uk-text-primary">{lang_inst_changeset}</p>
   {lang_fieldset} {list_fieldset}
   <input type="submit" value="{lang_changeset}" name="mode"{xhtml}>
-  <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
+  <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
   <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
 </form>
 

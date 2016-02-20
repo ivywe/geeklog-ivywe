@@ -3,8 +3,8 @@
 <div>
 
   <ul class="uk-breadcrumb">
-	<li><a href="{site_url}/">{home}</a></li>
-	<li>{attribute_top} {field_top}</li>
+  <li><a href="{site_url}/">{home}</a></li>
+  <li>{attribute_top} {field_top}</li>
   </ul>
 
   <p><span style="color:green"> &#123;languageid&#125;</span>:{languageid}
