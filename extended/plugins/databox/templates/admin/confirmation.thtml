@@ -10,7 +10,7 @@
   <div class="uk-margin-small">{btn2}</div>
   {!if btn3}<hr{xhtml}>{!endif}
   <div class="uk-margin-large-top">{btn3}</div>
-  <p class="uk-text-danger">{help}</p>
+  <span class="uk-form-help-inline uk-text-bold uk-text-danger">{help}</span>
   <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
   <input type="hidden" value="{mode}" name="mode"{xhtml}>
 </form>

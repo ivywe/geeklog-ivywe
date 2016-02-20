@@ -59,18 +59,20 @@
       <tr>
         <th style="width:20%" class="uk-text-right">{lang_owner}</th>
         <td class="uk-text-success" style="width:20%;">&#123;owner_name&#125;</td>
-        <td>{owner_name}<input type="hidden" name="owner_id" value="{owner_id}"{xhtml}>
-        	( UID: <span  class="uk-text-success"> &#123;owner_id&#125;</span>: {owner_id} )</td>
-  　	</tr>
-  
+        <td>{owner_name}
+					<input type="hidden" name="owner_id" value="{owner_id}"{xhtml}>
+        	( UID: <span class="uk-text-success"> &#123;owner_id&#125;</span>: {owner_id} )</td>
+			</tr>
+
       <tr>
         <th style="width:20%" class="uk-text-right">{lang_udatetime}</th>
         <td class="uk-text-success" style="width:20%;">&#123;udatetime&#125;</td>
         <td>{udatetime}
-  ( UID: <span  class="uk-text-success"> &#123;last_modify_uid&#125;</span>: {last_modify_uid}
-name:<span  class="uk-text-success"> &#123;last_modify_name&#125;</span>: {last_modify_name}  
-fullname:<span  class="uk-text-success"> &#123;last_modify_fullname&#125;</span>: {last_modify_fullname}  
-    )</td>
+				  ( UID: <span  class="uk-text-success"> &#123;last_modify_uid&#125;</span>: {last_modify_uid}
+				name:<span  class="uk-text-success"> &#123;last_modify_name&#125;</span>: {last_modify_name}  
+				fullname:<span  class="uk-text-success"> &#123;last_modify_fullname&#125;</span>: {last_modify_fullname}  
+				    )
+				</td>
     	</tr>
 
       <tr>
@@ -160,17 +162,23 @@ fullname:<span  class="uk-text-success"> &#123;last_modify_fullname&#125;</span>
 
 	<!-- Additional Items -->
   <fieldset class="uk-margin-large-top" style="width:98%">
-    <legend>{lang_additionfields} </legend>
+    <legend>{lang_additionfields}</legend>
     <table class="uk-table uk-table-condensed uk-table-striped">
-      <tr>
-    		<th style="width:20%;" class="uk-text-right">{lang_field}<br{XHTML}>&#123;{lang_field}_name&#125;</th>
-				<th style="width:75%; text-align:left" class="uk-text-left">
-	        <dl><dt class="uk-text-success">{lang_templatesetvar}</dt>
-	        <dd>{lang_content}</dd></dl>
-    		</th>
-        <th class="uk-text-left uk-text-nowrap" style="width:5%;>{lang_type}</th>
-      </tr>
-      {additionfields}
+			<thead>
+	      <tr>
+	    		<th style="width:20%;" class="uk-text-right">{lang_field}<br{XHTML}>&#123;{lang_field}_name&#125;</th>
+					<th style="width:75%; text-align:left" class="uk-text-left">
+		        <dl>
+							<dt class="uk-text-success">{lang_templatesetvar}</dt>
+		        	<dd>{lang_content}</dd>
+						</dl>
+	    		</th>
+	        <th class="uk-text-left uk-text-nowrap" style="width:5%;">{lang_type}</th>
+	      </tr>
+			</thead>
+			<tbody>
+	      {additionfields}
+			</tbody>
     </table>
   </fieldset>
 
