@@ -2,11 +2,12 @@
 
 <div>
   <h1>{fieldset_name}を編集する</h1>
+
   <form enctype="multipart/form-data" name="frmdatabox" action="{site_url}/{script}" method="post" class="uk-form uk-form-horizontal">
     <input type="hidden" name="fieldset" value="{fieldset_id}"{xhtml}>
     <input type="hidden" name="fieldset_name" value="{fieldset_name}"{xhtml}>
 
-    <p class="uk-text-right">{lang_id} {help_id}: {id}<input type="hidden" name="id" value="{id}"{xhtml}></p>
+    <p class="uk-float-right">{lang_id} {help_id}: {id}<input type="hidden" name="id" value="{id}"{xhtml}></p>
 
     <!-- data -->
     <fieldset class="uk-width-1-1 uk-margin-large-top">
@@ -20,7 +21,7 @@
       <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_code}{help_code}</label>
         <div class="uk-form-controls">
-              {code}
+        	{code}
         </div>
       </div>
 {!endif}
@@ -93,10 +94,6 @@
         <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
         <input type="hidden" value="{code}" name="old_code"{xhtml}>
         <input type="hidden" value="{old_mode}" name="old_mode"{xhtml}>
-      </div>
-    </div>
-    <div class="uk-form-row uk-margin-large-top">
-      <div class="uk-form-controls uk-text-danger">
         {delete_option}
         <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
       </div>
