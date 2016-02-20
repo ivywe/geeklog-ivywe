@@ -80,6 +80,7 @@ function phpblock_switchlanguage()
 			$html.="</li>";
 		}
 	}		
+	$html.="</ul>";
 	return $html;
 }
 ?>
