@@ -1,17 +1,15 @@
 {# begin {templatelocation} #}
 
-<form class="uk-form uk-form-horizontal" action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data">
+<form class="uk-form" action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data">
 
-    <div class="uk-form-row">
-        <div class="uk-form-controls">
-      <input type="text" dir="ltr" name="importurl" size="80"{xhtml}>
-      <input type="hidden" name="mode" value="{mode}"{xhtml}>
-      <input type="submit" value="{submit}" name="submin"{xhtml}>
-      <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
-      <div>{default}:{defaultpath}</div>
-      <span class="uk-form-help-inline">{help}</span>
-        </div>
-    </div>
+  <div class="uk-form-row">
+    <input type="text" dir="ltr" name="importurl" size="80"{xhtml}>
+    <input type="hidden" name="mode" value="{mode}"{xhtml}>
+    <input type="submit" value="{submit}" name="submin"{xhtml}>
+    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+    <span class="uk-form-help-inline">{default}:{defaultpath}</span>
+    <span class="uk-form-help-inline">{help}</span>
+  </div>
 
 </form>
 
