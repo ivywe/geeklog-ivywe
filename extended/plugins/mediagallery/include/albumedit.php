@@ -816,6 +816,8 @@ function MG_quickCreate($parent, $title, $desc='')
 {
     global $_USER, $_CONF, $_TABLES, $_MG_CONF, $LANG_MG00;
 
+    require_once $_CONF['path'].'plugins/mediagallery/include/classAlbum.php'; // komma debug 2016/2/22
+
     $parent_album = new mgAlbum($parent);
     if ($parent == 0) {
         $grp_id = DB_getItem($_TABLES['groups'], 'grp_id', "grp_name = 'mediagallery Admin'");
