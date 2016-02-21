@@ -68,7 +68,7 @@
 
     <!-- defaulttemplatesdirectory -->
     <div class="uk-form-row">
-      <label class="uk-form-label" for="">{lang_defaulttemplatesdirectory} {help_defaulttemplatesdirectory}</label>
+      <label class="uk-form-label">{lang_defaulttemplatesdirectory} {help_defaulttemplatesdirectory}</label>
       <div class="uk-form-controls">
         {select_defaulttemplatesdirectory}
       </div>
@@ -76,11 +76,11 @@
 
     <!-- meta_description -->
     <div class="uk-form-row"{hide_meta}>
-      <label class="uk-form-label" for="">{lang_meta_description} {help_meta_description}</label>
+      <label class="uk-form-label" for="databox_description">{lang_meta_description} {help_meta_description}</label>
       <div class="uk-form-controls">
         <textarea name="meta_description" style="width:95%" rows="2" id="databox_description"
       onKeyup="var n={maxlength_meta_description}-this.value.length;var s=document.getElementById('meta_description_cnt');s.innerHTML='('+n+')';">{meta_description}</textarea>
-        <span class="uk-form-help-inline"><strong><span id='meta_description_cnt'></span></strong></span>
+        <span class="uk-form-help-inline uk-text-bold" id="meta_description_cnt"></span>
       </div>
     </div>
 
@@ -91,7 +91,7 @@
       <div class="uk-form-controls">
         <textarea name="meta_keywords" style="width:95%" rows="2" id="meta_keywords" 
   onKeyup="var n={maxlength_meta_keywords}-this.value.length;var s=document.getElementById('meta_keywords_cnt');s.innerHTML='('+n+')';">{meta_keywords}</textarea>
-  <span class="uk-form-help-inline"><strong><span id='meta_keywords_cnt'></span></strong></span>
+  			<span class="uk-form-help-inline uk-text-bold" id="meta_keywords_cnt"></span>
       </div>
     </div>
 

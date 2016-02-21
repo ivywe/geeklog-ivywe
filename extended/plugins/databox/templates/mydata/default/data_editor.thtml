@@ -42,7 +42,7 @@
         <div class="uk-form-controls">
           <textarea name="description" style="width:95%" rows="2" id="databox_description"
             onKeyup="var n={maxlength_description}-this.value.length;var s=document.getElementById('description_cnt');s.innerHTML='('+n+')';">{description}</textarea>
-            <span class="uk-form-help-inline"><strong><span id='description_cnt'></span></strong></span>
+            <span class="uk-form-help-inline uk-text-bold" id="description_cnt"></span>
         </div>
       </div>
       <div class="uk-form-row"{hide_language_id}>

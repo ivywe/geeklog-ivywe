@@ -8,9 +8,9 @@
 		<li>{order_random}</li><li><span class="uk-text-bold">{cur_order}</span></li>
 	</ul>
 
-  <div class="pagenav" {pagenavinone}>
+  <div {pagenavinone}>
   	{page_navigation}
-  <div class="count" style="float:left">{lang_view} [{lin}] / {cnt}</div>
+  	<div class="uk-float-right"">{lang_view} [{lin}] / {cnt}</div>
 	</div>
 	<div style="clear:both"></div>
 
@@ -29,9 +29,9 @@
 	  {row_var}
   </ul>
 
-  <div class="pagenav" {pagenavinone}>
+  <div {pagenavinone}>
     {page_navigation}
-    <div class="count" style="float:left">{lang_view} [{lin}] / {cnt} </div>
+    <div class="uk-float-right"">{lang_view} [{lin}] / {cnt} </div>
   </div>
   <div style="clear:both"></div>
 

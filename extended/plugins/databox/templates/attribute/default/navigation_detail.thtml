@@ -2,17 +2,14 @@
 
 <div>
 
-    <div class="order">
-        {order_date}|{order_orderno}|{order_code} |{order_title}|{order_description}|{order_id}|{order_released}|<!-- 下の行のテーマ変数　参考例です 登録されていない場合機能 -->
-{order_tel}|{order_zipcode}
-    </div>
-    <div class="order_random">{order_random}</div>
-    <div class="cur_order">{cur_order}</div>
-    <div class="pagenav" {pagenavinone}>
-    {page_navigation}
-    <div class="count" style="float:left">{lang_view} [{lin}] / {cnt}</div>
-  </div>
-  <div style="clear:both"></div>
+	<ul class="uk-subnav uk-subnav-line uk-flex-center">
+		<li>{order_date}</li><li>{order_orderno}</li><li>{order_code}</li><li>{order_title}</li><li>{order_description}</li><li>{order_id}</li><li>{order_released}</li>
+		<!-- 下の行のテーマ変数　参考例です 登録されていない場合機能 -->
+		<li>{order_tel}</li><li>{order_zipcode}</li>
+		<!-- etc -->
+		<li>{order_random}</li><li><span class="uk-text-bold">{cur_order}</span></li>
+	</ul>
+
 <!-- Maps Link mkids selectedMarkers-->
 {mkids}{selectedMarkers}
 
@@ -29,9 +26,9 @@
     {row_var}
   </ul>
 
-  <div class="pagenav" {pagenavinone}>
+  <div {pagenavinone}>
     {page_navigation}
-    <div class="count" style="float:left">{lang_view} [{lin}] / {cnt} </div>
+    <div class="uk-float-right"">{lang_view} [{lin}] / {cnt} </div>
   </div>
   <div style="clear:both"></div>
 

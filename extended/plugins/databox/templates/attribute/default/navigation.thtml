@@ -2,9 +2,9 @@
 
 <div>
 
-  <div class="pagenav">
+  <div>
     {page_navigation}
-    <div class="count" style="float:left">{lang_view} [{lin}] / {cnt}</div>
+    <div class="uk-float-right"">{lang_view} [{lin}] / {cnt}</div>
   </div>
   <div style="clear:both"></div>
 
@@ -13,9 +13,9 @@
 {row_var}
   </ul>
 
-  <div class="pagenav">
+  <div>
     {page_navigation}
-    <div class="count" style="float:left">{lang_view} [{lin}] / {cnt} </div>
+    <div class="uk-float-right"">{lang_view} [{lin}] / {cnt} </div>
   </div>
   <div style="clear:both"></div>
 

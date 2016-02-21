@@ -56,7 +56,7 @@
     <li><span style="color:green"> &#123;nohitmsg&#125;</span>:{nohitmsg}</li>
     <li><span style="color:green"> &#123;order&#125;</span>:{order}</li>
 
-    <li><input value="{lang_search}" class="submit" type="submit"></li>
+    <li><input value="{lang_search}" class="uk-button" type="submit"></li>
   </ul>
 </form>
 
