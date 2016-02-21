@@ -62,8 +62,8 @@ function theme_css_default()
     $direction = ($LANG_DIRECTION == 'rtl') ? '_rtl' : '';
 
     return array(
-        array('file' => '/vendor/uikit/css' . $direction . '/uikit.gradient.css', 'attributes' => array('media' => 'all'), 'priority' => 80),
-        array('file'       => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/add_to_uikit.css',  'priority' => 90),
+        array('file' => '/vendor/uikit/css' . $direction . '/uikit.gradient.css', 'attributes' =>        array('media' => 'all'), 'priority' => 80),
+        array('file'       => '/layout/' . $_CONF['theme'] . '/vendor/uikit/css/components/uikit.gradient.css',  'priority' => 90),
         array('file' => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/style.css', 'priority' => 100),
         array('file' => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/theme.css', 'priority' => 110)
     );
