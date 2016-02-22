@@ -3,24 +3,23 @@
 <div>
 
   <ul class="uk-breadcrumb">
-  <li><a href="{site_url}/">{home}</a></li>
+  	<li><a href="{site_url}/">{home}</a></li>
   </ul>
 
   <h2>{lang_category_list_h2}</h2>
   <p>{msg}</p>
-  <p><span style="color:green"> &#123;languageid&#125;</span>:{languageid}
-     <span style="color:green"> &#123;_languageid&#125;</span>:{_languageid}
-     <span style="color:green"> &#123;language&#125;</span>:{language}
-  </p>
-  <p><span style="color:green"> &#123;uid&#125;</span>:{uid}
-     <span style="color:green"> &#123;username&#125;</span>:{username}
-     <span style="color:green"> &#123;fullname&#125;</span>:{fullname}
-     <span style="color:green"> &#123;displayname&#125;</span>:{displayname}
-  </p>
 
-  <ul>
-    {nav_var}
-  </ul>
+  {nav_var}
+
+  <div class="uk-panel uk-panel-box">
+		<span style="color:green"> &#123;languageid&#125;</span>:{languageid}
+		<span style="color:green"> &#123;_languageid&#125;</span>:{_languageid}
+		<span style="color:green"> &#123;language&#125;</span>:{language}
+		<span style="color:green"> &#123;uid&#125;</span>:{uid}
+		<span style="color:green"> &#123;username&#125;</span>:{username}
+		<span style="color:green"> &#123;fullname&#125;</span>:{fullname}
+		<span style="color:green"> &#123;displayname&#125;</span>:{displayname}
+  </div>
 
 </div>
 

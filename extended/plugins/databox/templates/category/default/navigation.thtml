@@ -4,18 +4,17 @@
 
   <div>
     {page_navigation}
-    <div class="uk-float-right"">{lang_view} [{lin}] / {cnt}</div>
+    <div class="uk-float-right">{lang_view} [{lin}] / {cnt}</div>
   </div>
   <div style="clear:both"></div>
 
   <ul>
-    <li>{lang_name} ({lang_count})</li>
 {row_var}
   </ul>
 
   <div>
     {page_navigation}
-    <div class="uk-float-right"">{lang_view} [{lin}] / {cnt} </div>
+    <div class="uk-float-right">{lang_view} [{lin}] / {cnt} </div>
   </div>
   <div style="clear:both"></div>
 

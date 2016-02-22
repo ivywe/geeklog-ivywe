@@ -2,7 +2,7 @@
 
 <form class="uk-form" action="{site_admin_url}/plugins/databox/data.php" method="post">
   <input type="hidden" name="id" value="{id}"{xhtml}>
-  <p class="uk-text-primary">{lang_inst_changeset}</p>
+  <div class="uk-text-primary">{lang_inst_changeset}</div>
   {lang_fieldset} {list_fieldset}
   <input type="submit" value="{lang_changeset}" name="mode"{xhtml}>
   <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>

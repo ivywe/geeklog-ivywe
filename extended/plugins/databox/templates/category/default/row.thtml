@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-{grp_var}
+{!if grp_var}<li>{grp_var}</li>{!endif}
 {col_var}
 
 {# end {templatelocation} #}

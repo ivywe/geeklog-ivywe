@@ -4,7 +4,7 @@
 {!!if {edit}||{draft} !!}<div class="uk-float-right">{edit} {draft}</div>{!endif}
 
   <h2 class="uk-h2">{title}</h2>
-  {!if lang_id}<p class="uk-text-right">{lang_id}: {id}</p>{!endif}
+  {!if lang_id}<div class="uk-text-right">{lang_id}: {id}</div>{!endif}
 
 	<!-- Basic Items -->
   <fieldset class="uk-margin-large-top" style="width:98%">
@@ -167,7 +167,7 @@
 			<thead>
 	      <tr>
 	    		<th style="width:20%;" class="uk-text-right">{lang_field}<br{XHTML}>&#123;{lang_field}_name&#125;</th>
-					<th style="width:75%; text-align:left" class="uk-text-left">
+					<th style="width:75%;" class="uk-text-left">
 		        <dl>
 							<dt class="uk-text-success">{lang_templatesetvar}</dt>
 		        	<dd>{lang_content}</dd>
