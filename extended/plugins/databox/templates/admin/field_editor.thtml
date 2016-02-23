@@ -1,15 +1,10 @@
 {# begin {templatelocation} #}
 
-<ul class="uk-subnav uk-subnav-line uk-flex-center">
-  <li>{about_thispage}</li>
-  <li><a href="{document_url}input_field.html" target="_blank">{lang_document}</a></li>
-</ul>
+<h2 class="uk-h2">{about_thispage}(<a href="{document_url}input_field.html">?</a>)</h2>
 
 <form class="uk-form uk-form-horizontal" name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
   <fieldset style="width:98%">
     <legend>Attribute (addition field)</legend>
-
-    <!-- data -->
 
     <!-- id -->
     <div class="uk-form-row">
@@ -76,7 +71,7 @@
       </div>
   	</div>
 
-    <!-- 保存日 -->
+    <!-- Update date -->
   	<div class="uk-form-row">
       <label class="uk-form-label" for="">{lang_udatetime}</label>
       <div class="uk-form-controls">

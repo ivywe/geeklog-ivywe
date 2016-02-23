@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<h3 class="uk-h3">{actionname}</h3>
+<h2 class="uk-h2">{actionname}</h2>
 
 <form class="uk-form uk-form-horizontal" action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data">
 

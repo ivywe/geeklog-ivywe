@@ -12,7 +12,7 @@
     <table class="uk-table uk-table-condensed uk-table-striped">
       <tr>
         <th style="width:20%;" class="uk-text-right">{lang_field}</th>
-        <th style="width:20%; color:green;">{lang_templatesetvar}(<a href="{site_url}/admin/plugins/databox/docs/japanese/templatesetvars.html">?</a>)</th>
+        <th style="width:20%; color:green;">{lang_templatesetvar}(<a href="{document_url}docs/japanese/templatesetvars.html">?</a>)</th>
         <th style="width:60%;">{lang_content}</th>
       </tr>
       <tr>
@@ -176,7 +176,7 @@
 		        	<dd>{lang_content}</dd>
 						</dl>
 	    		</th>
-	        <th class="uk-text-left uk-text-nowrap" style="width:5%;">{lang_type}(<a href="{site_url}/admin/plugins/databox/docs/japanese/input_field.html">?</a>)</th>
+	        <th class="uk-text-left uk-text-nowrap" style="width:5%;">{lang_type}(<a href="{document_url}docs/japanese/input_field.html">?</a>)</th>
 	      </tr>
 			</thead>
 			<tbody>
@@ -191,7 +191,7 @@
 	<div class="uk-modal-dialog">
 		<a class="uk-modal-close uk-close"></a>
 		<div class="uk-text-break">
-			<span class="uk-text-bold">theme variables:</span> {templatelocation}(<a href="{site_url}/admin/plugins/databox/docs/japanese/templatesetvars.html">?</a>)
+			<span class="uk-text-bold">theme variables:</span> {templatelocation}(<a href="{document_url}docs/japanese/templatesetvars.html">?</a>)
 		</div>
 
 		<h3>Example</h3> 

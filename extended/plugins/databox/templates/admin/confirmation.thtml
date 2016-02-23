@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<h1 class="uk-h1">{actionname}</h1>
+<h2 class="uk-h2">{actionname}</h2>
 <form class="uk-form" action="{actionprg}" method="post">
   <div>{lang_checklist} {checklist}</div>
 

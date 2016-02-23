@@ -500,7 +500,7 @@ $LANG_DATABOX_ADMIN['about_admin_category'] = 'カテゴリの管理';
 $LANG_DATABOX_ADMIN['about_admin_field'] = 'アトリビュートの管理';
 $LANG_DATABOX_ADMIN['about_admin_group'] = 'グループの管理';
 $LANG_DATABOX_ADMIN['about_admin_fieldset'] = 'データタイプの管理';
-$LANG_DATABOX_ADMIN['about_admin_backuprestore'] = "バックアップの作成とリストア<br".XHTML."><br".XHTML.">";
+$LANG_DATABOX_ADMIN['about_admin_backuprestore'] = "バックアップの作成とリストア";
 $LANG_DATABOX_ADMIN['about_admin_mst'] = 'マスターの管理';
 
 $LANG_DATABOX_ADMIN['about_admin_xml'] = 'XML定義の管理';

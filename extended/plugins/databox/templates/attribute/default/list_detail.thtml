@@ -22,7 +22,7 @@
 	<div class="uk-modal-dialog">
 		<a class="uk-modal-close uk-close"></a>
 		<div class="uk-text-break">
-			<span class="uk-text-bold">theme variables:</span> {templatelocation}(<a href="{site_url}/admin/plugins/databox/docs/japanese/templatesetvars.html">?</a>)
+			<span class="uk-text-bold">theme variables:</span> {templatelocation}(<a href="{document_url}docs/japanese/templatesetvars.html">?</a>)
 		</div>
 		<ul class="uk-list">
 			<li><span style="color:green"> &#123;languageid&#125;</span>:{languageid}</li>

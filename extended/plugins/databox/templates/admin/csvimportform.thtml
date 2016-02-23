@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<h3>{lang_import}</h3>
+<h2 class="uk-h2">{lang_import}</h2>
 
 <form class="uk-form uk-form-stacked" action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data">
 

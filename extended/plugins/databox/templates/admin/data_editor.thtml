@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<h1>{about_thispage}</h1>
+<h2 class="uk-h2">{about_thispage}(<a href="{document_url}docs/japanese/input_data.html">?</a>)</h2>
 
 <ul class="uk-subnav uk-flex-center">
   <li><a href="{site_admin_url}/plugins/databox/view.php?id={id}&template=standard" class="uk-button" data-uk-tooltip title="利用できるテーマ変数の確認に利用してください。">{lang_ref}</a></li>

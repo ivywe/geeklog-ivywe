@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+<h2 class="uk-h2">{about_thispage}(<a href="{document_url}docs/japanese/input_mst.html">?</a>)</h2>
+
 {about_thispage}
 <form class="uk-form uk-form-horizontal" name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
 
@@ -72,7 +74,7 @@
       </div>
     </div>
 
-    <!-- 保存日 -->
+    <!-- Update date -->
     <div class="uk-form-row">
       <label class="uk-form-label" for="">{lang_udatetime}</label>
       <div class="uk-form-controls">

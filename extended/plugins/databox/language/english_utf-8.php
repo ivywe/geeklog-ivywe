@@ -464,7 +464,7 @@ $LANG_DATABOX_ADMIN['about_admin_category'] = 'Category Admin';
 $LANG_DATABOX_ADMIN['about_admin_field'] = 'Attribute Admin';
 $LANG_DATABOX_ADMIN['about_admin_group'] = 'Group Admin';
 $LANG_DATABOX_ADMIN['about_admin_fieldset'] = 'Attribute Set Adimin';
-$LANG_DATABOX_ADMIN['about_admin_backuprestore'] = 'Create Backup and Restore<br{KHTML}><br{KHTML}>';
+$LANG_DATABOX_ADMIN['about_admin_backuprestore'] = 'Create Backup and Restore';
 $LANG_DATABOX_ADMIN['about_admin_mst'] = 'Master Admin';
 
 $LANG_DATABOX_ADMIN['about_admin_xml'] = 'XML definition ';
