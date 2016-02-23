@@ -20,7 +20,7 @@
     <div class="uk-form-row">
       <label class="uk-form-label" for="">{lang_code} {help_code}</label>
       <div class="uk-form-controls">
-        <input type="text" size="48" maxlength="160" name="code" value="{code}"{xhtml}>
+        <input type="text" class="uk-form-width-medium" size="48" maxlength="160" name="code" value="{code}" required{xhtml}>
       </div>
     </div>
 
@@ -28,7 +28,7 @@
     <div class="uk-form-row">
       <label class="uk-form-label" for="">{lang_name}<span class="uk-text-danger">{lang_must}</span></label>
       <div class="uk-form-controls">
-        <input type="text" size="48" maxlength="160" name="name" value="{name}"{xhtml}>
+        <input type="text" class="uk-form-width-medium" size="48" maxlength="160" name="name" value="{name}" required{xhtml}>
       </div>
     </div>
 

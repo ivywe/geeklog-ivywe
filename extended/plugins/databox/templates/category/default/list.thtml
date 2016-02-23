@@ -6,21 +6,30 @@
   	<li><a href="{site_url}/">{home}</a></li>
   </ul>
 
-  <h2>{lang_category_list_h2}</h2>
+  <h1>{lang_category_list_h2}(<a href="#db_category_list_{category_code}" data-uk-modal>?</a>)</h1>
   <p>{msg}</p>
 
   {nav_var}
 
-  <div class="uk-panel uk-panel-box">
-		<span style="color:green"> &#123;languageid&#125;</span>:{languageid}
-		<span style="color:green"> &#123;_languageid&#125;</span>:{_languageid}
-		<span style="color:green"> &#123;language&#125;</span>:{language}
-		<span style="color:green"> &#123;uid&#125;</span>:{uid}
-		<span style="color:green"> &#123;username&#125;</span>:{username}
-		<span style="color:green"> &#123;fullname&#125;</span>:{fullname}
-		<span style="color:green"> &#123;displayname&#125;</span>:{displayname}
-  </div>
+</div>
 
+<div id="db_category_list_{category_code}" class="uk-modal">
+	<div class="uk-modal-dialog">
+		<a class="uk-modal-close uk-close"></a>
+		<div class="uk-text-break">
+			<span class="uk-text-bold">theme variables(<a href="{site_url}/admin/plugins/databox/docs/japanese/templatesetvars.html">?</a>):</span> {templatelocation}
+		</div>
+
+		<ul class="uk-list">
+			<li><span style="color:green"> &#123;languageid&#125;</span>:{languageid}</li>
+			<li><span style="color:green"> &#123;_languageid&#125;</span>:{_languageid}</li>
+			<li><span style="color:green"> &#123;language&#125;</span>:{language}</li>
+			<li><span style="color:green"> &#123;uid&#125;</span>:{uid}</li>
+			<li><span style="color:green"> &#123;username&#125;</span>:{username}</li>
+			<li><span style="color:green"> &#123;fullname&#125;</span>:{fullname}</li>
+			<li><span style="color:green"> &#123;displayname&#125;</span>:{displayname}</li>
+		</ul>
+  </div>
 </div>
 
 {# end {templatelocation} #}

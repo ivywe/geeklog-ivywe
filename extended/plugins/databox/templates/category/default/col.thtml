@@ -1,5 +1,22 @@
 {# begin {templatelocation} #}
 
-    <li>{category_link} ({count}) {category_description}<!-- {category_name}&nbsp;{category_url}&nbsp;{category_id}&nbsp;{category_code} --></li>
+    <li>{category_link} ({count}){!if category_description} ...{category_description}{!endif}(<a href="#db_category_col_{category_code}" data-uk-modal>?</a>)</li>
+
+<div id="db_category_col_{category_code}" class="uk-modal">
+	<div class="uk-modal-dialog">
+		<a class="uk-modal-close uk-close"></a>
+		<div class="uk-text-break">
+			<span class="uk-text-bold">theme variables(<a href="{site_url}/admin/plugins/databox/docs/japanese/templatesetvars.html">?</a>):</span> {templatelocation}
+		</div>
+		<ul class="uk-list">
+			<li><span style="color:green">&#123;category_link&#125;</span>{category_link}</li>
+			<li><span style="color:green">&#123;category_name&#125;</span>{category_name}</li>
+			<li><span style="color:green">&#123;category_url&#125;</span>{category_url}</li>
+			<li><span style="color:green">&#123;category_id&#125;</span>{category_id}</li>
+			<li><span style="color:green">&#123;category_code&#125;</span>{category_code}</li>
+		</ul>
+  </div>
+</div>
+
 
 {# end {templatelocation} #}

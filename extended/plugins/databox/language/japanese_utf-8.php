@@ -90,8 +90,8 @@ $LANG_DATABOX_ADMIN['piname'] = 'DataBox';
 $LANG_DATABOX_ADMIN['admin_list'] = 'DataBox';
 
 $LANG_DATABOX_ADMIN['edit'] = '編集';
-$LANG_DATABOX_ADMIN['ref'] = '参考';
-$LANG_DATABOX_ADMIN['view'] = '表示確認';
+$LANG_DATABOX_ADMIN['ref'] = '利用できるテーマ変数を確認する';
+$LANG_DATABOX_ADMIN['view'] = 'プレビュー';
 $LANG_DATABOX_ADMIN['add'] = '追加';
 
 $LANG_DATABOX_ADMIN['new'] = '新規登録';

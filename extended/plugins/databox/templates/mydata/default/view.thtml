@@ -1,5 +1,5 @@
 {# begin {templatelocation} #}
 
-{about_thispage}
+{about_thispage}{edit}
 
 {# end {templatelocation} #}

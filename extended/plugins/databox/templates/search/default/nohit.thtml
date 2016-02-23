@@ -3,11 +3,14 @@
 <div>
 
   <ul class="uk-breadcrumb">
-  <li><a href="{site_url}/">{home}</a></li>
-  <li><a href="{referer}">{lang_referer}</li>
+		<li><a href="{site_url}/">{home}</a></li>
+		<li><a href="{referer}">{lang_referer}</li>
   </ul>
 
-  {arg_var}
+	<h1>Search</h1>
+  <p>{msg}</p>
+
+{arg_var}
 
   <p>{lang_nohit}</p>
 

@@ -8,8 +8,7 @@
   </div>
   <div style="clear:both"></div>
 
-  <ul>
-    <li>{lang_name} ({lang_count})</li>
+  <ul class="uk-list uk-list-line">
 {row_var}
   </ul>
 
