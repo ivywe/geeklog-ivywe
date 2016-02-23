@@ -1,7 +1,8 @@
 {# begin {templatelocation} #}
 
-{about_thispage}
-<p>Ver:{version}</p>
+<h2 class="uk-h2">Information</h2>
+
+<p>Ver: {version}</p>
 <p><a href="{document_url}" target="_blank">{lang_document}</a>
 <ul>
   <li><a href="{document_url}install.html" target="_blank">{lang_install}</a></li>
@@ -13,10 +14,22 @@
   <li><a href="{document_url}input.html" target="_blank">{lang_input}</a></li>
 </ul>
 
+<div class="uk-panel uk-panel-box uk-margin">
+	<h3 class="uk-h3">Usage</h3>
+	<dl class="uk-description-list-horizontal">
+		<dt>Data link</dt><dd><a href="{site_url}/admin/plugins/databox/data.php" data-uk-tooltip title="click code!">Data</a></dd>
+		<dt>Group link</dt><dd><a href="{site_url}/admin/plugins/databox/group.php" data-uk-tooltip title="click code!">Group</a></dd>
+		<dt>Category link</dt><dd><a href="{site_url}/admin/plugins/databox/category.php" data-uk-tooltip title="click code!">Category</a></dd>
+		<dt>Attribute link</dt><dd><a href="{site_url}/admin/plugins/databox/field.php" data-uk-tooltip title="click code!">Attribute</a></dd>
+		<dt>Search link</dt><dd><a href="{site_url}/databox/search.php" data-uk-tooltip title="see more staticpage.txt">Search form</a></dd>
+	</dl>
+</div>
+
 <form class="uk-form" name='databox_conf_link' action='{site_admin_url}/configuration.php' method='POST'>
   <input type='hidden' name='conf_group' value='databox'>
 </form>
 
-<p><a style='text-decoration: none;' href='#' onclick="document.databox_conf_link.submit()">{lang_configuration}</a></p>
+<div><a class="uk-button" href='#' onclick="document.databox_conf_link.submit()">{lang_configuration}</a></div>
+
 
 {# end {templatelocation} #}

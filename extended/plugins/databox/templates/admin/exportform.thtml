@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<h3>Export{lang_export}</h3>
+<h2 class="uk-h2">Export{about_thispage}</h2>
 
 <form class="uk-form uk-form-stacked" action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data">
 

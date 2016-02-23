@@ -2,147 +2,127 @@
 
 <h2>Argument(<a href="#db_search_argument" data-uk-modal>?</a>)</h2>
 
-<form class="uk-form" action="{site_url}/{this_script}" method="get" >
-<!-- argument example -->
-<!-- example -->
+<!-- Search form sample -->
 
-  <ul class="uk-list uk-list-line">
-    <li><span style="color:green"> &#123;fieldset&#125;</span>:{fieldset}
-    <span style="color:green"> &#123;fieldset_name&#125;</span>:{fieldset_name}</li>
+<div class="uk-panel uk-panel-box">
 
-    <li><span style="color:green"> &#123;t&#125;</span>:{t}
-    <span style="color:green"> &#123;teq&#125;</span>:{teq}</li>
+	<form class="uk-form uk-form-horizontal" action="{site_url}/{this_script}" method="get" >
 
-    <li><span style="color:green"> &#123;fieldset&#125;</span>:{fieldset}
-    <span style="color:green"> &#123;fieldset_name&#125;</span>:{fieldset_name}</li>
+		<!-- set templatedir -->
+		<input name="templatedir" value="default" type="hidden">
 
-    <li><span style="color:green"> &#123;gor_3&#125;</span>:{gor_3}
-    <input name="gor_3[]" value="" type="hidden"></li>
+		<!-- fieldset Type id -->
+		<input name="fieldset" value="1" type="hidden">
 
-    <li><span style="color:green"> &#123;gand_8&#125;</span>:{gand_8}
-    <input name="gand_8[]" value="" type="hidden"></li>
+		<!-- Category -->
 
-    <li><span style="color:green"> &#123;gor_3_names&#125;</span>:{gor_3_names}</li>
-    <li><span style="color:green"> &#123;gor_3_1_id&#125;</span>:{gor_3_1_id}</li>
-    <li><span style="color:green"> &#123;gor_3_2_id&#125;</span>:{gor_3_2_id}</li>
-    <li><span style="color:green"> &#123;gor_3_1_name&#125;</span>:{gor_3_1_name}</li>
-    <li><span style="color:green"> &#123;gor_3_2_name&#125;</span>:{gor_3_2_name}</li>
+		<!-- gor_1 Group id=1 OR -->
+	  <div class="uk-form-row">
+	    <label class="uk-form-label">Group id:1 OR</label>
+	    <div class="uk-form-controls">
+				[databox:categorycheck group_id:1 iname:gor_1]
+				<input name="gor_1[]" value="" type="hidden"><!-- Dummy -->
+			</div>
+		</div>
 
-    <li><span style="color:green"> &#123;gand_8_names&#125;</span>:{gand_8_names}</li>
-    <li><span style="color:green"> &#123;gand_8_1_id&#125;</span>:{gand_8_1_id}</li>
-    <li><span style="color:green"> &#123;gand_8_2_id&#125;</span>:{gand_8_2_id}</li>
-    <li><span style="color:green"> &#123;gand_8_1_name&#125;</span>:{gand_8_1_name}</li>
-    <li><span style="color:green"> &#123;gand_8_2_name&#125;</span>:{gand_8_2_name}</li>
+		<!-- gand_2 Group id=1 AND -->
+	  <div class="uk-form-row">
+	    <label class="uk-form-label">Group id:2 AND</label>
+	    <div class="uk-form-controls">
+				[databox:categorycheck group_id:2 iname:gand_2]
+				<input name="gand_2[]" value="" type="hidden"><!-- Dummy -->
+			</div>
+		</div>
 
-    <li><span style="color:green"> &#123;aeq_4&#125;</span>:{aeq_4}</li>
-    <li><span style="color:green"> &#123;a_4&#125;</span>:{a_4}</li>
+		<!-- Attribute -->
 
-    <li><span style="color:green"> &#123;afr_6&#125;</span>:{afr_6}</li>
+		<!-- aeq_1 == X (attribute id=1) -->
+	  <div class="uk-form-row">
+	    <label class="uk-form-label">Number =</label>
+	    <div class="uk-form-controls">
+				<input size="12" class="uk-form-width-small" maxlength="160" name="aeq_1" value="" type="text">
+			</div>
+		</div>
 
-    <li><span style="color:green"> &#123;ato_6&#125;</span>:{ato_6}</li>
+		<!-- afr_2 =< X =< ato_2 (attribute id=2) -->
+	  <div class="uk-form-row">
+	    <label class="uk-form-label">Between</label>
+	    <div class="uk-form-controls">
+				<input size="6" class="uk-form-width-small" maxlength="160" name="afr_2" value="" type="text"> - <input size="6" class="uk-form-width-small" maxlength="160" name="ato_2" value="" type="text">
+			</div>
+		</div>
 
-    <li><span style="color:green"> &#123;ams_47&#125;</span>:{ams_47}
-    <input name="ams_47[]" value="" type="hidden"></li>
-    <li><span style="color:green"> &#123;ams_47_names&#125;</span>:{ams_47_names}</li>
-    <li><span style="color:green"> &#123;ams_47_1_no&#125;</span>:{ams_47_1_no}</li>
-    <li><span style="color:green"> &#123;ams_47_2_no&#125;</span>:{ams_47_2_no}</li>
-    <li><span style="color:green"> &#123;ams_47_1_name&#125;</span>:{ams_47_1_name}</li>
-    <li><span style="color:green"> &#123;ams_47_2_name&#125;</span>:{ams_47_2_name}</li>
+		<!-- etc. -->
+		<input name="perpage" value="10" type="hidden">
+		<input name="page" value="1" type="hidden">
+		<input name="nohitmsg" value="yes" type="hidden">
+		<input value="Search" class="uk-button" type="submit">
 
-    <li><span style="color:green"> &#123;templatedir&#125;</span>:{templatedir}</li>
+	</form>
 
-    <li><span style="color:green"> &#123;perpage&#125;</span>:{perpage}</li>
-
-    <li><span style="color:green"> &#123;page&#125;</span>:{page}</li>
-
-    <li><span style="color:green"> &#123;nohitmsg&#125;</span>:{nohitmsg}</li>
-    <li><span style="color:green"> &#123;order&#125;</span>:{order}</li>
-
-    <li><input value="{lang_search}" class="uk-button" type="submit"></li>
-  </ul>
-</form>
+</div>
 
 <div id="db_search_argument" class="uk-modal">
 	<div class="uk-modal-dialog">
 		<a class="uk-modal-close uk-close"></a>
 		<div class="uk-text-break">
-			<span class="uk-text-bold">theme variables(<a href="{document_url}docs/japanese/templatesetvars.html">?</a>):</span> {templatelocation}
+			<span class="uk-text-bold">theme variables(<a href="{site_url}/admin/plugins/databox/docs/japanese/templatesetvars.html">?</a>):</span> {templatelocation}
 		</div>
 
-		<ul class="uk-list">
+	  <ul class="uk-list uk-list-line">
+	    <li><span style="color:green"> &#123;fieldset&#125;</span>:{fieldset}
+	    <span style="color:green"> &#123;fieldset_name&#125;</span>:{fieldset_name}</li>
 
-{!!autotag code !!}
-<!-- 検索条件指定静的ページサンプル 20150114 -->
+	    <li><span style="color:green"> &#123;t&#125;</span>:{t}
+	    <span style="color:green"> &#123;teq&#125;</span>:{teq}</li>
 
-<form action="[conf:site_url]/databox/search.php" method="get" >
+	    <li><span style="color:green"> &#123;fieldset&#125;</span>:{fieldset}
+	    <span style="color:green"> &#123;fieldset_name&#125;</span>:{fieldset_name}</li>
 
-<!-- templatedir　テンプレートディレクトリを指定する 省略可 -->
-<input name="templatedir" value="abc" type="hidden">
+	    <li><span style="color:green"> &#123;gor_3&#125;</span>:{gor_3}
+	    <input name="gor_3[]" value="" type="hidden"></li>
 
-<!-- 条件指定　AND  -->
+	    <li><span style="color:green"> &#123;gand_8&#125;</span>:{gand_8}
+	    <input name="gand_8[]" value="" type="hidden"></li>
 
-<!-- fieldset　タイプidを指定する -->
-検索テスト<input name="fieldset" value="10" type="hidden">
+	    <li><span style="color:green"> &#123;gor_3_names&#125;</span>:{gor_3_names}</li>
+	    <li><span style="color:green"> &#123;gor_3_1_id&#125;</span>:{gor_3_1_id}</li>
+	    <li><span style="color:green"> &#123;gor_3_2_id&#125;</span>:{gor_3_2_id}</li>
+	    <li><span style="color:green"> &#123;gor_3_1_name&#125;</span>:{gor_3_1_name}</li>
+	    <li><span style="color:green"> &#123;gor_3_2_name&#125;</span>:{gor_3_2_name}</li>
 
+	    <li><span style="color:green"> &#123;gand_8_names&#125;</span>:{gand_8_names}</li>
+	    <li><span style="color:green"> &#123;gand_8_1_id&#125;</span>:{gand_8_1_id}</li>
+	    <li><span style="color:green"> &#123;gand_8_2_id&#125;</span>:{gand_8_2_id}</li>
+	    <li><span style="color:green"> &#123;gand_8_1_name&#125;</span>:{gand_8_1_name}</li>
+	    <li><span style="color:green"> &#123;gand_8_2_name&#125;</span>:{gand_8_2_name}</li>
 
-<!-- カテゴリー -->
-<!-- gor_3 カテゴリグループid=3のカテゴリを複数指定する　OR条件 -->
- <div class="databox_admin_data_title">賃貸物件タイプ</div>
-[databox:categorycheck group_id:3 iname:gor_3]
-<input name="gor_3[]" value="" type="hidden">　<!-- チェックが入らない時でも引数渡すためのダミー -->
+	    <li><span style="color:green"> &#123;aeq_4&#125;</span>:{aeq_4}</li>
+	    <li><span style="color:green"> &#123;a_4&#125;</span>:{a_4}</li>
 
-<!-- gand_8 カテゴリグループid=8のカテゴリを複数指定する　AND条件 -->
- <div class="databox_admin_data_title">売買物件タイプ</div>
-[databox:categorycheck group_id:8 iname:gand_8]
-<input name="gand_8[]" value="" type="hidden">　<!-- チェックが入らない時でも引数渡すためのダミー -->
+	    <li><span style="color:green"> &#123;afr_6&#125;</span>:{afr_6}</li>
 
-<!-- アトリビュート -->
-<!-- 表示制限(一般画面)=表示するで アトリビュートタイプが一行テキスト 、複数行テキスト、HTML、TinyMCE、CKEditor、数値、通貨の項目を検索キーにすることができます。
- -->
-<!-- aeq_4　アトリビュートid=4 のデータが　入力値と等しい -->
-<p>
-賃料価格=<input size="60" maxlength="160" name="aeq_4" style="max-width:95%" value="" type="text">
-</p>
+	    <li><span style="color:green"> &#123;ato_6&#125;</span>:{ato_6}</li>
 
-<!-- ato_5　アトリビュートid=5 のデータが　入力値以下 -->
-<p>
-礼金以下<input size="60" maxlength="160" name="ato_5" style="max-width:95%" value="" type="text">
-</p>
+	    <li><span style="color:green"> &#123;ams_47&#125;</span>:{ams_47}
+	    <input name="ams_47[]" value="" type="hidden"></li>
+	    <li><span style="color:green"> &#123;ams_47_names&#125;</span>:{ams_47_names}</li>
+	    <li><span style="color:green"> &#123;ams_47_1_no&#125;</span>:{ams_47_1_no}</li>
+	    <li><span style="color:green"> &#123;ams_47_2_no&#125;</span>:{ams_47_2_no}</li>
+	    <li><span style="color:green"> &#123;ams_47_1_name&#125;</span>:{ams_47_1_name}</li>
+	    <li><span style="color:green"> &#123;ams_47_2_name&#125;</span>:{ams_47_2_name}</li>
 
-<!-- afr_6　アトリビュートid=6 のデータが　入力値以上 -->
-<p>
-敷金以上<input size="60" maxlength="160" name="afr_6" style="max-width:95%" value="" type="text">
-</p>
+	    <li><span style="color:green"> &#123;templatedir&#125;</span>:{templatedir}</li>
 
-<!-- ato_6　アトリビュートid=6 のデータが　入力値以下 -->
-<p>
-敷金以下<input size="60" maxlength="160" name="ato_6" style="max-width:95%" value="" type="text">
-</p>
-<p>
-75通貨=<input size="60" maxlength="160" name="aeq_75" style="max-width:95%" value="" type="text">
-</p>
-<p>
-75通貨以上<input size="60" maxlength="160" name="afr_75" style="max-width:95%" value="" type="text">
-</p>
-<p>
-75通貨以下<input size="60" maxlength="160" name="ato_75" style="max-width:95%" value="" type="text">
-</p>
+	    <li><span style="color:green"> &#123;perpage&#125;</span>:{perpage}</li>
 
-<!-- 無意味な引数例（１） 値設定のないカテゴリ指定　非表示 -->
-<input name="gor_1[]" value="" type="hidden">　
-<!-- 無意味な引数例（２） 値設定のないカテゴリ指定　非表示 -->
-<input name="gand_2[]" value="" type="hidden">　
+	    <li><span style="color:green"> &#123;page&#125;</span>:{page}</li>
 
+	    <li><span style="color:green"> &#123;nohitmsg&#125;</span>:{nohitmsg}</li>
+	    <li><span style="color:green"> &#123;order&#125;</span>:{order}</li>
+	  </ul>
 
-<!--その他 -->
-<input name="perpage" value="4" type="hidden">
-<input name="page" value="1" type="hidden">
-<input name="nohitmsg" value="yes" type="hidden">
-
-
-<p><input value="検索" class="submit" type="submit"></p>
- </form>
-{!!autotag /code !!}
+	  <input value="{lang_search}" class="uk-button" type="submit">
 
   </div>
 </div>
