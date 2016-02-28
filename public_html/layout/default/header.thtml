@@ -72,7 +72,7 @@
 
       {# begin Center Block Container #}
       <div id="centerblocks">
-        <main id="main-content" role="main">
+        <main id="main-content">
           <p class="uk-text-left uk-margin-small-top">{welcome_msg}&nbsp;{datetime}</p>
           {breadcrumb_trail}
 
