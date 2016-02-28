@@ -75,8 +75,8 @@
 
   </fieldset>
 
-  <div class="uk-form-row">
-    <label class="uk-form-label" for=""></label>
+  <div class="uk-form-row uk-margin-large uk-margin-large-bottom">
+    <label class="uk-form-label"></label>
     <div class="uk-form-controls">
       <!-- Submit button - Save Cancel Delete -->
       <input type="submit" value="{lang_save}" name="mode" class="uk-button uk-form-width-medium"{xhtml}>
