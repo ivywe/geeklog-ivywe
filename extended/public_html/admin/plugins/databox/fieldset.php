@@ -145,8 +145,8 @@ $display =COM_startBlock($LANG_DATABOX_ADMIN['piname'],''
             ,COM_getBlockTemplate('_admin_block', 'header'))
          .ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno])
          .LIB_Menu($pi_name)
-         .$display
-         .COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
+         .$display ;
+//         .COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
 $display=DATABOX_displaypage($pi_name,'_admin',$display,$information);
 
 COM_output($display);
