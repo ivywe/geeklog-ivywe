@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-    <li>{category_link} ({count}){!if category_description} ...{category_description}{!endif}(<a href="#db_category_col_{category_code}" data-uk-modal>?</a>)</li>
+    <li>{category_link} ({count}){!if category_description} ...{category_description}{!endif}(<a href="#db_category_col_{category_code}" data-uk-modal>example</a>)</li>
 
 <div id="db_category_col_{category_code}" class="uk-modal">
 	<div class="uk-modal-dialog">

@@ -1883,9 +1883,6 @@ function DATABOX_getaddtionfieldsDisp(
                     break;
                 case 2://いいえ/はい
                     $fieldhtml .= $lang_noyes[$fvalue];
-                    if  ($fvalue==1){
-                        $fieldhtml_yes=1;
-                    }
                     break;
                 case 7://オプションリスト（選択肢）//@@@@@@
                 case 8://ラジオボタンリスト（選択肢）//@@@@@
@@ -1974,6 +1971,9 @@ function DATABOX_getaddtionfieldsDisp(
             $templates->set_var('additionfield_value', $fieldhtml);
             $templates->set_var('additionfield'.$fid, $fieldhtml);
             $templates->set_var($templatesetvar, $fieldhtml);
+            $templates->set_var('additionfield_fvalue', $fvalue);
+            $templates->set_var('additionfield'.$fid."_value", $fvalue);
+            $templates->set_var($templatesetvar."_value", $fvalue);
             
             if  ($type==12){
                 $templates->set_var('display_a', 'display:');
@@ -2539,7 +2539,7 @@ global $_TABLES;
         $nrows2 = DB_numRows( $result2 );
         
         if ($nrows2>0){
-            $retval .="<div class=\"uk-text-bold uk-margin-top\">";
+            $retval .="<div class=\"databox_admin_data_title\">";
             $retval .=$A['group_name'];
             $retval .="</div>".LB;
         

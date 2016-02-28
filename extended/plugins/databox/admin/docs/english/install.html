@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>DataBox | Geeklog Document</title>
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/english/docstyle.css" title="Dev Stylesheet">
+</head>
+
+<body>
+<p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
+<div class="menu">
+<a href="../../../../../docs/english/index.html">Geeklog Document</a>
+- <a href="index.html">DataBox Plugin </a>
+- Install procedure</div>
+<p>
+<a href="../../../../../">Top page</a>
+ <a href="../../../../../admin/plugins/databox/">Admin</a>
+</p>
+<h1><a href="index.html">DataBox Plugin </a></h1>
+(2012/02/17 update)
+
+<h2><a name="install">Install </a></h2>
+<ol>
+<li>DatabaseおよびFile のbackupをとります.</li>
+<li>Standard的なPlugin のFile 配置に従い、File をuploadします.</li>
+<ol>
+<li>plugins/　under に　databoxunder をupload</li>
+<li>admin/plugins/databox/under に　adminunder のFile をmove </li>
+<li>public_html/databox/under に　public_htmlunder のFile をmove </li>
+</ol>
+<li>Rootuser としてLogged in し，Plugin admin's Display でInstall を実行します</li>
+</ol>
+
+<h2>その他必要なDirectory ＆File </h2>
+<ul>
+<li>public_html/images/databox (Additional field のImages （外記憶）の記憶path)</li>
+<li>public_html/databox_data (File save path)</li>
+<li>private/data/databox/ (File save path)</li>
+<p>File save pathは、Configuration Settingで変更ableです</p>
+</ul>
+<h2>Install 時に作成されるaccess rights </h2>
+<ol>
+<li>databox.admin:DataBoxPlugin に関するすべての処理ができる.</li>
+<li>databox.edit:(user にupdate をpermit しないSettingになっていても)update ができる.</li>
+<li>databox.submit:(user に creat new をpermit しないSettingになっていても) creat new ができる.</li>
+</ol>
+<h2>Install 時に作成されるGroup </h2>
+<ol>
+<li>DataBox Admin :databox.admin databox.edit databox.submit access rights have </li>
+<li>DataBox Editor :databox.edit　access rights have </li>
+<li>DataBox Submitters :databox.edit databox.submit　access rights have </li>
+</ol>
+<h2>実行時に作成されるFile </h2>
+<ul>
+<li>data/databoxconfig_bak.php　　Configuration のbackup</li>
+</ul>
+<h2>Uninstall procedure</h2>
+<ul>
+<li>DatabaseおよびFile のbackupをとります.</li>
+<li>Rootuser としてLogged in し，Plugin admin's Display でdelete を実行します.</li>
+<li>uploadしたFile をdelete します.</li>
+</ul>
+<p>Uninstall すると Database上のDataBox専用Data は、すべてdelete されます.</p>
+<h2>通常のupgrade procedure</h2>
+<ol>
+<li>DatabaseおよびFile のbackupをとります.</li>
+<li>Standard的なPlugin のFile 配置に従い、File をuploadします.</li>
+<ol>
+<li>plugins/　under に　databoxunder をupload</li>
+<li>admin/plugins/databox/under に　adminunder のFile をmove </li>
+<li>public_html/databox/under に　public_htmlunder のFile をmove </li>
+</ol> 
+<li>Rootuser としてLogged in し，Plugin admin's Display でupdate を実行します</li>
+</ol>
+
+<h2>基本的なtesting version のupgrade procedure</h2>
+<p>Uninstall 、after delete, 、re Install してください.</p>
+<p> Uninstall する前にConfiguration Settingのbackupを
+作成しておくと、Install しなおした際にリストアすることができます.</p>
+<p>Uninstall すると Database上の専用Data は、すべてdelete されます.</p>
+<p>Uninstall すると uploadしたFile は、すべてdelete されます.</p>
+<p>Table の追加変更が必要な case があります.</p>
+<p>Group およびaccess rights の追加変更が必要な case があります.</p>
+
+
+<div class="footer">
+    <a href="http://wiki.geeklog.net/">Geeklog Document Development Project</a>、<a href="http://wiki.geeklog.jp/">Geeklog Document Japanese Development Project</a><br />
+    All trademarks and copyrights on this page are owned by their respective owners. Geeklog is copyleft.
+</div>
+
+</body>
+</html>

@@ -7,7 +7,7 @@
 	  <li>{attribute_top}</li>
   </ul>
 
-  <h1>{field_top}(<a href="#db_attribute_list_{addition_code}" data-uk-modal>?</a>)</h1>
+  <h1>{field_top}(<a href="#db_attribute_list_{addition_code}" data-uk-modal>example</a>)</h1>
   <p>{msg}</p>
 
   {nav_var}

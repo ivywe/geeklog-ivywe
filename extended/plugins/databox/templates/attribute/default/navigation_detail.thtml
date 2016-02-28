@@ -2,7 +2,7 @@
 
 <div>
 
-	<h2>{addtition_name}(<a href="#db_attribute_navigation_detail_{addition_code}" data-uk-modal>?</a>)</h2>
+	<h2>{addtition_name}(<a href="#db_attribute_navigation_detail_{addition_code}" data-uk-modal>example</a>)</h2>
 
 	<div class="uk-text-right uk-text-muted">current order:{cur_order}</div>
 	<ul class="uk-subnav uk-subnav-line uk-flex-center">

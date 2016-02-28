@@ -1,0 +1,253 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>DataBox | Geeklog Document</title>
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/english/docstyle.css" title="Dev Stylesheet">
+</head>
+
+<body>
+<p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
+<div class="menu">
+<a href="../../../../../docs/english/index.html">Geeklog Document</a>
+- <a href="index.html">DataBox Plugin </a>
+- Autotags・Block Functions</div>
+<p>
+<a href="../../../../../">Top page</a>
+ <a href="../../../../../admin/plugins/databox/">Admin</a>
+</p>
+<h1><a href="index.html">DataBox Plugin </h1>
+
+
+<h2><a name="autotags">Autotags</a>(2013/08/23 update)</h2>
+<table>
+<tr><th style="width:25%">Autotags 引数</th>
+    <th style="width:75%">Description</th>
+</tr>
+<tbody>
+<tr>
+<td>[databox:count ]<br /><br />
+category_id:　category_code:<br />
+mode:<br />
+</td>
+<td>
+Data Number <br />
+例１：[databox:count]<br />
+例２：[databox:count category_id:1]<br />
+例３：[databox:count category_code:AAA]<br />
+例４：[databox:count category_code:AAA|BBB] Category code がAAA or BBB<br />
+例５：[databox:count category_code:AAA|BBB|CCC] Category code がAAA or  BBB or  CCC<br />
+例６：[databox:count category_code:AAA|BBB mode:and] Category code がAAA かつ BBB<br />
+</td>
+</tr>
+
+<tr class="r2">
+<td>[databox:newlist ]<br /><br />
+rss_file:<br />
+title_trim_length:<br />
+intervalday:<br />
+limitcnt:<br />
+newmarkday:<br />
+templatedir:<a title="Theme Directory"class="note_super" href="#notetext_1">*1</a><br />
+category_id:　category_code:<br />
+</td>
+<td>
+新着Data <br />
+例１：[databox:newlist]<br />
+例２：[databox:newlist rss_file:databox.rss title_trim_length:50 intervalday:70 limitcnt:40 newmarkday:30 templatedir:XXX category_id:99 category_code:XXX]<br />
+</td>
+</tr>
+
+<tr>
+<td>[databox:data ]<br /><br />
+id:<br />
+templatedir:<a title="Theme Directory"class="note_super" href="#notetext_1">*1</a><br />
+nohitmsg:<br />
+</td>
+<td>
+Data <br />
+例１：[databox:data] <br />
+例２：[databox:data id:1 templatedir:XXX nohitmsg:yes]<br />
+</td>
+</tr>
+
+<tr class="r2">
+<td>[databox:category ]<br /><br />
+category_id:<br />
+templatedir:<a title="Theme Directory"class="note_super" href="#notetext_1">*1</a><br />
+nohitmsg:<br />
+perpage:<br />
+page:<br />
+order:<br />
+expired:<br />
+</td>
+<td>
+Category 別list <br />
+例１：[databox:category] <br />
+例２：[databox:category category_id:1 templatedir:XXX nohitmsg:yes perpage:10 page:1 order:id expired:no]<br />
+例３：[databox:category category_code:AAA ]<br />
+例４：[databox:category category_code:AAA|BBB] Category code がAAA or  BBB<br />
+例５：[databox:category category_code:AAA|BBB|CCC] Category code がAAA or  BBB or  CCC<br />
+例５：[databox:category category_code:AAA|BBB mode:and] Category code がAAA かつ BBB<br />
+例６：[databox:category category_code:AAA expired:yes]<br />
+order にSelect できるのは、 random date orderno code title description id と　display 制限not Additional field のTheme variables.<br />
+<br />
+perpage:(Number) Count of display items per page. if 0 display all items. (default: 0)<br />
+expired:no expired data はnot display.（ Default）<br />
+expired:yes expired data もdisplay.<br />
+</td>
+</tr>
+
+<tr >
+<td>[databox:attributedatacount]<br /><br />
+templatesetvar:<br />
+value:<br />
+</td>
+<td>
+Select AttributeがSelect  valueのData のNumber <br />
+例１：[databox:attributedatacount] <br />
+例２：[databox:attributedatacount templatesetvar:pref value:27]<br />
+</td>
+</tr>
+
+<tr class="r2">
+<td>[databox:lastmodified ]<br /><br />
+category_id: category_code:<br />
+</td>
+<td>
+<br />
+例１：[databox:lastmodified] <br />
+例２：[databox:lastmodified category_id:1]<br />
+例３：[databox:lastmodified category_code:XXX]<br />
+</td>
+</tr>
+
+<tr >
+<td>[databox:lastmodified ]<br /><br />
+category_id: category_code:<br />
+</td>
+<td>
+<br />
+例１：[databox:lastcreated] <br />
+例２：[databox:lastcreated category_id:1]<br />
+例３：[databox:lastcreated category_code:XXX]<br />
+</td>
+</tr>
+
+<tr class="r2">
+<td>[databox:attribute ]<br /><br />
+field_id: field_code:<br />
+value:<br />
+templatedir:<a title="Theme Directory"class="note_super" href="#notetext_1">*1</a><br />
+nohitmsg:<br />
+perpage:<br />
+page:<br />
+order:<br />
+	
+</td>
+<td>Attribute別list <br /> Select AttributeがSelect  valueのData list <br />
+例１：[databox:attribute field_id:99 value:xx ]<br />
+例２：[databox:attribute field_id:99 value:xx templatedir:x nohitmsg:yes perpage:99 page:99 order:id]<br />
+例３：[databox:attribute field_code:pref value:27 templatedir:x nohitmsg:yes perpage:99 page:99 order:id]<br />
+<br />
+perpage:(Number) Count of display items per page. if 0 display all items. (default: 0)<br />
+</td>
+</tr>
+
+<tr >
+<td>[databox:datalink ]<br /><br />
+id: code: <br />
+ linktext<a class="note_super" href="#notetext_2">*2</a>
+</td>
+<td>Data display link <br /> 
+例１：[databox:datalink id:1 ]<br />
+例２：[databox:datalink code:data1]<br />
+例３：[databox:datalink code:data1 Data ]<br />
+id とcode が共にSelect されている case はidを優先します<br />
+When linktext omitted, Data のTitle をlinktextとします.該当Data がない case はdisplay されません.<br />
+
+</td>
+</tr>
+<tr class="r2">
+<td>[databox:mydataentrylink ]<br />[databox:mydataentry ]<br /><br />
+type_id <br />
+templatedir<a title="Theme Directory"class="note_super" href="#notetext_1">*1</a><br />
+ linktext<a title=""class="note_super" href="#notetext_2">*2</a><br />
+
+</td>
+<td>My data creat new link <br /> 
+例１：[databox:mydataentrylink ]<br />
+例２：[databox:mydataentrylink linktext]<br />
+例３：[databox:mydataentrylink type_id:1]<br />
+例４：[databox:mydataentrylink type_id:1  creat new ]<br />
+例５：[databox:mydataentrylink type_id:1 templatedir:XXX linktext]<br />
+When omitted type_id linktext, My dataの「 creat new 」link をdisplay.<br />
+When omitted type_id, creat new link をdisplay<br />
+When type_id selected and linktext omitted, Type name 称をlinktextとします.
+When type_id selected and no Type, not display.<br />
+When not have my data creat new access rights, not display.<br />
+</td>
+</tr>
+
+<tr >
+<td>
+[databox:mydata templatedir ]<br /><br />
+templatedir:<a title="Theme Directory"class="note_super" href="#notetext_1">*1</a><br />
+linktext<a title=""class="note_super" href="#notetext_2">*2</a>
+
+</td>
+<td>My datalink <br /> 
+例１：[databox:mydata ]<br />
+例２：[databox:mydata My datalink ]<br />
+例３：[databox:mydata ]<br />
+例４：[databox:mydata My datalink ]<br />
+例５：[databox:mydata templatedir:XXX My data]<br />
+<br />
+My dataupdate のaccess rights がない case は、display されません<br />
+</td>
+</tr>
+<tr class="r2">
+<td>[databox:categorycount　Category Group id or 　Category Group Code]
+</td>
+
+<td>Select Category Group のCategory Number <br /> 
+例１：[databox:categorycount ] Paerent Group なしCategory のNumber <br />
+例２：[databox:categorycount group_id:3]<br />
+例３：[databox:categorycount group_code:pref]<br />
+Access rights のあるData がregist not Category のNumber  not include
+</td>
+</tr>
+</tbody>
+</table>
+<h2>Block Functions</h2>
+<table>
+<tr><th style="width:25%">Function</th>
+    <th style="width:75%">Description</th>
+</tr>
+<tbody>
+<tr>
+  <td>phpblock_shownewdatabox</td>
+  <td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+<br/><a class="note_super" href="#notetext_1" id="notetext_1">*1</a>
+Theme Directory<br/>
+not Select case, use bellow.(list Display 以外)<br/>
+Typeにregist されているTheme Directory<br/>
+Data にregist されているTheme Directory<br/>
+default<br/>
+
+<br/><a class="note_super" href="#notetext_2" id="notetext_2">*2</a>
+linktext は、必ず最後に記述してください.半角スペースを含む内容も記述ableです.引数name は不要です
+
+<div class="footer">
+    <a href="http://wiki.geeklog.net/">Geeklog Document Development Project</a>、<a href="http://wiki.geeklog.jp/">Geeklog Document Japanese Development Project</a><br />
+    All trademarks and copyrights on this page are owned by their respective owners. Geeklog is copyleft.
+</div>
+
+</body>
+</html>

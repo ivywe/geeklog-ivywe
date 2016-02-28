@@ -90,8 +90,8 @@ $LANG_DATABOX_ADMIN['piname'] = 'DataBox';
 $LANG_DATABOX_ADMIN['admin_list'] = 'DataBox';
 
 $LANG_DATABOX_ADMIN['edit'] = '編集';
-$LANG_DATABOX_ADMIN['ref'] = '利用できるテーマ変数を確認する';
-$LANG_DATABOX_ADMIN['view'] = 'プレビュー';
+$LANG_DATABOX_ADMIN['ref'] = '参考';
+$LANG_DATABOX_ADMIN['view'] = '表示確認';
 $LANG_DATABOX_ADMIN['add'] = '追加';
 
 $LANG_DATABOX_ADMIN['new'] = '新規登録';
@@ -239,7 +239,7 @@ $LANG_DATABOX_ADMIN['dfid']=$LANG04[42];//'日時のフォーマット';
 
 $LANG_DATABOX_ADMIN['draft'] = 'ドラフト';//'下書';
 $LANG_DATABOX_ADMIN['draft_msg'] = '
-※このデータはドラフトモードです。モードの変更はサイトの管理者へご連絡ください。
+※このデータはドラフトモードになっています。モードの変更はサイトの管理者へご連絡ください。
 ';
 $LANG_DATABOX_ADMIN['uid'] = 'ユーザーID';
 $LANG_DATABOX_ADMIN['modified'] = '編集日付';
@@ -500,7 +500,7 @@ $LANG_DATABOX_ADMIN['about_admin_category'] = 'カテゴリの管理';
 $LANG_DATABOX_ADMIN['about_admin_field'] = 'アトリビュートの管理';
 $LANG_DATABOX_ADMIN['about_admin_group'] = 'グループの管理';
 $LANG_DATABOX_ADMIN['about_admin_fieldset'] = 'データタイプの管理';
-$LANG_DATABOX_ADMIN['about_admin_backuprestore'] = "バックアップの作成とリストア";
+$LANG_DATABOX_ADMIN['about_admin_backuprestore'] = "バックアップの作成とリストア<br".XHTML."><br".XHTML.">";
 $LANG_DATABOX_ADMIN['about_admin_mst'] = 'マスターの管理';
 
 $LANG_DATABOX_ADMIN['about_admin_xml'] = 'XML定義の管理';

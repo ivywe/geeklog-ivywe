@@ -1,0 +1,314 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>DataBox | Geeklogドキュメント</title>
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
+</head>
+<!-- admin/plugins/databox/docs/japanese/files.html 20151110 -->
+<body>
+<p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
+<div class="menu">
+<a href="../../../../../docs/japanese/index.html">Geeklogドキュメント</a>
+- <a href="index.html">DataBox プラグイン</a>
+- ファイル構成</div>
+<p>
+<a href="../../../../../">トップページ</a>
+ <a href="../../../../../admin/plugins/databox/">管理画面</a>
+</p>
+<h1><a href="index.html">DataBox プラグイン</h1>
+
+<h2><a name="files">ファイル構成(2015/11/10update)</a></h2>
+<pre><code>
+-databox
+  ├ admin
+  │ ├ docs
+  │ │ ├ japanese
+  │ │ │ ├ autotags.html
+  │ │ │ ├ databox.html
+  │ │ │ ├ docstyle.css
+  │ │ │ ├ files.html
+  │ │ │ ├ index.html
+  │ │ │ ├ input.html
+  │ │ │ ├ input_backuprestore.html
+  │ │ │ ├ input_category.html
+  │ │ │ ├ input_data.html
+  │ │ │ ├ input_field.html
+  │ │ │ ├ input_fieldset.html
+  │ │ │ ├ input_group.html
+  │ │ │ ├ input_mst.html
+  │ │ │ ├ input_mydata_data.html
+  │ │ │ ├ install.html
+  │ │ │ ├ table_addition.html
+  │ │ │ ├ table_base.html
+  │ │ │ ├ table_category.html
+  │ │ │ ├ table_def_category.html
+  │ │ │ ├ table_def_field.html
+  │ │ │ ├ table_def_fieldset.html
+  │ │ │ ├ table_def_fieldset_assignments.html
+  │ │ │ ├ table_def_fieldset_group.html
+  │ │ │ ├ table_def_froup.html
+  │ │ │ ├ table_def_xml.html
+  │ │ │ ├ table_mst.html
+  │ │ │ ├ table_stats.html
+  │ │ │ ├ tables.html
+  │ │ │ └ templatesetvars.html
+  │ │ │
+  │ │ ├ changed-files
+  │ │ ├ history
+  │ │ ├ index.html
+  │ │ └ license
+  │ │
+  │ ├ bqckuprestore.php
+  │ ├ category.php
+  │ ├ data.php
+  │ ├ databox_functions.php
+  │ ├ field.php
+  │ ├ fieldset.php
+  │ ├ group.php
+  │ ├ index.php
+  │ ├ information.php
+  │ ├ mst.php
+  │ └ view.php
+  │
+  │ ├ csv.php   (CSV)
+  │ ├ xml.php   (XML)
+  │ └ maps.php  (MAPS)
+  │
+  │
+  ├ <a name="custom">custom  (各サイトでご用意ください)</a>
+  │ ├ language
+  │ │ └ japaese_utf-8.php　
+  │ ├ templates
+  │ │
+  │ └ functions_custom.inc (テーマ変数の追加)
+  │ 
+  ├ language
+  │ ├ english_utf-8.php
+  │ └ japanese_utf-8.php 
+  │   （指定言語がない場合にも使用されます）
+  │
+  ├ lib (boxシリーズ共通)
+  │ ├ com_getyearformoptions.php 
+  │ ├ comj_dlfile.php 
+  │ ├ comj_dltbldt.php 
+  │ ├ databox_funcions.inc 
+  │ ├ lib_category.php 
+  │ ├ lib_configuration.php 
+  │ ├ <s>lib_datetimeedit.php</s> 
+  │ ├ lib_field.php 
+  │ ├ lib_fieldset.php 
+  │ ├ lib_getfielelist.php 
+  │ ├ lib_group.php 
+  │ ├ lib_mail_is_mobile.php 
+  │ ├ lib_mst.php 
+  │ ├ lib_outlog.php 
+  │ ├ ppNavbar.php 
+  │ └ sql_mst_sample.inc
+  │
+  ├ public_html
+  │ ├ css
+  │ │ └ style.css
+  │ │
+  │ ├ images
+  │ │ └ icons
+  │ │     ├ databox.png
+  │ │     ├ icon_new.gif
+  │ │     └ icon_RSS.gif
+  │ │
+  │ ├ mydata
+  │ │ ├ data.php
+  │ │ ├ databox_functions.php
+  │ │ ├ index.php
+  │ │ └ view.php
+  │ │
+  │ ├ attribute.php
+  │ ├ category.php
+  │ ├ content.php
+  │ ├ data.php
+  │ ├ download.php
+  │ ├ index.php
+  │ ├ list.php
+  │ ├ page.php
+  │ └ search.php
+  │
+  ├ sql
+  │ └ mysql_install.php
+  │
+  ├ templates
+  │ ├ admin
+  │ │ ├ backupform.thtml
+  │ │ ├ backuprestore.thtml
+  │ │ ├ category_editor.thtml
+  │ │ ├ changeset.thtml
+  │ │ ├ confirmation.thtml
+  │ │ ├ data_col_detail.thtml
+  │ │ ├ data_editor.thtml
+  │ │ ├ exportform.thtml
+  │ │ ├ field_editor.thtml
+  │ │ ├ fieldset_editor.thtml
+  │ │ ├ fieldset_fields.thtml
+  │ │ ├ fieldset_groups.thtml
+  │ │ ├ group_editor.thtml
+  │ │ ├ import_url.thtml  (CSVのエクスポート XMLのインポート、XMLのエクスポートで使用)　
+  │ │ ├ information.thtml
+  │ │ ├ mst_editor.thtml
+  │ │ ├ restoreform.thtml
+  │ │ ├ row.thtml
+  │ │ ├ selectset.thtml
+  │ │ └ view.thtml
+  │ │
+  │ │ ├ csv_editor.thtml
+  │ │ ├ csvimportform.thtml
+  │ │ ├ csvsel_editor.thtml
+  │ │ └ csvsel_editor.thtml
+  │ │
+  │ │ └ xml_editor.thtml
+  │ │
+  │ ├ attribute
+  │ │ └ default
+  │ │    ├ col.thtml
+  │ │    ├ col2.thtml
+  │ │    ├ col_detail.thtml
+  │ │    ├ headerode.thtml
+  │ │    ├ list.thtml
+  │ │    ├ list_detail.thtml
+  │ │    ├ navigation.thtml
+  │ │    ├ navigation_detail.thtml
+  │ │    ├ nohit.thtml
+  │ │    └ row.thtml
+  │ │
+  │ ├ category
+  │ │ └ default
+  │ │    ├ col.thtml
+  │ │    ├ col_detail.thtml
+  │ │    ├ grp.thtml
+  │ │    ├ headercode.thtml
+  │ │    ├ list.thtml
+  │ │    ├ list_detail.thtml
+  │ │    ├ navigation.thtml
+  │ │    ├ navigation_detail.thtml
+  │ │    ├ nohit.thtml
+  │ │    └ row.thtml
+  │ │
+  │ ├ data
+  │ │ └ default
+  │ │    ├ col_detial.thtml
+  │ │    ├ headercode.thtml
+  │ │    ├ list_detail.thtml
+  │ │    ├ nohit.thtml
+  │ │    └ row.thtml
+  │ │
+  │ ├ mydata
+  │ │ └ default
+  │ │    ├ data_col_detail.thtml
+  │ │    ├ data_editor.thtml
+  │ │    ├ row.thtml
+  │ │    ├ selectset.thtml
+  │ │    └ view.thtml
+  │ │
+  │ ├ newlist
+  │ │  └ default
+  │ │     ├ list.thtml
+  │ │     └ list_col.thtml
+  │ │
+  │ └ search
+  │   └ default
+  │      ├ argument.thtml
+  │      ├ col_detail.thtml
+  │      ├ headercode.thtml
+  │      ├ list_detail.thtml
+  │      ├ navigation_detail.thtml
+  │      ├ nohit.thtml
+  │      └ row.thtml
+  │
+  ├ autoinstall.php
+  ├ config.php
+  ├ configuration_validation.php
+  ├ fnc_databoxcach.inc
+  ├ functions_autotag.inc  
+  ├ functions_comment.inc
+  ├ functions_feed.inc
+  ├ functions_search.inc
+  ├ functions_stats.inc
+  ├ functions.inc
+  ├ install_defaults.php
+  └ version.php
+  
+  ├ csv (CSV)
+  │ ├ sql
+  │ │ └ mysql_install_csv.php
+  │ │ 
+  │ ├ csv.inc
+  │ ├ csv_functions.php
+  │ ├ csv_importexec.php
+  │ ├ csv_scheduled.php
+  │ ├ history
+  │ └ readme_csv.txt
+  │
+  
+  ├ maps (MAPS)
+  │ ├ history
+  │ ├ maps_markersupdate.inc
+  │ ├ maps_scheduled.inc
+  │ ├ masps.inc
+  │ └ readme_maps.txt
+  │
+  
+  ├ xml (XML)
+  │ ├ sql
+  │ │ └ mysql_install_xml.php
+  │ │ 
+  │ ├ history
+  │ ├ readme_xml.txt
+  │ ├ xml.inc
+  │ ├ xml_functions.php
+  │ └ xml_data_functions.php
+  │
+  
+</code></pre>
+<p>DataBox のコンフィギュレーションのバックアップは、
+private/data/ に作成されます</p>
+<p>DataBox のデータ〜マスターのバックアップは、
+private/backups/databox/ に作成されます</p>
+
+<pre><code>
+ GEEKLOG
+   ├ data
+   │ ├ databox  (ファイル保存場所)
+   │ ├ databox_csv  (CSVエキスポートディレクトリ)
+   │ ├ databox  (XMLエキスポートディレクトリ)
+   │
+   ├ public_html
+   │ ├ images
+   │ │ ├ databox (追加項目の画像（外記憶）の記憶場所)
+   │ │
+   │ ├ databox_data  (ファイル保存場所)
+   │ │
+   │ ├ databox_csv  (CSV一括インポートディレクトリ)
+   │ │
+   │ ├ databox_data  (XML一括インポートディレクトリ)
+   │ │
+   │ ├ layout
+   │ │ ├ テーマ
+   │ │     ├ databox
+   │ │        ├ templates  テーマテンプレート
+   │ │                 (各サイトでご用意ください)
+   │ │
+   │ │
+   │ ├ logs
+   │ │ ├ databox_csvimport.log   (CSV)
+   │ │ ├ databox_mapsupdate.log  (MAPS)
+   │ │ ├ databox_xmlimport.log   (XML)
+   
+</code></pre>
+
+<div class="footer">
+    <a href="http://wiki.geeklog.net/">Geeklogドキュメント作成プロジェクト</a>、<a href="http://wiki.geeklog.jp/">Geeklogドキュメント日本語版作成プロジェクト</a><br />
+    本ページのすべての商標と著作権はそれぞれの所有者に帰属します。Geeklogはコピーレフトです。
+</div>
+
+</body>
+</html>

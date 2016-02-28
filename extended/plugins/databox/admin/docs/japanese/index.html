@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>DataBox | Geeklogドキュメント</title>
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
+</head>
+<!-- admin/plugins/databox/docs/japanese/index.html 20151007 -->
+<body>
+<p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
+<div class="menu"><a href="../../../../../docs/japanese/index.html">Geeklogドキュメント</a>
+- DataBox プラグイン
+</div>
+<p>
+<a href="../../../../../">トップページ</a>
+ <a href="../../../../../admin/plugins/databox/">管理画面</a>
+</p>
+
+<h1>DataBox プラグイン</h1>
+<p>Ver.0.0.0（テスト版 ）<a href="../history" >history</a></p>	
+<p>ライセンス　<a href="../../../../../docs/license" title="GNU General Public License">GNU GPLv2</a></p>
+<p><a href="http://www.ivywe.co.jp/downloads/index.php/databox_test" >最新テスト版配布</a></p>
+
+<p>☆テスト版では言語ファイルの既定値はjapanese_utf-8になっています</p>
+<p>☆テスト版での更新処理は原則バージョンの変更とコンフィギュレーション設定の更新のみおこなっています。正式版は0.0.1からの予定です</p>
+
+<h2>ドキュメント目次</h2>
+<ul>
+  <li><a href="install.html">インストール方法</a> (インストール・アンインストール・アップグレード)</li>
+  <li><a href="databox.html">設定（コンフィギュレーション）</a></li>
+  <li><a href="autotags.html">自動タグ・ブロック用関数</a></li>
+  <li><a href="files.html">ファイル構成</a></li>
+  <li><a href="templatesetvars.html">テーマ変数</a></li>
+  <li><a href="tables.html">テーブル一覧</a></li>
+  <li><a href="input.html">入力一覧</a></li>
+</ul>
+  
+<h2>概要</h2>
+自由に属性（項目）を追加できるデータ管理プラグインです。
+
+<h2>機能</h2>
+<ul>
+<li>データ毎にfeaturedimageの登録が可能：追加項目で、最初に表示される画像（ファイル保存）タイプの項目 </li>
+<li>画像(featuredimage)付カテゴリ別フィード発行</li>
+<li>ogpメタタグ編集（個別データ表示、カテゴリ別件数一覧、カテゴリ別一覧）</li>
+<li>カスタム設定：各サイトで独自の言語ファイル、テンプレートが使用可能、テーマ変数の追加が可能<a href="files.html#custom">custom参照</a></li>
+<li>カテゴリ別にテンプレートの指定が可能</li>
+</ul>  
+<h2>オプション機能</h2>
+<ul>
+<li>XML：XMLファイルのインポート・エクスポート </li>
+<li>CSV：CSVファイルのインポート・エクスポート インポートスケジュール実行（疑似CRON）</li>
+<li>MAPS:データをMapsプラグインのマーカーへエクスポート　エクスポートスケジュール実行（疑似CRON）</li>
+</ul>  
+<h2>関連プラグイン(2015/10/07 update)</h2>
+<ul>
+<li>Mapsプラグイン
+<br />Mapsプラグインのロード順はDataBoxより上位にしてください。</li>
+<li>Assistfbプラグイン：Assistfbプラグインが有効な場合のみ 特別データコードが機能します。<br />
+@fb_pageid:アクセスされたフェースブックページのデータ。<br />
+データが未登録で新規作成権限があれば登録後、mydata更新画面へ遷移します<br />
+</li>
+<li>XMLSitemapプラグインのコンフィギュレーション設定のサイトマップの内容に databox を登録すると sitemap.xmlに出力します</li>
+
+</ul>
+<h2>制限事項(2015/10/07 update)</h2>
+<ol>
+<li>Gl2.1未満のGeeklogではインストールできません。</li>
+<li>MySQL 5.0 未満ではインストールできません。</li>
+<li>Geeklogインストール時に「UTF-8を使用する」をチェックしたサイトのみ対応しています。</li>
+<li>MySQLのみ対応しています。</li>
+<li>主にXrea仕様 および SaaSes サーバで動作作検証しています。</li>
+</ol>
+<h2>注意</h2>
+<p>同一サイトにUserBoxがある場合、バージョン（幹番）は同じである必要があります。</p>
+<p>0.0.0yyyymmdd ここまでの表記が同じであること</p>
+
+ <div class="footer">
+    <a href="http://wiki.geeklog.net/">Geeklogドキュメント作成プロジェクト</a>、<a href="http://wiki.geeklog.jp/">Geeklogドキュメント日本語版作成プロジェクト</a><br />
+    本ページのすべての商標と著作権はそれぞれの所有者に帰属します。Geeklogはコピーレフトです。
+</div>
+
+</body>
+</html>

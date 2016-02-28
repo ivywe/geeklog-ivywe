@@ -7,7 +7,7 @@
 	  <li>{category_top}</li>
   </ul>
 
-  <h1> {group_link} {group_name} {category_name}(<a href="#db_category_list_detail_{category_code}" data-uk-modal>?</a>)</h1>
+  <h1> {group_link} {group_name} {category_name}(<a href="#db_category_list_detail_{category_code}" data-uk-modal>example</a>)</h1>
 
   <p>{category_description}</p>
   <p>{msg}</p>

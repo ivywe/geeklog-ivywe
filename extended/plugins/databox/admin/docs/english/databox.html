@@ -1,0 +1,506 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>DataBox | Geeklog Document</title>
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/english/docstyle.css" title="Dev Stylesheet">
+</head>
+<!-- admin/plugins/databox/docs/english/databox.html 20130221 -->
+<body>
+<p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
+<div class="menu">
+<a href="../../../../../docs/english/index.html">Geeklog Document</a>
+- <a href="index.html">DataBox Plugin </a>
+- Setting</div>
+<p>
+<a href="../../../../../">Top page</a>
+ <a href="../../../../../admin/plugins/databox/">Admin</a>
+</p>
+<h1><a href="index.html">DataBox Plugin </h1>
+
+<h2><a name="config.php">Setting</a>
+<p>DataBox Plugin のSettingは、
+<form name='databox_conf_link' action='../../../../../admin/configuration.php' method='POST'>
+<input type='hidden' name='conf_group' value='databox'></form>
+ <a style='text-decoration: none;' href='#' onclick="document.databox_conf_link.submit()">Configuration Admin</a>「Admin - Configuration  - DataBox」からCan change.</p>
+ <h3><a name="public">Main Setting</a>(2013/08/23 update)</h3>
+
+<table>
+<tr><th style="width:25%">Variables</th>
+    <th style="width:25%">Default</th>
+    <th style="width:50%">Description</th>
+</tr>
+<tr>
+  <td valign="top"><a name="desc_perpage">Data number per page(perpage)</a></td>
+  <td valign="top">9</td>
+  <td valign="top">　</td>
+</tr>
+
+<tr class="r2">
+  <td><a name="desc_loginrequired">Login Required(loginrequired)</a></td>
+  <td>No(0)</td>
+  <td>
+  <ul>
+    <li>No(0)not require login</li>
+    <li>Yes(3)にすると、Annonimos user はDataBoxsection に can not access</li>
+    <li>list とData page(2)にすると、Annonimos user は、Number list only can access が、list と、Data display には can not access</li>
+    <li>Data page(1)にすると、Annonimos user は、Number list とlist only can access が、Data display には can not access</li>
+    </ul>
+    このSetting valueよりも、「Admin - Configuration  - Geeklog - user and submitting」の「Login required for all(loginrequired)</a>」のSetting enabled.「Login required for all」をYes(1)にすると、DataBoxPlugin でLogged in を要求していなくても、Annonimos user はDataBoxsection に can not access.</td>
+</tr>
+
+<tr>
+  <td><a name="desc_hidemenu">not display in menu(hidemenu)</a></td>
+  <td>No(0)</td>
+  <td>Yes(1)にすると、site のmenu に「Data display 」をnot display</td>
+</tr>
+
+<tr class="r2">
+  <td><a name="desc_categorycode">Use category code(categorycode)</a></td>
+  <td>No(false)</td>
+  <td>Yes(true)にすると、Use category code</td>
+</tr>
+
+<tr>
+  <td><a name="desc_datacode">Use data code(datacode)</a></td>
+  <td>No(false)</td>
+  <td>Yes(true)Use data code </td>
+</tr>
+
+<tr class="r2">
+  <td><a name="desc_groupcode">Use group code(groupcode)</a></td>
+  <td>No(false)</td>
+  <td>Yes(true)Use group code </td>
+</tr>
+
+<tr>
+  <td><a name="desc_top">TOPでdisplay program(top)</a></td>
+  <td>/databox/list.php</td>
+  <td></td>
+</tr>
+
+<tr class="r2">
+  <td valign="top"><a name="desc_templates">Templateuser display(templates)</a></td>
+  <td valign="top">Standard(standard)</td>
+  <td valign="top">Select theme directory.
+<ul>
+    <li>Standard(standard)( Default): private/plugins/databox/templates/under </li>
+    <li>custom (custom): private/plugins/databox/custom/templates/under </li>
+    <li>Theme (theme): public_html/Theme /Theme Template path /under </li>
+    </ul>
+<strong>notification:</strong> custom or Theme をSelect している case でもDirectory がなければdefault theme directoryをuse 
+</td>
+</tr>
+
+<tr>
+  <td valign="top"><a name="desc_templates_admin">Template  Admin(templates_admin)</a></td>
+  <td valign="top">Standard(standard)</td>
+  <td valign="top">Select theme directory.
+<ul>
+    <li>Standard(standard)( Default): private/plugins/databox/templates/under </li>
+    <li>custom (custom): private/plugins/databox/custom/templates/under </li>
+    <li>Theme (theme): public_html/Theme /Theme Template path /under </li>
+    </ul>
+<strong>notification:</strong> custom or Theme をSelect している case でもDirectory がなければdefault theme directoryをuse 　</td>
+</tr>
+<tr class="r2">
+  <td valign="top"><a name="desc_themespath">Theme Template path (themespath)</a></td>
+  <td valign="top">databox/templates/</td>
+  <td valign="top">Theme Template using case 、Theme からのrelated path 　</td>
+</tr>
+<tr>
+  <td><a name="desc_delete_data">When owner delete と共にdelete する(delete_data)</a></td>
+  <td>No(false)</td>
+  <td>No(false)の case 、Data のWhen owner Account がdelete された時、RootAdministrator(通常はID＝２)に変更します.
+Yes(true)にすると、When owner delete と共にdelete します.</td>
+</tr>
+
+<tr class="r2">
+  <td><a name="desc_datefield">Use Date(datefield')</a></td>
+  <td>Using modified date(modified)</td>
+  <td>Using modified date, created date and released date.</td>
+</tr>
+
+<tr>
+  <td><a name="desc_meta_tags">Meta tag using(meta_tags)</a></td>
+  <td>No(0)</td>
+  <td>No(0)の case 、Meta tag をuse しません.
+Yes(1)にすると、Meta tag が出力されます.</td>
+</tr>
+
+<tr class="r2">
+  <td><a name="desc_layout">Layout  User's Display (layout)</a></td>
+  <td>left block（right block owe to Theme Settingによる）(standard)</td>
+  <td> User's Display のLayout をSelect します.
+    <ul>
+    <li>left block（right block owe to Theme Settingによる）(standard)</li>
+    <li>ヘッダ・フッタ・左右ブロックあり(leftrightblocks)</li>
+    <li>全Display display （ヘッダ・フッタ・ブロックなし）(blankpage)</li>
+    <li>ヘッダ・フッタあり（ブロックなし）(noblocks)</li>
+    <li>left block（右ブロックなし）(leftblocks)</li>
+    <li>ヘッダ・フッタ・右ブロックあり（左ブロックなし）(rightblocks)</li>
+    </ul>
+  </td>
+</tr>
+
+<tr>
+  <td><a name="desc_layout_admin">Layout  Admin(layout_admin)</a></td>
+  <td>left block（right block owe to Theme Settingによる）(standard)</td>
+  <td>AdminのLayout をSelect します.
+    <ul>
+    <li>left block（right block owe to Theme Settingによる）(standard)</li>
+    <li>ヘッダ・フッタ・左右ブロックあり(leftrightblocks)</li>
+    <li>全Display display （ヘッダ・フッタ・ブロックなし）(blankpage)</li>
+    <li>ヘッダ・フッタあり（ブロックなし）(noblocks)</li>
+    <li>left block（右ブロックなし）(leftblocks)</li>
+    <li>ヘッダ・フッタ・右ブロックあり（左ブロックなし）(rightblocks)</li>
+    </ul>
+  </td>
+</tr>
+<tr class="r2">
+  <td><a name="desc_mail_to">mail to (mail_to)</a></td>
+  <td></td>
+  <td></td>
+</tr>
+<tr >
+  <td><a name="desc_mail_to_owner">mail to owner (mail_to_owner)</a></td>
+  <td>No(0)</td>
+  <td>Yes(1)にすると、所有者にedit を通知します.</td>
+</tr>
+<tr class="r2">
+  <td><a name="desc_mail_to_draft">Draft Data のedit をnotify (mail_to_draft)</a></td>
+  <td>No(0)</td>
+  <td>Yes(1)にすると、Draft Data のedit を通知します.</td>
+</tr>
+
+<tr>
+  <td><a name="desc_allow_data_update">user にupdate をpermit する(allow_data_update)</a></td>
+  <td>Yes(1)</td>
+  <td>No(0)にすると、user にupdate をpermit しません.(update access rights have user はexcept)</td>
+</tr>
+
+<tr class="r2">
+  <td><a name="desc_allow_data_delete">user にdelete をpermit する(allow_data_delete)</a></td>
+  <td>No(0)</td>
+  <td>Yes(1)にすると、user にdelete をpermit します.</td>
+</tr>
+
+<tr>
+  <td><a name="desc_allow_data_insert">user に creat new をpermit する(allow_data_insert)</a></td>
+  <td>No(0)</td>
+  <td>Yes(1)にすると、user に creat new をpermit します.ただしuser にupdate をpermit するがNoの case はpermit しません.</br>
+  No(0)にすると、user に creat new をpermit しません.( creat new access rights have user はexcept)
+  </td>
+</tr>
+
+<tr class="r2">
+  <td><a name="desc_admin_draft_default">Administratorの creat new のdraft の Default(admin_draft_default)</a></td>
+  <td>No(0)</td>
+  <td>Yes(1)にすると、draft を Defaultにします.</td>
+</tr>
+
+<tr>
+  <td><a name="desc_user_draft_default">user の creat new のdraft の Default(user_draft_default)</a></td>
+  <td>Yes(1)</td>
+  <td>No(0)にすると、draft を Defaultにしません.</td>
+</tr>
+
+<tr class="r2">
+  <td><a name="desc_dateformat">date format　datepicker用(dateformat)</a></td>
+  <td>Y/m/d</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td valign="top"><a name="desc_aftersave">After save のDisplay 遷移 User's Display (aftersave)</a></td>
+  <td valign="top">ページをdisplay	(item)</td>
+  <td valign="top">save した後、どのページにmove するかをSelect します.
+    <ul>
+    <li>Display 遷移なし(no): don't move.</li>
+    <li>ページをdisplay(item): ページをdisplay.</li>
+    <li>list をdisplay(list): list をdisplay.</li>
+    <li>ホームをdisplay(home): site のHomeページ（Top page）をdisplay.</li>
+    <li>Plugin トップをdisplay(plugin): Plugin トップをdisplay.</li>
+    </ul>　</td>
+</tr>
+<tr class="r2">
+  <td valign="top"><a name="desc_aftersave_admin">After save のDisplay 遷移 Admin(aftersave_admin)</a></td>
+  <td valign="top">ページをdisplay(item)</td>
+  <td valign="top">save した後、どのページにmove するかをSelect します.
+    <ul>
+    <li>Display 遷移なし(no): don't move.</li>
+    <li>ページをdisplay(item): ページをdisplay.</li>
+    <li>list をdisplay(list): list をdisplay.</li>
+    <li>ホームをdisplay(home): site のHomeページ（Top page）をdisplay.</li>
+    <li>AdminTOPをdisplay(admin): Adminをdisplay.</li>
+    <li>Plugin トップをdisplay(plugin): Plugin トップをdisplay.</li>
+    </ul>　</td>
+</tr>
+
+<tr>
+  <td><a name="desc_grp_id_default">Group の Default(grp_id_default)</a></td>
+  <td>DataBox Editor</td>
+  <td></td>
+</tr>
+</tr>
+<tr class="r2">
+  <td valign="top"><a name="desc_default_img_url"> DefaultImages URL(default_img_url)</a></td>
+  <td valign="top">　</td>
+  <td valign="top">TOPページ等のMeta tag Settingでuse .<br />
+  Images File は、under の要件を満たす必要があります.
+  <ul>
+  <li>縦横3:1under の比率</li>
+  <li>50px × 50px以上</li>
+  <li>フォーマットはpng, jpg, gif</li>
+  </ul>
+  注：facebookのogpImages にuse する case 、200X200ピクセル以上、1500X1500ピクセルunder で
+ </td>
+</tr>
+<tr>
+  <td valign="top"><a name="desc_maxlength_description">Input 制限文字数　Description(maxlength_description)</a></td>
+  <td valign="top">1677215</td>
+  <td valign="top">DescriptionのInput をregist された文字数で制限します.
+ </td>
+</tr>
+<tr class="r2">
+  <td valign="top"><a name="desc_maxlength_meta_description">Input 制限文字数　Description Meta tag (maxlength_meta_description)</a></td>
+  <td valign="top">65535</td>
+  <td valign="top">Description Meta tag のInput をregist された文字数で制限します.
+ </td>
+</tr>
+<tr>
+  <td valign="top"><a name="desc_maxlength_meta_keywords">Input 制限文字数　Keyword's Meta tag (maxlength_meta_keywords)</a></td>
+  <td valign="top">65535</td>
+  <td valign="top">Keyword's Meta tag のInput をregist された文字数で制限します.
+ </td>
+</tr>
+
+<tr class="r2">
+  <td valign="top"><a name="desc_hideuseroption">user 情報にdisplay しない(hideuseroption)</a></td>
+  <td valign="top">No(0)</td>
+  <td valign="top">Yes(1)にすると、user 情報ブロックに「My data」をnot display
+ </td>
+</tr>
+
+</table>
+
+<h3><a name="whatsnew">新着情報ブロック</a>(2012/08/18 update)</h3>
+
+<table>
+<tr><th style="width: 25%;">Variables</th>
+    <th style="width: 25%;">Default</th>
+    <th style="width: 50%;">Description</th>
+</tr>
+
+
+<tr>
+  <td valign="top"><a name="desc_whatsnew_interval">新着"間(whatsnew_interval)</a></td>
+  <td valign="top">1209600秒 (= 2週間)</td>
+  <td valign="top">Data が新着ブロックにdisplay される期間を秒数でSelect します.</td></tr>
+<tr class="r2">
+  <td valign="top"><a name="desc_hide_whatsnew">新着ブロックdisplay (hide_whatsnew)</a></td>
+  <td valign="top">display しない</td>
+  <td valign="top">新着ブロックに、'display しない'、'作成日付によってdisplay'、'編集日付によってdisplay'、'Rreleasedによってdisplay'を選択します.</td></tr>
+<tr>
+  <td valign="top"><a name="desc_title_trim_length">Title トmax length(title_trim_length)</a></td>
+  <td valign="top">20</td>
+  <td valign="top">新着ブロックにdisplayTitle のトリミングの文字数をSelect します.</td></tr>
+
+
+</table>
+
+<h3>検索</h3>
+<table>
+<tr><th style="width:25%">Variables</th>
+    <th style="width:25%">Default</th>
+    <th style="width:50%">Description</th>
+</tr>
+
+<tr>
+  <td><a name="desc_include_search">DataBoxを検索する(user_include_search)</a></td>
+  <td>Yes(1)</td>
+  <td>No(0)にすると、検索しません.</td>
+</tr>
+<tr class="r2">
+  <td><a name="desc_additionsearch">検索対象にするAdditional field の数(additionsearch)</a></td>
+  <td>10</td>
+  <td>サーバ環境によっては、検索時にSQLエラーが発生する case があります.</td>
+</tr>
+</table>
+
+<h3>Autotags</h3>
+<table>
+<tr><th style="width:25%">Variables</th>
+    <th style="width:25%">Default</th>
+    <th style="width:50%">Description</th>
+</tr>
+
+<tr >
+  <td valign="top"><a name="desc_intervalday">display 期間（日）(intervalday)</a></td>
+  <td valign="top">90(日)</td>
+  <td valign="top">　</td>
+</tr>
+
+<tr class="r2">
+  <td valign="top"><a name="desc_limitcnt">display Number (limitcnt)</a></td>
+  <td valign="top">10(件)</td>
+  <td valign="top">　</td>
+</tr>
+
+<tr >
+  <td valign="top"><a name="desc_newmarkday">新着マークdisplay 期間（日）(newmarkday)</a></td>
+  <td valign="top">3(日)</td>
+  <td valign="top">　</td>
+</tr>
+
+<tr class="r2">
+  <td valign="top"><a name="desc_categories"> DefaultCategory (categories)</a></td>
+  <td valign="top">　</td>
+  <td valign="top">　</td>
+</tr>
+
+<tr >
+  <td valign="top"><a name="desc_new_img">新着マーク(new_img)</a></td>
+  <td valign="top">&lt;img&nbsp;width='29'&nbsp;height='11'&nbsp;src='{$_CONF['site_url']}/databox/images/icon_new.gif'&nbsp;alt='NEW!'&nbsp;/&gt;</td>
+  <td valign="top">　</td>
+</tr>
+
+<tr class="r2">
+  <td valign="top"><a name="desc_rss_img">RSSマーク(rss_img)</a></td>
+  <td valign="top">&lt;img&nbsp;width='35'&nbsp;height='16'&nbsp;src='{$_CONF['site_url']}/databox/images/icon_RSS.gif'&nbsp;alt='RSS'&nbsp;class='icon_rss'&nbsp;&gt;　</td>
+  <td valign="top">　</td>
+</tr>
+</table>
+
+
+
+<h3>uploadFile </h3>
+<table>
+<tr><th style="width:25%">Variables</th>
+    <th style="width:25%">Default</th>
+    <th style="width:50%">Description</th>
+</tr>
+
+<tr>
+  <td><a name="desc_imgfile_size">Image File (DB)のmax Size (imgfile_size)</a></td>
+  <td>1048576</td>
+  <td></td>
+</tr>
+<tr class="r2">
+  <td><a name="desc_imgfile_type">Image File (DB)のType(imgfile_type)</a></td>
+  <td>
+  <ul>
+  <li>imgfile_type</li>
+  <li>image/gif</li>
+  </ul>
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td><a name="desc_imgfile_size2">Image File (File)のmax Size (imgfile_size2)</a></td>
+  <td>1048576</td>
+  <td></td>
+</tr>
+<tr class="r2">
+  <td><a name="desc_imgfile_type2">Image File (File)のType(imgfile_type2)</a></td>
+  <td>
+  <ul>
+  <li>imgfile_type</li>
+  <li>image/gif</li>
+  </ul>
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td><a name="desc_imgfile_frd">Images save URL(imgfile_frd)</a></td>
+  <td>images/databox/</td>
+  <td>site URL/ の後のSelect </td>
+</tr>
+<tr class="r2">
+  <td><a name="desc_imgfile_thumb_frd">Thumbnail Images save URL (imgfile_thumb_frd)</a></td>
+  <td>images/databox/</td>
+  <td>site URL/ の後のSelect </td>
+<tr>
+  <td><a name="desc_imgfile_thumb_ok">Thumbnail using？(user_imgfile_thumb_ok)</a></td>
+  <td>Yes(1)</td>
+  <td>No(0)にすると、use しません.GDライブラリ利用不可の case は自動判定</td>
+</tr>
+
+<tr class="r2">
+  <td><a name="desc_imgfile_thumb_w">Thumbnail を作成する大きさ（w）(imgfile_thumb_w)</a></td>
+  <td>160</td>
+  <td>Bigger image more than this, jpg,pngのThumbnail 作成する.</td>
+</tr>
+
+<tr>
+  <td><a name="desc_imgfile_thumb_h">Thumbnail を作成する大きさ（h）(imgfile_thumb_h)</a></td>
+  <td>100</td>
+  <td>Bigger image more than this, jpg,pngのThumbnail 作成する.</td>
+</tr>
+
+<tr class="r2">
+  <td><a name="desc_imgfile_thumb_w2">Thumbnail link 先Images の大きさ（w2）(imgfile_thumb_w2)</a></td>
+  <td>640</td>
+  <td>Bigger image more than this, resize smaler.</td>
+</tr>
+
+<tr>
+  <td><a name="desc_imgfile_thumb_h2">Thumbnail link 先Images の大きさ（h2）(imgfile_thumb_h2)</a></td>
+  <td>640</td>
+  <td>Bigger image more than this, resize smaler.</td>
+</tr>
+
+<tr class="r2">
+  <td><a name="desc_imgfile_smallw">displayImages のmax width(imgタグ内のwidthの value)(imgfile_smallw)</a></td>
+  <td>160</td>
+  <td>Bigger image more than this, resize smaler.Thumbnail can not create(orしない) case )</td>
+</tr>
+
+
+<tr>
+  <td><a name="desc_file_path">File save   path Select (file_path) (in preparation)</a></td>
+  <td>$_CONF['path_data']."databox_data/"</td>
+  <td></td>
+</tr>
+<tr class="r2">
+  <td><a name="desc_file_size">File のmax Size (file_size) (in preparation)</a></td>
+  <td></td>
+  <td></td>
+</tr>
+<tr >
+  <td><a name="desc_file_type">FileType(file_type) (in preparation)</a></td>
+  <td>
+  </td>
+  <td></td>
+</tr>
+</table>
+
+<h3><a >profesional版</a></h3>
+<table>
+<tr><th style="width:25%">Variables</th>
+    <th style="width:25%">Default</th>
+    <th style="width:50%">Description</th>
+</tr>
+<tr>
+  <td valign="top"><a name="desc_path_xml">XMLAll inport directory(path_xml)</a></td>
+  <td valign="top">$_CONF['path_html']."databox_data"</td>
+  <td valign="top">　</td>
+</tr>
+
+<tr class="r2">
+  <td valign="top"><a name="desc_path_xml_out">XML Export Directory(path_xml_out)</a></td>
+  <td valign="top">$_CONF['path']."data/databox"</td>
+  <td valign="top">　</td>
+</tr>
+</table>
+
+
+<div class="footer">
+    <a href="http://wiki.geeklog.net/">Geeklog Document Development Project</a>、<a href="http://wiki.geeklog.jp/">Geeklog Document Japanese Development Project</a><br />
+    All trademarks and copyrights on this page are owned by their respective owners. Geeklog is copyleft.
+</div>
+
+</body>
+</html>

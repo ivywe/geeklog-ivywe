@@ -59,6 +59,7 @@ function plugin_dopluginsearch_databox_data(
 {
     global $_TABLES;
     global $LANG_DATABOX_SEARCH;
+    global $_DATABOX_CONF;
 
     $rt=DATABOX_getadditionsearchdef("databox");
 
@@ -68,15 +69,18 @@ function plugin_dopluginsearch_databox_data(
     $sql = LB;
 
     $sql .= "SELECT ".LB;
-
     $sql .= " t1.id".LB;
+    $sql .= " ,t1.code".LB;
     $sql .= " ,t1.title".LB;
     $sql .= " ,t1.description".LB;
     $sql .= ", UNIX_TIMESTAMP(t1.created) AS date".LB;
     $sql .= ", owner_id AS uid ".LB;
     $sql .= ", t3.hits".LB;
-    $sql .= ", CONCAT('/databox/data.php?id=', t1.id) AS url ".LB;
-
+    if ($_DATABOX_CONF['datacode']){
+        $sql .= ", CONCAT('/databox/data.php?code=', t1.code) AS url ".LB;
+    }else{
+        $sql .= ", CONCAT('/databox/data.php?id=', t1.id) AS url ".LB;
+    }
     $sql .= " FROM ";
 
     $sql .= " {$_TABLES['DATABOX_base']} AS t1";

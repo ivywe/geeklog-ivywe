@@ -1,0 +1,425 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>DataBox | Geeklogドキュメント</title>
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
+</head>
+<!-- admin/plugins/databox/docs/japanese/inputfield.html 20151209 -->
+<body>
+<p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
+<div class="menu">
+<a href="../../../../../docs/japanese/index.html">Geeklogドキュメント</a>
+- <a href="index.html">データボックス(DataBox) プラグイン</a>
+- <a href="input.html">入力一覧</a>
+- アトリビュート</div>
+<p>
+<a href="../../../../../">トップページ</a>
+ <a href="../../../../../admin/plugins/databox/">管理画面</a>
+</p>
+<h1><a href="index.html">DataBox プラグイン</h1>
+
+<h2><a href="input.html">入力一覧</a></h2>
+
+<h3><a name="field">アトリビュート</a>(2014/12/24 update )</h3>
+追加する項目を登録する入力画面です
+<table>
+<tr><th >項目(変数)</th>
+    <th >デフォルト</th>
+    <th >説明</th>
+</tr>
+<tbody>
+
+<tr>
+  <td valign="top"><a name="desc_field_id">アトリビュートID</a></td>
+  <td valign="top"></td>
+  <td valign="top">　</td>
+</tr>
+
+<tr class="r2">
+  <td valign="top"><a name="desc_name">名称</a></td>
+  <td valign="top"></td>
+  <td valign="top">必須　</td>
+</tr>
+
+<tr>
+  <td valign="top"><a name="desc_templatesetvar">テーマ変数</a></td>
+  <td valign="top"></td>
+  <td valign="top">必須</td>
+</tr>
+
+<tr class="r2">
+  <td valign="top"><a name="desc_description">説明</a></td>
+  <td valign="top"></td>
+  <td valign="top">　</td>
+</tr>
+
+<tr>
+  <td valign="top"><a name="desc_allow_display">表示制限（一般画面）</a></td>
+  <td valign="top"></td>
+  <td valign="top">　</td>
+</tr>
+
+<tr class="r2">
+  <td valign="top"><a name="desc_allow_edit">編集制限（ユーザ用編集画面）</a></td>
+  <td valign="top"></td>
+  <td valign="top">　</td>
+</tr>
+
+
+
+
+
+
+<tr>
+  <td valign="top"><a name="desc_searchtarget">検索対象にする</a></td>
+  <td valign="top"></td>
+  <td valign="top">コアの検索機能では、表示制限(一般画面)=表示するで、アトリビュートタイプが一行テキスト
+  、複数行テキスト、HTML、TinyMCE、CKEditor、数値、通貨の項目を検索対象にすることができます。<br />
+  ただし、検索対象のアトリビュート数(コンフィギュレーション設定)を越えた場合は対象になりません。　</td>
+</tr>
+
+<tr class="r2">
+  <td valign="top"><a name="desc_type">タイプ</a></td>
+  <td valign="top"></td>
+  <td valign="top">
+  </td>
+</tr>
+
+<tr >
+  <td valign="top"><a name="desc_initial_value">初期値</a></td>
+  <td valign="top"></td>
+  <td valign="top">
+  </td>
+</tr>
+<tr class="r2">
+  <td valign="top"><a name="desc_range_start">範囲（開始）</a></td>
+  <td valign="top">範囲チェックは、アトリビュートタイプが一行テキスト、複数行テキスト、数値、通貨、日付、日時の場合のみ有効です</td>
+  <td valign="top">
+  </td>
+</tr>
+<tr >
+  <td valign="top"><a name="desc_range_start">範囲（終了）</a></td>
+  <td valign="top"></td>
+  <td valign="top">
+  </td>
+</tr>
+<tr class="r2">
+	<td valign="top"><a name="desc_dfid">日時のフォーマット</a></td>
+  <td valign="top">システムのデフォルト</td>
+  <td valign="top">
+  </td>
+</tr>
+
+
+<tr>
+  <td valign="top"><a name="desc_textcheck">入力チェック（テキスト）</a></td>
+  <td valign="top"></td>
+  <td valign="top">　</td>
+</tr>
+
+<tr class="r2">
+  <td valign="top"><a name="desc_textconv">入力値変換（テキスト）</a></td>
+  <td valign="top"></td>
+  <td valign="top">　</td>
+</tr>
+<tr>
+  <td valign="top"><a name="desc_checkrequried">必須チェック</a></td>
+  <td valign="top"></td>
+  <td valign="top">　</td>
+</tr>
+
+<tr class="r2">
+  <td valign="top"><a name="desc_size">size（テキスト,マルチセレクトリスト）</a></td>
+  <td valign="top"></td>
+  <td valign="top">　</td>
+</tr>
+<tr>
+  <td valign="top"><a name="desc_maxlength">maxlength（テキスト）</a></td>
+  <td valign="top"></td>
+  <td valign="top">　</td>
+</tr>
+
+<tr class="r2">
+  <td valign="top"><a name="desc_ows">rows（複数行テキスト）</a></td>
+  <td valign="top"></td>
+  <td valign="top">　</td>
+</tr>
+
+<tr>
+  <td valign="top"><a name="desc_br">改行する（ラジオボタン）</a></td>
+  <td valign="top"></td>
+  <td valign="top">　</td>
+</tr>
+
+<tr class="r2">
+  <td valign="top"><a name="desc_selectlist">選択肢</a></td>
+  <td valign="top"></td>
+  <td valign="top">　</td>
+</tr>
+
+<tr>
+  <td valign="top"><a name="desc_selection">マスターの種別</a></td>
+  <td valign="top"></td>
+  <td valign="top">　</td>
+</tr>
+
+<tr class="r2">
+  <td valign="top"><a name="desc_orderno">表示位置</a></td>
+  <td valign="top"></td>
+  <td valign="top">　</td>
+</tr>
+
+</tbody></table>
+
+<h3><a name="fieldtype">アトリビュートタイプ</a>(2015/10/06 update)</h3>
+<table>
+<tr><th style="width:2%">No.</th>
+    <th style="width:20%">名称</th>
+    <th style="width:28">入力値変換・入力チェック</th>
+    <th style="width:50%">説明</th>
+</tr>
+<tbody>
+
+<tr>
+  <td ><a name="fieldtype00">00</a></td>
+  <td valign="top">一行テキスト</td>
+  <td valign="top">HTML入力不可
+  <br />指定された入力変換をおこなう
+  <br />指定された入力チェックによる
+  <br />指定された場合範囲チェックをおこなう
+  </td>
+  <td valign="top">テキスト入力フィールド
+  </td>
+</tr>  
+  
+<tr>
+  <td><a name="fieldtype01">01</a></td>
+  <td valign="top">複数行テキスト</td>
+  <td valign="top">HTML入力不可
+  <br />指定された入力変換をおこなう
+  <br />指定された入力チェックによる
+  <br />指定された場合範囲チェックをおこなう
+  </td>
+  <td valign="top">テキストエリア入力フィールド
+  <br />テキストの改行（CR）は改行要素（br）に変換して表示します
+  <br />URLは、リンクに変換して表示します
+  </td>
+</tr>  
+
+<tr>
+  <td ><a name="fieldtype20">20</a></td>
+  <td valign="top">HTML</td>
+  <td valign="top">HTML入力可
+  <br />指定された入力変換をおこなう
+  <br />指定された入力チェックによる
+  </td>
+  <td valign="top">テキストエリア入力フィールド
+  </td>
+</tr>  
+
+<tr>
+  <td ><a name="fieldtype10">10</a></td>
+  <td valign="top">TinyMCE</td>
+  <td valign="top">HTML入力可
+  <br />指定された入力変換をおこなう
+  <br />指定された入力チェックによる
+  <br />指定された場合範囲チェックをおこなう
+  </td>
+  <td valign="top">テキストエリア入力フィールド,class="tinymce_enabled"
+  </td>
+</tr>  
+<tr>
+  <td ><a name="fieldtype19">19</a></td>
+  <td valign="top">CKEditor</td>
+  <td valign="top">HTML入力可
+  </td>
+  <td valign="top">テキストエリア入力フィールド,class="wide"<br />GL2.0.1以降
+  </td>
+</tr>  
+
+<tr>
+  <td valign="top"><a name="fieldtype15">15</a></td>
+  <td valign="top">数値</td>
+  <td valign="top">数字または数値文字列のみ
+  <br />指定された場合範囲チェックをおこなう
+  </td>
+  <td valign="top">
+  </td>
+</tr>  
+<tr>
+  <td valign="top"><a name="fieldtype15">21</a></td>
+  <td valign="top">通貨</td>
+  <td valign="top">千単位に区切表示（カンマ編集）します。<br />
+Geeklogのコアのコンフィギュレーション設定の「千単位の区切り文字」
+「小数点」 「小数点以下の桁数」を参照します。
+  <br />指定された場合範囲チェックをおこなう
+  </td>
+  <td valign="top">
+  </td>
+</tr>  
+
+<tr>
+  <td><a name="fieldtype02">02</a></td>
+  <td valign="top">いいえ/はい</td>
+  <td valign="top">
+  </td>
+  <td valign="top">
+  </td>
+</tr>  
+
+<tr>
+  <td ><a name="fieldtype03">03</a></td>
+  <td valign="top">日付</td>
+  <td valign="top">日付のみ
+  <br />指定された場合範囲チェックをおこなう
+  </td>
+  <td valign="top">
+   date picker(標準)対応
+  </td>
+</tr>  
+<tr>
+  <td ><a name="fieldtype22">22</a></td>
+  <td valign="top">日付</td>
+  <td valign="top">日付のみ
+  <br />指定された場合範囲チェックをおこなう
+  </td>
+  <td valign="top">
+   date (jquery ui datepicker)
+  </td>
+</tr>  <tr>
+  <td ><a name="fieldtype23">23</a></td>
+  <td valign="top">日付</td>
+  <td valign="top">日付のみ
+  <br />指定された場合範囲チェックをおこなう
+  <br />UIkitが使われている(IVYWE Editionなど)サイトでのみ機能します
+  </td>
+  <td valign="top">
+   date (Uikit datepicker)
+  </td>
+</tr>  
+<tr>
+  <td ><a name="fieldtype04">04</a></td>
+  <td valign="top">日時</td>
+  <td valign="top">日時のみ
+  <br />指定された場合範囲チェックをおこなう
+  </td>
+  <td valign="top">
+   date time picker(標準)対応
+  </td>
+</tr>  
+
+<tr>
+  <td ><a name="fieldtype05">05</a></td>
+  <td valign="top">メールアドレス</td>
+  <td valign="top">メールアドレス書式のみ
+  </td>
+  <td valign="top">
+  </td>
+</tr>  
+
+<tr>
+  <td ><a name="fieldtype06">06</a></td>
+  <td valign="top">url</td>
+  <td valign="top">url書式のみ
+  </td>
+  <td valign="top">テキスト入力フィールド
+  </td>
+
+</tr>  
+
+<tr>
+  <td ><a name="fieldtype07">07</a></td>
+  <td valign="top">オプションリスト（選択肢）</td>
+  <td valign="top">選択肢の登録必須
+  </td>
+  <td></td>  
+</tr>  
+
+<tr>
+  <td ><a name="fieldtype08">08</a></td>
+  <td valign="top">ラジオボタンリスト（選択肢）</td>
+  <td valign="top">選択肢の登録必須
+  </td>
+  <td></td>  
+</tr>  
+
+<tr>
+  <td ><a name="fieldtype14">14</a></td>
+  <td valign="top">マルチセレクトリスト（選択肢）</td>
+  <td valign="top">選択肢の登録必須
+  </td>
+</tr>  
+
+<tr>
+  <td ><a name="fieldtype14">17</a></td>
+  <td valign="top">フラグ</td>
+  <td valign="top">
+  </td>
+  <td valign="top">チェックボックス
+  <br /> オンの時1
+  </td>
+</tr>  
+
+<tr>
+  <td ><a name="fieldtype09">09</a></td>
+  <td valign="top">オプションリスト（マスター）</td>
+  <td></td>  
+  <td valign="top">マスターの内容を参照します。マスターの種別を登録してください
+  </td>
+</tr>  
+
+<tr>
+  <td ><a name="fieldtype16">16</a></td>
+  <td valign="top">ラジオボタンリスト（マスター）</td>
+  <td></td>  
+  <td valign="top">マスターの内容を参照します。マスターの種別を登録してください
+  </td>
+</tr>  
+<tr>
+  <td ><a name="fieldtype18">18</a></td>
+  <td valign="top">マルチセレクトリスト（マスター）</td>
+  <td></td>  
+  <td valign="top">マスターの内容を参照します。マスターの種別を登録してください
+  </td>
+</tr>  
+
+<tr>
+  <td ><a name="fieldtype11">11</a></td>
+  <td valign="top">画像（DB保存）</td>
+  <td></td>  
+  <td valign="top">
+  コンフィギュレーション設定(イメージファイル(DB)の最大サイズ,イメージファイル(DB)のタイプ)
+  </td>
+</tr>  
+
+<tr>
+  <td valign="top"><a name="fieldtype12">12</a></td>
+  <td valign="top">画像（ファイル保存）</td>
+  <td></td>  
+  <td valign="top">
+  コンフィギュレーション設定(イメージファイル(外部)の最大サイズ,イメージファイル(外部)のタイプ,画像保存URL,サムネイル画像保存URL,サムネイルを使用する？,サムネイルを作成する大きさ（w）,サムネイルを作成する大きさ（h）,サムネイルリンク先画像の大きさ（w2）,サムネイルリンク先画像の大きさ（h2）,表示する画像の最大横幅(imgタグ内のwidthの値),画像保存URLにサブディレクトリを使用する)
+  </td>
+</tr>  
+
+<tr>
+  <td ><a name="fieldtype13">13</a></td>
+  <td valign="top">添付ファイル</td>
+  <td></td>  
+  <td valign="top">
+  コンフィギュレーション設定(ファイル保存 絶対アドレスの指定,ファイルの最大サイズ,ファイルのタイプ,ファイル保存アドレスにサブディレクトリを使用する)
+</tr>  
+
+
+</tbody></table>
+
+
+<div class="footer">
+    <a href="http://wiki.geeklog.net/">Geeklogドキュメント作成プロジェクト</a>、<a href="http://wiki.geeklog.jp/">Geeklogドキュメント日本語版作成プロジェクト</a><br />
+    本ページのすべての商標と著作権はそれぞれの所有者に帰属します。Geeklogはコピーレフトです。
+</div>
+
+</body>
+</html>

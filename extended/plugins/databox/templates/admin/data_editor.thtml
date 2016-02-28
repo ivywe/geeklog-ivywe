@@ -269,7 +269,7 @@
 
   <div class="uk-form-row uk-margin-large uk-margin-large-bottom">
     <div class="uk-form-controls">
-  		<a href="{site_admin_url}/plugins/databox/view.php?id={id}" class="uk-button">{lang_view}</a>
+  		<!-- <a href="{site_admin_url}/plugins/databox/view.php?id={id}" class="uk-button">{lang_view}</a> -->
 
       <!-- Submit button - Save Cancel Delete -->
       <input type="submit" value="{lang_save}" name="mode" class="uk-button uk-form-width-medium"{xhtml}>
