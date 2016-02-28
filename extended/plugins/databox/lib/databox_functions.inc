@@ -4076,7 +4076,7 @@ function DATABOX_getradiolist(
                 $retval .= " CHECKED=CHECKED ";
         }
 
-        $retval .= ">$ary[$id]&nbsp";
+        $retval .= ">$ary[$id]";
         
         if   ($br<>0){
             $cnt++;

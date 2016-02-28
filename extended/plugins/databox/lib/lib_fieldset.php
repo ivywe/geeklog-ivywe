@@ -118,7 +118,7 @@ function LIB_GetListField(
 
             $url1=$url."mode=editfields";
             $url1.="&amp;id={$A['fieldset_id']}";
-            $retval .= '&nbsp;&nbsp;' . COM_createLink($icon_arr['edit'],$url1 );
+            $retval .= COM_createLink($icon_arr['edit'],$url1 );
             break;
 		
 		case 'listg':
@@ -131,7 +131,7 @@ function LIB_GetListField(
 
             $url1=$url."mode=editgroups";
             $url1.="&amp;id={$A['fieldset_id']}";
-            $retval .= '&nbsp;&nbsp;' . COM_createLink($icon_arr['edit'],$url1 );
+            $retval .= COM_createLink($icon_arr['edit'],$url1 );
             break;
 		
         //各項目
