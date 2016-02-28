@@ -11,7 +11,7 @@
 			<label class="uk-form-label" for="">{lang_fieldset_id}</label>
 			<div class="uk-form-controls">
 			  {id}
-			   <input type="hidden" class="uk-form-width-medium" name="id" value="{id}" required{xhtml}>
+			   <input type="hidden" name="id" value="{id}"{xhtml}>
 			</div>
     </div>
 
