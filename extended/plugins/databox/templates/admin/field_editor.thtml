@@ -79,14 +79,16 @@
       </div>
   	</div>
 
-  	<div class="uk-form-row">
-      <label class="uk-form-label">{lang_type} {help_type}</label>
-      <div class="uk-form-controls">
-      	{list_type}
-      </div>
-  	</div>
+		<div class="uk-panel uk-panel-box uk-panel-box-primary uk-margin">
+	  	<div class="uk-form-row">
+	      <label class="uk-form-label">{lang_type} {help_type}</label>
+	      <div class="uk-form-controls">
+	      	{list_type}
+	      </div>
+	  	</div>
+	  </div>
 
-		<div class="uk-panel uk-panel-box uk-margin-top">
+		<div class="uk-panel uk-panel-box uk-margin">
 
 	    <!-- 初期値 initial value -->
 	  	<div class="uk-form-row">
