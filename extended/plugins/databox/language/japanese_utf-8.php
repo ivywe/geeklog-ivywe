@@ -239,8 +239,7 @@ $LANG_DATABOX_ADMIN['dfid']=$LANG04[42];//'日時のフォーマット';
 
 $LANG_DATABOX_ADMIN['draft'] = 'ドラフト';//'下書';
 $LANG_DATABOX_ADMIN['draft_msg'] = '
-※このデータはドラフトモードになっています。モードの変更はサイトの管理者へご連絡ください。
-';
+※現在ドラフトモードです。モードの変更はサイトの管理者へご連絡ください。';
 $LANG_DATABOX_ADMIN['uid'] = 'ユーザーID';
 $LANG_DATABOX_ADMIN['modified'] = '編集日付';
 $LANG_DATABOX_ADMIN['created'] = '作成日付';

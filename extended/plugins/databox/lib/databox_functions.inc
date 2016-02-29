@@ -763,7 +763,7 @@ function DATABOX_getadditiondef(
 
         $rt[$field_id]['size'] = COM_stripslashes($A['size']);
         if ($rt[$field_id]['size']==0){
-            $rt[$field_id]['size']=60;
+            $rt[$field_id]['size']=40;
         }
         $rt[$field_id]['maxlength'] = COM_stripslashes($A['maxlength']);
         if ($rt[$field_id]['maxlength']==0){
@@ -2539,7 +2539,7 @@ global $_TABLES;
         $nrows2 = DB_numRows( $result2 );
         
         if ($nrows2>0){
-            $retval .="<div class=\"databox_admin_data_title\">";
+            $retval .="<div class=\"uk-text-bold uk-margin-top uk-margin-small-bottom\">";
             $retval .=$A['group_name'];
             $retval .="</div>".LB;
         
@@ -2565,7 +2565,7 @@ global $_TABLES;
                 }
             
                 if  ($A['input_type']==0){
-                    $retval .= '<span style="white-space:nowrap">';
+                    $retval .= '<span class="uk-text-nowrap">';
                     $retval .= '<input type="checkbox" name="category[]" value="' . $A2['category_id'] ;
                     $retval .= '"';
                     $retval .= $checked;
