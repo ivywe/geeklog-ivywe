@@ -1,0 +1,4 @@
+{# begin {templatelocation} #}
+{# plugins/userbox/templates/myprofile/default/row.thtml 20151111 #}
+<tr class="pluginRow1">{col_var}</tr>
+{# end {templatelocation} #}

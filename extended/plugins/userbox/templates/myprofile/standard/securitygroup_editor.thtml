@@ -1,0 +1,27 @@
+{# begin {templatelocation} #}
+{# plugins/userbox/templates/myprofile/default/securitygroup_editor.thtml 20151111 #}
+<form name="frmuserbox" action="{site_url}/{script}" method="post">
+  <div class="table-wrapper-fit">
+    <table class="admin-list-table">
+      <tr class="pluginRow1">
+        <th class="admin-list-field">{lang_uid}:</td>
+        <td class="admin-list-field">{uid}<input type="hidden" name="uid" value="{uid}"{xhtml}></td>
+      </tr>
+      <tr class="pluginRow1">
+        <th class="admin-list-field">{lang_username}:</td>
+        <td class="admin-list-field">{username}</td>
+      </tr>
+
+      {group_edit}
+
+      <tr class="pluginRow1">
+        <td colspan="2">
+          <input type="submit" value="{lang_save}" name="mode"{xhtml}>
+          <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
+          <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+        </td>
+      </tr>
+    </table>
+  </div>
+</form>
+{# end {templatelocation} #}

@@ -129,7 +129,7 @@
 	      </div>
 	  	</div>
 
-	    <!-- checkrequried -->
+	    <!-- check requried -->
 	  	<div class="uk-form-row">
 	      <label class="uk-form-label">{lang_checkrequried} {help_checkrequried}</label>
 	      <div class="uk-form-controls">
@@ -187,9 +187,10 @@
 
 	  </div>
 
-    </fieldset>
-    <div class="uk-form-row uk-margin-large-top">
-      <div class="uk-form-controls">
+  </fieldset>
+
+  <div class="uk-form-row uk-margin-large-top">
+    <div class="uk-form-controls">
       <!-- Submit button - Save Cancel Delete -->
       <input type="submit" value="{lang_save}" name="mode" class="uk-button uk-form-width-medium"{xhtml}>
       <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>

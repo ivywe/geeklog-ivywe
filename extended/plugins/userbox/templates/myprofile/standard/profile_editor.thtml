@@ -1,0 +1,56 @@
+{# begin {templatelocation} #}
+
+<div>
+	<h2>{username}({fullname})</h2>
+
+  <form enctype="multipart/form-data" name="frmuserbox" action="{site_url}/{script}" method="post" class="uk-form uk-form-horizontal">
+	  <input type="hidden" name="id" value="{id}"{xhtml}>
+		<input type="hidden" name="username" value="{username}"{xhtml}>
+		<input type="hidden" name="udatetime" value="{udatetime}"{xhtml}>
+	  <input type="hidden" name="created" value="{created}"{xhtml}>
+	  <input type="hidden" name="created_un" value="{created_un}"{xhtml}>
+    <input type="hidden" name="fieldset" value="{fieldset_id}"{xhtml}>
+    <input type="hidden" name="fieldset_name" value="{fieldset_name}"{xhtml}>
+    <input type="hidden" name="fullname" value="{fullname}"{xhtml}>
+		<input type="hidden" name="page_title" value="{page_title}"{xhtml}>
+
+    <fieldset class="uk-width-1-1 uk-margin-large-top">
+      <legend>{lang_basicfields}</legend>
+
+      <div class="uk-form-row">
+        <label class="uk-form-label"></label>
+        <div class="uk-form-controls">
+          <input type="checkbox" name="draft_flag" value="1" {draft_flag}{xhtml} disabled>
+					<span class="uk-form-help-inline">{draft_msg}</span>
+        </div>
+      </div>
+      <div class="uk-form-row">
+        <label class="uk-form-label">{lang_description}{help_description}</label>
+        <div class="uk-form-controls">
+          <textarea name="description" style="width:95%" rows="2" id="userbox_description"
+    	      onKeyup="var n={maxlength_description}-this.value.length;var s=document.getElementById('description_cnt');s.innerHTML='('+n+')';">{description}</textarea>
+					<span class="uk-form-help-inline" id='description_cnt'></span>
+        </div>
+      </div>
+
+    {# 追加項目 #}
+    <fieldset class="uk-width-1-1 uk-margin-large-top">
+      <legend>{lang_additionfields}</legend>
+          {additionfields}
+      </div>
+    </fieldset>
+    
+    {# 【保存 キャンセル  削除】 #}
+    <div class="uk-form-row uk-margin-large-top">
+      <div class="uk-form-controls">
+		    <input type="submit" value="{lang_save}" name="mode" class="uk-button"{xhtml}>
+		    <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
+		    <input type="hidden" value="{code}" name="old_code"{xhtml}>
+		    {delete_option}
+		    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+      </div>
+    </div>
+  </form>
+</div>
+{# end {templatelocation} #}
+

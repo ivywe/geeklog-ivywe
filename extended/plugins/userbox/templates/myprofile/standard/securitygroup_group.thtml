@@ -1,0 +1,8 @@
+{# begin {templatelocation} #}
+{# plugins/userbox/templates/myprofile/default/profile_editor.thtml 20151111 #}
+<tr class="pluginRow1">
+  <td colspan="2">
+     {group_options}
+  </td>
+</tr>
+{# end {templatelocation} #}

@@ -502,7 +502,7 @@ $LANG_USERBOX_NOYES = array(
 $LANG_USERBOX_INPUTTYPE = array(
     0 => 'チェックボックス',
     1 => 'マルチセレクトリスト'
-    ,2 => 'ラジオボタンリスト'
+    ,2 => 'ラジオボタン'
     ,3 => 'オプションリスト'
 );
 $LANG_USERBOX_ALLOW_DISPLAY = array();
@@ -535,10 +535,10 @@ $LANG_USERBOX_TEXTCONV[20] = '全角に変換する';
 
 //TYPE （内容の変更不可）
 $LANG_USERBOX_TYPE = array();
-$LANG_USERBOX_TYPE[0] = '一行テキストフィールド';
-$LANG_USERBOX_TYPE[1] = '複数行テキストフィールド(HTML OK)';
-$LANG_USERBOX_TYPE[20] = '複数行テキストフィールド(HTML OK  TinyMCE)';
-$LANG_USERBOX_TYPE[10] = '複数行テキストフィールド(HTML NG)';
+$LANG_USERBOX_TYPE[0] = '一行テキスト';
+$LANG_USERBOX_TYPE[1] = '複数行HTML';
+$LANG_USERBOX_TYPE[20] = '複数行HTML（TinyMCE）';
+$LANG_USERBOX_TYPE[10] = '複数行テキスト';
 $LANG_USERBOX_TYPE[15] = '数値';
 $LANG_USERBOX_TYPE[21] = '通貨';
 
@@ -548,11 +548,11 @@ $LANG_USERBOX_TYPE[4] = '日時';
 $LANG_USERBOX_TYPE[5] = 'メールアドレス';
 $LANG_USERBOX_TYPE[6] = 'url';
 $LANG_USERBOX_TYPE[7] = 'オプションリスト（選択肢）';
-$LANG_USERBOX_TYPE[8] = 'ラジオボタンリスト（選択肢）';
+$LANG_USERBOX_TYPE[8] = 'ラジオボタン（選択肢）';
 $LANG_USERBOX_TYPE[14] = 'マルチセレクトリスト（選択肢）';
 $LANG_USERBOX_TYPE[17] = 'フラグ';
 $LANG_USERBOX_TYPE[9] = 'オプションリスト（マスター）';
-$LANG_USERBOX_TYPE[16] = 'ラジオボタンリスト（マスター）';//@@@@@
+$LANG_USERBOX_TYPE[16] = 'ラジオボタン（マスター）';//@@@@@
 $LANG_USERBOX_TYPE[18] = 'マルチセレクトリスト（マスター）';//@@@@@
 //$LANG_USERBOX_TYPE[19] = '';//@@@@@
 
