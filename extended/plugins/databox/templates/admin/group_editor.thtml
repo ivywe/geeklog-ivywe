@@ -4,13 +4,12 @@
 
 <form class="uk-form uk-form-horizontal" name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
 
-  <fieldset style="width:98%">
+  <fieldset class="uk-width-1-1">
     <legend>Group</legend>
 
-    <!-- data -->
     <!-- id -->
     <div class="uk-form-row">
-      <label class="uk-form-label" for="">{lang_group_id}</label>
+      <label class="uk-form-label">{lang_group_id}</label>
       <div class="uk-form-controls">
         {id}
         <input type="hidden" name="id" value="{id}"{xhtml}>
@@ -19,7 +18,7 @@
 
     <!-- code -->
     <div class="uk-form-row">
-      <label class="uk-form-label" for="">{lang_code} {help_code}</label>
+      <label class="uk-form-label">{lang_code} {help_code}</label>
       <div class="uk-form-controls">
         <input type="text" class="uk-form-width-medium" size="48" maxlength="160" name="code" value="{code}" required{xhtml}>
       </div>
@@ -27,7 +26,7 @@
 
     <!-- name -->
     <div class="uk-form-row">
-      <label class="uk-form-label" for="">{lang_name}<span class="uk-text-danger">{lang_must}</span></label>
+      <label class="uk-form-label">{lang_name}<span class="uk-text-danger">{lang_must}</span></label>
       <div class="uk-form-controls">
         <input type="text" class="uk-form-width-medium" size="48" maxlength="160" name="name" value="{name}" required{xhtml}>
       </div>
@@ -35,15 +34,15 @@
 
     <!-- description -->
     <div class="uk-form-row">
-      <label class="uk-form-label" for="">{lang_description} {help_description}</label>
+      <label class="uk-form-label" for="databox_description">{lang_description} {help_description}</label>
       <div class="uk-form-controls">
-        <textarea name="description" style="width:95%" rows="2" id="databox_description">{description}</textarea>
+        <textarea name="description" class="uk-width-1-1" rows="2" id="databox_description">{description}</textarea>
       </div>
     </div>
 
     <!-- order -->
     <div class="uk-form-row">
-      <label class="uk-form-label" for="">{lang_orderno}</label>
+      <label class="uk-form-label">{lang_orderno}</label>
       <div class="uk-form-controls">
         <input type="text" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
       </div>
@@ -51,15 +50,15 @@
 
     <!-- 親グループ？ -->
     <div class="uk-form-row">
-      <label class="uk-form-label" for="">{lang_parent_flg} {help_parent_flg}</label>
+      <label class="uk-form-label">{lang_parent_flg} {help_parent_flg}</label>
       <div class="uk-form-controls">
-      {list_parent_flg}
+      	{list_parent_flg}
       </div>
     </div>
 
     <!-- 入力タイプ -->
     <div class="uk-form-row">
-      <label class="uk-form-label" for="">{lang_input_type} {help_input_type}</label>
+      <label class="uk-form-label">{lang_input_type} {help_input_type}</label>
       <div class="uk-form-controls">
         {list_input_type}
       </div>
@@ -67,7 +66,7 @@
 
     <!-- Update date -->
     <div class="uk-form-row">
-      <label class="uk-form-label" for="">{lang_udatetime}</label>
+      <label class="uk-form-label">{lang_udatetime}</label>
       <div class="uk-form-controls">
         {udatetime} {lang_uuid}:{uuid}
       </div>
@@ -83,7 +82,7 @@
       <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
       <input type="hidden" value="{code}" name="old_code"{xhtml}>
       {delete_option}
-			<span class="uk-form-help-inline uk-text-bold uk-text-danger">{lang_delete_help}</span>
+			<span class="uk-form-help-inline">{lang_delete_help}</span>
       <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
     </div>
   </div>

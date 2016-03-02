@@ -4,7 +4,7 @@
 
 <form class="uk-form uk-form-horizontal" name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
 
-  <fieldset style="width:98%">
+  <fieldset class="uk-width-1-1">
     <legend>Category</legend>
 
     <!-- id -->
@@ -96,7 +96,8 @@
       <input type="submit" value="{lang_save}" name="mode" class="uk-button uk-form-width-medium"{xhtml}>
       <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
       <input type="hidden" value="{code}" name="old_code"{xhtml}>
-      {delete_option}<span class="uk-form-help-inline uk-text-danger">{lang_delete_help}</span>
+      {delete_option}
+			<span class="uk-form-help-inline">{lang_delete_help}</span>
       <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
     </div>
   </div>

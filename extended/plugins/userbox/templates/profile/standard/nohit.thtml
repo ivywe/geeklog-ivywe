@@ -1,0 +1,4 @@
+{# begin {templatelocation} #}
+{# plugins/userbox/templates/profile/default/nohit.thtml 20151111 #}
+{lang_nohit}
+{# end {templatelocation} #}

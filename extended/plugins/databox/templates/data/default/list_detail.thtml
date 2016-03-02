@@ -7,7 +7,7 @@
   {!if lang_id}<div class="uk-text-right">{lang_id}: {id}</div>{!endif}
 
 	<!-- Basic Items -->
-  <fieldset class="uk-margin-large-top" style="width:98%">
+  <fieldset class="uk-margin-large-top uk-width-1-1">
     <legend>{lang_basicfields}</legend>
     <table class="uk-table uk-table-condensed uk-table-striped">
       <tr>
@@ -122,7 +122,7 @@
   </fieldset>
 
 	<!-- Category -->
-  <fieldset class="uk-margin-large-top" style="width:98%">
+  <fieldset class="uk-margin-large-top uk-width-1-1">
     <legend>{lang_category} </legend>
     <table class="uk-table uk-table-condensed uk-table-striped">
     	<tr>
@@ -164,7 +164,7 @@
   </fieldset>
 
 	<!-- Additional Items -->
-  <fieldset class="uk-margin-large-top" style="width:98%">
+  <fieldset class="uk-margin-large-top uk-width-1-1">
     <legend>{lang_additionfields}</legend>
     <table class="uk-table uk-table-condensed uk-table-striped">
 			<thead>
@@ -198,7 +198,7 @@
 		<!-- 以下は参考例です 登録されていない場合表示されません -->
 
 		<!-- グループ別カテゴリ　グループコードを使用する -->
-	  <fieldset style="width:94%">
+	  <fieldset class="uk-width-1-1">
 	    <legend>{lang_groupbygroup} {lang_category} {lang_byusingcode}</legend>
 	    <table class="uk-table uk-table-condensed uk-table-striped">
 				<tr>
@@ -278,7 +278,7 @@
 
 
 		<!-- グループ別カテゴリ列挙リンク付き　グループコードを使用する -->
-	  <fieldset style="width:94%">
+	  <fieldset class="uk-width-1-1">
 	    <legend>{lang_groupbygroup} {lang_category} {lang_withlink} {lang_byusingcode} </legend>
 	    <table class="uk-table uk-table-condensed uk-table-striped">
 	      <tr>
@@ -337,7 +337,7 @@
 	  </fieldset>
 
 		<!-- Basic Items -->
-	  <fieldset style="width:98%">
+	  <fieldset class="uk-width-1-1">
 	    <legend>etc.</legend>
 
 		  <ul class="uk-subnav uk-subnav-line uk-flex-center">

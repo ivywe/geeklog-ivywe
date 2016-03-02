@@ -662,9 +662,9 @@ $LANG_DATABOX_NOYES = array(
 );
 $LANG_DATABOX_INPUTTYPE = array(
     0 => 'チェックボックス',
-    1 => 'マルチセレクトリスト'
-    ,2 => 'ラジオボタンリスト'
-    ,3 => 'オプションリスト'
+    1 => 'マルチセレクトリスト',
+    2 => 'ラジオボタン',
+    3 => 'オプションリスト'
 );
 $LANG_DATABOX_ALLOW_DISPLAY = array();
 $LANG_DATABOX_ALLOW_DISPLAY[0] ='表示する（一覧表示可能）';
@@ -698,8 +698,8 @@ $LANG_DATABOX_TYPE = array();
 $LANG_DATABOX_TYPE[0] = '一行テキスト';
 $LANG_DATABOX_TYPE[10] = '複数行テキスト';//複数行テキストフィールド(HTML NG)';
 $LANG_DATABOX_TYPE[1] = 'HTML（複数行テキスト）';//複数行テキストフィールド(HTML OK)';
-$LANG_DATABOX_TYPE[20] = 'TinyMCEモード（複数行テキスト）';//'複数行テキストフィールド(HTML OK  TinyMCE)';
-$LANG_DATABOX_TYPE[19] = 'CKEditorモード（複数行テキスト）(テスト中GL2.0.1以降用)';//@@@@@複数行テキストフィールド(HTML OK  CKEditor)
+$LANG_DATABOX_TYPE[20] = 'TinyMCEモード';//'複数行テキストフィールド(HTML OK  TinyMCE)';
+// $LANG_DATABOX_TYPE[19] = '';//@@@@@複数行テキストフィールド(HTML OK  CKEditor)
 
 $LANG_DATABOX_TYPE[15] = '数値';
 $LANG_DATABOX_TYPE[21] = '通貨';//@@@@@

@@ -1,0 +1,4 @@
+{# begin {templatelocation} #}
+{# plugins/userbox/templates/profile/default/category_row.thtml 20151111 #}
+{category_var}
+{# end {templatelocation} #}

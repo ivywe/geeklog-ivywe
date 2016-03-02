@@ -1,0 +1,34 @@
+{# begin {templatelocation} #}
+{# plugins/userbox/templates/profile/default/col_detail.thtml 20151111 #}
+<th style="width:20%" class="uk-text-left">
+	<dl>
+		<dt style=color:green;>&#123;{additionfield_templatesetvar}_name&#125;</dt>
+		<dd>{additionfield_name}</dd>
+	</dl>
+</th>
+<td style="width:70%">
+	<dl>
+		<dt style=color:green;>&#123;{additionfield_templatesetvar}&#125;</dt>
+		<dd>{additionfield_value}</dd>
+		<dt style="color:green; {display_a}">&#123;{additionfield_templatesetvar}_value_tn&#125;</dt>
+		<dd style="{display_a}">{additionfield_value_tn}</dd>
+		<dt style="color:green; {display_a}">&#123;{additionfield_templatesetvar}_noimage&#125;</dt>
+		<dd style="{display_a}">{additionfield_value_noimage}</dd>
+		<dt style="color:green; {display_a}">&#123;{additionfield_templatesetvar}_tn_image&#125;</dt>
+		<dd style="{display_a}">{additionfield_value_tn_image}</dd>
+		<dt style="color:green; {display_a}">&#123;{additionfield_templatesetvar}_tn_noimage&#12;
+		</dt>
+		<dd style="{display_a}">{additionfield_value_tn_noimage}</dd>
+		<dt style="color:green; {display_a}">&#123;{additionfield_templatesetvar}_disp&#125;</dt>
+		<dd style="{display_a}">{additionfield_value_disp}</dd>
+		<dt style="color:green; {display_b}"}>&#123;{additionfield_templatesetvar}_mst_value2&#15;</dt>
+		<dd style="{display_b}">{additionfield_value_mst_value2}</dd>
+		<dt style="color:green; {display_b}">&#123;{additionfield_templatesetvar}_mst_disp&#125;</dt>
+		<dd style="{display_b}">{additionfield_value_mst_disp}</dd>
+		<dt style="color:green; {display_b}">&#123;{additionfield_templatesetvar}_mst_no&#125;</dt>
+		<dd style="{display_b}">{additionfield_value_mst_no}</dd>
+	</dl>
+
+</td>
+<td style="width:10%">{field_type}</td>
+{# end {templatelocation} #}

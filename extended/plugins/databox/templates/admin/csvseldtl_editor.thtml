@@ -3,7 +3,7 @@
 {about_thispage}
 <form class="uk-form uk-form-horizontal" name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
 
-  <fieldset style="width:94%">
+  <fieldset class="uk-width-1-1">
     <legend>{csv_select_dtl}</legend>
 
     <!-- data -->

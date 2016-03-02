@@ -243,7 +243,7 @@ $LANG_USERBOX_ADMIN['dfid']=$LANG04[42];//'日時のフォーマット';
 
 $LANG_USERBOX_ADMIN['draft'] = 'ドラフト';//'下書';
 $LANG_USERBOX_ADMIN['draft_msg'] = '
-※ドラフトモードになっています。モードの変更はサイトの管理者へご連絡ください。
+※現在ドラフトモードです。モードの変更はサイトの管理者へご連絡ください。
 ';
 $LANG_USERBOX_ADMIN['uid'] = 'ユーザID';
 $LANG_USERBOX_ADMIN['modified'] = '編集日付';

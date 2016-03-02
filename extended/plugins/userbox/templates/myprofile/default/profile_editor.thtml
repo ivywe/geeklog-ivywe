@@ -1,131 +1,55 @@
 {# begin {templatelocation} #}
-{# plugins/userbox/templates/myprofile/default/profile_editor.thtml 20151111 #}
-<div id="userbox_admin">
-  {about_thispage}
-  <a href="{site_url}/userbox/myprofile/view.php?id={id}">{lang_view}</a>
-  {lang_fieldset}{fieldset_name}(Type id:{fieldset_id})
-  <form enctype="multipart/form-data" name="frmuserbox" action="{site_url}/{script}" method="post">
+
+<div>
+	<h2>{username}({fullname})</h2>
+
+  <form enctype="multipart/form-data" name="frmuserbox" action="{site_url}/{script}" method="post" class="uk-form uk-form-horizontal">
+	  <input type="hidden" name="id" value="{id}"{xhtml}>
+		<input type="hidden" name="username" value="{username}"{xhtml}>
+		<input type="hidden" name="udatetime" value="{udatetime}"{xhtml}>
+	  <input type="hidden" name="created" value="{created}"{xhtml}>
+	  <input type="hidden" name="created_un" value="{created_un}"{xhtml}>
     <input type="hidden" name="fieldset" value="{fieldset_id}"{xhtml}>
     <input type="hidden" name="fieldset_name" value="{fieldset_name}"{xhtml}>
-    
-    <fieldset style="width:98%">
-      <legend>Core</legend>
-      <div class="table-wrapper-fit">
-        <table class="admin-list-table">
-          <tr class="pluginRow1">  
-            <th class="admin-list-field">{lang_fields}</th>
-            <td style="background:#eee" class="alignleft">{lang_content}</td>
-          </tr>
-    
-          {# uid #}
-          <tr class="pluginRow1">  
-            <th class="admin-list-field">{lang_uid}{help_uid}</th>
-            <td class="admin-list-field">{id}</td>
-          </tr>
-    
-          {# username #}
-          <tr class="pluginRow1">  
-            <th class="admin-list-field">{lang_username}{help_username}</th>
-            <td class="admin-list-field">{username}  <input type="hidden" name="username" value="{username}"{xhtml}></td>
-          </tr>
-          {# fullname #}
-          <tr class="pluginRow1">  
-            <th class="admin-list-field">{lang_fullname}{help_fullname}</th>
-            <td class="admin-list-field">
-            <input type="fullname" size="48" maxlength="160" name="fullname" value="{fullname}"{xhtml}></td>
-          </tr>
-        </table>
-      </div>
-    </fieldset>
-    
-    {# data #}
-    <fieldset style="width:98%">
+    <input type="hidden" name="fullname" value="{fullname}"{xhtml}>
+		<input type="hidden" name="page_title" value="{page_title}"{xhtml}>
+
+    <fieldset class="uk-width-1-1 uk-margin-large-top">
       <legend>{lang_basicfields}</legend>
-      <div class="table-wrapper-fit">
-        <table class="admin-list-table">
-          <tr class="pluginRow1">  
-            <th class="admin-list-field">{lang_fields}</th>
-            <td class="admin-list-field">{lang_content}</td>
-          </tr>
-          {# id #}
-          <tr class="pluginRow1">  
-            <th class="admin-list-field">{lang_id}{help_id}</th>
-            <td class="admin-list-field">{id}
-              <input type="hidden" name="id" value="{id}"{xhtml}></td>
-            </tr>
-            {# DRAFT #}
-          <tr class="pluginRow1">  
-            <th class="admin-list-field">{lang_draft}{help_draft}</th>
-            <td class="admin-list-field">
-              <input type="checkbox" name="draft_flag" value="1" {draft_flag}{xhtml} disabled><br{xhtml}>{draft_msg}</td>
-          </tr>
-          {# page title #}
-          <tr class="pluginRow1">  
-            <th class="admin-list-field">{lang_page_title}{help_page_title}</th>            <td class="admin-list-field">
-               <input type="text" size="48" maxlength="160" name="page_title" value="{page_title}"{xhtml}></td>
-          </tr>
-          {# description #}
-          <tr class="pluginRow1">  
-            <th class="admin-list-field">{lang_description}{help_description}</th>
-            <td class="admin-list-field">
-    	      <textarea name="description" style="width:95%" rows="2" id="userbox_description"
+
+      <div class="uk-form-row">
+        <label class="uk-form-label"></label>
+        <div class="uk-form-controls">
+          <input type="checkbox" name="draft_flag" value="1" {draft_flag}{xhtml} disabled>
+					<span class="uk-form-help-inline">{draft_msg}</span>
+        </div>
+      </div>
+      <div class="uk-form-row">
+        <label class="uk-form-label">{lang_description}{help_description}</label>
+        <div class="uk-form-controls">
+          <textarea name="description" style="width:95%" rows="2" id="userbox_description"
     	      onKeyup="var n={maxlength_description}-this.value.length;var s=document.getElementById('description_cnt');s.innerHTML='('+n+')';">{description}</textarea>
-    	      <br{xhtml}>
-              <strong><span id='description_cnt'></span><strong>
-            </td>
-          </tr>
-    
-          {# language_id #}
-          <tr{hide_language_id}>
-            <th class="admin-list-field">{lang_language_id}{help_language_id}</th>
-            <td class="admin-list-field">{select_language_id}</td>
-    	  </tr>
-    	  {# タイムスタンプ #}
-          <tr class="pluginRow1">  
-            <th class="admin-list-field">{lang_udatetime}</th>
-            <td class="admin-list-field">{udatetime} {lang_uuid}:{uuid}</td>
-              <input type="hidden" name="udatetime" value="{udatetime}"{xhtml}>
-          </tr>
-          <tr class="pluginRow1">  
-            <th class="admin-list-field">{lang_created}</th>
-            <td class="admin-list-field">{created}</td>
-            <input type="hidden" name="created" value="{created}"{xhtml}>
-            <input type="hidden" name="created_un" value="{created_un}"{xhtml}>
-          </tr>
-        </table>
+					<span class="uk-form-help-inline" id='description_cnt'></span>
+        </div>
       </div>
-    </fieldset>
-    
-    {# category #}
-    <fieldset style="width:98%">
-      <legend>{lang_category}</legend>
-      <div class="table-wrapper-fit">
-      <table class="admin-list-table">
-        {# category #}
-        <tr class="pluginRow1">
-          <th class="admin-list-field">{lang_category}{help_category}</th>
-          <td class="admin-list-field">{checklist_category}</td>
-        </tr>
-      </table>
-      </div>
-    </fieldset>
-    
+
     {# 追加項目 #}
-    <fieldset style="width:98%">
+    <fieldset class="uk-width-1-1 uk-margin-large-top">
       <legend>{lang_additionfields}</legend>
-      <div class="table-wrapper-fit">
-        <table class="admin-list-table">
           {additionfields}
-        </table>
       </div>
     </fieldset>
     
     {# 【保存 キャンセル  削除】 #}
-    <input type="submit" value="{lang_save}" name="mode"{xhtml}>
-    <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
-    <input type="hidden" value="{code}" name="old_code"{xhtml}>
-    {delete_option}
-    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+    <div class="uk-form-row uk-margin-large-top">
+      <div class="uk-form-controls">
+		    <input type="submit" value="{lang_save}" name="mode" class="uk-button"{xhtml}>
+		    <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
+		    <input type="hidden" value="{code}" name="old_code"{xhtml}>
+		    {delete_option}
+		    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+      </div>
+    </div>
   </form>
 </div>
 {# end {templatelocation} #}

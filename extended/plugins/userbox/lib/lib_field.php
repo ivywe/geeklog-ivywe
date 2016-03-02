@@ -292,7 +292,7 @@ function LIB_Edit(
             $selectlist ="";
             $checkrequried ="";
 
-            $size = 60;
+            $size = 40;
             $maxlength = 500;
             $rows = 3;
             $br = 0;

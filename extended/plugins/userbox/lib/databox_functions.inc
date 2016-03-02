@@ -763,7 +763,7 @@ function DATABOX_getadditiondef(
 
         $rt[$field_id]['size'] = COM_stripslashes($A['size']);
         if ($rt[$field_id]['size']==0){
-            $rt[$field_id]['size']=60;
+            $rt[$field_id]['size']=40;
         }
         $rt[$field_id]['maxlength'] = COM_stripslashes($A['maxlength']);
         if ($rt[$field_id]['maxlength']==0){
@@ -1883,9 +1883,6 @@ function DATABOX_getaddtionfieldsDisp(
                     break;
                 case 2://いいえ/はい
                     $fieldhtml .= $lang_noyes[$fvalue];
-                    if  ($fvalue==1){
-                        $fieldhtml_yes=1;
-                    }
                     break;
                 case 7://オプションリスト（選択肢）//@@@@@@
                 case 8://ラジオボタンリスト（選択肢）//@@@@@
@@ -1974,6 +1971,9 @@ function DATABOX_getaddtionfieldsDisp(
             $templates->set_var('additionfield_value', $fieldhtml);
             $templates->set_var('additionfield'.$fid, $fieldhtml);
             $templates->set_var($templatesetvar, $fieldhtml);
+            $templates->set_var('additionfield_fvalue', $fvalue);
+            $templates->set_var('additionfield'.$fid."_value", $fvalue);
+            $templates->set_var($templatesetvar."_value", $fvalue);
             
             if  ($type==12){
                 $templates->set_var('display_a', 'display:');
@@ -2539,7 +2539,7 @@ global $_TABLES;
         $nrows2 = DB_numRows( $result2 );
         
         if ($nrows2>0){
-            $retval .="<div class=\"uk-text-bold uk-margin-top\">";
+            $retval .="<div class=\"uk-text-bold uk-margin-top uk-margin-small-bottom\">";
             $retval .=$A['group_name'];
             $retval .="</div>".LB;
         
@@ -2565,7 +2565,7 @@ global $_TABLES;
                 }
             
                 if  ($A['input_type']==0){
-                    $retval .= '<span style="white-space:nowrap">';
+                    $retval .= '<span class="uk-text-nowrap">';
                     $retval .= '<input type="checkbox" name="category[]" value="' . $A2['category_id'] ;
                     $retval .= '"';
                     $retval .= $checked;
@@ -4076,7 +4076,7 @@ function DATABOX_getradiolist(
                 $retval .= " CHECKED=CHECKED ";
         }
 
-        $retval .= ">$ary[$id]&nbsp";
+        $retval .= ">$ary[$id]";
         
         if   ($br<>0){
             $cnt++;
