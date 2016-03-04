@@ -13,29 +13,11 @@
     <input type="hidden" name="fieldset_name" value="{fieldset_name}"{xhtml}>
     <input type="hidden" name="fullname" value="{fullname}"{xhtml}>
 		<input type="hidden" name="page_title" value="{page_title}"{xhtml}>
-
-    <fieldset class="uk-width-1-1 uk-margin-large-top">
-      <legend>{lang_basicfields}</legend>
-
-      <div class="uk-form-row">
-        <label class="uk-form-label"></label>
-        <div class="uk-form-controls">
-          <input type="checkbox" name="draft_flag" value="1" {draft_flag}{xhtml} disabled>
-					<span class="uk-form-help-inline">{draft_msg}</span>
-        </div>
-      </div>
-      <div class="uk-form-row">
-        <label class="uk-form-label">{lang_description}{help_description}</label>
-        <div class="uk-form-controls">
-          <textarea name="description" style="width:95%" rows="2" id="userbox_description"
-    	      onKeyup="var n={maxlength_description}-this.value.length;var s=document.getElementById('description_cnt');s.innerHTML='('+n+')';">{description}</textarea>
-					<span class="uk-form-help-inline" id='description_cnt'></span>
-        </div>
-      </div>
+		<input type="hidden" name="draft_flag" value="{draft_flag}" {xhtml}>
 
     {# 追加項目 #}
     <fieldset class="uk-width-1-1 uk-margin-large-top">
-      <legend>{lang_additionfields}</legend>
+      <legend>事前登録セミナー</legend>
           {additionfields}
       </div>
     </fieldset>

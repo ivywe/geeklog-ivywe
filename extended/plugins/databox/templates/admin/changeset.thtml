@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+<h3 class="uk-h3">{actionname}</h3>
+
 <form class="uk-form uk-form-stacked" action="{site_admin_url}/plugins/databox/data.php" method="post">
 
   <input type="hidden" name="id" value="{id}"{xhtml}>

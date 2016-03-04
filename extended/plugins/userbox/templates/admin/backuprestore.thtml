@@ -1,21 +1,20 @@
 {# begin {templatelocation} #}
-{# plugins/userbox/templates/admin/backuprestore.thtml 20151111 #}
-{about_thispage}
-<fieldset style="margin-top:10px;">
+
+<h2 class="uk-h2">{about_thispage}</h2>
+
 <legend>(1){config}</legend>
-<blockquote>
-<form action='backuprestore.php'method='post'>
-{err_backup_file}
-<li><input type='submit' name='action' value='{config_backup}' {xhtml}>  {config_backup_help}</li>
 
-<li><input type='submit' name='action' value='{config_init}' {xhtml}>  {config_init_help}</li>
+<form class="uk-form uk-form-horizontal" action="{site_admin_url}/plugins/backuprestore.php" method="post">
+	<p>{err_backup_file}</p>
 
-<li><input type='submit' name='action' value='{config_restore}' {restore_disabled} {xhtml}>  {config_restore_help}
-<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}></li>
-<li><input type='submit' name='action' value='{config_update}' {xhtml}>  {config_update_help}</li>
+	<input type="submit" name="action" value="{config_backup}" data-uk-tooltip title="{config_backup_help}"{xhtml}>
+	<input type="submit" name="action" value="{config_init}" data-uk-tooltip title="{config_init_help}"{xhtml}>
+	<input type="submit" name="action" value="{config_restore}" {restore_disabled} data-uk-tooltip title="{config_restore_help}"{xhtml}>
+	<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+	<input type='submit' name='action' value='{config_update}' {xhtml}>
+	<span class="uk-form-help-inline">{config_update_help}</span></li>
 
 </form>
-</blockquote>
-</fieldset>
+
 {# end {templatelocation} #}
 

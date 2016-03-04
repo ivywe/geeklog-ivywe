@@ -1,11 +1,12 @@
 {# begin {templatelocation} #}
 
 <h2 class="uk-h2">{actionname}</h2>
+
 <form class="uk-form" action="{actionprg}" method="post">
   <div>{lang_checklist} {checklist}</div>
 
   <div class="uk-margin-small">
-    <input class="uk-button" type='submit' name='action' value='{lang_submit}' onclick="return confirm('{lang_confirm}');"{xhtml}>
+    <input class="uk-button" type='submit' name="action" value="{lang_submit}" onclick="return confirm('{lang_confirm}');"{xhtml}>
   </div>
   <div class="uk-margin-small">{btn2}</div>
   {!if btn3}<hr{xhtml}>{!endif}

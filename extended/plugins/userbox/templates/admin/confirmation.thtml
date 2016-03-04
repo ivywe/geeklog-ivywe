@@ -1,11 +1,15 @@
 {# begin {templatelocation} #}
-{# plugins/userbox/templates/admin/confirmation.thtml  20151111 #}
-<h3>{actionname}</h3>
+
+<h2 class="uk-h2">{actionname}</h2>
+
 <form action="{actionprg}" method="post">
-  <div>
     <div>{lang_checklist}{checklist}</div>
-    <input type='submit' name='action' value='{lang_submit}' onclick="return confirm('{lang_confirm}');"{xhtml}>
-    <input type='submit' name='action' value='{lang_cancel}'{xhtml}>
+
+  <div class="uk-margin-small">
+    <input type="submit" name="action" value="{lang_submit}" onclick="return confirm("{lang_confirm}");"{xhtml}>
+  </div>
+
+    <input type="submit" name="action" value="{lang_cancel}"{xhtml}>
     <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
     <input type="hidden" value="{mode}" name="mode"{xhtml}>
   </div>
