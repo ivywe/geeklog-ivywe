@@ -44,8 +44,8 @@ function doUnCheckAll_mediaitems() {
       <input type="hidden" name="mid[]" value="{mid}"{xhtml}>
     </td>
     <td style="vertical-align:middle;text-align:center;">
-      {media_zoom}<img src="{u_thumbnail}" height="{height}" width="{width}" alt=""{xhtml}></a>
-      <br{xhtml}><a href="{media_edit}">{lang_edit}</a>
+      {media_zoom}<img src="{u_thumbnail}" height="{height}" width="{width}" alt=""{xhtml}></a><br{xhtml}>
+      &#91;media:{media_id}<br{xhtml}> src:(tn/disp/orig) class...&#93;<br{xhtml}><a href="{media_edit}">{lang_edit}</a>
     </td>
     <td style="vertical-align:middle;text-align:center;">
       {watermarked}
