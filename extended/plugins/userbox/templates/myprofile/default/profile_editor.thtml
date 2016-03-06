@@ -13,7 +13,7 @@
     <input type="hidden" name="fieldset_name" value="{fieldset_name}"{xhtml}>
     <input type="hidden" name="fullname" value="{fullname}"{xhtml}>
 		<input type="hidden" name="page_title" value="{page_title}"{xhtml}>
-		<input type="hidden" name="draft_flag" value="{draft_flag}" {xhtml}>
+		<input type="hidden" name="draft_flag" value="1" {draft_flag}{xhtml}>
 
     {# 追加項目 #}
     <fieldset class="uk-width-1-1 uk-margin-large-top">
