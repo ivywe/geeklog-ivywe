@@ -1,14 +1,14 @@
 {# begin {templatelocation} #}
 
-	<li>
-		<img src="{filename_disp}" alt="{media_title}"{xhtml}>
+  <li>
+    <img src="{filename_disp}" alt="{media_title}"{xhtml}>
 
-		<div class="uk-vertical-align uk-overlay-panel uk-overlay-bottom uk-overlay-fade uk-text-center">
-			<div>
-				{!if media_title}<h2 class="uk-h2 uk-container-center gl-slider" style="text-shadow: 5px 5px 10px #1F1F1F; font-size: 18px; lineheight:22px ">{media_title}</h2>{!endif}
-				<div class="gl-slider" style="text-shadow: 5px 5px 10px #1F1F1F; font-size: 13px">{media_desc}</div>
-			</div>
-		</div>
-	</li>
+    <div class="uk-vertical-align uk-overlay-panel uk-overlay-bottom uk-overlay-fade uk-text-center">
+      <div>
+        {!if media_title}<h2 class="uk-h2 uk-container-center gl-slider" style="text-shadow: 5px 5px 10px #1F1F1F; font-size: 18px; lineheight:22px ">{media_title}</h2>{!endif}
+        <div class="gl-slider" style="text-shadow: 5px 5px 10px #1F1F1F; font-size: 13px">{media_desc}</div>
+      </div>
+    </div>
+  </li>
 
 {# end {templatelocation} #}

@@ -6,7 +6,7 @@
 {!endif}
 
 <div class="uk-grid" data-uk-grid="{gutter: 20}">
-	{medialist_col}
+  {medialist_col}
 </div>
 
 {!if edit}

@@ -7,8 +7,8 @@
 
 <div class="uk-slidenav-position" data-uk-slideshow="{ animation: '{class}' }">
     <ul class="uk-slideshow">
-	{medialist_col}
-	</ul>
+  {medialist_col}
+  </ul>
     <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous"></a>
     <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next"></a>
 

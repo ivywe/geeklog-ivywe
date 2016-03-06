@@ -1,14 +1,14 @@
 {# begin {templatelocation} #}
 
-	<li>
-	  <img src="{filename_disp}" alt="{media_title}"{xhtml}>
+  <li>
+    <img src="{filename_disp}" alt="{media_title}"{xhtml}>
 
-	  <div class="uk-overlay-panel uk-overlay-background uk-overlay-top uk-overlay-slide-top uk-overlay-fade">
+    <div class="uk-overlay-panel uk-overlay-background uk-overlay-top uk-overlay-slide-top uk-overlay-fade">
       <div>
-				{!if media_title}<h3>{media_title}</h3>{!endif}
-				<div>{media_desc}</div>
+        {!if media_title}<h3>{media_title}</h3>{!endif}
+        <div>{media_desc}</div>
       </div>
-	  </div>
-	</li>
+    </div>
+  </li>
 
 {# end {templatelocation} #}

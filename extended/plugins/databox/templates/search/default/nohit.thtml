@@ -3,11 +3,11 @@
 <div>
 
   <ul class="uk-breadcrumb">
-		<li><a href="{site_url}/">{home}</a></li>
-		<li><a href="{referer}">{lang_referer}</li>
+    <li><a href="{site_url}/">{home}</a></li>
+    <li><a href="{referer}">{lang_referer}</li>
   </ul>
 
-	<h1>Search</h1>
+  <h1>Search</h1>
   <p>{msg}</p>
 
 {arg_var}

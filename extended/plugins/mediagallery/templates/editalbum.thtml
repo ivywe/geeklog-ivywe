@@ -358,18 +358,18 @@ function change(what) {
 
           <div class="uk-form-row">
             <div class="uk-form-controls">
-		      <input type="submit" value="{lang_save}" name="mode" class="submit"{xhtml}>
-		      <input type="submit" value="{lang_delete}" name="mode" class="submit"{xhtml}>
-		      <input type="submit" value="{lang_cancel}" name="mode" class="submit"{xhtml}>
-		      <input type="hidden" name="album_id" value="{album_id}"{xhtml}>
-		      <input type="hidden" name="cover" value="{album_cover}"{xhtml}>
-		      <input type="hidden" name="owner" value="{album_owner}"{xhtml}>
-		      <input type="hidden" name="order" value="{album_order}"{xhtml}>
-		      <input type="hidden" name="album_cover_filename" value="{album_cover_filename}"{xhtml}>
-		      <input type="hidden" name="last_update" value="{last_update}"{xhtml}>
-		      <input type="hidden" name="media_count" value="{media_count}"{xhtml}>
-		      <input type="hidden" name="action" value="{action}"{xhtml}>
-		      <input type="hidden" name="origaid" value="{old_album_id}"{xhtml}>
+          <input type="submit" value="{lang_save}" name="mode" class="submit"{xhtml}>
+          <input type="submit" value="{lang_delete}" name="mode" class="submit"{xhtml}>
+          <input type="submit" value="{lang_cancel}" name="mode" class="submit"{xhtml}>
+          <input type="hidden" name="album_id" value="{album_id}"{xhtml}>
+          <input type="hidden" name="cover" value="{album_cover}"{xhtml}>
+          <input type="hidden" name="owner" value="{album_owner}"{xhtml}>
+          <input type="hidden" name="order" value="{album_order}"{xhtml}>
+          <input type="hidden" name="album_cover_filename" value="{album_cover_filename}"{xhtml}>
+          <input type="hidden" name="last_update" value="{last_update}"{xhtml}>
+          <input type="hidden" name="media_count" value="{media_count}"{xhtml}>
+          <input type="hidden" name="action" value="{action}"{xhtml}>
+          <input type="hidden" name="origaid" value="{old_album_id}"{xhtml}>
             </div>
           </div>
 </form>

@@ -1,11 +1,11 @@
 {# begin {templatelocation} #}
 
 <div class="{class}">
-			
+      
 <a href="{album_url}"><img src="{album_img}"></a>
-			
+      
 <p class="photo_title en"><a href="{album_url}">{album_title}</a> </p>
-			
+      
 <p class="released_date">
 <span style="color:green"> {released}
 </p>

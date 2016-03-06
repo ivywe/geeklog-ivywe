@@ -2,8 +2,8 @@
 
 <div class="uk-slidenav-position" data-uk-slideshow="{ autoplay:true }">
     <ul class="uk-slideshow uk-overlay-active">
-	{medialist_col}
-	</ul>
+  {medialist_col}
+  </ul>
     <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous"></a>
     <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next"></a>
 

@@ -13,14 +13,14 @@
         <label class="uk-form-label">{lang_draft} {help_draft}</label>
         <div class="uk-form-controls">
           <input type="checkbox" name="draft_flag" value="1" {draft_flag} {xhtml} disabled>
-					<span class="uk-form-help-inline uk-text-small uk-text-warning">{draft_msg}</span>
+          <span class="uk-form-help-inline uk-text-small uk-text-warning">{draft_msg}</span>
         </div>
       </div>
 {!if code}
       <div class="uk-form-row">
         <label class="uk-form-label">{lang_code}{help_code}</label>
         <div class="uk-form-controls">
-        	{code}
+          {code}
         </div>
       </div>
 {!endif}
@@ -47,7 +47,7 @@
       <div class="uk-form-row"{hide_language_id}>
         <label class="uk-form-label">{lang_language_id} {help_language_id}</label>
         <div class="uk-form-controls">
-        	{select_language_id}
+          {select_language_id}
         </div>
       </div>
 {!if code}

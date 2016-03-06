@@ -21,6 +21,8 @@ function doUnCheckAll_mediaitems() {
 }
 // End script --></script>
 
+<h2>{album_title} &#91;medialist:{album_id}&#93;</h2>
+
 <table class="uk-table uk-table-condensed uk-table-striped uk-width-1-1" style="background:#ffffff;">
   <tr>
     <th>{lang_select}</th>
@@ -89,11 +91,11 @@ function doUnCheckAll_mediaitems() {
         <a href="#" class="uk-button">Normal layout autotag: &#91;medialist:{album_id}&#93;</a>
         <ul class="uk-nav-sub">
             <li>
-				<div class="uk-panel">
-					<div>html</div>
-					{!!autotag medialist:'.{album_id}.' theme:admin !!}
-				</div>
-			</li>
+        <div class="uk-panel">
+          <div>html</div>
+          {!!autotag medialist:'.{album_id}.' theme:admin !!}
+        </div>
+      </li>
         </ul>
     </li>
 </ul>
@@ -103,11 +105,11 @@ function doUnCheckAll_mediaitems() {
         <a href="#" class="uk-button">Thumnail layout autotag: &#91;medialist:{album_id} theme:uikit_grid_js&#93;</a>
         <ul class="uk-nav-sub">
             <li>
-				<div class="uk-panel">
-					<div>html</div>
-					{!!autotag medialist:'.{album_id}.' theme:admin_uikit_grid_js !!}
-				</div>
-			</li>
+        <div class="uk-panel">
+          <div>html</div>
+          {!!autotag medialist:'.{album_id}.' theme:admin_uikit_grid_js !!}
+        </div>
+      </li>
         </ul>
     </li>
 </ul>

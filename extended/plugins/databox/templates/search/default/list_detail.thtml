@@ -3,11 +3,11 @@
 <div>
 
   <ul class="uk-breadcrumb">
-	  <li><a href="{site_url}/">{home}</a></li>
-	  <li><a href="{referer}">{lang_referer}</li>
+    <li><a href="{site_url}/">{home}</a></li>
+    <li><a href="{referer}">{lang_referer}</li>
   </ul>
 
-	<h1>Search(<a href="#db_search_list_detail" data-uk-modal>?</a>)</h1>
+  <h1>Search(<a href="#db_search_list_detail" data-uk-modal>?</a>)</h1>
 
   <p>{msg}</p>
 
@@ -20,27 +20,27 @@
 
 <!-- This is the modal -->
 <div id="db_search_list_detail" class="uk-modal">
-	<div class="uk-modal-dialog">
-		<a class="uk-modal-close uk-close"></a>
-		<div class="uk-text-break">
-			<span class="uk-text-bold">theme variables(<a href="{site_url}/admin/plugins/databox/docs/japanese/templatesetvars.html">?</a>):</span> {templatelocation}
-		</div>
-		<ul class="uk-list">
-			<li><span style="color:green"> &#123;languageid&#125;</span>:{languageid}</li>
-			<li><span style="color:green"> &#123;_languageid&#125;</span>:{_languageid}</li>
-			<li><span style="color:green"> &#123;language&#125;</span>:{language}</li>
-			<li><span style="color:green"> &#123;uid&#125;</span>:{uid}</li>
-			<li><span style="color:green"> &#123;username&#125;</span>:{username}</li>
-			<li><span style="color:green"> &#123;fullname&#125;</span>:{fullname}</li>
-			<li><span style="color:green"> &#123;displayname&#125;</span>:{displayname}</li>
-			<li>{lang_imgfile_frd}</li>
-			<li><span style="color:green"> &#123;imgfile_frd&#125;</span>:{imgfile_frd}</li>
-			<li><span style="color:green"> &#123;data_img_url&#125;</span>:{data_img_url}</li>>
-			<li>{lang_imgfile_thumb_frd}</li>
-			<li><span style="color:green"> &#123;imgfile_thumb_frd&#125;</span>:{imgfile_thumb_frd}</li>
-			<li><span style="color:green"> &#123;data_thumb_img_url&#125;</span>:{data_thumb_img_url}</li>
-		</ul>
-	</div>
+  <div class="uk-modal-dialog">
+    <a class="uk-modal-close uk-close"></a>
+    <div class="uk-text-break">
+      <span class="uk-text-bold">theme variables(<a href="{site_url}/admin/plugins/databox/docs/japanese/templatesetvars.html">?</a>):</span> {templatelocation}
+    </div>
+    <ul class="uk-list">
+      <li><span style="color:green"> &#123;languageid&#125;</span>:{languageid}</li>
+      <li><span style="color:green"> &#123;_languageid&#125;</span>:{_languageid}</li>
+      <li><span style="color:green"> &#123;language&#125;</span>:{language}</li>
+      <li><span style="color:green"> &#123;uid&#125;</span>:{uid}</li>
+      <li><span style="color:green"> &#123;username&#125;</span>:{username}</li>
+      <li><span style="color:green"> &#123;fullname&#125;</span>:{fullname}</li>
+      <li><span style="color:green"> &#123;displayname&#125;</span>:{displayname}</li>
+      <li>{lang_imgfile_frd}</li>
+      <li><span style="color:green"> &#123;imgfile_frd&#125;</span>:{imgfile_frd}</li>
+      <li><span style="color:green"> &#123;data_img_url&#125;</span>:{data_img_url}</li>>
+      <li>{lang_imgfile_thumb_frd}</li>
+      <li><span style="color:green"> &#123;imgfile_thumb_frd&#125;</span>:{imgfile_thumb_frd}</li>
+      <li><span style="color:green"> &#123;data_thumb_img_url&#125;</span>:{data_thumb_img_url}</li>
+    </ul>
+  </div>
 </div>
 
 {# end {templatelocation} #}

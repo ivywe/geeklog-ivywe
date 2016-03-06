@@ -6,7 +6,7 @@
 {!endif}
 
 <div>
-	{medialist_col}
+  {medialist_col}
 </div>
 
 {!if edit}

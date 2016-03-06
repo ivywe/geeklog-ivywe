@@ -2,14 +2,14 @@
 
 <div>
 
-	<h2>{addtition_name}(<a href="#db_attribute_navigation_detail_{addition_code}" data-uk-modal>example</a>)</h2>
+  <h2>{addtition_name}(<a href="#db_attribute_navigation_detail_{addition_code}" data-uk-modal>example</a>)</h2>
 
-	<div class="uk-text-right uk-text-muted">current order:{cur_order}</div>
-	<ul class="uk-subnav uk-subnav-line uk-flex-center">
-		<li>{order_date}</li><li>{order_orderno}</li><li>{order_code}</li><li>{order_title}</li><li>{order_description}</li><li>{order_id}</li><li>{order_released}</li><li>{order_random}</li>
-		<!-- example: sort by attribute -->
-		{!if order_tel}<li>{order_tel}</li>{!endif}{!if order_zipcode}<li>{order_zipcode}</li>{!endif}
-	</ul>
+  <div class="uk-text-right uk-text-muted">current order:{cur_order}</div>
+  <ul class="uk-subnav uk-subnav-line uk-flex-center">
+    <li>{order_date}</li><li>{order_orderno}</li><li>{order_code}</li><li>{order_title}</li><li>{order_description}</li><li>{order_id}</li><li>{order_released}</li><li>{order_random}</li>
+    <!-- example: sort by attribute -->
+    {!if order_tel}<li>{order_tel}</li>{!endif}{!if order_zipcode}<li>{order_zipcode}</li>{!endif}
+  </ul>
 
   <div {pagenavinone}>
     {page_navigation}
@@ -19,10 +19,10 @@
 
   <ul class="uk-list uk-list-line">
 {row_var}
-	</ul>
+  </ul>
 
-	<!-- Maps Link mkids selectedMarkers-->
-	{mkids}{selectedMarkers}
+  <!-- Maps Link mkids selectedMarkers-->
+  {mkids}{selectedMarkers}
 
   <div {pagenavinone}>
     {page_navigation}
@@ -34,23 +34,23 @@
 
 <!-- This is the modal -->
 <div id="db_attribute_navigation_detail_{addition_code}" class="uk-modal">
-	<div class="uk-modal-dialog">
-		<a class="uk-modal-close uk-close"></a>
-		<div class="uk-text-break">
-			<span class="uk-text-bold">theme variables(<a href="{document_url}docs/japanese/templatesetvars.html">?</a>):</span> {templatelocation}
-		</div>
-		<ul class="uk-list">
-	    <li>{lang_title} ({lang_id}) ({lang_code})</li>
-	    <li>{lang_description}&nbsp;
-	    <li>{lang_date}<!-- 使用する日付 作成日付or編集日付or公開日 -->&nbsp;
-	    <li>{lang_released}&nbsp;
-	    <li>{lang_expired}&nbsp;
-	    <li>{lang_hits}&nbsp;
-	    <li>{lang_addfield}<!-- ソート順に指定された追加属性項目 -->&nbsp;
-	    {# 下記テーマ変数　参考例です 登録されていない場合表示されません #}
-	    <li>{name_zipcode} {name_tel} {name_additionfield1} {name_additionfield2}</li>
-		</ul>
-	</div>
+  <div class="uk-modal-dialog">
+    <a class="uk-modal-close uk-close"></a>
+    <div class="uk-text-break">
+      <span class="uk-text-bold">theme variables(<a href="{document_url}docs/japanese/templatesetvars.html">?</a>):</span> {templatelocation}
+    </div>
+    <ul class="uk-list">
+      <li>{lang_title} ({lang_id}) ({lang_code})</li>
+      <li>{lang_description}&nbsp;
+      <li>{lang_date}<!-- 使用する日付 作成日付or編集日付or公開日 -->&nbsp;
+      <li>{lang_released}&nbsp;
+      <li>{lang_expired}&nbsp;
+      <li>{lang_hits}&nbsp;
+      <li>{lang_addfield}<!-- ソート順に指定された追加属性項目 -->&nbsp;
+      {# 下記テーマ変数　参考例です 登録されていない場合表示されません #}
+      <li>{name_zipcode} {name_tel} {name_additionfield1} {name_additionfield2}</li>
+    </ul>
+  </div>
 </div>
 
 {# end {templatelocation} #}

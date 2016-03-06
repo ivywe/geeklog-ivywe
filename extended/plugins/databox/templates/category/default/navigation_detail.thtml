@@ -1,20 +1,20 @@
 {# begin {templatelocation} #}
 
-	<div class="uk-text-right uk-text-muted">current order:{cur_order}</div>
-	<ul class="uk-subnav uk-subnav-line uk-flex-center">
-		<li>{order_date}</li><li>{order_orderno}</li><li>{order_code}</li><li>{order_title}</li><li>{order_description}</li><li>{order_id}</li><li>{order_released}</li><li>{order_random}</li>
-		<!-- example: sort by attribute -->
-		{!if order_tel}<li>{order_tel}</li>{!endif}{!if order_zipcode}<li>{order_zipcode}</li>{!endif}
-	</ul>
+  <div class="uk-text-right uk-text-muted">current order:{cur_order}</div>
+  <ul class="uk-subnav uk-subnav-line uk-flex-center">
+    <li>{order_date}</li><li>{order_orderno}</li><li>{order_code}</li><li>{order_title}</li><li>{order_description}</li><li>{order_id}</li><li>{order_released}</li><li>{order_random}</li>
+    <!-- example: sort by attribute -->
+    {!if order_tel}<li>{order_tel}</li>{!endif}{!if order_zipcode}<li>{order_zipcode}</li>{!endif}
+  </ul>
 
   <div {pagenavinone}>
-  	{page_navigation}
-  	<div class="uk-float-right">{lang_view} [{lin}] / {cnt}</div>
-	</div>
-	<div style="clear:both"></div>
+    {page_navigation}
+    <div class="uk-float-right">{lang_view} [{lin}] / {cnt}</div>
+  </div>
+  <div style="clear:both"></div>
 
   <ul>
-	  {row_var}
+    {row_var}
   </ul>
 
   <div {pagenavinone}>

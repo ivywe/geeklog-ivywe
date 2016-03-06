@@ -92,7 +92,7 @@
       <div class="uk-form-controls">
         <textarea name="meta_keywords" class="uk-width-1-1" rows="2" id="meta_keywords" 
   onKeyup="var n={maxlength_meta_keywords}-this.value.length;var s=document.getElementById('meta_keywords_cnt');s.innerHTML='('+n+')';">{meta_keywords}</textarea>
-  			<span class="uk-form-help-inline uk-text-bold" id="meta_keywords_cnt"></span>
+        <span class="uk-form-help-inline uk-text-bold" id="meta_keywords_cnt"></span>
       </div>
     </div>
 
@@ -270,7 +270,7 @@
 
   <div class="uk-form-row uk-margin-large uk-margin-large-bottom">
     <div class="uk-form-controls">
-  		<!-- <a href="{site_admin_url}/plugins/databox/view.php?id={id}" class="uk-button">{lang_view}</a> -->
+      <!-- <a href="{site_admin_url}/plugins/databox/view.php?id={id}" class="uk-button">{lang_view}</a> -->
 
       <!-- Submit button - Save Cancel Delete -->
       <input type="submit" value="{lang_save}" name="mode" class="uk-button uk-form-width-medium"{xhtml}>

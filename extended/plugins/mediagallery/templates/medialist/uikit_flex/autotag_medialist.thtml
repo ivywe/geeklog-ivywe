@@ -5,7 +5,7 @@
 <div {!if edit}{!else}class="uk-hidden"{!endif}><a href="{site_url}/mediagallery/album.php?aid={album_id}&page=1"><i class="uk-icon-file-image-o"></i> {album_title}</a></div>
 
 <div class="uk-flex uk-flex-center">
-		{medialist_col}
+    {medialist_col}
 </div>
 
 {# end {templatelocation} #}

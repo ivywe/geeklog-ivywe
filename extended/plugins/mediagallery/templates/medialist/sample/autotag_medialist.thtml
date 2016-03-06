@@ -6,15 +6,15 @@
 {!endif}
 
 <div>
-	{!if album_title}<h3>{album_title}</h3>{!endif}
-	{!if album_desc}<div>{album_desc}</div>{!endif}
-	<dl class="uk-description-list-line">
-		<dt>class</dt><dd>{class}</dd>
-		<dt>album_id</dt><dd>{album_id}</dd>
-		<dt>album_title</dt><dd>{album_title}</dd>
-		<dt>album_desc</dt><dd>{album_desc}</dd>
-	</dl>
-	{medialist_col}
+  {!if album_title}<h3>{album_title}</h3>{!endif}
+  {!if album_desc}<div>{album_desc}</div>{!endif}
+  <dl class="uk-description-list-line">
+    <dt>class</dt><dd>{class}</dd>
+    <dt>album_id</dt><dd>{album_id}</dd>
+    <dt>album_title</dt><dd>{album_title}</dd>
+    <dt>album_desc</dt><dd>{album_desc}</dd>
+  </dl>
+  {medialist_col}
 </div>
 
 {!if edit}
