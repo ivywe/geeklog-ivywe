@@ -92,37 +92,37 @@
 
 <!-- BEGIN topicmenu_link -->
 <div class="uk-button-dropdown uk-text-left" data-uk-dropdown="{mode:'click'}">
-	<button class="uk-button"><i class="uk-icon-cog"></i> <i class="uk-icon-caret-down"></i></button>
-	<div style="" class="uk-dropdown">
-		<ul class="uk-nav uk-nav-dropdown">
-			{subscribetopic_link}
-			{print_link}
-			{prevtopic_link}
-			{nexttopic_link}
-		</ul>
-	</div>
+  <button class="uk-button"><i class="uk-icon-cog"></i> <i class="uk-icon-caret-down"></i></button>
+  <div style="" class="uk-dropdown">
+    <ul class="uk-nav uk-nav-dropdown">
+      {subscribetopic_link}
+      {print_link}
+      {prevtopic_link}
+      {nexttopic_link}
+    </ul>
+  </div>
 </div>
 <!-- END topicmenu_link -->
 
 <!-- BEGIN forummenu_link -->
 <div class="uk-button-dropdown uk-text-left" data-uk-dropdown="{mode:'click'}">
-	<button class="uk-button"><i class="uk-icon-cog"></i> <i class="uk-icon-caret-down"></i></button>
-	<div style="" class="uk-dropdown">
-		<ul class="uk-nav uk-nav-dropdown">
-			{subscribeforum_link}
-		</ul>
-	</div>
+  <button class="uk-button"><i class="uk-icon-cog"></i> <i class="uk-icon-caret-down"></i></button>
+  <div style="" class="uk-dropdown">
+    <ul class="uk-nav uk-nav-dropdown">
+      {subscribeforum_link}
+    </ul>
+  </div>
 </div>
 <!-- END forummenu_link -->
 
 <!-- BEGIN categorymenu_link -->
 <div class="uk-button-dropdown uk-text-left" data-uk-dropdown="{mode:'click'}">
-	<button class="uk-button"><i class="uk-icon-cog"></i> <i class="uk-icon-caret-down"></i></button>
-	<div style="" class="uk-dropdown">
-		<ul class="uk-nav uk-nav-dropdown">
-		  {newposts_link}
-		  {markread_link}
-		</ul>
-	</div>
+  <button class="uk-button"><i class="uk-icon-cog"></i> <i class="uk-icon-caret-down"></i></button>
+  <div style="" class="uk-dropdown">
+    <ul class="uk-nav uk-nav-dropdown">
+      {newposts_link}
+      {markread_link}
+    </ul>
+  </div>
 </div>
 <!-- END categorymenu_link -->

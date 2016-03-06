@@ -65,7 +65,7 @@
 <!-- END topiclocked_icon -->
 
 <!-- BEGIN mood_icon -->
-	<div><img src="{moodicon}" title="{moodicontitle}" alt="{moodtitle}"{xhtml}></div>
+  <div><img src="{moodicon}" title="{moodicontitle}" alt="{moodtitle}"{xhtml}></div>
 <!-- END mood_icon -->
 
 <!-- BEGIN memberbadge_icon -->
@@ -78,17 +78,17 @@
 
 {# User Forum Rank #}
 <!-- BEGIN rankon_icon -->
-	<i class="uk-icon-square uk-text-success" title="{ranktitle}"></i>
+  <i class="uk-icon-square uk-text-success" title="{ranktitle}"></i>
 <!-- END rankon_icon -->
 
 <!-- BEGIN rankoff_icon -->
-	<i class="uk-icon-square" title="{ranktitle}"></i>
+  <i class="uk-icon-square" title="{ranktitle}"></i>
 <!-- END rankoff_icon -->
 
 <!-- BEGIN rankmod_icon -->
-	<i class="uk-icon-square uk-text-warning" title="{ranktitle}"></i>
+  <i class="uk-icon-square uk-text-warning" title="{ranktitle}"></i>
 <!-- END rankmod_icon -->
 
 <!-- BEGIN rankadmin_icon -->
-	<i class="uk-icon-square uk-text-danger" title="{ranktitle}"></i>
+  <i class="uk-icon-square uk-text-danger" title="{ranktitle}"></i>
 <!-- END rankadmin_icon -->

@@ -47,7 +47,7 @@
       <div class="uk-form-row"{hide_language_id}>
         <label class="uk-form-label">{lang_language_id} {help_language_id}</label>
         <div class="uk-form-controls">
-              {select_language_id}
+        	{select_language_id}
         </div>
       </div>
 {!if code}
