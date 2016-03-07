@@ -1,13 +1,12 @@
 {# begin {templatelocation} #}
 
-<h1 class="uk-h1">Information</h1>
-
-<p>Ver: {version}</p>
-
 <div class="uk-grid">
-  <div class="uk-width-medium-1-2">
+  <div class="uk-width-medium-2-5">
 
-    <h3><a href="{document_url}" target="_blank">{lang_document}</a></h3>
+    <h3>{lang_document}</h3>
+
+		<div class="uk-text-bold">Ver. {version}</div>
+
     <ul>
       <li><a href="{document_url}install.html" target="_blank">{lang_install}</a></li>
       <li><a href="{document_url}databox.html" target="_blank">{lang_configuration}</a></li>
@@ -18,19 +17,31 @@
       <li><a href="{document_url}input.html" target="_blank">{lang_input}</a></li>
     </ul>
 
+		<form class="uk-form" name='databox_conf_link' action='{site_admin_url}/configuration.php' method='POST'>
+		  <input type='hidden' name='conf_group' value='databox'>
+		</form>
+		<div class="uk-margin"><a class="uk-button" href='#' onclick="document.databox_conf_link.submit()">{lang_configuration}</a></div>
+
+    <dl class="uk-description-list-line">
+			<dt><a href="https://bitbucket.org/tsuchi/box/wiki/table%20change%20history">Bitbucket/box table change history</a></dt>
+			<dd>See table change history and documents by Tsuchi(Original developer)</dd>
+			<dt><a href="https://github.com/ivywe/geeklog-ivywe">GitHub/ivywe/geeklog-ivywe by Ivy(Customizer)</a></dt>
+			<dd>Download and use /extended/</dd>
+		<dl>
+
   </div>
 
-  <div class="uk-width-medium-1-2">
+  <div class="uk-width-medium-3-5">
 
     <div class="uk-panel uk-panel-box uk-margin">
       <h3 class="uk-h3">Usage</h3>
 			<h4 class="uk-h4">Public URL</h4>
-      <dl class="uk-description-list-horizontal">
+      <dl class="uk-description-list-line">
         <dt>List</dt><dd><a href="{site_url}/databox/list.php" data-uk-tooltip title="Display list!">/databox/list.php</a></dd>
         <dt>Category</dt><dd><a href="{site_url}/databox/category.php" data-uk-tooltip title="Display category!">/databox/category.php</a></dd>
 			</dl>
 			<h4 class="uk-h4">Admin URL</h4>
-      <dl class="uk-description-list-horizontal">
+      <dl class="uk-description-list-line">
         <dt>Data link</dt><dd><a href="{site_url}/admin/plugins/databox/data.php" data-uk-tooltip title="click code!">/admin/plugins/databox/data.php</a></dd>
         <dt>Group link</dt><dd><a href="{site_url}/admin/plugins/databox/group.php" data-uk-tooltip title="click group code!">/admin/plugins/databox/group.php</a></dd>
         <dt>Category link</dt><dd><a href="{site_url}/admin/plugins/databox/category.php" data-uk-tooltip title="click category code!">/admin/plugins/databox/category.php</a></dd>
@@ -41,12 +52,5 @@
 
   </div>
 </div>
-
-<form class="uk-form" name='databox_conf_link' action='{site_admin_url}/configuration.php' method='POST'>
-  <input type='hidden' name='conf_group' value='databox'>
-</form>
-
-<div class="uk-margin"><a class="uk-button" href='#' onclick="document.databox_conf_link.submit()">{lang_configuration}</a></div>
-
 
 {# end {templatelocation} #}

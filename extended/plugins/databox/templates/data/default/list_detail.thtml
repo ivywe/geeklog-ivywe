@@ -12,23 +12,36 @@
   <h1 class="uk-h1">{title}(<a href="#db_data_list_detail_{code}" data-uk-modal>Other theme variables</a>)</h1>
   {!if lang_id}<div class="uk-text-right">{lang_id}: {id}</div>{!endif}
 
-  <!-- Additional Items -->
   <fieldset class="uk-margin-large-top uk-width-1-1">
     <!-- <legend>{lang_additionfields}</legend> -->
     <table class="uk-table uk-table-condensed uk-table-striped">
       <thead>
         <tr>
-          <th style="width:20%;" class="uk-text-left">{lang_field}</th>
-          <th style="width:75%;" class="uk-text-left">
-            <dl class="uk-description-list-horizontal uk-margin-remove">
-              <dt class="uk-text-success">{lang_templatesetvar}</dt>
-              <dd>{lang_content}</dd>
-            </dl>
-          </th>
-          <th class="uk-text-left uk-text-nowrap" style="width:5%;">{lang_type}(<a href="{site_url}/admin/plugins/databox/docs/japanese/input_field.html">Document</a>)</th>
+          <th style="width:20%" class="uk-text-left">{lang_field}</th>
+	        <th class="uk-text-success" style="width:20%">{lang_templatesetvar}</th>
+	        <th style="width:55%">{lang_content}</th>
+          <th class="uk-text-left uk-text-nowrap" style="width:5%;"><a href="{site_url}/admin/plugins/databox/docs/japanese/input_field.html">Field type</a></th>
         </tr>
       </thead>
       <tbody>
+	      <tr>
+	        <th style="width:20%" class="uk-text-left">{lang_code}</th>
+	        <td class="uk-text-success" style="width:20%;">&#123;code&#125;</td>
+	        <td>{code}</td>
+					<td class="uk-text-success" style="width:5%">Basic</td>
+	      </tr>
+	      <tr>
+	        <th style="width:20%" class="uk-text-left">{lang_title}</th>
+	        <td class="uk-text-success" style="width:20%;">&#123;title&#125;</td>
+	        <td>{title}</td>
+					<td class="uk-text-success" style="width:5%">Basic</td>
+	      </tr>
+	      <tr>
+	        <th style="width:20%" class="uk-text-left">{lang_description}</th>
+	        <td class="uk-text-success" style="width:20%;">&#123;description&#125;</td>
+	        <td>{description}</td>
+					<td class="uk-text-success" style="width:5%">Basic</td>
+	      </tr>
         {additionfields}
       </tbody>
     </table>
@@ -47,113 +60,151 @@
 	  <fieldset class="uk-margin-large-top uk-width-1-1">
 	    <legend>{lang_basicfields}</legend>
 	    <table class="uk-table uk-table-condensed uk-table-striped">
+        <tr>
+          <th style="width:20%" class="uk-text-left">{lang_field}</th>
+	        <th class="uk-text-success" style="width:20%">{lang_templatesetvar}</th>
+	        <th style="width:55%">{lang_content}</th>
+          <th class="uk-text-left uk-text-nowrap" style="width:5%;"><a href="{site_url}/admin/plugins/databox/docs/japanese/input_field.html">Field type</a></th>
+        </tr>
 	      <tr>
-	        <th style="width:20%;" class="uk-text-right">{lang_field}</th>
-	        <th style="width:20%; color:green;">{lang_templatesetvar}(<a href="{site_url}/admin/plugins/databox/docs/japanese/templatesetvars.html">Document</a>)</th>
-	        <th style="width:60%;">{lang_content}</th>
-	      </tr>
-	      <tr>
-	        <th style="width:20%" class="uk-text-right">{lang_code}</th>
-	        <td class="uk-text-success" style="width:20%;">&#123;code&#125;</td>
-	        <td>{code}</td>
-	      </tr>
-	      <tr>
-	        <th style="width:20%" class="uk-text-right">{lang_title}</th>
-	        <td class="uk-text-success" style="width:20%;">&#123;title&#125;</td>
-	        <td>{title}</td>
-	      </tr>
-	      <tr>
-	        <th style="width:20%" class="uk-text-right">{lang_description}</th>
-	        <td class="uk-text-success" style="width:20%;">&#123;description&#125;</td>
-	        <td>{description}</td>
-	      </tr>
-	      <tr>
-	        <th style="width:20%" class="uk-text-right">{lang_hits}</th>
+	        <th style="width:20%" class="uk-text-left">{lang_hits}</th>
 	        <td class="uk-text-success" style="width:20%;">&#123;hits&#125;</td>
 	        <td>{hits}</td>
+					<td class="uk-text-success" style="width:5%">Basic</td>
 	      </tr>
 	      <tr>
-	        <th style="width:20%" class="uk-text-right">{lang_modified}</th>
+	        <th style="width:20%" class="uk-text-left">{lang_modified}</th>
 	        <td class="uk-text-success" style="width:20%;">&#123;modified&#125;</td>
 	        <td>{modified}</td>
+					<td class="uk-text-success" style="width:5%">Basic</td>
 	      </tr>
 	      <tr>
-	        <th style="width:20%" class="uk-text-right">{lang_modified}</th>
+	        <th style="width:20%" class="uk-text-left">{lang_modified}</th>
 	        <td class="uk-text-success" style="width:20%;">&#123;modified_shortdate&#125;</td>
 	        <td>{modified_shortdate}</td>
+					<td class="uk-text-success" style="width:5%">Basic</td>
 	      </tr>
 	      <tr>
-	        <th style="width:20%" class="uk-text-right">{lang_created}</th>
-	        <td class="uk-text-success" style="width:20%;">&#123;created&#125;&nbsp;&#123;created_shortdate&#125;</td>
-	        <td>{created}&nbsp;{created_shortdate}</td>
+	        <th style="width:20%" class="uk-text-left">{lang_created}</th>
+	        <td class="uk-text-success" style="width:20%;">&#123;created&#125;&nbsp;</td>
+	        <td>{created}</td>
+					<td class="uk-text-success" style="width:5%">Basic</td>
 	      </tr>
 	      <tr>
-	        <th style="width:20%" class="uk-text-right">{lang_released}</th>
-	        <td class="uk-text-success" style="width:20%;">&#123;released&#125;&nbsp;&#123;released_shortdate&#125;</td>
-	        <td>{released}&nbsp;{released_shortdate}</td>
+	        <th style="width:20%" class="uk-text-left">{lang_created_shortdate}</th>
+	        <td class="uk-text-success" style="width:20%;">&nbsp;&#123;created_shortdate&#125;</td>
+	        <td>{created_shortdate}</td>
+					<td class="uk-text-success" style="width:5%">Basic</td>
 	      </tr>
 	      <tr>
-	        <th style="width:20%" class="uk-text-right">{lang_expired}</th>
-	        <td class="uk-text-success" style="width:20%;">&#123;expired&#125;&nbsp;&#123;expired_shortdate&#125;</td>
-	        <td>{expired}&nbsp;{expired_shortdate}</td>
+	        <th style="width:20%" class="uk-text-left">{lang_released}</th>
+	        <td class="uk-text-success" style="width:20%;">&#123;released&#125;</td>
+	        <td>{released}</td>
+					<td class="uk-text-success" style="width:5%">Basic</td>
+	      </tr>
+	      <tr>
+	        <th style="width:20%" class="uk-text-left">{lang_released_shortdate}</th>
+	        <td class="uk-text-success" style="width:20%;">&#123;released_shortdate&#125;</td>
+	        <td>{released_shortdate}</td>
+					<td class="uk-text-success" style="width:5%">Basic</td>
+	      </tr>
+	      <tr>
+	        <th style="width:20%" class="uk-text-left">{lang_expired}</th>
+	        <td class="uk-text-success" style="width:20%;">&#123;expired&#125;</td>
+	        <td>{expired}</td>
+					<td class="uk-text-success" style="width:5%">Basic</td>
+	      </tr>
+	      <tr>
+	        <th style="width:20%" class="uk-text-left">{lang_expired_shortdate}</th>
+	        <td class="uk-text-success" style="width:20%;">&#123;expired_shortdate&#125;</td>
+	        <td>{expired_shortdate}</td>
+					<td class="uk-text-success" style="width:5%">Basic</td>
 	      </tr>
 
 	      <tr>
-	        <th style="width:20%" class="uk-text-right">{lang_owner}</th>
+	        <th style="width:20%" class="uk-text-left">{lang_owner}</th>
 	        <td class="uk-text-success" style="width:20%;">&#123;owner_name&#125;</td>
-	        <td>{owner_name}
-	          <input type="hidden" name="owner_id" value="{owner_id}"{xhtml}>
-	          ( UID: <span class="uk-text-success"> &#123;owner_id&#125;</span>: {owner_id} )</td>
+	        <td>{owner_name}</td>
+					<td class="uk-text-success" style="width:5%">Basic</td>
+	      </tr>
+	      <tr>
+	        <th style="width:20%" class="uk-text-left">{lang_owner_name}</th>
+	        <td class="uk-text-success" style="width:20%;">&#123;owner_name&#125;</td>
+	        <td>{owner_name}</td>
+					<td class="uk-text-success" style="width:5%">Basic</td>
+	      </tr>
+	      <tr>
+	        <th style="width:20%" class="uk-text-left">{lang_owner_id}</th>
+	        <td class="uk-text-success" style="width:20%;">&#123;owner_id&#125;</td>
+	        <td>{owner_id}</td>
+					<td class="uk-text-success" style="width:5%">Basic</td>
 	      </tr>
 
 	      <tr>
-	        <th style="width:20%" class="uk-text-right">{lang_udatetime}</th>
+	        <th style="width:20%" class="uk-text-left">{lang_udatetime}</th>
 	        <td class="uk-text-success" style="width:20%;">&#123;udatetime&#125;</td>
-	        <td>{udatetime}
-	          ( UID: <span  class="uk-text-success"> &#123;last_modify_uid&#125;</span>: {last_modify_uid}
-	        name:<span  class="uk-text-success"> &#123;last_modify_name&#125;</span>: {last_modify_name}  
-	        fullname:<span  class="uk-text-success"> &#123;last_modify_fullname&#125;</span>: {last_modify_fullname}  
-	            )
-	        </td>
+	        <td>{udatetime}</td>
+					<td class="uk-text-success" style="width:5%">Basic</td>
+	      <tr>
+	        <th style="width:20%" class="uk-text-left">{lang_last_modify_uid}</th>
+	        <td class="uk-text-success" style="width:20%;">&#123;last_modify_uid&#125;</td>
+	        <td>{last_modify_uid}</td>
+					<td class="uk-text-success" style="width:5%">Basic</td>
+	      </tr>
+	      <tr>
+	        <th style="width:20%" class="uk-text-left">{lang_last_modify_name}</th>
+	        <td class="uk-text-success" style="width:20%;">&#123;last_modify_name&#125;</td>
+	        <td>{last_modify_name}</td>
+					<td class="uk-text-success" style="width:5%">Basic</td>
+	      </tr>
+	      <tr>
+	        <th style="width:20%" class="uk-text-left">{lang_last_modify_fullname}</th>
+	        <td class="uk-text-success" style="width:20%;">&#123;last_modify_fullname&#125;</td>
+	        <td>{last_modify_fullname}</td>
+					<td class="uk-text-success" style="width:5%">Basic</td>
 	      </tr>
 
 	      <tr>
-	        <th style="width:20%" class="uk-text-right">Maps Plugin mkid</th>
-	        <td class="uk-text-success" style="width:20%;">&#123;mkid&#125;&#123;marker&#125;</td>
-	        <td>{mkid} {marker}</td>
-	      </tr>
-	    </table>
-
-	    <table class="uk-table uk-table-condensed uk-table-striped">
-	      <tr>
-	        <th style="width:20%;" class="uk-text-right">{lang_field} PATH</th>
-	        <th style="width:20%; color:green;">{lang_templatesetvar}</th>
-	        <th style="width:60%;">{lang_content}</th>
+	        <th style="width:20%" class="uk-text-left">Maps Plugin mkid</th>
+	        <td class="uk-text-success" style="width:20%;">&#123;mkid&#125;</td>
+	        <td>{mkid}</td>
+					<td class="uk-text-success" style="width:5%">Basic</td>
 	      </tr>
 	      <tr>
-	        <th style="width:20%" class="uk-text-right">{lang_imgfile_frd} URL</th>
+	        <th style="width:20%" class="uk-text-left">Maps Plugin mkid</th>
+	        <td class="uk-text-success" style="width:20%;">&#123;marker&#125;</td>
+	        <td>{marker}</td>
+					<td class="uk-text-success" style="width:5%">Basic</td>
+	      </tr>
+	      <tr>
+	        <th style="width:20%" class="uk-text-left">{lang_imgfile_frd} URL</th>
 	        <td class="uk-text-success" style="width:20%;">&#123;imgfile_frd&#125;</td>
 	        <td>{imgfile_frd}</td>
+					<td class="uk-text-success" style="width:5%">Basic</td>
 	      </tr>
 	      <tr>
-	        <th style="width:20%" class="uk-text-right">{lang_imgfile_frd} URL</th>
+	        <th style="width:20%" class="uk-text-left">{lang_imgfile_frd} URL</th>
 	        <td class="uk-text-success" style="width:20%;">&#123;imgfile_frd&#125;</td>
 	        <td>{imgfile_frd}</td>
+					<td class="uk-text-success" style="width:5%">Basic</td>
 	      </tr>
 	      <tr>
-	        <th style="width:20%" class="uk-text-right">{lang_imgfile_frd} PATH</th>
+	        <th style="width:20%" class="uk-text-left">{lang_imgfile_frd} PATH</th>
 	        <td class="uk-text-success" style="width:20%;">&#123;data_img_url&#125;</td>
 	        <td>{data_img_url}</td>
+					<td class="uk-text-success" style="width:5%">Basic</td>
 	      </tr>
 	      <tr>
-	        <th style="width:20%" class="uk-text-right">{lang_imgfile_thumb_frd} URL</th>
+	        <th style="width:20%" class="uk-text-left">{lang_imgfile_thumb_frd} URL</th>
 	        <td class="uk-text-success" style="width:20%;">&#123;imgfile_thumb_frd&#125;</td>
 	        <td>{imgfile_thumb_frd}</td>
+					<td class="uk-text-success" style="width:5%">Basic</td>
 	      </tr>
 	      <tr>
-	        <th style="width:20%" class="uk-text-right">{lang_imgfile_thumb_frd}</th>
+	        <th style="width:20%" class="uk-text-left">{lang_imgfile_thumb_frd}</th>
 	        <td class="uk-text-success" style="width:20%;">&#123;data_thumb_img_url&#125;</td>
 	        <td>{data_thumb_img_url}</td>
+					<td class="uk-text-success" style="width:5%">Basic</td>
 	      </tr>
 	    </table>
 	  </fieldset>
@@ -163,19 +214,19 @@
 	    <legend>{lang_category}</legend>
 	    <table class="uk-table uk-table-condensed uk-table-striped">
 	      <tr>
-	        <th style="width:20%;" class="uk-text-right">{lang_field}</th>
+	        <th style="width:20%;" class="uk-text-left">{lang_field}</th>
 	        <th style="width:20%; color:green;">{lang_templatesetvar}</th>
 	        <th style="width:60%;">{lang_content}</th>
 	      </tr>
 	      <!--  カテゴリ名称列挙 -->
 	      <tr>
-	        <th style="width:20%" class="uk-text-right">{lang_category}</th>
+	        <th style="width:20%" class="uk-text-left">{lang_category}</th>
 	        <td class="uk-text-success" style="width:20%;">&#123;categories&#125;<br{xhtml}></td>
 	        <td>{categories}</td>
 	      </tr>
 	      <!--  カテゴリ名称列挙リンク付 -->
 	      <tr>
-	        <th style="width:20%" class="uk-text-right">
+	        <th style="width:20%" class="uk-text-left">
 	          {lang_category} {lang_withlink}
 	        </th>
 	        <td class="uk-text-success" style="width:20%;">
@@ -184,14 +235,14 @@
 	        <td>{categorieslink} </td>
 	       </tr>
 	      <tr>
-	        <th style="width:20%" class="uk-text-right">CODE形式</th>
+	        <th style="width:20%" class="uk-text-left">CODE形式</th>
 	        <td class="uk-text-success" style="width:20%;">
 	        &#123;categorieslinkcode&#125
 	        </td>
 	        <td>{categorieslinkcode}</td>
 	        </tr>
 	        <tr>
-	        <th style="width:20%" class="uk-text-right">ID形式</th>
+	        <th style="width:20%" class="uk-text-left">ID形式</th>
 	        <td class="uk-text-success" style="width:20%;">
 	        &#123;categorieslinkid&#125;
 	        </td>
@@ -209,28 +260,28 @@
       <legend>{lang_groupbygroup} {lang_category} {lang_byusingcode}</legend>
       <table class="uk-table uk-table-condensed uk-table-striped">
         <tr>
-        <th style="width:30%;" class="uk-text-right uk-text-nowrap">{lang_group} {lang_code}</th>
+        <th style="width:30%;" class="uk-text-left uk-text-nowrap">{lang_group} {lang_code}</th>
         <th style="width:30%; color:green;" class="uk-text-left uk-text-nowrap">{lang_templatesetvar}</th>
         <th class="uk-text-left">{lang_content}</th>
         </tr>
 
         <!-- city -->
         <tr>
-        <th style="width:30%" class="uk-text-right">city</th>
+        <th style="width:30%" class="uk-text-left">city</th>
         <td class="uk-text-success" style="width:30%;">
         &#123;group_city&#125;
         </td>
         <td>{group_city} </td>
         </tr>
         <tr>
-        <th style="width:30%" class="uk-text-right">　  </th>
+        <th style="width:30%" class="uk-text-left">　  </th>
         <td class="uk-text-success" style="width:30%;">
         &#123;group_city_code&#125
         </td>
         <td>{group_city_code} </td>
         </tr>
         <tr>
-        <th style="width:30%" class="uk-text-right">　  </th>
+        <th style="width:30%" class="uk-text-left">　  </th>
         <td class="uk-text-success" style="width:30%;">
         &#123;group_city_pipeline&#125
         </td>
@@ -238,21 +289,21 @@
         </tr>
         <!-- country -->
         <tr>
-        <th style="width:30%" class="uk-text-right">country</th>
+        <th style="width:30%" class="uk-text-left">country</th>
         <td class="uk-text-success" style="width:30%;">
         &#123;group_country&#125;
         </td>
         <td>{group_country} </td>
         </tr>
         <tr>
-        <th style="width:30%" class="uk-text-right">　  </th>
+        <th style="width:30%" class="uk-text-left">　  </th>
         <td class="uk-text-success" style="width:30%;">
         &#123;group_country_code&#125
         </td>
         <td>{group_country_code} </td>
         </tr>
         <tr>
-        <th style="width:30%" class="uk-text-right">　  </th>
+        <th style="width:30%" class="uk-text-left">　  </th>
         <td class="uk-text-success" style="width:30%;">
         &#123;group_country_pipeline&#125
         </td>
@@ -260,21 +311,21 @@
         </tr>
         <!-- team -->
         <tr>
-        <th style="width:30%" class="uk-text-right">team</th>
+        <th style="width:30%" class="uk-text-left">team</th>
         <td class="uk-text-success" style="width:30%;">
         &#123;group_team&#125;
         </td>
         <td>{group_team} </td>
         </tr>
         <tr>
-        <th style="width:30%" class="uk-text-right">　  </th>
+        <th style="width:30%" class="uk-text-left">　  </th>
         <td class="uk-text-success" style="width:30%;">
         &#123;group_team_code&#125
         </td>
         <td>{group_team_code} </td>
         </tr>
         <tr>
-        <th style="width:30%" class="uk-text-right">　  </th>
+        <th style="width:30%" class="uk-text-left">　  </th>
         <td class="uk-text-success" style="width:30%;">
         &#123;group_team_pipeline&#125
         </td>
@@ -289,21 +340,21 @@
       <legend>{lang_groupbygroup} {lang_category} {lang_withlink} {lang_byusingcode} </legend>
       <table class="uk-table uk-table-condensed uk-table-striped">
         <tr>
-          <th style="width:30%;" class="uk-text-right">{lang_group} {lang_code}</th>
+          <th style="width:30%;" class="uk-text-left">{lang_group} {lang_code}</th>
           <th style="width:30%; color:green;" class="uk-text-left">{lang_templatesetvar}</th>
           <th class="uk-text-left">{lang_content}</th>
         </tr>
       
         <!-- city -->
         <tr>
-              <th style="width:30%" class="uk-text-right">city</th>
+              <th style="width:30%" class="uk-text-left">city</th>
         <td class="uk-text-success" style="width:30%;">
         &#123;grouplink_city&#125;
         </td>
         <td>{grouplink_city} </td>
             </tr>
         <tr>
-        <th style="width:30%" class="uk-text-right">　  </th>
+        <th style="width:30%" class="uk-text-left">　  </th>
         <td class="uk-text-success" style="width:30%;">
         &#123;grouplink_city_code&#125
         </td>
@@ -311,14 +362,14 @@
         </tr>
         <!-- country -->
         <tr>
-              <th style="width:30%" class="uk-text-right">country</th>
+              <th style="width:30%" class="uk-text-left">country</th>
         <td class="uk-text-success" style="width:30%;">
         &#123;grouplink_country&#125;
         </td>
         <td>{grouplink_country} </td>
             </tr>
         <tr>
-        <th style="width:30%" class="uk-text-right">　  </th>
+        <th style="width:30%" class="uk-text-left">　  </th>
         <td class="uk-text-success" style="width:30%;">
         &#123;grouplink_country_code&#125
         </td>
@@ -326,14 +377,14 @@
         </tr>
         <!-- team -->
         <tr>
-        <th style="width:30%" class="uk-text-right">team</th>
+        <th style="width:30%" class="uk-text-left">team</th>
         <td class="uk-text-success" style="width:30%;">
         &#123;grouplink_team&#125;
         </td>
         <td>{grouplink_team} </td>
             </tr>
         <tr>
-        <th style="width:30%" class="uk-text-right">　  </th>
+        <th style="width:30%" class="uk-text-left">　  </th>
         <td class="uk-text-success" style="width:30%;">
         &#123;grouplink_team_code&#125
         </td>

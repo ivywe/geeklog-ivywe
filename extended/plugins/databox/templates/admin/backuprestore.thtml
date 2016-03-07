@@ -1,8 +1,6 @@
 {# begin {templatelocation} #}
 
-<h1 class="uk-h1">{about_thispage}(<a href="{document_url}docs/japanese/input_backuprestore.html">Document</a>)</h1>
-
-<div class="uk-form">
+<div class="uk-form" style="clear:both">
 
 <fieldset class="uk-margin">
 <legend>(1){config}</legend>

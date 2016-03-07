@@ -4,7 +4,7 @@
 
 <form class="uk-form uk-form-horizontal" name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
   <fieldset class="uk-width-1-1">
-    <legend>Attribute (addition field)</legend>
+    <legend>Addition Fields</legend>
 
     <!-- id -->
     <div class="uk-form-row">
