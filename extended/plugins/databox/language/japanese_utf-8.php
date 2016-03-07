@@ -90,7 +90,7 @@ $LANG_DATABOX_ADMIN['piname'] = 'DataBox';
 $LANG_DATABOX_ADMIN['admin_list'] = 'DataBox';
 
 $LANG_DATABOX_ADMIN['edit'] = '編集';
-$LANG_DATABOX_ADMIN['ref'] = '参考';
+$LANG_DATABOX_ADMIN['ref'] = '標準テーマで確認する';
 $LANG_DATABOX_ADMIN['view'] = '表示確認';
 $LANG_DATABOX_ADMIN['add'] = '追加';
 
@@ -416,8 +416,8 @@ $LANG_DATABOX_ADMIN['input_type'] = '入力タイプ';
 
 $LANG_DATABOX_ADMIN['orderno'] = '表示位置';
 
-$LANG_DATABOX_ADMIN['field'] = 'フィールド';
-$LANG_DATABOX_ADMIN['fields'] = 'フィールド';
+$LANG_DATABOX_ADMIN['field'] = 'アトリビュート';
+$LANG_DATABOX_ADMIN['fields'] = 'アトリビュート';
 $LANG_DATABOX_ADMIN['content'] = 'コンテンツ';
 
 $LANG_DATABOX_ADMIN['byusingid'] = 'IDを使用する';
@@ -557,7 +557,7 @@ $LANG_DATABOX_ADMIN['err_writable'] = ' 書込可能にしてください';
 $LANG_DATABOX_ADMIN['err_size'] = 'サイズが不正です';//@@@@@
 $LANG_DATABOX_ADMIN['err_type'] = 'タイプが不正です';//@@@@@
 
-$LANG_DATABOX_ADMIN['err_field_w'] = '当フィールドはすでに登録されています';
+$LANG_DATABOX_ADMIN['err_field_w'] = '当アトリビュートはすでに登録されています';
 $LANG_DATABOX_ADMIN['err_tag_w'] = '当タグはすでに登録されています';
 
 $LANG_DATABOX_ADMIN['err_csvheader_w'] = '当CSVヘッダーはすでに登録されています';

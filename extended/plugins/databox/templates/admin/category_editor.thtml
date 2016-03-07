@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<h1 class="uk-h1">{about_thispage}(<a href="{document_url}docs/japanese/input_category.html">?</a>)</h1>
+<h1 class="uk-h1">{about_thispage}(<a href="{document_url}docs/japanese/input_category.html">Document</a>)</h1>
 
 <form class="uk-form uk-form-horizontal" name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
 

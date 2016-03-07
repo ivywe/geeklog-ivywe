@@ -9,36 +9,36 @@
     <a class="uk-modal-close uk-close"></a>
     <div class="uk-text-break"><span class="uk-text-bold">theme variables:</span> {templatelocation}</div>
     <ul class="uk-list uk-list-line">
-			<li><span style="color:green">&#123;data_title&#125;</span>{data_title}</li>
-			<li><span style="color:green">&#123;data_link&#125;</span>{data_link}</li>
-			<li><span style="color:green">&#123;data_id&#125;</span>{data_id}</li>
-			<li><span style="color:green">&#123;data_code&#125;</span>{data_code}</li>
-			<li><span style="color:green">&#123;data_description&#125;</span>{data_description}</li>
-			<li><span style="color:green">&#123;data_datefield&#125;</span>{data_datefield}</li>
-			<li><span style="color:green">&#123;data_datefield_shortdate&#125;</span>{data_datefield_shortdate}</li>
-			<li><span style="color:green">&#123;data_released&#125;</span>{data_released}</li>
-			<li><span style="color:green">&#123;data_released_shortdate&#125;</span>{data_released_shortdate}</li>
-			<li><span style="color:green">&#123;data_expired&#125;</span>{data_expired}</li>
-			<li><span style="color:green">&#123;data_expired_shortdate&#125;</span>{data_expired_shortdate}</li>
-			<li><span style="color:green">&#123;new_img&#125;</span>{new_img}</li>
-			<li><span style="color:green">&#123;data_hits&#125;</span>{data_hits}</li>
-			<li><span style="color:green">&#123;data_remaingdays&#125;</span>{data_remaingdays}</li>
-			<li><span style="color:green">&#123;data_value&#125;</span>{data_value}</li>
-			<li><span style="color:green">&#123;data_edit&#125;</span>{data_edit}</li>
-			<li>Addition field sample: Display if set.</li>
-			<li><span style="color:green">&#123;zipcode&#125;</span>{zipcode}</li>
-			<li><span style="color:green">&#123;tel&#125;</span>{tel}</li>
-			<li>Group sample: Display if set.</li>
-			<li><span style="color:green">&#123;group_city&#125;</span>{group_city}</li>
-			<li><span style="color:green">&#123;group_city_code&#125;</span>{group_city_code}</li>
-			<li><span style="color:green">&#123;grouplink_city&#125;</span>{grouplink_city}</li>
-			<li><span style="color:green">&#123;grouplink_city_code&#125;</span>{grouplink_city_code}</li>
-			<li><span style="color:green">&#123;group_1&#125;</span>{group_1}</li>
-			<li><span style="color:green">&#123;group_1_code&#125;</span>{group_1_code}</li>
-			<li><span style="color:green">&#123;grouplink_1&#125;</span>{grouplink_1}</li>
-			<li><span style="color:green">&#123;grouplink_1_code&#125;</span>{grouplink_1_code}</li>
-		</ul>
-	</div>
+      <li><span style="color:green">&#123;data_title&#125;</span>{data_title}</li>
+      <li><span style="color:green">&#123;data_link&#125;</span>{data_link}</li>
+      <li><span style="color:green">&#123;data_id&#125;</span>{data_id}</li>
+      <li><span style="color:green">&#123;data_code&#125;</span>{data_code}</li>
+      <li><span style="color:green">&#123;data_description&#125;</span>{data_description}</li>
+      <li><span style="color:green">&#123;data_datefield&#125;</span>{data_datefield}</li>
+      <li><span style="color:green">&#123;data_datefield_shortdate&#125;</span>{data_datefield_shortdate}</li>
+      <li><span style="color:green">&#123;data_released&#125;</span>{data_released}</li>
+      <li><span style="color:green">&#123;data_released_shortdate&#125;</span>{data_released_shortdate}</li>
+      <li><span style="color:green">&#123;data_expired&#125;</span>{data_expired}</li>
+      <li><span style="color:green">&#123;data_expired_shortdate&#125;</span>{data_expired_shortdate}</li>
+      <li><span style="color:green">&#123;new_img&#125;</span>{new_img}</li>
+      <li><span style="color:green">&#123;data_hits&#125;</span>{data_hits}</li>
+      <li><span style="color:green">&#123;data_remaingdays&#125;</span>{data_remaingdays}</li>
+      <li><span style="color:green">&#123;data_value&#125;</span>{data_value}</li>
+      <li><span style="color:green">&#123;data_edit&#125;</span>{data_edit}</li>
+      <li>Addition field sample: Display if set.</li>
+      <li><span style="color:green">&#123;zipcode&#125;</span>{zipcode}</li>
+      <li><span style="color:green">&#123;tel&#125;</span>{tel}</li>
+      <li>Group sample: Display if set.</li>
+      <li><span style="color:green">&#123;group_city&#125;</span>{group_city}</li>
+      <li><span style="color:green">&#123;group_city_code&#125;</span>{group_city_code}</li>
+      <li><span style="color:green">&#123;grouplink_city&#125;</span>{grouplink_city}</li>
+      <li><span style="color:green">&#123;grouplink_city_code&#125;</span>{grouplink_city_code}</li>
+      <li><span style="color:green">&#123;group_1&#125;</span>{group_1}</li>
+      <li><span style="color:green">&#123;group_1_code&#125;</span>{group_1_code}</li>
+      <li><span style="color:green">&#123;grouplink_1&#125;</span>{grouplink_1}</li>
+      <li><span style="color:green">&#123;grouplink_1_code&#125;</span>{grouplink_1_code}</li>
+    </ul>
+  </div>
 </div>
 
 {# end {templatelocation} #}
