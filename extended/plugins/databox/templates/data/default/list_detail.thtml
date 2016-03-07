@@ -64,7 +64,7 @@
 
     	<div class="uk-overflow-container">
 
-		    <table class="uk-table uk-table-condensed uk-table-striped uk-text-small">
+		    <table class="uk-table uk-table-condensed uk-table-striped uk-text-small" style="width:100%; background:#ffffff">
 	        <tr>
 	          <th style="width:20%" class="uk-text-left uk-text-nowrap">{lang_field}</th>
 		        <th class="uk-text-success" style="width:20%">{lang_templatesetvar}</th>
