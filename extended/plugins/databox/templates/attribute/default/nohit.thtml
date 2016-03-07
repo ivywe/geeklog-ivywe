@@ -3,13 +3,15 @@
 <div>
 
   <ul class="uk-breadcrumb">
-  <li><a href="{site_url}/">{home}</a></li>
-  <li>{attribute_top} {field_top}</li>
+	  <li><a href="{site_url}/">{home}</a></li>
+	  <li>{attribute_top}</li>
+	  <li>{field_top}</li>
   </ul>
 
-  <h1 class="uk-h1">{field_name}:{fieldvalue}(<a href="#db_attribute_nohit" data-uk-modal>Theme variables</a>)</h1>
+  <h1 class="uk-h1">{field_top}{field_name}{fieldvalue}</h1>
 
-  <p>{field_templatesetvar} {field_description}</p>
+	<a href="#db_attribute_nohit" class="uk-button uk-button-small" data-uk-modal>Theme variables</a>
+
   <p>{lang_nohit}</p>
 
 </div>

@@ -7,7 +7,10 @@
     <li>{category_top}</li>
   </ul>
 
-  <h1 class="uk-h1">{category_name}(<a href="#db_category_nohit_{category_code}" data-uk-modal>Theme variables</a>)</h1>
+  <h1 class="uk-h1">{category_name}</h1>
+
+		<a href="#db_category_nohit_{category_code}" class="uk-button uk-button-small" data-uk-modal>Theme variables</a>
+
   <p>{category_description}</p>
   <p>{lang_nohit}</p>
 

@@ -7,7 +7,9 @@
     <li><a href="{referer}">{lang_referer}</a></li>
   </ul>
 
-  <h1 class="uk-h1">Search(<a href="#db_search_list_detail" data-uk-modal>Theme variables</a>)</h1>
+  <h1 class="uk-h1">Search</h1>
+
+	<a href="#db_search_list_detail" class="uk-button uk-button-small" data-uk-modal>Theme variables</a>
 
   <p>{msg}</p>
 

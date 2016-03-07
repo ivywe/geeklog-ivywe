@@ -7,7 +7,10 @@
     <li><span>{lang_category_list_h2}</span></li>
   </ul>
 
-  <h1 class="uk-h1">{lang_category_list_h2}(<a href="#db_category_list_{category_code}" data-uk-modal>Theme variables</a>)</h1>
+  <h1 class="uk-h1">{lang_category_list_h2}</h1>
+
+	<a href="#db_category_list_{category_code}" class="uk-button uk-button-small" data-uk-modal>Theme variables</a>
+
   <p>{msg}</p>
 
   {nav_var}

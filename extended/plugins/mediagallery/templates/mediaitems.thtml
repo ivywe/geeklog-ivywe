@@ -21,7 +21,7 @@ function doUnCheckAll_mediaitems() {
 }
 // End script --></script>
 
-<h2>{album_title} &#91;medialist:{album_id}&#93;</h2>
+<div class="uk-text-success">&#91;medialist:{album_id}&#93;</div>
 
 <table class="uk-table uk-table-condensed uk-table-striped uk-width-1-1" style="background:#ffffff;">
   <tr>
@@ -46,8 +46,9 @@ function doUnCheckAll_mediaitems() {
       <input type="hidden" name="mid[]" value="{mid}"{xhtml}>
     </td>
     <td style="vertical-align:middle;text-align:center;">
-      {media_zoom}<img src="{u_thumbnail}" height="{height}" width="{width}" alt=""{xhtml}></a><br{xhtml}>
-      &#91;media:{media_id}<br{xhtml}> src:(tn/disp/orig) class...&#93;<br{xhtml}><a href="{media_edit}">{lang_edit}</a>
+      {media_zoom}<img src="{u_thumbnail}" height="{height}" width="{width}" alt=""{xhtml}></a>
+      <div class="uk-text-success">&#91;media:{media_id}<br{xhtml}> src:(tn/disp/orig) class:(class)&#93;</div>
+			<a href="{media_edit}">{lang_edit}</a>
     </td>
     <td style="vertical-align:middle;text-align:center;">
       {watermarked}
