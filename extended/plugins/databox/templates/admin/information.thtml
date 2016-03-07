@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<h2 class="uk-h2">Information</h2>
+<h1 class="uk-h1">Information</h1>
 
 <p>Ver: {version}</p>
 

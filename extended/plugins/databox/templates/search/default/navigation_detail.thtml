@@ -1,14 +1,16 @@
 {# begin {templatelocation} #}
 
+<div>
+
+  <div class="uk-text-right uk-text-muted uk-margin-remove">current order:{cur_order}</div>
   <ul class="uk-subnav uk-subnav-line uk-flex-center uk-margin-top uk-margin-remove-bottom">
     <li class="uk-button uk-button-small">{order_date}</li><li class="uk-button uk-button-small">{order_orderno}</li><li class="uk-button uk-button-small">{order_code}</li><li class="uk-button uk-button-small">{order_title}</li><li class="uk-button uk-button-small">{order_description}</li><li class="uk-button uk-button-small">{order_id}</li><li class="uk-button uk-button-small">{order_released}</li><li class="uk-button uk-button-small">{order_random}</li>
     <!-- example: sort by attribute -->
     {!if order_tel}<li>{order_tel}</li>{!endif}{!if order_zipcode}<li>{order_zipcode}</li>{!endif}
   </ul>
-  <div class="uk-text-right uk-text-muted uk-margin-remove">current order:{cur_order}</div>
 
-<!-- Maps Link mkids selectedMarkers-->
-{mkids}{selectedMarkers}
+	<!-- Maps Link mkids selectedMarkers-->
+	{mkids}{selectedMarkers}
 
   <div {pagenavinone}>
     {page_navigation}
@@ -23,5 +25,7 @@
     <div class="uk-float-right">{lang_view} [{lin}] / {cnt} </div>
   </div>
   <div style="clear:both"></div>
+
+</div>
 
 {# end {templatelocation} #}

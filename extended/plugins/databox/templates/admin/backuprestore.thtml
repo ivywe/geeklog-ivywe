@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<h2 class="uk-h2">{about_thispage}(<a href="{document_url}docs/japanese/input_backuprestore.html">?</a>)</h2>
+<h1 class="uk-h1">{about_thispage}(<a href="{document_url}docs/japanese/input_backuprestore.html">?</a>)</h1>
 
 <div class="uk-form">
 

@@ -3,7 +3,7 @@
 <div class="uk-form <?php if(SEC_inGroup('Root')){ ?>gl-edit<?php } ?>">
 {!!if {edit}||{draft} !!}<div class="uk-float-right">{edit} {draft}</div>{!endif}
 
-  <h1 class="uk-h1">{title}(<a href="#db_data_list_detail_{code}" data-uk-modal>example</a>)</h1>
+  <h1 class="uk-h1">{title}(<a href="#db_data_list_detail_{code}" data-uk-modal>Optional theme variables</a>)</h1>
   {!if lang_id}<div class="uk-text-right">{lang_id}: {id}</div>{!endif}
 
   <!-- Basic Items -->

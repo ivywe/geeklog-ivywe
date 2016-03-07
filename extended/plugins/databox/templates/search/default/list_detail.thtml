@@ -7,7 +7,7 @@
     <li><a href="{referer}">{lang_referer}</li>
   </ul>
 
-  <h1>Search(<a href="#db_search_list_detail" data-uk-modal>?</a>)</h1>
+  <h1 class="uk-h1">Search(<a href="#db_search_list_detail" data-uk-modal>?</a>)</h1>
 
   <p>{msg}</p>
 
@@ -25,7 +25,7 @@
     <div class="uk-text-break">
       <span class="uk-text-bold">theme variables(<a href="{site_url}/admin/plugins/databox/docs/japanese/templatesetvars.html">?</a>):</span> {templatelocation}
     </div>
-    <ul class="uk-list">
+    <ul class="uk-list uk-list-line">
       <li><span style="color:green"> &#123;languageid&#125;</span>:{languageid}</li>
       <li><span style="color:green"> &#123;_languageid&#125;</span>:{_languageid}</li>
       <li><span style="color:green"> &#123;language&#125;</span>:{language}</li>

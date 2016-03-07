@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<h3 class="uk-h3">{actionname}</h3>
+<h1 class="uk-h1">{actionname}</h1>
 
 <form class="uk-form uk-form-stacked" action="{site_admin_url}/plugins/databox/data.php" method="post">
 
