@@ -9,7 +9,7 @@
         <a href="{nextmonth}" title="{lang_nextmonth}" class="nextmonth">翌月</a>|
         {title_1}|{title_2}<br{xhtml}>
 /mobile_only-->
-  <table style="text-align:center" class="mycaljp2" summary="Site Calendar">
+  <table style="text-align:center" class="mycaljp2">
 <!--not_for_mobile-->
     <tr class="title">
       <td colspan="1" onclick="loadHTMLFile('{testprevmonth}')" onmouseover="this.style.cursor='pointer';">

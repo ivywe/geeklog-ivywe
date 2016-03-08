@@ -262,6 +262,7 @@
     <!-- 以下は参考例です 登録されていない場合表示されません -->
 
     <!-- グループ別カテゴリ　グループコードを使用する -->
+    <h3>Group: use group code</h3> 
     <fieldset class="uk-width-1-1">
       <legend>{lang_groupbygroup} {lang_category} {lang_byusingcode}</legend>
       <table class="uk-table uk-table-condensed uk-table-striped uk-text-small">
@@ -342,6 +343,7 @@
 
 
     <!-- グループ別カテゴリ列挙リンク付き　グループコードを使用する -->
+    <h3>Group link: use group code</h3> 
     <fieldset class="uk-width-1-1">
       <legend>{lang_groupbygroup} {lang_category} {lang_withlink} {lang_byusingcode} </legend>
       <table class="uk-table uk-table-condensed uk-table-striped uk-text-small">
@@ -397,6 +399,72 @@
         <td>{grouplink_team_code}</td>
         </tr>
 
+      </table>
+    </fieldset>
+
+    <!-- グループ別カテゴリ　グループIDを使用する(コードを利用しない)  -->
+    <h3>Group: use group id</h3> 
+    <fieldset class="uk-width-1-1">
+      <legend>{lang_groupbygroup} {lang_category} {lang_byusingcode}</legend>
+      <table class="uk-table uk-table-condensed uk-table-striped uk-text-small">
+        <tr>
+	        <th style="width:30%;" class="uk-text-left uk-text-nowrap">{lang_group} {lang_code}</th>
+	        <th style="width:30%; color:green;" class="uk-text-left uk-text-nowrap">{lang_templatesetvar}</th>
+	        <th class="uk-text-left">{lang_content}</th>
+        </tr>
+
+        <!-- 1 -->
+        <tr>
+	        <th style="width:30%" class="uk-text-left">1</th>
+	        <td class="uk-text-success" style="width:30%;">
+	        &#123;group_1&#125;
+	        </td>
+	        <td>{group_1} </td>
+        </tr>
+        <tr>
+        	<th style="width:30%" class="uk-text-left">　  </th>
+	        <td class="uk-text-success" style="width:30%;">
+	        &#123;group_1_code&#125
+	        </td>
+	        <td>{group_1_code} </td>
+        </tr>
+        <tr>
+	        <th style="width:30%" class="uk-text-left">　  </th>
+	        <td class="uk-text-success" style="width:30%;">
+	        &#123;group_1_pipeline&#125
+	        </td>
+	        <td>{group_1_pipeline} </td>
+        </tr>
+      </table>
+    </fieldset>
+
+
+    <!-- グループ別カテゴリ列挙リンク付き　グループIDを使用する(コードを利用しない) -->
+    <h3>Group with link: use group id</h3> 
+    <fieldset class="uk-width-1-1">
+      <legend>{lang_groupbygroup} {lang_category} {lang_withlink} {lang_byusingcode} </legend>
+      <table class="uk-table uk-table-condensed uk-table-striped uk-text-small">
+        <tr>
+          <th style="width:30%;" class="uk-text-left">{lang_group} {lang_code}</th>
+          <th style="width:30%; color:green;" class="uk-text-left">{lang_templatesetvar}</th>
+          <th class="uk-text-left">{lang_content}</th>
+        </tr>
+      
+        <!-- 1 -->
+        <tr>
+        	<th style="width:30%" class="uk-text-left">1</th>
+	        <td class="uk-text-success" style="width:30%;">
+	        &#123;grouplink_1&#125;
+        	</td>
+        	<td>{grouplink_1} </td>
+        </tr>
+        <tr>
+        	<th style="width:30%" class="uk-text-left">　  </th>
+	        <td class="uk-text-success" style="width:30%;">
+	        &#123;grouplink_1_code&#125
+	        </td>
+        	<td>{grouplink_1_code} </td>
+        </tr>
       </table>
     </fieldset>
 
