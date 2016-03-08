@@ -71,16 +71,6 @@
 
     </fieldset>
 
-    <!-- category -->
-    <fieldset class="uk-width-1-1 uk-margin-large-top">
-      <div class="uk-form-row">
-        <label class="uk-form-label">{lang_category} {help_category}</label>
-        <div class="uk-form-controls">
-          {checklist_category}
-        </div>
-      </div>
-    </fieldset>
-
     <!-- Addition fields -->
     <fieldset class="uk-width-1-1 uk-margin-large-top">
       {additionfields}
