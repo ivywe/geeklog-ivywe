@@ -5585,10 +5585,10 @@ function DATABOX_count_each_afield(
     //下書はのぞく
     $sql .= " t1.draft_flag=0".LB;
     //アクセス権のないデータ はのぞく
-    if  (strtoupper($permission)=="IGNORE"){
-    }else{
-        $sql .= COM_getPermSql('AND').LB;
-    }
+//    if  (strtoupper($permission)=="IGNORE"){
+//    }else{
+//        $sql .= COM_getPermSql('AND').LB;
+//    }
     //公開日以前のデータはのぞく
     $sql .= " AND (released <= NOW())".LB;
     //公開終了日を過ぎたデータはのぞく
