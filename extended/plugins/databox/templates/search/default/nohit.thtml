@@ -9,11 +9,11 @@
 
   <h1 class="uk-h1">Search</h1>
 
-	<a href="#db_category_nohit_{category_code}" class="uk-button uk-button-small" data-uk-modal>Theme variables</a>
+  <a href="#db_category_nohit_{category_code}" class="uk-button uk-button-small" data-uk-modal>Theme variables</a>
 
   <p>{msg}</p>
 
-	{arg_var}
+  {arg_var}
 
   <p>{lang_nohit}</p>
 

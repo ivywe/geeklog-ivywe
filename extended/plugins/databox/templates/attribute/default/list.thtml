@@ -9,7 +9,7 @@
 
   <h1 class="uk-h1">{attribute_top}</h1>
 
-	<a href="#db_attribute_list" class="uk-button uk-button-small" data-uk-modal>Theme variables</a>
+  <a href="#db_attribute_list" class="uk-button uk-button-small" data-uk-modal>Theme variables</a>
 
   <p>{msg}</p>
 

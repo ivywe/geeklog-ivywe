@@ -11,41 +11,41 @@
 
   <h1 class="uk-h1">{title}</h1>
 
-	<a href="#db_data_list_detail_{code}" class="uk-button uk-button-small" data-uk-modal>Other theme variables</a>
+  <a href="#db_data_list_detail_{code}" class="uk-button uk-button-small" data-uk-modal>Other theme variables</a>
 
   <fieldset class="uk-margin-large-top">
 
-	    <table class="uk-table uk-table-condensed uk-table-striped uk-width-1-1" style="width:96%">
-	      <thead>
-	        <tr>
-	          <th style="width:20%" class="uk-text-left uk-text-nowrap">{lang_field}</th>
-		        <th class="uk-text-success" style="width:20%">{lang_templatesetvar}</th>
-		        <th style="width:55%">{lang_content}</th>
-	          <th class="uk-text-left uk-text-nowrap" style="width:5%;"><a href="{site_url}/admin/plugins/databox/docs/japanese/input_field.html">Field type</a></th>
-	        </tr>
-	      </thead>
-	      <tbody>
-		      <tr>
-		        <th style="width:20%" class="uk-text-left">{lang_code}</th>
-		        <td class="uk-text-success" style="width:20%;">&#123;code&#125;</td>
-		        <td>{code}</td>
-						<td class="uk-text-success" style="width:5%">Basic</td>
-		      </tr>
-		      <tr>
-		        <th style="width:20%" class="uk-text-left">{lang_title}</th>
-		        <td class="uk-text-success" style="width:20%;">&#123;title&#125;</td>
-		        <td>{title}</td>
-						<td class="uk-text-success" style="width:5%">Basic</td>
-		      </tr>
-		      <tr>
-		        <th style="width:20%" class="uk-text-left">{lang_description}</th>
-		        <td class="uk-text-success" style="width:20%;">&#123;description&#125;</td>
-		        <td>{description}</td>
-						<td class="uk-text-success" style="width:5%">Basic</td>
-		      </tr>
-	        {additionfields}
-	      </tbody>
-	    </table>
+      <table class="uk-table uk-table-condensed uk-table-striped uk-width-1-1" style="width:96%">
+        <thead>
+          <tr>
+            <th style="width:20%" class="uk-text-left uk-text-nowrap">{lang_field}</th>
+            <th class="uk-text-success" style="width:20%">{lang_templatesetvar}</th>
+            <th style="width:55%">{lang_content}</th>
+            <th class="uk-text-left uk-text-nowrap" style="width:5%;"><a href="{site_url}/admin/plugins/databox/docs/japanese/input_field.html">Field type</a></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th style="width:20%" class="uk-text-left">{lang_code}</th>
+            <td class="uk-text-success" style="width:20%;">&#123;code&#125;</td>
+            <td>{code}</td>
+            <td class="uk-text-success" style="width:5%">Basic</td>
+          </tr>
+          <tr>
+            <th style="width:20%" class="uk-text-left">{lang_title}</th>
+            <td class="uk-text-success" style="width:20%;">&#123;title&#125;</td>
+            <td>{title}</td>
+            <td class="uk-text-success" style="width:5%">Basic</td>
+          </tr>
+          <tr>
+            <th style="width:20%" class="uk-text-left">{lang_description}</th>
+            <td class="uk-text-success" style="width:20%;">&#123;description&#125;</td>
+            <td>{description}</td>
+            <td class="uk-text-success" style="width:5%">Basic</td>
+          </tr>
+          {additionfields}
+        </tbody>
+      </table>
 
   </fieldset>
 {!!if {edit}||{draft} !!}<div class="uk-float-right">{edit} {draft}</div>{!endif}
@@ -58,204 +58,204 @@
       <span class="uk-text-bold">theme variables:</span> {templatelocation}(<a href="{site_url}/admin/plugins/databox/docs/japanese/templatesetvars.html">Document</a>)
     </div>
 
-	  <!-- Basic Items -->
-	  <fieldset class="uk-margin-large-top uk-width-1-1">
-	    <legend>{lang_basicfields}</legend>
+    <!-- Basic Items -->
+    <fieldset class="uk-margin-large-top uk-width-1-1">
+      <legend>{lang_basicfields}</legend>
 
-    	<div class="uk-overflow-container">
+      <div class="uk-overflow-container">
 
-		    <table class="uk-table uk-table-condensed uk-table-striped uk-text-small" style="width:100%; background:#ffffff">
-	        <tr>
-	          <th style="width:20%" class="uk-text-left uk-text-nowrap">{lang_field}</th>
-		        <th class="uk-text-success" style="width:20%">{lang_templatesetvar}</th>
-		        <th style="width:55%">{lang_content}</th>
-	          <th class="uk-text-left uk-text-nowrap" style="width:5%;"><a href="{site_url}/admin/plugins/databox/docs/japanese/input_field.html">Field type</a></th>
-	        </tr>
-		      <tr>
-		        <th style="width:20%" class="uk-text-left">{lang_hits}</th>
-		        <td class="uk-text-success" style="width:20%;">&#123;hits&#125;</td>
-		        <td class="uk-text-break">{hits}</td>
-						<td class="uk-text-success" style="width:5%">Basic</td>
-		      </tr>
-		      <tr>
-		        <th style="width:20%" class="uk-text-left">{lang_modified}</th>
-		        <td class="uk-text-success" style="width:20%;">&#123;modified&#125;</td>
-		        <td class="uk-text-break">{modified}</td>
-						<td class="uk-text-success" style="width:5%">Basic</td>
-		      </tr>
-		      <tr>
-		        <th style="width:20%" class="uk-text-left">{lang_modified}</th>
-		        <td class="uk-text-success" style="width:20%;">&#123;modified_shortdate&#125;</td>
-		        <td class="uk-text-break">{modified_shortdate}</td>
-						<td class="uk-text-success" style="width:5%">Basic</td>
-		      </tr>
-		      <tr>
-		        <th style="width:20%" class="uk-text-left">{lang_created}</th>
-		        <td class="uk-text-success" style="width:20%;">&#123;created&#125;&nbsp;</td>
-		        <td class="uk-text-break">{created}</td>
-						<td class="uk-text-success" style="width:5%">Basic</td>
-		      </tr>
-		      <tr>
-		        <th style="width:20%" class="uk-text-left">{lang_created_shortdate}</th>
-		        <td class="uk-text-success" style="width:20%;">&nbsp;&#123;created_shortdate&#125;</td>
-		        <td class="uk-text-break">{created_shortdate}</td>
-						<td class="uk-text-success" style="width:5%">Basic</td>
-		      </tr>
-		      <tr>
-		        <th style="width:20%" class="uk-text-left">{lang_released}</th>
-		        <td class="uk-text-success" style="width:20%;">&#123;released&#125;</td>
-		        <td class="uk-text-break">{released}</td>
-						<td class="uk-text-success" style="width:5%">Basic</td>
-		      </tr>
-		      <tr>
-		        <th style="width:20%" class="uk-text-left">{lang_released_shortdate}</th>
-		        <td class="uk-text-success" style="width:20%;">&#123;released_shortdate&#125;</td>
-		        <td class="uk-text-break">{released_shortdate}</td>
-						<td class="uk-text-success" style="width:5%">Basic</td>
-		      </tr>
-		      <tr>
-		        <th style="width:20%" class="uk-text-left">{lang_expired}</th>
-		        <td class="uk-text-success" style="width:20%;">&#123;expired&#125;</td>
-		        <td class="uk-text-break">{expired}</td>
-						<td class="uk-text-success" style="width:5%">Basic</td>
-		      </tr>
-		      <tr>
-		        <th style="width:20%" class="uk-text-left">{lang_expired_shortdate}</th>
-		        <td class="uk-text-success" style="width:20%;">&#123;expired_shortdate&#125;</td>
-		        <td class="uk-text-break">{expired_shortdate}</td>
-						<td class="uk-text-success" style="width:5%">Basic</td>
-		      </tr>
+        <table class="uk-table uk-table-condensed uk-table-striped uk-text-small" style="width:100%; background:#ffffff">
+          <tr>
+            <th style="width:20%" class="uk-text-left uk-text-nowrap">{lang_field}</th>
+            <th class="uk-text-success" style="width:20%">{lang_templatesetvar}</th>
+            <th style="width:55%">{lang_content}</th>
+            <th class="uk-text-left uk-text-nowrap" style="width:5%;"><a href="{site_url}/admin/plugins/databox/docs/japanese/input_field.html">Field type</a></th>
+          </tr>
+          <tr>
+            <th style="width:20%" class="uk-text-left">{lang_hits}</th>
+            <td class="uk-text-success" style="width:20%;">&#123;hits&#125;</td>
+            <td class="uk-text-break">{hits}</td>
+            <td class="uk-text-success" style="width:5%">Basic</td>
+          </tr>
+          <tr>
+            <th style="width:20%" class="uk-text-left">{lang_modified}</th>
+            <td class="uk-text-success" style="width:20%;">&#123;modified&#125;</td>
+            <td class="uk-text-break">{modified}</td>
+            <td class="uk-text-success" style="width:5%">Basic</td>
+          </tr>
+          <tr>
+            <th style="width:20%" class="uk-text-left">{lang_modified}</th>
+            <td class="uk-text-success" style="width:20%;">&#123;modified_shortdate&#125;</td>
+            <td class="uk-text-break">{modified_shortdate}</td>
+            <td class="uk-text-success" style="width:5%">Basic</td>
+          </tr>
+          <tr>
+            <th style="width:20%" class="uk-text-left">{lang_created}</th>
+            <td class="uk-text-success" style="width:20%;">&#123;created&#125;&nbsp;</td>
+            <td class="uk-text-break">{created}</td>
+            <td class="uk-text-success" style="width:5%">Basic</td>
+          </tr>
+          <tr>
+            <th style="width:20%" class="uk-text-left">{lang_created_shortdate}</th>
+            <td class="uk-text-success" style="width:20%;">&nbsp;&#123;created_shortdate&#125;</td>
+            <td class="uk-text-break">{created_shortdate}</td>
+            <td class="uk-text-success" style="width:5%">Basic</td>
+          </tr>
+          <tr>
+            <th style="width:20%" class="uk-text-left">{lang_released}</th>
+            <td class="uk-text-success" style="width:20%;">&#123;released&#125;</td>
+            <td class="uk-text-break">{released}</td>
+            <td class="uk-text-success" style="width:5%">Basic</td>
+          </tr>
+          <tr>
+            <th style="width:20%" class="uk-text-left">{lang_released_shortdate}</th>
+            <td class="uk-text-success" style="width:20%;">&#123;released_shortdate&#125;</td>
+            <td class="uk-text-break">{released_shortdate}</td>
+            <td class="uk-text-success" style="width:5%">Basic</td>
+          </tr>
+          <tr>
+            <th style="width:20%" class="uk-text-left">{lang_expired}</th>
+            <td class="uk-text-success" style="width:20%;">&#123;expired&#125;</td>
+            <td class="uk-text-break">{expired}</td>
+            <td class="uk-text-success" style="width:5%">Basic</td>
+          </tr>
+          <tr>
+            <th style="width:20%" class="uk-text-left">{lang_expired_shortdate}</th>
+            <td class="uk-text-success" style="width:20%;">&#123;expired_shortdate&#125;</td>
+            <td class="uk-text-break">{expired_shortdate}</td>
+            <td class="uk-text-success" style="width:5%">Basic</td>
+          </tr>
 
-		      <tr>
-		        <th style="width:20%" class="uk-text-left">{lang_owner}</th>
-		        <td class="uk-text-success" style="width:20%;">&#123;owner_name&#125;</td>
-		        <td class="uk-text-break">{owner_name}</td>
-						<td class="uk-text-success" style="width:5%">Basic</td>
-		      </tr>
-		      <tr>
-		        <th style="width:20%" class="uk-text-left">{lang_owner_name}</th>
-		        <td class="uk-text-success" style="width:20%;">&#123;owner_name&#125;</td>
-		        <td class="uk-text-break">{owner_name}</td>
-						<td class="uk-text-success" style="width:5%">Basic</td>
-		      </tr>
-		      <tr>
-		        <th style="width:20%" class="uk-text-left">{lang_owner_id}</th>
-		        <td class="uk-text-success" style="width:20%;">&#123;owner_id&#125;</td>
-		        <td class="uk-text-break">{owner_id}</td>
-						<td class="uk-text-success" style="width:5%">Basic</td>
-		      </tr>
+          <tr>
+            <th style="width:20%" class="uk-text-left">{lang_owner}</th>
+            <td class="uk-text-success" style="width:20%;">&#123;owner_name&#125;</td>
+            <td class="uk-text-break">{owner_name}</td>
+            <td class="uk-text-success" style="width:5%">Basic</td>
+          </tr>
+          <tr>
+            <th style="width:20%" class="uk-text-left">{lang_owner_name}</th>
+            <td class="uk-text-success" style="width:20%;">&#123;owner_name&#125;</td>
+            <td class="uk-text-break">{owner_name}</td>
+            <td class="uk-text-success" style="width:5%">Basic</td>
+          </tr>
+          <tr>
+            <th style="width:20%" class="uk-text-left">{lang_owner_id}</th>
+            <td class="uk-text-success" style="width:20%;">&#123;owner_id&#125;</td>
+            <td class="uk-text-break">{owner_id}</td>
+            <td class="uk-text-success" style="width:5%">Basic</td>
+          </tr>
 
-		      <tr>
-		        <th style="width:20%" class="uk-text-left">{lang_udatetime}</th>
-		        <td class="uk-text-success" style="width:20%;">&#123;udatetime&#125;</td>
-		        <td class="uk-text-break">{udatetime}</td>
-						<td class="uk-text-success" style="width:5%">Basic</td>
-		      <tr>
-		        <th style="width:20%" class="uk-text-left">{lang_last_modify_uid}</th>
-		        <td class="uk-text-success" style="width:20%;">&#123;last_modify_uid&#125;</td>
-		        <td class="uk-text-break">{last_modify_uid}</td>
-						<td class="uk-text-success" style="width:5%">Basic</td>
-		      </tr>
-		      <tr>
-		        <th style="width:20%" class="uk-text-left">{lang_last_modify_name}</th>
-		        <td class="uk-text-success" style="width:20%;">&#123;last_modify_name&#125;</td>
-		        <td class="uk-text-break">{last_modify_name}</td>
-						<td class="uk-text-success" style="width:5%">Basic</td>
-		      </tr>
-		      <tr>
-		        <th style="width:20%" class="uk-text-left">{lang_last_modify_fullname}</th>
-		        <td class="uk-text-success" style="width:20%;">&#123;last_modify_fullname&#125;</td>
-		        <td class="uk-text-break">{last_modify_fullname}</td>
-						<td class="uk-text-success" style="width:5%">Basic</td>
-		      </tr>
+          <tr>
+            <th style="width:20%" class="uk-text-left">{lang_udatetime}</th>
+            <td class="uk-text-success" style="width:20%;">&#123;udatetime&#125;</td>
+            <td class="uk-text-break">{udatetime}</td>
+            <td class="uk-text-success" style="width:5%">Basic</td>
+          <tr>
+            <th style="width:20%" class="uk-text-left">{lang_last_modify_uid}</th>
+            <td class="uk-text-success" style="width:20%;">&#123;last_modify_uid&#125;</td>
+            <td class="uk-text-break">{last_modify_uid}</td>
+            <td class="uk-text-success" style="width:5%">Basic</td>
+          </tr>
+          <tr>
+            <th style="width:20%" class="uk-text-left">{lang_last_modify_name}</th>
+            <td class="uk-text-success" style="width:20%;">&#123;last_modify_name&#125;</td>
+            <td class="uk-text-break">{last_modify_name}</td>
+            <td class="uk-text-success" style="width:5%">Basic</td>
+          </tr>
+          <tr>
+            <th style="width:20%" class="uk-text-left">{lang_last_modify_fullname}</th>
+            <td class="uk-text-success" style="width:20%;">&#123;last_modify_fullname&#125;</td>
+            <td class="uk-text-break">{last_modify_fullname}</td>
+            <td class="uk-text-success" style="width:5%">Basic</td>
+          </tr>
 
-		      <tr>
-		        <th style="width:20%" class="uk-text-left">Maps Plugin mkid</th>
-		        <td class="uk-text-success" style="width:20%;">&#123;mkid&#125;</td>
-		        <td class="uk-text-break">{mkid}</td>
-						<td class="uk-text-success" style="width:5%">Basic</td>
-		      </tr>
-		      <tr>
-		        <th style="width:20%" class="uk-text-left">Maps Plugin mkid</th>
-		        <td class="uk-text-success" style="width:20%;">&#123;marker&#125;</td>
-		        <td class="uk-text-break">{marker}</td>
-						<td class="uk-text-success" style="width:5%">Basic</td>
-		      </tr>
-		      <tr>
-		        <th style="width:20%" class="uk-text-left">{lang_imgfile_frd} URL</th>
-		        <td class="uk-text-success" style="width:20%;">&#123;imgfile_frd&#125;</td>
-		        <td class="uk-text-break">{imgfile_frd}</td>
-						<td class="uk-text-success" style="width:5%">Basic</td>
-		      </tr>
-		      <tr>
-		        <th style="width:20%" class="uk-text-left">{lang_imgfile_frd} URL</th>
-		        <td class="uk-text-success" style="width:20%;">&#123;imgfile_frd&#125;</td>
-		        <td class="uk-text-break">{imgfile_frd}</td>
-						<td class="uk-text-success" style="width:5%">Basic</td>
-		      </tr>
-		      <tr>
-		        <th style="width:20%" class="uk-text-left">{lang_imgfile_frd} PATH</th>
-		        <td class="uk-text-success" style="width:20%;">&#123;data_img_url&#125;</td>
-		        <td class="uk-text-break">{data_img_url}</td>
-						<td class="uk-text-success" style="width:5%">Basic</td>
-		      </tr>
-		      <tr>
-		        <th style="width:20%" class="uk-text-left">{lang_imgfile_thumb_frd} URL</th>
-		        <td class="uk-text-success" style="width:20%;">&#123;imgfile_thumb_frd&#125;</td>
-		        <td class="uk-text-break">{imgfile_thumb_frd}</td>
-						<td class="uk-text-success" style="width:5%">Basic</td>
-		      </tr>
-		      <tr>
-		        <th style="width:20%" class="uk-text-left">{lang_imgfile_thumb_frd}</th>
-		        <td class="uk-text-success" style="width:20%;">&#123;data_thumb_img_url&#125;</td>
-		        <td class="uk-text-break">{data_thumb_img_url}</td>
-						<td class="uk-text-success" style="width:5%">Basic</td>
-		      </tr>
-		    </table>
-			</div>
-	  </fieldset>
+          <tr>
+            <th style="width:20%" class="uk-text-left">Maps Plugin mkid</th>
+            <td class="uk-text-success" style="width:20%;">&#123;mkid&#125;</td>
+            <td class="uk-text-break">{mkid}</td>
+            <td class="uk-text-success" style="width:5%">Basic</td>
+          </tr>
+          <tr>
+            <th style="width:20%" class="uk-text-left">Maps Plugin mkid</th>
+            <td class="uk-text-success" style="width:20%;">&#123;marker&#125;</td>
+            <td class="uk-text-break">{marker}</td>
+            <td class="uk-text-success" style="width:5%">Basic</td>
+          </tr>
+          <tr>
+            <th style="width:20%" class="uk-text-left">{lang_imgfile_frd} URL</th>
+            <td class="uk-text-success" style="width:20%;">&#123;imgfile_frd&#125;</td>
+            <td class="uk-text-break">{imgfile_frd}</td>
+            <td class="uk-text-success" style="width:5%">Basic</td>
+          </tr>
+          <tr>
+            <th style="width:20%" class="uk-text-left">{lang_imgfile_frd} URL</th>
+            <td class="uk-text-success" style="width:20%;">&#123;imgfile_frd&#125;</td>
+            <td class="uk-text-break">{imgfile_frd}</td>
+            <td class="uk-text-success" style="width:5%">Basic</td>
+          </tr>
+          <tr>
+            <th style="width:20%" class="uk-text-left">{lang_imgfile_frd} PATH</th>
+            <td class="uk-text-success" style="width:20%;">&#123;data_img_url&#125;</td>
+            <td class="uk-text-break">{data_img_url}</td>
+            <td class="uk-text-success" style="width:5%">Basic</td>
+          </tr>
+          <tr>
+            <th style="width:20%" class="uk-text-left">{lang_imgfile_thumb_frd} URL</th>
+            <td class="uk-text-success" style="width:20%;">&#123;imgfile_thumb_frd&#125;</td>
+            <td class="uk-text-break">{imgfile_thumb_frd}</td>
+            <td class="uk-text-success" style="width:5%">Basic</td>
+          </tr>
+          <tr>
+            <th style="width:20%" class="uk-text-left">{lang_imgfile_thumb_frd}</th>
+            <td class="uk-text-success" style="width:20%;">&#123;data_thumb_img_url&#125;</td>
+            <td class="uk-text-break">{data_thumb_img_url}</td>
+            <td class="uk-text-success" style="width:5%">Basic</td>
+          </tr>
+        </table>
+      </div>
+    </fieldset>
 
-	  <!-- Category -->
-	  <fieldset class="uk-margin-large-top uk-width-1-1">
-	    <legend>{lang_category}</legend>
-	    <table class="uk-table uk-table-condensed uk-table-striped uk-text-small">
-	      <tr>
-	        <th style="width:20%;" class="uk-text-left">{lang_field}</th>
-	        <th style="width:20%; color:green;">{lang_templatesetvar}</th>
-	        <th style="width:60%;">{lang_content}</th>
-	      </tr>
-	      <!--  カテゴリ名称列挙 -->
-	      <tr>
-	        <th style="width:20%" class="uk-text-left">{lang_category}</th>
-	        <td class="uk-text-success" style="width:20%;">&#123;categories&#125;<br{xhtml}></td>
-	        <td class="uk-text-break">{categories}</td>
-	      </tr>
-	      <!--  カテゴリ名称列挙リンク付 -->
-	      <tr>
-	        <th style="width:20%" class="uk-text-left">
-	          {lang_category} {lang_withlink}
-	        </th>
-	        <td class="uk-text-success" style="width:20%;">
-	          &#123;categorieslink&#125;
-	        </td>
-	        <td class="uk-text-break">{categorieslink} </td>
-	       </tr>
-	      <tr>
-	        <th style="width:20%" class="uk-text-left">CODE形式</th>
-	        <td class="uk-text-success" style="width:20%;">
-	        &#123;categorieslinkcode&#125
-	        </td>
-	        <td class="uk-text-break">{categorieslinkcode}</td>
-	        </tr>
-	        <tr>
-	        <th style="width:20%" class="uk-text-left">ID形式</th>
-	        <td class="uk-text-success" style="width:20%;">
-	        &#123;categorieslinkid&#125;
-	        </td>
-	        <td class="uk-text-break">{categorieslinkid}</td>
-	      </tr>
-	    </table>
-	  </fieldset>
+    <!-- Category -->
+    <fieldset class="uk-margin-large-top uk-width-1-1">
+      <legend>{lang_category}</legend>
+      <table class="uk-table uk-table-condensed uk-table-striped uk-text-small">
+        <tr>
+          <th style="width:20%;" class="uk-text-left">{lang_field}</th>
+          <th style="width:20%; color:green;">{lang_templatesetvar}</th>
+          <th style="width:60%;">{lang_content}</th>
+        </tr>
+        <!--  カテゴリ名称列挙 -->
+        <tr>
+          <th style="width:20%" class="uk-text-left">{lang_category}</th>
+          <td class="uk-text-success" style="width:20%;">&#123;categories&#125;<br{xhtml}></td>
+          <td class="uk-text-break">{categories}</td>
+        </tr>
+        <!--  カテゴリ名称列挙リンク付 -->
+        <tr>
+          <th style="width:20%" class="uk-text-left">
+            {lang_category} {lang_withlink}
+          </th>
+          <td class="uk-text-success" style="width:20%;">
+            &#123;categorieslink&#125;
+          </td>
+          <td class="uk-text-break">{categorieslink} </td>
+         </tr>
+        <tr>
+          <th style="width:20%" class="uk-text-left">CODE形式</th>
+          <td class="uk-text-success" style="width:20%;">
+          &#123;categorieslinkcode&#125
+          </td>
+          <td class="uk-text-break">{categorieslinkcode}</td>
+          </tr>
+          <tr>
+          <th style="width:20%" class="uk-text-left">ID形式</th>
+          <td class="uk-text-success" style="width:20%;">
+          &#123;categorieslinkid&#125;
+          </td>
+          <td class="uk-text-break">{categorieslinkid}</td>
+        </tr>
+      </table>
+    </fieldset>
 
 
     <h3>Example</h3> 

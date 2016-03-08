@@ -6,7 +6,7 @@
     <li class="uk-button uk-button-small uk-margin-small-left{!!if {cur_order}=="date" !!} uk-button-success{!endif}">{order_date}</li><li class="uk-button uk-button-small uk-margin-small-left{!!if {cur_order}=="orderno" !!} uk-button-success{!endif}">{order_orderno}</li><li class="uk-button uk-button-small uk-margin-small-left{!!if {cur_order}=="code" !!} uk-button-success{!endif}">{order_code}</li><li class="uk-button uk-button-small uk-margin-small-left{!!if {cur_order}=="title" !!} uk-button-success{!endif}">{order_title}</li><li class="uk-button uk-button-small uk-margin-small-left{!!if {cur_order}=="description" !!} uk-button-success{!endif}">{order_description}</li><li class="uk-button uk-button-small uk-margin-small-left{!!if {cur_order}=="id" !!} uk-button-success{!endif}">{order_id}</li><li class="uk-button uk-button-small uk-margin-small-left{!!if {cur_order}=="released" !!} uk-button-success{!endif}">{order_released}</li><li class="uk-button uk-button-small uk-margin-small-left{!!if {cur_order}=="random" !!} uk-button-success{!endif}">{order_random}</li>
     <!-- example: sort by attribute -->
     {!if order_tel}<li>{order_tel}</li>{!endif}
-		{!if order_zipcode}<li>{order_zipcode}</li>{!endif}
+    {!if order_zipcode}<li>{order_zipcode}</li>{!endif}
   </ul>
 
   <div {pagenavinone}>
