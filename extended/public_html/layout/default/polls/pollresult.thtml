@@ -35,7 +35,7 @@
       }
     </script>
 
-	<div id="{poll_id}_{question_id}" style="overflow:hidden"></div>
+  <div id="{poll_id}_{question_id}" style="overflow:hidden"></div>
 
 
 

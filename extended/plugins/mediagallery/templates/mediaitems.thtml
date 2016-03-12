@@ -48,7 +48,7 @@ function doUnCheckAll_mediaitems() {
     <td style="vertical-align:middle;text-align:center;">
       {media_zoom}<img src="{u_thumbnail}" height="{height}" width="{width}" alt=""{xhtml}></a>
       <div class="uk-text-success">&#91;media:{media_id}<br{xhtml}> src:(tn/disp/orig) class:(class)&#93;</div>
-			<a href="{media_edit}">{lang_edit}</a>
+      <a href="{media_edit}">{lang_edit}</a>
     </td>
     <td style="vertical-align:middle;text-align:center;">
       {watermarked}

@@ -120,7 +120,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_textcheck} {help_textcheck}</label>
         <div class="uk-form-controls">
-        	{list_textcheck}
+          {list_textcheck}
         </div>
     </div>
 
@@ -128,7 +128,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_textconv} {help_textconv}</label>
         <div class="uk-form-controls">
-        	{list_textconv}
+          {list_textconv}
         </div>
     </div>
 
@@ -136,7 +136,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_checkrequried} {help_checkrequried}</label>
         <div class="uk-form-controls">
-        	{list_checkrequried}
+          {list_checkrequried}
         </div>
     </div>
 
@@ -144,7 +144,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_size}</label>
         <div class="uk-form-controls">
-        	<input type="text" size="48" maxlength="160" name="size" value="{size}"{xhtml}>
+          <input type="text" size="48" maxlength="160" name="size" value="{size}"{xhtml}>
         </div>
     </div>
 
@@ -152,7 +152,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_maxlength}</label>
         <div class="uk-form-controls">
-        	<input type="text" size="48" maxlength="160" name="maxlength" value="{maxlength}"{xhtml}>
+          <input type="text" size="48" maxlength="160" name="maxlength" value="{maxlength}"{xhtml}>
         </div>
     </div>
 
@@ -160,7 +160,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_rows}</label>
         <div class="uk-form-controls">
-        	<input type="text" size="48" maxlength="160" name="rows" value="{rows}"{xhtml}>
+          <input type="text" size="48" maxlength="160" name="rows" value="{rows}"{xhtml}>
         </div>
     </div>
 
@@ -168,7 +168,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_br}</label>
         <div class="uk-form-controls">
-        	<input type="text" size="1" maxlength="1" name="br" value="{br}"{xhtml}>{help_br}
+          <input type="text" size="1" maxlength="1" name="br" value="{br}"{xhtml}>{help_br}
         </div>
     </div>
 
@@ -176,7 +176,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_selection} {help_selection}</label>
         <div class="uk-form-controls">
-        	<textarea name="selection"style="width:95%" rows="10" id="databox_selection">{selection}</textarea>
+          <textarea name="selection"style="width:95%" rows="10" id="databox_selection">{selection}</textarea>
         </div>
     </div>
 
@@ -184,25 +184,25 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_selectlist} {help_selectlist}</label>
         <div class="uk-form-controls">
-        	{list_selectlist}
+          {list_selectlist}
         </div>
     </div>
 
     </fieldset>
     <div class="uk-form-row uk-margin-large-top">
         <div class="uk-form-controls">
-		    <!-- 【保存 キャンセル  削除】 -->
-		    <input type="submit" value="{lang_save}" name="mode"{xhtml}>
-		    <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
-		    <input type="hidden" value="{code}" name="old_code"{xhtml}>
+        <!-- 【保存 キャンセル  削除】 -->
+        <input type="submit" value="{lang_save}" name="mode"{xhtml}>
+        <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
+        <input type="hidden" value="{code}" name="old_code"{xhtml}>
         </div>
     </div>
     <div class="uk-form-row uk-margin-large-top uk-text-danger">
         <div class="uk-form-controls">
-		    {delete_option}<span class="uk-text-danger uk-margin-left">{lang_delete_help}</span>
-		    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
-		</div>
-	</div>
+        {delete_option}<span class="uk-text-danger uk-margin-left">{lang_delete_help}</span>
+        <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+    </div>
+  </div>
   </form>
 </div>
 

@@ -16,7 +16,7 @@
 
   <div class="uk-margin-large-top uk-margin-large-bottom uk-text-center"><a class="uk-icon-small uk-icon-hover uk-icon-chevron-up" data-uk-smooth-scroll="" href="#"></a></div>
 
-    <footer id="footer" role="contentinfo" class="uk-clearfix">
+    <footer id="footer" class="uk-clearfix">
       <div id="footer-content">
         <p class="uk-float-left uk-text-small">{copyright_notice}</p>
         <p class="uk-float-right uk-text-small">

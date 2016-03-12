@@ -10,12 +10,12 @@
 
   <div class="uk-form-row">
     <div class="uk-form-controls">
-			{lang_fieldset} {list_fieldset}
-			<input type="submit" value="{lang_changeset}" name="mode" class="uk-button"{xhtml}>
-			<input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
-			<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
-		</div>
-	</div>
+      {lang_fieldset} {list_fieldset}
+      <input type="submit" value="{lang_changeset}" name="mode" class="uk-button"{xhtml}>
+      <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
+      <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+    </div>
+  </div>
 
 </form>
 

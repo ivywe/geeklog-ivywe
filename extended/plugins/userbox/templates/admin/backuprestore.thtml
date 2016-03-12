@@ -5,14 +5,14 @@
 <legend>(1){config}</legend>
 
 <form class="uk-form uk-form-horizontal" action="{site_admin_url}/plugins/backuprestore.php" method="post">
-	<p>{err_backup_file}</p>
+  <p>{err_backup_file}</p>
 
-	<input type="submit" name="action" value="{config_backup}" data-uk-tooltip title="{config_backup_help}"{xhtml}>
-	<input type="submit" name="action" value="{config_init}" data-uk-tooltip title="{config_init_help}"{xhtml}>
-	<input type="submit" name="action" value="{config_restore}" {restore_disabled} data-uk-tooltip title="{config_restore_help}"{xhtml}>
-	<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
-	<input type='submit' name='action' value='{config_update}' {xhtml}>
-	<span class="uk-form-help-inline">{config_update_help}</span></li>
+  <input type="submit" name="action" value="{config_backup}" data-uk-tooltip title="{config_backup_help}"{xhtml}>
+  <input type="submit" name="action" value="{config_init}" data-uk-tooltip title="{config_init_help}"{xhtml}>
+  <input type="submit" name="action" value="{config_restore}" {restore_disabled} data-uk-tooltip title="{config_restore_help}"{xhtml}>
+  <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+  <input type='submit' name='action' value='{config_update}' {xhtml}>
+  <span class="uk-form-help-inline">{config_update_help}</span></li>
 
 </form>
 

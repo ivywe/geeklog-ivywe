@@ -69,9 +69,9 @@
           <tr class="pluginRow1">  
             <th class="admin-list-field">{lang_description}{help_description}</th>
             <td class="admin-list-field">
-    	      <textarea name="description" style="width:95%" rows="2" id="userbox_description"
-    	      onKeyup="var n={maxlength_description}-this.value.length;var s=document.getElementById('description_cnt');s.innerHTML='('+n+')';">{description}</textarea>
-    	      <br{xhtml}>
+            <textarea name="description" style="width:95%" rows="2" id="userbox_description"
+            onKeyup="var n={maxlength_description}-this.value.length;var s=document.getElementById('description_cnt');s.innerHTML='('+n+')';">{description}</textarea>
+            <br{xhtml}>
               <strong><span id='description_cnt'></span><strong>
             </td>
           </tr>
@@ -80,8 +80,8 @@
           <tr{hide_language_id}>
             <th class="admin-list-field">{lang_language_id}{help_language_id}</th>
             <td class="admin-list-field">{select_language_id}</td>
-    	  </tr>
-    	  <!-- タイムスタンプ -->
+        </tr>
+        <!-- タイムスタンプ -->
           <tr class="pluginRow1">  
             <th class="admin-list-field">{lang_udatetime}</th>
             <td class="admin-list-field">{udatetime} {lang_uuid}:{uuid}</td>

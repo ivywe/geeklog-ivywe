@@ -8,7 +8,7 @@
 </ul>
 
 <div class="mg_album_header">
-	<div class="uk-grid">
+  <div class="uk-grid">
     <div class="uk-width-medium-1-2">
       <h1>{album_title}<span class="uk-text-small uk-margin-left" style="font-family:arial; font-size:14px">&#91;medialist:{album_id} limitcnt:* theme:*&#93;</span></h1>{!if rsslink}&nbsp;&nbsp;{rsslink}{!endif}
     </div>
@@ -27,7 +27,7 @@
         {select_adminbox}
       </div>
     {!endif}
-  	</div>
+    </div>
   </div>
 </div>
 

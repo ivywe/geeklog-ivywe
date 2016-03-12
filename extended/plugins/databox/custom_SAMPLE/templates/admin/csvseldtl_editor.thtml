@@ -15,8 +15,8 @@
             <td style="width:70%">
                 {seq}
                 <input type="hidden" name="seq" value="{seq}"{xhtml}>
-		        <input type="hidden" name="id" value="{id}"{xhtml}>
-		         id={name}{id}
+            <input type="hidden" name="id" value="{id}"{xhtml}>
+             id={name}{id}
             </td>
         </tr>
 

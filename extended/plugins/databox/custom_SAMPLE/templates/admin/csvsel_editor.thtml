@@ -34,7 +34,7 @@
             <td style="width:70%">
         <textarea name="description" style="width:95%" rows="2" id="databox_description"
         onKeyup="var n={maxlength_description}-this.value.length;var s=document.getElementById('description_cnt');s.innerHTML='('+n+')';">{description}</textarea>
-		<br{xhtml}><strong><span id='description_cnt'></span></strong>
+    <br{xhtml}><strong><span id='description_cnt'></span></strong>
             </td>
         </tr>
 

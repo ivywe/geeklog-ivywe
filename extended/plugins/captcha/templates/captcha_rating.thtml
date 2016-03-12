@@ -3,8 +3,8 @@
 <table width="100%">
 <tr>
   <td align="right">
-	  {slider}
-		<input type="hidden" name="csid" value="{csid}"{xhtml}>
+    {slider}
+    <input type="hidden" name="csid" value="{csid}"{xhtml}>
         {input}
   </td>
 </tr>

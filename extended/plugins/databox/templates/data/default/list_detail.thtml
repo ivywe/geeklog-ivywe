@@ -408,32 +408,32 @@
       <legend>{lang_groupbygroup} {lang_category} {lang_byusingcode}</legend>
       <table class="uk-table uk-table-condensed uk-table-striped uk-text-small">
         <tr>
-	        <th style="width:30%;" class="uk-text-left uk-text-nowrap">{lang_group} {lang_code}</th>
-	        <th style="width:30%; color:green;" class="uk-text-left uk-text-nowrap">{lang_templatesetvar}</th>
-	        <th class="uk-text-left">{lang_content}</th>
+          <th style="width:30%;" class="uk-text-left uk-text-nowrap">{lang_group} {lang_code}</th>
+          <th style="width:30%; color:green;" class="uk-text-left uk-text-nowrap">{lang_templatesetvar}</th>
+          <th class="uk-text-left">{lang_content}</th>
         </tr>
 
         <!-- 1 -->
         <tr>
-	        <th style="width:30%" class="uk-text-left">1</th>
-	        <td class="uk-text-success" style="width:30%;">
-	        &#123;group_1&#125;
-	        </td>
-	        <td>{group_1} </td>
+          <th style="width:30%" class="uk-text-left">1</th>
+          <td class="uk-text-success" style="width:30%;">
+          &#123;group_1&#125;
+          </td>
+          <td>{group_1} </td>
         </tr>
         <tr>
-        	<th style="width:30%" class="uk-text-left">　  </th>
-	        <td class="uk-text-success" style="width:30%;">
-	        &#123;group_1_code&#125
-	        </td>
-	        <td>{group_1_code} </td>
+          <th style="width:30%" class="uk-text-left">　  </th>
+          <td class="uk-text-success" style="width:30%;">
+          &#123;group_1_code&#125
+          </td>
+          <td>{group_1_code} </td>
         </tr>
         <tr>
-	        <th style="width:30%" class="uk-text-left">　  </th>
-	        <td class="uk-text-success" style="width:30%;">
-	        &#123;group_1_pipeline&#125
-	        </td>
-	        <td>{group_1_pipeline} </td>
+          <th style="width:30%" class="uk-text-left">　  </th>
+          <td class="uk-text-success" style="width:30%;">
+          &#123;group_1_pipeline&#125
+          </td>
+          <td>{group_1_pipeline} </td>
         </tr>
       </table>
     </fieldset>
@@ -452,18 +452,18 @@
       
         <!-- 1 -->
         <tr>
-        	<th style="width:30%" class="uk-text-left">1</th>
-	        <td class="uk-text-success" style="width:30%;">
-	        &#123;grouplink_1&#125;
-        	</td>
-        	<td>{grouplink_1} </td>
+          <th style="width:30%" class="uk-text-left">1</th>
+          <td class="uk-text-success" style="width:30%;">
+          &#123;grouplink_1&#125;
+          </td>
+          <td>{grouplink_1} </td>
         </tr>
         <tr>
-        	<th style="width:30%" class="uk-text-left">　  </th>
-	        <td class="uk-text-success" style="width:30%;">
-	        &#123;grouplink_1_code&#125
-	        </td>
-        	<td>{grouplink_1_code} </td>
+          <th style="width:30%" class="uk-text-left">　  </th>
+          <td class="uk-text-success" style="width:30%;">
+          &#123;grouplink_1_code&#125
+          </td>
+          <td>{grouplink_1_code} </td>
         </tr>
       </table>
     </fieldset>

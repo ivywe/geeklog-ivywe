@@ -2,16 +2,16 @@
 
 <div class="uk-form">
 
-	<h2>{title}</h2>
-	
-	{# Additional Items #}
-	<fieldset class="uk-width-1-1 uk-margin-large-top">
-		<legend>参加セミナー</legend>
-		<dl class="uk-description-list-horizontal">
-			{additionfields}
-		</dl>
-	</fieldset>
-	{draft} {edit}
+  <h2>{title}</h2>
+  
+  {# Additional Items #}
+  <fieldset class="uk-width-1-1 uk-margin-large-top">
+    <legend>参加セミナー</legend>
+    <dl class="uk-description-list-horizontal">
+      {additionfields}
+    </dl>
+  </fieldset>
+  {draft} {edit}
 
 </div>
 

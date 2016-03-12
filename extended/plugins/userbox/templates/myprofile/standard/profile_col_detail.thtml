@@ -4,7 +4,7 @@
         <label class="uk-form-label">{additionfield_name}<span class="uk-text-warninig">{lang_must_additionfield}</span></label>
         <div class="uk-form-controls">
           {additionfield_value}
-					<span class="uk-form-help-inline">{additionfield_description}</span>
+          <span class="uk-form-help-inline">{additionfield_description}</span>
         </div>
       </div>
 

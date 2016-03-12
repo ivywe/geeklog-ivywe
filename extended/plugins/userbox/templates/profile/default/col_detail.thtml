@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-		<dt>{additionfield_name}</dt>
-		<dd>{additionfield_value}</dd>
+    <dt>{additionfield_name}</dt>
+    <dd>{additionfield_value}</dd>
 
 {# end {templatelocation} #}

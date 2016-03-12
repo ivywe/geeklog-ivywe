@@ -5,7 +5,7 @@
 {category_path_link}
 
 <dl class="uk-description-list-horizontal">
-	{category_records}
+  {category_records}
 </dl>
             <table border="0" cellspacing="2" cellpadding="0" style="width:100%;">
                 <tr>

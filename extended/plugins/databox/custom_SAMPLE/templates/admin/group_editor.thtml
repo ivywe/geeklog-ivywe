@@ -28,7 +28,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_name}<span class="uk-text-danger">{lang_must}</span></label>
         <div class="uk-form-controls">
-			<input type="text" size="48" maxlength="160" name="name" value="{name}"{xhtml}>
+      <input type="text" size="48" maxlength="160" name="name" value="{name}"{xhtml}>
         </div>
     </div>
 
@@ -36,7 +36,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_description} {help_description}</label>
         <div class="uk-form-controls">
-			<textarea name="description" style="width:95%" rows="2" id="databox_description">{description}</textarea>
+      <textarea name="description" style="width:95%" rows="2" id="databox_description">{description}</textarea>
         </div>
     </div>
 
@@ -44,7 +44,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_orderno}</label>
         <div class="uk-form-controls">
-			<input type="text" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
+      <input type="text" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
         </div>
     </div>
 
@@ -52,7 +52,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_parent_flg} {help_parent_flg}</label>
         <div class="uk-form-controls">
-			{list_parent_flg}
+      {list_parent_flg}
         </div>
     </div>
 
@@ -60,7 +60,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_input_type} {help_input_type}</label>
         <div class="uk-form-controls">
-			{list_input_type}
+      {list_input_type}
         </div>
     </div>
 
@@ -68,7 +68,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="">{lang_udatetime}</label>
         <div class="uk-form-controls">
-			{udatetime} {lang_uuid}:{uuid}
+      {udatetime} {lang_uuid}:{uuid}
         </div>
     </div>
 
@@ -76,16 +76,16 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for=""></label>
         <div class="uk-form-controls">
-		    <!-- 【保存 キャンセル  削除】 -->
-		    <input type="submit" value="{lang_save}" name="mode"{xhtml}>
-		    <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
-		    <input type="hidden" value="{code}" name="old_code"{xhtml}>
+        <!-- 【保存 キャンセル  削除】 -->
+        <input type="submit" value="{lang_save}" name="mode"{xhtml}>
+        <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
+        <input type="hidden" value="{code}" name="old_code"{xhtml}>
         </div>
     </div>
     <div class="uk-form-row">
         <div class="uk-form-controls">
-		    {delete_option}<span class="uk-text-danger">{lang_delete_help}</span>
-		    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+        {delete_option}<span class="uk-text-danger">{lang_delete_help}</span>
+        <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
         </div>
     </div>
 

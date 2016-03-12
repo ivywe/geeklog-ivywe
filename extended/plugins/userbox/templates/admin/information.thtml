@@ -11,7 +11,7 @@
   <li><a href="{document_url}templatesetvars.html" target="_blank">{lang_templatesetvars}</a></li>
   <li><a href="{document_url}tables.html" target="_blank">{lang_tables}</a></li>
 </ul>
-	
+  
 (
 <a href="{document_url}userbox.html" target="_blank">{lang_configuration}</a>
 :<a href="{document_url}autotags.html" target="_blank">{lang_autotags}</a>

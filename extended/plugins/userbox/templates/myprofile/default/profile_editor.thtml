@@ -1,19 +1,19 @@
 {# begin {templatelocation} #}
 
 <div>
-	<h2>{username}({fullname})</h2>
+  <h2>{username}({fullname})</h2>
 
   <form enctype="multipart/form-data" name="frmuserbox" action="{site_url}/{script}" method="post" class="uk-form uk-form-horizontal">
-	  <input type="hidden" name="id" value="{id}"{xhtml}>
-		<input type="hidden" name="username" value="{username}"{xhtml}>
-		<input type="hidden" name="udatetime" value="{udatetime}"{xhtml}>
-	  <input type="hidden" name="created" value="{created}"{xhtml}>
-	  <input type="hidden" name="created_un" value="{created_un}"{xhtml}>
+    <input type="hidden" name="id" value="{id}"{xhtml}>
+    <input type="hidden" name="username" value="{username}"{xhtml}>
+    <input type="hidden" name="udatetime" value="{udatetime}"{xhtml}>
+    <input type="hidden" name="created" value="{created}"{xhtml}>
+    <input type="hidden" name="created_un" value="{created_un}"{xhtml}>
     <input type="hidden" name="fieldset" value="{fieldset_id}"{xhtml}>
     <input type="hidden" name="fieldset_name" value="{fieldset_name}"{xhtml}>
     <input type="hidden" name="fullname" value="{fullname}"{xhtml}>
-		<input type="hidden" name="page_title" value="{page_title}"{xhtml}>
-		<input type="hidden" name="draft_flag" value="1" {draft_flag}{xhtml}>
+    <input type="hidden" name="page_title" value="{page_title}"{xhtml}>
+    <input type="hidden" name="draft_flag" value="1" {draft_flag}{xhtml}>
 
     {# 追加項目 #}
     <fieldset class="uk-width-1-1 uk-margin-large-top">
@@ -25,11 +25,11 @@
     {# 【保存 キャンセル  削除】 #}
     <div class="uk-form-row uk-margin-large-top">
       <div class="uk-form-controls">
-		    <input type="submit" value="{lang_save}" name="mode" class="uk-button"{xhtml}>
-		    <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
-		    <input type="hidden" value="{code}" name="old_code"{xhtml}>
-		    {delete_option}
-		    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+        <input type="submit" value="{lang_save}" name="mode" class="uk-button"{xhtml}>
+        <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
+        <input type="hidden" value="{code}" name="old_code"{xhtml}>
+        {delete_option}
+        <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
       </div>
     </div>
   </form>

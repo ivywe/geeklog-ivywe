@@ -16,7 +16,7 @@
   <h2><span style= "color:green" > &#123;category_name&#125;</span>{category_name}</h2>
   <p><span style= "color:green" > &#123;category_description&#125;</span>{category_description}</p>
   <p><span style= "color:green" > &#123;msg&#125;</span>{msg}</p>
-	
+  
   <ul class="contents" id="list">
 {nav_var}
   </ul>
