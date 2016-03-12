@@ -1,9 +1,9 @@
 {# begin {templatelocation} #}
 
-
-
 <div class="uk-form-row uk-margin-large-top">
-    <span class="uk-form-label uk-text-bold"><span class="uk-text-nowrap uk-margin-small-right">{lang_question}{lang_question_number}</span><span class="uk-text-break">{poll_question}</span></span>
+    <div class="uk-form-label uk-text-bold uk-margin-small-bottom uk-margin-small-right uk-text-break">
+			{lang_question_number} {poll_question}
+		</div>
     <div class="uk-form-controls uk-margin-large-left">
 		{!if poll_description}<div class="uk-text-success">{poll_description}</div>{!endif}
 
