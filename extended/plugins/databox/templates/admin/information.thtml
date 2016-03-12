@@ -1,5 +1,6 @@
 {# begin {templatelocation} #}
 
+<div class=" uk-clearfix"></div>
 <div class="uk-grid">
   <div class="uk-width-medium-2-5">
 

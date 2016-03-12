@@ -14,8 +14,7 @@ head.appendChild(lnk);
 //-->
 </script>
 
-<article>
-  <div>
+<div class=" uk-clearfix"></div>
 
 <form class="uk-form uk-form-horizontal" name="fieldsetfields" action="{site_admin_url}/plugins/{script}" method="post" id="admin-fieldsetfields">
 
