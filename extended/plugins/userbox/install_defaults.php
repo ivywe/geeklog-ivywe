@@ -177,7 +177,7 @@ $_USERBOX_DEFAULT['imgfile_type'] = array('image/jpeg','image/gif','image/png','
 
 //@@@@@---->準備中
 $_USERBOX_DEFAULT['imgfile_size2'] = "1048576";
-$_USERBOX_DEFAULT['imgfile_type2'] = array('image/jpeg','image/gif','image/png','image/jpg','image/pjpeg','image/x-png');
+$_USERBOX_DEFAULT['imgfile_type2'] = array('image/jpeg','image/gif','image/png','image/jpg','image/pjpeg','image/x-png','image/svg+xml');
 
 // ★画像保存URL  サイトURL/ の後の指定
 $_USERBOX_DEFAULT['imgfile_frd'] = "images/userbox/";
