@@ -1,20 +1,19 @@
 {# begin {templatelocation} #}
 
-<h2 class="uk-h2">{actionname}</h2>
+<h1 class="uk-h1">{actionname}</h1>
 
-<form action="{actionprg}" method="post">
-    <div>{lang_checklist}{checklist}</div>
+<form class="uk-form" action="{actionprg}" method="post">
+  <div>{lang_checklist} {checklist}</div>
 
   <div class="uk-margin-small">
-    <input type="submit" name="action" value="{lang_submit}" onclick="return confirm("{lang_confirm}");"{xhtml}>
+    <input class="uk-button" type='submit' name="action" value="{lang_submit}" onclick="return confirm('{lang_confirm}');"{xhtml}>
   </div>
-
-    <input type="submit" name="action" value="{lang_cancel}"{xhtml}>
-    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
-    <input type="hidden" value="{mode}" name="mode"{xhtml}>
-  </div>
-  <div>
-    {help}
-  </div>
+  <div class="uk-margin-small">{btn2}</div>
+  {!if btn3}<hr{xhtml}>{!endif}
+  <div class="uk-margin-large-top">{btn3}</div>
+  <span class="uk-form-help-inline uk-text-bold uk-text-danger">{help}</span>
+  <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+  <input type="hidden" value="{mode}" name="mode"{xhtml}>
 </form>
+
 {# end {templatelocation} #}

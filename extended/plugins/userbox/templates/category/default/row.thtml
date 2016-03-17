@@ -1,5 +1,6 @@
 {# begin {templatelocation} #}
-{# plugins/userbox/templates/category/default/row.thtml 20151111 #}
-{grp_var}
+
+{!if grp_var}<li>{grp_var}</li>{!endif}
 {col_var}
+
 {# end {templatelocation} #}

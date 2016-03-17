@@ -15,11 +15,11 @@
   <input type="hidden" name="fieldset" value="{fieldset_id}"{xhtml}>
   <input type="hidden" name="fieldset_name" value="{fieldset_name}"{xhtml}>
 
-  <!-- data -->
+  {# data #}
   <fieldset class="uk-margin-large-top">
     <legend>{lang_basicfields}</legend>
 
-    <!-- id -->
+    {# id #}
     <div class="uk-form-row">
       <label class="uk-form-label">{lang_id} {help_id}</label>
       <div class="uk-form-controls">
@@ -27,7 +27,7 @@
       </div>
     </div>
 
-    <!-- DRAFT -->
+    {# DRAFT #}
     <div class="uk-form-row">
       <label class="uk-form-label" >{lang_draft} {help_draft}</label>
       <div class="uk-form-controls">
@@ -35,7 +35,7 @@
       </div>
     </div>
 
-    <!-- code -->
+    {# code #}
     <div class="uk-form-row">
       <label class="uk-form-label" >{lang_code} {help_code}<span class="uk-text-danger">{lang_must_code}</span>{help_code}</label>
       <div class="uk-form-controls">
@@ -43,23 +43,23 @@
       </div>
     </div>
 
-    <!-- title -->
+    {# title #}
     <div class="uk-form-row">
       <label class="uk-form-label" >{lang_title} {help_title}<span class="uk-text-danger">{lang_must}</span></label>
       <div class="uk-form-controls">
-        <input type="text" class="uk-form-width-large" size="48" maxlength="160" name="title" value="{title}" required{xhtml}>
+        <input type="text" class="uk-width-1-1" size="48" maxlength="160" name="title" value="{title}" required{xhtml}>
       </div>
     </div>
 
-    <!-- page title -->
+    {# page title #}
     <div class="uk-form-row">
       <label class="uk-form-label" >{lang_page_title} {help_page_title}</label>
       <div class="uk-form-controls">
-        <input type="text" class="uk-form-width-large" size="48" maxlength="160" name="page_title" value="{page_title}"{xhtml}>
+        <input type="text" class="uk-width-1-1" size="48" maxlength="160" name="page_title" value="{page_title}" {xhtml}>
       </div>
     </div>
 
-    <!-- description -->
+    {# description #}
     <div class="uk-form-row">
       <label class="uk-form-label" for="databox_description">{lang_description} {help_description}</label>
       <div class="uk-form-controls">
@@ -69,7 +69,7 @@
       </div>
     </div>
 
-    <!-- defaulttemplatesdirectory -->
+    {# defaulttemplatesdirectory #}
     <div class="uk-form-row">
       <label class="uk-form-label">{lang_defaulttemplatesdirectory} {help_defaulttemplatesdirectory}</label>
       <div class="uk-form-controls">
@@ -77,7 +77,7 @@
       </div>
     </div>
 
-    <!-- meta_description -->
+    {# meta_description #}
     <div class="uk-form-row"{hide_meta}>
       <label class="uk-form-label" for="databox_description">{lang_meta_description} {help_meta_description}</label>
       <div class="uk-form-controls">
@@ -87,7 +87,7 @@
       </div>
     </div>
 
-    <!-- meta_keywords -->
+    {# meta_keywords #}
 
     <div class="uk-form-row"{hide_meta}>
       <label class="uk-form-label" for="meta_keywords">{lang_meta_keywords} {help_meta_keywords}</label>
@@ -98,7 +98,7 @@
       </div>
     </div>
 
-    <!-- language_id  -->
+    {# language_id  #}
     <div class="uk-form-row"{hide_language_id}>
       <label class="uk-form-label">{lang_language_id} {help_language_id}</label>
       <div class="uk-form-controls">
@@ -106,7 +106,7 @@
       </div>
     </div>
 
-    <!-- hits -->
+    {# hits #}
     <div class="uk-form-row">
         <label class="uk-form-label">{lang_hits} {help_hits}</label>
         <div class="uk-form-controls">
@@ -114,7 +114,7 @@
         </div>
     </div>
 
-    <!-- comments -->
+    {# comments #}
     <div class="uk-form-row">
       <label class="uk-form-label" >{lang_comments} {help_comments}</label>
       <div class="uk-form-controls">
@@ -122,7 +122,7 @@
       </div>
     </div>
 
-    <!-- commentcode -->
+    {# commentcode #}
     <div class="uk-form-row">
       <label class="uk-form-label" >{lang_commentcode} {help_commentcode}</label>
       <div class="uk-form-controls">
@@ -132,7 +132,7 @@
       </div>
     </div>
 
-    <!-- comment_expire -->
+    {# comment_expire #}
     <div class="uk-form-row">
       <label class="uk-form-label" >{lang_comment_expire} {help_comment_expire}</label>
       <div class="uk-form-controls">
@@ -140,7 +140,7 @@
       </div>
     </div>
 
-    <!-- 編集日付 -->
+    {# 編集日付 #}
     <div class="uk-form-row">
       <label class="uk-form-label" >{lang_modified} {help_modified}</label>
       <div class="uk-form-controls">
@@ -148,7 +148,7 @@
       </div>
     </div>
 
-    <!-- 公開日 -->
+    {# 公開日 #}
     <div class="uk-form-row">
       <label class="uk-form-label" >{lang_released} {help_released}</label>
       <div class="uk-form-controls">
@@ -156,7 +156,7 @@
       </div>
     </div>
 
-    <!-- 公開終了日 -->
+    {# 公開終了日 #}
     <div class="uk-form-row">
       <label class="uk-form-label" >{lang_expired} {help_expire}</label>
       <div class="uk-form-controls">
@@ -164,7 +164,7 @@
       </div>
     </div>
 
-    <!-- order -->
+    {# order #}
     <div class="uk-form-row">
       <label class="uk-form-label">{lang_orderno} {help_orderno}</label>
       <div class="uk-form-controls">
@@ -172,7 +172,7 @@
       </div>
     </div>
 
-    <!-- trackbackcode -->
+    {# trackbackcode #}
     <div class="uk-form-row">
       <label class="uk-form-label">{lang_trackbackcode} {help_trackbackcode}</label>
       <div class="uk-form-controls">
@@ -182,7 +182,7 @@
       </div>
     </div>
 
-    <!-- cache_time -->
+    {# cache_time #}
     <div class="uk-form-row">
       <label class="uk-form-label" >{lang_cache_time} {help_cache_time}</label>
       <div class="uk-form-controls">
@@ -192,7 +192,7 @@
 
   </fieldset>
 
-  <!-- category -->
+  {# category #}
   <fieldset class="uk-margin-large-top">
     <legend>{lang_category}</legend>
 
@@ -205,13 +205,13 @@
 
   </fieldset>
 
-  <!-- 追加項目 -->
+  {# 追加項目 #}
   <fieldset class="uk-margin-large-top">
     <legend>{lang_additionfields}</legend>
     {additionfields}
   </fieldset>
 
-  <!-- アクセス権 -->
+  {# アクセス権 #}
   <fieldset class="uk-margin-large-top">
     <legend>{lang_accessrights}</legend>
 
@@ -250,7 +250,7 @@
       </div>
     </div>
 
-    <!-- タイムスタンプ -->
+    {# タイムスタンプ #}
     <div class="uk-form-row">
       <label class="uk-form-label" >{lang_udatetime}</label>
       <div class="uk-form-controls">
@@ -272,9 +272,9 @@
 
   <div class="uk-form-row uk-margin-large uk-margin-large-bottom">
     <div class="uk-form-controls">
-      <!-- <a href="{site_admin_url}/plugins/databox/view.php?id={id}" class="uk-button">{lang_view}</a> -->
+      {# <a href="{site_admin_url}/plugins/databox/view.php?id={id}" class="uk-button">{lang_view}</a> #}
 
-      <!-- Submit button - Save Cancel Delete -->
+      {# Submit button - Save Cancel Delete #}
       <input type="submit" value="{lang_save}" name="mode" class="uk-button uk-form-width-medium"{xhtml}>
       <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
       <input type="hidden" value="{code}" name="old_code"{xhtml}>

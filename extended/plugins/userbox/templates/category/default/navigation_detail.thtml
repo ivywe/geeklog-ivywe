@@ -1,37 +1,33 @@
 {# begin {templatelocation} #}
-{# plugins/userbox/templates/category/default/navigation_detail.thtml 20151111 #}
-<div class="userbox">
-    <div class="order">
-        {order_date}|{order_orderno}|{order_username}|{order_fullname}|{order_description}|{order_id}|{order_released}|{# 下の行のテーマ変数　参考例です 登録されていない場合機能 #}
-{order_tel}|{order_zipcode}
-    </div>
-    <div class="order_random">{order_random}</div>
-    <div class="cur_order">{cur_order}</div>
-    <div class="pagenav" {pagenavinone}>
+
+<div>
+
+  <ul class="uk-subnav uk-flex-center uk-margin-top uk-margin-remove-bottom">
+    <li class="uk-button uk-button-small uk-margin-small-left{!!if {cur_order}=="date" !!} uk-button-success{!endif}">{order_date}</li><li class="uk-button uk-button-small uk-margin-small-left{!!if {cur_order}=="orderno" !!} uk-button-success{!endif}">{order_orderno}</li><li class="uk-button uk-button-small uk-margin-small-left{!!if {cur_order}=="code" !!} uk-button-success{!endif}">{order_code}</li><li class="uk-button uk-button-small uk-margin-small-left{!!if {cur_order}=="title" !!} uk-button-success{!endif}">{order_title}</li><li class="uk-button uk-button-small uk-margin-small-left{!!if {cur_order}=="description" !!} uk-button-success{!endif}">{order_description}</li><li class="uk-button uk-button-small uk-margin-small-left{!!if {cur_order}=="id" !!} uk-button-success{!endif}">{order_id}</li><li class="uk-button uk-button-small uk-margin-small-left{!!if {cur_order}=="released" !!} uk-button-success{!endif}">{order_released}</li><li class="uk-button uk-button-small uk-margin-small-left{!!if {cur_order}=="random" !!} uk-button-success{!endif}">{order_random}</li>
+    <!-- example: sort by attribute -->
+    {!if order_tel}<li>{order_tel}</li>{!endif}
+    {!if order_zipcode}<li>{order_zipcode}</li>{!endif}
+  </ul>
+
+  <div {pagenavinone}>
     {page_navigation}
-    <div class="count" style="float:left">{lang_view} [{lin}] / {cnt}</div>
+    <div class="uk-float-right">{lang_view} [{lin}] / {cnt}</div>
   </div>
   <div style="clear:both"></div>
 
-  <ul class="contents">
-<li> ({lang_uid}) ({lang_username})|{lang_fullname}&nbsp;
-{lang_description}&nbsp;
-{lang_date}&nbsp;{# 使用する日付 作成日付or編集日付or公開日 #}
-{lang_released}&nbsp;
-{lang_expired}&nbsp;
-{lang_remaingdays}&nbsp;
-{lang_addfield}&nbsp;{# ソート順に指定された追加属性項目 #}
-{# 下記テーマ変数　参考例です 登録されていない場合表示されません #}
-&nbsp;&nbsp;&nbsp;{name_zipcode}{name_tel}{name_additionfield1}{name_additionfield2}
-</li>
+  <ul>
     {row_var}
   </ul>
 
-  <div class="pagenav" {pagenavinone}>
+  <!-- Maps Link mkids selectedMarkers-->
+  {mkids}{selectedMarkers}
+
+  <div {pagenavinone}>
     {page_navigation}
-    <div class="count" style="float:left">{lang_view} [{lin}] / {cnt} </div>
+    <div class="uk-float-right"">{lang_view} [{lin}] / {cnt} </div>
   </div>
   <div style="clear:both"></div>
 
 </div>
+
 {# end {templatelocation} #}

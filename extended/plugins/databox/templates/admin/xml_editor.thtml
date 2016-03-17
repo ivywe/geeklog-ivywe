@@ -7,8 +7,8 @@
   <fieldset class="uk-width-1-1">
     <legend>XML</legend>
 
-    <!-- data -->
-    <!-- seq -->
+    {# data #}
+    {# seq #}
     <div class="uk-form-row">
       <label class="uk-form-label" >{lang_seq}</label>
       <div class="uk-form-controls">
@@ -17,7 +17,7 @@
       </div>
     </div>
 
-    <!-- tag -->
+    {# tag #}
     <div class="uk-form-row">
       <label class="uk-form-label" >{lang_tag}<span class="must">{lang_must}</span></label>
       <div class="uk-form-controls">
@@ -25,14 +25,14 @@
       </div>
     </div>
 
-    <!-- value -->
+    {# value #}
     <div class="uk-form-row">
       <label class="uk-form-label" >{lang_value}</label>
       <div class="uk-form-controls">
         <input type="text" size="48" maxlength="160" name="value" value="{value}"{xhtml}>                </div>
     </div>
 
-    <!-- field -->
+    {# field #}
     <div class="uk-form-row">
       <label class="uk-form-label" >{lang_field}<span class="must">{lang_must}</span></label>
       <div class="uk-form-controls">
@@ -40,7 +40,7 @@
       </div>
     </div>
 
-        <!-- Update date -->
+        {# Update date #}
     <div class="uk-form-row">
       <label class="uk-form-label" >{lang_udatetime}</label>
       <div class="uk-form-controls">
@@ -52,7 +52,7 @@
 
   <div class="uk-form-row uk-margin-large-top">
     <div class="uk-form-controls">
-      <!-- Submit button - Save Cancel Delete -->
+      {# Submit button - Save Cancel Delete #}
       <input type="submit" value="{lang_save}" name="mode" class="uk-button uk-form-width-medium"{xhtml}>
       <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
       <input type="hidden" value="{code}" name="old_code"{xhtml}>

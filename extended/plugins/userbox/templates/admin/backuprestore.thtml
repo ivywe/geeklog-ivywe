@@ -1,20 +1,15 @@
 {# begin {templatelocation} #}
 
-<h2 class="uk-h2">{about_thispage}</h2>
+<h1 class="uk-h1">{actionname}</h1>
 
-<legend>(1){config}</legend>
+<form class="uk-form uk-form-horizontal" action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data">
 
-<form class="uk-form uk-form-horizontal" action="{site_admin_url}/plugins/backuprestore.php" method="post">
-  <p>{err_backup_file}</p>
-
-  <input type="submit" name="action" value="{config_backup}" data-uk-tooltip title="{config_backup_help}"{xhtml}>
-  <input type="submit" name="action" value="{config_init}" data-uk-tooltip title="{config_init_help}"{xhtml}>
-  <input type="submit" name="action" value="{config_restore}" {restore_disabled} data-uk-tooltip title="{config_restore_help}"{xhtml}>
+  <input type="submit" name="action" value="{lang_submit}"{xhtml}>
+  <input type="submit" name="action" value="{lang_cancel}"{xhtml}>
+  <input type="hidden" name="mode" value="{mode}"{xhtml}>
   <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
-  <input type='submit' name='action' value='{config_update}' {xhtml}>
-  <span class="uk-form-help-inline">{config_update_help}</span></li>
+  <span class="uk-form-help-inline">{help}</span>
 
 </form>
 
 {# end {templatelocation} #}
-

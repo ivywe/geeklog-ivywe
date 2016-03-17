@@ -1,21 +1,23 @@
 {# begin {templatelocation} #}
 
-<h2 class="uk-h2">{about_thispage}(<a href="{document_url}input_field.html">?</a>)</h2>
+<h1 class="uk-h1">{about_thispage}</h1>
+
+<a href="{document_url}input_field.html" class="uk-button uk-button-small">Document</a>
 
 <form class="uk-form uk-form-horizontal" name="frmuserbox" action="{site_admin_url}/plugins/{script}" method="post">
   <fieldset class="uk-width-1-1">
-    <legend>Attribute (addition field)</legend>
+    <legend>Addition Fields</legend>
 
     {# id #}
     <div class="uk-form-row">
       <label class="uk-form-label">{lang_field_id}</label>
       <div class="uk-form-controls">
-        {id}
-        <input type="hidden" name="id" value="{id}"{xhtml}>
+          {id}
+          <input type="hidden" name="id" value="{id}"{xhtml}>
       </div>
     </div>
 
-    <!-- name -->
+    {# name #}
     <div class="uk-form-row">
       <label class="uk-form-label">{lang_name}<span class="uk-text-danger">{lang_must}</span></label>
       <div class="uk-form-controls">
@@ -23,7 +25,7 @@
       </div>
     </div>
 
-    <!-- templatesetvar -->
+    {# templatesetvar #}
     <div class="uk-form-row">
       <label class="uk-form-label">{lang_templatesetvar}<span class="uk-text-danger">{lang_must}</span></label>
       <div class="uk-form-controls">
@@ -31,7 +33,7 @@
       </div>
     </div>
 
-    <!-- description -->
+    {# description #}
     <div class="uk-form-row">
       <label class="uk-form-label">{lang_description} {help_description}</label>
       <div class="uk-form-controls">
@@ -39,7 +41,7 @@
       </div>
     </div>
 
-    <!-- allow_display  -->
+    {# allow_display  #}
     <div class="uk-form-row">
       <label class="uk-form-label">{lang_allow_display} {help_allow_display}</label>
       <div class="uk-form-controls">
@@ -47,7 +49,7 @@
       </div>
     </div>
 
-    <!-- allow_edit -->
+    {# allow_edit #}
     <div class="uk-form-row">
       <label class="uk-form-label">{lang_allow_edit} {help_allow_edit}</label>
       <div class="uk-form-controls">
@@ -55,7 +57,7 @@
       </div>
     </div>
 
-    <!-- 検索対象にする searchtarget -->
+    {# 検索対象にする searchtarget #}
     <div class="uk-form-row">
       <label class="uk-form-label">{lang_searchtarget} {help_searchtarget}</label>
       <div class="uk-form-controls">
@@ -63,7 +65,7 @@
       </div>
     </div>
 
-    <!-- order -->
+    {# order #}
     <div class="uk-form-row">
       <label class="uk-form-label">{lang_orderno}</label>
       <div class="uk-form-controls">
@@ -71,7 +73,7 @@
       </div>
     </div>
 
-    <!-- Update date -->
+    {# Update date #}
     <div class="uk-form-row">
       <label class="uk-form-label">{lang_udatetime}</label>
       <div class="uk-form-controls">
@@ -90,14 +92,14 @@
 
     <div class="uk-panel uk-panel-box uk-margin">
 
-      <!-- 初期値 initial value -->
+      {# 初期値 initial value #}
       <div class="uk-form-row">
         <label class="uk-form-label">{lang_initial_value} {help_initial_value}</label>
         <div class="uk-form-controls">
            <textarea name="initial_value" class="uk-width-1-1" rows="2" id="userbox_initial_value">{initial_value}</textarea>
         </div>
       </div>
-      <!-- 範囲 range -->
+      {# 範囲 range #}
       <div class="uk-form-row">
         <label class="uk-form-label">{lang_range}</label>
         <div class="uk-form-controls">
@@ -105,7 +107,7 @@
         </div>
       </div>
 
-      <!-- 日時のフォーマット DateTime Format -->
+      {# 日時のフォーマット DateTime Format #}
       <div class="uk-form-row">
         <label class="uk-form-label">{lang_dfid} {help_dfid}</label>
         <div class="uk-form-controls">
@@ -113,7 +115,7 @@
         </div>
       </div>
 
-      <!-- 入力チェック textcheck -->
+      {# 入力チェック textcheck #}
       <div class="uk-form-row">
         <label class="uk-form-label">{lang_textcheck} {help_textcheck}</label>
         <div class="uk-form-controls">
@@ -121,7 +123,7 @@
         </div>
       </div>
 
-      <!-- 入力値変換 textconv -->
+      {# 入力値変換 textconv #}
       <div class="uk-form-row">
         <label class="uk-form-label">{lang_textconv} {help_textconv}</label>
         <div class="uk-form-controls">
@@ -129,7 +131,7 @@
         </div>
       </div>
 
-      <!-- checkrequried -->
+      {# check requried #}
       <div class="uk-form-row">
         <label class="uk-form-label">{lang_checkrequried} {help_checkrequried}</label>
         <div class="uk-form-controls">
@@ -137,7 +139,7 @@
         </div>
       </div>
 
-      <!-- size -->
+      {# size #}
       <div class="uk-form-row">
         <label class="uk-form-label">{lang_size}</label>
         <div class="uk-form-controls">
@@ -145,7 +147,7 @@
         </div>
       </div>
 
-      <!-- maxlength -->
+      {# maxlength #}
       <div class="uk-form-row">
         <label class="uk-form-label">{lang_maxlength}</label>
         <div class="uk-form-controls">
@@ -153,7 +155,7 @@
         </div>
       </div>
 
-      <!-- rows -->
+      {# rows #}
       <div class="uk-form-row">
         <label class="uk-form-label">{lang_rows}</label>
         <div class="uk-form-controls">
@@ -161,7 +163,7 @@
         </div>
       </div>
 
-      <!-- br -->
+      {# br #}
       <div class="uk-form-row">
         <label class="uk-form-label">{lang_br}</label>
         <div class="uk-form-controls">
@@ -169,7 +171,7 @@
         </div>
       </div>
 
-      <!-- selection -->
+      {# selection #}
       <div class="uk-form-row">
         <label class="uk-form-label" for="userbox_selection">{lang_selection} {help_selection}</label>
         <div class="uk-form-controls">
@@ -177,7 +179,7 @@
         </div>
       </div>
 
-      <!-- selectlist -->
+      {# selectlist #}
       <div class="uk-form-row">
         <label class="uk-form-label">{lang_selectlist} {help_selectlist}</label>
         <div class="uk-form-controls">
@@ -191,15 +193,14 @@
 
   <div class="uk-form-row uk-margin-large-top">
     <div class="uk-form-controls">
-    {# 【保存 キャンセル  削除】 #}
-    <input type="submit" value="{lang_save}" name="mode" class="uk-button"{xhtml}>
-    <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
-    <input type="hidden" value="{code}" name="old_code"{xhtml}>
-    {delete_option}{lang_delete_help}
-    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+      {# Submit button - Save Cancel Delete #}
+      <input type="submit" value="{lang_save}" name="mode" class="uk-button uk-form-width-medium"{xhtml}>
+      <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
+      <input type="hidden" value="{code}" name="old_code"{xhtml}>
+      <span data-uk-tooltip title="{lang_delete_help}">{delete_option}</span>
+      <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
     </div>
   </div>
-
 </form>
 
 {# end {templatelocation} #}

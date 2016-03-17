@@ -6,8 +6,8 @@
   <fieldset class="uk-width-1-1">
     <legend>{csv_select_dtl}</legend>
 
-    <!-- data -->
-    <!-- seq -->
+    {# data #}
+    {# seq #}
     <div class="uk-form-row">
       <label class="uk-form-label">{lang_seq}</label>
       <div class="uk-form-controls">
@@ -18,7 +18,7 @@
       </div>
     </div>
 
-    <!-- csvheader -->
+    {# csvheader #}
     <div class="uk-form-row">
       <label class="uk-form-label">{lang_csvheader}</label>
       <div class="uk-form-controls">
@@ -27,7 +27,7 @@
       </div>
     </div>
 
-    <!-- value -->
+    {# value #}
     <div class="uk-form-row">
       <label class="uk-form-label">{lang_value}</label>
       <div class="uk-form-controls">
@@ -36,7 +36,7 @@
       </div>
     </div>
 
-    <!-- Update date -->
+    {# Update date #}
     <div class="uk-form-row">
       <label class="uk-form-label">{lang_udatetime}</label>
       <div class="uk-form-controls">
@@ -48,7 +48,7 @@
 
     <div class="uk-form-row uk-margin-large uk-margin-large-bottom">
       <div class="uk-form-controls">
-        <!-- Submit button - Save Cancel Delete -->
+        {# Submit button - Save Cancel Delete #}
         <input type="submit" value="{lang_save}" name="mode" class="uk-button uk-form-width-medium"{xhtml}>
         <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
         <input type="hidden" value="{code}" name="old_code"{xhtml}>

@@ -7,8 +7,8 @@
     <div class="uk-form-controls uk-form-controls-text uk-margin-bottom">
       <p class="uk-form-controls-condensed">
         <label>{filter}</label>
-        {lang_search}
-        <input type="text" size="12" value="{last_query}" name="q"{xhtml}>
+        
+        <input type="text" size="12" value="{last_query}" placeholder="{lang_search}" name="q"{xhtml}>
         <label>{lang_limit_results}</label>
         <select name="query_limit">
           <option value="10" {10_selected}>10</option>
@@ -19,9 +19,9 @@
           <option value="200" {200_selected}>200</option>
           <option value="500" {500_selected}>500</option>
         </select>
+        <input type="submit" value="{lang_submit}" class="uk-button"{xhtml}>
         {lang_records_found}
         {records_found}
-        <input type="submit" value="{lang_submit}" class="uk-button"{xhtml}>
       </p>
     </div>
 

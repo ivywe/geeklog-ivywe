@@ -6,7 +6,7 @@
   
   {# Additional Items #}
   <fieldset class="uk-width-1-1 uk-margin-large-top">
-    <legend>参加セミナー</legend>
+    <legend>登録</legend>
     <dl class="uk-description-list-horizontal">
       {additionfields}
     </dl>

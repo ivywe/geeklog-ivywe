@@ -945,12 +945,12 @@ $LANG_configselects['databox'][21] =array(
 );
 
 $LANG_configselects['databox'][22] =array(
-    'ヘッダ・フッタ・左ブロックあり（右ブロックはテーマ設定による）' => 'standard'
-    , 'ヘッダ・フッタ・左右ブロックあり' => 'leftrightblocks'
-    , '全画面表示（ヘッダ・フッタ・ブロックなし）' => 'blankpage'
-    , 'ヘッダ・フッタあり（ブロックなし）' => 'noblocks'
-    , 'ヘッダ・フッタ・左ブロックあり（右ブロックなし）' => 'leftblocks'
-    , 'ヘッダ・フッタ・右ブロックあり（左ブロックなし）' => 'rightblocks'
+      '左ブロック（右ブロックはテーマ設定による）' => 'standard'
+    , '左右ブロック' => 'leftrightblocks'
+    , '全画面表示' => 'blankpage'
+    , 'ブロックなし' => 'noblocks'
+    , '左ブロック（右ブロックなし）' => 'leftblocks'
+    , '右ブロック（左ブロックなし）' => 'rightblocks'
 
     );
 

@@ -1,6 +1,6 @@
-<!-- plugins/userbox/templates/category/default/pagenavibation.thtml { -->
+{# begin {templatelocation} #}
 
-<p align="center">{begin_backlink}{lang_back}{end_backlink}&nbsp;[{lang_page_of}]&nbsp;{begin_nextlink}{lang_next}{end_nextlink}
+<div class="uk-text-center">{begin_backlink} {lang_back} {end_backlink}&nbsp;[{lang_page_of}]&nbsp;{begin_nextlink} {lang_next} {end_nextlink}</div>
 </p>
 
-<!-- } plugins/userbox/templates/category/default/pagenavibation.thtml -->
+{# end {templatelocation} #}

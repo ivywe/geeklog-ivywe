@@ -1,23 +1,23 @@
 {# begin {templatelocation} #}
-{# plugins/userbox/templates/category/default/navigation.thtml 20151111 #}
-<div class="userbox">
 
-  <div class="pagenav">
+<div>
+
+  <div>
     {page_navigation}
-    <div class="count" style="float:left">{lang_view} [{lin}] / {cnt}</div>
+    <div class="uk-float-right">{lang_view} [{lin}] / {cnt}</div>
   </div>
   <div style="clear:both"></div>
 
-  <ul class="contents">
-    <li>{lang_name} ({lang_count})</li>
+  <ul class="uk-list uk-list-line">
 {row_var}
   </ul>
 
-  <div class="pagenav">
+  <div>
     {page_navigation}
-    <div class="count" style="float:left">{lang_view} [{lin}] / {cnt} </div>
+    <div class="uk-float-right">{lang_view} [{lin}] / {cnt} </div>
   </div>
   <div style="clear:both"></div>
 
 </div>
+
 {# end {templatelocation} #}
