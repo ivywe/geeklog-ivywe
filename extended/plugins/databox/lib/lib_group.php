@@ -181,6 +181,14 @@ function LIB_Edit(
     $lang_box_inputtype="LANG_".strtoupper($pi_name)."_INPUTTYPE";
     global $$lang_box_inputtype;
     $lang_box_inputtype=$$lang_box_inputtype;
+	
+    $lang_box_allow_display="LANG_".strtoupper($pi_name)."_ALLOW_DISPLAY";
+    global $$lang_box_allow_display;
+    $lang_box_allow_display=$$lang_box_allow_display;
+
+    $lang_box_allow_edit="LANG_".strtoupper($pi_name)."_ALLOW_EDIT";
+    global $$lang_box_allow_edit;
+    $lang_box_allow_edit=$$lang_box_allow_edit;
 
     $table=$_TABLES[strtoupper($pi_name).'_def_group'];
     $table1=$_TABLES[strtoupper($pi_name).'_def_category'];
@@ -201,6 +209,12 @@ function LIB_Edit(
         $code = COM_applyFilter($_POST['code']);
         $name = COM_applyFilter($_POST['name']);
         $description = $_POST['description'];//COM_applyFilter($_POST['description']);
+        
+        $defaulttemplatesdirectory = COM_applyFilter($_POST['defaulttemplatesdirectory']);
+        $allow_display = COM_applyFilter($_POST['allow_display'],true);
+        $allow_edit = COM_applyFilter($_POST['allow_edit'],true);
+
+        $layout = COM_applyFilter($_POST['layout']);
 
         $orderno = COM_applyFilter ($_POST['orderno']);
         $parent_flg = COM_applyFilter ($_POST['parent_flg'],true);
@@ -216,10 +230,14 @@ function LIB_Edit(
             $code ="";
             $name ="";
             $description ="";
+			$defaulttemplatesdirectory = "";
+            $allow_display="";
+            $allow_edit="";
 
             $orderno ="";
-            $parent_flg =0;
-
+            $parent_flg ="0";
+			$input_type="0";
+			
             $uuid=0;
             $udatetime="";//"";
 
@@ -240,6 +258,11 @@ function LIB_Edit(
             $code = COM_stripslashes($A['code']);
             $name = COM_stripslashes($A['name']);
             $description = COM_stripslashes($A['description']);
+
+            $defaulttemplatesdirectory=COM_stripslashes($A['defaulttemplatesdirectory']);
+            $allow_edit = COM_stripslashes($A['allow_edit']);
+            $allow_display = COM_stripslashes($A['allow_display']);
+
             $orderno=COM_stripslashes($A['orderno']);
             $parent_flg=COM_stripslashes($A['parent_flg']);
             $input_type=COM_stripslashes($A['input_type']);
@@ -316,6 +339,21 @@ function LIB_Edit(
     $templates->set_var('lang_input_type', $lang_box_admin['input_type']);
     $list_input_type=DATABOX_getradiolist ($lang_box_inputtype,"input_type",$input_type);
     $templates->set_var( 'list_input_type', $list_input_type);
+
+    //テンプレートディレクトリ
+    $templates->set_var('lang_defaulttemplatesdirectory', $lang_box_admin['defaulttemplatesdirectory']);
+    $templates->set_var ('defaulttemplatesdirectory', $defaulttemplatesdirectory);
+    $select_defaulttemplatesdirectory=LIB_templatesdirectory ($pi_name,$defaulttemplatesdirectory);
+    $templates->set_var ('select_defaulttemplatesdirectory', $select_defaulttemplatesdirectory);
+
+    $templates->set_var('lang_allow_display', $lang_box_admin['allow_display']);
+    $list_allow_display=DATABOX_getoptionlistary ($lang_box_allow_display,"allow_display",$allow_display,$pi_name);
+    $templates->set_var( 'list_allow_display', $list_allow_display);
+
+    $templates->set_var('lang_allow_edit', $lang_box_admin['allow_edit']);
+    $list_allow_edit=DATABOX_getoptionlistary ($lang_box_allow_edit,"allow_edit",$allow_edit,$pi_name);
+    $templates->set_var( 'list_allow_edit', $list_allow_edit);
+
 
     //保存日時
     $templates->set_var ('lang_udatetime', $lang_box_admin['udatetime']);
@@ -420,6 +458,14 @@ function LIB_Save (
     //V:濁点つきの文字を１文字に変換する (K、H と共に利用する）
     //$name = str_replace ("'", "’",$name);
     //$code = mb_convert_kana($code,"a");//全角英数字を半角英数字に変換する
+	
+	$defaulttemplatesdirectory=COM_applyFilter($_POST['defaulttemplatesdirectory']);
+    $defaulttemplatesdirectory = addslashes (COM_checkHTML (COM_checkWords ($defaulttemplatesdirectory)));
+	
+    $allow_display=COM_applyFilter($_POST['allow_display']);
+    $allow_display=addslashes (COM_checkHTML (COM_checkWords ($allow_display)));
+    $allow_edit=COM_applyFilter($_POST['allow_edit']);
+    $allow_edit=addslashes (COM_checkHTML (COM_checkWords ($allow_edit)));
 
     //-----
     $type=1;
@@ -494,7 +540,16 @@ function LIB_Save (
 	
     $fields.=",input_type";//
     $values.=",$input_type";
+    
+    $fields.=",defaulttemplatesdirectory";
+    $values.=",'$defaulttemplatesdirectory'";
+	
+    $fields.=",allow_display";
+    $values.=",$allow_display";
 
+    $fields.=",allow_edit";
+    $values.=",$allow_edit";
+	
     $fields.=",uuid";
     $values.=",$uuid";
 
@@ -619,6 +674,9 @@ $fld['group_id']['name']  = $lang_box_admin['group_id'];
 $fld['code']['name']  = $lang_box_admin['code'];
 $fld['name']['name']  = $lang_box_admin['name'];
 $fld['description']['name']  = $lang_box_admin['description'];
+$fld['defaulttemplatesdirectory']['name']  = $lang_box_admin['defaulttemplatesdirectory'];
+$fld['allow_display']['name']  = $lang_box_admin['allow_display'];
+$fld['allow_edit']['name']  = $lang_box_admin['allow_edit'];
 
 $fld['orderno']['name']  = $lang_box_admin['orderno'];
 
@@ -818,5 +876,85 @@ function LIB_Menu(
     return $retval;
 }
 
+// +---------------------------------------------------------------------------+
+// | 機能 テンプレートディレクトリの選択入力ｈｔｍｌ
+// | 書式 LIB_templatesdirectory ($pi_name,$defaulttemplatesdirectory)
+// +---------------------------------------------------------------------------+
+// | 戻値 nomal:
+// +---------------------------------------------------------------------------+
+function LIB_templatesdirectory (
+    $pi_name
+	,$defaulttemplatesdirectory
+){
+
+    global $_CONF;
+    global $_TABLES;
+    global $_USER ;
+
+    $box_conf="_".strtoupper($pi_name)."_CONF";
+    global $$box_conf;
+    $box_conf=$$box_conf;
+
+    $fld="category";//@@@@@?
+
+    //
+    $selection = '<select id="defaulttemplatesdirectory" name="defaulttemplatesdirectory">' . LB;
+	$selection .= "<option value=\"\">  </option>".LB;
+
+    //
+	if ($box_conf['templates']==="theme"){
+		$fd1=$_CONF['path_layout'].$box_conf['themespath'].$fld."/";
+	}else if ($box_conf['templates']==="custom"){
+		$fd1=$_CONF['path'] .'plugins/'.$pi_name.'/custom/templates/'.$fld.'/';
+    }else{
+        $fd1=$_CONF['path'] .'plugins/'.$pi_name.'/templates/'.$fld.'/';
+    }
+
+    if( is_dir( $fd1)){
+        $fd = opendir( $fd1 );
+        $dirs= array();
+        $i = 1;
+        while(( $dir = @readdir( $fd )) == TRUE )    {
+            if( is_dir( $fd1 . $dir)
+                    && $dir <> '.'
+                    && $dir <> '..'
+                    && $dir <> 'CVS'
+                    && substr( $dir, 0 , 1 ) <> '.' ) {
+                clearstatcache();
+                $dirs[$i] = $dir;
+                $i++;
+            }
+        }
+
+        usort($dirs, 'strcasecmp');
+
+        foreach ($dirs as $dir) {
+            $selection .= '<option value="' . $dir . '"';
+            if ($defaulttemplatesdirectory == $dir) {
+                $selection .= ' selected="selected"';
+            }
+            $words = explode('_', $dir);
+            $bwords = array();
+            foreach ($words as $th) {
+                if ((strtolower($th[0]) == $th[0]) &&
+                    (strtolower($th[1]) == $th[1])) {
+                    $bwords[] = ucfirst($th);
+                } else {
+                    $bwords[] = $th;
+                }
+            }
+            $selection .= '>' . implode(' ', $bwords) . '</option>' . LB;
+        }
+    }else{
+        $selection .= '<option value="default"';
+        $selection .= ' selected="selected"';
+        $selection .= '>Default</option>' . LB;
+    }
+
+    $selection .= '</select>';
+
+    return $selection;
+
+}
 
 ?>

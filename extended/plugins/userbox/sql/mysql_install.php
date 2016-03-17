@@ -1,6 +1,6 @@
 <?php
 // 20101110 tsuchitani AT ivywe DOT co DOT jp
-// Last Update 20150304
+// Last Update 20160310
 
 //ADDTION DATA
 $_SQL[] = "
@@ -124,6 +124,9 @@ CREATE TABLE {$_TABLES['USERBOX_def_group']} (
   `orderno` int(2) DEFAULT NULL,
   `parent_flg` binary(1) NOT NULL DEFAULT '0',
   `input_type` BINARY(1) NOT NULL DEFAULT '0',
+  `defaulttemplatesdirectory` varchar(40) NOT NULL DEFAULT '',
+  `allow_display` binary(1) DEFAULT 0,
+  `allow_edit` binary(1) DEFAULT 0,
   `udatetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `uuid` mediumint(8) NOT NULL,
   PRIMARY KEY (`group_id`)

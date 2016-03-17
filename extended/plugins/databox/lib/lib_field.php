@@ -279,7 +279,7 @@ function LIB_Edit(
             $allow_edit="";
 			$textcheck="";
 			$textconv="";
-			$searchtarget="";
+			$searchtarget="0";
             
             $initial_value = "";
             $range_start = "";
@@ -290,7 +290,7 @@ function LIB_Edit(
 
             $selection ="";
             $selectlist ="";
-            $checkrequried ="";
+            $checkrequried ="0";
 
             $size = 40;
             $maxlength = 500;
@@ -659,7 +659,8 @@ function LIB_Save (
     //7 = 'オプションリスト';
     //8 = 'ラジオボタンリスト';
 	//14= 'マルチセレクトリスト';
-    if ($type==7 OR $type==8 OR $type==14) {
+	//24= 'チェックボックス';
+    if ($type==7 OR $type==8 OR $type==14 OR $type==24) {
         if  ($selection==""){
             $err.=$lang_box_admin['err_selection']."<br/>".LB;
         }

@@ -147,7 +147,7 @@ $LANG_USERBOX_ADMIN['title']='Title';
 $LANG_USERBOX_ADMIN['page_title']='Page Title';
 
 $LANG_USERBOX_ADMIN['description']='Description';
-$LANG_USERBOX_ADMIN['defaulttemplatesdirectory']='Theme';
+$LANG_USERBOX_ADMIN['defaulttemplatesdirectory']='Template directory';
 $LANG_USERBOX_ADMIN['layout']='Layout';
 
 $LANG_USERBOX_ADMIN['category']='Category';
@@ -530,29 +530,30 @@ $LANG_USERBOX_TYPE[0] = '1 Line Text Attribute';
 $LANG_USERBOX_TYPE[1] = 'Multi Line Text Attribute(HTML)';
 $LANG_USERBOX_TYPE[20] = 'Multi Line Text Attribute(HTML/TinyMCE)';
 $LANG_USERBOX_TYPE[10] = 'Multi Line Text Attribute(TEXT)';
+$LANG_USERBOX_TYPE[19] = 'MultiLine Text Attribute (CKEditor)';
 $LANG_USERBOX_TYPE[15] = 'Numeric';
 $LANG_USERBOX_TYPE[21] = 'Currency';
 
 $LANG_USERBOX_TYPE[2] = 'Yes/No';
 $LANG_USERBOX_TYPE[3] = 'Date (Date Picker)';
+$LANG_USERBOX_TYPE[22] = 'date (jquery ui datepicker)';
+$LANG_USERBOX_TYPE[23] = 'date (Uikit datepicker)';
 $LANG_USERBOX_TYPE[4] = 'Time (In preparation)';
 $LANG_USERBOX_TYPE[5] = 'Mail Address';
 $LANG_USERBOX_TYPE[6] = 'url';
 $LANG_USERBOX_TYPE[7] = 'Option List';
 $LANG_USERBOX_TYPE[8] = 'Radio Button List';
 $LANG_USERBOX_TYPE[14] = 'Multiselect';
+$LANG_USERBOX_TYPE[24] = 'Check Box';
 $LANG_USERBOX_TYPE[17] = 'Flag';
 $LANG_USERBOX_TYPE[9] = 'Definition List';
 $LANG_USERBOX_TYPE[16] = 'Radio Button List（from master）';//@@@@@
 $LANG_USERBOX_TYPE[18] = 'Multiselect（from master）';//@@@@@
-//$LANG_USERBOX_TYPE[19] = '';//@@@@@
+$LANG_USERBOX_TYPE[25] = 'Check Box （from master）';
 
 $LANG_USERBOX_TYPE[11] = 'Image(DB Save)';
 $LANG_USERBOX_TYPE[12] = 'Image(File Save)';
 $LANG_USERBOX_TYPE[13] = 'File(In Preparation )';
-
-$LANG_USERBOX_TYPE[22] = 'date (jquery ui datepicker)';
-$LANG_USERBOX_TYPE[23] = 'date (Uikit datepicker)';
 
 ###############################################################################
 #

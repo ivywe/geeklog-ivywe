@@ -1146,6 +1146,22 @@ function DATABOX_getaddtionfieldsEdit(
                         $selectionary[$fvalue];
                     }
                     break;
+                case 24://チェックボックス（選択肢）
+                    if ($disabled===""){
+                        $fieldhtml=DATABOX_getcheckboxary($selectionary,"afield[".$fid."]",$fvalue,$pi_name, $disabled,$type,$size);
+					
+                    }else{
+                        $selectionary[$fvalue];
+                    }
+                    break;
+                 case 25://チェックボックス（マスター）
+                    if ($disabled===""){
+                        $mstary=DATABOX_getAry("selectlist_mst",0,$selectlist,$pi_name);
+                        $fieldhtml=DATABOX_getcheckboxary($mstary,"afield[".$fid."]",$fvalue,$pi_name, $disabled,$type,$size);
+                    }else{
+                        $selectionary[$fvalue];
+                    }
+                    break;
                 case 9://オプションリスト（マスター）
                     if ($disabled===""){
                        $fieldhtml=DATABOX_getoptionlist("selectlist_mst",$fvalue,0,$pi_name,"",0,$selectlist,"afield[".$fid."]");
@@ -1655,6 +1671,7 @@ function DATABOX_getaddtionfieldsText(
                         $retval .= $selectionary[$fvalue];
                         break;
                     case 14://マルチセレクトリスト（選択肢）
+                    case 24://チェックボックス（選択肢）
                         $wkary=explode(":",$fvalue);
                         $wk="";
                         for( $x = 0; $x < sizeof( $wkary ); $x++ )            {
@@ -1668,6 +1685,7 @@ function DATABOX_getaddtionfieldsText(
                         $retval .= $mstitems['value'];
                         break;
                     case 18://マルチセレクトリスト（マスター）
+                    case 25://チェックボックス（マスター）
                         $wkary=explode(":",$fvalue);
                         $wk="";
                         for( $x = 0; $x < sizeof( $wkary ); $x++ )            {
@@ -1889,6 +1907,7 @@ function DATABOX_getaddtionfieldsDisp(
                     $fieldhtml .= $selectionary[$fvalue];
                     break;
                 case 14://マルチセレクトリスト（選択肢）
+                case 24://チェックボックス（選択肢）
                     $wkary=explode(":",$fvalue);
                     $wk="";
                     for( $x = 0; $x < sizeof( $wkary ); $x++ )            {
@@ -1907,6 +1926,7 @@ function DATABOX_getaddtionfieldsDisp(
                     $fieldhtml .= $mstitems['value'];
                     break;
                 case 18://マルチセレクトリスト（マスター）
+                case 25://チェックボックス（マスター）
                     $wkary=explode(":",$fvalue);
                     $wk="";
                     $wk_value2="";
@@ -2932,6 +2952,8 @@ function DATABOX_cleanaddtiondatas(
                     }
                     $wk=$wk_year."-".$wk_month."-".$wk_day ." ".$wk_hour.":".$wk_minute;
                     break;
+                case 24://チェックボックス（選択肢）
+                case 25://チェックボックス（マスター）
                 case 14://マルチセレクトリスト（選択肢）
                 case 18://マルチセレクトリスト（マスター）
                     $wk=implode ($wk,":");
@@ -4072,10 +4094,12 @@ function DATABOX_getradiolist(
 
         //echo "ary".$i."=".$ary[$i]."<br>";
         $retval .= "<input type='radio' NAME='$fld' $disabled VALUE='$id'";
-        if( $id == $selected ){
+		if  ($selected==""){
+		}else{
+            if( $id == $selected ){
                 $retval .= " CHECKED=CHECKED ";
+            }
         }
-
         $retval .= ">$ary[$id]";
         
         if   ($br<>0){
@@ -4142,24 +4166,29 @@ function DATABOX_getoptionlistary(
     }
     $retval .= $disabled.">".LB;
     
-    if  ($ary[0]<>""){
-    }else{
-        $retval .= "<option value=0>{$lang_box['selectit']}</option>".LB;
-    }
+	if  ($type==7 ){
+		if  ($ary[0]==""){
+        }else{
+            $retval .= "<option value=''>{$lang_box['selectit']}</option>".LB;
+        }
+	}
     
     foreach($ary as $k => $v) {
         $retval .= "<option value=\"".$k."\"";
-        
-        if  ($type==14 OR $type==18){
-            if( in_array($k,$selectedary) ){//@@@@@
-                $retval .= " selected=\"selected\" ";
-            }
-        }else{
-            if( $k == $selected ){//@@@@@
-                $retval .= " selected=\"selected\" ";
-            }
-        }
-        $retval .= ">";
+		//echo "k=".$k."sa=".$selectedary."s=".$selected."<br>";
+		if  ($selected==""){
+		}else{
+            if  ($type==14 OR $type==18){
+                if( in_array($k,$selectedary) ){//@@@@@
+                    $retval .= " selected=\"selected\" ";
+                }
+		    }else{
+                if( $k == $selected ){//@@@@@
+                    $retval .= " selected=\"selected\" ";
+                }
+			}
+		}
+		$retval .= ">";
 
         $retval .= $v;
         $retval .= "</option>".LB;
@@ -5771,6 +5800,57 @@ function DATABOX_math(
     return $rt;
 	
 	
+}
+function DATABOX_getcheckboxary(
+    $ary
+    ,$fld
+    ,$selected = ""
+    ,$pi_name=""
+    ,$disabled=""
+    ,$type=""
+    ,$size=1
+)
+// +---------------------------------------------------------------------------+
+// | 機能  チェックボックス作成（配列より）
+// | 書式 DATABOX_getcheckboxary($selectionary,"afield[".$fid."]",$fvalue,$pi_name, $disabled,$type);
+// +---------------------------------------------------------------------------+
+// | 引数 $ary:
+// | 引数 $fld:
+// | 引数 $selected:選択値　省略時
+// | 引数 $pi_name: 'databox' 'userbox' 'formbox'
+// | 引数 $disabled:defalt="" 
+// | 引数 $type:defalt="" 14=multiselect
+// +---------------------------------------------------------------------------+
+// | 戻値 nomal:オプションリスト                                               |
+// +---------------------------------------------------------------------------+
+{
+
+    if ($pi_name==""){
+        $lang_box="LANG_DATABOX";
+    }else{
+        $lang_box="LANG_".strtoupper($pi_name);
+    }
+    global $$lang_box;
+    $lang_box=$$lang_box;
+	
+    $selectedary=explode(":",$selected);
+	
+	$retval = '';
+	
+    foreach($ary as $k => $v) {
+        $retval .= '<span style="white-space:nowrap">';
+        $retval .= '<input type="checkbox" name="' . $fld . '[]" value="' . $k ;
+        $retval .= '"';
+		if  ($selected==""){
+		}else{
+            if( in_array($k,$selectedary) ){//@@@@@
+                $retval .= ' checked="checked"';
+			}
+		}
+        $retval .= '>' . stripslashes( $v ) . '</span>' . LB;
+
+    }
+    return $retval;
 }
 
 ?>

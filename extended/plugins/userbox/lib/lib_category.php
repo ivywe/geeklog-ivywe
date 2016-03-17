@@ -287,7 +287,7 @@ function LIB_Edit(
             $categorygroup_id ="";
             $parent_id ="";
             $orderno ="";
-            $allow_display="";
+            $allow_display="0";
 
             $uuid=0;
             $udatetime="";//"";
