@@ -508,7 +508,7 @@ if (!function_exists('CUSTOM_menuEntries')) {
             $class_name = trim($class_name) . ' ' . $entry['selected'];
             $class_name = trim($class_name) . (($custom_count == $custom_size) ? ' last' : '');
             $class_name = trim($class_name);
-            $class_property = (empty($class_name)) ? '' : (' class="' . $class_name . '"');
+            // $class_property = (empty($class_name)) ? '' : (' class="' . $class_name . '"');
 
             if (empty($entry['submenu_entries'])) {
                 $T->set_var('menuitem_url',   $entry['url']);

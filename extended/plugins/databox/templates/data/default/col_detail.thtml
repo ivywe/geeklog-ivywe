@@ -63,9 +63,10 @@
 </td>
 <td class="uk-text-success uk-text-small" style="width:5%">
 {!!if {field_type} ==  "0" !!}00<br{xhtml}>一行テキスト{!endif}
-{!!if {field_type} ==  "1" !!}01<br{xhtml}>複数行テキスト{!endif}
-{!!if {field_type} == "20" !!}20<br{xhtml}>HTML{!endif}
-{!!if {field_type} == "10" !!}10<br{xhtml}>TinyMCE{!endif}
+{!!if {field_type} ==  "1" !!}01<br{xhtml}>HTML{!endif}
+{!!if {field_type} == "20" !!}20<br{xhtml}>TinyMCE{!endif}
+{!!if {field_type} == "19" !!}10<br{xhtml}>CKEditor{!endif}
+{!!if {field_type} == "10" !!}10<br{xhtml}>複数行テキスト{!endif}
 {!!if {field_type} == "15" !!}15<br{xhtml}>数値{!endif}
 {!!if {field_type} == "21" !!}21<br{xhtml}>通貨{!endif}
 {!!if {field_type} ==  "2" !!}02<br{xhtml}>Yes/No{!endif}

@@ -2,7 +2,7 @@
 
 {!if edit}
 <fieldset>
-<legend><a href="{site_url}/mediagallery/album.php?aid={album_id}&page=1"><i class="uk-icon-file-image-o"></i> {album_title}</a></legend>
+<legend><a href="{site_url}/mediagallery/album.php?aid={album_id}&page=1"><span class="uk-text-small"><i class="uk-icon-file-image-o"></i> {album_title}</span></a></legend>
 {!endif}
 
 <div class="uk-slidenav-position" data-uk-slideshow="{ kenburns:true, autoplay:true }">
