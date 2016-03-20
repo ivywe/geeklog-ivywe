@@ -696,10 +696,10 @@ $LANG_DATABOX_TEXTCONV[20] = '全角に変換する';
 //TYPE （内容の変更不可）
 $LANG_DATABOX_TYPE = array();
 $LANG_DATABOX_TYPE[0] = '一行テキスト';
-$LANG_DATABOX_TYPE[1] = 'HTML（複数行テキスト）';
-$LANG_DATABOX_TYPE[20] = 'TinyMCE（複数行テキスト）';
 $LANG_DATABOX_TYPE[10] = '複数行テキスト';
-$LANG_DATABOX_TYPE[19] = 'CKEditor（複数行テキスト）';
+$LANG_DATABOX_TYPE[1] = 'HTML';
+$LANG_DATABOX_TYPE[20] = 'TinyMCE';
+$LANG_DATABOX_TYPE[19] = 'CKEditor';
 
 $LANG_DATABOX_TYPE[15] = '数値';
 $LANG_DATABOX_TYPE[21] = '通貨';
@@ -707,7 +707,7 @@ $LANG_DATABOX_TYPE[21] = '通貨';
 $LANG_DATABOX_TYPE[2] = 'いいえ/はい';
 $LANG_DATABOX_TYPE[3] = '日付';
 $LANG_DATABOX_TYPE[22] = '日付 (jquery ui datepicker)';
-$LANG_DATABOX_TYPE[23] = '日付 (Uikit datepicker)';
+$LANG_DATABOX_TYPE[23] = '日付 (UIkit datepicker)';
 $LANG_DATABOX_TYPE[4] = '日時';
 $LANG_DATABOX_TYPE[5] = 'メールアドレス';
 $LANG_DATABOX_TYPE[6] = 'url';

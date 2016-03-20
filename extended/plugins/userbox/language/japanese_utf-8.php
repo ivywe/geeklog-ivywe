@@ -536,10 +536,10 @@ $LANG_USERBOX_TEXTCONV[20] = '全角に変換する';
 //TYPE （内容の変更不可）
 $LANG_USERBOX_TYPE = array();
 $LANG_USERBOX_TYPE[0] = '一行テキスト';
-$LANG_USERBOX_TYPE[1] = 'HTML（複数行テキスト）';
-$LANG_USERBOX_TYPE[20] = 'TinyMCE（複数行テキスト）';
 $LANG_USERBOX_TYPE[10] = '複数行テキスト';
-$LANG_USERBOX_TYPE[19] = 'CKEditor（複数行テキスト）';
+$LANG_USERBOX_TYPE[1] = 'HTML';
+$LANG_USERBOX_TYPE[20] = 'TinyMCE';
+$LANG_USERBOX_TYPE[19] = 'CKEditor';
 
 $LANG_USERBOX_TYPE[15] = '数値';
 $LANG_USERBOX_TYPE[21] = '通貨';//@@@@@
