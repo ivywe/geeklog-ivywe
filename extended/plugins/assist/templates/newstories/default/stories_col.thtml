@@ -1,11 +1,6 @@
 {# begin {templatelocation} #}
-<!-- plugins/assist/templates/newstories/default/stories_col.thtml  20120502{ -->
 
-<dt class="assist_date">{day}</dt>
-<dd class="assist_stories"><a href="{url}" class="gl-tooltip" style="cursor: pointer; ">{title}<span class="classic" style="top: 2.2em; left: 2.2em;">{meta_description}</span></a>{new_img}</dd>
-
-<!-- 
-{introtext}
- -->
+<dt>{day}</dt>
+<dd><a href="{url}">{title}</a>{new_img}</dd>
 
 {# end {templatelocation} #}
