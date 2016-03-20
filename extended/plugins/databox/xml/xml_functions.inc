@@ -387,10 +387,10 @@ function fnc_GetFieldAry2(
      //01 HTML（複数行テキスト）
      //20 TinyMCEモード（複数行テキスト）
      //07 オプションリスト（選択肢）
-     //08 ラジオボタンリスト（選択肢）
+     //08 ラジオボタン（選択肢）
      //12 画像（ファイル保存） 6
      //09 オプションリスト（マスター）
-    //16 ラジオボタンリスト（マスター）
+    //16 ラジオボタン（マスター）
 
      $table=$_TABLES[strtoupper($pi_name).'_def_field'];
     $sql = "SELECT ".LB;
@@ -958,18 +958,18 @@ function fnc_getfieldvalue2(
 //    01 HTML（複数行テキスト）
 //    20 TinyMCEモード（複数行テキスト）
 //    07 オプションリスト（選択肢）
-//    08 ラジオボタンリスト（選択肢）
+//    08 ラジオボタン（選択肢）
 //    12 画像（ファイル保存） 
      
 //    09 オプションリスト（マスター）
-//    16 ラジオボタンリスト（マスター）
+//    16 ラジオボタン（マスター）
      
      global $_TABLES;
      $pi_name="databox";
      
      switch ($type) {
         case 9://オプションリスト（マスター）
-        case 16://ラジオボタンリスト（マスター）
+        case 16://ラジオボタン（マスター）
                $wkary=explode(":",$value);
                $wkvalue=$wkary[0];
                $wkvalue2=$wkary[2];

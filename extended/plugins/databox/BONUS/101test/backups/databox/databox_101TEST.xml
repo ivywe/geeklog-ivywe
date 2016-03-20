@@ -548,7 +548,7 @@
   </gl211_databox_def_field>
   <gl211_databox_def_field>
     <field_id>15</field_id>
-    <name>ラジオボタンリスト０８</name>
+    <name>ラジオボタン０８</name>
     <templatesetvar>list08</templatesetvar>
     <description></description>
     <type>8</type>

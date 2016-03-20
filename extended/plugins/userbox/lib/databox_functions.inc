@@ -1169,14 +1169,14 @@ function DATABOX_getaddtionfieldsEdit(
                         $selectionary[$fvalue];
                     }
                     break;
-                case 8://ラジオボタンリスト（選択肢）
+                case 8://ラジオボタン（選択肢）
                     if ($disabled===""){
                         $fieldhtml=DATABOX_getradiolist ($selectionary,"afield[".$fid."]",$fvalue,$br,$disabled,$type);
                     }else{
                         $selectionary[$fvalue];
                     }
                     break;
-                case 16://ラジオボタンリスト（マスター）//@@@@@
+                case 16://ラジオボタン（マスター）//@@@@@
                     if ($disabled===""){
                         $mstary=DATABOX_getAry("selectlist_mst",0,$selectlist,$pi_name);
                         $fieldhtml=DATABOX_getradiolist ($mstary,"afield[".$fid."]",$fvalue,$br,$disabled,$type);
@@ -1680,7 +1680,7 @@ function DATABOX_getaddtionfieldsText(
                         $retval .= rtrim($wk,$separater);
                         break;
                     case 9://オプションリスト（マスター）
-                    case 16://ラジオボタンリスト（マスター）
+                    case 16://ラジオボタン（マスター）
                         $mstitems=DATABOX_getMstItems($selectlist,$fvalue,$pi_name);
                         $retval .= $mstitems['value'];
                         break;
@@ -1903,7 +1903,7 @@ function DATABOX_getaddtionfieldsDisp(
                     $fieldhtml .= $lang_noyes[$fvalue];
                     break;
                 case 7://オプションリスト（選択肢）//@@@@@@
-                case 8://ラジオボタンリスト（選択肢）//@@@@@
+                case 8://ラジオボタン（選択肢）//@@@@@
                     $fieldhtml .= $selectionary[$fvalue];
                     break;
                 case 14://マルチセレクトリスト（選択肢）
@@ -2715,11 +2715,11 @@ function DATABOX_getfieldvalue(
             $fieldvalue = $lang_noyes[$value];
             break;
         case 7://オプションリスト（選択肢）
-        case 8://ラジオボタンリスト（選択肢）
+        case 8://ラジオボタン（選択肢）
             $fieldvalue= $selectionary[$value];
             break;
         case 9://オプションリスト（マスター）';
-        case 16://ラジオボタンリスト（マスター）';
+        case 16://ラジオボタン（マスター）';
             if  ($value==""){
                 $fieldvalue="";
             }else{
@@ -2978,7 +2978,7 @@ function DATABOX_cleanaddtiondatas(
                     $delary[$field_id]=COM_checkHTML (COM_checkWords ($wk2));
                     break;
                 case 7://オプションリスト（選択肢）
-                case 8://ラジオボタンリスト（選択肢）
+                case 8://ラジオボタン（選択肢）
                 case 9://オプションリスト（マスター）';
                 case 5://メールアドレス';
                 case 6://url';
@@ -5268,7 +5268,7 @@ function DATABOX_fieldvalue(
                     }
                     break;
                 case 7://オプションリスト（選択肢）
-                case 8://ラジオボタンリスト（選択肢）
+                case 8://ラジオボタン（選択肢）
                     $rt= $selectionary[$value];
                     break;
                 case 14://マルチセレクトリスト（選択肢）

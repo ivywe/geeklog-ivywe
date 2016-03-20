@@ -657,7 +657,7 @@ function LIB_Save (
 		}
     }
     //7 = 'オプションリスト';
-    //8 = 'ラジオボタンリスト';
+    //8 = 'ラジオボタン';
 	//14= 'マルチセレクトリスト';
 	//24= 'チェックボックス';
     if ($type==7 OR $type==8 OR $type==14 OR $type==24) {
@@ -761,7 +761,7 @@ function LIB_Save (
             $sql.=",'".$initial_value."' ";
 		}else{
             //7 = 'オプションリスト';
-	        //8 = 'ラジオボタンリスト';
+	        //8 = 'ラジオボタン';
             if (($type==7 OR $type==8) AND ($selection<>"")){
                 $sql.=",'0' ";
             }else{

@@ -18,6 +18,7 @@
       </div>
     </div>
 
+<?php if( $_USERBOX_DEFAULT['groupcode'] ) { ?>
     {# code #}
     <div class="uk-form-row">
       <label class="uk-form-label">{lang_code} {help_code}</label>
@@ -25,6 +26,7 @@
         <input type="text" class="uk-form-width-medium" size="48" maxlength="160" name="code" value="{code}" required{xhtml}>
       </div>
     </div>
+<?php } ?>
 
     {# name #}
     <div class="uk-form-row">

@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20160212
+# Last Update 20160316
 
 ###############################################################################
 ## 管理画面 menu
@@ -662,9 +662,9 @@ $LANG_DATABOX_NOYES = array(
 );
 $LANG_DATABOX_INPUTTYPE = array(
     0 => 'チェックボックス',
-    1 => 'マルチセレクトリスト',
-    2 => 'ラジオボタン',
-    3 => 'オプションリスト'
+    1 => 'マルチセレクトリスト'
+    ,2 => 'ラジオボタン'
+    ,3 => 'オプションリスト'
 );
 $LANG_DATABOX_ALLOW_DISPLAY = array();
 $LANG_DATABOX_ALLOW_DISPLAY[0] ='表示する（一覧表示可能）';
@@ -696,34 +696,36 @@ $LANG_DATABOX_TEXTCONV[20] = '全角に変換する';
 //TYPE （内容の変更不可）
 $LANG_DATABOX_TYPE = array();
 $LANG_DATABOX_TYPE[0] = '一行テキスト';
-$LANG_DATABOX_TYPE[10] = '複数行テキスト';//複数行テキストフィールド(HTML NG)';
-$LANG_DATABOX_TYPE[1] = 'HTML（複数行テキスト）';//複数行テキストフィールド(HTML OK)';
-$LANG_DATABOX_TYPE[20] = 'TinyMCEモード';//'複数行テキストフィールド(HTML OK  TinyMCE)';
-// $LANG_DATABOX_TYPE[19] = '';//@@@@@複数行テキストフィールド(HTML OK  CKEditor)
+$LANG_DATABOX_TYPE[1] = 'HTML（複数行テキスト）';
+$LANG_DATABOX_TYPE[20] = 'TinyMCE（複数行テキスト）';
+$LANG_DATABOX_TYPE[10] = '複数行テキスト';
+$LANG_DATABOX_TYPE[19] = 'CKEditor（複数行テキスト）';
 
 $LANG_DATABOX_TYPE[15] = '数値';
-$LANG_DATABOX_TYPE[21] = '通貨';//@@@@@
+$LANG_DATABOX_TYPE[21] = '通貨';
 
 $LANG_DATABOX_TYPE[2] = 'いいえ/はい';
 $LANG_DATABOX_TYPE[3] = '日付';
+$LANG_DATABOX_TYPE[22] = '日付 (jquery ui datepicker)';
+$LANG_DATABOX_TYPE[23] = '日付 (Uikit datepicker)';
 $LANG_DATABOX_TYPE[4] = '日時';
 $LANG_DATABOX_TYPE[5] = 'メールアドレス';
 $LANG_DATABOX_TYPE[6] = 'url';
 $LANG_DATABOX_TYPE[7] = 'オプションリスト（選択肢）';
-$LANG_DATABOX_TYPE[8] = 'ラジオボタンリスト（選択肢）';
+$LANG_DATABOX_TYPE[8] = 'ラジオボタン（選択肢）';
 $LANG_DATABOX_TYPE[14] = 'マルチセレクトリスト（選択肢）';
+$LANG_DATABOX_TYPE[24] = 'チェックボックス（選択肢）';
 $LANG_DATABOX_TYPE[17] = 'フラグ';
 $LANG_DATABOX_TYPE[9] = 'オプションリスト（マスター）';
-$LANG_DATABOX_TYPE[16] = 'ラジオボタンリスト（マスター）';
+$LANG_DATABOX_TYPE[16] = 'ラジオボタン（マスター）';
 $LANG_DATABOX_TYPE[18] = 'マルチセレクトリスト（マスター）';
+$LANG_DATABOX_TYPE[25] = 'チェックボックス（マスター）';
 
 
 $LANG_DATABOX_TYPE[11] = '画像（DB保存）';
 $LANG_DATABOX_TYPE[12] = '画像（ファイル保存）';
 $LANG_DATABOX_TYPE[13] = '添付ファイル';
 
-$LANG_DATABOX_TYPE[22] = 'date (jquery ui datepicker)';
-$LANG_DATABOX_TYPE[23] = 'date (Uikit datepicker)';
 
 ###############################################################################
 #
@@ -945,12 +947,12 @@ $LANG_configselects['databox'][21] =array(
 );
 
 $LANG_configselects['databox'][22] =array(
-      '左ブロック（右ブロックはテーマ設定による）' => 'standard'
-    , '左右ブロック' => 'leftrightblocks'
-    , '全画面表示' => 'blankpage'
+    '左ブロック（右ブロックはテーマ設定による）' => 'standard'
+    , '左右ブロックあり' => 'leftrightblocks'
+    , '全画面表示（ヘッダ・フッタ・ブロックなし）' => 'blankpage'
     , 'ブロックなし' => 'noblocks'
-    , '左ブロック（右ブロックなし）' => 'leftblocks'
-    , '右ブロック（左ブロックなし）' => 'rightblocks'
+    , '左ブロックあり（右ブロックなし）' => 'leftblocks'
+    , '右ブロックあり（左ブロックなし）' => 'rightblocks'
 
     );
 

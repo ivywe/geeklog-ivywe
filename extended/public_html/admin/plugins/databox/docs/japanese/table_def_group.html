@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
 </head>
-<!-- admin/plugins/databox/docs/japanese/table_def_group.html 20140228 -->
+<!-- admin/plugins/databox/docs/japanese/table_def_group.html 20160310 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
@@ -23,7 +23,7 @@
 
 <h2><a href="tables.html">テーブル一覧</a></h2>
 
-<h3><a name="data">DATABOX_def_group グループ定義</a>(2014/02/28 update  書きかけです)</h3>
+<h3><a name="data">DATABOX_def_group グループ定義</a>(2016/03/10 update)</h3>
 <table>
 <tr><th style="width:20%">名前</th>
     <th style="width:15%">データ型</th>
@@ -82,7 +82,24 @@
   <td valign="top">　</td>
   <td valign="top">　</td>
 </tr>
-
+<tr class="r2">
+  <td valign="top"><a name="desc_defaulttemplatesdirectory">defaulttemplatesdirectory</a></td>
+  <td valign="top">varchar(40)</td>
+  <td valign="top">　</td>
+  <td valign="top">　</td>
+</tr>
+<tr >
+  <td valign="top"><a name="desc_allow_display">allow_display</a></td>
+  <td valign="top">binary(1)</td>
+  <td valign="top">0　</td>
+  <td valign="top">　</td>
+</tr>
+<tr class="r2">
+  <td valign="top"><a name="desc_allow_edit">allow_edit</a></td>
+  <td valign="top">binary(1)</td>
+  <td valign="top">0　</td>
+  <td valign="top">　</td>
+</tr>
 <tr>
   <td valign="top"><a name="desc_udatetime">udatetime</a></td>
   <td valign="top">timestamp</td>
@@ -96,11 +113,13 @@
   <td valign="top">　</td>
 </tr>
 
+
 </tbody></table>
 
 <h3>変更履歴</h3>
 <ul>
 <li>2012/09/11 input_type 追加</li>
+<li>2016/03/10 defaulttemplatesdirectory allow_display allow_edit 追加</li>
 </ul>
 
 <div class="footer">

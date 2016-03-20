@@ -672,6 +672,15 @@ function fncEdit(
         $expired_day=date('d', $w);
         $expired_hour=0;
         $expired_minute=0;
+        //コメント停止日時
+        $comment_expire_flag = 0;
+        $w = mktime(0, 0, 0, date('m'),
+             date('d') + $_CONF['article_comment_close_days'], date('Y'));
+        $comment_expire_year=date('Y', $w);
+        $comment_expire_month=date('m', $w);
+        $comment_expire_day=date('d', $w);
+        $comment_expire_hour=0;
+        $comment_expire_minute=0;
         //
         $delflg=false;
         $old_mode="copy";

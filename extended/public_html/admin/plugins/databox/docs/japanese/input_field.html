@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
 </head>
-<!-- admin/plugins/databox/docs/japanese/inputfield.html 20151209 -->
+<!-- admin/plugins/databox/docs/japanese/inputfield.html 20160316 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
@@ -174,12 +174,12 @@
 
 </tbody></table>
 
-<h3><a name="fieldtype">アトリビュートタイプ</a>(2015/10/06 update)</h3>
+<h3><a name="fieldtype">アトリビュートタイプ</a>(2016/03/16 update)</h3>
 <table>
 <tr><th style="width:2%">No.</th>
-    <th style="width:20%">名称</th>
+    <th style="width:25%">名称</th>
     <th style="width:28">入力値変換・入力チェック</th>
-    <th style="width:50%">説明</th>
+    <th style="width:45%">説明</th>
 </tr>
 <tbody>
 
@@ -194,9 +194,29 @@
   <td valign="top">テキスト入力フィールド
   </td>
 </tr>  
-  
+ <tr>
+  <td ><a name="fieldtype01">01</a></td>
+  <td valign="top">HTML（複数行テキスト）</td>
+  <td valign="top">HTML入力可
+  <br />指定された入力変換をおこなう
+  <br />指定された入力チェックによる
+  </td>
+  <td valign="top">テキストエリア入力フィールド
+  </td>
+</tr>  
 <tr>
-  <td><a name="fieldtype01">01</a></td>
+  <td ><a name="fieldtype20">20</a></td>
+  <td valign="top">TinyMCE（複数行テキスト）</td>
+  <td valign="top">HTML入力可
+  <br />指定された入力変換をおこなう
+  <br />指定された入力チェックによる
+  <br />指定された場合範囲チェックをおこなう
+  </td>
+  <td valign="top">テキストエリア入力フィールド,class="tinymce_enabled"
+  </td>
+</tr> 
+<tr>
+  <td><a name="fieldtype10">10</a></td>
   <td valign="top">複数行テキスト</td>
   <td valign="top">HTML入力不可
   <br />指定された入力変換をおこなう
@@ -209,31 +229,12 @@
   </td>
 </tr>  
 
-<tr>
-  <td ><a name="fieldtype20">20</a></td>
-  <td valign="top">HTML</td>
-  <td valign="top">HTML入力可
-  <br />指定された入力変換をおこなう
-  <br />指定された入力チェックによる
-  </td>
-  <td valign="top">テキストエリア入力フィールド
-  </td>
-</tr>  
 
-<tr>
-  <td ><a name="fieldtype10">10</a></td>
-  <td valign="top">TinyMCE</td>
-  <td valign="top">HTML入力可
-  <br />指定された入力変換をおこなう
-  <br />指定された入力チェックによる
-  <br />指定された場合範囲チェックをおこなう
-  </td>
-  <td valign="top">テキストエリア入力フィールド,class="tinymce_enabled"
-  </td>
-</tr>  
+
+ 
 <tr>
   <td ><a name="fieldtype19">19</a></td>
-  <td valign="top">CKEditor</td>
+  <td valign="top">CKEditor（複数行テキスト）</td>
   <td valign="top">HTML入力可
   </td>
   <td valign="top">テキストエリア入力フィールド,class="wide"<br />GL2.0.1以降
@@ -282,7 +283,7 @@ Geeklogのコアのコンフィギュレーション設定の「千単位の区�
 </tr>  
 <tr>
   <td ><a name="fieldtype22">22</a></td>
-  <td valign="top">日付</td>
+  <td valign="top">日付 (jquery ui datepicker)</td>
   <td valign="top">日付のみ
   <br />指定された場合範囲チェックをおこなう
   </td>
@@ -291,7 +292,7 @@ Geeklogのコアのコンフィギュレーション設定の「千単位の区�
   </td>
 </tr>  <tr>
   <td ><a name="fieldtype23">23</a></td>
-  <td valign="top">日付</td>
+  <td valign="top">日付 (Uikit datepicker)</td>
   <td valign="top">日付のみ
   <br />指定された場合範囲チェックをおこなう
   <br />UIkitが使われている(IVYWE Editionなど)サイトでのみ機能します
@@ -352,6 +353,12 @@ Geeklogのコアのコンフィギュレーション設定の「千単位の区�
   <td valign="top">選択肢の登録必須
   </td>
 </tr>  
+<tr>
+  <td ><a name="fieldtype24">24</a></td>
+  <td valign="top">チェックボックス（選択肢）</td>
+  <td valign="top">選択肢の登録必須
+  </td>
+</tr>  
 
 <tr>
   <td ><a name="fieldtype14">17</a></td>
@@ -381,6 +388,13 @@ Geeklogのコアのコンフィギュレーション設定の「千単位の区�
 <tr>
   <td ><a name="fieldtype18">18</a></td>
   <td valign="top">マルチセレクトリスト（マスター）</td>
+  <td></td>  
+  <td valign="top">マスターの内容を参照します。マスターの種別を登録してください
+  </td>
+</tr>  
+<tr>
+  <td ><a name="fieldtype25">25</a></td>
+  <td valign="top">チェックボックス（マスター）</td>
   <td></td>  
   <td valign="top">マスターの内容を参照します。マスターの種別を登録してください
   </td>
