@@ -538,6 +538,7 @@ $LANG_USERBOX_TYPE[2] = 'Yes/No';
 $LANG_USERBOX_TYPE[3] = 'Date (Date Picker)';
 $LANG_USERBOX_TYPE[22] = 'date (jquery ui datepicker)';
 $LANG_USERBOX_TYPE[23] = 'date (Uikit datepicker)';
+$LANG_DATABOX_TYPE[26] = 'time (UIkit timepicker)';
 $LANG_USERBOX_TYPE[4] = 'Time (In preparation)';
 $LANG_USERBOX_TYPE[5] = 'Mail Address';
 $LANG_USERBOX_TYPE[6] = 'url';

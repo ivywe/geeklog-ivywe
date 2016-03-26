@@ -65,8 +65,13 @@ $LANG_USERBOX['home']="Home";
 $LANG_USERBOX['view']="View";
 $LANG_USERBOX['count']="Count";
 $LANG_USERBOX['category_top']="Categories Top";
-$LANG_USERBOX['field_top']="Attributes Top";
+$LANG_USERBOX['attribute_top']="Attributes Top";
 $LANG_USERBOX['search_link']="";
+
+$LANG_USERBOX['download'] = 'download';
+$LANG_USERBOX['downloadrequired'] = 'Click, please download';
+$LANG_USERBOX['display'] = 'display';
+$LANG_USERBOX['displayrequired'] = 'Click, please display';
 
 $LANG_USERBOX['category_separater']=" / ";
 $LANG_USERBOX['category_separater_code']=" ";
@@ -104,7 +109,7 @@ $LANG_USERBOX_ADMIN['importfile'] = 'Path';
 $LANG_USERBOX_ADMIN['importurl'] = 'URL';
 
 $LANG_USERBOX_ADMIN['delete'] = 'Delete';
-$LANG_USERBOX_ADMIN['deletemsg_user'] = "Delete all.<br {xhtml}>";
+$LANG_USERBOX_ADMIN['deletemsg_user'] = "Delete all.<br ".xhtml.">";
 
 $LANG_USERBOX_ADMIN['idfrom'] = "From ID";
 $LANG_USERBOX_ADMIN['idto'] = "To ID";
@@ -114,6 +119,7 @@ $LANG_USERBOX_ADMIN['mail2'] = 'Settings';
 
 
 $LANG_USERBOX_ADMIN['submit'] = 'Submit';
+$LANG_USERBOX_ADMIN['confirm'] = 'Sure you want to execute?';
 
 //
 $LANG_USERBOX_ADMIN['link_admin'] = 'Admin';
@@ -141,7 +147,7 @@ $LANG_USERBOX_ADMIN['title']='Title';
 $LANG_USERBOX_ADMIN['page_title']='Page Title';
 
 $LANG_USERBOX_ADMIN['description']='Description';
-$LANG_USERBOX_ADMIN['defaulttemplatesdirectory']='Theme';
+$LANG_USERBOX_ADMIN['defaulttemplatesdirectory']='Template directory';
 $LANG_USERBOX_ADMIN['layout']='Layout';
 
 $LANG_USERBOX_ADMIN['category']='Category';
@@ -160,6 +166,10 @@ $LANG_USERBOX_ADMIN['commentcode']='Comment';
 $LANG_USERBOX_ADMIN['comment_expire']='Comment Expiry Date';
 
 $LANG_USERBOX_ADMIN['trackbackcode']='trackback';
+$LANG_USERBOX_ADMIN['cache_time']='Cache Time';
+$LANG_USERBOX_ADMIN['cache_time_desc']='
+This DATA content will be cached for no longer than this many seconds. If 0 caching is disabled. If -1 cached until page is edited again.  (3600 = 1 hour,  86400 = 1 day)
+';
 
 $LANG_USERBOX_ADMIN['group']='Group';
 $LANG_USERBOX_ADMIN['parent']='Parent';
@@ -177,14 +187,14 @@ $LANG_USERBOX_ADMIN['fieldsetlist']='Type List';
 
 $LANG_USERBOX_ADMIN['registset']='Register Type';
 $LANG_USERBOX_ADMIN['changeset']='Change Type';
-$LANG_USERBOX_ADMIN['inst_changeset0']='Set attribute to none attribute set data:<{XHTML}br>';
-$LANG_USERBOX_ADMIN['inst_changesetx']='<{XHTML}br>';
+$LANG_USERBOX_ADMIN['inst_changeset0']='Set attribute to none attribute set data:<br'.XHTML.'>';
+$LANG_USERBOX_ADMIN['inst_changesetx']='<br'.XHTML.'>';
 
-$LANG_USERBOX_ADMIN['inst_changeset'] = 'Select attribute sets.<{XHTML}br>';
+$LANG_USERBOX_ADMIN['inst_changeset'] = 'Select attribute sets.<br'.XHTML.'>';
 
 $LANG_USERBOX_ADMIN['inst_dataexport'] = 
 "
-Select export attribute set.<br{XHTML}>
+Select export attribute set.<br".XHTML.">
 ";
 
 $LANG_USERBOX_ADMIN['allow_display']='Allow Display (For users)';
@@ -219,6 +229,10 @@ $LANG_USERBOX_ADMIN['textcheck']='Input validation(text)';
 $LANG_USERBOX_ADMIN['textconv']='Transform input value(text)';
 $LANG_USERBOX_ADMIN['searchtarget']='Search target';
 
+$LANG_USERBOX_ADMIN['initial_value']='initial value';
+$LANG_USERBOX_ADMIN['range']='range';
+$LANG_USERBOX_ADMIN['dfid']=$LANG04[42];
+
 $LANG_USERBOX_ADMIN['draft'] = 'Draft';
 $LANG_USERBOX_ADMIN['draft_msg'] = '
 Your profile is draft mode. When you want to change the mode, please report it to  site manager.
@@ -237,13 +251,13 @@ $LANG_USERBOX_ADMIN['kind'] = 'Kind';
 $LANG_USERBOX_ADMIN['no'] = 'No.';//@@@@@-->
 
 $LANG_USERBOX_ADMIN['draftonmsg'] = "
-All drafts are turned on <br{XHTML}>
+All drafts are turned on <br".XHTML.">
 ";
 $LANG_USERBOX_ADMIN['draftoffmsg'] = "
-All drafts are turned off <br{XHTML}>
+All drafts are turned off <br".XHTML.">
 ";
 $LANG_USERBOX_ADMIN['hitsclearmsg'] = "
-Hits becomes 0<br{XHTML}>
+Hits becomes 0<br".XHTML.">
 ";
 
 $LANG_USERBOX_ADMIN['yy'] = '/';
@@ -310,11 +324,13 @@ $LANG_USERBOX_ADMIN['config_update_help'] = 'Update.';
 $LANG_USERBOX_ADMIN['document'] = 'Document';
 $LANG_USERBOX_ADMIN['configuration'] = 'Configuration Settings';
 $LANG_USERBOX_ADMIN['autotags'] = 'Autotags';
+$LANG_USERBOX_ADMIN['files'] = 'file list';
+$LANG_USERBOX_ADMIN['tables'] = 'table list';
 $LANG_USERBOX_ADMIN['online'] = 'Online';
 
 
 //Admin
-$LANG_USERBOX_ADMIN['about_admin_information'] = 'About Autotags';
+$LANG_USERBOX_ADMIN['about_admin_information'] = '';
 $LANG_USERBOX_ADMIN['about_admin_data'] = 'Data Admin';
 $LANG_USERBOX_ADMIN['about_admin_category'] = 'Category Admin';
 $LANG_USERBOX_ADMIN['about_admin_field'] = 'Attribute Admin';
@@ -325,12 +341,12 @@ $LANG_USERBOX_ADMIN['about_admin_mst'] = 'Master Admin';
 
 $LANG_USERBOX_ADMIN['about_admin_view'] = 'Display for general login user page.';
 $LANG_USERBOX_ADMIN['inst_fieldsetfields'] = 
-'Attribute Edit: click Attributes name, click add or remove button.<{XHTML}br>
-to add Attributes, select only right side.<{XHTML}br>
-After edit, click Save button.<{XHTML}br>';
+"Attribute Edit: click Attributes name, click add or remove button.<br".XHTML."br>
+to add Attributes, select only right side.<br".XHTML."br>
+After edit, click Save button.<br".XHTML."br>";
 
 $LANG_USERBOX_ADMIN['inst_newdata'] = 
-'Select Type for Creation of Data<br{XHTML}>
+'Select Type for Creation of Data<br'.XHTML.'>
 ';
 
 //ERR
@@ -346,14 +362,15 @@ $LANG_USERBOX_ADMIN['err_templatesetvar_w'] = 'Theme variable is already used';
 $LANG_USERBOX_ADMIN['err_code_w'] = 'Code is duplicated';
 $LANG_USERBOX_ADMIN['err_code'] = 'Code input error';
 $LANG_USERBOX_ADMIN['err_title'] = 'Title input error';
-$LANG_USERBOX_ADMIN['err_numeric'] = '数値のみ入力可能です';
+$LANG_USERBOX_ADMIN['err_numeric'] = 'Numerical value can only be input';
 
-$LANG_USERBOX_ADMIN['err_text1'] = '半角数字のみ入力可能です';
-$LANG_USERBOX_ADMIN['err_text2'] = '英数字のみ入力可能です';
-$LANG_USERBOX_ADMIN['err_text3'] = '半角英数字/-.のみ入力可能です';
-$LANG_USERBOX_ADMIN['err_text4'] = '英数字記号のみ入力可能です';
+$LANG_USERBOX_ADMIN['err_text1'] = 'Numbers value can only be input';
+$LANG_USERBOX_ADMIN['err_text2'] = 'Alphanumeric value can only be input';
+$LANG_USERBOX_ADMIN['err_text3'] = 'Alphanumeric / -. value can only be input';
+$LANG_USERBOX_ADMIN['err_text4'] = 'Alphanumeric symbols value can only be input';
+$LANG_USERBOX_ADMIN['err_range'] = 'Range check error';
 
-$LANG_USERBOX_ADMIN['err_description'] = '説明を入力してください';
+$LANG_USERBOX_ADMIN['err_description'] = 'enter a description';
 
 $LANG_USERBOX_ADMIN['err_selection'] = 'Nothing selected';
 
@@ -365,6 +382,7 @@ $LANG_USERBOX_ADMIN['err_expired'] = 'Publish date is not valid.';
 $LANG_USERBOX_ADMIN['err_checkrequried'] = 'Check Required,';
 
 $LANG_USERBOX_ADMIN['err_date'] = 'Date is invalid.';//@@@@@
+$LANG_USERBOX_ADMIN['err_writable'] = ' is not writable';
 
 $LANG_USERBOX_ADMIN['err_size'] = 'Size is invalid.';//@@@@@
 $LANG_USERBOX_ADMIN['err_type'] = ' Type is invalid.';//@@@@@
@@ -476,6 +494,8 @@ $LANG_USERBOX_NOYES = array(
 $LANG_USERBOX_INPUTTYPE = array(
     0 => 'Checkbox',
     1 => 'Multi Select List'
+    ,2 => 'Radio Button List'
+    ,3 => 'Option List'
 );
 $LANG_USERBOX_ALLOW_DISPLAY = array();
 $LANG_USERBOX_ALLOW_DISPLAY[0] ='Display(order)';
@@ -510,27 +530,31 @@ $LANG_USERBOX_TYPE[0] = '1 Line Text Attribute';
 $LANG_USERBOX_TYPE[1] = 'Multi Line Text Attribute(HTML)';
 $LANG_USERBOX_TYPE[20] = 'Multi Line Text Attribute(HTML/TinyMCE)';
 $LANG_USERBOX_TYPE[10] = 'Multi Line Text Attribute(TEXT)';
+$LANG_USERBOX_TYPE[19] = 'MultiLine Text Attribute (CKEditor)';
 $LANG_USERBOX_TYPE[15] = 'Numeric';
 $LANG_USERBOX_TYPE[21] = 'Currency';
 
 $LANG_USERBOX_TYPE[2] = 'Yes/No';
 $LANG_USERBOX_TYPE[3] = 'Date (Date Picker)';
+$LANG_USERBOX_TYPE[22] = 'date (jquery ui datepicker)';
+$LANG_USERBOX_TYPE[23] = 'date (Uikit datepicker)';
+$LANG_DATABOX_TYPE[26] = 'time (UIkit timepicker)';
 $LANG_USERBOX_TYPE[4] = 'Time (In preparation)';
 $LANG_USERBOX_TYPE[5] = 'Mail Address';
 $LANG_USERBOX_TYPE[6] = 'url';
 $LANG_USERBOX_TYPE[7] = 'Option List';
 $LANG_USERBOX_TYPE[8] = 'Radio Button List';
 $LANG_USERBOX_TYPE[14] = 'Multiselect';
+$LANG_USERBOX_TYPE[24] = 'Check Box';
 $LANG_USERBOX_TYPE[17] = 'Flag';
 $LANG_USERBOX_TYPE[9] = 'Definition List';
 $LANG_USERBOX_TYPE[16] = 'Radio Button List（from master）';//@@@@@
 $LANG_USERBOX_TYPE[18] = 'Multiselect（from master）';//@@@@@
-//$LANG_USERBOX_TYPE[19] = '';//@@@@@
+$LANG_USERBOX_TYPE[25] = 'Check Box （from master）';
 
 $LANG_USERBOX_TYPE[11] = 'Image(DB Save)';
 $LANG_USERBOX_TYPE[12] = 'Image(File Save)';
 $LANG_USERBOX_TYPE[13] = 'File(In Preparation )';
-
 
 ###############################################################################
 #
@@ -540,6 +564,14 @@ $LANG_USERBOX_SEARCH['results_userbox'] = 'UserBox Search Results';
 
 $LANG_USERBOX_SEARCH['title'] =  'Title';
 $LANG_USERBOX_SEARCH['udate'] =  'Update';
+
+###############################################################################
+#
+$LANG_USERBOX_STATS['data'] = 'DataBox';
+$LANG_USERBOX_STATS['stats_page_title']='User Name';
+$LANG_USERBOX_STATS['stats_hits']='Hits';
+$LANG_USERBOX_STATS['stats_headline']='Top Ten UserBox Pages';
+$LANG_USERBOX_STATS['stats_no_hits']='It appears that there are no UserBox pages on this site';
 
 ###############################################################################
 # COM_showMessage()
@@ -563,7 +595,7 @@ $PLG_userbox_MESSAGE3002 = $LANG32[9];
 ###############################################################################
 #
 $LANG_USERBOX_autotag_desc['userbox']="
-[userbox:count] <br{xhtml}>	
+[userbox:count] <br".xhtml.">	
 More, see UserBox Plugin documents.
 <a href=\"{$_CONF['site_admin_url']}/plugins/userbox/docs/japanese/autotags.html\">*</a>
 ";
@@ -623,6 +655,8 @@ $LANG_confignames['userbox']['maxlength_meta_keywords'] = 'Max length of meta ke
 $LANG_confignames['userbox']['hideuseroption'] = 'ユーザー情報に表示しない';
 
 $LANG_confignames['userbox']['commentcode'] = 'Comment Default';
+$LANG_confignames['userbox']['sort_list_by'] = 'Sort Admin List by';
+$LANG_confignames['userbox']['default_cache_time'] = 'default cache time';
 
 //--(1)
 $LANG_tab['userbox'][tab_whatsnew] = 'Whats new Block';
@@ -670,10 +704,13 @@ $LANG_confignames['userbox']['imgfile_thumb_h'] = 'Thumbnail Size(h)';
 $LANG_confignames['userbox']['imgfile_thumb_w2'] = 'Original Image Size(w2)';
 $LANG_confignames['userbox']['imgfile_thumb_h2'] = 'Original Image Size(h2)';
 $LANG_confignames['userbox']['imgfile_smallw'] = 'Display Image Max Width';
+$LANG_confignames['userbox']['imgfile_subdir'] = 'use subdirectory for Image Save URL';
 
 $LANG_confignames['userbox']['file_path'] = 'File Save Absolute Path';
 $LANG_confignames['userbox']['file_size'] = 'File Size';
 $LANG_confignames['userbox']['file_type'] = 'File Type';
+$LANG_confignames['userbox']['file_subdir'] = 'use subdirectory for File Save Absolute Path';
+
 //---(６)
 $LANG_tab['userbox']['tab_autotag_permissions'] = 'Autotags Permission';
 $LANG_fs['userbox']['fs_autotag_permissions'] = 'Autotags Permission ([0]Owner [1]Group [2]Member [3]Anonimous)';
@@ -764,4 +801,14 @@ $LANG_configselects['userbox'][24] =array();
 
 $LANG_configselects['userbox'][26] =array( 'Comments Enabled' => 0, 'Comments Disabled' => -1);
 
+$LANG_configselects['userbox'][27] =array(
+    'Order' => 'orderno'
+    ,'User ID' => 'id'
+    , 'Username' => 'username'
+    , 'Full Name' => 'fullname'
+    , 'Profile Type' => 'fieldset_name'
+    , 'Hits' => 'hits'
+    , 'Time Stamp (descending)' => 'udatetime'
+    , 'Draft' => 'draft_flag'
+        );
 ?>

@@ -23,8 +23,10 @@ $LANG_DATABOX_admin_menu['5']= 'Groups';
 $LANG_DATABOX_admin_menu['51']= 'Master';
 $LANG_DATABOX_admin_menu['6']= 'Backup / Restore';
 //
-$LANG_DATABOX_admin_menu['8']= 'Proversion';
-
+$LANG_DATABOX_admin_menu['8']= 'XML';
+$LANG_DATABOX_admin_menu['9']= 'CSV';
+$LANG_DATABOX_admin_menu['10']= 'MAPS';
+$LANG_DATABOX_admin_menu['11']= 'SEL';
 
 ## User
 $LANG_DATABOX_user_menu = array();
@@ -45,6 +47,7 @@ $LANG_DATABOX['mydata'] = 'My Data';
 $LANG_DATABOX['Norecentnew'] = 'No new data.';
 $LANG_DATABOX['nohit'] = 'No hits';
 $LANG_DATABOX['nopermission'] = 'No Permissions';
+$LANG_DATABOX['notapplicable'] = 'Not Applicable';
 
 $LANG_DATABOX['more'] = 'More';
 $LANG_DATABOX['day'] = "{$_CONF['shortdate']}";
@@ -53,8 +56,15 @@ $LANG_DATABOX['home']="Home";
 $LANG_DATABOX['view']="View";
 $LANG_DATABOX['count']="Count";
 $LANG_DATABOX['category_top']="Categories Top";
-$LANG_DATABOX['field_top']="Attributes Top";
+$LANG_DATABOX['attribute_top']="Attributes Top";
 $LANG_DATABOX['search_link']="";
+$LANG_DATABOX['return']="return";
+$LANG_DATABOX['search'] = 'search';
+
+$LANG_DATABOX['download'] = 'download';
+$LANG_DATABOX['downloadrequired'] = 'Click, please download';
+$LANG_DATABOX['display'] = 'display';
+$LANG_DATABOX['displayrequired'] = 'Click, please display';
 
 $LANG_DATABOX['category_separater']=" / ";
 $LANG_DATABOX['category_separater_code']=" ";
@@ -78,19 +88,22 @@ $LANG_DATABOX_ADMIN['admin_list'] = 'DataBox';
 $LANG_DATABOX_ADMIN['edit'] = 'Edit';
 $LANG_DATABOX_ADMIN['ref'] = 'Reference';
 $LANG_DATABOX_ADMIN['view'] = 'View';
+$LANG_DATABOX_ADMIN['add'] = 'add';
 
 $LANG_DATABOX_ADMIN['new'] = 'New';
 $LANG_DATABOX_ADMIN['drafton'] = 'Draft On All';
 $LANG_DATABOX_ADMIN['draftoff'] = 'Draft Off All';
 $LANG_DATABOX_ADMIN['export'] = 'Export';
 $LANG_DATABOX_ADMIN['import'] = 'Import';
+$LANG_DATABOX_ADMIN['unlinkafterimport'] = 'Delete CSV file after import';
 $LANG_DATABOX_ADMIN['sampleimport'] = 'Import sample';
+$LANG_DATABOX_ADMIN['datadelete'] = 'Bulk Delete';
 
 $LANG_DATABOX_ADMIN['importfile'] = 'Path';
 $LANG_DATABOX_ADMIN['importurl'] = 'URL';
 
 $LANG_DATABOX_ADMIN['delete'] = 'Delete';
-$LANG_DATABOX_ADMIN['deletemsg_user'] = "Delete all.<br {xhtml}>";
+$LANG_DATABOX_ADMIN['deletemsg_user'] = "Delete all.<br ".xhtml.">";
 
 $LANG_DATABOX_ADMIN['idfrom'] = "From ID";
 $LANG_DATABOX_ADMIN['idto'] = "To ID";
@@ -99,6 +112,11 @@ $LANG_DATABOX_ADMIN['mail1'] = 'Send';
 $LANG_DATABOX_ADMIN['mail2'] = 'Settings';
 
 $LANG_DATABOX_ADMIN['submit'] = 'Submit';
+$LANG_DATABOX_ADMIN['confirm'] = 'Sure you want to execute?';
+
+$LANG_DATABOX_ADMIN['delete1'] = 'delete the draft data of the selected type';
+$LANG_DATABOX_ADMIN['delete2'] = 'delete the public end data of the selected type';
+$LANG_DATABOX_ADMIN['delete3'] = 'delete all the data of the selected type';
 
 //
 $LANG_DATABOX_ADMIN['link_admin'] = 'Admin';
@@ -128,7 +146,7 @@ $LANG_DATABOX_ADMIN['title']='Title';
 $LANG_DATABOX_ADMIN['page_title']='Page Title';
 
 $LANG_DATABOX_ADMIN['description']='Description';
-$LANG_DATABOX_ADMIN['defaulttemplatesdirectory']='Theme';
+$LANG_DATABOX_ADMIN['defaulttemplatesdirectory']='Template directory';
 $LANG_DATABOX_ADMIN['layout']='Layout';
 
 $LANG_DATABOX_ADMIN['category']='Category';
@@ -147,6 +165,10 @@ $LANG_DATABOX_ADMIN['commentcode']='Comment';
 $LANG_DATABOX_ADMIN['comment_expire']='Comment Expiry Date';
 
 $LANG_DATABOX_ADMIN['trackbackcode']='trackback';
+$LANG_DATABOX_ADMIN['cache_time']='キャッシュタイム';
+$LANG_DATABOX_ADMIN['cache_time_desc']='
+This DATA content will be cached for no longer than this many seconds. If 0 caching is disabled. If -1 cached until page is edited again.  (3600 = 1 hour,  86400 = 1 day)
+';
 
 $LANG_DATABOX_ADMIN['group']='Group';
 $LANG_DATABOX_ADMIN['parent']='Parent';
@@ -163,14 +185,14 @@ $LANG_DATABOX_ADMIN['fieldsetlist']='Type List';
 
 $LANG_DATABOX_ADMIN['registset']='Register Type';
 $LANG_DATABOX_ADMIN['changeset']='Change Type';
-$LANG_DATABOX_ADMIN['inst_changeset0']='Set attribute to none attribute set data:<{XHTML}br>';
-$LANG_DATABOX_ADMIN['inst_changesetx']='<{XHTML}br>';
+$LANG_DATABOX_ADMIN['inst_changeset0']='Set attribute to none attribute set data:<br'.XHTML.'>';
+$LANG_DATABOX_ADMIN['inst_changesetx']='<br'.XHTML.'>';
 
-$LANG_DATABOX_ADMIN['inst_changeset'] = 'Select attribute sets.<{XHTML}br>';
+$LANG_DATABOX_ADMIN['inst_changeset'] = 'Select attribute sets.<br'.XHTML.'>';
 
 $LANG_DATABOX_ADMIN['inst_dataexport'] = 
 "
-Select export attribute set.<br{XHTML}>
+Select export attribute set.<br".XHTML.">
 ";
 
 
@@ -203,6 +225,10 @@ $LANG_DATABOX_ADMIN['textcheck']='Input validation(text)';
 $LANG_DATABOX_ADMIN['textconv']='Transform input value(text)';
 $LANG_DATABOX_ADMIN['searchtarget']='Search target';
 
+$LANG_DATABOX_ADMIN['initial_value']='initial value';
+$LANG_DATABOX_ADMIN['range']='range';
+$LANG_DATABOX_ADMIN['dfid']=$LANG04[42];
+
 $LANG_DATABOX_ADMIN['draft'] = 'Draft';
 $LANG_DATABOX_ADMIN['draft_msg'] = 'This data is in draft mode. When you want to change the mode, please report it to  site manager.';
 $LANG_DATABOX_ADMIN['uid'] = 'UserID';
@@ -226,55 +252,115 @@ $LANG_DATABOX_ADMIN['list'] = 'List';
 $LANG_DATABOX_ADMIN['dataclear'] = 'Clear data';
 $LANG_DATABOX_ADMIN['allclear'] = 'Clear all';
 
+$LANG_DATABOX_ADMIN['configbackup'] = 'Configuration Backup';
+$LANG_DATABOX_ADMIN['configinit'] = 'Configuration Initialize';
+$LANG_DATABOX_ADMIN['configrestore'] = 'Configuration restore';
+$LANG_DATABOX_ADMIN['configupdate'] = 'Configuration update';
+$LANG_DATABOX_ADMIN['configbackupmsg'] = 'Configuration Backup';
+$LANG_DATABOX_ADMIN['configinitmsg'] = 'Configuration Initialize';
+$LANG_DATABOX_ADMIN['configrestoremsg'] = 'Configuration restore';
+$LANG_DATABOX_ADMIN['configupdatemsg'] = 'Configuration update';
+
 $LANG_DATABOX_ADMIN['path'] = 'Path';
 $LANG_DATABOX_ADMIN['url'] = 'URL';
 
 $LANG_DATABOX_ADMIN['default'] = 'Default';
-$LANG_DATABOX_ADMIN['importmsg'] = '
-Absolute path (directory , file) or URL select.<{XHTML}br>
-If directory selected, xml file is imported under the directory.<{XHTML}br>
-Log file is logs/databox_xmlimport.<{XHTML}br>
+$LANG_DATABOX_ADMIN['importxmlmsg'] = '
+Absolute path (directory , file) or URL select.<br'.XHTML.'>
+If directory selected, xml file is imported under the directory.<br'.XHTML.'>
+Log file is logs/databox_xmlimport.log<br'.XHTML.'>
 ';
-$LANG_DATABOX_ADMIN['exportmsg'] = '
-Select absolute path (directory).<{XHTML}br>
-Log file is logs/databox_xmlimport.<{XHTML}br>
+$LANG_DATABOX_ADMIN['exportxmlmsg'] = '
+Select absolute path (directory).<br'.XHTML.'>
+Log file is logs/databox_xmlimport.log<br'.XHTML.'>
 ';
 $LANG_DATABOX_ADMIN['initmsg'] = '
 Proversion Initialize. List delete.
 ';
 $LANG_DATABOX_ADMIN['dataclearmsg'] = '
-Did you Backup?<{XHTML}br>
-clear data now.<{XHTML}br>
-Uploaded file delete, too.<{XHTML}br>
-Attributes, Category, Group not deleted.<{XHTML}br>
+Did you Backup?<br'.XHTML.'>
+clear data now.<br'.XHTML.'>
+Uploaded file delete, too.<br'.XHTML.'>
+Attributes, Category, Group not deleted.<br'.XHTML.'>
 ';
 $LANG_DATABOX_ADMIN['allclearmsg'] = '
-Did you Backup?<{XHTML}br>
-master and clear data.<{XHTML}br>
-Uploaded file is deleted.<{XHTML}br>
+Did you Backup?<br'.XHTML.'>
+master and clear data.<br'.XHTML.'>
+Uploaded file is deleted.<br'.XHTML.'>
 ';
 $LANG_DATABOX_ADMIN['backupmsg'] = 
-"{$_CONF['backup_path']}"."databox/<{XHTML}br>"
-.'DataBox database is backup-ed.<{XHTML}br>
-Backup upload file.<{XHTML}br>
+"{$_CONF['backup_path']}"."databox/<br".XHTML.">"
+.'DataBox database is backup-ed.<br'.XHTML.'br>
+Backup upload file.<br'.XHTML.'>
 ';
 $LANG_DATABOX_ADMIN['restoremsg'] = 
 "{$_CONF['backup_path']}"."databox/にある"
-.'Filename  select.(default: databox.xml)<{XHTML}br>
-DataBox  Database Data Restore.<{XHTML}br>
-Restore UploadFile.<{XHTML}br>
+.'Filename  select.(default: databox.xml)<br'.XHTML.'>
+DataBox  Database Data Restore.<br'.XHTML.'>
+Restore UploadFile.<br'.XHTML.'>
 ';
-$LANG_DATABOX_ADMIN['restoremsgPHP'] = "{$_CONF['backup_path']}"."databox/にある".'Select file name.（default:databox.xml）<{XHTML}br>phpMyAdmin でexport したDataBox のdatabase データをRestoreします.<{XHTML}br>phpMyAdmin XML Dump version 3.3.8用<{XHTML}br>接頭子が異なる場合は, あらかじめchange しておいてください.<{XHTML}br>upload file は別途もどしてください.<{XHTML}br>';//<---
+$LANG_DATABOX_ADMIN['restoremsgPHP'] = "{$_CONF['backup_path']}"."databox/にある".'Select file name.（default:databox.xml）<br'.XHTML.'>phpMyAdmin でexport したDataBox のdatabase データをRestoreします.<br'.XHTML.'>phpMyAdmin XML Dump version 3.3.8用<br'.XHTML.'>接頭子が異なる場合は, あらかじめchange しておいてください.<br'.XHTML.'>upload file は別途もどしてください.<br'.XHTML.'>';
+//<---
+$LANG_DATABOX_ADMIN['datadeletemsg'] = "
+Types of data that are checked will be deleted<br".XHTML.">
+Uploaded file will be deleted<br".XHTML.">
+";
+
+//maps
+$LANG_DATABOX_ADMIN['mapsmarkersclear'] = 'MAPS markers clear';
+$LANG_DATABOX_ADMIN['mapsmarkersupdate'] = 'MAPS markers update';
+$LANG_DATABOX_ADMIN['mapsmarkers'] = 'MAPS marker';
+
+$LANG_DATABOX_ADMIN['mapsmarkersclearmsg'] = "
+Clears the marker of a particular map that are registered in the attribute.
+";
+$LANG_DATABOX_ADMIN['mapsmarkersupdatemsg'] = "
+Clears the marker of a particular map that are registered in the attribute.
+It is created with the contents of the Data.
+";
+$LANG_DATABOX_ADMIN['mapsmarkersupdateend'] = "Success %d Error %d";
+
+$LANG_DATABOX_ADMIN['mapsmarkersupdateend2'] = "(Latitude and longitude calculation %d Updateing %d)";
+//csv
+$LANG_DATABOX_ADMIN['csv_def'] = 'CSV definition';
+$LANG_DATABOX_ADMIN['csv_select'] = 'SELECT';
+$LANG_DATABOX_ADMIN['csv_select_dtl'] = 'SELECT:detail';
+$LANG_DATABOX_ADMIN['csvheader'] = 'CSV First line';
+$LANG_DATABOX_ADMIN['help_field_csv'] = "
+There are two attributes that use the master
+If you want to edit the input file No. Example of master (prefecture)
+If you want to edit the input file the value of the master (prefectures _value)
+";
+$LANG_DATABOX_ADMIN['help_value_csv'] = "
+In the case of category, please register the name of the category of
+";
+$LANG_DATABOX_ADMIN['help_value_csv_sel'] = "
+In the case of multiple  Separated, Example Parking,apartments
+";
+
+$LANG_DATABOX_ADMIN['importmsgcsv'] = "
+Absolute path (directory , file) or URL select.<br".XHTML.">
+If directory selected, xml file is imported under the directory.<br".XHTML.">
+Log file is logs/databox_csvimport.log<br".XHTML.">
+";
+$LANG_DATABOX_ADMIN['exportmsgcsv'] = "
+Select absolute path (directory).<br".XHTML.">
+Log file is logs/databox_csvimport.log<br".XHTML.">
+";
+$LANG_DATABOX_ADMIN['initmsgcsv'] = '
+CSV Initialize. List delete.
+';
 
 $LANG_DATABOX_ADMIN['draftonmsg'] = "
-All drafts are turned on <br{XHTML}>
+All drafts are turned on <br".XHTML.">
 ";
 $LANG_DATABOX_ADMIN['draftoffmsg'] = "
-All drafts are turned off <br{XHTML}>
+All drafts are turned off <br".XHTML.">
 ";
 $LANG_DATABOX_ADMIN['hitsclearmsg'] = "
-Hits becomes 0<br{XHTML}>
+Hits becomes 0<br".XHTML.">
 ";
+
 $LANG_DATABOX_ADMIN['yy'] = '/';
 $LANG_DATABOX_ADMIN['mm'] = '/';
 $LANG_DATABOX_ADMIN['dd'] = ' ';
@@ -307,6 +393,7 @@ $LANG_DATABOX_ADMIN['byusingcode'] = 'Use Code';
 $LANG_DATABOX_ADMIN['byusingtemplatesetvar'] = 'Use Theme Variable';
 
 $LANG_DATABOX_ADMIN['withlink'] = 'With Link';
+$LANG_DATABOX_ADMIN['groupbygroup'] = 'groupby group  ';
 
 $LANG_DATABOX_ADMIN['number'] ="Number";
 $LANG_DATABOX_ADMIN['endmessage'] = "Finished";
@@ -334,9 +421,10 @@ $LANG_DATABOX_xmlimport['help']=
 ."exit　databox_xmlimport.log register.<br{KHTML}>"
 
 ;
-$LANG_DATABOX_ADMIN['jobend'] = 'Finished.<br{KHTML}>';
-$LANG_DATABOX_ADMIN['cnt_ok'] = 'Done: %d<br{KHTML}>';
-$LANG_DATABOX_ADMIN['cnt_ng'] = 'Error: %d<br{KHTML}>';
+$LANG_DATABOX_ADMIN['jobend'] = "Finished<br".XHTML.">";
+$LANG_DATABOX_ADMIN['cnt_ok'] = "Done: %d<br".XHTML.">";
+$LANG_DATABOX_ADMIN['cnt_ng'] = "Error: %d<br".XHTML.">";
+$LANG_DATABOX_ADMIN['cnt_ex'] = "Excluded: %d <br".XHTML.">";
 
 //backup&restore
 $LANG_DATABOX_ADMIN['config'] = 'Configuration';
@@ -353,13 +441,24 @@ $LANG_DATABOX_ADMIN['config_restore_help'] = 'Restore Backup File';
 $LANG_DATABOX_ADMIN['config_update'] = 'Update';
 $LANG_DATABOX_ADMIN['config_update_help'] = 'Update.';
 
+//(2)
+$LANG_DATABOX_ADMIN['datamaster'] = 'data & master';
+$LANG_DATABOX_ADMIN['data_clear'] = 'data clear';
+$LANG_DATABOX_ADMIN['data_allclear'] = 'data & master clear';
+$LANG_DATABOX_ADMIN['data_backup'] = 'data & master backup';
+$LANG_DATABOX_ADMIN['data_restore'] = 'data & master restore';
+
 $LANG_DATABOX_ADMIN['document'] = 'Document';
 $LANG_DATABOX_ADMIN['configuration'] = 'Configuration Settings';
+$LANG_DATABOX_ADMIN['install'] = 'install';
 $LANG_DATABOX_ADMIN['autotags'] = 'Autotags';
+$LANG_DATABOX_ADMIN['files'] = 'file list';
+$LANG_DATABOX_ADMIN['tables'] = 'table list';
+$LANG_DATABOX_ADMIN['input'] = 'input list';
 $LANG_DATABOX_ADMIN['online'] = 'Online';
 
 //Admin
-$LANG_DATABOX_ADMIN['about_admin_information'] = 'About Autotags';
+$LANG_DATABOX_ADMIN['about_admin_information'] = '';
 $LANG_DATABOX_ADMIN['about_admin_data'] = 'Data Admin';
 $LANG_DATABOX_ADMIN['about_admin_category'] = 'Category Admin';
 $LANG_DATABOX_ADMIN['about_admin_field'] = 'Attribute Admin';
@@ -368,16 +467,19 @@ $LANG_DATABOX_ADMIN['about_admin_fieldset'] = 'Attribute Set Adimin';
 $LANG_DATABOX_ADMIN['about_admin_backuprestore'] = 'Create Backup and Restore<br{KHTML}><br{KHTML}>';
 $LANG_DATABOX_ADMIN['about_admin_mst'] = 'Master Admin';
 
+$LANG_DATABOX_ADMIN['about_admin_xml'] = 'XML definition ';
+$LANG_DATABOX_ADMIN['about_admin_csv'] = 'CSV definition ';
+
 
 $LANG_DATABOX_ADMIN['about_admin_view'] = 'Display for general login user page.';
 
 $LANG_DATABOX_ADMIN['inst_fieldsetfields'] = 
-'Attribute Edit: click Attributes name, click add or remove button.<{XHTML}br>
-to add Attributes, select only right side.<{XHTML}br>
-After edit, click Save button.<{XHTML}br>';
+'Attribute Edit: click Attributes name, click add or remove button.<br'.XHTML.'>
+to add Attributes, select only right side.<br'.XHTML.'>
+After edit, click Save button.<br'.XHTML.'>';
 
 $LANG_DATABOX_ADMIN['inst_newdata'] = 
-'Select Type for Creation of Data<br{XHTML}>
+'Select Type for Creation of Data<br'.XHTML.'>
 ';
 
 //ERR
@@ -394,6 +496,13 @@ $LANG_DATABOX_ADMIN['err_templatesetvar_w'] = 'Theme variable is already used';
 $LANG_DATABOX_ADMIN['err_code_w'] = 'Code is duplicated';
 $LANG_DATABOX_ADMIN['err_code'] = 'Code input error';
 $LANG_DATABOX_ADMIN['err_title'] = 'Title input error';
+$LANG_DATABOX_ADMIN['err_numeric'] = 'Numerical value can only be input';
+
+$LANG_DATABOX_ADMIN['err_text1'] = 'Numbers value can only be input';
+$LANG_DATABOX_ADMIN['err_text2'] = 'Alphanumeric value can only be input';
+$LANG_DATABOX_ADMIN['err_text3'] = 'Alphanumeric / -. value can only be input';
+$LANG_DATABOX_ADMIN['err_text4'] = 'Alphanumeric symbols value can only be input';
+$LANG_DATABOX_ADMIN['err_range'] = 'Range check error';
 
 $LANG_DATABOX_ADMIN['err_selection'] = 'Nothing selected';
 
@@ -406,12 +515,16 @@ $LANG_DATABOX_ADMIN['err_expired'] = 'Publish date is not valid.';
 $LANG_DATABOX_ADMIN['err_checkrequried'] = 'Check Required,';
 
 $LANG_DATABOX_ADMIN['err_date'] = 'Date is invalid.';//@@@@@
+$LANG_DATABOX_ADMIN['err_writable'] = ' is not writable';
 
 $LANG_DATABOX_ADMIN['err_size'] = 'Size is invalid.';//@@@@@
 $LANG_DATABOX_ADMIN['err_type'] = ' Type is invalid.';//@@@@@
 
 $LANG_DATABOX_ADMIN['err_field_w'] = 'This attribute is already registered';
 $LANG_DATABOX_ADMIN['err_tag_w'] = 'This tag is already registered.';
+
+$LANG_DATABOX_ADMIN['err_csvheader_w'] = 'This CSV header title is already registered';
+$LANG_DATABOX_ADMIN['err_csvheader'] = 'CSV header title is invalid.';
 
 $LANG_DATABOX_ADMIN['err_url'] = 'This URL is not a valid address';
 
@@ -512,11 +625,13 @@ $LANG_DATABOX_NOYES = array(
 $LANG_DATABOX_INPUTTYPE = array(
     0 => 'Checkbox',
     1 => 'Multi Select List'
+    ,2 => 'Radio Button List'
+    ,3 => 'Option List'
 );
 
 
 $LANG_DATABOX_ALLOW_DISPLAY = array();
-$LANG_DATABOX_ALLOW_DISPLAY[0] ='Display(order)';
+$LANG_DATABOX_ALLOW_DISPLAY[0] ='Display';
 $LANG_DATABOX_ALLOW_DISPLAY[1] ='Login User';
 $LANG_DATABOX_ALLOW_DISPLAY[2] ='Owner, Group and Admin';
 $LANG_DATABOX_ALLOW_DISPLAY[3] ='Owner and Admin';
@@ -547,27 +662,33 @@ $LANG_DATABOX_TYPE[0] = '1 Line Text Attribute';
 $LANG_DATABOX_TYPE[1] = 'MultiLine Text Attribute (HTML)';
 $LANG_DATABOX_TYPE[20] = 'Multi Line Text Attribute(HTML/TinyMCE)';
 $LANG_DATABOX_TYPE[10] = 'MultiLine Text Attribute (TEXT)';
+$LANG_DATABOX_TYPE[19] = 'MultiLine Text Attribute (CKEditor)';
 $LANG_DATABOX_TYPE[15] = 'Numeric';
 $LANG_DATABOX_TYPE[21] = 'Currency';
 
 $LANG_DATABOX_TYPE[2] = 'Yes/No';
 $LANG_DATABOX_TYPE[3] = 'Date (Date Picker)';
+$LANG_DATABOX_TYPE[22] = 'date (jquery ui datepicker)';
+$LANG_DATABOX_TYPE[23] = 'date (Uikit datepicker)';
+$LANG_DATABOX_TYPE[26] = 'time (UIkit timepicker)';
 $LANG_DATABOX_TYPE[4] = 'Time (In preparation)';
 $LANG_DATABOX_TYPE[5] = 'Mail Address';
 $LANG_DATABOX_TYPE[6] = 'url';
 $LANG_DATABOX_TYPE[7] = 'Option List';
 $LANG_DATABOX_TYPE[8] = 'Radio Button List';
 $LANG_DATABOX_TYPE[14] = 'Multiselect';
-//$LANG_DATABOX_TYPE[17] = '';
+$LANG_DATABOX_TYPE[24] = 'Check Box';
+$LANG_DATABOX_TYPE[17] = 'Flag';
 $LANG_DATABOX_TYPE[9] = 'Definition List';
 $LANG_DATABOX_TYPE[16] = 'Radio Button List（from master）';//@@@@@
 $LANG_DATABOX_TYPE[18] = 'Multiselect（from master）';//@@@@@
-//$LANG_DATABOX_TYPE[19] = '';//@@@@@
+$LANG_DATABOX_TYPE[25] = 'Check Box （from master）';
 
 
 $LANG_DATABOX_TYPE[11] = 'Image(DB Save)';
 $LANG_DATABOX_TYPE[12] = 'Image(File Save)';
 $LANG_DATABOX_TYPE[13] = 'File(In Preparation )';
+
 
 ###############################################################################
 #
@@ -577,6 +698,14 @@ $LANG_DATABOX_SEARCH['results_databox'] = 'DataBox Search Results';
 
 $LANG_DATABOX_SEARCH['title'] =  'Title';
 $LANG_DATABOX_SEARCH['udate'] =  'Update';
+
+###############################################################################
+#
+$LANG_DATABOX_STATS['data'] = 'DataBox';
+$LANG_DATABOX_STATS['stats_page_title']='Title';
+$LANG_DATABOX_STATS['stats_hits']='Hits';
+$LANG_DATABOX_STATS['stats_headline']='Top Ten DataBox Pages';
+$LANG_DATABOX_STATS['stats_no_hits']='It appears that there are no DataBox pages on this site';
 
 ###############################################################################
 # COM_showMessage()
@@ -590,7 +719,7 @@ $PLG_databox_MESSAGE3002 = $LANG32[9];
 ###############################################################################
 #
 $LANG_DATABOX_autotag_desc['databox']="
-[databox:count] <br{xhtml}>	
+[databox:count] <br".xhtml.">	
 More, see Databox Plugin documents.
 <a href=\"{$_CONF['site_admin_url']}/plugins/databox/docs/japanese/autotags.html\">*</a>
 ";
@@ -653,6 +782,10 @@ $LANG_confignames['databox']['hideuseroption'] = 'hide useroption';
 
 $LANG_confignames['databox']['commentcode'] = 'Comment Default';
 
+$LANG_confignames['databox']['sort_list_by'] = 'Sort Admin List by';
+$LANG_confignames['databox']['sort_list_by_my'] = 'Sort My Data List by';
+$LANG_confignames['databox']['default_cache_time'] = 'default cache time';
+
 //--(1)
 $LANG_tab['databox'][tab_whatsnew] = 'Whats new Block';
 $LANG_fs['databox'][fs_whatsnew] = 'Whats new Block';
@@ -701,12 +834,14 @@ $LANG_confignames['databox']['imgfile_thumb_h'] = 'Thumbnail Size(h)';
 $LANG_confignames['databox']['imgfile_thumb_w2'] = 'Original Image Size(w2)';
 $LANG_confignames['databox']['imgfile_thumb_h2'] = 'Original Image Size(h2)';
 $LANG_confignames['databox']['imgfile_smallw'] = 'Display Image Max Width';
+$LANG_confignames['databox']['imgfile_subdir'] = 'use subdirectory for Image Save URL';
 
 
 
 $LANG_confignames['databox']['file_path'] = 'File Save Absolute Path';
 $LANG_confignames['databox']['file_size'] = 'File Size';
 $LANG_confignames['databox']['file_type'] = 'File Type';
+$LANG_confignames['databox']['file_subdir'] = 'use subdirectory for File Save Absolute Path';
 
 
 //---(６)
@@ -715,14 +850,35 @@ $LANG_fs['databox']['fs_autotag_permissions'] = 'Autotags Permission ([0]Owner [
 $LANG_confignames['databox']['autotag_permissions_databox'] = '[databox: ] Permission';
 
 //---(９)
-$LANG_tab['databox']['tab_xml'] = 'ProfesionalVersion';
-$LANG_fs['databox']['fs_xml'] = '(Profesional Version)';
+$LANG_tab['databox']['tab_xml'] = 'XML';
+$LANG_fs['databox']['fs_xml'] = '(OPTION:XML)';
 $LANG_confignames['databox']['path_xml'] = 'XML Batch Import Path';
 $LANG_confignames['databox']['path_xml_out'] = 'XML Export Path';
+$LANG_confignames['databox']['xml_default_fieldset_id'] = 'XML Import Default Type';
 
+//---(１０)
+$LANG_tab['databox']['tab_csv'] = 'CSV';
+$LANG_fs['databox']['fs_csv'] = '（OPTION:CSV）';
+$LANG_confignames['databox']['path_csv'] = 'CSV Batch Import Path';
+$LANG_confignames['databox']['path_csv_out'] = 'CSV Export Path';
+$LANG_confignames['databox']['csv_default_fieldset_id'] = 'CSV Import Default Type';
+$LANG_confignames['databox']['csv_default_owner_id'] = 'CSV Import Default OwnerID';
+$LANG_confignames['databox']['csv_cron_schedule_interval'] = 'Cron Schedule Interval';
+$LANG_confignames['databox']['csv_cron_schedule_unlink'] = 'schedule.After the end of the input file Delete ';
+$LANG_confignames['databox']['csv_cron_schedule_nextmaps'] = 'schedule.Maps continues execution ';
+$LANG_confignames['databox']['csv_cron_schedule_sel_id'] = 'schedule.SELECT ';
 
-
-
+//---(１１)
+$LANG_tab['databox']['tab_maps'] = 'MAPS';
+$LANG_fs['databox']['fs_maps'] = '（OPTION:MAPS）';
+$LANG_confignames['databox']['maps_mid'] = 'Kind of master to register the map ID';
+$LANG_confignames['databox']['maps_lat'] = 'Theme Variable for latitude';
+$LANG_confignames['databox']['maps_lng'] = 'Theme Variable for Longitude';
+$LANG_confignames['databox']['maps_pref'] = 'Theme Variable for Prefectural';
+$LANG_confignames['databox']['maps_address1'] = 'Theme Variable for Address1';
+$LANG_confignames['databox']['maps_address2'] = 'Theme Variable for Address2';
+$LANG_confignames['databox']['maps_address3'] = 'Theme Variable for Address3';
+$LANG_confignames['databox']['maps_cron_schedule_interval'] = 'Cron Schedule Interval';
 
 // Note: entries 0, 1, 9, 12, 17 are the same as in $LANG_configselects['Core']
 $LANG_configselects['databox'][0] =array('Yes' => 1, 'No' => 0);
@@ -802,5 +958,62 @@ $LANG_configselects['databox'][24] =array();
 	}
 
 $LANG_configselects['databox'][26] =array( 'Comments Enabled' => 0, 'Comments Disabled' => -1);
+
+$LANG_configselects['databox'][27] =array(
+    'Order' => 'orderno'
+    ,'ID' => 'id'
+    , 'Code' => 'code'
+    , 'Title' => 'title'
+    , 'Data Type' => 'fieldset_name'
+    , 'remaining days' => 'remaingdays'
+    , 'Hits' => 'hits'
+    , 'Time Stamp (descending)' => 'udatetime'
+    , 'Draft' => 'draft_flag'
+        );
+
+//
+$LANG_configselects['databox'][28] =array();
+    $sql = LB;
+    $sql .= "SELECT ".LB;
+    $sql .= " fieldset_id".LB;
+    $sql .= ",name".LB;
+    $sql .= " FROM {$_TABLES['DATABOX_def_fieldset']}".LB;
+    $sql .= " ORDER BY fieldset_id".LB;
+    $result = DB_query( $sql );
+    $nrows = DB_numRows( $result );
+
+    for( $i = 0; $i < $nrows; $i++ )    {
+        $A = DB_fetchArray( $result, true );
+        $name=$A['name'];
+        $fieldset_id=$A['fieldset_id'];
+        $LANG_configselects['databox'][28][$name]=$fieldset_id;
+}
+    if  ($rt<>0){
+        $sql = LB;
+        $sql .= "SELECT ".LB;
+        $sql .= " csv_sel_id".LB;
+        $sql .= ",name".LB;
+        $sql .= " FROM {$_TABLES['DATABOX_def_csv_sel']}".LB;
+        $sql .= " ORDER BY csv_sel_id".LB;
+        $result = DB_query( $sql );
+        $nrows = DB_numRows( $result );
+        $LANG_configselects['databox'][29]['ALL']="";
+        for( $i = 0; $i < $nrows; $i++ )    {
+            $A = DB_fetchArray( $result, true );
+            $name=$A['name'];
+            $csv_sel_id=$A['csv_sel_id'];
+            $LANG_configselects['databox'][29][$name]=$csv_sel_id;
+        }
+    }
+$LANG_configselects['databox'][30] =array(
+    'Order' => 'orderno'
+    ,'ID' => 'id'
+    , 'Code' => 'code'
+    , 'Title' => 'title'
+    , 'Data Type' => 'fieldset_name'
+    , 'remaining days' => 'remaingdays'
+    , 'Time Stamp (descending)' => 'udatetime'
+    , 'Draft' => 'draft_flag'
+        );
 
 ?>

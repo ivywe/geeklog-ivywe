@@ -1315,7 +1315,7 @@ function DATABOX_getaddtionfieldsEdit(
                         if  ($fvalue=="")  {
                             $fvalue_date="";
                         }else{
-                            $fvalue_date=date( $box_conf['dateformat'], $fvalue );
+                            $fvalue_date=$fvalue;
                         }
                         $filedname="afield".$fid;
                         
