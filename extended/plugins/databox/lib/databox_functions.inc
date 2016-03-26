@@ -1297,6 +1297,38 @@ function DATABOX_getaddtionfieldsEdit(
 
                         $fieldhtml .= "        <input ";
                         $fieldhtml .= " data-uk-datepicker=\"{format:'YYYY/MM/DD'}\"";
+                        $fieldhtml .= " class=\"uk-form-width-small\"";
+                        $fieldhtml .= " type=\"text\"";
+                        $fieldhtml .= "  id=\"afield".$fid."\"";
+                        $fieldhtml .= " size=\"".$size."\"";
+                        $fieldhtml .= " maxlength=\"".$maxlength."\" ";
+                        $fieldhtml .= " name=\"afield[".$fid."]\" ";
+                        $fieldhtml .= " style=\"max-width:95%\"";
+                        $fieldhtml .= " value=\"". $fvalue_date."\"";
+                        $fieldhtml .= " ".XHTML.">";
+                    }else{
+                        $fieldhtml .=$fvalue;
+                    }
+                    break;
+                case 26://時刻
+                    if ($disabled===""){
+                        if  ($fvalue=="")  {
+                            $fvalue_date="";
+                        }else{
+                            $fvalue_date=date( $box_conf['dateformat'], $fvalue );
+                        }
+                        $filedname="afield".$fid;
+                        
+                        $wk =  " <input ";
+                        $wk .= " type=\"hidden\"";
+                        $wk .= " name=\"afield[".$fid."]\" ";
+                        $wk .= " value=\"".$fvalue."\"";
+                        $wk .= " ".XHTML.">";
+                        $fieldhtml.=$wk;
+
+                        $fieldhtml .= "        <input ";
+                        $fieldhtml .= " data-uk-timepicker";
+                        $fieldhtml .= " class=\"uk-form-width-small\"";
                         $fieldhtml .= " type=\"text\"";
                         $fieldhtml .= "  id=\"afield".$fid."\"";
                         $fieldhtml .= " size=\"".$size."\"";
@@ -1781,6 +1813,8 @@ function DATABOX_getaddtionfieldsDisp(
         }
     }
 
+    $col_counter = 0;
+
     foreach( $S as $fid => $fvalue ){
 
 
@@ -1972,6 +2006,10 @@ function DATABOX_getaddtionfieldsDisp(
                 default:
                     $fieldhtml .= $fvalue;
             }
+						$templates->set_var('col_counter', $col_counter);
+						$col_counter = $col_counter +1;
+            $templates->set_var('col_counter', $col_counter);
+
             $templates->set_var('field_id', $fid);
             $templates->set_var('field_type', $type);
             
@@ -2585,7 +2623,7 @@ global $_TABLES;
                 }
             
                 if  ($A['input_type']==0){
-                    $retval .= '<span class="uk-text-nowrap">';
+                    $retval .= '<span class="uk-text-nowrap uk-margin-right">';
                     $retval .= '<input type="checkbox" name="category[]" value="' . $A2['category_id'] ;
                     $retval .= '"';
                     $retval .= $checked;

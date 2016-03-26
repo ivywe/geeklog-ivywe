@@ -708,6 +708,7 @@ $LANG_DATABOX_TYPE[2] = 'いいえ/はい';
 $LANG_DATABOX_TYPE[3] = '日付';
 $LANG_DATABOX_TYPE[22] = '日付 (jquery ui datepicker)';
 $LANG_DATABOX_TYPE[23] = '日付 (UIkit datepicker)';
+$LANG_DATABOX_TYPE[26] = '日付 (UIkit timepicker)';
 $LANG_DATABOX_TYPE[4] = '日時';
 $LANG_DATABOX_TYPE[5] = 'メールアドレス';
 $LANG_DATABOX_TYPE[6] = 'url';
