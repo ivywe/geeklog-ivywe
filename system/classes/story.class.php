@@ -1281,9 +1281,9 @@ class Story
             $sizeattributes = COM_getImgSizeAttributes($_CONF['path_images'] . 'articles/' . $A['ai_filename']);
 
             // Build image tags for each flavour of the image:
-            $img_noalign   = '<img ' . $sizeattributes . 'src="'                    . $imgSrc . '" alt=""' . XHTML . '>';
-            $img_leftalgn  = '<img ' . $sizeattributes . 'class="floatleft" src="'  . $imgSrc . '" alt=""' . XHTML . '>';
-            $img_rightalgn = '<img ' . $sizeattributes . 'class="floatright" src="' . $imgSrc . '" alt=""' . XHTML . '>';
+            $img_noalign   = '<img  class="uk-border-rounded uk-margin-left uk-margin-bottom"  ' . $sizeattributes . 'src="'                    . $imgSrc . '" alt=""' . XHTML . '>';
+            $img_leftalgn  = '<img  class="uk-border-rounded uk-margin-left uk-margin-bottom" ' . $sizeattributes . 'class="floatleft" src="'  . $imgSrc . '" alt=""' . XHTML . '>';
+            $img_rightalgn = '<img  class="uk-border-rounded uk-margin-left uk-margin-bottom" ' . $sizeattributes . 'class="floatright" src="' . $imgSrc . '" alt=""' . XHTML . '>';
 
             // Are we keeping unscaled images?
             if ($_CONF['keep_unscaled_image'] == 1) {
