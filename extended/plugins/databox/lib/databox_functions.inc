@@ -485,7 +485,7 @@ global $_TABLES;
     for( $i = 0; $i < $nrows; $i++ )    {
 
         $A = DB_fetchArray( $result, true );
-        $retval .= '<span style="white-space:nowrap">';
+        $retval .= '<span class="uk-text-nowrap uk-margin-right">';
         $retval .= '<input type="checkbox" name="' . $fname . '[]" value="' . $A[0] ;
         $retval .= '"';
         for( $x = 0; $x < sizeof( $S ); $x++ )            {
@@ -5876,7 +5876,7 @@ function DATABOX_getcheckboxary(
 	$retval = '';
 	
     foreach($ary as $k => $v) {
-        $retval .= '<span style="white-space:nowrap">';
+        $retval .= '<span class="uk-text-nowrap uk-margin-right">';
         $retval .= '<input type="checkbox" name="' . $fld . '[]" value="' . $k ;
         $retval .= '"';
 		if  ($selected==""){
