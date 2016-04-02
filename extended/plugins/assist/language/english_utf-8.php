@@ -41,25 +41,25 @@ $LANG_ASSIST['login_logout'][1] = "
 ";
 ###############################################################################
 $LANG_ASSIST_autotag_desc['newstories']="
-[newstories:(TopicID) (RSSfile)] - New stories.<br".xhtml.">
+[newstories:(TopicID) (RSSfile)] - New stories.<br".XHTML.">
 See the /admin/plugins/assist/docs/japanese/autotags.html file for more informations.
 ";
 $LANG_ASSIST_autotag_desc['newstories2']="
-[newstories2:(TopicID) (RSSfile)] - New stories.<br".xhtml.">
+[newstories2:(TopicID) (RSSfile)] - New stories.<br".XHTML.">
 See the /admin/plugins/assist/docs/japanese/autotags.html file for more informations.
 ";
 
 $LANG_ASSIST_autotag_desc['conf']="
-[conf:(var name)] - <br".xhtml.">
-ex.1：[conf:site_url]<br".xhtml.">
-ex.2：[conf:site_name]<br".xhtml.">
-ex.3：[conf:site_mail]<br".xhtml.">
-ex.4：[conf:site_slogan]<br".xhtml.">
+[conf:(var name)] - <br".XHTML.">
+ex.1：[conf:site_url]<br".XHTML.">
+ex.2：[conf:site_name]<br".XHTML.">
+ex.3：[conf:site_mail]<br".XHTML.">
+ex.4：[conf:site_slogan]<br".XHTML.">
 See the /admin/plugins/assist/docs/japanese/autotags.html file for more informations.
 ";
 $LANG_ASSIST_autotag_desc['assist']="
-[assist:〜] - <br".xhtml.">	
-[assist:usercount]others<br".xhtml.">
+[assist:〜] - <br".XHTML.">	
+[assist:usercount]others<br".XHTML.">
 See the /admin/plugins/assist/docs/japanese/autotags.html file for more informations.
 <a href=\"{$_CONF['site_admin_url']}/plugins/assist/docs/japanese/autotags.html\">*</a>
 ";
@@ -86,16 +86,16 @@ $LANG_ASSIST_ADMIN['export'] = 'Export';
 $LANG_ASSIST_ADMIN['import'] = 'Import';
 $LANG_ASSIST_ADMIN['importfile'] = 'path';
 $LANG_ASSIST_ADMIN['importmsg_user'] =
-"User list ca be regist to Geeklog system silently.<br".xhtml.">"
-."(UserID)<TAB>(Full Name)<TAB>(User Name)<TAB>(Email)<br".xhtml.">"
-."UserID, User Name, Email can't be duplicated.<br".xhtml.">"
-."But if UserID is 0, automatically set.<br".xhtml.">"
-."User's password is automatically set.<br".xhtml.">"
-."Notification email are not sent to users.<br".xhtml.">"
+"User list ca be regist to Geeklog system silently.<br".XHTML.">"
+."(UserID)<TAB>(Full Name)<TAB>(User Name)<TAB>(Email)<br".XHTML.">"
+."UserID, User Name, Email can't be duplicated.<br".XHTML.">"
+."But if UserID is 0, automatically set.<br".XHTML.">"
+."User's password is automatically set.<br".XHTML.">"
+."Notification email are not sent to users.<br".XHTML.">"
 ;
 
 $LANG_ASSIST_ADMIN['delete'] = 'Delete';
-$LANG_ASSIST_ADMIN['deletemsg_user'] = "Batch delete users<br".xhtml.">";
+$LANG_ASSIST_ADMIN['deletemsg_user'] = "Batch delete users<br".XHTML.">";
 
 $LANG_ASSIST_ADMIN['uidfrom'] = "Start:";
 $LANG_ASSIST_ADMIN['uidto'] = "End:";
@@ -106,14 +106,14 @@ $LANG_ASSIST_ADMIN['mail2'] = 'Email settings';
 $LANG_ASSIST_ADMIN['submit'] = 'Submit';
 
 //newsletter
-$LANG_ASSIST_ADMIN['mail_logfile'] ="Log file %s is ignored.<br".xhtml.">";
+$LANG_ASSIST_ADMIN['mail_logfile'] ="Log file %s is ignored.<br".XHTML.">";
 
 $LANG_ASSIST_ADMIN['mail_msg'] =
-"Create story by topic '%s'. <br".xhtml.">"
-."Newsletter is sent by text format.<br".xhtml.">"
-."Please test.<br".xhtml.">"
-."Log file is assist_newsletter.log<br".xhtml.">"
-."Registrated time oftn delay, because this system use Geeklog programmed CRON.<br".xhtml.">"
+"Create story by topic '%s'. <br".XHTML.">"
+."Newsletter is sent by text format.<br".XHTML.">"
+."Please test.<br".XHTML.">"
+."Log file is assist_newsletter.log<br".XHTML.">"
+."Registrated time oftn delay, because this system use Geeklog programmed CRON.<br".XHTML.">"
 ;
 
 $LANG_ASSIST_ADMIN['mail_msg1'] ="(1) Settings";
@@ -255,9 +255,9 @@ $LANG_ASSIST_ADMIN['err_marker_address'] = 'Please fill marker address'.LB;
 $LANG_ASSIST_ADMIN['err_marker_coords'] = 'Could not calicurate coord.'.LB;
 $LANG_ASSIST_ADMIN['err_map'] = 'Could not find map.'.LB;
 
-$LANG_ASSIST_ADMIN['err_fbid'] = 'Facebook OAuth Application ID is not found.<br'.xhtml.'>'.LB
-.'(Configuration setting Geeklog user)<br'.xhtml.'>'.LB
-.'Facebook social button autotags needs.<br'.xhtml.'>'.LB;
+$LANG_ASSIST_ADMIN['err_fbid'] = 'Facebook OAuth Application ID is not found.<br'.XHTML.'>'.LB
+.'(Configuration setting Geeklog user)<br'.XHTML.'>'.LB
+.'Facebook social button autotags needs.<br'.XHTML.'>'.LB;
 //
 
 $LANG_ASSIST_ADMIN['mail_save_ok'] = 'Saved';
