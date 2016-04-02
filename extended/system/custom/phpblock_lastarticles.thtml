@@ -1,4 +1,4 @@
-{# begin {templatelocation} #}
+<!-- system/custom/phpblock_lastarticles.thtml { -->
 
 <!-- 使用可能なタグ:
 {date} = 日付、{topic} = 話題、{link} = 記事のURL、
@@ -9,4 +9,4 @@
   <span class="new-story-date">{date}</span>&nbsp;<span class="new-story-topic">{topic}</span>::<a href="{link}">{title}</a><br{xhtml}>
 </div>
 
-{# end {templatelocation} #}
+<!-- } system/custom/phpblock_lastarticles.thtml -->
