@@ -1438,15 +1438,21 @@ switch ($mode) {
 
 
 }
+
+
+$layout=$retval['layout'];
+$display=DATABOX_displaypage($pi_name,$layout,$display,$information);
+
+/*
 $display =COM_startBlock($LANG_DATABOX_ADMIN['piname'],''
-            ,COM_getBlockTemplate('_admin_block', 'header'))
+         ,COM_getBlockTemplate('_admin_block', 'header'))
          .ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno])
          .fncMenu($pi_name)
          .$display
-         .COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
+      .COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
 
 $display=DATABOX_displaypage($pi_name,'_admin',$display,$information);
-
+*/
 
 COM_output($display);
 
