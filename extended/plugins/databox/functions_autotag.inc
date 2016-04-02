@@ -846,7 +846,7 @@ function databox_category(
             $templates->set_var ('home',$LANG_DATABOX['home']);
             
             $url=$_CONF['site_url']."/databox/category.php";
-            $category_top=":<a href='".$url."'>".$LANG_DATABOX['category_top']."</a>";
+            $category_top="<a href='".$url."'>".$LANG_DATABOX['category_top']."</a>";
             $templates->set_var ('category_top',$category_top);
 
             $templates->set_var ('category_name',$category_name);
@@ -1208,10 +1208,10 @@ function databox_field(
     $addition_def=DATABOX_getadditiondef($pi_name);
     //
     $url=$_CONF['site_url']."/databox/attribute.php";
-    $attribute_top=":<a href='".$url."'>".$LANG_DATABOX['attribute_top']."</a>";
+    $attribute_top="<a href='".$url."'>".$LANG_DATABOX['attribute_top']."</a>";
     $url=$_CONF['site_url']."/databox/attribute.php?";
     $url.="m=id&amp;id=".$field_id;
-    $field_top=":<a href='".$url."'>".$field_name.$LANG_DATABOX['countlist']."</a>";
+    $field_top="<a href='".$url."'>".$field_name.$LANG_DATABOX['countlist']."</a>";
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
 

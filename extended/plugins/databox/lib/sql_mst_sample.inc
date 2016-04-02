@@ -13,6 +13,7 @@ $_SQL[] = "
 $_SQL[] = "
     INSERT INTO {$table}
     (`kind`, `no`, `value`, `orderno`) VALUES
+    ('prefect', 0, ' -- ', 0),
     ('prefect', 1, '北海道', 10),
     ('prefect', 2, '青森県', 20),
     ('prefect', 3, '岩手県', 30),
