@@ -74,6 +74,9 @@ function _img_resizeImage($srcImage, $destImage,
         $dImageHeight = $sImageHeight;
     }
     $newimage = imagecreatetruecolor($dImageWidth, $dImageHeight);
+
+		imagealphablending( $newimage, false );
+		imagesavealpha( $newimage, true );
     imagecopyresampled($newimage, $image, 0,0,0,0,  $dImageWidth, $dImageHeight, $sImageWidth, $sImageHeight);
     imagedestroy($image);
 
@@ -251,6 +254,9 @@ function _img_convertImageFormat($srcImage,$destImage,$destFormat,$mimeType) {
     $imgheight = $imgsize[1];
 
     $newimage = imagecreatetruecolor($imgwidth, $imgheight);
+
+		imagealphablending( $newimage, false );
+		imagesavealpha( $newimage, true );
     imagecopyresampled($newimage, $image, 0,0,0,0,  $imgwidth, $imgheight, $imgwidth, $imgheight);
     imagedestroy($image);
 
@@ -444,6 +450,9 @@ function _img_resizeImage_crop($srcImage, $destImage,
         $dImageHeight = $sImageHeight;
     }
     $newimage = imagecreatetruecolor($dImageWidth, $dImageHeight);
+
+		imagealphablending( $newimage, false );
+		imagesavealpha( $newimage, true );
     imagecopyresampled($newimage, $image, $new_x, $new_y, $src_x, $src_y, $dImageWidth, $dImageHeight, $sImageWidth, $sImageHeight);
     imagedestroy($image);
 
