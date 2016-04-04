@@ -15,3 +15,7 @@ html {
 .uk-navbar-nav > li > a[href=''] {
   cursor: default;
 }
+
+#wrapper {
+  overflow: hidden;
+}
