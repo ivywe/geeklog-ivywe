@@ -88,7 +88,7 @@
     <label for="sp-editor-sp_content">{lang_content}</label>
     <div>
       <textarea name="sp_content" style="width:99.5%" cols="45" rows="24" id="sp-editor-sp_content" class="uk-width-1-1" aria-describedby="sp-editor-sp_content" required>{sp_content}</textarea>
-      <span class="uk-form-help-inline" id="sp-editor-sp_content">{lang_allowed_html}</span>
+      <div class="uk-form-help-inline" id="sp-editor-sp_content">{lang_allowed_html}</div>
     </div>
   </div>
 

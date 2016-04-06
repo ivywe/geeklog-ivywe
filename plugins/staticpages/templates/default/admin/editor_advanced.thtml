@@ -93,12 +93,12 @@
 
         <div id="advanced_editarea" style="display:{show_adveditor};">
           <textarea id="adv_content" name="sp_content" cols="45" rows="24" aria-describedby="advanced_editor-adv_content-d1">{sp_content}</textarea>
-          <span class="uk-form-help-inline" id="advanced_editor-adv_content-d1">{lang_allowed_html}</span>
+          <div class="uk-form-help-inline" id="advanced_editor-adv_content-d1">{lang_allowed_html}</div>
         </div>
 
         <div id="html_editarea" style="display:{show_htmleditor};">
-          <textarea id="html_content" name="sp_content" cols="45" rows="24" style="width:98%" wrap="virtual" aria-describedby="advanced_editor-adv_content-d1">{sp_content}</textarea>
-          <span class="uk-form-help-inline" id="advanced_editor-adv_content-d1">{lang_allowed_html}</span>
+          <textarea id="html_content" name="sp_content" cols="45" rows="24" style="width:98%" aria-describedby="advanced_editor-adv_content-d1">{sp_content}</textarea>
+          <div class="uk-form-help-inline" id="advanced_editor-adv_content-d1">{lang_allowed_html}</div>
         </div>
       </div>
 
