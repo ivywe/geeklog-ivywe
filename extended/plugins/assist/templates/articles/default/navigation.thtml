@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<div id="databox">
+<div>
 
   <div class='pagenav'>
     {page_navigation}
@@ -8,7 +8,7 @@
   </div>
   <div style="clear:both"></div>
 
-  <ul class="contents" id="list">
+  <ul>
     <li>{lang_name} ({lang_count})</li>
 {row_var}
   </ul>

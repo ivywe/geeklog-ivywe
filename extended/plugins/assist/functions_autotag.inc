@@ -132,6 +132,7 @@ function plugin_autotags_assist (
 					$parm2_ary[]='filler';
 					$parm2_ary[]='endchars';
 					$parm2_ary[]='title';
+                    $parm2_ary[]='permission';
 					$p=assist_parm2($p2,$parm2_ary);
                 switch($p1) {
                     case 'usercount':
@@ -214,6 +215,7 @@ function plugin_autotags_assist (
                             ,$p['newmarkday']
                             ,$p['templatedir']
                             ,true
+                            ,$p['permission']
                         );
                         break;
 					case 'rss' :
@@ -365,6 +367,7 @@ function phpblock_shownewstories(
     ,$newmarkday=""
     ,$thtml=""
     ,$templatePath=false
+    ,$permission=""
 )
 // +---------------------------------------------------------------------------+
 // | 機能  ブロック用 新着記事一覧出力                                         |
@@ -384,6 +387,8 @@ function phpblock_shownewstories(
 // | 引数 $newmarkday    :新着マーク 省略時設定値or3                           |
 // | 引数 $thtml         :テンプレートファイルのフォルダ  layout/テーマ/XXXX/  |
 // |                      省略時は、プラグイン内のテンプレート                 |
+// | 引数 $templatePath=false
+// | 引数 $permission    :ブランク　または　ignore
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:新着記事一覧                                                   |
 // +---------------------------------------------------------------------------+
@@ -427,7 +432,9 @@ function phpblock_shownewstories(
     }
 
     if ($topics==""){
-        $topics="'".$_ASSIST_CONF['topics']."'";
+        if  ($_ASSIST_CONF['topics']!==""){
+            $topics="'".$_ASSIST_CONF['topics']."'";
+        }
 	}elseif (strtoupper($topics)==="ALL"){
         $topics="";
     }elseif (strpos($topics,"|")=="") {
@@ -514,7 +521,7 @@ function phpblock_shownewstories(
         ));
 
 
-    $sql="SELECT ".LB;
+    $sql="SELECT DISTINCT".LB;
 	$sql.=" s.title".LB;
 	$sql.=" ,s.meta_description".LB;
 	$sql.=" ,s.introtext".LB;
@@ -522,26 +529,19 @@ function phpblock_shownewstories(
 	$sql.=" ,s.featured".LB;
 	
     $sql.=" , UNIX_TIMESTAMP(s.date) AS day".LB;
-    $sql.=" , t.topic".LB;
-    $sql.=" , t.tid".LB;
+    //$sql.=" , t.topic".LB;
+    //$sql.=" , t.tid".LB;
     $sql.=" , s.sid".LB;
+    $sql.=" ,s.perm_anon".LB;
 
 	$sql.=" FROM ".LB;
     $sql.=" {$_TABLES['stories']} AS s".LB;
     $sql.=" ,{$_TABLES['topics']} AS t".LB;
-	//FOR GL2.0.0 
-	if (COM_versionCompare(VERSION, "2.0.0",  '>=')){
-		$sql.=" ,{$_TABLES['topic_assignments']} AS t2".LB;
-	}
+	$sql.=" ,{$_TABLES['topic_assignments']} AS t2".LB;
 	
 	$sql.=" WHERE".LB;
-	//FOR GL2.0.0 
-	if (COM_versionCompare(VERSION, "2.0.0",  '>=')){
-		$sql.="  s.sid = t2.id".LB;
-		$sql.="  AND t2.tid = t.tid".LB;
-	}else{
-		$sql.="  s.tid = t.tid".LB;
-	}
+	$sql.="  s.sid = t2.id".LB;
+	$sql.="  AND t2.tid = t.tid".LB;
 	
 	$sql.=" AND t.archive_flag=0 ".LB;
     $sql.=" AND s.draft_flag=0 ".LB;
@@ -550,13 +550,17 @@ function phpblock_shownewstories(
     if ($intervalday<>0){
         $sql.=" AND (date >= (date_sub(NOW(), INTERVAL $intervalday day)))".LB;
     }
-
-    if ($topics!=="" ){
-        $sql.=" AND t.tid IN ($topics)".LB;
+    if (strlen($topics)>0){
+		$sql.=" AND t.tid IN ($topics)".LB;
 	}
 	
-    $sql .= COM_getTopicSql ('AND', 0, 't');
-    $sql .= COM_getPermSql ('AND', 0, 2, 's' );
+	$sql .= COM_getTopicSql ('AND', 0, 't');
+	
+    //アクセス権のないデータ はのぞく
+    if  (strtoupper($permission)=="IGNORE"){
+    }else{
+        $sql .= COM_getPermSql ('AND', 0, 2, 's' );
+    }
     $sql .= COM_getLangSQL ('sid', 'AND');
 
     $sql.=" ORDER BY date DESC".LB;
@@ -587,10 +591,20 @@ function phpblock_shownewstories(
 		
 		$list->set_var ('meta_description', $meta_description);
 		$list->set_var ('introtext', $introtext);
-		
+
+        $list->set_var ('permission', $A['perm_anon']);
+
 		$n=($i%2)+1;
         $class='class="row'.$n.'"';
         $list->set_var ('class', 'class="row'.$n.'"');
+		
+		if  ($A['perm_anon']==0){
+			$list->set_var ('class_a', "assist_nolink");
+			$list->set_var ('class_c', "assist_displaynon");
+		}else{
+    	    $list->set_var ('class_a', "gl-tooltip");
+			$list->set_var ('class_c', "classic");
+		}
 		
 		if ($A['featured']==1){
 			$list->parse ('stories_col', 'col_ft', true);

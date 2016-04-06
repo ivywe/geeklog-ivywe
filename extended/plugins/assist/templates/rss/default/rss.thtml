@@ -1,5 +1,4 @@
 {# begin {templatelocation} #}
-<!-- plugins/assist/templates/rss/default/rss.thtml  { -->
 
 <p><a href="{head_link}">{head_title}</a></p>
 <p><a href="{image_link}"><img src="{image_url}" alt="{image_title}" /></a></p>

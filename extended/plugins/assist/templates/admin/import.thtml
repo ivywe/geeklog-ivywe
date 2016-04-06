@@ -1,7 +1,6 @@
 {# begin {templatelocation} #}
-
 {msg}
-<form class="uk-form" action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data">
+<form class="uk-form"  action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data">
 {importmsg}
 {importfile}: <input type="file" dir="ltr" name="importfile" size="40" {xhtml}>
 <input type="hidden" name="mode" value="import" {xhtml}>

@@ -40,26 +40,27 @@ $LANG_ASSIST['login_logout'][1] = "
 ";
 ###############################################################################
 $LANG_ASSIST_autotag_desc['newstories']="
-[newstories:話題ID RSSファイル] - 新着記事（おしらせ）。<br>
-詳細は、assistプラグインのドキュメントを参照してください。<br>
+[newstories:話題ID RSSファイル] - 新着記事（おしらせ）。<br".XHTML.">
+詳細は、assistプラグインのドキュメントを参照してください。
 ";
 $LANG_ASSIST_autotag_desc['newstories2']="
-[newstories2:話題ID RSSファイルほか例1	参照] - 新着記事（おしらせ）。<br>
+[newstories2:話題ID RSSファイルほか例1	参照] - 新着記事（おしらせ）。<br".XHTML.">
 詳細は、assistプラグインのドキュメントを参照してください。
 ";
 
 $LANG_ASSIST_autotag_desc['conf']="
-[conf:変数名] - <br>
-例1：[conf:site_url]<br>
-例2：[conf:site_name]<br>
-例3：[conf:site_mail]<br>
-例4：[conf:site_slogan]<br>
+[conf:変数名] - <br".XHTML.">
+例1：[conf:site_url]<br".XHTML.">
+例2：[conf:site_name]<br".XHTML.">
+例3：[conf:site_mail]<br".XHTML.">
+例4：[conf:site_slogan]<br".XHTML.">
 詳細は、assistプラグインのドキュメントを参照してください。
 ";
 $LANG_ASSIST_autotag_desc['assist']="
-[assist:*] - <br>	
-[assist:usercount]ほか<br>
+[assist:〜] - <br".XHTML.">	
+[assist:usercount]ほか<br".XHTML.">
 詳細は、assistプラグインのドキュメントを参照してください。
+<a href=\"{$_CONF['site_admin_url']}/plugins/assist/docs/japanese/autotags.html\">*</a>
 ";
 
 
