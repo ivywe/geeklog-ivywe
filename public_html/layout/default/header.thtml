@@ -5,6 +5,10 @@
 <meta charset="{charset}"{xhtml}>
 <title>{page_title_and_site_name}</title>
 
+<?php if( strpos($this->get_var('page_title_and_site_name'), '404 Error') !==  false ){ ?>
+<meta http-equiv="refresh" content="3;URL={site_url}">
+<?php } ?>
+
 <!-- Mobile Specific Metas -->
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"{xhtml}>
 
