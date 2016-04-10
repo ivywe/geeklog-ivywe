@@ -1,0 +1,17 @@
+{# begin {templatelocation} #}
+
+<div class="uk-form">
+{!if edit}
+<fieldset>
+{!endif}
+
+<div class="uk-grid uk-grid-large">
+{medialist_col}
+</div>
+
+{!if edit}
+</fieldset>
+{!endif}
+</div>
+
+{# end {templatelocation} #}

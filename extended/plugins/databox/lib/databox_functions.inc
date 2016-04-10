@@ -4899,9 +4899,9 @@ function DATABOX_Confirmation(
         $confirm_value=$lang_box_admin['delete1']." ".$lang_box_admin['confirm'];
         $confirm_value2=$lang_box_admin['delete2']." ".$lang_box_admin['confirm'];
         $confirm_value3=$lang_box_admin['delete3']." ".$lang_box_admin['confirm'];
-        $btn2="<input type='submit' name='action' value='{$lang_box_admin['delete2']}'" 
+        $btn2="<input type='submit' class='uk-button uk-button-primary' name='action' value='{$lang_box_admin['delete2']}'" 
              ." onclick=\"return confirm('{$confirm_value2}');\"".xhtml.">".LB;
-        $btn3="<input type='submit' name='action' value='{$lang_box_admin['delete3']}'" 
+        $btn3="<input type='submit'  class='uk-button uk-button-primary' name='action' value='{$lang_box_admin['delete3']}'" 
              ." onclick=\"return confirm('{$confirm_value3}');\"".xhtml.">".LB;
     }
 

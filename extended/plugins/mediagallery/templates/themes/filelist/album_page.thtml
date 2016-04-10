@@ -65,7 +65,7 @@
 
 
 {!if lang_no_image}
-  <div class="uk-float-left">
+  <div>
     {lang_no_image}
   </div>
 {!endif}
