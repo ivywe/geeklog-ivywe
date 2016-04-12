@@ -1,0 +1,11 @@
+{# begin {templatelocation} #}
+
+	<div class="uk-thumbnail">
+    <a href="{filename_disp}" data-uk-lightbox="{ group:'my-group{albumid}' }" title="{media_title}">
+    	<img src="{filename_disp}" alt="{media_title}" class="uk-container-center uk-overlay-scale uk-border-rounded {class}" >
+    	<div class="uk-thumbnail-caption">{media_title}</div>
+    	<div class="uk-thumbnail-caption">{media_desc}</div>
+    </a>
+	</div>
+
+{# end {templatelocation} #}

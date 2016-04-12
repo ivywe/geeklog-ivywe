@@ -1,0 +1,20 @@
+{# begin {templatelocation} #}
+
+<div class="uk-form">
+
+{!if edit}
+<fieldset>
+<legend><a href="{site_url}/mediagallery/album.php?aid={album_id}&page=1"><i class="uk-icon-file-image-o"></i> {album_title}</a></legend>
+{!endif}
+
+<div>
+{medialist_col}
+</div>
+
+{!if edit}
+</fieldset>
+{!endif}
+
+</div>
+
+{# end {templatelocation} #}
