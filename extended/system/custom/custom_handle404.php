@@ -40,12 +40,14 @@ function CUSTOM_handle404($alternate_url = '')
 
     $display .= CUSTOM_getStaticpage('404');
 
+/*
     $display .= sprintf($LANG_404[2], $url);
     if ($alternate_url != '') {
         $display .= sprintf($LANG_404[4], $alternate_url);
     } else {
         $display .= $LANG_404[3];
     }
+*/
     $display .= COM_endBlock();
     // $display = COM_createHTMLDocument($display, array('pagetitle' => $LANG_404[1]));
     $display = COM_createHTMLDocument($display, array('what' => 'none', 'pagetitle' => $LANG_404[1], 'rightblock' => false));
