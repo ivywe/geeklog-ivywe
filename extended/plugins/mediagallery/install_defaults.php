@@ -97,7 +97,7 @@ $_MG_DEFAULT = array(
     'popup_from_album'           => '0', // added
     'autotag_caption'            => '0', // added
     'random_width'               => '120',
-    'random_skin'                => 'filelist', // changed
+    'random_skin'                => 'default', // changed
     'truncate_breadcrumb'        => '0',
 
     // Search Results Options
@@ -106,8 +106,8 @@ $_MG_DEFAULT = array(
     'search_playback_type'       => '0',
     'search_enable_views'        => '1',
     'search_enable_rating'       => '1',
-    'search_album_skin'          => 'filelist', // added // Set a theme of template to use at the search results page
-    'search_frame_skin'          => 'filelist', // added // Set a frame to use for thumbnails at the search results page
+    'search_album_skin'          => 'default', // added // Set a theme of template to use at the search results page
+    'search_frame_skin'          => 'default', // added // Set a frame to use for thumbnails at the search results page
     'search_tn_size'             => '1',       // added // Set the size of thumbnails at the search results page
 
 
@@ -138,11 +138,11 @@ $_MG_DEFAULT = array(
     'root_album_name'            => 'Root Album', // added
     'album_display_columns'      => '3',
     'album_display_rows'         => '4',
-    'indextheme'                 => 'filelist', // added
-    'indexskin'                  => 'filelist', // changed
+    'indextheme'                 => 'default', // added
+    'indexskin'                  => 'default', // changed
 
     // Album Attributes
-    'ad_skin'                    => 'filelist',
+    'ad_skin'                    => 'default',
     'ad_enable_comments'         => '1',
     'ad_exif_display'            => '0',
     'ad_enable_rating'           => '1',
@@ -156,13 +156,13 @@ $_MG_DEFAULT = array(
     'ad_podcast'                 => '0',
     'ad_mp3ribbon'               => '0',
     'ad_enable_sort'             => '1',
-    'ad_album_sort_order'        => '1', // komma
+    'ad_album_sort_order'        => '0',
     'ad_playback_type'           => '2',
     'ad_enable_slideshow'        => '1',
     'ad_enable_random'           => '1',
     'ad_albums_first'            => '1',
     'ad_allow_download'          => '0',
-    'ad_full_display'            => '1',
+    'ad_full_display'            => '0',
     'ad_tn_size'                 => '1',
     'ad_tn_width'                => '200',
     'ad_tn_height'               => '200',
@@ -172,9 +172,9 @@ $_MG_DEFAULT = array(
     'ad_display_image_size'      => '2',
     'ad_display_rows'            => '4',
     'ad_display_columns'         => '3',
-    'ad_image_skin'              => 'filelist', // changed
-    'ad_display_skin'            => 'filelist', // changed
-    'ad_album_skin'              => 'filelist', // changed
+    'ad_image_skin'              => 'default', // changed
+    'ad_display_skin'            => 'default', // changed
+    'ad_album_skin'              => 'default', // changed
 
     'ad_wm_auto'                 => '0',
     'ad_wm_opacity'              => '10',
