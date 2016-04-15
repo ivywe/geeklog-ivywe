@@ -127,13 +127,17 @@ $stage = 'admin'
 
 .table-wrapper
     width: 100%
-    overflow: auto
+    overflow: scroll
 
 .table-wrapper-fit
     width: 100%
     overflow: visible
     > .admin-list-table
         width: 100%
+
+.table-wrapper-visible
+    width: 100%
+    overflow: visible
 
 /*! Navigation */
 .admin-list-navi
@@ -380,5 +384,28 @@ b.status_black
 #panel_phpinfo
     padding: 50px
     display: none
+
+/*!--------------------------------------
+  Others
+--------------------------------------*/
+
+.allowed_html_tags,
+.allowed_autotags
+    margin-top: 15px
+    margin-bottom: 15px
+
+#totop-scroller
+    position: fixed
+    z-index: 99
+    bottom: 20px
+    right: 20px
+    text-align: center
+    font-size: 40px;
+    cursor: pointer
+    color: rgba(128,128,128,0.6)
+
+.block-help-icon
+    font-size: 18px
+    margin-left: 8px
 
 hook-root($stage)

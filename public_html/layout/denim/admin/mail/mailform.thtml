@@ -25,7 +25,7 @@
       <dd><textarea rows="12" cols="44" name="message" id="admin-mailform-message" class="wide">{message}</textarea></dd>
 
       <dt><label for="admin-mailform-html">{lang_options}</label></dt>
-      <dd>
+      <dd class="controls_text">
         <label><input type="checkbox" name="html" id="admin-mailform-html"{html}{xhtml}>{lang_HTML}</label>
         <label><input type="checkbox" name="priority"{priority}{xhtml}>{lang_urgent}</label>
         <label><input type="checkbox" name="overstyr"{overstyr}{xhtml}>{lang_ignoreusersettings}</label>
@@ -34,7 +34,7 @@
 
     <div class="submit">
       <input type="hidden" name="mail" value="mail"{xhtml}>
-      <input type="submit" value="{lang_send}" onclick="return postconfirm()" class="submit"{xhtml}>
+      <button type="submit" value="{lang_send}" onclick="return postconfirm()" class="uk-button uk-button-primary">{lang_send}</button>
       <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
     </div>
   </div>

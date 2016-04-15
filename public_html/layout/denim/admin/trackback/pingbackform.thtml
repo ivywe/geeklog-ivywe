@@ -9,11 +9,11 @@
       <dd><input type="text" maxlength="{max_url_length}" value="{target_url}" name="target" id="pingbackform-target" class="size6"{xhtml}></dd>
 
       <dt>{lang_site_url}</dt>
-      <dd><span class="url">{site_url}</span></dd>
+      <dd class="controls_text"><span class="url">{site_url}</span></dd>
     </dl>
 
     <div class="submit">
-      <input type="submit" value="{lang_send}" name="mode[2]" class="submit"{xhtml}>
+      <button type="submit" name="mode[2]" value="{lang_send}" class="uk-button uk-button-primary">{lang_send}</button>
       <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
     </div>
   </fieldset>

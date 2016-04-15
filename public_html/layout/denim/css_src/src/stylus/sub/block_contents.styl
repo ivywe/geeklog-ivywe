@@ -19,11 +19,10 @@ $stage = 'block_contents'
     hook-selector($stage, "" + selector())
 
 #wrapper
-    /*! Adjust floating element */
+    /* Adjust floating element */
     overflow: visible;
     background-color: $wrapper-background
-    padding: $wrapper-padding
-    padding-bottom: 2em;
+    padding: 30px $wrapper-padding
     build-border("$wrapper")
     @media only screen and (max-width: $breakpoint-small-max)
         padding: 0;
@@ -53,7 +52,7 @@ $header_texture ?= "../images/texture.jpg"
 $texture-height = img-height("../../../" + $header_texture)
 $texture-width  = img-width( "../../../" + $header_texture)
 
-$header-height-mobile = 60px
+$header-height-mobile = 80px
 
 #header
     padding: $header-padding
@@ -67,7 +66,7 @@ $header-height-mobile = 60px
         height: $header-height
         // All Mobile Sizes
         @media only screen and (max-width: $breakpoint-small-max)
-            background-size: 256px auto
+            //background-size: 256px auto
             height: $header-height-mobile
             margin-top: 0
 
@@ -113,9 +112,12 @@ $header-height-mobile = 60px
             text-decoration: none
         // All Mobile Sizes
         @media only screen and (max-width: $breakpoint-small-max)
-            margin: 6px 0 0 8px
+            float: none
             font-size: 1.6em
-            line-height: 1.6em
+            height: 50px
+            line-height: 50px
+            margin: 0 auto
+            text-align: center
 
     if $var-sitename-style == 'image'
         position: relative
@@ -129,19 +131,18 @@ $header-height-mobile = 60px
             background: url($denim_logo) 0 0 no-repeat
             text-indent: -3000px
             display: block
-            //width: 151px
-            //height: 56px
             width: 100%
             height: 100%
         // All Mobile Sizes
         @media only screen and (max-width: $breakpoint-small-max)
-            $percentage = ($header-height-mobile - 10px) / $logo-height
-            $h = $header-height-mobile - 10px
+            $height = 55px
+            $vmargin = 10px
+            $percentage = ($height - ($vmargin * 2)) / $logo-height
+            $h = $height - ($vmargin * 2)
             $w = $logo-width * $percentage
-            //margin: 9px 0 0 7px
-            margin: 5px 0 0 7px
-            padding: 0
-            float: left
+            margin: 0 auto
+            padding: $vmargin 0
+            float: none
             width: $w
             height: $h
             a
@@ -162,16 +163,41 @@ $header-height-mobile = 60px
     @media only screen and (max-width: $breakpoint-small-max)
         font-size: 75%
         if $var-sitename-style == 'text'
-            clear: both
             float: none
-            padding: 0px 10px 0
-            text-align: left
+            margin: 0 auto
+            padding: 0
+            text-align: center
+            line-height: 1.2em
+
+        if $var-sitename-style == 'image'
+            float: none
+            margin: 0 auto
+            padding: 0
+            text-align: center
             line-height: 1.2em
 
     hook-selector($stage, "" + selector())
 
+.nameplate
+    @media only screen and (max-width: $breakpoint-small-max)
+        if $var-sitename-style == 'text'
+            float: none
+            height: 100%  
+            margin: 0 auto
+            max-width: 230px
+            text-align: center
+
+        if $var-sitename-style == 'image'
+            float: none
+            height: 100%  
+            margin: 0 auto
+            max-width: 230px
+            text-align: center
+
+    hook-selector($stage, "" + selector())
+
 /*!--------------------------------------
-  Gloval Navigation Content
+  Global Navigation Content
 --------------------------------------*/
 
 // variables
@@ -192,12 +218,19 @@ first-child-border-left(mode, bl) // mixin
         padding: 0
 
     if $var-global-navigation-style == 'normal'
-        background: $navigation-background
-        border-top:    1px solid $navigation-border-top
-        border-bottom: 1px solid $navigation-border-bottom
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1)
+        //background: $navigation-background
+        //border-top:    1px solid $navigation-border-top
+        //border-bottom: 1px solid $navigation-border-bottom
+        //box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1)
         text-align: left
         text-shadow: 0 1px 0 #FFF
+
+        background: #F7F7F7
+        color: #444
+        background-image: linear-gradient(to bottom, #FFF, #EEE)
+        border: 1px solid rgba(0, 0, 0, 0.1)
+        border-bottom-color: rgba(0, 0, 0, 0.3)
+        background-origin: border-box
         ul
             list-style: none
             margin: 0
@@ -216,6 +249,12 @@ first-child-border-left(mode, bl) // mixin
                 border-right: 1px solid $navigation-border-right
             &:first-child a
                 first-child-border-left($var-style-mode, $navigation-border-right)
+
+        .uk-navbar
+            border: none
+
+        .uk-navbar-nav > li > a
+            height: 31px
 
     if $var-global-navigation-style == 'frame'
         build-border("$navigation")
@@ -249,27 +288,14 @@ first-child-border-left(mode, bl) // mixin
 
     hook-selector($stage, "" + selector())
 
-/*! Navigation Menu */
-.menuitem
-    a,
-    a:link,
-    a:visited
-        color: #666
-    a:hover,
-    a:focus,
-    a:active
-        color: $base-anker-color
-        text-decoration: none
-        background: $navigation-background-active
+#header-content
+    if $var-global-navigation-style == 'normal'
+        > .uk-navbar-toggle
+            height: 80px // same height with #header
+    hook-selector($stage, "" + selector())
 
-.tinynav
-    display: none
-    // All Mobile Sizes
-    @media only screen and (max-width: $breakpoint-small-max)
-        display: block
-        width: 95%
-        max-width:none
-        margin: auto
+#header-search
+    padding: 3px
 
 /*!--------------------------------------
   Center Block Content
@@ -326,37 +352,11 @@ first-child-border-left(mode, bl) // mixin
             text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3)
     hook-selector($stage, "" + selector())
 
-/*! Copyright */
-.copyright
-    float: left
-    margin: 0
-    padding-left: 8px
-    line-height: 1.4em
+#footer-content
+    text-align: center
     // All Mobile Sizes
     @media only screen and (max-width: $breakpoint-small-max)
-        float: none
-        margin: 0 0 1em 0
-        padding-left: 0px
-        padding-right: 8px
         text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3)
-    hook-selector($stage, "" + selector())
-
-/*! Powered by & Page Execution Time */
-.site_info
-    float: right
-    margin: 0
-    padding-right: 15px
-    text-align: right
-    line-height: 1.4em
-    // All Mobile Sizes
-    @media only screen and (max-width: $breakpoint-small-max)
-        float: none
-        text-align: left
-        margin: 0
-        padding-left: 4px
-        padding-right: 8px
-        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3)
-    hook-selector($stage, "" + selector())
 
 /*!--------------------------------------
   Common Block Style
@@ -495,7 +495,7 @@ first-child-border-left(mode, bl) // mixin
 
 #loginform-loginname,
 #loginform-passwd
-    width: 50%
+    width: 75%
 
 /*! Help Icon */
 h1 img,
@@ -521,7 +521,7 @@ h4 img
         margin: 0
         padding: 0
 
-    /*! Title */
+    // Title
     dt
         margin: 0
         padding: 4px 8px
@@ -532,7 +532,7 @@ h4 img
         border: $bd solid rgba(0, 0, 0, 0.2)
         border-radius: $rd $rd 0px 0px
 
-    /*! Message */
+    // Message
     dd
         margin: 0
         padding: 8px 12px
@@ -673,7 +673,7 @@ div.third-party-login
 @media only screen and (max-width: $breakpoint-small-max)
 
     /*--------------------------------------
-      Gloval Navigation Content
+      Global Navigation Content
     --------------------------------------*/
 
     #navigation_ul

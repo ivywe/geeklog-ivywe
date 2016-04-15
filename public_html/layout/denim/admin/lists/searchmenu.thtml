@@ -6,11 +6,11 @@
       {filter}
     </div>
     <div class="search-part">
-      <label for="admin-topmenu-q">{lang_search}:</label> <input type="text" size="20" name="q" id="admin-topmenu-q" value="{last_query}"{xhtml}>
+      {lang_search}: <input type="text" size="20" name="q" value="{last_query}"{xhtml}>
     </div>
     <div class="search-part">
-      <label for="admin-topmenu-query_limit">{lang_limit_results}:</label>
-      <select name="query_limit" id="admin-topmenu-query_limit">
+      {lang_limit_results}:
+      <select name="query_limit">
         <option value="10" {10_selected}>10</option>
         <option value="20" {20_selected}>20</option>
         <option value="50" {50_selected}>50</option>
@@ -19,7 +19,7 @@
         <option value="200" {200_selected}>200</option>
         <option value="500" {500_selected}>500</option>
       </select>
-      <input type="submit" value="{lang_submit}"{xhtml}>
+      <button type="submit" value="{lang_submit}" class="uk-button">{lang_submit}</button>
     </div>
     <div class="search-part">
       {lang_records_found}:&nbsp;{records_found}

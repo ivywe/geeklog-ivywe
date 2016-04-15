@@ -33,6 +33,7 @@ $right = ($var-flip-horizontal == false) ? right : left
 
 $layout-site-width        ?= auto
 //$layout-site-max-width   ?= 1024px
+$layout-site-max-width    ?= none
 $layout-left-block-width  ?= 280px
 $layout-right-block-width ?= 280px
 $layout-side-padding      ?= 10px
@@ -133,7 +134,7 @@ if $var-style-mode == 2
     hook-selector($stage, "" + selector())
 
 /*!--------------------------------------
-  Gloval Navigation Container
+  Global Navigation Container
 --------------------------------------*/
 
 #navigation

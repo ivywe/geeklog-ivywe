@@ -19,13 +19,13 @@
       <dd><input type="text" maxlength="255" value="{title}" name="title" id="trackbackeditor-title" class="size6"{xhtml}></dd>
 
       <dt><label for="trackbackeditor-excerpt">{lang_excerpt}</label></dt>
-      <dd><textarea cols="45" rows="8" name="excerpt" id="trackbackeditor-excerpt" class="wide" aria-describedby="trackbackeditor-excerpt-d1">{excerpt}</textarea></dd>
-      <dd class="description" id="trackbackeditor-excerpt-d1">{lang_excerpt_truncated}</dd>
+      <dd><textarea cols="45" rows="8" name="excerpt" id="trackbackeditor-excerpt" class="wide" aria-describedby="desc-trackbackeditor-excerpt">{excerpt}</textarea></dd>
+      <dd class="description" id="desc-trackbackeditor-excerpt">{lang_excerpt_truncated}</dd>
     </dl>
 
     <div class="submit">
-      <input type="submit" value="{lang_send}" name="mode[0]" class="submit"{xhtml}>
-      <input type="submit" value="{lang_preview}" name="mode[1]" class="submit"{xhtml}>
+      <button type="submit" name="mode[0]" value="{lang_send}" class="uk-button uk-button-primary">{lang_send}</button>
+      <button type="submit" name="mode[1]" value="{lang_preview}" class="uk-button">{lang_preview}</button>
       <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
     </div>
   </div>

@@ -141,7 +141,7 @@ if $var-style-mode == 2
     hook-selector($stage, "" + selector())
 
 /*!--------------------------------------
-  Gloval Navigation Container
+  Global Navigation Container
 --------------------------------------*/
 
 #navigation
@@ -157,6 +157,8 @@ if $var-style-mode == 2
     width: $layout-navigation-content-width
     layout-site-max-width($layout-site-max-width)
     layout-align-center()
+
+    hook-selector($stage, "" + selector())
 
 /*!--------------------------------------
   Wrapper
@@ -259,7 +261,7 @@ body.js_off #rightblocks
     hook-selector($stage, "" + selector())
 
 /*!--------------------------------------
-  Admin Configration Container
+  Admin Configuration Container
 --------------------------------------*/
 
 $layout-config-menu-width = 210px

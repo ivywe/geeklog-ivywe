@@ -34,6 +34,7 @@ $stage = 'layout_3cols_LRbar'
 $var-style-mode ?= 1
 
 $layout-site-width        ?= 1140px
+$layout-site-max-width    ?= none
 $layout-left-block-width  ?= 180px
 $layout-right-block-width ?= 280px
 $layout-side-padding      ?= 10px
@@ -142,7 +143,7 @@ if $var-style-mode == 2
     hook-selector($stage, "" + selector())
 
 /*!--------------------------------------
-  Gloval Navigation Container
+  Global Navigation Container
 --------------------------------------*/
 
 #navigation
@@ -182,7 +183,7 @@ body.js_off #leftblocks
     overflow: visible
     float: left
     width: $layout-left-block-width
-    /*! Left Margin = -[W] */
+    /* Left Margin = -[W] */
     margin: 0 0 0 (- $layout-site-inner-width + ($wrapper-padding * 2) + ($wrapper-border-size * 2))
     padding: 0
 
@@ -198,25 +199,25 @@ body.js_off #leftblocks
 /*! 3 Column ( left-center-right ) */
 body.left-center-right #main-content,
 body.js_off #main-content
-    /*! Main Content Width = [W] - [L] - [R] - Right Padding 10px - Left Padding 10px */
+    /* Main Content Width = [W] - [L] - [R] - Right Padding 10px - Left Padding 10px */
     width: $layout-site-inner-width - $layout-left-block-width - $layout-right-block-width - ($layout-side-padding * 2) - ($wrapper-padding * 2) - ($wrapper-border-size * 2)
-    /*! Right Margin = [R] , Left Margin = [L] */
+    /* Right Margin = [R] , Left Margin = [L] */
     margin: 0 $layout-right-block-width 0 $layout-left-block-width
     padding: 0 $layout-side-padding
 
 /*! 2 Column ( left-center ) */
 body.left-center #main-content
-    /*! Main Content Width = [W] - [L] - Right Padding 10px - Left Padding 10px */
+    /* Main Content Width = [W] - [L] - Right Padding 10px - Left Padding 10px */
     width: $layout-site-inner-width - $layout-left-block-width - ($layout-side-padding * 2) - ($wrapper-padding * 2) - ($wrapper-border-size * 2)
-    /*! Left Margin = [L] */
+    /* Left Margin = [L] */
     margin: 0 0 0 $layout-left-block-width
     padding: 0 $layout-side-padding
 
 /*! 2 Column ( center-right ) */
 body.center-right #main-content
-    /*! Main Content Width = [W] - [R] - Right Padding 10px - Left Padding 10px */
+    /* Main Content Width = [W] - [R] - Right Padding 10px - Left Padding 10px */
     width: $layout-site-inner-width - $layout-right-block-width - ($layout-side-padding * 2) - ($wrapper-padding * 2) - ($wrapper-border-size * 2)
-    /*! Right Margin = [R] */
+    /* Right Margin = [R] */
     margin: 0 $layout-right-block-width 0 0
     padding: 0 $layout-side-padding
 
@@ -234,7 +235,7 @@ body.js_off #rightblocks
     overflow: visible
     float: left
     width: $layout-right-block-width
-    /*! Right Margin = -[R] */
+    /* Right Margin = -[R] */
     margin: 0 0 0 (- $layout-right-block-width)
 
 /*!--------------------------------------
@@ -255,7 +256,7 @@ body.js_off #rightblocks
     hook-selector($stage, "" + selector())
 
 /*!--------------------------------------
-  Admin Configration Container
+  Admin Configuration Container
 --------------------------------------*/
 
 $layout-config-menu-width = 280px

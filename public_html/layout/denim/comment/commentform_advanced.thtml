@@ -45,23 +45,27 @@
           <dt><label for="comment_text">{lang_comment}</label></dt>
           <dd>
             <div id="text_editor" style="display: {show_texteditor};">
-              <textarea cols="45" rows="10" name="comment" id="comment_text" class="wide" aria-describedby="comment-html-d1">{comment}</textarea>
+              <textarea cols="45" rows="10" name="comment" id="comment_text" class="wide" aria-describedby="desc-comment_text">{comment}</textarea>
             </div>
             <div id="html_editor" style="display: {show_htmleditor};">
-              <textarea cols="45" rows="10" name="comment_html" id="comment_html" class="wide" aria-describedby="comment-html-d1">{comment}</textarea>
+              <textarea cols="45" rows="10" name="comment_html" id="comment_html" class="wide" aria-describedby="desc-comment_text">{comment}</textarea>
             </div>
           </dd>
-          <dd class="description" id="comment-html-d1">{allowed_html}</dd>
+          <dd class="description" id="desc-comment_text">{allowed_html}</dd>
         </dl>
 
         {captcha}
 
         <div class="submit">
-          <input type="submit" name="{nprefix}mode" value="{lang_preview}" class="submit"{xhtml}>
+{!if allow_save}
+          <button type="submit" name="{nprefix}mode" value="{lang_save}" class="uk-button uk-button-primary">{lang_save}</button>
+{!endif}
+          <button type="submit" name="{nprefix}mode" value="{lang_preview}" class="uk-button uk-button-success">{lang_preview}</button>
+{!if allow_delete}
+          <button type="submit" name="mode" value="{lang_delete}" class="uk-button uk-button-danger" onclick="return confirm('{confirm_message}');">{lang_delete}</button>
+{!endif}
+          <button type="submit" name="{nprefix}mode" value="{lang_cancel}" class="uk-button">{lang_cancel}</button>
           <input type="hidden" name="formtype" value="{formtype}"{xhtml}>
-          {save_option}
-          <input type="submit" value="{lang_cancel}" name="{nprefix}mode"{xhtml}>
-          {delete_option}
           {notification}
         </div>
       </div>

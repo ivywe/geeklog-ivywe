@@ -5,13 +5,13 @@
   <div class="admin_basic compact">
     <dl class="form_block">
       <dt>{lang_userid}</dt>
-      <dd>{user_id}</dd>
+      <dd class="controls_text">{user_id}</dd>
 
       <dt>{lang_regdate}</dt>
-      <dd>{user_regdate}</dd>
+      <dd class="controls_text">{user_regdate}</dd>
 
       <dt>{lang_lastlogin}</dt>
-      <dd>{user_lastlogin}</dd>
+      <dd class="controls_text">{user_lastlogin}</dd>
 
       <dt><label for="admin-edituser-username">{lang_username}</label></dt>
       <dd><div><input type="text" maxlength="16" value="{username}" name="username" id="admin-edituser-username" class="size2"{xhtml}> {remoteservice}</div>
@@ -44,11 +44,13 @@
     </fieldset>
 
     <p class="submit">
+      <button type="submit" name="mode" value="{lang_save}" class="uk-button uk-button-primary">{lang_save}</button>
+{!if allow_delete}
+      <button type="submit" name="mode" value="{lang_delete}" class="uk-button uk-button-danger" onclick="return confirm('{confirm_message}');">{lang_delete}</button>
+{!endif}
+      <button type="submit" name="mode" value="{lang_cancel}" class="uk-button">{lang_cancel}</button>
       <input type="hidden" name="uid" value="{user_id}"{xhtml}>
       <input type="hidden" name="regdate" value="{regdate_timestamp}"{xhtml}>
-      <input type="submit" value="{lang_save}" name="mode" class="submit"{xhtml}>
-      {delete_option}
-      <input type="submit" value="{lang_cancel}" name="mode" class="submit"{xhtml}>
       <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
     </p>
   </div>

@@ -1,29 +1,4 @@
-/* Geeklog Denim Theme 1.1.0 | Copyright (C) 2012-2015 by dengen | http://www.trybese.com/~dengen/log/ | License:GPLv2 */
-p,
-ul,
-ol,
-dl,
-blockquote,
-pre,
-address,
-fieldset,
-figure {
-  margin-top: 0;
-}
-
-h1,
-h2 {
-  font-size: 20px;
-  margin: .3em 0;
-}
-
-h3,
-h4,
-h5,
-h6 {
-  margin: .5em 0;
-}
-
+/* Geeklog Denim Theme 1.1.0 | Copyright (C) 2012-2016 by dengen | http://www.trybese.com/~dengen/log/ | License:GPL-2.0+ */
 address {
   font-style: normal;
   font-weight: normal;
@@ -63,12 +38,6 @@ a {
 a:hover {
   color: #2664A2;
   text-decoration: underline;
-}
-
-ul,
-ol,
-dl {
-  margin: 1em 0;
 }
 
 dt {
@@ -161,7 +130,7 @@ select[multiple="multiple"] {
 }
 
 option {
-  padding-right: 4px;
+  padding-right: 4px /* for Firefox */;
 }
 
 input[type="text"]:focus,
@@ -220,11 +189,6 @@ input[type="reset"] {
   -webkit-background-origin: border;
   -moz-background-origin: border;
   background-origin: border-box;
-  background-image: -webkit--webkit-linear-gradient(top, #FFF, #EEE);
-  background-image: -webkit--moz-linear-gradient(top, #FFF, #EEE);
-  background-image: -webkit--o-linear-gradient(top, #FFF, #EEE);
-  background-image: -webkit--ms-linear-gradient(top, #FFF, #EEE);
-  background-image: -webkit-linear-gradient(to bottom, #FFF, #EEE);
   background-image: -webkit-linear-gradient(top, #FFF, #EEE);
   background-image: -moz-linear-gradient(top, #FFF, #EEE);
   background-image: -o-linear-gradient(top, #FFF, #EEE);
@@ -353,6 +317,20 @@ input[type="reset"]:disabled {
 .uk-form select,
 .uk-form textarea {
   margin: 0 1px 2px;
+}
+
+.uk-form .uk-button-group input,
+.uk-form .uk-button-group button,
+.uk-form .uk-button-group select,
+.uk-form .uk-button-group textarea {
+  margin: 0 0 2px;
+}
+
+.uk-form input[type="checkbox"],
+.uk-form input[type="radio"] {
+  margin-left: 3px;
+  margin-right: 3px;
+  vertical-align: middle;
 }
 
 .uk-form > .admin-list-search {
@@ -515,12 +493,18 @@ input[type="reset"]:disabled {
   color: #008000;
 }
 
+.sysmessage {
+  margin: 0;
+}
+
+.sysmessage a {
+  text-decoration: underline;
+}
+
 .sysmessage img {
   border: none;
   float: left;
-  margin-top: -4px;
-  padding-bottom: 3px;
-  padding-right: 5px;
+  padding: 0 8px 8px 0;
 }
 
 /* Stats */
@@ -817,6 +801,10 @@ a.pluginButton:hover {
   overflow: hidden;
 }
 
+fieldset.form_block {
+  margin: 15px 0;
+}
+
 /* Message */
 .form_message {
   margin: 0 0 1em 0;
@@ -975,7 +963,7 @@ a.pluginButton:hover {
   float: left;
   clear: left;
   width: 24%;
-  margin: 0 0 1em 0;
+  margin: 5px 0 1em 0;
   padding: 0 1% 0 0;
   font-weight: normal;
 }
@@ -987,6 +975,7 @@ a.pluginButton:hover {
   padding: 0;
 }
 
+/* Description */
 .compact dd.description {
   margin: -.5em 0 1em 25%;
   padding: 0;
@@ -995,6 +984,10 @@ a.pluginButton:hover {
 .compact p.description {
   margin: 0 0 1em 0;
   padding: 0;
+}
+
+.compact .controls_text {
+  margin-top: 5px;
 }
 
 @media only screen and (max-width: 962px) {
@@ -1014,6 +1007,7 @@ a.pluginButton:hover {
     padding: 0;
   }
 
+  /* Description */
   .compact dd.description {
     margin: -.5em 0 1em 0;
     padding: 0;
@@ -1022,6 +1016,10 @@ a.pluginButton:hover {
   .compact p.description {
     margin: 0 0 1em 0;
     padding: 0;
+  }
+
+  .compact .controls_text {
+    margin-top: 0;
   }
 }
 
@@ -1040,6 +1038,7 @@ a.pluginButton:hover {
   padding: 0;
 }
 
+/* Description */
 .linear dd.description {
   margin: -.5em 0 1em 0;
   padding: 0;
@@ -1157,14 +1156,13 @@ ul.compact li {
 
 #header-content {
   width: auto;
-  max-width: $layout-site-max-width;
   margin: 0 auto;
   padding: 0;
   width: 1140px;
 }
 
 /*--------------------------------------
-  Gloval Navigation Container
+  Global Navigation Container
 --------------------------------------*/
 
 #navigation {
@@ -1183,7 +1181,6 @@ ul.compact li {
 
 .navigation_content {
   width: 1124px;
-  max-width: $layout-site-max-width;
   margin: 0 auto;
 }
 
@@ -1195,7 +1192,6 @@ ul.compact li {
 
 #wrapper {
   width: 1140px;
-  max-width: $layout-site-max-width;
   margin: 0 auto;
 }
 
@@ -1292,13 +1288,12 @@ body.js_off #rightblocks {
 
 #footer-content {
   width: auto;
-  max-width: $layout-site-max-width;
   margin: 0 auto;
   width: 1140px;
 }
 
 /*--------------------------------------
-  Admin Configration Container
+  Admin Configuration Container
 --------------------------------------*/
 
 #config_menu {
@@ -1370,7 +1365,7 @@ body.center-right #config_content {
   }
 
   /*--------------------------------------
-    Gloval Navigation Container
+    Global Navigation Container
   --------------------------------------*/
 
   #navigation {
@@ -1506,7 +1501,7 @@ body.center-right #config_content {
   }
 
   /*--------------------------------------
-    Admin Configration Container
+    Admin Configuration Container
   --------------------------------------*/
 
   #config_menu {
@@ -1574,13 +1569,12 @@ body.center-right #config_content {
 
   #header-content {
     width: auto;
-    max-width: $layout-site-max-width;
     margin: 0 auto;
     padding: 0;
   }
 
   /*--------------------------------------
-    Gloval Navigation Container
+    Global Navigation Container
   --------------------------------------*/
 
   #navigation {
@@ -1599,7 +1593,6 @@ body.center-right #config_content {
 
   .navigation_content {
     width: auto;
-    max-width: $layout-site-max-width;
     margin: 0 auto;
   }
 
@@ -1611,7 +1604,6 @@ body.center-right #config_content {
 
   #wrapper {
     width: auto;
-    max-width: $layout-site-max-width;
     margin: 0 auto;
   }
 
@@ -1645,7 +1637,7 @@ body.center-right #config_content {
     overflow: visible;
     float: left;
     width: 100%;
-    margin-left: -230px;
+    margin-left: -230px /* -[R] */;
   }
 
   body.js_off #centerblocks {
@@ -1721,7 +1713,6 @@ body.center-right #config_content {
 
   #footer-content {
     width: auto;
-    max-width: $layout-site-max-width;
     margin: 0 auto;
   }
 }
@@ -1767,7 +1758,7 @@ body.center-right #config_content {
   #header {
     width: auto;
     margin: 0 auto;
-    height: 60px;
+    height: 80px;
   }
 
   #header:before {
@@ -1777,11 +1768,12 @@ body.center-right #config_content {
   #header-content {
     width: auto;
     margin: 0 auto;
+    height: 100%;
     padding: 0;
   }
 
   /*--------------------------------------
-    Gloval Navigation Container
+    Global Navigation Container
   --------------------------------------*/
 
   #navigation {
@@ -1863,7 +1855,7 @@ body.center-right #config_content {
     float: none;
     width: 100%;
     margin: 0;
-    padding: 0;
+    padding: 10px 0 0 0;
   }
 
   /* 2 Column ( left-center ) */
@@ -1871,7 +1863,7 @@ body.center-right #config_content {
     float: none;
     width: 100%;
     margin: 0;
-    padding: 0;
+    padding: 10px 0 0 0;
   }
 
   /* 2 Column ( center-right ) */
@@ -1879,12 +1871,13 @@ body.center-right #config_content {
     float: none;
     width: 100%;
     margin: 0;
-    padding: 0;
+    padding: 10px 0 0 0;
   }
 
   /* 1 Column ( center ) */
   body.center #main-content {
     width: 100%;
+    padding-top: 10px;
   }
 
   body.center #centerblocks {
@@ -1951,8 +1944,7 @@ body.center-right #config_content {
   /* Adjust floating element */
   overflow: visible;
   background-color: transparent;
-  padding: 0;
-  padding-bottom: 2em;
+  padding: 30px 0;
 }
 
 @media only screen and (max-width: 767px) {
@@ -1988,10 +1980,7 @@ body.center-right #config_content {
 @media only screen and (max-width: 767px) {
 
   #header {
-    -webkit-background-size: 256px auto;
-    -moz-background-size: 256px auto;
-    background-size: 256px auto;
-    height: 60px;
+    height: 80px;
     margin-top: 0;
   }
 }
@@ -2018,9 +2007,12 @@ body.center-right #config_content {
 @media only screen and (max-width: 767px) {
 
   .site_name {
-    margin: 6px 0 0 8px;
+    float: none;
     font-size: 1.6em;
-    line-height: 1.6em;
+    height: 50px;
+    line-height: 50px;
+    margin: 0 auto;
+    text-align: center;
   }
 }
 
@@ -2039,28 +2031,46 @@ body.center-right #config_content {
 
   .site_slogan {
     font-size: 75%;
-    clear: both;
     float: none;
-    padding: 0 10px 0;
-    text-align: left;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
     line-height: 1.2em;
   }
 }
 
+@media only screen and (max-width: 767px) {
+
+  .nameplate {
+    float: none;
+    height: 100%;
+    margin: 0 auto;
+    max-width: 230px;
+    text-align: center;
+  }
+}
+
 /*--------------------------------------
-  Gloval Navigation Content
+  Global Navigation Content
 --------------------------------------*/
 
 /* Navigation Menu List */
 #navigation {
   padding: 0;
-  background: #E7E7E7;
-  border-top: 1px solid #EEE;
-  border-bottom: 1px solid #C7C7C7;
-  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.1);
-  box-shadow: 0 1px 2px rgba(0,0,0,.1);
   text-align: left;
   text-shadow: 0 1px 0 #FFF;
+  background: #F7F7F7;
+  color: #444;
+  background-image: -webkit-linear-gradient(top, #FFF, #EEE);
+  background-image: -moz-linear-gradient(top, #FFF, #EEE);
+  background-image: -o-linear-gradient(top, #FFF, #EEE);
+  background-image: -ms-linear-gradient(top, #FFF, #EEE);
+  background-image: linear-gradient(to bottom, #FFF, #EEE);
+  border: 1px solid rgba(0,0,0,.1);
+  border-bottom-color: rgba(0,0,0,.3);
+  -webkit-background-origin: border;
+  -moz-background-origin: border;
+  background-origin: border-box;
 }
 
 @media only screen and (max-width: 767px) {
@@ -2095,33 +2105,20 @@ body.center-right #config_content {
   border-left: 1px solid #D7D7D7;
 }
 
-/* Navigation Menu */
-.menuitem a,
-.menuitem a:link,
-.menuitem a:visited {
-  color: #666;
+#navigation .uk-navbar {
+  border: none;
 }
 
-.menuitem a:hover,
-.menuitem a:focus,
-.menuitem a:active {
-  color: #2664A2;
-  text-decoration: none;
-  background: #DFDFDF;
+#navigation .uk-navbar-nav > li > a {
+  height: 31px;
 }
 
-.tinynav {
-  display: none;
+#header-content > .uk-navbar-toggle {
+  height: 80px;
 }
 
-@media only screen and (max-width: 767px) {
-
-  .tinynav {
-    display: block;
-    width: 95%;
-    max-width: none;
-    margin: auto;
-  }
+#header-search {
+  padding: 3px;
 }
 
 /*--------------------------------------
@@ -2190,42 +2187,13 @@ body.center-right #config_content {
   }
 }
 
-/* Copyright */
-.copyright {
-  float: left;
-  margin: 0;
-  padding-left: 8px;
-  line-height: 1.4em;
+#footer-content {
+  text-align: center;
 }
 
 @media only screen and (max-width: 767px) {
 
-  .copyright {
-    float: none;
-    margin: 0 0 1em 0;
-    padding-left: 0;
-    padding-right: 8px;
-    text-shadow: 0 1px 1px rgba(0,0,0,.3);
-  }
-}
-
-/* Powered by & Page Execution Time */
-.site_info {
-  float: right;
-  margin: 0;
-  padding-right: 15px;
-  text-align: right;
-  line-height: 1.4em;
-}
-
-@media only screen and (max-width: 767px) {
-
-  .site_info {
-    float: none;
-    text-align: left;
-    margin: 0;
-    padding-left: 4px;
-    padding-right: 8px;
+  #footer-content {
     text-shadow: 0 1px 1px rgba(0,0,0,.3);
   }
 }
@@ -2428,7 +2396,7 @@ body.center-right #config_content {
 
 #loginform-loginname,
 #loginform-passwd {
-  width: 50%;
+  width: 75%;
 }
 
 /* Help Icon */
@@ -2450,8 +2418,6 @@ h4 img {
   border-radius: 6px;
   -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.1);
   box-shadow: 0 1px 2px rgba(0,0,0,.1);
-  /* Title */
-  /* Message */
 }
 
 .block-message dl {
@@ -2847,10 +2813,11 @@ div.third-party-login {
 /* Icon(email, print, pdf) */
 .story_icon {
   float: right;
+  font-size: 18px;
 }
 
-.story_icon img {
-  margin-left: 8px;
+.story_icon a {
+  margin-left: 5px;
 }
 
 @media only screen and (max-width: 767px) {
@@ -2895,6 +2862,18 @@ div.third-party-login {
   width: 48px;
   height: 48px;
   margin: 15px;
+}
+
+.story_image + p,
+.story_image + ul,
+.story_image + ol,
+.story_image + dl,
+.story_image + blockquote,
+.story_image + pre,
+.story_image + address,
+.story_image + fieldset,
+.story_image + figure {
+  margin-top: 0;
 }
 
 /* Navigation */
@@ -3044,21 +3023,6 @@ span.warning em {
   line-height: 1.7em;
   margin: 0 0 0 20px;
   padding: 0;
-}
-
-/* Article Related Block */
-.block-related {
-  float: left;
-  width: 50%;
-  margin: 0 0 1.5em 0;
-}
-
-@media only screen and (max-width: 767px) {
-
-  .block-related {
-    float: none;
-    width: auto;
-  }
 }
 
 /*--------------------------------------
@@ -3426,19 +3390,15 @@ span.warning em {
 --------------------------------------*/
 
 .gl-pagenav {
-  list-style: none;
   text-align: center;
   color: #CCC;
   margin: 0 0 1.5em;
   line-height: 1.4em;
 }
 
-.gl-pagenav li {
-  display: inline-block;
-}
-
 .gl-pagenav a,
 .gl-pagenav b {
+  display: inline-block;
   margin: 1px 2px;
   padding: 2px 7px;
   background: transparent;
@@ -3455,6 +3415,7 @@ span.warning em {
 }
 
 .gl-pagenav span {
+  display: inline-block;
   color: #999;
 }
 
@@ -3470,16 +3431,7 @@ span.warning em {
   border: none;
 }
 
-.gl-pagenav .divider-previous,
-.gl-pagenav .divider-next {
-  margin: 0 4px;
-}
-
-.gl-pagenav .divider-previous:before,
-.gl-pagenav .divider-next:after {
-  content: "|";
-  width: 1px;
-  height: 1px;
+.gl-pagenav .divider {
   padding: 0;
   margin: 0 4px;
 }
@@ -3489,7 +3441,7 @@ span.warning em {
 --------------------------------------*/
 
 .bc_navigation {
-  margin: -1em 0 1em;
+  margin: 0 0 15px;
 }
 
 /*--------------------------------------
@@ -3588,7 +3540,7 @@ span.warning em {
 
 /* Account Information */
 #profile-userprofile {
-  overflow: hidden;
+  overflow: hidden /* Adjust floating element */;
   margin: 0;
   padding: 0;
   zoom: 1;
@@ -3897,7 +3849,7 @@ dd#profile-user_photo {
 
 .table-wrapper {
   width: 100%;
-  overflow: auto;
+  overflow: scroll;
 }
 
 .table-wrapper-fit {
@@ -3907,6 +3859,11 @@ dd#profile-user_photo {
 
 .table-wrapper-fit > .admin-list-table {
   width: 100%;
+}
+
+.table-wrapper-visible {
+  width: 100%;
+  overflow: visible;
 }
 
 /* Navigation */
@@ -4292,6 +4249,32 @@ b.status_black {
 }
 
 /*--------------------------------------
+  Others
+--------------------------------------*/
+
+.allowed_html_tags,
+.allowed_autotags {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+#totop-scroller {
+  position: fixed;
+  z-index: 99;
+  bottom: 20px;
+  right: 20px;
+  text-align: center;
+  font-size: 40px;
+  cursor: pointer;
+  color: rgba(128,128,128,.6);
+}
+
+.block-help-icon {
+  font-size: 18px;
+  margin-left: 8px;
+}
+
+/*--------------------------------------
   Admin Configration
 --------------------------------------*/
 
@@ -4422,6 +4405,11 @@ body.center-right #config_content {
 .config_name select {
   width: 54.5%;
   max-width: none;
+}
+
+.config_validation_error_block {
+  color: #D14;
+  font-size: 12px;
 }
 
 /* Smaller than standard 1280 (devices and browsers) */

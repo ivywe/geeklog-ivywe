@@ -52,8 +52,9 @@ $stage = 'main_contents'
 /*! Icon(email, print, pdf) */
 .story_icon
     float: right
-    img
-        margin-left: 8px
+    font-size: 18px;
+    a
+        margin-left: 5px;
     // All Mobile Sizes (devices and browser)
     @media only screen and (max-width: $breakpoint-small-max)
         display: none
@@ -84,6 +85,16 @@ $stage = 'main_contents'
     width: 48px
     height: 48px
     margin: 15px
+    & + p,
+    & + ul,
+    & + ol,
+    & + dl,
+    & + blockquote,
+    & + pre,
+    & + address,
+    & + fieldset,
+    & + figure
+        margin-top: 0
     hook-selector($stage, "" + selector())
 
 /*! Navigation */
@@ -199,16 +210,6 @@ span
     line-height: 1.7em
     margin: 0 0 0 20px
     padding: 0
-
-/*! Article Related Block */
-.block-related
-    float: left
-    width: 50%
-    margin: 0 0 1.5em 0
-    // All Mobile Sizes (devices and browser)
-    @media only screen and (max-width: $breakpoint-small-max)
-        float: none
-        width: auto
 
 /*!--------------------------------------
   Comment Block
@@ -455,15 +456,13 @@ for num in (0..16)
 --------------------------------------*/
 
 .gl-pagenav
-    list-style: none
     text-align: center
     color: #CCC
     margin: 0 0 1.5em
     line-height: 1.4em
-    li
-        display: inline-block
     a,
     b
+        display: inline-block
         margin: 1px 2px
         padding: 2px 7px
         background: transparent
@@ -474,6 +473,7 @@ for num in (0..16)
         background: #EEE
         border: 1px solid #CCC
     span
+        display: inline-block
         color: #999
         a
             margin: 0
@@ -483,23 +483,16 @@ for num in (0..16)
             &:hover
                 background: transparent
                 border: none
-    .divider-previous,
-    .divider-next
+    .divider
+        padding: 0
         margin: 0 4px
-        .divider-previous:before,
-        .divider-next:after
-            content: "|"
-            width: 1px
-            height: 1px
-            padding: 0
-            margin: 0 4px
 
 /*!--------------------------------------
   Breadcrumbs Navigation
 --------------------------------------*/
 
 .bc_navigation
-    margin: -1em 0 1em
+    margin: 0 0 15px
 
 /*!--------------------------------------
   My Account Page
@@ -507,7 +500,7 @@ for num in (0..16)
 
 #exclude_topic > .checkboxes-list > li,
 #boxesblock > .checkboxes-list > li
-    /*! display: inline */
+    /* display: inline */
     margin-right: 0.5em
 
 /*!--------------------------------------
