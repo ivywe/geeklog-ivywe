@@ -36,6 +36,7 @@ function MG_medialist (
 	, $theme='default'
     , $limitcnt='0'
     , $sort='asc'
+    , $src=''
 )
 {
 	global $MG_albums;
@@ -63,8 +64,12 @@ function MG_medialist (
     if (is_dir($tmplfld)) {
     }else{
         $tmplfld=$_MG_CONF['template_path']."/medialist/default";
+	} 
+	$src=trim($src);
+	if  ($src=='orig' OR $src=='disp' OR $src=='tn'){
+	}else{
+        $src = $_MG_CONF['at_src'];
     }
-	$src = $_MG_CONF['at_src'];
     $T = COM_newTemplate($tmplfld);
     $T->set_file (array (
         'tag' => 'autotag_medialist.thtml',

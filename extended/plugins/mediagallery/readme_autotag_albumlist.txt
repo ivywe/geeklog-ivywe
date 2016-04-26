@@ -10,6 +10,7 @@
  2015/04/07 Change autotags medialist sort
  2015/04/09 Add medialist template: admin for display HTML
  2016/01/08 Ver 1.7.0 Based on Media Gallery WKZ plugin
+ 2016/04/12 Change autotags medialist src
  -------------------------------------------------------------------------------
   Format:　[albumlist:albumid limitcnt:xx order:xx XXXX]
 		Display sub album of album:albumid.
@@ -24,7 +25,7 @@
 		</ul>
            e.g. [albumlist:3 limitcnt:10 order:RANDOM class1 class2 class3]
 		
-  Format:　[medialist:albumid theme:xx limitcnt:xx sort:asc {class}]
+  Format:　[medialist:albumid theme:xx limitcnt:xx sort:asc src:xx {class}]
 		Display Media list by using templates.
 		theme:default:
 			templates/medialist/default/autotag_medialist.thtml

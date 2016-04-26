@@ -133,10 +133,6 @@ function MG_autotags($op, $content = '', $autotag = '')
                 $a = explode(':', $part);
                 $height = $a[1];
                 $skip++;
-            } elseif (substr ($part, 0, 6) == 'class:') {
-                $a = explode (':', $part);
-                $class = $a[1];
-                $skip++;
             } elseif (substr($part, 0, 7) == 'border:') {
                 $a = explode(':', $part);
                 $border = $a[1];
@@ -1055,9 +1051,9 @@ function MG_autotags($op, $content = '', $autotag = '')
 
 
         //@@@@@
-        case 'medialist' :
+		case 'medialist' :
             $link=MG_medialist ($p1
-                , $p['lastparm2'], $p['theme'],$p['limitcnt'],$p['sort']);
+                , $p['lastparm2'], $p['theme'],$p['limitcnt'],$p['sort'],$p['src']);
             break;
         case 'albumlist' :
             $link=MG_albumlist ($p1, $p['limitcnt']	, $p['order']
@@ -1134,8 +1130,7 @@ function MG_autotags($op, $content = '', $autotag = '')
                 $newwidth = $width;
                 $newheight = $height;
             }
-//            $tagtext = '<img src="' . $tnImage . '" ' . $alttag . 'style="width:' . $newwidth . 'px;height:' . $newheight . 'px;border:none;vertical-align:bottom;"' . XHTML . '>';
-            $tagtext = '<img src="' . $tnImage . '" ' . $alttag . 'style="width:' . $newwidth . 'px;height:' . $newheight . 'px;border:none;vertical-align:bottom;" class="' . $class . '"' . XHTML . '>';
+            $tagtext = '<img src="' . $tnImage . '" ' . $alttag . XHTML . '>';
 
             if ($linkID == 0) {
                 $url = $_MG_CONF['site_url'] . '/album.php?aid=' . $parm1;
@@ -1283,7 +1278,7 @@ function MG_autotags($op, $content = '', $autotag = '')
                 $media_thumbnail_file = $_MG_CONF['path_mediaobjects'] . $tfn . $ext;
             } else {
                 if  ($src == 'tn' AND $row['media_type']==0) {
-                    $tfn = 'tn/' . $row['media_filename'][0] . '/' . $row['media_filename'].'custom';
+                    $tfn = 'tn/' . $row['media_filename'][0] . '/' . $row['media_filename'].'_custom';
                     $ext = MG_getMediaExt($_MG_CONF['path_mediaobjects'] . $tfn);
                     $media_thumbnail      = $_MG_CONF['mediaobjects_url'] . '/' . $tfn . $ext;
                     $media_thumbnail_file = $_MG_CONF['path_mediaobjects'] . $tfn . $ext;
@@ -1323,8 +1318,7 @@ function MG_autotags($op, $content = '', $autotag = '')
                     $newwidth = round($mediaSize[0] / $ratio);
                 }
             }
-//          $tagtext = '<img src="' . $media_thumbnail . '" ' . $alttag . ' style="width:' . $newwidth . 'px;height:' . $newheight . 'px;border:none;vertical-align:bottom;"' . XHTML . '>';
-            $tagtext = '<img src="' . $media_thumbnail . '" ' . $alttag . ' class="' . $class . '"' . XHTML . '>';
+            $tagtext = '<img src="' . $media_thumbnail . '" ' . $alttag . XHTML . '>';
 
             $link = '';
             if ($alt == 1 && $row['remote_url'] != '') {
