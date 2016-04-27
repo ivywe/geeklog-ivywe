@@ -199,7 +199,7 @@ function ip_to_hostname($ip) {
 	switch ($_GUS_CONF['host_lookup']) {
 		case 'host':
 			$timeout = $_GUS_CONF['host_lookup_timeout'];
-			$output = `host -W {$timeout} {$ip}`;
+//			$output = `host -W {$timeout} {$ip}`;
 			
 			if (preg_match('/.*pointer ([A-Za-z0-9.-]+)\..*/', $output, $regs)) {
 				return $regs[1];
