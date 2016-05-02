@@ -78,8 +78,13 @@ function plugin_getheadercode_maps()
     $_SCRIPTS->setJavaScriptFile('maps_iconmaker', '/' . $_MAPS_CONF['maps_folder'] . '/js/mapiconmaker.js', false);
 	$_SCRIPTS->setJavaScriptLibrary('jquery');
 	
-	$js = '<script src= "http://maps.googleapis.com/maps/api/js?key=' . $_MAPS_CONF['google_api_key'] . '&amp;libraries=adsense&amp;sensor=false" type="text/javascript"> </script>';
-	
+	$request_type = (strtolower($_SERVER['HTTPS']) == 'on' || $_SERVER['HTTPS'] == '1' || strstr(strtoupper($_SERVER['HTTP_X_FORWARDED_BY']),'SSL') || strstr(strtoupper($_SERVER['HTTP_X_FORWARDED_HOST']),'SSL')) ? 'SSL' : 'NONSSL';
+	if( strcmp($request_type,'ssl')){
+		$js = '<script src= "https://maps-api-ssl.google.com/maps/api/js?key=' . $_MAPS_CONF['google_api_key'] . '&amp;libraries=adsense&amp;sensor=false&language='.COM_getLanguageId().'" type="text/javascript"> </script>';
+	} else {
+		$js = '<script src= "http://maps.googleapis.com/maps/api/js?key=' . $_MAPS_CONF['google_api_key'] . '&amp;libraries=adsense&amp;sensor=false&language='.COM_getLanguageId().'" type="text/javascript"> </script>';
+	}
+
 	$_SCRIPTS->setJavaScript($js, false, false);
 	$url = COM_getCurrentURL();
     
