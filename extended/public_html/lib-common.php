@@ -8271,7 +8271,7 @@ function COM_handleError($errno, $errstr, $errfile='', $errline=0, $errcontext='
             if (!empty($_CONF['site_name'])) {
                 $title = $_CONF['site_name'] . ' - ' . $title;
             }
-            echo "<html><head><title>$title</title></head>\n<body>\n";
+            echo "<html><head><meta charset=\"".$_CONF['default_charset']."\"><title>$title</title></head>\n<body>\n";
 
             echo '<h1>An error has occurred:</h1>';
             if ($_CONF['rootdebug']) {
@@ -8857,6 +8857,7 @@ function COM_newTemplate($root, $options = Array())
         else $options = 'remove';
         $T = new Template($root, $options);
     }
+    $T->set_var('switchlang', COM_getLanguageId());
 
     return $T;
 }
