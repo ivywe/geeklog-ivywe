@@ -1,7 +1,7 @@
 {# begin {templatelocation} #}
 
 <li>
-  {data_link}(<a href="#db_category_col_detail_{data_code}" data-uk-modal>example</a>){data_edit}<span class="uk-badge uk-badge-danger">new!</span>
+  {data_link}(<a href="#db_category_col_detail_{data_code}" data-uk-modal>example</a>){data_edit}{!if new_img}<span class="uk-badge uk-badge-danger">new!</span>{!endif}
 </li>
 
 <div id="db_category_col_detail_{data_code}" class="uk-modal">
