@@ -1,0 +1,16 @@
+{# begin {templatelocation} #}
+
+  <div class="uk-width-small-1-2 uk-width-medium-1-4 uk-float-left" style="margin:0 0 17px 0">
+
+<figure class="uk-overlay uk-overlay-hover">
+    <a href="{filename_disp}" data-uk-lightbox="{ group:'my-group' }" title="{media_title}">
+
+    <img src="{filename_tn}" alt="{media_title}" class="uk-overlay-scale uk-border-rounded uk-responsive-height uk-responsive-width {class}" style="max-width:500px" alt="{media_title}"{xhtml}>
+    </a>
+
+    <figcaption class="uk-overlay-panel uk-overlay-bottom uk-overlay-slide-bottom">{media_title}{!if media_desc}: {media_desc}{!endif}</figcaption>
+</figure>
+
+  </div>
+
+{# end {templatelocation} #}

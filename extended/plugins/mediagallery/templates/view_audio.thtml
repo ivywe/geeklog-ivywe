@@ -16,11 +16,11 @@
 <div class="mg_navbar">
 {!if prev_link}<a class="button left" href="{prev_link}">{lang_prev}</a>{!endif}
 {!if next_link}<a class="button right" href="{next_link}">{lang_next}</a>{!endif}
-{!if url_slideshow}<a class="button" href="{url_slideshow}">{lang_slideshow}</a>{!endif}
-{!if download_link}<a class="button" href="{download_link}">{lang_download}</a>{!endif}
-{!if property}<a class="button" href="#" onclick="return popitup('{property}')">{lang_property}</a>{!endif}
-{!if switch_size}<a class="button" href="{switch_size}">{lang_switch_size}</a>{!endif}
-{!if edit_item_link}<a class="button" href="{edit_item_link}">{lang_edit}</a>{!endif}
+{!if url_slideshow}<a class="mg_button" href="{url_slideshow}">{lang_slideshow}</a>{!endif}
+{!if download_link}<a class="mg_button" href="{download_link}">{lang_download}</a>{!endif}
+{!if property}<a class="mg_button" href="#" onclick="return popitup('{property}')">{lang_property}</a>{!endif}
+{!if switch_size}<a class="mg_button" href="{switch_size}">{lang_switch_size}</a>{!endif}
+{!if edit_item_link}<a class="mg_button" href="{edit_item_link}">{lang_edit}</a>{!endif}
 &nbsp;
 {!if pagination}<div class="mg_right_nav">{item_number}&nbsp;{lang_of}&nbsp;{total_items}</div>{!endif}
 </div>

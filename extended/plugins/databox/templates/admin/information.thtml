@@ -40,13 +40,6 @@
       <dl class="uk-description-list-line">
         <dt>List</dt><dd><a href="{site_url}/databox/list.php" data-uk-tooltip title="Display list!">/databox/list.php</a></dd>
         <dt>Category</dt><dd><a href="{site_url}/databox/category.php" data-uk-tooltip title="Display category!">/databox/category.php</a></dd>
-      </dl>
-      <h4 class="uk-h4">Admin URL</h4>
-      <dl class="uk-description-list-line">
-        <dt>Data link</dt><dd><a href="{site_url}/admin/plugins/databox/data.php" data-uk-tooltip title="click code!">/admin/plugins/databox/data.php</a></dd>
-        <dt>Group link</dt><dd><a href="{site_url}/admin/plugins/databox/group.php" data-uk-tooltip title="click group code!">/admin/plugins/databox/group.php</a></dd>
-        <dt>Category link</dt><dd><a href="{site_url}/admin/plugins/databox/category.php" data-uk-tooltip title="click category code!">/admin/plugins/databox/category.php</a></dd>
-        <dt>Attribute link</dt><dd><a href="{site_url}/admin/plugins/databox/field.php" data-uk-tooltip title="click addtribute code!">/admin/plugins/databox/field.php</a></dd>
         <dt>Search link</dt><dd><a href="{site_url}/databox/search.php?templatedir=default&amp;fieldset=1&amp;gor_1%5B%5D=&amp;gand_2%5B%5D=&amp;t=&amp;teq=&amp;aeq_1=&amp;afr_2=&amp;ato_2=&amp;perpage=10&amp;page=1&amp;nohitmsg=yes" data-uk-tooltip title="see more staticpage.txt">/databox/search.php</a></dd>
       </dl>
     </div>

@@ -34,11 +34,11 @@
 <div class="mg_navbar">
 
   {!if url_slideshow}
-  <a class="button" href="{url_slideshow}">{lang_slideshow}</a>
+  <a class="mg_button" href="{url_slideshow}">{lang_slideshow}</a>
   {!endif}
 
   {!if edit_album}
-  <a class="button" href="{url_edit}">{lang_edit}</a>
+  <a class="mg_button" href="{url_edit}">{lang_edit}</a>
   {!endif}
 
   {!if top_pagination}

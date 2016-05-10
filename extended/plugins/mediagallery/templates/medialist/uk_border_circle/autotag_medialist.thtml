@@ -1,0 +1,7 @@
+{# begin {templatelocation} #}
+
+<div class="uk-grid uk-grid-match uk-grid-width-medium-1-5"  data-uk-grid-margin data-uk-grid-parallax="{translate:200}">
+  {medialist_col}
+</div>
+
+{# end {templatelocation} #}
