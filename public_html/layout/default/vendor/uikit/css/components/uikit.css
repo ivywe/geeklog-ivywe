@@ -1,4 +1,4 @@
-/*! UIkit 2.25.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.26.2 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 
 /* Componets style */
 nav .uk-nav > li > a {
@@ -367,6 +367,10 @@ h1,
   position: relative;
   max-width: 100%;
   vertical-align: middle;
+}
+.uk-dropdown-flip {
+  left: auto;
+  right: 0;
 }
 .uk-nav-autocomplete > li > a {
   color: #444444;
@@ -1015,10 +1019,6 @@ a.uk-datepicker-table-muted {
   z-index: 980;
   box-sizing: border-box;
 }
-.uk-sticky-placeholder > * {
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
 [data-uk-sticky][class*='uk-animation-'] {
   -webkit-animation-duration: 0.2s;
   animation-duration: 0.2s;
@@ -1103,3 +1103,4 @@ a.uk-datepicker-table-muted {
   border-bottom-color: transparent;
   border-right-color: #333333;
 }
+
