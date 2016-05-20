@@ -31,12 +31,38 @@ function LIB_List(
     $lang_box=$$lang_box;
 
     $table=$_TABLES[strtoupper($pi_name).'_def_field'];
+    $table2=$_TABLES[strtoupper($pi_name).'_mst'];
 
     require_once( $_CONF['path_system'] . 'lib-admin.php' );
 
     $retval = '';
 
+    //フィルタ filter
+    if (!empty ($_GET['filter_val'])) {
+        $filter_val = COM_applyFilter($_GET['filter_val']);
+    } elseif (!empty ($_POST['filter_val'])) {
+        $filter_val = COM_applyFilter($_POST['filter_val']);
+    } else {
+        $filter_val = $LANG09[9];
+    }
+    if  ($filter_val==$LANG09[9]){
+        $exclude="";
+    }else{
+        $exclude=" AND fieldgroupno={$filter_val}";
+    }
 
+    $filter = "{$lang_box_admin['group']}:";
+    $filter .="<select name='filter_val' style='width: 125px' onchange='this.form.submit()'>";
+    $filter .="<option value='{$LANG09[9]}'";
+
+    if  ($filter_val==$LANG09[9]){
+        $filter .=" selected='selected'";
+    }
+    $filter .=" >{$LANG09[9]}</option>";
+    $filter .= COM_optionList ($table2
+                , 'no,value,no', $filter_val,2,"kind='fieldgroup'");
+
+    $filter .="</select>";
 
     //ヘッダ：編集～
     $header_arr[]=array('text' => $lang_box_admin['orderno'], 'field' => 'orderno', 'sort' => true);
@@ -45,6 +71,7 @@ function LIB_List(
     $header_arr[]=array('text' => $lang_box_admin['field_id'], 'field' => 'field_id', 'sort' => true);
     $header_arr[]=array('text' => $lang_box_admin['name'], 'field' => 'name', 'sort' => true);
     $header_arr[]=array('text' => $lang_box_admin['templatesetvar'], 'field' => 'templatesetvar', 'sort' => true);
+    $header_arr[]=array('text' => $lang_box_admin['fieldgroupno'], 'field' => 'fieldgroupno_name', 'sort' => true);
 
     //
     $text_arr = array('has_menu' =>  true,
@@ -61,8 +88,9 @@ function LIB_List(
 
     $sql .= " ,type";
     $sql .= " ,allow_display";
-
-    $sql .= " FROM ";
+    $sql .= " ,(SELECT t2.value FROM {$table2} AS t2 WHERE t2.kind='fieldgroup' AND t2.no=t.fieldgroupno ) AS fieldgroupno_name ".LB;
+	
+	$sql .= " FROM ";
     $sql .= " {$table} AS t";
     $sql .= " WHERE ";
     $sql .= " 1=1";
@@ -71,10 +99,12 @@ function LIB_List(
     $query_arr = array(
         'table' => $table,
         'sql' => $sql,
-        'query_fields' => array('field_id','name','orderno','templatesetvar'),
+        'query_fields' => array('field_id','name','orderno','templatesetvar,fieldgroupno_name'),
         'default_filter' => $exclude);
     //デフォルトソート項目:
     $defsort_arr = array('field' => 'orderno', 'direction' => 'ASC');
+	$form_arr = array('bottom' => '', 'top' => '');
+    $pagenavurl = '&amp;filter_val=' . $filter_val;
     //List 取得
     //ADMIN_list($component, $fieldfunction, $header_arr, $text_arr,
     //       $query_arr, $menu_arr, $defsort_arr, $filter = '', $extra = '', $options = '')
@@ -85,6 +115,11 @@ function LIB_List(
         , $text_arr
         , $query_arr
         , $defsort_arr
+        , $filter
+        , '', ''
+        , $form_arr
+        , true
+        , $pagenavurl
         );
 
     return $retval;
@@ -241,6 +276,8 @@ function LIB_Edit(
         $templatesetvar = COM_applyFilter($_POST['templatesetvar']);
         $type = COM_applyFilter($_POST['type']);
         $description = COM_applyFilter($_POST['description']);
+        $description2 = COM_applyFilter($_POST['description2']);//@@@@@
+		$fieldgroupno = COM_applyFilter($_POST['fieldgroupno']);
 
         $allow_display = COM_applyFilter($_POST['allow_display'],true);
         $allow_edit = COM_applyFilter($_POST['allow_edit'],true);
@@ -275,6 +312,8 @@ function LIB_Edit(
             $name ="";
             $templatesetvar ="";
             $description ="";
+            $description2 ="";//@@@@@
+            $fieldgroupno ="";
             $allow_display="";
             $allow_edit="";
 			$textcheck="";
@@ -292,7 +331,7 @@ function LIB_Edit(
             $selectlist ="";
             $checkrequried ="0";
 
-            $size = 40;
+            $size = 60;
             $maxlength = 500;
             $rows = 3;
             $br = 0;
@@ -319,6 +358,8 @@ function LIB_Edit(
             $name = COM_stripslashes($A['name']);
             $templatesetvar = COM_stripslashes($A['templatesetvar']);
             $description = $A['description'];//COM_stripslashes($A['description']);
+            $description2 = $A['description2'];//COM_stripslashes($A['description2']);
+            $fieldgroupno = COM_stripslashes($A['fieldgroupno']);
 
             $allow_edit = COM_stripslashes($A['allow_edit']);
             $allow_display = COM_stripslashes($A['allow_display']);
@@ -405,6 +446,11 @@ function LIB_Edit(
     $templates->set_var ('templatesetvar', $templatesetvar);
     $templates->set_var('lang_description', $lang_box_admin['description']);
     $templates->set_var ('description', $description);
+    $templates->set_var('lang_description2', $lang_box_admin['description2']);//@@@@@
+    $templates->set_var ('description2', $description2);
+    $templates->set_var('lang_fieldgroupno', $lang_box_admin['fieldgroupno']);
+    $list_fieldgroupno=DATABOX_getoptionlist("fieldgroupno",$fieldgroupno,0,$pi_name);
+    $templates->set_var( 'list_fieldgroupno', $list_fieldgroupno);
 
     $templates->set_var('lang_allow_display', $lang_box_admin['allow_display']);
     $list_allow_display=DATABOX_getoptionlistary ($lang_box_allow_display,"allow_display",$allow_display,$pi_name);
@@ -565,9 +611,13 @@ function LIB_Save (
     $templatesetvar=COM_applyFilter($_POST['templatesetvar']);
     $templatesetvar=addslashes (COM_checkHTML (COM_checkWords ($templatesetvar)));
 
-	$description=COM_stripslashes($_POST['description']);
+    $description=COM_stripslashes($_POST['description']);
     $description=addslashes (COM_checkHTML (COM_checkWords ($description)));
-
+    $description2=COM_stripslashes($_POST['description2']);//@@@@@
+    $description2=addslashes (COM_checkHTML (COM_checkWords ($description2)));
+    $fieldgroupno=COM_stripslashes($_POST['fieldgroupno']);
+    $fieldgroupno=addslashes (COM_checkHTML (COM_checkWords ($fieldgroupno)));
+	
     $allow_display=COM_applyFilter($_POST['allow_display']);
     $allow_display=addslashes (COM_checkHTML (COM_checkWords ($allow_display)));
     $allow_edit=COM_applyFilter($_POST['allow_edit']);
@@ -657,7 +707,7 @@ function LIB_Save (
 		}
     }
     //7 = 'オプションリスト';
-    //8 = 'ラジオボタン';
+    //8 = 'ラジオボタンリスト';
 	//14= 'マルチセレクトリスト';
 	//24= 'チェックボックス';
     if ($type==7 OR $type==8 OR $type==14 OR $type==24) {
@@ -745,7 +795,11 @@ function LIB_Save (
     $values.=",'$range_end'";
     $fields.=",dfid";
     $values.=",$dfid";
-	
+    $fields.=",description2";//@@@@@
+    $values.=",'$description2'";
+    $fields.=",fieldgroupno";
+    $values.=",$fieldgroupno";
+
     $fields.=",uuid";
     $values.=",$uuid";
 
@@ -761,7 +815,7 @@ function LIB_Save (
             $sql.=",'".$initial_value."' ";
 		}else{
             //7 = 'オプションリスト';
-	        //8 = 'ラジオボタン';
+	        //8 = 'ラジオボタンリスト';
             if (($type==7 OR $type==8) AND ($selection<>"")){
                 $sql.=",'0' ";
             }else{
@@ -905,6 +959,10 @@ $fld['maxlength']['name']  = $lang_box_admin['maxlength'];
 $fld['rows']['name']  = $lang_box_admin['rows'];
 $fld['br']['name']  = $lang_box_admin['br'];
 $fld['orderno']['name']  = $lang_box_admin['orderno'];
+	
+$fld['description2']['name']  = $lang_box_admin['description2'];
+$fld['fieldgroupno']['name']  = $lang_box_admin['fieldgroupno'];
+	
 
 $fld['udatetime']['name']  = $lang_box_admin['udatetime'];
 $fld['uuid']['name']  = $lang_box_admin['uuid'];

@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/USERBOX/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20160316
+# Last Update 20160422
 
 ###############################################################################
 ## 管理画面 menu
@@ -152,6 +152,8 @@ $LANG_USERBOX_ADMIN['title']='タイトル';
 $LANG_USERBOX_ADMIN['page_title']='ページタイトル';
 
 $LANG_USERBOX_ADMIN['description']='説明';
+$LANG_USERBOX_ADMIN['description2']='説明2';
+$LANG_USERBOX_ADMIN['fieldgroupno']='フィールドグループ';
 $LANG_USERBOX_ADMIN['defaulttemplatesdirectory']='テンプレートディレクトリ';
 $LANG_USERBOX_ADMIN['layout']='レイアウト';
 
@@ -243,7 +245,7 @@ $LANG_USERBOX_ADMIN['dfid']=$LANG04[42];//'日時のフォーマット';
 
 $LANG_USERBOX_ADMIN['draft'] = 'ドラフト';//'下書';
 $LANG_USERBOX_ADMIN['draft_msg'] = '
-※現在ドラフトモードです。モードの変更はサイトの管理者へご連絡ください。
+※ドラフトモードになっています。モードの変更はサイトの管理者へご連絡ください。
 ';
 $LANG_USERBOX_ADMIN['uid'] = 'ユーザID';
 $LANG_USERBOX_ADMIN['modified'] = '編集日付';
@@ -388,7 +390,8 @@ $LANG_USERBOX_ADMIN['err_expired'] = '公開終了日が不正です';
 
 $LANG_USERBOX_ADMIN['err_checkrequried'] = ' 必ず入力してください';
 
-$LANG_USERBOX_ADMIN['err_date'] = '日付が不正です';//@@@@@
+$LANG_USERBOX_ADMIN['err_date'] = '日付が不正です';
+$LANG_USERBOX_ADMIN['err_time'] = '時刻が不正です';
 $LANG_USERBOX_ADMIN['err_writable'] = ' 書込可能にしてください';
 
 $LANG_USERBOX_ADMIN['err_size'] = 'サイズが不正です';//@@@@@
@@ -502,7 +505,7 @@ $LANG_USERBOX_NOYES = array(
 $LANG_USERBOX_INPUTTYPE = array(
     0 => 'チェックボックス',
     1 => 'マルチセレクトリスト'
-    ,2 => 'ラジオボタン'
+    ,2 => 'ラジオボタンリスト'
     ,3 => 'オプションリスト'
 );
 $LANG_USERBOX_ALLOW_DISPLAY = array();
@@ -536,10 +539,10 @@ $LANG_USERBOX_TEXTCONV[20] = '全角に変換する';
 //TYPE （内容の変更不可）
 $LANG_USERBOX_TYPE = array();
 $LANG_USERBOX_TYPE[0] = '一行テキスト';
+$LANG_USERBOX_TYPE[1] = 'HTML（複数行テキスト）';
+$LANG_USERBOX_TYPE[20] = 'TinyMCE（複数行テキスト）';
 $LANG_USERBOX_TYPE[10] = '複数行テキスト';
-$LANG_USERBOX_TYPE[1] = 'HTML';
-$LANG_USERBOX_TYPE[20] = 'TinyMCE';
-$LANG_USERBOX_TYPE[19] = 'CKEditor';
+$LANG_USERBOX_TYPE[19] = 'CKEditor（複数行テキスト）';
 
 $LANG_USERBOX_TYPE[15] = '数値';
 $LANG_USERBOX_TYPE[21] = '通貨';//@@@@@
@@ -548,17 +551,16 @@ $LANG_USERBOX_TYPE[2] = 'いいえ/はい';
 $LANG_USERBOX_TYPE[3] = '日付';
 $LANG_DATABOX_TYPE[22] = '日付 (jquery ui datepicker)';
 $LANG_DATABOX_TYPE[23] = '日付 (Uikit datepicker)';
-$LANG_DATABOX_TYPE[26] = '時刻 (UIkit timepicker)';
 $LANG_USERBOX_TYPE[4] = '日時';
 $LANG_USERBOX_TYPE[5] = 'メールアドレス';
 $LANG_USERBOX_TYPE[6] = 'url';
 $LANG_USERBOX_TYPE[7] = 'オプションリスト（選択肢）';
-$LANG_USERBOX_TYPE[8] = 'ラジオボタン（選択肢）';
+$LANG_USERBOX_TYPE[8] = 'ラジオボタンリスト（選択肢）';
 $LANG_USERBOX_TYPE[14] = 'マルチセレクトリスト（選択肢）';
 $LANG_USERBOX_TYPE[24] = 'チェックボックス（選択肢）';
 $LANG_USERBOX_TYPE[17] = 'フラグ';
 $LANG_USERBOX_TYPE[9] = 'オプションリスト（マスター）';
-$LANG_USERBOX_TYPE[16] = 'ラジオボタン（マスター）';
+$LANG_USERBOX_TYPE[16] = 'ラジオボタンリスト（マスター）';
 $LANG_USERBOX_TYPE[18] = 'マルチセレクトリスト（マスター）';
 $LANG_USERBOX_TYPE[25] = 'チェックボックス（マスター）';
 

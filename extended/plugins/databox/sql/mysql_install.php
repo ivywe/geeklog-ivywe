@@ -1,6 +1,6 @@
 <?php
 // 2010/02/26 tsuchitani AT ivywe DOT co DOT jp
-// Last Update 20160310
+// Last Update 20160422
 
 //ADDTION DATA
 $_SQL[] = "
@@ -111,6 +111,8 @@ CREATE TABLE {$_TABLES['DATABOX_def_field']} (
   `range_start` mediumtext NOT NULL,
   `range_end` mediumtext NOT NULL,
   `dfid` tinyint(3) NOT NULL DEFAULT '0',
+  `description2` mediumtext NOT NULL,
+  `fieldgroupno` int(2) NOT NULL,
   `udatetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `uuid` mediumint(8) NOT NULL,
   PRIMARY KEY (`field_id`)

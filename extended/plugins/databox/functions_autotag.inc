@@ -2332,7 +2332,7 @@ function databox_createdatabycode(
             $sql2.=" ".$id;
             $sql2.=" ,".$field_id;
             //7 = 'オプションリスト';
-            //8 = 'ラジオボタン';
+            //8 = 'ラジオボタンリスト';
             if (($type==7 OR $type==8) AND ($selection<>"")){
                 $sql2.=",'0' ";
             }else{
@@ -3606,7 +3606,7 @@ function databox_searchfield(
     $sql.=" AND allow_display='0'";
     if  ($operate=="ams"){
         //9:オプションリスト（マスター）
-        //16:ラジオボタン（マスター）
+        //16:ラジオボタンリスト（マスター）
         //18:マルチセレクトリスト（マスター）
         $sql.=" AND type IN (9,16,18)";
     }else{

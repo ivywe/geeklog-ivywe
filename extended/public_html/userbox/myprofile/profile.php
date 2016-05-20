@@ -413,7 +413,7 @@ function fncEdit(
 
     //カテゴリ
     $templates->set_var('lang_category', $LANG_USERBOX_ADMIN['category']);
-    $checklist_category=DATABOX_getcategoriesinp ($category,$fieldset_id,$pi_name);
+    $checklist_category=DATABOX_getcategoriesinp ($category,$fieldset_id,$pi_name,$chk_user);
     $templates->set_var('checklist_category', $checklist_category);
 
     //追加項目
@@ -746,7 +746,7 @@ function fncSave (
     }
 
     //カテゴリ
-    $rt=DATABOX_savecategorydatas($id,$category,$pi_name);
+    $rt=DATABOX_savecategorydatas($id,$category,$pi_name,'myprofile');
 
 	//追加項目@@@@@
 	DATABOX_uploadaddtiondatas	

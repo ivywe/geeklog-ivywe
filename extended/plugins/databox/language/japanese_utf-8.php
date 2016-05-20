@@ -11,14 +11,14 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20160316
+# Last Update 20160422
 
 ###############################################################################
 ## 管理画面 menu
 $LANG_DATABOX_admin_menu = array();
 $LANG_DATABOX_admin_menu['1']= '情報';
 $LANG_DATABOX_admin_menu['2']= 'データ';
-$LANG_DATABOX_admin_menu['3']= 'フィールド';
+$LANG_DATABOX_admin_menu['3']= 'アトリビュート';
 $LANG_DATABOX_admin_menu['31']='タイプ';
 $LANG_DATABOX_admin_menu['4']= 'カテゴリ';
 $LANG_DATABOX_admin_menu['5']= 'グループ';
@@ -59,7 +59,7 @@ $LANG_DATABOX['home']="HOME";
 $LANG_DATABOX['view']="表示";
 $LANG_DATABOX['count']="件数";
 $LANG_DATABOX['category_top']="カテゴリ別件数一覧";
-$LANG_DATABOX['attribute_top']="フィールド別件数一覧";
+$LANG_DATABOX['attribute_top']="アトリビュート別件数一覧";
 $LANG_DATABOX['search_link']="";
 $LANG_DATABOX['return'] = '戻る';
 $LANG_DATABOX['search'] = '検索';
@@ -90,7 +90,7 @@ $LANG_DATABOX_ADMIN['piname'] = 'DataBox';
 $LANG_DATABOX_ADMIN['admin_list'] = 'DataBox';
 
 $LANG_DATABOX_ADMIN['edit'] = '編集';
-$LANG_DATABOX_ADMIN['ref'] = '標準テーマで確認する';
+$LANG_DATABOX_ADMIN['ref'] = '参考';
 $LANG_DATABOX_ADMIN['view'] = '表示確認';
 $LANG_DATABOX_ADMIN['add'] = '追加';
 
@@ -151,6 +151,8 @@ $LANG_DATABOX_ADMIN['title']='タイトル';
 $LANG_DATABOX_ADMIN['page_title']='ページタイトル';
 
 $LANG_DATABOX_ADMIN['description']='説明';
+$LANG_DATABOX_ADMIN['description2']='説明2';
+$LANG_DATABOX_ADMIN['fieldgroupno']='フィールドグループ';
 $LANG_DATABOX_ADMIN['defaulttemplatesdirectory']='テンプレートディレクトリ';
 $LANG_DATABOX_ADMIN['layout']='レイアウト';
 
@@ -181,9 +183,9 @@ $LANG_DATABOX_ADMIN['parent']='親';
 
 $LANG_DATABOX_ADMIN['fieldset']='タイプ';
 $LANG_DATABOX_ADMIN['fieldset_id']="タイプID";
-$LANG_DATABOX_ADMIN['fieldsetfields']="フィールドの表示と編集";
-$LANG_DATABOX_ADMIN['fieldsetfieldsregistered']="登録されたフィールド";
-$LANG_DATABOX_ADMIN['fieldlist']="フィールド一覧";
+$LANG_DATABOX_ADMIN['fieldsetfields']="アトリビュートの表示と編集";
+$LANG_DATABOX_ADMIN['fieldsetfieldsregistered']="登録されたアトリビュート";
+$LANG_DATABOX_ADMIN['fieldlist']="アトリビュート一覧";
 $LANG_DATABOX_ADMIN['fieldsetgroups']="カテゴリグループの表示と編集";
 $LANG_DATABOX_ADMIN['fieldsetgroupsregistered']="登録されたカテゴリグループ";
 $LANG_DATABOX_ADMIN['grouplist']="カテゴリグループ一覧";
@@ -292,7 +294,7 @@ $LANG_DATABOX_ADMIN['dataclearmsg'] = "
 バックアップはとりましたか？<br".XHTML.">
 データをクリアします。<br".XHTML.">
 アップロードされたファイルも削除されます。<br".XHTML.">
-フィールド、カテゴリ、グループ削除されません。<br".XHTML.">
+アトリビュート、カテゴリ、グループ削除されません。<br".XHTML.">
 ";
 $LANG_DATABOX_ADMIN['allclearmsg'] = "
 バックアップはとりましたか？<br".XHTML.">
@@ -328,10 +330,10 @@ $LANG_DATABOX_ADMIN['mapsmarkersupdate'] = 'MAPS markers 更新';
 $LANG_DATABOX_ADMIN['mapsmarkers'] = 'MAPS marker';
 
 $LANG_DATABOX_ADMIN['mapsmarkersclearmsg'] = "
-フィールドに登録されている特定のマップのマーカーをクリアします。
+アトリビュートに登録されている特定のマップのマーカーをクリアします。
 ";
 $LANG_DATABOX_ADMIN['mapsmarkersupdatemsg'] = "
-フィールドに登録されている特定のマップのマーカーをクリアし
+アトリビュートに登録されている特定のマップのマーカーをクリアし
 データの内容で作成します。<br".XHTML.">
 logs/databox_mapsupdate.log　にログが記録されます。
 ";
@@ -356,7 +358,7 @@ $LANG_DATABOX_ADMIN['csv_select_dtl'] = '条件:明細';
 $LANG_DATABOX_ADMIN['csvheader'] = 'CSV１行目';
 $LANG_DATABOX_ADMIN['help_csvheader'] = 'CSVの１行目';
 $LANG_DATABOX_ADMIN['help_field_csv'] = "
-マスターを使用するフィールドは２種類あります
+マスターを使用するアトリビュートは２種類あります
 例マスターのNo.を入力ファイルに編集する場合（都道府県）
 マスターのvalueを入力ファイルに編集する場合（都道府県_value）
 ";
@@ -402,11 +404,11 @@ $LANG_DATABOX_ADMIN['must'] = '*必須';
 $LANG_DATABOX_ADMIN['enabled'] = '有効';
 $LANG_DATABOX_ADMIN['modified_autoupdate'] = '自動更新する';
 
-$LANG_DATABOX_ADMIN['additionfields'] = 'フィールド';
+$LANG_DATABOX_ADMIN['additionfields'] = 'アトリビュート';
 $LANG_DATABOX_ADMIN['basicfields'] = '基本';
 
 $LANG_DATABOX_ADMIN['category_id'] = 'カテゴリID';
-$LANG_DATABOX_ADMIN['field_id'] = 'フィールドID';
+$LANG_DATABOX_ADMIN['field_id'] = 'アトリビュートID';
 $LANG_DATABOX_ADMIN['name'] = '名称';
 $LANG_DATABOX_ADMIN['templatesetvar'] = 'テーマ変数';
 $LANG_DATABOX_ADMIN['templatesetvars'] = 'テーマ変数';
@@ -475,11 +477,11 @@ $LANG_DATABOX_ADMIN['config_update'] = '更新';
 $LANG_DATABOX_ADMIN['config_update_help'] = '最新の仕様に更新します ';
 
 //(2)
-$LANG_DATABOX_ADMIN['datamaster'] = 'データ、フィールド、タイプ、カテゴリー、グループ、マスター';
+$LANG_DATABOX_ADMIN['datamaster'] = 'データ、アトリビュート、タイプ、カテゴリー、グループ、マスター';
 $LANG_DATABOX_ADMIN['data_clear'] = 'データを初期化';
-$LANG_DATABOX_ADMIN['data_allclear'] = 'データ, フィールド, タイプ, カテゴリー, グループ, マスターを初期化';
-$LANG_DATABOX_ADMIN['data_backup'] = '全データバックアップ　...データ, フィールド, タイプ, カテゴリー, グループ, マスターをバックアップする';
-$LANG_DATABOX_ADMIN['data_restore'] = '全データリストア　...データ, フィールド, タイプ, カテゴリー, グループ, マスターをバックアップデータからリストアする';
+$LANG_DATABOX_ADMIN['data_allclear'] = 'データ, アトリビュート, タイプ, カテゴリー, グループ, マスターを初期化';
+$LANG_DATABOX_ADMIN['data_backup'] = '全データバックアップ　...データ, アトリビュート, タイプ, カテゴリー, グループ, マスターをバックアップする';
+$LANG_DATABOX_ADMIN['data_restore'] = '全データリストア　...データ, アトリビュート, タイプ, カテゴリー, グループ, マスターをバックアップデータからリストアする';
 
 
 $LANG_DATABOX_ADMIN['document'] = 'ドキュメント';
@@ -496,7 +498,7 @@ $LANG_DATABOX_ADMIN['online'] = 'オンライン';
 $LANG_DATABOX_ADMIN['about_admin_information'] = '';
 $LANG_DATABOX_ADMIN['about_admin_data'] = 'データの管理';
 $LANG_DATABOX_ADMIN['about_admin_category'] = 'カテゴリの管理';
-$LANG_DATABOX_ADMIN['about_admin_field'] = 'フィールドの管理';
+$LANG_DATABOX_ADMIN['about_admin_field'] = 'アトリビュートの管理';
 $LANG_DATABOX_ADMIN['about_admin_group'] = 'グループの管理';
 $LANG_DATABOX_ADMIN['about_admin_fieldset'] = 'データタイプの管理';
 $LANG_DATABOX_ADMIN['about_admin_backuprestore'] = "バックアップの作成とリストア<br".XHTML."><br".XHTML.">";
@@ -509,8 +511,8 @@ $LANG_DATABOX_ADMIN['about_admin_csv'] = 'CSV定義の管理';
 $LANG_DATABOX_ADMIN['about_admin_view'] = '一般ログインユーザーからみたページはこのようになります';
 
 $LANG_DATABOX_ADMIN['inst_fieldsetfields'] = 
-"フィールドの編集は、フィールド名をクリックして「追加」または「削除」ボタンをクリックしてください。<br".XHTML.">
-フィールドが選択されているときは右側だけに表示されます。<br".XHTML.">
+"アトリビュートの編集は、アトリビュート名をクリックして「追加」または「削除」ボタンをクリックしてください。<br".XHTML.">
+アトリビュートが選択されているときは右側だけに表示されます。<br".XHTML.">
 編集が終わったら、「保存」ボタンをクリックしてください。<br".XHTML.">
 管理画面に戻ります。";
 
@@ -551,7 +553,8 @@ $LANG_DATABOX_ADMIN['err_expired'] = '公開終了日が不正です';
 
 $LANG_DATABOX_ADMIN['err_checkrequried'] = ' 必ず入力してください';
 
-$LANG_DATABOX_ADMIN['err_date'] = '日付が不正です';//@@@@@
+$LANG_DATABOX_ADMIN['err_date'] = '日付が不正です';
+$LANG_DATABOX_ADMIN['err_time'] = '時刻が不正です';
 $LANG_DATABOX_ADMIN['err_writable'] = ' 書込可能にしてください';
 
 $LANG_DATABOX_ADMIN['err_size'] = 'サイズが不正です';//@@@@@
@@ -663,7 +666,7 @@ $LANG_DATABOX_NOYES = array(
 $LANG_DATABOX_INPUTTYPE = array(
     0 => 'チェックボックス',
     1 => 'マルチセレクトリスト'
-    ,2 => 'ラジオボタン'
+    ,2 => 'ラジオボタンリスト'
     ,3 => 'オプションリスト'
 );
 $LANG_DATABOX_ALLOW_DISPLAY = array();
@@ -696,10 +699,10 @@ $LANG_DATABOX_TEXTCONV[20] = '全角に変換する';
 //TYPE （内容の変更不可）
 $LANG_DATABOX_TYPE = array();
 $LANG_DATABOX_TYPE[0] = '一行テキスト';
+$LANG_DATABOX_TYPE[1] = 'HTML（複数行テキスト）';
+$LANG_DATABOX_TYPE[20] = 'TinyMCE（複数行テキスト）';
 $LANG_DATABOX_TYPE[10] = '複数行テキスト';
-$LANG_DATABOX_TYPE[1] = 'HTML';
-$LANG_DATABOX_TYPE[20] = 'TinyMCE';
-$LANG_DATABOX_TYPE[19] = 'CKEditor';
+$LANG_DATABOX_TYPE[19] = 'CKEditor（複数行テキスト）';
 
 $LANG_DATABOX_TYPE[15] = '数値';
 $LANG_DATABOX_TYPE[21] = '通貨';
@@ -707,18 +710,18 @@ $LANG_DATABOX_TYPE[21] = '通貨';
 $LANG_DATABOX_TYPE[2] = 'いいえ/はい';
 $LANG_DATABOX_TYPE[3] = '日付';
 $LANG_DATABOX_TYPE[22] = '日付 (jquery ui datepicker)';
-$LANG_DATABOX_TYPE[23] = '日付 (UIkit datepicker)';
-$LANG_DATABOX_TYPE[26] = '時刻 (UIkit timepicker)';
+$LANG_DATABOX_TYPE[23] = '日付 (Uikit datepicker)';
 $LANG_DATABOX_TYPE[4] = '日時';
+$LANG_DATABOX_TYPE[26] = '時刻 (Uikit timepicker)';
 $LANG_DATABOX_TYPE[5] = 'メールアドレス';
 $LANG_DATABOX_TYPE[6] = 'url';
 $LANG_DATABOX_TYPE[7] = 'オプションリスト（選択肢）';
-$LANG_DATABOX_TYPE[8] = 'ラジオボタン（選択肢）';
+$LANG_DATABOX_TYPE[8] = 'ラジオボタンリスト（選択肢）';
 $LANG_DATABOX_TYPE[14] = 'マルチセレクトリスト（選択肢）';
 $LANG_DATABOX_TYPE[24] = 'チェックボックス（選択肢）';
 $LANG_DATABOX_TYPE[17] = 'フラグ';
 $LANG_DATABOX_TYPE[9] = 'オプションリスト（マスター）';
-$LANG_DATABOX_TYPE[16] = 'ラジオボタン（マスター）';
+$LANG_DATABOX_TYPE[16] = 'ラジオボタンリスト（マスター）';
 $LANG_DATABOX_TYPE[18] = 'マルチセレクトリスト（マスター）';
 $LANG_DATABOX_TYPE[25] = 'チェックボックス（マスター）';
 
@@ -840,7 +843,7 @@ $LANG_confignames['databox']['title_trim_length'] = 'タイトル最大長';
 $LANG_tab['databox'][tab_search] = '検索';
 $LANG_fs['databox'][fs_search] = '検索結果';
 $LANG_confignames['databox']['include_search'] = 'データを検索する';
-$LANG_confignames['databox']['additionsearch'] = '検索対象にするフィールドの数';
+$LANG_confignames['databox']['additionsearch'] = '検索対象にするアトリビュートの数';
 
 //---(3)
 $LANG_tab['databox'][tab_permissions] = 'パーミッション';
@@ -912,12 +915,12 @@ $LANG_confignames['databox']['csv_cron_schedule_sel_id'] = 'スケジュール.�
 $LANG_tab['databox']['tab_maps'] = 'MAPS';
 $LANG_fs['databox']['fs_maps'] = '（OPTION:MAPS）';
 $LANG_confignames['databox']['maps_mid'] = 'マップIDを登録するマスターの種別';
-$LANG_confignames['databox']['maps_lat'] = '緯度を登録するフィールドのテーマ変数';
-$LANG_confignames['databox']['maps_lng'] = '経度を登録するフィールドのテーマ変数';
-$LANG_confignames['databox']['maps_pref'] = '都道府県を登録するフィールドのテーマ変数';
-$LANG_confignames['databox']['maps_address1'] = '住所１を登録するフィールドのテーマ変数';
-$LANG_confignames['databox']['maps_address2'] = '住所２を登録するフィールドのテーマ変数';
-$LANG_confignames['databox']['maps_address3'] = '住所３を登録するフィールドのテーマ変数';
+$LANG_confignames['databox']['maps_lat'] = '緯度を登録するアトリビュートのテーマ変数';
+$LANG_confignames['databox']['maps_lng'] = '経度を登録するアトリビュートのテーマ変数';
+$LANG_confignames['databox']['maps_pref'] = '都道府県を登録するアトリビュートのテーマ変数';
+$LANG_confignames['databox']['maps_address1'] = '住所１を登録するアトリビュートのテーマ変数';
+$LANG_confignames['databox']['maps_address2'] = '住所２を登録するアトリビュートのテーマ変数';
+$LANG_confignames['databox']['maps_address3'] = '住所３を登録するアトリビュートのテーマ変数';
 $LANG_confignames['databox']['maps_cron_schedule_interval'] = 'Cronのスケジュール間隔 ';
 
 // Note: entries 0, 1, 9, 12, 17 are the same as in $LANG_configselects['Core']
@@ -948,12 +951,12 @@ $LANG_configselects['databox'][21] =array(
 );
 
 $LANG_configselects['databox'][22] =array(
-    '左ブロック（右ブロックはテーマ設定による）' => 'standard'
-    , '左右ブロックあり' => 'leftrightblocks'
+    'ヘッダ・フッタ・左ブロックあり（右ブロックはテーマ設定による）' => 'standard'
+    , 'ヘッダ・フッタ・左右ブロックあり' => 'leftrightblocks'
     , '全画面表示（ヘッダ・フッタ・ブロックなし）' => 'blankpage'
-    , 'ブロックなし' => 'noblocks'
-    , '左ブロックあり（右ブロックなし）' => 'leftblocks'
-    , '右ブロックあり（左ブロックなし）' => 'rightblocks'
+    , 'ヘッダ・フッタあり（ブロックなし）' => 'noblocks'
+    , 'ヘッダ・フッタ・左ブロックあり（右ブロックなし）' => 'leftblocks'
+    , 'ヘッダ・フッタ・右ブロックあり（左ブロックなし）' => 'rightblocks'
 
     );
 

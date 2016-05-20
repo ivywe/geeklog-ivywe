@@ -59,7 +59,7 @@
 
         <div id="bottom_buttons" class="uk-form-row uk-margin-large-top">
           <div class="uk-form-controls">
-              <input type="submit" id="save_changes" value="{lang_save_changes}" class="uk-button uk-form-width-medium"{xhtml}>
+              <input type="submit" id="save_changes" value="{lang_save_changes}" class="uk-button uk-button-primary"{xhtml}>
               <input type="submit" id="form_reset" name="form_reset" value="{lang_reset_form}" class="uk-button"{xhtml}>
           </div>
         </div>

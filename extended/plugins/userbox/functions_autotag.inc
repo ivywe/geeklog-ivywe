@@ -1735,7 +1735,7 @@ function userbox_field(
     $url.="?";
     $url.="id=".$field_id;
     $url.="&amp;m=id";
-    $field_top=":<a href='".$url."'>".$field_name.$LANG_USERBOX['countlist']."</a>";
+    $field_top="<a href='".$url."'>".$field_name.$LANG_USERBOX['countlist']."</a>";
 
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);

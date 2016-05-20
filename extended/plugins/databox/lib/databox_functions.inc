@@ -485,7 +485,7 @@ global $_TABLES;
     for( $i = 0; $i < $nrows; $i++ )    {
 
         $A = DB_fetchArray( $result, true );
-        $retval .= '<span class="uk-text-nowrap uk-margin-right">';
+        $retval .= '<span style="white-space:nowrap">';
         $retval .= '<input type="checkbox" name="' . $fname . '[]" value="' . $A[0] ;
         $retval .= '"';
         for( $x = 0; $x < sizeof( $S ); $x++ )            {
@@ -578,10 +578,11 @@ function DATABOX_savecategorydatas(
     $id
     ,$fldary
     ,$pi_name=""
+    ,$mydata=""
 )
 // +---------------------------------------------------------------------------+
 // | 機能  複数データ書込(カテゴリ)
-// | 書式 DATABOX_savecategorydatas($fld,$tbl,$id,$fldary)
+// | 書式 DATABOX_savecategorydatas($id,$category,'databox','mydata')
 // +---------------------------------------------------------------------------+
 // | 引数 $id:
 // | 引数 $fldary:データ配列
@@ -601,9 +602,21 @@ function DATABOX_savecategorydatas(
         $table_def_category=$_TABLES[strtoupper($pi_name).'_def_category'];
         $table_category=$_TABLES[strtoupper($pi_name).'_category'];
     }
-
-    $rt=DB_delete($table_category,"id",$id);
-
+	
+	if  ($mydata==""){
+        $rt=DB_delete($table_category,"id",$id);
+	}else{
+		$categories=COM_applyFilter($_POST['categories']);
+		if  ($categories=="" ){
+		}else{
+            $categories=str_replace("|", ',', $categories);
+		    $sql="DELETE FROM {$table_category} WHERE ";
+	        $sql .="  id = ".$id ;
+	        $sql .="  AND category_id IN (".$categories.")";
+		    DB_query($sql);
+		}
+	}
+	
     if (is_array($fldary)){
         for ($i = 1; $i <= count($fldary); $i++) {
             $val=current($fldary);
@@ -705,13 +718,15 @@ function DATABOX_getadditiondef(
     
     if ($pi_name==""){
         $table=$_TABLES['DATABOX_def_field'];
+        $table2=$_TABLES['DATABOX_mst'];
     }else{
-        $table=$_TABLES[$pi_name.'_def_field'];
         $table=$_TABLES[strtoupper($pi_name).'_def_field'];
+        $table2=$_TABLES[strtoupper($pi_name).'_mst'];
     }
 
     $rt=array();
-
+	$fieldgroupno_old="";
+	
     $sql="SELECT ";
     $sql.= " field_id ";
     $sql.= ",name ";
@@ -738,7 +753,9 @@ function DATABOX_getadditiondef(
     $sql.= ",range_start";
     $sql.= ",range_end";
     $sql.= ",dfid";
-
+    $sql.= ",description2";
+    $sql.= ",fieldgroupno";
+	
     $sql.=" FROM";
     $sql.=" {$table}  AS m";
     $sql.= " ORDER BY orderno,field_id";
@@ -763,7 +780,7 @@ function DATABOX_getadditiondef(
 
         $rt[$field_id]['size'] = COM_stripslashes($A['size']);
         if ($rt[$field_id]['size']==0){
-            $rt[$field_id]['size']=40;
+            $rt[$field_id]['size']=60;
         }
         $rt[$field_id]['maxlength'] = COM_stripslashes($A['maxlength']);
         if ($rt[$field_id]['maxlength']==0){
@@ -793,6 +810,15 @@ function DATABOX_getadditiondef(
             $rt[$field_id]['format'] = $format;
         }
 
+        $rt[$field_id]['description2']= COM_stripslashes($A['description2']);
+        $fieldgroupno=COM_stripslashes($A['fieldgroupno']);
+        if  ($fieldgroupno_old==$fieldgroupno){
+		}else{
+            $fieldgroup_name=DB_getItem($table2,"value","kind='fieldgroup' AND no=".$fieldgroupno);
+            $fieldgroupno_old=$fieldgroupno;
+        }
+        $rt[$field_id]['fieldgroup_name']=$fieldgroup_name;
+        $rt[$field_id]['fieldgroupno']= $fieldgroupno;
 
     }
     return $rt;
@@ -930,6 +956,7 @@ function DATABOX_getadditiondatas(
     
     $sql="SELECT ";
     $sql.=" m.field_id";
+    $sql.=" ,m.fieldgroupno";
     if ($id==0){
         $sql.=",initial_value AS value  ";
     }else{
@@ -943,7 +970,7 @@ function DATABOX_getadditiondatas(
     }
     $sql.=" FROM";
     $sql.=" {$table_def_field}  AS m";
-    $sql.=" order by m.orderno ,m.field_id";
+    $sql.=" order by m.fieldgroupno,m.orderno ,m.field_id";
     
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
@@ -1027,6 +1054,7 @@ function DATABOX_getaddtionfieldsEdit(
             $S = array();
         }
     }
+    $fieldgroup_old="";
     foreach( $S as $fid => $fvalue ){
         $name=$addition_def[$fid]['name'];
         $checkrequried=$addition_def[$fid]['checkrequried'];
@@ -1042,7 +1070,8 @@ function DATABOX_getaddtionfieldsEdit(
         $templatesetvar=$addition_def[$fid]['templatesetvar'];
 
         $description=$addition_def[$fid]['description'];
-
+        $description2=$addition_def[$fid]['description2'];
+        $fieldgroup_name=$addition_def[$fid]['fieldgroup_name'];
         $chk=false;
         $disabled="disabled";
         
@@ -1169,14 +1198,14 @@ function DATABOX_getaddtionfieldsEdit(
                         $selectionary[$fvalue];
                     }
                     break;
-                case 8://ラジオボタン（選択肢）
+                case 8://ラジオボタンリスト（選択肢）
                     if ($disabled===""){
                         $fieldhtml=DATABOX_getradiolist ($selectionary,"afield[".$fid."]",$fvalue,$br,$disabled,$type);
                     }else{
                         $selectionary[$fvalue];
                     }
                     break;
-                case 16://ラジオボタン（マスター）//@@@@@
+                case 16://ラジオボタンリスト（マスター）//@@@@@
                     if ($disabled===""){
                         $mstary=DATABOX_getAry("selectlist_mst",0,$selectlist,$pi_name);
                         $fieldhtml=DATABOX_getradiolist ($mstary,"afield[".$fid."]",$fvalue,$br,$disabled,$type);
@@ -1217,7 +1246,7 @@ function DATABOX_getaddtionfieldsEdit(
                         $fieldhtml .=$fvalue;
                     }
                     break;
-                case 4://日時（date picker対応）
+                case 4://日時（datetime picker対応）
                     if ($disabled===""){
                         //$filedname="afield[".$fid."]";
                         $filedname="afield".$fid;
@@ -1244,6 +1273,42 @@ function DATABOX_getaddtionfieldsEdit(
                         $fieldhtml .=$fvalue;
                     }
                     break;
+                case 26://時刻（UI time picker対応）
+                    if ($disabled===""){
+                         $fvalue_time=DATABOX_getTimeformat($fvalue);
+                         $filedname="afield".$fid;
+                         
+                         $wk =  " <input ";
+                         $wk .= " type=\"hidden\"";
+                         $wk .= " name=\"afield[".$fid."]\" ";
+                         $wk .= " value=\"".$fvalue."\"";
+                         $wk .= " ".XHTML.">";
+                         $fieldhtml.=$wk;
+
+                         $fieldhtml .= "        <input ";
+                         $fieldhtml .= " data-uk-timepicker=\"{format:'".$_CONF['hour_mode']."h'";
+                         if  ($addition_def[$fid]['range_start']==""){
+                         }else{
+                             $fieldhtml .= ",start:".$addition_def[$fid]['range_start'] ;
+                         }
+                         if  ($addition_def[$fid]['range_end']==""){
+                         }else{
+                             $fieldhtml .= ",end:".$addition_def[$fid]['range_end'] ;
+                         }
+                         $fieldhtml .= " }\"";
+                         $fieldhtml .= " class=\"uk-form-width-small\"";
+                         $fieldhtml .= " type=\"text\"";
+                         $fieldhtml .= "  id=\"afield".$fid."\"";
+                         $fieldhtml .= " size=\"".$size."\"";
+                         $fieldhtml .= " maxlength=\"".$maxlength."\" ";
+                         $fieldhtml .= " name=\"afield[".$fid."]\" ";
+                         $fieldhtml .= " style=\"max-width:95%\"";
+                         $fieldhtml .= " value=\"". $fvalue_time."\"";
+                         $fieldhtml .= " ".XHTML.">";
+                     }else{
+                        $fieldhtml .=$fvalue;
+                     }
+                     break;
                 case 22://日付
                 if ($disabled===""){
                         if  ($fvalue=="")  {
@@ -1297,38 +1362,6 @@ function DATABOX_getaddtionfieldsEdit(
 
                         $fieldhtml .= "        <input ";
                         $fieldhtml .= " data-uk-datepicker=\"{format:'YYYY/MM/DD'}\"";
-                        $fieldhtml .= " class=\"uk-form-width-small\"";
-                        $fieldhtml .= " type=\"text\"";
-                        $fieldhtml .= "  id=\"afield".$fid."\"";
-                        $fieldhtml .= " size=\"".$size."\"";
-                        $fieldhtml .= " maxlength=\"".$maxlength."\" ";
-                        $fieldhtml .= " name=\"afield[".$fid."]\" ";
-                        $fieldhtml .= " style=\"max-width:95%\"";
-                        $fieldhtml .= " value=\"". $fvalue_date."\"";
-                        $fieldhtml .= " ".XHTML.">";
-                    }else{
-                        $fieldhtml .=$fvalue;
-                    }
-                    break;
-                case 26://時刻
-                    if ($disabled===""){
-                        if  ($fvalue=="")  {
-                            $fvalue_date="";
-                        }else{
-                            $fvalue_date=$fvalue;
-                        }
-                        $filedname="afield".$fid;
-                        
-                        $wk =  " <input ";
-                        $wk .= " type=\"hidden\"";
-                        $wk .= " name=\"afield[".$fid."]\" ";
-                        $wk .= " value=\"".$fvalue."\"";
-                        $wk .= " ".XHTML.">";
-                        $fieldhtml.=$wk;
-
-                        $fieldhtml .= "        <input ";
-                        $fieldhtml .= " data-uk-timepicker";
-                        $fieldhtml .= " class=\"uk-form-width-small\"";
                         $fieldhtml .= " type=\"text\"";
                         $fieldhtml .= "  id=\"afield".$fid."\"";
                         $fieldhtml .= " size=\"".$size."\"";
@@ -1390,7 +1423,14 @@ function DATABOX_getaddtionfieldsEdit(
             $templates->set_var('additionfield_value', $fieldhtml);
 
             $templates->set_var('additionfield_description', $description);
-
+            $templates->set_var('additionfield_description2', $description2);
+            $templates->set_var('fieldgroup_name', $fieldgroup_name);
+			if  ($fieldgroup_old==$fieldgroup_name){
+                $templates->set_var('fieldgroup', "");
+            }else{
+                $templates->set_var('fieldgroup', $fieldgroup_name);
+                $fieldgroup_old=$fieldgroup_name;
+            }
             $templates->set_var('additionfield'.$fid, $fieldhtml);
             $templates->set_var($templatesetvar, $fieldhtml);
 
@@ -1712,7 +1752,7 @@ function DATABOX_getaddtionfieldsText(
                         $retval .= rtrim($wk,$separater);
                         break;
                     case 9://オプションリスト（マスター）
-                    case 16://ラジオボタン（マスター）
+                    case 16://ラジオボタンリスト（マスター）
                         $mstitems=DATABOX_getMstItems($selectlist,$fvalue,$pi_name);
                         $retval .= $mstitems['value'];
                         break;
@@ -1812,8 +1852,6 @@ function DATABOX_getaddtionfieldsDisp(
             $S = array();
         }
     }
-
-    $col_counter = 0;
 
     foreach( $S as $fid => $fvalue ){
 
@@ -1937,7 +1975,7 @@ function DATABOX_getaddtionfieldsDisp(
                     $fieldhtml .= $lang_noyes[$fvalue];
                     break;
                 case 7://オプションリスト（選択肢）//@@@@@@
-                case 8://ラジオボタン（選択肢）//@@@@@
+                case 8://ラジオボタンリスト（選択肢）//@@@@@
                     $fieldhtml .= $selectionary[$fvalue];
                     break;
                 case 14://マルチセレクトリスト（選択肢）
@@ -1983,6 +2021,11 @@ function DATABOX_getaddtionfieldsDisp(
                         $fieldhtml .= $w[0];
                     }
                     break;
+                case 26://時刻
+                    if  ($fvalue<>""){
+                        $fieldhtml .= DATABOX_getTimeformat($fvalue);
+                    }
+                    break;
                 case 22://日付
                 case 23://日付
                 case 3://日付
@@ -2006,10 +2049,6 @@ function DATABOX_getaddtionfieldsDisp(
                 default:
                     $fieldhtml .= $fvalue;
             }
-						$templates->set_var('col_counter', $col_counter);
-						$col_counter = $col_counter +1;
-            $templates->set_var('col_counter', $col_counter);
-
             $templates->set_var('field_id', $fid);
             $templates->set_var('field_type', $type);
             
@@ -2241,8 +2280,8 @@ function DATABOX_getcategoriesText(
             $categories_group ="";
             $old_group_id=$A['group_id'];
         }
-        $categories.=$A['category_name']." ".$separater;
-        $categories_group.=$A['category_name']." ".$separater;
+        $categories.=$A['category_name'].$separater;
+        $categories_group.=$A['category_name'].$separater;
 
     }
 
@@ -2451,9 +2490,9 @@ function DATABOX_getcategoriesDisp(
             $old_group_id=$A['group_id'];
             $old_group_code=$A['group_code'];
         }
-        $categories.=$A['category_name']." ".$separater;
-        $categories_group.=$A['category_name']." ".$separater;
-        $categories_group2.=$A['category_code']." ".$separater_code;
+        $categories.=$A['category_name'].$separater;
+        $categories_group.=$A['category_name'].$separater;
+        $categories_group2.=$A['category_code'].$separater_code;
         $categories_group_pipeline.=$A['category_code'].$separater_pipeline;
         
 
@@ -2473,12 +2512,12 @@ function DATABOX_getcategoriesDisp(
         $category_link_id2= COM_createLink($code, $url_id);
         $category_link_code2= COM_createLink($code, $url_code);
 
-        $categories_link_id.=$category_link_id." ".$separater;
-        $categories_link_id_group.=$category_link_id." ".$separater;
-        $categories_link_id_group2.=$category_link_id2." ".$separater_code;//@@
-        $categories_link_code.=$category_link_code." ".$separater;
-        $categories_link_code_group.=$category_link_code." ".$separater;
-        $categories_link_code_group2.=$category_link_code2." ".$separater_code;//@@
+        $categories_link_id.=$category_link_id.$separater;
+        $categories_link_id_group.=$category_link_id.$separater;
+        $categories_link_id_group2.=$category_link_id2.$separater_code;//@@
+        $categories_link_code.=$category_link_code.$separater;
+        $categories_link_code_group.=$category_link_code.$separater;
+        $categories_link_code_group2.=$category_link_code2.$separater_code;//@@
     }
 
     $categories=rtrim($categories,$separater);
@@ -2530,6 +2569,7 @@ function DATABOX_getcategoriesinp(
     $selected = ""
     ,$fieldset_id=""
     ,$pi_name=""
+    ,$chk_user=9999
 )
 {
 global $_TABLES;
@@ -2563,6 +2603,7 @@ global $_TABLES;
     $sql .= "m2.group_id".LB;
     $sql .= ",m2.name AS group_name".LB;
     $sql .= ",m2.input_type".LB;
+    $sql .= ",m2.allow_edit".LB;
     $sql .= " FROM ".LB;
     $sql .= " {$table_def_group} AS m2".LB;
     if  ($fieldset_id<>0){
@@ -2578,11 +2619,43 @@ global $_TABLES;
     $result = DB_query( $sql );
     $nrows = DB_numRows( $result );
 
-    
+    $categoryids="";
     for( $i = 0; $i < $nrows; $i++ )    {
 
         $A = DB_fetchArray( $result, true );
         
+        $chk=false;
+        $disabled="disabled";
+        
+        if ($chk_user===9999){
+            $chk=true;
+            $disabled="";
+        }else{
+            //編集可能
+            if  ($A['allow_edit']==='0') {
+                $chk=true;
+                $disabled="";
+            //グループとadmin権のある人のみ表示
+            }else if ($A['allow_edit']==='2'){
+                if  ($chk_user>=1010) {
+                    $chk=true;
+                    $disabled="";
+                }
+                //所有者とadmin権のある人のみ
+            }else if ($A['allow_edit']==='3'){
+                if  ($chk_user>=1011) {
+                    $chk=true;
+                    $disabled="";
+                }
+            //編集不可表示のみ
+            }else if ($A['allow_edit']==='4'){
+                $chk=true;
+            }
+        }
+        if ($chk==false) {
+            continue;
+        }
+		
         $sql2 = "SELECT ";
         $sql2 .= " m1.category_id".LB;
         $sql2 .= ",m1.name".LB;
@@ -2597,20 +2670,24 @@ global $_TABLES;
         $nrows2 = DB_numRows( $result2 );
         
         if ($nrows2>0){
-            $retval .="<div class=\"uk-text-bold uk-margin-top uk-margin-small-bottom\">";
+            $retval .="<div class=\"databox_admin_data_title\">";
             $retval .=$A['group_name'];
             $retval .="</div>".LB;
         
             if  ($A['input_type']==1){
-                $retval .='<select name="category[]" multiple style="height:10em">'.LB;
+                $retval .='<select name="category[]" multiple style="height:10em" '.$disabled.' >'.LB;
             }else if ($A['input_type']==3){
-                $retval .='<select name="category[]" >'.LB;
+                $retval .='<select name="category[]" '. $disabled .' >'.LB;
             }
             
             for( $i2 = 0; $i2 < $nrows2; $i2++ )    {
 
                 $A2 = DB_fetchArray( $result2, true );
-        
+                
+				if  ($disabled==""){
+					$categoryids.=$A2['category_id']."|";
+                }
+                
                 $checked=" ";
                 for( $x = 0; $x < sizeof( $S ); $x++ )            {
                     if( $A2['category_id'] == $S[$x] )                {
@@ -2623,11 +2700,11 @@ global $_TABLES;
                 }
             
                 if  ($A['input_type']==0){
-                    $retval .= '<span class="uk-text-nowrap uk-margin-right">';
+                    $retval .= '<span style="white-space:nowrap">';
                     $retval .= '<input type="checkbox" name="category[]" value="' . $A2['category_id'] ;
                     $retval .= '"';
                     $retval .= $checked;
-                    $retval .= ' >' . stripslashes( $A2['name'] ) . '</span>' . LB;
+                    $retval .= $disabled.' >' . stripslashes( $A2['name'] ) . '</span>' . LB;
                 }else  if  ($A['input_type']==1){
                     $retval .= '<option value="' . $A2['category_id'] . '"';
                     $retval .= $checked;
@@ -2637,7 +2714,7 @@ global $_TABLES;
                     $retval .= '<input type="radio" name="category[]" value="' . $A2['category_id'];
                     $retval .= '"';
                     $retval .= $checked;
-                    $retval .= ' >' . stripslashes( $A2['name'] ) . '</span>' . LB;
+                    $retval .= ' '.$disabled.' >' . stripslashes( $A2['name'] ) . '</span>' . LB;
                 }else  if  ($A['input_type']==3){
                     $retval .= '<option value="' . $A2['category_id'] . '"';
                     $retval .= $checked;
@@ -2651,8 +2728,12 @@ global $_TABLES;
             }
         }
         
+	}
+	if  ($categoryids==""){
+	}else{
+		$categoryids=substr($categoryids,0,strlen($categoryids)-1);
+        $retval .= "  <input type='hidden' name='categories' value='{$categoryids}'>";
     }
-
     return $retval;
 }
 function DATABOX_getaddtionfields(
@@ -2753,11 +2834,11 @@ function DATABOX_getfieldvalue(
             $fieldvalue = $lang_noyes[$value];
             break;
         case 7://オプションリスト（選択肢）
-        case 8://ラジオボタン（選択肢）
+        case 8://ラジオボタンリスト（選択肢）
             $fieldvalue= $selectionary[$value];
             break;
         case 9://オプションリスト（マスター）';
-        case 16://ラジオボタン（マスター）';
+        case 16://ラジオボタンリスト（マスター）';
             if  ($value==""){
                 $fieldvalue="";
             }else{
@@ -2990,6 +3071,10 @@ function DATABOX_cleanaddtiondatas(
                     }
                     $wk=$wk_year."-".$wk_month."-".$wk_day ." ".$wk_hour.":".$wk_minute;
                     break;
+                case 26://時刻
+                    $wk=COM_applyFilter($wk);
+                    $wk=COM_checkHTML (COM_checkWords ($wk));
+                    break;
                 case 24://チェックボックス（選択肢）
                 case 25://チェックボックス（マスター）
                 case 14://マルチセレクトリスト（選択肢）
@@ -3016,7 +3101,7 @@ function DATABOX_cleanaddtiondatas(
                     $delary[$field_id]=COM_checkHTML (COM_checkWords ($wk2));
                     break;
                 case 7://オプションリスト（選択肢）
-                case 8://ラジオボタン（選択肢）
+                case 8://ラジオボタンリスト（選択肢）
                 case 9://オプションリスト（マスター）';
                 case 5://メールアドレス';
                 case 6://url';
@@ -3232,6 +3317,32 @@ function DATABOX_checkaddtiondatas(
                     }
                 }
             }
+            //時刻
+            if ($addition_def[$field_id]['type']==26){
+                if ($value ===""){
+                }else{
+                    $w=strtotime("1970-1-1 ".$value);
+                    if  ($addition_def[$field_id]['range_start']=="" 
+                         AND $addition_def[$field_id]['range_end']=="" ){
+                    }else{
+                        $w_start=strtotime("1970-1-1 ".$addition_def[$field_id]['range_start'].":00");
+                        $w_end=strtotime("1970-1-1 ".$addition_def[$field_id]['range_end'].":00");
+                        if  ($w <$w_start OR $w >$w_end){
+                                 $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_range']
+                                  ."(".$addition_def[$field_id]['range_start'] 
+                                  ."-".$addition_def[$field_id]['range_end'].")" ;
+                                 $rt.="<br ".XHTML.">".LB;
+                        }
+                    }
+                    if ($w=="") {
+                        $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_time'] ;
+                        $rt.="<br ".XHTML.">".LB;
+                    }else{
+                        $w_time=date("H:i",$w)."::00";
+                        $fldary[$field_id]=COM_convertDate2Timestamp("1970-1-1",$w_time);
+                    }
+                }
+            }
             //メールアドレス
             if ($addition_def[$field_id]['type']==5){
                 if ($value ===""){
@@ -3338,7 +3449,7 @@ function DATABOX_checkaddtiondatas(
                             if ($box_conf['file_size']<>"" AND $filesize>$box_conf['file_size']){
                                 $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_size'];
                                 $rt.="<br ".XHTML.">".LB;
-;                               $err=1;
+                                $err=1;
                             }
 							if (count($box_conf['file_type'])>0){
                                 if  (in_array($filetype,$box_conf['file_type'])){
@@ -4138,7 +4249,7 @@ function DATABOX_getradiolist(
                 $retval .= " CHECKED=CHECKED ";
             }
         }
-        $retval .= ">$ary[$id]";
+        $retval .= ">$ary[$id]&nbsp";
         
         if   ($br<>0){
             $cnt++;
@@ -4346,6 +4457,10 @@ global $LANG_configselects;
             $where="kind='{$selectlist}'";
             if ($relno<>0) $where.=" AND relno='{$relno}'";
             $fields= 'no,value,orderno';
+        }else if ($kind=="fieldgroupno"){
+            $where="kind='fieldgroup'";
+            $table=$_TABLES[strtoupper($pi_name).'_mst'];
+            $fields= 'DISTINCT no,value,no';
         }else if ($kind=="csvsel"){
             $where="";
             $table=$_TABLES[strtoupper($pi_name).'_def_csv_sel'];
@@ -4899,9 +5014,9 @@ function DATABOX_Confirmation(
         $confirm_value=$lang_box_admin['delete1']." ".$lang_box_admin['confirm'];
         $confirm_value2=$lang_box_admin['delete2']." ".$lang_box_admin['confirm'];
         $confirm_value3=$lang_box_admin['delete3']." ".$lang_box_admin['confirm'];
-        $btn2="<input type='submit' class='uk-button uk-button-primary' name='action' value='{$lang_box_admin['delete2']}'" 
+        $btn2="<input type='submit' name='action' value='{$lang_box_admin['delete2']}'" 
              ." onclick=\"return confirm('{$confirm_value2}');\"".xhtml.">".LB;
-        $btn3="<input type='submit'  class='uk-button uk-button-primary' name='action' value='{$lang_box_admin['delete3']}'" 
+        $btn3="<input type='submit' name='action' value='{$lang_box_admin['delete3']}'" 
              ." onclick=\"return confirm('{$confirm_value3}');\"".xhtml.">".LB;
     }
 
@@ -5158,6 +5273,25 @@ function DATABOX_getDateTimeFormat( $date,$format )
     $date = strftime( $format, $stamp );
     return array( $date, $stamp );
 }
+function DATABOX_getTimeFormat( $value )
+{
+    $rt="";
+    if  ($value==""){
+        $rt="";
+    }else{
+        if  ($_CONF['hour_mode']=='24'){
+            $rt=date('H:i', $value );
+        }else{
+            $rt=date('h:i', $value );
+            if  (date('H',$value)>=12){
+                $rt.=" PM";
+            }else{
+                $rt.=" AM";
+            }
+        }
+    }
+    return $rt;
+}
 
 function DATABOX_fieldvalue(
     $pi_name
@@ -5306,7 +5440,7 @@ function DATABOX_fieldvalue(
                     }
                     break;
                 case 7://オプションリスト（選択肢）
-                case 8://ラジオボタン（選択肢）
+                case 8://ラジオボタンリスト（選択肢）
                     $rt= $selectionary[$value];
                     break;
                 case 14://マルチセレクトリスト（選択肢）
@@ -5876,7 +6010,7 @@ function DATABOX_getcheckboxary(
 	$retval = '';
 	
     foreach($ary as $k => $v) {
-        $retval .= '<span class="uk-text-nowrap uk-margin-right">';
+        $retval .= '<span style="white-space:nowrap">';
         $retval .= '<input type="checkbox" name="' . $fld . '[]" value="' . $k ;
         $retval .= '"';
 		if  ($selected==""){

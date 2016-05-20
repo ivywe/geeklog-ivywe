@@ -41,6 +41,22 @@
       </div>
     </div>
 
+    {# description2 #}
+    <div class="uk-form-row">
+      <label class="uk-form-label">{lang_description2} {help_description2}</label>
+      <div class="uk-form-controls">
+        <textarea name="description" class="uk-width-1-1" rows="2" id="databox_description2">{description2}</textarea>
+      </div>
+    </div>
+
+    {# description #}
+    <div class="uk-form-row">
+      <label class="uk-form-label">{lang_fieldgroupno} {help_fieldgroupno}</label>
+      <div class="uk-form-controls">
+        <textarea name="description" class="uk-width-1-1" rows="2" id="databox_list_fieldgroupno">{list_fieldgroupno}</textarea>
+      </div>
+    </div>
+
     {# allow_display  #}
     <div class="uk-form-row">
       <label class="uk-form-label">{lang_allow_display} {help_allow_display}</label>

@@ -45,7 +45,7 @@
   <div class="uk-form-row uk-margin-large-top">
     <div class="uk-form-controls">
       <input type="hidden" name="mail" value="mail"{xhtml}>
-      <input type="submit" value="{lang_send}" onclick="return postconfirm()" class="uk-button uk-form-width-medium"{xhtml}>
+      <input type="submit" value="{lang_send}" onclick="return postconfirm()" class="uk-button uk-button-primary"{xhtml}>
       <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
     </div>
   </div>

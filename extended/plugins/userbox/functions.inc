@@ -477,7 +477,7 @@ function plugin_user_create_userbox (
             $selection=$A['selection'];
             $initial_value=$A['initial_value'];
             //7 = 'オプションリスト';
-            //8 = 'ラジオボタン';
+            //8 = 'ラジオボタンリスト';
             if (($type==7 OR $type==8) AND ($selection<>"")){
 				if  ($initial_value==""){
 					$initial_value=0;
@@ -511,11 +511,10 @@ function plugin_getheadercode_userbox()
 {
 	global $_SCRIPTS;
 	
-	return;
-
 	$css = '/userbox/css/style.css';
 	$_SCRIPTS->setCSSFile('userbox_style_css', $css, true);
 	
+	return;
 }
 
 function plugin_enablestatechange_userbox ($enable)

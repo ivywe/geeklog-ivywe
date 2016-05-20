@@ -83,7 +83,7 @@ $information = array();
 //echo "mode=".$mode."<br>";
 switch ($mode) {
     case 'export':
-        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'];
+        $information['pagetitle']=$LANG_USERBOX_ADMIN['piname'];
         $display .= DATABOX_Confirmation($pi_name,$mode);
         break;
     case 'new':// 新規登録
@@ -122,9 +122,9 @@ switch ($mode) {
         $display .= LIB_List($pi_name);
 
 }
-$display =COM_startBlock($LANG_DATABOX_ADMIN['piname'],''
+$display =COM_startBlock($LANG_USERBOX_ADMIN['piname'],''
             ,COM_getBlockTemplate('_admin_block', 'header'))
-         .ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno])
+         .ppNavbarjp($navbarMenu,$LANG_USERBOX_admin_menu[$menuno])
          .LIB_Menu($pi_name)
          .$display
          .COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));

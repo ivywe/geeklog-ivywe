@@ -8,7 +8,7 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="docstyle.css" title="Dev Stylesheet">
 </head>
-<!-- admin/plugins/userbox/docs/japanese/templatesetvars.html 20160125 -->
+<!-- admin/plugins/userbox/docs/japanese/templatesetvars.html 20160428 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
@@ -22,7 +22,7 @@
 <h1><a href="index.html">UserBox プラグイン</h1>
 
 
-<h2><a name="templatesetvars">テーマ変数</a>(2015/10/28 update)</h2>
+<h2><a name="templatesetvars">テーマ変数</a>(2016/04/22 update)</h2>
 <table>
 <tr>
 	<th style="width:20%">画面</th>
@@ -119,14 +119,15 @@ count
 <tr class="r2">
 <td  rowspan=4>
 カテゴリ別一覧<br/>
-public_html/category.php?id=1&amp;m=id<br/>
-public_html/category.php?code=city&amp;m=code<br/>
-<br/>
+public_html/category.php?id=1&amp;m=id&amp;template=yyyy<br/>
+public_html/category.php?code=city&amp;m=code&amp;template=yyyy<br/>
+<a title="template=yyyyy テンプレートディレクトリ" class="note_super" href="#notetext_7">*7</a>
+<br/><br/>
 &page=1&perpage=10<br/>
 &order=random<br/>
 $expired=no<br/>
 <br/>
-order に指定できるのは、 random date orderno code title description id と　表示制限されていない追加項目のテーマ変数　です<br/>
+order に指定できるのは、 random <a title="コンフィギュレーション設定による"class="note_super" href="userbox.html#desc_datefield">date</a> orderno code title description id と　表示制限されていない追加項目のテーマ変数　です<br/>date と released は逆順です。<br/>
 <br/>
 expired:no 公開終了日を過ぎたデータは表示しません。（デフォルト）<br/>
 expired:yes 公開終了日を過ぎたデータも表示します。<br/>
@@ -347,6 +348,7 @@ count
 public_html/attribute.php?id=1&amp;m=id&amp;value=27&amp;template=yyyy<br/>
 public_html/attribute.php?code=xxxx&amp;m=code&amp;value=27&amp;template=yyyy<br/>
 <a title="codeに指定される内容は、各データに登録されたアトリビュート（追加項目）の内容になります" class="note_super" href="#notetext_8">*8</a>
+<a title="template=yyyyy テンプレートディレクトリ" class="note_super" href="#notetext_7">*7</a>
 </td>
 <td>
 【attribute】headercode.thtml
@@ -724,6 +726,8 @@ dditionfield_name
 ,lang_must_additionfield
 ,additionfield_value
 ,additionfield_description
+,additionfield_description2
+,fieldgroup,fieldgroup_name
 </td>
 </tr>
 <tr class="r2">
@@ -741,7 +745,7 @@ public_html/dowmload.php?id=1&field_id=&mode=display<br/>
 </tbody>
 </table>
 
-<h2><a class="note_super" href="#notetext_add" id="notetext_add">各アトリビュートのテーマ変数</a>(2015/09/16 update)</h2>
+<h2><a class="note_super" href="#notetext_add" id="notetext_add">各アトリビュートのテーマ変数</a>(2016/02/23 update)</h2>
 <table>
 <tr>
 	<th style="width:30%"><a href="input_field.html#fieldtype">アトリビュートタイプ</a></th>
@@ -749,11 +753,17 @@ public_html/dowmload.php?id=1&field_id=&mode=display<br/>
     <th style="width:40%">説明</th>
 	</tr>
 <tr>
-	<td rowspan=4>共通</td>
+	<td rowspan=5>共通</td>
 	<td>{additionfield<a title="id" class="note_super" href="#notetext_id">1</a></a>}
 	<br/>{登録したテーマ変数名}
 	</td>
 	<td>&nbsp;</td>
+	</tr>
+<tr>	
+	<td>
+	{additionfield<a title="id" class="note_super" href="#notetext_id">1</a>_value}
+	<br/>   {登録したテーマ変数名_value}	</td>
+	<td>生データ</td>
 	</tr>
 <tr>	
 	<td>
