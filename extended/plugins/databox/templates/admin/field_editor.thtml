@@ -53,7 +53,7 @@
     <div class="uk-form-row">
       <label class="uk-form-label">{lang_fieldgroupno} {help_fieldgroupno}</label>
       <div class="uk-form-controls">
-        <textarea name="description" class="uk-width-1-1" rows="2" id="databox_list_fieldgroupno">{list_fieldgroupno}</textarea>
+        {list_fieldgroupno}
       </div>
     </div>
 
