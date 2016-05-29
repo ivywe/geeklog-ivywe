@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+	<h2 class="uk-margin-large-top">{additionfield_description2}</h2>
+
   <div class="uk-form-row">
     <label class="uk-form-label" >{additionfield_name}<span class="uk-text-danger">{lang_must_additionfield}</span></label>
     <div class="uk-form-controls">
