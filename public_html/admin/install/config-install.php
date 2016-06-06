@@ -401,7 +401,7 @@ function install_config()
     $c->add('tab_misc', NULL, 'tab', 7, 31, NULL, 0, TRUE, $me, 31);
     $c->add('fs_misc', NULL, 'fieldset', 7, 31, NULL, 0, TRUE, $me, 31);
     $c->add('notification',array(),'%select',7,31,25,800,TRUE, $me, 31);
-    $c->add('cron_schedule_interval',0,'text',7,31,NULL,860,TRUE, $me, 31);
+    $c->add('cron_schedule_interval',86400,'text',7,31,NULL,860,TRUE, $me, 31);
     $c->add('disable_autolinks',0,'select',7,31,0,1750,TRUE, $me, 31);
     $c->add('clickable_links',1,'select',7,31,1,1753,TRUE, $me, 31);
     $c->add('linktext_maxlen',50,'text',7,31,NULL,1754,TRUE, $me,31);
