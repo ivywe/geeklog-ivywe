@@ -133,6 +133,10 @@ function MG_autotags($op, $content = '', $autotag = '')
                 $a = explode(':', $part);
                 $height = $a[1];
                 $skip++;
+            } elseif (substr ($part, 0, 6) == 'class:') {
+                $a = explode (':', $part);
+                $class = $a[1];
+                $skip++;
             } elseif (substr($part, 0, 7) == 'border:') {
                 $a = explode(':', $part);
                 $border = $a[1];
@@ -1051,7 +1055,7 @@ function MG_autotags($op, $content = '', $autotag = '')
 
 
         //@@@@@
-		case 'medialist' :
+        case 'medialist' :
             $link=MG_medialist ($p1
                 , $p['lastparm2'], $p['theme'],$p['limitcnt'],$p['sort'],$p['src']);
             break;
@@ -1130,7 +1134,8 @@ function MG_autotags($op, $content = '', $autotag = '')
                 $newwidth = $width;
                 $newheight = $height;
             }
-            $tagtext = '<img src="' . $tnImage . '" ' . $alttag . XHTML . '>';
+//            $tagtext = '<img src="' . $tnImage . '" ' . $alttag . 'style="width:' . $newwidth . 'px;height:' . $newheight . 'px;border:none;vertical-align:bottom;"' . XHTML . '>';
+            $tagtext = '<img src="' . $tnImage . '" ' . $alttag . ' class="' . $class . '"' . XHTML . '>';
 
             if ($linkID == 0) {
                 $url = $_MG_CONF['site_url'] . '/album.php?aid=' . $parm1;
@@ -1318,7 +1323,9 @@ function MG_autotags($op, $content = '', $autotag = '')
                     $newwidth = round($mediaSize[0] / $ratio);
                 }
             }
-            $tagtext = '<img src="' . $media_thumbnail . '" ' . $alttag . XHTML . '>';
+
+if(strlen($class) != 0){$class =" ".$class;}
+            $tagtext = '<img src="' . $media_thumbnail . '" ' . $alttag . ' class="img-responsive' . $class . '"' . XHTML . '>';
 
             $link = '';
             if ($alt == 1 && $row['remote_url'] != '') {
