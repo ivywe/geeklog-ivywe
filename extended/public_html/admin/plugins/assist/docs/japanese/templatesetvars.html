@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css " title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css " title="Dev Stylesheet">
 </head>
-
+<!-- admin/plugins/assist/docs/japanese/templatesetvars.html 20160412 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
@@ -21,7 +21,7 @@
 <h1><a href="index.html">Assist プラグイン</h1>
 
 
-<h2><a name="templatesetvars">テーマ変数</a>(2013/03/22	 update)</h2>
+<h2><a name="templatesetvars">テーマ変数</a>(2016/04/12	update)</h2>
 <table>
 <tr>
 	<th style="width:20%">画面</th>
@@ -130,6 +130,15 @@ stories_col<br/>
 	</td>
 <td>
 day,new_img,url,title,meta_description,introtext
+<br/>class<a title="class=”row1” or class=”row2”" class="note_super" href="#notetext_6">*6</a>
+<br/>permission,class_a,class_c<a title="記事のREAD権がない場合は、permission=0　class_a=assist_nolink class_a=assist_displaynon" class="note_super" href="#notetext_7">*7</a>
+<br/>topics,topicslink<a title="話題列挙の区切りはLANG_ASSIST['topic_separater']で指定しています。 
+READ権のない話題はリンクしません。" class="note_super" href="#notetext_8">*8</a>
+<br/>topicids,topicidslink<a title="話題ID列挙の区切りはLANG_ASSIST['topic_separater_id']で指定しています。 
+READ権のない話題はリンクしません。" class="note_super" href="#notetext_9">*9</a>
+<br/>topicidspipeline<a title="IDパイプライン区切は |で区切ます。" class="note_super" href="#notetext_10">*10</a>
+<br/>topics_li,topicslink_li,topicsids_li,topicsidslink_li<a title="liタグ使用 " class="note_super" href="#notetext_11">*11</a>
+
 </td>
 </tr>
 
@@ -238,6 +247,30 @@ Geeklogのコンフィギュレーション設定でFacebook OAuth Application I
 話題アイコン
 または<a title="Assistプラグインのコンフィギュレーション設定" class="note_super" href="assist.html#desc_default_img_url">Assistデフォルト画像</a>
 またはロゴ画像
+
+名称列挙の区切りはLANG_DATABOX['category_separater']で指定しています。
+　　表示例　日本 / アメリカ / イギリス
+コード列挙の区切りはLANG_DATABOX['category_separater_code']で指定しています。
+　　表示例　japan america england
+コードパイプライン区切は |で区切ます。
+　　表示例　japan|america|england
+
+<br/><a class="note_super" href="#notetext_6" id="notetext_6">*6</a>
+class="row1" or class="row2"
+
+<br/><a class="note_super" href="#notetext_7" id="notetext_7">*7</a>
+記事のREAD権がない場合は、permission=0　class_a=assist_nolink class_a=assist_displaynon
+
+<br/><a class="note_super" href="#notetext_8" id="notetext_8">*8</a>
+話題列挙の区切りはLANG_ASSIST['topic_separater']で指定しています。 
+READ権のない話題はリンクしません。
+<br/><a class="note_super" href="#notetext_9" id="notetext_9">*9</a>
+話題ID列挙の区切りはLANG_ASSIST['topic_separater_id']で指定しています。 
+READ権のない話題はリンクしません。
+<br/><a class="note_super" href="#notetext_10" id="notetext_10">*10</a>
+IDパイプライン区切は |で区切ます。 
+<br/><a class="note_super" href="#notetext_11" id="notetext_11">*11</a>
+liタグ使用 
 
 <div class="footer">
     <a href="http://wiki.geeklog.net/">Geeklogドキュメント作成プロジェクト</a>、<a href="http://wiki.geeklog.jp/">Geeklogドキュメント日本語版作成プロジェクト</a><br />

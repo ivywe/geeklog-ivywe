@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css " title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css " title="Dev Stylesheet">
 </head>
-
+<!-- admin/plugins/assist/docs/japanese/autotags.html 20160412 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
@@ -21,7 +21,7 @@
 <h1><a href="index.html">Assist プラグイン</h1>
 
 
-<h2><a name="autotags">自動タグ</a>(2013/08/28 update)</h2>
+<h2><a name="autotags">自動タグ</a>(2016/04/12 update)</h2>
 <table>
 <tr><th style="width:25%">書式</th>
     <th style="width:75%">説明</th>
@@ -146,9 +146,10 @@ idが指定されていない場合は、blockpage が指定されたものと�
 例1:[assist:newstories] 話題はコンフィギュレーション設定のデフォルトトピック、設定されてない場合はALL<br />
 例2:[assist:newstories topics:news rss_file:news.rss title_trim_length:50 intervalday:70 limitcnt:40 newmarkday:30 thtml:xxxx]<br />
 例3:話題news を全件表示  [assit:newstories topics:news intervalday:0]<br />
-例4:話題news を/テーマ/xxxx/ のテンプレートで表示  [assist:newstories topics:news thtml:xxxx]<br />
+例4:話題news を/テーマ/xxxx/ のテンプレートで表示  [assist:newstories topics:news templatedir:xxxx]<br />
 例5:[assist:newstories topics:ALL]　全話題<br />
 例6:[assist:newstories topics:news|General]　話題の複数指定<br />
+例7:[assist:newstories permission:ignore]　アクセス権のないデータも表示します。ただしリンクはしません。<br />
 </td>
 </tr>
 

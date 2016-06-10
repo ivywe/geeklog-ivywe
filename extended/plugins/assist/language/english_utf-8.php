@@ -70,6 +70,8 @@ $LANG_ASSIST['home']="HOME";
 $LANG_ASSIST['view']="View";
 $LANG_ASSIST['articles']="Articles";
 
+$LANG_ASSIST['topic_separater']=" / ";
+$LANG_ASSIST['topic_separater_id']=" ";
 ###############################################################################
 # admin/plugins/
 
