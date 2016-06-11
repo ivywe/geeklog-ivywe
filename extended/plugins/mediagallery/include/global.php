@@ -280,7 +280,7 @@ function MG_globalAlbumAttributeEditor($adminMenu=0)
     $tn_size_select .= '<option value="10">' . $LANG_MG01['crop_small'] . '</option>';
     $tn_size_select .= '<option value="11">' . $LANG_MG01['crop_medium'] . '</option>';
     $tn_size_select .= '<option value="12">' . $LANG_MG01['crop_large'] . '</option>';
-    $tn_size_select .= '<option value="12">' . $LANG_MG01['crop_custom'] . '</option>';
+    $tn_size_select .= '<option value="13">' . $LANG_MG01['crop_custom'] . '</option>';
     $tn_size_select .= '</select>';
 
     $tnheight_input = '<input type="text" size="3" name="tnheight" value=""' . XHTML . '>';
