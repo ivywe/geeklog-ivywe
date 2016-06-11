@@ -276,11 +276,6 @@ function plugin_getheadercode_assist()
 	$jstxtfile = $_CONF['path'] . 'plugins/assist/custom/javascript/javascript.txt';
 	if (file_exists($jstxtfile)) {
 		$txt= file_get_contents($jstxtfile);
-	}else{	
-		$jstxtfile = $_CONF['path'] . 'plugins/assist/javascript/javascript.txt';
-		if (file_exists($jstxtfile)) {
-			$txt= file_get_contents($jstxtfile);
-		}
 	}
 	if  ($txt<>""){
 		$_SCRIPTS->setJavaScript($txt);
