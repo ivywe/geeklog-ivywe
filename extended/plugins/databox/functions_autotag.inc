@@ -2019,27 +2019,56 @@ function databox_data(
             $wary = COM_getUserDateTimeFormat($A['modified_un']);
             $templates->set_var ('modified',$wary[0]);
             $templates->set_var ('modified_shortdate', strftime( $_CONF['shortdate'], $A['modified_un'] ));
-        
+            $templates->set_var ('modified_date', strftime( $_CONF['date'], $A['modified_un'] ));
+            $templates->set_var ('modified_daytime', strftime( $_CONF['daytime'], $A['modified_un'] ));
+            $templates->set_var ('modified_dateonly', strftime( $_CONF['dateonly'], $A['modified_un'] ));
+            $templates->set_var ('modified_timeonly', strftime( $_CONF['timeonly'], $A['modified_un'] ));
+            $templates->set_var ('modified_b', strftime( "%b" , $A['modified_un']));
+            $templates->set_var ('modified_B', strftime( "%B" , $A['modified_un']));
             //作成日付
             $templates->set_var('lang_created', $LANG_DATABOX_ADMIN['created']);
             $wary = COM_getUserDateTimeFormat($A['created_un']);
             $templates->set_var ('created', $wary[0]);
             $templates->set_var ('created_shortdate', strftime( $_CONF['shortdate'], $A['created_un'] ));
+            $templates->set_var ('created_date', strftime( $_CONF['date'], $A['created_un'] ));
+            $templates->set_var ('created_daytime', strftime( $_CONF['daytime'], $A['created_un'] ));
+            $templates->set_var ('created_dateonly', strftime( $_CONF['dateonly'], $A['created_un'] ));
+            $templates->set_var ('created_timeonly', strftime( $_CONF['timeonly'], $A['created_un'] ));
+            $templates->set_var ('created_b', strftime( "%b" , $A['created_un']));
+            $templates->set_var ('created_B', strftime( "%B" , $A['created_un']));
             //公開日
             $templates->set_var('lang_released', $LANG_DATABOX_ADMIN['released']);
             $wary = COM_getUserDateTimeFormat($A['released_un']);
             $templates->set_var ('released', $wary[0]);
             $templates->set_var ('released_shortdate', strftime( $_CONF['shortdate'], $A['released_un'] ));
+            $templates->set_var ('released_date', strftime( $_CONF['date'], $A['released_un'] ));
+            $templates->set_var ('released_daytime', strftime( $_CONF['daytime'], $A['released_un'] ));
+            $templates->set_var ('released_dateonly', strftime( $_CONF['dateonly'], $A['released_un'] ));
+            $templates->set_var ('released_timeonly', strftime( $_CONF['timeonly'], $A['released_un'] ));
+            $templates->set_var ('released_b', strftime( "%b" , $A['released_un']));
+            $templates->set_var ('released_B', strftime( "%B" , $A['released_un']));
             //公開終了日
             $templates->set_var('lang_expired', $LANG_DATABOX_ADMIN['expired']);
             if ($A['expired'] ==="0000-00-00 00:00:00"){
                 $templates->set_var ('expired', "");
                 $templates->set_var ('expired_shortdate', "" );
+                $templates->set_var ('expired_date', "" );
+                $templates->set_var ('expired_daytime', "" );
+                $templates->set_var ('expired_dateonly', "" );
+                $templates->set_var ('expired_timeonly', "" );
+                $templates->set_var ('expired_b', "" );
+                $templates->set_var ('expired_B', "" );
             }else{
                 $wary = COM_getUserDateTimeFormat($A['expired_un']);
                 $templates->set_var ('expired', $wary[0]);
                 $templates->set_var ('expired_shortdate', strftime( $_CONF['shortdate'], $A['expired_un'] ));
-            }
+                $templates->set_var ('expired_date', strftime( $_CONF['date'], $A['expired_un'] ));
+                $templates->set_var ('expired_daytime', strftime( $_CONF['daytime'], $A['expired_un'] ));
+                $templates->set_var ('expired_dateonly', strftime( $_CONF['dateonly'], $A['expired_un'] ));
+                $templates->set_var ('expired_timeonly', strftime( $_CONF['timeonly'], $A['expired_un'] ));
+                $templates->set_var ('expired_b', strftime( "%b" , $A['expired_un']));
+                $templates->set_var ('expired_B', strftime( "%B" , $A['expired_un']));
+             }
         
             $templates->set_var ('lang_uuid', $LANG_DATABOX_ADMIN['uuid']);
             $templates->set_var ('uuid', $uuid);

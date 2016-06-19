@@ -91,41 +91,70 @@
           </tr>
           <tr>
             <th style="width:20%" class="uk-text-left">{lang_created}</th>
-            <td class="uk-text-success" style="width:20%;">&#123;created&#125;&nbsp;</td>
-            <td class="uk-text-break">{created}</td>
-            <td class="uk-text-success" style="width:5%">Basic</td>
-          </tr>
-          <tr>
-            <th style="width:20%" class="uk-text-left">{lang_created_shortdate}</th>
-            <td class="uk-text-success" style="width:20%;">&nbsp;&#123;created_shortdate&#125;</td>
-            <td class="uk-text-break">{created_shortdate}</td>
+            <td class="uk-text-success" style="width:20%;">
+							&#123;created&#125;<br{xhtml}>
+							&#123;created_shortdate&#125;<br{xhtml}>
+			        &#123;created_date&#125;<br{xhtml}>
+			        &#123;created_daytime&#125;<br{xhtml}>
+			        &#123;created_dateonly&#125;<br{xhtml}>
+			        &#123;created_timeonly&#125;<br{xhtml}>
+			        &#123;created_b&#125;<br{xhtml}>
+			        &#123;created_B&#125;</td>
+            <td class="uk-text-break">
+							{created}<br{xhtml}>
+							{created_shortdate}<br{xhtml}>
+							{created_date}<br{xhtml}>
+							{created_daytime}<br{xhtml}>
+							{created_dateonly}<br{xhtml}>
+							{created_timeonly}<br{xhtml}>
+							{created_b}<br{xhtml}>
+							{created_B}</td>
             <td class="uk-text-success" style="width:5%">Basic</td>
           </tr>
           <tr>
             <th style="width:20%" class="uk-text-left">{lang_released}</th>
-            <td class="uk-text-success" style="width:20%;">&#123;released&#125;</td>
-            <td class="uk-text-break">{released}</td>
-            <td class="uk-text-success" style="width:5%">Basic</td>
-          </tr>
-          <tr>
-            <th style="width:20%" class="uk-text-left">{lang_released_shortdate}</th>
-            <td class="uk-text-success" style="width:20%;">&#123;released_shortdate&#125;</td>
-            <td class="uk-text-break">{released_shortdate}</td>
+            <td class="uk-text-success" style="width:20%;">
+							&#123;released&#125;<br{xhtml}>
+							&#123;released_shortdate&#125;<br{xhtml}>
+			        &#123;released_date&#125;<br{xhtml}>
+			        &#123;released_daytime&#125;<br{xhtml}>
+			        &#123;released_dateonly&#125;<br{xhtml}>
+			        &#123;released_timeonly&#125;<br{xhtml}>
+			        &#123;released_b&#125;<br{xhtml}>
+			        &#123;released_B&#125;</td>
+            <td class="uk-text-break">
+							{released}<br{xhtml}>
+							{released_shortdate}<br{xhtml}>
+							{released_date}<br{xhtml}>
+							{released_daytime}<br{xhtml}>
+							{released_dateonly}<br{xhtml}>
+							{released_timeonly}<br{xhtml}>
+							{released_b}<br{xhtml}>
+							{released_B}</td>
             <td class="uk-text-success" style="width:5%">Basic</td>
           </tr>
           <tr>
             <th style="width:20%" class="uk-text-left">{lang_expired}</th>
-            <td class="uk-text-success" style="width:20%;">&#123;expired&#125;</td>
-            <td class="uk-text-break">{expired}</td>
+            <td class="uk-text-success" style="width:20%;">
+							&#123;expired&#125;<br{xhtml}>
+							&#123;expired_shortdate&#125;<br{xhtml}>
+			        &#123;expired_date&#125;<br{xhtml}>
+			        &#123;expired_daytime&#125;<br{xhtml}>
+			        &#123;expired_dateonly&#125;<br{xhtml}>
+			        &#123;expired_timeonly&#125;<br{xhtml}>
+			        &#123;expired_b&#125;<br{xhtml}>
+			        &#123;expired_B&#125;</td>
+            <td class="uk-text-break">
+							{expired}<br{xhtml}>
+							{expired_shortdate}<br{xhtml}>
+							{expired_date}<br{xhtml}>
+							{expired_daytime}<br{xhtml}>
+							{expired_dateonly}<br{xhtml}>
+							{expired_timeonly}<br{xhtml}>
+							{expired_b}<br{xhtml}>
+							{expired_B}</td>
             <td class="uk-text-success" style="width:5%">Basic</td>
           </tr>
-          <tr>
-            <th style="width:20%" class="uk-text-left">{lang_expired_shortdate}</th>
-            <td class="uk-text-success" style="width:20%;">&#123;expired_shortdate&#125;</td>
-            <td class="uk-text-break">{expired_shortdate}</td>
-            <td class="uk-text-success" style="width:5%">Basic</td>
-          </tr>
-
           <tr>
             <th style="width:20%" class="uk-text-left">{lang_owner}</th>
             <td class="uk-text-success" style="width:20%;">&#123;owner_name&#125;</td>

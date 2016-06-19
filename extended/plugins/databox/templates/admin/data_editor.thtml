@@ -16,6 +16,7 @@
   <input type="hidden" name="fieldset_name" value="{fieldset_name}"{xhtml}>
 
   {# data #}
+
   <fieldset class="uk-margin-large-top">
     <legend>{lang_basicfields}</legend>
 
@@ -193,6 +194,7 @@
   </fieldset>
 
   {# category #}
+<div class="uk-panel uk-panel-box">
   <fieldset class="uk-margin-large-top">
     <legend>{lang_category}</legend>
 
@@ -210,6 +212,7 @@
     <legend>{lang_additionfields}</legend>
     {additionfields}
   </fieldset>
+</div>
 
   {# アクセス権 #}
   <fieldset class="uk-margin-large-top">
