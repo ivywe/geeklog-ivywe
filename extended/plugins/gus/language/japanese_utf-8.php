@@ -119,11 +119,11 @@ $LANG_GUS_builtin_stats = array(
 $LANG_GUS_admin = array(
 	'admin'		=> 'GUS管理',
 	
-	'capture'		=> 'データ取得',
+	'capture'		=> 'データを取得する',
 	'captureon'		=> 'データ取得中です',
 	'captureoff'	=> 'データを取得していません',
-	'turnon'		=> 'データ取得開始',
-	'turnoff'		=> 'データ取得中断',
+	'turnon'		=> 'データ取得を開始する',
+	'turnoff'		=> 'データ取得を中断する',
 
     'instructions'	=> 'The Geeklog Usage Stats [GUS] plugin collects statistics on who visits your site, what browser and operating system they are using, which pages they view, and which links they are clicking to get there. It allows the administrator to browse these stats through a series of tables, getting right down into the data.',
     
@@ -177,7 +177,7 @@ $LANG_GUS_admin = array(
 	'referrer_num_referrer'	=> '一致するリファラー数',
 
 	// Remove Data
-	'remove_data'	=> 'データ削除',
+	'remove_data'	=> 'データを削除する',
 	
 	// Import data
 	'import_data'	=> 'データインポート'
