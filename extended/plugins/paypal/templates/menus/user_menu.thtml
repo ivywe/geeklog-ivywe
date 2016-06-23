@@ -1,0 +1,8 @@
+<div class="paypal_user_menu">
+ {product_list_label} | 
+ <a href="{site_url}/checkout.php">{view_cart}</a> |
+ <a href="{site_url}/purchase_history.php">{my_purchases}</a> |
+ <a href="{site_url}/details.php">{my_details}</a>
+  {memberships} 
+ {admin}
+</div>

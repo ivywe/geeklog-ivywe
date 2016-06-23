@@ -1,0 +1,8 @@
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+	<tr>
+		<td>{ratingtotalsinfo}</td>
+	</tr>
+</table>
+
+<p align="center">{lang_disclaimer}</p>
+

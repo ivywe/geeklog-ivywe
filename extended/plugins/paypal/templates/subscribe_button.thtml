@@ -1,0 +1,15 @@
+<form action="{paypal_url}/cgi-bin/webscr" method="post">
+ <input type="image" src="{site_url}/paypal/images/subscribe.gif" border="0" name="submit" alt="Subscribe via PayPal" />
+ <input type="hidden" name="cmd" value="_xclick-subscriptions" />
+ <input type="hidden" name="business" value="{business}" />
+ <input type="hidden" name="item_name" value="{name}" />
+ <input type="hidden" name="item_number" value="{id}" />
+ <input type="hidden" name="no_shipping" value="1" />
+ <input type="hidden" name="no_note" value="1" />
+ <input type="hidden" name="currency_code" value="{currency}" />
+ <input type="hidden" name="a3" value="{price}" />
+ <input type="hidden" name="p3" value="{count}" />
+ <input type="hidden" name="t3" value="{type}" />
+ <input type="hidden" name="src" value="1" />
+ <input type="hidden" name="custom" value="{user_id}" />
+</form>

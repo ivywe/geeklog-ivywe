@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html{xmlns}>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset={charset}">
+  <link rel="stylesheet" type="text/css" href="{site_url}/css/paypal_120.css"{xhtml}>
+</head>
+<body dir="{direction}">
+<div id="transaction">
+	<div id="details">
+	    <div id="shop_details">
+	        <h2>{shop_name}</h2>
+		    {shop_street1} {br}
+		    {shop_street2}
+		    {shop_postal} {shop_city}
+		    {shop_country}
+			{shop_phone1}
+			{shop_phone2}
+			{shop_fax}
+		    {shop_proid}
+	    </div>
+	    <div id="user_details">
+	        <h2>{user_name}</h2>
+		    {user_street1} {br}
+		    {user_street2} {br}
+		    {user_postal} {user_city} {br}
+		    {user_country}
+	    </div>
+	</div>
+	<div style="clear:both;"></div>
+	<h1>{receipt} {print}</h1>
+    <h3>{product}</h3>
+	<p> {from}</p>
+	<p> {to}</p>
+	<p> {product_details}</p>
+	<p><strong>{paid_on} {price} {currency} {payment_type}</strong></p>
+</div>
+</body>
+</html>

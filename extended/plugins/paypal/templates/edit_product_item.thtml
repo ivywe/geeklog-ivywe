@@ -1,0 +1,13 @@
+ <tr>
+  <td align="center" valign="top" style="border:1px solid #CCC;">
+   <a style="text-decoration: none{display}" onclick="window.open(this.href,'','resizable=no,location=no,menubar=no,scrollbars=no,status=no,toolbar=no,fullscreen=no,dependent=no,width=230,height=230,status'); return false" href="{site_url}/paypal/timthumb.php?src={small_pic}&amp;w=200&amp;h=200&amp;zc=1&amp;q=100"><img src="{site_url}/paypal/timthumb.php?src={small_pic}&amp;w=20&amp;h=20&amp;zc=1&amp;q=100" alt="{name}" style="border: none" /></a>
+  </td>
+  <td valign="top" style="border:1px solid #CCC; width:100%;">
+   <b><a style="ctext-decoration: none; font-size: 1.2em" onClick="elementToggle('product-detail{id}'); return false;" href="#">{name}</a>&nbsp;</b> <div style="float:right"> <input type="image" src="{site_url}/paypal/images/edit.png" name="id" value="{id}" align="absmiddle" /></div>
+   <div id="product-detail{id}" style="display:none">
+   <div>{price_label} {currency} {price}</div>
+   <div>{short_description}</div>
+   <div>{description}</div>
+   </div>
+  </td>
+ </tr>

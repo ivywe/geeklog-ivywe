@@ -1,0 +1,21 @@
+<form action="{site_url}/admin/plugins/paypal/subscriptions.php" method="POST" class="paypal_form">
+{id}
+  <fieldset style="margin-top: 10px;"><legend><b>{informations}</b></legend>  	
+	<h2>{product_id_label} {product_id_select}</h2>	
+	<h2>{user_id_label}<font color="red">*</font> {user_select}</h2> 
+	<h2>{txn_id_label} <input type="text" name="txn_id" value="{txn_id}" size="80" maxlength="255" READONLY {xhtml}></h2>
+	<h2>{purchase_date_label}<font color="red">*</font> <input type="text" id="purchase_date" name="purchase_date" value="{purchase_date}" size="80" maxlength="80" {xhtml}></h2>
+	<h2>{expiration_label}<font color="red">*</font> <input type="text" id="expiration" name="expiration" value="{expiration}" size="80" maxlength="80" {xhtml}></h2></h2>
+	<h2>{price_label} <input type="text" name="price" value="{price}" size="20" maxlength="20" {xhtml}>  {currency}</h2>
+	<h2>{status_label}<input type="text" name="status" value="{status}" size="20" maxlength="20" READONLY {xhtml}></h2>
+	<h2>{add_to_group_label}<font color="red">*</font> <select name="add_to_group">{add_to_group_options}</select></h2>
+	<h2>{notification_label} {notification_select}</h2>
+  </fieldset>
+	
+    <p><strong><font color="red">*</font><em> {required_field}</em></strong></p>
+    <select name="mode">
+	<option value="save" selected="selected">{save_button}</option>
+    <option value="delete">{delete_button}</option>
+	</select>
+    <input type="submit" name="submit" value="{ok_button}" {xhtml}>
+</form>

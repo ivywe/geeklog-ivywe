@@ -1,0 +1,5 @@
+<!-- cart_end.thtml -->
+
+        <tr>
+		  <td id="jcart-footer" colspan="4">
+		  <p><span id="jcart-subtotal">{subtotal}</span></p>

@@ -1,0 +1,5 @@
+<div style="clear:both"></div>
+
+{products_total}
+<p><div style="align: center">{pagination}</div></p>
+</div>

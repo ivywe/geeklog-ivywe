@@ -1,0 +1,4 @@
+{category_heading}
+<table class="categories">
+{categories}
+</table>

@@ -1,0 +1,22 @@
+ <div class="product-list-item-contener uk-width-medium-1-1" style="min-height: 200px;">
+	<div class="product-list-item uk-panel uk-panel-box uk-panel-box-primary" style="min-height: 230px;">
+	  <div class="product-list-description">
+		<div style="float:right;"><p>{rating}</p></div>
+		<h3>{link_name}</h3>{edit} 
+		<div id="product-list-image">
+		  {small_pic}
+	    </div>
+		<div id="product-list-details">
+		<p class="product-list-short_description">{hidden}{short_description}</p>
+		{item_id}
+		<p class="product-list-details">{details}</p>
+        <p><span class="product-list-price">{price_ref}  {discount} {price} {currency} {free_shipping}</span></p>
+		{add2cart}{customisable}{login}
+		</div>
+	  </div>
+	  <div style="clear:both; text-align:center;"></div>
+	</div>
+</div>
+
+
+

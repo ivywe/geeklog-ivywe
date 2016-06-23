@@ -1,0 +1,173 @@
+{adveditor}
+
+<div class="tabs">
+<!-- tabs -->
+<ul class="tabNavigation">
+<li><a href="#product">{informations}</a></li>
+<li><a href="#attributes">{customisation}</a></li>
+</ul>
+
+<!-- tab containers -->
+<div id="product" style="padding:5px 10px;">
+	
+<form action="{site_url}/admin/plugins/paypal/product_edit.php" method="POST" enctype="multipart/form-data"  class="paypal_form">
+{id}{product_type}
+  <fieldset style="margin-top: 10px;"><legend><b>{informations}</b></legend>
+  	<h2>{item_id_label} <input type="text" name="item_id" value="{item_id}" size="20" maxlength="80" {xhtml}></h2>
+	<h2>{name_label}<font color="red">*</font> <input type="text" name="name" value="{name}" size="80" maxlength="255" {xhtml}></h2>
+    
+	<h2>{short_description_label}<font color="red">*</font> <input type="text" name="short_description" value="{short_description}" size="80" maxlength="255" {xhtml}></h2>
+    
+	<h2>{category_label}
+	<select name="category">{categories}</select> </h2>
+	
+	<h2>{description_label}</h2>
+    <div style="margin-bottom:15px;"><p><textarea rows="12" id="description" name="description" cols="44">{description}</textarea></p></div>
+	
+	<h2>{price_label}<font color="red">*</font> <input type="text" name="price" value="{price}" size="20" maxlength="20" {xhtml}>  {currency} </h2>
+	<p><small>{price_edit}</small></p>
+	
+  </fieldset>
+
+  <fieldset style="margin-top: 10px;"><legend><a style="text-decoration: none;" onClick="elementToggle('discount'); return false;" href="#"><b>{discount_label}</b></a></legend>
+    <div id="discount" style="display:none;">
+	<p><label>{discount_a_label}</label> <input type="text" name="discount_a" value="{discount_a}" size="10" maxlength="10" {xhtml}> {currency}</p>
+	<p>{price_edit}</p>
+	<p><label>{discount_p_label}</label> <input type="text" name="discount_p" value="{discount_p}" size="10" maxlength="10" {xhtml}> &#37;</p>
+	<p>{discount_legend}</p>
+	<p><label>{price_ref_label}</label> <input type="text" name="price_ref" value="{price_ref}" size="20" maxlength="20" {xhtml}>  {currency} </p>
+	<p>{price_ref_edit} {price_edit}</p>
+	</div>
+
+  </fieldset>
+
+  <fieldset style="margin-top: 10px;"><legend><b>{access_display}</b></legend>	
+	<h2>{logged_to_purchase} <select name="logged">
+     <option value="0"{logged_no}>{no}</option>
+     <option value="1"{logged_yes}>{yes}</option>
+	 </select></h2>
+	 
+	<h2>{hidden} <select name="hidden">
+     <option value="0"{hidden_no}>{no}</option>
+     <option value="1"{hidden_yes}>{yes}</option>
+	 </select></h2>
+	
+	<h2>{active} <select name="active">
+     <option value="0"{active_no}>{no}</option>
+     <option value="1"{active_yes}>{yes}</option>
+	 </select></h2>
+	 
+	<h2>{show_in_blocks} <select name="show_in_blocks">
+     <option value="0"{show_in_blocks_no}>{no}</option>
+     <option value="1"{show_in_blocks_yes}>{yes}</option>
+	 </select></h2>
+  </fieldset>
+  
+  <fieldset style="margin-top: 10px;"><legend><b>{customisation}</b></legend>	
+	<h2>{customisable} <select name="customisable">
+     <option value="0"{customisable_no}>{no}</option>
+     <option value="1"{customisable_yes}>{yes}</option>
+	 </select></h2>
+  </fieldset>
+    
+  <fieldset style="margin-top: 10px;"><legend><b>{lang_images}</b></legend>
+    {saved_images}
+    {image_form_elements}
+  </fieldset>
+  
+  <fieldset style="margin-top: 10px; {display_product}"><legend><b>{delivery_info_label}</b></legend>
+  
+    <p>
+      <label>{prod_type}</label>
+      <!-- BEGIN ProdTypeRadio -->
+        <input type="radio" name="product_type" value="{type_val}" {type_sel}
+            onclick="PP_changeProdType(this.value)"
+        {xhtml}>&nbsp;{type_txt}&nbsp;&nbsp;
+      <!-- END ProdTypeRadio -->
+    </p>
+	
+    <div id="type_download">
+		<p>
+        <label>{filename_label}</label> <select name="file">
+		  <option value="">-- {select_file} --</option>
+		  {file_selection}
+		</select></p>
+		
+		<!-- Not Yet Supported
+		<p>
+        <label>{upload_new}</label>
+		 <input type="file" name="uploadfile" {xhtml}>
+        </p>		 
+		 <div id="r"></div>
+		-->
+		
+		<p>
+        <label>{expiration_label}</label> <input type="text" name="expiration" value="{expiration}" size="5" maxlength="20" {xhtml}></p>
+    </div>
+
+    <div id="type_physical">
+    <p>
+      <label>{weight_label}</label>
+      <input type="text" name="weight" value="{weight}" {xhtml}>
+	  <p><small>{price_edit}</small></p>
+    </p>
+
+    <p>
+     <label>{shipping_type}</label>
+      <select name="shipping_type">
+        {shipping_options}
+      </select>
+    </p>
+    </div>
+
+  </fieldset>
+  
+  <fieldset style="margin-top: 10px; {display_subscription}"><legend><b>{subscription_product_label}</b></legend>
+    <h2>{duration_label}<font color="red">*</font> <input type="text" name="duration" size="5" value="{duration}" {xhtml}>
+    <select name="duration_type">
+      <option value="day" {sel_day}>{day}</option>
+      <option value="week" {sel_week}>{week}</option>
+      <option value="month" {sel_month}>{month}</option>
+      <option value="year" {sel_year}>{year}</option>
+    </select></h2>
+
+    <h2>{add_to_group_label} <select name="add_to_group">{add_to_group_options}</select></h2>
+    
+  </fieldset>
+
+	<fieldset style="margin-top: 10px;"><legend><a style="text-decoration: none;" onClick="elementToggle('lang_accessrights'); return false;" href="#"><b>{lang_accessrights}</b></a></legend>
+		<div id="lang_accessrights" style="display:none;">
+		<div><p>{lang_owner}: {owner_name}<input type="hidden" name="owner_id" value="{owner_id}"{xhtml}></p></div>
+		<div><p>{lang_group}: {group_dropdown}</p></div>
+		</div>
+	</fieldset>
+
+	<fieldset style="margin-top: 10px;"><legend><a style="text-decoration: none;" onClick="elementToggle('lang_permissions'); return false;" href="#"><b>{lang_permissions}</b></a></legend>
+		<div id="lang_permissions" style="display:none;">
+		<p>{lang_perm_key}</p>
+		<p>{permissions_editor}</p>
+		<p>{lang_permissions_msg}</p>
+		</div>
+	</fieldset>
+	
+    <p><strong><font color="red">*</font><em> {required_field}</em></strong></p>
+
+    <select name="op" >
+	<option value="save" selected="selected">{save_button}</option>
+    <option value="delete">{delete_button}</option>
+	</select>
+    <input type="submit" name="submit" value="{ok_button}" {xhtml}>
+
+</form>
+
+</div>
+<div id="attributes">
+  <div id="load" style="padding:30px;" align="center"><img src="images/loading.gif" width="28" height="28" align="absmiddle"/> Loading...</div>
+  <fieldset style="margin-top: 10px;"><legend><b>{customisation}</b></legend>	
+	<div id="attributes_actions">
+		<div id="attributes_list">{attributes}</div>
+		<div id="add_attributes">{add_attributes}</div>
+	</div>
+  </fieldset>
+</div>
+</div>

@@ -1,0 +1,6 @@
+
+<!-- cart_block_start.thtml -->
+<div id="jcart_block">
+  <p><strong id="jcart-title">{cart_title}</strong> ({itemcount})</p>
+  <form method="post" action="{form_action}">
+	  <table class="uk-table">

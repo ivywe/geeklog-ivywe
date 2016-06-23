@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html{xmlns}>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset={charset}">
+  <link rel="stylesheet" type="text/css" href="{site_url}/css/paypal_120.css"{xhtml}>
+</head>
+<body dir="{direction}">
+<div id="transaction">
+	<table border="0" width="100%" cellspacing="3" cellpadding="2">
+	<tr  valign="top">
+	    <td>
+	        <h2>{shop_name}</h2>
+		    {shop_street1} {br}
+		    {shop_street2}
+		    {shop_postal} {shop_city}
+		    {shop_country}
+			{shop_phone1}
+			{shop_phone2}
+			{shop_fax}
+		    {shop_proid}
+	    </td>
+	    <td>
+			<h2>{user_name}</h2>
+		    {user_street1} {br}
+		    {user_postal} {user_city} {br}
+		    {user_country}
+	    </td>
+	</tr>
+    </table>
+	<h2>{receipt}</h2>
+    <table border="0" width="100%" cellspacing="2" cellpadding="3">
+		<th align="left" nowrap>{product_name}</th>
+		<th align="left" nowrap>{unit_price_label}</th>
+		<th nowrap>{quantity}</th>
+		<th align="left" nowrap>{total_row_label}</th>
+
+		<!-- BEGIN tablerow -->	
+		<tr valign="top" style="background:#ccc;">
+			<td width="100%">{product}</td>
+			<td align="right" nowrap>{unit_price}</td>
+			<td align="center" nowrap>{qty}</td>
+			<td align="right" nowrap>{total_row}</td>
+		</tr>
+		<!-- END tablerow -->
+		<tr valign="top">
+			<td style="border-top:1px solid #CCC;" align="right" colspan="4" nowrap><strong>{total_price_label}</strong> {total_price} {currency}</td>
+		</tr>
+	</table>
+	<p>{paid_on} {payment_type}</p>
+</div>
+</body>
+</html>

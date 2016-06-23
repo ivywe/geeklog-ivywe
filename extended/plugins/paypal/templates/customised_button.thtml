@@ -1,0 +1,12 @@
+<div class="button_add_to_cart">
+ <form style="display: inline" action="" method="post" class="jcart">
+  {attributes}
+  <input type="submit" value="{add_to_cart}" border="0" name="submit" />
+  <input type="hidden" name="add" value="1" />
+  <input type="hidden" name="item_name" value="{name_button}" />
+  <input type="hidden" name="item_number" value="{id}" />
+  <input type="hidden" name="item_ref" value="{item_ref}" />
+  <input type="hidden" name="amount" value="{price2}" />
+  <input type="hidden" name="item_weight" value="{item_weight}" />
+ </form>
+</div>

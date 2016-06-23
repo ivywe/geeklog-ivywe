@@ -1,0 +1,7 @@
+ <tr>
+  <td><a href="{site_url}/paypal/product_detail.php?product={product_id}">{product}</a></td>
+  <td><a href="{site_url}/users.php?mode=profile&uid={user_id}">{username}</a></td>
+  <td><a href="{site_url}/admin/plugins/paypal/ipnlog.php?op=single&txn_id={txn_id}">{txn_id}</a></td>
+  <td>{purchase_date}</td>
+  <td>{expiration}</td>
+ </tr>

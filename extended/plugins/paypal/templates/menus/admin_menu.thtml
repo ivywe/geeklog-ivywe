@@ -1,0 +1,8 @@
+<div class="paypal_user_menu"> 
+ <a href="{site_url}/admin/plugins/paypal/purchase_history.php">{purchase_history}</a> | 
+ <a href="{site_url}/admin/plugins/paypal/subscriptions.php">{subscriptions}</a> | 
+ <a href="{site_url}/admin/plugins/paypal/index.php">{product_list_label}</a> |
+ <a href="{site_url}/admin/plugins/paypal/downloads_history.php">{downloads_history}</a> | 
+ <a href="{site_url}/admin/plugins/paypal/ipnlog.php">{view_IPN_log}</a> |
+ <a href="{paypal_url}/index.php">{store}</a>
+</div>

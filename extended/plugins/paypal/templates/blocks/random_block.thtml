@@ -1,0 +1,7 @@
+<div id="paypal_random_block">
+  <p>
+	{small_pic}
+  <p>
+  <small><a href="{site_url}/product_detail.php?product={item_id}">{item_name}</a> | {price}</small>
+  </p>
+ </div>

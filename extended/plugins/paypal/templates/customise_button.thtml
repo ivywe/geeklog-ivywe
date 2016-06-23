@@ -1,0 +1,5 @@
+<div class="button_customise">
+ <form style="display: inline" action="{product_page}" method="post">
+  <input type="submit" value="{customise}" border="0" name="submit" />
+ </form>
+</div>

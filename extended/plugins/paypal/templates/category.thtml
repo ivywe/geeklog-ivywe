@@ -1,0 +1,5 @@
+  <td width="{width}%">
+      <h3><a href="{category_link}">{category_name}</a></h3>
+	  {cat_image}
+	  {cat_description}
+  </td>

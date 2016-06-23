@@ -1,0 +1,11 @@
+<p>{address_name},</p>
+<p>{thank_you}</p>
+{products}
+<p></p>
+<p>{send_check}</p>
+{shop_informations}
+<p></p>
+<p>{thanks}<p>
+<p>{site_name}<br{xhtml}>
+{site_url}</p>
+<p>{order_date}</p>

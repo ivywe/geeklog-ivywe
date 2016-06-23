@@ -1,0 +1,9 @@
+<p>{first_name} {last_name},</p>
+
+<p>{thank_you}:
+   <ul>{products}</ul>
+</p>
+<p>{attached_files}</p>
+<p>{thanks},<p>
+<p>{site_name}<br />
+{site_url}</p>

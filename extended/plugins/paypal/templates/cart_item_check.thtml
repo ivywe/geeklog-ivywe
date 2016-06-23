@@ -1,0 +1,15 @@
+<!-- cart_item.thtml -->
+        <tr>
+		  <td class="jcart-item-name">
+		    &nbsp;{name}
+		  </td>
+		  <td class="jcart-unit-price" nowrap>
+		    <span>{price} {currency_symbol}</span>
+		  </td>
+		  <td class="jcart-item-qty">
+		    {qty}
+		  </td>
+		  <td class="jcart-item-price" nowrap>
+		    <span>{subtotal} {currency_symbol}</span>
+		  </td>
+		</tr>

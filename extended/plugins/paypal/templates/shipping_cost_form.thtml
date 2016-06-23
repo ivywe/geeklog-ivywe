@@ -1,0 +1,33 @@
+<form action="{admin_url}/plugins/paypal/index.php?mode=shipping" method="POST" class="paypal_form">
+	<fieldset style="margin-top: 10px;"><legend><b>{main_settings}</b></legend>
+	
+	{shipping_id}
+	
+	<p><label>{shipper_label}</label>
+	<select name="shipping_shipper_id" >
+	{shipper}
+	</select>
+	</p>
+	
+	<p><label>{shipping_min_label}<font color="red"> *</font></label> <input type="text" name="shipping_min" value="{shipping_min}" size="10" {xhtml}></p>
+	<p><label>{shipping_max_label}<font color="red"> *</font></label> <input type="text" name="shipping_max" value="{shipping_max}" size="10" {xhtml}></p>
+	
+	<p><label>{destination_label}</label>
+	<select name="shipping_destination_id" >
+	{destination}
+	</select>
+	</p>
+	
+	<p><label>{shipping_amt_label}<font color="red"> *</font></label>
+	<input type="text" name="shipping_amt" value="{shipping_amt}" size="40" maxlength="255" {xhtml}></p>
+	</fieldset>
+
+	
+    <p><strong><font color="red">*</font><em> {required_field}</em></strong></p>
+    <select name="op" >
+	<option value="save_shipping_cost" selected="selected">{save_button}</option>
+    {delete_button}
+	</select>
+    <input type="submit" name="submit" value="{ok_button}" {xhtml}>
+    
+</form>

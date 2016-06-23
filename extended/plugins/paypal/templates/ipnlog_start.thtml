@@ -1,0 +1,10 @@
+<table class="plugin" width="100%">
+ <tr>
+  <th>{ID}</th>
+  <th>{IP_address}</th>
+  <th>{date_time}</th>
+  <th>{verified}</th>
+  <th>{txn_id}</th>
+  <th>{payment_status}</th>
+  <th>{purchaser}</th>
+ </tr>

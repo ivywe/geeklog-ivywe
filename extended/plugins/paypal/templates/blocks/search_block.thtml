@@ -1,0 +1,8 @@
+<a href="{site_url}/index.php">{store}</a>
+<form action="{site_url}/index.php" method="GET">
+  <select name="catagory_search" style="width:140px">
+	{options}
+  </select>
+  <input type="text" name="name_search" />
+  <input type="submit" value="{search_button}" />
+</form>

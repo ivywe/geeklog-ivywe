@@ -1,0 +1,18 @@
+<div id="details_form" "style="text-align:right;">
+<form id="informations" name="informations" action="{validation_url}" method="POST" class="details_form">
+    <p class="form_title"><label>{my_details}</label></p>  	
+	<p><label>{name_label}</label> <input type="text" name="name" value="{name}" size="55" maxlength="80" {xhtml}></p>
+	<p><label>{street1_label}</label> <input type="text" name="street1" value="{street1}" size="55" maxlength="50" {xhtml}></p>
+	<p><label>{street2_label}</label> <input type="text" name="street2" value="{street2}" size="55" maxlength="50" {xhtml}></p>
+	<p><label>{postal_label}</label> <input type="text" name="postal" value="{postal}" size="15" maxlength="20" {xhtml}> 
+	<label>{city_label}</label> <input type="text" name="city" value="{city}" size="40" maxlength="30" {xhtml}></p>
+	<p><label>{country_label}</label> <input type="text" name="country" value="{country}" size="55" maxlength="80" {xhtml}></p>
+	<p><label>{phone1_label}</label> <input type="text" name="phone1" value="{phone1}" size="55" maxlength="20" {xhtml}></p>
+	<p><label>{phone2_label}</label> <input type="text" name="phone2" value="{phone2}" size="55" maxlength="20" {xhtml}></p>
+	<p><label>{fax_label}</label> <input type="text" name="fax" value="{fax}" size="55" maxlength="25" {xhtml}></p>
+	<p><label>{contact_label}</label> <input type="text" name="contact" value="{contact}" size="55" maxlength="80" {xhtml}></p>
+	<p><label>{proid_label}</label> <input type="text" name="proid" value="{proid}" size="55" maxlength="20" {xhtml}></p>
+	<p>{uid}{operation}
+    <input type="submit" name="submit" value="{save_button}" {xhtml}></p>
+</form>
+</div>

@@ -1,0 +1,26 @@
+<!-- cart_start.thtml -->
+
+<div id="jcart">
+  {steps}
+  {error_message}
+  {informations}
+	  <table border="0" cellspacing="1px" cellmargin="0" width="100%">
+		<tr>
+		  <th id="jcart-header" colspan="4">
+		  <p class="jcart-header"><strong id="jcart-title">{cart_title}</strong> ({itemcount})</p>
+		  </th>
+		</tr>
+		  <tr>
+		  <td class="jcart-item-header">
+		    {description}
+		  </td>
+		  <td class="jcart-item-header">
+		    {unit_price}
+		  </td>
+		  <td class="jcart-item-header">
+		    {quantity}
+		  </td>
+		<td class="jcart-item-header" style="text-align:right;">
+		    {item_price}
+		  </td>
+		</tr>

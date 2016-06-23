@@ -1,0 +1,9 @@
+<table class="plugin" width="100%">
+ <tr>
+  <th>Product:</th>
+  <th>User:</th>
+  <th>Txn Id:</th>
+  <th>Purchase Date:</th>
+  <th>Expiration:</th>
+ </tr>
+
