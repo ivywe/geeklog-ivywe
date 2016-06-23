@@ -99,7 +99,9 @@
 			        &#123;created_dateonly&#125;<br{xhtml}>
 			        &#123;created_timeonly&#125;<br{xhtml}>
 			        &#123;created_b&#125;<br{xhtml}>
-			        &#123;created_B&#125;</td>
+			        &#123;created_B&#125;<br{xhtml}>
+			        &#123;created_d&#125;<br{xhtml}>
+			        &#123;created_E&#125;</td>
             <td class="uk-text-break">
 							{created}<br{xhtml}>
 							{created_shortdate}<br{xhtml}>
@@ -108,7 +110,9 @@
 							{created_dateonly}<br{xhtml}>
 							{created_timeonly}<br{xhtml}>
 							{created_b}<br{xhtml}>
-							{created_B}</td>
+							{created_B}<br{xhtml}>
+							{created_d}<br{xhtml}>
+							{created_e}</td>
             <td class="uk-text-success" style="width:5%">Basic</td>
           </tr>
           <tr>
@@ -121,7 +125,9 @@
 			        &#123;released_dateonly&#125;<br{xhtml}>
 			        &#123;released_timeonly&#125;<br{xhtml}>
 			        &#123;released_b&#125;<br{xhtml}>
-			        &#123;released_B&#125;</td>
+			        &#123;released_B&#125;<br{xhtml}>
+			        &#123;released_d&#125;<br{xhtml}>
+			        &#123;released_e&#125;</td>
             <td class="uk-text-break">
 							{released}<br{xhtml}>
 							{released_shortdate}<br{xhtml}>
@@ -130,7 +136,9 @@
 							{released_dateonly}<br{xhtml}>
 							{released_timeonly}<br{xhtml}>
 							{released_b}<br{xhtml}>
-							{released_B}</td>
+							{released_B}<br{xhtml}>
+							{released_d}<br{xhtml}>
+							{released_e}</td>
             <td class="uk-text-success" style="width:5%">Basic</td>
           </tr>
           <tr>
@@ -143,7 +151,9 @@
 			        &#123;expired_dateonly&#125;<br{xhtml}>
 			        &#123;expired_timeonly&#125;<br{xhtml}>
 			        &#123;expired_b&#125;<br{xhtml}>
-			        &#123;expired_B&#125;</td>
+			        &#123;expired_B&#125;<br{xhtml}>
+			        &#123;expired_d&#125;<br{xhtml}>
+			        &#123;expired_e&#125;</td>
             <td class="uk-text-break">
 							{expired}<br{xhtml}>
 							{expired_shortdate}<br{xhtml}>
@@ -152,7 +162,9 @@
 							{expired_dateonly}<br{xhtml}>
 							{expired_timeonly}<br{xhtml}>
 							{expired_b}<br{xhtml}>
-							{expired_B}</td>
+							{expired_B}<br{xhtml}>
+							{expired_d}<br{xhtml}>
+							{expired_e}</td>
             <td class="uk-text-success" style="width:5%">Basic</td>
           </tr>
           <tr>
