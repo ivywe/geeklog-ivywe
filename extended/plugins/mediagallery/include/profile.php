@@ -141,8 +141,8 @@ function MG_profileblocksdisplay($uid)
         }
 
         if ($msize == false || $url_thumb == '') {
-            $url_thumb = $_MG_CONF['mediaobjects_url'] . '/empty.png';
-            $msize = getimagesize($_MG_CONF['path_mediaobjects'] . 'empty.png');
+            $url_thumb = $_MG_CONF['mediaobjects_url'] . '/empty.svg';
+            $msize = getimagesize($_MG_CONF['path_mediaobjects'] . 'empty.svg');
         }
 
         $atnsize = '';

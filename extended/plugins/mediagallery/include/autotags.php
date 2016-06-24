@@ -1102,8 +1102,8 @@ function MG_autotags($op, $content = '', $autotag = '')
                     $tnImage = $_MG_CONF['mediaobjects_url'] . '/' . $tfn . $ext;
                     $tnFileName = $_MG_CONF['path_mediaobjects'] . $tfn . $ext;
                 } else {
-                    $tnImage = $_MG_CONF['mediaobjects_url'] . '/empty.png';
-                    $tnFileName = $_MG_CONF['path_mediaobjects'] . 'empty.png';
+                    $tnImage = $_MG_CONF['mediaobjects_url'] . '/empty.svg';
+                    $tnFileName = $_MG_CONF['path_mediaobjects'] . 'empty.svg';
                 }
             }
             $media_size = @getimagesize($tnFileName);

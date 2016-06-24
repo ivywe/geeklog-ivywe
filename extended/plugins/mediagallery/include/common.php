@@ -1008,13 +1008,13 @@ function MG_albumThumbnail($album_id)
 
             $album_last_update  = MG_getUserDateTimeFormat($album_data['last_update']);
             if ($mediasize == false) {
-                $album_last_image = $_MG_CONF['mediaobjects_url'] . '/empty.png';
+                $album_last_image = $_MG_CONF['mediaobjects_url'] . '/empty.svg';
                 $mediasize = @getimagesize($_MG_CONF['path_mediaobjects'] . 'empty.png');
             }
         } else {
             $filename = MG_getAlbumCover($album_id);
             if ($filename == '' || $filename == NULL || $filename == " ") {
-                $album_last_image = $_MG_CONF['mediaobjects_url'] . '/empty.png';
+                $album_last_image = $_MG_CONF['mediaobjects_url'] . '/empty.svg';
                 $mediasize = @getimagesize($_MG_CONF['path_mediaobjects'] . 'empty.png');
             } else {
                 list($album_last_image, $mediasize) = MG_getImageUrl('tn/' . $filename[0] . '/' . $filename);
@@ -1043,7 +1043,7 @@ function MG_albumThumbnail($album_id)
     } else {  // nothing in the album yet...
         $filename = MG_getAlbumCover($album_id);
         if ($filename == '') {
-            $album_last_image = $_MG_CONF['mediaobjects_url'] . '/empty.png';
+            $album_last_image = $_MG_CONF['mediaobjects_url'] . '/empty.svg';
             $mediasize = @getimagesize($_MG_CONF['path_mediaobjects'] . 'empty.png');
         } else {
             list($album_last_image, $mediasize) = MG_getImageUrl('tn/' . $filename[0] . '/' . $filename);

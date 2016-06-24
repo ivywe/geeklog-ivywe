@@ -312,8 +312,8 @@ function MG_albumlastimage(
 	global $_MG_CONF;
 	
     if ( $filename == '' ) {
-		$album_last_image = $_MG_CONF['mediaobjects_url'] . '/empty.png';
-        //$mediasize = @getimagesize($_MG_CONF['path_mediaobjects'] . 'empty.png');
+		$album_last_image = $_MG_CONF['mediaobjects_url'] . '/empty.svg';
+        //$mediasize = @getimagesize($_MG_CONF['path_mediaobjects'] . 'empty.svg');
     } else {
         $mediasize = false;
 		foreach ($_MG_CONF['validExtensions'] as $ext ) {
