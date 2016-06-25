@@ -1,6 +1,6 @@
 <div class="button_add_to_cart">
  <form  method="post" action="#" class="jcart">
-  <input type="submit" value="{add_to_cart}" border="0" name="submit" />
+  <input type="submit" value="{add_to_cart}" border="0" name="submit" class="uk-button uk-button-large uk-form-width-medium" />
   <input type="hidden" name="add" value="1" />
   <input type="hidden" name="item_name" value="{name_button}" />
   <input type="hidden" name="item_number" value="{id}" />
