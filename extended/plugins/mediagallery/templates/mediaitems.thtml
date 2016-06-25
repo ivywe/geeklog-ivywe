@@ -64,9 +64,9 @@ function doUnCheckAll_mediaitems() {
       {include_ss}
     </td>
     <td style="vertical-align:middle;">
-      <div style="margin:4px 2px 0"><input type="text" name="mtitle[]" value="{media_title}" size="30" style="width:80%;"{xhtml}></div>
-      <textarea name="mdesc[]" cols="40" rows="2" style="width:96%;">{media_desc}</textarea><br{xhtml}>
-      <div style="margin:4px 2px 0"><input type="text" name="mkeywords[]" value="{media_keywords}" size="30" style="width:80%;"{xhtml}></div>
+      <div style="margin:4px 2px 0"><input type="text" name="mtitle[]" value="{media_title}" placeholder="タイトル" size="30" style="width:80%;"{xhtml}></div>
+      <textarea name="mdesc[]" cols="40" rows="2" style="width:96%;" placeholder="説明">{media_desc}</textarea><br{xhtml}>
+      <div style="margin:4px 2px 0"><input type="text" name="mkeywords[]" value="{media_keywords}" size="30" style="width:80%;" placeholder="キーワード"{xhtml}></div>
       <div style="margin:4px 2px;">{lang_category}:&nbsp;{cat_select}</div>
     </td>
   </tr>

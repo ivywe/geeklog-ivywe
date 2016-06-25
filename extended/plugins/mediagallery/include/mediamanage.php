@@ -205,7 +205,7 @@ function MG_imageAdmin($album_id, $page, $actionURL = '')
                     //$height = 75;
                     $width = 150;
                     $height = 112;
-                    $thumbnail = $_MG_CONF['mediaobjects_url'] . '/missing.png';
+                    $thumbnail = $_MG_CONF['mediaobjects_url'] . '/missing.svg';
                 }
 
                 $cat_select = '<select name="cat_id[]">';

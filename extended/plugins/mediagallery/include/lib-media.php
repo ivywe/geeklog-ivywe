@@ -824,7 +824,7 @@ function MG_displayJPG($I, $opt=array())
                 $u_image = Media::getFileUrl('disp', $I['media_filename'], 'jpg');
                 $media_size_disp = @getimagesize(Media::getFilePath('disp', $I['media_filename'], 'jpg'));
                 if ($media_size_disp == false) {
-                    $fname = 'missing.png';
+                    $fname = 'missing.svg';
                     $u_image = $_MG_CONF['mediaobjects_url'] . '/' . $fname;
                     $p_image = $_MG_CONF['path_mediaobjects']      . $fname;
                     $media_size_disp = @getimagesize($pimage);

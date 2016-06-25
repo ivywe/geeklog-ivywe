@@ -325,8 +325,8 @@ function MG_albumlastimage(
            }
         }
         if ($mediasize == false ) {
-             $album_last_image = $_MG_CONF['mediaobjects_url'] . '/missing.png';
-             $mediasize = @getimagesize($_MG_CONF['path_mediaobjects'] . 'missing.png');
+             $album_last_image = $_MG_CONF['mediaobjects_url'] . '/missing.svg';
+             $mediasize = @getimagesize($_MG_CONF['path_mediaobjects'] . 'missing.svg');
         }
     }
 	return $album_last_image;

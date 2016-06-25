@@ -181,7 +181,7 @@ class Media {
         }
         $size = @getimagesize($pimage);
         if ($size == false) {
-            $fname = 'missing.png';
+            $fname = 'missing.svg';
             $pimage = $_MG_CONF['path_mediaobjects']      . $fname;
             $image  = $_MG_CONF['mediaobjects_url'] . '/' . $fname;
             $size = @getimagesize($pimage);
@@ -311,7 +311,7 @@ class Media {
                 break;
 
             default:
-                $retval = 'missing.png';
+                $retval = 'missing.svg';
                 break;
         }
 

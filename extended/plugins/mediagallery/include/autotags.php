@@ -1108,8 +1108,8 @@ function MG_autotags($op, $content = '', $autotag = '')
             }
             $media_size = @getimagesize($tnFileName);
             if ($media_size == false) {
-                $tnImage = $_MG_CONF['mediaobjects_url'] . '/missing.png';
-                $tnFileName = $_MG_CONF['path_mediaobjects'] . 'missing.png';
+                $tnImage = $_MG_CONF['mediaobjects_url'] . '/missing.svg';
+                $tnFileName = $_MG_CONF['path_mediaobjects'] . 'missing.svg';
                 $media_size = @getimagesize($tnFileName);
             }
             if ($width > 0 && $height == 0) {
