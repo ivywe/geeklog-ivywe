@@ -18,7 +18,7 @@
 
     <footer id="footer" class="uk-clearfix">
       <div id="footer-content">
-        <p class="uk-float-left uk-text-small">{copyright_notice}</p>
+        <p class="uk-float-left uk-text-small">{copyright_msg}</p>
         <p class="uk-float-right uk-text-small">
           <span>{powered_by}&nbsp;<a href="http://www.geeklog.net/">Geeklog</a></span><br{xhtml}>
           <span>{execution_textandtime}</span>
