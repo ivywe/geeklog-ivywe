@@ -119,7 +119,7 @@ $LANG_GUS_builtin_stats = array(
 $LANG_GUS_admin = array(
 	'admin'		=> 'GUS管理',
 	
-	'capture'		=> 'データを取得する',
+	'capture'		=> 'データ取得状況',
 	'captureon'		=> 'データ取得中です',
 	'captureoff'	=> 'データを取得していません',
 	'turnon'		=> 'データ取得を開始する',
