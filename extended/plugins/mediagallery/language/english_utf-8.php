@@ -1586,7 +1586,7 @@ $LANG_configselects['mediagallery'] = array(
     9 => array('True' => 1, 'False' => 0, 'Lightbox ' => 2),
     10 => array($LANG_MG01['left_blocks_only'] => 0, $LANG_MG01['right_blocks_only'] => 1, $LANG_MG01['left_right_blocks'] => 2, $LANG_MG01['none'] => 3),
     11 => array($LANG_MG01['include_small'] => 0, $LANG_MG01['include_medium'] => 1, $LANG_MG01['include_large'] => 2, $LANG_MG01['include_custom'] => 3,
-                $LANG_MG01['crop_small'] => 10, $LANG_MG01['crop_medium'] => 11, $LANG_MG01['crop_large'] => 12, $LANG_MG01['crop_custom'] => 12),
+                $LANG_MG01['crop_small'] => 10, $LANG_MG01['crop_medium'] => 11, $LANG_MG01['crop_large'] => 12, $LANG_MG01['crop_custom'] => 13),
     12 => array('No access' => 0, 'Read-Only' => 2, 'Read-Write' => 3),
     13 => array($LANG_MG01['mgflv'] => 0, $LANG_MG01['flowplayer'] => 1),
     14 => array($LANG_MG01['play_in_popup'] => 0, $LANG_MG01['download_to_local'] => 1, $LANG_MG01['play_inline'] => 2, $LANG_MG01['use_mms'] => 3),
