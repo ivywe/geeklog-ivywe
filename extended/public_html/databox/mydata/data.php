@@ -1440,9 +1440,9 @@ switch ($mode) {
 
 }
 $display =COM_startBlock($LANG_DATABOX_ADMIN['piname'],''
-            ,COM_getBlockTemplate('_admin_block', 'header'))
-         .ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno])
-         .fncMenu($pi_name)
+        //    ,COM_getBlockTemplate('_admin_block', 'header'))
+        // .ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno])
+        // .fncMenu($pi_name)
          .$display
          .COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
 
