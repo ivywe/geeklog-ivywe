@@ -1097,7 +1097,7 @@ function MG_autotags($op, $content = '', $autotag = '')
             } else {
                 $filename = MG_getAlbumCover($parm1);
                 if ($filename != '') {
-                    $tfn = 'tn/' . $filename[0] . '/' . $filename.'_custom';
+                    $tfn = 'tn/' . $filename[0] . '/' . $filename.'_cropcustom';
                     $ext = MG_getMediaExt($_MG_CONF['path_mediaobjects'] . $tfn);
                     $tnImage = $_MG_CONF['mediaobjects_url'] . '/' . $tfn . $ext;
                     $tnFileName = $_MG_CONF['path_mediaobjects'] . $tfn . $ext;
@@ -1283,7 +1283,7 @@ function MG_autotags($op, $content = '', $autotag = '')
                 $media_thumbnail_file = $_MG_CONF['path_mediaobjects'] . $tfn . $ext;
             } else {
                 if  ($src == 'tn' AND $row['media_type']==0) {
-                    $tfn = 'tn/' . $row['media_filename'][0] . '/' . $row['media_filename'].'_custom';
+                    $tfn = 'tn/' . $row['media_filename'][0] . '/' . $row['media_filename'].'_cropcustom';
                     $ext = MG_getMediaExt($_MG_CONF['path_mediaobjects'] . $tfn);
                     $media_thumbnail      = $_MG_CONF['mediaobjects_url'] . '/' . $tfn . $ext;
                     $media_thumbnail_file = $_MG_CONF['path_mediaobjects'] . $tfn . $ext;
@@ -1325,7 +1325,7 @@ function MG_autotags($op, $content = '', $autotag = '')
             }
 
 if(strlen($class) != 0){$class =" ".$class;}
-            $tagtext = '<img src="' . $media_thumbnail . '" ' . $alttag . ' class="img-responsive' . $class . '"' . XHTML . '>';
+            $tagtext = '<img src="' . $media_thumbnail . '" ' . $alttag . ' class="img-responsive uk-overlay-scale' . $class . '"' . XHTML . '>';
 
             $link = '';
             if ($alt == 1 && $row['remote_url'] != '') {
