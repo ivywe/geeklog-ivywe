@@ -1076,7 +1076,7 @@ function phpblock_mg_randommedia($parm1=array(), $parm2='')
         return $retval;
     }
 
-    $tn_size = 120;
+    $tn_size = 250;
     if (!empty($_MG_CONF['random_width'])) {
         $tn_size = intval($_MG_CONF['random_width']);
     }
@@ -1101,7 +1101,7 @@ function phpblock_mg_randommedia($parm1=array(), $parm2='')
         }
     }
     if ($tn_size < 10)  $tn_size = 100;
-    if ($tn_size > 200) $tn_size = 200;
+    if ($tn_size > 250) $tn_size = 250;
     $tn_fname_add = ($tn_mode == 1) ? '_150x150' : '';
 
     $randomSelect = ($_DB_dbms == 'mssql') ? "NewID()" : "RAND(NOW())";

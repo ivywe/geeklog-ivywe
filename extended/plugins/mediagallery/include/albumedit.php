@@ -1010,13 +1010,13 @@ function MG_saveAlbum($album_id)
     $album->podcast         = isset($_POST['podcast'])     ? COM_applyFilter($_POST['podcast'],     true) : 0;
     $album->mp3ribbon       = isset($_POST['mp3ribbon'])   ? COM_applyFilter($_POST['mp3ribbon'],   true) : 0;
     $album->rssChildren     = isset($_POST['rsschildren']) ? COM_applyFilter($_POST['rsschildren'], true) : 0;
-    $album->tnHeight        = isset($_POST['tnheight'])    ? COM_applyFilter($_POST['tnheight'],    true) : 200;
-    $album->tnWidth         = isset($_POST['tnwidth'])     ? COM_applyFilter($_POST['tnwidth'],     true) : 200;
+    $album->tnHeight        = isset($_POST['tnheight'])    ? COM_applyFilter($_POST['tnheight'],    true) : 250;
+    $album->tnWidth         = isset($_POST['tnwidth'])     ? COM_applyFilter($_POST['tnwidth'],     true) : 250;
     if ($album->tnHeight == 0) {
-        $album->tnHeight = 200;
+        $album->tnHeight = 250;
     }
     if ($album->tnWidth == 0) {
-        $album->tnWidth = 200;
+        $album->tnWidth = 250;
     }
 
     if (SEC_hasRights('mediagallery.admin')) {

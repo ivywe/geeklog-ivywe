@@ -28,7 +28,7 @@ function formControl(){
     <fieldset>
       <legend>{lang_file_number}1</legend>
       <dl class="form_block">
-        <dt><label>{lang_remote_media_type}</label></dt>
+        <dt><label class="uk-form-label">{lang_remote_media_type}</label></dt>
         <dd><select name="type[]" onchange="formControl()">
               <option value="-1">------</option>
               <option value="0">{lang_flv_stream}</option>
@@ -42,28 +42,28 @@ function formControl(){
             </select>
         </dd>
 
-        <dt><label>{lang_thumbnail}</label></dt>
+        <dt><label class="uk-form-label">{lang_thumbnail}</label></dt>
         <dd><input type="file" name="thumbnail[]"{xhtml}></dd>
 
-        <dt><label>{lang_remote_url}</label></dt>
+        <dt><label class="uk-form-label">{lang_remote_url}</label></dt>
         <dd><textarea name="remoteurl[]" cols="60" rows="2" class="size6"></textarea></dd>
 
-        <dt><label>{lang_width}</label></dt>
+        <dt><label class="uk-form-label">{lang_width}</label></dt>
         <dd><input type="text" name="width[]" size="3"{xhtml}></dd>
 
-        <dt><label>{lang_height}</label></dt>
+        <dt><label class="uk-form-label">{lang_height}</label></dt>
         <dd><input type="text" name="height[]" size="3"{xhtml}></dd>
 
-        <dt><label>{lang_caption}</label></dt>
+        <dt><label class="uk-form-label">{lang_caption}</label></dt>
         <dd><input type="text" name="caption[]" class="size6" value=""{xhtml}></dd>
 
-        <dt><label>{lang_description}</label></dt>
+        <dt><label class="uk-form-label">{lang_description}</label></dt>
         <dd><textarea name="description[]" cols="60" rows="2" class="size6"></textarea></dd>
 
-        <dt><label>{lang_keywords}</label></dt>
+        <dt><label class="uk-form-label">{lang_keywords}</label></dt>
         <dd><input type="text" name="keywords[]" class="size6" value=""{xhtml}></dd>
 
-        <dt><label>{lang_category}</label></dt>
+        <dt><label class="uk-form-label">{lang_category}</label></dt>
         <dd>{cat_select}</dd>
       </dl>
     </fieldset>
@@ -71,7 +71,7 @@ function formControl(){
     <fieldset>
       <legend>{lang_file_number}2</legend>
       <dl class="form_block">
-        <dt><label>{lang_remote_media_type}</label></dt>
+        <dt><label class="uk-form-label">{lang_remote_media_type}</label></dt>
         <dd><select name="type[]" onchange="formControl()">
               <option value="-1">------</option>
               <option value="0">{lang_flv_stream}</option>
@@ -85,28 +85,28 @@ function formControl(){
             </select>
         </dd>
 
-        <dt><label>{lang_thumbnail}</label></dt>
+        <dt><label class="uk-form-label">{lang_thumbnail}</label></dt>
         <dd><input type="file" name="thumbnail[]"{xhtml}></dd>
 
-        <dt><label>{lang_remote_url}</label></dt>
+        <dt><label class="uk-form-label">{lang_remote_url}</label></dt>
         <dd><textarea name="remoteurl[]" cols="60" rows="2" class="size6"></textarea></dd>
 
-        <dt><label>{lang_width}</label></dt>
+        <dt><label class="uk-form-label">{lang_width}</label></dt>
         <dd><input type="text" name="width[]" size="3"{xhtml}></dd>
 
-        <dt><label>{lang_height}</label></dt>
+        <dt><label class="uk-form-label">{lang_height}</label></dt>
         <dd><input type="text" name="height[]" size="3"{xhtml}></dd>
 
-        <dt><label>{lang_caption}</label></dt>
+        <dt><label class="uk-form-label">{lang_caption}</label></dt>
         <dd><input type="text" name="caption[]" class="size6" value=""{xhtml}></dd>
 
-        <dt><label>{lang_description}</label></dt>
+        <dt><label class="uk-form-label">{lang_description}</label></dt>
         <dd><textarea name="description[]" cols="60" rows="2" class="size6"></textarea></dd>
 
-        <dt><label>{lang_keywords}</label></dt>
+        <dt><label class="uk-form-label">{lang_keywords}</label></dt>
         <dd><input type="text" name="keywords[]" class="size6" value=""{xhtml}></dd>
 
-        <dt><label>{lang_category}</label></dt>
+        <dt><label class="uk-form-label">{lang_category}</label></dt>
         <dd>{cat_select}</dd>
       </dl>
     </fieldset>
@@ -114,7 +114,7 @@ function formControl(){
     <fieldset>
       <legend>{lang_file_number}3</legend>
       <dl class="form_block">
-        <dt><label>{lang_remote_media_type}</label></dt>
+        <dt><label class="uk-form-label">{lang_remote_media_type}</label></dt>
         <dd><select name="type[]" onchange="formControl()">
               <option value="-1">------</option>
               <option value="0">{lang_flv_stream}</option>
@@ -128,28 +128,28 @@ function formControl(){
             </select>
         </dd>
 
-        <dt><label>{lang_thumbnail}</label></dt>
+        <dt><label class="uk-form-label">{lang_thumbnail}</label></dt>
         <dd><input type="file" name="thumbnail[]"{xhtml}></dd>
 
-        <dt><label>{lang_remote_url}</label></dt>
+        <dt><label class="uk-form-label">{lang_remote_url}</label></dt>
         <dd><textarea name="remoteurl[]" cols="60" rows="2" class="size6"></textarea></dd>
 
-        <dt><label>{lang_width}</label></dt>
+        <dt><label class="uk-form-label">{lang_width}</label></dt>
         <dd><input type="text" name="width[]" size="3"{xhtml}></dd>
 
-        <dt><label>{lang_height}</label></dt>
+        <dt><label class="uk-form-label">{lang_height}</label></dt>
         <dd><input type="text" name="height[]" size="3"{xhtml}></dd>
 
-        <dt><label>{lang_caption}</label></dt>
+        <dt><label class="uk-form-label">{lang_caption}</label></dt>
         <dd><input type="text" name="caption[]" class="size6" value=""{xhtml}></dd>
 
-        <dt><label>{lang_description}</label></dt>
+        <dt><label class="uk-form-label">{lang_description}</label></dt>
         <dd><textarea name="description[]" cols="60" rows="2" class="size6"></textarea></dd>
 
-        <dt><label>{lang_keywords}</label></dt>
+        <dt><label class="uk-form-label">{lang_keywords}</label></dt>
         <dd><input type="text" name="keywords[]" class="size6" value=""{xhtml}></dd>
 
-        <dt><label>{lang_category}</label></dt>
+        <dt><label class="uk-form-label">{lang_category}</label></dt>
         <dd>{cat_select}</dd>
       </dl>
     </fieldset>
@@ -157,7 +157,7 @@ function formControl(){
     <fieldset>
       <legend>{lang_file_number}4</legend>
       <dl class="form_block">
-        <dt><label>{lang_remote_media_type}</label></dt>
+        <dt><label class="uk-form-label">{lang_remote_media_type}</label></dt>
         <dd><select name="type[]" onchange="formControl()">
               <option value="-1">------</option>
               <option value="0">{lang_flv_stream}</option>
@@ -171,28 +171,28 @@ function formControl(){
             </select>
         </dd>
 
-        <dt><label>{lang_thumbnail}</label></dt>
+        <dt><label class="uk-form-label">{lang_thumbnail}</label></dt>
         <dd><input type="file" name="thumbnail[]"{xhtml}></dd>
 
-        <dt><label>{lang_remote_url}</label></dt>
+        <dt><label class="uk-form-label">{lang_remote_url}</label></dt>
         <dd><textarea name="remoteurl[]" cols="60" rows="2" class="size6"></textarea></dd>
 
-        <dt><label>{lang_width}</label></dt>
+        <dt><label class="uk-form-label">{lang_width}</label></dt>
         <dd><input type="text" name="width[]" size="3"{xhtml}></dd>
 
-        <dt><label>{lang_height}</label></dt>
+        <dt><label class="uk-form-label">{lang_height}</label></dt>
         <dd><input type="text" name="height[]" size="3"{xhtml}></dd>
 
-        <dt><label>{lang_caption}</label></dt>
+        <dt><label class="uk-form-label">{lang_caption}</label></dt>
         <dd><input type="text" name="caption[]" class="size6" value=""{xhtml}></dd>
 
-        <dt><label>{lang_description}</label></dt>
+        <dt><label class="uk-form-label">{lang_description}</label></dt>
         <dd><textarea name="description[]" cols="60" rows="2" class="size6"></textarea></dd>
 
-        <dt><label>{lang_keywords}</label></dt>
+        <dt><label class="uk-form-label">{lang_keywords}</label></dt>
         <dd><input type="text" name="keywords[]" class="size6" value=""{xhtml}></dd>
 
-        <dt><label>{lang_category}</label></dt>
+        <dt><label class="uk-form-label">{lang_category}</label></dt>
         <dd>{cat_select}</dd>
       </dl>
     </fieldset>

@@ -215,7 +215,7 @@ function MG_globalAlbumAttributeEditor($adminMenu=0)
     $A['enable_sort']        = 0;
     $A['enable_rating']      = 0;
     $A['albums_first']       = 0;
-    $A['tn_size']            = 1;
+    $A['tn_size']            = 13;
     $A['display_rows']       = 3;
     $A['display_columns']    = 3;
     $A['full_display']       = 0;
@@ -507,11 +507,11 @@ function MG_saveGlobalAlbumAttr()
     $A['enable_keywords']   = isset($_POST['enable_keywords'])   ? COM_applyFilter($_POST['enable_keywords'],   true) : 0;
     $A['enable_sort']       = isset($_POST['enable_sort'])       ? COM_applyFilter($_POST['enable_sort'],       true) : 0;
     $A['albums_first']      = isset($_POST['albums_first'])      ? COM_applyFilter($_POST['albums_first'],      true) : 0;
-    $A['tn_size']           = isset($_POST['tn_size'])           ? COM_applyFilter($_POST['tn_size'],           true) : 0;
-    $A['tn_height']         = isset($_POST['tnheight'])          ? COM_applyFilter($_POST['tnheight'],          true) : 200;
-    $A['tn_width']          = isset($_POST['tnwidth'])           ? COM_applyFilter($_POST['tnwidth'],           true) : 200;
-    if ($A['tn_height'] == 0) $A['tn_height'] = 200;
-    if ($A['tn_width']  == 0) $A['tn_width']  = 200;
+    $A['tn_size']           = isset($_POST['tn_size'])           ? COM_applyFilter($_POST['tn_size'],           true) : 13;
+    $A['tn_height']         = isset($_POST['tnheight'])          ? COM_applyFilter($_POST['tnheight'],          true) : 250;
+    $A['tn_width']          = isset($_POST['tnwidth'])           ? COM_applyFilter($_POST['tnwidth'],           true) : 250;
+    if ($A['tn_height'] == 0) $A['tn_height'] = 250;
+    if ($A['tn_width']  == 0) $A['tn_width']  = 250;
     $A['display_rows']       = isset($_POST['display_rows'])       ? COM_applyFilter($_POST['display_rows'],       true) : 0;
     $A['display_columns']    = isset($_POST['display_columns'])    ? COM_applyFilter($_POST['display_columns'],    true) : 0;
     $A['full_display']       = isset($_POST['full_display'])       ? COM_applyFilter($_POST['full_display'],       true) : 0;

@@ -16,7 +16,7 @@
   <br{xhtml}>
 
   <div style="height:25px;width:20%;float:left;white-space:nowrap;">
-    <label>{lang_auto_start}</label>
+    <label class="uk-form-label">{lang_auto_start}</label>
   </div>
   <div style="width:10%;float:left;white-space:nowrap;">
     <input type="radio" name="autostart" value="0" {autostart_disabled}>
@@ -29,7 +29,7 @@
   <br{xhtml}>
 
   <div style="height:25px;width:20%;float:left;white-space:nowrap;">
-    <label>{lang_enable_context_menu}</label>
+    <label class="uk-form-label">{lang_enable_context_menu}</label>
   </div>
   <div style="width:10%;float:left;white-space:nowrap;">
     <input type="radio" name="enablecontextmenu" value="0" {enablecontextmenu_disabled}>
@@ -42,7 +42,7 @@
   <br{xhtml}>
 
   <div style="height:25px;width:20%;float:left;white-space:nowrap;">
-    <label>{lang_stretch_to_fit}</label>
+    <label class="uk-form-label">{lang_stretch_to_fit}</label>
   </div>
   <div style="width:10%;float:left;white-space:nowrap;">
     <input type="radio" name="stretchtofit" value="0" {stretchtofit_disabled}>
@@ -55,7 +55,7 @@
   <br{xhtml}>
 
   <div style="height:25px;width:20%;float:left;white-space:nowrap;">
-    <label>{lang_status_bar}</label>
+    <label class="uk-form-label">{lang_status_bar}</label>
   </div>
   <div style="width:10%;float:left;white-space:nowrap;">
     <input type="radio" name="showstatusbar" value="0" {showstatusbar_disabled}>
@@ -68,7 +68,7 @@
   <br{xhtml}>
 
   <div style="height:25px;width:20%;float:left;white-space:nowrap;">
-    <label>{lang_ui_mode}</label>
+    <label class="uk-form-label">{lang_ui_mode}</label>
   </div>
   <div style="width:10%;float:left;white-space:nowrap;">
     {uimode_select}
@@ -80,7 +80,7 @@
   <br{xhtml}>
 
   <div style="height:25px;width:20%;float:left;white-space:nowrap;">
-    <label>{lang_playcount}</label>
+    <label class="uk-form-label">{lang_playcount}</label>
   </div>
   <div style="width:10%;float:left;white-space:nowrap;">
     <input type="text" name="playcount" value="{playcount}" size="5">
@@ -92,7 +92,7 @@
   <br{xhtml}>
 
   <div style="height:25px;width:20%;float:left;white-space:nowrap;">
-    <label>{lang_bgcolor}</label>
+    <label class="uk-form-label">{lang_bgcolor}</label>
   </div>
   <div style="width:10%;float:left;white-space:nowrap;">
     <input type="text" name="bgcolor" value="{bgcolor}" size="7">

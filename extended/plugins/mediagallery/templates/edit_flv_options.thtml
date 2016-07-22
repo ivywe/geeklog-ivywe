@@ -16,7 +16,7 @@
   <br{xhtml}>
 
   <div style="height:25px;width:20%;float:left;white-space:nowrap;">
-    <label>{lang_auto_start}</label>
+    <label class="uk-form-label">{lang_auto_start}</label>
   </div>
   <div style="width:10%;float:left;white-space:nowrap;">
     <input type="radio" name="play" value="0" {play_disabled}>
