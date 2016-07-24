@@ -1325,7 +1325,7 @@ function MG_autotags($op, $content = '', $autotag = '')
             }
 
 if(strlen($class) != 0){$class =" ".$class;}
-            $tagtext = '<img src="' . $media_thumbnail . '" ' . $alttag . ' class="img-responsive uk-overlay-scale' . $class . '"' . XHTML . '>';
+            $tagtext = '<img src="' . $media_thumbnail . '" ' . $alttag . ' class="img-responsive-center uk-overlay-scale' . $class . '"' . XHTML . '>';
 
             $link = '';
             if ($alt == 1 && $row['remote_url'] != '') {
