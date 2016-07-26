@@ -668,7 +668,7 @@ function MONITOR_curlRequestOnGitApi($url)
     curl_setopt($ch, CURLOPT_HTTPGET, true);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_HEADER, $header); // returns header in output
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+//    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
     //Will return the response, if false it print the response
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
