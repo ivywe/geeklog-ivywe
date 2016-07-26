@@ -789,8 +789,8 @@ class Media {
                 break;
             case '3' :      // include custom
             case '13' :     // crop custom
-                $tn_width  = ($custom_width  == 0) ? 200 : $custom_width;
-                $tn_height = ($custom_height == 0) ? 200 : $custom_height;
+                $tn_width  = ($custom_width  == 0) ? 250 : $custom_width;
+                $tn_height = ($custom_height == 0) ? 250 : $custom_height;
                 break;
             default :
                 $tn_width  = 150;
@@ -807,6 +807,7 @@ class Media {
 
             $ratio_width  = $imgwidth / $maxwidth;
             $ratio_height = $imgheight / $maxheight;
+						if($ratio_height==0){$ratio_height=1.0;} 
             if ($ratio_width > $ratio_height) {
                 $newwidth = $maxwidth;
                 $newheight = round($imgheight / $ratio_width);
@@ -824,6 +825,7 @@ class Media {
                     $newheight = round($imgheight / $ratio_width);
                 } else {
                     $ratio_height = $imgheight / $maxheight;
+										if($ratio_height==0){$ratio_height=1.0;} 
                     $newheight = $maxheight;
                     $newwidth = round($imgwidth / $ratio_height);
                 }
