@@ -4,10 +4,6 @@ html {
   font: normal 15px / 20px "游ゴシック体", "Yu Gothic", YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", sans-serif;
 }
 
-.gl-edit:hover {
-  border: 1px solid #e8e8e8 !important;
-  border-radius: 4px;
-}
 
 .uk-form-row + .uk-form-row {margin-top: 8px;}
 
@@ -18,4 +14,13 @@ html {
 
 #wrapper {
   overflow: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
 }
