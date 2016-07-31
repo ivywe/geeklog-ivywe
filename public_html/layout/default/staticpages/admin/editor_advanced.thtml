@@ -203,7 +203,7 @@
 
     <div class="uk-form-row uk-margin-large-top">
       <div class="uk-form-controls">
-        <input type="submit" value="{lang_save}" name="mode" class="uk-form-width-medium"{xhtml}>
+        <input type="submit" value="{lang_save}" name="mode" class="uk-form-width-medium uk-button-primary"{xhtml}>
         <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
         {delete_option}
         <input type="hidden" name="sp_old_id" value="{sp_old_id}"{xhtml}>

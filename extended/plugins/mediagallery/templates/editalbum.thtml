@@ -15,7 +15,7 @@ function change(what) {
 <form enctype="multipart/form-data" method="post" action="{s_form_action}" class="uk-form uk-form-horizontal">
         <div class="uk-form-row">
             <label class="uk-form-label">{lang_title}</label>
-            <div class="uk-form-controls"><input type="text" name="album_name" value="{album_title}" class="uk-form-width-medium"{xhtml}></div>
+            <div class="uk-form-controls"><input type="text" name="album_name" value="{album_title}" class="uk-form-width-large"{xhtml}></div>
         </div>
         <div class="uk-form-row">
             <label class="uk-form-label">{lang_description}</label>
