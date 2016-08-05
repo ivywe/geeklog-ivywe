@@ -9,9 +9,8 @@
       <span class="uk-button uk-button-small uk-float-right" {hide_if_preview}>{reply_option}</span>
     </div>
     <div {hide_if_preview}>
-      <div class="comment_navi" role="navigation" {hide_if_preview}>[
-       <span>{reply_option} {parent_link} {delete_option} <a href="{site_url}/comment.php?mode=view&amp;cid={cid}" rel="bookmark" title="{lang_permlink}">#</a></span>
-       ]</div>
+      <ul class="uk-subnav uk-flex-left uk-text-small" role="navigation" {hide_if_preview}>
+				<li>[{reply_option}</li><li>{parent_link}</li><li>{delete_option}</li><li><a href="{site_url}/comment.php?mode=view&amp;cid={cid}" rel="bookmark" title="{lang_permlink}">#</a>]</li>
     </div>
   </div>
 </div>
