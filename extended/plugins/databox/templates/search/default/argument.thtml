@@ -20,7 +20,7 @@
     <div class="uk-form-row">
       <label class="uk-form-label">Group {gor_1_names} id:1 OR</label>
       <div class="uk-form-controls">
-        [databox:categorycheck group_id:1 iname:gor_1]
+        {gor_1}
         <input name="gor_1[]" value="" type="hidden"><!-- Dummy -->
       </div>
     </div>
@@ -29,7 +29,7 @@
     <div class="uk-form-row">
       <label class="uk-form-label">Group {gand_2_names} id:2 AND</label>
       <div class="uk-form-controls">
-        [databox:categorycheck group_id:2 iname:gand_2]
+        {gand_2}
         <input name="gand_2[]" value="" type="hidden"><!-- Dummy -->
       </div>
     </div>
