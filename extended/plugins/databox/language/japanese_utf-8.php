@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/databox/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20160422
+# Last Update 20160809
 
 ###############################################################################
 ## 管理画面 menu
@@ -828,6 +828,8 @@ $LANG_confignames['databox']['commentcode'] = '新規登録時のコメントの
 $LANG_confignames['databox']['sort_list_by'] = '管理者ページ（データ）の並べ替え';
 $LANG_confignames['databox']['sort_list_by_my'] = 'マイデータの並べ替え';
 $LANG_confignames['databox']['default_cache_time'] = 'デフォルトキャッシュタイム';
+
+$LANG_confignames['databox']['disable_permission_ignore'] = '新着データの　permission ignore を無効にする';
 
 //--(1)
 $LANG_tab['databox'][tab_whatsnew] = '新着情報ブロック';

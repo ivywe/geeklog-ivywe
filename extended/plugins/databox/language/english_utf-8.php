@@ -788,6 +788,7 @@ $LANG_confignames['databox']['commentcode'] = 'Comment Default';
 $LANG_confignames['databox']['sort_list_by'] = 'Sort Admin List by';
 $LANG_confignames['databox']['sort_list_by_my'] = 'Sort My Data List by';
 $LANG_confignames['databox']['default_cache_time'] = 'default cache time';
+$LANG_confignames['databox']['disable_permission_ignore'] = 'disable permission ignore';
 
 //--(1)
 $LANG_tab['databox'][tab_whatsnew] = 'Whats new Block';

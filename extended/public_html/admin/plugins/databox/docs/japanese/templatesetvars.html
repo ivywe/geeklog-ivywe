@@ -8,7 +8,7 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="docstyle.css" title="Dev Stylesheet">
 </head>
-<!-- admin/plugins/databox/docs/japanese/templatesetvars.html 20160428 -->
+<!-- admin/plugins/databox/docs/japanese/templatesetvars.html 20160624 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
@@ -22,7 +22,7 @@
 <h1><a href="index.html">DataBox プラグイン</h1>
 
 
-<h2><a name="templatesetvars">テーマ変数</a>(2016/04/22 update)</h2>
+<h2><a name="templatesetvars">テーマ変数</a>(2016/06/24 update)</h2>
 <table>
 <tr>
 	<th style="width:20%">画面</th>
@@ -208,15 +208,22 @@ imgfile_thumb_frd,data_thumb_img_url<br/>
  data_description,
  data_id,
  data_url,
- data_released,
- data_expired,
  data_remaingdays,
  <br/>
- data_datefield(使用する日付 作成日付or編集日付or公開日),
  new_img (使用する日付と新着マーク表示期間で判定します)<br/>
-data_datefield_shortdate,
-data_releaaed_shortdate,
-data_expired_shortdate,
+ 
+ data_datefield(使用する日付 作成日付or編集日付or公開日),
+ data_datefield_shortdate,
+ data_datefield_date,data_datefield_daytime,data_datefield_dateonly,data_datefield_timeonly,
+ data_datefield_b,data_datefield_B,data_datefield_d,data_datefield_e
+ <br/>
+ data_released(公開日),data_releaaed_shortdate,data_released_date,data_released_daytime,     data_released_dateonly,data_released_timeonly,
+ data_released_b, data_released_B, data_released_d, data_releasede
+ <br/>
+ data_expired(公開終了日),data_expired_shortdate,data_expired_date data_expired_daytime, data_expired_dateonly,data_expired_timeonly,
+ data_expired_b,data_expired_B
+ <br/>
+
 data_hits<br/>
 
  data_value(ソート順に指定されたアトリビュート項目の値),<br/>
@@ -403,14 +410,20 @@ languageid,_languageid言語ファイル[多言語モード]に登録されて�
  data_description,
  data_id,
  data_url,
- data_released,<br/>
- data_datefield_shortdate,
- data_releaaed_shortdate,
- data_expired_shortdate,
- data_hits<br/>
+ new_img (使用する日付と新着マーク表示期間で判定します)<br/>
  
  data_datefield(使用する日付 作成日付or編集日付or公開日),
- new_img (使用する日付と新着マーク表示期間で判定します)<br/>
+ data_datefield_shortdate,
+ data_datefield_date,data_datefield_daytime,data_datefield_dateonly,data_datefield_timeonly,
+ data_datefield_b,data_datefield_B,data_datefield_d,data_datefield_e
+ <br/>
+ data_released(公開日),data_releaaed_shortdate,data_released_date,data_released_daytime,     data_released_dateonly,data_released_timeonly,
+ data_released_b, data_released_B, data_released_d, data_releasede
+ <br/>
+ data_expired(公開終了日),data_expired_shortdate,data_expired_date data_expired_daytime, data_expired_dateonly,data_expired_timeonly,
+ data_expired_b,data_expired_B
+ <br/>
+ data_hits<br/>
  data_value(ソート順に指定されたアトリビュート項目の値),<br/>
  data_edit
  </br><a href="#notetext_add" class="note_super" title="">各アトリビュートのテーマ変数</a>
@@ -519,12 +532,18 @@ lang_category,
 lang_additionfields,
 lang_modified,		
 modified,modified_shortdate,
+modified_date, modified_daytime, modified_dateonly,　modified_timeonly,
+modified_b, modified_B, modified_d, modified_e <br/>
 lang_created,
-created,created_shortdate,
+created,created_shortdate,created_date,created_daytime,created_dateonly,created_timeonly, 
+created_b,created_B,created_d,created_e<br/>
 lang_released,
-released,released_shortdate,
+released,released_shortdate,released_date released_daytime released_dateonly　released_timeonly
+<br/>
 lang_expired,
-expired,expired_shortdate,
+expired,expired_shortdate,expired_date,expired_daytime,expired_dateonly,expired_timeonly,
+expired_b,expired_B,expired_d,expired_e
+<br/>
 lang_uuid,
 uuid,
 lang_udatetime,
@@ -866,11 +885,20 @@ mapのデータとdataboxのデータを紐付けしています。">*2</a>
  data_expired,
  data_remaingdays,
  <br/>
- data_datefield(使用する日付 作成日付or編集日付or公開日),
  new_img (使用する日付と新着マーク表示期間で判定します)<br/>
-data_datefield_shortdate,
-data_releaaed_shortdate,
-data_expired_shortdate,
+ 
+ data_datefield(使用する日付 作成日付or編集日付or公開日),
+ data_datefield_shortdate,
+ data_datefield_date,data_datefield_daytime,data_datefield_dateonly,data_datefield_timeonly,
+ data_datefield_b,data_datefield_B,data_datefield_d,data_datefield_e
+ <br/>
+ data_released(公開日),data_releaaed_shortdate,data_released_date,data_released_daytime,     data_released_dateonly,data_released_timeonly,
+ data_released_b, data_released_B, data_released_d, data_releasede
+ <br/>
+ data_expired(公開終了日),data_expired_shortdate,data_expired_date data_expired_daytime, data_expired_dateonly,data_expired_timeonly,
+ data_expired_b,data_expired_B
+ <br/>
+
 data_hits<br/>
 
  data_value(ソート順に指定されたアトリビュート項目の値),<br/>

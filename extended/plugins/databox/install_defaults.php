@@ -149,6 +149,9 @@ $_DATABOX_DEFAULT['sort_list_by_my'] = "orderno";
 //デフォルトキャッシュタイム
 $_DATABOX_DEFAULT['default_cache_time'] = "0";
 
+//permission ignoreを無効にする　default いいえ
+$_DATABOX_DEFAULT['disable_permission_ignore'] = 0;
+
 //---（１）新着
 // 新着の期間
 $_DATABOX_DEFAULT['whatsnew_interval'] = 1209600; // 2 weeks
@@ -604,7 +607,14 @@ function plugin_initconfig_databox()
             ,'text', 0, 0, NULL, 370, TRUE
             , $pi_name
             ,0);
-         
+        
+        $c->add(
+            'disable_permission_ignore'
+            ,$_DATABOX_DEFAULT['disable_permission_ignore']
+            ,'select', 0, 0, 0, 380, true
+            , $pi_name
+            ,0);
+
         //(1)新着
         $c->add('tab_whatsnew', NULL, 'tab', 0, 1, NULL, 0, true, $pi_name, 1);
         $c->add(

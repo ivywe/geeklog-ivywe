@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
 </head>
-<!-- admin/plugins/userbox/docs/japanese/autotags.html 20160428 -->
+<!-- admin/plugins/userbox/docs/japanese/autotags.html 20160819 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
@@ -21,7 +21,7 @@
 <h1><a href="index.html">UserBox プラグイン</h1>
 
 
-<h2><a name="autotags">自動タグ</a>(2015/12/21 update)</h2>
+<h2><a name="autotags">自動タグ</a>(2016/08/19 update)</h2>
 <table>
 <tr><th style="width:25%">書式</th>
     <th style="width:75%">説明</th>
@@ -46,7 +46,16 @@ numberformat:yes 千単位に区切ります（カンマ編集）。省略時は
 </tr>
 
 <tr class="r2">
-<td>[userbox:newlist　RSSファイルほか例２参照]</td>
+<td>[userbox:newlist　]<br /><br />
+rss_file:<br />
+title_trim_length:<br />
+intervalday:<br />
+limitcnt:<br />
+newmarkday:<br />
+templatedir:<a title="テンプレートディレクトリ"class="note_super" href="#notetext_1">*1</a><br />
+category_id:　category_code:<br />
+permission:ignore アクセス権のないデータも表示します。ただしリンクはしません。コンフィギュレーション設定の新着データのpermission ignore を無効にする(disable_permission_ignore)が「はい」の場合は無効です。<br />
+</td>
 <td>
 新着ユーザ<br />
 例１：[userbox:newlist]<br />
@@ -220,6 +229,13 @@ type_id:0 タイプなし　省略時すべてのタイプ
 </tr>
 </tbody>
 </table>
+
+<br/><a class="note_super" href="#notetext_1" id="notetext_1">*1</a>
+テンプレートディレクトリ<br/>
+ココで指定されていない場合は、下記の順に使用されます(一覧画面以外)<br/>
+タイプに登録されているテンプレートディレクトリ<br/>
+データに登録されているテンプレートディレクトリ<br/>
+default<br/>
 
 <div class="footer">
     <a href="http://wiki.geeklog.net/">Geeklogドキュメント作成プロジェクト</a>、<a href="http://wiki.geeklog.jp/">Geeklogドキュメント日本語版作成プロジェクト</a><br />

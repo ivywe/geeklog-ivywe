@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
 </head>
-<!-- admin/plugins/databox/docs/japanese/autotags.html 20160428 -->
+<!-- admin/plugins/databox/docs/japanese/autotags.html 20160819 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
@@ -21,7 +21,7 @@
 <h1><a href="index.html">DataBox プラグイン</h1>
 
 
-<h2><a name="autotags">自動タグ</a>(2015/12/21 update)</h2>
+<h2><a name="autotags">自動タグ</a>(2016/08/19 update)</h2>
 <table>
 <tr><th style="width:25%">自動タグ 引数</th>
     <th style="width:75%">説明</th>
@@ -55,11 +55,12 @@ limitcnt:<br />
 newmarkday:<br />
 templatedir:<a title="テンプレートディレクトリ"class="note_super" href="#notetext_1">*1</a><br />
 category_id:　category_code:<br />
+permission:ignore アクセス権のないデータも表示します。ただしリンクはしません。コンフィギュレーション設定の新着データのpermission ignore を無効にする(disable_permission_ignore)が「はい」の場合は無効です。<br />
 </td>
 <td>
 新着データ<br />
 例１：[databox:newlist]<br />
-例２：[databox:newlist rss_file:databox.rss title_trim_length:50 intervalday:70 limitcnt:40 newmarkday:30 templatedir:XXX category_id:99 category_code:XXX]<br />
+例２：[databox:newlist rss_file:databox.rss title_trim_length:50 intervalday:70 limitcnt:40 newmarkday:30 templatedir:XXX category_id:99 category_code:XXX permission:ignore]<br />
 </td>
 </tr>
 

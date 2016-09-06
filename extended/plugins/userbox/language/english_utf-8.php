@@ -644,21 +644,22 @@ $LANG_confignames['userbox']['aftersave_admin'] = 'Action after Save for Admin';
 
 $LANG_confignames['userbox']['grp_id_default'] = 'Group Default';
 
-$LANG_confignames['userbox']['allow_profile_update'] = 'ユーザにプロフィールの更新を許可する';
-$LANG_confignames['userbox']['allow_group_update'] = 'ユーザにマイグループの更新を許可する';
-$LANG_confignames['userbox']['allow_loggedinusers'] = 'ログインユーザを登録する';
+$LANG_confignames['userbox']['allow_profile_update'] = 'allow profile update';
+$LANG_confignames['userbox']['allow_group_update'] = 'allow group update';
+$LANG_confignames['userbox']['allow_loggedinusers'] = 'allow loggedinusers';
 $LANG_confignames['userbox']['default_img_url'] = 'Default Image URL';
-$LANG_confignames['userbox']['descriptionemptycheck'] = '説明未登録チェック';
+$LANG_confignames['userbox']['descriptionemptycheck'] = 'description emptycheck';
 
 $LANG_confignames['userbox']['maxlength_description'] = 'Maxlength description';
 $LANG_confignames['userbox']['maxlength_meta_description'] = 'Max length of meta description';
 $LANG_confignames['userbox']['maxlength_meta_keywords'] = 'Max length of meta keyword';
 
-$LANG_confignames['userbox']['hideuseroption'] = 'ユーザー情報に表示しない';
+$LANG_confignames['userbox']['hideuseroption'] = 'hide useroption';
 
 $LANG_confignames['userbox']['commentcode'] = 'Comment Default';
 $LANG_confignames['userbox']['sort_list_by'] = 'Sort Admin List by';
 $LANG_confignames['userbox']['default_cache_time'] = 'default cache time';
+$LANG_confignames['userbox']['disable_permission_ignore'] = 'disable permission ignore';
 
 //--(1)
 $LANG_tab['userbox'][tab_whatsnew] = 'Whats new Block';

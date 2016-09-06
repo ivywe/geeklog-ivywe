@@ -1,7 +1,0 @@
-{# begin {templatelocation} #}
-
-    <li>{value_link}&nbsp;({count})
-    &nbsp;{field_description} &nbsp;{field_name}&nbsp;{field_url}
-    &nbsp;{value_url}&nbsp;{value}</li>
-
-{# end {templatelocation} #}

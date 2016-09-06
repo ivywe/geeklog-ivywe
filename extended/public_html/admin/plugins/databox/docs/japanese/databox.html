@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
 </head>
-<!-- admin/plugins/databox/docs/japanese/databox.html 20160304 -->
+<!-- admin/plugins/databox/docs/japanese/databox.html 20160809 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
@@ -25,7 +25,7 @@
 <form name='databox_conf_link' action='../../../../../admin/configuration.php' method='POST'>
 <input type='hidden' name='conf_group' value='databox'></form>
  <a style='text-decoration: none;' href='#' onclick="document.databox_conf_link.submit()">コンフィギュレーション管理画面</a>「管理者用メニュー - コンフィギュレーション - DataBox」から変更できます。</p>
- <h3><a name="public">メイン設定</a>(2016/02/12 update)</h3>
+ <h3><a name="public">メイン設定</a>(2016/08/09 update)</h3>
 
 <table>
 <tr><th style="width:25%">項目(変数)</th>
@@ -339,6 +339,11 @@
  <li>-1 = 常にキャッシュし、エディターで記事を更新・保存した場合に限り、キャッシュを再生成します。</li>
  </ul>
  </td>
+</tr>
+<tr class="r2">
+  <td><a name="desc_disable_permission_ignore">新着データのpermission ignore を無効にする(disable_permission_ignore)</a></td>
+  <td>いいえ(0)</td>
+  <td>はい(1)にすると、新着データのpermission ignoreを無効にします。([databox:newlist permission:ignore])</td>
 </tr>
 </table>
 
