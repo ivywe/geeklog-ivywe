@@ -127,6 +127,7 @@ function plugin_autotags_databox (
                             ,$p['limitcnt']
                             ,$p['newmarkday']
                             ,$p['templatedir']
+                            ,$p['permission']
                             );
                         break;
                     case 'data':
@@ -2015,7 +2016,7 @@ function databox_data(
             $templates->set_var ('site_mail', $_CONF['site_mail']);
         
             $currenturl= COM_getCurrentURL();
-            $templates->set_var ('currenturl', $currenturl);
+            $templates->set_var ('currenturl', htmlspecialchars($currenturl, ENT_QUOTES, 'UTF-8'));
             //facebook
             $facebook_consumer_key = trim($_CONF['facebook_consumer_key']);
             $templates->set_var ('facebook_consumer_key', $facebook_consumer_key);
@@ -2486,7 +2487,7 @@ function databox_newlist(
     ,$limitcnt=""
     ,$newmarkday=""
     ,$thtml=null
-)
+    ,$permission=null)
 {
 
     $pi_name="databox";
@@ -2591,6 +2592,13 @@ function databox_newlist(
     $sql.=" , t1.code".LB;
     $sql.=" , t1.description".LB;
 
+    $sql.=" ,t1.owner_id".LB;
+    $sql.=" ,t1.group_id".LB;
+    $sql.=" ,t1.perm_owner".LB;
+    $sql.=" ,t1.perm_group".LB;
+    $sql.=" ,t1.perm_members".LB;
+    $sql.=" ,t1.perm_anon".LB;
+
     $sql .= " FROM ".LB;
     $sql .= " {$tbl1} AS t1 ".LB;
 
@@ -2613,7 +2621,10 @@ function databox_newlist(
        $sql .= " AND t1.draft_flag=0".LB;
     //}
     //アクセス権のないデータ はのぞく
-    $sql .= COM_getPermSql('AND').LB;
+    if  ($_DATABOX_CONF['disable_permission_ignore']=="0" AND strtoupper($permission)=="IGNORE"){
+    }else{
+        $sql .= COM_getPermSql('AND').LB;
+    }
     //公開日以前のデータはのぞく
     $sql .= " AND (released <= NOW())".LB;
 
@@ -2666,7 +2677,18 @@ function databox_newlist(
         $list->set_var ('url', $rt['url']);
         $list->set_var ('title', $title);
 
-        $list->set_var ('description', $description);
+		$list->set_var ('description', $description);
+
+        $permission=SEC_hasAccess2($A);
+        $list->set_var ('permission',$permission);
+        if  ($permission>=2){
+            $list->set_var ('class_a', 'class="gl-tooltip"');
+            $list->set_var ('class_c', 'class="classic"');
+        }else{
+            $list->set_var ('class_a', 'class="databox_nolink"');
+            $list->set_var ('class_c', 'class="databox_displaynon"');
+        }
+
 
         $n=($i%2)+1;
         $class='class="row'.$n.'"';
@@ -3070,7 +3092,9 @@ function databox_search(
         }
     }
           
-          
+    if (! defined('THIS_SCRIPT')) {
+        define ('THIS_SCRIPT', 'databox/search.php');
+    }
           
     //-----テーブル
     $tbl1=$_TABLES['DATABOX_category'] ;

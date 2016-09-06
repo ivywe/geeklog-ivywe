@@ -4777,7 +4777,7 @@ function DATABOX_getheadercode(
         $tpl->set_var('site_admin_url', $_CONF['site_admin_url']);
         $tpl->set_var('layout_url', $_CONF['layout_url']);
         
-        $tpl->set_var ('currenturl', $currenturl);
+        $tpl->set_var ('currenturl', htmlspecialchars($currenturl, ENT_QUOTES, 'UTF-8'));
         
         $tpl->set_var ('site_name', $_CONF['site_name']);
         $tpl->set_var ('site_mail', $_CONF['site_mail']);

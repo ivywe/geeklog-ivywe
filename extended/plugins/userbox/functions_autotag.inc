@@ -129,6 +129,7 @@ function plugin_autotags_userbox (
                             ,$p['limitcnt']
                             ,$p['newmarkday']
                             ,$p['templatedir']
+                            ,$p['permission']
                             );
                         break;
 
@@ -670,14 +671,39 @@ function userbox_category(
             $templates->set_var ('data_datefield_shortdate', strftime( $_CONF['shortdate'], $A['datefield_un'] ));
             $templates->set_var ('data_released', $released_ary[0]);
             $templates->set_var ('data_released_shortdate', strftime( $_CONF['shortdate'], $A['released_un'] ));
+            $templates->set_var ('data_released_date', strftime( $_CONF['date'], $A['released_un'] ));
+            $templates->set_var ('data_released_daytime', strftime( $_CONF['daytime'], $A['released_un'] ));
+            $templates->set_var ('data_released_dateonly', strftime( $_CONF['dateonly'], $A['released_un'] ));
+            $templates->set_var ('data_released_timeonly', strftime( $_CONF['timeonly'], $A['released_un'] ));
+            $templates->set_var ('data_released_b', strftime( "%b" , $A['released_un']));
+            $templates->set_var ('data_released_B', strftime( "%B" , $A['released_un']));
+            $templates->set_var ('data_released_d', strftime( "%d" , $A['released_un']));
+            $templates->set_var ('data_released_e', strftime( "%e" , $A['released_un']));
+            
             //公開終了日 Expired to publish
             if ($A['expired'] ==="0000-00-00 00:00:00"){
                 $templates->set_var ('data_expired', "");
                 $templates->set_var ('data_expired_shortdate', "" );
+                $templates->set_var ('data_expired_date', "" );
+                $templates->set_var ('data_expired_daytime', "" );
+                $templates->set_var ('data_expired_dateonly', "" );
+                $templates->set_var ('data_expired_timeonly', "" );
+                $templates->set_var ('data_expired_b', "" );
+                $templates->set_var ('data_expired_B', "" );
+                $templates->set_var ('data_expired_d', "" );
+                $templates->set_var ('data_expired_e', "" );
             }else{
                 $wary = COM_getUserDateTimeFormat($A['expired_un']);
                 $templates->set_var ('data_expired', $expired_ary[0]);
                 $templates->set_var ('data_expired_shortdate', strftime( $_CONF['shortdate'], $A['expired_un'] ));
+                $templates->set_var ('data_expired_date', strftime( $_CONF['date'], $A['expired_un'] ));
+                $templates->set_var ('data_expired_daytime', strftime( $_CONF['daytime'], $A['expired_un'] ));
+                $templates->set_var ('data_expired_dateonly', strftime( $_CONF['dateonly'], $A['expired_un'] ));
+                $templates->set_var ('data_expired_timeonly', strftime( $_CONF['timeonly'], $A['expired_un'] ));
+                $templates->set_var ('data_expired_b', strftime( "%b" , $A['expired_un']));
+                $templates->set_var ('data_expired_B', strftime( "%B" , $A['expired_un']));
+                $templates->set_var ('data_expired_d', strftime( "%d" , $A['expired_un']));
+                $templates->set_var ('data_expired_e', strftime( "%e" , $A['expired_un']));
             }
             $remaingdays="";
             if ($expired<>"0000-00-00 00:00:00") {
@@ -1298,7 +1324,7 @@ function userbox_profile(
             $templates->set_var ('site_mail', $_CONF['site_mail']);
         
             $currenturl= COM_getCurrentURL();
-            $templates->set_var ('currenturl', $currenturl);
+            $templates->set_var ('currenturl', htmlspecialchars($currenturl, ENT_QUOTES, 'UTF-8'));
             //facebook
             $facebook_consumer_key = trim($_CONF['facebook_consumer_key']);
             $templates->set_var ('facebook_consumer_key', $facebook_consumer_key);
@@ -1386,29 +1412,69 @@ function userbox_profile(
             $wary = COM_getUserDateTimeFormat($A['modified_un']);
             $templates->set_var ('modified',$wary[0]);
             $templates->set_var ('modified_shortdate', strftime( $_CONF['shortdate'], $A['modified_un'] ));
+            $templates->set_var ('modified_date', strftime( $_CONF['date'], $A['modified_un'] ));
+            $templates->set_var ('modified_daytime', strftime( $_CONF['daytime'], $A['modified_un'] ));
+            $templates->set_var ('modified_dateonly', strftime( $_CONF['dateonly'], $A['modified_un'] ));
+            $templates->set_var ('modified_timeonly', strftime( $_CONF['timeonly'], $A['modified_un'] ));
+            $templates->set_var ('modified_b', strftime( "%b" , $A['modified_un']));
+            $templates->set_var ('modified_B', strftime( "%B" , $A['modified_un']));
+            $templates->set_var ('modified_d', strftime( "%d" , $A['modified_un']));
+            $templates->set_var ('modified_e', strftime( "%e" , $A['modified_un']));
             //作成日付
             $templates->set_var('lang_created', $LANG_USERBOX_ADMIN['created']);
             $wary = COM_getUserDateTimeFormat($A['created_un']);
             $templates->set_var ('created', $wary[0]);
             $templates->set_var ('created_shortdate', strftime( $_CONF['shortdate'], $A['created_un'] ));
+            $templates->set_var ('created_date', strftime( $_CONF['date'], $A['created_un'] ));
+            $templates->set_var ('created_daytime', strftime( $_CONF['daytime'], $A['created_un'] ));
+            $templates->set_var ('created_dateonly', strftime( $_CONF['dateonly'], $A['created_un'] ));
+            $templates->set_var ('created_timeonly', strftime( $_CONF['timeonly'], $A['created_un'] ));
+            $templates->set_var ('created_b', strftime( "%b" , $A['created_un']));
+            $templates->set_var ('created_B', strftime( "%B" , $A['created_un']));
+            $templates->set_var ('created_d', strftime( "%d" , $A['created_un']));
+            $templates->set_var ('created_e', strftime( "%e" , $A['created_un']));
             //公開日
             $templates->set_var('lang_released', $LANG_USERBOX_ADMIN['released']);
             $wary = COM_getUserDateTimeFormat($A['released_un']);
             $templates->set_var ('released', $wary[0]);
             $templates->set_var ('released_shortdate', strftime( $_CONF['shortdate'], $A['released_un'] ));
-            //公開終了日
+            $templates->set_var ('released_date', strftime( $_CONF['date'], $A['released_un'] ));
+            $templates->set_var ('released_daytime', strftime( $_CONF['daytime'], $A['released_un'] ));
+            $templates->set_var ('released_dateonly', strftime( $_CONF['dateonly'], $A['released_un'] ));
+            $templates->set_var ('released_timeonly', strftime( $_CONF['timeonly'], $A['released_un'] ));
+            $templates->set_var ('released_b', strftime( "%b" , $A['released_un']));
+            $templates->set_var ('released_B', strftime( "%B" , $A['released_un']));
+            $templates->set_var ('released_d', strftime( "%d" , $A['released_un']));
+            $templates->set_var ('released_e', strftime( "%e" , $A['released_un']));
+             //公開終了日
             $templates->set_var('lang_expired', $LANG_USERBOX_ADMIN['expired']);
             if ($A['expired'] ==="0000-00-00 00:00:00"){
                 $templates->set_var ('expired', "");
                 $templates->set_var ('expired_shortdate', "" );
+                $templates->set_var ('expired_date', "" );
+                $templates->set_var ('expired_daytime', "" );
+                $templates->set_var ('expired_dateonly', "" );
+                $templates->set_var ('expired_timeonly', "" );
+                $templates->set_var ('expired_b', "" );
+                $templates->set_var ('expired_B', "" );
+                $templates->set_var ('expired_d', "" );
+                $templates->set_var ('expired_e', "" );
             }else{
                 $wary = COM_getUserDateTimeFormat($A['expired_un']);
                 $templates->set_var ('expired', $wary[0]);
                 $templates->set_var ('expired_shortdate', strftime( $_CONF['shortdate'], $A['expired_un'] ));
+                $templates->set_var ('expired_date', strftime( $_CONF['date'], $A['expired_un'] ));
+                $templates->set_var ('expired_daytime', strftime( $_CONF['daytime'], $A['expired_un'] ));
+                $templates->set_var ('expired_dateonly', strftime( $_CONF['dateonly'], $A['expired_un'] ));
+                $templates->set_var ('expired_timeonly', strftime( $_CONF['timeonly'], $A['expired_un'] ));
+                $templates->set_var ('expired_b', strftime( "%b" , $A['expired_un']));
+                $templates->set_var ('expired_B', strftime( "%B" , $A['expired_un']));
+                $templates->set_var ('expired_d', strftime( "%d" , $A['expired_un']));
+                $templates->set_var ('expired_e', strftime( "%e" , $A['expired_un']));
             }
 
             $templates->set_var ('lang_uuid', $LANG_USERBOX_ADMIN['uuid']);
-            $templates->set_var ('uuid', $uuid);
+            $templates->set_var ('uuid', $A['uuid']);
 
             $templates->set_var ('lang_udatetime', $LANG_USERBOX_ADMIN['udatetime']);
             $wary = COM_getUserDateTimeFormat($A['udatetime_un']);
@@ -1872,14 +1938,37 @@ function userbox_field(
             
             $templates->set_var ('data_released', $released_ary[0]);//@@@@@@
             $templates->set_var ('data_released_shortdate', strftime( $_CONF['shortdate'], $A['released_un'] ));
+            $templates->set_var ('data_released_date', strftime( $_CONF['date'], $A['released_un'] ));
+            $templates->set_var ('data_released_daytime', strftime( $_CONF['daytime'], $A['released_un'] ));
+            $templates->set_var ('data_released_dateonly', strftime( $_CONF['dateonly'], $A['released_un'] ));
+            $templates->set_var ('data_released_timeonly', strftime( $_CONF['timeonly'], $A['released_un'] ));
+            $templates->set_var ('data_released_b', strftime( "%b" , $A['released_un']));
+            $templates->set_var ('data_released_B', strftime( "%B" , $A['released_un']));
+            $templates->set_var ('data_released_d', strftime( "%d" , $A['released_un']));
+            $templates->set_var ('data_released_e', strftime( "%e" , $A['released_un']));
             //公開終了日 Expired to publish
             if ($A['expired'] ==="0000-00-00 00:00:00"){
                 $templates->set_var ('data_expired', "");
                 $templates->set_var ('data_expired_shortdate', "" );
+                $templates->set_var ('data_expired_date', "" );
+                $templates->set_var ('data_expired_daytime', "" );
+                $templates->set_var ('data_expired_dateonly', "" );
+                $templates->set_var ('data_expired_timeonly', "" );
+                $templates->set_var ('data_expired_b', "" );
+                $templates->set_var ('data_expired_B', "" );
+                $templates->set_var ('data_expired_d', "" );
+                $templates->set_var ('data_expired_e', "" );
             }else{
                 $wary = COM_getUserDateTimeFormat($A['expired_un']);
                 $templates->set_var ('data_expired', $expired_ary[0]);
                 $templates->set_var ('data_expired_shortdate', strftime( $_CONF['shortdate'], $A['expired_un'] ));
+                $templates->set_var ('data_expired_daytime', strftime( $_CONF['daytime'], $A['expired_un'] ));
+                $templates->set_var ('data_expired_dateonly', strftime( $_CONF['dateonly'], $A['expired_un'] ));
+                $templates->set_var ('data_expired_timeonly', strftime( $_CONF['timeonly'], $A['expired_un'] ));
+                $templates->set_var ('data_expired_b', strftime( "%b" , $A['expired_un']));
+                $templates->set_var ('data_expired_B', strftime( "%B" , $A['expired_un']));
+                $templates->set_var ('data_expired_d', strftime( "%d" , $A['expired_un']));
+                $templates->set_var ('data_expired_e', strftime( "%e" , $A['expired_un']));
             }
             $remaingdays="";
             if ($expired<>"0000-00-00 00:00:00") {
@@ -2125,6 +2214,7 @@ function userbox_newlist(
     ,$limitcnt=""
     ,$newmarkday=""
     ,$thtml=null
+    ,$permission=null
 )
 // +---------------------------------------------------------------------------+
 // | 機能  ブロック用 新着user一覧出力                                         |
@@ -2246,7 +2336,14 @@ function userbox_newlist(
     $sql.=" t4.fullname".LB;
     $sql.=" , UNIX_TIMESTAMP(t1.".$datefield .") AS day".LB;
     $sql.=" , t1.id".LB;
-    $sql.=" , t4.username".LB;
+	$sql.=" , t4.username".LB;
+
+    $sql.=" ,t1.owner_id".LB;
+    $sql.=" ,t1.group_id".LB;
+    $sql.=" ,t1.perm_owner".LB;
+    $sql.=" ,t1.perm_group".LB;
+    $sql.=" ,t1.perm_members".LB;
+    $sql.=" ,t1.perm_anon".LB;
 
     $sql .= " FROM ".LB;
     $sql .= " {$tbl1} AS t1 ".LB;
@@ -2272,7 +2369,10 @@ function userbox_newlist(
        $sql .= " AND t1.draft_flag=0".LB;
     //}
     //アクセス権のないデータ はのぞく
-    $sql .= COM_getPermSql('AND').LB;
+    if  ($_USERBOX_CONF['disable_permission_ignore']=="0" AND strtoupper($permission)=="IGNORE"){
+    }else{
+        $sql .= COM_getPermSql('AND').LB;
+    }
     //公開日以前のデータはのぞく
     $sql .= " AND (released <= NOW())".LB;
 
@@ -2330,7 +2430,18 @@ function userbox_newlist(
         $list->set_var ('link', $link);//@@@@@
 
         $list->set_var ('url', $url);
-        $list->set_var ('title', $title);
+		$list->set_var ('title', $title);
+
+        $permission=SEC_hasAccess2($A);
+        $list->set_var ('permission',$permission);
+        if  ($permission>=2){
+            $list->set_var ('class_a', 'class="gl-tooltip"');
+            $list->set_var ('class_c', 'class="classic"');
+        }else{
+            $list->set_var ('class_a', 'class="userbox_nolink"');
+            $list->set_var ('class_c', 'class="userbox_displaynon"');
+        }
+
         $n=($i%2)+1;
         $class='class="row'.$n.'"';
         $list->set_var ('class', 'class="row'.$n.'"');
