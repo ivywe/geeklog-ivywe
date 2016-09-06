@@ -360,6 +360,8 @@ $LANG_confignames['assist']['aftersave_admin'] = 'Screen changes after saved: Ad
 $LANG_confignames['assist']['xmlins'] = 'xmlins';
 $LANG_confignames['assist']['default_img_url'] = 'default image url';
 $LANG_confignames['assist']['path_cache'] = 'Cache file path';
+$LANG_confignames['assist']['disable_permission_ignore'] = 'disable permission ignore ';
+
 //---(１)
 $LANG_tab['assist']['tab_autotag_permissions'] = 'Autotag permission';
 $LANG_fs['assist']['fs_autotag_permissions'] = 'Autotag Usage Permissions ([0]Owners [1]Group [2]Member [3]Anonymous）';

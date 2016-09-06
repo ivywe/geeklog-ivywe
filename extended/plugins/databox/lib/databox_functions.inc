@@ -152,7 +152,14 @@ function DATABOX_templatePath (
         }
         if (is_dir($tmplfld)) {
 
-        }else{
+        } else if ( SEC_hasRights($adminrights)) {
+
+            $tmplfld=$_CONF['path'] .'plugins/'.$pi_name.'/templates/'.$kind;
+            if ($kind<>"admin"){
+                $tmplfld.="/default";
+            }
+
+        } else {
             COM_handle404();
             exit;
         }
@@ -167,6 +174,14 @@ function DATABOX_templatePath (
         }
 
         if (is_dir($tmplfld)){
+
+        } else if ( SEC_hasRights($adminrights)) {
+            $tmplfld=$_CONF['path'] .'plugins/'.$pi_name.'/templates/'.$kind;
+            if ($kind<>"admin"){
+
+                $tmplfld.="/default";
+
+            }
 
         }else{
             COM_handle404();

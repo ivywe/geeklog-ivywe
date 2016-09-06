@@ -2,7 +2,7 @@
 ###############################################################################
 # plugins/assist/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20160409
+# Last Update 20160819
 ###############################################################################
 ## 管理画面
 $LANG_ASSIST_admin_menu = array();
@@ -364,6 +364,8 @@ $LANG_confignames['assist']['aftersave_admin'] = '保存後の画面遷移 管�
 $LANG_confignames['assist']['xmlins'] = 'xmlins';
 $LANG_confignames['assist']['default_img_url'] = 'デフォルト画像URL';
 $LANG_confignames['assist']['path_cache'] = 'キャッシュファイルパス';
+
+$LANG_confignames['assist']['disable_permission_ignore'] = '新着データの　permission ignore を無効にする';
 
 //---(１)
 $LANG_tab['assist']['tab_autotag_permissions'] = '自動タグのパーミッション';

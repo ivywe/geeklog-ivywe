@@ -65,7 +65,14 @@ function theme_css_default()
         array('file' => '/vendor/uikit/css' . $direction . '/uikit.gradient.css', 'attributes' => array('media' => 'all'), 'priority' => 80),
         array('file' => '/layout/' . $_CONF['theme'] . '/vendor/uikit/css/components/uikit.gradient.css', 'attributes' => array('media' => 'all'), 'priority' => 90),
         array('file' => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/style.css', 'attributes' => array('media' => 'all'), 'priority' => 100),
-        array('file' => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/theme.css', 'attributes' => array('media' => 'all'), 'priority' => 110)
+        array('file' => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/theme.css', 'attributes' => array('media' => 'all'), 'priority' => 110),
+        array(
+            'name'       => 'codemirror', // don't use the name 'theme' to control the priority
+            'file'       => '/vendor/codemirror/lib/codemirror.css',
+            'attributes' => array('media' => 'all'),
+            'priority'   => 150
+        ),
+
     );
 }
 
@@ -163,10 +170,48 @@ function theme_js_files_default()
         ),
 
        array(
+            'file'      => '/vendor/codemirror/lib/codemirror.js',
+            'footer'    => false, // Not requred, default = true
+            'priority'  => 271 // Not requred, default = 100
+        ),
+       array(
+            'file'      => '/vendor/codemirror/mode/markdown/markdown.js',
+            'footer'    => false, // Not requred, default = true
+            'priority'  => 272 // Not requred, default = 100
+        ),
+       array(
+            'file'      => '/vendor/codemirror/addon/mode/overlay.js',
+            'footer'    => false, // Not requred, default = true
+            'priority'  => 273 // Not requred, default = 100
+        ),
+       array(
+            'file'      => '/vendor/codemirror/mode/xml/xml.js',
+            'footer'    => false, // Not requred, default = true
+            'priority'  => 274 // Not requred, default = 100
+        ),
+       array(
+            'file'      => '/vendor/codemirror/mode/gfm/gfm.js',
+            'footer'    => false, // Not requred, default = true
+            'priority'  => 275 // Not requred, default = 100
+        ),
+       array(
+            'file'      => '/vendor/marked/marked.min.js',
+            'footer'    => false, // Not requred, default = true
+            'priority'  => 276 // Not requred, default = 100
+        ),
+       array(
+            'file'      => '/vendor/uikit/js/components/htmleditor.js',
+            'footer'    => false, // Not requred, default = true
+            'priority'  => 277 // Not requred, default = 100
+        ),
+
+       array(
             'file'      => '/layout/' . $_CONF['theme'] . '/javascript/theme.js',
             'footer'    => false, // Not requred, default = true
             'priority'  => 220 // Not requred, default = 100
         ),
+
+
     );
 }
 

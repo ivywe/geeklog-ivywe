@@ -98,6 +98,8 @@ $_ASSIST_DEFAULT['default_img_url'] = "";
 //キャッシュファイルパス
 $_ASSIST_DEFAULT['path_cache'] = $_CONF['path']."data/cache/";
 
+//permission ignoreを無効にする　default いいえ
+$_ASSIST_DEFAULT['disable_permission_ignore'] = 0;
 
 //() autotag permissions
 $_ASSIST_DEFAULT['autotag_permissions_newstories'] = array (2, 2, 2, 2);
@@ -276,6 +278,14 @@ function plugin_initconfig_assist()
             ,'text', 0, 0, NULL, 270, TRUE
 			, $pi_name
 			,0);
+
+        
+        $c->add(
+            'disable_permission_ignore'
+            ,$_ASSIST_DEFAULT['disable_permission_ignore']
+            ,'select', 0, 0, 0, 280, true
+            , $pi_name
+            ,0);
 
 		//(1)autotag_permissions
         $c->add('tab_autotag_permissions', NULL, 'tab', 0, 1, NULL, 0, true, $pi_name, 1);
