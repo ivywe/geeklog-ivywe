@@ -439,7 +439,7 @@ function assist_GetHeaderCode(
 		$tpl->set_var('xhtml', XHTML);
 		$tpl->set_var('site_url', $_CONF['site_url']);
 		
-		$tpl->set_var ('currenturl', $currenturl);
+		$tpl->set_var ('currenturl', htmlspecialchars($currenturl, ENT_QUOTES, 'UTF-8'));
 		
 		$tpl->set_var ('site_name', $_CONF['site_name']);
 		$tpl->set_var ('site_mail', $_CONF['site_mail']);
