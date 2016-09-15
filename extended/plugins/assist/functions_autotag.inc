@@ -1252,7 +1252,7 @@ function assist_btn(
 		$currenturl = COM_getCurrentURL();
 		$appid=$_CONF['facebook_consumer_key'];
 	
-		$btn->set_var ('currenturl', $currenturl);
+		$btn->set_var ('currenturl', htmlspecialchars($currenturl, ENT_QUOTES, 'UTF-8'));
 		$btn->set_var ('appid', $appid);
 
 		$btn->parse ('output', 'btn');
