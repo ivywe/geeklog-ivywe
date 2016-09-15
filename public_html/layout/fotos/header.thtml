@@ -15,7 +15,7 @@
 
 <meta name="twitter:image:height" content="400"{xhtml}>
 <meta name="twitter:image:width" content="500"{xhtml}>
-<meta name="twitter:url" content="<?php echo htmlspecialchars(COM_getCurrentURL(), ENT_QUOTES, 'utf-8'); ?>"
+<meta name="twitter:url" content="<?php echo htmlspecialchars(COM_getCurrentURL(), ENT_QUOTES, 'utf-8'); ?>"{xhtml}>
 
 {feed_url}
 {rel_links}
