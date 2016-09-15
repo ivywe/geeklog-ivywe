@@ -3069,6 +3069,15 @@ function databox_search(
     $autotag
     ,$argary
 )
+// +---------------------------------------------------------------------------+
+// | 機能  検索リスト
+// | 書式  databox_search($autotag,$argary);
+// +---------------------------------------------------------------------------+
+// | 引数 $autotag :
+// | 引数 $argary  :
+// +---------------------------------------------------------------------------+
+// | 戻値 nomal:検索リスト
+// +---------------------------------------------------------------------------+
 {
 
     $pi_name="databox";
@@ -3141,7 +3150,10 @@ function databox_search(
     }
     if  ($argary['fieldset_id']==""){
         $argary['fieldset_id']=0;
-    }
+	}else if  (preg_match('/^[0-9]+$/', $argary['fieldset_id'])){
+        $argary['fieldset_id']=0;
+	}
+    
     $fieldset_name=COM_applyFilter(DB_getItem( $tbl7 ,"name","fieldset_id={$argary['fieldset_id']}"));
 
     if ($argary['perpage']===0 OR is_null($argary['perpage'])){
@@ -3676,9 +3688,9 @@ function databox_search(
         $retval["pagetitle"] =$pagetitle;
         $retval["headercode"] =$headercode;
         $retval["display"] =PLG_replacetags ($content);
-          }else{
+    }else{
         $retval=PLG_replacetags ($content);
-          }
+    }
     return $retval;
 } 
 
@@ -3687,6 +3699,15 @@ function databox_searcharg(
     $autotag
     ,$arg
 )
+// +---------------------------------------------------------------------------+
+// | 機能  検索リスト
+// | 書式  databox_searcharg($autotag,$arg);
+// +---------------------------------------------------------------------------+
+// | 引数 $autotag :notautotag 自動タグでない 
+// | 引数 $arg  :
+// +---------------------------------------------------------------------------+
+// | 戻値 $argary:検索引数配列
+// +---------------------------------------------------------------------------+
 {
     if ($autotag==="notautotag"){
         foreach((array)$arg as $key => $value){
@@ -3694,13 +3715,17 @@ function databox_searcharg(
             if  ($key<>""){
                 if  (is_array($value)  ) {
                     foreach($value as $key2 => $value2){
-                       $argary[$key][]=COM_applyFilter($value2);
+                       $argary[$key][]=COM_applyFilter($value2,true);
                     }
                 }else{
                     if  ($key=="fieldset") {
-                        $argary['fieldset_id']=COM_applyFilter($value);
+                        $argary['fieldset']=COM_applyFilter($value,true);
+                        $argary['fieldset_id']=COM_applyFilter($value,true);
+                    }else if  ($key=="page"  OR  $key=="perpage") {
+                        $argary[$key]=COM_applyFilter($value,true);
+                    }else {
+                        $argary[$key]=COM_applyFilter($value);
                     }
-                    $argary[$key]=COM_applyFilter($value);
                 }
             }
         }
@@ -3710,15 +3735,17 @@ function databox_searcharg(
         foreach($ary as $key => $value){
             $k = explode ('=', $value);
             $k0= COM_applyFilter($k[0]);
-            $k1= COM_applyFilter($k[1]);
+            //$k1= COM_applyFilter($k[1]);
             if  ($k0<>""){
                 if  ($k0=="fieldset") {
-                    $argary['fieldset']=$k1;
-                    $argary['fieldset_id']=$k1;
+                    $argary['fieldset']=COM_applyFilter($k[1],true);
+                    $argary['fieldset_id']=COM_applyFilter($k[1],true);
+                }else if  ($k0=="page"  OR  $k0=="perpage") {
+                    $argary[$k0]=COM_applyFilter($k[1],true);
                 }else if  ( substr($k0,0,3)=="gor" OR substr($k0,0,4)=="gand" OR substr($k0,0,3)=="ams" ) {
-                    $argary[$k0][]=$k1;
+                    $argary[$k0][]=COM_applyFilter($k[1],true);
                 }else {
-                    $argary[$k0]=$k1;
+                    $argary[$k0]=COM_applyFilter($k[1]);
                 }
             }
         }

@@ -71,8 +71,7 @@ function LIB_List(
     $header_arr[]=array('text' => $lang_box_admin['field_id'], 'field' => 'field_id', 'sort' => true);
     $header_arr[]=array('text' => $lang_box_admin['name'], 'field' => 'name', 'sort' => true);
     $header_arr[]=array('text' => $lang_box_admin['templatesetvar'], 'field' => 'templatesetvar', 'sort' => true);
-    $header_arr[]=array('text' => $lang_box_admin['fieldgroupno'], 'field' => 'fieldgroupno_name', 'sort' => true);
-
+    $header_arr[]=array('text' => $lang_box_admin['fieldgroupno'], 'field' => 'value', 'sort' => true);
     //
     $text_arr = array('has_menu' =>  true,
       'has_extras'   => true,
@@ -84,14 +83,16 @@ function LIB_List(
     $sql .= " field_id";
     $sql .= " ,name";
     $sql .= " ,templatesetvar";
-    $sql .= " ,orderno";
+    $sql .= " ,t.orderno";
 
     $sql .= " ,type";
     $sql .= " ,allow_display";
-    $sql .= " ,(SELECT t2.value FROM {$table2} AS t2 WHERE t2.kind='fieldgroup' AND t2.no=t.fieldgroupno ) AS fieldgroupno_name ".LB;
+    $sql .= " ,t.fieldgroupno";
+    $sql .= " ,t2.value ";
 	
 	$sql .= " FROM ";
     $sql .= " {$table} AS t";
+    $sql .= " LEFT JOIN {$table2} AS t2 ON t2.kind='fieldgroup' AND t2.no=t.fieldgroupno";
     $sql .= " WHERE ";
     $sql .= " 1=1";
     //
@@ -99,10 +100,10 @@ function LIB_List(
     $query_arr = array(
         'table' => $table,
         'sql' => $sql,
-        'query_fields' => array('field_id','name','orderno','templatesetvar,fieldgroupno_name'),
+        'query_fields' => array('field_id','name','t.orderno','templatesetvar','t2.value'),
         'default_filter' => $exclude);
     //デフォルトソート項目:
-    $defsort_arr = array('field' => 'orderno', 'direction' => 'ASC');
+    $defsort_arr = array('field' => 't.orderno', 'direction' => 'ASC');
 	$form_arr = array('bottom' => '', 'top' => '');
     $pagenavurl = '&amp;filter_val=' . $filter_val;
     //List 取得
