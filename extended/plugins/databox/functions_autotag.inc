@@ -3147,13 +3147,12 @@ function databox_search(
                 $arg_sv.=$key."=".$value;
             }
         }
-    }
+	}
     if  ($argary['fieldset_id']==""){
         $argary['fieldset_id']=0;
-	}else if  (preg_match('/^[0-9]+$/', $argary['fieldset_id'])){
-        $argary['fieldset_id']=0;
-	}
-    
+    }
+
+
     $fieldset_name=COM_applyFilter(DB_getItem( $tbl7 ,"name","fieldset_id={$argary['fieldset_id']}"));
 
     if ($argary['perpage']===0 OR is_null($argary['perpage'])){
@@ -3715,7 +3714,7 @@ function databox_searcharg(
             if  ($key<>""){
                 if  (is_array($value)  ) {
                     foreach($value as $key2 => $value2){
-                       $argary[$key][]=COM_applyFilter($value2,true);
+                        $argary[$key][]=Ltrim(COM_applyFilter($value2,true),0);
                     }
                 }else{
                     if  ($key=="fieldset") {
@@ -3743,7 +3742,7 @@ function databox_searcharg(
                 }else if  ($k0=="page"  OR  $k0=="perpage") {
                     $argary[$k0]=COM_applyFilter($k[1],true);
                 }else if  ( substr($k0,0,3)=="gor" OR substr($k0,0,4)=="gand" OR substr($k0,0,3)=="ams" ) {
-                    $argary[$k0][]=COM_applyFilter($k[1],true);
+                    $argary[$k0][]=ltrim(COM_applyFilter($k[1],true),0);
                 }else {
                     $argary[$k0]=COM_applyFilter($k[1]);
                 }
