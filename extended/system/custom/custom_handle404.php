@@ -38,7 +38,7 @@ function CUSTOM_handle404($alternate_url = '')
         fputs( $file, "$timestamp - $logentry \n" );
     }
 
-    $display .= CUSTOM_getStaticpage('404');
+    $display .= CUSTOM_getStaticpage('_404');
 
 /*
     $display .= sprintf($LANG_404[2], $url);
