@@ -16,6 +16,7 @@
 	</div>	
 </div>
 {options}
+{captcha}
 <div class="uk-form-row uk-align-right">
 	<div class="uk-form-controls">
 		<button class="uk-button" type="submit" name="preview" value="{LANG_PREVIEW}">{LANG_PREVIEW}</button>
@@ -23,7 +24,6 @@
 		<button class="uk-button" type="submit" name="submit" value="{LANG_CANCEL}">{LANG_CANCEL}</button>
 	</div>
 </div>
-{captcha}
 
 <!-- BEGIN submissionform_membertop -->
 <p><b>{post_message}</b></p>
