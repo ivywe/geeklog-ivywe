@@ -578,6 +578,11 @@ function plugin_getiteminfo_databox(
     for ($i = 0; $i < $numRows; $i++) {
         $A = DB_fetchArray($result);
 
+        if (DATABOX_isExcepted($A['code'],$_DATABOX_CONF['sitemap_excepts'])) {
+            continue;
+        }
+
+		
         $props = array();
         foreach ($properties as $p) {
             switch ($p) {
@@ -647,6 +652,7 @@ function plugin_getiteminfo_databox(
 
     return $retval;
 }
+
 
 function plugin_configchange_databox(
     $group

@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
   <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
 </head>
-<!-- admin/plugins/userbox/docs/japanese/userbox.html 20160810 -->
+<!-- admin/plugins/userbox/docs/japanese/userbox.html 20161206 -->
 <body>
 <p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
 <div class="menu">
@@ -25,7 +25,7 @@
 <form name='userbox_conf_link' action='../../../../../admin/configuration.php' method='POST'>
 <input type='hidden' name='conf_group' value='userbox'></form>
  <a style='text-decoration: none;' href='#' onclick="document.userbox_conf_link.submit()">コンフィギュレーション管理画面</a>「管理者用メニュー - コンフィギュレーション - UserBox」から変更できます。</p>
-<h3><a name="public">メイン設定(2016/08/10 update)</a></h3>
+<h3><a name="public">メイン設定(2016/12/06 update)</a></h3>
 
 <table>
 <tr><th style="width:25%">項目(変数)</th>
@@ -327,6 +327,11 @@
   <td><a name="desc_disable_permission_ignore">新着データのpermission ignore を無効にする(disable_permission_ignore)</a></td>
   <td>いいえ(0)</td>
   <td>はい(1)にすると、新着データのpermission ignoreを無効にします。([userbox:newlist permission:ignore])</td>
+</tr>
+<tr >
+  <td><a name="desc_sitemap_excepts">サイトマップ XMLSitemap から除外するユーザー名(sitemap_excepts)</a></td>
+  <td>　</td>
+  <td>正規表現　</br> 例：頭がuserは、^user</td>
 </tr>
 </table>
 

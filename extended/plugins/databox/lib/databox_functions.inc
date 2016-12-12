@@ -4968,7 +4968,7 @@ function DATABOX_Confirmation(
 )
 // +---------------------------------------------------------------------------+
 // | 機能 確認画面
-// | 書式 Con_firmation("databox")
+// | 書式 DATABOX_Confirmation($pi_name,$mode)
 //   fnc_Confirmation proversion
 // +---------------------------------------------------------------------------+
 // | 引数 $pi_name:plugin名
@@ -6024,5 +6024,19 @@ function DATABOX_getcheckboxary(
     }
     return $retval;
 }
+function DATABOX_isExcepted(
+$code
+,$excepts) 
+{
 
+	foreach ($excepts as $except) {
+		if (strlen($except) > 0) {
+			if (preg_match('/' . $except . '/' , $code)) {
+				return TRUE;
+			}
+		}
+	}
+	
+	return FALSE;
+}
 ?>

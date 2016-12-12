@@ -1,11 +1,8 @@
 {# begin {templatelocation} #}
-
-      <div class="uk-form-row">
-        <label class="uk-form-label">{additionfield_name}<span class="uk-text-warninig">{lang_must_additionfield}</span></label>
-        <div class="uk-form-controls">
-          {additionfield_value}
-          <span class="uk-form-help-inline">{additionfield_description}</span>
-        </div>
-      </div>
-
+{# plugins/userbox/templates/myprofile/default/profile_col_detail.thtml 20160422 #}
+<th class="admin-list-field">
+{fieldgroup} {# {fieldgroup_name} #}
+{additionfield_name}
+<span class="must">{lang_must_additionfield}</span></th>
+<td class="admin-list-field">{additionfield_value}{additionfield_description}</td>
 {# end {templatelocation} #}

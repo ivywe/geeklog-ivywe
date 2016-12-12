@@ -11,7 +11,7 @@
 ###############################################################################
 # plugins/USERBOX/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20160810
+# Last Update 20161206
 
 ###############################################################################
 ## 管理画面 menu
@@ -673,6 +673,8 @@ $LANG_confignames['userbox']['sort_list_by'] = '管理者ページ（プロフ�
 $LANG_confignames['userbox']['default_cache_time'] = 'デフォルトキャッシュタイム';
 
 $LANG_confignames['userbox']['disable_permission_ignore'] = '新着データの　permission ignore を無効にする';
+
+$LANG_confignames['userbox']['sitemap_excepts'] = 'サイトマップ XMLSitemap から除外するユーザ名';
 
 //--(1)
 $LANG_tab['userbox'][tab_whatsnew] = '新着情報ブロック';

@@ -1121,7 +1121,11 @@ function databox_field(
     }else{
         return;
     }
-
+    $allow_display=$field_def[$field_id]['allow_display'];
+    if ($allow_display<2){
+    }else{
+        return;
+    }
     //
     if (is_null($page) OR !isset($page) OR $page == 0) {
         $page = 1;

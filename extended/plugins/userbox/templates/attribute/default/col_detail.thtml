@@ -1,44 +1,147 @@
 {# begin {templatelocation} #}
-
+{# plugins/userbox/templates/attribute/default/col_detail.thtml 20160623 #}
 <li>
-{data_link}(<a href="#db_attribute_col_detail_{data_code}" data-uk-modal>example</a>){data_edit}
+<span style= "color:green" > &#123;data_link&#125;</span>{data_link}&nbsp;
+<span style= "color:green" > &#123;data_url&#125;</span>{data_url}&nbsp;
+<span style= "color:green" > &#123;data_id&#125;</span>{data_id}&nbsp;
+<span style= "color:green" > &#123;data_username&#125;</span>{data_username}&nbsp;
+<span style= "color:green" > &#123;data_fullname&#125;</span>{data_fullname}&nbsp;
+<span style= "color:green" > &#123;data_code&#125;</span>{data_code}&nbsp;
+<span style= "color:green" > &#123;data_title&#125;</span>{data_title}&nbsp;
+<span style= "color:green" > &#123;data_user_photo&#125;</span>{data_user_photo}&nbsp;
+<span style= "color:green" > &#123;data_photo&#125;</span>{data_photo}&nbsp;
+<span style= "color:green" > &#123;data_description&#125;</span>{data_description}{new_img}&nbsp;
+<span style= "color:green" > &#123;data_datefield&#125;</span>{data_datefield} {new_img}&nbsp;{# 使用する日付 作成日付or編集日付or公開日 #}
+<span style="color:green">&#123;data_datefield_shortdate&#125;</span>{data_datefield_shortdate}&nbsp;
+<span style="color:green">&#123;data_datefield_date&#125;</span>{data_datefield_date} &nbsp;
+<span style="color:green">&#123;data_datefield_daytime&#125;</span>{data_datefield_daytime} &nbsp;
+<span style="color:green">&#123;data_datefield_dateonly&#125;</span>{data_datefield_dateonly} &nbsp;
+<span style="color:green">&#123;data_datefield_timeonly&#125;</span>{data_datefield_timeonly} &nbsp;
+<span style="color:green">&#123;data_datefield_b&#125;</span>{data_datefield_b} &nbsp;
+<span style="color:green">&#123;data_datefield_B&#125;</span>{data_datefield_B} &nbsp;
+<span style="color:green">&#123;data_datefield_d&#125;</span>{data_datefield_d} &nbsp;
+<span style="color:green">&#123;data_datefield_e&#125;</span>{data_datefield_e} &nbsp;
+
+<span style="color:green">&#123;data_released&#125;</span>{data_released}&nbsp;
+<span style="color:green">&#123;data_released_shortdate&#125;</span>{data_released_shortdate}&nbsp;
+<span style="color:green">&#123;data_released_date&#125;</span>{data_released_date} &nbsp;
+<span style="color:green">&#123;data_released_daytime&#125;</span>{data_released_daytime} &nbsp;
+<span style="color:green">&#123;data_released_dateonly&#125;</span>{data_released_dateonly} &nbsp;
+<span style="color:green">&#123;data_released_timeonly&#125;</span>{data_released_timeonly} &nbsp;
+<span style="color:green">&#123;data_released_b&#125;</span>{data_released_b} &nbsp;
+<span style="color:green">&#123;data_released_B&#125;</span>{data_released_B} &nbsp;
+<span style="color:green">&#123;data_released_d&#125;</span>{data_released_d} &nbsp;
+<span style="color:green">&#123;data_released_e&#125;</span>{data_released_e} &nbsp;
+
+<span style="color:green">&#123;data_expired&#125;</span>{data_expired}&nbsp;
+<span style="color:green">&#123;data_expired_shortdate&#125;</span>{data_expired_shortdate}&nbsp;
+<span style="color:green">&#123;data_expired_date&#125;</span>{data_expired_date} &nbsp;
+<span style="color:green">&#123;data_expired_daytime&#125;</span>{data_expired_daytime} &nbsp;
+<span style="color:green">&#123;data_expired_dateonly&#125;</span>{data_expired_dateonly} &nbsp;
+<span style="color:green">&#123;data_expired_timeonly&#125;</span>{data_expired_timeonly} &nbsp;
+<span style="color:green">&#123;data_expired_b&#125;</span>{data_expired_b} &nbsp;
+<span style="color:green">&#123;data_expired_B&#125;</span>{data_expired_B} &nbsp;
+<span style="color:green">&#123;data_expired_d&#125;</span>{data_expired_d} &nbsp;
+<span style="color:green">&#123;data_expired_e&#125;</span>{data_expired_e} &nbsp;
+
+<span style="color:green">&#123;data_hits&#125;</span>{data_hits}&nbsp;
+<span style="color:green">&#123;data_remaingdays&#125;</span>{data_remaingdays}&nbsp;
+<span style= "color:green" > &#123;data_value&#125;</span>{data_value}&nbsp;{# ソート順に指定された追加属性項目 #}
+<span style= "color:green" > &#123;zipcode&#125;</span>{zipcode}&nbsp;
+<span style= "color:green" > &#123;tel&#125;</span>{tel}&nbsp;
+<span style= "color:green" > &#123;additionfield1&#125;</span>{additionfield1}&nbsp;
+<span style= "color:green" > &#123;additionfield2&#125;</span>{additionfield2}&nbsp;
+{data_edit}
+{# 下記テーマ変数　参考例です 登録されていない場合表示されません #}
+&nbsp;&nbsp;&nbsp;
+<span style= "color:green" > &#123;zipcode&#125;</span>{zipcode}&nbsp;
+<span style= "color:green" > &#123;tel&#125;</span>{tel}&nbsp;
+<span style= "color:green" > &#123;additionfield1&#125;</span>{additionfield1}&nbsp;
+<span style= "color:green" > &#123;additionfield2&#125;</span>{additionfield2}&nbsp;
+<span style="color:green">&#123;additionfield2&#125;</span>{additionfield2}
+<span style="color:green">&#123;additionfield3&#125;</span>{additionfield3}
+<span style="color:green">&#123;additionfield4&#125;</span>{additionfield4}
+<span style="color:green">&#123;additionfield5&#125;</span>{additionfield5}
+<span style="color:green">&#123;additionfield6&#125;</span>{additionfield6}
+
+
+{# カテゴリ グループコードを使用するテーマ変数 #}
+&nbsp;&nbsp;&nbsp;
+<span style="color:green">&#123;group_city&#125;&#123;group_city_code&#125;</span>
+{group_city} {group_city_code}
+
+&nbsp;&nbsp;&nbsp;
+<span style="color:green">&#123;group_country&#125;&#123;group_country_code&#125;</span>
+{group_country} {group_country_code}
+
+&nbsp;&nbsp;&nbsp;
+<span style="color:green">&#123;group_team&#125;&#123;group_team_code&#125;</span>
+{group_type} {group_team_code}
+
+{# アトリビュート（追加項目） 登録したテーマ変数を使用する　テーマ変数 例 #}
+
+<span style="color:green">&#123;tel_name&#125;</span>{tel_name}
+<span style="color:green">&#123;tel_requried&#125;</span>{tel_requried}
+
+<span style="color:green">&#123;tel_description&#125;</span>{tel_description}
+<span style="color:green">&#123;tel&#125;</span>{tel}
+<span style="color:green">&#123;tel_requried&#125;</span>{tel_requried}
+<span style="color:green">&#123;pref&#125;</span>{pref}
+<span style="color:green">&#123;pref_mst_value2&#125;</span>{pref_mst_value2}
+<span style="color:green">&#123;pref_mst_disp&#125;</span>{pref_mst_disp}
+<span style="color:green">&#123;pref_mst_nop&#125;</span>{pref_mst_no}
+<span style="color:green">&#123;yesno&#125;</span>{yesno}
+<span style="color:green">&#123;fg12&#125;</span>{fg12}
+<span style="color:green">&#123;fg12_tn&#125;</span>{fg12_tn}
+<span style="color:green">&#123;fg12_noimage&#125;</span>{fg12_noimage}
+<span style="color:green">&#123;fg12_tn_noimage&#125;</span>{fg12_tn_noimage}
+<span style="color:green">&#123;fg12_disp&#125;</span>{fg12_disp}
+<span style="color:green">&#123;fg12_tn_image&#125;</span>{fg12_tn_image}
+{# タイプが添付ファイルの場合表示されます　記憶ファイル名 #}
+<span style="color:green">&#123;file_readfile&#125;</span>{file_readfile}
+{# ダウンロードのリンク例 #}
+<a href="{site_url}/databox/download.php?id=394&field_id=84" 		title="{lang_downloadrequired}">{file} {lang_download}</a>
+{# 添付ファイルがpdfの場合の 表示のリンク例 #}
+<a href="{site_url}/databox/download.php?id=394&field_id=84&mode=display"title="{lang_displayrequired}">{file} {lang_display}</a>
+
+{# カテゴリ リンク付　グループコード使用テーマ変数 #}
+&nbsp;&nbsp;&nbsp;
+<span style="color:green">&#123;grouplink_city&#125;&#123;grouplink_city_code&#125;</span>
+{grouplink_city} {grouplink_city_code}
+
+&nbsp;&nbsp;&nbsp;
+<span style="color:green">&#123;grouplink_country&#125;&#123;grouplink_country_code&#125;</span>
+{grouplink_country} {grouplink_country_code}
+
+&nbsp;&nbsp;&nbsp;
+<span style="color:green">&#123;grouplink_team&#125;&#123;grouplink_team_code&#125;</span>
+{grouplink_team} {grouplink_team_code}
+
+{# カテゴリ グループID使用テーマ変数 #}
+&nbsp;&nbsp;&nbsp;
+<span style="color:green">&#123;group_1&#125;&#123;group_1_code&#125;</span>
+{group_1} {group_1_code}
+
+&nbsp;&nbsp;&nbsp;
+<span style="color:green">&#123;group_2&#125;&#123;group_2_code&#125;</span>
+{group_2} {group_2_code}
+
+&nbsp;&nbsp;&nbsp;
+<span style="color:green">&#123;group_3&#125;&#123;group_3_code&#125;</span>
+{group_3} {group_3_code}
+
+{# カテゴリリンク　グループID使用テーマ変数 #}
+&nbsp;&nbsp;&nbsp;
+<span style="color:green">&#123;grouplink_1&#125;&#123;grouplink_1_code&#125;</span>
+{grouplink_1} {grouplink_1_code}
+
+&nbsp;&nbsp;&nbsp;
+<span style="color:green">&#123;grouplink_2&#125;&#123;grouplink_2_code&#125;</span>
+{grouplink_2} {grouplink_2_code}
+
+&nbsp;&nbsp;&nbsp;
+<span style="color:green">&#123;grouplink_3&#125;&#123;grouplink_3_code&#125;</span>
+{grouplink_3} {grouplink_3_code}
+
 </li>
-
-<div id="db_attribute_col_detail_{data_code}" class="uk-modal">
-  <div class="uk-modal-dialog">
-    <a class="uk-modal-close uk-close"></a>
-    <div class="uk-text-break"><span class="uk-text-bold">theme variables:</span> {templatelocation}</div>
-    <ul class="uk-list uk-list-line">
-      <li><span style="color:green">&#123;data_title&#125;</span>{data_title}</li>
-      <li><span style="color:green">&#123;data_link&#125;</span>{data_link}</li>
-      <li><span style="color:green">&#123;data_id&#125;</span>{data_id}</li>
-      <li><span style="color:green">&#123;data_code&#125;</span>{data_code}</li>
-      <li><span style="color:green">&#123;data_description&#125;</span>{data_description}</li>
-      <li><span style="color:green">&#123;data_datefield&#125;</span>{data_datefield}</li>
-      <li><span style="color:green">&#123;data_datefield_shortdate&#125;</span>{data_datefield_shortdate}</li>
-      <li><span style="color:green">&#123;data_released&#125;</span>{data_released}</li>
-      <li><span style="color:green">&#123;data_released_shortdate&#125;</span>{data_released_shortdate}</li>
-      <li><span style="color:green">&#123;data_expired&#125;</span>{data_expired}</li>
-      <li><span style="color:green">&#123;data_expired_shortdate&#125;</span>{data_expired_shortdate}</li>
-      <li><span style="color:green">&#123;new_img&#125;</span>{new_img}</li>
-      <li><span style="color:green">&#123;data_hits&#125;</span>{data_hits}</li>
-      <li><span style="color:green">&#123;data_remaingdays&#125;</span>{data_remaingdays}</li>
-      <li><span style="color:green">&#123;data_value&#125;</span>{data_value}</li>
-      <li><span style="color:green">&#123;data_edit&#125;</span>{data_edit}</li>
-      <li>Addition field sample: Display if set.</li>
-      <li><span style="color:green">&#123;zipcode&#125;</span>{zipcode}</li>
-      <li><span style="color:green">&#123;tel&#125;</span>{tel}</li>
-      <li>Group sample: Display if set.</li>
-      <li><span style="color:green">&#123;group_city&#125;</span>{group_city}</li>
-      <li><span style="color:green">&#123;group_city_code&#125;</span>{group_city_code}</li>
-      <li><span style="color:green">&#123;grouplink_city&#125;</span>{grouplink_city}</li>
-      <li><span style="color:green">&#123;grouplink_city_code&#125;</span>{grouplink_city_code}</li>
-      <li><span style="color:green">&#123;group_1&#125;</span>{group_1}</li>
-      <li><span style="color:green">&#123;group_1_code&#125;</span>{group_1_code}</li>
-      <li><span style="color:green">&#123;grouplink_1&#125;</span>{grouplink_1}</li>
-      <li><span style="color:green">&#123;grouplink_1_code&#125;</span>{grouplink_1_code}</li>
-    </ul>
-  </div>
-</div>
-
 {# end {templatelocation} #}

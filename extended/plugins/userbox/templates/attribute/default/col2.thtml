@@ -1,23 +1,6 @@
 {# begin {templatelocation} #}
-
-    <li>{value_link}({count})(<a href="#db_attribute_col2_{field_name}" data-uk-modal>example</a>)
-
-<div id="db_attribute_col2_{field_name}" class="uk-modal">
-  <div class="uk-modal-dialog">
-    <a class="uk-modal-close uk-close"></a>
-    <div class="uk-text-break">
-      <span class="uk-text-bold">theme variables(<a href="{site_url}/admin/plugins/userbox/docs/japanese/templatesetvars.html">Document</a>):</span> {templatelocation}
-    </div>
-    <ul class="uk-list">
-      <li><span style="color:green">&#123;value_link&#125;</span>{value_link}</li>
-      <li><span style="color:green">&#123;field_description&#125;</span>{field_description}</li>
-      <li><span style="color:green">&#123;field_name&#125;</span>{field_name}</li>
-      <li><span style="color:green">&#123;field_url&#125;</span>{field_url}</li>
-      <li><span style="color:green">&#123;value_url&#125;</span>{value_url}</li>
-      <li><span style="color:green">&#123;value&#125;</span>{value}</li>
-      <li><span style="color:green">&#123;count&#125;</span>{count}</li>
-    </ul>
-  </div>
-</div>
-
+{# plugins/userbox/templates/attribute/default/col2.thtml 2051111 #}
+    <li>{value_link}&nbsp;({count})
+    &nbsp;{field_description} &nbsp;{field_name}&nbsp;{field_url}
+    &nbsp;{value_url}&nbsp;{value}</li>
 {# end {templatelocation} #}

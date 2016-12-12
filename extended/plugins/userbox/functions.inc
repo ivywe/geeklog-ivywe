@@ -956,6 +956,10 @@ function plugin_getiteminfo_userbox(
     for ($i = 0; $i < $numRows; $i++) {
         $A = DB_fetchArray($result);
 
+        if (DATABOX_isExcepted($A['username'],$_USERBOX_CONF['sitemap_excepts'])) {
+            continue;
+        }
+
         $props = array();
         foreach ($properties as $p) {
             switch ($p) {

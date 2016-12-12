@@ -790,6 +790,8 @@ $LANG_confignames['databox']['sort_list_by_my'] = 'Sort My Data List by';
 $LANG_confignames['databox']['default_cache_time'] = 'default cache time';
 $LANG_confignames['databox']['disable_permission_ignore'] = 'disable permission ignore';
 
+$LANG_confignames['databox']['sitemap_excepts'] = 'XMLSitemap excepted codes';
+
 //--(1)
 $LANG_tab['databox'][tab_whatsnew] = 'Whats new Block';
 $LANG_fs['databox'][fs_whatsnew] = 'Whats new Block';

@@ -1,57 +1,22 @@
 {# begin {templatelocation} #}
-
-<div class=" uk-clearfix"></div>
-<div class="uk-grid">
-  <div class="uk-width-medium-2-5">
-
-    <h3>{lang_document}</h3>
-
-    <div class="uk-text-bold">Ver. {version}</div>
-
-    <ul>
-      <li><a href="{document_url}install.html" target="_blank">{lang_install}</a></li>
-      <li><a href="{document_url}userbox.html" target="_blank">{lang_configuration}</a></li>
-      <li><a href="{document_url}autotags.html" target="_blank">{lang_autotags}</a></li>
-      <li><a href="{document_url}files.html" target="_blank">{lang_files}</a></li>
-      <li><a href="{document_url}templatesetvars.html" target="_blank">{lang_templatesetvars}</a></li>
-      <li><a href="{document_url}tables.html" target="_blank">{lang_tables}</a></li>
-      <li><a href="{document_url}input.html" target="_blank">{lang_input}</a></li>
-    </ul>
-
-    <form class="uk-form" name='userbox_conf_link' action='{site_admin_url}/configuration.php' method='POST'>
-      <input type='hidden' name='conf_group' value='userbox'>
-    </form>
-    <div class="uk-margin"><a class="uk-button" href='#' onclick="document.userbox_conf_link.submit()">{lang_configuration}</a></div>
-
-    <dl class="uk-description-list-line">
-      <dt><a href="https://bitbucket.org/tsuchi/box/wiki/table%20change%20history">Bitbucket/box table change history</a></dt>
-      <dd>See table change history and documents by Tsuchi(Original developer)</dd>
-      <dt><a href="https://github.com/ivywe/geeklog-ivywe">GitHub/ivywe/geeklog-ivywe by Ivy(Customizer)</a></dt>
-      <dd>Download and use /extended/</dd>
-    <dl>
-
-  </div>
-
-  <div class="uk-width-medium-3-5">
-
-    <div class="uk-panel uk-panel-box uk-margin">
-      <h3 class="uk-h3">Usage</h3>
-      <h4 class="uk-h4">Public URL</h4>
-      <dl class="uk-description-list-line">
-        <dt>List</dt><dd><a href="{site_url}/userbox/list.php" data-uk-tooltip title="Display list!">/userbox/list.php</a></dd>
-        <dt>Category</dt><dd><a href="{site_url}/userbox/category.php" data-uk-tooltip title="Display category!">/userbox/category.php</a></dd>
-      </dl>
-      <h4 class="uk-h4">Admin URL</h4>
-      <dl class="uk-description-list-line">
-        <dt>Data link</dt><dd><a href="{site_url}/admin/plugins/userbox/data.php" data-uk-tooltip title="click code!">/admin/plugins/userbox/data.php</a></dd>
-        <dt>Group link</dt><dd><a href="{site_url}/admin/plugins/userbox/group.php" data-uk-tooltip title="click group code!">/admin/plugins/userbox/group.php</a></dd>
-        <dt>Category link</dt><dd><a href="{site_url}/admin/plugins/userbox/category.php" data-uk-tooltip title="click category code!">/admin/plugins/userbox/category.php</a></dd>
-        <dt>Attribute link</dt><dd><a href="{site_url}/admin/plugins/userbox/field.php" data-uk-tooltip title="click addtribute code!">/admin/plugins/userbox/field.php</a></dd>
-        <dt>Search link</dt><dd><a href="{site_url}/userbox/search.php?templatedir=default&amp;fieldset=1&amp;gor_1%5B%5D=&amp;gand_2%5B%5D=&amp;t=&amp;teq=&amp;aeq_1=&amp;afr_2=&amp;ato_2=&amp;perpage=10&amp;page=1&amp;nohitmsg=yes" data-uk-tooltip title="see more staticpage.txt">/userbox/search.php</a></dd>
-      </dl>
-    </div>
-
-  </div>
-</div>
-
+{# plugins/userbox/templates/admin/information.thtml 20151111 #}
+{about_thispage}
+<p>Ver:{version}</p>
+<p> <a href="{document_url}" target="_blank">{lang_document}</a>
+<ul>
+  <li><a href="{document_url}install.html" target="_blank">{lang_install}</a> </li>
+  <li><a href="{document_url}userbox.html" target="_blank">{lang_configuration}</a></li>
+  <li><a href="{document_url}autotags.html" target="_blank">{lang_autotags}</a></li>
+  <li><a href="{document_url}files.html" target="_blank">{lang_files}</a></li>
+  <li><a href="{document_url}templatesetvars.html" target="_blank">{lang_templatesetvars}</a></li>
+  <li><a href="{document_url}tables.html" target="_blank">{lang_tables}</a></li>
+</ul>
+	
+(
+<a href="{document_url}userbox.html" target="_blank">{lang_configuration}</a>
+:<a href="{document_url}autotags.html" target="_blank">{lang_autotags}</a>
+)</p>
+<form name='userbox_conf_link' action='{site_admin_url}/configuration.php' method='POST'>
+<input type='hidden' name='conf_group' value='userbox'></form>
+<p> <a style='text-decoration: none;' href='#' onclick="document.userbox_conf_link.submit()">{lang_configuration}</a></p>
 {# end {templatelocation} #}

@@ -1,50 +1,24 @@
 {# begin {templatelocation} #}
+{# plugins/databox/templates/admin/information.thtml  20151109 #}
+{about_thispage}
+<p>Ver:{version}</p>
+<p> <a href="{document_url}" target="_blank">{lang_document}</a></p>
+<ul>
+  <li><a href="{document_url}install.html" target="_blank">{lang_install}</a> </li>
+  <li><a href="{document_url}databox.html" target="_blank">{lang_configuration}</a></li>
+  <li><a href="{document_url}autotags.html" target="_blank">{lang_autotags}</a></li>
+  <li><a href="{document_url}files.html" target="_blank">{lang_files}</a></li>
+  <li><a href="{document_url}templatesetvars.html" target="_blank">{lang_templatesetvars}</a></li>
+  <li><a href="{document_url}tables.html" target="_blank">{lang_tables}</a></li>
+  <li><a href="{document_url}input.html" target="_blank">{lang_input}</a></li>
+</ul>
 
-<div class=" uk-clearfix"></div>
-<div class="uk-grid">
-  <div class="uk-width-medium-2-5">
 
-    <h3>{lang_document}</h3>
 
-    <div class="uk-text-bold">Ver. {version}</div>
 
-    <ul>
-      <li><a href="{document_url}install.html" target="_blank">{lang_install}</a></li>
-      <li><a href="{document_url}databox.html" target="_blank">{lang_configuration}</a></li>
-      <li><a href="{document_url}autotags.html" target="_blank">{lang_autotags}</a></li>
-      <li><a href="{document_url}files.html" target="_blank">{lang_files}</a></li>
-      <li><a href="{document_url}templatesetvars.html" target="_blank">{lang_templatesetvars}</a></li>
-      <li><a href="{document_url}tables.html" target="_blank">{lang_tables}</a></li>
-      <li><a href="{document_url}input.html" target="_blank">{lang_input}</a></li>
-    </ul>
 
-    <form class="uk-form" name='databox_conf_link' action='{site_admin_url}/configuration.php' method='POST'>
-      <input type='hidden' name='conf_group' value='databox'>
-    </form>
-    <div class="uk-margin"><a class="uk-button" href='#' onclick="document.databox_conf_link.submit()">{lang_configuration}</a></div>
-
-    <dl class="uk-description-list-line">
-      <dt><a href="https://bitbucket.org/tsuchi/box/wiki/table%20change%20history">Bitbucket/box table change history</a></dt>
-      <dd>See table change history and documents by Tsuchi(Original developer)</dd>
-      <dt><a href="https://github.com/ivywe/geeklog-ivywe">GitHub/ivywe/geeklog-ivywe by Ivy(Customizer)</a></dt>
-      <dd>Download and use /extended/</dd>
-    <dl>
-
-  </div>
-
-  <div class="uk-width-medium-3-5">
-
-    <div class="uk-panel uk-panel-box uk-margin">
-      <h3 class="uk-h3">Usage</h3>
-      <h4 class="uk-h4">Public URL</h4>
-      <dl class="uk-description-list-line">
-        <dt>List</dt><dd><a href="{site_url}/databox/list.php" data-uk-tooltip title="Display list!">/databox/list.php</a></dd>
-        <dt>Category</dt><dd><a href="{site_url}/databox/category.php" data-uk-tooltip title="Display category!">/databox/category.php</a></dd>
-        <dt>Search link</dt><dd><a href="{site_url}/databox/search.php?templatedir=default&amp;fieldset=1&amp;gor_1%5B%5D=&amp;gand_2%5B%5D=&amp;t=&amp;teq=&amp;aeq_1=&amp;afr_2=&amp;ato_2=&amp;perpage=10&amp;page=1&amp;nohitmsg=yes" data-uk-tooltip title="see more staticpage.txt">/databox/search.php</a></dd>
-      </dl>
-    </div>
-
-  </div>
-</div>
-
+<form name='databox_conf_link' action='{site_admin_url}/configuration.php' method='POST'>
+<input type='hidden' name='conf_group' value='databox'></form>
+<p> <a style='text-decoration: none;' href='#' onclick="document.databox_conf_link.submit()">{lang_configuration}</a></p>
 {# end {templatelocation} #}
+

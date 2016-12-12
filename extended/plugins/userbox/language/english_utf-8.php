@@ -660,6 +660,7 @@ $LANG_confignames['userbox']['commentcode'] = 'Comment Default';
 $LANG_confignames['userbox']['sort_list_by'] = 'Sort Admin List by';
 $LANG_confignames['userbox']['default_cache_time'] = 'default cache time';
 $LANG_confignames['userbox']['disable_permission_ignore'] = 'disable permission ignore';
+$LANG_confignames['userbox']['sitemap_excepts'] = 'XMLSitemap excepted Username';
 
 //--(1)
 $LANG_tab['userbox'][tab_whatsnew] = 'Whats new Block';

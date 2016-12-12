@@ -146,6 +146,9 @@ $_USERBOX_DEFAULT['default_cache_time'] = "0";
 //permission ignoreを無効にする　default いいえ
 $_USERBOX_DEFAULT['disable_permission_ignore'] = 0;
 
+// サイトマップ（XMLSitemap）から除外するコード
+$_USERBOX_DEFAULT['sitemap_excepts'] = array();
+
 //---（１）新着
 // 新着の期間
 $_USERBOX_DEFAULT['whatsnew_interval'] = 1209600; // 2 weeks
@@ -563,6 +566,12 @@ function plugin_initconfig_userbox()
             'disable_permission_ignore'
             ,$_USERBOX_DEFAULT['disable_permission_ignore']
             ,'select', 0, 0, 0, 360, true
+            , $pi_name
+            ,0);
+        $c->add(
+            'sitemap_excepts'
+            ,$_USERBOX_DEFAULT['sitemap_excepts']
+            ,'%text', 0, 0, 0, 370, TRUE
             , $pi_name
             ,0);
          
