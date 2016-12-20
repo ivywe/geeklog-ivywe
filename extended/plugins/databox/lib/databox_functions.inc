@@ -4706,6 +4706,7 @@ function DATABOX_getheadercode(
     ,$chk_user=""
     ,$fieldset_id=""
     ,$fieldset_name=""
+    ,$code=""
 )
 // +---------------------------------------------------------------------------+
 // | 機能 HEADERCODE 編集
@@ -4720,6 +4721,12 @@ function DATABOX_getheadercode(
 // | 引数  $meta_description
 // | 引数  $meta_keywords
 // | 引数  $description
+// | 引数  $additionfields
+// | 引数  $addition_def
+// | 引数  $chk_user
+// | 引数  $fieldset_id
+// | 引数  $fieldset_name
+// | 引数  $code
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:HEADERCODE
 // +---------------------------------------------------------------------------+
@@ -4788,6 +4795,25 @@ function DATABOX_getheadercode(
         $tpl->set_var ('og_type', $og_type);
         $tpl->set_var ('fieldset_name', $fieldset_name);
         
+        
+        $tpl->set_var ('code', $code);
+        $code_language="";
+        $code_withoutlanguage=$code;
+        $wpos=strrpos ( $code , "_" );
+        if  ($wpos === false){
+        }else{
+            $wlen=strlen($code)-$wpos-1;
+            $code_language=substr( $code,$wpos+1,$wlen);
+            if  (is_array($_CONF['language_files']) AND array_key_exists($code_language, $_CONF['language_files'])) {
+                $code_withoutlanguage= substr( $code,0,$wpos);
+            }else{
+                $code_language="";
+            }
+        }
+        $tpl->set_var ('code_language', $code_language);
+        $tpl->set_var ('code_withoutlanguage', $code_withoutlanguage);
+
+		
         //facebook
         $facebook_consumer_key = trim($_CONF['facebook_consumer_key']);
         $tpl->set_var ('facebook_consumer_key', $facebook_consumer_key);

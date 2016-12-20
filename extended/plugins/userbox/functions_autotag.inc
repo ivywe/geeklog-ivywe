@@ -1294,8 +1294,16 @@ function userbox_profile(
                     ,$title
                     ,$A['meta_description']
                     ,$A['meta_keywords']
-                    ,$A['description']);
-            }
+                    ,$A['description']
+                    ,$additionfields 
+                    ,$addition_def 
+                    ,$chk_user 
+                    ,$fieldset_id 
+                    ,""
+                    ,$A['username']
+                    );
+
+             }
 
             $tmplfld=DATABOX_templatePath('profile',$template,$pi_name);
             $templates = new Template($tmplfld);

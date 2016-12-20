@@ -1,5 +1,5 @@
 {# begin {templatelocation} #}
-{# plugins/userbox/templates/profile/default/headercode.thtml 20151111 #}
+{# plugins/userbox/templates/profile/default/headercode.thtml 20161219 #}
 <meta property="og:type" content="{og_type}" {xhtml}>
 <meta property="og:title" content="{og_title}" {xhtml}>
 <meta property="og:image" content="{og_image}" {xhtml}>
@@ -8,4 +8,10 @@
 <meta property="og:description" content="{og_description}" {xhtml}>
 <meta property="fb:app_id" content="{facebook_consumer_key}" {xhtml}>
 <meta name="twitter:card" content="summary">
+
+{# 
+<link rel="alternate" href="{site_url}/userbox/profile.php/{code}/code" hreflang="{code_language}" />
+{code_withoutlanguage}
+#}
+
 {# end {templatelocation} #}

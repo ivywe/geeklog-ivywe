@@ -1982,6 +1982,8 @@ function databox_data(
                     ,$addition_def 
                     ,$chk_user 
                     ,$fieldset_id 
+                    ,""
+                    ,$code
                     );
             
                 if  ($A['page_title']<>""){
