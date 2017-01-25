@@ -46,6 +46,7 @@ require_once 'lib-common.php';
 function switch_language($url, $newlang, $oldlang)
 {
     global $_CONF;
+    global $_PLUGINS,$_TABLES;
 
     $retval = '';
 
@@ -88,6 +89,28 @@ function switch_language($url, $newlang, $oldlang)
                         $p[$i + 1] = substr_replace($p[$i + 1], $newlang,
                                                     -$lang_len);
                         $changed = true;
+                    }
+if ($changed) {
+                        $chkplgin = 'core';
+                        $chkid = $p[$i + 1];
+                        if (isset($p[$i - 1])) {
+                            $chkplgin = $p[$i - 1];
+                        }
+                        if ($chkplgin == 'databox') {
+                            if (in_array("databox", $_PLUGINS)){
+                                $chkval = DB_getItem($_TABLES['DATABOX_base'],'id',"code='{$chkid}'");
+                                if( empty($chkval) ) {
+                                    return '';
+                                }
+                            }
+                        } elseif ($chkplgin == 'staticpages') {
+                            if (in_array("staticpages", $_PLUGINS)){
+                                $chkval = DB_getItem($_TABLES['staticpage'],'sp_id',"sp_id='$chkid'");
+                                if( empty($chkval) ) {
+                                    return '';
+                                }
+                            }
+                        }
                     }
                 }
                 break;
@@ -141,6 +164,11 @@ if ($_CONF['allow_user_language'] == 1) {
     $lang = strtolower(COM_applyFilter(COM_getArgument('lang')));
     $lang = preg_replace('/[^a-z0-9\-_]/', '', $lang);
     $oldlang = COM_getLanguageId();
+
+    if ($lang == $oldlang) {
+        $urllang = COM_getLanguageFromURL($ret_url);
+        $oldlang = !empty($urllang) ? $urllang : $oldlang;
+    }
 
     // do we really have a new language to switch to?
     if (!empty($lang) && array_key_exists($lang, $_CONF['language_files'])) {
