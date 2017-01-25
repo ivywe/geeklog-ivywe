@@ -1008,7 +1008,7 @@ function COM_siteHeader($what = 'menu', $pagetitle = '', $headercode = '')
                 $feed_title = $format_name . ' Feed: ' . $A['title'];
 
                 $feed_url[] = '<link rel="alternate" type="' . $format_type
-                            . '" hreflang="' . $A['language'] . '" href="'
+                            . '" href="'
                             . $baseurl . $A['filename'] . '" title="'
                             . htmlspecialchars($feed_title) . '"' . XHTML . '>';
             }
@@ -7163,6 +7163,44 @@ function COM_getLanguageFromBrowser()
 }
 
 /**
+* Try to determine page language by Current URL
+*
+*/
+
+// 2015/07 add hiroron
+function COM_getLanguageFromURL($url='') {
+    global $_CONF;
+    if (empty($url)) { $url=COM_getCurrentURL(); }
+    $retval = '';
+    if ($_CONF['url_rewrite']) {
+        // for "rewritten" URLs we assume that the first parameter after
+        // the script name is the ID, e.g. /article.php/story-id-here_en
+        $p = explode('/', $url);
+        $parts = count($p);
+        for ($i = 0; $i < $parts; $i++) {
+            if (substr($p[$i], -4) == '.php') {
+                // found the script name - assume next parameter is the ID
+                if (isset($p[$i + 1])) {
+                    $l = strrpos($p[$i + 1], '_');
+                    if ($l !== false) {
+                        $retval = substr($p[$i + 1], $l+1);
+                    }
+                }
+                break;
+            }
+        }
+    } else { // URL contains '?' or '&'
+        $url = explode('&', $url);
+        $urlpart = $url[0];
+        $l = strrpos($urlpart, '_');
+        if ($l !== false) {
+            $retval = substr($urlpart, $l+1);
+        }
+    }
+    return $retval;
+}
+
+/**
 * Determine current language
 *
 * @return   string  name of the language file (minus the '.php' extension)
@@ -7178,14 +7216,17 @@ function COM_getLanguage()
     }
 
     $langfile = '';
+    $langfile = COM_getLanguageFromURL();
 
-    if (!empty($_USER['language'])) {
-        $langfile = $_USER['language'];
-    } elseif (!empty($_COOKIE[$_CONF['cookie_language']])) {
-        $langfile = $_COOKIE[$_CONF['cookie_language']];
-    } elseif (isset($_CONF['languages'])) {
-        $langfile = COM_getLanguageFromBrowser();
-    }
+    if (empty($langfile)) {
+                if (!empty($_USER['language'])) {
+                    $langfile = $_USER['language'];
+                } elseif (!empty($_COOKIE[$_CONF['cookie_language']])) {
+                    $langfile = $_COOKIE[$_CONF['cookie_language']];
+                } elseif (isset($_CONF['languages'])) {
+                    $langfile = COM_getLanguageFromBrowser();
+                }
+        }
 
     $langfile = COM_sanitizeFilename($langfile);
     if (!empty($langfile)) {
