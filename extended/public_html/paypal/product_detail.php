@@ -811,7 +811,10 @@ if ($icount > 0) {
 	for ($z = 1; $z <= $icount; $z++) {
 		$I = DB_fetchArray($result_products);
 
-		$saved_images .= '<p><a class="lightbox" href="' .  $_PAY_CONF['images_url'] . $I['pi_filename'] . '"><img src="' . $_PAY_CONF['site_url'] . '/timthumb.php?src=' .  $_PAY_CONF['images_url'] . $I['pi_filename'] . '&amp;w=' . $wsize . '&amp;h=' . $hsize . '&amp;zc=1&amp;q=100" alt="' . $A['name'] . '" /></a></p>';
+		$saved_images .= '<p><a class="lightbox" href="' .  $_PAY_CONF['images_url'] . $I['pi_filename'] . '">
+<img src="' . $_PAY_CONF['images_url'] . '"' . $A['name'] . '" /></a></p>';
+
+//		$saved_images .= '<p><a class="lightbox" href="' .  $_PAY_CONF['images_url'] . $I['pi_filename'] . '"><img src="' . $_PAY_CONF['site_url'] . '/timthumb.php?src=' .  $_PAY_CONF['images_url'] . $I['pi_filename'] . '&amp;w=' . $wsize . '&amp;h=' . $hsize . '&amp;zc=1&amp;q=100" alt="' . $A['name'] . '" /></a></p>';
 
 	}
 }
