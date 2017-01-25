@@ -107,7 +107,7 @@ function phpblock_calendarjp( $help='', $title='' )
 {
     global $_CONF, $_TABLES, $_USER, $_CAJP_CONF, $LANG_CALJP_1, $_DB_dbms, $LANG_WEEK;
 
-    $retval = '';
+    $retval = '<dl class="uk-description-list-line">';
 
     $ja = ($_CONF['language'] == 'japanese_utf-8');
 
@@ -186,10 +186,10 @@ function phpblock_calendarjp( $help='', $title='' )
                 $theRow = 1;           // Start with today!
                 $oldDate1 = 'no_day';  // Invalid Date!
                 $oldDate2 = 'last_d';  // Invalid Date!
-                $classname = 'list-new-plugins';
+                $classname = 'uk-list';
                 $headline = false;
             } else {
-                $classname = 'list-new-plugins';
+                $classname = 'uk-list';
                 $headline = false;
             }
             if( $_CAJP_CONF['personalcalendars'] == 0 ) {
@@ -209,11 +209,11 @@ function phpblock_calendarjp( $help='', $title='' )
                     if( !$headline ) {
                         if($z == 2) {
                             if( $numRows > 0 ) {
-                                $retval .= '<p><b>' . $LANG_CALJP_1[23] . '</b><br' . XHTML . '>';
+                                $retval .= '<dt>' . $LANG_CALJP_1[23] . '</dt><dd>';
                             }
                         } else {
                             if( $totalrows > 0 ) {
-                                $retval .= '<b>' . $LANG_CALJP_1[24] . '</b><br' . XHTML . '>';
+                                $retval .= '<dt>' . $LANG_CALJP_1[24] . '</dt><dd>';
                             }
                         }
                         $headline = true;
@@ -262,33 +262,39 @@ function phpblock_calendarjp( $help='', $title='' )
                             if( $skipFirstBreak ) {
                                 $skipFirstBreak = false;
                             } else {
-                                $retval .= '<br' . XHTML . '>';
+//                                $retval .= '<br' . XHTML . '>';
+                                $retval .= '<dd>';
                             }
                             if( $todaysEvent ) {
-                                $retval .= '<span class="' . $todaysClassName . '">';
+//                                $retval .= '<span class="' . $todaysClassName . '">';
+                                $retval .= '';
                             }
                             if ($ja == 'ja') {
-                                $retval .= '<b>' . $abbrDate1. '(' . $dayName1 . ')</b>';
+                                $retval .= '<dt>' . $abbrDate1. '(' . $dayName1 . ')';
                             } else {
-//                              $retval .= '<b>' . $dayName1 . '</b>&nbsp;<small>'
-//                                      . $abbrDate1 . '</small>';
-                                $retval .= '<b>' . $dayName1 . '</b>&nbsp;'
-                                        . $abbrDate1 . '';
+//                              $retval .= '<dt>' . $dayName1 
+//                                      . $abbrDate1 . '</dd>';
+                                $retval .= '<dt>' . $dayName1 
+                                        . $abbrDate1 . '</dd>';
                             }
 
                             // If different start and end dates, then display end date:
                             if( $abbrDate1 != $abbrDate2 ) {
                                 if ($ja == 'ja') {
-                                    $retval .= ' - <b>'. $abbrDate2 . '(' . $dayName2 . ')</b>';
+                                    $retval .= ' - '. $abbrDate2 . '(' . $dayName2 . ')';
                                 } else {
-//                                  $retval .= ' - <br' . XHTML . '><b>' . $dayName2 . '</b>'
-//                                           . '&nbsp;<small>' . $abbrDate2 . '</small>';
-                                    $retval .= ' - <br' . XHTML . '><b>' . $dayName2 . '</b>'
-                                             . '&nbsp;' . $abbrDate2 . '';
+//                                  $retval .= ' - ' . $dayName2
+//                                           . $abbrDate2;
+                                    $retval .= ' - ' . $dayName2 
+                                              . $abbrDate2;
                                 }
                             }
+                            $retval .= '</dt>';
+
+
+
                             if( $todaysEvent ) {
-                                $retval .= '</span>';
+                                $retval .= '</dl><!-- } todaysEvent -->';
                             }
                         }
                         $newevents = array();
