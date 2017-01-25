@@ -9,4 +9,9 @@
 <meta property="fb:app_id" content="{facebook_consumer_key}" {xhtml}>
 <meta name="twitter:card" content="summary">
 
+{#
+<link rel="alternate" href="{site_url}/index.php?topic=home_ja" hreflang="ja" />
+<link rel="alternate" href="{site_url}/index.php?topic=home_en" hreflang="en" />
+#}
+
 {# end {templatelocation} #}
