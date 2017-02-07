@@ -5,12 +5,12 @@
 // +---------------------------------------------------------------------------+
 // | geeklog/plugins/recaptcha/config.php                                      |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2014-2015 mystral-kk - geeklog AT mystral-kk DOT net        |
+// | Copyright (C) 2014-2017 mystral-kk - geeklog AT mystral-kk DOT net        |
 // |                                                                           |
 // | Based on the CAPTCHA Plugin by Ben                                        |
-// |                                                   - ben AT geeklog DOT fr |
+// |                                                - ben AT geeklog DOT fr    |
 // | Based on the original CAPTCHA Plugin by Mark R. Evans                     |
-// |                                                - mark AT glfusion DOT org | 
+// |                                                - mark AT glfusion DOT org |
 // | Constructed with the Universal Plugin                                     |
 // +---------------------------------------------------------------------------+
 // |                                                                           |
@@ -30,16 +30,16 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 
-if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== FALSE) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     die('This file cannot be used on its own!');
 }
 
 $_RECAPTCHA_CONF = array();
 
 // Plugin info
-$_RECAPTCHA_CONF['pi_version'] = '1.1.0';					// Plugin Version
+$_RECAPTCHA_CONF['pi_version'] = '1.1.4';					// Plugin Version
 $_RECAPTCHA_CONF['gl_version'] = '1.6.0';					// GL Version plugin for
-$_RECAPTCHA_CONF['pi_url']     = 'http://mystral-kk.net/';	// Plugin Homepage
+$_RECAPTCHA_CONF['pi_url']     = 'https://mystral-kk.net/';	// Plugin Homepage
 $_RECAPTCHA_CONF['GROUPS']     = array(
 	'reCAPTCHA Admin' => 'Users in this group can administer the ReCAPTCHA plugin',
 );

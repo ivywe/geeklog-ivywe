@@ -3,14 +3,14 @@
 // +---------------------------------------------------------------------------+
 // | reCAPTCHA Plugin for Geeklog - The Ultimate Weblog                        |
 // +---------------------------------------------------------------------------+
-// | geeklog/plugins/recaptcha/language/english.php                            |
+// | geeklog/plugins/recaptcha/language/japanese_utf-8.php                     |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2014-2015 mystral-kk - geeklog AT mystral-kk DOT net        |
+// | Copyright (C) 2014-2017 mystral-kk - geeklog AT mystral-kk DOT net        |
 // |                                                                           |
 // | Based on the CAPTCHA Plugin by Ben                                        |
 // |                                                   - ben AT geeklog DOT fr |
 // | Based on the original CAPTCHA Plugin by Mark R. Evans                     |
-// |                                                - mark AT glfusion DOT org | 
+// |                                                - mark AT glfusion DOT org |
 // | Constructed with the Universal Plugin                                     |
 // +---------------------------------------------------------------------------|
 // | This program is free software; you can redistribute it and/or             |
@@ -27,56 +27,56 @@
 // | along with this program; if not, write to the Free Software               |
 // | Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA|
 // |                                                                           |
-// +---------------------------------------------------------------------------+
+// +---------------------------------------------------------------------------|
 
-if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== FALSE) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
 	die('This file cannot be used on its own!');
 }
 
-$LANG_RECAPTCHA = array(
+$LANG_RECAPTCHA = array (
 	'plugin'      => 'reCAPTCHA',
 	'admin'       => 'reCAPTCHA',
-	'entry_error' => 'An invalid reCAPTCHA string was entered in %1s - IP Address: %2s - Error Codes: %3s',	// %1s = $type, %2s = $ip, %3s = $errorCode
+	'entry_error' => '%1sで無効な入力を検出しました。IPアドレス: %2s  エラーコード: %3s',	// %1s = $type, %2s = $ip, %3s = $errorCode
 );
 
 // Localization of the Admin Configuration UI
 $LANG_configsections['recaptcha'] = array(
 	'label' => 'reCAPTCHA',
-	'title' => 'reCAPTCHA Configuration'
+	'title' => 'reCAPTCHAの設定',
 );
 
 $LANG_confignames['recaptcha'] = array(
 	'public_key'          => 'reCAPTCHA API Public Key',
 	'private_key'         => 'reCAPTCHA API Private Key',
-	'logging'             => 'Log invalid reCAPTCHA attempts',
-	'anonymous_only'      => 'Anonymous Only',
-	'remoteusers'         => 'Force reCAPTCHA for all Remote Users',
-	'enable_comment'      => 'Enable Comment Support' ,
-	'enable_contact'      => 'Enable Contact Support',
-	'enable_emailstory'   => 'Enable Email Story Support',
-	'enable_forum'        => 'Enable Forum Support',
-	'enable_registration' => 'Enable Registration Support',
-	'enable_mediagallery' => 'Enable Media Gallery (Postcards) Support',
-	'enable_rating'       => 'Enable Rating Plugin Support',
-	'enable_story'        => 'Enable Story Support',
-	'enable_calendar'     => 'Enable Calendar Plugin Support',
-	'enable_links'        => 'Enable Links Plugin Support',
+	'logging'             => '無効な入力をログファイルに記録する',
+    'anonymous_only'      => 'ゲストユーザーに対してのみ使用する',
+	'remoteusers'         => 'リモートユーザー全員に強制する',
+	'enable_comment'      => 'コメントをサポートする' ,
+	'enable_contact'      => 'メール送信をサポートする',
+	'enable_emailstory'   => '「記事をメールする」をサポートする',
+	'enable_forum'        => '掲示板プラグインをサポートする',
+	'enable_registration' => 'ユーザー登録をサポートする',
+	'enable_mediagallery' => 'メディアギャラリープラグインをサポートする',
+	'enable_rating'       => 'レーティングプラグインをサポートする',
+	'enable_story'        => '記事投稿をサポートする',
+	'enable_calendar'     => 'カレンダープラグインをサポートする',
+	'enable_links'        => 'リンクプラグインをサポートする',
 );
 
 $LANG_configsubgroups['recaptcha'] = array(
-	'sg_main' => 'Main Settings',
+	'sg_main' => '主要設定'
 );
 
 $LANG_tab['recaptcha'] = array(
-	'tab_main' => 'reCAPTCHA Settings',
+	'tab_main' => 'reCAPTCHA設定',
 );
 
 $LANG_fs['recaptcha'] = array(
-	'fs_system'      => 'System',
-	'fs_integration' => 'Integration',
+	'fs_system'      => 'システム',
+	'fs_integration' => 'Geeklogへの統合',
 );
 
 // Note: entries 0, 1, 9, and 12 are the same as in $LANG_configselects['Core']
 $LANG_configselects['recaptcha'] = array(
-	0 => array('Yes' => 1, 'No' => 0),
+	0 => array('はい' => 1, 'いいえ' => 0),
 );

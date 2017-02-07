@@ -5,10 +5,10 @@
 // +---------------------------------------------------------------------------+
 // | geeklog/plugins/recaptcha/functions.inc                                   |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2014-2015 mystral-kk - geeklog AT mystral-kk DOT net        |
+// | Copyright (C) 2014-2017 mystral-kk - geeklog AT mystral-kk DOT net        |
 // |                                                                           |
 // | Based on the CAPTCHA Plugin by Ben                                        |
-// |                                                   - ben AT geeklog DOT fr |
+// |                                                - ben AT geeklog DOT fr    |
 // | Based on the original CAPTCHA Plugin by Mark R. Evans                     |
 // |                                                - mark AT glfusion DOT org | 
 // | Constructed with the Universal Plugin                                     |
@@ -149,6 +149,10 @@ function plugin_upgrade_recaptcha() {
 				$pi_version = '1.1.0';
 				break;
 
+			case '1.1.0':
+				$pi_version = '1.1.2';
+				break;
+
 			default:
 				$pi_version = $_RECAPTCHA_CONF['pi_version'];
 				break;
@@ -230,7 +234,7 @@ function plugin_templatesetvars_recaptcha($type, &$template) {
 		$captcha = '<div class="g-recaptcha" data-sitekey="'
 				 . RECAPTCHA_esc($_RECAPTCHA_CONF['public_key']) . '"></div>'
 				 . '<script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl='
-				 . RECAPTCHA_esc($lang) . '"></script>';
+				 . RECAPTCHA_esc($lang) . '" async defer></script>';
 ;
 	} else {
 		$captcha = '';
@@ -263,8 +267,15 @@ function plugin_itemPreSave_recaptcha($type, $content = '') {
 	$msg = '';
 
 	if (RECAPTCHA_isEnabled() && RECAPTCHA_requireCaptcha($type)) {
-		$recaptcha = new \ReCaptcha\ReCaptcha($_RECAPTCHA_CONF['private_key']);
-		$resp = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
+		if (is_callable('curl_init')) {
+			$recaptcha = new \ReCaptcha\ReCaptcha($_RECAPTCHA_CONF['private_key'], new \ReCaptcha\RequestMethod\CurlPost());
+		} elseif (@ini_get('allow_url_fopen')) {
+			$recaptcha = new \ReCaptcha\ReCaptcha($_RECAPTCHA_CONF['private_key'], new \ReCaptcha\RequestMethod\Post());
+		} else {
+			$recaptcha = new \ReCaptcha\ReCaptcha($_RECAPTCHA_CONF['private_key'], new \ReCaptcha\RequestMethod\SocketPost());
+		}
+
+		$resp = $recaptcha->verify(@$_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
 		
 		if (!$resp->isSuccess()) {
 			if ($_RECAPTCHA_CONF['logging']) {

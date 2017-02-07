@@ -3,14 +3,14 @@
 // +---------------------------------------------------------------------------+
 // | reCAPTCHA Plugin for Geeklog - The Ultimate Weblog                        |
 // +---------------------------------------------------------------------------+
-// | geeklog/plugins/recaptcha/language/french_france_utf-8.php                |
-// +---------------------------------------------------------------------------|
-// | Copyright (C) 2014-2015 mystral-kk - geeklog AT mystral-kk DOT net        |
+// | geeklog/plugins/recaptcha/language/english.php                            |
+// +---------------------------------------------------------------------------+
+// | Copyright (C) 2014-2017 mystral-kk - geeklog AT mystral-kk DOT net        |
 // |                                                                           |
 // | Based on the CAPTCHA Plugin by Ben                                        |
-// |                                                   - ben AT geeklog DOT fr |
+// |                                                - ben AT geeklog DOT fr    |
 // | Based on the original CAPTCHA Plugin by Mark R. Evans                     |
-// |                                                - mark AT glfusion DOT org | 
+// |                                                - mark AT glfusion DOT org |
 // | Constructed with the Universal Plugin                                     |
 // +---------------------------------------------------------------------------|
 // | This program is free software; you can redistribute it and/or             |
@@ -27,9 +27,9 @@
 // | along with this program; if not, write to the Free Software               |
 // | Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA|
 // |                                                                           |
-// +---------------------------------------------------------------------------|
+// +---------------------------------------------------------------------------+
 
-if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== FALSE) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
 	die('This file cannot be used on its own!');
 }
 
@@ -37,7 +37,7 @@ $LANG_RECAPTCHA = array(
 	'plugin'      => 'reCAPTCHA',
 	'admin'       => 'reCAPTCHA',
 	'entry_error' => 'An invalid reCAPTCHA string was entered in %1s - IP Address: %2s - Error Codes: %3s',	// %1s = $type, %2s = $ip, %3s = $errorCode
-));
+);
 
 // Localization of the Admin Configuration UI
 $LANG_configsections['recaptcha'] = array(
@@ -50,8 +50,8 @@ $LANG_confignames['recaptcha'] = array(
 	'private_key'         => 'reCAPTCHA API Private Key',
 	'logging'             => 'Log invalid reCAPTCHA attempts',
 	'anonymous_only'      => 'Anonymous Only',
-	'remoteusers'         => 'Force CAPTCHA for all Remote Users',
-	'enable_comment'      => 'Enable Comment Support',
+	'remoteusers'         => 'Force reCAPTCHA for all Remote Users',
+	'enable_comment'      => 'Enable Comment Support' ,
 	'enable_contact'      => 'Enable Contact Support',
 	'enable_emailstory'   => 'Enable Email Story Support',
 	'enable_forum'        => 'Enable Forum Support',
@@ -64,11 +64,11 @@ $LANG_confignames['recaptcha'] = array(
 );
 
 $LANG_configsubgroups['recaptcha'] = array(
-    'sg_main' => 'Main Settings'
+	'sg_main' => 'Main Settings',
 );
 
 $LANG_tab['recaptcha'] = array(
-    'tab_main' => 'General Captcha Settings'
+	'tab_main' => 'reCAPTCHA Settings',
 );
 
 $LANG_fs['recaptcha'] = array(
@@ -76,7 +76,7 @@ $LANG_fs['recaptcha'] = array(
 	'fs_integration' => 'Integration',
 );
 
-// Note: entries 0 is the same as in $LANG_configselects['Core']
+// Note: entries 0, 1, 9, and 12 are the same as in $LANG_configselects['Core']
 $LANG_configselects['recaptcha'] = array(
 	0 => array('Yes' => 1, 'No' => 0),
 );

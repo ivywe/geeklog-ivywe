@@ -5,12 +5,12 @@
 // +---------------------------------------------------------------------------+
 // | geeklog/plugins/recaptcha/autoinstall.php                                 |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2014-2015 mystral-kk - geeklog AT mystral-kk DOT net        |
+// | Copyright (C) 2014-2017 mystral-kk - geeklog AT mystral-kk DOT net        |
 // |                                                                           |
 // | Based on the CAPTCHA Plugin by Ben                                        |
-// |                                                   - ben AT geeklog DOT fr |
+// |                                                - ben AT geeklog DOT fr    |
 // | Based on the original CAPTCHA Plugin by Mark R. Evans                     |
-// |                                                - mark AT glfusion DOT org | 
+// |                                                - mark AT glfusion DOT org |
 // | Constructed with the Universal Plugin                                     |
 // +---------------------------------------------------------------------------+
 // |                                                                           |

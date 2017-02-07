@@ -5,12 +5,12 @@
 // +---------------------------------------------------------------------------+
 // | geeklog/plugins/recaptcha/install_defaults.php                            |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2014-2015 mystral-kk - geeklog AT mystral-kk DOT net        |
+// | Copyright (C) 2014-2017 mystral-kk - geeklog AT mystral-kk DOT net        |
 // |                                                                           |
 // | Based on the CAPTCHA Plugin by Ben                                        |
-// |                                                   - ben AT geeklog DOT fr |
+// |                                                - ben AT geeklog DOT fr    |
 // | Based on the original CAPTCHA Plugin by Mark R. Evans                     |
-// |                                                - mark AT glfusion DOT org | 
+// |                                                - mark AT glfusion DOT org |
 // | Constructed with the Universal Plugin                                     |
 // +---------------------------------------------------------------------------+
 // |                                                                           |
@@ -30,7 +30,7 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 
-if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== FALSE) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
 	die('This file cannot be used on its own!');
 }
 
@@ -69,7 +69,7 @@ $_RC_DEFAULT = array(
 * if available (e.g. from an old config.php), uses $_RC_DEFAULT
 * otherwise.
 *
-* @return   boolean     TRUE: success; FALSE: an error occurred
+* @return   boolean     true: success; false: an error occurred
 */
 function plugin_initconfig_recaptcha() {
 	global $_RECAPTCHA_CONF, $_RC_DEFAULT;
@@ -83,12 +83,12 @@ function plugin_initconfig_recaptcha() {
 	if (!$c->group_exists($me)) {
 		// Subgroup = 0
 		$sg = 0;
-		$c->add('sg_main', NULL, 'subgroup', $sg, 0, NULL, 0, true, $me, 0);
-		$c->add('tab_main', NULL, 'tab', $sg, 0, NULL, 0, true, $me, 0);
+		$c->add('sg_main', null, 'subgroup', $sg, 0, null, 0, true, $me, 0);
+		$c->add('tab_main', null, 'tab', $sg, 0, null, 0, true, $me, 0);
 
 		// Fieldset = 0
 		$fs = 0;
-		$c->add('fs_system', NULL, 'fieldset', $sg, $fs, NULL, 0, true, $me, 0);
+		$c->add('fs_system', null, 'fieldset', $sg, $fs, null, 0, true, $me, 0);
 		$c->add('public_key', $_RC_DEFAULT['public_key'], 'text', $sg, $fs, null, $so, true, $me, 0);
 		$so += 10;
 		$c->add('private_key', $_RC_DEFAULT['private_key'], 'text', $sg, $fs, null, $so, true, $me, 0);
@@ -98,7 +98,7 @@ function plugin_initconfig_recaptcha() {
 
 		// Subgroup = 0, Fieldset = 1
 		$fs++;
-		$c->add('fs_integration', NULL, 'fieldset', $sg, $fs, NULL, 0, true, $me, 0);
+		$c->add('fs_integration', null, 'fieldset', $sg, $fs, null, 0, true, $me, 0);
 		$c->add('anonymous_only', $_RC_DEFAULT['anonymous_only'], 'select', $sg, $fs, 0, $so, true, $me, 0);
 		$so += 10;
 		 $c->add('remoteusers', $_RC_DEFAULT['remoteusers'], 'select', $sg, $fs, 0, $so, true, $me, 0);
