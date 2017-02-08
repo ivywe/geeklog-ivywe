@@ -524,7 +524,7 @@ class jcart {
     			$input_type = 'image';
 				$src = ' src="' . $button['checkout'] . '" alt="' . $text['checkout_button'] . '" title="" ';
 			}
-			$cart->set_var('checkout', '<button type="' . $input_type . '" ' . $src . 'id="jcart-checkout" name="jcart_checkout" class="uk-button uk-button-primary uk-button-large uk-float-right" value="' . $text['checkout_button'] . '" style="top:0;">' . $text['checkout_button'] . '</button>');
+			$cart->set_var('checkout', '<button type="' . $input_type . '" ' . $src . 'id="jcart-checkout" name="jcart_checkout" class="uk-button uk-button-primary uk-button-large uk-float-right" value="' . $text['checkout_button'] . '" style="position:fixed; bottom:0; right:0">' . $text['checkout_button'] . '</button>');
 		} else {
 		    $cart->set_var('checkout', '');
 		}

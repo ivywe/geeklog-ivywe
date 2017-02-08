@@ -90,14 +90,14 @@ switch ($_REQUEST['mode']) {
 	default :
 
         //Display cart
-        $display .= '<div id="cart">
-		             <div id="jcart">
+        $display .= '
+		             <div>
                  <ul>
 			           <li class="uk-button uk-button-large uk-button-danger uk-text-nowrap">' . $LANG_PAYPAL_1['checkout_step_1'] . '</li>
                  <li class="uk-button uk-button-large uk-button-primary uk-text-nowrap">' . $LANG_PAYPAL_1['checkout_step_2'] . '</li>
 							   <li class="uk-button uk-button-large uk-button-danger uk-text-nowrap">' . $LANG_PAYPAL_1['checkout_step_3'] . '</li>
 						</ul>
-					</div></div>';
+					</div>';
 
 		$display .= PAYPAL_handlePurchase($items, $quantities, $data, $namesfromcart, $item_price);
 		

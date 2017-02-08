@@ -3,9 +3,9 @@
 	</td>
 	<td class="uk-width-3-5">
 		<h2 class="uk-text-capitalize uk-text-bold">{link_name}</h2>
+		<div class="uk-float-right">{details}</div>
 		<div class="uk-text-truncate">{hidden}{short_description}</div>
 		{item_id}{rating}
-		<div class="uk-text-truncate uk-text-meta">details({details})</div>
 		<div><span class="uk-text-large uk-text-danger">{price}</span><span class="uk-text-danger">円</span> 定価:{price_ref}{discount} <span class="uk-badge">{free_shipping}</span></div>
 	</td>
 	<td class="uk-width-1-5">

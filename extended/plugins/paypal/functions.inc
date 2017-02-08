@@ -2781,19 +2781,15 @@ function PAYPAL_handlePurchase( $products, $quantity, $data, $names, $prices, $r
 			$message->set_var('thanks', $LANG_PAYPAL_EMAIL['thanks']);
 
 			// paypal details
-			$shop_informations = '<p>' . $_PAY_CONF['shop_name'] . '</p><p>' .
-									$_PAY_CONF['shop_street1'] . '<br' . XHTML . '>' .
-									$_PAY_CONF['shop_street2'] . '<br' . XHTML . '>' .
-									$_PAY_CONF['shop_postal'] . ' ' .
-									$_PAY_CONF['shop_city'] . ' ' .
-									$_PAY_CONF['shop_country'] . '</p><hr' . XHTML . '>';
+			$shop_informations = '<dl class="uk-description-list-horizontal"><dt>SHOPñº</dt>' . $_PAY_CONF['shop_name'] . '</dt><dd>èZèä</dd>' .
+									$_PAY_CONF['shop_postal'] . ' ' . $_PAY_CONF['shop_city'] . $_PAY_CONF['shop_street1'] .	$_PAY_CONF['shop_street2'] ;
 									
-			$shop_informations_bottom = '<p>';
-			if ($_PAY_CONF['shop_phone1'] != '') $shop_informations_bottom .= '<p>' . $LANG_confignames['paypal']['shop_phone1'] . ' ' . $_PAY_CONF['shop_phone1'] . '<br' . XHTML . '>';
-			if ($_PAY_CONF['shop_phone2'] != '') $shop_informations_bottom .= $LANG_confignames['paypal']['shop_phone2'] . ' ' . $_PAY_CONF['shop_phone2'] . '<br' . XHTML . '>';
-			if ($_PAY_CONF['shop_fax'] != '') $shop_informations_bottom .= $LANG_confignames['paypal']['shop_fax'] . ' ' . $_PAY_CONF['shop_fax'] . '<br' . XHTML . '>';
-			if ($_PAY_CONF['shop_siret'] != '') $shop_informations_bottom .= $LANG_confignames['paypal']['shop_siret'] . ' ' . $_PAY_CONF['shop_siret'] . '<br' . XHTML . '>';
-			$shop_informations_bottom .= '</p>';
+			$shop_informations_bottom = '</dd>';
+			if ($_PAY_CONF['shop_phone1'] != '') $shop_informations_bottom .= '<dt>TEL</dt><dd>' . $LANG_confignames['paypal']['shop_phone1'] . ' ' . $_PAY_CONF['shop_phone1'] . '</dd>';
+			if ($_PAY_CONF['shop_phone2'] != '') $shop_informations_bottom .= '<dt>TEL2</dt>' . $LANG_confignames['paypal']['shop_phone2'] . ' ' . $_PAY_CONF['shop_phone2'] . '<br' . XHTML . '>';
+			if ($_PAY_CONF['shop_fax'] != '') $shop_informations_bottom .= '<dt>FAX</dt><dd>' . $LANG_confignames['paypal']['shop_fax'] . ' ' . $_PAY_CONF['shop_fax'] . '<br' . XHTML . '>';
+			if ($_PAY_CONF['shop_siret'] != '') $shop_informations_bottom .= '<dt>E-mail</dt><dd>' . $LANG_confignames['paypal']['shop_siret'] . ' ' . $_PAY_CONF['shop_siret'] . '</dd>';
+			$shop_informations_bottom .= '</dl>';
 									
 			$order_date = COM_getUserDateTimeFormat($ipn['order_date']);
 			$message->set_var('order_date', $order_date[0]);
@@ -2819,9 +2815,9 @@ function PAYPAL_handlePurchase( $products, $quantity, $data, $names, $prices, $r
 		if ($return == 1) {
 			$retval .= '<h2>'. $LANG_PAYPAL_1['order_received'] . '</h2>';
 			$retval .= '<p>' . $LANG_PAYPAL_EMAIL['thank_you_order'] . '</p>';
-			$retval .= '<blockquote><strong>' . $products_list . '</strong></blockquote>';
-			$retval .= '<p>&nbsp;</p><p>' . $LANG_PAYPAL_EMAIL['send_check'] . '</p>';
-			$retval .= '<blockquote><strong>' . $shop_informations . $shop_informations_bottom . '</strong></blockquote>';
+			$retval .= '<div class="uk-margin-left">' . $products_list . '</div>';
+			$retval .= '<p>' . $LANG_PAYPAL_EMAIL['send_check'] . '</p>';
+			$retval .= '<div class="uk-margin-left">' . $shop_informations . $shop_informations_bottom . '</div>';
 			$retval .= '<p>' . $LANG_PAYPAL_1['confirm_by_email'] . '</p>';
 			
 			return $retval;

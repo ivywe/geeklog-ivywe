@@ -811,20 +811,16 @@ if ($icount > 0) {
 	for ($z = 1; $z <= $icount; $z++) {
 		$I = DB_fetchArray($result_products);
 
-		$saved_images .= '<li><img src="' . $_PAY_CONF['images_url'] . $I['pi_filename'] . '"' . $A['name'] . '" /></li>';
+		$saved_images .= '<li><a href="' . $_PAY_CONF['images_url'] . $I['pi_filename'] . '"' . $A['name'] . '" data-uk-lightbox><img src="' . $_PAY_CONF['images_url'] . $I['pi_filename'] . '"' . $A['name'] . '" style="width:120px" /></a></li>';
 
 	}
 }
 if ($icount == 0) {
 	$product->set_var('pictures', '');
 } else {
-    $info_picture = '<li><img src="' .  $_PAY_CONF['site_url'] . '/images/enlarge.png" alt="" align="absmiddle" /> ' . $LANG_PAYPAL_1['info_picture'] .'</li>';
-	$product->set_var('pictures', '<div class="uk-slidenav-position" data-uk-slideshow><ul class="uk-slideshow">' . $saved_images . $info_picture . '</ul><a href="" data-uk-slideshow-item="previous"></a><a href="" data-uk-slideshow-item="next"></a>
-		<ul class="uk-dotnav uk-dotnav-contrast uk-position-bottom uk-flex-center">
-        <li data-uk-slideshow-item="0"><a href=""></a></li>
-        <li data-uk-slideshow-item="1"><a href=""></a></li>
-        <li data-uk-slideshow-item="2"><a href=""></a></li>
-    </ul>
+    $info_picture = '';
+	$product->set_var('pictures', '<div><ul class="uk-list uk-subnav uk-flex-center">' . $saved_images . $info_picture . '</ul>
+
 
 </div>');
 }
