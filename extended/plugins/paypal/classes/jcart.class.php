@@ -426,18 +426,18 @@ class jcart {
 		
 		if ($is_checkout == true)
 		{
-			$steps = '<ul id="ULcheckoutProcedure">
-			                <li id="LIactiveStep">' . $LANG_PAYPAL_1['checkout_step_1'] . '</li>
-							<li>' . $LANG_PAYPAL_1['checkout_step_2'] . '</li>
-							<li>' . $LANG_PAYPAL_1['checkout_step_3'] . '</li>
+			$steps = '<ul>
+			        <li class="uk-button uk-button-large uk-button-danger uk-text-nowrap">' . $LANG_PAYPAL_1['checkout_step_1'] . '</li>
+							<li class="uk-button uk-button-large uk-button-primary uk-text-nowrap">' . $LANG_PAYPAL_1['checkout_step_2'] . '</li>
+							<li class="uk-button uk-button-large uk-button-primary uk-text-nowrap">' . $LANG_PAYPAL_1['checkout_step_3'] . '</li>
 						</ul>';
 			$cart->set_var('steps', $steps);
 		} else if ($_REQUEST['pay_by'] == 'check' || PAYBYCHECK == true) {
 		    PAYBYCHECK == true;
-			$steps = '<ul id="ULcheckoutProcedure">
-			                <li>' . $LANG_PAYPAL_1['checkout_step_1'] . '</li>
-							<li id="LIactiveStep">' . $LANG_PAYPAL_1['checkout_step_2'] . '</li>
-							<li>' . $LANG_PAYPAL_1['checkout_step_3'] . '</li>
+			$steps = '<ul>
+			        <li class="uk-button uk-button-large uk-button-primary uk-text-nowrap">' . $LANG_PAYPAL_1['checkout_step_1'] . '</li>
+							<li class="uk-button uk-button-large uk-button-danger uk-text-nowrap">' . $LANG_PAYPAL_1['checkout_step_2'] . '</li>
+							<li class="uk-button uk-button-large uk-button-primary uk-text-nowrap">' . $LANG_PAYPAL_1['checkout_step_3'] . '</li>
 						</ul>';
 			$cart->set_var('steps', $steps);
 		} else {
@@ -458,7 +458,7 @@ class jcart {
 				}
 				$informations = '<h2>' . $LANG_PAYPAL_1['review_details'] . '</h2>'; 
 				$informations .= '<p>' . $LANG_PAYPAL_1['confirm_order_check'] . '</p>';
-				$informations .= '<div style="margin:25px;">' . PAYPAL_getDetailsForm($A, $_PAY_CONF['site_url'] . '/details.php?mode=save', $LANG_PAYPAL_1['confirm_order_button'], $_GET['shipping']) . '</div>';
+				$informations .= '<div class="uk-margin">' . PAYPAL_getDetailsForm($A, $_PAY_CONF['site_url'] . '/details.php?mode=save', $LANG_PAYPAL_1['confirm_order_button'], $_GET['shipping']) . '</div>';
 				$cart->set_var('informations', $informations);
 			}	
 		}
@@ -524,7 +524,7 @@ class jcart {
     			$input_type = 'image';
 				$src = ' src="' . $button['checkout'] . '" alt="' . $text['checkout_button'] . '" title="" ';
 			}
-			$cart->set_var('checkout', '<input type="' . $input_type . '" ' . $src . 'id="jcart-checkout" name="jcart_checkout" class="jcart-button" value="' . $text['checkout_button'] . '" />');
+			$cart->set_var('checkout', '<button type="' . $input_type . '" ' . $src . 'id="jcart-checkout" name="jcart_checkout" class="uk-button uk-button-primary uk-button-large uk-float-right" value="' . $text['checkout_button'] . '" style="top:0;">' . $text['checkout_button'] . '</button>');
 		} else {
 		    $cart->set_var('checkout', '');
 		}
@@ -533,28 +533,28 @@ class jcart {
 		
 		//Update and empty button
 		if ($block == 0) {
-		    $retval .= "\t\t\t<div class='jcart-hide'>\n";
+		    $retval .= "<div class='jcart-hide'>";
 		    if ($button['update']) { $input_type = 'image'; $src = ' src="' . $button['update'] . '" alt="' . $text['update_button'] . '" title="" ';	}
-		    $retval .= "\t\t\t\t<input type='" . $input_type . "' " . $src ."name='jcart_update_cart' value='" . $text['update_button'] . "' class='jcart-button' />\n";
+		    $retval .= "<input type='" . $input_type . "' " . $src ."name='jcart_update_cart' value='" . $text['update_button'] . "' class='jcart-button' />";
 		    if ($button['empty']) { $input_type = 'image'; $src = ' src="' . $button['empty'] . '" alt="' . $text['empty_button'] . '" title="" ';	}
-		    $retval .= "\t\t\t\t<input type='" . $input_type . "' " . $src ."name='jcart_empty' value='" . $text['empty_button'] . "' class='jcart-button' />\n";
-		    $retval .= "\t\t\t</div>\n";
+		    $retval .= "<input type='" . $input_type . "' " . $src ."name='jcart_empty' value='" . $text['empty_button'] . "' class='jcart-button' />";
+		    $retval .= "</div>";
 		}
-		$retval .= "\t\t\t\t\t</th>\n";
-		$retval .= "\t\t\t\t</tr>\n";
-		$retval .= "\t\t\t</table>\n\n";
+		$retval .= "</th>";
+		$retval .= "</tr>";
+		$retval .= "</table>";
 		
 		// IF THIS IS THE CHECKOUT DISPLAY THE PAYPAL CHECKOUT BUTTON AND SHIPPING RATE
 		if ( ($is_checkout == true  && $block == 0 && ($this->itemcount > 0)) || $_REQUEST['pay_by'] == 'check' && $block == 0) {
 			// HIDDEN INPUT ALLOWS US TO DETERMINE IF WE'RE ON THE CHECKOUT PAGE
 			// WE NORMALLY CHECK AGAINST REQUEST URI BUT AJAX UPDATE SETS VALUE TO jcart-relay.php
-			$retval .= "\t\t\t<input type='hidden' id='jcart-is-checkout' name='jcart_is_checkout' value='true' />\n";
+			$retval .= "<input type='hidden' id='jcart-is-checkout' name='jcart_is_checkout' value='true' />";
 			
 			$weight = $this->totalweight;
 			$weight = str_replace(",",".",$weight);
 		    $weight = preg_replace('/[^\d.]/', '', $weight);
 			//WEIGHT
-			$retval .= "\t\t\t<input type='hidden' id='weight' name='weight' value='{$weight}' />\n";
+			$retval .= "<input type='hidden' id='weight' name='weight' value='{$weight}' />";
 			
 			//SHIPPING RATE
 			$shipping = COM_newTemplate($_CONF['path'] . 'plugins/paypal/templates');
@@ -608,7 +608,7 @@ class jcart {
 			// SEND THE URL OF THE CHECKOUT PAGE TO jcart-gateway.php
 			// WHEN JAVASCRIPT IS DISABLED WE USE A HEADER REDIRECT AFTER THE UPDATE OR EMPTY BUTTONS ARE CLICKED
 			$protocol = 'http://'; if (!empty($_SERVER['HTTPS'])) { $protocol = 'https://'; }
-			$retval .= "\t\t\t<input type='hidden' id='jcart-checkout-page' name='jcart_checkout_page' value='" . $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . "' />\n";
+			$retval .= '<div class="uk-text-center"><input type="hidden" id="jcart-checkout-page" name="jcart_checkout_page" value="' . $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '" />';
 
             // PAYPAL CHECKOUT BUTTON
 			if ($button['paypal_checkout'])	{ 
@@ -616,11 +616,8 @@ class jcart {
                 $src = ' src="' . $button['paypal_checkout'] . '" alt="' . $text['checkout_paypal_button'] . '" title="" '; 
             }
 			if ($_REQUEST['pay_by'] != 'check') {
-				$retval .= '<h2 align="center">' . $LANG_PAYPAL_1['payment_method'] . '</h2>';
-				if ($_PAY_CONF['enable_pay_by_paypal']) {
-					$retval .= "\t\t\t<p><input type='" . $input_type . "' " . $src ."id='jcart-paypal-checkout' name='jcart_paypal_checkout' value='" .
-						$text['checkout_paypal_button'] . "'" . $disable_paypal_checkout . " /></p>\n";	
-				}
+
+
 				if ($is_checkout == true  && $block == 0 && ($this->itemcount > 0) && $_PAY_CONF['enable_pay_by_ckeck'] == 1) {
 					if (!COM_isAnonUser()) {
 							$js = 'function payby ( selectedtype )';
@@ -632,27 +629,36 @@ class jcart {
 							$_SCRIPTS->setJavaScript($js, true);
 
 							$retval .= '<input type="hidden" name="pay_by" />';
-							$retval .= '<p>&nbsp;</p><p align="center"><a class="jcart_footer"  href="javascript:payby(\'check\')">' . $LANG_PAYPAL_CART['payment_check'] . '</a></p><p>&nbsp;</p>';
+							$retval .= '<a class="uk-button uk-button-primary"  href="javascript:payby(\'check\')">' . $LANG_PAYPAL_CART['payment_check'] . '</a>';
 					}
 				}
+				if ($_PAY_CONF['enable_pay_by_paypal']) {
+					$retval .= '<input class="jcart_footer uk-button uk-button-primary" type="' . $input_type . "' " . $src ."id='jcart-paypal-checkout' name='jcart_paypal_checkout' value='" .
+						$text['checkout_paypal_button'] . "'" . $disable_paypal_checkout . " />";	
+				}
+
+
+				$retval .= '</div><h2 class="uk-text-center">' . $LANG_PAYPAL_1['payment_method'] . '</h2>';
+
+
 			}
 		}
-		$retval .= "\t</form>\n";
+		$retval .= "\t</form>";
 
 		// IF UPDATING AN ITEM, FOCUS ON ITS QTY INPUT AFTER THE CART IS LOADED (DOESN'T SEEM TO WORK IN IE7)
 		if ($_POST['jcart_update_item'])
 			{
-			$retval .= "\t" . '<script type="text/javascript">jQuery(function(){jQuery("#jcart-item-id-' . $_POST['item_id'] . '").focus()});</script>' . "\n";
+			$retval .= "\t" . '<script type="text/javascript">jQuery(function(){jQuery("#jcart-item-id-' . $_POST['item_id'] . '").focus()});</script>' . "";
 			}
 		
-        $retval .= "\t<div class=\"jcart_footer\">\n";
+        $retval .= "\t<div class=\"jcart_footer\">";
 		
 		//CONTINUE SHOPPING
         if ($is_checkout == true  && $block == 0) {
-            $retval .= '<hr style="margin-top:20px;"><p style="margin-top:10px;"><< <a class="jcart_footer" href="' . $_PAY_CONF['site_url'] . '/index.php">' . $LANG_PAYPAL_CART['continue_shopping'] . '</a></p>';
+            $retval .= '<div><a class="uk-button uk-button-primary uk-float-left" href="' . $_PAY_CONF['site_url'] . '/index.php">' . $LANG_PAYPAL_CART['continue_shopping'] . '</a></div>';
         }
 		
-		$retval .= "\t</div></div>\n";
+		$retval .= "\t</div></div>";
 						
 		return $retval;
 
