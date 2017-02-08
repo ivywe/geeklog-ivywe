@@ -811,18 +811,22 @@ if ($icount > 0) {
 	for ($z = 1; $z <= $icount; $z++) {
 		$I = DB_fetchArray($result_products);
 
-		$saved_images .= '<p><a class="lightbox" href="' .  $_PAY_CONF['images_url'] . $I['pi_filename'] . '">
-<img src="' . $_PAY_CONF['images_url'] . '"' . $A['name'] . '" /></a></p>';
-
-//		$saved_images .= '<p><a class="lightbox" href="' .  $_PAY_CONF['images_url'] . $I['pi_filename'] . '"><img src="' . $_PAY_CONF['site_url'] . '/timthumb.php?src=' .  $_PAY_CONF['images_url'] . $I['pi_filename'] . '&amp;w=' . $wsize . '&amp;h=' . $hsize . '&amp;zc=1&amp;q=100" alt="' . $A['name'] . '" /></a></p>';
+		$saved_images .= '<li><img src="' . $_PAY_CONF['images_url'] . $I['pi_filename'] . '"' . $A['name'] . '" /></li>';
 
 	}
 }
 if ($icount == 0) {
 	$product->set_var('pictures', '');
 } else {
-    $info_picture = '<p class="info_picture"><img src="' .  $_PAY_CONF['site_url'] . '/images/enlarge.png" alt="" align="absmiddle" /> ' . $LANG_PAYPAL_1['info_picture'] .'</p>';
-	$product->set_var('pictures', '<div id="product-pictures">' . $saved_images . $info_picture . '</div>');
+    $info_picture = '<li><img src="' .  $_PAY_CONF['site_url'] . '/images/enlarge.png" alt="" align="absmiddle" /> ' . $LANG_PAYPAL_1['info_picture'] .'</li>';
+	$product->set_var('pictures', '<div class="uk-slidenav-position" data-uk-slideshow><ul class="uk-slideshow">' . $saved_images . $info_picture . '</ul><a href="" data-uk-slideshow-item="previous"></a><a href="" data-uk-slideshow-item="next"></a>
+		<ul class="uk-dotnav uk-dotnav-contrast uk-position-bottom uk-flex-center">
+        <li data-uk-slideshow-item="0"><a href=""></a></li>
+        <li data-uk-slideshow-item="1"><a href=""></a></li>
+        <li data-uk-slideshow-item="2"><a href=""></a></li>
+    </ul>
+
+</div>');
 }
 
 // FIXME: If a user purchased once with no expiration query will not operate correctly

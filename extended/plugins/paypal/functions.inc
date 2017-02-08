@@ -706,6 +706,9 @@ function paypal_mailAttachment($to, $subject, $message_text, $attachments = arra
 
     static $mailobj;
 
+// komma
+mb_internal_encoding("UTF-8");
+
     include_once( 'Mail.php' );
     include_once( 'Mail/RFC822.php' );
 
@@ -723,11 +726,15 @@ function paypal_mailAttachment($to, $subject, $message_text, $attachments = arra
     if( empty( $LANG_CHARSET )) {
         $charset = $_CONF['default_charset'];
         if( empty( $charset )) {
-            $charset = 'iso-8859-1';
+            $charset = 'UTF-8';
         }
     } else {
         $charset = $LANG_CHARSET;
     }
+
+// komma
+            $charset = 'UTF-8';
+
 
     if( empty( $from )) {
         $from = COM_formatEmailAddress( $_CONF['site_name'], $_CONF['site_mail']);
@@ -746,6 +753,13 @@ function paypal_mailAttachment($to, $subject, $message_text, $attachments = arra
         $headers['Message-Id'] = '<' .  date( 'YmdHis' ) . '.' . $m
                                . '@' . $_CONF['mail_settings']['host'] . '>';
     }
+
+//komma
+		$subject = substr($subject, 0, strcspn($subject, "\r\n"));
+		$subject = COM_emailEscape($subject);
+		$subjectmb_encode_mimeheader($subject);
+
+
     $headers['Subject'] = $subject;
     $headers['X-Mailer'] = 'geeklog ' . VERSION;
 
@@ -1158,7 +1172,7 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
     if (empty($pid)) {
         $retval .= $product->parse('', 'start');
     } else {
-        $retval .= '<table class="product_list" cellspacing="5" border="0" width="100%">';
+        $retval .= '<table class="uk-table uk-width-1-1">';
     }
 
     // query
@@ -1235,7 +1249,7 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 				    $width = '100%';
 					$height = '100%';
 				}
-				$product->set_var('small_pic', '<a class="product-details" href="' . $_PAY_CONF['site_url'] . '/product_detail.php?n=' . urlencode($A['name']) . '&amp;product='. $A['id'] . '"><img class="lightbox" src="'. $_PAY_CONF['site_url'] . '/timthumb.php?src=' . $_PAY_CONF['images_url'] . $A['pi_filename'] . '&amp;w='. $width . '&amp;h='. $height . '&amp;zc=1&amp;q=100" alt="' . $A['name'] . '" /></a>');
+				$product->set_var('small_pic', '<a class="product-details" href="' . $_PAY_CONF['site_url'] . '/product_detail.php?n=' . urlencode($A['name']) . '&amp;product='. $A['id'] . '"><img class="" src="' . $_PAY_CONF['images_url'] . $A['pi_filename'] . '" style="max-width:100%" alt="' . $A['name'] . '" /></a>');
 				
 			}
 
@@ -1252,7 +1266,7 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
             if ($A['shipping_type'] == 0) {
 			    $product->set_var('item_weight', '0.00');
 				if ($A['product_type'] == 0 && $A['type'] == 'product') {
-				    $product->set_var('free_shipping', '<font style="color:red">' . $LANG_PAYPAL_CART['free_shipping'] . '</font>');
+				    $product->set_var('free_shipping',  $LANG_PAYPAL_CART['free_shipping'] );
 				} else {
 				    $product->set_var('free_shipping', '');
 			    }
@@ -1273,7 +1287,7 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 			// Free items or items purchases and not expired, active, download
 			} else if ( $A['product_type'] == 1 && ( $A['price'] == 0 || $time > time() ) ) {
 				$product->set_var('buy_now', '');
-				$product->set_var('add2cart', '<a href="' . $_PAY_CONF['site_url'] . '/download.php'
+				$product->set_var('add2cart', '<a class="uk-button uk-button-primary uk-button-large" href="' . $_PAY_CONF['site_url'] . '/download.php'
 										   . '?id=' . $A['id'] . '">' . $LANG_PAYPAL_1['Download'] . '</a>');
 			// Buttons customisation
 			} else if ($A['customisable'] == 1) {
@@ -1308,12 +1322,12 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 
 			if (($A['hidden'] == 0)  || SEC_hasRights('paypal.admin')) {
 				if ($_PAY_CONF['products_col'] == 1) {
-					$p_retval .= '<tr valign="top">' . $product->parse('', 'product') . '</tr>';
+					$p_retval .= '<tr class="uk-grid">' . $product->parse('', 'product') . '</tr>';
 				} else if ($col_number == $_PAY_CONF['products_col']) {
 					$p_retval .= $product->parse('', 'product') . '</tr>';
 					$col_number = 1;
 				} else if ($col_number == 1){
-					$p_retval .= '<tr valign="top">' . $product->parse('', 'product') . '<td class="product-separator"></td>';
+					$p_retval .= '<tr class="uk-grid">' . $product->parse('', 'product') . '<td class="product-separator"></td>';
 					$col_number = $col_number+1;
 				} else {
 					$p_retval .= $product->parse('', 'product') . '<td class="product-separator"></td>';
@@ -1447,7 +1461,7 @@ function plugin_dopluginsearch_paypal($query, $datestart, $dateend, $topic, $typ
             if ($row['pi_filename'] == '') {
                 $image = '';
             } else {
-                $image = ' <a class="lightbox" href="' . $_PAY_CONF['images_url'] . $row['pi_filename'] . '"><img class="lightbox" src="'. $_PAY_CONF['site_url'] . '/timthumb.php?src=' . $_PAY_CONF['images_url'] . $row['pi_filename'] . '&amp;h=55&amp;zc=1&amp;q=100" alt="' . $row['title'] . '" align="top" style="margin-top:3px;"/></a>';
+                $image = ' <a class="ivy2 lightbox" href="' . $_PAY_CONF['images_url'] . $row['pi_filename'] . '"><img class="ivy3 lightbox" src="'. $_PAY_CONF['site_url'] . '/timthumb.php?src=' . $_PAY_CONF['images_url'] . $row['pi_filename'] . '&amp;h=55&amp;zc=1&amp;q=100" alt="' . $row['title'] . '" align="top" style="margin-top:3px;"/></a>';
             }
 			$formattedResults[] = array(LF_SOURCE_NAME=>'paypal',
                                 LF_SOURCE_TITLE=>$LANG_paypal_1['products'],
@@ -1524,7 +1538,7 @@ function phpblock_paypal_randomBlock()
 	if ($A['pi_filename'] == '') {
 		$T->set_var('small_pic', '');
 	} else {
-		$T->set_var('small_pic', '<a class="product-details" href="' . $_PAY_CONF['site_url'] . '/product_detail.php?n=' . urlencode($A['name']) . '&amp;product='. $A['id'] . '"><img class="lightbox" src="'. $_PAY_CONF['site_url'] . '/timthumb.php?src=' . $_PAY_CONF['images_url']
+		$T->set_var('small_pic', '<a class="product-details" href="' . $_PAY_CONF['site_url'] . '/product_detail.php?n=' . urlencode($A['name']) . '&amp;product='. $A['id'] . '"><img class="ivy4 lightbox" src="'. $_PAY_CONF['site_url'] . '/timthumb.php?src=' . $_PAY_CONF['images_url']
 		. $A['pi_filename'] . '&amp;w='. $_PAY_CONF['max_thumbnail_size'] . '&amp;zc=1&amp;q=100" alt="' . $A['name'] . '" /></a>');
 	}
 
@@ -1667,17 +1681,17 @@ function PAYPAL_getListField_paypal_purchases($fieldname, $fieldvalue, $A, $icon
     switch($fieldname) {
 
         case "id":
-			$retval = '<a href="' . $_PAY_CONF['site_url'] . '/transaction.php?type=purchase&amp;id=' . $A['id'] . '" title="'. $LANG_PAYPAL_1['see_transaction'] . '">' . $A['id'] .'</a>';
+			$retval = '<a  class="uk-button uk-button-primary uk-button-large"  href="' . $_PAY_CONF['site_url'] . '/transaction.php?type=purchase&amp;id=' . $A['id'] . '" title="'. $LANG_PAYPAL_1['see_transaction'] . '">' . $A['id'] .'</a>';
             break;
 		case "product_id":
             $retval =  $A['name'];
             break;
 		case "user_id":
-            $retval = '<a href="' . $_CONF['site_url'] . '/users.php?mode=profile&uid=' . $A['user_id'] . '">' . $A['username'] .'</a>';
+            $retval = '<a  class="uk-button uk-button-primary uk-button-large"  href="' . $_CONF['site_url'] . '/users.php?mode=profile&uid=' . $A['user_id'] . '">' . $A['username'] .'</a>';
             break;
 
 		case "txn_id":
-            $retval = '<a href="' . $_CONF['site_url'] . '/admin/plugins/paypal/ipnlog.php?view=ipnlog&op=single&txn_id=' . $A['txn_id'] . '">' . $A['txn_id'] . '</a>';
+            $retval = '<a  class="uk-button uk-button-primary uk-button-large"  href="' . $_CONF['site_url'] . '/admin/plugins/paypal/ipnlog.php?view=ipnlog&op=single&txn_id=' . $A['txn_id'] . '">' . $A['txn_id'] . '</a>';
             break;
 		case "purchase_date":
 			$date = COM_getUserDateTimeFormat($A['purchase_date']);
@@ -1685,7 +1699,7 @@ function PAYPAL_getListField_paypal_purchases($fieldname, $fieldvalue, $A, $icon
             break;
 		case "status":
             if ($A['status'] == 'pending') {
-			    $retval = '<a href="' . $_PAY_CONF['site_url'] . '/transaction.php?type=purchase&amp;id=' .
+			    $retval = '<a  class="uk-button uk-button-primary uk-button-large"  href="' . $_PAY_CONF['site_url'] . '/transaction.php?type=purchase&amp;id=' .
 				$A['id'] . '" title="'. $LANG_PAYPAL_1['see_transaction'] . '">' . $LANG_PAYPAL_1[$A['status']] .'</a>';
 			} else {
     			$retval =  $LANG_PAYPAL_1[$A['status']];
@@ -1698,7 +1712,7 @@ function PAYPAL_getListField_paypal_purchases($fieldname, $fieldvalue, $A, $icon
             break;
         case "product_type" :
             if ($A['product_type'] == '1') {
-     			$retval = '<a href="' . $_PAY_CONF['site_url'] . '/download.php' . '?id=' . $A['product_id'] . '">' . $LANG_PAYPAL_1['Download'] . '</a>';
+     			$retval = '<a  class="uk-button uk-button-primary uk-button-large"  href="' . $_PAY_CONF['site_url'] . '/download.php' . '?id=' . $A['product_id'] . '">' . $LANG_PAYPAL_1['Download'] . '</a>';
 			} else { 
 			    $retval = '';
 			}
@@ -1850,7 +1864,7 @@ function PAYPAL_getListField_paypal_subscriptions($fieldname, $fieldvalue, $A, $
 			
 		case "product_id":
 		    if ($A['pi_filename'] != '') {
-                $retval = '<img align="absmiddle" src="'. $_PAY_CONF['site_url'] . '/timthumb.php?src=' . $_PAY_CONF['images_url'] . $A['pi_filename'] . '&amp;h=20&amp;&amp;zc=1&amp;q=100" alt="' . $A['name'] . '" /> <a href="' . $_PAY_CONF['site_url'] . '/product_detail.php?product='. $A['product_id'] . '">' . COM_truncate( $A['name'], 60, '...' ) .'</a>';
+                $retval = '<img align="absmiddle" src="'. $A['pi_filename'] . '" alt="' . $A['name'] . '" /> <a href="' . $_PAY_CONF['site_url'] . '/product_detail.php?product='. $A['product_id'] . '">' . COM_truncate( $A['name'], 60, '...' ) .'</a>';
 			} else {
 			    $retval = '<a href="' . $_PAY_CONF['site_url'] . '/product_detail.php?product='. $A['product_id'] . '">' . COM_truncate( $A['name'], 60, '...' ) .'</a>';
 			}

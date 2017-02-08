@@ -1,4 +1,4 @@
-<!-- cart_end.thtml -->
+{# cart_end.thtml #}
 
         <tr>
 		  <td id="jcart-footer" colspan="4">

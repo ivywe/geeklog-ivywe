@@ -1,6 +1,6 @@
 <!-- cart_start.thtml -->
 
-<div id="jcart">
+<div>
   {steps}
   {error_message}
   {informations}

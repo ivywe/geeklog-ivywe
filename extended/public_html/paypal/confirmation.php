@@ -92,10 +92,10 @@ switch ($_REQUEST['mode']) {
         //Display cart
         $display .= '<div id="cart">
 		             <div id="jcart">
-                        <ul id="ULcheckoutProcedure">
-			                <li>' . $LANG_PAYPAL_1['checkout_step_1'] . '</li>
-							<li>' . $LANG_PAYPAL_1['checkout_step_2'] . '</li>
-							<li id="LIactiveStep">' . $LANG_PAYPAL_1['checkout_step_3'] . '</li>
+                 <ul>
+			           <li class="uk-button uk-button-large uk-button-danger uk-text-nowrap">' . $LANG_PAYPAL_1['checkout_step_1'] . '</li>
+                 <li class="uk-button uk-button-large uk-button-primary uk-text-nowrap">' . $LANG_PAYPAL_1['checkout_step_2'] . '</li>
+							   <li class="uk-button uk-button-large uk-button-danger uk-text-nowrap">' . $LANG_PAYPAL_1['checkout_step_3'] . '</li>
 						</ul>
 					</div></div>';
 

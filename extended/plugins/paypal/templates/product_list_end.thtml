@@ -1,5 +1,3 @@
-<div style="clear:both"></div>
-
-{products_total}
-<p><div style="align: center">{pagination}</div></p>
-</div>
+	{products_total}
+	</table>
+	<div class="uk-text-center">{pagination}</div>

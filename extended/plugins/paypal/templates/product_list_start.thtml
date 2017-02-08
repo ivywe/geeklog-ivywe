@@ -1,2 +1,2 @@
 {title}
-<div name="product_list" class="uk-grid tm-grid-truncate">
+<table class="uk-table uk-width-1-1">

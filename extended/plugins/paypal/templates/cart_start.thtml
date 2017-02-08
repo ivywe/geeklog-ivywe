@@ -1,26 +1,28 @@
-<!-- cart_start.thtml -->
+{# cart_start.thtml #}
 
-<div id="jcart">
+<div style="z-index: 980; top: 0">
   {steps}
   {error_message}
   <form method="post" action="{form_action}" name="jcart">
-	  <table border="0" cellspacing="1px" cellmargin="0" width="100%">
+	  <table class="uk-table uk-overflow-container uk-table-condensed uk-text-nowrap">
+<thead>
 		<tr>
 		  <th id="jcart-header" colspan="4">
-		  <p class="jcart-header"><strong id="jcart-title">{cart_title}</strong> ({itemcount})</p>
+		  <span id="jcart-title" class="uk-text-bold">{cart_title}</span> ({itemcount})
 		  </th>
 		</tr>
+</thead>
 		  <tr>
-		  <td class="jcart-item-header">
+		  <td>
 		    {description}
 		  </td>
-		  <td class="jcart-item-header">
+		  <td>
 		    {unit_price}
 		  </td>
-		  <td class="jcart-item-header">
+		  <td>
 		    {quantity}
 		  </td>
-		<td class="jcart-item-header" style="text-align:right;">
+			<td class="uk-text-right">
 		    {item_price}
 		  </td>
 		</tr>
