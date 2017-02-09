@@ -20,9 +20,6 @@
 	<input type="text" class="uk-textarea" name="city" value="{city}" size="40" maxlength="30" placeholder="{city_label}" {xhtml}>
 </div>
 <div class="uk-margin">
-	<input type="text" class="uk-textarea" name="country" value="{country}" size="55" maxlength="80" placeholder="{country_label}" {xhtml}>
-</div>
-<div class="uk-margin">
 	<input type="text" class="uk-textarea" name="phone1" value="{phone1}" size="55" maxlength="20" placeholder="{phone1_label}" {xhtml}>
 </div>
 <div class="uk-margin">
@@ -41,6 +38,7 @@
 	<p>{uid}{operation}</p>
   <p class="uk-text-center"><input type="submit" name="submit" value="{save_button}"  class="uk-button uk-button-primary uk-button-large"  {xhtml}></p>
 </div>
+	<input type="hidden" name="country" value="" {xhtml}>
 
 </fieldset>
 

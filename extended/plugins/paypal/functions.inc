@@ -2781,7 +2781,7 @@ function PAYPAL_handlePurchase( $products, $quantity, $data, $names, $prices, $r
 			$message->set_var('thanks', $LANG_PAYPAL_EMAIL['thanks']);
 
 			// paypal details
-			$shop_informations = '<dl class="uk-description-list-horizontal"><dt>SHOPñº</dt>' . $_PAY_CONF['shop_name'] . '</dt><dd>èZèä</dd>' .
+			$shop_informations = '<dl class="uk-description-list-horizontal"><dt>SHOPÂêç</dt>' . $_PAY_CONF['shop_name'] . '</dt><dd>‰ΩèÊâÄ</dd>' .
 									$_PAY_CONF['shop_postal'] . ' ' . $_PAY_CONF['shop_city'] . $_PAY_CONF['shop_street1'] .	$_PAY_CONF['shop_street2'] ;
 									
 			$shop_informations_bottom = '</dd>';
