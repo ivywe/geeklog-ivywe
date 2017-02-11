@@ -6,7 +6,7 @@
 </head>
 <body dir="{direction}">
 <div id="transaction">
-	<table border="0" width="100%" cellspacing="3" cellpadding="2">
+	<table  class="uk-width-1-1 uk-table uk-table-small">
 	<tr  valign="top">
 	    <td>
 	        <h2>{shop_name}</h2>
@@ -28,7 +28,7 @@
 	</tr>
     </table>
 	<h2>{receipt}</h2>
-    <table border="0" width="100%" cellspacing="2" cellpadding="3">
+    <table class="uk-width-1-1 uk-table uk-table-small">
 		<th align="left" nowrap>{product_name}</th>
 		<th align="left" nowrap>{unit_price_label}</th>
 		<th nowrap>{quantity}</th>

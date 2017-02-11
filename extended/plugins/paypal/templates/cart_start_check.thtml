@@ -1,26 +1,31 @@
 <!-- cart_start.thtml -->
 
-<div>
+<div id="jcart"  class="uk-overflow-auto">>
   {steps}
   {error_message}
   {informations}
-	  <table border="0" cellspacing="1px" cellmargin="0" width="100%">
+
+	  <table class="uk-table uk-table-small uk-text-nowrap">
 		<tr>
+<thead>
 		  <th id="jcart-header" colspan="4">
 		  <p class="jcart-header"><strong id="jcart-title">{cart_title}</strong> ({itemcount})</p>
-		  </th>
+		</th>
+</thead>
 		</tr>
 		  <tr>
-		  <td class="jcart-item-header">
+<thead>
+		  <th class="jcart-item-header">
 		    {description}
-		  </td>
-		  <td class="jcart-item-header">
+		  </th>
+		  <th class="jcart-item-header">
 		    {unit_price}
-		  </td>
-		  <td class="jcart-item-header">
+		  </th>
+		  <th class="jcart-item-header">
 		    {quantity}
-		  </td>
-		<td class="jcart-item-header" style="text-align:right;">
+		  </th>
+			<th class="jcart-item-header uk-text-right">
 		    {item_price}
-		  </td>
+		  </th>
 		</tr>
+</thead>

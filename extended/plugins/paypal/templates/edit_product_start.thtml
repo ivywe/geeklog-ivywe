@@ -1,2 +1,2 @@
 <form action="{site_url}/admin/plugins/paypal/product_edit.php" method="GET">
-<table class="product-list" cellpadding="5" cellspacing="10"> 
+<table class="product-list uk-table uk-table-small"> 

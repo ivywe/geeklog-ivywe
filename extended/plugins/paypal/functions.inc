@@ -1209,7 +1209,7 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 					'name_button' => $A['name'])
 					);
 			}
-			$product->set_var('link_name', '<a class="product-details" href="' . $_PAY_CONF['site_url'] . '/product_detail.php?product=' . $A['id'] . '&amp;n='. urlencode($A['name']) . '">' . $A['name'] . '</a>');
+			$product->set_var('link_name', '<a class="product-details" href=" class="uk-link-reset" ' . $_PAY_CONF['site_url'] . '/product_detail.php?product=' . $A['id'] . '&amp;n='. urlencode($A['name']) . '">' . $A['name'] . '</a>');
 			if (($A['hidden'] == 1) && SEC_hasRights('paypal.admin')) {
 			  $product->set_var('hidden','<strong><font color="red">' . $LANG_PAYPAL_1['hidden'] . '</font></strong><br/>');
 			} else {
@@ -2781,14 +2781,15 @@ function PAYPAL_handlePurchase( $products, $quantity, $data, $names, $prices, $r
 			$message->set_var('thanks', $LANG_PAYPAL_EMAIL['thanks']);
 
 			// paypal details
-			$shop_informations = '<dl class="uk-description-list-horizontal"><dt>SHOP名</dt>' . $_PAY_CONF['shop_name'] . '</dt><dd>住所</dd>' .
+			$shop_informations = '<dl class="uk-description-list-line"><dt>SHOP名</dt><dd>' . $_PAY_CONF['shop_name'] . '</dd>
+									<dt>住所</dt><dd>' .
 									$_PAY_CONF['shop_postal'] . ' ' . $_PAY_CONF['shop_city'] . $_PAY_CONF['shop_street1'] .	$_PAY_CONF['shop_street2'] ;
 									
 			$shop_informations_bottom = '</dd>';
-			if ($_PAY_CONF['shop_phone1'] != '') $shop_informations_bottom .= '<dt>TEL</dt><dd>' . $LANG_confignames['paypal']['shop_phone1'] . ' ' . $_PAY_CONF['shop_phone1'] . '</dd>';
-			if ($_PAY_CONF['shop_phone2'] != '') $shop_informations_bottom .= '<dt>TEL2</dt>' . $LANG_confignames['paypal']['shop_phone2'] . ' ' . $_PAY_CONF['shop_phone2'] . '<br' . XHTML . '>';
-			if ($_PAY_CONF['shop_fax'] != '') $shop_informations_bottom .= '<dt>FAX</dt><dd>' . $LANG_confignames['paypal']['shop_fax'] . ' ' . $_PAY_CONF['shop_fax'] . '<br' . XHTML . '>';
-			if ($_PAY_CONF['shop_siret'] != '') $shop_informations_bottom .= '<dt>E-mail</dt><dd>' . $LANG_confignames['paypal']['shop_siret'] . ' ' . $_PAY_CONF['shop_siret'] . '</dd>';
+			if ($_PAY_CONF['shop_phone1'] != '') $shop_informations_bottom .= '<dt>' . $LANG_confignames['paypal']['shop_phone1'] . '</dt><dd>' . ' ' . $_PAY_CONF['shop_phone1'] . '</dd>';
+			if ($_PAY_CONF['shop_phone2'] != '') $shop_informations_bottom .= '<dt>' . $LANG_confignames['paypal']['shop_phone2'] . '</dt>' . $_PAY_CONF['shop_phone2'] . '<br' . XHTML . '>';
+			if ($_PAY_CONF['shop_fax'] != '') $shop_informations_bottom .= '<dt>'.$LANG_confignames['paypal']['shop_fax'].'</dt><dd>' .  $_PAY_CONF['shop_fax'] . '<br' . XHTML . '>';
+			if ($_PAY_CONF['shop_siret'] != '') $shop_informations_bottom .= '<dt>'.$LANG_confignames['paypal']['shop_siret'] .'</dt><dd>' . $_PAY_CONF['shop_siret'] . '</dd>';
 			$shop_informations_bottom .= '</dl>';
 									
 			$order_date = COM_getUserDateTimeFormat($ipn['order_date']);

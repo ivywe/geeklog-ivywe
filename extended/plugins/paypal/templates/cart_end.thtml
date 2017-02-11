@@ -2,5 +2,5 @@
 
         <tr>
 		  <td id="jcart-footer" colspan="4">
-		  <p><span id="jcart-subtotal">{subtotal}</span></p>
-		  {checkout}
+		  <div class="uk-clearfix"><span id="jcart-subtotal">{subtotal}</span></div>
+		  <div class="uk-clearfix uk-width-1-1 uk-text-right"  uk-sticky="bottom: true">{checkout}</div>

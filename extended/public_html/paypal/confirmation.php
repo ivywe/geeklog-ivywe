@@ -91,13 +91,11 @@ switch ($_REQUEST['mode']) {
 
         //Display cart
         $display .= '
-		             <div>
-                 <ul>
-			           <li class="uk-button uk-button-large uk-button-danger uk-text-nowrap">' . $LANG_PAYPAL_1['checkout_step_1'] . '</li>
-                 <li class="uk-button uk-button-large uk-button-primary uk-text-nowrap">' . $LANG_PAYPAL_1['checkout_step_2'] . '</li>
-							   <li class="uk-button uk-button-large uk-button-danger uk-text-nowrap">' . $LANG_PAYPAL_1['checkout_step_3'] . '</li>
-						</ul>
-					</div>';
+		             <div class="uk-width-1-1 uk-margin uk-margin-small-bottom "><div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-text-center uk-button-group">
+			           <button class="uk-button uk-button-default uk-margin-small-bottom uk-text-nowrap">' . $LANG_PAYPAL_1['checkout_step_1'] . '</li>
+                 <button class="uk-button uk-button-default uk-margin-small-bottom uk-text-nowrap">' . $LANG_PAYPAL_1['checkout_step_2'] . '</li>
+							   <button class="uk-button uk-button-secondary uk-margin-small-bottom uk-text-nowrap">' . $LANG_PAYPAL_1['checkout_step_3'] . '</div>
+						</div></div>';
 
 		$display .= PAYPAL_handlePurchase($items, $quantities, $data, $namesfromcart, $item_price);
 		

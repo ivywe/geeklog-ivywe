@@ -1,4 +1,4 @@
-<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<table class="uk-width-1-1 uk-table uk-table-small">
 	<tr>
 		<td>{ratingtotalsinfo}</td>
 	</tr>

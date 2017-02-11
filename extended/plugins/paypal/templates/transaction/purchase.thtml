@@ -21,7 +21,7 @@
 	</div>
 	<div style="clear:both;"></div>
 	<h2>{receipt}  {print}</h2>
-    <table border="0" width="100%" cellspacing="0" cellpadding="3px">
+    <table  class="uk-width-1-1 uk-table uk-table-small">
 		<th align="left" nowrap>{product_name}</th>
 		<th align="left" nowrap>{unit_price_label}</th>
 		<th nowrap>{quantity}</th>

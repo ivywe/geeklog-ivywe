@@ -1,4 +1,4 @@
 		<div id="shipping_cart">
-        <h2>{choose_shipping}</h2>
-        {shipping_radio_buttons}
+        <dl class="uk-descliption-list-line"><dt>{choose_shipping}</dt>
+        <dd>{shipping_radio_buttons}</dd>
 		</div>

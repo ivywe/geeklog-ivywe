@@ -1,12 +1,12 @@
 	<td class="uk-width-1-5 uk-text-center">
 		{small_pic}
 	</td>
-	<td class="uk-width-3-5">
+	<td class="uk-width-3-5 uk-table-link">
 		<h2 class="uk-text-capitalize uk-text-bold">{link_name}</h2>
 		<div class="uk-float-right">{details}</div>
 		<div class="uk-text-truncate">{hidden}{short_description}</div>
 		{item_id}{rating}
-		<div><span class="uk-text-large uk-text-danger">{price}</span><span class="uk-text-danger">円</span> 定価:{price_ref}{discount} <span class="uk-badge">{free_shipping}</span></div>
+		<div><span class="uk-text-large uk-text-danger">{price}</span><span class="uk-text-danger">{currency}</span> 定価:{price_ref}{discount} <span class="uk-badge uk-badge-warning ">{free_shipping}</span></div>
 	</td>
 	<td class="uk-width-1-5">
 		 {add2cart}{customisable}{login}{edit}

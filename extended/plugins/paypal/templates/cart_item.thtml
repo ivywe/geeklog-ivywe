@@ -1,16 +1,19 @@
 <!-- cart_item.thtml -->
-        <tr>
-		  <td class="jcart-item-name">
-		    &nbsp;{name}<input type="hidden" name="jcart_item_name[ ]" value="{name}" />
-			<input type="hidden" name="jcart_item_id[ ]" value="{id}" />
-		  </td>
-		  <td class="jcart-unit-price" nowrap>
-		    <span>{price} {currency_symbol}</span>
-		  </td>
-		  <td class="jcart-item-qty">
-		    <input type="text" size="2" id="jcart-item-id-{id}" name="jcart_item_qty[ ]" value="{qty}" />
-		  </td>
-		  <td class="jcart-item-price" nowrap>
-		    <span>{subtotal} {currency_symbol}</span> <a class="jcart-remove" href="?jcart_remove={id}"><img src="{remove_png}" align="top" alt="{remove}" title="{remove}" /></a><input type="hidden" name="jcart_item_price[ ]" value="{price}" />
-		  </td>
-		</tr>
+
+<thead>
+	<tr>
+		<th class="jcart-item-name">
+		&nbsp;{name}<input type="hidden" name="jcart_item_name[ ]" value="{name}" />
+		<input type="hidden" name="jcart_item_id[ ]" value="{id}" />
+		</th>
+		<th class="jcart-unit-price" nowrap>
+		<span>{price} {currency_symbol}</span>
+		</th>
+		<th class="jcart-item-qty">
+		<input type="text" size="2" id="jcart-item-id-{id}" name="jcart_item_qty[ ]" value="{qty}" />
+		</th>
+		<th class="jcart-item-price" nowrap>
+		<span>{subtotal} {currency_symbol}</span> <a class="jcart-remove" href="?jcart_remove={id}"><img src="{remove_png}" align="top" alt="{remove}" title="{remove}" /></a><input type="hidden" name="jcart_item_price[ ]" value="{price}" />
+		</th>
+	</tr>
+</thead>

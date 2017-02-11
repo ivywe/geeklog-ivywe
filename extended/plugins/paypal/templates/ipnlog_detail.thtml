@@ -1,4 +1,4 @@
-<table border="0"
+<table  class="uk-width-1-1 uk-table uk-table-small"
   <tr><td><b>{IPN_log}</b></td><td>{id}</td></tr>
   <tr><td><b>{IP_address}</b></td><td>{ip_addr}<br/ ></td></tr>
   <tr><td><b>{date_time}</b></td><td>{time}<br /></td></tr>
@@ -10,6 +10,6 @@
 
 <hr>
 {errormsg}
-<p><b>{ipn_data}</b><br>
+<p>{ipn_data}<br>
  {raw}
 </p>

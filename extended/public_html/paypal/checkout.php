@@ -43,7 +43,20 @@ paypal_access_check('paypal.viewer');
 
 //Main
 
-$display = COM_siteHeader();
+
+    switch( $_PAY_CONF['display_blocks'] ) {
+    case 0 :    // none
+    case 2 :    // right only
+        $display .= COM_siteHeader('none', $pagetitle);
+        break;
+    case 1 :    // left only
+    case 3 :    // both
+    default :
+        $display .= COM_siteHeader('menu', $pagetitle);
+        break;
+    }
+
+
 
 
 if (SEC_hasRights('paypal.user', 'paypal.admin')) {

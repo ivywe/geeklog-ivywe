@@ -1,7 +1,7 @@
 <div id="product" class="uk-grid tm-grid-truncate uk-width-medium-1-1" data-uk-grid-margin="">
 	{edit}
 	<h1>{name}</h1>{item_id}
-	<table class="uk-table uk-overflow-container uk-table-condensed uk-text-nowrap">
+	<table class="uk-table uk-table-small uk-text-nowrap">
 		<tr>
 			<td class="uk-width-1-3">
 				{pictures}

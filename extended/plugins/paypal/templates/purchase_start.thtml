@@ -1,4 +1,4 @@
-<table class="plugin" width="100%">
+<table class="plugin uk-table uk-table-small uk-width-1-1" width="100%">
  <tr>
   <th>Product:</th>
   <th>User:</th>

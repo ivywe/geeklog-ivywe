@@ -92,7 +92,7 @@ $_PAY_DEFAULT['receiverEmailAddr'] = '';
  * currently requires you to have only one currency balance enabled in your
  * Paypal account. 
  */
- $_PAY_DEFAULT['currency'] = 'EUR';
+ $_PAY_DEFAULT['currency'] = '円';
 
 /**
  * 1 to allow anonymous users to make purchases without logging in first.  Note

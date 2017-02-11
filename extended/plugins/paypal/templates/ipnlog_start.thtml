@@ -1,4 +1,4 @@
-<table class="plugin" width="100%">
+<table  class="plugin uk-width-1-1 uk-table uk-table-small">
  <tr>
   <th>{ID}</th>
   <th>{IP_address}</th>
