@@ -1,12 +1,13 @@
-{# begin {templatelocation} #}
+{# start {templatelocation} #}
 
 <aside id="{area_id}">
-  <div>
+  <div id="comments">
     {commentbar}
-  </div>
-  <div class="uk-grid">
     {comments}
-    <p class="uk-text-center">{pagenav}</p>
+    
+    {!if pagenav}
+    <div class="uk-margin-top">{pagenav}</div>
+    {!endif}
   </div>
   {commenteditor}
 </aside>

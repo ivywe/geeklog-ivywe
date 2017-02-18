@@ -1,15 +1,16 @@
 {# begin {templatelocation} #}
 
-<div id="po_{question_id}" {style}>
-  <div class="uk-form-row uk-margin-small-bottom">
-    <label>{lang_question}</label>
-    <div class="uk-form-controls"><input type="text" dir="ltr" name="question[{q_idx}]" value="{question_text}" maxlength="255" class="uk-width-1-1"{xhtml}></div>
-  </div>
-
-  <div class="uk-form-row">
-    <label>{lang_answersvotes}</label>
-    <div class="uk-form-controls">{answer_option}</div>
-  </div>
+<div id="po_{question_id}" {style} class="wide">
+  <dl class="form_block">
+    <dt><label>{lang_question}</label></dt>
+    <dd><input type="text" dir="ltr" name="question[{q_idx}]" value="{question_text}" maxlength="255" class="size5"{xhtml}></dd>
+    <dt><label>{lang_allow_multipleanswers}</label></dt>
+    <dd><input type="checkbox" name="allow_multipleanswers[{q_idx}]" {poll_allow_multipleanswers}{xhtml}></dd>
+    <dt><label>{lang_questions_description}</label></dt>
+    <dd><textarea name="description[{q_idx}]" rows="2" class="wide">{description}</textarea></dd>
+    <dt><label>{lang_answersvotes}</label></dt>
+    <dd>{answer_option}</dd>
+  </dl>
 </div>
 
 <hr class="separator"{xhtml}>

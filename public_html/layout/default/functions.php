@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 2.0                                                               |
+// | Geeklog 2.1                                                               |
 // +---------------------------------------------------------------------------+
 // | functions.php                                                             |
 // |                                                                           |
@@ -46,9 +46,11 @@ function theme_config_default()
 {
     return array(
         'image_type' => 'png',
-        'doctype'    => 'html5',
-        'etag' => false,
-        'supported_version_theme' => '2.0.0' // support new theme format for the later Geeklog 2.0.0
+        'doctype'    => 'xhtml5',
+        'etag'       => false, // never set this true. instead use $options['enable_etag'] above.
+        'supported_version_theme' => '2.0.0', // support new theme format for the later Geeklog 2.0.0
+        'theme_plugins' => 'default', // Not requred, you can specify compatible theme of template stored with some plugins
+        'options'    => $options // Not requred, some options of this theme
     );
 }
 
@@ -62,16 +64,13 @@ function theme_css_default()
     $direction = ($LANG_DIRECTION == 'rtl') ? '_rtl' : '';
 
     return array(
-        array('file' => '/vendor/uikit/css' . $direction . '/uikit.gradient.css', 'attributes' => array('media' => 'all'), 'priority' => 80),
-        array('file' => '/layout/' . $_CONF['theme'] . '/vendor/uikit/css/components/uikit.gradient.css', 'attributes' => array('media' => 'all'), 'priority' => 90),
+        array('file' => '/layout/' . $_CONF['theme'] . '/vendor/uikit/css' . $direction . '/uikit.min.css', 'attributes' => array('media' => 'all'), 'priority' => 80),
+        array('file' => '/layout/' . $_CONF['theme'] . '/vendor/uikit/css' . $direction . '/slider.min.css', 'attributes' => array('media' => 'all'), 'priority' => 81),
+        array('file' => '/layout/' . $_CONF['theme'] . '/vendor/uikit/css' . $direction . '/slideshow.min.css', 'attributes' => array('media' => 'all'), 'priority' => 82),
+        array('file' => '/layout/' . $_CONF['theme'] . '/vendor/uikit/css' . $direction . '/slidenav.min.css', 'attributes' => array('media' => 'all'), 'priority' => 83),
         array('file' => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/style.css', 'attributes' => array('media' => 'all'), 'priority' => 100),
-        array('file' => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/theme.css', 'attributes' => array('media' => 'all'), 'priority' => 110),
-        array(
-            'name'       => 'codemirror', // don't use the name 'theme' to control the priority
-            'file'       => '/vendor/codemirror/lib/codemirror.css',
-            'attributes' => array('media' => 'all'),
-            'priority'   => 150
-        ),
+        array('file' => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/custom.css', 'attributes' => array('media' => 'all'), 'priority' => 110), 
+        array('file' => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/theme.css', 'attributes' => array('media' => 'all'), 'priority' => 120), 
 
     );
 }
@@ -84,7 +83,7 @@ function theme_js_libs_default()
     return array(
        array(
             'library' => 'jquery',
-            'footer'  => false // Not requred, default = true
+            'footer'  => false // Not required, default = true
         )
     );
 }
@@ -96,123 +95,28 @@ function theme_js_files_default()
 {
     global $_CONF;
 
-    return array(
+    $theme_var = theme_config_default();
 
-       array(
-            'file'      => '/layout/' . $_CONF['theme'] . '/javascript/script.js',
-            'footer'    => false, // Not requred, default = true
-            'priority'  => 100 // Not requred, default = 100
-        ),
-       array(
-            'file'      => '/vendor/uikit/js/uikit.js',
-            'footer'    => false, // Not requred, default = true
-            'priority'  => 110 // Not requred, default = 100
-        ),
-       array(
-            'file'      => '/vendor/uikit/js/components/datepicker.js',
-            'footer'    => false, // Not requred, default = true
-            'priority'  => 120 // Not requred, default = 100
-        ),
-       array(
-            'file'      => '/vendor/uikit/js/components/form-password.js',
-            'footer'    => false, // Not requred, default = true
-            'priority'  => 130 // Not requred, default = 100
-        ),
-       array(
-            'file'      => '/vendor/uikit/js/components/form-select.js',
-            'footer'    => false, // Not requred, default = true
-            'priority'  => 140 // Not requred, default = 100
-        ),
-       array(
-            'file'      => '/vendor/uikit/js/components/grid.js',
-            'footer'    => false, // Not requred, default = true
-            'priority'  => 150 // Not requred, default = 100
-        ),
-       array(
-            'file'      => '/vendor/uikit/js/components/lightbox.js',
-            'footer'    => false, // Not requred, default = true
-            'priority'  => 160 // Not requred, default = 100
-        ),
-       array(
-            'file'      => '/vendor/uikit/js/components/slideshow.js',
-            'footer'    => false, // Not requred, default = true
-            'priority'  => 170 // Not requred, default = 100
-        ),
-       array(
-            'file'      => '/vendor/uikit/js/components/slideshow-fx.js',
-            'footer'    => false, // Not requred, default = true
-            'priority'  => 180 // Not requred, default = 100
-        ),
-       array(
-            'file'      => '/vendor/uikit/js/components/slideset.js',
-            'footer'    => false, // Not requred, default = true
-            'priority'  => 190 // Not requred, default = 100
-        ),
-       array(
-            'file'      => '/vendor/uikit/js/components/sticky.js',
-            'footer'    => false, // Not requred, default = true
-            'priority'  => 200 // Not requred, default = 100
-        ),
-       array(
-            'file'      => '/vendor/uikit/js/components/tooltip.js',
-            'footer'    => false, // Not requred, default = true
-            'priority'  => 210 // Not requred, default = 100
-        ),
-       array(
-            'file'      => '/vendor/uikit/js/components/autocomplete.js',
-            'footer'    => false, // Not requred, default = true
-            'priority'  => 210 // Not requred, default = 100
-        ),
-       array(
-            'file'      => '/vendor/uikit/js/components/timepicker.js',
-            'footer'    => false, // Not requred, default = true
-            'priority'  => 210 // Not requred, default = 100
-        ),
-
-       array(
-            'file'      => '/vendor/codemirror/lib/codemirror.js',
-            'footer'    => false, // Not requred, default = true
-            'priority'  => 271 // Not requred, default = 100
-        ),
-       array(
-            'file'      => '/vendor/codemirror/mode/markdown/markdown.js',
-            'footer'    => false, // Not requred, default = true
-            'priority'  => 272 // Not requred, default = 100
-        ),
-       array(
-            'file'      => '/vendor/codemirror/addon/mode/overlay.js',
-            'footer'    => false, // Not requred, default = true
-            'priority'  => 273 // Not requred, default = 100
-        ),
-       array(
-            'file'      => '/vendor/codemirror/mode/xml/xml.js',
-            'footer'    => false, // Not requred, default = true
-            'priority'  => 274 // Not requred, default = 100
-        ),
-       array(
-            'file'      => '/vendor/codemirror/mode/gfm/gfm.js',
-            'footer'    => false, // Not requred, default = true
-            'priority'  => 275 // Not requred, default = 100
-        ),
-       array(
-            'file'      => '/vendor/marked/marked.min.js',
-            'footer'    => false, // Not requred, default = true
-            'priority'  => 276 // Not requred, default = 100
-        ),
-       array(
-            'file'      => '/vendor/uikit/js/components/htmleditor.js',
-            'footer'    => false, // Not requred, default = true
-            'priority'  => 277 // Not requred, default = 100
-        ),
-
-       array(
-            'file'      => '/layout/' . $_CONF['theme'] . '/javascript/theme.js',
-            'footer'    => false, // Not requred, default = true
-            'priority'  => 220 // Not requred, default = 100
-        ),
+    $result = array();
 
 
+    $result[] = array(
+        'file'     => '/layout/' . $_CONF['theme'] . '/vendor/uikit/js/uikit.min.js',
+        'footer'   => false, // Not required, default = true
+        'priority' => 100 // Not required, default = 100
     );
+    $result[] = array(
+        'file'     => '/layout/' . $_CONF['theme'] . '/javascript/script.js',
+        'footer'   => true, // Not required, default = true
+        'priority' => 110 // Not required, default = 100
+    );
+    $result[] = array(
+        'file'     => '/layout/' . $_CONF['theme'] .'/vendor/uikit/js/migrate.min.js',
+        'footer'   => false, // Not required, default = true
+        'priority' => 120 // Not required, default = 100
+    );
+
+    return $result;
 }
 
 /**
@@ -223,6 +127,8 @@ function theme_init_default()
     global $_BLOCK_TEMPLATE, $_CONF;
 
     $_CONF['left_blocks_in_footer'] = 1;
+    
+    $_CONF['theme_oauth_icons'] = 0; // Default is false (not required). Will use Geeklogs own OAuth icons for login form else use icons in theme images directory
 
     /*
      * For left/right block support there is no longer any need for the theme to
@@ -244,11 +150,7 @@ function theme_init_default()
     $_BLOCK_TEMPLATE['admin_block'] = 'blockheader-list.thtml,blockfooter-list.thtml';
     $_BLOCK_TEMPLATE['section_block'] = 'blockheader-list.thtml,blockfooter-list.thtml';
 
-    if (! COM_isAnonUser()) {
-        $_BLOCK_TEMPLATE['user_block'] = 'blockheader-user.thtml,blockfooter-user.thtml';
-    } else {
-        $_BLOCK_TEMPLATE['user_block'] = 'blockheader-user-login.thtml,blockfooter-user-login.thtml';
+    if (!COM_isAnonUser()) {
+        $_BLOCK_TEMPLATE['user_block'] = 'blockheader-list.thtml,blockfooter-list.thtml';
     }
 }
-
-?>

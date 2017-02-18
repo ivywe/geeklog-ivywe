@@ -11,10 +11,9 @@
   <link rel="canonical" href="{article_url}">
 </head>
 <body id="print" dir="{direction}">
-{# begin {templatelocation} #}
   <div id="wrapper">
     <div id="header">
-      <h1>{story_title}</h1>
+      <h2>{story_title}</h2>
       <p>{lang_contributedby} {story_author} {story_date}</p>
     </div>
     <div id="story">
@@ -26,6 +25,5 @@
       <p>{page_title} - {site_name}<br>{article_url}</p>
     </div>
   </div>
-{# end {templatelocation} #}
 </body>
 </html>

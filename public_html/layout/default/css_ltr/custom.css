@@ -1,0 +1,58 @@
+fieldset {
+	border: none;
+}
+
+/*
+input[type="submit"],
+input[type="button"],
+input[type="reset"] {
+  /* 1 */
+  -webkit-appearance: none;
+  /* 2 */
+  margin: 0;
+  /* 3 */
+  border: none;
+  /* 4 */
+  overflow: visible;
+  /* 5 */
+  font: inherit;
+  color: #fff;
+	font-weight: bold;
+  /* 6 */
+  text-transform: none;
+  /* 7 */
+  display: inline-block;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 10px 40px;
+  background: #1e87f0;
+  vertical-align: middle;
+  /* 8 */
+  line-height: 28px;
+  /* 9 */
+  min-height: 30px;
+  /* 10 */
+  font-size: 1rem;
+  /* 11 */
+  text-decoration: none;
+  text-align: center;
+}
+
+
+input[type="submit"]:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover,
+input[type="submit"]:focus,
+input[type="button"]:focus,
+input[type="reset"]:focus {
+  background-color: #2faaff;
+  color: #fff;
+  /* 2 */
+  outline: none;
+  /* 3 */
+  text-decoration: none;
+}
+
+*/

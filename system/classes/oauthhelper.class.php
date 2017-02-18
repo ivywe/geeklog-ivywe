@@ -32,38 +32,52 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 
-if (strpos(strtolower($_SERVER['PHP_SELF']), 'oauthhelper.class.php') !== false) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     die('This file can not be used on its own.');
 }
 
 // http://www.phpclasses.org/package/3-PHP-HTTP-client-to-access-Web-site-pages.html
+// httpclient 1.0.5 - Updated 2016-05-12
 // httpclient 1.0.2 - Updated 2014-08-14
 // No changes to file required to upgrade
-require_once 'http/http.php';
+require_once __DIR__ . '/http/http.php';
+
 // http://www.phpclasses.org/package/7700-PHP-Authorize-and-access-APIs-using-OAuth.html
+// oauth-api 1.1.52 - Updated 2016-10-14
+// oauth-api 1.0.80 - Updated 2016-05-12
 // oauth-api 1.0.39 - Updated 2014-12-22
 // To upgrade need to update Initialize function in oauth_client.php. Replace upper case with lower case letters in case statement
-// facebook, google, microsoft, twitter, linkedin, yahoo
-require_once 'oauth/oauth_client.php';
+// facebook, github, google, microsoft, twitter, linkedin, yahoo
+require_once __DIR__ . '/oauth/oauth_client.php';
 
 // Enable to show debug info for OAuth
 $_SYSTEM['debug_oauth'] = false;
 
-class OAuthConsumer {
-    protected $consumer = NULL;
-    protected $client = NULL;
-    var $error = '';
+class OAuthConsumer
+{
+    protected $consumer = null;
+    protected $client = null;
+    public $error = '';
 
-    public function OAuthConsumer($service) {
-        global $_CONF,$_SYSTEM;
+    /**
+     * OAuthConsumer constructor.
+     *
+     * @param  string $service
+     * @throws InvalidArgumentException
+     */
+    public function __construct($service)
+    {
+        global $_CONF, $_SYSTEM;
 
+        $service = strtolower($service); // always deal in lower case since that is how it is stored in the config 
+        
         if (strpos($service, 'oauth.') === 0) {
-            $service = str_replace("oauth.", "", $service);
+            $service = str_replace('oauth.', '', $service);
         }
 
         $this->client = new oauth_client_class;
-        $this->client->server     = $service;
-        $this->client->debug      = $_SYSTEM['debug_oauth'];
+        $this->client->server = $service;
+        $this->client->debug = $_SYSTEM['debug_oauth'];
         $this->client->debug_http = $_SYSTEM['debug_oauth'];
 
         // Set key and secret for OAuth service if found in config
@@ -82,10 +96,10 @@ class OAuthConsumer {
             }
         }
 
-        switch ( $this->client->server ) {
+        switch ($this->client->server) {
             case 'facebook' :
-                $api_url = 'https://graph.facebook.com/me';
-                $scope   = 'email,user_website,user_location,user_about_me,user_photos';
+                $api_url = 'https://graph.facebook.com/me?fields=name,email,link,id,first_name,last_name,about';
+                $scope   = 'email,public_profile,user_friends';
                 $q_api   = array();
                 break;
             case 'google' :
@@ -101,7 +115,7 @@ class OAuthConsumer {
             case 'twitter' :
                 $api_url = 'https://api.twitter.com/1.1/account/verify_credentials.json';
                 $scope   = '';
-                $q_api   = array();
+                $q_api   = array('include_entities' => "true", 'skip_status' => "true", 'include_email' => "true");
                 break;
             case 'yahoo' :
                 $api_url = 'http://query.yahooapis.com/v1/yql';
@@ -110,132 +124,170 @@ class OAuthConsumer {
                 break;
             case 'linkedin' :
                 $api_url = 'http://api.linkedin.com/v1/people/~:(id,first-name,last-name,location,summary,email-address,picture-url,public-profile-url)';
-                $scope   = 'r_fullprofile r_emailaddress';
+                $scope   = 'r_basicprofile r_emailaddress';
                 $q_api   = array('format'=>'json');
                 break;
+            case 'github' :
+                $api_url = 'https://api.github.com/user';
+                $scope   = 'user:email';
+                $q_api   = array();
+                break;
+
+            default:
+                throw new InvalidArgumentException(__METHOD__ . ': Unknown server "' . $this->client->server . '" was given');
         }
 
         $this->client->scope = $scope;
         $this->api_url = $api_url;
-        $this->q_api   = $q_api;
+        $this->q_api = $q_api;
     }
 
-    public function authenticate_user() {
+    /**
+     * @return bool|object|array
+     */
+    public function authenticate_user()
+    {
         global $_SYSTEM;
-        if ( ($success = $this->client->Initialize() ) ) {
-            if ( ($success = $this->client->Process() ) ) {
-                if(strlen($this->client->authorization_error)) {
+
+        $user = array();
+
+        if (($success = $this->client->Initialize())) {
+            if (($success = $this->client->Process())) {
+                if (strlen($this->client->authorization_error)) {
                     $this->client->error = $this->client->authorization_error;
                     $this->error = $this->client->authorization_error;
                     $success = false;
-                } elseif(strlen($this->client->access_token)) {
+                } elseif (strlen($this->client->access_token)) {
                     $user = $this->get_userinfo();
                 }
             }
             $success = $this->client->Finalize($success);
         }
-        if ($_SYSTEM['debug_oauth'] ) COM_errorLog($this->client->debug_output);
+        if ($_SYSTEM['debug_oauth']) {
+            COM_errorLog($this->client->debug_output, 1);
+        }
         if ($this->client->exit) {
             exit;
         }
         if ($success) {
             return $user;
         }
+
         return $success;
     }
 
-    public function get_userinfo() {
+    public function get_userinfo()
+    {
+        $success = null;
+        $user = null;
 
-         if (strlen($this->client->access_token)) {
+        if (strlen($this->client->access_token)) {
             $success = $this->client->CallAPI(
                 $this->api_url,
-                'GET', $this->q_api, array('FailOnAccessError'=>true), $user);
+                'GET', $this->q_api, array('FailOnAccessError' => true), $user);
         }
         $success = $this->client->Finalize($success);
 
         if ($this->client->exit) {
             exit;
         }
+
         if ($success) {
             return $user;
+        } else {
+            return null;
         }
     }
 
-    public function setRedirectURL($url) {
-            $this->client->redirect_uri  = $url;
+    /**
+     * @param  string $url
+     */
+    public function setRedirectURL($url)
+    {
+        $this->client->redirect_uri = $url;
     }
 
-    public function doAction($info) {
+    public function doAction($info)
+    {
         global $_TABLES, $status, $uid, $_CONF;
 
         // remote auth precludes usersubmission, and integrates user activation
         $status = USER_ACCOUNT_ACTIVE;
-
-        $users      = $this->_getCreateUserInfo($info);
-        $userinfo   = $this->_getUpdateUserInfo($info);
-
-        $sql = "SELECT uid,status FROM {$_TABLES['users']} WHERE remoteusername = '".DB_escapeString($users['remoteusername'])."' AND remoteservice = '".DB_escapeString($users['remoteservice'])."'";
+        
+        $users = $this->_getCreateUserInfo($info);
+        $userInfo = $this->_getUpdateUserInfo($info);
+    
+        $sql = "SELECT uid, status FROM {$_TABLES['users']} "
+            . "WHERE remoteusername = '" . DB_escapeString($users['remoteusername']) . "' "
+            . "AND remoteservice = '" . DB_escapeString($users['remoteservice']) . "'";
 
         $result = DB_query($sql);
         $tmp = DB_error();
-        $nrows = DB_numRows($result);
+        $numRows = DB_numRows($result);
 
-        if (empty($tmp) && $nrows == 1) {
+        if (empty($tmp) && $numRows == 1) {
             list($uid, $status) = DB_fetchArray($result);
         } else {
             // initial login - create account
             $status = USER_ACCOUNT_ACTIVE;
-            $loginname = $users['loginname'];
-            $checkName = DB_getItem($_TABLES['users'], 'username', "username='".DB_escapeString($loginname)."'");
+            $loginName = $users['loginname'];
+            $checkName = DB_getItem($_TABLES['users'], 'username', "username='" . DB_escapeString($loginName) . "'");
             if (!empty($checkName)) {
                 if (function_exists('CUSTOM_uniqueRemoteUsername')) {
-                    $loginname = CUSTOM_uniqueRemoteUsername(loginname, $remoteservice);
+                    /** @noinspection PhpUndefinedVariableInspection */
+                    $loginName = CUSTOM_uniqueRemoteUsername($loginName, $remoteService);
                 }
-                if (strcasecmp($checkName,$loginname) == 0) {
-                    $loginname = USER_uniqueUsername($loginname);
+                if (strcasecmp($checkName, $loginName) == 0) {
+                    $loginName = USER_uniqueUsername($loginName);
                 }
             }
-            $users['loginname'] = $loginname;
+            $users['loginname'] = $loginName;
             $uid = USER_createAccount($users['loginname'], $users['email'], '', $users['fullname'], $users['homepage'], $users['remoteusername'], $users['remoteservice']);
 
             if (is_array($users)) {
                 $this->_DBupdate_users($uid, $users);
             }
 
-            if (is_array($userinfo)) {
-                $this->_DBupdate_userinfo($uid, $userinfo);
+            if (is_array($userInfo)) {
+                $this->_DBupdate_userinfo($uid, $userInfo);
             }
 
             $remote_grp = DB_getItem($_TABLES['groups'], 'grp_id', "grp_name = 'Remote Users'");
             DB_query("INSERT INTO {$_TABLES['group_assignments']} (ug_main_grp_id, ug_uid) VALUES ($remote_grp, $uid)");
         }
+        
+        return true;
     }
 
-    public function doSynch($info) {
+    public function doSynch($info)
+    {
         global $_TABLES, $_USER, $status, $uid, $_CONF;
 
         // remote auth precludes usersubmission and integrates user activation
-
         $users = $this->_getCreateUserInfo($info);
-        $userinfo = $this->_getUpdateUserInfo($info);
+        $userInfo = $this->_getUpdateUserInfo($info);
 
-        $updatecolumns = '';
+        $updateColumns = '';
 
         // Update users
         if (is_array($users)) {
             $sql = "UPDATE {$_TABLES['users']} SET ";
             if (!empty($users['fullname'])) {
-                $updatecolumns .= "fullname='".DB_escapeString($users['fullname'])."'";
+                $updateColumns .= "fullname='" . DB_escapeString($users['fullname']) . "'";
             }
             if (!empty($users['email'])) {
-                if (!empty($updatecolumns)) { $updatecolumns .= ", "; }
-                $updatecolumns .= "email='".DB_escapeString($users['email'])."'";
+                if (!empty($updateColumns)) {
+                    $updateColumns .= ", ";
+                }
+                $updateColumns .= "email='" . DB_escapeString($users['email']) . "'";
             }
             if (!empty($users['homepage'])) {
-                if (!empty($updatecolumns)) { $updatecolumns .= ", "; }
-                $updatecolumns .= "homepage='".DB_escapeString($users['homepage'])."'";
+                if (!empty($updateColumns)) {
+                    $updateColumns .= ", ";
+                }
+                $updateColumns .= "homepage='" . DB_escapeString($users['homepage']) . "'";
             }
-            $sql = $sql . $updatecolumns . " WHERE uid=" . (int) $_USER['uid'];
+            $sql = $sql . $updateColumns . " WHERE uid=" . (int) $_USER['uid'];
 
             DB_query($sql);
 
@@ -244,15 +296,17 @@ class OAuthConsumer {
         }
 
         // Update userinfo
-        if (is_array($userinfo)) {
-            $this->_DBupdate_userinfo($_USER['uid'], $userinfo);
+        if (is_array($userInfo)) {
+            $this->_DBupdate_userinfo($_USER['uid'], $userInfo);
         }
 
     }
 
-    protected function _getUpdateUserInfo($info) {
-        $userinfo = array();
-        switch ( $this->client->server ) {
+    protected function _getUpdateUserInfo($info)
+    {
+        $userInfo = array();
+
+        switch ($this->client->server) {
             case 'facebook' :
                 if ( isset($info->about) ) {
                     $userinfo['about'] = $info->about;
@@ -266,10 +320,13 @@ class OAuthConsumer {
             case 'microsoft' :
                 break;
             case 'twitter' :
+                if ( isset($info->email ) ) {
+                    $userinfo['email'] = $info->email;
+                }
                 break;
             case 'yahoo' :
-                if ( isset($info->query->results->profile->location) ) {
-                    $userinfo['location'] = $info->query->results->profile->location;
+                if (isset($info->query->results->profile->location)) {
+                    $userInfo['location'] = $info->query->results->profile->location;
                 }
                 break;
             case 'linkedin' :
@@ -277,15 +334,16 @@ class OAuthConsumer {
                     $userinfo['location'] = $info->location->name;
                 }
                 break;
+            case 'github' :
+                break;
         }
 
-        return $userinfo;
+        return $userInfo;
     }
 
-
-    protected function _getCreateUserInfo($info) {
-
-        switch ( $this->client->server ) {
+    protected function _getCreateUserInfo($info)
+    {
+        switch ($this->client->server) {
             case 'facebook' :
                 $users = array(
                     'loginname'      => (isset($info->first_name) ? $info->first_name : $info->id),
@@ -298,8 +356,31 @@ class OAuthConsumer {
                     'remoteservice'  => 'oauth.facebook',
                     'remotephoto'    => 'http://graph.facebook.com/'.$info->id.'/picture',
                 );
-                break;
+                break;            
+
+            case 'github' :
+                $users = array(
+                    'loginname'      => (isset($info->{'login'}) ? $info->{'login'} : $info->id),
+                    'email'          => $info->{'email'},
+                    'passwd'         => '',
+                    'passwd2'        => '',
+                    'fullname'       => $info->{'name'},
+                    'homepage'       => $info->{'html_url'},
+                    'remoteusername' => DB_escapeString($info->id),
+                    'remoteservice'  => 'oauth.github',
+                    'remotephoto'    => $info->{'avatar_url'},
+                );
+                break;                
+
             case 'google' :
+                $homepage = $info->link;
+
+                $plusPos = strpos($homepage,"+");
+                if ( $plusPos !== false ) {
+                    $username = substr($homepage,strlen("https://plug.google.com/+"));
+                } else {
+                    $username = "";
+                }
                 $users = array(
                     'loginname'      => (isset($info->given_name) ? $info->given_name : $info->id),
                     'email'          => $info->email,
@@ -311,11 +392,16 @@ class OAuthConsumer {
                     'remoteservice'  => 'oauth.google',
                     'remotephoto'    => $info->picture,
                 );
-                break;
+                break;                
+
             case 'twitter' :
+                $mail = '';
+                if ( isset($info->email)) {
+                    $mail = $info->email;
+                }
                 $users = array(
                     'loginname'      => $info->screen_name,
-                    'email'          => '',
+                    'email'          => $mail,
                     'passwd'         => '',
                     'passwd2'        => '',
                     'fullname'       => $info->name,
@@ -324,7 +410,8 @@ class OAuthConsumer {
                     'remoteservice'  => 'oauth.twitter',
                     'remotephoto'    => $info->profile_image_url,
                 );
-                break;
+                break;                
+
             case 'microsoft' :
                 $users = array(
                     'loginname'      => (isset($info->first_name) ? $info->first_name : $info->id),
@@ -335,9 +422,10 @@ class OAuthConsumer {
                     'homepage'       => '',
                     'remoteusername' => DB_escapeString($info->id),
                     'remoteservice'  => 'oauth.microsoft',
-                    'remotephoto'    => 'https://apis.live.net/v5.0/me/picture?access_token='.$this->client->access_token,
+                    'remotephoto'    => 'https://apis.live.net/v5.0/me/picture?access_token=' . $this->client->access_token,
                 );
                 break;
+                
             case 'yahoo' :
                 $users = array(
                     'loginname'      => (isset($info->query->results->profile->nickname) ? $info->query->results->profile->nickname : $info->query->results->profile->guid),
@@ -351,6 +439,7 @@ class OAuthConsumer {
                     'remotephoto'    => $info->query->results->profile->image->imageUrl,
                 );
                 break;
+                
             case 'linkedin' :
                 $users = array(
                     'loginname'      => (isset($info->{'firstName'}) ? $info->{'firstName'} : $info->id),
@@ -364,29 +453,33 @@ class OAuthConsumer {
                     'remotephoto'    => $info->{'pictureUrl'},
                 );
                 break;
+
+            default:
+                throw new InvalidArgumentException(__METHOD__ . ': Unknown server "' . $this->client->server . '" was given');
         }
 
         return $users;
     }
 
-    protected function _DBupdate_userinfo($uid, $userinfo) {
+    protected function _DBupdate_userinfo($uid, $userInfo)
+    {
         global $_TABLES;
-        if (!empty($userinfo['about']) || !empty($userinfo['location'])) {
+
+        if (!empty($userInfo['about']) || !empty($userInfo['location'])) {
             $sql = "UPDATE {$_TABLES['userinfo']} SET";
-            $sql .= !empty($userinfo['about']) ? " about = '".DB_escapeString($userinfo['about'])."'" : "";
-            $sql .= (!empty($userinfo['about']) && !empty($userinfo['location'])) ? "," : "";
-            $sql .= !empty($userinfo['location']) ? " location = '".DB_escapeString($userinfo['location'])."'" : "";
-            $sql .= " WHERE uid = ".(int) $uid;
+            $sql .= !empty($userInfo['about']) ? " about = '" . DB_escapeString($userInfo['about']) . "'" : "";
+            $sql .= (!empty($userInfo['about']) && !empty($userInfo['location'])) ? "," : "";
+            $sql .= !empty($userInfo['location']) ? " location = '" . DB_escapeString($userInfo['location']) . "'" : "";
+            $sql .= " WHERE uid = " . (int) $uid;
             DB_query($sql);
         }
     }
 
-    protected function _DBupdate_users($uid, $users) {
+    protected function _DBupdate_users($uid, $users)
+    {
         global $_TABLES, $_CONF;
 
-        $photo = '';
-
-        $sql = "UPDATE {$_TABLES['users']} SET remoteusername = '".DB_escapeString($users['remoteusername'])."', remoteservice = '".DB_escapeString($users['remoteservice'])."', status = 3 ";
+        $sql = "UPDATE {$_TABLES['users']} SET remoteusername = '" . DB_escapeString($users['remoteusername']) . "', remoteservice = '" . DB_escapeString($users['remoteservice']) . "', status = 3 ";
         if (!empty($users['remotephoto'])) {
             $save_img = $_CONF['path_images'] . 'userphotos/' . $uid;
             $imgsize = $this->_saveUserPhoto($users['remotephoto'], $save_img);
@@ -411,95 +504,106 @@ class OAuthConsumer {
                     $photo = '';
                 }
 
-                $sql .= ", photo = '".DB_escapeString($photo)."'"; // update photo even if blank just incase OAuth profile picture has been removed
+                $sql .= ", photo = '" . DB_escapeString($photo) . "'"; // update photo even if blank just incase OAuth profile picture has been removed
             }
         }
-        $sql .= " WHERE uid = ".(int) $uid;
+        $sql .= " WHERE uid = " . (int) $uid;
         DB_query($sql);
     }
 
-    protected function _saveUserPhoto($from, $to) {
+    protected function _saveUserPhoto($from, $to)
+    {
         // Use Pear HTTP Request 2 since first Facebook url to profile picture redirects to a new location
         $ret = '';
-        require_once 'HTTP/Request2.php';
         $request = new HTTP_Request2($from, HTTP_Request2::METHOD_GET);
         $request->setConfig(array(
-            'adapter' => 'HTTP_Request2_Adapter_Socket',
-            'connect_timeout' => 15,
-            'timeout' => 30,
-            'follow_redirects' => TRUE,
-            'max_redirects' => 5,
-            'ssl_verify_peer'   => false,
-            'ssl_verify_host'   => false
+            'adapter'          => 'HTTP_Request2_Adapter_Socket',
+            'connect_timeout'  => 15,
+            'timeout'          => 30,
+            'follow_redirects' => true,
+            'max_redirects'    => 5,
+            'ssl_verify_peer'  => false,
+            'ssl_verify_host'  => false,
         ));
         $request->setHeader('User-Agent', 'Geeklog/' . VERSION);
-        $request->setHeader('Referer', COM_getCurrentUrl());
+        $request->setHeader('Referer', COM_getCurrentURL());
         $response = $request->send();
         if (200 == $response->getStatus()) {
             $img = $response->getBody();
             $ret = file_put_contents($to, $img);
         }
+
         return $ret;
     }
 
-    protected function _getImageExt($img, $dot = true) {
+    protected function _getImageExt($img, $dot = true)
+    {
         $size = @getimagesize($img);
+
         switch ($size['mime']) {
             case 'image/gif':
                 $ext = 'gif';
                 break;
+
             case 'image/jpeg':
                 $ext = 'jpg';
                 break;
+
             case 'image/png':
                 $ext = 'png';
                 break;
+
             case 'image/bmp':
                 $ext = 'bmp';
                 break;
+
+            default:
+                throw new InvalidArgumentException(__METHOD__ . ': Unknown MIME type "' . $size['mime'] . '" was given');
         }
+
         return ($dot ? '.' : '') . $ext;
     }
 
-    protected function _handleImageResize($to_path) {
+    protected function _handleImageResize($to_path)
+    {
         global $_CONF;
 
-        require_once ($_CONF['path_system'] . 'classes/upload.class.php');
+        require_once $_CONF['path_system'] . 'classes/upload.class.php';
 
         // Figure out file name
         $path_parts = pathinfo($to_path);
         $filename = $path_parts['basename'];
 
-        $upload = new upload();
+        $upload = new Upload();
         if (!empty ($_CONF['image_lib'])) {
             if ($_CONF['image_lib'] == 'imagemagick') {
                 // Using imagemagick
-                $upload->setMogrifyPath ($_CONF['path_to_mogrify']);
+                $upload->setMogrifyPath($_CONF['path_to_mogrify']);
             } elseif ($_CONF['image_lib'] == 'netpbm') {
                 // using netPBM
-                $upload->setNetPBM ($_CONF['path_to_netpbm']);
+                $upload->setNetPBM($_CONF['path_to_netpbm']);
             } elseif ($_CONF['image_lib'] == 'gdlib') {
                 // using the GD library
-                $upload->setGDLib ();
+                $upload->setGDLib();
             }
-            $upload->setAutomaticResize (true);
-            if (isset ($_CONF['debug_image_upload']) &&
-                    $_CONF['debug_image_upload']) {
-                $upload->setLogFile ($_CONF['path'] . 'logs/error.log');
-                $upload->setDebug (true);
+            $upload->setAutomaticResize(true);
+            if (isset ($_CONF['debug_image_upload']) && $_CONF['debug_image_upload']) {
+                $upload->setLogFile($_CONF['path'] . 'logs/error.log');
+                $upload->setDebug(true);
             }
             if (isset($_CONF['jpeg_quality'])) {
                 $upload->setJpegQuality($_CONF['jpeg_quality']);
             }
         }
-        $upload->setAllowedMimeTypes (array ('image/gif'   => '.gif',
-                                             'image/jpeg'  => '.jpg,.jpeg',
-                                             'image/pjpeg' => '.jpg,.jpeg',
-                                             'image/x-png' => '.png',
-                                             'image/png'   => '.png'
-                                     )      );
+        $upload->setAllowedMimeTypes(array(
+            'image/gif'   => '.gif',
+            'image/jpeg'  => '.jpg,.jpeg',
+            'image/pjpeg' => '.jpg,.jpeg',
+            'image/x-png' => '.png',
+            'image/png'   => '.png',
+        ));
         // Set new path and image name
-        if (!$upload->setPath ($_CONF['path_images'] . 'userphotos')) {
+        if (!$upload->setPath($_CONF['path_images'] . 'userphotos')) {
             return;
         }
 
@@ -509,33 +613,36 @@ class OAuthConsumer {
         $_FILES['imagefile']['name'] = $path_parts['basename'];
         $_FILES['imagefile']['tmp_name'] = $path;
         $_FILES['imagefile']['type'] = '';
+
         switch ($path_parts['extension']) {
             case 'gif':
                 $_FILES['imagefile']['type'] = 'image/gif';
                 break;
+
             case 'jpg':
             case 'jpeg':
                 $_FILES['imagefile']['type'] = 'image/jpeg';
                 break;
+
             case 'png':
                 $_FILES['imagefile']['type'] = 'image/png';
                 break;
         }
-        $_FILES['imagefile']['size'] = filesize($_FILES['imagefile']['tmp_name'] );
+
+        $_FILES['imagefile']['size'] = filesize($_FILES['imagefile']['tmp_name']);
         $_FILES['imagefile']['error'] = '';
         $_FILES['imagefile']['non_upload'] = true; // Flag to bypass upload process via browser file form
 
         // do the upload
         if (!empty($filename)) {
             $upload->setFileNames($filename);
-            $upload->setPerms ('0644');
-            if (($_CONF['max_photo_width'] > 0) &&
-                ($_CONF['max_photo_height'] > 0)) {
-                $upload->setMaxDimensions ($_CONF['max_photo_width'],
-                                           $_CONF['max_photo_height']);
+            $upload->setPerms('0644');
+            if (($_CONF['max_photo_width'] > 0) && ($_CONF['max_photo_height'] > 0)) {
+                $upload->setMaxDimensions($_CONF['max_photo_width'],
+                    $_CONF['max_photo_height']);
             } else {
-                $upload->setMaxDimensions ($_CONF['max_image_width'],
-                                           $_CONF['max_image_height']);
+                $upload->setMaxDimensions($_CONF['max_image_width'],
+                    $_CONF['max_image_height']);
             }
             if ($_CONF['max_photo_size'] > 0) {
                 $upload->setMaxFileSize($_CONF['max_photo_size']);
@@ -552,5 +659,3 @@ class OAuthConsumer {
         return $path; // return new path and filename
     }
 }
-
-?>

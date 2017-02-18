@@ -1,4 +1,4 @@
-{# begin {templatelocation} #}
+{# start {templatelocation} #}
 
     <tr>
       <th><a href="{item_url}">{item_text}</a></th>

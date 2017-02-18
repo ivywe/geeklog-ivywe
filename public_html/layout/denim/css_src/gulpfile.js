@@ -5,14 +5,12 @@ var pkg         = require('./package.json'),
     gulp        = require('gulp'),
     stylus      = require('gulp-stylus'),
     runSequence = require('run-sequence').use(gulp),
-    shell       = require('gulp-shell'),
     rename      = require('gulp-rename'),
     cleancss    = require('gulp-clean-css'),
     csscomb     = require('gulp-csscomb'),
-    //cmq         = require('gulp-combine-media-queries'),
-    //csso        = require('gulp-csso'),
     header      = require('gulp-header'),
     replace     = require('gulp-replace'),
+    rtlcss      = require('gulp-rtlcss'),
     watch       = require('gulp-watch'),
     nib         = require('nib'),
     browserSync = require('browser-sync');
@@ -41,18 +39,17 @@ gulp.task('bs-reload', function () {
 });
 
 gulp.task('build', function() {
-    runSequence('stylus', 'copy_LR', 'swap_LR', 'fix_issue', 'minify', 'modify', 'deploy', function() {
+    runSequence('stylus', 'copy_LR', 'rtlcss', 'modify1', 'minify', 'modify2', 'deploy', function() {
         browserSync.reload();
     });
 });
 
 gulp.task('stylus', function() {
-    return gulp.src('./src/stylus/style.styl')
+    return gulp.src('./src/stylus/*.styl')
         .pipe(stylus({
             use: nib(),
             compress: false
         }))
-        //.pipe(cmq())
         .pipe(csscomb())
         .pipe(header("/* " + banner + " */\n", { 'pkg' : pkg } ))
         .pipe(gulp.dest('./dest/css_ltr'));
@@ -61,8 +58,6 @@ gulp.task('stylus', function() {
 gulp.task('minify', function() {
     return gulp.src(['!./dest/**/*.min.css', './dest/**/*.css'])
         .pipe(rename({ suffix: '.min' }))
-        //.pipe(cmq())
-        //.pipe(csso())
         .pipe(cleancss())
         .pipe(header("/* " + banner + " */\n", { 'pkg' : pkg } ))
         .pipe(gulp.dest('./dest/'));
@@ -78,28 +73,26 @@ gulp.task('copy_LR', function() {
         .pipe(gulp.dest('./dest/css_rtl/'));
 });
 
-gulp.task('swap_LR', function() {
-    return shell.task('r2 ./dest/css_rtl/style.css ./dest/css_rtl/style.css --no-compress')();
-});
-
-gulp.task('fix_issue', function() {
-    return gulp.src('./dest/css_rtl/style.css')
-        .pipe(replace(/\.gl-tooltip span((?:\n|.)+?)margin-right/mg,
-            function(str, p1, offset, s) {
-                return '.gl-tooltip span' + p1 + 'margin-left';
-            }))
-        .pipe(replace(/\.gl-tooltip:hover span((?:\n|.)+?)margin-right/mg,
-            function(str, p1, offset, s) {
-                return '.gl-tooltip:hover span' + p1 + 'margin-left';
-            }))
+gulp.task('rtlcss', function() {
+    return gulp.src(['!./dest/css_rtl/*.min.css', './dest/css_rtl/*.css'])
+        .pipe(rtlcss())
         .pipe(gulp.dest('./dest/css_rtl/'));
 });
 
-gulp.task('modify', function(done) {
+gulp.task('modify1', function() {
+    return gulp.src(['!./dest/css_ltr/*.min.css', './dest/css_ltr/*.css'])
+        .pipe(replace(/$\s*\/\*rtl:ignore\*\//mg,
+            function(str, p1, offset, s) {
+                return '';
+            }))
+        .pipe(gulp.dest('./dest/css_ltr/'));
+});
 
-    var regex = /(\/\*\/?(?:\n|[^\/]|[^\*]\/)*\*\/)|(^@media\s+[^\n]+\{\n(?:\n|.)*?\n\})|(^(?:#|\.|\w)(?:\n|.)+?\{\n(?:\n|.)*?\n\})/mg;
+gulp.task('modify2', function(done) {
 
-    var files = glob.sync('./dest/css_?t?/style.css');
+    var regex = /(\/\*\/?(?:\n|[^\/]|[^\*]\/)*\*\/)|(^@media\s+[^\n]+\{\n(?:\n|.)*?\n\})|(^(?:#|\.|\*|\w)(?:\n|.)+?\{\n(?:\n|.)*?\n\})/mg;
+
+    var files = glob.sync('./dest/css_?t?/style*(.gradient|.almost-flat).css');
 
     files.forEach(function(file) {
 
@@ -142,7 +135,7 @@ function modifyMedia(content) {
 
     var matches = regex.exec(content);
 
-    var regex2 = /(\/\*\/?(?:\n|[^\/]|[^\*]\/)*\*\/)|(^  (?:#|\.|\w)(?:\n|.)+?\{\n(?:\n|.)*?\n  \})/mg;
+    var regex2 = /(\/\*\/?(?:\n|[^\/]|[^\*]\/)*\*\/)|(^  (?:#|\.|\*|\w)(?:\n|.)+?\{\n(?:\n|.)*?\n  \})/mg;
 
     var ms, str = '', tmp;
 

@@ -1,19 +1,17 @@
-{# begin {templatelocation} #}
+{# start {templatelocation} #}
 
 {lang_instruction}
 
-<form style="display:inline" action="{site_admin_url}/user.php?mode=batchdelete" method="post" class="uk-form uk-form-horizontal">
-
-  <div class="uk-form-row">
-    {options_list}
-  </div>
-  <div class="uk-form-row uk-margin-large-top">
-    <div class="uk-form-controls">
-      <input type="hidden" name="mode" value="batchdelete" class="uk-button uk-button-primary uk-button-large"{xhtml}>
-      <input type="submit" name="submit" value="{lang_updatelist}" class="uk-button uk-button-primary"{xhtml}>
+<form style="display:inline" action="{site_admin_url}/user.php?mode=batchdelete" method="post" class="uk-form">
+  <div style="padding:10px 5px;border:1px solid #E7E7E7;background:#F7F7F7;margin-top:10px;">
+    <div class="clearfix">
+      {options_list}
+    </div>
+    <div class="submit">
+      <button type="submit" name="submit" value="{lang_updatelist}" class="uk-button uk-button-primary">{lang_updatelist}</button>
+      <input type="hidden" name="mode" value="batchdelete"{xhtml}>
     </div>
   </div>
-
 </form>
 
 {# end {templatelocation} #}

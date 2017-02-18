@@ -1,7 +1,7 @@
-{# begin {templatelocation} #}
+{# start {templatelocation} #}
 
 {start_block_userprofile}
-  <dl id="profile-userprofile" class="uk-description-list-horizontal">
+  <dl id="profile-userprofile">
     <dt>{lang_username}</dt>
     <dd>{username}&nbsp;{user_fullname} {edit_link}</dd>
     <dd id="profile-user_photo">{user_photo}</dd>
@@ -34,7 +34,7 @@
 {end_block}
 
 {start_block_postingstats}
-  <dl id="profile-postingstats" class="uk-description-list-horizontal">
+  <dl id="profile-postingstats">
     <dt>{lang_number_stories}</dt>
     <dd>{number_stories}</dd>
 

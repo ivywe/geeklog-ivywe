@@ -1,7 +1,6 @@
 {# begin {templatelocation} #}
 
-    </aside>
   </div>
-</div>
+</aside>
 
 {# end {templatelocation} #}

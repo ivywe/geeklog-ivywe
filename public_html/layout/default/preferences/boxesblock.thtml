@@ -1,16 +1,24 @@
-{# begin {templatelocation} #}
+{# start {templatelocation} #}
 
-    <fieldset class="uk-margin-large-top">
-        <legend>{lang_boxes_title}</legend>
+<fieldset class="uk-fieldset">
+  <legend class="uk-legend">{lang_boxes_title}</legend>
 
-        <div class="uk-form-row uk-panel-box">
-            <p class="uk-text-bold">{lang_boxes_help_title}</p>
-            <div class="uk-margin-left">{lang_boxes}</div>
-        </div>
+  <div class="linear">
+    <div class="profile_notes uk-panel uk-panel-box">
+      <div class="uk-panel-title">
+        <i class="uk-icon-info-circle uk-text-primary"></i>
+        <span>{lang_boxes_help_title}</span>
+      </div>
+      <div>{lang_boxes}</div>
+    </div>
+  </div>
 
-          <div id="boxesblock">
-            {boxes_checklist}
-          </div>
-    </fieldset>
+  <div class="compact">
+    <dl class="form_block">
+      <dt><label>{lang_blocks}</label></dt>
+      <dd>{boxes_checklist}</dd>
+    </dl>
+  </div>
+</fieldset>
 
 {# end {templatelocation} #}

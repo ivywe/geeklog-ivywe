@@ -1,4 +1,4 @@
-{# begin {templatelocation} #}
+{# start {templatelocation} #}
 
 <tr>
   {heading_columns}

@@ -42,7 +42,7 @@
 * @package Links
 */
 
-if (strpos(strtolower($_SERVER['PHP_SELF']), 'functions.inc') !== false) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     die('This file can not be used on its own.');
 }
 
@@ -57,6 +57,14 @@ if (file_exists($langfile)) {
 } else {
     require_once $plugin_path . 'language/english.php';
 }
+
+Language::override(array(
+    'LANG_LINKS', 'LANG_LINKS_STATS', 'LANG_LINKS_SEARCH', 'LANG_LINKS_SUBMIT',
+    'PLG_links_MESSAGE1', 'PLG_links_MESSAGE2', 'PLG_links_MESSAGE3', 'PLG_links_MESSAGE4',
+    'PLG_links_MESSAGE5', 'PLG_links_MESSAGE6', 'PLG_links_MESSAGE7', 'PLG_links_MESSAGE10',
+    'PLG_links_MESSAGE11', 'PLG_links_MESSAGE12', 'PLG_links_MESSAGE13', 'PLG_links_MESSAGE14',
+    'PLG_links_MESSAGE15', 'PLG_links_MESSAGE16', 'PLG_links_MESSAGE17',
+));
 
 /**
 * Check and see if we need to load the plugin configuration
@@ -828,8 +836,10 @@ function plugin_migrate_links($old_conf)
     );
 
     if ($old_conf['site_url'] != $_CONF['site_url']) {
-        INST_updateSiteUrl($old_conf['site_url'], $_CONF['site_url'], $tables);
+        Installer::updateSiteUrl($old_conf['site_url'], $_CONF['site_url'], $tables);
     }
+
+    COM_errorLog('Successfully migrated the "links" plugin');
 
     return true;
 }
@@ -1022,10 +1032,7 @@ function plugin_submit_links()
     $linkform->set_var('lang_title', $LANG12[10]);
     $linkform->set_var('lang_link', $LANG_LINKS_SUBMIT[2]);
     $linkform->set_var('lang_category', $LANG_LINKS_SUBMIT[3]);
-    $category = '';
-    if (isset($_REQUEST['cid'])) {
-        $category = $_REQUEST['cid'];
-    }
+    $category = Geeklog\Input::request('cid', '');
     $linkform->set_var('link_category_options', links_select_box(2, $category));
     $linkform->set_var('lang_description', $LANG12[15]);
     $linkform->set_var('lang_htmlnotallowed', $LANG12[35]);
@@ -1078,7 +1085,7 @@ function plugin_save_submit_links($A)
         return $retval;
     }
 
-    $A['cid'] = strip_tags(COM_stripslashes($A['categorydd']));
+    $A['cid'] = GLText::stripTags(COM_stripslashes($A['categorydd']));
 
     $validcat = false;
     if (!empty($A['cid'])) {
@@ -1101,7 +1108,7 @@ function plugin_save_submit_links($A)
     // Remove any autotags the user doesn't have permission to use
     $A['description'] = PLG_replaceTags($A['description'], '', true);
     $A['description'] = DB_escapeString(htmlspecialchars(COM_checkWords($A['description'])));
-    $A['title'] = DB_escapeString(strip_tags(COM_checkWords($A['title'])));
+    $A['title'] = DB_escapeString(GLText::stripTags(COM_checkWords($A['title'])));
     $A['url'] = DB_escapeString(COM_sanitizeUrl($A['url']));
     $A['lid'] = DB_escapeString(COM_makeSid());
 
@@ -1121,11 +1128,8 @@ function plugin_save_submit_links($A)
             LINKS_sendNotification($_TABLES['linksubmission'], $A);
         }
 
-        $retval = COM_refresh($_CONF['site_url']
-                              . '/index.php?msg=1&amp;plugin=links');
-
+        COM_redirect($_CONF['site_url'] . '/index.php?msg=1&amp;plugin=links');
     } else { // add link directly
-
         if (SEC_hasRights('links.submit')) {
             $A['group_id'] = SEC_getFeatureGroup('links.submit');
         } else {
@@ -1144,9 +1148,7 @@ function plugin_save_submit_links($A)
             LINKS_sendNotification($_TABLES['links'], $A);
         }
         COM_rdfUpToDateCheck('links', $A['cid'], $A['lid']);
-
-        $retval = COM_refresh($_CONF['site_url']
-                              . '/index.php?msg=4&amp;plugin=links');
+        COM_redirect($_CONF['site_url'] . '/index.php?msg=4&amp;plugin=links');
     }
 
     return $retval;
@@ -1173,7 +1175,7 @@ function LINKS_sendNotification ($table, $A)
     if ($table == $_TABLES['linksubmission']) {
         $mailbody .= "$LANG_LINKS[10] <{$_CONF['site_admin_url']}/moderation.php>\n\n";
     } else {
-        $mailbody .= "$LANG_LINKS[114] <{$_CONF['site_url']}/links/index.php?category=" . rawurlencode ($A['category']) . ">\n\n";
+        $mailbody .= "{$LANG_LINKS[114]} <" . COM_buildURL($_CONF['site_url'] . '/links/index.php?category=' . rawurlencode($A['category'])) . ">\n\n";
     }
     $mailsubject = $_CONF['site_name'] . ' ' . $LANG_LINKS_SUBMIT[11];
 
@@ -1237,8 +1239,8 @@ function plugin_getListField_links($fieldname, $fieldvalue, $A, $icon_arr)
                     $indent = 0;
                 }
                 $cat = COM_createLink($A['category'],
-                        "{$_CONF['site_url']}/links/index.php?category="
-                        . rawurlencode($A['cid']));
+                    COM_buildURL("{$_CONF['site_url']}/links/index.php?category=" . rawurlencode($A['cid']))
+                );
                 $retval = "<span style=\"padding-left:{$indent}px;\">$cat</span>";
                 break;
                 break;
@@ -1278,8 +1280,8 @@ function plugin_getListField_categories($fieldname, $fieldvalue, $A, $icon_arr)
             case 'category':
                 $indent = ($A['indent'] - 1) * 20;
                 $cat = COM_createLink($A['category'],
-                        "{$_CONF['site_url']}/links/index.php?category="
-                        . rawurlencode($A['cid']));
+                    COM_buildURL("{$_CONF['site_url']}/links/index.php?category=" . rawurlencode($A['cid']))
+                );
                 $retval = "<span style=\"padding-left:{$indent}px;\">$cat</span>";
                 break;
             case 'addchild';
@@ -1310,29 +1312,30 @@ function plugin_getListField_categories($fieldname, $fieldvalue, $A, $icon_arr)
     return $retval;
 }
 
-
+/**
+ * Check if the given URL exists
+ *
+ * @param  string $url
+ * @return string
+ */
 function links_validateUrl($url)
 {
     global $LANG_LINKS_STATUS;
 
-    require_once 'HTTP/Request.php';
+    $req = new HTTP_Request2($url, HTTP_Request2::METHOD_HEAD);
+    $req->setHeader('User-Agent', 'Geeklog/' . VERSION);
 
-    $retval = '';
+    try {
+        $response = $req->send();
+        $status_code = $response->getStatus();
 
-    $req = new HTTP_Request($url);
-    $req->setMethod(HTTP_REQUEST_METHOD_HEAD);
-    $req->addHeader('User-Agent', 'Geeklog/' . VERSION);
-
-    $response = $req->sendRequest();
-    if (PEAR::isError($response)) {
-        $retval = $response->getMessage();
-    } else {
-        $status_code = $req->getResponseCode();
         if (isset($LANG_LINKS_STATUS[$status_code])) {
-            $retval = $status_code . ": " . $LANG_LINKS_STATUS[$status_code];
+            $retval = $status_code . ': ' . $LANG_LINKS_STATUS[$status_code];
         } else {
             $retval = $LANG_LINKS_STATUS[999];
         }
+    } catch (HTTP_Request2_Exception $e) {
+        $retval = $e->getMessage();
     }
 
     return $retval;
@@ -1486,10 +1489,8 @@ function links_breadcrumbs($root, $cid)
             $A = DB_fetchArray($parent);
             if ($cid != $c) {
                 $content = stripslashes($A['category']);
-                $url = $_CONF['site_url'] . '/links/index.php?category='
-                                          . rawurlencode($A['cid']);
-                $breadcrumb = COM_createLink($content, $url) . $separator
-                            . $breadcrumb;
+                $url = COM_buildURL($_CONF['site_url'] . '/links/index.php?category=' . rawurlencode($A['cid']));
+                $breadcrumb = COM_createLink($content, $url) . $separator . $breadcrumb;
             } else {
                 $breadcrumb = '<b>' . $A['category'] . '</b>' . $breadcrumb;
             }
@@ -1580,8 +1581,7 @@ function phpblock_topic_categories()
         for ($i = 0; $i < $nrows; $i++) {
             $A = DB_fetchArray($result);
             $content = stripslashes($A['category']);
-            $url = $_CONF['site_url'] . '/links/index.php?category='
-                                      . rawurlencode($A['cid']);
+            $url = COM_buildURL($_CONF['site_url'] . '/links/index.php?category=' . rawurlencode($A['cid']));
             $retval .= COM_createLink($content, $url) . '<br' . XHTML . '>';
         }
     }
@@ -1809,24 +1809,16 @@ function LINKS_getCategorySQL($type = 'WHERE', $u_id = 0, $table = '')
 */
 function plugin_getdocumentationurl_links($file)
 {
-    global $_CONF;
-
-    static $docurl;
+    static $docUrl;
 
     switch ($file) {
     case 'index':
     case 'config':
-        if (isset($docurl)) {
-            $retval = $docurl;
+        if (isset($docUrl)) {
+            $retval = $docUrl;
         } else {
-            $doclang = COM_getLanguageName();
-            $docs = 'docs/' . $doclang . '/links.html';
-            if (file_exists($_CONF['path_html'] . $docs)) {
-                $retval = $_CONF['site_url'] . '/' . $docs;
-            } else {
-                $retval = $_CONF['site_url'] . '/docs/english/links.html';
-            }
-            $docurl = $retval;
+            $retval = COM_getDocumentUrl('docs', 'links.html');
+            $docUrl = $retval;
         }
         break;
 
@@ -1889,5 +1881,3 @@ function plugin_group_changed_links($grp_id, $mode)
         $result = DB_query($sql);
    }
 }
-
-?>

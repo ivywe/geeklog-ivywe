@@ -1,0 +1,17 @@
+{# begin {templatelocation} #}
+
+<fieldset>
+  <legend>{lang_digest_top_header}</legend>
+
+  <dl class="notes">
+    <dt>{lang_digest_help_header}</dt>
+    <dd>{lang_emailedtopics}</dd>
+  </dl>
+
+  <dl>
+    <dt>{lang_topics}</dt>
+    <dd>{email_topic_checklist}</dd>
+  </dl>
+</fieldset>
+
+{# end {templatelocation} #}

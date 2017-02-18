@@ -5,4 +5,3 @@ Disallow: /search.php
 Disallow: /submit.php
 Disallow: /trackback.php
 Disallow: /usersettings.php
-Disallow: /*/id

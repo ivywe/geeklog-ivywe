@@ -1,4 +1,4 @@
-{# begin {templatelocation} #}
+{# start {templatelocation} #}
 
 <div id="pe_layout" class="jsenabled_hide">
   {display_block}

@@ -51,7 +51,7 @@ $LANG_STATIC = array(
     'staticpagelist' => '静的ページ管理',
     'url' => 'URL',
     'edit' => '編集',
-    'lastupdated' => '最終更新日',
+    'lastupdated' => '最終更新日:',
     'pageformat' => 'レイアウト',
     'leftrightblocks' => 'ヘッダー・フッター・左右ブロックあり',
     'blankpage' => '全画面表示(ヘッダー・フッター・ブロックなし)',
@@ -125,6 +125,7 @@ $LANG_STATIC = array(
     'draft' => 'ドラフト',
     'draft_yes' => '○',
     'draft_no' => '-',
+    'show_on_page' => 'Show on Page',
     'cache_time' => 'キャッシュタイム',
     'cache_time_desc' => 'この静的ページコンテンツはここで指定された秒数以上にキャッシュされることはありません。もしキャッシュが0ならキャッシュ無効 (3600 = 1時間,  86400 = 1日)。静的ページPHPまたはテンプレートの場合はキャッシュされません。',
     'autotag_desc_staticpage' => '[staticpage: id alternate title] - 静的ページタイトルで静的ページへのリンクを表示。アンカーテキストの指定は任意です。',
@@ -210,5 +211,3 @@ $LANG_configselects['staticpages'] = array(
     13 => array('アクセス不可' => 0, '利用する' => 2),
     17 => array('コメント有効' => 0, 'コメント無効' => -1)
 );
-
-?>

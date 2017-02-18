@@ -1,73 +1,70 @@
-{# begin {templatelocation} #}
+{# start {templatelocation} #}
 
 {start_block_postacomment}
-<div class="uk-panel uk-panel-box">
+<div id="commenteditform">
 
-  <form action="{form_url}" method="post" id="commentform" class="uk-form uk-form-horizontal">
+<form action="{form_url}" method="post" id="commentform" class="compact uk-form">
 
-    <div class="uk-form-row">
-      <label class="uk-form-label">{lang_username}</label>
-      <div class="uk-form-controls">{cid}
-          <input type="hidden" name="order" value="{order}"{xhtml}>
-          <input type="hidden" name="format" value="{format}"{xhtml}>
-          <input type="hidden" name="cpage" value="{cpage}"{xhtml}>
-          <input type="hidden" name="{nprefix}sid" value="{sid}"{xhtml}>
-          <input type="hidden" name="{nprefix}pid" value="{pid}"{xhtml}>
-          <input type="hidden" name="{nprefix}type" value="{type}"{xhtml}>
-          <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
-          <input type="hidden" name="{nprefix}uid" value="{uid}"{xhtml}>{username}&nbsp;
-          <span{hidewhenediting}>[<a href="{action_url}" rel="nofollow" class="logoutorcreateaccount">{lang_logoutorcreateaccount}</a>]</span>
-      </div>
-    </div>
-    <div class="uk-form-row">
-      <label class="uk-form-label" for="commentform-title">{lang_title}</label>
-      <div class="uk-form-controls">
-        <input type="text" value="{title}" maxlength="96" name="title" id="commentform-title" class="uk-width-1-1" required{xhtml}>
-      </div>
-    </div>
-    <div class="uk-form-row">
-      <label class="uk-form-label" for="comment_text">{lang_comment}</label>
-      <div class="uk-form-controls text_editor">
-        <textarea rows="4" cols="45" name="comment" id="comment_text" class="uk-width-1-1" aria-describedby="commentform-d1" required>{comment}</textarea>
-        <span class="uk-form-help-inline" id="commentform-d1">{allowed_html}</span>
-      </div>
-    </div>
-    <div class="uk-form-row">
-      <label class="uk-form-label" for="commentform-postmode">{lang_postmode}</label>
-      <div class="uk-form-controls">
-        <select name="postmode" id="commentform-postmode">
-          {postmode_options}
-        </select>
-      </div>
-    </div>
-
-    {captcha}
-
-    <div class="uk-form-row">
-      <label class="uk-form-label">{lang_importantstuff}</label>
-      <div class="uk-form-controls uk-text-small">
-        <ul class="uk-list">
+  <div class="user_basic">
+    <dl class="importantstuff clearfix">
+      <dt>{lang_importantstuff}</dt>
+      <dd>
+        <ul class="ul-importantstuff">
           <li class="li-importantstuff">{lang_instr_line1}</li>
           <li class="li-importantstuff">{lang_instr_line2}</li>
           <li class="li-importantstuff">{lang_instr_line3}</li>
           <li class="li-importantstuff">{lang_instr_line4}</li>
           <li class="li-importantstuff">{lang_instr_line5}</li>
         </ul>
-      </div>
-    </div>
+      </dd>
+    </dl>
 
-    <div class="uk-form-row uk-margin-large-top">
-      <div class="uk-form-controls">
-        <input type="submit" name="{nprefix}mode" value="{lang_preview}" class="uk-button uk-form-width-medium"{xhtml}>
-        <input type="hidden" name="formtype" value="{formtype}"{xhtml}>
-        {save_option}
-        <input type="submit" value="{lang_cancel}" name="{nprefix}mode" class="uk-button"{xhtml}>
-        {delete_option}
-        {notification}
-      </div>
-    </div>
+    <dl class="form_block">
+      <dt class="dt-commentform-username">{lang_username}</dt>
+      <dd class="dd-commentform-username">{cid}
+         <input type="hidden" name="order" value="{order}"{xhtml}>
+         <input type="hidden" name="format" value="{format}"{xhtml}>
+         <input type="hidden" name="cpage" value="{cpage}"{xhtml}>
+         <input type="hidden" name="{nprefix}sid" value="{sid}"{xhtml}>
+         <input type="hidden" name="{nprefix}pid" value="{pid}"{xhtml}>
+         <input type="hidden" name="{nprefix}type" value="{type}"{xhtml}>
+         <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+         <input type="hidden" name="{nprefix}uid" value="{uid}"{xhtml}>{username}&nbsp;
+         <span{hidewhenediting}>[<a href="{action_url}" rel="nofollow" class="logoutorcreateaccount">{lang_logoutorcreateaccount}</a>]</span>
+      </dd>
 
-  </form>
+      <dt class="title"><label for="commentform-title">{lang_title}</label></dt>
+      <dd class="title"><input type="text" class="uk-input" value="{title}" maxlength="96" name="title" id="commentform-title" class="size6"{xhtml}></dd>
+
+      <dt><label for="commentform-postmode">{lang_postmode}</label></dt>
+      <dd>
+        <select class="uk-select" name="postmode" id="commentform-postmode">
+          {postmode_options}
+        </select>
+      </dd>
+
+      <dt><label for="comment_text">{lang_comment}</label></dt>
+      <dd><div class="text_editor"><textarea class="uk-textarea" rows="10" cols="45" name="comment" id="comment_text" class="wide" aria-describedby="desc-comment_text">{comment}</textarea></div></dd>
+      <dd class="description" id="desc-comment_text">{allowed_html}</dd>
+    </dl>
+
+    {captcha}
+
+    <div class="submit">
+{!if allow_save}
+      <button type="submit" name="{nprefix}mode" value="{lang_save}" class="uk-button uk-button-primary">{lang_save}</button>
+{!endif}
+      <button type="submit" name="{nprefix}mode" value="{lang_preview}" class="uk-button uk-button-success">{lang_preview}</button>
+{!if allow_delete}
+      <button type="submit" name="mode" value="{lang_delete}" class="uk-button uk-button-danger" onclick="return confirm('{confirm_message}');">{lang_delete}</button>
+{!endif}
+      <button type="submit" name="{nprefix}mode" value="{lang_cancel}" class="uk-button">{lang_cancel}</button>
+      <input type="hidden" name="formtype" value="{formtype}"{xhtml}>
+      {notification}
+    </div>
+  </div>
+
+</form>
 
 </div>
 {end_block}

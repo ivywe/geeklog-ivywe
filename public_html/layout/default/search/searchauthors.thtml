@@ -1,13 +1,11 @@
-{# begin {templatelocation} #}
+{# start {templatelocation} #}
 
-        <div class="uk-form-row">
-            <label class="uk-form-label" for="advsearchform-author">{lang_authors}</label>
-            <div class="uk-form-controls">
-                <select name="author" id="advsearchform-author">
-                    <option selected="selected" value="0">{lang_all}</option>
-                    {author_option_list}
-                </select>
-            </div>
-        </div>
+<dt><label for="advsearchform-author">{lang_authors}</label></dt>
+<dd>
+  <select class="uk-select" name="author" id="advsearchform-author">
+    <option selected="selected" value="0">{lang_all}</option>
+    {author_option_list}
+  </select>
+</dd>
 
 {# end {templatelocation} #}

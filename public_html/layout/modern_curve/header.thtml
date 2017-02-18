@@ -1,0 +1,54 @@
+{doctype}
+<html{lang_attribute}{xmlns}>
+  <head>
+    <meta charset="{charset}"{xhtml}>
+    <title>{page_title_and_site_name}</title>
+    <link rel="shortcut icon" href="{layout_url}/images/favicon.ico"{xhtml}>
+    <!-- <meta http-equiv="Pragma" content="no-cache"{xhtml}> -->
+    <link rel="start contents" href="{site_url}"{xhtml}>
+{feed_url}
+{rel_links}
+{plg_headercode}
+  </head>
+  <body dir="{direction}" class="{layout_columns}" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+{# begin {templatelocation} #}
+
+<!-- #container { -->
+    <div id="container">
+      <!-- #header { -->
+      <div id="header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+        <div id="header-content">
+          <h1 class="site_name" itemprop="name"><a href="{site_url}" itemprop="url"><img src="{site_logo}" width="226" height="80" alt="{site_name}"{xhtml}></a></h1>
+         <p class="site_slogan">{site_slogan}</p>
+        </div>
+      </div>
+      <!-- } #header -->
+
+      <hr class="separator"{xhtml}>
+
+      <!-- #navigation { -->
+      <div id="navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+        <ul>
+          {menu_elements}
+        </ul>
+        <div style="clear: both;"></div>
+      </div>
+      <!-- } #navigation -->
+
+      <hr class="separator"{xhtml}>
+
+      <!-- #wrapper { -->
+      <div id="wrapper">
+
+        {left_blocks}
+
+        <!--[if !IE]> Using conditional comments to avoid Win IE 6 bugs. <![endif]-->
+        <!--[if !IE]> (When combined with multiple floating elements, floating bug duplicate last element content) <![endif]-->
+        <!--[if !IE]> #centerblocks { <![endif]-->
+        {# Center Block Container #}
+        <div id="centerblocks">
+          <p class="welcome_msg">{welcome_msg}&nbsp;{datetime}</p>
+          <div id="centerblocks-content" itemscope="itemscope" itemprop="mainContentOfPage" itemtype="http://schema.org/WebPageElement">
+          {breadcrumb_trail}
+
+{# end {templatelocation} #}

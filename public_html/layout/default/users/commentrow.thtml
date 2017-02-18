@@ -1,5 +1,5 @@
-{# begin {templatelocation} #}
+{# start {templatelocation} #}
 
-<p>{row_number} {comment_title}{comment_date}</p>
+<p class="commentrow">{row_number} {comment_title}{comment_date}</p>
 
 {# end {templatelocation} #}

@@ -29,6 +29,8 @@
 
 $LANG_CHARSET = 'Windows-1250';
 
+$LANG_ISO639_1 = 'sl';
+
 ###############################################################################
 # Array Format:
 # $LANGXX[YY]:  $LANG - variable name
@@ -144,7 +146,7 @@ $LANG01 = array(
     98 => 'Prikljuèni moduli',
     99 => 'Èlanki',
     100 => 'Ni novih èlankov',
-    101 => '',
+    101 => 'There are no older stories',
     102 => '',
     103 => 'Varnostne kopije DB',
     104 => 'z',
@@ -192,7 +194,9 @@ $LANG01 = array(
     'google' => 'Login with Google',
     'microsoft' => 'Login with Microsoft',
     'yahoo' => 'Login with Yahoo',
+    'github' => 'Login with GitHub',
     'ctl' => 'Clear Cache',
+    'ok' => 'OK',
     'filemanager' => 'File Manager'
 );
 
@@ -244,7 +248,14 @@ $LANG03 = array(
     42 => 'Izpiši se',
     43 => 'Izpiši se od prejemanja obvestil o odgovorih',
     44 => 'Tvoje ime',
-    45 => "Thank you for your comment. You must wait {$_CONF['commentspeedlimit']} seconds to post a new comment."
+    45 => "Thank you for your comment. You must wait {$_CONF['commentspeedlimit']} seconds to post a new comment.",
+    100 => 'Comment Manager',
+    101 => 'Existing Comments',
+    102 => 'Bulk Action',
+    103 => 'Ban this user',
+    104 => 'Ban this IP address with the Spamx plugin',
+    105 => 'IP Address',
+    106 => 'Perform bulk action on comments and comment submissions including approval, deleting, and banning of user or IP address.'
 );
 
 ###############################################################################
@@ -401,6 +412,7 @@ $LANG04 = array(
     148 => 'Uporabniške informacije',
     149 => 'Spremeni svoje uporabniške informacije, ki bodo vidne drugim uporabnikom.<li>Podpis bo dodan k vsem tvojim komentarjem in objavam na forumu</li><li>BIO je kratek povzetek o tebi, ki ga želiš deliti z drugimi</li><li>Deli z drugimi svoj kljuè PGP</li>',
     150 => '',
+    151 => 'Blocks',
     156 => 'Izbriši raèun',
     157 => 'Briši opcijo',
     158 => 'Èasovni pas',
@@ -414,6 +426,7 @@ $LANG04 = array(
     166 => 'Re-synch Remote Account',
     167 => 'Remote login',
     168 => 'You may also login with one on of the below remote authentication services',
+    169 => 'User has updated his/her profile',
     'user_login' => 'User Login',
     'user_login_message' => 'Please login below. You must enter both a username and password.',
     'user_logged_in_message' => "You are already logged in. Whould you like to <a href=\"{$_CONF['site_url']}/users.php?mode=logout\" rel=\"nofollow\">logout</a>?"
@@ -570,7 +583,9 @@ $LANG09 = array(
     69 => 'Samo naslovi',
     70 => 'Ni dosegljivo ...',
     71 => 'narašèajoèe',
-    72 => 'padajoèe'
+    72 => 'padajoèe',
+    73 => 'Submit',
+    74 => 'Limit Results'
 );
 
 ###############################################################################
@@ -736,6 +751,13 @@ $LANG_ENVCHECK = array(
     'ok' => 'OK',
     'on' => 'On',
     'open_basedir' => 'If <strong>open_basedir</strong> restrictions are enabled on your site, it may cause permission problems during the install. The File System Check below should point out any issues.',
+    'database_settings' => 'Database Settings',
+    'database_mysql_version' => 'MySQL Version',
+    'database_mysql_req_version' => 'Geeklog requires MySQL version 4.1.2 or newer (MySQL 5 recommended).',
+    'database_pgsql_version' => 'Postgresql Version',
+    'database_pgsql_req_version' => 'Geeklog requires Postgresql version 9.1.7 or newer.',
+    'database_dms' => 'Database Management System',
+    'database_dms_notes' => 'Failed to determine Database Management System. Geeklog requires either MySQL or Postgresql',
     'php_req_version' => 'Geeklog requires PHP version 5.2.0 or newer.',
     'php_settings' => 'PHP Settings',
     'php_version' => 'PHP Version',
@@ -852,8 +874,15 @@ $LANG21 = array(
     67 => 'Potrdi za odobritev samodejnih ukazov',
     68 => 'Združena vsebina tega bloka je predolga za prikaz. Prosim, v nastavitvah bloka nastavi najveèje število èlankov za uvoz ali nastavi najvišje število (global maximum) v nastavitvah Geekloga (Geeklog Configuration).',
     69 => 'Plugin Name',
+    'autotag_desc_block' => '[block:name class:block-autotag] - Displays a block. Class not required. Class specifies the css class and will wrap the block in a div. The class block-autotag will always be included with the div.',
+    'position' => 'Position',
     'cache_time' => 'Cache Time',
-    'cache_time_desc' => 'This block will be cached for no longer than this many seconds. If 0 caching is disabled. (3600 = 1 hour,  86400 = 1 day)'
+    'cache_time_desc' => 'This block will be cached for no longer than this many seconds. If 0 caching is disabled. (3600 = 1 hour,  86400 = 1 day)',
+    'block_type_gldefault' => 'System',
+    'block_type_normal' => 'Normal',
+    'block_type_phpblock' => 'PHP',
+    'block_type_portal' => 'Portal',
+    'block_type_dynamic' => 'Dynamic'
 );
 
 ###############################################################################
@@ -951,6 +980,7 @@ $LANG24 = array(
     89 => 'Meta Description',
     90 => 'Meta Keywords',
     91 => 'Za podaljšanje trajanja seje klikni "Predogled".',
+    92 => 'You might also like',
     'autotag_desc_story' => '[story: id alternate title] - Displays a link to a Story using the Story Title as the title. An alternate title may be specified but is not required.',
     'cache_time' => 'Cache Time',
     'cache_time_desc' => 'This article will be cached for no longer than this many seconds. If 0 caching is disabled. If -1 cached until article is edited again. (3600 = 1 hour,  86400 = 1 day)'
@@ -1149,6 +1179,9 @@ $LANG29 = array(
     41 => 'Oddaje komentarjev',
     42 => 'Uporabniško ime',
     43 => 'Samodejno objavi komentarje?',
+    44 => 'Results of your moderation',
+    45 => 'Approved %1$d items and deleted %2$d items of user submissions.',
+    46 => 'User Profile Updated',
     'core' => 'Core',
     'plugins' => 'Plugins',
     'tools' => 'Tools',
@@ -1185,14 +1218,15 @@ $LANG31 = array(
     23 => 'Nobenega neuspešno poslanega sporoèila',
     24 => 'Nobenega uspešno poslanega sporoèila',
     25 => '-- Izberi skupino --',
-    26 => 'Izpolni vsa polja v obrazcu in izberi skupino uporabnikov iz menija.'
+    26 => 'Izpolni vsa polja v obrazcu in izberi skupino uporabnikov iz menija.',
+    27 => 'The following template variables are available in <strong>Subject</strong> and <strong>Message</strong>: {uid}, {username}, {fullname}, {email}, {homepage}, {theme}, {language}, {location}, {lastgranted}, {lastlogin}, {site_url}, {site_name}, {site_slogan}, {owner_name}, {copyrightyear}, {site_mail}, {noreply_mail}'
 );
 
 ###############################################################################
 # admin/plugins.php
 
 $LANG32 = array(
-    1 => 'Namestitev vtiènikov (plugins) lahko Geeklogu in tvojemu sistemu povzroèi škodo. Pomembno je, da namestiš samo vtiènike, ki jih preneseš z <a href="http://www.geeklog.net" target="_blank">Geeklogove domaèe strani</a>, saj smo samo te dodobra preizkusili na razliènih operacijskih sistemih. Pomembno je razumeti, da je namestitev vtiènikov postopek, ki zahteva izvajanje nekaterih ukazov na ravni datoteènega sistema. Ti lahko vodijo do varnostnih lukenj, posebej èe uporabljaš vtiènik s spletnih mest tretjih oseb. Kljub temu opozorilu ne jamèimo za uspeh nobene namestitve niti nismo odgovorni za škodo, povzroèeno z namestitvijo vtiènika za Geeklog. Z drugimi besedami – namešèaš na lastno odgovornost. V paket vsakega vtiènika so vkljuèena navodila za njegovo roèno namestitev.',
+    1 => 'Namestitev vtiènikov (plugins) lahko Geeklogu in tvojemu sistemu povzroèi škodo. Pomembno je, da namestiš samo vtiènike, ki jih preneseš z <a href="https://www.geeklog.net" target="_blank">Geeklogove domaèe strani</a>, saj smo samo te dodobra preizkusili na razliènih operacijskih sistemih. Pomembno je razumeti, da je namestitev vtiènikov postopek, ki zahteva izvajanje nekaterih ukazov na ravni datoteènega sistema. Ti lahko vodijo do varnostnih lukenj, posebej èe uporabljaš vtiènik s spletnih mest tretjih oseb. Kljub temu opozorilu ne jamèimo za uspeh nobene namestitve niti nismo odgovorni za škodo, povzroèeno z namestitvijo vtiènika za Geeklog. Z drugimi besedami – namešèaš na lastno odgovornost. V paket vsakega vtiènika so vkljuèena navodila za njegovo roèno namestitev.',
     2 => 'Zavrnitev namestitve vtiènika',
     3 => 'Obrazec za namestitev vtiènika',
     4 => 'Datoteka vtiènika',
@@ -1200,7 +1234,7 @@ $LANG32 = array(
     6 => 'Opozorilo: Vtiènik je že namešèen.',
     7 => 'Vtiènik, ki ga skušaš namestiti, je že namešèen. Pred ponovno namestitvijo prosim izbriši stari vtiènik.',
     8 => 'Test združljivost vtiènika ni uspel',
-    9 => 'Ta vtiènik zahteva novejšo verzijo Geekloga. Namesti novo razlièico <a href="http://www.geeklog.net">Geekloga</a> ali najdi novejšo razlièico vtiènika.',
+    9 => 'Ta vtiènik zahteva novejšo verzijo Geekloga. Namesti novo razlièico <a href="https://www.geeklog.net">Geekloga</a> ali najdi novejšo razlièico vtiènika.',
     10 => '<br' . XHTML . '><b>Trenutno ni namešèenih nobenih vtiènikov.</b><br' . XHTML . '><br' . XHTML . '>',
     11 => 'Za spremembo ali izbris vtiènika klikni njegovo ikono za urejanje spodaj. Prikazale se bodo podrobnosti o vtièniku, vkljuèno z avtorjevo spletno stranjo. Prikazani sta namešèena in iz vtiènikove kode vrnjena razlièica. Tako bo lažje vedeti, ali je treba vtiènik nadgraditi ali ne. Za namestitev ali nadgradnjo vtiènika poglej v njegovo dokumentacijo.',
     12 => 'nobeno ime vtiènika ni bilo poslano v urejevalnik vtiènikov ()',
@@ -1330,6 +1364,47 @@ $LANG33 = array(
 );
 
 ###############################################################################
+# admin/language.php
+
+$LANG_LANG = array(
+    'language_admin_title' => 'Language Overrides',
+    'language_manager' => 'Language Manager',
+    'new_language_msg' => 'To modify or delete a language item, click on that item\'s edit icon below. To create a new item, click on "Create New" above.',
+    'language_editor' => 'Language Editor',
+    'id' => 'ID',
+    'language' => 'Language',
+    'name' => 'Name',
+    'var_name' => 'Var Name',
+    'value' => 'Value'
+);
+
+###############################################################################
+# admin/router.php
+
+$LANG_ROUTER = array(
+    1 => 'URL routing',
+    2 => 'Routing Manager',
+    3 => 'ID',
+    4 => 'method',
+    5 => 'rule',
+    6 => 'route',
+    7 => 'priority',
+    8 => 'Increase priority',
+    9 => 'Decrease priority',
+    10 => 'Edit routing',
+    11 => 'To modify or delete a route, click on the route\'s edit icon below. To create a new route, click on "Create New" above.  When you use placeholders (@), you must define the same placeholders in a rule and its route.',
+    12 => 'Bad request method',
+    13 => 'Rule is a mandatory item.',
+    14 => 'Route is a mandatory item.',
+    15 => 'Placeholders (@) in a rule and those in a route must be the same.',
+    16 => 'Route must not start with "/index.php/".',
+    17 => 'Database error occurred.',
+    18 => '<strong>To enable URL routing, you have to enable URL rewrite in the Configuration.</strong>',
+    19 => '<strong>To enable URL routing, you have to enable URL routing in the Configuration.</strong>',
+    20 => '<ul><li>Placeholders (@) must be the same both in a rule and its route.</li><li>A placeholder starts with "@", followed by an alphabet, optionally followed by any length of alphabet or digit.</li><li>Placeholders are case-sensitive.</li></ul>'
+);
+
+###############################################################################
 # confirmation and error messages
 
 $MESSAGE = array(
@@ -1445,6 +1520,19 @@ $MESSAGE = array(
     118 => 'Click to select a date',
     119 => 'More..',
     120 => 'Send this?',
+    121 => 'Saved a URL routing item.',
+    122 => 'Could not save a URL routing item.',
+    123 => 'Deleted a URL routing item.',
+    130 => 'Your language item has been successfully deleted.',
+    131 => 'Your language item has been successfully saved.',
+    140 => 'Deleted comment(s).',
+    141 => 'Failed to delete a comment.',
+    142 => 'Approved comment(s).',
+    143 => 'Banned user(s).',
+    144 => 'Banned IP addresses with the Spamx plugin.',
+    150 => 'Successfully deleted all the files and directories used during the installation.',
+    151 => 'Failed to delete some files and directories used during the installation.  Please remove them manually.',
+    152 => 'All the files and directories used during the installation are left as they are.  It is dangerous to keep them on the server, so please don\'t forget to remove them manually.',
     400 => 'Vsa zahtevana polja niso bila veljavno izpolnjena.',
     401 => 'Prosim, vnesi polno ime',
     500 => 'The Template Cache has been successfully cleared.'
@@ -1522,11 +1610,13 @@ $LANG_ACCESS = array(
 # admin/database.php
 
 $LANG_DB_BACKUP = array(
+    'database_admin' => 'Database Administration',
     'last_ten_backups' => 'Zadnjih 10 varnostnih kopij',
+    'create_backup' => 'Backup Database',
     'do_backup' => 'Naredi varnostno kopijo',
     'backup_successful' => 'Varnostno shranjevanje baze podatkov je bilo uspešno.',
     'db_explanation' => 'Èe hoèeš ustvariti novo varnostno kopijo baze podatkov sistema Geeklog , klikni "Ustvari" zgoraj.',
-    'not_found' => "Napaèna pot ali pa orodje mysqldump ni izvršljivo.<br" . XHTML . ">Preveri definicijo <strong>\$_DB_mysqldump_path</strong> v Nastavitvah.<br" . XHTML . "> Preveri <a href=\"http://www.php.net/ manual/en/features.safe-mode.php#ini.open-basedir\">open_basedir</a> nastavitev v PHP nastavitvah.<br" . XHTML . ">Pot je trenutno definirana kot: <var>{$_DB_mysqldump_path}</var>",
+    'backup_instructions' => 'To create a new backup of your site database, select the "Do Backup" button below. This will backup all current Geeklog tables. You can download a copy of the backup from the main Database Administration Screen.',
     'zero_size' => 'Varnostno kopiranje neuspešno: Velikost datoteke je 0 bajtov',
     'path_not_found' => "{$_CONF['backup_path']} ne obstaja ali pa ni direktorij",
     'no_access' => "NAPAKA: Direktorij {$_CONF['backup_path']} ni dosegljiv.",
@@ -1535,25 +1625,47 @@ $LANG_DB_BACKUP = array(
     'bytes' => 'Bajtov',
     'total_number' => 'Skupno število varnostnih kopij: %d',
     'download' => 'Klikni za prenos datoteke',
-    'new_backup' => 'Nova varnostna kopija',
-    'delete_failure' => 'Ene ali veè datotek varnostnih kopij se ni dalo izbrisati.',
-    'delete_success' => 'Datoteke varnostnih kopij uspešno izbrisane.',
     'convert_menu' => 'Pretvori v InnoDB',
     'convert_title' => 'Pretvori v InnoDB tabele',
+    'convert_myisam_menu' => 'Convert to MyISAM',
+    'convert_myisam_title' => 'Convert to MyISAM tables',
     'convert_button' => 'Pretvori',
-    'sorry_no_innodb' => 'Žal tvoja verzija MySQL ne podpira InnoDB tabel.',
-    'innodb_explain' => 'InnoDB tabele omogoèajo hitrejšo obdelavo pri <em>zelo</em> velikih podatkovnih bazah, vendar otežijo postopek varnostnega kopiranja. Prosim, <a href="http://dev.mysql.com/doc/mysql/en/innodb.html">preberi</a> razloge za in proti InnoDB tabelam, preden izvedeš ta postopek.',
+    'converting' => 'Converting',
+    'no_innodb' => 'Your version of MySQL does not support InnoDB tables.',
+    'no_myisam' => 'Your version of MySQL does not support MyISAM tables.',
+    'innodb_instructions' => 'InnoDB tables can provide better performance on large databases. Please <a href="http://dev.mysql.com/doc/refman/5.7/en/converting-tables-to-innodb.html" target="_blank">read up</a> on the benefits and drawbacks of InnoDB tables before you perform a conversion.',
+    'myisam_instructions' => 'MyISAM tables can provide better performance on smaller databases.',
     'already_converted' => 'Opomba: Videti je, da so že vse tabele pretvorjene v InnoDB.',
-    'conversion_patience' => 'Opomba: Pretvorba lahko traja nekaj èasa. Prosim, bodi potrpežljiv.',
+    'already_converted_myisam' => 'It appears that all of the tables have already been converted to MyISAM.',
+    'conversion_message' => 'Note: Conversion may take some time - please be patient.',
     'innodb_success' => 'Tabele uspešno pretvorjene v InnoDB.',
+    'myisam_success' => 'Successfully converted tables to MyISAM.',
     'table_issues' => 'Z nekaterimi tabelami so morda bile težave. Za podrobnosti prosim preveri error.log.',
     'optimize_menu' => 'Optimiziraj Tabele',
     'optimize_title' => 'Optimiziraj Tabele',
     'optimize_button' => 'Optimiziraj',
+    'optimizing' => 'Optimizing',
     'optimize_explain' => 'Optimiziranje tabel lahko pomaga izboljšati delovanje strani. Njegov dejanski uèinek je odvisen od uporabe tabel in nekatere tabele bodo imele od tega veè koristi kot druge. Ne prièakuj ogromne razlike v delovanju strani. <a href="http://dev.mysql.com/doc/mysql/en/optimize-table.html">MySQL manual</a> namreè navaja: <q>Ni verjetno, da bi bilo to treba narediti veè kot enkrat tedensko ali meseèno</q>.',
     'last_optimization' => 'Zadnja optimizacija',
-    'optimization_patience' => 'Opomba: Optimizacija lahko traja nekaj èasa. Prosim, bodi potrpežljiv.',
-    'optimize_success' => 'Uspešno optimizirane tabele podatkovne baze.'
+    'optimization_message' => 'Optimization may take some time - please be patient.',
+    'optimize_success' => 'Uspešno optimizirane tabele podatkovne baze.',
+    'conversion_status' => 'Conversion Status',
+    'optimization_status' => 'Optimization Status',
+    'backup_status' => 'Backup Status',
+    'backingup' => 'Performing Backup',
+    'backup_title' => 'Backup the Geeklog Database',
+    'backup_warning' => 'Note: The configuration is set to only backup database structures. No data will be backed up.',
+    'latest_backup' => 'Latest Backup',
+    'tables_to_backup' => 'Tables to Backup',
+    'include' => 'Include',
+    'exclude' => 'Exclude',
+    'options' => 'Options',
+    'struct_only' => 'Only Backup Table Structure (no data)',
+    'max_files' => 'Maximum Backup Files to Keep',
+    'disable_purge' => '("0" to disable purging.)',
+    'use_gzip' => 'Use GZip if available',
+    'configure' => 'Configure',
+    'config_instructions' => 'Select any tables you wish to exclude from the backup. Other options can be found in the Geeklog Configuration under the Database tab.'
 );
 
 ###############################################################################
@@ -1818,7 +1930,16 @@ $LANG_ADMIN = array(
     'token_expiry' => 'Spremembe lahko narediš do %s. Po tem èasu bo varnostni žeton (token), vstavljen v to stran, potekel in spremembe bodo izgubljene.',
     'token_expired' => 'Varnostni žeton (token) za ta postopek je potekel. Za nadaljevanje prosim ponovno preveri pristnost (avtentifikacija).',
     'reauth_msg' => 'Varnostni žeton (token) za ta postopek je potekel. Èe hoèeš nadaljevati, prosim ponovno preveri pristnost (avtentificiraj)spodaj. To bo zagotovilo, da narejene spremembe ne bodo izgubljene.',
-    'authenticate' => 'Preveri pristnost'
+    'authenticate' => 'Preveri pristnost',
+    'approve' => 'Approve',
+    'device' => 'Device',
+    'device_desc' => 'For what device do you want this item to display for?',
+    'for_all' => 'All',
+    'for_mobile' => 'For Mobile',
+    'for_computer' => 'For Computer',
+    'all' => 'All',
+    'mobile' => 'Mobile',
+    'computer' => 'Computer'
 );
 
 # Localisation of the texts for the various drop-down menus that are actually
@@ -1912,6 +2033,7 @@ $LANG_confignames['Core'] = array(
     'noreply_mail' => 'No-Reply E-Mail',
     'mail_cc_enabled' => 'Allow to Send Carbon Copies',
     'mail_cc_default' => '"Carbon Copy" on by Default',
+    'mail_charset' => 'Email Character Set',
     'site_name' => 'Ime strani',
     'site_slogan' => 'Slogan',
     'owner_name' => 'Owner Name',
@@ -1922,18 +2044,17 @@ $LANG_confignames['Core'] = array(
     'path_data' => 'Podatki',
     'path_images' => 'Slike',
     'path_editors' => 'Advanced Editors',
-    'path_pear' => 'Pot do Pear-a',
-    'have_pear' => 'Imaš Pear?',
     'mail_settings' => 'Nastavitve e-pošte',
-    'allow_mysqldump' => 'Dovoli MySQL Dump',
-    'mysqldump_path' => 'Pot do programov',
-    'mysqldump_options' => 'Možnosti za MySQL Dump',
-    'mysqldump_filename_mask' => 'Backup File Name Mask',
+    'dbdump_filename_prefix' => 'Backup File Name Prefix',
+    'dbdump_tables_only' => 'Only Backup Table Structure',
+    'dbdump_gzip' => 'Use GZip if available',
+    'dbdump_max_files' => 'Maximum Backup Files to Keep',
     'theme' => 'Postavitev',
     'doctype' => 'DOCTYPE Declaration',
     'menu_elements' => 'Elementi menija',
     'path_themes' => 'Pot do tem',
     'cache_templates' => 'Cache Templates?',
+    'cache_mobile' => 'Cache Mobile Devices Separately?',
     'disable_new_user_registration' => 'Onemogoèi nove registracije',
     'allow_user_themes' => 'Dovoli uporabnikom izbiro postavitve',
     'allow_user_language' => 'Dovoli uporabnikom izbiro jezika',
@@ -1963,6 +2084,9 @@ $LANG_confignames['Core'] = array(
     'yahoo_login' => 'Enable OAuth Login Method Yahoo',
     'yahoo_consumer_key' => 'Yahoo OAuth Consumer Key',
     'yahoo_consumer_secret' => 'Yahoo OAuth Consumer Secret',
+    'github_login' => 'Enable OAuth Login Method GitHub',
+    'github_consumer_key' => 'GitHub OAuth Consumer Key',
+    'github_consumer_secret' => 'GitHub OAuth Consumer Secret',
     'spamx' => 'Spam-X dejanja',
     'sort_admin' => 'Uredi povezave',
     'language' => 'Jezik',
@@ -2016,6 +2140,7 @@ $LANG_confignames['Core'] = array(
     'advanced_editor' => 'Napredni urejevalnik?',
     'advanced_editor_name' => 'Advanced Editor Name?',
     'wikitext_editor' => 'Urejevalnik Wikitext?',
+    'remove_4byte_chars' => 'Remove 4-byte utf-8 characters?',
     'cron_schedule_interval' => 'Interval èasovnika (Cron)',
     'sortmethod' => 'Razvrsti rubrike',
     'showstorycount' => 'Prikaži število èlankov?',
@@ -2138,6 +2263,7 @@ $LANG_confignames['Core'] = array(
     'censorlist' => 'seznam cenzur',
     'ip_lookup' => 'IP poizvedba (lookup)',
     'url_rewrite' => 'Omogoèi URL prepisovanje (Rewrite)',
+    'url_Routing' => 'Enable URL Routing',
     'cdn_hosted' => 'Use CDN-hosted copy of jQuery',
     'meta_tags' => 'Meta Tags',
     'meta_description' => 'Default Meta Description',
@@ -2163,11 +2289,13 @@ $LANG_confignames['Core'] = array(
     'search_separator' => 'Loèevalnik skupin',
     'search_def_keytype' => 'Prednastavljena metoda iskanja',
     'search_def_sort' => 'Prednastavljen vrstni red sortiranja',
+    'search_use_topic' => 'Use Current Topic',
     'autotag_permissions_story' => '[story: ] Permissions',
     'autotag_permissions_user' => '[user: ] Permissions',
     'autotag_permissions_topic' => '[topic: ] Permissions',
     'autotag_permissions_related_topics' => '[related_topics: ] Permissions',
     'autotag_permissions_related_items' => '[related_items: ] Permissions',
+    'autotag_permissions_block' => '[block: ] Permissions',
     'multiple_breadcrumbs' => 'Multiple Breadcrumbs',
     'disable_breadcrumbs_topics' => 'Disable Topic Breadcrumbs',
     'disable_breadcrumbs_articles' => 'Disable Article Breadcrumbs',
@@ -2218,8 +2346,7 @@ $LANG_fs['Core'] = array(
     'fs_paths' => 'Poti',
     'fs_theme' => 'Postavitev',
     'fs_mail' => 'E-pošta',
-    'fs_pear' => 'Pear',
-    'fs_mysql' => 'MySQL',
+    'fs_database_backup' => 'Database Backup',
     'fs_users' => 'Uporabniki',
     'fs_misc' => 'Ostalo (misc)',
     'fs_spamx' => 'Spam-X',
@@ -2272,8 +2399,7 @@ $LANG_tab['Core'] = array(
     'tab_paths' => 'Paths',
     'tab_theme' => 'Theme',
     'tab_mail' => 'Mail',
-    'tab_pear' => 'Pear',
-    'tab_mysql' => 'MySQL',
+    'tab_database' => 'Database',
     'tab_users' => 'Users',
     'tab_misc' => 'Miscellaneous',
     'tab_spamx' => 'Spam-X',
@@ -2341,7 +2467,7 @@ $LANG_configselects['Core'] = array(
     22 => array('Strict' => 'DENY', 'Same Origin' => 'SAMEORIGIN', '(disabled)' => ''),
     23 => array('Disabled' => 0, 'Enabled' => 1, 'Enabled (Default for Homepage only)' => 2),
     24 => array('Contribute' => 'contribute', 'Home' => 'home', 'Advanced Search' => 'search', 'Directory' => 'directory', 'Login' => 'login', 'My Account' => 'prefs', 'Plugin Entries' => 'plugins', 'Custom Entries' => 'custom', 'Site Statistics' => 'stats'),
-    25 => array('New Stories' => 'story', 'New Comments' => 'comment', 'New Trackbacks' => 'trackback', 'New Pingbacks' => 'pingback', 'New Users' => 'user'),
+    25 => array('New Stories' => 'story', 'New Comments' => 'comment', 'New Trackbacks' => 'trackback', 'New Pingbacks' => 'pingback', 'New Users' => 'user', 'User Updates' => 'user_update'),
     26 => array('G (General Audiences)' => 'G', 'PG (Parental Guidance)' => 'PG', 'R (Restricted)' => 'R', 'X (Explicit)' => 'X'),
     27 => array('Hits (asc)' => 'hits|asc', 'Hits (desc)' => 'hits|desc', 'Date (asc)' => 'date|asc', 'Date (desc)' => 'date|desc', 'Title (asc)' => 'title|asc', 'Title (desc)' => 'title|desc', 'Author (asc)' => 'uid|asc', 'Author (desc)' => 'uid|desc'),
     28 => array('No access' => 0, 'Use' => 2),
@@ -2351,7 +2477,10 @@ $LANG_configselects['Core'] = array(
     32 => array('Disabled' => 0, 'Just Article Pages' => 1, 'Articles and Topics' => 2),
     33 => array('Disabled' => 0, 'Enabled' => 1, 'Enabled (No Links)' => 2, 'Enabled (No Outbound Links)' => 3),
     34 => array('grid' => 'grid', 'list' => 'list'),
-    35 => array('default' => 'default', 'Name (asc)' => 'NAME_ASC', 'Name (desc)' => 'NAME_DESC', 'Type (asc)' => 'TYPE_ASC', 'Type (desc)' => 'TYPE_DESC', 'Modified (asc)' => 'MODIFIED_ASC', 'Modified (desc)' => 'MODIFIED_DESC')
+    35 => array('default' => 'default', 'Name (asc)' => 'NAME_ASC', 'Name (desc)' => 'NAME_DESC', 'Type (asc)' => 'TYPE_ASC', 'Type (desc)' => 'TYPE_DESC', 'Modified (asc)' => 'MODIFIED_ASC', 'Modified (desc)' => 'MODIFIED_DESC'),
+    36 => array('False' => 'false', 'Frontpage only' => 'frontpage', 'Frontpage and Topics' => 'frontpage_topics'),
+    37 => array('Disabled' => 0, 'Enabled (with "index.php")' => 1, 'Enabled (without "index.php")' => 2),
+    38 => array('Mystery Man' => 'mm', 'Identicon' => 'identicon', 'MonsterId' => 'monsterid', 'WAvatar' => 'wavatar', 'Retro' => 'retro')
 );
 
 ###############################################################################
@@ -2403,5 +2532,3 @@ $LANG_VALIDATION = array(
     'hash' => 'This field must be a hash function supported by your version of PHP'
 );
 
-
-?>

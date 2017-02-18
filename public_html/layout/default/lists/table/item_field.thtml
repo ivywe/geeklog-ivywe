@@ -1,4 +1,4 @@
-{# begin {templatelocation} #}
+{# start {templatelocation} #}
 
                                     <td>{field_text}</td>
 

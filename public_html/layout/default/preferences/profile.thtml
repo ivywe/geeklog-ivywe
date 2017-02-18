@@ -1,4 +1,4 @@
-{# begin {templatelocation} #}
+{# start {templatelocation} #}
 
 {noscript}
 
@@ -7,120 +7,114 @@
 </div>
 
 <div id="pe_preview" class="jsenabled_hide" style="display:none;">
-  <fieldset class="uk-margin-large-top">
-    <legend>{lang_preview_title}</legend>
+  <fieldset class="uk-fieldset">
+    <legend class="uk-legend">{lang_preview_title}</legend>
     {preview}
   </fieldset>
 </div>
 
-<form action="{site_url}/usersettings.php" method="post" {enctype} id="profile" class="uk-form uk-form-horizontal">
+<form action="{site_url}/usersettings.php" method="post" {enctype} id="profile" class="uk-form">
 
-  <div id="pe_namepass" class="jsenabled_show">
-    <fieldset class="uk-margin-large-top">
-      <legend>{lang_name_legend}</legend>
-      {username_option}
-      <div class="uk-form-row">
-        <label class="uk-form-label" for="profile-fullname">{lang_fullname}</label>
-        <div class="uk-form-controls"><input type="text" maxlength="80" value="{fullname_value}" name="fullname" id="profile-fullname" class="uk-form-width-medium"{xhtml}></div>
-      </div>
-    </fieldset>
-
-    <fieldset class="uk-margin-large-top">
-      <legend>{lang_password_email_legend}</legend>
-
-      <div class="uk-form-row uk-panel-box">
-        <p class="uk-text-bold">{lang_password_help_title}</p>
-        <div class="uk-margin-left">
-          <p>{lang_password_help}</p>
-          <p class="uk-text-warning">{lang_enter_current_password}</p>
-        </div>
-      </div>
-
-      {password_option}
-
-      {resynch_option}
-
-      <div class="uk-form-row">
-        <label class="uk-form-label" for="cooktime">{lang_cooktime}</label>
-        <div class="uk-form-controls">{cooktime_selector}</div>
-      </div>
-      <div class="uk-form-row">
-        <label class="uk-form-label" for="profile-email">{lang_email}</label>
-        <div class="uk-form-controls"><input type="text" maxlength="96" value="{email_value}" name="email" type="text" id="profile-email" class="uk-form-width-medium" aria-describedby="pe-profile-d1"{xhtml}></div>
-      </div>
-      <div class="uk-form-row">
-        <label class="uk-form-label" for="profile-email_conf">{lang_email_conf}</label>
-        <div class="uk-form-controls"><input type="text" maxlength="96" value="{email_value}" name="email_conf" type="text" id="profile-email_conf" class="uk-form-width-medium"{xhtml}>
-            <span class="uk-form-help-inline" id="pe-profile-d1">{lang_email_text}</span>
-        </div>
-      </div>
-      {current_password_option}
-
-      {delete_account_option}
-    </fieldset>
-  </div>
-
-  <div id="pe_userinfo" class="jsenabled_hide">
-    <fieldset class="uk-margin-large-top">
-      <legend>{lang_personal_info_legend}</legend>
-
-      <div class="uk-form-row uk-panel-box">
-        <p class="uk-text-bold">{lang_userinfo_help_title}</p>
-        <div class="uk-margin-left">{lang_userinfo_help}</div>
-      </div>
-
-      <div class="uk-form-row">
-        <label class="uk-form-label" for="profile-homepage">{lang_homepage}</label>
-        <div class="uk-form-controls">
-          <input type="text" maxlength="96" value="{homepage_value}" name="homepage" id="profile-homepage" class="uk-form-width-medium" aria-describedby="pe-profile-d2"{xhtml}>
-          <span class="uk-form-help-inline" id="pe-profile-d2">{lang_homepage_text}</span>
-        </div>
-      </div>
-      <div class="uk-form-row">
-        <label class="uk-form-label" for="profile-location">{lang_location}</label>
-        <div class="uk-form-controls">
-          <input type="text" maxlength="96" value="{location_value}" name="location" id="profile-location" class="uk-form-width-medium" aria-describedby="pe-profile-d3"{xhtml}>
-          <span class="uk-form-help-inline" id="pe-profile-d3">{lang_location_text}</span>
-        </div>
-      </div>
-
-      {userphoto_option}
-
-      <div class="uk-form-row">
-        <label class="uk-form-label" for="profile-sig">{lang_signature}</label>
-        <div class="uk-form-controls">
-          <textarea cols="45" rows="4" name="sig" id="profile-sig" class="uk-width-1-1" aria-describedby="pe-profile-d4">{signature_value}</textarea>
-          <span class="uk-form-help-inline" id="pe-profile-d4">{lang_signature_text}</span>
-        </div>
-      </div>
-      <div class="uk-form-row">
-        <label class="uk-form-label" for="profile-about">{lang_about}</label>
-        <div class="uk-form-controls">
-          <textarea cols="45" rows="6" name="about" id="profile-about" class="uk-width-1-1" aria-describedby="pe-profile-d5">{about_value}</textarea>
-          <span class="uk-form-help-inline" id="pe-profile-d5">{lang_about_text}</span>
-        </div>
-      </div>
-      <div class="uk-form-row">
-        <label class="uk-form-label" for="profile-pgpkey">{lang_pgpkey}</label>
-        <div class="uk-form-controls">
-            <textarea cols="45" rows="6" name="pgpkey" id="profile-pgpkey" class="uk-width-1-1" aria-describedby="pe-profile-d6">{pgpkey_value}</textarea>
-            <span class="uk-form-help-inline" id="pe-profile-d6">{lang_pgpkey_text}</span>
-        </div>
-      </div>
-    </fieldset>
-  </div>
-
-  {prefs}
-
-  <div id="save_button" class="uk-form-row uk-margin-large-top">
-    <div class="uk-form-controls">
-      <input type="hidden" name="uid" value="{uid_value}"{xhtml}>
-      <input type="hidden" name="mode" value="saveuser"{xhtml}>
-      <input type="hidden" name="username" value="{username_value}"{xhtml}>
-      <input type="submit" name="btnsubmit" value="{lang_submit}" class="uk-button"{xhtml}>
-      <input type="submit" name="btncancel" value="{lang_cancel}" class="uk-button"{xhtml}>
+<div id="pe_namepass" class="jsenabled_show">
+  <fieldset class="uk-fieldset">
+    <legend class="uk-legend">{lang_name_legend}</legend>
+    <div class="compact">
+      <dl class="form_block">
+        {username_option}
+        <dt><label for="profile-fullname">{lang_fullname}</label></dt>
+        <dd><input type="text" class="uk-input" maxlength="80" value="{fullname_value}" name="fullname" id="profile-fullname" class="size7"{xhtml}></dd>
+      </dl>
     </div>
-  </div>
+  </fieldset>
+
+  <fieldset class="uk-fieldset">
+    <legend class="uk-legend">{lang_password_email_legend}</legend>
+
+    <div class="linear">
+      <div class="profile_notes uk-panel uk-panel-box">
+        <div class="uk-panel-title">
+          <i class="uk-icon-info-circle uk-text-primary"></i>
+          <span>{lang_password_help_title}</span>
+        </div>
+        <div>{lang_password_help}</div>
+        <div><span class="warningsmall"><strong>{lang_enter_current_password}</strong></span></div>
+      </div>
+    </div>
+
+    <div class="compact">
+      <dl class="form_block">
+        {password_option}
+
+        {resynch_option}
+
+        <dt><label for="cooktime">{lang_cooktime}</label></dt>
+        <dd>{cooktime_selector}</dd>
+
+        <dt><label for="profile-email">{lang_email}</label></dt>
+        <dd><input type="text" class="uk-input" maxlength="96" value="{email_value}" name="email" id="profile-email" class="size6" aria-describedby="desc-profile-email"{xhtml}></dd>
+        <dd class="description" id="desc-profile-email">{lang_email_text}</dd>
+
+        <dt><label for="profile-email_conf">{lang_email_conf}</label></dt>
+        <dd><input type="text" class="uk-input" maxlength="96" value="{email_value}" name="email_conf" id="profile-email_conf" class="size6"{xhtml}></dd>
+
+        {current_password_option}
+      </dl>
+    </div>
+    {delete_account_option}
+  </fieldset>
+</div>
+
+<div id="pe_userinfo" class="jsenabled_hide">
+  <fieldset class="uk-fieldset">
+    <legend class="uk-legend">{lang_personal_info_legend}</legend>
+
+    <div class="linear">
+      <div class="profile_notes uk-panel uk-panel-box">
+        <div class="uk-panel-title">
+          <i class="uk-icon-info-circle uk-text-primary"></i>
+          <span>{lang_userinfo_help_title}</span>
+        </div>
+        <div>{lang_userinfo_help}</div>
+      </div>
+    </div>
+
+    <div class="compact">
+      <dl class="form_block">
+        <dt><label for="profile-homepage">{lang_homepage}</label></dt>
+        <dd><input type="text" class="uk-input" maxlength="96" value="{homepage_value}" name="homepage" id="profile-homepage" class="size7"  aria-describedby="desc-profile-homepage"{xhtml}></dd>
+        <dd class="description" id="desc-profile-homepage">{lang_homepage_text}</dd>
+
+        <dt><label for="profile-location">{lang_location}</label></dt>
+        <dd><input type="text" class="uk-input" maxlength="96" value="{location_value}" name="location" id="profile-location" class="size7" aria-describedby="desc-profile-location"{xhtml}></dd>
+        <dd class="description" id="desc-profile-location">{lang_location_text}</dd>
+
+        {userphoto_option}
+
+        <dt><label for="profile-sig">{lang_signature}</label></dt>
+        <dd><textarea class="uk-textarea" cols="45" rows="4" name="sig" id="profile-sig" class="wide" aria-describedby="desc-profile-sig">{signature_value}</textarea></dd>
+        <dd class="description" id="desc-profile-sig">{lang_signature_text}</dd>
+
+        <dt><label for="profile-about">{lang_about}</label></dt>
+        <dd><textarea class="uk-textarea" cols="45" rows="6" name="about" id="profile-about" class="wide" aria-describedby="desc-profile-about">{about_value}</textarea></dd>
+        <dd class="description" id="desc-profile-about">{lang_about_text}</dd>
+
+        <dt><label for="profile-pgpkey">{lang_pgpkey}</label></dt>
+        <dd><textarea class="uk-textarea" cols="45" rows="6" name="pgpkey" id="profile-pgpkey" class="wide" aria-describedby="desc-profile-pgpkey">{pgpkey_value}</textarea></dd>
+        <dd class="description" id="desc-profile-pgpkey">{lang_pgpkey_text}</dd>
+      </dl>
+    </div>
+  </fieldset>
+</div>
+
+{prefs}
+
+<div id="save_button" class="submit">
+  <input type="hidden" name="uid" value="{uid_value}"{xhtml}>
+  <input type="hidden" name="mode" value="saveuser"{xhtml}>
+  <input type="hidden" name="username" value="{username_value}"{xhtml}>
+  <button type="submit" name="btnsubmit" value="{lang_submit}" class="uk-button uk-button-primary">{lang_submit}</button>
+  <button type="submit" name="btncancel" value="{lang_cancel}" class="uk-button">{lang_cancel}</button>
+</div>
 
 </form>
 

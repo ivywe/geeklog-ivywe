@@ -1,5 +1,5 @@
 {# begin {templatelocation} #}
 
-<a class="{class}" style="cursor: {cursor}; " href="{link}">{hoverover}<span class="custom help"><i class="uk-icon-question-circle uk-icon-large"></i> <em>{title}</em>{text}</span></a>
+<span class="{class} gl-tooltip-help" data-uk-tooltip title="{plaintext}">{hoverover}</span>
 
 {# end {templatelocation} #}

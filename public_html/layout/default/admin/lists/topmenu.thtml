@@ -1,6 +1,6 @@
-{# begin {templatelocation} #}
+{# start {templatelocation} #}
 
-<div class="uk-margin">
+<div id="admin-topmenu" class="clearfix">
   {icon}
   <div id="admin-menu-fields">
     {menu_fields_pre}{menu_fields}{menu_fields_aft}

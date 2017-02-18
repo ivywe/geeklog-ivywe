@@ -1,6 +1,6 @@
-{# begin {templatelocation} #}
+{# start {templatelocation} #}
 
-<tr>
+<tr class="resultrow{cssid}">
   {data_cols}
 </tr>
 

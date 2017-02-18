@@ -30,7 +30,7 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 
-if (stripos($_SERVER['PHP_SELF'], 'configuration_validation.php') !== false) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     die('This file can not be used on its own!');
 }
 
@@ -57,5 +57,3 @@ $_CONF_VALIDATE['xmlsitemap']['frequencies[staticpages]'] = array(
 // Ping target
 $_CONF_VALIDATE['xmlsitemap']['ping_google'] = array('rule' => 'boolean');
 $_CONF_VALIDATE['xmlsitemap']['ping_bing']   = array('rule' => 'boolean');
-
-?>

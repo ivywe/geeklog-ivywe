@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Polls plugin 2.0                                                          |
+// | Polls plugin 2.1                                                          |
 // +---------------------------------------------------------------------------+
 // | install_defaults.php                                                      |
 // |                                                                           |
@@ -37,7 +37,7 @@
 * @package Polls
 */
 
-if (strpos(strtolower($_SERVER['PHP_SELF']), 'install_defaults.php') !== false) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     die('This file can not be used on its own!');
 }
 
@@ -222,5 +222,3 @@ function plugin_initconfig_polls()
 
     return true;
 }
-
-?>

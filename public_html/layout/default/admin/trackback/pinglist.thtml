@@ -1,8 +1,8 @@
-{# begin {templatelocation} #}
+{# start {templatelocation} #}
 
-<p class="uk-margin-bottom">{lang_results}</p>
+<p class="trackback-message">{lang_results}</p>
 
-<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+<table class="admin-list-table uk-table uk-table-hover uk-table-striped">
   <tbody>
     {ping_results}
   </tbody>
