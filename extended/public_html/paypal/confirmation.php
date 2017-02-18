@@ -91,7 +91,7 @@ switch ($_REQUEST['mode']) {
 
         //Display cart
         $display .= '
-		             <div class="uk-width-1-1 uk-margin uk-margin-small-bottom "><div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-text-center uk-button-group">
+		             <div class="uk-width-1-1 uk-margin uk-margin-top"><div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-text-center uk-button-group">
 			           <button class="uk-button uk-button-default uk-margin-small-bottom uk-text-nowrap">' . $LANG_PAYPAL_1['checkout_step_1'] . '</li>
                  <button class="uk-button uk-button-default uk-margin-small-bottom uk-text-nowrap">' . $LANG_PAYPAL_1['checkout_step_2'] . '</li>
 							   <button class="uk-button uk-button-secondary uk-margin-small-bottom uk-text-nowrap">' . $LANG_PAYPAL_1['checkout_step_3'] . '</div>

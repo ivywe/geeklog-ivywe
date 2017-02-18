@@ -1,5 +1,6 @@
-  <td width="{width}%">
-      <h3><a href="{category_link}">{category_name}</a></h3>
-	  {cat_image}
-	  {cat_description}
-  </td>
+<div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-3@s" uk-grid>
+	{cat_image}
+	<h3 class="uk-card-title">
+		<a href="{category_link}" style="font-size:13px">{category_name}</a>
+	</h3>
+</div>

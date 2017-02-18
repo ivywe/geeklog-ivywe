@@ -1,7 +1,6 @@
 <div id="product" class="uk-grid tm-grid-truncate uk-width-medium-1-1" data-uk-grid-margin="">
-	{edit}
-	<h1>{name}</h1>{item_id}
-	<table class="uk-table uk-table-small uk-text-nowrap">
+	<h1>{name}</h1>
+	<table class="uk-table uk-table-small">
 		<tr>
 			<td class="uk-width-1-3">
 				{pictures}
@@ -9,9 +8,10 @@
 			<td class="uk-width-2-3" >
 				<div id="product-details">
 				  <p class="product-short-description">{active} {short_description}</p>
-					<p class="product-price">{price_label} {price_ref} {discount} {price} {currency} {free_shipping}</p>
+					<p class="product-price"><span class="uk-text-large uk-text-danger uk-text-bold">{price}</span><span class="uk-text-danger">{currency}</span> 定価:<span class="uk-text-bold">{price_ref}{currency}</span>{discount}(消費税込み) {!if free_shipping} <span class="uk-label uk-label-warning">{free_shipping}</span>{!endif}</p> 
 					<div id="product-button">{add2cart}{login}{customisable}</div>
-					<p class="product-description">{description}</p>
+					<div class="product-description">{description}</div>
+<div>商品コード: {item_id}</duv>
 					{subscription}
 					{donation}
 					{rent}
@@ -24,7 +24,8 @@
 				&nbsp;
 			</td>
 			<td>
-				<p class="rating-product">{rating}</p>
+				<p class="rating-product">{rating}{edit}
+</p>
 				{review}
 			</td>
 		</tr>

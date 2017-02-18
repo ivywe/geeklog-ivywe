@@ -1,1 +1,1 @@
-{site_name} | {purchase_receipt}
+{site_name} {purchase_receipt}

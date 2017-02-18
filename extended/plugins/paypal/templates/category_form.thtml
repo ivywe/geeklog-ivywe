@@ -1,0 +1,53 @@
+{# begin {templatelocation} #}
+
+<form action="{admin_url}/plugins/paypal/index.php?mode=categories" method="POST" enctype="multipart/form-data"  class="uk-form paypal_form">
+	<fieldset style="margin-top: 10px;"><legend><b>{main_settings}</b></legend>
+	{cat_id}
+	<h2>{category_label}<font color="red"> *</font></h2>
+	<p><input type="text" name="category" value="{cat_name}" size="40" maxlength="255" {xhtml}></p>
+	<h2>{parent_id}</h2>
+	<select name="parent_id">
+          <option value="0">{top_cat}</option>
+          {parent_cat}
+        </select>
+	
+	<h2>{image}</h2>
+    <p>{image_message}</p>	
+	<input type="file" dir="ltr" name="file"{xhtml}>
+	{cat_image}
+	
+	<h2>{description_label}</h2>
+	<p><textarea name="description" style="width:100%" cols="45" rows="5">{description}</textarea></p>
+	
+	<h2>{enabled}</h2>
+	<select name="enabled">
+     <option value="0"{enabled_no}>{no}</option>
+     <option value="1"{enabled_yes}>{yes}</option>
+	 </select>
+	</fieldset>
+
+	<fieldset style="margin-top: 10px;"><legend><b>{lang_accessrights}</b></legend>
+		<div id="lang_accessrights">
+		<div><p>{lang_owner}: {owner_name}<input type="hidden" name="owner_id" value="{owner_id}"{xhtml}></p></div>
+		<div><p>{lang_group}: {group_dropdown}</p></div>
+		</div>
+	</fieldset>
+
+	<fieldset style="margin-top: 10px;"><legend><b>{lang_permissions}</b></legend>
+		<div id="lang_permissions">
+		<p>{lang_perm_key}</p>
+		<p>{permissions_editor}</p>
+		<p>{lang_permissions_msg}</p>
+		</div>
+	</fieldset>
+	
+    <p><strong><font color="red">*</font><em> {required_field}</em></strong></p>
+    <select name="op" >
+	<option value="save" selected="selected">{save_button}</option>
+    {delete_button}
+	</select>
+    <input type="submit" name="submit" value="{ok_button}" {xhtml}>
+    
+</form>
+
+{# end {templatelocation} #}

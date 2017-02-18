@@ -531,7 +531,7 @@ function paypal_viewer_menu() {
 	}
 	if ($nb_subscriptions > 0) {
 		if ($types > 0) {
-			 $separator = ' | ';
+			 $separator = '</li><li>';
 		}
 		$type->set_var('memberships', $separator . '<a href="' . $_PAY_CONF['site_url'] . '/index.php?type=subscription">' . $LANG_PAYPAL_1['memberships'] . '</a>');
 	} else {
@@ -542,7 +542,7 @@ function paypal_viewer_menu() {
     $menu->set_var('product_list_label', $type_layout);
 	
 	if ($_PAY_CONF['view_membership'] == '1') {
-    	$menu->set_var('memberships', '| <a href="' . $_PAY_CONF['site_url'] . '/memberships_history.php">' . $LANG_PAYPAL_1['members_list'] . '</a>');
+    	$menu->set_var('memberships', '<li><a href="' . $_PAY_CONF['site_url'] . '/memberships_history.php">' . $LANG_PAYPAL_1['members_list'] . '</a></li>');
 	} else {
 	    $menu->set_var('memberships', '');
 	}
@@ -582,9 +582,9 @@ function paypal_user_menu() {
 	}
 	if ($nb_subscriptions > 0) {
 		if ($types > 0) {
-			 $separator = ' | ';
+			 $separator = '</li><li>';
 		}
-		$type->set_var('memberships', $separator . '<a href="' . $_PAY_CONF['site_url'] . '/index.php?type=subscription">' . $LANG_PAYPAL_1['memberships'] . '</a>');
+		$type->set_var('memberships', $separator . '<a href="' . $_PAY_CONF['site_url'] . '/index.php?type=subscription"><span class="label-navlist">' . $LANG_PAYPAL_1['memberships'] . '</span></a>');
 	} else {
 		$type->set_var('memberships', '');
 		if ($types == 0) $type->set_var('products', '<a href="' . $_PAY_CONF['site_url'] . '/index.php">' . $LANG_PAYPAL_1['product_list_label'] . '</a>');
@@ -598,12 +598,12 @@ function paypal_user_menu() {
     $menu->set_var('paypal_url', 'https://' . $_PAY_CONF['paypalURL']);
     $menu->set_var('business', $_PAY_CONF['receiverEmailAddr']);
 	if ($_PAY_CONF['view_membership'] == '1') {
-    	$menu->set_var('memberships', '| <a href="' . $_PAY_CONF['site_url'] . '/memberships_history.php">' . $LANG_PAYPAL_1['members_list'] . '</a>');
+    	$menu->set_var('memberships', '<li><a href="' . $_PAY_CONF['site_url'] . '/memberships_history.php">' . $LANG_PAYPAL_1['members_list'] . '</a></li>');
 	} else {
 	    $menu->set_var('memberships', '');
 	}
 	if (SEC_hasRights('paypal.admin')) {
-        $menu->set_var('admin', ' | ' . '<a href="' . $_CONF['site_url'] . '/admin/plugins/paypal/index.php">' . $LANG_PAYPAL_1['admin'] . '</a>');
+        $menu->set_var('admin', '</li><li>' . '<a href="' . $_CONF['site_url'] . '/admin/plugins/paypal/index.php">' . $LANG_PAYPAL_1['admin'] . '</a>');
     } else {
 	    $menu->set_var('admin', '');
 	}
@@ -853,7 +853,7 @@ function paypal_genButton($type, $vars) {
 
     $button->set_var('id', $vars['id']);
 	if ($_PAY_CONF['display_item_id'] == 1 && $vars['item_id'] != '' ) {
-        $button->set_var('name', $vars['name'] . ' | ' . $vars['item_id']);
+        $button->set_var('name', $vars['name'] . ' : ' . $vars['item_id']);
 	} else {
 	     $button->set_var('name', $vars['name']);
 	}
@@ -1042,12 +1042,13 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 			
 			$breadcrumbs = PAYPAL_Breadcrumbs($category);
 			
+/*
 			if ($breadcrumbs != '') {
 				    $retval .= '&nbsp;' . $breadcrumbs . '';
 				} else {
 				    $retval .= '&nbsp;' . $LANG_PAYPAL_1['home'] . '';
 				}
-
+*/
             if ($nrows > 0) {
 				$cat = COM_newTemplate($_CONF['path'] . 'plugins/paypal/templates');
 				$cat->set_file(array('table'    => 'category_table.thtml'));
@@ -1065,10 +1066,8 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 							if (file_exists($cat_image) && $C['image'] != '') {
 								$cat->set_var('cat_image','<p><a href="' . $_PAY_CONF['site_url'] . '/index.php?n=' 
 								. urlencode($C['cat_name']) . '&amp;category='. $C['cat_id'] 
-								. '"><img src="' . $_PAY_CONF['site_url'] . '/timthumb.php?src='
-								. $_PAY_CONF['images_cat_url'] . $C['image'] . '&amp;w=' . $imgwidth 
-								. '&amp;q=70&amp;zc=1" class="cat_image" title="' . $C['cat_name'] . '" alt="' 
-								. $C['cat_name'] . '" /></a></p>');
+								. '"><img src="' . $_PAY_CONF['images_cat_url'] . $C['image'] . '" class="cat_image" title="' . $C['cat_name'] . '" alt="' 
+								. $C['cat_name'] . '" style="max-height:140px" /></a></p>');
 							} else {
 								$cat->set_var('cat_image', '');
 							}
@@ -1200,7 +1199,7 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 			$product->set_var('id', $A['id']);
 			if ($_PAY_CONF['display_item_id'] == 1 && $A['customisable'] == 0 && $A['item_id'] != '') {
 				$product->set_var(array (
-					'name_button' => $A['name'] . ' | ' . $A['item_id'],
+					'name_button' => $A['name'] . ' : ' . $A['item_id'],
 					'name' => $A['name'])
 					);
 			} else {
@@ -1209,7 +1208,7 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 					'name_button' => $A['name'])
 					);
 			}
-			$product->set_var('link_name', '<a class="product-details" href=" class="uk-link-reset" ' . $_PAY_CONF['site_url'] . '/product_detail.php?product=' . $A['id'] . '&amp;n='. urlencode($A['name']) . '">' . $A['name'] . '</a>');
+			$product->set_var('link_name', '<a class="product-details" href="' . $_PAY_CONF['site_url'] . '/product_detail.php?product=' . $A['id'] . '&amp;n='. urlencode($A['name']) . '">' . $A['name'] . '</a>');
 			if (($A['hidden'] == 1) && SEC_hasRights('paypal.admin')) {
 			  $product->set_var('hidden','<strong><font color="red">' . $LANG_PAYPAL_1['hidden'] . '</font></strong><br/>');
 			} else {
@@ -1217,7 +1216,7 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 			}
 			$product->set_var('short_description', PLG_replacetags($A['short_description']));
 			if ($A['item_id'] != '' && $_PAY_CONF['display_item_id'] == 1) {
-				$product->set_var('item_id', '<p class="product-item-id">' . $A['item_id'] . '</p>');
+				$product->set_var('item_id', $A['item_id'] ); 
 			} else {
 				$product->set_var('item_id', '');
 			}
@@ -1287,7 +1286,7 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 			// Free items or items purchases and not expired, active, download
 			} else if ( $A['product_type'] == 1 && ( $A['price'] == 0 || $time > time() ) ) {
 				$product->set_var('buy_now', '');
-				$product->set_var('add2cart', '<a class="uk-button uk-button-primary uk-button-large" href="' . $_PAY_CONF['site_url'] . '/download.php'
+				$product->set_var('add2cart', '<a class="uk-button uk-button-primary" href="' . $_PAY_CONF['site_url'] . '/download.php'
 										   . '?id=' . $A['id'] . '">' . $LANG_PAYPAL_1['Download'] . '</a>');
 			// Buttons customisation
 			} else if ($A['customisable'] == 1) {
@@ -1461,11 +1460,11 @@ function plugin_dopluginsearch_paypal($query, $datestart, $dateend, $topic, $typ
             if ($row['pi_filename'] == '') {
                 $image = '';
             } else {
-                $image = ' <a class="ivy2 lightbox" href="' . $_PAY_CONF['images_url'] . $row['pi_filename'] . '"><img class="ivy3 lightbox" src="'. $_PAY_CONF['site_url'] . '/timthumb.php?src=' . $_PAY_CONF['images_url'] . $row['pi_filename'] . '&amp;h=55&amp;zc=1&amp;q=100" alt="' . $row['title'] . '" align="top" style="margin-top:3px;"/></a>';
+                $image = ' <a class="ivy2 lightbox" href="' . $_PAY_CONF['images_url'] . $row['pi_filename'] . '"><img class="ivy3 lightbox" src="'. $_PAY_CONF['images_url'] . $row['pi_filename'] . '" alt="' . $row['title'] . '" /></a>';
             }
 			$formattedResults[] = array(LF_SOURCE_NAME=>'paypal',
                                 LF_SOURCE_TITLE=>$LANG_paypal_1['products'],
-                                'title'=>$row['title'] . ' | ' . $row['price'] . ' ' . $_PAY_CONF['currency'],
+                                'title'=>$row['title'] . '</li><li>' . $row['price'] . ' ' . $_PAY_CONF['currency'],
                                 'description'=>$row['description'],
                                 'date'=>$row['date'],
                                 'url'=>$row['url'],
@@ -1538,8 +1537,8 @@ function phpblock_paypal_randomBlock()
 	if ($A['pi_filename'] == '') {
 		$T->set_var('small_pic', '');
 	} else {
-		$T->set_var('small_pic', '<a class="product-details" href="' . $_PAY_CONF['site_url'] . '/product_detail.php?n=' . urlencode($A['name']) . '&amp;product='. $A['id'] . '"><img class="ivy4 lightbox" src="'. $_PAY_CONF['site_url'] . '/timthumb.php?src=' . $_PAY_CONF['images_url']
-		. $A['pi_filename'] . '&amp;w='. $_PAY_CONF['max_thumbnail_size'] . '&amp;zc=1&amp;q=100" alt="' . $A['name'] . '" /></a>');
+		$T->set_var('small_pic', '<a class="gl-small_pic product-details" href="' . $_PAY_CONF['site_url'] . '/product_detail.php?n=' . urlencode($A['name']) . '&amp;product='. $A['id'] . '"><img class="ivy4 lightbox" src="'. $_PAY_CONF['images_url']
+		. $A['pi_filename'] . '" alt="' . $A['name'] . '" /></a>');
 	}
 
 	$T->set_var('site_url', $_PAY_CONF['site_url']);
@@ -1681,7 +1680,7 @@ function PAYPAL_getListField_paypal_purchases($fieldname, $fieldvalue, $A, $icon
     switch($fieldname) {
 
         case "id":
-			$retval = '<a  class="uk-button uk-button-primary uk-button-large"  href="' . $_PAY_CONF['site_url'] . '/transaction.php?type=purchase&amp;id=' . $A['id'] . '" title="'. $LANG_PAYPAL_1['see_transaction'] . '">' . $A['id'] .'</a>';
+			$retval = '<a  class="uk-badge"  href="' . $_PAY_CONF['site_url'] . '/transaction.php?type=purchase&amp;id=' . $A['id'] . '" title="'. $LANG_PAYPAL_1['see_transaction'] . '">' . $A['id'] .'</a>';
             break;
 		case "product_id":
             $retval =  $A['name'];
@@ -1699,7 +1698,7 @@ function PAYPAL_getListField_paypal_purchases($fieldname, $fieldvalue, $A, $icon
             break;
 		case "status":
             if ($A['status'] == 'pending') {
-			    $retval = '<a  class="uk-button uk-button-primary uk-button-large"  href="' . $_PAY_CONF['site_url'] . '/transaction.php?type=purchase&amp;id=' .
+			    $retval = '<a  class="uk-badge"  href="' . $_PAY_CONF['site_url'] . '/transaction.php?type=purchase&amp;id=' .
 				$A['id'] . '" title="'. $LANG_PAYPAL_1['see_transaction'] . '">' . $LANG_PAYPAL_1[$A['status']] .'</a>';
 			} else {
     			$retval =  $LANG_PAYPAL_1[$A['status']];
@@ -2687,7 +2686,7 @@ function PAYPAL_handlePurchase( $products, $quantity, $data, $names, $prices, $r
 			}
 		}
 
-		$namelist[] = $ipn['quantity'.$i] . ' x ' . $ipn['item_name'.$i] . ' | ' .  number_format(($ipn['mc_gross_'.$i]/$ipn['quantity'.$i]), $_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']) . ' ' . $_PAY_CONF['currency'];
+		$namelist[] =  $ipn['item_name'.$i] . ' x ' .$ipn['quantity'.$i] . ' = '  . number_format(($ipn['mc_gross_'.$i]/$ipn['quantity'.$i]), $_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']) . ' ' . $_PAY_CONF['currency'] . '<br>';
 		
 		// stock movement
 		$stock_id = PAYPAL_getStockId($ipn['item_number'.$i]);
@@ -2767,8 +2766,9 @@ function PAYPAL_handlePurchase( $products, $quantity, $data, $names, $prices, $r
 			$message->set_var('address_name', $ipn['address_name']);
 
 			// list of product names
-			for ($i2 = 1; $i2 < count($products) +1; $i2++) {
-				$products_list .= '<p>' . $namelist[$i2] . '</p>';
+// komma			for ($i2 = 1; $i2 < count($products) +1; $i2++) {
+			for ($i2 = 0; $i2 < count($products) +1; $i2++) {
+				$products_list .= $namelist[$i2];
 			}
 			if ($ipn['mc_handling'] > 0) {
 				$products_list .= '<p>' . $LANG_PAYPAL_1['shipping'] . ' ' . number_format($ipn['mc_handling'], $_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']) . ' ' . $_PAY_CONF['currency'] . '</p>';
@@ -2790,6 +2790,9 @@ function PAYPAL_handlePurchase( $products, $quantity, $data, $names, $prices, $r
 			if ($_PAY_CONF['shop_phone2'] != '') $shop_informations_bottom .= '<dt>' . $LANG_confignames['paypal']['shop_phone2'] . '</dt>' . $_PAY_CONF['shop_phone2'] . '<br' . XHTML . '>';
 			if ($_PAY_CONF['shop_fax'] != '') $shop_informations_bottom .= '<dt>'.$LANG_confignames['paypal']['shop_fax'].'</dt><dd>' .  $_PAY_CONF['shop_fax'] . '<br' . XHTML . '>';
 			if ($_PAY_CONF['shop_siret'] != '') $shop_informations_bottom .= '<dt>'.$LANG_confignames['paypal']['shop_siret'] .'</dt><dd>' . $_PAY_CONF['shop_siret'] . '</dd>';
+
+			$shop_informations_bottom .= '<dt>振込先</dt><dd>' . PLG_replaceTags('[staticpage_content:bank]') . '</dd>';
+
 			$shop_informations_bottom .= '</dl>';
 									
 			$order_date = COM_getUserDateTimeFormat($ipn['order_date']);
@@ -2815,10 +2818,10 @@ function PAYPAL_handlePurchase( $products, $quantity, $data, $names, $prices, $r
 
 		if ($return == 1) {
 			$retval .= '<h2>'. $LANG_PAYPAL_1['order_received'] . '</h2>';
-			$retval .= '<p>' . $LANG_PAYPAL_EMAIL['thank_you_order'] . '</p>';
-			$retval .= '<div class="uk-margin-left">' . $products_list . '</div>';
+			$retval .= '<p class="thank_you_order">' . $LANG_PAYPAL_EMAIL['thank_you_order'] . '</p>';
+			$retval .= '<div class="uk-margin-left products_list">' . $products_list . '</div>';
 			$retval .= '<p>' . $LANG_PAYPAL_EMAIL['send_check'] . '</p>';
-			$retval .= '<div class="uk-margin-left">' . $shop_informations . $shop_informations_bottom . '</div>';
+			$retval .= '<div class="uk-margin-left shop_informations">' . $shop_informations . $shop_informations_bottom . '</div>';
 			$retval .= '<p>' . $LANG_PAYPAL_1['confirm_by_email'] . '</p>';
 			
 			return $retval;

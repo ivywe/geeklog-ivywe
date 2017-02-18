@@ -1,4 +1,15 @@
-<div class="paypal_user_menu">
- {product_list_label} | <a href="{site_url}/checkout.php">{view_cart}</a>
- {memberships} 
-</div>
+<nav class="uk-navbar">
+	<div class="uk-navbar-left">
+		<ul class="uk-navbar-nav">
+			<li>
+				{product_list_label}
+			</li>
+			<li>
+				<a href="{site_url}/checkout.php">{view_cart}</a>
+			</li>
+			<li>
+				{memberships}
+			</li>
+		</ul>
+	</div>
+</nav>

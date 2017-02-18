@@ -3,7 +3,7 @@
   <input type="hidden" name="add" value="1" />
   <input type="hidden" name="item_name" value="{name_button}"  />
 
-  <button type="submit" value="{add_to_cart}" name="submit" class="uk-button uk-button-primary uk-button-large" style="padding: 1em 3em; " />{add_to_cart}</button>
+  <button type="submit" value="{add_to_cart}" name="submit" class="uk-button uk-button-primary uk-button-large" /><span uk-icon="icon: cart" style="margin:0 5px 2px 0"></span> {add_to_cart}</button>
   <input type="hidden" name="item_number" value="{id}" />
   <input type="hidden" name="item_ref" value="{item_ref}" />
   <input type="hidden" name="amount" value="{price2}" />

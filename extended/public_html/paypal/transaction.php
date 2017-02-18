@@ -195,7 +195,7 @@ if ($purchase_status == 'complete' || $purchase_status == '') {
     $transaction->set_var('paid_on', $LANG_PAYPAL_1['order_on'] . ' ' . $purchase_date[0]);
 	if (SEC_hasRights('paypal.admin') && $A['status'] == 'pending') {
 	    $transaction->set_var('edit', '<p><a href="' . $_CONF['site_url'] . '/admin/plugins/paypal/purchase_history.php?mode=edit&amp;txn_id=' . 
-		$ipn['txn_id'] . '" onclick="return confirm(\'' . $LANG_PAYPAL_1['confirm_edit_status'] .'\');">>> ' . $LANG_PAYPAL_1['validate_order'] . '</a></p>');
+		$ipn['txn_id'] . '" onclick="return confirm(\'' . $LANG_PAYPAL_1['confirm_edit_status'] .'\');"> >> ' . $LANG_PAYPAL_1['validate_order'] . '</a></p>');
 	}
 }
 

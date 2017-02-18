@@ -1,18 +1,12 @@
-<!-- cart_start.thtml -->
+<!-- cart_start_check.thtml -->
 
-<div id="jcart"  class="uk-overflow-auto">>
+<div id="jcart">
   {steps}
   {error_message}
   {informations}
 
 	  <table class="uk-table uk-table-small uk-text-nowrap">
-		<tr>
-<thead>
-		  <th id="jcart-header" colspan="4">
-		  <p class="jcart-header"><strong id="jcart-title">{cart_title}</strong> ({itemcount})</p>
-		</th>
-</thead>
-		</tr>
+		<caption>{cart_title} ({itemcount})</caption>
 		  <tr>
 <thead>
 		  <th class="jcart-item-header">

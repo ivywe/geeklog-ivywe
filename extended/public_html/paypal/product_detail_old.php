@@ -704,7 +704,7 @@ if (SEC_hasRights('paypal.user', 'paypal.admin')) {
 
 $breadcrumbs = PAYPAL_Breadcrumbs($A['cat_id']);
 if ($breadcrumbs != '') {
-				   $display .= '<p class="uk-text-small">' . $breadcrumbs . '</p>';
+				   $display .= '<p><small>' . $breadcrumbs . '</small></p>';
 				}
 
 $product = COM_newTemplate($_CONF['path'] . 'plugins/paypal/templates');
@@ -715,7 +715,6 @@ $product->set_file(array('product' => 'product_detail.thtml',
 						 ));
 $product->set_var('site_url', $_CONF['site_url']);
 $product->set_var('paypal_folder', $_PAY_CONF['site_url']);
-
 
 //Edit link
 if (SEC_hasRights('paypal.admin')) {
@@ -795,7 +794,7 @@ if ($A['discount_a'] != '' && $A['discount_a'] != 0) {
 if ($A['shipping_type'] == 0) {
 	$product->set_var('item_weight', '0.00');
 	if ($A['product_type'] == 0 && $A['type'] == 'product') {
-	    $product->set_var('free_shipping', $LANG_PAYPAL_CART['free_shipping'] );
+	    $product->set_var('free_shipping', '<small><font style="color:red">' . $LANG_PAYPAL_CART['free_shipping'] . '</font></small>');
 	} else {
 	    $product->set_var('free_shipping', '');
 	}
@@ -812,18 +811,15 @@ if ($icount > 0) {
 	for ($z = 1; $z <= $icount; $z++) {
 		$I = DB_fetchArray($result_products);
 
-		$saved_images .= '<li><a href="' . $_PAY_CONF['images_url'] . $I['pi_filename'] . '"' . $A['name'] . '" data-uk-lightbox><img src="' . $_PAY_CONF['images_url'] . $I['pi_filename'] . '"' . $A['name'] . '" style="max-width:200px" /></a></li>';
+		$saved_images .= '<img src="' . $_PAY_CONF['images_url'] . $I['pi_filename'] . " alt="' . $A['name'] . '" />';
 
 	}
 }
 if ($icount == 0) {
 	$product->set_var('pictures', '');
 } else {
-    $info_picture = '';
-	$product->set_var('pictures', '<div><ul class="uk-list uk-subnav uk-flex-center">' . $saved_images . $info_picture . '</ul>
-
-
-</div>');
+    $info_picture = '<li><img src="' .  $_PAY_CONF['site_url'] . '/images/enlarge.png" alt="" align="absmiddle" /> ' . $LANG_PAYPAL_1['info_picture'] .'</li>';
+	$product->set_var('pictures', '<div data-uk-slideshow><ul class="uk-slideshow">' . $saved_images . $info_picture . '</ul><a href="" data-uk-slideshow-item="previous"></a><a href="" data-uk-slideshow-item="next"></a>');
 }
 
 // FIXME: If a user purchased once with no expiration query will not operate correctly
