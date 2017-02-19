@@ -1,0 +1,26 @@
+{# begin {templatelocation} #}
+
+<div id="icon_form">
+  <form class="uk-form" name="icon_edit" action="{site_url}/admin/plugins/maps/icons.php" method="POST"  enctype="multipart/form-data">
+    <fieldset style="margin-top: 10px;padding:10px;">
+    <legend><b>{informations}</b></legend>
+    <p>{icon_presentation}</p>
+    <p><label>{name_label}</label> <font color="red">*</font> <input type="text" name="icon_name" value="{name}" size="80" maxlength="255"></p>
+      <p><label>{image}</label> {image_message}</p>  
+      <p><input type="file" dir="ltr" name="file"{xhtml}></p>
+    {icon_image}
+    </fieldset>  
+
+    <p><font color="red"><strong><small>*</font> {required_field}</small></strong></p>
+    <div>
+      <select name="mode" >
+      <option value="save" selected="selected">{save_button}</option>
+      {delete_button}
+      </select>
+      <input type="submit" name="submit" value="{ok_button}">
+      {id}
+    </div>
+  </form>
+</div>
+
+{# end {templatelocation} #}

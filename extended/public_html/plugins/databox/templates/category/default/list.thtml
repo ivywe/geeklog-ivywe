@@ -1,0 +1,51 @@
+{# begin {templatelocation} #}
+
+<div>
+
+  <ul class="uk-breadcrumb">
+    <li><a href="{site_url}/">{home}</a></li>
+    <li><span>{lang_category_list_h2}</span></li>
+  </ul>
+
+  <h1 class="uk-h1">{lang_category_list_h2}</h1>
+
+  <a href="#db_category_list_{category_code}" class="uk-button uk-button-small" data-uk-modal>Theme variables</a>
+
+  <p>{msg}</p>
+
+  {nav_var}
+
+</div>
+
+<div id="db_category_list_{category_code}" class="uk-modal">
+  <div class="uk-modal-dialog">
+    <a class="uk-modal-close uk-close"></a>
+    <div class="uk-text-break">
+      <span class="uk-text-bold">theme variables(<a href="{site_url}/admin/plugins/databox/docs/japanese/templatesetvars.html">Document</a>):</span> {templatelocation},navigation.thtml,row.thtml
+    </div>
+
+    <ul class="uk-list uk-list-line">
+      <li><span style="color:green">&#123;site_url&#125;</span>{site_url}</li>
+      <li><span style="color:green">&#123;this_script&#125;</span>{this_script}</li>
+      <li><span style="color:green">&#123;home&#125;</span>{home}</li>
+      <li><span style="color:green">&#123;lang_category_list_h2&#125;</span>{lang_category_list_h2}</li>
+      <li><span style="color:green">&#123;lang_view&#125;</span>{lang_view}</li>
+      <li><span style="color:green">&#123;lin&#125;</span>{lin}</li>
+      <li><span style="color:green">&#123;cnt&#125;</span>{cnt}</li>
+      <li><span style="color:green">&#123;lang_name&#125;</span>{lang_name}</li>
+      <li><span style="color:green">&#123;lang_count&#125;</span>{lang_count}</li>
+      <li><span style="color:green">&#123;page_navigation&#125;</span>{page_navigation}</li>
+      <li><span style="color:green">&#123;blockfooter&#125;</span>{blockfooter}</li>
+      <li><span style="color:green">&#123;msg&#125;</span>{msg}</li>
+      <li><span style="color:green">&#123;language&#125;</span>{language}</li>
+      <li><span style="color:green">&#123;languageid&#125;</span>{languageid}</li>
+      <li><span style="color:green">&#123;_languageid&#125;</span>{_languageid}</li>
+      <li><span style="color:green">&#123;uid&#125;</span>{uid}</li>
+      <li><span style="color:green">&#123;username&#125;</span>{username}</li>
+      <li><span style="color:green">&#123;fullname&#125;</span>{fullname}</li>
+      <li><span style="color:green">&#123;displayname&#125;</span>{displayname}</li>
+    </ul>
+  </div>
+</div>
+
+{# end {templatelocation} #}

@@ -631,7 +631,7 @@ class jcart {
 							$retval .= '<input type="hidden" name="pay_by" />';
 							$retval .= '<a class="uk-button uk-button-primary" href="javascript:payby(\'check\')">' . $LANG_PAYPAL_CART['payment_check'] . ' <span uk-icon="icon: arrow-right"></span></a>';
 					} else {
-							$retval .= '<a href="/users.php" class="uk-button uk-button-default">銀行振り込みによる購入は先にログインしてください。</a>';
+							$retval .= '<a href="' . $_CONF['site_url'] . '/users.php" class="uk-button uk-button-default">銀行振り込みによる購入は先にログインしてください。</a>';
 					}
 				}
 				if ($_PAY_CONF['enable_pay_by_paypal']) {

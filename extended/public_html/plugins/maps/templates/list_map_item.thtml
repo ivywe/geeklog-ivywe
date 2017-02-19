@@ -1,0 +1,5 @@
+{# begin {templatelocation} #}
+
+ {edit_button} <p class="maps_list_item"><b><a href="{map_detail}">{name}</a>&nbsp;</b>{description}<br{xhtml}><small>{update} {markers} {hits} </small></p>
+
+{# end {templatelocation} #}

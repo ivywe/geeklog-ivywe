@@ -1,6 +1,5 @@
 {# begin {templatelocation} #}
-<!-- start centerblock.thtml -->
-<!-- startblock -->
+
 <h2>FORUM 新着リスト</h2>
 <div class="uk-grid uk-overflow-container">
 
@@ -14,8 +13,5 @@
 </table>
 
 </div>
-
-<!-- endblock -->
-<!-- end centerblock.thtml --
 
 {# end {templatelocation} #}

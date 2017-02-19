@@ -1,0 +1,70 @@
+{# begin {templatelocation} #}
+
+<meta property="og:type" content="{og_type}"{xhtml}>
+<meta property="og:title" content="{og_title}"{xhtml}>
+<meta property="og:image" content="{og_image}"{xhtml}>
+<meta property="og:url" content="{currenturl}"{xhtml}>
+<meta property="og:site_name" content="{site_name}"{xhtml}>
+<meta property="og:description" content="{og_description}"{xhtml}>
+
+<meta property="fb:app_id" content="{facebook_consumer_key}"{xhtml}>
+<meta name="twitter:card" content="summary">
+
+{# 
+<link rel="alternate" href="{site_url}/databox/data.php/{code}/code" hreflang="{code_language}" />
+{code_withoutlanguage}
+#}
+
+{# Additional Items
+{# 以下は参考例です 登録されていない場合表示されません #}
+{# アトリビュート（追加項目） 登録したテーマ変数を使用する　テーマ変数 例 #}
+{# 
+{tel_name}
+{tel_description}
+{tel}
+{pref}
+{pref_mst_value2}
+{pref_mst_disp}
+{pref_mst_no}
+{yesno}
+{fg12}
+{fg12_tn}
+{fg12_noimage}
+{fg12_tn_noimage}
+{fg12_disp}
+{fg12_tn_image}
+ #}
+{# アトリビュート（追加項目） IDを使用する　テーマ変数 例 #}
+{# 
+{additionfield1}
+{additionfield1_noimage}
+{additionfield1_tn}
+
+{additionfield1_tn_noimage}
+{additionfield1_disp}
+{additionfield1_mst_value2}
+{additionfield1_mst_disp}
+{additionfield1_mst_no}
+{additionfield1_yes}
+{additionfield1_tn}
+{additionfield1_noimage}
+{additionfield1_tn_image}
+{additionfield1_tn_noimage}
+{additionfield1_disp}
+{additionfield1_name}
+{additionfield1_description}
+{additionfield11}
+{additionfield11_mst_value2}
+{additionfield11_mst_disp} 
+{additionfield11_mst_no}
+{additionfield16}
+{additionfield16_yes}
+{additionfield18}
+{additionfield18_tn}
+{additionfield18_noimage}
+{additionfield18_tn_noimage}
+{additionfield18_disp}
+{additionfield18_tn_image}
+ #}
+
+{# end {templatelocation} #}

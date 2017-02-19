@@ -1,0 +1,50 @@
+{# begin {templatelocation} #}
+
+<div style="padding-top:15px;">
+<h1>{name}</h1>
+
+<table width="100%" border="0" margin="0" padding="0">
+    <tr>
+      <td style="width:50%">
+        {city}
+    </td>
+    <td>
+        {code}
+    <td>
+  <tr>
+      <td  valign="top">
+            {street}
+            {state}
+            {country}
+    </td>
+    <td  valign="top">
+        {tel}
+      {fax}
+      {web}
+    </td>
+  </tr>
+  <tr>
+      <td colspan="2">
+        {description}
+      </td>
+  </tr>
+  <tr>
+      <td colspan="2">
+       {ressources}
+    </td>
+  </tr>
+  <tr>
+      <td colspan="2">
+       {directions_table_result}
+    </td>
+  </tr>
+  <tr>
+      <td colspan="2">
+        <p><small>{print} {report} {owner} {map} {update} {edit}</small></p>
+    </td>
+  </tr>
+</table>
+
+</div>
+
+{# end {templatelocation} #}

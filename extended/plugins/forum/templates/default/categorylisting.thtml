@@ -1,78 +1,31 @@
 {# begin {templatelocation} #}
 
-<div class="uk-grid uk-margin-small-top">
-    <div class="uk-width-1-2">
-    <div itemscope itemtype="http://schema.org/BreadcrumbList">
-      <ul class="uk-breadcrumb">
-        <li><i class="uk-icon-folder-o"></i></li>
-        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-          <a itemprop="item" href="{site_url}/forum/index.php">
-            <span itemprop="name">{forum_home}</span>
-          </a>
-          <meta itemprop="position" content="1" />
-        </li>
-        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-          <a itemprop="item" href="{site_url}/forum/index.php?category={category_id}">
-            <span itemprop="name">{cat_name}</span>
-          </a>
-          <meta itemprop="position" content="2" />
-        </li>
-      </ul>
-    </div>      
-    </div>
-    <div class="uk-width-1-2">
-      <div class="uk-text-right">
-      {categorymenu_link}
-      {# Buttons instead of Menu - Remove comments to enable (plus remove categorymenu_link template variable) and change related links in forum_links.html #}
-      {# 
-      {newposts_link}
-      {markread_link}
-     #}
-     </div>
-    </div>
-</div>
-
-<table class="uk-table uk-table-hover">
-  <thead>
-    <tr>
-      <th class="uk-width-large-6-10 uk-width-medium-7-10 uk-width-6-10">
-        {cat_desc}
-      </th>
-      <th class="uk-width-large-1-10 uk-text-center uk-visible-large">
-        {LANGGF01_TOPICS}
-      </th>
-      <th class="uk-width-large-1-10 uk-text-center uk-visible-large">
-        {LANGGF01_POSTS}
-      </th>
-      <th class="uk-width-large-2-10 uk-width-medium-3-10 uk-width-4-10 uk-text-center">
-        {LANGGF01_LASTPOST}
-      </th>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="padding-right:15px;" class="pluginHeader">
+    <tr class="pluginLinks" style="vertical-align: middle; height:25px;">
+        <td style="height:22px; width:22px">{forumindeximg}</td>
+        <td class="pluginHeader alignleft" style="width:95%; white-space:nowrap">&nbsp;<a href="{site_url}/forum/index.php?category={category_id}">{cat_name}</a></td>
+        {newposts_link}
+        <td>&nbsp;</td>
+        {markread_link}
     </tr>
-  </thead>
-  <tbody>
+</table>
+<table width="100%" border="0" cellspacing="1" cellpadding="3" class="pluginSolidOutline" style="margin-bottom:10px;">
+    <tr>
+        <td class="pluginCellTitle alignleft" colspan="2">{cat_desc}</td>
+        <td class="pluginCellTitle aligncenter" style="width:5%"><span style="white-space:nowrap">{LANGGF01_TOPICS}</span></td>
+        <td class="pluginCellTitle aligncenter" style="width:5%"><span style="white-space:nowrap">{LANGGF01_POSTS}</span></td>
+        <td class="pluginCellTitle alignleft" style="width:25%"><span style="white-space:nowrap">{LANGGF01_LASTPOST}</span></td>
+    </tr>
     {forum_record}
-  </tbody>
 </table>
 
 <!-- BEGIN forum_record -->
-<tr>
-  <td>
-    {folderimg} <a class="pluginLinks" href="index.php?forum={forum_id}">{forum_name}</a>
-    {!if forum_desc}
-    <blockquote>{forum_desc}</blockquote>
-    {!endif}
-  </td>
-  <td class="uk-text-center uk-visible-large">
-    {topics}
-  </td>
-  <td class="uk-text-center uk-visible-large">
-    {posts}
-  </td>
-  <td>
-    <a href="viewtopic.php?showtopic={topic_id}&amp;lastpost=true#{lastpostid}">{lastpostmsgTopic}</a><br{xhtml}>
-    {lastpostmsgDate}<br{xhtml}>
-    {lastpostmsgBy} {moderator}
-  </td>
+<tr class="pluginRollOut pluginLinks" onmouseover="className='pluginRollOver pluginLinks';" onmouseout="className='pluginRollOut pluginLinks';">
+	<td style="vertical-align:top;">{folderimg}</td>
+	<td class="alignleft pluginCellText" style="vertical-align:top; width:60%" onmouseover="this.style.cursor='pointer';" onclick="window.location.href='index.php?forum={forum_id}'; this.style.cursor='pointer';"><a class="pluginLinks" style="text-decoration:none;" href="index.php?forum={forum_id}">{forum_name}</a><div style="text-align:left">{forum_desc}</div>{moderator}</td>
+	<td class="aligncenter pluginCellText" style="vertical-align:middle; width:5%">{topics}</td>
+	<td class="aligncenter pluginCellText" style="vertical-align:middle; width:5%">{posts}</td>
+	<td class="alignleft pluginCellText" style="vertical-align:top; width:5%; white-space:nowrap;" onmouseover="this.style.cursor='pointer';" onclick="window.location.href='viewtopic.php?showtopic={topic_id}&amp;lastpost=true#{lastpostid}'; this.style.cursor='pointer';">{lastpostmsgDate}<br{xhtml}>{lastpostmsgTopic}<br{xhtml}>{lastpostmsgBy}</td>
 </tr>
 <!-- END forum_record -->
 

@@ -1,0 +1,26 @@
+{# begin {templatelocation} #}
+
+<li>
+{field_link}({count})(<a href="#db_attribute_col_{field_name}" data-uk-modal>example</a>){data_edit}
+</li>
+
+<div id="db_attribute_col_{field_name}" class="uk-modal">
+  <div class="uk-modal-dialog">
+    <a class="uk-modal-close uk-close"></a>
+    <div class="uk-text-break">
+      <span class="uk-text-bold">theme variables(<a href="{site_url}/admin/plugins/databox/docs/japanese/templatesetvars.html">Document</a>):</span> {templatelocation}
+    </div>
+    <ul class="uk-list uk-list-line">
+      <li><span style="color:green">&#123;field_link&#125;</span>{field_link}</li>
+      <li><span style="color:green">?&#123;value_link&#125;</span>{value_link}</li>
+      <li><span style="color:green">&#123;field_description&#125;</span>{field_description}</li>
+      <li><span style="color:green">&#123;field_name&#125;</span>{field_name}</li>
+      <li><span style="color:green">&#123;field_url&#125;</span>{field_url}</li>
+      <li><span style="color:green">&#123;value_url&#125;</span>{value_url}</li>
+      <li><span style="color:green">&#123;value&#125;</span>{value}</li>
+      <li><span style="color:green">&#123;count&#125;</span>{count}</li>
+    </ul>
+  </div>
+</div>
+
+{# end {templatelocation} #}

@@ -1,0 +1,93 @@
+{# begin {templatelocation} #}
+
+<div>
+  <h1 class="uk-h1">{fieldset_name}</h1>
+
+  <form enctype="multipart/form-data" name="frmdatabox" action="{site_url}/{script}" method="post" class="uk-form uk-form-horizontal">
+    <input type="hidden" name="fieldset" value="{fieldset_id}"{xhtml}>
+    <input type="hidden" name="fieldset_name" value="{fieldset_name}"{xhtml}>
+
+    {# data #}
+    <fieldset class="uk-width-1-1 uk-margin-large-top">
+      <div class="uk-form-row">
+        <label class="uk-form-label">{lang_draft} {help_draft}</label>
+        <div class="uk-form-controls">
+          <input type="checkbox" name="draft_flag" value="1" {draft_flag} {xhtml} disabled>
+          <span class="uk-form-help-inline uk-text-small uk-text-warning">{draft_msg}</span>
+        </div>
+      </div>
+{!if code}
+      <div class="uk-form-row">
+        <label class="uk-form-label">{lang_code}{help_code}</label>
+        <div class="uk-form-controls">
+          {code}
+        </div>
+      </div>
+{!endif}
+      <div class="uk-form-row">
+        <label class="uk-form-label">{lang_title} {help_title}<span class="uk-form-help-inline uk-text-danger">{lang_must}</span></label>
+        <div class="uk-form-controls">
+          <input type="text" class="uk-form-width-large" size="48" maxlength="160" name="title" value="{title}" required{xhtml}>
+        </div>
+      </div>
+      <div class="uk-form-row">
+        <label class="uk-form-label">{lang_page_title} {help_page_title}</label>
+        <div class="uk-form-controls">
+          <input type="text" class="uk-form-width-large" size="48" maxlength="160" name="page_title" value="{page_title}"{xhtml}>
+        </div>
+      </div>
+      <div class="uk-form-row">
+        <label class="uk-form-label" for="databox_description">{lang_description} {help_description}</label>
+        <div class="uk-form-controls">
+          <textarea name="description" class="uk-width-1-1" rows="2" id="databox_description"
+            onKeyup="var n={maxlength_description}-this.value.length;var s=document.getElementById('description_cnt');s.innerHTML='('+n+')';">{description}</textarea>
+            <span class="uk-form-help-inline uk-text-bold" id="description_cnt"></span>
+        </div>
+      </div>
+      <div class="uk-form-row"{hide_language_id}>
+        <label class="uk-form-label">{lang_language_id} {help_language_id}</label>
+        <div class="uk-form-controls">
+          {select_language_id}
+        </div>
+      </div>
+{!if code}
+      <div class="uk-form-row">
+        <label class="uk-form-label">{lang_udatetime}</label>
+        <div class="uk-form-controls">
+{udatetime} {lang_uuid}:{uuid}
+        </div>
+      </div>
+      <div class="uk-form-row">
+        <label class="uk-form-label">{lang_created}</label>
+        <div class="uk-form-controls">
+          {created}
+        </div>
+      </div>
+{!endif}
+      <input type="hidden" size="48" maxlength="160" name="code" value="{code}"{xhtml}>
+      <input type="hidden" name="udatetime" value="{udatetime}"{xhtml}>
+      <input type="hidden" name="created" value="{created}"{xhtml}>
+      <input type="hidden" name="created_un" value="{created_un}"{xhtml}>
+
+    </fieldset>
+
+    <!-- Addition fields -->
+    <fieldset class="uk-width-1-1 uk-margin-large-top">
+      {additionfields}
+    </fieldset>
+
+    <!-- Submit button - Save Cancel Delete -->
+    <div class="uk-form-row uk-margin-large-top">
+      <div class="uk-form-controls">
+        <input type="submit" value="{lang_save}" name="mode" class="uk-button uk-form-width-medium"{xhtml}>
+        <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
+        <input type="hidden" value="{code}" name="old_code"{xhtml}>
+        <input type="hidden" value="{old_mode}" name="old_mode"{xhtml}>
+        {delete_option}
+        <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+      </div>
+    </div>
+  </form>
+</div>
+
+{# end {templatelocation} #}

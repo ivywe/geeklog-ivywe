@@ -1,0 +1,50 @@
+{# begin {templatelocation} #}
+
+<div>
+
+  <ul class="uk-breadcrumb">
+    <li><a href="{site_url}/">{home}</a></li>
+    <li>{attribute_top}</li>
+    <li>{field_top}</li>
+  </ul>
+
+  <h1 class="uk-h1">{field_top}{field_name}{fieldvalue}</h1>
+
+  <a href="#db_attribute_list_detail_{addition_code}" class="uk-button uk-button-small" data-uk-modal>Theme variables</a>
+
+  <p>{field_templatesetvar} {field_description}</p>
+  <p>{msg}</p>
+
+  {nav_var}
+
+</div>
+
+<!-- This is the modal -->
+<div id="db_attribute_list_detail_{addition_code}" class="uk-modal">
+  <div class="uk-modal-dialog">
+    <a class="uk-modal-close uk-close"></a>
+    <div class="uk-text-break">
+      <span class="uk-text-bold">theme variables:</span> {templatelocation}(<a href="{site_url}/admin/plaugins/databox/docs/japanese/templatesetvars.html">Document</a>)
+    </div>
+    <ul class="uk-list uk-list-line">
+      <li><span style="color:green">&#123;field_name&#125;</span>:{field_name}</li>
+      <li><span style="color:green">&#123;fieldvalue&#125;</span>:{fieldvalue}</li>
+      <li><span style="color:green">&#123;field_templatesetvar&#125;</span>:{field_templatesetvar}</li>
+      <li><span style="color:green">&#123;field_description&#125;</span>:{field_description}</li>
+      <li><span style="color:green">&#123;_languageid&#125;</span>:{_languageid}</li>
+      <li><span style="color:green">&#123;language&#125;</span>:{language}</li>
+      <li><span style="color:green">&#123;uid&#125;</span>:{uid}</li>
+      <li><span style="color:green">&#123;username&#125;</span>:{username}</li>
+      <li><span style="color:green">&#123;fullname&#125;</span>:{fullname}</li>
+      <li><span style="color:green">&#123;displayname&#125;</span>:{displayname}</li>
+      <li>{lang_imgfile_frd}</li>
+      <li><span style="color:green">&#123;imgfile_frd&#125;</span>:{imgfile_frd}</li>
+      <li><span style="color:green">&#123;data_img_url&#125;</span>:{data_img_url}</li>
+      <li>{lang_imgfile_thumb_frd}</li>
+      <li><span style="color:green">&#123;imgfile_thumb_frd&#125;</span>:{imgfile_thumb_frd}</li>
+      <li><span style="color:green">&#123;data_thumb_img_url&#125;</span>:{data_thumb_img_url}</li>
+    </ul>
+  </div>
+</div>
+
+{# end {templatelocation} #}

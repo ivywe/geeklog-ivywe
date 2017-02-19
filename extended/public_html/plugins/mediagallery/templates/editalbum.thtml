@@ -1,0 +1,387 @@
+{# begin {templatelocation} #}
+
+{start_block}
+<script type="text/javascript">
+<!--
+function change(what) {
+    value = '{path_mg}/watermarks/' + what.options[what.selectedIndex].value;
+    if (value != '')
+        if (document.images)
+            document.images['myImage'].src = value;
+}
+//-->
+</script>
+
+<form enctype="multipart/form-data" method="post" action="{s_form_action}" class="uk-form uk-form-horizontal">
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_title}</label>
+            <div class="uk-form-controls"><input type="text" name="album_name" value="{album_title}" class="uk-form-width-large"{xhtml}></div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_description}</label>
+            <div class="uk-form-controls"><textarea name="album_desc" cols="50" rows="3" class="uk-width-1-1">{album_desc}</textarea></div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_parent_album}</label>
+            <div class="uk-form-controls">{parent_select}</div>
+        </div>
+
+    <fieldset class="uk-margin-large-top">
+      <legend>{lang_album_attributes}</legend>
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_theme_select}</label>
+            <div class="uk-form-controls">{album_theme_select}</div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_comments}</label>
+            <div class="uk-form-controls">{comment_select}</div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_enable_exif}</label>
+            <div class="uk-form-controls">{exif_select}</div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_enable_ratings}</label>
+            <div class="uk-form-controls">{ranking_select}</div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_enable_rss}</label>
+            <div class="uk-form-controls">{rss_select}</div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_rsschildren}</label>
+            <div class="uk-form-controls">{rsschildren_select}</div>
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_podcast}</label>
+            <div class="uk-form-controls">{podcast_select}</div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_mp3ribbon}</label>
+            <div class="uk-form-controls">{mp3ribbon_select}</div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_enable_sort}</label>
+            <div class="uk-form-controls">{sort_select}</div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_album_sort}</label>
+            <div class="uk-form-controls">{album_sort_select}</div>
+        </div>
+<!-- 
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_enable_postcard}</label>
+            <div class="uk-form-controls">{postcard_select}</div>
+        </div>
+-->
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_display_album_desc}</label>
+            <div class="uk-form-controls">{display_album_desc_select}</div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_enable_album_views}</label>
+            <div class="uk-form-controls">{album_views_select}</div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_enable_views}</label>
+            <div class="uk-form-controls">{views_select}</div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_enable_keywords}</label>
+            <div class="uk-form-controls">{keywords_select}</div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_image_skin}</label>
+            <div class="uk-form-controls">{skin_select}</div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_display_skin}</label>
+            <div class="uk-form-controls">{dskin_select}</div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_album_skin}</label>
+            <div class="uk-form-controls">{askin_select}</div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_albums_first}</label>
+            <div class="uk-form-controls">{afirst_select}</div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_tn_size}</label>
+            <div class="uk-form-controls"><select name="tn_size">
+<option value="0">Include:100x100</option>
+<option value="1">Include:150x150</option>
+<option value="2">Include:200x200</option>
+<option value="3">Include:Custom</option>
+<option value="10">Crop:100x100</option>
+<option value="11">Crop:150x150</option>
+<option value="12">Crop:200x200</option>
+<option value="13" selected="selected">Crop:Custom</option>
+</select></div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_tnwidth}</label>
+            <div class="uk-form-controls">{tnwidth_input}</div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_tnheight}</label>
+            <div class="uk-form-controls">{tnheight_input}</div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_av_play_options}</label>
+            <div class="uk-form-controls">{playback_type}</div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_ss_enable}</label>
+            <div class="uk-form-controls">{ss_select}</div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_rows}</label>
+            <div class="uk-form-controls">{rows_input}</div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_columns}</label>
+            <div class="uk-form-controls">{columns_input}</div>
+        </div>
+    </fieldset>
+
+    <fieldset class="uk-margin-large-top">
+      <legend>{lang_album_cover}</legend>
+{!if thumbnail}
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_thumbnail}</label>
+            <div class="uk-form-controls">{thumbnail}</div>
+        </div>
+{!endif}
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_attached_thumbnail}</label>
+            <div class="uk-form-controls">{attach_select}</div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_thumbnail}</label>
+            <div class="uk-form-controls"><input type="file" dir="ltr" name="thumbnail"{xhtml}></div>
+        </div>
+    </fieldset>
+
+    <fieldset class="uk-margin-large-top">
+      <legend>{lang_featured_album}</legend>
+        <div class="uk-form-row">
+            <label class="uk-form-label">{lang_set_featured}</label>
+            <div class="uk-form-controls">{featured_select}
+                <span class="uk-form-help-inline">{lang_featured_help}</span></div>
+        </div>
+          <div class="uk-form-row">
+            <label class="uk-form-label">{lang_position}</label>
+            <div class="uk-form-controls">{feature_position}</div>
+        </div>
+
+          <div class="uk-form-row">
+            <label class="uk-form-label">{lang_topic}</label>
+            <div class="uk-form-controls">{feature_page_select}</div>
+        </div>
+    </fieldset>
+
+    <fieldset class="uk-margin-large-top">
+      <legend>{lang_media_attributes}</legend>
+          <div class="uk-form-row">
+            <label class="uk-form-label">{lang_filename_title}</label>
+            <div class="uk-form-controls">{filename_title_select}</div>
+        </div>
+          <div class="uk-form-row">
+            <label class="uk-form-label">{lang_allow_download}</label>
+            <div class="uk-form-controls">{allow_download_select}</div>
+        </div>
+          <div class="uk-form-row">
+            <label class="uk-form-label">{lang_full_display}</label>
+            <div class="uk-form-controls">{full_select}</div>
+        </div>
+          <div class="uk-form-row">
+            <label class="uk-form-label">{lang_ri_enable}</label>
+            <div class="uk-form-controls">{ri_select}</div>
+        </div>
+          <div class="uk-form-row">
+            <label class="uk-form-label">{lang_max_image_width}</label>
+            <div class="uk-form-controls">{width_input}</div>
+        </div>
+          <div class="uk-form-row">
+            <label class="uk-form-label">{lang_max_image_height}</label>
+            <div class="uk-form-controls">{height_input}</div>
+        </div>
+          <div class="uk-form-row">
+            <label class="uk-form-label">{lang_max_filesize}</label>
+            <div class="uk-form-controls">{max_size_input}&nbsp;Kb {lang_unlimited}</div>
+        </div>
+          <div class="uk-form-row">
+            <label class="uk-form-label">{lang_display_image_size}</label>
+            <div class="uk-form-controls">{display_image_size}</div>
+        </div>
+          <div class="uk-form-row">
+            <label class="uk-form-label">{lang_usealternate}</label>
+            <div class="uk-form-controls">{usealternate_select}</div>
+        </div>
+    </fieldset>
+
+    <fieldset class="uk-margin-large-top">
+      <legend>{lang_watermark}</legend>
+          <div class="uk-form-row">
+            <label class="uk-form-label">{lang_wm_auto}</label>
+            <div class="uk-form-controls">{wm_auto_select}</div>
+        </div>
+          <div class="uk-form-row">
+            <label class="uk-form-label">{lang_wm_opacity}</label>
+            <div class="uk-form-controls">{wm_opacity_select}</div>
+        </div>
+          <div class="uk-form-row">
+            <label class="uk-form-label">{lang_wm_location}</label>
+            <div class="uk-form-controls">{wm_location_select}</div>
+        </div>
+          <div class="uk-form-row">
+            <label class="uk-form-label">{lang_wm_id}</label>
+            <div class="uk-form-controls">{wm_select}
+              <span class="uk-form-help-inline">{wm_current}</span></div>
+        </div>
+    </fieldset>
+
+    <fieldset class="uk-margin-large-top">
+      <legend>{lang_allowed_formats}</legend>
+      <table class="uk-table uk-table-condensed uk-table-striped uk-width-1-1" style="background:#ffffff;">
+        <tr>
+          <th style="text-align:center">{lang_image}</th>
+          <th style="text-align:center">{lang_audio} / {lang_video}</th>
+          <th style="text-align:center">{lang_other}</th>
+        </tr>
+        <tr>
+          <td valign="top" align="center">
+            <table>
+              <tr>
+                <td align="left">
+                  <input type="checkbox" name="format_jpg" value="1" {jpg_checked}{xhtml}> <span class="uk-form-help-inline">{lang_jpg}</span><br{xhtml}>
+                  <input type="checkbox" name="format_png" value="2" {png_checked}{xhtml}> <span class="uk-form-help-inline">{lang_png}</span><br{xhtml}>
+                  <input type="checkbox" name="format_tif" value="4" {tif_checked}{xhtml}> <span class="uk-form-help-inline">{lang_tif}</span><br{xhtml}>
+                  <input type="checkbox" name="format_gif" value="8" {gif_checked}{xhtml}> <span class="uk-form-help-inline">{lang_gif}</span><br{xhtml}>
+                  <input type="checkbox" name="format_bmp" value="16" {bmp_checked}{xhtml}> <span class="uk-form-help-inline">{lang_bmp}</span><br{xhtml}>
+                  <input type="checkbox" name="format_tga" value="32" {tga_checked}{xhtml}> <span class="uk-form-help-inline">{lang_tga}</span><br{xhtml}>
+                  <input type="checkbox" name="format_psd" value="64" {psd_checked}{xhtml}> <span class="uk-form-help-inline">{lang_psd}</span><br{xhtml}>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td valign="top" align="center">
+            <table>
+              <tr>
+                <td align="left">
+                  <input type="checkbox" name="format_mp3" value="128" {mp3_checked}{xhtml}> <span class="uk-form-help-inline">{lang_mp3}</span><br{xhtml}>
+                  <input type="checkbox" name="format_ogg" value="256" {ogg_checked}{xhtml}> <span class="uk-form-help-inline">{lang_ogg}</span><br{xhtml}>
+                  <input type="checkbox" name="format_asf" value="512" {asf_checked}{xhtml}> <span class="uk-form-help-inline">{lang_asf}</span><br{xhtml}>
+                  <input type="checkbox" name="format_swf" value="1024" {swf_checked}{xhtml}> <span class="uk-form-help-inline">{lang_swf}</span><br{xhtml}>
+                  <input type="checkbox" name="format_mov" value="2048" {mov_checked}{xhtml}> <span class="uk-form-help-inline">{lang_mov}</span><br{xhtml}>
+                  <input type="checkbox" name="format_mp4" value="4096" {mp4_checked}{xhtml}> <span class="uk-form-help-inline">{lang_mp4}</span><br{xhtml}>
+                  <input type="checkbox" name="format_mpg" value="8192" {mpg_checked}{xhtml}> <span class="uk-form-help-inline">{lang_mpg}</span><br{xhtml}>
+                  <input type="checkbox" name="format_flv" value="131072" {flv_checked}{xhtml}> <span class="uk-form-help-inline">{lang_flv}</span><br{xhtml}>
+                  <input type="checkbox" name="format_rflv" value="262144" {rflv_checked}{xhtml}> <span class="uk-form-help-inline">{lang_rflv}</span><br{xhtml}>
+                  <input type="checkbox" name="format_emb" value="524288" {emb_checked}{xhtml}> <span class="uk-form-help-inline">{lang_emb}</span><br{xhtml}>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td valign="top" align="center">
+            <table>
+              <tr>
+                <td align="left">
+                  <input type="checkbox" name="format_zip" value="16384" {zip_checked}{xhtml}> <span class="uk-form-help-inline">{lang_zip}</span><br{xhtml}>
+                  <input type="checkbox" name="format_other" value="32768" {other_checked}{xhtml}> <span class="uk-form-help-inline">{lang_other}</span><br{xhtml}>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+
+{!if perms_editor_admin}
+    <fieldset class="uk-margin-large-top">
+      <legend>{lang_uploads}</legend>
+          <div class="uk-form-row">
+            <label class="uk-form-label">{lang_member_upload}</label>
+            <div class="uk-form-controls">{uploads}</div>
+        </div>
+          <div class="uk-form-row">
+            <label class="uk-form-label">{lang_moderate_album}</label>
+            <div class="uk-form-controls">{moderate}</div>
+        </div>
+          <div class="uk-form-row">
+            <label class="uk-form-label">{lang_mod_group}</label>
+            <div class="uk-form-controls">{mod_dropdown}</div>
+        </div>
+          <div class="uk-form-row">
+            <label class="uk-form-label">{lang_email_mods_on_submission}</label>
+            <div class="uk-form-controls">{email_mod_select}</div>
+        </div>
+    </fieldset>
+
+    <fieldset class="uk-margin-large-top">
+      <legend>{lang_accessrights}</legend>
+
+          <div class="uk-form-row">
+            <label class="uk-form-label">{lang_owner}</label>
+            <div class="uk-form-controls">{owner_select}</div>
+        </div>
+          <div class="uk-form-row">
+            <label class="uk-form-label">{lang_group}</label>
+            <div class="uk-form-controls">{group_dropdown}</div>
+        </div>
+          <div class="uk-form-row">
+            <label class="uk-form-label">{lang_permissions}</label>
+            <div class="uk-form-controls">{permissions_editor}
+            <span class="uk-form-help-inline">{lang_perm_key}</span></div>
+        </div>
+          <div class="uk-form-row">
+            <label class="uk-form-label">{lang_hidden}</label>
+            <div class="uk-form-controls">{hidden}</div>
+        </div>
+          <div class="uk-form-row">
+            <label class="uk-form-label">{lang_force_child_update}</label>
+            <div class="uk-form-controls">{force_child_update}</div>
+        </div>
+    </fieldset>
+{!endif}
+
+{!if perms_editor_member}
+    <fieldset class="uk-margin-large-top">
+      <legend>{lang_accessrights}</legend>
+          <div class="uk-form-row">
+            <label class="uk-form-label">{lang_owner}</label>
+            <div class="uk-form-controls">
+                {owner_username}<input type="hidden" name="owner_id" value="{owner_id}"{xhtml}></div>
+        </div>
+          <div class="uk-form-row">
+            <label class="uk-form-label">{lang_permissions}</label>
+            <div class="uk-form-controls">{permissions_editor}
+              <span class="uk-form-help-inline">{lang_perm_key}</span></div>
+        </div>
+          <div class="uk-form-row">
+            <label class="uk-form-label">{lang_force_child_update}</label>
+            <div class="uk-form-controls">{force_child_update}</div>
+        </div>
+    </fieldset>
+{!endif}
+
+          <div class="uk-form-row">
+            <div class="uk-form-controls">
+          <input type="submit" value="{lang_save}" name="mode" class="submit"{xhtml}>
+          <input type="submit" value="{lang_delete}" name="mode" class="submit"{xhtml}>
+          <input type="submit" value="{lang_cancel}" name="mode" class="submit"{xhtml}>
+          <input type="hidden" name="album_id" value="{album_id}"{xhtml}>
+          <input type="hidden" name="cover" value="{album_cover}"{xhtml}>
+          <input type="hidden" name="owner" value="{album_owner}"{xhtml}>
+          <input type="hidden" name="order" value="{album_order}"{xhtml}>
+          <input type="hidden" name="album_cover_filename" value="{album_cover_filename}"{xhtml}>
+          <input type="hidden" name="last_update" value="{last_update}"{xhtml}>
+          <input type="hidden" name="media_count" value="{media_count}"{xhtml}>
+          <input type="hidden" name="action" value="{action}"{xhtml}>
+          <input type="hidden" name="origaid" value="{old_album_id}"{xhtml}>
+            </div>
+          </div>
+</form>
+{end_block}
+
+{# end {templatelocation} #}

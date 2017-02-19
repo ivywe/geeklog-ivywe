@@ -1,0 +1,24 @@
+{# begin {templatelocation} #}
+{# plugins/databox/templates/admin/information.thtml  20151109 #}
+{about_thispage}
+<p>Ver:{version}</p>
+<p> <a href="{document_url}" target="_blank">{lang_document}</a></p>
+<ul>
+  <li><a href="{document_url}install.html" target="_blank">{lang_install}</a> </li>
+  <li><a href="{document_url}databox.html" target="_blank">{lang_configuration}</a></li>
+  <li><a href="{document_url}autotags.html" target="_blank">{lang_autotags}</a></li>
+  <li><a href="{document_url}files.html" target="_blank">{lang_files}</a></li>
+  <li><a href="{document_url}templatesetvars.html" target="_blank">{lang_templatesetvars}</a></li>
+  <li><a href="{document_url}tables.html" target="_blank">{lang_tables}</a></li>
+  <li><a href="{document_url}input.html" target="_blank">{lang_input}</a></li>
+</ul>
+
+
+
+
+
+<form name='databox_conf_link' action='{site_admin_url}/configuration.php' method='POST'>
+<input type='hidden' name='conf_group' value='databox'></form>
+<p> <a style='text-decoration: none;' href='#' onclick="document.databox_conf_link.submit()">{lang_configuration}</a></p>
+{# end {templatelocation} #}
+

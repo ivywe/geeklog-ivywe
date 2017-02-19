@@ -1,0 +1,9 @@
+{# begin {templatelocation} #}
+
+<h3>{title}</h3>
+<div>
+{status_msg}
+{admin_body}
+</div>
+
+{# end {templatelocation} #}

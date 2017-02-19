@@ -1,0 +1,7 @@
+#! /bin/sh
+cd /path/to/geeklog/job/;
+/usr/bin/php  /path/to/geeklog/job/databoxcache.php data xxxx1
+/usr/bin/php  /path/to/geeklog/job/databoxcache.php category xxxx2
+/usr/bin/php  /path/to/geeklog/job/databoxcache.php datapage xxxx3
+/usr/bin/php  /path/to/geeklog/job/databoxcache.php categorypage xxxx3
+exit

@@ -1,0 +1,131 @@
+{# begin {templatelocation} #}
+
+<div>
+  <form class="uk-form" action="#" onsubmit="codeAddress(); return false">
+    <p>{edit_marker_text}        
+    </p>
+    <p>
+    <input type="text" style="width:350px" id="geoaddress" name="geoaddress" value="{default_address}" onkeyup="copyText()"/>
+    <input type="submit" value="{go}" onfocus="copyText();" />
+    </p>
+    <div id="map_contener_submission">
+    <div id="map_canvas" style="width: 100%; height: 400px"></div>
+    <div id="submission_presentation">
+    </div>
+    </div>
+  </form>
+</div>
+&nbsp;
+<div id="marker_form">
+  <form name="marker_edit" action="{site_url}/admin/plugins/maps/marker_edit.php" method="POST">
+    <fieldset style="margin-top: 10px;padding:10px;">
+    <legend>{arrow}<a style="text-decoration: none;" onClick="elementToggle('informations'); return false;" href="#"><b>{informations}</b></a></legend>
+      <div id="informations">
+        <p><b>{name_label}</b><font color="red">*</font> <input type="text" name="name" value="{name}" size="80" maxlength="255"></p>
+        <p><b>{address_label}</b><font color="red">*</font> <input type="text" id="address" name="address" value="{address}" size="80" maxlength="255"></p>
+        <p><b>{lat}</b> <input type="text" id="lat" name="lat" value="{lat_value}" size="14" maxlength="12">&nbsp;&nbsp; 
+        <b>{lng}</b> <input type="text" id="lng" name="lng" value="{lng_value}" size="14" maxlength="12"><br{xhtml}>
+        {empty_for_geo}</p>
+        <p><b>{mid_label}</b> &nbsp;<select id="mid" name="mid">{map_options}</select><br{xhtml}>
+        {select_marker_map}</p>
+        <p><small>{created_label} {created}<br{xhtml}>{modified_label} {modified}</small></p>
+      </div>
+    </fieldset>  
+        <fieldset style="margin-top: 10px;"><legend>{arrow}<a style="text-decoration: none;" onClick="elementToggle('marker_label'); return false;" href="#"><b>{marker_customisation}</b></a></legend>
+      <div id="marker_label"  style="display:none;">
+        <p>{mk_default} <select name="mk_default">
+        <option value="0"{mk_default_no}>{no}</option>
+        <option value="1"{mk_default_yes}>{yes}</option>
+        </select></p>
+        <div>{icon}</div>
+        <p>{primary_color_label}
+        
+        <input type="text" id="primary_color" name="primary_color" value="{primary_color}" size="7" maxlength="7"></p>
+        <p>{stroke_color_label}
+        
+        <input type="text" id="stroke_color" name="stroke_color" value="{stroke_color}" size="7" maxlength="7"></p>
+        <p>{label_label} <input type="text" id="label" name="label" value="{label}" size="1" maxlength="1">&nbsp;&nbsp;&nbsp;{label_color_label}  <select name="label_color">
+        <option value="0"{label_color_black}>{black}</option>
+        <option value="1"{label_color_white}>{white}</option>
+        </select>
+        
+      </div>
+    </fieldset>    
+    <fieldset style="margin-top: 10px;">
+    <legend>{arrow}<b><a style="text-decoration: none;" onClick="elementToggle('general_settings'); return false;" href="#">{general_settings}</a></h3></b></legend>
+      <div id="general_settings" style="display:none;">
+        <p>{payed} <select name="payed">
+        <option value="0"{payed_no}>{no}</option>
+        <option value="1"{payed_yes}>{yes}</option>
+        </select>&nbsp;&nbsp;&nbsp;
+        {active} <select name="active">
+        <option value="0"{active_no}>{no}</option>
+        <option value="1"{active_yes}>{yes}</option>
+        </select>&nbsp;&nbsp;&nbsp;
+        {hidden} <select name="hidden">
+        <option value="0"{hidden_no}>{no}</option>
+        <option value="1"{hidden_yes}>{yes}</option>
+        </select></p>
+        <p>{marker_validity} <select id="validity" name="validity" OnChange="changeValidity();">
+        <option value="0"{validity_no}>{no}</option>
+        <option value="1"{validity_yes}>{yes}</option>
+        </select>
+        &nbsp;&nbsp;&nbsp;{from_label} <input type="text" id="from" name="from" value="{from}" size="14" maxlength="12"{disabled}>
+        &nbsp;&nbsp;&nbsp;{to_label}  <input type="text" id="to" name="to" value="{to}" size="14" maxlength="12"{disabled}></p>
+        <p><a style="text-decoration: none;" onClick="elementToggle('remark'); return false;" href="#">{remark_label}</a></p>
+        <div id="remark" style="display:none">
+            <textarea rows="5" id="remark" name="remark" cols="51" style="width:99%">{remark}</textarea></p>
+        </div>
+      </div>
+    </fieldset>
+    <fieldset style="margin-top: 10px;">
+    <legend>{arrow}<b><a style="text-decoration: none;" onClick="elementToggle('presentation_tab'); return false;" href="#">{presentation_tab}</a></b></legend>
+      <div id="presentation_tab" style="display:block;">
+        <p><b>{description_label}</b><br{xhtml}><textarea rows="4" id="description" name="description" cols="51" style="width:99%">{description}</textarea>
+        </p>
+        <p><b>{street_label}</b> {street}</p>
+        <p><b>{code_label}</b> {code}</p>
+        <p><b>{city_label}</b> {city}</p>
+        <p><b>{state_label}</b> {state}</p>
+        <p><b>{country_label}</b> {country}</p>
+        <p><b>{tel_label}</b> {tel}</p>
+        <p><b>{fax_label}</b> {fax}</p>
+        <p><b>{web_label}</b> {web}</p>
+      </div>
+    </fieldset>
+    <fieldset style="margin-top: 10px;">
+    <legend>{arrow}<b><a style="text-decoration: none;" onClick="elementToggle('ressources_tab'); return false;" href="#">{ressources_tab}</a></b></legend>
+      <div id="ressources_tab" style="display:block;">
+        {ressources}
+      </div>
+    </fieldset>
+    <fieldset style="margin-top: 10px;">
+    <legend>{arrow}<b><a style="text-decoration: none;" onClick="elementToggle('lang_accessrights'); return false;" href="#">{lang_accessrights}</a></b></legend>
+      <div id="lang_accessrights" style="display:none;">
+        <!--<div><p>{lang_owner}: {owner_name}<input type="hidden" name="owner_id" value="{owner_id}"{xhtml}></p></div>-->
+        <div>{lang_owner}: {owner_select}</div>
+        <div><p>{lang_group}: {group_dropdown}</p></div>
+      </div>
+    </fieldset>
+    <fieldset style="margin-top: 10px;">
+    <legend>{arrow}<b><a style="text-decoration: none;" onClick="elementToggle('lang_permissions'); return false;" href="#">{lang_permissions}</a></b></legend>
+      <div id="lang_permissions" style="display:none;">
+        <p>{lang_perm_key}</p>
+        <p>{permissions_editor}</p>
+        <p>{lang_permissions_msg}</p>
+      </div>
+    </fieldset>
+    <p><font color="red"><strong><small>*</font> {required_field}</small></strong></p>
+    <div>
+      <select name="mode" >
+      <option value="save" selected="selected">{save_button}</option>
+      <option value="delete">{delete_button}</option>
+      </select>
+      <input type="hidden" name="submission" value="{submission}">
+      <input type="submit" name="submit" value="{ok_button}">
+      {mkid}
+    </div>
+  </form>
+</div>
+
+{# end {templatelocation} #}

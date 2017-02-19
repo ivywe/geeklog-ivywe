@@ -1,0 +1,10 @@
+{# begin {templatelocation} #}
+
+<dl class="uk-description-list-horizontal">
+{stories_col}
+</dl>
+
+<div class="uk-text-right"><a href="{rss_url}">{rss_title}</a></div>
+<div class="uk-text-right"><a href="{more_url}">{more_title}</a></div>
+
+{# end {templatelocation} #}

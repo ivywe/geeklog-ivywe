@@ -1,0 +1,5 @@
+{# begin {templatelocation} #}
+
+    {autotag}
+
+{# end {templatelocation} #}

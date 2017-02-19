@@ -1,0 +1,43 @@
+{# begin {templatelocation} #}
+
+<div>
+
+  <ul class="uk-breadcrumb">
+    <li><a href="{site_url}/">{home}</a></li>
+    <li>{attribute_top}</li>
+    <li>{field_top}</li>
+  </ul>
+
+  <h1 class="uk-h1">{field_top}{field_name}{fieldvalue}</h1>
+
+  <a href="#db_attribute_nohit" class="uk-button uk-button-small" data-uk-modal>Theme variables</a>
+
+  <p>{lang_nohit}</p>
+
+</div>
+
+<!-- This is the modal -->
+<div id="db_attribute_nohit" class="uk-modal">
+  <div class="uk-modal-dialog">
+    <a class="uk-modal-close uk-close"></a>
+    <div class="uk-text-break">
+      <span class="uk-text-bold">theme variables:</span> {templatelocation}(<a href="{site_url}/admin/plugins/databox/docs/japanese/templatesetvars.html">Document</a>)
+    </div>
+    <ul class="uk-list uk-list-line">
+      <li><span style="color:green">&#123;home&#125;</span>:{home}</li>
+      <li><span style="color:green">&#123;attribute_top&#125;</span>:{attribute_top}</li>
+      <li><span style="color:green">&#123;field_top&#125;</span>:{field_top}</li>
+      <li><span style="color:green">&#123;field_name&#125;</span>:{field_name}</li>
+      <li><span style="color:green">&#123;field_templatesetvar&#125;</span>:{field_templatesetvar}</li>
+      <li><span style="color:green">&#123;field_description&#125;</span>:{field_description}</li>
+      <li><span style="color:green">&#123;field_value&#125;</span>:{field_value}</li>
+      <li><span style="color:green">&#123;xhtml&#125;</span>:{xhtml}</li>
+      <li><span style="color:green">&#123;site_url&#125;</span>:{site_url}</li>
+      <li><span style="color:green">&#123;site_admin_url&#125;</span>:{site_admin_url}</li>
+      <li><span style="color:green">&#123;layout_url&#125;</span>:{layout_url}</li>
+      <li><span style="color:green">&#123;lang_nohit&#125;</span>:{lang_nohit}</li>
+    </ul>
+  </div>
+</div>
+
+{# end {templatelocation} #}

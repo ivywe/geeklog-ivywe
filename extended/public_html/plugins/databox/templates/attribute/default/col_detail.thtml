@@ -1,0 +1,105 @@
+{# begin {templatelocation} #}
+
+<li>
+  {data_link}(<a href="#db_category_col_detail_{data_code}" data-uk-modal>example</a>){data_edit}{!if new_img}<span class="uk-badge uk-badge-danger">new!</span>{!endif}
+</li>
+
+<div id="db_category_col_detail_{data_code}" class="uk-modal">
+  <div class="uk-modal-dialog">
+    <a class="uk-modal-close uk-close"></a>
+    <div class="uk-text-break">
+      <span class="uk-text-bold">theme variables:</span> {templatelocation}(<a href="{site_url}/admin/plugins/databox/docs/japanese/templatesetvars.html">Document</a>)
+    </div>
+
+    <span style="color:green">&#123;data_link&#125;</span>{data_link}<br{xhtml}>
+    <span style="color:green">&#123;data_title&#125;</span>{data_title}<br{xhtml}>
+    (id: <span style="color:green">&#123;data_id&#125;</span>{data_id})(code: <span style="color:green">&#123;data_code&#125;</span>{data_code})<br{xhtml}>
+    <span style="color:green">&#123;data_description&#125;</span>{data_description}&nbsp;
+    <span style="color:green">&#123;data_datefield&#125;</span>{data_datefield} {new_img}<br{xhtml}>
+    <span style="color:green">&#123;data_datefield_shortdate&#125;</span>{data_datefield_shortdate}<br{xhtml}>
+    <span style="color:green">&#123;data_datefield_date&#125;</span>{data_datefield_date}<br{xhtml}>
+    <span style="color:green">&#123;data_datefield_daytime&#125;</span>{data_datefield_daytime}<br{xhtml}>
+    <span style="color:green">&#123;data_datefield_dateonly&#125;</span>{data_datefield_dateonly}<br{xhtml}>
+    <span style="color:green">&#123;data_datefield_timeonle&#125;</span>{data_datefield_timeonly}<br{xhtml}>
+    <span style="color:green">&#123;data_datefield_b#125;</span>{data_datefield_b}<br{xhtml}>
+    <span style="color:green">&#123;data_datefield_B#125;</span>{data_datefield_B}<br{xhtml}>
+    <span style="color:green">&#123;data_datefield_d#125;</span>{data_datefield_d}<br{xhtml}>
+    <span style="color:green">&#123;data_datefield_e#125;</span>{data_datefield_e}<br{xhtml}>
+    <span style="color:green">&#123;data_released&#125;</span>{data_released}<br{xhtml}>
+    <span style="color:green">&#123;data_released_shortdate&#125;</span>{data_released_shortdate}<br{xhtml}>
+    <span style="color:green">&#123;data_released_date&#125;</span>{data_released_date}<br{xhtml}>
+    <span style="color:green">&#123;data_released_daytime&#125;</span>{data_released_daytime}<br{xhtml}>
+    <span style="color:green">&#123;data_released_dateonly&#125;</span>{data_released_dateonly}<br{xhtml}>
+    <span style="color:green">&#123;data_released_timeonle&#125;</span>{data_released_timeonly}<br{xhtml}>
+    <span style="color:green">&#123;data_released_b#125;</span>{data_released_b}<br{xhtml}>
+    <span style="color:green">&#123;data_released_B#125;</span>{data_released_B}<br{xhtml}>
+    <span style="color:green">&#123;data_released_d#125;</span>{data_released_d}<br{xhtml}>
+    <span style="color:green">&#123;data_released_e#125;</span>{data_released_e}<br{xhtml}>
+    <span style="color:green">&#123;data_expired&#125;</span>{data_expired}<br{xhtml}>
+    <span style="color:green">&#123;data_expired_shortdate&#125;</span>{data_expired_shortdate}<br{xhtml}>
+    <span style="color:green">&#123;data_expired_date&#125;</span>{data_expired_date}<br{xhtml}>
+    <span style="color:green">&#123;data_expired_daytime&#125;</span>{data_expired_daytime}<br{xhtml}>
+    <span style="color:green">&#123;data_expired_dateonly&#125;</span>{data_expired_dateonly}<br{xhtml}>
+    <span style="color:green">&#123;data_expired_timeonle&#125;</span>{data_expired_timeonly}<br{xhtml}>
+    <span style="color:green">&#123;data_expired_b#125;</span>{data_expired_b}<br{xhtml}>
+    <span style="color:green">&#123;data_expired_B#125;</span>{data_expired_B}<br{xhtml}>
+    <span style="color:green">&#123;data_expired_d#125;</span>{data_expired_d}<br{xhtml}>
+    <span style="color:green">&#123;data_expired_e#125;</span>{data_expired_e}<br{xhtml}>
+    <span style="color:green">&#123;data_hits&#125;</span>{data_hits}<br{xhtml}>
+    <span style="color:green">&#123;data_remaingdays&#125;</span>{data_remaingdays}<br{xhtml}>
+    <span style="color:green">&#123;data_value&#125;</span>{data_value}<br{xhtml}>
+
+
+    {# 下記テーマ変数　参考例です 登録されていない場合表示されません #}
+    <span style="color:green">&#123;zipcode&#125;</span>{zipcode}<br{xhtml}>
+    <span style="color:green">&#123;tel&#125;</span>{tel} <br{xhtml}>
+    <span style="color:green">&#123;additionfield1&#125;</span>{additionfield1}<br{xhtml}>
+    <span style="color:green">&#123;additionfield2&#125;</span>{additionfield2}<br{xhtml}>
+    <span style="color:green">&#123;additionfield3&#125;</span>{additionfield3}<br{xhtml}>
+    <span style="color:green">&#123;additionfield4&#125;</span>{additionfield4}<br{xhtml}>
+    <span style="color:green">&#123;additionfield5&#125;</span>{additionfield5}<br{xhtml}>
+    <span style="color:green">&#123;additionfield6&#125;</span>{additionfield6}<br{xhtml}>
+
+    <!-- カテゴリ グループコードを使用するテーマ変数 -->
+    <span style="color:green">&#123;group_city&#125;&#123;group_city_code&#125;</span>
+    {group_city} {group_city_code}<br{xhtml}>
+
+    <span style="color:green">&#123;group_country&#125;&#123;group_country_code&#125;</span>
+    {group_country} {group_country_code}<br{xhtml}>
+
+    <span style="color:green">&#123;group_team&#125;&#123;group_team_code&#125;</span>
+    {group_type} {group_team_code}<br{xhtml}>
+
+    <!-- カテゴリ リンク付　グループコード使用テーマ変数 -->
+    <span style="color:green">&#123;grouplink_city&#125;&#123;grouplink_city_code&#125;</span>
+    {grouplink_city} {grouplink_city_code}<br{xhtml}>
+
+    <span style="color:green">&#123;grouplink_country&#125;&#123;grouplink_country_code&#125;</span>
+    {grouplink_country} {grouplink_country_code}<br{xhtml}>
+
+    <span style="color:green">&#123;grouplink_team&#125;&#123;grouplink_team_code&#125;</span>
+    {grouplink_team} {grouplink_team_code}<br{xhtml}>
+
+    <!-- カテゴリ グループID使用テーマ変数-->
+    <span style="color:green">&#123;group_1&#125;&#123;group_1_code&#125;</span>
+    {group_1} {group_1_code}<br{xhtml}>
+
+    <span style="color:green">&#123;group_2&#125;&#123;group_2_code&#125;</span>
+    {group_2} {group_2_code}<br{xhtml}>
+
+    <span style="color:green">&#123;group_3&#125;&#123;group_3_code&#125;</span>
+    {group_3} {group_3_code}<br{xhtml}>
+
+    <!-- カテゴリリンク　グループID使用テーマ変数-->
+    <span style="color:green">&#123;grouplink_1&#125;&#123;grouplink_1_code&#125;</span>
+    {grouplink_1} {grouplink_1_code}<br{xhtml}>
+
+    <span style="color:green">&#123;grouplink_2&#125;&#123;grouplink_2_code&#125;</span>
+    {grouplink_2} {grouplink_2_code}<br{xhtml}>
+
+    <span style="color:green">&#123;grouplink_3&#125;&#123;grouplink_3_code&#125;</span>
+    {grouplink_3} {grouplink_3_code}<br{xhtml}>
+  </div>
+</div>
+
+{# end {templatelocation} #}

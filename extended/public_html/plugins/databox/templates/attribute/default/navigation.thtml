@@ -1,0 +1,17 @@
+{# begin {templatelocation} #}
+
+  <div class="uk-clearfix">
+    {page_navigation}
+    <div class="uk-float-right"">{lang_view} [{lin}] / {cnt}</div>
+  </div>
+
+  <ul class="uk-list uk-list-line">
+{row_var}
+  </ul>
+
+  <div class="uk-clearfix">
+    {page_navigation}
+    <div class="uk-float-right"">{lang_view} [{lin}] / {cnt} </div>
+  </div>
+
+{# end {templatelocation} #}

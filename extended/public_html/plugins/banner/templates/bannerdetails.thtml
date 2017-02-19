@@ -1,0 +1,8 @@
+{# begin {templatelocation} #}
+
+<li>
+  <strong>{banner_html}</strong> ({banner_hits}) {edit_icon} {banner_broken}
+  {banner_description}
+</li>
+
+{# end {templatelocation} #}

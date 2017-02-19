@@ -1,0 +1,34 @@
+{# begin {templatelocation} #}
+
+<div class="uk-form" style="clear:both">
+
+<fieldset class="uk-margin">
+<legend>(1){config}</legend>
+
+<ul>
+<li><a href="{site_admin_url}/plugins/{script}?mode=configbackup">{config_backup}</a>
+ ...{config_backup_help}</li>
+<li><a href="{site_admin_url}/plugins/{script}?mode=configinit">{config_init}</a>
+ ...{config_init_help}</li>
+<li><a href="{site_admin_url}/plugins/{script}?mode=configrestore">{config_restore}</a>
+ ...{config_restore_help}</li>
+<li><a href="{site_admin_url}/plugins/{script}?mode=configupdate">{config_update}</a>
+ ...{config_update_help}</li>
+</ul>
+<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+</fieldset>
+
+<fieldset class="uk-margin-large-top">
+<legend>(2){datamaster}</legend>
+<ul>
+<li><a href="{site_admin_url}/plugins/{script}?mode=dataclear">{data_clear}</a></li>
+<li><a href="{site_admin_url}/plugins/{script}?mode=allclear">{data_allclear}</a></li>
+<li><a href="{site_admin_url}/plugins/{script}?mode=backupform">{data_backup}</a></li>
+<li><a href="{site_admin_url}/plugins/{script}?mode=restoreform">{data_restore}</a></li>
+</ul>
+<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+</fieldset>
+
+</div>
+
+{# end {templatelocation} #}

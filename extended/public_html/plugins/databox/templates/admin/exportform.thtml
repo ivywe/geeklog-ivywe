@@ -1,0 +1,19 @@
+{# begin {templatelocation} #}
+
+<h1 class="uk-h1">Export{about_thispage}</h1>
+
+<form class="uk-form uk-form-stacked" action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data">
+
+  <div class="uk-form-row">
+    <label class="uk-form-label" >{lang_inst}</label>
+    <div class="uk-form-controls">
+      {lang_fieldset} {list_fieldset}
+      <input type="submit" value="{lang_export}" name="mode" class="uk-button"{xhtml}>
+      <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
+      <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+    </div>
+  </div>
+
+</form>
+
+{# end {templatelocation} #}

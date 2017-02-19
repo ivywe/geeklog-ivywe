@@ -1,0 +1,61 @@
+{# begin {templatelocation} #}
+
+<script language="JavaScript">
+    checked = false;
+    function checkedAllExport () {
+        if (checked == false) {
+        checked = true;
+    } else { 
+        checked = false
+    }
+      for (var i = 0; i < document.getElementById('export').elements.length; i++) {
+          document.getElementById('export').elements[i].checked = checked;
+      }
+    }
+  function checkedAllImport () {
+        if (checked == false){
+        checked = true;
+    } else { 
+        checked = false;
+    }
+      for (var i = 0; i < document.getElementById('import').elements.length; i++) {
+          document.getElementById('import').elements[i].checked = checked;
+      }
+    }
+</script>  
+<div id="import_form">
+  <form class="uk-form" name="import" id="import" action="{site_url}/admin/plugins/maps/import_export.php" method="POST"  enctype="multipart/form-data">
+    <fieldset style="margin-top: 10px;padding:10px;">
+    <legend><b>{import}</b></legend>
+      <p>{import_message}</p>
+      <p><b>{mid_label}</b> &nbsp;<select id="mid" name="mid">{map_options}</select></p>
+      <p><b>{select_file}</b> <input type="file" dir="ltr" name="file"{xhtml}>
+      <p><b>{separator_in}</b> &nbsp;<select id="separator_in" name="separator_in">{separator_options_in}</select></p>
+      <p><b>{choose_fields_import}</b></p>
+      <p>{fields_selector}</p>
+      <p><input type="checkbox" name="checkallimport" onclick="checkedAllImport();"> {checkall}</p>
+      <input type="hidden" name="mode" value="import">
+      <p><input type="submit" name="submit" value="{import}"></p>
+      
+    </fieldset>
+    
+  </form>
+</div>
+<div id="export_form">
+  <form name="export" id="export" action="{site_url}/admin/plugins/maps/import_export.php" method="POST">
+    <fieldset style="margin-top: 10px;padding:10px;">
+    <legend><b>{export}</b></legend>
+      <p>{export_message}</p>
+      <p><b>{mid_label}</b> &nbsp;<select id="mid" name="mid">{map_options}</select>
+      <p><b>{separator_out}</b> &nbsp;<select id="separator_out" name="separator_out">{separator_options_out}</select></p>
+      <p><b>{choose_fields_export}</b></p>
+      <p>{fields_selector}</p>
+      <p><input type="checkbox" name="checkallexport" onclick="checkedAllExport();"> {checkall}</p>
+      <input type="hidden" name="mode" value="export">
+      <p><input type="submit" name="submit" value="{export}"></p>
+    </fieldset>
+    
+  </form>
+</div>
+
+{# end {templatelocation} #}

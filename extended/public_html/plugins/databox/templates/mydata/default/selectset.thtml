@@ -1,0 +1,11 @@
+{# begin {templatelocation} #}
+
+<form class="uk-form" action="{site_url}/{script}" method="post" id="admin-selectset" class="uk-form">
+  <p>{lang_inst_newdata}</p>
+  {lang_fieldset} {list_fieldset}
+  <input type="submit" value="{lang_new}" name="mode" class="uk-button"{xhtml}>
+  <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
+  <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+</form>
+
+{# end {templatelocation} #}

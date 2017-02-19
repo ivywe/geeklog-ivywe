@@ -1,0 +1,44 @@
+{# begin {templatelocation} #}
+
+<form method="post" action="{s_form_action}" name="mg_static_album_sort" enctype="multipart/form-data" class="uk-form">
+  <div>
+    <table class="uk-table uk-table-condensed uk-table-striped uk-width-1-1" style="background:#ffffff;">
+    <tr>
+      <td class="mg_alignright" style="width:180px">{lang_starting_album}: </td>
+      <td>
+        {album_select}
+      </td>
+    </tr>
+    <tr>
+      <td class="mg_alignright">{lang_sort_by}: </td>
+      <td>
+        {sort_field_select}
+      </td>
+    </tr>
+    <tr>
+      <td class="mg_alignright">{lang_ascending}: </td>
+      <td>
+        <input type="radio" name="sortorder" value="0" checked="checked"{xhtml}>
+      </td>
+    </tr>
+    <tr>
+      <td class="mg_alignright">{lang_descending}: </td>
+      <td>
+        <input type="radio" name="sortorder" value="1"{xhtml}>
+      </td>
+    </tr>
+    <tr>
+      <td class="mg_alignright">{lang_process_subs}: </td>
+      <td>
+        <input type="checkbox" name="processsub" value="1"{xhtml}>
+      </td>
+    </tr>
+  </table>
+  </div>
+<div class="mg_submit">
+  <input type="submit" value="{lang_save}" name="mode"{xhtml}>
+  <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
+</div>
+</form>
+
+{# end {templatelocation} #}

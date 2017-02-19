@@ -1,0 +1,145 @@
+{# begin {templatelocation} #}
+
+<h2>Argument(<a href="#db_search_argument" data-uk-modal>example</a>)</h2>
+
+<!-- Search form sample -->
+
+<div class="uk-panel uk-panel-box">
+
+  <form class="uk-form uk-form-horizontal" action="{site_url}/{this_script}" method="get" >
+
+    <!-- set templatedir -->
+    <input name="templatedir" value="default" type="hidden">
+
+    <!-- fieldset Type id -->
+    <input name="fieldset" value="1" type="hidden">
+
+    <!-- Category -->
+
+    <!-- gor_1 Group id=1 OR -->
+    <div class="uk-form-row">
+      <label class="uk-form-label">Group {gor_1_names} id:1 OR</label>
+      <div class="uk-form-controls">
+        {gor_1}
+        <input name="gor_1[]" value="" type="hidden"><!-- Dummy -->
+      </div>
+    </div>
+
+    <!-- gand_2 Group id=2 AND -->
+    <div class="uk-form-row">
+      <label class="uk-form-label">Group {gand_2_names} id:2 AND</label>
+      <div class="uk-form-controls">
+        {gand_2}
+        <input name="gand_2[]" value="" type="hidden"><!-- Dummy -->
+      </div>
+    </div>
+
+    <!-- Title -->
+
+    <div class="uk-form-row">
+      <label class="uk-form-label">Title(Include)</label>
+      <div class="uk-form-controls">
+        <input value="{t}" type="text" name="t" style="width:130px">
+      </div>
+    </div>
+    <div class="uk-form-row">
+      <label class="uk-form-label">Title(Equal)</label>
+      <div class="uk-form-controls">
+        <input value="{teq}" type="text" name="teq" style="width:130px">
+      </div>
+    </div>
+
+    <!-- Attribute -->
+
+    <!-- aeq_1 == X (attribute id=1) -->
+    <div class="uk-form-row">
+      <label class="uk-form-label">{persons_name}(Equal)</label>
+      <div class="uk-form-controls">
+        <input size="12" class="uk-form-width-small" maxlength="160" name="aeq_1" value="" type="text">
+      </div>
+    </div>
+
+    <!-- afr_2 =< X =< ato_2 (attribute id=2) -->
+    <div class="uk-form-row">
+      <label class="uk-form-label">{ossname_name}(Between)</label>
+      <div class="uk-form-controls">
+        <input size="6" class="uk-form-width-small" maxlength="160" name="afr_2" value="" type="text"> - <input size="6" class="uk-form-width-small" maxlength="160" name="ato_2" value="" type="text">
+      </div>
+    </div>
+
+    <!-- etc. -->
+    <input name="perpage" value="10" type="hidden">
+    <input name="page" value="1" type="hidden">
+    <input name="nohitmsg" value="yes" type="hidden">
+    <input value="Search" class="uk-button" type="submit">
+
+  </form>
+
+</div>
+
+<div id="db_search_argument" class="uk-modal">
+  <div class="uk-modal-dialog">
+    <a class="uk-modal-close uk-close"></a>
+    <div class="uk-text-break">
+      <span class="uk-text-bold">theme variables(<a href="{site_url}/admin/plugins/databox/docs/japanese/templatesetvars.html">Document</a>):</span> {templatelocation}
+    </div>
+
+    <ul class="uk-list uk-list-line">
+      <li><span style="color:green"> &#123;fieldset&#125;</span>:{fieldset}
+      <span style="color:green"> &#123;fieldset_name&#125;</span>:{fieldset_name}</li>
+
+      <li><span style="color:green"> &#123;t&#125;</span>:{t}
+      <span style="color:green"> &#123;teq&#125;</span>:{teq}</li>
+
+      <li><span style="color:green"> &#123;fieldset&#125;</span>:{fieldset}
+      <span style="color:green"> &#123;fieldset_name&#125;</span>:{fieldset_name}</li>
+
+      <li><span style="color:green"> &#123;gor_1&#125;</span>:{gor_1}
+      <input name="gor_1[]" value="" type="hidden"></li>
+
+      <li><span style="color:green"> &#123;gand_2&#125;</span>:{gand_2}
+      <input name="gand_2[]" value="" type="hidden"></li>
+
+      <li><span style="color:green"> &#123;gor_1_names&#125;</span>:{gor_1_names}</li>
+      <li><span style="color:green"> &#123;gor_1_1_id&#125;</span>:{gor_1_1_id}</li>
+      <li><span style="color:green"> &#123;gor_1_2_id&#125;</span>:{gor_1_2_id}</li>
+      <li><span style="color:green"> &#123;gor_1_1_name&#125;</span>:{gor_1_1_name}</li>
+      <li><span style="color:green"> &#123;gor_1_2_name&#125;</span>:{gor_1_2_name}</li>
+
+      <li><span style="color:green"> &#123;gand_2_names&#125;</span>:{gand_2_names}</li>
+      <li><span style="color:green"> &#123;gand_2_1_id&#125;</span>:{gand_2_1_id}</li>
+      <li><span style="color:green"> &#123;gand_2_2_id&#125;</span>:{gand_2_2_id}</li>
+      <li><span style="color:green"> &#123;gand_2_1_name&#125;</span>:{gand_2_1_name}</li>
+      <li><span style="color:green"> &#123;gand_2_2_name&#125;</span>:{gand_2_2_name}</li>
+
+      <li><span style="color:green"> &#123;aeq_1&#125;</span>:{aeq_1}</li>
+      <li><span style="color:green"> &#123;a_1&#125;</span>:{a_1}</li>
+
+      <li><span style="color:green"> &#123;afr_2&#125;</span>:{afr_2}</li>
+
+      <li><span style="color:green"> &#123;ato_2&#125;</span>:{ato_2}</li>
+
+      <li><span style="color:green"> &#123;ams_3&#125;</span>:{ams_3}
+      <input name="ams_3[]" value="" type="hidden"></li>
+      <li><span style="color:green"> &#123;ams_3_names&#125;</span>:{ams_3_names}</li>
+      <li><span style="color:green"> &#123;ams_3_1_no&#125;</span>:{ams_3_1_no}</li>
+      <li><span style="color:green"> &#123;ams_3_2_no&#125;</span>:{ams_3_2_no}</li>
+      <li><span style="color:green"> &#123;ams_3_1_name&#125;</span>:{ams_3_1_name}</li>
+      <li><span style="color:green"> &#123;ams_3_2_name&#125;</span>:{ams_3_2_name}</li>
+
+      <li><span style="color:green"> &#123;templatedir&#125;</span>:{templatedir}</li>
+
+      <li><span style="color:green"> &#123;perpage&#125;</span>:{perpage}</li>
+
+      <li><span style="color:green"> &#123;page&#125;</span>:{page}</li>
+
+      <li><span style="color:green"> &#123;nohitmsg&#125;</span>:{nohitmsg}</li>
+      <li><span style="color:green"> &#123;order&#125;</span>:{order}</li>
+    </ul>
+
+    <input value="{lang_search}" class="uk-button" type="submit">
+
+  </div>
+</div>
+
+{# end {templatelocation} #}

@@ -354,85 +354,79 @@ function plugin_showstats_forum($showsitestats)
 {
     global $_CONF, $_TABLES, $LANG_GF00,$LANG_GF01, $CONF_FORUM;
 
-    $stat_templates = COM_newTemplate(CTL_plugin_templatePath('forum', 'stats'));
+    // Use themes stats template files
+    $stat_templates = COM_newTemplate($_CONF['path_layout'] . '/stats');
     $stat_templates->set_file(array('itemstats'=>'itemstatistics.thtml',
                             'statrow'=>'singlestat.thtml'));
-    $retval='';
-    if ($showsitestats == 1) {
-        // This shows in the summary box
-        $total_pages = DB_count($_TABLES['forum_topic']);      // Total number of Forum Posts
-        $summary_label = $LANG_GF00['statslabel'];        // Label to display
+    
+    $retval = '';
 
-        $retval = "<table border='0' width='100%' cellspacing='0' cellpadding='0'>";
-        $retval .= "<tr><td>$summary_label</td>";
-        $retval .= "<td align='right'>" . $total_pages . "&nbsp;&nbsp;</td></tr></table>";
+    $header_arr = array(
+        array('text' => $LANG_GF01['TOPICSUBJECT'], 'field' => 'topicsubject'),
+        array('text' => $LANG_GF01['VIEWS'], 'field' => 'views'),
+    );
+    $data_arr = array();
+    $text_arr = array('has_menu'     => false,
+                      'title'        => $LANG_GF00['statsheading1'],
+    );
+    $result = DB_query("SELECT forum,subject,views,id FROM {$_TABLES['forum_topic']} WHERE pid='0' ORDER BY views DESC");
+    $nrows  = DB_numRows($result);
+    if ($nrows > 0) {
+        $displaycount = 0;
+        while (list ($forum,$subject, $views,$id) = DB_fetchARRAY($result)) {
+            $forum_id = DB_getItem($_TABLES['forum_topic'],'forum',"id='$id'");
+            $grp_id = DB_getItem($_TABLES['forum_forums'],'grp_id',"forum_id='$forum_id'");
+            $groupname = DB_getItem($_TABLES['groups'],'grp_name',"grp_id='$grp_id'");
+            if (SEC_inGroup($groupname) OR $grp_id == 2) {
+                $url = $_CONF['site_url']. "/forum/viewtopic.php?showtopic=$id";
+                $S['topicsubject'] = '<a href="' . $url . '">' . $subject . '</a>';
+                $S['views']  = $views;
+                $data_arr[$displaycount] = $S;
+                $displaycount++;
+                if ($displaycount > 10) {
+                    break;
+                }
+            }
+        }
+        $retval .= ADMIN_simpleList("", $header_arr, $text_arr, $data_arr);
     } else {
-        $header_arr = array(
-            array('text' => $LANG_GF01['TOPICSUBJECT'], 'field' => 'topicsubject'),
-            array('text' => $LANG_GF01['VIEWS'], 'field' => 'views'),
-        );
-        $data_arr = array();
-        $text_arr = array('has_menu'     => false,
-                          'title'        => $LANG_GF00['statsheading1'],
-        );
-        $result = DB_query("SELECT forum,subject,views,id FROM {$_TABLES['forum_topic']} WHERE pid='0' ORDER BY views DESC");
-        $nrows  = DB_numRows($result);
-        if ($nrows > 0) {
-            $displaycount = 0;
-            while (list ($forum,$subject, $views,$id) = DB_fetchARRAY($result)) {
-                $forum_id = DB_getItem($_TABLES['forum_topic'],'forum',"id='$id'");
-                $grp_id = DB_getItem($_TABLES['forum_forums'],'grp_id',"forum_id='$forum_id'");
-                $groupname = DB_getItem($_TABLES['groups'],'grp_name',"grp_id='$grp_id'");
-                if (SEC_inGroup($groupname) OR $grp_id == 2) {
-                    $url = $_CONF['site_url']. "/forum/viewtopic.php?showtopic=$id";
-                    $S['topicsubject'] = '<a href="' . $url . '">' . $subject . '</a>';
-                    $S['views']  = $views;
-                    $data_arr[$displaycount] = $S;
-                    $displaycount++;
-                    if ($displaycount > 10) {
-                        break;
-                    }
-                }
-            }
-            $retval .= ADMIN_simpleList("", $header_arr, $text_arr, $data_arr);
-        } else {
-            $retval .= $LANG_GF00['statsheading3'];
-        }
-        $header_arr = array(
-            array('text' => $LANG_GF01['TOPICSUBJECT'], 'field' => 'topicsubject'),
-            array('text' => $LANG_GF01['REPLIES'], 'field' => 'replies'),
-        );
-        $data_arr = array();
-        $text_arr = array('has_menu'     => false,
-                          'title'        => $LANG_GF00['statsheading2'],
-        );
-        $result = DB_query("SELECT forum,subject,replies,id FROM {$_TABLES['forum_topic']} WHERE pid='0' ORDER BY replies DESC");
-        $nrows  = DB_numRows($result);
-        if ($nrows > 0) {
-            $stat_templates->set_var('item_label',$LANG_GF01['TOPICSUBJECT']);
-            $stat_templates->set_var('stat_name',$LANG_GF01['REPLIES']);
-            $displaycount=0;
-            while (list ($forum,$subject, $replies,$id) = DB_fetchARRAY($result)) {
-                $forum_id = DB_getItem($_TABLES['forum_topic'],'forum',"id='$id'");
-                $grp_id = DB_getItem($_TABLES['forum_forums'],'grp_id',"forum_id='$forum_id'");
-                $groupname = DB_getItem($_TABLES['groups'],'grp_name',"grp_id='$grp_id'");
-                if (SEC_inGroup($groupname) OR $grp_id == 2) {
-                    $url = $_CONF['site_url']. "/forum/viewtopic.php?showtopic=$id";
-                    $url = $_CONF['site_url']. "/forum/viewtopic.php?showtopic=$id";
-                    $S['topicsubject'] = '<a href="' . $url . '">' . $subject . '</a>';
-                    $S['replies']  = $replies;
-                    $data_arr[$displaycount] = $S;
-                    $displaycount++;
-                    if ($displaycount > 10) {
-                        break;
-                    }
-                }
-            }
-            $retval .= ADMIN_simpleList("", $header_arr, $text_arr, $data_arr);
-        } else {
-            $retval .= $LANG_GF00['statsheading3'];
-        }
+        $retval .= $LANG_GF00['statsheading3'];
     }
+    $header_arr = array(
+        array('text' => $LANG_GF01['TOPICSUBJECT'], 'field' => 'topicsubject'),
+        array('text' => $LANG_GF01['REPLIES'], 'field' => 'replies'),
+    );
+    $data_arr = array();
+    $text_arr = array('has_menu'     => false,
+                      'title'        => $LANG_GF00['statsheading2'],
+    );
+    $result = DB_query("SELECT forum,subject,replies,id FROM {$_TABLES['forum_topic']} WHERE pid='0' ORDER BY replies DESC");
+    $nrows  = DB_numRows($result);
+    if ($nrows > 0) {
+        $stat_templates->set_var('item_label',$LANG_GF01['TOPICSUBJECT']);
+        $stat_templates->set_var('stat_name',$LANG_GF01['REPLIES']);
+        $displaycount=0;
+        while (list ($forum,$subject, $replies,$id) = DB_fetchARRAY($result)) {
+            $forum_id = DB_getItem($_TABLES['forum_topic'],'forum',"id='$id'");
+            $grp_id = DB_getItem($_TABLES['forum_forums'],'grp_id',"forum_id='$forum_id'");
+            $groupname = DB_getItem($_TABLES['groups'],'grp_name',"grp_id='$grp_id'");
+            if (SEC_inGroup($groupname) OR $grp_id == 2) {
+                $url = $_CONF['site_url']. "/forum/viewtopic.php?showtopic=$id";
+                $url = $_CONF['site_url']. "/forum/viewtopic.php?showtopic=$id";
+                $S['topicsubject'] = '<a href="' . $url . '">' . $subject . '</a>';
+                $S['replies']  = $replies;
+                $data_arr[$displaycount] = $S;
+                $displaycount++;
+                if ($displaycount > 10) {
+                    break;
+                }
+            }
+        }
+        $retval .= ADMIN_simpleList("", $header_arr, $text_arr, $data_arr);
+    } else {
+        $retval .= $LANG_GF00['statsheading3'];
+    }
+    
     return $retval;
 }
 
@@ -791,6 +785,12 @@ function plugin_upgrade_forum() {
                 $current_version = "2.9.1";
                 
                 break;
+                
+            case "2.9.1" :
+
+                $current_version = "2.9.2";
+                
+                break;                
 
             default:
                 $done = true;

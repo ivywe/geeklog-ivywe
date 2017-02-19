@@ -1,0 +1,58 @@
+{# begin {templatelocation} #}
+
+<div>
+
+  <p>{edit_marker_text}        
+  </p>
+
+  <div id="map_contener_submission">
+  <div id="map_canvas" style="width: 100%; height: 400px"></div>
+
+  </div>
+
+</div>
+&nbsp;
+<div id="marker_form">
+  <form class="uk-form" name="marker_edit" action="{site_url}/markers.php" method="POST">
+    <fieldset style="margin-top: 10px;padding:10px;">
+    <legend>{arrow}<a style="text-decoration: none;" onClick="elementToggle('informations'); return false;" href="#"><b>{informations}</b></a></legend>
+      <div id="informations">
+        <p><b>{name_label}</b><font color="red">*</font> <input type="text" name="name" value="{name}" size="80" maxlength="255"></p>
+        <p><b>{address_label}</b><font color="red">*</font> <input type="text" id="address" name="address" value="{address}" size="80" maxlength="255"></p>
+        <p><b>{lat}</b> <input type="text" id="lat" name="lat" value="{lat_value}" size="14" maxlength="12">&nbsp;&nbsp; 
+        <b>{lng}</b> <input type="text" id="lng" name="lng" value="{lng_value}" size="14" maxlength="12"><br{xhtml}>
+        {empty_for_geo}</p>
+
+        <p><small>{created_label} {created}<br{xhtml}>{modified_label} {modified}</small></p>
+      </div>
+    </fieldset>      
+
+    <fieldset style="margin-top: 10px;">
+    <legend>{arrow}<b><a style="text-decoration: none;" onClick="elementToggle('presentation_tab'); return false;" href="#">{presentation_tab}</a></b></legend>
+      <div id="presentation_tab" style="display:block;">
+        <p><b>{description_label}</b><br{xhtml}><textarea rows="4" id="description" name="description" cols="51" style="width:99%">{description}</textarea>
+        </p>
+        <p><b>{street_label}</b> {street}</p>
+        <p><b>{code_label}</b> {code}</p>
+        <p><b>{city_label}</b> {city}</p>
+        <p><b>{state_label}</b> {state}</p>
+        <p><b>{country_label}</b> {country}</p>
+        <p><b>{tel_label}</b> {tel}</p>
+        <p><b>{fax_label}</b> {fax}</p>
+        <p><b>{web_label}</b> {web}</p>
+      </div>
+    </fieldset>
+    
+    <p><font color="red"><strong><small>*</font> {required_field}</small></strong></p>
+    <div>
+      <select name="mode" >
+      <option value="save" selected="selected">{save_button}</option>
+      </select>
+      <input type="hidden" name="submission" value="{submission}">
+      <input type="submit" name="submit" value="{ok_button}">
+      {mkid}
+    </div>
+  </form>
+</div>
+
+{# end {templatelocation} #}

@@ -1050,7 +1050,7 @@ if (($method == 'newtopic' || $method == 'postreply' || $method == 'edit') || ($
 
 }
 
-$display = gf_createHTMLDocument($display);
+$display = gf_createHTMLDocument($display, '', true);
 COM_output($display);
 
 

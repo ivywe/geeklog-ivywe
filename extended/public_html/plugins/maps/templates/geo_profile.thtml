@@ -1,0 +1,134 @@
+{# begin {templatelocation} #}
+
+<style type="text/css">    
+    #map_canvas{gid} {
+      height:{map_height_geotag}
+    }
+    #map_contener{gid} {
+      width:{map_width_geotag};
+      border:solid 1px #666;
+      background:#CCC
+    }
+    #map_directions {
+      border-top:solid 1px #666;
+      display:{show_directions_geo};
+      padding:1px 5px;
+    }
+</style>
+<script src= "http://maps.googleapis.com/maps/api/js?key={key}&libraries=adsense&sensor=false" type="text/javascript"> </script>
+<script type="text/javascript">
+    /* Error messages for possible errors */
+    var error_address_empty{gid}   = '{error_address_empty}';
+    var error_invalid_address{gid}   = '{error_invalid_address}'; 
+    var error_google_error{gid}   = '{error_google_error}';
+    var error_no_map_info{gid}    = '{error_no_map_info}';
+    
+    var default_address{gid} = '{address}';
+    var map{gid};
+
+        var directionsDisplay;
+  
+    var current_address{gid} = null; /* Current address we are displaying, we save it here for directions */
+    var geocoder{gid}     = null; /* Instance of Google Deocoder object */
+    var gdir{gid}       = null; /* Instance of Google Directions object */
+    var map_height{gid}    = '{map_height_geotag}';
+    
+    var adUnit_{gid};
+    
+    /* Initialize the map */
+    function initializeGMap{gid}() {
+
+      current_address{gid} = default_address{gid};    
+      
+      //Map
+      map{gid} = new google.maps.Map(document.getElementById('map_canvas{gid}'), {
+        center: new google.maps.LatLng({lat}, {lng}),
+        zoom: {zoom},
+        mapTypeId: google.maps.MapTypeId.{map_type}
+      });
+    
+      
+      var marker{gid} = new google.maps.Marker({
+        position: new google.maps.LatLng({lat}, {lng}),
+        map: map{gid},
+        title: "{address}",
+        animation: google.maps.Animation.DROP,
+      });
+      
+      {ads}
+      
+      // Initialize the directions display
+        directionsDisplay = new google.maps.DirectionsRenderer(
+        { 
+          map: map{gid},
+          panel : document.getElementById('directions{gid}')
+        });
+
+    }
+    
+    google.maps.event.addDomListener(window, 'load', initializeGMap{gid});
+    
+    // Get the directions
+    function get_directions{gid}() {
+       /**
+       * Delete the contents of 'directions' DIV first 
+       * because user might ask for directions more than once.
+      **/
+      document.getElementById('directions{gid}').innerHTML = '';
+      
+      // Initialize the directions service
+      var directionsService{gid} = new google.maps.DirectionsService();
+      google.maps.event.addListener(directionsService{gid}, 'error', handleErrors);
+      
+      var start = document.getElementById('from_address{gid}').value;
+
+      var request = {
+      origin: start, 
+      destination: current_address{gid},
+      travelMode: google.maps.DirectionsTravelMode.DRIVING
+      };
+      
+      directionsService{gid}.route(request, function(response, status) {
+      if (status == google.maps.DirectionsStatus.OK) {
+        directionsDisplay.setDirections(response);
+        setTimeout('window.scrollBy(0,map_height{gid})', 500);
+      } else {
+        alert('Error generating directions');
+      }
+      });
+    }  
+    
+    /* This will handle the errors might happen while retrieving the directions */
+    function handleErrors(){
+      if( directionsService{gid}.getStatus().code == G_GEO_UNKNOWN_ADDRESS )
+        alert(error_invalid_address{gid});
+      else if( directionsService{gid}.getStatus().code == G_GEO_SERVER_ERROR )
+        alert(error_google_error{gid});
+      else if( directionsService{gid}.getStatus().code == G_GEO_MISSING_QUERY )
+        alert(error_address_empty{gid});
+      else 
+        alert(error_invalid_address{gid});
+    }
+    
+    /* This function will be called when the directions are loaded */
+    function onGDirectionsLoad(){
+      /* We will simple scroll down to the directions, but with a little delay so it's loaded */
+      setTimeout('window.scrollBy(0,map_height{gid})', 500);
+    }
+    
+</script>
+<div id="map_contener{gid}">
+<div id="map_canvas{gid}"></div>
+<div id="map_directions">
+
+    <small>&nbsp; {need_directions}<br />
+    <input type="text" id="from_address{gid}" value="{value}" onfocus="if (this.value=='{value}')this.value='';" onblur="if(this.value=='')this.value='{value}';" size="30" style="width:200px;"/>
+    <input type="button" value="{get_directions}"  onClick="get_directions{gid}();" />
+    </small>
+
+</div>
+</div>
+<a id="directions_{gid}_table"></a>
+<div id="directions{gid}"></div>
+
+{# end {templatelocation} #}

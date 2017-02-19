@@ -1,0 +1,78 @@
+{# begin {templatelocation} #}
+
+<div>
+
+  <h2 class="uk-h2">{addition_name}(<a href="#db_attribute_navigation_detail_{addition_code}" data-uk-modal>example</a>)</h2>
+
+  <ul class="uk-subnav uk-flex-center uk-margin-top uk-margin-remove-bottom">
+    <li class="uk-button uk-button-small uk-margin-small-left{!!if {cur_order}=="date" !!} uk-button-success{!endif}">{order_date}</li><li class="uk-button uk-button-small uk-margin-small-left{!!if {cur_order}=="orderno" !!} uk-button-success{!endif}">{order_orderno}</li><li class="uk-button uk-button-small uk-margin-small-left{!!if {cur_order}=="code" !!} uk-button-success{!endif}">{order_code}</li><li class="uk-button uk-button-small uk-margin-small-left{!!if {cur_order}=="title" !!} uk-button-success{!endif}">{order_title}</li><li class="uk-button uk-button-small uk-margin-small-left{!!if {cur_order}=="description" !!} uk-button-success{!endif}">{order_description}</li><li class="uk-button uk-button-small uk-margin-small-left{!!if {cur_order}=="id" !!} uk-button-success{!endif}">{order_id}</li><li class="uk-button uk-button-small uk-margin-small-left{!!if {cur_order}=="released" !!} uk-button-success{!endif}">{order_released}</li><li class="uk-button uk-button-small uk-margin-small-left{!!if {cur_order}=="random" !!} uk-button-success{!endif}">{order_random}</li>
+    <!-- example: sort by attribute -->
+    {!if order_tel}<li>{order_tel}</li>{!endif}
+    {!if order_zipcode}<li>{order_zipcode}</li>{!endif}
+  </ul>
+
+  <div {pagenavinone}>
+    {page_navigation}
+    <div class="uk-float-right"">{lang_view} [{lin}] / {cnt} </div>
+  </div>
+  <div style="clear:both"></div>
+
+  <ul class="uk-list uk-list-line">
+    {row_var}
+  </ul>
+
+  <div {pagenavinone}>
+    {page_navigation}
+    <div class="uk-float-right"">{lang_view} [{lin}] / {cnt} </div>
+  </div>
+  <div style="clear:both"></div>
+
+</div>
+
+<!-- This is the modal -->
+<div id="db_attribute_navigation_detail_{addition_code}" class="uk-modal">
+  <div class="uk-modal-dialog">
+    <a class="uk-modal-close uk-close"></a>
+    <div class="uk-text-break">
+      <span class="uk-text-bold">theme variables(<a href="{site_url}/admin/plugins/databox/docs/japanese/templatesetvars.html">Document</a>):</span> {templatelocation}
+    </div>
+    <ul class="uk-list uk-list-line">
+       <li><span style="color:green">&#123;site_url&#125;</span>{site_url}</li>
+       <li><span style="color:green">&#123;this_script&#125;</span>{this_script}</li>
+       <li><span style="color:green">&#123;home&#125;</span>{home}</li>
+       <li><span style="color:green">&#123;attribute_top&#125;</span>{attribute_top}</li>
+       <li><span style="color:green">&#123;field_top&#125;</span>{field_top}</li>
+       <li><span style="color:green">&#123;field_name&#125;</span>{field_name}</li>
+       <li><span style="color:green">&#123;field_templatesetvar&#125;</span>{field_templatesetvar}</li>
+       <li><span style="color:green">&#123;field_description&#125;</span>{field_description}</li>
+       <li><span style="color:green">&#123;fieldvalue&#125;</span>{fieldvalue}</li>
+       <li><span style="color:green">&#123;addtition_name&#125;</span>{addtition_name}</li>
+       <li><span style="color:green">&#123;addition_code&#125;</span>{addition_code}</li>
+       <li><span style="color:green">&#123;cnt&#125;</span>{cnt}</li>
+       <li><span style="color:green">&#123;lang_view&#125;</span>{lang_view}</li>
+       <li><span style="color:green">&#123;lin&#125;</span>{lin}</li>
+       <li><span style="color:green">&#123;cnt&#125;</span>{cnt}</li>
+       <li><span style="color:green">&#123;lang_code&#125;</span>{lang_code}</li>
+       <li><span style="color:green">&#123;lang_id&#125;</span>{lang_id}</li>
+       <li><span style="color:green">&#123;lang_date&#125;</span>{lang_date}</li>
+       <li><span style="color:green">&#123;lang_title&#125;</span>{lang_title}</li>
+       <li><span style="color:green">&#123;lang_description&#125;</span>{lang_description}</li>
+       <li><span style="color:green">&#123;lang_addfield&#125;</span>{lang_addfield}</li>
+       <li><span style="color:green">&#123;lang_expired&#125;</span>{lang_expired}</li>
+       <li><span style="color:green">&#123;lang_hits&#125;</span>{lang_hits}</li>
+       <li><span style="color:green">&#123;blockfooter&#125;</span>{blockfooter}</li>
+       <li><span style="color:green">&#123;msg&#125;</span>{msg}</li>
+       <li><span style="color:green">&#123;language&#125;</span>{language}</li>
+       <li><span style="color:green">&#123;languageid&#125;</span>{languageid}</li>
+       <li><span style="color:green">&#123;{uid}&#125;</span>{uid}</li>
+       <li><span style="color:green">&#123;{username}&#125;</span>{username}</li>
+       <li><span style="color:green">&#123;{fullname}&#125;</span>{fullname}</li>
+       <li><span style="color:green">&#123;{displayname}&#125;</span>{displayname}</li>
+       <li><span style="color:green">Maps Link mkids selectedMarkers</span></li>
+       <li><span style="color:green">&#123;{mkids}&#125;</span>{mkids}</li>
+       <li><span style="color:green">&#123;{selectedMarkers}&#125;</span>{selectedMarkers}</li>
+    </ul>
+  </div>
+</div>
+
+{# end {templatelocation} #}

@@ -1,0 +1,114 @@
+{# begin {templatelocation} #}
+
+<div class="tabs">
+<!-- tabs -->
+<ul class="tabNavigation">
+<li><a href="#map_infos">{map_tab}</a></li>
+<li><a href="#overlays">{overlays_tab}</a></li>
+</ul>
+
+<!-- tab containers -->
+<div id="map_infos" style="padding:5px 10px;">
+  <form class="uk-form" id="map_form" action="{site_url}/admin/plugins/maps/map_edit.php" enctype="multipart/form-data"   method="POST">
+  {mid}
+  <fieldset style="margin-top: 10px;"><legend>{arrow}<a style="text-decoration: none;" onClick="elementToggle('informations'); return false;" href="#"><b>{informations}</b></a></legend>
+    <div id="informations">
+    <h2>{name_label}<font color="red">*</font> </h2><p><input type="text" name="name" value="{name}" size="80" maxlength="255"></p>
+    <h2>{address_label}<font color="red">*</font> </h2><p><input type="text" name="geo" value="{geo}" size="80" maxlength="255"></p>
+    <h2>{description_label}</h2>
+    <p><input type="text" name="description" value="{description}" size="80" maxlength="255"></p>
+    <p><small>{created_label} {created}<br{xhtml}>{modified_label} {modified}</small></p>
+    <font color="red"><p><strong><small>*</font> {required_field}</small></strong></p>
+    </div>
+  </fieldset>
+    
+  <fieldset style="margin-top: 10px;"><legend>{arrow}<a style="text-decoration: none;" onClick="elementToggle('general_settings'); return false;" href="#"><b>{general_settings}</b></a></legend>
+    <div id="general_settings" style="display:none;">
+    <p>{map_width}<input type="text" id="width" name="width" value="{width}" size="8" maxlength="6"></p>
+    <p>{map_height}<input type="text" id="height" name="height" value="{height}" size="8" maxlength="6"></p>
+    <p>{map_zoom}<input type="text" id="zoom" name="zoom" value="{zoom}" size="2" maxlength="2"></p>
+    <p>{map_type}<select id="type" name="type">{options}</select></p>
+    <p>{active} <select name="active">
+    <option value="0"{active_no}>{no}</option>
+    <option value="1"{active_yes}>{yes}</option>
+    </select></p>
+    <p>{hidden} <select name="hidden">
+    <option value="0"{hidden_no}>{no}</option>
+    <option value="1"{hidden_yes}>{yes}</option>
+    </select></p>
+    <p>{free_marker} <select name="free_marker">
+    <option value="0"{free_marker_no}>{no}</option>
+    <option value="1"{free_marker_yes}>{yes}</option>
+    </select></p>
+    <p>{paid_marker} <select name="paid_marker">
+    <option value="0"{paid_marker_no}>{no}</option>
+    <option value="1"{paid_marker_yes}>{yes}</option>
+    </select></p>
+    </div>
+  </fieldset>
+
+  <fieldset style="margin-top: 10px;"><legend>{arrow}<a style="text-decoration: none;" onClick="elementToggle('marker_label'); return false;" href="#"><b>{marker_label}</b></a></legend>
+    <div id="marker_label" style="display:none;">
+    <p>{mk_default} <select name="mk_default">
+    <option value="0"{mk_default_no}>{no}</option>
+    <option value="1"{mk_default_yes}>{yes}</option>
+    </select></p>
+    <div>{icon}</div>    
+    <p>{primary_color_label}:
+    <input type="text" id="primary_color" name="primary_color" value="{primary_color}" size="7" maxlength="7"></p>
+    <p>{stroke_color_label}: 
+    <input type="text" id="stroke_color" name="stroke_color" value="{stroke_color}" size="7" maxlength="7"></p>
+    <p>{label_label}: <input type="text" id="label" name="label" value="{label}" size="1" maxlength="1"></p>
+    <p>{label_color_label}:  <select name="label_color">
+    <option value="0"{label_color_black}>{black}</option>
+    <option value="1"{label_color_white}>{white}</option>
+    </select>
+    </div>
+  </fieldset>
+   
+  <fieldset style="margin-top: 10px;"><legend>{arrow}<a style="text-decoration: none;" onClick="elementToggle('header_footer'); return false;" href="#"><b>{header_footer}</b></a></legend>
+    <div id="header_footer" style="display:none;">
+    <p><a style="text-decoration: none;" onClick="elementToggle('map_header_content'); return false;" href="#">{map_header_label}</a></p>
+    <div id="map_header_content"  style="display:none"><textarea rows="12" id="mapheader" name="map_header" cols="44">{map_header}</textarea></div>
+    <p><a style="text-decoration: none;" onClick="elementToggle('map_footer_content'); return false;" href="#">{map_footer_label}</a></p>
+    <div id="map_footer_content"  style="display:none"><textarea rows="12" id="mapfooter" name="map_footer" cols="44">{map_footer}</textarea></div>
+    </div>
+  </fieldset>
+
+  <fieldset style="margin-top: 10px;"><legend>{arrow}<a style="text-decoration: none;" onClick="elementToggle('lang_accessrights'); return false;" href="#"><b>{lang_accessrights}</b></a></legend>
+    <div id="lang_accessrights" style="display:none;">
+    <!--<div><p>{lang_owner}: {owner_name}<input type="hidden" name="owner_id" value="{owner_id}"{xhtml}></p></div>-->
+    <div>{lang_owner}: {owner_select}</div>
+    <div><p>{lang_group}: {group_dropdown}</p></div>
+    </div>
+  </fieldset>
+
+  <fieldset style="margin-top: 10px;"><legend>{arrow}<a style="text-decoration: none;" onClick="elementToggle('lang_permissions'); return false;" href="#"><b>{lang_permissions}</b></a></legend>
+    <div id="lang_permissions" style="display:none;">
+    <p>{lang_perm_key}</p>
+    <p>{permissions_editor}</p>
+    <p>{lang_permissions_msg}</p>
+    </div>
+  </fieldset>
+
+  <div>
+    <select name="mode" >
+    <option value="save" selected="selected">{save_button}</option>
+    <option value="delete">{delete_button}</option>
+    </select>
+    <input type="submit" name="submit" value="{ok_button}">
+  </div>
+  </form>
+</div>
+
+<div id="overlays">
+  <div id="load" style="padding:30px;" align="center"><img src="images/loading.gif" width="28" height="28" align="absmiddle"/> Loading...</div>
+  <div id="overlays_actions">
+    <div id="overlays_list">{overlays}</div>
+    <div id="add_overlay">{add_overlay}</div>
+  </div>
+</div>
+
+</div>
+
+{# end {templatelocation} #}

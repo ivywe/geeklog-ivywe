@@ -41,7 +41,7 @@ if (!class_exists('StringParser') ) {
     require_once $CONF_FORUM['path_include'] . 'bbcode/stringparser_bbcode.class.php';
 }
 
-function gf_createHTMLDocument(&$content = '', $subject = '') {
+function gf_createHTMLDocument(&$content = '', $subject = '', $noIndex = 0) {
     global $CONF_FORUM;
 
     // Display Common headers
@@ -52,6 +52,9 @@ function gf_createHTMLDocument(&$content = '', $subject = '') {
     $information['pagetitle'] = $subject;
     $information['what'] = 'menu';
     $information['rightblock'] = false;
+    if ($noIndex) {
+        $information['headercode'] = '<meta name="robots" content="noindex"' . XHTML . '>';
+    }
 
     if ($CONF_FORUM['showblocks'] == 'noblocks' OR $CONF_FORUM['showblocks'] == 'rightblocks') {
         $information['what'] = 'none';
@@ -220,16 +223,28 @@ function forumNavbarMenu($current='') {
     require_once $_CONF['path_system'] . 'classes/navbar.class.php';
     $navmenu = new navbar; 
     $navmenu->add_menuitem($LANG_GF01['INDEXPAGE'],"{$_CONF['site_url']}/forum/index.php");
+    $navmenu->set_onclick($LANG_GF01['INDEXPAGE'], 'location.href="' . "{$_CONF['site_url']}/forum/index.php" . '";'); // Added as a fix for the navbar class (since uikit tabs do not support urls)
     if (!COM_isAnonUser()) {  
         $navmenu->add_menuitem($LANG_GF02['msg197'],"{$_CONF['site_url']}/forum/index.php?op=markallread");
-        $navmenu->set_onclick($LANG_GF02['msg197'], 'return confirm("' . $LANG_GF02['msg301'] . '");');
+        // Added as a fix for the navbar class (since uikit tabs do not support urls)
+        //$navmenu->set_onclick($LANG_GF02['msg197'], 'return confirm("' . $LANG_GF02['msg301'] . '");');
+        $navmenu->set_onclick($LANG_GF02['msg197'], '
+          if (confirm("' . $LANG_GF02['msg301'] . '")) {
+            window.location.href="' . "{$_CONF['site_url']}/forum/index.php?op=markallread" . '";
+          }
+          return false;        
+        ');
         $navmenu->add_menuitem($LANG_GF01['USERPREFS'],"{$_CONF['site_url']}/forum/userprefs.php");
+        $navmenu->set_onclick($LANG_GF01['USERPREFS'], 'location.href="' . "{$_CONF['site_url']}/forum/userprefs.php" . '";'); // Added as a fix for the navbar class (since uikit tabs do not support urls)
         $navmenu->add_menuitem($LANG_GF01['SUBSCRIPTIONS'],"{$_CONF['site_url']}/forum/notify.php");
+        $navmenu->set_onclick($LANG_GF01['SUBSCRIPTIONS'], 'location.href="' . "{$_CONF['site_url']}/forum/notify.php" . '";'); // Added as a fix for the navbar class (since uikit tabs do not support urls)
     }
     if (($CONF_FORUM['show_memberslist_anonymous'] && COM_isAnonUser()) OR !COM_isAnonUser()) {
     	$navmenu->add_menuitem($LANG_GF02['msg200'],"{$_CONF['site_url']}/forum/memberlist.php");
+        $navmenu->set_onclick($LANG_GF02['msg200'], 'location.href="' . "{$_CONF['site_url']}/forum/memberlist.php" . '";'); // Added as a fix for the navbar class (since uikit tabs do not support urls)
 	}
     $navmenu->add_menuitem($LANG_GF02['msg201'],"{$_CONF['site_url']}/forum/index.php?op=popular");
+    $navmenu->set_onclick($LANG_GF02['msg201'], 'location.href="' . "{$_CONF['site_url']}/forum/index.php?op=popular" . '";'); // Added as a fix for the navbar class (since uikit tabs do not support urls)
     if ($current != '') {
         $navmenu->set_selected($current);
     }
@@ -305,29 +320,10 @@ function gf_cleanHTML($message) {
     {
         return $message;
     }
-
-    if (!class_exists('ksesf4') ) {
-        require_once $CONF_FORUM['path_include'] . 'ksesf.class.php';
-    }
-
-    $filter = new ksesf4;
-    if ( isset( $_CONF['allowed_protocols'] ) && is_array( $_CONF['allowed_protocols'] ) && ( sizeof( $_CONF['allowed_protocols'] ) > 0 )) {
-        $filter->SetProtocols( $_CONF['allowed_protocols'] );
-    } else {
-        $filter->SetProtocols( array( 'http:', 'https:', 'ftp:' ));
-    }
-
-    if ( !SEC_hasRights( 'story.edit' ) || empty ( $_CONF['admin_html'] )) {
-        $html = $_CONF['user_html'];
-    } else {
-        $html = array_merge( $_CONF['user_html'], $_CONF['admin_html'] );
-    }
-
-    foreach( $html as $tag => $attr ) {
-        $filter->AddHTML( $tag, $attr );
-    }
-
-    return $filter->Parse( $message );
+    
+    // If user has story edit previlages then can use html allowed by admins
+    return gf_htmLawed($str, 'story.edit');
+    
 }
 
 
@@ -338,6 +334,9 @@ function gf_preparefordb($message,$postmode) {
     if (get_magic_quotes_gpc() ) {
        $message = stripslashes($message);
     }
+    
+    // Remove Icons if database cannot store them (ie table collation needs to be utf8mb4)
+    $message = GLText::remove4byteUtf8Chars($message);
 
     if ( $CONF_FORUM['use_glfilter'] == 1 && ($postmode == 'html' || $postmode == 'HTML') ) {
         $message = gf_checkHTMLforSQL($message,$postmode);
@@ -374,7 +373,55 @@ function geshi_formatted($str,$type='PHP') {
     return $geshi->parse_code();
 }
 
+function gf_htmLawed($str, $permissions = '') {
+    global $_CONF;
 
+    // Sets config options for htmLawed.  See http://www.bioinformatics.org/
+    // phplabware/internal_utilities/htmLawed/htmLawed_README.htm
+    $config = array(
+        'balance'        => 1, // Balance tags for well-formedness and proper nesting
+        'comment'        => 3, // Allow HTML comment
+        'css_expression' => 1, // Allow dynamic CSS expression in "style" attributes
+//            'keep_bad'       => 1, // Neutralize both tags and element content
+        'keep_bad'       => 0, // Neutralize both tags and element content
+        'tidy'           => 0, // Don't beautify or compact HTML code
+        'unique_ids'     => 1, // Remove duplicate and/or invalid ids
+        'valid_xhtml'    => 1, // Magic parameter to make input the most valid XHTML
+    );
+
+    if (isset($_CONF['allowed_protocols']) &&
+            is_array($_CONF['allowed_protocols']) &&
+            (count($_CONF['allowed_protocols']) > 0)) {
+        $schemes = $_CONF['allowed_protocols'];
+    } else {
+        $schemes = array('http:', 'https:', 'ftp:');
+    }
+
+    $schemes = str_replace(':', '', implode(', ', $schemes));
+    $config['schemes'] = 'href: ' . $schemes . '; *: ' . $schemes;
+
+    if (empty($permissions) || !SEC_hasRights($permissions) || empty($_CONF['admin_html'])) {
+        $html = $_CONF['user_html'];
+    } else {
+        $html = array_merge_recursive($_CONF['user_html'], $_CONF['admin_html']);
+    }
+
+    foreach ($html as $tag => $attr) {
+        if (is_array($attr) && (count($attr) > 0)) {
+            $spec[] = $tag . '=' . implode(', ', array_keys($attr));
+        } else {
+            $spec[] = $tag . '=-*';
+        }
+
+        $elements[] = $tag;
+    }
+
+    $config['elements'] = implode(', ', $elements);
+    $spec = implode('; ', $spec);
+    $str = htmLawed($str, $config, $spec);
+
+    return $str;
+}
 
 function gf_checkHTML($str) {
     global $CONF_FORUM, $_CONF;
@@ -390,27 +437,9 @@ function gf_checkHTML($str) {
     {
         return $str;
     }
-    if (!class_exists('ksesf4') ) {
-        require_once $CONF_FORUM['path_include'] . 'ksesf.class.php';
-    }
-
-    $filter = new ksesf4;
-    if ( isset( $_CONF['allowed_protocols'] ) && is_array( $_CONF['allowed_protocols'] ) && ( sizeof( $_CONF['allowed_protocols'] ) > 0 )) {
-        $filter->SetProtocols( $_CONF['allowed_protocols'] );
-    } else {
-        $filter->SetProtocols( array( 'http:', 'https:', 'ftp:' ));
-    }
-
-    if ( !SEC_hasRights( 'story.edit' ) || empty ( $_CONF['admin_html'] )) {
-        $html = $_CONF['user_html'];
-    } else {
-        $html = array_merge( $_CONF['user_html'], $_CONF['admin_html'] );
-    }
-
-    foreach( $html as $tag => $attr ) {
-        $filter->AddHTML( $tag, $attr );
-    }
-    return $filter->Parse( $str );
+    
+    // If user has story edit previlages then can use html allowed by admins
+    return gf_htmLawed($str, 'story.edit');
 }
 
 

@@ -1,6 +1,7 @@
 {# begin {templatelocation} #}
 
-<form action="{site_admin_url}/plugins/custommenu/index.php" method="post" class="uk-form compact">
+
+<form action="{site_admin_url}/plugins/custommenu/index.php" method="post" class="compact">
   <div class="admin_basic">
     <dl class="form_block">
       <dt><label for="cmeditor-mmode">{lang_mode}</label></dt>
@@ -93,5 +94,9 @@
     </div>
   </div>
 </form>
+
+{# end {templatelocation} #}
+
+
 
 {# end {templatelocation} #}

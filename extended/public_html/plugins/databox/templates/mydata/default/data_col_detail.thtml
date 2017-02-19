@@ -1,0 +1,14 @@
+{# begin {templatelocation} #}
+
+  <div class="uk-form-row">
+    <label class="uk-form-label">
+      {fieldgroup} {# {fieldgroup_name} #} {additionfield_name}
+      <span class="uk-form-help-inline uk-text-danger">{lang_must_additionfield}</span>
+    </label>
+    <div class="uk-form-controls">
+      {additionfield_value}
+      <span class="uk-form-help-inline">{additionfield_description}</span>
+    </div>
+  </div>
+
+{# end {templatelocation} #}

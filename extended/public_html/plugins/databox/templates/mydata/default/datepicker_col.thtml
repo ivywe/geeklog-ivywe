@@ -1,0 +1,18 @@
+{# begin {templatelocation} #}
+
+    jQuery('#{date_field}').DatePicker({
+        format:'{dateformat}',
+        date: jQuery('#{date_field}').val(),
+        current: jQuery('#{date_field}').val(),
+        starts: 1,
+        position: 'top',
+        onBeforeShow: function(){
+            jQuery('#{date_field}').DatePickerSetDate(jQuery('#{date_field}').val(), true);
+        },
+        onChange: function(formated){
+            jQuery('#{date_field}').val(formated);
+            jQuery('#{date_field}').DatePickerHide();
+        }
+    });
+
+{# end {templatelocation} #}

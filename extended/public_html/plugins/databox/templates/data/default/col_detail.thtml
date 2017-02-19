@@ -1,0 +1,94 @@
+{# begin {templatelocation} #}
+
+<th style="width:20%" class="uk-text-left">{additionfield_name}</th>
+<td style="width:75%; max-width:700px" colspan="2">
+  <dl class="uk-description-list-line">
+<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_value&#125;</dt>
+<dd>{additionfield_value}</dd>
+<dt class="uk-text-success">&#123;{additionfield_templatesetvar}&#125;</dt>
+<dd>{additionfield_value}</dd>
+{!if additionfield_value_name}
+<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_name&#125;</dt>
+<dd>{additionfield_value_name}</dd>
+{!endif}
+{!if additionfield_value_description}
+<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_description&#125;</dt>
+<dd>{additionfield_value_description}</dd>
+{!endif}
+{!if additionfield_value_requried}
+<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_requried&#125;</dt>
+<dd>{additionfield_value_requried}</dd>
+{!endif}
+{!if additionfield_value_tn}
+<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_tn&#125;</dt>
+<dd>{additionfield_value_tn}</dd>
+{!endif}
+{!if additionfield_value_noimage}
+<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_noimage&#125;</dt>
+<dd>{additionfield_value_noimage}</dd>
+{!endif}
+{!if additionfield_value_tn_image}
+<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_tn_image&#125;</dt>
+<dd>{additionfield_value_tn_image}</dd>
+{!endif}
+{!if additionfield_value_tn_noimage}
+<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_tn_noimage&#125;</dt>
+<dd>{additionfield_value_tn_noimage}</dd>
+{!endif}
+{!if additionfield_value_disp}
+<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_disp&#125;</dt>
+<dd>{additionfield_value_disp}</dd>
+{!endif}
+{!if additionfield_value_mst_value2}
+<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_mst_value2&#125;</dt>
+<dd>{additionfield_value_mst_value2}</dd>
+{!endif}
+{!if additionfield_value_mst_disp}
+<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_mst_disp&#125;</dt>
+<dd>{additionfield_value_mst_disp}</dd>
+{!endif}
+{!if additionfield_value_mst_no}
+<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_mst_no&#125;</dt>
+<dd>{additionfield_value_mst_no}</dd>
+{!endif}
+{!if additionfield_value_readfile}
+<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_readfile&#125;</dt>
+<dd>{additionfield_value_readfile}</dd>
+{!endif}
+{!if additionfield_value_readfile}
+<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_readfile&#125;</dt>
+<dd>{additionfield_value_readfile}</dd>
+{!endif}
+  </dl>
+</td>
+<td class="uk-text-success uk-text-small" style="width:5%">
+{!!if {field_type} ==  "0" !!}00<br{xhtml}>一行テキスト{!endif}
+{!!if {field_type} ==  "1" !!}01<br{xhtml}>HTML{!endif}
+{!!if {field_type} == "20" !!}20<br{xhtml}>TinyMCE{!endif}
+{!!if {field_type} == "19" !!}10<br{xhtml}>CKEditor{!endif}
+{!!if {field_type} == "10" !!}10<br{xhtml}>複数行テキスト{!endif}
+{!!if {field_type} == "15" !!}15<br{xhtml}>数値{!endif}
+{!!if {field_type} == "21" !!}21<br{xhtml}>通貨{!endif}
+{!!if {field_type} ==  "2" !!}02<br{xhtml}>Yes/No{!endif}
+{!!if {field_type} ==  "3" !!}03<br{xhtml}>日付{!endif}
+{!!if {field_type} == "22" !!}22<br{xhtml}>日付 jquery ui datepicker{!endif}
+{!!if {field_type} == "23" !!}23<br{xhtml}>日付 Uikit datepicker{!endif}
+{!!if {field_type} == "26" !!}23<br{xhtml}>時刻 UIkit timepicker{!endif}
+{!!if {field_type} ==  "4" !!}04<br{xhtml}>日時 date time picker{!endif}
+{!!if {field_type} ==  "5" !!}05<br{xhtml}>メールアドレス{!endif}
+{!!if {field_type} ==  "6" !!}06<br{xhtml}>url{!endif}
+{!!if {field_type} ==  "7" !!}07<br{xhtml}>オプションリスト（選択肢）{!endif}
+{!!if {field_type} ==  "8" !!}08<br{xhtml}>ラジオボタン（選択肢）{!endif}
+{!!if {field_type} == "24" !!}24<br{xhtml}>チェックボックス（選択肢）{!endif}
+{!!if {field_type} == "14" !!}14<br{xhtml}>マルチセレクトリスト（選択肢）{!endif}
+{!!if {field_type} == "17" !!}17<br{xhtml}>フラグ{!endif}
+{!!if {field_type} ==  "9" !!}09<br{xhtml}>オプションリスト（マスター）{!endif}
+{!!if {field_type} == "16" !!}16<br{xhtml}>ラジオボタン（マスター）{!endif}
+{!!if {field_type} == "18" !!}18<br{xhtml}>マルチセレクトリスト（マスター）{!endif}
+{!!if {field_type} == "25" !!}25<br{xhtml}>チェックボックス（マスター）{!endif}
+{!!if {field_type} == "11" !!}11<br{xhtml}>画像（DB保存）{!endif}
+{!!if {field_type} == "12" !!}12<br{xhtml}>画像（ファイル保存）{!endif}
+{!!if {field_type} == "13" !!}13<br{xhtml}>添付ファイル{!endif}
+</td>
+
+{# end {templatelocation} #}

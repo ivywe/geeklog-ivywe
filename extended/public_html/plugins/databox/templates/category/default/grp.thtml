@@ -1,0 +1,18 @@
+{# begin {templatelocation} #}
+
+    <h3>{group_name}(<a href="#db_category_grp_{group_name}" data-uk-modal>example</a>)</h3>
+
+<div id="db_category_grp_{group_name}" class="uk-modal">
+  <div class="uk-modal-dialog">
+    <a class="uk-modal-close uk-close"></a>
+    <div class="uk-text-break">
+      <span class="uk-text-bold">theme variables(<a href="{site_url}/admin/plugins/databox/docs/japanese/templatesetvars.html">Document</a>):</span> {templatelocation}
+    </div>
+    <ul class="uk-list uk-list-line">
+      <li><span style="color:green">&#123;group_name&#125;</span>{group_name}</li>
+      <li><span style="color:green">&#123;group_link&#125;</span>{group_link}</li>
+    </ul>
+  </div>
+</div>
+
+{# end {templatelocation} #}

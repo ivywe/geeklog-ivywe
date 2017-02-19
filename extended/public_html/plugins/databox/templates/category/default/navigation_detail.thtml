@@ -1,0 +1,33 @@
+{# begin {templatelocation} #}
+
+<div>
+
+  <ul class="uk-subnav uk-flex-center uk-margin-top uk-margin-remove-bottom">
+    <li class="uk-button uk-button-small uk-margin-small-left{!!if {cur_order}=="date" !!} uk-button-success{!endif}">{order_date}</li><li class="uk-button uk-button-small uk-margin-small-left{!!if {cur_order}=="orderno" !!} uk-button-success{!endif}">{order_orderno}</li><li class="uk-button uk-button-small uk-margin-small-left{!!if {cur_order}=="code" !!} uk-button-success{!endif}">{order_code}</li><li class="uk-button uk-button-small uk-margin-small-left{!!if {cur_order}=="title" !!} uk-button-success{!endif}">{order_title}</li><li class="uk-button uk-button-small uk-margin-small-left{!!if {cur_order}=="description" !!} uk-button-success{!endif}">{order_description}</li><li class="uk-button uk-button-small uk-margin-small-left{!!if {cur_order}=="id" !!} uk-button-success{!endif}">{order_id}</li><li class="uk-button uk-button-small uk-margin-small-left{!!if {cur_order}=="released" !!} uk-button-success{!endif}">{order_released}</li><li class="uk-button uk-button-small uk-margin-small-left{!!if {cur_order}=="random" !!} uk-button-success{!endif}">{order_random}</li>
+    <!-- example: sort by attribute -->
+    {!if order_tel}<li>{order_tel}</li>{!endif}
+    {!if order_zipcode}<li>{order_zipcode}</li>{!endif}
+  </ul>
+
+  <div {pagenavinone}>
+    {page_navigation}
+    <div class="uk-float-right">{lang_view} [{lin}] / {cnt}</div>
+  </div>
+  <div style="clear:both"></div>
+
+  <ul>
+    {row_var}
+  </ul>
+
+  <!-- Maps Link mkids selectedMarkers-->
+  {mkids}{selectedMarkers}
+
+  <div {pagenavinone}>
+    {page_navigation}
+    <div class="uk-float-right"">{lang_view} [{lin}] / {cnt} </div>
+  </div>
+  <div style="clear:both"></div>
+
+</div>
+
+{# end {templatelocation} #}

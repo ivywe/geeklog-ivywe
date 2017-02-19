@@ -1,0 +1,14 @@
+{# begin {templatelocation} #}
+
+ <tr>
+  <td valign="top" style="width:100%;">
+   <b><a onClick="elementToggle('map-detail{mid}'); return false;" href="#">{name}</a>&nbsp;</b>
+   <div id="map-detail{mid}" style="display:none">
+   <div>{description}</div>
+   </div>
+  </td>
+  <td valign="top">{edit_button}
+  </td>
+ </tr>
+
+{# end {templatelocation} #}

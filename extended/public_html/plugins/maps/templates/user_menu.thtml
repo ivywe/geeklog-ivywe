@@ -1,0 +1,10 @@
+{# begin {templatelocation} #}
+
+<div class="user_menu">
+ <a href="{maps_url}/index.php">{maps}</a>
+ {submit_marker}
+ {my_markers}
+ {admin}
+</div>
+
+{# end {templatelocation} #}

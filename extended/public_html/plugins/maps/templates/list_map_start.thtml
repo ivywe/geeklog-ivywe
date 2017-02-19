@@ -1,0 +1,5 @@
+{# begin {templatelocation} #}
+
+<div id="maps_list">
+
+{# end {templatelocation} #}

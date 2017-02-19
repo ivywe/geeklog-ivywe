@@ -21,90 +21,56 @@
       if (yes) return true;
       else return false;
     }
+
     //  End -->
 </script>
-
-<form class="uk-form" name="report_table" action="{action_url}" method="post">
-  <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
-
-  <div class="uk-panel uk-panel-box uk-width-medium-1-1 uk-margin">
-    <div class="uk-form-row">
-      <label class="uk-form-label" for="selectforum">
-        {LANG_migratearticles}
-        <select name="selforum" id="selectforum">
-          <option value="0">{LANG_selectforum}</option>
-          {select_filter_options}
-        </select>     
-      </label>
-    </div>
-    <div class="uk-form-row">    
-      <label class="uk-form-label" for="delPostMigrate">
-        <input type="checkbox" name="delPostMigrate" id="delPostMigrate" value="1"{xhtml}> {LANG_deleteafter}
-      </label>      
-    </div>    
-    <div class="uk-text-right">
-      <button class="uk-button uk-button-primary" type="submit" name="migrate" value="{LANG_migrate}">{LANG_migrate}</button>
-    </div>
-  </div>
-  
-  {message}
-  
-  <div class="uk-grid">
-    <div class="uk-width-1-1 uk-text-right">
-      {filter_topic_selection} <button class="uk-button" type="submit" value="{LANG_filterlist}">{LANG_filterlist}</button>
-    </div>
-  </div>
-
-  <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
-    <thead>
-      <tr>
-        <th class="uk-width-1-10 uk-text-center">
-          <input type="checkbox" name="chk_record_all" id="chk_record_all" value="y" onclick="if(!allChecked) checkAll(document.report_table.elements['chk_record_delete[]']); else uncheckAll(document.report_table.elements['chk_record_delete[]']);"{xhtml}>    
-        </th>
-        <th class="uk-width-2-10">        
-          {LANG_topic}
-        </th>
-        <th class="uk-width-4-10">        
-          {LANG_title}
-        </th>
-        <th class="uk-width-2-10">        
-          {LANG_date}
-        </th>
-        <th class="uk-width-1-10">        
-          {LANG_comments}
-        </th>
-      </tr>
-    </thead>
-    <tbody>                                
-      {report_record}
-      {no_records_message}
-    </tbody>
-  </table>
+<form name="storymigrate" action="{action_url}" method="post">
+<div><input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}></div>
+<table cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-top:25px; margin-bottom:15px;">
+    <tr>
+        <td><select name="selforum"><option value="0">{LANG_selectforum}</option>{select_filter_options}</select>&nbsp;<input type="submit" name="migrate" value="{LANG_migrate}"{xhtml}></td>
+        <td class="alignright"></td>
+	</tr>
+	<tr>
+        <td><input type="checkbox" name="delPostMigrate" id="delPostMigrate" value="1"{xhtml}>&nbsp;<label for="delPostMigrate">{LANG_deleteafter}</label></td>
+        <td class="alignright">{filter_topic_selection}&nbsp;<input type="submit" value="{LANG_filterlist}"{xhtml}></td>
+    </tr>
+</table>
+<table cellspacing="1" cellpadding="3" class="pluginSolidOutline" border="0" width="100%">
+    <tr style="display:{show_message};">
+        <td class="pluginAlert" colspan="5" style="padding:5px; white-space:nowrap;">{status_message}</td>
+    </tr>
+    <tr>
+        <td class="pluginCellTitle" style="width:5%; white-space:nowrap;"><input type="checkbox" name="cb_migrateall" id="cb_migrateall" value="y" onclick="if(!allChecked) checkAll(document.storymigrate.elements['chk_record_delete[]']); else uncheckAll(document.storymigrate.elements['chk_record_delete[]']);"{xhtml}>&nbsp;<label for="cb_migrateall">{LANG_all}</label></td>
+        <td class="pluginCellTitle" style="width:20%; padding-top:5px; white-space:nowrap;">{LANG_topic}</td>
+        <td class="pluginCellTitle" style="width:55%; padding-top:5px; white-space:nowrap;">{LANG_title}</td>
+        <td class="pluginCellTitle" style="width:15%; padding-top:5px; white-space:nowrap;">{LANG_date}</td>
+        <td class="pluginCellTitle aligncenter" style="width:10%; padding-top:5px; white-space:nowrap;">{LANG_comments}</td>
+    </tr>
+	{report_record}
+	{no_records_message}
+</table>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="margin-top:10px;">
+    <tr>
+        <td class="aligncenter">{pagenavigation}</td>
+    </tr>
+</table>
 </form>
-
-{pagenavigation}
-      
+			
 <!-- BEGIN report_record -->
-<tr>
-  <td class="uk-text-center"><input type="checkbox" name="chk_record_delete[]" value="{sid}"{xhtml}></td>
-  <td>{topic}</td>
-  <td><a href="{story_link}">{story_title}</a></td>
-  <td>{date}</td>
-  <td class="uk-text-center">{num_comments}</td>
-</tr>
+    <tr class="pluginRow{cssid}">
+        <td style="width:5%;"><input type="checkbox" name="chk_record_delete[]" value="{sid}"{xhtml}></td>
+        <td style="width:15%;">{topic}</td>
+        <td style="width:45%;"><a href="{story_link}">{story_title}</a></td>
+        <td style="width:25%; white-space:nowrap;">{date}</td>
+        <td class="aligncenter" style="width:10%;">{num_comments}</td>
+    </tr>
 <!-- END report_record -->
 
-<!-- BEGIN message -->
-<div class="uk-alert uk-alert-success" data-uk-alert="">
-  <a href="" class="uk-alert-close uk-close"></a>
-  <p>{status_message}</p>
-</div>
-<!-- END message -->
-
 <!-- BEGIN no_records_message -->
-<tr>
-  <td></td>
-  <td colspan="4">{message}</td>
+<tr class>
+	<td></td>
+	<td colspan="4">{message}</td>
 </tr>
 <!-- END no_records_message -->
 

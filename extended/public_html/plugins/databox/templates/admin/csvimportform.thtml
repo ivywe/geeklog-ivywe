@@ -1,0 +1,29 @@
+{# begin {templatelocation} #}
+
+<h1 class="uk-h1">{lang_import}</h1>
+
+<form class="uk-form uk-form-stacked" action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data">
+
+  <div class="uk-form-row">
+    <div class="uk-form-controls">
+      {lang_unlink}<input name="unlink" value="1" checked="checked" type="checkbox">
+      {lang_sel} {list_sel}
+    </div>
+  </div>
+  <div class="uk-form-row">
+    <div class="uk-form-controls">
+      <input type="text" class="uk-form-width-large" dir="ltr" name="importurl" value="{defaultpath}" size="48" required{xhtml}>
+    </div>
+  </div>
+  <div class="uk-form-row uk-margin-large-bottom">
+    <div class="uk-form-controls">
+      <input type="hidden" name="mode" value="{mode}" {xhtml}>
+      <input type="submit" value="{submit}" name="submin"{xhtml}>
+      <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+      <span class="uk-form-help-inline">{help}</span>
+    </div>
+  </div>
+
+</form>
+
+{# end {templatelocation} #}

@@ -1,0 +1,21 @@
+{# begin {templatelocation} #}
+
+<h1 class="uk-h1">{actionname}</h1>
+
+<form class="uk-form uk-form-stacked" action="{site_admin_url}/plugins/databox/data.php" method="post">
+
+  <input type="hidden" name="id" value="{id}"{xhtml}>
+  <div class="uk-text-primary">{lang_inst_changeset}</div>
+
+  <div class="uk-form-row">
+    <div class="uk-form-controls">
+      {lang_fieldset} {list_fieldset}
+      <input type="submit" value="{lang_changeset}" name="mode" class="uk-button"{xhtml}>
+      <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
+      <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+    </div>
+  </div>
+
+</form>
+
+{# end {templatelocation} #}

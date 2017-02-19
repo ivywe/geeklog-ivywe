@@ -1,0 +1,9 @@
+{# begin {templatelocation} #}
+
+<dt>{day}</dt>
+<dd><a href="{url}" class="uk-text-bold">{title}</a>{new_img}
+<div class="uk-text-small uk-text-ignore uk-text-truncate">{introtext}</div>
+<a href="{url}" class="uk-text-right">...続きを読む</a>
+</dd>
+
+{# end {templatelocation} #}

@@ -205,12 +205,8 @@ function plugin_upgrade_themedit() {
 function plugin_getheadercode_themedit() {
 	global $_CONF;
 	
-	$header = '';
-
-	if(SEC_inGroup('Root')){
-		$header = '<script type="text/javascript" src="' . THEMEDIT_BASE_URL
-				. '/js/selection.js' . '"></script>' . LB;
-	}
+	$header = '<script type="text/javascript" src="' . THEMEDIT_BASE_URL
+			. '/js/selection.js' . '"></script>' . LB;
 	return $header;
 }
 
@@ -830,7 +826,7 @@ function THM_list($header_arr, $data_arr) {
 }
 
 function THM_form() {
-    return '<form class="uk-form" action="' . THEMEDIT_BASE_URL . '/index.php" method="post">' . LB;
+    return '<form action="' . THEMEDIT_BASE_URL . '/index.php" method="post">' . LB;
 }
 
 function THM_checkbox($name, $id, $value, $label, $checked = TRUE) {

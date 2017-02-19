@@ -1,0 +1,118 @@
+{# begin {templatelocation} #}
+
+<h1 class="uk-h1">{about_thispage}</h1>
+
+<a href="{document_url}docs/japanese/input_group.html" class="uk-button uk-button-small">Document</a>
+
+<form class="uk-form uk-form-horizontal" name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
+
+  <fieldset class="uk-width-1-1">
+    <legend>Group</legend>
+
+    {# id #}
+    <div class="uk-form-row">
+      <label class="uk-form-label">{lang_group_id}</label>
+      <div class="uk-form-controls">
+        {id}
+        <input type="hidden" name="id" value="{id}"{xhtml}>
+      </div>
+    </div>
+
+    {# code #}
+    <div class="uk-form-row">
+      <label class="uk-form-label">{lang_code} {help_code}</label>
+      <div class="uk-form-controls">
+        <input type="text" class="uk-form-width-medium" size="48" maxlength="160" name="code" value="{code}" required{xhtml}>
+      </div>
+    </div>
+
+    {# name #}
+    <div class="uk-form-row">
+      <label class="uk-form-label">{lang_name}<span class="uk-text-danger">{lang_must}</span></label>
+      <div class="uk-form-controls">
+        <input type="text" class="uk-form-width-medium" size="48" maxlength="160" name="name" value="{name}" required{xhtml}>
+      </div>
+    </div>
+
+    {# description #}
+    <div class="uk-form-row">
+      <label class="uk-form-label" for="databox_description">{lang_description} {help_description}</label>
+      <div class="uk-form-controls">
+        <textarea name="description" class="uk-width-1-1" rows="2" id="databox_description">{description}</textarea>
+      </div>
+    </div>
+
+    {# order #}
+    <div class="uk-form-row">
+      <label class="uk-form-label">{lang_orderno}</label>
+      <div class="uk-form-controls">
+        <input type="text" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
+      </div>
+    </div>
+
+    {# 親グループ？ #}
+    <div class="uk-form-row">
+      <label class="uk-form-label">{lang_parent_flg} {help_parent_flg}</label>
+      <div class="uk-form-controls">
+        {list_parent_flg}
+      </div>
+    </div>
+
+    {# 入力タイプ #}
+    <div class="uk-form-row">
+      <label class="uk-form-label">{lang_input_type} {help_input_type}</label>
+      <div class="uk-form-controls">
+        {list_input_type}
+      </div>
+    </div>
+
+    {# defaulttemplatesdirectory #}
+    <div class="uk-form-row">
+      <label class="uk-form-label">{lang_defaulttemplatesdirectory}{help_defaulttemplatesdirectory}</label>
+      <div class="uk-form-controls">
+        {select_defaulttemplatesdirectory}
+      </div>
+    </div>
+
+    {# allow_display #}
+    <div class="uk-form-row">
+      <label class="uk-form-label">{lang_allow_display}{help_allow_display}</label>
+      <div class="uk-form-controls">
+        {list_allow_display}
+      </div>
+    </div>
+
+    {# allow_edit #}
+    <div class="uk-form-row">
+      <label class="uk-form-label">{lang_allow_edit}{help_allow_edit}</label>
+      <div class="uk-form-controls">
+        {list_allow_edit}
+      </div>
+    </div>
+
+    {# Update date #}
+    <div class="uk-form-row">
+      <label class="uk-form-label">{lang_udatetime}</label>
+      <div class="uk-form-controls">
+        {udatetime} {lang_uuid}:{uuid}
+      </div>
+    </div>
+
+  </fieldset>
+
+  <div class="uk-form-row uk-margin-large uk-margin-large-bottom">
+    <label class="uk-form-label"></label>
+    <div class="uk-form-controls">
+      {# Submit button - Save Cancel Delete #}
+      <input type="submit" value="{lang_save}" name="mode" class="uk-button uk-form-width-medium"{xhtml}>
+      <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
+      <input type="hidden" value="{code}" name="old_code"{xhtml}>
+      {delete_option}
+      <span class="uk-form-help-inline">{lang_delete_help}</span>
+      <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+    </div>
+  </div>
+
+</form>
+
+{# end {templatelocation} #}

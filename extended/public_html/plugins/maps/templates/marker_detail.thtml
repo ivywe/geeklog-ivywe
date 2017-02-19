@@ -1,0 +1,10 @@
+{# begin {templatelocation} #}
+
+<div class="product">
+ <div><strong>{name}</strong></div>
+ <div>{short_description}</div>
+ <div><strong>{price_label} {currency} {price}</strong></div>
+ <div style="margin-top:10px;">{buy_now}</div>
+</div>
+
+{# end {templatelocation} #}

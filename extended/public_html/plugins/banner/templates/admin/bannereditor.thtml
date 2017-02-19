@@ -1,0 +1,117 @@
+{# begin {templatelocation} #}
+
+<script type="text/javascript">
+// Setup editor path for FCKeditor JS Functions
+geeklogEditorBasePath = "{site_url}/fckeditor/" ;
+window.onload = function() {
+  var oFCKeditor1 = new FCKeditor( 'description' ) ;
+  oFCKeditor1.Config['CustomConfigurationsPath'] = '{site_url}/banner/myconfig.js';
+  oFCKeditor1.BasePath = geeklogEditorBasePath;
+  oFCKeditor1.ToolbarSet = 'editor-toolbar-banner{mg}';
+  oFCKeditor1.Height = 200 ;
+  oFCKeditor1.ReplaceTextarea() ;
+}
+</script>
+<p>{instructions}</p>
+
+                                <form class="uk-form" action="{site_admin_url}/plugins/banner/index.php" method="post">
+                                    <table border="0" cellspacing="0" cellpadding="2" width="100%">
+
+                                        <tr>
+                                            <td align="right">{lang_bannertitle}:</td>
+                                            <td>
+                                                <input type="text" size="48" maxlength="96" name="title" value="{banner_title}"{xhtml}>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right">{lang_bannerid}:</td>
+                                            <td>
+                                                <input type="text" dir="ltr" size="40" maxlength="40" name="bid" value="{banner_id}"{xhtml}>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right">{lang_bannerurl}:</td>
+                                            <td>
+                                                <input type="text" dir="ltr" size="48" maxlength="{max_url_length}" name="url" value="{banner_url}"{xhtml}> {lang_includehttp}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right">{lang_category}:</td>
+                                            <td>
+                                                <select name="categorydd">
+                                                    {category_options}
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right">{lang_publishstart}:</td>
+                                            <td>
+                                                <input type="text" size="24" name="publishstart" value="{publishstart}"{xhtml}> {lang_helpdatetime}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right">{lang_publishend}:</td>
+                                            <td>
+                                                <input type="text" size="24" name="publishend" value="{publishend}"{xhtml}> {lang_helpdatetime}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right">{lang_bannerhits}:</td>
+                                            <td>
+                                                <input type="text" size="11" name="hits" value="{banner_hits}"{xhtml}>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right" valign="top">{lang_bannerdescription}:</td>
+                                            <td>
+                                                <textarea name="description" id="description" cols="50" rows="8">{banner_description}</textarea>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><hr{xhtml}></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><b>{lang_accessrights}</b></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right">{lang_owner}:</td>
+                                            <td>{owner_name}<input type="hidden" name="owner_id" value="{banner_ownerid}"{xhtml}></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right">{lang_group}:</td>
+                                            <td>
+                                                {group_dropdown}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><b>{lang_permissions}</b>:</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">{lang_permissionskey}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                {permissions_editor}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">{lang_lockmsg}</td>
+                                        </tr>
+                                        <tr><td>&nbsp;</td></tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <input type="submit" value="{lang_save}" name="mode"{xhtml}>
+                                                <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
+                                                <input type="hidden" value="{banner_id}" name="old_bid"{xhtml}>
+                                                {delete_option}
+                                                {submission_option}
+                                                <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </form>
+
+{# end {templatelocation} #}

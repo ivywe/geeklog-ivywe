@@ -1,0 +1,136 @@
+{# begin {templatelocation} #}
+
+<style type="text/css">    
+    #map_canvas_m{mid} {
+      width:{map_width};
+      height:{map_height};
+    }
+    #map_contener_m{mid} {
+      width:{map_width};
+      border:solid 1px #666;
+      background:#CCC
+    }
+</style>
+
+{markerclusterer}
+
+<script type="text/javascript">
+  
+  /* Error messages for possible errors */
+  var error_address_empty{gid}   = '{error_address_empty}';
+  var error_invalid_address{gid}   = '{error_invalid_address}'; 
+  var error_google_error{gid}   = '{error_google_error}';
+  var error_no_map_info{gid}    = '{error_no_map_info}';
+  
+  var default_address{gid} = '{address}';
+    
+  var map{mid}; /* Instance of Google Maps object */
+  
+  var directionsDisplay;
+  
+  var current_address{gid} = '{current_address}'; /* Current address we are displaying, we save it here for directions */
+  var geocoder{gid}     = null; /* Instance of Google Deocoder object */
+  var gdir{gid}       = null; /* Instance of Google Directions object */
+    
+  var map_height_m{gid} = '{map_height}';
+  var alloverlays = [];
+  var map = [];
+  var zoommax = [];
+  var zoommin = [];
+  
+  {overlays_js}
+
+  function initialize{mid}() {
+    
+    //Map
+    map{mid} = new google.maps.Map(document.getElementById('map_canvas_m{mid}'), {
+      center: new google.maps.LatLng({lat}, {lng}),
+      zoom: {zoom},
+        mapTypeId: google.maps.MapTypeId.{map_type}
+    });      
+    
+    map[{mid}]       = map{mid};
+    
+    //Overlays
+      {overlays}
+  
+      //Markers
+      {markers}
+  
+      {ads}
+    
+    // Initialize the directions display
+      directionsDisplay = new google.maps.DirectionsRenderer(
+      { 
+      map: map{mid},
+      panel : document.getElementById('directions{gid}')
+      });
+    }
+  
+  google.maps.event.addDomListener(window, 'load', initialize{mid});
+  
+  // Get the directions
+  function get_directions{gid}() {
+     /**
+     * Delete the contents of 'directions' DIV first 
+     * because user might ask for directions more than once.
+    **/
+    document.getElementById('directions{gid}').innerHTML = '';
+    
+    // Initialize the directions service
+    var directionsService{gid} = new google.maps.DirectionsService();
+    google.maps.event.addListener(directionsService{gid}, 'error', handleErrors);
+    
+    var start = document.getElementById('from_address{gid}').value;
+
+    var request = {
+    origin: start, 
+    destination: current_address{gid},
+    travelMode: google.maps.DirectionsTravelMode.DRIVING
+    };
+    
+    directionsService{gid}.route(request, function(response, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(response);
+      scrollToAnchor("directions_{gid}_table");
+    } else {
+      alert('Error generating directions');
+    }
+    });
+  }  
+  
+  function scrollToAnchor(aid){
+    var aTag = $("a[name='"+ aid +"']");
+    $('html,body').delay(1000).animate({scrollTop: aTag.offset().top},'slow');
+  }
+
+  /* This will handle the errors might happen while retrieving the directions */
+  function handleErrors(){
+    if( directionsService{gid}.getStatus().code == G_GEO_UNKNOWN_ADDRESS )
+      alert(error_invalid_address{gid});
+    else if( directionsService{gid}.getStatus().code == G_GEO_SERVER_ERROR )
+      alert(error_google_error{gid});
+    else if( directionsService{gid}.getStatus().code == G_GEO_MISSING_QUERY )
+      alert(error_address_empty{gid});
+    else 
+      alert(error_invalid_address{gid});
+  }
+
+    
+</script>
+{header}
+<h2>{name}</h2>
+{description}
+ <div id="map_contener_m{mid}">
+ <div id="map_canvas_m{mid}"></div>
+ {directions_input}
+ </div>
+ 
+ {overlays_checkboxes}
+
+<small>{date_and_hits}</small>
+{footer}
+
+{edit_button}
+
+{# end {templatelocation} #}

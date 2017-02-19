@@ -1,0 +1,14 @@
+{# begin {templatelocation} #}
+
+{blockheader}
+
+{category_dropdown}
+{category_navigation}
+
+<div class="uk-margin-top uk-margin-bottom uk-text-center">[ <a href="{site_url}/submit.php?type=banner&amp;cid={cid_encoded}">{lang_addabanner}</a> ]</div>
+{category_banner}
+{page_navigation}
+
+{blockfooter}
+
+{# end {templatelocation} #}

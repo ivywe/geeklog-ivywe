@@ -1,0 +1,25 @@
+{# begin {templatelocation} #}
+
+<div id="group_overlay_form">
+  <form class="uk-form" name="group_overlay_edit" action="{site_url}/admin/plugins/maps/overlay_group_edit.php" method="POST">
+    <fieldset style="margin-top: 10px;padding:10px;">
+    <legend><b>{informations}</b></legend>
+      <div id="informations">
+          <p>{group_overlay_presentation}</p>
+        <p><b>{name_label}</b> <font color="red">*</font> <input type="text" name="o_group_name" value="{name}" size="80" maxlength="255"></p>
+      </div>
+    </fieldset>  
+    
+    <p><font color="red"><strong><small>*</font> {required_field}</small></strong></p>
+    <div>
+      <select name="mode">
+      <option value="save" selected="selected">{save_button}</option>
+      {delete_button}
+      </select>
+      <input type="submit" name="submit" value="{ok_button}">
+      {o_group_id}
+    </div>
+  </form>
+</div>
+
+{# end {templatelocation} #}

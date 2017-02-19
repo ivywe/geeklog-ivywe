@@ -1,0 +1,65 @@
+{# begin {templatelocation} #}
+
+<div>
+  <form class="uk-form" action="#" onsubmit="codeAddress(); return false">
+    <h1>{submit_marker}</h1>
+    <p>{submit_marker_text}        
+    </p>
+    <p>
+    <input type="text" style="width:350px" id="geoaddress" name="geoaddress" value="1600 Amphitheatre Pky, Mountain View, CA" onkeyup="copyText()"/>
+    <input type="submit" value="{go}" onfocus="copyText();" />
+    </p>
+    <div id="map_contener_submission">
+    <div id="map_canvas" style="width: 100%; height: 400px"></div>
+    <div id="submission_presentation">
+    </div>
+    </div>
+  </form>
+</div>
+&nbsp;
+<div id="marker_form">
+  <form name="marker_edit" action="{site_url}/submit.php?type=maps" method="POST">
+    <fieldset style="margin-top: 10px;padding:10px;">
+    <legend>{arrow}<b>{informations}</b></legend>
+      <div id="informations">
+        <p><b>{name_label}</b><font color="red">*</font> <input type="text" name="name" value="{name}" size="80" maxlength="255"></p>
+        <p><b>{address_label}</b><font color="red">*</font> <input type="text" id="address" name="address" value="{address}" size="80" maxlength="255"></p>
+        <p><b>{lat}</b> <input type="text" id="lat" name="lat" value="{lat_value}" size="25" maxlength="12">&nbsp;&nbsp; 
+        <b>{lng}</b> <input type="text" id="lng" name="lng" value="{lng_value}" size="25" maxlength="12"><br{xhtml}>
+        {empty_for_geo}</p>
+        <p><b>{mid_label}</b> &nbsp;<select id="mid" name="mid">{map_options}</select><br{xhtml}>
+        {select_marker_map}</p>
+        <p><small>{created_label} {created} <br{xhtml}> {modified_label} {modified}</small></p>
+      </div>
+    </fieldset>   
+    <fieldset style="margin-top: 10px;">
+    <legend>{arrow}<b>{presentation_tab}</b></legend>
+      <div id="presentation_tab">
+        <p><b>{description_label}</b><br{xhtml}><textarea rows="4" id="description" name="description" cols="51" style="width:99%">{description}</textarea>
+        </p>
+        <p><b>{street_label}</b> {street}</p>
+        <p><b>{code_label}</b> {code}</p>
+        <p><b>{city_label}</b> {city}</p>
+        <p><b>{state_label}</b> {state}</p>
+        <p><b>{country_label}</b> {country}</p>
+        <p><b>{tel_label}</b> {tel}</p>
+        <p><b>{fax_label}</b> {fax}</p>
+        <p><b>{web_label}</b> {web}</p>
+      </div>
+    </fieldset>
+    <fieldset style="margin-top: 10px;">
+    <legend>{arrow}<b>{ressources_tab}</b></legend>
+      <div id="ressources_tab">
+        {ressources}
+      </div>
+    </fieldset>
+    <p><font color="red"><strong><small>*</font> {required_field}</small></strong></p>
+    <div>
+        <input type="hidden" name="type" value="maps">
+      <input name="mode" type="submit" value="{lang_save}">
+      {mkid}
+    </div>
+  </form>
+</div>
+
+{# end {templatelocation} #}

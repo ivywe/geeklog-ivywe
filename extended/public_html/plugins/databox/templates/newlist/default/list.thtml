@@ -1,0 +1,7 @@
+{# begin {templatelocation} #}
+
+<dl class="uk-description-list-horizontal uk-margin-remove">
+{list_col}
+</dl>
+
+{# end {templatelocation} #}

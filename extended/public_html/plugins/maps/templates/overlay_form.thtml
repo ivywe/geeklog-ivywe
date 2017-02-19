@@ -1,0 +1,44 @@
+{# begin {templatelocation} #}
+
+<div id="overlay_form">
+  <form class="uk-form" name="overlay_edit" action="{site_url}/admin/plugins/maps/overlay_edit.php" method="POST"  enctype="multipart/form-data">
+    <fieldset style="margin-top: 10px;padding:10px;">
+    <legend><b>{informations}</b></legend>
+      <div id="informations">
+          <p>{overlay_presentation}</p>
+        <p><b>{name_label}</b> <font color="red">*</font> <input type="text" name="name" value="{name}" size="80" maxlength="255"></p>
+        <p>{group}</p>
+        <p><b>{sw_lat}</b> <input type="text" id="sw_lat" name="sw_lat" value="{sw_lat_value}" size="14" maxlength="12">&nbsp;&nbsp; 
+        <b>{sw_lng}</b> <input type="text" id="sw_lng" name="sw_lng" value="{sw_lng_value}" size="14" maxlength="12"><br{xhtml}>
+        </p>
+        <p><b>{ne_lat}</b> <input type="text" id="ne_lat" name="ne_lat" value="{ne_lat_value}" size="14" maxlength="12">&nbsp;&nbsp; 
+        <b>{ne_lng}</b> <input type="text" id="ne_lng" name="ne_lng" value="{ne_lng_value}" size="14" maxlength="12"><br{xhtml}>
+        </p>
+        <p><b>{zoom_min_label}</b> <input type="text" id="zoom_min" name="zoom_min" value="{zoom_min}" size="2" maxlength="2">&nbsp;&nbsp;
+        <b>{zoom_max_label}</b> <input type="text" id="zoom_max" name="zoom_max" value="{zoom_max}" size="2" maxlength="2"></p>
+        <p><b>{active}</b> <select name="active">
+        <option value="0"{active_no}>{no}</option>
+        <option value="1"{active_yes}>{yes}</option>
+        </select></p>
+      </div>
+    </fieldset>  
+    <fieldset style="margin-top: 10px;padding:10px;">
+    <legend><b>{image}</b></legend>
+        <p>{image_message}</p>  
+        <input type="file" dir="ltr" name="file"{xhtml}>
+        {overlay_image}
+    </fieldset>  
+
+    <p><font color="red"><strong><small>*</font> {required_field}</small></strong></p>
+    <div>
+      <select name="mode" >
+      <option value="save" selected="selected">{save_button}</option>
+      {delete_button}
+      </select>
+      <input type="submit" name="submit" value="{ok_button}">
+      {oid}
+    </div>
+  </form>
+</div>
+
+{# end {templatelocation} #}

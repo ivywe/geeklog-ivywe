@@ -1,0 +1,63 @@
+{# begin {templatelocation} #}
+
+{about_thispage}
+<form class="uk-form uk-form-horizontal" name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
+
+  <fieldset class="uk-width-1-1">
+    <legend>{csv_select_dtl}</legend>
+
+    {# data #}
+    {# seq #}
+    <div class="uk-form-row">
+      <label class="uk-form-label">{lang_seq}</label>
+      <div class="uk-form-controls">
+        {seq}
+        <input type="hidden" name="seq" value="{seq}"{xhtml}>
+        <input type="hidden" name="id" value="{id}"{xhtml}>
+        id={name}{id}
+      </div>
+    </div>
+
+    {# csvheader #}
+    <div class="uk-form-row">
+      <label class="uk-form-label">{lang_csvheader}</label>
+      <div class="uk-form-controls">
+        <input type="text" size="48" maxlength="160" name="csvheader" value="{csvheader}"{xhtml}>
+        <span class="uk-form-help-inline">{help_csvheader}</span>
+      </div>
+    </div>
+
+    {# value #}
+    <div class="uk-form-row">
+      <label class="uk-form-label">{lang_value}</label>
+      <div class="uk-form-controls">
+        <input type="text" size="48" maxlength="160" name="value" value="{value}"{xhtml}>
+        <span class="uk-form-help-inline">{help_value}</span>
+      </div>
+    </div>
+
+    {# Update date #}
+    <div class="uk-form-row">
+      <label class="uk-form-label">{lang_udatetime}</label>
+      <div class="uk-form-controls">
+        {udatetime} {lang_uuid}:{uuid}
+      </div>
+    </div>
+
+  </fieldset>
+
+    <div class="uk-form-row uk-margin-large uk-margin-large-bottom">
+      <div class="uk-form-controls">
+        {# Submit button - Save Cancel Delete #}
+        <input type="submit" value="{lang_save}" name="mode" class="uk-button uk-form-width-medium"{xhtml}>
+        <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
+        <input type="hidden" value="{code}" name="old_code"{xhtml}>
+        {delete_option}{lang_delete_help}
+        <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+        <input type="hidden" name="mode2" value="selectdtl"{xhtml}>
+      </div>
+    </div>
+
+</form>
+
+{# end {templatelocation} #}
