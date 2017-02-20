@@ -2425,24 +2425,24 @@ function PAYPAL_Breadcrumbs($id)
             break;
 
         $row = DB_fetchArray($result, false);
-        $url = '<a href="' . $_PAY_CONF['site_url'] . '/index.php?n=' 
+        $url = '<li><a href="' . $_PAY_CONF['site_url'] . '/index.php?n=' 
 				. urlencode($row['cat_name']) . '&amp;category=' . 
-                (int)$row['cat_id'] . '">' . $row['cat_name'] . '</a>';
+                (int)$row['cat_id'] . '">' . $row['cat_name'] . '</a></li>';
 
         $A[] = $url;
 
         $parent = (int)$row['parent_id'];
         if ($parent == 0) {
-            $url = '<a href="' . 
+            $url = '<li><a href="' . 
                     COM_buildURL($_PAY_CONF['site_url'] . '/index.php') . 
-                    '">' . $LANG_PAYPAL_1['home'] . '</a>';
+                    '">' . $LANG_PAYPAL_1['home'] . '</a></li>';
             $A[] = $url;
             break;
         }
     }
 
     $B = array_reverse($A);
-    $location = implode(' > ', $B);
+    $location = implode('', $B);
     return $location;
 
 }

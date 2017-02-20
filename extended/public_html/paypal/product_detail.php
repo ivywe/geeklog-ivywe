@@ -704,7 +704,7 @@ if (SEC_hasRights('paypal.user', 'paypal.admin')) {
 
 $breadcrumbs = PAYPAL_Breadcrumbs($A['cat_id']);
 if ($breadcrumbs != '') {
-				   $display .= '<p class="uk-text-small">' . $breadcrumbs . '</p>';
+				   $display .= '<ul class="uk-breadcrumb">' . $breadcrumbs . '</ul>';
 				}
 
 $product = COM_newTemplate($_CONF['path'] . 'plugins/paypal/templates');
@@ -772,7 +772,7 @@ if (($A['active'] == 0) && SEC_hasRights('paypal.admin')) {
 }
 $product->set_var('short_description', PLG_replacetags($A['short_description']));
 if ($A['item_id'] != '' && $_PAY_CONF['display_item_id'] == 1) {
-	$product->set_var('item_id', '<p class="product-item-id">' . $A['item_id'] . '</p>');
+	$product->set_var('item_id', $A['item_id'] );
 } else {
     $product->set_var('item_id', '');
 }
