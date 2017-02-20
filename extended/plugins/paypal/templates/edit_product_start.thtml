@@ -1,2 +1,9 @@
+{# begin {templatelocation} #}
+
 <form action="{site_url}/admin/plugins/paypal/product_edit.php" method="GET">
 <table class="product-list uk-table uk-table-small"> 
+
+{# end {templatelocation} #}
+
+
+{# end {templatelocation} #}

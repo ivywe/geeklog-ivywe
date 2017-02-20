@@ -1,3 +1,5 @@
+{# begin {templatelocation} #}
+
 <!-- cart_start_check.thtml -->
 
 <div id="jcart">
@@ -23,3 +25,8 @@
 		  </th>
 		</tr>
 </thead>
+
+{# end {templatelocation} #}
+
+
+{# end {templatelocation} #}

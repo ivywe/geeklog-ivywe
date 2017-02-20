@@ -1,3 +1,16 @@
+nav.uk-navbar.gl-navbar-small li a {
+	height: 30px;
+	color: white;
+	line-height: 1em;
+	margin: 3px 3px;
+}
+nav.uk-navbar.gl-navbar-small li  {
+	border-radius: 25px;
+	margin-left:3px;
+	padding: 0;
+}
+
+
 fieldset {
 	border: none;
 }

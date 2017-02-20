@@ -1,3 +1,5 @@
+{# begin {templatelocation} #}
+
 <!-- cart_block_item.thtml -->
         <tr>
 		  <td class="jcart-item-qty" nowrap>
@@ -11,3 +13,5 @@
 		    <span>{subtotal}</span> <input type="hidden" name="jcart_item_price[ ]" value="{price}"{xhtml}>
 		  </td>
 		</tr>
+
+{# end {templatelocation} #}

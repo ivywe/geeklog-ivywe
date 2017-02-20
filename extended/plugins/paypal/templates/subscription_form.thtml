@@ -1,3 +1,5 @@
+{# begin {templatelocation} #}
+
 <form action="{site_url}/admin/plugins/paypal/subscriptions.php" method="POST" class="paypal_form">
 {id}
   <fieldset style="margin-top: 10px;"><legend><b>{informations}</b></legend>  	
@@ -19,3 +21,5 @@
 	</select>
     <input type="submit" name="submit" value="{ok_button}" {xhtml}>
 </form>
+
+{# end {templatelocation} #}

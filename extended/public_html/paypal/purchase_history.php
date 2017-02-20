@@ -61,7 +61,7 @@ if (!SEC_hasRights('paypal.user','paypal.admin','OR') || COM_isAnonUser() ) {
     case 1 :    // left only
     case 3 :    // both
     default :
-        $display .= COM_siteHeader('menu', $pagetitle);
+        $display .= COM_siteHeader('none', $pagetitle);
         break;
     }
 
@@ -74,7 +74,7 @@ if (!SEC_hasRights('paypal.user','paypal.admin','OR') || COM_isAnonUser() ) {
 
 //Main
 
-$display = COM_siteHeader();
+$display = COM_siteHeader('none');
 $display .= paypal_user_menu();
 
 if (!empty($_REQUEST['msg'])) $display .= COM_showMessageText( stripslashes($_REQUEST['msg']), $LANG_PAYPAL_1['message']);

@@ -1,3 +1,5 @@
+{# begin {templatelocation} #}
+
  <tr>
   <td><a href="{site_url}/admin/plugins/paypal/ipnlog.php?op=single&id={id}">{id}</a></td>
   <td>{ip_addr}</td>
@@ -7,3 +9,8 @@
   <td>{status}</td>
   <td><a href="{site_url}/users.php?mode=profile&uid={purchaser}">{purchaser}</a></td>
  </tr>
+
+{# end {templatelocation} #}
+
+
+{# end {templatelocation} #}

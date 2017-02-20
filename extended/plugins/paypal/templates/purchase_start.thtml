@@ -1,3 +1,5 @@
+{# begin {templatelocation} #}
+
 <table class="plugin uk-table uk-table-small uk-width-1-1" width="100%">
  <tr>
   <th>Product:</th>
@@ -7,3 +9,10 @@
   <th>Expiration:</th>
  </tr>
 
+{# end {templatelocation} #}
+
+
+{# end {templatelocation} #}
+
+
+{# end {templatelocation} #}

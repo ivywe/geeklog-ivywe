@@ -38,11 +38,9 @@
 </div>
 <div class="uk-margin">
 	<p>{uid}{operation}</p>
-  <p class="uk-text-center"><input type="submit" name="submit" value="{save_button}"  class="uk-button uk-button-danger uk-button-large"  {xhtml}></p>
+  <p class="uk-text-center"><input type="submit" name="submit" value="{save_button}"  class="uk-button uk-button-primary uk-button-large"  {xhtml}></p>
 </div>
 	<input type="hidden" name="country" value="" {xhtml}>
-
-<p class="uk-text-small uk-text-warning">上の「注文を確定する」ボタンを押してご注文いただくことで、お客様は当サイトの{!!autotag staticpage:privacypolicy プライバシー規約 !!} および{!!autotag staticpage:terms 利用規約 !!}に同意の上、商品をご注文されたことになります。 </a>
 
 </fieldset>
 

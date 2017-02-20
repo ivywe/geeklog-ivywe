@@ -1,3 +1,5 @@
+{# begin {templatelocation} #}
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html{xmlns}>
 <head>
@@ -36,3 +38,8 @@
 </div>
 </body>
 </html>
+
+{# end {templatelocation} #}
+
+
+{# end {templatelocation} #}

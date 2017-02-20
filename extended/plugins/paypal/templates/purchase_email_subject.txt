@@ -1,1 +1,8 @@
-{site_name} {purchase_receipt}
+{# begin {templatelocation} #}
+
+{site_name} | {purchase_receipt}
+
+{# end {templatelocation} #}
+
+
+{# end {templatelocation} #}

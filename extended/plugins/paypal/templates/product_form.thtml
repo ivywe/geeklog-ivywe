@@ -1,13 +1,15 @@
+{# begin {templatelocation} #}
+
 {adveditor}
 
-<div class="tabs">
-<!-- tabs -->
-<ul class="tabNavigation">
+<div>
+{# tabs #}
+<ul class="tabNavigation uk-margin-large-top">
 <li><a href="#product">{informations}</a></li>
 <li><a href="#attributes">{customisation}</a></li>
 </ul>
 
-<!-- tab containers -->
+{# tab containers #}
 <div id="product" style="padding:5px 10px;">
 	
 <form action="{site_url}/admin/plugins/paypal/product_edit.php" method="POST" enctype="multipart/form-data"  class="paypal_form">
@@ -171,3 +173,5 @@
   </fieldset>
 </div>
 </div>
+
+{# end {templatelocation} #}

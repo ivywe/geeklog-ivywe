@@ -1,3 +1,5 @@
+{# begin {templatelocation} #}
+
 <div class="button_buy_now">
  <form style="display: inline" action="{buy_now_url}" method="post">
   <input type="hidden" name="item_number" value="{id}" />
@@ -6,3 +8,5 @@
   <input type="submit" value="{buy_now_button}" name="submit" />
  </form>
 </div>
+
+{# end {templatelocation} #}

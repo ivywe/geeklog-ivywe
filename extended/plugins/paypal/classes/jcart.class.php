@@ -427,17 +427,17 @@ class jcart {
 		if ($is_checkout == true)
 		{
 			$steps = '<div class="uk-width-1-1 uk-margin uk-margin-top"><div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-text-center uk-button-group">
-			        <button class="uk-button uk-button-secondary uk-margin-small-bottom uk-text-nowrap">' . $LANG_PAYPAL_1['checkout_step_1'] . '</button>
-							<button class="uk-button uk-button-default uk-margin-small-bottom uk-text-nowrap">' . $LANG_PAYPAL_1['checkout_step_2'] . '</button>
-							<button class="uk-button uk-button-default uk-margin-small-bottom uk-text-nowrap">' . $LANG_PAYPAL_1['checkout_step_3'] . '</button>
+			        <button class="uk-button uk-button-secondary uk-margin-small-bottom uk-text-nowrap" style="cursor: default">' . $LANG_PAYPAL_1['checkout_step_1'] . '</button>
+							<button class="uk-button uk-button-default uk-margin-small-bottom uk-text-nowrap" style="cursor: default">' . $LANG_PAYPAL_1['checkout_step_2'] . '</button>
+							<button class="uk-button uk-button-default uk-margin-small-bottom uk-text-nowrap" style="cursor: default">' . $LANG_PAYPAL_1['checkout_step_3'] . '</button>
 						</div></div>';
 			$cart->set_var('steps', $steps);
 		} else if ($_REQUEST['pay_by'] == 'check' || PAYBYCHECK == true) {
 		    PAYBYCHECK == true;
 			$steps = '<div class="uk-width-1-1 uk-margin uk-margin-top"><div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-text-center uk-button-group">
-			        <button class="uk-button uk-button-default uk-margin-small-bottom uk-text-nowrap">' . $LANG_PAYPAL_1['checkout_step_1'] . '</button>
-							<button class="uk-button uk-button-secondary uk-margin-small-bottom uk-text-nowrap">' . $LANG_PAYPAL_1['checkout_step_2'] . '</button>
-							<button class="uk-button uk-button-default uk-margin-small-bottom uk-text-nowrap">' . $LANG_PAYPAL_1['checkout_step_3'] . '</button>
+			        <button class="uk-button uk-button-default uk-margin-small-bottom uk-text-nowrap" style="cursor: default">' . $LANG_PAYPAL_1['checkout_step_1'] . '</button>
+							<button class="uk-button uk-button-secondary uk-margin-small-bottom uk-text-nowrap" style="cursor: default">' . $LANG_PAYPAL_1['checkout_step_2'] . '</button>
+							<button class="uk-button uk-button-default uk-margin-small-bottom uk-text-nowrap" style="cursor: default">' . $LANG_PAYPAL_1['checkout_step_3'] . '</button>
 						</div></div>';
 			$cart->set_var('steps', $steps);
 		} else {
@@ -520,8 +520,8 @@ class jcart {
 		
 		// IF THIS IS THE CHECKOUT HIDE THE CART CHECKOUT BUTTON
 		if ($is_checkout !== true && $_REQUEST['pay_by'] != 'check') {
-			$cart->set_var('checkout', '<button type="submit" id="jcart-checkout" name="jcart_checkout" class="uk-button uk-button-primary uk-button-large uk-text-right" value="PayPal決済１' . $text['checkout_button']
- . '">' . $text['checkout_button'] . ' &#62;&#62;</button>');
+			$cart->set_var('checkout', '<button type="submit" id="jcart-checkout" name="jcart_checkout" class="uk-button uk-button-danger uk-button-large uk-text-right" style="border-radius:500px" value="PayPal決済１' . $text['checkout_button']
+ . '">' . $text['checkout_button'] . '</button>');
 		} else {
 		    $cart->set_var('checkout', '');
 		}
@@ -629,9 +629,9 @@ class jcart {
 							$_SCRIPTS->setJavaScript($js, true);
 
 							$retval .= '<input type="hidden" name="pay_by" />';
-							$retval .= '<a class="uk-button uk-button-primary" href="javascript:payby(\'check\')">' . $LANG_PAYPAL_CART['payment_check'] . ' <span uk-icon="icon: arrow-right"></span></a>';
+							$retval .= '<a class="uk-button uk-button-danger" href="javascript:payby(\'check\')"  style="border-radius:500px">' . $LANG_PAYPAL_CART['payment_check'] . '</a>';
 					} else {
-							$retval .= '<a href="' . $_CONF['site_url'] . '/users.php" class="uk-button uk-button-default">銀行振り込みによる購入は先にログインしてください。</a>';
+							$retval .= '<a href="' . $_CONF['site_url'] . '/users.php" class="uk-button uk-button-danger" style="border-radius:500px" >銀行振り込みによる購入（ログイン・アカウント新規作成へ）</a>';
 					}
 				}
 				if ($_PAY_CONF['enable_pay_by_paypal']) {

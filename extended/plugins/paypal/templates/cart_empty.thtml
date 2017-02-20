@@ -1,3 +1,7 @@
+{# begin {templatelocation} #}
+
 
         <tr><td colspan="4">{empty}</td></tr>
         <tr><td></td><td></td><td></td><td></td></tr>
+
+{# end {templatelocation} #}

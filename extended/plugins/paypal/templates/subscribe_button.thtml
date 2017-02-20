@@ -1,3 +1,5 @@
+{# begin {templatelocation} #}
+
 <form action="{paypal_url}/cgi-bin/webscr" method="post">
  <input type="image" src="{site_url}/paypal/images/subscribe.gif" border="0" name="submit" alt="Subscribe via PayPal" />
  <input type="hidden" name="cmd" value="_xclick-subscriptions" />
@@ -13,3 +15,8 @@
  <input type="hidden" name="src" value="1" />
  <input type="hidden" name="custom" value="{user_id}" />
 </form>
+
+{# end {templatelocation} #}
+
+
+{# end {templatelocation} #}

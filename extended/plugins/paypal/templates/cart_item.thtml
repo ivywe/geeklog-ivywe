@@ -1,3 +1,5 @@
+{# begin {templatelocation} #}
+
 <!-- cart_item.thtml -->
 
 <thead>
@@ -17,3 +19,5 @@
 		</th>
 	</tr>
 </thead>
+
+{# end {templatelocation} #}

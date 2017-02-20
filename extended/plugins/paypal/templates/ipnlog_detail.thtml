@@ -1,3 +1,5 @@
+{# begin {templatelocation} #}
+
 <table  class="uk-width-1-1 uk-table uk-table-small"
   <tr><td><b>{IPN_log}</b></td><td>{id}</td></tr>
   <tr><td><b>{IP_address}</b></td><td>{ip_addr}<br/ ></td></tr>
@@ -13,3 +15,8 @@
 <p>{ipn_data}<br>
  {raw}
 </p>
+
+{# end {templatelocation} #}
+
+
+{# end {templatelocation} #}

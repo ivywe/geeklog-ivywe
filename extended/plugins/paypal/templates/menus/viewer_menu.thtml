@@ -1,15 +1,21 @@
-<nav class="uk-navbar">
+{# begin {templatelocation} #}
+
+<nav class="uk-navbar gl-navbar-small uk-margin">
 	<div class="uk-navbar-left">
 		<ul class="uk-navbar-nav">
-			<li>
+			<li class="uk-button uk-button-primary">
 				{product_list_label}
 			</li>
-			<li>
-				<a href="{site_url}/checkout.php">{view_cart}</a>
-			</li>
-			<li>
+			{!if memberships}<li class="uk-button uk-button-primary">
 				{memberships}
-			</li>
+			</li>{!endif}
+		</ul>
+	</div>
+	<div class="uk-navbar-right">
+		<ul class="uk-navbar-nav">
+			<li class="uk-button uk-button-danger"><a href="{site_url}/checkout.php"><span uk-icon="icon: cart" style="margin:0 5px 2px 0" class="uk-icon"></span> {view_cart}</a></li>
 		</ul>
 	</div>
 </nav>
+
+{# end {templatelocation} #}

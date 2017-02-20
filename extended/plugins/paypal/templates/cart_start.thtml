@@ -1,9 +1,14 @@
+{# begin {templatelocation} #}
+
 {# cart_start.thtml #}
 
 <div>
   {steps}
   {error_message}
   <form method="post" action="{form_action}" name="jcart">
+		
+		  
+		  
 	  <table class="uk-table uk-table-small uk-text-nowrap">
 <caption>{cart_title}({itemcount})</caption>
 <thead>
@@ -22,3 +27,8 @@
 		  </th>
 		</tr>
 </thead>
+
+{# end {templatelocation} #}
+
+
+{# end {templatelocation} #}

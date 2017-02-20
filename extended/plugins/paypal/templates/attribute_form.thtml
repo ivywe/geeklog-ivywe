@@ -1,3 +1,5 @@
+{# begin {templatelocation} #}
+
 <form action="{admin_url}/plugins/paypal/index.php?mode=attributes" method="POST" enctype="multipart/form-data"  class="paypal_form">
 	<fieldset style="margin-top: 10px;"><legend><b>{main_settings}</b></legend>
 	{at_id}
@@ -28,3 +30,5 @@
     <input type="submit" name="submit" value="{ok_button}" {xhtml}>
     
 </form>
+
+{# end {templatelocation} #}

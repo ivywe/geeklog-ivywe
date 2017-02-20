@@ -1,3 +1,5 @@
+{# begin {templatelocation} #}
+
  <tr>
   <td><a href="{site_url}/paypal/product_detail.php?product={product_id}">{product}</a></td>
   <td><a href="{site_url}/users.php?mode=profile&uid={user_id}">{username}</a></td>
@@ -5,3 +7,5 @@
   <td>{purchase_date}</td>
   <td>{expiration}</td>
  </tr>
+
+{# end {templatelocation} #}

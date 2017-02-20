@@ -2244,18 +2244,20 @@ function PAYPAL_displayPurchaseHistory ()
 	$_SCRIPTS->setJavaScriptLibrary('jquery');
 	$_SCRIPTS->setJavaScript($js, true);
 
-    $retval = '<div class="tabs">
+    $retval = '<div class="uk-margin-large-top">
       <!-- tabs -->
-      <ul class="tabNavigation">
+      <ul class="uk-subnav uk-subnav-pill" uk-switcher>
         <li><a href="#purchase">' . $LANG_PAYPAL_1['purchase_history'] . '</a></li>
         <li><a href="#membership">'. $LANG_PAYPAL_1['membership_history'] . '</a></li>
         <li><a href="#downloadable">'. $LANG_PAYPAL_1['downloadable_products'] . '</a></li>
       </ul>
 
       <!-- tab containers -->
-      <div id="purchase">' . COM_startBlock() . PAYPAL_listPurchases('one') . COM_endBlock() . '</div>
-      <div id="membership">' . COM_startBlock() .  PAYPAL_listSubscriptions('one') . COM_endBlock() . '</div>
-      <div id="downloadable">' . COM_startBlock() .  PAYPAL_listPurchases('downloadable') . COM_endBlock() . '</div>
+      <ul class="uk-switcher uk-margin">
+				<li><!-- start uk-switcher 1 -->' . COM_startBlock() . PAYPAL_listPurchases('one') . COM_endBlock() . '</li>
+      	<li><!-- start uk-switcher 2 -->' . COM_startBlock() .  PAYPAL_listSubscriptions('one') . COM_endBlock() . '</li>
+      	<li><!-- start uk-switcher 3 -->' . COM_startBlock() .  PAYPAL_listPurchases('downloadable') . COM_endBlock() . '</li>
+			</ul>
     </div>';
 
     return $retval;

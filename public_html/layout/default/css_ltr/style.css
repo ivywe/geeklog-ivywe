@@ -1,6 +1,5 @@
 /* Geeklog Denim Theme 1.1.0 | Copyright (C) 2012-2016 by dengen | http://www.trybese.com/~dengen/log/ | License:GPL-2.0+ */
 
-
 .uk-button-group input[type="submit"],
 .uk-button-group input[type="button"],
 .uk-button-group input[type="reset"] {
@@ -2978,7 +2977,6 @@ span.warning em {
 
 #commentbar {
   padding: 3px;
-  background: none repeat scroll 0 0 #EEE;
   border-radius: 4px;
   zoom: 1;
 }
@@ -3675,14 +3673,7 @@ dd#profile-user_photo {
   Admin Page
 --------------------------------------*/
 
-/* Admin List Table */
-.admin-list-table {
-  margin: 0;
-  width: 100%;
-  font-size: 13px;
-  border-collapse: collapse;
-  border-spacing: 0;
-}
+
 
 @media only screen and (max-width: 1199px) {
 
@@ -3700,12 +3691,9 @@ dd#profile-user_photo {
   vertical-align: middle;
   height: 24px;
   padding: 4px 8px;
-  border-bottom: 1px solid #E5E5E5;
 }
 
-.admin-list-table th {
-  background-color: #DAE0ED;
-}
+
 
 .admin-list-table img {
   vertical-align: middle;
