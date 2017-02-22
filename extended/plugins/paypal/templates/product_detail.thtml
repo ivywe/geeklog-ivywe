@@ -10,8 +10,8 @@
 			<td class="uk-width-2-3" >
 				<div id="product-details">
 				  <p class="product-short-description">{active} {short_description}</p>
-					<p class="product-price"><span class="uk-text-large uk-text-danger uk-text-bold">{price}</span><span class="uk-text-danger">{currency}</span> 定価:<span class="uk-text-bold">{price_ref}{currency}</span>{discount}(消費税込み) {!if free_shipping} <span class="uk-label uk-label-warning">{free_shipping}</span>{!endif}</p> 
-					<div id="product-button">{add2cart}{login}{customisable}</div>
+					<p class="product-price"><span class="uk-text-large uk-text-danger uk-text-bold">{price}</span><span class="uk-text-danger">{currency}</span>{!if price_ref} 定価:<span class="uk-text-bold">{price_ref}{currency}{!endif}</span>{discount}(消費税込み) {!if free_shipping} <span class="uk-label uk-label-warning">{free_shipping}</span>{!endif}</p> 
+					<div id="product-button">{login}{customisable}</div>
 					<div class="product-description">{description}</div>
 <div>商品コード: {item_id}</duv>
 					{subscription}
