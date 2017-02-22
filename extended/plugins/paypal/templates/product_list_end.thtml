@@ -6,6 +6,3 @@
 	<div class="uk-text-center">{pagination}</div>
 
 {# end {templatelocation} #}
-
-
-{# end {templatelocation} #}

@@ -11,6 +11,3 @@
 {site_url}</p>
 
 {# end {templatelocation} #}
-
-
-{# end {templatelocation} #}

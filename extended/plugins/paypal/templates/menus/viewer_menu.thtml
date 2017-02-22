@@ -9,6 +9,7 @@
 			{!if memberships}<li class="uk-button uk-button-primary">
 				{memberships}
 			</li>{!endif}
+			{!if admin}<li class="uk-button uk-button-default"><a href="/admin/plugins/paypal/index.php" style="color:#444">admin</a></li>{!endif}
 		</ul>
 	</div>
 	<div class="uk-navbar-right">
