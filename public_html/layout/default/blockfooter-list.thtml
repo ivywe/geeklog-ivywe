@@ -1,7 +1,6 @@
 {# begin {templatelocation} #}
 
-    </ul>
-  </nav>
-</section>
+	</ul>
+</nav>
 
 {# end {templatelocation} #}
