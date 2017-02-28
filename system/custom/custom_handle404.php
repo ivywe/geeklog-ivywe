@@ -47,7 +47,7 @@ function CUSTOM_handle404($alternate_url = '')
     $display = COM_startBlock($LANG_404[1]);
     
     if (is_callable('CUSTOM_getStaticpage')) {
-        $display .= CUSTOM_getStaticpage('404');
+        $display .= CUSTOM_getStaticpage('_404');
     }
     
     $display .= COM_endBlock();
