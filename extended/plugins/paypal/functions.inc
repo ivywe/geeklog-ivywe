@@ -2323,6 +2323,8 @@ function PAYPAL_getDetailsForm ($details, $url, $button, $shipping = 0)
 	$template->set_var('phone1', $details['user_phone1']);
 	$template->set_var('phone2', $details['user_phone2']);
 	$template->set_var('fax', $details['user_fax']);
+	$template->set_var('department', $details['user_phone2']);
+	$template->set_var('transfer_date', $details['user_phone2']);
 	$template->set_var('contact', $details['user_contact']);
 	$template->set_var('proid', $details['user_proid']);
 
