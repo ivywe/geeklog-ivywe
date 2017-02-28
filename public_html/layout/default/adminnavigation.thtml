@@ -3,7 +3,7 @@
 <!-- BEGIN group -->
 </ul>
 <h3 class="uk-heading-line">{group_label}</h3>
-<ul uk-nav-parent-icon" uk-nav>
+<ul class="uk-list">
 <!-- END group -->
 <!-- BEGIN option -->
 <li class="adminoption sideoption"><a href="{option_url}"{target}>{option_label}{display_count}</a></li>
