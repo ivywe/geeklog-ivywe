@@ -14,7 +14,7 @@
           <option value="all" {key_all_selected}>{lang_all_words}</option>
           <option value="any" {key_any_selected}>{lang_any_word}</option>
         </select>
-        <label><input type="checkbox" value="true" name="title"{title_checked}{xhtml}>{lang_titles}</label>
+        <label><input type="checkbox" class="uk-checkbox"  value="true" name="title"{title_checked}{xhtml}>{lang_titles}</label>
       </dd>
 
       <dt><label for="advsearchform-datestart">{lang_date}</label></dt>

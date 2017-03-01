@@ -916,7 +916,7 @@ function CMT_commentForm($title, $comment, $sid, $pid = 0, $type, $mode, $postMo
             // $comment / $newComment is what goes into the preview / is
             // actually stored in the database -> strip HTML
             // $commentText is what the user entered and goes back into the
-            // <textarea> -> don't strip HTML
+            // <textarea class="uk-textarea"> -> don't strip HTML
 
             $commentText = COM_stripslashes($comment);
             $commentText = GLText::remove4byteUtf8Chars($commentText);
@@ -1102,7 +1102,7 @@ function CMT_commentForm($title, $comment, $sid, $pid = 0, $type, $mode, $postMo
                 } else {
                     $name = COM_getDisplayName(1); // anonymous user
                 }
-                $usernameblock = '<input type="text" name="' . CMT_USERNAME . '" size="16" value="' .
+                $usernameblock = '<input type="text" class="uk-input" name="' . CMT_USERNAME . '" size="16" value="' .
                     $name . '" maxlength="32"' . XHTML . '>';
                 $comment_template->set_var('username', $usernameblock);
 

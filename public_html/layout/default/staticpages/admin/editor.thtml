@@ -7,14 +7,14 @@
   <div class="uk-form-row">
     <label class="uk-form-label" for="sp-editor-sp_title">{lang_title}</label>
     <div class="uk-form-controls">
-      <input type="text" maxlength="128" {!if titletoid}onkeyup="TitleToId('sp-editor-sp_title','sp-editor-sp_id');" {!endif}name="sp_title" value="{sp_title}" id="sp-editor-sp_title" class="uk-form-width-large" required{xhtml}>
+      <input type="text" class="uk-input" maxlength="128" {!if titletoid}onkeyup="TitleToId('sp-editor-sp_title','sp-editor-sp_id');" {!endif}name="sp_title" value="{sp_title}" id="sp-editor-sp_title" class="uk-form-width-large" required{xhtml}>
     </div>
   </div>
 
   <div class="uk-form-row">
     <label class="uk-form-label" for="sp-editor-sp_id">{lang_id}</label>
     <div class="uk-form-controls">
-      <input type="text" dir="ltr" name="sp_id" maxlength="128" value="{sp_id}" id="sp-editor-sp_id" class="uk-form-width-medium" required{xhtml}>
+      <input type="text" class="uk-input" dir="ltr" name="sp_id" maxlength="128" value="{sp_id}" id="sp-editor-sp_id" class="uk-form-width-medium" required{xhtml}>
     </div>
   </div>
 
@@ -28,21 +28,21 @@
   <div class="uk-form-row">
     <label class="uk-form-label" for="sp-editor-sp_page_title">{lang_page_title}</label>
     <div class="uk-form-controls">
-      <input type="text" maxlength="128" name="sp_page_title" value="{sp_page_title}" id="sp-editor-sp_page_title" class="uk-form-width-large"{xhtml}>
+      <input type="text" class="uk-input" maxlength="128" name="sp_page_title" value="{sp_page_title}" id="sp-editor-sp_page_title" class="uk-form-width-large"{xhtml}>
     </div>
   </div>
 
   <div class="uk-form-row">
     <label class="uk-form-label" for="sp-editor-sp_onmenu">{lang_addtomenu}</label>
     <div class="uk-form-controls">
-      <input type="checkbox" name="sp_onmenu" id="sp-editor-sp_onmenu" {onmenu_checked}{xhtml}>
+      <input type="checkbox" class="uk-checkbox"  name="sp_onmenu" id="sp-editor-sp_onmenu" {onmenu_checked}{xhtml}>
     </div>
   </div>
 
   <div class="uk-form-row">
     <label class="uk-form-label" for="sp-editor-sp_label">{lang_label}</label>
     <div class="uk-form-controls">
-      <input type="text" name="sp_label" maxlength="64" value="{sp_label}" id="sp-editor-sp_label" class="uk-form-width-large"{xhtml}>
+      <input type="text" class="uk-input" name="sp_label" maxlength="64" value="{sp_label}" id="sp-editor-sp_label" class="uk-form-width-large"{xhtml}>
     </div>
   </div>
 
@@ -54,7 +54,7 @@
   <div class="uk-form-row">
     <label class="uk-form-label" for="sp-editor-sp_format">{lang_pageformat}</label>
     <div class="uk-form-controls">
-      <select name="sp_format" id="sp-editor-sp_format">
+      <select class="uk-select" name="sp_format" id="sp-editor-sp_format">
         <option value="blankpage" {blankpage_selected}>{lang_blankpage}</option>
         <option value="noblocks" {noblock_selected}>{lang_noblocks}</option>
         <option value="leftblocks" {leftblocks_selected}>{lang_leftblocks}</option>
@@ -66,28 +66,28 @@
   <div class="uk-form-row">
     <label class="uk-form-label" for="sp-editor-commentcode">{lang_mode}</label>
     <div class="uk-form-controls">
-      <select name="commentcode" id="sp-editor-commentcode">{comment_options}</select>
+      <select class="uk-select" name="commentcode" id="sp-editor-commentcode">{comment_options}</select>
     </div>
   </div>
 
   <div class="uk-form-row"{hide_meta}>
     <label class="uk-form-label" for="sp-editor-meta_description">{lang_metadescription}</label>
     <div class="uk-form-controls">
-      <textarea name="meta_description" cols="45" rows="2" id="sp-editor-meta_description" class="uk-width-1-1">{meta_description}</textarea>
+      <textarea class="uk-textarea" name="meta_description" cols="45" rows="2" id="sp-editor-meta_description" class="uk-width-1-1">{meta_description}</textarea>
     </div>
   </div>
 
   <div class="uk-form-row"{hide_meta}>
     <label class="uk-form-label" for="sp-editor-meta_keywords">{lang_metakeywords}</label>
     <div class="uk-form-controls">
-      <textarea name="meta_keywords" cols="45" rows="2" id="sp-editor-meta_keywords" class="uk-width-1-1">{meta_keywords}</textarea>
+      <textarea class="uk-textarea" name="meta_keywords" cols="45" rows="2" id="sp-editor-meta_keywords" class="uk-width-1-1">{meta_keywords}</textarea>
     </div>
   </div>
 
   <div class="uk-form-row">
     <label for="sp-editor-sp_content">{lang_content}</label>
     <div>
-      <textarea name="sp_content" style="width:99.5%" cols="45" rows="24" id="sp-editor-sp_content" class="uk-width-1-1" aria-describedby="sp-editor-sp_content" required>{sp_content}</textarea>
+      <textarea class="uk-textarea" name="sp_content" style="width:99.5%" cols="45" rows="24" id="sp-editor-sp_content" class="uk-width-1-1" aria-describedby="sp-editor-sp_content" required>{sp_content}</textarea>
       <div class="uk-form-help-inline" id="sp-editor-sp_content">{lang_allowed_html}</div>
     </div>
   </div>
@@ -95,14 +95,14 @@
   <div class="uk-form-row">
     <label class="uk-form-label" for="sp-editor-draft_flag">{lang_draft}</label>
     <div class="uk-form-controls">
-      <input type="checkbox" name="draft_flag" id="sp-editor-draft_flag" {draft_flag_checked}{xhtml}>
+      <input type="checkbox" class="uk-checkbox"  name="draft_flag" id="sp-editor-draft_flag" {draft_flag_checked}{xhtml}>
     </div>
   </div>
 
   <div class="uk-form-row">
     <label class="uk-form-label" for="sp-editor-cache_time">{lang_cache_time}</label>
     <div class="uk-form-controls">
-      <input type="text" size="8" value="{cache_time}" name="cache_time" id="sp-editor-cachetime" class="text"{xhtml}>
+      <input type="text" class="uk-input" size="8" value="{cache_time}" name="cache_time" id="sp-editor-cachetime" class="text"{xhtml}>
       <span class="uk-form-help-inline">{lang_cache_time_desc}</span>
     </div>
   </div>
@@ -132,7 +132,7 @@
   <div class="uk-form-row">
     <label class="uk-form-label" for="sp-editor-template_flag">{lang_template}</label>
     <div class="uk-form-controls">
-      <input type="checkbox" name="template_flag" id="sp-editor-template_flag" {template_flag_checked}{xhtml}>
+      <input type="checkbox" class="uk-checkbox"  name="template_flag" id="sp-editor-template_flag" {template_flag_checked}{xhtml}>
       <span class="uk-form-help-inline">{lang_template_flag_msg}</span>
     </div>
   </div>
@@ -149,7 +149,7 @@
   <div class="uk-form-row">
     <label class="uk-form-label" for="sp-editor-sp_centerblock">{lang_centerblock}</label>
     <div class="uk-form-controls">
-      <input type="checkbox" name="sp_centerblock" id="sp-editor-sp_centerblock" {centerblock_checked}{xhtml}>
+      <input type="checkbox" class="uk-checkbox"  name="sp_centerblock" id="sp-editor-sp_centerblock" {centerblock_checked}{xhtml}>
       <span class="uk-form-help-inline">{lang_centerblock_msg}</span>
     </div>
   </div>
@@ -164,7 +164,7 @@
   <div class="uk-form-row">
     <label class="uk-form-label" for="sp-editor-sp_inblock">{inblock_msg}</label>
     <div class="uk-form-controls">
-      <input type="checkbox" name="sp_inblock" id="sp-editor-sp_inblock" {inblock_checked}{xhtml}>
+      <input type="checkbox" class="uk-checkbox"  name="sp_inblock" id="sp-editor-sp_inblock" {inblock_checked}{xhtml}>
       <span class="uk-form-help-inline">{inblock_info}</span>
     </div>
   </div>
@@ -172,7 +172,7 @@
   <div class="uk-form-row">
     <label class="uk-form-label" for="sp-editor-sp_help">{lang_centerblock_help}</label>
     <div class="uk-form-controls">
-      <input type="text" name="sp_help" value="{centerblock_help}" id="sp-editor-sp_help" class="uk-form-width-medium"{xhtml}>
+      <input type="text" class="uk-input" name="sp_help" value="{centerblock_help}" id="sp-editor-sp_help" class="uk-form-width-medium"{xhtml}>
       <span class="uk-form-help-inline">{lang_centerblock_include}</span>
       <span class="uk-form-help-inline">{lang_centerblock_desc}</span>
     </div>
@@ -186,7 +186,7 @@
   <div class="uk-form-row">
     <label class="uk-form-label" for="sp-editor-sp_nf">{exit_msg}</label>
     <div class="uk-form-controls">
-      <input type="checkbox" name="sp_nf" id="sp-editor-sp_nf" {exit_checked}{xhtml}>
+      <input type="checkbox" class="uk-checkbox"  name="sp_nf" id="sp-editor-sp_nf" {exit_checked}{xhtml}>
       <span class="uk-form-help-inline">{exit_info}</span>
     </div>
   </div>
