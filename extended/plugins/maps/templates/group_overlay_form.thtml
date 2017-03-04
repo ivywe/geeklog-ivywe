@@ -6,7 +6,7 @@
     <legend><b>{informations}</b></legend>
       <div id="informations">
           <p>{group_overlay_presentation}</p>
-        <p><b>{name_label}</b> <font color="red">*</font> <input type="text" name="o_group_name" value="{name}" size="80" maxlength="255"></p>
+        <p><b>{name_label}</b> <font color="red">*</font> <input type="text" class="uk-input" name="o_group_name" value="{name}" size="80" maxlength="255"></p>
       </div>
     </fieldset>  
     

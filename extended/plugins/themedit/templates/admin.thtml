@@ -27,7 +27,7 @@
 	<input name="thm_op" type="submit" value="{temp_lang_save}"{xhtml}>&nbsp;&nbsp;&nbsp;&nbsp;
 	<input name="thm_op" type="submit" value="{temp_lang_image}"{xhtml}>&nbsp;&nbsp;&nbsp;&nbsp;
 	<input name="thm_op" type="submit" value="{temp_lang_init}"{xhtml}>
-	<textarea name="theme_contents" id="theme_contents" rows="30" style="width:99%;"{xhtml}>{temp_contents}</textarea><br{xhtml}>
+	<textarea class="uk-textarea" name="theme_contents" id="theme_contents" rows="30" style="width:99%;"{xhtml}>{temp_contents}</textarea><br{xhtml}>
 	<input name="thm_op" type="submit" value="{temp_lang_preview}"{xhtml}>
 	<input name="thm_op" type="submit" value="{temp_lang_save}"{xhtml}>&nbsp;&nbsp;&nbsp;&nbsp;
 	<input name="thm_op" type="submit" value="{temp_lang_image}"{xhtml}>&nbsp;&nbsp;&nbsp;&nbsp;

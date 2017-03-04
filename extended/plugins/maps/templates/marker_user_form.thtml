@@ -17,10 +17,10 @@
     <fieldset style="margin-top: 10px;padding:10px;">
     <legend>{arrow}<a style="text-decoration: none;" onClick="elementToggle('informations'); return false;" href="#"><b>{informations}</b></a></legend>
       <div id="informations">
-        <p><b>{name_label}</b><font color="red">*</font> <input type="text" name="name" value="{name}" size="80" maxlength="255"></p>
-        <p><b>{address_label}</b><font color="red">*</font> <input type="text" id="address" name="address" value="{address}" size="80" maxlength="255"></p>
-        <p><b>{lat}</b> <input type="text" id="lat" name="lat" value="{lat_value}" size="14" maxlength="12">&nbsp;&nbsp; 
-        <b>{lng}</b> <input type="text" id="lng" name="lng" value="{lng_value}" size="14" maxlength="12"><br{xhtml}>
+        <p><b>{name_label}</b><font color="red">*</font> <input type="text" class="uk-input" name="name" value="{name}" size="80" maxlength="255"></p>
+        <p><b>{address_label}</b><font color="red">*</font> <input type="text" class="uk-input" id="address" name="address" value="{address}" size="80" maxlength="255"></p>
+        <p><b>{lat}</b> <input type="text" class="uk-input" id="lat" name="lat" value="{lat_value}" size="14" maxlength="12">&nbsp;&nbsp; 
+        <b>{lng}</b> <input type="text" class="uk-input" id="lng" name="lng" value="{lng_value}" size="14" maxlength="12"><br{xhtml}>
         {empty_for_geo}</p>
 
         <p><small>{created_label} {created}<br{xhtml}>{modified_label} {modified}</small></p>
@@ -30,7 +30,7 @@
     <fieldset style="margin-top: 10px;">
     <legend>{arrow}<b><a style="text-decoration: none;" onClick="elementToggle('presentation_tab'); return false;" href="#">{presentation_tab}</a></b></legend>
       <div id="presentation_tab" style="display:block;">
-        <p><b>{description_label}</b><br{xhtml}><textarea rows="4" id="description" name="description" cols="51" style="width:99%">{description}</textarea>
+        <p><b>{description_label}</b><br{xhtml}><textarea class="uk-textarea" rows="4" id="description" name="description" cols="51" style="width:99%">{description}</textarea>
         </p>
         <p><b>{street_label}</b> {street}</p>
         <p><b>{code_label}</b> {code}</p>

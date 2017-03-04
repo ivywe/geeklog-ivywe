@@ -12,7 +12,7 @@
   </div>
   <div class="uk-form-row">
     <div class="uk-form-controls">
-      <input type="text" class="uk-form-width-large" dir="ltr" name="importurl" value="{defaultpath}" size="48" required{xhtml}>
+      <input type="text" class="uk-input" class="uk-form-width-large" dir="ltr" name="importurl" value="{defaultpath}" size="48" required{xhtml}>
     </div>
   </div>
   <div class="uk-form-row uk-margin-large-bottom">

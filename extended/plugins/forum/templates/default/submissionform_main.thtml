@@ -7,7 +7,7 @@
             <tr>
                 <td class="pluginCellSubTitle">&nbsp;{LANG_SUBJECT}:</td>
                 <td class="pluginCellText pluginCellFill">
-                    <input type="text" name="subject" value="{subject}" id="input1" tabindex="5" size="80"{xhtml}>
+                    <input type="text" class="uk-input" name="subject" value="{subject}" id="input1" tabindex="5" size="80"{xhtml}>
                 </td>
             </tr>
             <tr>
@@ -15,7 +15,7 @@
                     {smilies}
                 </td>
                 <td class="pluginCellText pluginCellFill" style="padding-left: 5px;">
-                    <textarea name="comment" id="input2" rows="20" cols="45" tabindex="6" class="post" style="width:98%" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);">{post_message}</textarea>
+                    <textarea class="uk-textarea" name="comment" id="input2" rows="20" cols="45" tabindex="6" class="post" style="width:98%" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);">{post_message}</textarea>
                 </td>
             </tr>
             {captcha}
@@ -47,7 +47,7 @@
 			</tr>
 			<tr>
 				<td class="pluginCellSubTitle" style="width:110px">&nbsp;{LANG_NAME}</td>
-				<td class="pluginCellText pluginCellFill"><input type="text" name="aname" value="{name}" size="40" maxlength="50" tabindex="1"{xhtml}>&nbsp;&nbsp;</td>
+				<td class="pluginCellText pluginCellFill"><input type="text" class="uk-input" name="aname" value="{name}" size="40" maxlength="50" tabindex="1"{xhtml}>&nbsp;&nbsp;</td>
 			</tr>
 <!-- END submissionform_anontop -->        
 
@@ -106,7 +106,7 @@
                 </select>
                 &nbsp;<a href="javascript:bbstyle(-1)" onmouseover="helpline('a')">{LANG_closetags}</a>
                 <br{xhtml}><br{xhtml}>
-                <input type="text" name="helpbox" size="80" maxlength="100" class="helpline" value="{LANG_codetip}"{xhtml}>
+                <input type="text" class="uk-input" name="helpbox" size="80" maxlength="100" class="helpline" value="{LANG_codetip}"{xhtml}>
             </td>
 		</tr>
 <!-- END submissionform_code -->
@@ -132,7 +132,7 @@
 <!-- BEGIN submissionform_option -->
 <td style="width:20%;">
 	<label for="{option_name}">{LANG_OPTION}</label><br{xhtml}>
-	<input type="checkbox" name="{option_name}" id="{option_name}" {option_checked} value="1"{xhtml}>
+	<input type="checkbox" class="uk-checkbox" name="{option_name}" id="{option_name}" {option_checked} value="1"{xhtml}>
 	{option_extra}
 </td>
 <!-- END submissionform_option -->

@@ -91,7 +91,7 @@
 			<input type="hidden" name="what" value="order"{xhtml}>
 			<input type="hidden" name="id" value="{forumid}"{xhtml}>
 			<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
-			<input type="text" size="2" name="order" value="{forumorder}"{xhtml}>&nbsp;
+			<input type="text" class="uk-input" size="2" name="order" value="{forumorder}"{xhtml}>&nbsp;
 			<input type="submit" name="submit" value="{submit}"{xhtml}></div>
 		</form>
 	</td>

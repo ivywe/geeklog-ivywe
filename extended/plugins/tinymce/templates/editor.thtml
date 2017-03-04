@@ -5,7 +5,7 @@
       <tr>
         <th style="width: 80px; text-align: right;">{lang_admin_title}:</th>
         <td>
-          <input type="text" name="title" value="{title}" style="width: 99%;"{xhtml}>
+          <input type="text" class="uk-input" name="title" value="{title}" style="width: 99%;"{xhtml}>
         </td>
       </tr>
       <tr>
@@ -35,13 +35,13 @@
             <legend>{lang_admin_toolbars}</legend>
             <dl>
               <dt>{lang_admin_toolbars}1:</dt>
-              <dd><input type="text" name="buttons1" value="{buttons1}" style="width: 100%;"></dd>
+              <dd><input type="text" class="uk-input" name="buttons1" value="{buttons1}" style="width: 100%;"></dd>
               <dt>{lang_admin_toolbars}2:</dt>
-              <dd><input type="text" name="buttons2" value="{buttons2}" style="width: 100%;"></dd>
+              <dd><input type="text" class="uk-input" name="buttons2" value="{buttons2}" style="width: 100%;"></dd>
               <dt>{lang_admin_toolbars}3:</dt>
-              <dd><input type="text" name="buttons3" value="{buttons3}" style="width: 100%;"></dd>
+              <dd><input type="text" class="uk-input" name="buttons3" value="{buttons3}" style="width: 100%;"></dd>
               <dt>{lang_admin_toolbars}4:</dt>
-              <dd><input type="text" name="buttons4" value="{buttons4}" style="width: 100%;"></dd>
+              <dd><input type="text" class="uk-input" name="buttons4" value="{buttons4}" style="width: 100%;"></dd>
             </dl>
           </fieldset>
         </td>

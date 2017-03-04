@@ -15,11 +15,11 @@
                     </tr>
                     <tr>
                         <td style="width:50%;" class="pluginCellSubTitle">{LANG_NAME}</td>
-                        <td class="pluginCellText pluginCellFill" style="white-space:nowrap;"><input type="text" name="name" size="80" value="{forum_name}"{xhtml}></td>
+                        <td class="pluginCellText pluginCellFill" style="white-space:nowrap;"><input type="text" class="uk-input" name="name" size="80" value="{forum_name}"{xhtml}></td>
                     </tr>
                     <tr>
                         <td style="width:50%;" class="pluginCellSubTitle">{LANG_DESCRIPTION}</td>
-                        <td class="pluginCellText pluginCellFill"><input type="text" name="dscp" value="{forum_dscp}" size="80"{xhtml}></td>
+                        <td class="pluginCellText pluginCellFill"><input type="text" class="uk-input" name="dscp" value="{forum_dscp}" size="80"{xhtml}></td>
                     </tr>
                     <tr>
                         <td style="width:50%;" class="pluginCellSubTitle">{LANG_GROUPACCESS}</td>
@@ -27,15 +27,15 @@
                     </tr>
                     <tr>
                         <td style="width:50%;" class="pluginCellSubTitle">{LANG_readonly}</td>
-                        <td class="pluginCellText pluginCellFill"><input type="checkbox" name="is_readonly" id="is_readonly" value="1" {chk_readonly}{xhtml}><label for="is_readonly"><span style="padding-left:20px;">{LANG_readonlydscp}</span></label></td>
+                        <td class="pluginCellText pluginCellFill"><input type="checkbox" class="uk-checkbox" name="is_readonly" id="is_readonly" value="1" {chk_readonly}{xhtml}><label for="is_readonly"><span style="padding-left:20px;">{LANG_readonlydscp}</span></label></td>
                     </tr>
                     <tr>
                         <td style="width:50%;" class="pluginCellSubTitle">{LANG_hidden}</td>
-                        <td class="pluginCellText pluginCellFill"><input type="checkbox" name="is_hidden" id="is_hidden" value="1" {chk_hidden}{xhtml}><label for="is_hidden"><span style="padding-left:20px;">{LANG_hiddendscp}</span></label></td>
+                        <td class="pluginCellText pluginCellFill"><input type="checkbox" class="uk-checkbox" name="is_hidden" id="is_hidden" value="1" {chk_hidden}{xhtml}><label for="is_hidden"><span style="padding-left:20px;">{LANG_hiddendscp}</span></label></td>
                     </tr>
                     <tr>
                         <td style="width:50%;" class="pluginCellSubTitle">{LANG_hideposts}</td>
-                        <td class="pluginCellText pluginCellFill"><input type="checkbox" name="no_newposts" id="no_newposts" value="1" {chk_newposts}{xhtml}><label for="no_newposts"><span style="padding-left:20px;">{LANG_hidepostsdscp}</span></label></td>
+                        <td class="pluginCellText pluginCellFill"><input type="checkbox" class="uk-checkbox" name="no_newposts" id="no_newposts" value="1" {chk_newposts}{xhtml}><label for="no_newposts"><span style="padding-left:20px;">{LANG_hidepostsdscp}</span></label></td>
                     </tr>
                 </table>
             </td>

@@ -15,29 +15,29 @@
 <form action="{site_url}/admin/plugins/paypal/product_edit.php" method="POST" enctype="multipart/form-data"  class="paypal_form">
 {id}{product_type}
   <fieldset style="margin-top: 10px;"><legend><b>{informations}</b></legend>
-  	<h2>{item_id_label} <input type="text" name="item_id" value="{item_id}" size="20" maxlength="80" {xhtml}></h2>
-	<h2>{name_label}<font color="red">*</font> <input type="text" name="name" value="{name}" size="80" maxlength="255" {xhtml}></h2>
+  	<h2>{item_id_label} <input type="text" class="uk-input" name="item_id" value="{item_id}" size="20" maxlength="80" {xhtml}></h2>
+	<h2>{name_label}<font color="red">*</font> <input type="text" class="uk-input" name="name" value="{name}" size="80" maxlength="255" {xhtml}></h2>
     
-	<h2>{short_description_label}<font color="red">*</font> <input type="text" name="short_description" value="{short_description}" size="80" maxlength="255" {xhtml}></h2>
+	<h2>{short_description_label}<font color="red">*</font> <input type="text" class="uk-input" name="short_description" value="{short_description}" size="80" maxlength="255" {xhtml}></h2>
     
 	<h2>{category_label}
 	<select name="category">{categories}</select> </h2>
 	
 	<h2>{description_label}</h2>
-    <div style="margin-bottom:15px;"><p><textarea rows="12" id="description" name="description" cols="44">{description}</textarea></p></div>
+    <div style="margin-bottom:15px;"><p><textarea class="uk-textarea" rows="12" id="description" name="description" cols="44">{description}</textarea></p></div>
 	
-	<h2>{price_label}<font color="red">*</font> <input type="text" name="price" value="{price}" size="20" maxlength="20" {xhtml}>  {currency} </h2>
+	<h2>{price_label}<font color="red">*</font> <input type="text" class="uk-input" name="price" value="{price}" size="20" maxlength="20" {xhtml}>  {currency} </h2>
 	<p><small>{price_edit}</small></p>
 	
   </fieldset>
 
   <fieldset style="margin-top: 10px;"><legend><a style="text-decoration: none;" onClick="elementToggle('discount'); return false;" href="#"><b>{discount_label}</b></a></legend>
     <div id="discount" style="display:none;">
-	<p><label>{discount_a_label}</label> <input type="text" name="discount_a" value="{discount_a}" size="10" maxlength="10" {xhtml}> {currency}</p>
+	<p><label>{discount_a_label}</label> <input type="text" class="uk-input" name="discount_a" value="{discount_a}" size="10" maxlength="10" {xhtml}> {currency}</p>
 	<p>{price_edit}</p>
-	<p><label>{discount_p_label}</label> <input type="text" name="discount_p" value="{discount_p}" size="10" maxlength="10" {xhtml}> &#37;</p>
+	<p><label>{discount_p_label}</label> <input type="text" class="uk-input" name="discount_p" value="{discount_p}" size="10" maxlength="10" {xhtml}> &#37;</p>
 	<p>{discount_legend}</p>
-	<p><label>{price_ref_label}</label> <input type="text" name="price_ref" value="{price_ref}" size="20" maxlength="20" {xhtml}>  {currency} </p>
+	<p><label>{price_ref_label}</label> <input type="text" class="uk-input" name="price_ref" value="{price_ref}" size="20" maxlength="20" {xhtml}>  {currency} </p>
 	<p>{price_ref_edit} {price_edit}</p>
 	</div>
 
@@ -82,7 +82,7 @@
     <p>
       <label>{prod_type}</label>
       <!-- BEGIN ProdTypeRadio -->
-        <input type="radio" name="product_type" value="{type_val}" {type_sel}
+        <input type="radio" class="uk-radio" name="product_type" value="{type_val}" {type_sel}
             onclick="PP_changeProdType(this.value)"
         {xhtml}>&nbsp;{type_txt}&nbsp;&nbsp;
       <!-- END ProdTypeRadio -->
@@ -104,13 +104,13 @@
 		-->
 		
 		<p>
-        <label>{expiration_label}</label> <input type="text" name="expiration" value="{expiration}" size="5" maxlength="20" {xhtml}></p>
+        <label>{expiration_label}</label> <input type="text" class="uk-input" name="expiration" value="{expiration}" size="5" maxlength="20" {xhtml}></p>
     </div>
 
     <div id="type_physical">
     <p>
       <label>{weight_label}</label>
-      <input type="text" name="weight" value="{weight}" {xhtml}>
+      <input type="text" class="uk-input" name="weight" value="{weight}" {xhtml}>
 	  <p><small>{price_edit}</small></p>
     </p>
 
@@ -125,7 +125,7 @@
   </fieldset>
   
   <fieldset style="margin-top: 10px; {display_subscription}"><legend><b>{subscription_product_label}</b></legend>
-    <h2>{duration_label}<font color="red">*</font> <input type="text" name="duration" size="5" value="{duration}" {xhtml}>
+    <h2>{duration_label}<font color="red">*</font> <input type="text" class="uk-input" name="duration" size="5" value="{duration}" {xhtml}>
     <select name="duration_type">
       <option value="day" {sel_day}>{day}</option>
       <option value="week" {sel_week}>{week}</option>

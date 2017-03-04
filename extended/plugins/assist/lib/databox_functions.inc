@@ -367,7 +367,7 @@ global $_TABLES;
             }
         }
         $retval .="<nobr>";
-        $retval .= '<input type="checkbox" name="' . $kind . '[]" value="' . $A[0] ;
+        $retval .= '<input type="checkbox" class="uk-checkbox" name="' . $kind . '[]" value="' . $A[0] ;
         $retval .= '"';
         $retval .= ' class="clcr" ';
         for( $x = 0; $x < sizeof( $S ); $x++ )            {
@@ -953,7 +953,7 @@ global $_TABLES;
                 case 1:// 複数行テキストフィールド(HTML OK)
                 case 10:// 複数行テキストフィールド(HTML NG)
                     if ($disabled===""){
-                        $fieldhtml .= "<textarea ";
+                        $fieldhtml .= "<textarea class=\"uk-textarea\" ";
                         $fieldhtml .= " name=\"afield[".$fid."]\" ";
                         $fieldhtml .= " style=\"width:95%\"";
                         $fieldhtml .= " rows=\"".$rows."\"";
@@ -1006,7 +1006,7 @@ global $_TABLES;
 
                         }
                         $fieldhtml .= "        <input ";
-                        $fieldhtml .= " type=\"text\"";
+                        $fieldhtml .= " type=\"text\" class=\"uk-input\"";
                         $fieldhtml .= " size=\"".$size."\"";
                         $fieldhtml .= " maxlength=\"".$maxlength."\" ";
                         $fieldhtml .= " class=\"inputDate\"";
@@ -1033,7 +1033,7 @@ global $_TABLES;
                 default:
                     if ($disabled===""){
                         $fieldhtml .= "        <input ";
-                        $fieldhtml .= " type=\"text\"";
+                        $fieldhtml .= " type=\"text\" class=\"uk-input\"";
                         $fieldhtml .= " size=\"".$size."\"";
                         $fieldhtml .= " maxlength=\"".$maxlength."\" ";
                         $fieldhtml .= " name=\"afield[".$fid."]\" ";
@@ -1112,7 +1112,7 @@ function DATABOX_figurehtml(
         $retval .= '<br' . XHTML . '>' ;
         $retval .= '<br' . XHTML . '>' ;
         $retval .= $LANG04[79];
-        $retval .= "<input type=\"checkbox\"";
+        $retval .= '<input type="checkbox" class="uk-checkbox"';
         $retval .= " name=\"afield_del[".$fid."]\" ";
         if ($fvalue_del){
             $retval .= " checked ";
@@ -1157,7 +1157,7 @@ function DATABOX_figurehtml12(
         $retval .="{$fvalue}";
         $retval .= '<br' . XHTML . '>' ;
         $retval .= $LANG04[79];
-        $retval .= "<input type=\"checkbox\"";
+        $retval .= '<input type="checkbox" class="uk-checkbox"';
         $retval .= " name=\"afield_del[".$fid."]\" ";
         if ($fvalue_del){
             $retval .= " checked ";
@@ -1201,7 +1201,7 @@ function DATABOX_imagehtml(
         $retval .="{$fvalue}";
         $retval .= '<br' . XHTML . '>' ;
         $retval .= $LANG04[79];
-        $retval .= "<input type=\"checkbox\"";
+        $retval .= '<input type="checkbox" class="uk-checkbox"';
         $retval .= " name=\"".$name."_del\" ";
         if ($fvalue_del){
             $retval .= " checked ";

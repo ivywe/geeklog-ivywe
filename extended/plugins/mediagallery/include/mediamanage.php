@@ -170,7 +170,7 @@ function MG_imageAdmin($album_id, $page, $actionURL = '')
                 $radio_box = '&nbsp;';
                 if (($row['media_type'] == 0 || $row['media_tn_attached'] == 1) && $album->tn_attached == 0) {
                     $checked = ($album_cover == $row['media_id']) ? ' checked="checked"' : '';
-                    $radio_box = '<input type="radio" name="cover" value="'
+                    $radio_box = '<input type="radio" class="uk-radio" name="cover" value="'
                                . $row['media_id'] . '"' . $checked . XHTML . '>';
                     $album_cover_check = $checked;
                 }
@@ -178,7 +178,7 @@ function MG_imageAdmin($album_id, $page, $actionURL = '')
                 $include_ss = '&nbsp;';
                 if ($row['media_type'] == 0) {
                     $checked = ($row['include_ss'] == 1) ? ' checked="checked"' : '';
-                    $include_ss = '<input type="checkbox" name="ss[' . $counter . ']" value="1"'
+                    $include_ss = '<input type="checkbox" class="uk-checkbox" name="ss[' . $counter . ']" value="1"'
                                 . $checked . XHTML . '>';
                 }
 

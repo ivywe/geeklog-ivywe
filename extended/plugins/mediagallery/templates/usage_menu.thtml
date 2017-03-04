@@ -8,7 +8,7 @@
       {month_select}&nbsp;/
       {day_select}&nbsp;/
       {year_select}&nbsp;&nbsp;
-      <input type="checkbox" name="alldates"{xhtml}>{lang_all_dates}
+      <input type="checkbox" class="uk-checkbox" name="alldates"{xhtml}>{lang_all_dates}
     </td>
   </tr>
   <tr>

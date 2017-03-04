@@ -11,7 +11,7 @@
 <!-- BEGIN ImageColumn -->
   <tr>
     <td class="uk-text-center">
-        <input type="checkbox" name="sel[]" value="{wm_id}"{xhtml}>
+        <input type="checkbox" class="uk-checkbox" name="sel[]" value="{wm_id}"{xhtml}>
         <input type="hidden" name="wid[]" value="{wm_id}"{xhtml}>
     </td>
     <td class="uk-text-center">
@@ -20,7 +20,7 @@
     <td class="uk-text-center">
         {owner}
     </td>
-    <td><textarea name="wmtitle[]" cols="40" rows="2">{wm_desc}</textarea></td>
+    <td><textarea class="uk-textarea" name="wmtitle[]" cols="40" rows="2">{wm_desc}</textarea></td>
    </tr>
 <!-- END ImageColumn -->
 <!-- END ImageRow -->

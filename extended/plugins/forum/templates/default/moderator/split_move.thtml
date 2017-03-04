@@ -13,7 +13,7 @@
 		</div>
 		<div style="padding:10px 0 5px 0px;">
 			{$LANG_GF02[msg186]}:&nbsp;
-			<input type="text" size="60" name="movetitle" value="{topictitle}" maxlength="255"{xhtml}>
+			<input type="text" class="uk-input" size="60" name="movetitle" value="{topictitle}" maxlength="255"{xhtml}>
 
 			{split_topic}             
 		</div>
@@ -27,8 +27,8 @@
 <!-- BEGIN split_topic -->
 <div style="padding-top:10px;">
 	{$LANG_GF03[splitheading]}<br{xhtml}>
-	<input type="radio" name="splittype" value="remaining" checked="checked"{xhtml}>{$LANG_GF03[splitopt1]}<br{xhtml}>
-	<input type="radio" name="splittype" value="single"{xhtml}>{$LANG_GF03[splitopt2]}
+	<input type="radio" class="uk-radio" name="splittype" value="remaining" checked="checked"{xhtml}>{$LANG_GF03[splitopt1]}<br{xhtml}>
+	<input type="radio" class="uk-radio" name="splittype" value="single"{xhtml}>{$LANG_GF03[splitopt2]}
 </div>
 <!-- END split_topic -->
 

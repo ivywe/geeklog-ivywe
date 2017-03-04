@@ -12,7 +12,7 @@
         <td>
             <select name="forum" style="width:140px" onchange="document.report_table.submit();"><option selected="selected" value="-1">{LANG_select1}</option>{select_forum}</select>
             <span style="padding-left:15px;"><select name="member" style="width:140px" onchange="document.report_table.submit();"><option selected="selected" value="-1">{LANG_select2}</option>{select_member}</select></span>
-            <span style="padding-left:15px;"><input type="checkbox" name="parentonly" id="parentonly" value="1" onclick=' document.report_table.submit();' {chk_parentonly}{xhtml}><label for="parentonly">{LANG_Parent}</label></span>
+            <span style="padding-left:15px;"><input type="checkbox" class="uk-checkbox" name="parentonly" id="parentonly" value="1" onclick=' document.report_table.submit();' {chk_parentonly}{xhtml}><label for="parentonly">{LANG_Parent}</label></span>
         </td>
     </tr>
 </table>
@@ -38,7 +38,7 @@
 
 <!-- BEGIN report_record -->
 <tr class="pluginRow{csscode} pluginLinks">
-	<td><input type="checkbox" name="chk_record_delete[]" value="{id}"{xhtml}></td>
+	<td><input type="checkbox" class="uk-checkbox" name="chk_record_delete[]" value="{id}"{xhtml}></td>
 	<td>{name}</td>
 	<td>{subject}</td>
 	<td class="aligncenter">{views}</td>

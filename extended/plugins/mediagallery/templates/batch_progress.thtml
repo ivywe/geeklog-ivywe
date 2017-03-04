@@ -38,11 +38,11 @@ function updateButton() {
   </tr>
   <tr>
     <td style="text-align:right;while-space:nowrap;">{L_REFRESH_RATE}: </td>
-    <td><input type="text" name="refresh_rate" value="{REFRESH_RATE}" size="5" style="texi-align:right"{xhtml}></td>
+    <td><input type="text" class="uk-input" name="refresh_rate" value="{REFRESH_RATE}" size="5" style="texi-align:right"{xhtml}></td>
   </tr>
   <tr>
     <td style="text-align:right;while-space:nowrap;">{L_ITEMS_PER_CYCLE}: </td>
-    <td><input type="text" name="item_limit" value="{ITEM_LIMIT}" size="5" style="texi-align:right"{xhtml}></td>
+    <td><input type="text" class="uk-input" name="item_limit" value="{ITEM_LIMIT}" size="5" style="texi-align:right"{xhtml}></td>
   </tr>
 </table>
 

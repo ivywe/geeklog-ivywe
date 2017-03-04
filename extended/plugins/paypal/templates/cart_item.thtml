@@ -12,7 +12,7 @@
 		<span>{price} {currency_symbol}</span>
 		</th>
 		<th class="jcart-item-qty">
-		<input type="text" size="2" id="jcart-item-id-{id}" name="jcart_item_qty[ ]" value="{qty}" />
+		<input type="text" class="uk-input" size="2" id="jcart-item-id-{id}" name="jcart_item_qty[ ]" value="{qty}" />
 		</th>
 		<th class="jcart-item-price" nowrap>
 		<span>{subtotal} {currency_symbol}</span> <a class="jcart-remove" href="?jcart_remove={id}"><img src="{remove_png}" align="top" alt="{remove}" title="{remove}" /></a><input type="hidden" name="jcart_item_price[ ]" value="{price}" />

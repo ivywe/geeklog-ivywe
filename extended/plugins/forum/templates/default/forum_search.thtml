@@ -7,7 +7,7 @@
                             <table border="0" cellspacing="2" cellpadding="0">
                                 <tr>
                                     <td><input type="hidden" name="op" value="search"{xhtml}><input type="hidden" name="forum" value="{forum}"{xhtml}></td>
-                                    <td><input type="text" name="query" value="" style="width:165px"{xhtml}></td>
+                                    <td><input type="text" class="uk-input" name="query" value="" style="width:165px"{xhtml}></td>
                                     <td><input type="submit" name="btnsubmit" value="{search}"{xhtml}></td>
                                 </tr>
                             </table>

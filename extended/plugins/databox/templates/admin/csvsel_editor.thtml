@@ -19,7 +19,7 @@
     <div class="uk-form-row">
       <label class="uk-form-label" >{lang_name}</label>
       <div class="uk-form-controls">
-        <input type="text" size="48" maxlength="160" name="name" value="{name}"{xhtml}>
+        <input type="text" class="uk-input" size="48" maxlength="160" name="name" value="{name}"{xhtml}>
         <span class="uk-form-help-inline">{help_name}</span>
       </div>
     </div>
@@ -28,7 +28,7 @@
     <div class="uk-form-row">
       <label class="uk-form-label" for="databox_description">{lang_description}</label>
       <div class="uk-form-controls">
-        <textarea name="description" class="uk-width-1-1" rows="2" id="databox_description"
+        <textarea class="uk-textarea" name="description" class="uk-width-1-1" rows="2" id="databox_description"
         onKeyup="var n={maxlength_description}-this.value.length;var s=document.getElementById('description_cnt');s.innerHTML='('+n+')';">{description}</textarea>
         <span class="uk-form-help-inline uk-text-bold" id="description_cnt"></span>
       </div>

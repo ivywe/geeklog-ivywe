@@ -10,15 +10,15 @@
                 <table width="100%" border="0" cellspacing="1" cellpadding="0">
                     <tr>
                         <td style="width:110px;" class="pluginCellSubTitle">{LANG_NAME}</td>
-                        <td class="pluginCellText pluginCellFill" style="white-space:nowrap;"><input type="text" name="name" value="{catname}" size="70"{xhtml}></td>
+                        <td class="pluginCellText pluginCellFill" style="white-space:nowrap;"><input type="text" class="uk-input" name="name" value="{catname}" size="70"{xhtml}></td>
                     </tr>
                     <tr>
                         <td class="pluginCellSubTitle" style="white-space:nowrap;">{LANG_ORDER}&nbsp;</td>
-                        <td class="pluginCellText pluginCellFill" style="width:25px; white-space:nowrap;"><input type="text" name="catorder" value="{catorder}" size="5"{xhtml}></td>
+                        <td class="pluginCellText pluginCellFill" style="width:25px; white-space:nowrap;"><input type="text" class="uk-input" name="catorder" value="{catorder}" size="5"{xhtml}></td>
                     </tr>
                     <tr>
                         <td class="pluginCellSubTitle">{LANG_DESCRIPTION}</td>
-                        <td class="pluginCellText pluginCellFill"><input type="text" name="dscp" value="{catdscp}" size="70"{xhtml}></td>
+                        <td class="pluginCellText pluginCellFill"><input type="text" class="uk-input" name="dscp" value="{catdscp}" size="70"{xhtml}></td>
                     </tr>
                 </table>
             </td>

@@ -22,8 +22,8 @@
                     <legend>{LANG_filtertitle}</legend>
                     <table width="100%" border="0" cellspacing="0" cellpadding="1">
                         <tr> 
-                            <td><input type="radio" name="filtermode" id="filtermode_user" value="user" {userfilter}{xhtml}><label for="filtermode_user" accesskey="u">{LANG_userrecords}</label></td>
-                            <td><input type="radio" name="filtermode" id="filtermode_group" value="group" {groupfilter}{xhtml}><label for="filtermode_group" accesskey="g">{LANG_grouprecords}</label></td>
+                            <td><input type="radio" class="uk-radio" name="filtermode" id="filtermode_user" value="user" {userfilter}{xhtml}><label for="filtermode_user" accesskey="u">{LANG_userrecords}</label></td>
+                            <td><input type="radio" class="uk-radio" name="filtermode" id="filtermode_group" value="group" {groupfilter}{xhtml}><label for="filtermode_group" accesskey="g">{LANG_grouprecords}</label></td>
                             <td><select name="sel_forum">{sel_forums}</select></td>
                             <td style="padding:10px; text-align:left;"><input name="filter" type="submit" value="{LANG_filterview}"{xhtml}></td>
                         </tr>
@@ -56,14 +56,14 @@
 
 <!-- BEGIN report_record -->
 <tr class="pluginRow{cssid} aligncenter">
-	<td class="alignleft"><input type="checkbox" name="chk_record_delete[]" value="{id}"{xhtml}></td>
+	<td class="alignleft"><input type="checkbox" class="uk-checkbox" name="chk_record_delete[]" value="{id}"{xhtml}></td>
 	<td class="alignleft" style="width:15%;">{name}</td>
 	<td class="alignleft" style="width:15%;">{forum}</td>
-	<td><input type="checkbox" name="chk_delete{id}" value="1" {delete_yes}{xhtml}></td>
-	<td><input type="checkbox" name="chk_ban{id}" value="1" {ban_yes}{xhtml}></td>
-	<td><input type="checkbox" name="chk_edit{id}" value="1" {edit_yes}{xhtml}></td>
-	<td><input type="checkbox" name="chk_move{id}" value="1" {move_yes}{xhtml}></td>
-	<td><input type="checkbox" name="chk_stick{id}" value="1" {stick_yes}{xhtml}></td>
+	<td><input type="checkbox" class="uk-checkbox" name="chk_delete{id}" value="1" {delete_yes}{xhtml}></td>
+	<td><input type="checkbox" class="uk-checkbox" name="chk_ban{id}" value="1" {ban_yes}{xhtml}></td>
+	<td><input type="checkbox" class="uk-checkbox" name="chk_edit{id}" value="1" {edit_yes}{xhtml}></td>
+	<td><input type="checkbox" class="uk-checkbox" name="chk_move{id}" value="1" {move_yes}{xhtml}></td>
+	<td><input type="checkbox" class="uk-checkbox" name="chk_stick{id}" value="1" {stick_yes}{xhtml}></td>
 	<td style="white-space:nowrap;">
 		[&nbsp;<a href="#" onclick="document.report_table.recid.value='{id}';document.report_table.op.value='update';document.report_table.submit();return false;">{LANG_UPDATE}</a>&nbsp;]&nbsp;
 		[&nbsp;<a href="#" onclick="document.report_table.recid.value='{id}';document.report_table.op.value='delete';document.report_table.submit();return false;">{LANG_DELETE}</a>&nbsp;]

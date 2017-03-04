@@ -58,7 +58,7 @@ function MG_getMemberPermissionsHTML($perm_members, $perm_anon)
 
     // Member Permissions
     $retval .= '<td class="edit-perm-down admin-list-field"><b>R</b><br' . XHTML . '>'
-             . '<input type="checkbox" name="perm_members[]" value="2"';
+             . '<input type="checkbox" class="uk-checkbox" name="perm_members[]" value="2"';
     if ($perm_members == 2) {
         $retval .= ' checked="checked"';
     }
@@ -67,7 +67,7 @@ function MG_getMemberPermissionsHTML($perm_members, $perm_anon)
     // Anonymous Permissions
 
     $retval .= '<td class="edit-perm-down admin-list-field"><b>R</b><br' . XHTML . '>'
-             . '<input type="checkbox" name="perm_anon[]" value="2"';
+             . '<input type="checkbox" class="uk-checkbox" name="perm_anon[]" value="2"';
     if ($perm_anon == 2) {
         $retval .= ' checked="checked"';
     }

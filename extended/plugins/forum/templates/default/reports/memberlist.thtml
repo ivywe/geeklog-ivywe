@@ -5,7 +5,7 @@
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
         <td colspan="3" class="pluginHeader" style="padding:5px;width:95%;">{LANG_TITLE}</td>
-        <td colspan="5" class="pluginHeader" style="padding:5px;text-align:right; white-space:nowrap;">{LANG_ACTIVITY}&nbsp;<input type="checkbox" name="chkactivity" value="1" {chk_activity} onclick="submit();"{xhtml}></td>
+        <td colspan="5" class="pluginHeader" style="padding:5px;text-align:right; white-space:nowrap;">{LANG_ACTIVITY}&nbsp;<input type="checkbox" class="uk-checkbox" name="chkactivity" value="1" {chk_activity} onclick="submit();"{xhtml}></td>
     </tr>
 </table>
 <table width="100%" border="0" cellspacing="1" cellpadding="3" class="pluginSolidOutline" style="margin-bottom:10px;">    

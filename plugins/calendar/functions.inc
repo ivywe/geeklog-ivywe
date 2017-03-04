@@ -1795,7 +1795,7 @@ function plugin_getListField_calendar($fieldname, $fieldvalue, $A, $icon_arr)
 
     switch ($fieldname) {
         case 'delete':
-            $retval = "<input type=\"checkbox\" name=\"delitem[{$A['eid']}]\" checked=\"checked\"" . XHTML . ">";
+            $retval = "<input type=\"checkbox\" class=\"uk-checkbox\" name=\"delitem[{$A['eid']}]\" checked=\"checked\"" . XHTML . ">";
             break;
 
         case 'edit':

@@ -1134,7 +1134,7 @@ function DATABOX_getaddtionfieldsEdit(
                 case 19:// 複数行テキストフィールド(HTML OK  CKEditor)//@@@@@
                      if ($disabled===""){
                         $cntname="afieldcnt".$fid;
-                        $fieldhtml .= "<textarea ";
+                        $fieldhtml .= "<textarea class=\"uk-textarea\" ";
                         $fieldhtml .= " name=\"afield[".$fid."]\" ";
                         $fieldhtml .= " style=\"width:95%\"";
                         $fieldhtml .= " rows=\"".$rows."\"";
@@ -1377,7 +1377,7 @@ function DATABOX_getaddtionfieldsEdit(
                 case 17://フラグ
                     if ($disabled===""){
                         $wk =" <input ";
-                        $wk .= " type=\"checkbox\"";
+                        $wk .= " type=\"checkbox\" ";
                         $wk .= " name=\"afield[".$fid."]\" ";
                         $wk .= " value=\"1\"";
                         if  ($fvalue==1) {

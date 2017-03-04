@@ -1197,7 +1197,7 @@ function assist_getradiolist(
     foreach( $ary as $id => $value ){
 
         //echo "ary".$i."=".$ary[$i]."<br>";
-        $retval .= "<input type='radio' NAME='$fld' $disabled VALUE='$id'";
+        $retval .= "<input type='radio' class='uk-radio'  NAME='$fld' $disabled VALUE='$id'";
         if( $id == $selected ){
                 $retval .= " CHECKED=CHECKED ";
         }

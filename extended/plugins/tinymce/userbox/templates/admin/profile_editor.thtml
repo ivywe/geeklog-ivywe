@@ -60,7 +60,7 @@
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_draft}{help_draft}</th>
             <td class="admin-list-field">
-              <input type="checkbox" name="draft_flag" value="1" {draft_flag}{xhtml}>
+              <input type="checkbox" class="uk-checkbox" name="draft_flag" value="1" {draft_flag}{xhtml}>
             </td>
           </tr>
  
@@ -68,7 +68,7 @@
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_page_title}{help_page_title}</th>
             <td class="admin-list-field">
-              <input type="text" size="48" maxlength="160" name="page_title" value="{page_title}" style="95%"{xhtml}>
+              <input type="text" class="uk-input" size="48" maxlength="160" name="page_title" value="{page_title}" style="95%"{xhtml}>
             </td>
           </tr>
  
@@ -76,7 +76,7 @@
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_description}{help_description}</th>
             <td class="admin-list-field">
-              <textarea name="description" style="width:95%" id="userbox_description" onKeyup="var n={maxlength_description}-this.value.length;var s=document.getElementById('description_cnt');s.innerHTML='('+n+')';">{description}</textarea><br{xhtml}><strong><span id='description_cnt'></span><strong>
+              <textarea class="uk-textarea" name="description" style="width:95%" id="userbox_description" onKeyup="var n={maxlength_description}-this.value.length;var s=document.getElementById('description_cnt');s.innerHTML='('+n+')';">{description}</textarea><br{xhtml}><strong><span id='description_cnt'></span><strong>
             </td>
           </tr>
  
@@ -92,7 +92,7 @@
           <tr{hide_meta}>
           <th class="admin-list-field">{lang_meta_description}{help_meta_description}</th>
             <td class="admin-list-field">
-              <textarea name="meta_description" style="width:95%" rows="2" id="userbox_description" onKeyup="var n={maxlength_meta_description}-this.value.length;var s=document.getElementById('meta_description_cnt');s.innerHTML='('+n+')';">{meta_description}</textarea>
+              <textarea class="uk-textarea" name="meta_description" style="width:95%" rows="2" id="userbox_description" onKeyup="var n={maxlength_meta_description}-this.value.length;var s=document.getElementById('meta_description_cnt');s.innerHTML='('+n+')';">{meta_description}</textarea>
               <br {xhtml}><strong><span id='meta_description_cnt'></span><strong>
             </td>
           </tr>
@@ -101,7 +101,7 @@
           <tr{hide_meta}>
             <th class="admin-list-field">{lang_meta_keywords}{help_meta_keywords}</th>
             <td class="admin-list-field">
-              <textarea name="meta_keywords" style="width:95%" rows="2" id="meta_keywords" onKeyup="var n={maxlength_meta_keywords}-this.value.length;var s=document.getElementById('meta_keywords_cnt');s.innerHTML='('+n+')';">{meta_keywords}</textarea>
+              <textarea class="uk-textarea" name="meta_keywords" style="width:95%" rows="2" id="meta_keywords" onKeyup="var n={maxlength_meta_keywords}-this.value.length;var s=document.getElementById('meta_keywords_cnt');s.innerHTML='('+n+')';">{meta_keywords}</textarea>
               <br {xhtml}><strong><span id='meta_keywords_cnt'></span><strong>
             </td>
           </tr>
@@ -141,13 +141,13 @@
           <!-- comment_expire -->
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_comment_expire}{help_comment_expire}</th>
-            <td class="admin-list-field">{lang_enabled}:<input type="checkbox"name="comment_expire_flag" value="1" {is_checked_comment_expire} onclick="enable_comment_expire(this);"{xhtml}>{datetime_comment_expire}</td>
+            <td class="admin-list-field">{lang_enabled}:<input type="checkbox" class="uk-checkbox"name="comment_expire_flag" value="1" {is_checked_comment_expire} onclick="enable_comment_expire(this);"{xhtml}>{datetime_comment_expire}</td>
           </tr>
  
           <!-- 編集日付 -->
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_modified}{help_modified}</th>
-            <td class="admin-list-field">{lang_modified_autoupdate}:<input type="checkbox" name="modified_autoupdate" value="1" checked="checked" {xhtml}>
+            <td class="admin-list-field">{lang_modified_autoupdate}:<input type="checkbox" class="uk-checkbox" name="modified_autoupdate" value="1" checked="checked" {xhtml}>
  {datetime_modified} </td>
           </tr>
  
@@ -160,14 +160,14 @@
           <!-- 公開終了日 -->
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_expired}{help_expire}</th>
-            <td class="admin-list-field">{lang_enabled}:<input type="checkbox"name="expired_flag" value="1" {is_checked_expired} onclick="enable_expired(this);"{xhtml}>{datetime_expired}</td>
+            <td class="admin-list-field">{lang_enabled}:<input type="checkbox" class="uk-checkbox"name="expired_flag" value="1" {is_checked_expired} onclick="enable_expired(this);"{xhtml}>{datetime_expired}</td>
           </tr>
   
           <!-- order -->
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_orderno}{help_orderno}</th>
             <td class="admin-list-field">
-              <input type="text" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
+              <input type="text" class="uk-input" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
             </td>
           </tr>
   
@@ -184,7 +184,7 @@
             <tr class="pluginRow1">
               <th class="admin-list-field">{lang_cache_time} {help_cache_time}</th>
               <td class="admin-list-field">
-                <input type="text" size="8" maxlength="160" name="cache_time" value="{cache_time}"{xhtml}>{lang_cache_time_desc}
+                <input type="text" class="uk-input" size="8" maxlength="160" name="cache_time" value="{cache_time}"{xhtml}>{lang_cache_time_desc}
               </td>
             </tr>
         </table>

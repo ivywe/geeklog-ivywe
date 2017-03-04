@@ -4,10 +4,10 @@
   <div class="admin_basic">
     <dl class="form_block">
       <dt>{lang_title}</dt>
-      <dd><input type="text" name="cat_name" value="{cat_name}" class="size5"{xhtml}></dd>
+      <dd><input type="text" class="uk-input" name="cat_name" value="{cat_name}" class="size5"{xhtml}></dd>
 
       <dt>{lang_description}</dt>
-      <dd><textarea name="cat_desc" cols="50" rows="5" class="wide">{cat_description}</textarea></dd>
+      <dd><textarea class="uk-textarea" name="cat_desc" cols="50" rows="5" class="wide">{cat_description}</textarea></dd>
     </dl>
     <div class="mg_submit">
       <input type="submit" value="{lang_save}"   name="mode" class="submit"{xhtml}>

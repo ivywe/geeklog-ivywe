@@ -4,7 +4,7 @@
 	<fieldset style="margin-top: 10px;"><legend><b>{main_settings}</b></legend>
 	{cat_id}
 	<h2>{category_label}<font color="red"> *</font></h2>
-	<p><input type="text" name="category" value="{cat_name}" size="40" maxlength="255" {xhtml}></p>
+	<p><input type="text" class="uk-input" name="category" value="{cat_name}" size="40" maxlength="255" {xhtml}></p>
 	<h2>{parent_id}</h2>
 	<select name="parent_id">
           <option value="0">{top_cat}</option>
@@ -17,7 +17,7 @@
 	{cat_image}
 	
 	<h2>{description_label}</h2>
-	<p><textarea name="description" style="width:100%" cols="45" rows="5">{description}</textarea></p>
+	<p><textarea class="uk-textarea" name="description" style="width:100%" cols="45" rows="5">{description}</textarea></p>
 	
 	<h2>{enabled}</h2>
 	<select name="enabled">

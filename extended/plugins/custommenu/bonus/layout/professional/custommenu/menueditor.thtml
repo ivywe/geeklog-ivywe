@@ -13,33 +13,33 @@
           <br{xhtml}><div class="pluginMediumText">{lang_mode_info}</div></dd>
 
       <dt><label for="cmeditor-title_fixation">{lang_title_fixation}</label></dt>
-      <dd><input type="text" name="title_fixation" id="cmeditor-title_fixation" value="{val_title_fixation}" size="48" class="size6"{xhtml}>
+      <dd><input type="text" class="uk-input" name="title_fixation" id="cmeditor-title_fixation" value="{val_title_fixation}" size="48" class="size6"{xhtml}>
           <br{xhtml}><div class="pluginMediumText">{lang_title_fixation_info}</div></dd>
 
       <dt><label for="cmeditor-title_variable">{lang_title_variable}</label></dt>
-      <dd><input type="text" name="title_variable" id="cmeditor-title_variable" value="{val_title_variable}" size="48" class="size6"{xhtml}>
+      <dd><input type="text" class="uk-input" name="title_variable" id="cmeditor-title_variable" value="{val_title_variable}" size="48" class="size6"{xhtml}>
           <br{xhtml}><div class="pluginMediumText">{lang_title_variable_info}</div></dd>
 
       <dt><label for="cmeditor-php_function">{lang_php_function}</label></dt>
-      <dd><input type="text" name="php_function" id="cmeditor-php_function" value="{val_php_function}" size="48" class="size6"{xhtml}>
+      <dd><input type="text" class="uk-input" name="php_function" id="cmeditor-php_function" value="{val_php_function}" size="48" class="size6"{xhtml}>
           <br{xhtml}><div class="pluginMediumText">{lang_php_function_info}</div></dd>
 
       <dt><label for="cmeditor-is_enabled">{lang_is_enabled}</label></dt>
-      <dd><input type="checkbox" name="is_enabled" id="cmeditor-is_enabled" {val_is_enabled}{xhtml}></dd>
+      <dd><input type="checkbox" class="uk-checkbox" name="is_enabled" id="cmeditor-is_enabled" {val_is_enabled}{xhtml}></dd>
 
       <dt><label for="cmeditor-url">{lang_menuitemurl}</label></dt>
-      <dd><input type="text" name="url" id="cmeditor-url" value="{val_menuitemurl}" size="48" class="size6"{xhtml}>
+      <dd><input type="text" class="uk-input" name="url" id="cmeditor-url" value="{val_menuitemurl}" size="48" class="size6"{xhtml}>
           <br{xhtml}><div class="pluginMediumText">{lang_includehttp}</div></dd>
 
       <dt><label for="cmeditor-mid">{lang_menuitemid}</label></dt>
-      <dd><input type="text" name="mid" id="cmeditor-mid" value="{val_mid}" size="48" class="size6" {mid_readonly}{xhtml}>
+      <dd><input type="text" class="uk-input" name="mid" id="cmeditor-mid" value="{val_mid}" size="48" class="size6" {mid_readonly}{xhtml}>
           <br{xhtml}><div class="pluginMediumText">{lang_nospaces}</div></dd>
 
       <dt><label>{lang_parentitemid}</label></dt>
       <dd>{selpmid}</dd>
 
       <dt><label for="cmeditor-class_name">{lang_class_name}</label></dt>
-      <dd><input type="text" name="class_name" id="cmeditor-class_name" value="{val_class_name}" size="48" class="size6"{xhtml}>
+      <dd><input type="text" class="uk-input" name="class_name" id="cmeditor-class_name" value="{val_class_name}" size="48" class="size6"{xhtml}>
           <br{xhtml}><div class="pluginMediumText">{lang_class_name_info}</div></dd>
 
       <dt><label for="cmeditor-tid">{lang_topic}</label></dt>
@@ -50,20 +50,20 @@
           </select></dd>
 
       <dt><label for="cmeditor-menuorder">{lang_menuitemorder}</label></dt>
-      <dd><input type="text" name="menuorder" id="cmeditor-menuorder" value="{val_menuorder}" size="4"{xhtml}>
+      <dd><input type="text" class="uk-input" name="menuorder" id="cmeditor-menuorder" value="{val_menuorder}" size="4"{xhtml}>
           <span class="pluginMediumText"> 0 - 9999</span></dd>
 
       <dt><label>{lang_menuitemtype}</label></dt>
       <dd>{lang_type}</dd>
 
       <dt><label for="cmeditor-icon_url">{lang_icon_url}</label></dt>
-      <dd><input type="text" name="icon_url" id="cmeditor-icon_url" value="{val_icon_url}" size="48" class="size6"{xhtml}>
+      <dd><input type="text" class="uk-input" name="icon_url" id="cmeditor-icon_url" value="{val_icon_url}" size="48" class="size6"{xhtml}>
           <br{xhtml}><div class="pluginMediumText">{lang_icon_url_info}</div></dd>
 
       <dt><label for="cmeditor-pattern">{lang_pattern}</label></dt>
-      <dd><input type="text" name="pattern" id="cmeditor-pattern" value="{val_pattern}" size="48" class="size6"{xhtml}>
+      <dd><input type="text" class="uk-input" name="pattern" id="cmeditor-pattern" value="{val_pattern}" size="48" class="size6"{xhtml}>
           &nbsp;{lang_is_preg}:
-          <input type="checkbox" name="is_preg" {val_is_preg}{xhtml}>
+          <input type="checkbox" class="uk-checkbox" name="is_preg" {val_is_preg}{xhtml}>
           <br{xhtml}><div class="pluginMediumText">{lang_pattern_info}</div></dd>
     </dl>
 

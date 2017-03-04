@@ -32,7 +32,7 @@
         <td class="alignright"></td>
 	</tr>
 	<tr>
-        <td><input type="checkbox" name="delPostMigrate" id="delPostMigrate" value="1"{xhtml}>&nbsp;<label for="delPostMigrate">{LANG_deleteafter}</label></td>
+        <td><input type="checkbox" class="uk-checkbox" name="delPostMigrate" id="delPostMigrate" value="1"{xhtml}>&nbsp;<label for="delPostMigrate">{LANG_deleteafter}</label></td>
         <td class="alignright">{filter_topic_selection}&nbsp;<input type="submit" value="{LANG_filterlist}"{xhtml}></td>
     </tr>
 </table>
@@ -41,7 +41,7 @@
         <td class="pluginAlert" colspan="5" style="padding:5px; white-space:nowrap;">{status_message}</td>
     </tr>
     <tr>
-        <td class="pluginCellTitle" style="width:5%; white-space:nowrap;"><input type="checkbox" name="cb_migrateall" id="cb_migrateall" value="y" onclick="if(!allChecked) checkAll(document.storymigrate.elements['chk_record_delete[]']); else uncheckAll(document.storymigrate.elements['chk_record_delete[]']);"{xhtml}>&nbsp;<label for="cb_migrateall">{LANG_all}</label></td>
+        <td class="pluginCellTitle" style="width:5%; white-space:nowrap;"><input type="checkbox" class="uk-checkbox" name="cb_migrateall" id="cb_migrateall" value="y" onclick="if(!allChecked) checkAll(document.storymigrate.elements['chk_record_delete[]']); else uncheckAll(document.storymigrate.elements['chk_record_delete[]']);"{xhtml}>&nbsp;<label for="cb_migrateall">{LANG_all}</label></td>
         <td class="pluginCellTitle" style="width:20%; padding-top:5px; white-space:nowrap;">{LANG_topic}</td>
         <td class="pluginCellTitle" style="width:55%; padding-top:5px; white-space:nowrap;">{LANG_title}</td>
         <td class="pluginCellTitle" style="width:15%; padding-top:5px; white-space:nowrap;">{LANG_date}</td>
@@ -59,7 +59,7 @@
 			
 <!-- BEGIN report_record -->
     <tr class="pluginRow{cssid}">
-        <td style="width:5%;"><input type="checkbox" name="chk_record_delete[]" value="{sid}"{xhtml}></td>
+        <td style="width:5%;"><input type="checkbox" class="uk-checkbox" name="chk_record_delete[]" value="{sid}"{xhtml}></td>
         <td style="width:15%;">{topic}</td>
         <td style="width:45%;"><a href="{story_link}">{story_title}</a></td>
         <td style="width:25%; white-space:nowrap;">{date}</td>

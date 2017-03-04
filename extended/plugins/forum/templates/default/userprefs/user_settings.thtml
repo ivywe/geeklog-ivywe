@@ -14,7 +14,7 @@
         <table width="100%" border="0" cellspacing="0" cellpadding="3" class="pluginSolidOutline">
         <tr>
             <td class="pluginCellText pluginCellFill" style="padding-left:6px;">{$LANG_GF92[topicsppdscp]}</td>
-            <td class="pluginCellText pluginCellFill" style="width:25px; white-space:nowrap;"><input type="text" name="xtopicsperpage" size="4" maxlength="2" value="{topicsperpage}"{xhtml}></td>
+            <td class="pluginCellText pluginCellFill" style="width:25px; white-space:nowrap;"><input type="text" class="uk-input" name="xtopicsperpage" size="4" maxlength="2" value="{topicsperpage}"{xhtml}></td>
         </tr>
         </table>
     </td>
@@ -25,7 +25,7 @@
         <table width="100%" border="0" cellspacing="0" cellpadding="3" class="pluginSolidOutline">
         <tr>
             <td class="pluginCellText pluginCellFill" style="padding-left:6px;">{$LANG_GF92[postsppdscp]}</td>
-            <td class="pluginCellText pluginCellFill" style="width:25px; white-space:nowrap;"><input type="text" name="xpostsperpage" size="4" maxlength="2" value="{postsperpage}"{xhtml}></td>
+            <td class="pluginCellText pluginCellFill" style="width:25px; white-space:nowrap;"><input type="text" class="uk-input" name="xpostsperpage" size="4" maxlength="2" value="{postsperpage}"{xhtml}></td>
         </tr>
         </table>
     </td>
@@ -36,7 +36,7 @@
         <table width="100%" border="0" cellspacing="0" cellpadding="3" class="pluginSolidOutline">
         <tr>
             <td class="pluginCellText pluginCellFill" style="padding-left:6px;">{$LANG_GF92[newppdscp]}</td>
-            <td class="pluginCellText pluginCellFill" style="width:25px; white-space:nowrap;"><input type="text" name="xnewperpage" size="4" maxlength="2" value="{newperpage}"{xhtml}></td>
+            <td class="pluginCellText pluginCellFill" style="width:25px; white-space:nowrap;"><input type="text" class="uk-input" name="xnewperpage" size="4" maxlength="2" value="{newperpage}"{xhtml}></td>
         </tr>
         </table>
     </td>
@@ -47,7 +47,7 @@
         <table width="100%" border="0" cellspacing="0" cellpadding="3" class="pluginSolidOutline">
         <tr>
             <td class="pluginCellText pluginCellFill" style="padding-left:6px;">{$LANG_GF92[popularppdscp]}</td>
-            <td class="pluginCellText pluginCellFill" style="width:25px; white-space:nowrap;"><input type="text" name="xpopularperpage" size="4" maxlength="2" value="{popularperpage}"{xhtml}></td>
+            <td class="pluginCellText pluginCellFill" style="width:25px; white-space:nowrap;"><input type="text" class="uk-input" name="xpopularperpage" size="4" maxlength="2" value="{popularperpage}"{xhtml}></td>
         </tr>
         </table>
     </td>
@@ -58,7 +58,7 @@
         <table width="100%" border="0" cellspacing="0" cellpadding="3" class="pluginSolidOutline">
         <tr>
             <td class="pluginCellText pluginCellFill" style="padding-left:6px;">{$LANG_GF92[popularldscp]}</td>
-            <td class="pluginCellText pluginCellFill" style="width:25px; white-space:nowrap;"><input type="text" name="xpopularlimit" size="4" maxlength="2" value="{popularlimit}"{xhtml}></td>
+            <td class="pluginCellText pluginCellFill" style="width:25px; white-space:nowrap;"><input type="text" class="uk-input" name="xpopularlimit" size="4" maxlength="2" value="{popularlimit}"{xhtml}></td>
         </tr>
         </table>
     </td>
@@ -69,7 +69,7 @@
         <table width="100%" border="0" cellspacing="0" cellpadding="3" class="pluginSolidOutline">
         <tr>
             <td class="pluginCellText pluginCellFill" style="padding-left:6px;">{$LANG_GF92[searchppdscp]}</td>
-            <td class="pluginCellText pluginCellFill" style="width:25px; white-space:nowrap;"><input type="text" name="xsearchperpage" size="4" maxlength="2" value="{searchperpage}"{xhtml}></td>
+            <td class="pluginCellText pluginCellFill" style="width:25px; white-space:nowrap;"><input type="text" class="uk-input" name="xsearchperpage" size="4" maxlength="2" value="{searchperpage}"{xhtml}></td>
         </tr>
         </table>
     </td>
@@ -80,7 +80,7 @@
         <table width="100%" border="0" cellspacing="0" cellpadding="3" class="pluginSolidOutline">
         <tr>
             <td class="pluginCellText pluginCellFill" style="padding-left:6px;">{$LANG_GF92[membersppdscp]}</td>
-            <td class="pluginCellText pluginCellFill" style="width:25px; white-space:nowrap;"><input type="text" name="xmembersperpage" size="4" maxlength="2" value="{membersperpage}"{xhtml}></td>
+            <td class="pluginCellText pluginCellFill" style="width:25px; white-space:nowrap;"><input type="text" class="uk-input" name="xmembersperpage" size="4" maxlength="2" value="{membersperpage}"{xhtml}></td>
         </tr>
         </table>
     </td>
@@ -91,8 +91,8 @@
         <table width="100%" border="0" cellspacing="0" cellpadding="3" class="pluginSolidOutline">
         <tr>
             <td class="pluginCellText pluginCellFill" style="padding-left:6px;">{$LANG_GF92[viewapdscp]}</td>
-            <td class="pluginCellText pluginCellFill" style="width:3%; white-space:nowrap;"><input type="radio" name="xviewanonposts" id="xviewanonposts_yes" value="1" {viewanonposts_yes}{xhtml}><label for="xviewanonposts_yes">{LANG_GF01[YES]}</label>&nbsp;</td>
-            <td class="pluginCellText pluginCellFill" style="padding-right:6px; width:3%; white-space:nowrap;"><input type="radio" name="xviewanonposts" id="xviewanonposts_no" value="0" {viewanonposts_no}{xhtml}><label for="xviewanonposts_no">{LANG_GF01[NO]}</label></td>
+            <td class="pluginCellText pluginCellFill" style="width:3%; white-space:nowrap;"><input type="radio" class="uk-radio" name="xviewanonposts" id="xviewanonposts_yes" value="1" {viewanonposts_yes}{xhtml}><label for="xviewanonposts_yes">{LANG_GF01[YES]}</label>&nbsp;</td>
+            <td class="pluginCellText pluginCellFill" style="padding-right:6px; width:3%; white-space:nowrap;"><input type="radio" class="uk-radio" name="xviewanonposts" id="xviewanonposts_no" value="0" {viewanonposts_no}{xhtml}><label for="xviewanonposts_no">{LANG_GF01[NO]}</label></td>
         </tr>
         </table>
     </td>
@@ -103,8 +103,8 @@
         <table width="100%" border="0" cellspacing="0" cellpadding="3" class="pluginSolidOutline">
         <tr>
             <td class="pluginCellText pluginCellFill" style="padding-left:6px;">{$LANG_GF92[alwaysndscp]}</td>
-            <td class="pluginCellText pluginCellFill" style="width:3%; white-space:nowrap;"><input type="radio" name="xalwaysnotify" id="xalwaysnotify_yes" value="1" {alwaysnotify_yes}{xhtml}><label for="xalwaysnotify_yes">{LANG_GF01[YES]}</label>&nbsp;</td>
-            <td class="pluginCellText pluginCellFill" style="padding-right:6px; width:3%; white-space:nowrap;"><input type="radio" name="xalwaysnotify" id="xalwaysnotify_no" value="0" {alwaysnotify_no}{xhtml}><label for="xalwaysnotify_no">{LANG_GF01[NO]}</label></td>
+            <td class="pluginCellText pluginCellFill" style="width:3%; white-space:nowrap;"><input type="radio" class="uk-radio" name="xalwaysnotify" id="xalwaysnotify_yes" value="1" {alwaysnotify_yes}{xhtml}><label for="xalwaysnotify_yes">{LANG_GF01[YES]}</label>&nbsp;</td>
+            <td class="pluginCellText pluginCellFill" style="padding-right:6px; width:3%; white-space:nowrap;"><input type="radio" class="uk-radio" name="xalwaysnotify" id="xalwaysnotify_no" value="0" {alwaysnotify_no}{xhtml}><label for="xalwaysnotify_no">{LANG_GF01[NO]}</label></td>
         </tr>
         </table>
     </td>
@@ -115,8 +115,8 @@
         <table width="100%" border="0" cellspacing="0" cellpadding="3" class="notifyoodscp">
         <tr>
             <td class="pluginCellText pluginCellFill" style="padding-left:6px;">{$LANG_GF92[msg185]}</td>
-            <td class="pluginCellText pluginCellFill" style="width:3%; white-space:nowrap;"><input type="radio" name="xnotifyonce" id="xnotifyonce_yes" value="1" {notifyonce_yes}{xhtml}><label for="xnotifyonce_yes">{LANG_GF01[YES]}</label>&nbsp;</td>
-            <td class="pluginCellText pluginCellFill" style="padding-right:6px; width:3%; white-space:nowrap;"><input type="radio" name="xnotifyonce" id="xnotifyonce_no" value="0" {notifyonce_no}{xhtml}><label for="xnotifyonce_no">{LANG_GF01[NO]}</label></td>
+            <td class="pluginCellText pluginCellFill" style="width:3%; white-space:nowrap;"><input type="radio" class="uk-radio" name="xnotifyonce" id="xnotifyonce_yes" value="1" {notifyonce_yes}{xhtml}><label for="xnotifyonce_yes">{LANG_GF01[YES]}</label>&nbsp;</td>
+            <td class="pluginCellText pluginCellFill" style="padding-right:6px; width:3%; white-space:nowrap;"><input type="radio" class="uk-radio" name="xnotifyonce" id="xnotifyonce_no" value="0" {notifyonce_no}{xhtml}><label for="xnotifyonce_no">{LANG_GF01[NO]}</label></td>
         </tr>
         </table>
     </td>
@@ -127,8 +127,8 @@
         <table width="100%" border="0" cellspacing="0" cellpadding="3" class="pluginSolidOutline">
         <tr>
             <td class="pluginCellText pluginCellFill" style="padding-left:6px;">{$LANG_GF92[showiframedscp]}</td>
-            <td class="pluginCellText pluginCellFill" style="width:3%; white-space:nowrap;"><input type="radio" name="xshowiframe" id="xshowiframe_yes" value="1" {showiframe_yes}{xhtml}><label for="xshowiframe_yes">{LANG_GF01[YES]}</label>&nbsp;</td>
-            <td class="pluginCellText pluginCellFill" style="padding-right:6px; width:3%; white-space:nowrap;"><input type="radio" name="xshowiframe" id="xshowiframe_no" value="0" {showiframe_no}{xhtml}><label for="xshowiframe_no">{LANG_GF01[NO]}</label></td>
+            <td class="pluginCellText pluginCellFill" style="width:3%; white-space:nowrap;"><input type="radio" class="uk-radio" name="xshowiframe" id="xshowiframe_yes" value="1" {showiframe_yes}{xhtml}><label for="xshowiframe_yes">{LANG_GF01[YES]}</label>&nbsp;</td>
+            <td class="pluginCellText pluginCellFill" style="padding-right:6px; width:3%; white-space:nowrap;"><input type="radio" class="uk-radio" name="xshowiframe" id="xshowiframe_no" value="0" {showiframe_no}{xhtml}><label for="xshowiframe_no">{LANG_GF01[NO]}</label></td>
         </tr>
         </table>
     </td>

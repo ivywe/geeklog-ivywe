@@ -7,34 +7,34 @@
 <legend class="uk-legend">{my_details}</legend>
 
 <div class="uk-margin">
-<input type="text"  class="uk-textarea" name="name" value="{name}" size="55" maxlength="80"  placeholder="お名前" {xhtml}>
+<input type="text" class="uk-input"  class="uk-textarea" name="name" value="{name}" size="55" maxlength="80"  placeholder="お名前" {xhtml}>
 </div>
 <div class="uk-margin">
-	<input type="text" class="uk-textarea" name="street1" value="{street1}" size="55" maxlength="50"  placeholder="{street1_label}" {xhtml}>
+	<input type="text" class="uk-input" class="uk-textarea" name="street1" value="{street1}" size="55" maxlength="50"  placeholder="{street1_label}" {xhtml}>
 </div>
 <div class="uk-margin">
-	<input type="text" class="uk-textarea" name="street2" value="{street2}" size="55" maxlength="50" placeholder="{street2_label}"  {xhtml}>
+	<input type="text" class="uk-input" class="uk-textarea" name="street2" value="{street2}" size="55" maxlength="50" placeholder="{street2_label}"  {xhtml}>
 </div>
 <div class="uk-margin">
-	<input type="text" class="uk-textarea" name="postal" value="{postal}" size="15" maxlength="20" placeholder="{postal_label}" {xhtml}> 
+	<input type="text" class="uk-input" class="uk-textarea" name="postal" value="{postal}" size="15" maxlength="20" placeholder="{postal_label}" {xhtml}> 
 </div>
 <div class="uk-margin">
-	<input type="text" class="uk-textarea" name="city" value="{city}" size="40" maxlength="30" placeholder="{city_label}" {xhtml}>
+	<input type="text" class="uk-input" class="uk-textarea" name="city" value="{city}" size="40" maxlength="30" placeholder="{city_label}" {xhtml}>
 </div>
 <div class="uk-margin">
-	<input type="text" class="uk-textarea" name="phone1" value="{phone1}" size="55" maxlength="20" placeholder="{phone1_label}" {xhtml}>
+	<input type="text" class="uk-input" class="uk-textarea" name="phone1" value="{phone1}" size="55" maxlength="20" placeholder="{phone1_label}" {xhtml}>
 </div>
 <div class="uk-margin">
-	<input type="text" class="uk-textarea" name="phone2" value="{phone2}" size="55" maxlength="20"  placeholder="{phone2_label}" {xhtml}>
+	<input type="text" class="uk-input" class="uk-textarea" name="phone2" value="{phone2}" size="55" maxlength="20"  placeholder="{phone2_label}" {xhtml}>
 </div>
 <div class="uk-margin">
-	<input type="text" class="uk-textarea" name="fax" value="{fax}" size="55" maxlength="25"  placeholder="{fax_label}" {xhtml}>
+	<input type="text" class="uk-input" class="uk-textarea" name="fax" value="{fax}" size="55" maxlength="25"  placeholder="{fax_label}" {xhtml}>
 </div>
 <div class="uk-margin">
-	<input type="text" class="uk-textarea" name="contact" value="{contact}" size="55" maxlength="80"  placeholder="{contact_label}" {xhtml}>
+	<input type="text" class="uk-input" class="uk-textarea" name="contact" value="{contact}" size="55" maxlength="80"  placeholder="{contact_label}" {xhtml}>
 </div>
 <div class="uk-margin">
-	<input type="text" class="uk-textarea" name="proid" value="{proid}" size="55" maxlength="20"  placeholder="{proid_label}" {xhtml}>
+	<input type="text" class="uk-input" class="uk-textarea" name="proid" value="{proid}" size="55" maxlength="20"  placeholder="{proid_label}" {xhtml}>
 </div>
 <div class="uk-margin">
 	<p>{uid}{operation}</p>

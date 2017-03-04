@@ -37,8 +37,8 @@
         </tr>
         <tr style="text-align:left; vertical-align:top;">
             <td class="pluginCellText pluginCellFill"style="width:25%; padding:5px 5px 5px 20px;">
-                <input type="radio" name="modtype" id="modtype-user" value="user" checked="checked" onclick="toggleModeratorMode('user');"{xhtml}><label for="modtype-user" accesskey="u">{LANG_user}</label><br{xhtml}>
-                <input type="radio" name="modtype" id="modtype-group" value="group" onclick="toggleModeratorMode('group');"{xhtml}><label for="modtype-group" accesskey="g">{LANG_group}</label></td>
+                <input type="radio" class="uk-radio" name="modtype" id="modtype-user" value="user" checked="checked" onclick="toggleModeratorMode('user');"{xhtml}><label for="modtype-user" accesskey="u">{LANG_user}</label><br{xhtml}>
+                <input type="radio" class="uk-radio" name="modtype" id="modtype-group" value="group" onclick="toggleModeratorMode('group');"{xhtml}><label for="modtype-group" accesskey="g">{LANG_group}</label></td>
             <td class="pluginCellText pluginCellFill" style="width:25%; padding:5px 5px 5px 10px;"><select name="sel_forum[]" style="width:200px;" size="6" multiple="multiple">{sel_forums}</select></td>
             <td id="selusers" class="pluginCellText pluginCellFill" style="width:25%; padding:5px 5px 5px 10px; display:;"><select name="sel_user[]" style="width:100px;" size="6" multiple="multiple">{sel_users}</select></td>
             <td id="selgroup" class="pluginCellText pluginCellFill" style="width:25%; padding:5px 5px 5px 10px; display:none;"><select name="sel_group" style="width:100px;" >{sel_groups}</select></td>
@@ -46,19 +46,19 @@
             <td class="pluginCellText pluginCellFill" style="width:25%; padding:5px 5px 5px 10px;">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
-                        <td><input type="checkbox" name="chk_delete" id="chk_delete" value="1"{xhtml}></td><td><label for="chk_delete">{LANG_DELETE}</label></td>
+                        <td><input type="checkbox" class="uk-checkbox" name="chk_delete" id="chk_delete" value="1"{xhtml}></td><td><label for="chk_delete">{LANG_DELETE}</label></td>
                     </tr>
                     <tr>
-                        <td><input type="checkbox" name="chk_ban" id="chk_ban" value="1"{xhtml}></td><td><label for="chk_ban">{LANG_BAN}</label></td>
+                        <td><input type="checkbox" class="uk-checkbox" name="chk_ban" id="chk_ban" value="1"{xhtml}></td><td><label for="chk_ban">{LANG_BAN}</label></td>
                     </tr>
                     <tr>
-                        <td><input type="checkbox" name="chk_edit" id="chk_edit" value="1"{xhtml}></td><td><label for="chk_edit">{LANG_EDIT}</label></td>
+                        <td><input type="checkbox" class="uk-checkbox" name="chk_edit" id="chk_edit" value="1"{xhtml}></td><td><label for="chk_edit">{LANG_EDIT}</label></td>
                     </tr>
                     <tr>
-                        <td><input type="checkbox" name="chk_move" id="chk_move" value="1"{xhtml}></td><td><label for="chk_move">{LANG_MOVE}</label></td>
+                        <td><input type="checkbox" class="uk-checkbox" name="chk_move" id="chk_move" value="1"{xhtml}></td><td><label for="chk_move">{LANG_MOVE}</label></td>
                     </tr>
                     <tr>
-                        <td><input type="checkbox" name="chk_stick" id="chk_stick" value="1"{xhtml}></td><td><label for="chk_stick">{LANG_STICK}</label></td>
+                        <td><input type="checkbox" class="uk-checkbox" name="chk_stick" id="chk_stick" value="1"{xhtml}></td><td><label for="chk_stick">{LANG_STICK}</label></td>
                     </tr>
                 </table>
             </td>

@@ -830,7 +830,7 @@ function THM_form() {
 }
 
 function THM_checkbox($name, $id, $value, $label, $checked = TRUE) {
-    $retval = '<input type="checkbox" id="' . $id . '" name="' . $name
+    $retval = '<input type="checkbox" class="uk-checkbox" id="' . $id . '" name="' . $name
             . '" value="' . $value . '"';
     
 	if ($checked) {
@@ -842,7 +842,7 @@ function THM_checkbox($name, $id, $value, $label, $checked = TRUE) {
 }
 
 function THM_radio($name, $id, $value, $label, $checked = TRUE) {
-    $retval = '<input type="radio" id="' . $id . '" name="' . $name
+    $retval = '<input type="radio" class="uk-radio" id="' . $id . '" name="' . $name
             . '" value="' . $value . '"';
     if ($checked) {
         $retval .= ' checked="checked"';

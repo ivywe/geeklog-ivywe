@@ -588,17 +588,17 @@ class jcart {
 							$checked = '';
 						}
 						if ( ( (count($categories) == 1 && in_array($A['shipper_service_exclude_cat'], $categories)) || $A['shipper_service_exclude_cat'] == 0 || count($categories) == 0 ) && $skip == 0 ) {
-    					    $shippers_radio .= '<p><input type="radio" name="shipping" value="' . $A['shipping_amt'] . '"' . $checked . ' /> '  . $A['shipping_to_name'] . ' | ' . $A['shipper_service_name'] .  ' - ' . $A['shipper_service_service'] .  '<span ' . $A['shipping_amt'] .
+    					    $shippers_radio .= '<p><input type="radio" class="uk-radio" name="shipping" value="' . $A['shipping_amt'] . '"' . $checked . ' /> '  . $A['shipping_to_name'] . ' | ' . $A['shipper_service_name'] .  ' - ' . $A['shipper_service_service'] .  '<span ' . $A['shipping_amt'] .
 	    					' ' . $_PAY_CONF['currency'] . '</span></p>' . LB;
 							$i++;
 						}
 				    }
 				} else {
-				     $shippers_radio = '<input type="radio" name="shipping" value="0.00" checked /> ' . $LANG_PAYPAL_CART['free_shipping'] . '<span>+ 0 ' . $_PAY_CONF['currency'] . '</span>';
+				     $shippers_radio = '<input type="radio" class="uk-radio" name="shipping" value="0.00" checked /> ' . $LANG_PAYPAL_CART['free_shipping'] . '<span>+ 0 ' . $_PAY_CONF['currency'] . '</span>';
 				}
 
 			} else {
-			    $shippers_radio = '<input type="radio" name="shipping" value="0.00" checked /> ' . $LANG_PAYPAL_CART['free_shipping'] .
+			    $shippers_radio = '<input type="radio" class="uk-radio" name="shipping" value="0.00" checked /> ' . $LANG_PAYPAL_CART['free_shipping'] .
 				'<span>+ 0 ' . $_PAY_CONF['currency'] . '</span>';
 			}
 			
