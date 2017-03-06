@@ -1,0 +1,52 @@
+{# begin {templatelocation} #}
+
+<form class="uk-form" action="{PHP_SELF}" method="post">
+<div class="uk-overflow-container">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+        <tr>
+            <th>{title}</th>
+        </tr>
+        <tr>
+            <th>
+				<div class="uk-overflow-container">
+				<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+                    <tr>
+                        <th>{LANG_NAME}</th>
+                        <th><input type="text" name="name" value="{catname}" size="70"{xhtml}></th>
+                    </tr>
+                    <tr>
+                        <th>{LANG_ORDER}&nbsp;</th>
+                        <th><input type="text" name="catorder" value="{catorder}" size="5"{xhtml}></th>
+                    </tr>
+                    <tr>
+                        <th>{LANG_DESCRIPTION}</th>
+                        <th><input type="text" name="dscp" value="{catdscp}" size="70"{xhtml}></th>
+                    </tr>
+                </table>
+				</div>
+            </th>
+        </tr>
+        <tr>
+            <th>
+				<div class="uk-overflow-container">
+				<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+                    <tr>
+                        <td>
+                            <input type="submit" name="submit" value="{LANG_SAVE}"{xhtml}>&nbsp;
+                            <input type="button" value="{LANG_CANCEL}" onclick="javascript:history.go(-1)"{xhtml}>
+                            <input type="hidden" name="type" value="category"{xhtml}>
+                            <input type="hidden" name="id" value="{id}"{xhtml}>
+                            <input type="hidden" name="confirm" value="{confirm}"{xhtml}>
+                            <input type="hidden" name="mode" value="{mode}"{xhtml}>
+                            <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+                        </td>
+                    </tr>
+                </table>
+				</div>
+            </th>
+        </tr>
+    </table>
+</div>
+</form>
+
+{# end {templatelocation} #}

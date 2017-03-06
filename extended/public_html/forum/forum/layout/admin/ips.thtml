@@ -1,0 +1,16 @@
+{# begin {templatelocation} #}
+
+<tr width="100%" class="forumClass3">
+    <td>
+		<div class="uk-overflow-container">
+		<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+            <tr>
+                <td>{ip}</td>
+                <td><a href="{phpself}?mode=unban&ip={ip}">{unban}</a></td>
+            </tr>
+		</table>
+		</div>
+    </td>
+</tr>
+
+{# end {templatelocation} #}

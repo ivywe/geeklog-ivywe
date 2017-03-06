@@ -1,0 +1,7 @@
+{# begin {templatelocation} #}
+
+<!-- start email.thtml -->
+<a href="{emaillink}"><i class="uk-icon-envelope"></i></a>
+<!-- end email.thtml -->
+
+{# end {templatelocation} #}

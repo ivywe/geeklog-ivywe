@@ -1,0 +1,56 @@
+{# begin {templatelocation} #}
+
+<hr>
+<div class="uk-grid">
+	<div class="uk-width-1-1">
+		<i class="uk-icon-comment-o"></i>
+		&nbsp;{posted_date}{preview_topic_subject}&nbsp;{read_msg}&nbsp;{locked_icon}
+	</div>
+</div>
+
+<div class="uk-grid" style="margin-top:0">
+
+	<div class="uk-width-1-6">
+		<div class="uk-width-large-1-1 uk-text-center">
+			<div class="uk-overlay-toggle">
+				<div class="uk-overlay">
+					{avatar}
+					<div class="uk-overlay-area" style="background:none">
+						<div class="uk-overlay-area-content">
+							{magical_image}
+							{profile_link}
+							{email_link}
+							{website_link}
+							{pm_link}
+						</div>
+					</div>
+				</div>
+			</div>
+			<h4 class="uk-margin-bottom-remove">{userlink}</h4>
+			    {topic_post_link_begin}{topic_post_link_end}
+			<div>{member_badge}</div>
+			<div style="display:{show_sig};">
+				{sig}<br{xhtml}>
+				{remote_ip}
+			</div>
+			<div class="uk-text-muted uk-text-small">
+				{user_level}<br{xhtml}>
+				{user_levelname}<br{xhtml}>
+				{regdate}
+				{numposts}<br{xhtml}>
+				{location}
+			</div>
+		</div>
+	</div>
+	<div class="uk-width-5-6">
+		<div class="uk-text-right">{mod_functions}</div>
+		<div class="uk-panel uk-panel-box uk-width-medium-1-1 uk-text-break" style="margin: 1em 0; min-height: 120px">{topic_comment}
+		</div>
+		<div class="uk-text-right">
+			{edittopic_link}
+			{quotetopic_link}
+		</div>
+	</div>
+</div>
+
+{# end {templatelocation} #}

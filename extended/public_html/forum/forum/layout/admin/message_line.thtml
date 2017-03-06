@@ -1,0 +1,12 @@
+{# begin {templatelocation} #}
+
+    <tr>
+        <td><input type="checkbox" name="chkrecid[]" value="{id}"{xhtml}></td>
+        <td>{name}</td>
+        <td>{subject}</td>
+        <td class="uk-text-center">{views}</td>
+        <td class="uk-text-center">{replies}</td>
+        <td class="uk-text-center"><a href="{phpself}?op=delrecord&amp;id={id}&amp;{gltoken_name}={gltoken}" onclick='return confirm("{LANG_DELCONFIRM}");'>{LANG_Delete}</a>&nbsp;|&nbsp;<a href="{siteurl}/forum/viewtopic.php?forum={forum}&amp;showtopic={topicid}">{LANG_Moderate}</a></td>
+    </tr>
+
+{# end {templatelocation} #}

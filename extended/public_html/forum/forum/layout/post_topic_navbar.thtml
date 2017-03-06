@@ -1,0 +1,48 @@
+{# begin {templatelocation} #}
+
+<ul class="uk-breadcrumb">
+        <li class="uk-text-success uk-text-bold"><i class="uk-icon-folder-open-o"></i></li>
+        <li class="uk-text-success uk-text-bold"><a href="{site_url}/forum/index.php">{forum_home}</a></li>
+        <li class="uk-text-success uk-text-bold"><a href="{site_url}/forum/index.php">{cat_name}</a></li>
+        <li class="uk-text-success uk-text-bold uk-active"><span><a href="{site_url}/forum/index.php?forum={forum_id}">{forum_name}</a></span></li>
+</ul>
+
+<div class="uk-grid">
+  {!if subject}<div class="uk-width-7-10 uk-text-bold"><i class="uk-icon-arrow-circle-right"></i> <a href="viewtopic.php?showtopic={topic_id}">{subject}</a></div>{!endif}
+</div>
+
+<script type="text/Javascript">
+<!-- Begin
+// Helpline messages
+b_help = "{LANG_bhelp}";
+i_help = "{LANG_ihelp}";
+u_help = "{LANG_uhelp}";
+q_help = "{LANG_qhelp}";
+c_help = "{LANG_chelp}";
+l_help = "{LANG_lhelp}";
+o_help = "{LANG_ohelp}";
+p_help = "{LANG_phelp}";
+w_help = "{LANG_whelp}";
+a_help = "{LANG_ahelp}";
+s_help = "{LANG_shelp}";
+f_help = "{LANG_fhelp}";
+h_help = "{LANG_hhelp}";
+//  End -->
+</script>
+
+<script type="text/javascript" src="{layout_url}/forum/javascript/createtopic.js"></script>
+
+<form class="uk-form uk-margin-large" action="{phpself}" method="post" name="forumpost">
+<div>
+    <input type="hidden" name="forum" value="{forum_id}"{xhtml}>
+    <input type="hidden" name="id" value="{hidden_id}"{xhtml}>
+    <input type="hidden" name="modedit" value="{hidden_modedit}"{xhtml}>
+    <input type="hidden" name="method" value="{hidden_method}"{xhtml}>
+    <input type="hidden" name="editpost" value="{hidden_editpost}"{xhtml}>
+    <input type="hidden" name="editpid" value="{hidden_editpid}"{xhtml}>
+    <input type="hidden" name="editid" value="{hidden_editid}"{xhtml}>
+    <input type="hidden" name="page" value="{page}"{xhtml}>
+    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+</div>
+
+{# end {templatelocation} #}

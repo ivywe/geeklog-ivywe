@@ -1,0 +1,82 @@
+{# begin {templatelocation} #}
+
+<!-- The following is a divider that works across all platforms and browsers -->
+<div class="uk-overflow-container">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+    <tr>
+        <td>{statsmsg}</td>
+    </tr>
+</table>
+</div>
+<div class="uk-overflow-container">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+        <tr>
+                <td>{totalcatsmsg}</td>
+                <td>{totalcats}</td>
+        </tr>
+        <tr>
+                <td>{totalforumsmsg}</td>
+                <td>{totalforums}</td>
+        </tr>
+        <tr>
+                <td>{totaltopicsmsg}</td>
+                <td>{totaltopics}</td>
+        </tr>
+        <tr>
+                <td>{totalpostsmsg}</td>
+                <td>{totalposts}</td>
+        </tr>
+        <tr>
+                <td>{totalviewsmsg}</td>
+                <td>{totalviews}</td>
+        </tr>
+</table>
+</div>
+<div class="uk-overflow-container">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+    <tr>
+        <td>{avgpmsg}</td>
+    </tr>
+</table>
+</div>
+<div class="uk-overflow-container">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+        <tr>
+                <td>{category}</td>
+                <td>{avgcposts}</td>
+        </tr>
+        <tr>
+                <td>{forum}</td>
+                <td>{avgfposts}</td>
+        </tr>
+        <tr>
+                <td>{topic}</td>
+                <td>{avgtposts}</td>
+        </tr>
+</table>
+</div>
+<div class="uk-overflow-container">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+    <tr>
+        <td class="">{avgvmsg}</td>
+    </tr>
+</table>
+</div>
+<div class="uk-overflow-container">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+        <tr>
+                <td>{category}</td>
+                <td>{avgcviews}</td>
+        </tr>
+        <tr>
+                <td>{forum}</td>
+                <td>{avgfviews}</td>
+        </tr>
+        <tr>
+                <td>{topic}</td>
+                <td>{avgtviews}</td>
+        </tr>
+</table>
+</div>
+
+{# end {templatelocation} #}

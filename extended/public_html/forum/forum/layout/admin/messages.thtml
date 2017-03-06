@@ -1,0 +1,44 @@
+{# begin {templatelocation} #}
+
+{startblock}
+{navbar}
+<form class="uk-form"  name="frm_messages" action="{phpself}" method="post">
+<div>
+    <input type="hidden" name="op" value=""{xhtml}>
+    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+</div>
+<div class="uk-overflow-container">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+    <tr>
+        <td>
+            <select name="forum" style="width:140px" onchange="document.frm_messages.submit();"><option selected="selected" value="-1">{LANG_select1}{select_forum}</option></select>
+            <span style="padding-left:15px;"><select name="member" style="width:140px" onchange="document.frm_messages.submit();"><option selected="selected" value="-1">{LANG_select2}</option>{select_member}</select></span>
+            <span style="padding-left:15px;"><input type="checkbox" name="parentonly" id="parentonly" value="1" onclick=' document.frm_messages.submit();' {chk_parentonly}{xhtml}><label for="parentonly">{LANG_Parent}</label></span>
+        </td>
+    </tr>
+</table>
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+    <tr>
+        <th class="uk-text-nowrap"><img src="{imgset}/trash.png" title="{LANG_deleteall}" alt="" style="border:none;" onclick=' if(confirm("{LANG_DELALLCONFIRM}")) {document.frm_messages.op.value="delchecked"; document.frm_messages.submit();}'{xhtml}></th>
+        <th class="uk-text-nowrap">{LANG_Author}</th>
+        <th class="uk-text-nowrap">{LANG_Subject}</th>
+        <th class="uk-text-nowrap">{LANG_Views}</th>
+        <th class="uk-text-nowrap">{LANG_Replies}</th>
+        <th class="uk-text-nowrap">{LANG_Actions}</th>
+    </tr>
+    <tr style="display:{showalert};">
+        <td colspan="6" class="pluginAlert">{alertmessage}</td>
+    </tr>
+{message_records}
+</table>
+</div>
+
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+    <tr>
+        <td class="uk-text-center">{pagenav}</td>
+    </tr>
+</table>
+</form>
+{endblock}
+
+{# end {templatelocation} #}

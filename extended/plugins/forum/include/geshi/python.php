@@ -4,7 +4,7 @@
  * ----------
  * Author: Roberto Rossi (rsoftware@altervista.org)
  * Copyright: (c) 2004 Roberto Rossi (http://rsoftware.altervista.org), Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.8.12
+ * Release Version: 1.0.8.10
  * Date Started: 2004/08/30
  *
  * Python language file for GeSHi.
@@ -177,9 +177,9 @@ $language_data = array (
             )
         ),
     'SYMBOLS' => array(
-        '<', '>', '=', '!', '<=', '>=',             //·comparison·operators
-        '~', '@',                                   //·unary·operators
-        ';', ','                                    //·statement·separator
+        '<', '>', '=', '!', '<=', '>=',             //揃comparison揃operators
+        '~', '@',                                   //揃unary揃operators
+        ';', ','                                    //揃statement揃separator
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -240,3 +240,5 @@ $language_data = array (
     'HIGHLIGHT_STRICT_BLOCK' => array(
         )
 );
+
+?>

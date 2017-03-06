@@ -36,7 +36,7 @@
 require_once '../lib-common.php'; // Path to your lib-common.php
 
 if (!in_array('forum', $_PLUGINS)) {
-    COM_handle404();
+    echo COM_refresh($_CONF['site_url'] . '/index.php');
     exit;
 }
 
@@ -59,11 +59,6 @@ $display = '';
 
 // Debug Code to show variables
 $display .= gf_showVariables();
-
-// Display warning if no email found (usually happens with user oauth accounts)
-if (($_USER['email'] == '')  OR !COM_isEmail($_USER['email'])) {
-    $display .= alertMessage($LANG_GF02['msg145'], $LANG_GF01['WARNING'], false);
-}
 
 if ($msg==1) {
     $display .= COM_showMessageText($LANG_GF02['msg146']);
@@ -90,12 +85,7 @@ if (isset($_REQUEST['submit'])) {
 	            }  else {
 	                DB_query("INSERT INTO {$_TABLES['forum_watch']} (forum_id,topic_id,uid,date_added) VALUES ('$forum','$pid','{$_USER['uid']}',now() )");
 	            }
-                if (($_USER['email'] != '')  AND COM_isEmail($_USER['email'])) {
-                    $display = COM_refresh($_CONF['site_url'] . "/forum/viewtopic.php?msg=2&amp;showtopic=$id");
-                } else {
-                    // Invalid or no email address remind user to add one
-                    $display = COM_refresh($_CONF['site_url'] . "/forum/viewtopic.php?msg=12&amp;showtopic=$id");
-                }
+	            $display = COM_refresh($_CONF['site_url'] . "/forum/viewtopic.php?msg=2&amp;showtopic=$id");
 	        } else {
 	            $display = COM_refresh($_CONF['site_url'] . "/forum/viewtopic.php?msg=3&amp;showtopic=$id");
 	        }
@@ -103,12 +93,7 @@ if (isset($_REQUEST['submit'])) {
 	        DB_query("INSERT INTO {$_TABLES['forum_watch']} (forum_id,topic_id,uid,date_added) VALUES ('$forum','$pid','{$_USER['uid']}',now() )");
 	        $nid = -$id;
 	        DB_query("DELETE FROM {$_TABLES['forum_watch']} WHERE uid='{$_USER['uid']}' AND forum_id='$forum' AND topic_id = '$nid'");          
-            if (($_USER['email'] != '')  AND COM_isEmail($_USER['email'])) {
-                $display = COM_refresh($_CONF['site_url'] . "/forum/viewtopic.php?msg=2&amp;showtopic=$id");
-            } else {
-                // Invalid or no email address remind user to add one
-                $display = COM_refresh($_CONF['site_url'] . "/forum/viewtopic.php?msg=12&amp;showtopic=$id");
-            }
+	        $display = COM_refresh($_CONF['site_url'] . "/forum/viewtopic.php?msg=2&amp;showtopic=$id");
 	    }
 	    COM_output($display);
 	    exit();
@@ -146,8 +131,8 @@ if ($page == 0) {
 }
 
 /* Check to see if user has checked multiple records to delete */
-if ($op == 'delchecked' && isset($_POST['chk_record_delete'])) {
-    foreach ($_POST['chk_record_delete'] as $id) {
+if ($op == 'delchecked' && isset($_POST['chkrecid'])) {
+    foreach ($_POST['chkrecid'] as $id) {
         $id = COM_applyFilter($id);
         if (DB_getItem($_TABLES['forum_watch'],'uid',"id='$id'") == $_USER['uid']) {
             DB_query("DELETE FROM {$_TABLES['forum_watch']} WHERE id='$id'");
@@ -155,16 +140,12 @@ if ($op == 'delchecked' && isset($_POST['chk_record_delete'])) {
     }
 }
 
-$report = COM_newTemplate(CTL_plugin_templatePath('forum'));
+$report = COM_newTemplate($CONF_FORUM['path_layout'] . 'forum/layout');
 $report->set_file (array (
                   'report'         => 'reports/notifications.thtml',
-                  'forum_links'    => 'forum_links.thtml' ));
-
-$report->set_block('report', 'notification_record');
-$report->set_block('report', 'no_records_message');
-$report->set_block('report', 'links');
-$report->set_block('forum_links', 'trash_link');
-$report->set_block('forum_links', 'return_link');
+                  'records'        => 'reports/notifications_line.thtml',
+                  'outline_header' => 'forum_outline_header.thtml',
+                  'outline_footer' => 'forum_outline_footer.thtml' ));
 
 $report->set_var ('imgset', $CONF_FORUM['imgset']);
 $report->set_var ('layout_url', $CONF_FORUM['layout_url']);
@@ -189,11 +170,10 @@ $report->set_var ('LANG_Heading5', $LANG_GF01['STARTEDBY']);
 $report->set_var ('LANG_Heading6', $LANG_GF01['VIEWS']);
 $report->set_var ('LANG_Heading7', $LANG_GF01['REPLIES']);
 $report->set_var ('LANG_Heading8', $LANG_GF01['REMOVE']);
-
 $report->set_var ('LANG_deleteall', $LANG_GF01['DELETEALL']);
 $report->set_var ('LANG_DELALLCONFIRM', $LANG_GF01['DELALLCONFIRM']);
-$report->parse ('trash_link', 'trash_link');
-
+$report->parse ('header_outline','outline_header');
+$report->parse ('footer_outline','outline_footer');
 $report->set_var ('notifytype', $notifytype);   
 if ($CONF_FORUM['usermenu'] == 'navbar') {
     $report->set_var('navmenu', forumNavbarMenu($LANG_GF01['SUBSCRIPTIONS']));
@@ -266,24 +246,19 @@ while (list($notify_recid,$forum_id,$topic_id,$date_added) = DB_fetchArray($noti
     $report->set_var ('topic_id', $topic_id);
     $report->set_var ('notify_id', $notify_recid);
     $report->set_var ('LANG_REMOVE', $LANG_GF01['REMOVE']);
-    $report->parse ('notification_record', 'notification_record',true);
+    $report->parse ('notification_records', 'records',true);
     $i++;
 }
 
 if ($nrows == 0) {
-    $report->set_var ('message',$LANG_GF02['msg44']);
-    $report->parse ('no_records_message', 'no_records_message');
+    $report->set_var ('bottomlink',$LANG_GF02['msg44']);
 } else {
     $report->set_var ('pagenavigation', COM_printPageNavigation($base_url,$page, $numpages));
     if ($forum > 0) {
-    	$report->set_var ('LANG_return', $LANG_GF02['msg144']);
-        $report->set_var ('returnlink', "{$_CONF['site_url']}/forum/index.php?forum=$forum");
+        $report->set_var ('bottomlink', "<a href=\"{$_CONF['site_url']}/forum/index.php?forum=$forum\">{$LANG_GF02['msg144']}</a>" );
     } else {
-    	$report->set_var ('LANG_return', $LANG_GF02['msg175']);
-        $report->set_var ('returnlink', "{$_CONF['site_url']}/forum/index.php");
+        $report->set_var ('bottomlink', "<a href=\"{$_CONF['site_url']}/forum/index.php\">{$LANG_GF02['msg175']}</a>" );
     }
-    $report->parse ('return_link', 'return_link');
-    $report->parse ('links', 'links');
 }
 $report->parse ('output', 'report');
 $display .= $report->finish ($report->get_var('output'));

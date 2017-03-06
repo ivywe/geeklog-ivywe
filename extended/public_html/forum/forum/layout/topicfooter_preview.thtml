@@ -1,0 +1,13 @@
+{# begin {templatelocation} #}
+
+</table>
+<p></p>
+<div class="uk-overflow-container">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+        <tr>
+           <td class="uk-text-center uk-text-nowrap;">{pagenavigation}</td>
+        </tr>
+</table>
+</div>
+
+{# end {templatelocation} #}

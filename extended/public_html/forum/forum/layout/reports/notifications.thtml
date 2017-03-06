@@ -1,0 +1,49 @@
+{# begin {templatelocation} #}
+
+<!-- notifications.thtml -->
+{navmenu}
+
+<div class="uk-overflow-container">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+    <tr>
+        <td class="uk-text-right">
+            <form class="uk-form" action="{phpself}" method="post">
+                <div><select name="filter" style="width:180px;" onchange="this.form.submit();">{filter_options}</select></div>
+            </form>
+        </td>
+        <td class="uk-text-nowrap">{select_forum}</td>
+    </tr>
+</table>
+</div>
+<form class="uk-form" action="{phpself}" method="post" name="notifications">
+<div><input type="hidden" name="op" value=""{xhtml}></div>
+</table>
+</div>
+<div class="uk-overflow-container">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+    <tr>
+        <td class="uk-text-center"><img src="{imgset}/trash.png" title="{LANG_deleteall}" style="border:none;" onclick=' if(confirm("{LANG_DELALLCONFIRM}")) {document.notifications.op.value="delchecked"; document.notifications.submit();}' alt=""{xhtml}></td>
+        <th class="uk-text-nowrap">{LANG_Heading2}</th>
+        <th class="uk-text-nowrap">{LANG_Heading3}</th>
+        <th class="uk-text-nowrap">{LANG_Heading4}</th>
+        <th class="uk-text-nowrap">{LANG_Heading5}</th>
+        <th class="uk-text-nowrap">{LANG_Heading6}</th>
+        <th class="uk-text-nowrap">{LANG_Heading7}</th>
+        <th class="uk-text-nowrap">{LANG_Heading8}</th>
+    </tr>
+        {notification_records}
+</table>
+</div>
+
+</form>
+
+<div class="uk-overflow-container">
+<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+    <tr>
+        <td class="uk-text-center">{pagenavigation}</td>
+        <td class="uk-text-center">{bottomlink}</td>
+    </tr>
+</table>
+</div>
+
+{# end {templatelocation} #}

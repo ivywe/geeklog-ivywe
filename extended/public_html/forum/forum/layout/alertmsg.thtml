@@ -1,0 +1,14 @@
+{# begin {templatelocation} #}
+
+	<div class="uk-overflow-container">
+		<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+            <tr>
+                <td><img alt="!" src="{imgset}/alert_warning.png" style="border:0; vertical-align:middle;"{xhtml}>&nbsp;{alert_title}</td>
+            </tr>
+            <tr>
+                <td>{alert_message}<br{xhtml}>{prompt}</td>
+            </tr>
+        </table>
+	</div>
+
+{# end {templatelocation} #}

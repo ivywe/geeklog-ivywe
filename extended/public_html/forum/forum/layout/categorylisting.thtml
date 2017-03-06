@@ -1,0 +1,40 @@
+{# begin {templatelocation} #}
+
+<div class="uk-grid uk-width-large-1-1 uk-visible-large">
+  <div class="uk-width-1-2">
+    <ul class="uk-breadcrumb" style="margin:0">
+      <li><i class="uk-icon-folder-o"></i></li>
+      <li>{cat_name}</li>
+    </ul>
+  </div>
+  <div class="uk-width-1-2">
+    <div class="uk-text-right">
+      {newposts_link}
+      {markread_link}
+    </div>
+  </div>
+</div>
+
+	<div class="uk-overflow-container">
+		<table class="uk-table uk-table-striped uk-table-condensed" style="background:#ffffff">
+                                <thead>
+                                    <tr>
+                                        <th>
+<div class="uk-grid">
+  <div class="uk-width-1-2">
+{cat_desc} {LANGGF01_TOPICS}
+  </div>
+  <div class="uk-width-1-2">
+{LANGGF01_LASTPOST}
+  </div>
+</div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+{forum_records}
+                                </tbody>
+                            </table>
+	</div>
+
+{# end {templatelocation} #}
