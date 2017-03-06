@@ -9,6 +9,11 @@
     </div>
     <!-- } #wrapper -->
 
+    <div class="uk-text-center uk-margin-large-bottom">
+      <a href="#container" class="uk-icon-button" uk-icon="icon: chevron-up" uk-scroll></a>
+    </div>
+
+
     <hr class="separator"{xhtml}>
 
     <footer id="footer" role="contentinfo" class="clearfix" itemscope="itemscope" itemtype="http://schema.org/WPFooter">
@@ -20,14 +25,12 @@
       </div>
     </footer>
 
-    <div id="totop-scroller" style="display: none;" data-uk-smooth-scroll>
-      <span uk-icon="icon: chevron-up"></span>
-    </div>
 
   </div>
   <!-- } #container -->
 
   {plg_footercode}
+
 
 <script>window.twttr = (function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0],
@@ -45,6 +48,7 @@
  
   return t;
 }(document, "script", "twitter-wjs"));</script>
+
 
 
   <!-- Depending on the situation, HTML body element's class attribute to specify a value by JavaScript
