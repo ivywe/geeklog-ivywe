@@ -7,14 +7,14 @@
     <div class="loginform">
       <div class="form_part">
         <label for="loginform-loginname" style="display:none">{lang_username}</label>
-        <input type="text" class="uk-input" value="" name="loginname" id="loginform-loginname" class="size2" placeholder="{lang_username}"{xhtml}>
+        <input type="text" class="uk-input uk-form-width-small" value="" name="loginname" id="loginform-loginname" placeholder="{lang_username}"{xhtml}>
       </div>
 
       {services}
 
       <div class="form_part">
         <label for="loginform-passwd" style="display:none">{lang_password}</label>
-        <input type="password" class="uk-text"  name="passwd" id="loginform-passwd" class="uk-input size2" placeholder="{lang_password}"{xhtml}>
+        <input type="password" class="uk-input uk-form-width-small" name="passwd" id="loginform-passwd" placeholder="{lang_password}"{xhtml}>
       </div>
     </div>
 

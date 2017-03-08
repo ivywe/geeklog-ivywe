@@ -9,7 +9,7 @@
 <!-- BEGIN text-element -->
 <tr id="config_{id_name}" class="config_name"><td class="alignright">{display_name} {doc_link} {unset_link}</td>
 <td>
-<input type="text" class="uk-input" class="opt{error_class}" name="{name}" style="width:300px" value="{value}"{xhtml}>
+<input type="text" class="uk-input opt{error_class}" name="{name}" style="width:300px" value="{value}"{xhtml}>
 {delete}{error_block}
 </td></tr>
 <!-- END text-element -->

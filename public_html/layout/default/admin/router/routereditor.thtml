@@ -23,13 +23,13 @@
       </dd>
 
       <dt><label for="admin-routereditor-rule">{lang_router_rule}</label></dt>
-      <dd><input type="text" class="uk-input" size="40" value="{rule}" name="rule" id="admin-routereditor-rule" class="size7"{xhtml}></dd>
+      <dd><input type="text" class="uk-input" size="40" value="{rule}" name="rule" id="admin-routereditor-rule" class="uk-input uk-form-width-large"{xhtml}></dd>
 
       <dt><label for="admin-routereditor-route">{lang_router_route}</label></dt>
-      <dd><input type="text" class="uk-input" size="40" value="{route}" name="route" id="admin-routereditor-route" class="size7"{xhtml}></dd>
+      <dd><input type="text" class="uk-input" size="40" value="{route}" name="route" id="admin-routereditor-route" class="uk-input uk-form-width-large"{xhtml}></dd>
 
       <dt><label for="admin-routereditor-priority">{lang_router_priority}</label></dt>
-      <dd><input type="text" class="uk-input" size="20" value="{priority}" name="priority" id="admin-routereditor-priority" class="size1"{xhtml}></dd>
+      <dd><input type="text" class="uk-input" size="20" value="{priority}" name="priority" id="admin-routereditor-priority" class="uk-input uk-form-width-xsmall"{xhtml}></dd>
     </dl>
 
     <div class="submit">

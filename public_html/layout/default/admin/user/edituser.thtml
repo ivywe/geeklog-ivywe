@@ -14,20 +14,20 @@
       <dd class="controls_text">{user_lastlogin}</dd>
 
       <dt><label for="admin-edituser-username">{lang_username}</label></dt>
-      <dd><div><input type="text" class="uk-input" maxlength="16" value="{username}" name="username" id="admin-edituser-username" class="size2"{xhtml}> {remoteservice}</div>
+      <dd><div><input type="text" class="uk-input uk-form-width-small" maxlength="16" value="{username}" name="username" id="admin-edituser-username"{xhtml}> {remoteservice}</div>
           {user_photo}<label>{lang_delete_photo}</label>{delete_photo_option}
       </dd>
 
       <dt><label for="admin-edituser-fullname">{lang_fullname}</label></dt>
-      <dd><input type="text" class="uk-input" maxlength="80" value="{user_fullname}" name="fullname" id="admin-edituser-fullname" class="size5"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="80" value="{user_fullname}" name="fullname" id="admin-edituser-fullname"{xhtml}></dd>
 
       {password_option}
 
       <dt><label for="admin-edituser-email">{lang_emailaddress}</label></dt>
-      <dd><input type="text" class="uk-input" maxlength="255" value="{user_email}" name="email" id="admin-edituser-email" class="size5"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="255" value="{user_email}" name="email" id="admin-edituser-email"{xhtml}></dd>
 
       <dt><label for="admin-edituser-homepage">{lang_homepage}</label></dt>
-      <dd><input type="text" class="uk-input" maxlength="255" value="{user_homepage}" name="homepage" id="admin-edituser-homepage" class="size5"{xhtml}></dd>
+      <dd><input type="text" class="uk-inputuk-form-width-medium" maxlength="255" value="{user_homepage}" name="homepage" id="admin-edituser-homepage"{xhtml}></dd>
 
       <dt>{lang_user_status}</dt>
       <dd>{user_status}</dd>

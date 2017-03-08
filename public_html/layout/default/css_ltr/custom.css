@@ -1,5 +1,6 @@
 html {font-size:14px;}
 
+.uk-navbar-dropdown-nav>li.uk-active.gl-active>a{color:#fff}
 
 .admin-list-table th,
 .admin-list-table td {
