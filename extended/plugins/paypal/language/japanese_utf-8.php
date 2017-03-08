@@ -165,13 +165,13 @@ $LANG_PAYPAL_1 = array(
     'active_product'          => '商品を有効にする',
     'active'                  => 'ただいま販売を中止しています',
     'active_field'            => '有効・無効',
-    'not_active_message'      => '申し訳ありません。この商品は現在販売していません。',
+    'not_active_message'      => 'この商品は現在販売していません。',
     'product_id'              => '商品ID',
     'user_id'                 => 'ユーザ',
     'search_button'           => '検索',
     'downloads_history_empty' => 'ダウンロード履歴がありません。',
     //v 1.1.5
-    'wrong_type'              => '申し訳ありません，商品タイプが不明です...',
+    'wrong_type'              => '商品タイプが不明です...',
     'subscription_label'      => 'メンバシップ',
     'new_membership'          => 'メンバシップ新規登録',
     'item_id_label'           => '商品ID',
@@ -240,7 +240,7 @@ $LANG_PAYPAL_1 = array(
     'install_jquery'          => 'ユーザに商品イメージをlightboxで表示させるためには、jQueryプラグインをGeeklogにインストールしてください。',
     'see_members_list'        => '公開会員リストを参照してください。',
     'details_save_success'    => '購入者（請求先）を保存しました。',
-    'details_save_fail'       => '申し訳ありませんが、購入者（請求先）情報を保存できませんでした。再度お試しください。',
+    'details_save_fail'       => '購入者（請求先）情報を保存できませんでした。再度お試しください。',
     'anonymous'               => 'ゲスト',
     'Anonymous'               => 'ゲスト',
     'see_subscription'        => '会員制サービスをご覧ください。',
@@ -425,7 +425,7 @@ $LANG_PAYPAL_PRO = array (
 
 $LANG_PAYPAL_LOGIN = array(
     1                         => 'ログインが必要です',
-    2                         => '申し訳ありませんが、このページはログインしてアクセスしてください。',
+    2                         => 'このページはログインしてアクセスしてください。',
 );
 
 $LANG_PAYPAL_MESSAGE = array(
