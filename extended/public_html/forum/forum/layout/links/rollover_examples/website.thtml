@@ -1,7 +1,0 @@
-{# begin {templatelocation} #}
-
-<!-- start website.thtml -->
-<a>{LANG_website}</a>
-<!-- end website.thtml -->
-
-{# end {templatelocation} #}

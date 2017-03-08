@@ -1,5 +1,0 @@
-{# begin {templatelocation} #}
-
-<a class="profilebutton" href="{link_url}">{link_text}</a>
-
-{# end {templatelocation} #}

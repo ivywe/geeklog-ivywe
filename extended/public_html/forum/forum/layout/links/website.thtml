@@ -1,7 +1,0 @@
-{# begin {templatelocation} #}
-
-<!-- start website.thtml -->
-	<a href="{websitelink}"><i class="uk-icon-home"></i></a>
-<!-- end website.thtml -->
-
-{# end {templatelocation} #}

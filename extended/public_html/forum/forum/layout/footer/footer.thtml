@@ -1,8 +1,0 @@
-{# begin {templatelocation} #}
-
-<!-- start footer.thtml -->
-<!-- {forum_time} -->
-
-<!-- end footer.thtml -->
-
-{# end {templatelocation} #}

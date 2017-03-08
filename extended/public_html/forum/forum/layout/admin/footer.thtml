@@ -1,6 +1,0 @@
-{# begin {templatelocation} #}
-
-<br{xhtml}>
-{forumname}
-
-{# end {templatelocation} #}
