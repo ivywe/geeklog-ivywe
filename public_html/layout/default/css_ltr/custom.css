@@ -1,3 +1,14 @@
+html {font-size:14px;}
+
+
+.admin-list-table th,
+.admin-list-table td {
+  vertical-align: middle;
+  height: 24px;
+  padding: 4px 8px;
+	font-size: 12px;
+}
+
 nav.uk-navbar.gl-navbar-small li a {
 	height: 30px;
 	color: white;
