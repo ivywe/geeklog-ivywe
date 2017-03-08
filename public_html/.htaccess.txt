@@ -12,7 +12,7 @@
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 ## No directory listings
-IndexIgnore *
+# IndexIgnore *
 
 ## URL Routing
 <IfModule mod_rewrite.c>
@@ -23,3 +23,12 @@ IndexIgnore *
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)$ /index.php/$1 [L]
 </IfModule>
+
+#ファイルがみつからない場合のページを指定する。
+ErrorDocument 404 /404.php
+
+# SSLへリダイレクト
+# RewriteEngine on
+# RewriteCond %{HTTP_HOST} ^●●●●●\.jp$
+# RewriteRule ^(.*)$ https://●●●●●.jp/$1 [R=301,L]
+
