@@ -2469,7 +2469,7 @@ function plugin_savesubmission_maps($A)
             $A['validity_start'] = $A['from'];
             $A['validity_end'] = $A['to'];
             $display .= getMarkerForm($A);
-            break;
+//            break;
         }
         
         // prepare strings for insertion
