@@ -1,15 +1,17 @@
 {# begin {templatelocation} #}
 
-	<td class="uk-width-1-5 uk-text-center">
+<tr>
+	<td class="uk-width-1-5@m uk-text-center">
 		{small_pic}
 	</td>
-	<td class="uk-width-4-5 uk-table-link">
-		<h3 class="uk-text-capitalize uk-text-bold uk-text-lowercase">{link_name}</h3>
+	<td class="uk-width-expand@m">
+		<h3 class="uk-text-capitalize uk-text-bold uk-text-lowercase uk-text-truncate">{link_name}</h3>
 		<div class="uk-float-right">{details}</div>
 		<div class="uk-text-truncate">{hidden}{short_description}</div>
 		{item_id}{rating}
 		<div><span class="uk-text-large uk-text-danger uk-text-bold">{price}</span><span class="uk-text-danger">{currency}</span>{!if price_ref} 定価:<span class="uk-text-bold">{price_ref}</span> {discount}{currency}{!endif}(消費税込み) {!if free_shipping}<span class="uk-label uk-label-warning">{free_shipping}</span>{!endif}</div>
 		 <div class="uk-text-right uk-text-nowrap">{add2cart}{customisable}{login}{edit}</div>
 	</td>
+</tr>
 
 {# end {templatelocation} #}
