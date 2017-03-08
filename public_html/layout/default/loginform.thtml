@@ -14,7 +14,7 @@
 
       <div class="form_part">
         <label for="loginform-passwd" style="display:none">{lang_password}</label>
-        <input type="password" name="passwd" id="loginform-passwd" class="uk-input size2" placeholder="{lang_password}"{xhtml}>
+        <input type="password" class="uk-text"  name="passwd" id="loginform-passwd" class="uk-input size2" placeholder="{lang_password}"{xhtml}>
       </div>
     </div>
 
