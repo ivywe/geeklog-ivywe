@@ -39,13 +39,13 @@
 
 {pagenavigation}
 
-<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
+<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-grid-small">
 	<thead>
 		<tr>
-			<th class="uk-width-large-6-10 uk-width-medium-7-10 uk-width-7-10 uk-text-center">{LANG_TOPIC}<br{xhtml}><a href="index.php?forum={forum_id}&amp;order=0&amp;sort=1">{img_asc1}</a>&nbsp;<a href="index.php?forum={forum_id}&amp;order=1&amp;sort=1">{img_desc1}</a></th>
-			<th class="uk-width-large-1-10 uk-text-center uk-visible-large">{LANG_VIEWS}<br{xhtml}><a href="index.php?forum={forum_id}&amp;order=0&amp;sort=2">{img_asc2}</a>&nbsp;<a href="index.php?forum={forum_id}&amp;order=1&amp;sort=2">{img_desc2}</a></th>
-			<th class="uk-width-large-1-10 uk-text-center uk-visible-large">{LANG_REPLIES}<br{xhtml}><a href="index.php?forum={forum_id}&amp;order=0&amp;sort=3">{img_asc3}</a>&nbsp;<a href="index.php?forum={forum_id}&amp;order=1&amp;sort=3">{img_desc3}</a></th>
-          	<th class="uk-width-large-2-10 uk-width-medium-3-10 uk-width-3-10 uk-text-center">{LANG_LASTPOST}<br{xhtml}><a href="index.php?forum={forum_id}&amp;order=0&amp;sort=5">{img_asc5}</a>&nbsp;<a href="index.php?forum={forum_id}&amp;order=1&amp;sort=5">{img_desc5}</a></th>
+			<th>{LANG_TOPIC}<br{xhtml}><a href="index.php?forum={forum_id}&amp;order=0&amp;sort=1">{img_asc1}</a>&nbsp;<a href="index.php?forum={forum_id}&amp;order=1&amp;sort=1">{img_desc1}</a></th>
+			<th>{LANG_VIEWS}<br{xhtml}><a href="index.php?forum={forum_id}&amp;order=0&amp;sort=2">{img_asc2}</a>&nbsp;<a href="index.php?forum={forum_id}&amp;order=1&amp;sort=2">{img_desc2}</a></th>
+			<th>{LANG_REPLIES}<br{xhtml}><a href="index.php?forum={forum_id}&amp;order=0&amp;sort=3">{img_asc3}</a>&nbsp;<a href="index.php?forum={forum_id}&amp;order=1&amp;sort=3">{img_desc3}</a></th>
+      <th>{LANG_LASTPOST}<br{xhtml}><a href="index.php?forum={forum_id}&amp;order=0&amp;sort=5">{img_asc5}</a>&nbsp;<a href="index.php?forum={forum_id}&amp;order=1&amp;sort=5">{img_desc5}</a></th>
 		</tr>
 	</thead>
 	<tbody>                                

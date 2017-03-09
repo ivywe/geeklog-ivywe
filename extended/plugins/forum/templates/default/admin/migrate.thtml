@@ -39,7 +39,7 @@
 		</div>
 		<div class="uk-form-row">		
 			<label class="uk-form-label" for="delPostMigrate">
-				<input type="checkbox" name="delPostMigrate" id="delPostMigrate" value="1"{xhtml}> {LANG_deleteafter}
+				<input type="checkbox" class="checkbox" name="delPostMigrate" id="delPostMigrate" value="1"{xhtml}> {LANG_deleteafter}
 			</label>			
 		</div>    
 		<div class="uk-text-right">
@@ -59,7 +59,7 @@
 		<thead>
 			<tr>
 				<th class="uk-width-1-10 uk-text-center">
-					<input type="checkbox" name="chk_record_all" id="chk_record_all" value="y" onclick="if(!allChecked) checkAll(document.report_table.elements['chk_record_delete[]']); else uncheckAll(document.report_table.elements['chk_record_delete[]']);"{xhtml}>		
+					<input type="checkbox" class="checkbox" name="chk_record_all" id="chk_record_all" value="y" onclick="if(!allChecked) checkAll(document.report_table.elements['chk_record_delete[]']); else uncheckAll(document.report_table.elements['chk_record_delete[]']);"{xhtml}>		
 				</th>
 				<th class="uk-width-2-10">				
 					{LANG_topic}
@@ -86,7 +86,7 @@
 			
 <!-- BEGIN report_record -->
 <tr>
-	<td class="uk-text-center"><input type="checkbox" name="chk_record_delete[]" value="{sid}"{xhtml}></td>
+	<td class="uk-text-center"><input type="checkbox" class="checkbox" name="chk_record_delete[]" value="{sid}"{xhtml}></td>
 	<td>{topic}</td>
 	<td><a href="{story_link}">{story_title}</a></td>
 	<td>{date}</td>

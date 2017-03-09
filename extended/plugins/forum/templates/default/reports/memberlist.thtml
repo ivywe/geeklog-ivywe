@@ -9,7 +9,7 @@
 	<div class="uk-width-1-2 uk-text-right">
 		<form class="uk-form" method="post" action="{site_url}/forum/memberlist.php">
 			<div class="uk-form-controls">
-				<input type="checkbox" name="chkactivity" value="1" {chk_activity} onclick="submit();"{xhtml}>&nbsp;{LANG_ACTIVITY}
+				<input type="checkbox" class="checkbox" name="chkactivity" value="1" {chk_activity} onclick="submit();"{xhtml}>&nbsp;{LANG_ACTIVITY}
 			</div>
 		</form>
 	</div>

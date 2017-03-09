@@ -12,7 +12,7 @@
 </div>
 <div class="uk-form-row">
 	<div class="uk-form-controls">
-		<textarea name="comment" id="form-forum-text" rows="20" class="post" style="width:98%" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);">{post_message}</textarea>
+		<textarea class="uk-textarea" name="comment" id="form-forum-text" rows="20" class="post" style="width:98%" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);">{post_message}</textarea>
 	</div>	
 </div>
 {options}
@@ -144,7 +144,7 @@
 
 <!-- BEGIN submissionform_option -->
 	<label class="uk-form-label" for="form-forum-{option_name}">
-		<input type="checkbox" name="{option_name}" id="form-forum-{option_name}" {option_checked} value="1"{xhtml}>
+		<input type="checkbox" class="checkbox" name="{option_name}" id="form-forum-{option_name}" {option_checked} value="1"{xhtml}>
 		{option_extra}
 		{LANG_OPTION}
 	</label>
