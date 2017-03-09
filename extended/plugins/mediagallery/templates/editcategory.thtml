@@ -10,9 +10,9 @@
       <dd><textarea class="uk-textarea" name="cat_desc" cols="50" rows="5" class="wide">{cat_description}</textarea></dd>
     </dl>
     <div class="mg_submit">
-      <input type="submit" value="{lang_save}"   name="mode" class="submit"{xhtml}>
-      <input type="submit" value="{lang_delete}" name="mode" class="submit"{xhtml}>
-      <input type="submit" value="{lang_cancel}" name="mode" class="submit"{xhtml}>
+      <input type="submit" class="uk-button uk-button-primary" value="{lang_save}"   name="mode" class="uk-button uk-button-primary"{xhtml}>
+      <input type="submit" class="uk-button uk-button-primary" value="{lang_delete}" name="mode" class="uk-button uk-button-primary"{xhtml}>
+      <input type="submit" class="uk-button uk-button-primary" value="{lang_cancel}" name="mode" class="uk-button uk-button-primary"{xhtml}>
       <input type="hidden" value="{cat_id}" name="cat_id"{xhtml}>
       <input type="hidden" value="{action}" name="action"{xhtml}>
     </div>

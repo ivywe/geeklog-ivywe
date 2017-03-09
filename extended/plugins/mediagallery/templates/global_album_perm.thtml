@@ -50,8 +50,8 @@
   </tr>
 </table>
 <div style="text-align:center;margin-top:10px">
-  <input type="submit" value="{lang_save}" name="mode"{xhtml}>
-  <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
+  <input type="submit" class="uk-button uk-button-primary" value="{lang_save}" name="mode"{xhtml}>
+  <input type="submit" class="uk-button uk-button-primary" value="{lang_cancel}" name="mode"{xhtml}>
 </div>
 </form>
 

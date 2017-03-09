@@ -8,8 +8,8 @@
 <div class="mg_submit">
 <input type="hidden" name="aid" value="{aid}"{xhtml}>
 <input type="hidden" name="action" value="{action}"{xhtml}>
-<input type="submit" name="mode" value="{lang_next}"{xhtml}>
-<input type="submit" name="mode" value="{lang_cancel}"{xhtml}>
+<input type="submit" class="uk-button uk-button-primary" name="mode" value="{lang_next}"{xhtml}>
+<input type="submit" class="uk-button uk-button-primary" name="mode" value="{lang_cancel}"{xhtml}>
 </div>
 </form>
 

@@ -80,11 +80,11 @@ function doUnCheckAll_mediaitems() {
 </div>
 
 <div style="margin-top:5px">
-  {lang_albumsel}&nbsp;&nbsp;{albumselect}&nbsp;<input type="submit" name="mode" value="{lang_move}"{xhtml}>
+  {lang_albumsel}&nbsp;&nbsp;{albumselect}&nbsp;<input type="submit" class="uk-button uk-button-primary" name="mode" value="{lang_move}"{xhtml}>
 </div>
 
 <div style="margin-top:5px">
-  {lang_batch_options}&nbsp;&nbsp;{batchoptionselect}&nbsp;<input type="submit" name="mode" value="{lang_batch}"{xhtml}>
+  {lang_batch_options}&nbsp;&nbsp;{batchoptionselect}&nbsp;<input type="submit" class="uk-button uk-button-primary" name="mode" value="{lang_batch}"{xhtml}>
 </div>
 
 <ul class="uk-nav uk-nav-parent-icon uk-margin-top" data-uk-nav>

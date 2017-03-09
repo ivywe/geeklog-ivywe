@@ -13,101 +13,101 @@ function change(what) {
 </script>
 
 <form enctype="multipart/form-data" method="post" action="{s_form_action}" class="uk-form uk-form-horizontal">
-        <div class="uk-form-row">
-            <label class="uk-form-label">{lang_title}</label>
-            <div class="uk-form-controls"><input type="text" class="uk-input" name="album_name" value="{album_title}" class="uk-form-width-large"{xhtml}></div>
+        <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_title}</label></div>
+            <div class="uk-form-controls uk-width-expand@m"><input type="text" class="uk-input" name="album_name" value="{album_title}" class="uk-form-width-large"{xhtml}></div>
         </div>
-        <div class="uk-form-row">
-            <label class="uk-form-label">{lang_description}</label>
-            <div class="uk-form-controls"><textarea class="uk-textarea" name="album_desc" cols="50" rows="3" class="uk-width-1-1">{album_desc}</textarea></div>
+        <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_description}</label></div>
+            <div class="uk-form-controls uk-width-expand@m"><textarea class="uk-textarea" name="album_desc" cols="50" rows="3" class="uk-width-1-1">{album_desc}</textarea></div>
         </div>
-        <div class="uk-form-row">
-            <label class="uk-form-label">{lang_parent_album}</label>
-            <div class="uk-form-controls">{parent_select}</div>
+        <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_parent_album}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{parent_select}</div>
         </div>
 
     <fieldset class="uk-margin-large-top">
       <legend>{lang_album_attributes}</legend>
-        <div class="uk-form-row">
-            <label class="uk-form-label">{lang_theme_select}</label>
-            <div class="uk-form-controls">{album_theme_select}</div>
+        <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_theme_select}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{album_theme_select}</div>
         </div>
-        <div class="uk-form-row">
-            <label class="uk-form-label">{lang_comments}</label>
-            <div class="uk-form-controls">{comment_select}</div>
+        <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_comments}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{comment_select}</div>
         </div>
-        <div class="uk-form-row">
-            <label class="uk-form-label">{lang_enable_exif}</label>
-            <div class="uk-form-controls">{exif_select}</div>
+        <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_enable_exif}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{exif_select}</div>
         </div>
-        <div class="uk-form-row">
-            <label class="uk-form-label">{lang_enable_ratings}</label>
-            <div class="uk-form-controls">{ranking_select}</div>
+        <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_enable_ratings}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{ranking_select}</div>
         </div>
-        <div class="uk-form-row">
-            <label class="uk-form-label">{lang_enable_rss}</label>
-            <div class="uk-form-controls">{rss_select}</div>
+        <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_enable_rss}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{rss_select}</div>
         </div>
-        <div class="uk-form-row">
-            <label class="uk-form-label">{lang_rsschildren}</label>
-            <div class="uk-form-controls">{rsschildren_select}</div>
-        <div class="uk-form-row">
-            <label class="uk-form-label">{lang_podcast}</label>
-            <div class="uk-form-controls">{podcast_select}</div>
+        <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_rsschildren}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{rsschildren_select}</div>
+        <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_podcast}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{podcast_select}</div>
         </div>
-        <div class="uk-form-row">
-            <label class="uk-form-label">{lang_mp3ribbon}</label>
-            <div class="uk-form-controls">{mp3ribbon_select}</div>
+        <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_mp3ribbon}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{mp3ribbon_select}</div>
         </div>
-        <div class="uk-form-row">
-            <label class="uk-form-label">{lang_enable_sort}</label>
-            <div class="uk-form-controls">{sort_select}</div>
+        <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_enable_sort}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{sort_select}</div>
         </div>
-        <div class="uk-form-row">
-            <label class="uk-form-label">{lang_album_sort}</label>
-            <div class="uk-form-controls">{album_sort_select}</div>
+        <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_album_sort}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{album_sort_select}</div>
         </div>
 <!-- 
-        <div class="uk-form-row">
-            <label class="uk-form-label">{lang_enable_postcard}</label>
-            <div class="uk-form-controls">{postcard_select}</div>
+        <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_enable_postcard}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{postcard_select}</div>
         </div>
 -->
-        <div class="uk-form-row">
-            <label class="uk-form-label">{lang_display_album_desc}</label>
-            <div class="uk-form-controls">{display_album_desc_select}</div>
+        <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_display_album_desc}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{display_album_desc_select}</div>
         </div>
-        <div class="uk-form-row">
-            <label class="uk-form-label">{lang_enable_album_views}</label>
-            <div class="uk-form-controls">{album_views_select}</div>
+        <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_enable_album_views}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{album_views_select}</div>
         </div>
-        <div class="uk-form-row">
-            <label class="uk-form-label">{lang_enable_views}</label>
-            <div class="uk-form-controls">{views_select}</div>
+        <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_enable_views}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{views_select}</div>
         </div>
-        <div class="uk-form-row">
-            <label class="uk-form-label">{lang_enable_keywords}</label>
-            <div class="uk-form-controls">{keywords_select}</div>
+        <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_enable_keywords}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{keywords_select}</div>
         </div>
-        <div class="uk-form-row">
-            <label class="uk-form-label">{lang_image_skin}</label>
-            <div class="uk-form-controls">{skin_select}</div>
+        <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_image_skin}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{skin_select}</div>
         </div>
-        <div class="uk-form-row">
-            <label class="uk-form-label">{lang_display_skin}</label>
-            <div class="uk-form-controls">{dskin_select}</div>
+        <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_display_skin}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{dskin_select}</div>
         </div>
-        <div class="uk-form-row">
-            <label class="uk-form-label">{lang_album_skin}</label>
-            <div class="uk-form-controls">{askin_select}</div>
+        <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_album_skin}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{askin_select}</div>
         </div>
-        <div class="uk-form-row">
-            <label class="uk-form-label">{lang_albums_first}</label>
-            <div class="uk-form-controls">{afirst_select}</div>
+        <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_albums_first}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{afirst_select}</div>
         </div>
-        <div class="uk-form-row">
-            <label class="uk-form-label">{lang_tn_size}</label>
-            <div class="uk-form-controls"><select name="tn_size">
+        <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_tn_size}</label></div>
+            <div class="uk-form-controls uk-width-expand@m"><select name="tn_size">
 <option value="0">Include:100x100</option>
 <option value="1">Include:150x150</option>
 <option value="2">Include:200x200</option>
@@ -118,125 +118,125 @@ function change(what) {
 <option value="13" selected="selected">Crop:Custom</option>
 </select></div>
         </div>
-        <div class="uk-form-row">
-            <label class="uk-form-label">{lang_tnwidth}</label>
-            <div class="uk-form-controls">{tnwidth_input}</div>
+        <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_tnwidth}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{tnwidth_input}</div>
         </div>
-        <div class="uk-form-row">
-            <label class="uk-form-label">{lang_tnheight}</label>
-            <div class="uk-form-controls">{tnheight_input}</div>
+        <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_tnheight}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{tnheight_input}</div>
         </div>
-        <div class="uk-form-row">
-            <label class="uk-form-label">{lang_av_play_options}</label>
-            <div class="uk-form-controls">{playback_type}</div>
+        <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_av_play_options}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{playback_type}</div>
         </div>
-        <div class="uk-form-row">
-            <label class="uk-form-label">{lang_ss_enable}</label>
-            <div class="uk-form-controls">{ss_select}</div>
+        <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_ss_enable}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{ss_select}</div>
         </div>
-        <div class="uk-form-row">
-            <label class="uk-form-label">{lang_rows}</label>
-            <div class="uk-form-controls">{rows_input}</div>
+        <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_rows}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{rows_input}</div>
         </div>
-        <div class="uk-form-row">
-            <label class="uk-form-label">{lang_columns}</label>
-            <div class="uk-form-controls">{columns_input}</div>
+        <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_columns}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{columns_input}</div>
         </div>
     </fieldset>
 
     <fieldset class="uk-margin-large-top">
       <legend>{lang_album_cover}</legend>
 {!if thumbnail}
-        <div class="uk-form-row">
-            <label class="uk-form-label">{lang_thumbnail}</label>
-            <div class="uk-form-controls">{thumbnail}</div>
+        <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_thumbnail}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{thumbnail}</div>
         </div>
 {!endif}
-        <div class="uk-form-row">
-            <label class="uk-form-label">{lang_attached_thumbnail}</label>
-            <div class="uk-form-controls">{attach_select}</div>
+        <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_attached_thumbnail}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{attach_select}</div>
         </div>
-        <div class="uk-form-row">
-            <label class="uk-form-label">{lang_thumbnail}</label>
-            <div class="uk-form-controls"><input type="file" dir="ltr" name="thumbnail"{xhtml}></div>
+        <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_thumbnail}</label></div>
+            <div class="uk-form-controls uk-width-expand@m"><input type="file" dir="ltr" name="thumbnail"{xhtml}></div>
         </div>
     </fieldset>
 
     <fieldset class="uk-margin-large-top">
       <legend>{lang_featured_album}</legend>
-        <div class="uk-form-row">
-            <label class="uk-form-label">{lang_set_featured}</label>
-            <div class="uk-form-controls">{featured_select}
+        <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_set_featured}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{featured_select}
                 <span class="uk-form-help-inline">{lang_featured_help}</span></div>
         </div>
-          <div class="uk-form-row">
-            <label class="uk-form-label">{lang_position}</label>
-            <div class="uk-form-controls">{feature_position}</div>
+          <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_position}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{feature_position}</div>
         </div>
 
-          <div class="uk-form-row">
-            <label class="uk-form-label">{lang_topic}</label>
-            <div class="uk-form-controls">{feature_page_select}</div>
+          <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_topic}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{feature_page_select}</div>
         </div>
     </fieldset>
 
     <fieldset class="uk-margin-large-top">
       <legend>{lang_media_attributes}</legend>
-          <div class="uk-form-row">
-            <label class="uk-form-label">{lang_filename_title}</label>
-            <div class="uk-form-controls">{filename_title_select}</div>
+          <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_filename_title}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{filename_title_select}</div>
         </div>
-          <div class="uk-form-row">
-            <label class="uk-form-label">{lang_allow_download}</label>
-            <div class="uk-form-controls">{allow_download_select}</div>
+          <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_allow_download}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{allow_download_select}</div>
         </div>
-          <div class="uk-form-row">
-            <label class="uk-form-label">{lang_full_display}</label>
-            <div class="uk-form-controls">{full_select}</div>
+          <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_full_display}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{full_select}</div>
         </div>
-          <div class="uk-form-row">
-            <label class="uk-form-label">{lang_ri_enable}</label>
-            <div class="uk-form-controls">{ri_select}</div>
+          <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_ri_enable}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{ri_select}</div>
         </div>
-          <div class="uk-form-row">
-            <label class="uk-form-label">{lang_max_image_width}</label>
-            <div class="uk-form-controls">{width_input}</div>
+          <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_max_image_width}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{width_input}</div>
         </div>
-          <div class="uk-form-row">
-            <label class="uk-form-label">{lang_max_image_height}</label>
-            <div class="uk-form-controls">{height_input}</div>
+          <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_max_image_height}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{height_input}</div>
         </div>
-          <div class="uk-form-row">
-            <label class="uk-form-label">{lang_max_filesize}</label>
-            <div class="uk-form-controls">{max_size_input}&nbsp;Kb {lang_unlimited}</div>
+          <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_max_filesize}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{max_size_input}&nbsp;Kb {lang_unlimited}</div>
         </div>
-          <div class="uk-form-row">
-            <label class="uk-form-label">{lang_display_image_size}</label>
-            <div class="uk-form-controls">{display_image_size}</div>
+          <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_display_image_size}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{display_image_size}</div>
         </div>
-          <div class="uk-form-row">
-            <label class="uk-form-label">{lang_usealternate}</label>
-            <div class="uk-form-controls">{usealternate_select}</div>
+          <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_usealternate}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{usealternate_select}</div>
         </div>
     </fieldset>
 
     <fieldset class="uk-margin-large-top">
       <legend>{lang_watermark}</legend>
-          <div class="uk-form-row">
-            <label class="uk-form-label">{lang_wm_auto}</label>
-            <div class="uk-form-controls">{wm_auto_select}</div>
+          <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_wm_auto}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{wm_auto_select}</div>
         </div>
-          <div class="uk-form-row">
-            <label class="uk-form-label">{lang_wm_opacity}</label>
-            <div class="uk-form-controls">{wm_opacity_select}</div>
+          <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_wm_opacity}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{wm_opacity_select}</div>
         </div>
-          <div class="uk-form-row">
-            <label class="uk-form-label">{lang_wm_location}</label>
-            <div class="uk-form-controls">{wm_location_select}</div>
+          <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_wm_location}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{wm_location_select}</div>
         </div>
-          <div class="uk-form-row">
-            <label class="uk-form-label">{lang_wm_id}</label>
-            <div class="uk-form-controls">{wm_select}
+          <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_wm_id}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{wm_select}
               <span class="uk-form-help-inline">{wm_current}</span></div>
         </div>
     </fieldset>
@@ -300,47 +300,47 @@ function change(what) {
 {!if perms_editor_admin}
     <fieldset class="uk-margin-large-top">
       <legend>{lang_uploads}</legend>
-          <div class="uk-form-row">
-            <label class="uk-form-label">{lang_member_upload}</label>
-            <div class="uk-form-controls">{uploads}</div>
+          <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_member_upload}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{uploads}</div>
         </div>
-          <div class="uk-form-row">
-            <label class="uk-form-label">{lang_moderate_album}</label>
-            <div class="uk-form-controls">{moderate}</div>
+          <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_moderate_album}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{moderate}</div>
         </div>
-          <div class="uk-form-row">
-            <label class="uk-form-label">{lang_mod_group}</label>
-            <div class="uk-form-controls">{mod_dropdown}</div>
+          <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_mod_group}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{mod_dropdown}</div>
         </div>
-          <div class="uk-form-row">
-            <label class="uk-form-label">{lang_email_mods_on_submission}</label>
-            <div class="uk-form-controls">{email_mod_select}</div>
+          <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_email_mods_on_submission}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{email_mod_select}</div>
         </div>
     </fieldset>
 
     <fieldset class="uk-margin-large-top">
       <legend>{lang_accessrights}</legend>
 
-          <div class="uk-form-row">
-            <label class="uk-form-label">{lang_owner}</label>
-            <div class="uk-form-controls">{owner_select}</div>
+          <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_owner}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{owner_select}</div>
         </div>
-          <div class="uk-form-row">
-            <label class="uk-form-label">{lang_group}</label>
-            <div class="uk-form-controls">{group_dropdown}</div>
+          <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_group}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{group_dropdown}</div>
         </div>
-          <div class="uk-form-row">
-            <label class="uk-form-label">{lang_permissions}</label>
-            <div class="uk-form-controls">{permissions_editor}
+          <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_permissions}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{permissions_editor}
             <span class="uk-form-help-inline">{lang_perm_key}</span></div>
         </div>
-          <div class="uk-form-row">
-            <label class="uk-form-label">{lang_hidden}</label>
-            <div class="uk-form-controls">{hidden}</div>
+          <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_hidden}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{hidden}</div>
         </div>
-          <div class="uk-form-row">
-            <label class="uk-form-label">{lang_force_child_update}</label>
-            <div class="uk-form-controls">{force_child_update}</div>
+          <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_force_child_update}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{force_child_update}</div>
         </div>
     </fieldset>
 {!endif}
@@ -348,28 +348,28 @@ function change(what) {
 {!if perms_editor_member}
     <fieldset class="uk-margin-large-top">
       <legend>{lang_accessrights}</legend>
-          <div class="uk-form-row">
-            <label class="uk-form-label">{lang_owner}</label>
-            <div class="uk-form-controls">
+          <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_owner}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">
                 {owner_username}<input type="hidden" name="owner_id" value="{owner_id}"{xhtml}></div>
         </div>
-          <div class="uk-form-row">
-            <label class="uk-form-label">{lang_permissions}</label>
-            <div class="uk-form-controls">{permissions_editor}
+          <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_permissions}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{permissions_editor}
               <span class="uk-form-help-inline">{lang_perm_key}</span></div>
         </div>
-          <div class="uk-form-row">
-            <label class="uk-form-label">{lang_force_child_update}</label>
-            <div class="uk-form-controls">{force_child_update}</div>
+          <div uk-grid>
+            <div class="uk-width-1-4@m"><label class="uk-form-label">{lang_force_child_update}</label></div>
+            <div class="uk-form-controls uk-width-expand@m">{force_child_update}</div>
         </div>
     </fieldset>
 {!endif}
 
-          <div class="uk-form-row">
-            <div class="uk-form-controls">
-          <input type="submit" value="{lang_save}" name="mode" class="submit"{xhtml}>
-          <input type="submit" value="{lang_delete}" name="mode" class="submit"{xhtml}>
-          <input type="submit" value="{lang_cancel}" name="mode" class="submit"{xhtml}>
+          <div uk-grid>
+            <div class="uk-form-controls uk-width-expand@m">
+          <input type="submit" class="uk-button uk-button-primary" value="{lang_save}" name="mode" class="uk-button uk-button-primary"{xhtml}>
+          <input type="submit" class="uk-button uk-button-danger" value="{lang_delete}" name="mode" class="uk-button uk-button-primary"{xhtml}>
+          <input type="submit" class="uk-button uk-button-secondary" value="{lang_cancel}" name="mode" class="uk-button uk-button-primary"{xhtml}>
           <input type="hidden" name="album_id" value="{album_id}"{xhtml}>
           <input type="hidden" name="cover" value="{album_cover}"{xhtml}>
           <input type="hidden" name="owner" value="{album_owner}"{xhtml}>

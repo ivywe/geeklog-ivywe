@@ -61,8 +61,8 @@
 <div class="mg_submit_center">
   <input type="hidden" name="action" value="staticsort"{xhtml}>
   <input type="hidden" name="album_id" value="{album_id}"{xhtml}>
-  <input type="submit" name="mode" value="{lang_save}"{xhtml}>
-  <input type="submit" name="mode" value="{lang_cancel}"{xhtml}>
+  <input type="submit" class="uk-button uk-button-primary" name="mode" value="{lang_save}"{xhtml}>
+  <input type="submit" class="uk-button uk-button-primary" name="mode" value="{lang_cancel}"{xhtml}>
 </div>
 </form>
 

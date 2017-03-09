@@ -1333,7 +1333,7 @@ function MG_buildAlbumJumpbox(&$album, $album_id, $access=1, $hide=0)
     $retval .= $LANG_MG03['jump_to'] . ':&nbsp;<select name="aid" onchange="forms[\'jumpbox\'].submit()">' . LB;
     $album->buildJumpBox($retval, $album_id, $access, $hide);
     $retval .= '</select>' . LB;
-    $retval .= '<input type="submit" value="' . $LANG_MG03['go'] . '"' . XHTML . '>' . LB;
+    $retval .= '<input type="submit" class="uk-button uk-button-primary" value="' . $LANG_MG03['go'] . '"' . XHTML . '>' . LB;
     $retval .= '<input type="hidden" name="page" value="1"' . XHTML . '>' . LB;
     $retval .= '</div></form>' . LB;
 
