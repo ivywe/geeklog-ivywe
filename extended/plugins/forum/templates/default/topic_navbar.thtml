@@ -1,27 +1,53 @@
-<!-- start topic_navbar.thtml -->
-<table width="100%" border="0" cellspacing="0" cellpadding="0" style="padding-right:10px;">
-    <tr>
-        <td style="width:30px;">{navbreadcrumbsimg}</td>
-        <td class="alignleft" style="white-space:nowrap;">&nbsp;<a href="{site_url}/forum/index.php">{forum_home}</a>&nbsp;&#62;&nbsp;<a href="{site_url}/forum/index.php?category={category_id}">{cat_name}</a>&nbsp;&#62;&nbsp;<a href="{site_url}/forum/index.php?forum={forum_id}">{forum_name}</a></td>
-        <td rowspan="2" class="alignright" style="padding-left:5px; white-space:nowrap;">{newtopic_link} {replytopic_link}</td>
-    </tr>
-    <tr>
-        <td colspan="2" style="padding-bottom:5px;">{navtopicimg}&nbsp;<b><a href="viewtopic.php?showtopic={topic_id}">{subject}</a></b></td>
-    </tr>
-</table>
-<table border="0" cellspacing="0" cellpadding="2" width="100%">
-    <tr>
-        <td class="aligncenter" style="white-space:nowrap;">{pagenavigation}</td>
-    </tr>
-</table>
-<table width="100%" border="0" cellspacing="0" cellpadding="0" class="pluginCellTitle alignleft">
-    <tr>
-        <td class="pluginCellText alignleft" style="padding-left:5px; white-space:nowrap;">&nbsp;</td>
-        <td class="alignright pluginCellText" style="width:90%; white-space:nowrap;">{subscribe_link}</td>
-        <td class="pluginCellText" style="white-space:nowrap;">&nbsp;</td>
-        <td class="pluginCellText" style="padding-right:5px; white-space:nowrap;">{print_link}</td>
-        {prevtopic_link} {nexttopic_link} 
-    </tr>
-</table>
-<table width="100%" border="0" cellspacing="1" cellpadding="0" class="pluginSolidOutline alignleft"> 
-<!-- end topic_navbar.thtml -->
+{# begin {templatelocation} #}
+
+<div itemscope itemtype="http://schema.org/BreadcrumbList">
+	<ul class="uk-breadcrumb">
+		<li><i class="uk-icon-folder-open-o"></i></li>
+		<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+			<a itemprop="item" href="{site_url}/forum/index.php">
+				<span itemprop="name">{forum_home}</span>
+			</a>
+			<meta itemprop="position" content="1" />
+		</li>
+		<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+			<a itemprop="item" href="{site_url}/forum/index.php?category={category_id}">
+				<span itemprop="name">{cat_name}</span>
+			</a>
+			<meta itemprop="position" content="2" />
+		</li>
+		<li class="uk-active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+			<a itemprop="item" href="{site_url}/forum/index.php?forum={forum_id}">
+				<span itemprop="name">{forum_name}</span>
+			</a>
+			<meta itemprop="position" content="3" />
+		</li>
+	</ul>
+</div>	
+
+<div class="uk-grid uk-grid-small uk-margin-small-left">
+	<div class="uk-width-1-1">
+		<i class="uk-icon-file-text-o"></i> <b><a href="viewtopic.php?showtopic={topic_id}">
+			<span>{subject}</span>
+		</a></b>
+	</div>
+</div>
+
+
+<div class="uk-grid uk-grid-small">
+	<div class="uk-width-1-1 uk-text-right">
+		{topicmenu_link}
+  		{newtopic_link}
+  		{replytopic_link}	
+		{# Buttons instead of Menu - Remove comments to enable (plus remove topicmenu_link template variable) and change related links in forum_links.html #}
+		{# 	
+		{subscribe_link}
+		{print_link}
+		{prevtopic_link}
+		{nexttopic_link}
+		 #}
+	</div>
+</div> 
+
+{pagenavigation}
+
+{# end {templatelocation} #}
