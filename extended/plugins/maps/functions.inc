@@ -138,13 +138,16 @@ function plugin_getmenuitems_maps()
 {
     global $_CONF, $_MAPS_CONF, $LANG_MAPS_1;
     
+    return  'Maps';
+/*
     $menuitems ='';
     
     if ($_MAPS_CONF['hide_maps_menu'] == 0) {
         $url = $_MAPS_CONF['site_url'] . '/index.php';
         $menuitems[$LANG_MAPS_1['plugin_name']] = $url;
     }
-    return $menuitems;
+    return  $menuitems;
+*/
 }
 
 /**
