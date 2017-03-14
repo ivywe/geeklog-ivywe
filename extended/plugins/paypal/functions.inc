@@ -1061,19 +1061,29 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 						$C = DB_fetchArray ($cat_res);
 						//image
 						if ($_PAY_CONF['displayCatImage'] == 1) {
-						   $cat_image = $_PAY_CONF['path_cat_images'] . $C['image'];
+							$cat_image = $_PAY_CONF['path_cat_images'] . $C['image'];
 						   (is_numeric($_PAY_CONF['catImageWidth'])) ? $imgwidth = $_PAY_CONF['catImageWidth'] : $imgwidth = 100;
 							if (file_exists($cat_image) && $C['image'] != '') {
 								$cat->set_var('cat_image','<p><a href="' . $_PAY_CONF['site_url'] . '/index.php?n=' 
 								. urlencode($C['cat_name']) . '&amp;category='. $C['cat_id'] 
 								. '"><img src="' . $_PAY_CONF['images_cat_url'] . $C['image'] . '" class="cat_image" title="' . $C['cat_name'] . '" alt="' 
 								. $C['cat_name'] . '" style="max-height:140px" /></a></p>');
+
+
+								$cat->set_var('cat_image_url',$_PAY_CONF['images_cat_url'] . $C['image'] );
+								$cat->set_var('cat_url',$_PAY_CONF['site_url'] . '/index.php?n=' 
+								. urlencode($C['cat_name']) . '&amp;category='. $C['cat_id']  );
 							} else {
 								$cat->set_var('cat_image', '');
+								$cat->set_var('cat_image', '');
+								$cat->set_var('cat_url', '');
 							}
 						} else {
 							$cat->set_var('cat_image', '');
+							$cat->set_var('cat_image', '');
+							$cat->set_var('cat_url', '');
 						}
+
 						//Description
 						if ($_PAY_CONF['displayCatDescription'] == 1 ) {
 						    $cat->set_var('cat_description', '<p class="cat_description">' . $C['description'] . '</p>');
