@@ -65,8 +65,8 @@
 
 			<div class="uk-inline">
 			    <img src="{layout_url}/images/custom/top.jpg" alt="{site_name}">
-			    <div class="uk-overlay uk-overlay-primary uk-position-bottom uk-visible@m uk-margin-large-top">
-			       <h1 class="uk-text-bold uk-text-danger uk-heading-large uk-text-center uk-text-nowrap">{site_slogan}</h1>
+			    <div class="uk-overlay uk-position-center uk-visible@m">
+			       <h1 class="uk-text-nowrap uk-text-center" style="color:#fff">{site_slogan}</h1>
 			    </div>
 			</div>
 
