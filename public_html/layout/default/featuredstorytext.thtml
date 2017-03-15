@@ -14,12 +14,6 @@
 
     <ul class="uk-subnav uk-flex-inline uk-flex-center uk-article-meta">
       <li class="uk-first-column">{story_date}</li>
-      <li class="uk-text-nowrap"><span>{lang_contributed_by} {start_contributedby_anchortag}<span itemprop="author" itemscope itemtype="http://schema.org/Person">{contributedby_author}</span>{end_contributedby_anchortag}</span></li>
-      <li>{lang_views} {story_hits}</li>
-    </ul>
-
-    <ul class="uk-subnav uk-flex-inline uk-flex-center uk-article-meta">
-      <li class="uk-first-column">{story_date}</li>
       <li>{start_contributedby_anchortag}{lang_contributed_by} <span itemprop="author" itemscope itemtype="http://schema.org/Person">{contributedby_author}</span>{end_contributedby_anchortag}</li>
       <li>{lang_views} {story_hits}</li>
     </ul>
