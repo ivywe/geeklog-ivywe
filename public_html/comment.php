@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 2.1                                                               |
+// | Geeklog 1.8                                                               |
 // +---------------------------------------------------------------------------+
 // | comment.php                                                               |
 // |                                                                           |
@@ -35,21 +35,24 @@
 // +---------------------------------------------------------------------------+
 
 /**
- * This file is responsible for letting user enter a comment and saving the
- * comments to the DB.  All comment display stuff is in lib-common.php
- *
- * @author   Jason Whittenburg
- * @author   Tony Bibbs, tonyAT tonybibbs DOT com
- * @author   Vincent Furia, vinny01 AT users DOT sourceforge DOT net
- * @author   Jared Wenerd, wenerd87 AT gmail DOT com
- */
+* This file is responsible for letting user enter a comment and saving the
+* comments to the DB.  All comment display stuff is in lib-common.php
+*
+* @author   Jason Whittenburg
+* @author   Tony Bibbs, tonyAT tonybibbs DOT com
+* @author   Vincent Furia, vinny01 AT users DOT sourceforge DOT net
+* @author   Jared Wenerd, wenerd87 AT gmail DOT com
+*
+*/
 
-global $_CONF;
-
-// Geeklog common function library
+/**
+* Geeklog common function library
+*/
 require_once 'lib-common.php';
 
-// Geeklog comment function library
+/**
+ * Geeklog comment function library
+ */
 require_once $_CONF['path_system'] . 'lib-comment.php';
 
 // Uncomment the line below if you need to debug the HTTP variables being passed
@@ -62,10 +65,17 @@ CMT_updateCommentcodes();
 $display = '';
 
 // If reply specified, force comment submission form
-if (isset($_REQUEST['reply'])) {
+if (isset ($_REQUEST['reply'])) {
     $_REQUEST['mode'] = '';
 }
 
-$mode = Geeklog\Input::fRequest('mode', '');
+$mode = '';
+if (!empty ($_REQUEST['mode'])) {
+    $mode = COM_applyFilter ($_REQUEST['mode']);
+}
+
 $display .= CMT_handleComment($mode);
+
 COM_output($display);
+
+?>

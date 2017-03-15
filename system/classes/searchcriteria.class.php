@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 2.1                                                               |
+// | Geeklog 1.6.1                                                             |
 // +---------------------------------------------------------------------------+
 // | searchcriteria.class.php                                                  |
 // |                                                                           |
@@ -30,8 +30,8 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 
-class SearchCriteria
-{
+class SearchCriteria {
+
     // PRIVATE PROPERTIES
     var $_sql = '';
     var $_ftsql = '';
@@ -45,7 +45,7 @@ class SearchCriteria
     var $_total_results = 0;
 
     // CONSTRUCTOR
-    public function __construct($pluginName, $pluginLabel)
+    function SearchCriteria( $pluginName, $pluginLabel )
     {
         $this->_pluginName = $pluginName;
         $this->_pluginLabel = $pluginLabel;
@@ -66,22 +66,22 @@ class SearchCriteria
         return $this->_pluginLabel;
     }
 
-    function setRank($rank)
+    function setRank( $rank )
     {
         $this->_rank = $rank;
     }
 
-    function setURLRewrite($url_rewrite)
+    function setURLRewrite( $url_rewrite )
     {
         $this->_url_rewrite = $url_rewrite;
     }
 
-    function setAppendQuery($append_query)
+    function setAppendQuery( $append_query )
     {
         $this->_append_query = $append_query;
     }
 
-    function setResults($result_arr)
+    function setResults( $result_arr )
     {
         $this->_results = $result_arr;
     }
@@ -107,7 +107,7 @@ class SearchCriteria
     }
 
     // CALLBACK METHODS
-    function setCallback($func)
+    function setCallback( $func )
     {
         $this->_callback_func = $func;
     }
@@ -117,7 +117,7 @@ class SearchCriteria
         return $this->_callback_func;
     }
 
-    function setTotal($total_results)
+    function setTotal( $total_results )
     {
         $this->_total_results = $total_results;
     }
@@ -128,12 +128,12 @@ class SearchCriteria
     }
 
     // SQL METHODS
-    function setSQL($sql)
+    function setSQL( $sql )
     {
         $this->_sql = $sql;
     }
 
-    function setFTSQL($ftsql)
+    function setFTSQL( $ftsql )
     {
         $this->_ftsql = $ftsql;
     }
@@ -155,74 +155,76 @@ class SearchCriteria
         }
     }
 
-    function buildSearchSQL($keyType, $query, $columns, $sql = '')
+    function buildSearchSQL( $keyType, $query, $columns, $sql = '' )
     {
-        // Make sure query has at least 1 letter
-        // if (!empty(trim($query))) { // Doesn't work in PHP 5.3
-        if (strlen(trim($query)) > 0) {
-            if ($keyType === 'all') {
-                // must contain ALL of the keywords
-                $words = array_unique(explode(' ', $query));
-                $words = array_filter($words); // filter out empty strings
-                $sep = 'AND';
+        if ($keyType == 'all')
+        {
+            // must contain ALL of the keywords
+            $words = explode(' ', $query);
+            $sep = 'AND';
 
-                $ftwords['mysql'] = '+' . str_replace(' ', ' +', $query);
-                $ftwords['pgsql'] = '"' . str_replace(' ', '" AND "', $query) . '"';
-            } elseif ($keyType === 'any') {
-                // must contain ANY of the keywords
-                $words = array_unique(explode(' ', $query));
-                $words = array_filter($words); // filter out empty strings
-                $sep = 'OR ';
-                $ftwords['mysql'] = $query;
-                $ftwords['pgsql'] = $query;
+            $ftwords['mysql'] = '+' . str_replace(' ', ' +', $query);
+            $ftwords['mssql'] = '"' . str_replace(' ', '" AND "', $query) . '"';
+            $ftwords['pgsql'] = '"' . str_replace(' ', '" AND "', $query) . '"';
+
+        }
+        else if ($keyType == 'any')
+        {
+            // must contain ANY of the keywords
+            $words = explode(' ', $query);
+            $sep = 'OR ';
+            $ftwords['mysql'] = $query;
+            $ftwords['pgsql'] = $query;
+            $ftwords['mssql'] = '"' . str_replace(' ', '" OR "', $query) . '"';
+        }
+        else
+        {
+            // do an exact phrase search (default)
+            $words = array($query);
+            $sep = '   ';
+
+            // Puttings quotes around a single word in mysql really slows things down
+            if (strpos($query, ' ') !== false) {
+                $ftwords['mysql'] = '"' . $query . '"';
             } else {
-                // do an exact phrase search (default)
-                $words = array($query);
-                $sep = '   ';
-
-                // Puttings quotes around a single word in mysql really slows things down
-                if (strpos($query, ' ') !== false) {
-                    $ftwords['mysql'] = '"' . $query . '"';
-                } else {
-                    $ftwords['mysql'] = $query;
-                }
-                $ftwords['pgsql'] = '"' . $query . '"';
+                $ftwords['mysql'] = $query;
             }
+            $ftwords['mssql'] = '"' . $query . '"';
+            $ftwords['pgsql'] = '"' . $query . '"';
+        }
 
-            $titles = isset($_GET['title']) && isset($columns['title']);
+        $titles = (isset($_GET['title']) && isset($columns['title'])) ? true : false;
+
+        if ($titles) {
+            $strcol = $columns['title'];
+        } else {
+            $strcol = implode(',', $columns);
+        }
+
+        $ftsql['mysql'] = $sql . "AND MATCH($strcol) AGAINST ('{$ftwords['mysql']}' IN BOOLEAN MODE)";
+        $ftsql['mssql'] = $sql . "AND CONTAINS(($strcol), '{$ftwords['mssql']}')";
+
+        $tmp = 'AND (';
+        foreach ($words AS $word)
+        {
+            $word = trim($word);
+            $tmp .= '(';
 
             if ($titles) {
-                $strcol = $columns['title'];
+                $tmp .= $columns['title'] . " LIKE '%$word%' OR ";
             } else {
-                $strcol = implode(',', $columns);
-            }
-
-            $ftsql['mysql'] = $sql . "AND MATCH($strcol) AGAINST ('{$ftwords['mysql']}' IN BOOLEAN MODE)";
-
-            $tmp = 'AND (';
-            foreach ($words AS $word) {
-                $word = trim($word);
-                $tmp .= '(';
-
-                if ($titles) {
-                    $tmp .= $columns['title'] . " LIKE '%$word%' OR ";
-                } else {
-                    foreach ($columns AS $col) {
-                        $tmp .= "$col LIKE '%$word%' OR ";
-                    }
+                foreach ($columns AS $col) {
+                    $tmp .= "$col LIKE '%$word%' OR ";
                 }
-                $tmp = substr($tmp, 0, -4) . ") $sep ";
             }
-            
-            $sql .= substr($tmp, 0, -5) . ') ';
-        } else {
-           $ftsql['mysql'] = $sql; 
-        }            
+            $tmp = substr($tmp, 0, -4) . ") $sep ";
+        }
+        $sql .= substr($tmp, 0, -5) . ') ';
 
-        return array($sql, $ftsql);
+        return array($sql,$ftsql);
     }
 
-    function getDateRangeSQL($type = 'WHERE', $column, $datestart, $dateend)
+    function getDateRangeSQL( $type = 'WHERE', $column, $datestart, $dateend )
     {
         if (!empty($datestart) || !empty($dateend)) {
             // Do some date checking and fill in missing dates
@@ -240,8 +242,8 @@ class SearchCriteria
 
             $DS = explode($delim, $datestart);
             $DE = explode($delim, $dateend);
-            $startdate = mktime(0, 0, 0, $DS[1], $DS[2], $DS[0]);
-            $enddate = mktime(23, 59, 59, $DE[1], $DE[2], $DE[0]);
+            $startdate = mktime(0,0,0,$DS[1],$DS[2],$DS[0]);
+            $enddate = mktime(23,59,59,$DE[1],$DE[2],$DE[0]);
 
             return " $type (UNIX_TIMESTAMP($column) BETWEEN '$startdate' AND '$enddate') ";
         }
@@ -249,3 +251,5 @@ class SearchCriteria
         return '';
     }
 }
+
+?>

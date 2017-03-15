@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 2.1                                                               |
+// | Geeklog 1.8                                                               |
 // +---------------------------------------------------------------------------+
 // | index.php                                                                 |
 // |                                                                           |
@@ -40,8 +40,6 @@ if ($_CONF['disable_webservices']) {
 
 // Set the default content type
 header('Content-type: ' . 'application/atom+xml' . '; charset=UTF-8');
-header('X-XSS-Protection: 1; mode=block');
-header('X-Content-Type-Options: nosniff');
 
 /* Authenticate the user IF credentials are present */
 WS_authenticate();
@@ -80,3 +78,5 @@ default:
 }
 
 WS_writeSync();
+
+?>

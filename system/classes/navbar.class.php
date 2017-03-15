@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +-------------------------------------------------------------------------+
-// | Geeklog 2.1                                                             |
+// | Geeklog 1.8                                                             |
 // +-------------------------------------------------------------------------+
 // | navbar.class.php                                                        |
 // |                                                                         |
@@ -31,11 +31,13 @@
 // +-------------------------------------------------------------------------+
 
 /**
- * This class will allow you to setup and generate a CSS Tab Menu and breadcrumb link trail
- * Version 1.1 June 4, 2006
- *
- * @author       Blaine Lang <blaine@portalparts.com>
- */
+* This class will allow you to setup and generate a CSS Tab Menu and breadcrumb link trail
+* Version 1.1 June 4, 2006
+*
+* @author       Blaine Lang <blaine@portalparts.com>
+*
+*/
+
 /* Example Use
     include ($_CONF['path_system'] . 'classes/navbar.class.php');
 
@@ -46,7 +48,7 @@
     );
 
     $navbar = new navbar;
-    $navbar->set_menuItems($menuitems);
+    $navbar->set_menuitems($menuitems);
 
     // Add a menuitem if user has access
     if (SEC_inGroup('Root')) {
@@ -78,182 +80,145 @@
 */
 
 
-class navbar
-{
-    /**
-     * @var array
-     */
-    private $menuItems = array();
+class navbar  {
 
+    // Private Properties
     /**
-     * @var string
-     */
-    private $_selected = '';
+    * @access private
+    */
+    private $_menuitems;        // Array
+    /**
+    * @access private
+    */
+    private $_selected = '';    // string
+    /**
+    * @access private
+    */
+    private $_parms = '';       // string
+    /**
+    * @access private
+    */
+    private $_onclick;          // Array
 
-    /**
-     * @var string
-     */
-    private $_parms = '';
+    private $_bctemplate = NULL;    // Template to use for Breadcrumbs
 
-    /**
-     * @var array
-     */
-    private $_onclick;
-
-    /**
-     * @var Template
-     */
-    private $_bctemplate = null;    // Template to use for Breadcrumbs
-
-    /**
-     * @var int
-     */
     private $_numbreadcrumbs = 0;   // Number of Breadcrumb links added
 
     /**
-     * @param $menuItems
-     */
-    public function set_menuItems($menuItems)
+    * Constructor
+    *
+    */
+    function __construct()
     {
-        $this->menuItems = $menuItems;
     }
 
-    /**
-     * @param  string $label
-     * @param  string $link
-     * @param  bool   $onclick
-     */
-    public function add_menuitem($label, $link, $onclick = false)
+    function set_menuitems($menuitems)
+    {
+       $this->_menuitems = $menuitems;
+    }
+
+    function add_menuitem($label,$link,$onclick=false)
     {
         if ($onclick) {
-            $this->menuItems[$label] = '#';
+            $this->_menuitems[$label] = '#';
             $this->set_onClick($label, $link);
         } else {
-            $this->menuItems[$label] = $link;
+            $this->_menuitems[$label] = $link;
         }
     }
 
-    /**
-     * @param  string $selected
-     */
-    public function set_selected($selected)
+
+    function set_selected($selected)
     {
         $this->_selected = $selected;
     }
 
-    /**
-     * @param array $params
-     */
-    public function set_defaultparms($params)
+    function set_defaultparms($parms)
     {
-        $this->_parms = $params;
+        $this->_parms = $parms;
     }
 
-    /**
-     * @param  string $item
-     * @param  string $option
-     */
-    public function set_onClick($item, $option)
+    function set_onClick($item, $option)
     {
         $this->_onclick[$item] = $option;
     }
 
-    /**
-     * @return string
-     */
-    public function generate()
-    {
+    function generate() {
         global $_CONF;
-
-        $navTemplate = COM_newTemplate($_CONF['path_layout'] . 'navbar');
-        $navTemplate->set_file(array(
-            'navbar'   => 'navbar.thtml',
-            'menuitem' => 'menuitem.thtml',
-        ));
+        $navtemplate = COM_newTemplate($_CONF['path_layout'] . 'navbar');
+        $navtemplate->set_file (array (
+            'navbar'       => 'navbar.thtml',
+            'menuitem'     => 'menuitem.thtml'));
 
         if ($this->_parms != '') {
-            $navTemplate->set_var('parms', $this->_parms);
+            $navtemplate->set_var( 'parms',  $this->_parms);
         }
 
-        for ($i = 1; $i <= count($this->menuItems); $i++) {
-            $label = key($this->menuItems);
-            $linkurl = current($this->menuItems);
-            if (is_array($this->_onclick) && array_key_exists($label, $this->_onclick)) {
+        for ($i=1; $i <= count($this->_menuitems); $i++)  {
+            $label = key($this->_menuitems);
+            $linkurl = current($this->_menuitems);
+            if ( is_array($this->_onclick) && array_key_exists($label,$this->_onclick) ) {
                 $onclick = " onclick='{$this->_onclick[$label]}'";
-                $navTemplate->set_var('onclick', $onclick);
-                $navTemplate->set_var('link', ($linkurl == '') ? '#' : $linkurl);
+                $navtemplate->set_var( 'onclick', $onclick);
+                $navtemplate->set_var( 'link', ($linkurl == '') ? '#' : $linkurl);
             } else {
-                $navTemplate->set_var('onclick', '');
-                $navTemplate->set_var('link', $linkurl);
+                $navtemplate->set_var( 'onclick', '');
+                $navtemplate->set_var( 'link', $linkurl);
             }
             if ($label == $this->_selected) {
-                $navTemplate->set_var('cssactive', ' id="active"');
-                $navTemplate->set_var('csscurrent', ' id="current"');
+                $navtemplate->set_var( 'cssactive', ' id="active"');
+                $navtemplate->set_var( 'csscurrent',' id="current"');
             } else {
-                $navTemplate->set_var('cssactive', '');
-                $navTemplate->set_var('csscurrent', '');
+                $navtemplate->set_var( 'cssactive', '');
+                $navtemplate->set_var( 'csscurrent','');
             }
-            $navTemplate->set_var('label', $label);
-            $navTemplate->parse('menuitems', 'menuitem', true);
-            next($this->menuItems);
+            $navtemplate->set_var( 'label',  $label);
+            $navtemplate->parse( 'menuitems', 'menuitem', true );
+            next($this->_menuitems);
         }
-        $navTemplate->parse('output', 'navbar');
-        $retval = $navTemplate->finish($navTemplate->get_var('output'));
-
+        $navtemplate->parse ('output', 'navbar');
+        $retval = $navtemplate->finish($navtemplate->get_var('output'));
         return $retval;
     }
 
-    public function openBreadcrumbs()
-    {
+    function openBreadcrumbs() {
         global $_CONF;
-
         $this->_bctemplate = COM_newTemplate($_CONF['path_layout'] . 'navbar');
-        $this->_bctemplate->set_file(array(
-            'breadcrumbs' => 'breadcrumbs.thtml',
-            'link'        => 'breadcrumb_link.thtml'));
+        $this->_bctemplate->set_file (array (
+            'breadcrumbs'   => 'breadcrumbs.thtml',
+            'link'          => 'breadcrumb_link.thtml'));
     }
 
-    /**
-     * @param  string $url
-     * @param  string $label
-     * @param  string $title
-     */
-    public function add_breadcrumbs($url, $label, $title = '')
-    {
+    function add_breadcrumbs($url,$label,$title='') {
         if ($this->_numbreadcrumbs == '') {
             $this->_numbreadcrumbs = 0;
         }
-        $this->_bctemplate->set_var('link_url', $url);
-        $this->_bctemplate->set_var('link_label', $label);
-        $this->_bctemplate->set_var('link_title', $title);
+        $this->_bctemplate->set_var('link_url',$url);
+        $this->_bctemplate->set_var('link_label',$label);
+        $this->_bctemplate->set_var('link_title',$title);
         if ($this->_numbreadcrumbs > 0) {
-            $this->_bctemplate->set_var('link_separator', '/&nbsp;');
+            $this->_bctemplate->set_var('link_separator','/&nbsp;');
 
-        } else {
-            $this->_bctemplate->set_var('link_separator', '');
+        }  else {
+            $this->_bctemplate->set_var('link_separator','');
         }
-        $this->_bctemplate->parse('breadcrumb_links', 'link', true);
+        $this->_bctemplate->parse('breadcrumb_links','link',true);
         $this->_numbreadcrumbs = $this->_numbreadcrumbs + 1;
     }
 
-    /**
-     * @param  string $label
-     */
-    public function add_lastBreadcrumb($label)
-    {
+    function add_lastBreadcrumb($label) {
         if (trim($label) != '') {
             $label = "/&nbsp;$label";
-            $this->_bctemplate->set_var('last_label', $label);
+            $this->_bctemplate->set_var('last_label',$label);
         }
     }
 
-    /**
-     * @return string
-     */
-    public function closeBreadcrumbs()
-    {
+    function closeBreadcrumbs() {
         $this->_bctemplate->parse('output', 'breadcrumbs');
-
-        return $this->_bctemplate->finish($this->_bctemplate->get_var('output'));
+        return $this->_bctemplate->finish ($this->_bctemplate->get_var('output'));
     }
+
+
 }
+
+?>

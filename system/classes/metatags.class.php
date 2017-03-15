@@ -209,7 +209,7 @@ class Metatags
     protected function processValue($value)
     {
         $value = preg_replace('/[[:cntrl:]]/', ' ', $value);
-        $value = GLText::stripTags($value);
+        $value = strip_tags($value);
         $value = trim($value);
         $value = preg_replace('/\s\s+/', ' ', $value);
 

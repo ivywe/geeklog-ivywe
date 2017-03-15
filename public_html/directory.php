@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 2.1                                                               |
+// | Geeklog 1.6                                                               |
 // +---------------------------------------------------------------------------+
 // | directory.php                                                             |
 // |                                                                           |
@@ -30,8 +30,8 @@
 // +---------------------------------------------------------------------------+
 
 /**
- * Geeklog common function library
- */
+* Geeklog common function library
+*/
 require_once 'lib-common.php';
 
 // configuration option:
@@ -40,204 +40,184 @@ require_once 'lib-common.php';
 $conf_list_current_month = false;
 
 // name of this script
-define('THIS_SCRIPT', basename(__FILE__));
+define ('THIS_SCRIPT', 'directory.php');
 
 $display = '';
 
-if (COM_isAnonUser() && (($_CONF['loginrequired'] == 1) || ($_CONF['directoryloginrequired'] == 1))) {
-    $display = COM_createHTMLDocument(
-        SEC_loginRequiredForm(),
-        array('pagetitle' => $LANG_DIR['title'],)
-    );
+if (COM_isAnonUser() && (($_CONF['loginrequired'] == 1) ||
+                         ($_CONF['directoryloginrequired'] == 1))) {
+    $display = COM_createHTMLDocument(SEC_loginRequiredForm(),
+        array('pagetitle' => $LANG_DIR['title']));
     COM_output($display);
     exit;
 }
 
 $theme = isset($_USER['theme']) ? $_USER['theme'] : $_CONF['theme'];
 clearstatcache();
-define('TEMPLATE_EXISTS', file_exists($_CONF['path_themes'] . $theme . '/directory.thtml'));
+define ('TEMPLATE_EXISTS', file_exists($_CONF['path_themes']
+    . $theme . '/directory.thtml'));
 
 /**
- * Helper function: Calculate last day of a given month
- *
- * @param    int $month Month
- * @param    int $year  Year
- * @return   int        Number of days in that month
- */
+* Helper function: Calculate last day of a given month
+*
+* @param    int     $month  Month
+* @param    int     $year   Year
+* @return   int             Number of days in that month
+* @todo     Bug: Will fail from 2038 onwards ...
+*
+* "The last day of any given month can be expressed as the "0" day
+* of the next month", http://www.php.net/manual/en/function.mktime.php
+*
+*/
 function DIR_lastDayOfMonth($month, $year)
 {
-    $month = (int) $month;
-    $year = (int) $year;
-
-    if (in_array($month, array(1, 3, 5, 7, 8, 10, 12))) {
-        $retval = 31;
-    } elseif (in_array($month, array(4, 6, 9, 11))) {
-        $retval = 30;
-    } else {
-        $retval = 28;
-
-        if ((($year % 4) === 0) && ((($year % 100) !== 0) || (($year % 400) === 0))) {
-            $retval = 29;
-        }
+    $month++;
+    if ($month > 12) {
+        $month = 1;
+        $year++;
     }
 
-    return $retval;
+    $lastday = mktime(0, 0, 0, $month, 0, $year);
+
+    return intval(strftime('%d', $lastday));
 }
 
 /**
- * Display a topic selection drop-down menu
- *
- * @param    string $dir_topic current topic
- * @param    int    $year      current year
- * @param    int    $month     current month
- * @return   string            HTML string of drop-down menu
- */
+* Display a topic selection drop-down menu
+*
+* @param    string  $dir_topic  current topic
+* @param    int     $year       current year
+* @param    int     $month      current month
+* @return   string              HTML string of drop-down menu
+*
+*/
 function DIR_topicList($dir_topic = 'all', $year = 0, $month = 0)
 {
-    global $_CONF;
+    global $_CONF, $LANG21;
 
-    $retval = '<form class="floatright" action="'
-        . $_CONF['site_url'] . '/' . THIS_SCRIPT
-        . '" method="get" style="margin: 0;"><div>' . PHP_EOL
-        . '<select class="uk-select" name="topic" onchange="this.form.submit()">' . PHP_EOL
-        . TOPIC_getTopicListSelect($dir_topic, 2, true) . PHP_EOL
-        . '</select>' . PHP_EOL
-        . '<input type="hidden" name="year" value="' . $year . '"' . XHTML . '>' . PHP_EOL
-        . '<input type="hidden" name="month" value="' . $month . '"' . XHTML . '>' . PHP_EOL
-        . '</div></form>' . PHP_EOL;
+    $retval = '';
+
+    $retval .= '<form class="floatright" action="';
+    $retval .= $_CONF['site_url'] . '/' . THIS_SCRIPT;
+    $retval .= '" method="post" style="margin:0"><div>' . LB;
+    $retval .= '<select name="topic" onchange="this.form.submit()">' . LB;
+    $retval .= TOPIC_getTopicListSelect($dir_topic, 2, true) . LB;
+    $retval .= '</select>' . LB;
+    $retval .= '<input type="hidden" name="year" value="' . $year . '"' . XHTML . '>' . LB;
+    $retval .= '<input type="hidden" name="month" value="' . $month . '"' . XHTML . '>' . LB;
+    $retval .= '</div></form>' . LB;
 
     return $retval;
 }
 
 /**
- * Build link to a month's page
- *
- * @param    string $dir_topic current topic
- * @param    int    $year      year to link to
- * @param    int    $month     month to link to
- * @param    int    $count     number of stories for that month (may be 0)
- * @return   string            month name + count, as link or plain text
- */
+* Build link to a month's page
+*
+* @param    string  $dir_topic  current topic
+* @param    int     $year   year to link to
+* @param    int     $month  month to link to
+* @param    int     $count  number of stories for that month (may be 0)
+* @return   string          month name + count, as link or plain text
+*
+*/
 function DIR_monthLink($dir_topic, $year, $month, $count)
 {
     global $_CONF, $LANG_MONTH;
 
-    $retval = $LANG_MONTH[$month] . ' (' . COM_numberFormat($count) . ')' . PHP_EOL;
+    $retval = $LANG_MONTH[$month] . ' (' . COM_numberFormat ($count) . ')' . LB;
 
     if ($count > 0) {
-        $month_url = COM_buildURL(
-            $_CONF['site_url'] . '/' . THIS_SCRIPT . '?'
-            . http_build_query(array(
-                'topic' => $dir_topic,
-                'year'  => $year,
-                'month' => $month,
-            ))
-        );
-        $retval = COM_createLink($retval, $month_url);
+        $month_url = COM_buildUrl($_CONF['site_url'] . '/'
+            . THIS_SCRIPT . '?topic=' . urlencode ($dir_topic) . '&amp;year='
+            . $year . '&amp;month=' . $month);
+        $retval =  COM_createLink($retval, $month_url);
     }
 
-    $retval .= PHP_EOL;
+    $retval .= LB;
 
     return $retval;
 }
 
 /**
- * Display navigation bar
- *
- * @param    string $dir_topic current topic
- * @param    int    $year      current year
- * @param    int    $month     current month (or 0 for year view pages)
- * @return   string            navigation bar with prev, next, and "up" links
- */
+* Display navigation bar
+*
+* @param    string  $dir_topic  current topic
+* @param    int     $year   current year
+* @param    int     $month  current month (or 0 for year view pages)
+* @return   string          navigation bar with prev, next, and "up" links
+*
+*/
 function DIR_navBar($dir_topic, $year, $month = 0)
 {
     global $_CONF, $_TABLES, $LANG05, $LANG_DIR;
 
     $retval = '';
 
-    $prevMonth = $nextMonth = $month;
-
     if ($month == 0) {
-        $prevYear = $year - 1;
-        $nextYear = $year + 1;
+        $prevyear = $year - 1;
+        $nextyear = $year + 1;
     } else {
-        $prevYear = $year;
-        $prevMonth = $month - 1;
-        if ($prevMonth == 0) {
-            $prevMonth = 12;
-            $prevYear--;
+        $prevyear = $year;
+        $prevmonth = $month - 1;
+        if ($prevmonth == 0) {
+            $prevmonth = 12;
+            $prevyear--;
         }
-        $nextYear = $year;
-        $nextMonth = $month + 1;
-        if ($nextMonth > 12) {
-            $nextMonth = 1;
-            $nextYear++;
+        $nextyear = $year;
+        $nextmonth = $month + 1;
+        if ($nextmonth > 12) {
+            $nextmonth = 1;
+            $nextyear++;
         }
     }
 
     $result = DB_query("SELECT MIN(EXTRACT(Year from date)) AS year FROM {$_TABLES['stories']}");
     $A = DB_fetchArray($result);
-    if ($prevYear < $A['year']) {
-        $prevYear = 0;
+    if ($prevyear < $A['year']) {
+        $prevyear = 0;
     }
 
-    $currentTime = time();
-    $currentYear = date('Y', $currentTime);
-    if ($nextYear > $currentYear) {
-        $nextYear = 0;
+    $currenttime = time();
+    $currentyear = date('Y', $currenttime);
+    if ($nextyear > $currentyear) {
+        $nextyear = 0;
     }
-    if (($month > 0) && ($nextYear > 0) && ($nextYear >= $currentYear)) {
-        $currentMonth = date('n', $currentTime);
-        if ($nextMonth > $currentMonth) {
-            $nextYear = 0;
+    if (($month > 0) && ($nextyear > 0) && ($nextyear >= $currentyear)) {
+        $currentmonth = date('n', $currenttime);
+        if ($nextmonth > $currentmonth) {
+            $nextyear = 0;
         }
     }
 
-    if ($prevYear > 0) {
-        $args = array(
-            'topic' => $dir_topic,
-            'year'  => $prevYear,
-        );
-
+    if ($prevyear > 0) {
+        $url = $_CONF['site_url'] . '/' . THIS_SCRIPT . '?topic='
+             . urlencode($dir_topic) . '&amp;year=' . $prevyear;
         if ($month > 0) {
-            $args['month'] = $prevMonth;
+            $url .= '&amp;month=' . $prevmonth;
         }
-        $url = COM_buildURL(
-            $_CONF['site_url'] . '/' . THIS_SCRIPT . '?' . http_build_query($args)
-        );
-        $retval .= COM_createLink($LANG05[6], COM_buildURL($url));
+        $retval .= COM_createLink($LANG05[6], COM_buildUrl($url));
     } else {
         $retval .= $LANG05[6];
     }
 
     $retval .= ' | ';
 
-    $url = COM_buildURL($_CONF['site_url'] . '/' . THIS_SCRIPT);
-    if ($dir_topic !== 'all') {
-        $url = COM_buildURL(
-            $_CONF['site_url'] . '/' . THIS_SCRIPT . '?' . http_build_query(array('topic' => $dir_topic))
-        );
+    $url = $_CONF['site_url'] . '/' . THIS_SCRIPT;
+    if ($dir_topic != 'all') {
+        $url = COM_buildUrl($url . '?topic=' . urlencode($dir_topic));
     }
 
-    $retval .= COM_createLink($LANG_DIR['nav_top'], $url);
+    $retval .= COM_createLink($LANG_DIR['nav_top'] , $url);
 
     $retval .= ' | ';
 
-    if ($nextYear > 0) {
-        $args = array(
-            'topic' => $dir_topic,
-            'year'  => $nextYear,
-        );
-
+    if ($nextyear > 0) {
+        $url = $_CONF['site_url'] . '/' . THIS_SCRIPT . '?topic='
+             . urlencode($dir_topic) . '&amp;year=' . $nextyear;
         if ($month > 0) {
-            $args['month'] = $nextMonth;
+            $url .= '&amp;month=' . $nextmonth;
         }
-
-        $url = COM_buildURL(
-            $_CONF['site_url'] . '/' . THIS_SCRIPT . '?' . http_build_query($args)
-        );
-
-        $retval .= COM_createLink($LANG05[5], COM_buildURL($url));
+        $retval .= COM_createLink($LANG05[5], COM_buildUrl($url));
     } else {
         $retval .= $LANG05[5];
     }
@@ -246,23 +226,24 @@ function DIR_navBar($dir_topic, $year, $month = 0)
 }
 
 /**
- * Display month view
- *
- * @param    Template $template  reference of the template
- * @param    string   $dir_topic current topic
- * @param    int      $year      year to display
- * @param    int      $month     month to display
- * @return   string              list of articles for the given month
- */
-function DIR_displayMonth($template, $dir_topic, $year, $month)
+* Display month view
+*
+* @param    ref    &$template   reference of the template
+* @param    string  $dir_topic  current topic
+* @param    int     $year   year to display
+* @param    int     $month  month to display
+* @return   string          list of articles for the given month
+*
+*/
+function DIR_displayMonth(&$template, $dir_topic, $year, $month)
 {
-    global $_CONF, $_TABLES, $LANG_DIR;
+    global $_CONF, $_TABLES, $LANG_MONTH, $LANG_DIR;
 
     $retval = '';
 
     $start = sprintf('%04d-%02d-01 00:00:00', $year, $month);
-    $lastDay = DIR_lastDayOfMonth($month, $year);
-    $end = sprintf('%04d-%02d-%02d 23:59:59', $year, $month, $lastDay);
+    $lastday = DIR_lastDayOfMonth($month, $year);
+    $end   = sprintf('%04d-%02d-%02d 23:59:59', $year, $month, $lastday);
 
     $sql = array();
     $sql['mysql'] = "SELECT sid,title,UNIX_TIMESTAMP(date) AS day,DATE_FORMAT(date, '%e') AS mday
@@ -270,31 +251,36 @@ function DIR_displayMonth($template, $dir_topic, $year, $month)
         WHERE (date >= '$start') AND (date <= '$end') AND (draft_flag = 0) AND (date <= NOW())
         AND ta.type = 'article' AND ta.id = sid ";
 
+    $sql['mssql'] = $sql['mysql'];
+
     $sql['pgsql'] = "SELECT sid,title,UNIX_TIMESTAMP(date) AS day,EXTRACT(day from date) AS mday
         FROM {$_TABLES['stories']}, {$_TABLES['topic_assignments']} ta
         WHERE (date >= '$start') AND (date <= '$end') AND (draft_flag = 0) AND (date <= NOW())
         AND ta.type = 'article' AND ta.id = sid ";
 
-    if ($dir_topic !== 'all') {
+    if ($dir_topic != 'all') {
         // Retrieve list of inherited topics
         $tid_list = TOPIC_getChildList($dir_topic);
         $sql['mysql'] .= " AND (ta.tid IN({$tid_list}) AND (ta.inherit = 1 OR (ta.inherit = 0 AND ta.tid = '{$dir_topic}')))";
+        $sql['mssql'] .= " AND (ta.tid IN({$tid_list}) AND (ta.inherit = 1 OR (ta.inherit = 0 AND ta.tid = '{$dir_topic}')))";
         $sql['pgsql'] .= " AND (ta.tid IN({$tid_list}) AND (ta.inherit = 1 OR (ta.inherit = 0 AND ta.tid = '{$dir_topic}')))";
     } else {
-        $sql['mysql'] .= COM_getTopicSQL('AND', 0, 'ta');
-        $sql['pgsql'] .= COM_getTopicSQL('AND', 0, 'ta');
+        $sql['mysql'] .= COM_getTopicSql('AND', 0, 'ta');
+        $sql['mssql'] .= COM_getTopicSql('AND', 0, 'ta');
+        $sql['pgsql'] .= COM_getTopicSql('AND', 0, 'ta');
     }
-    $sql['mysql'] .= COM_getPermSql('AND') . COM_getLangSQL('sid', 'AND') . " GROUP BY sid, title, date ORDER BY date ASC";
-    $sql['pgsql'] .= COM_getPermSql('AND') . COM_getLangSQL('sid', 'AND') . " GROUP BY sid, title, date ORDER BY date ASC";
+    $sql['mysql'] .= COM_getPermSql('AND') . COM_getLangSQL('sid', 'AND') . " GROUP BY sid ORDER BY date ASC";
+    $sql['mssql'] .= COM_getPermSql('AND') . COM_getLangSQL('sid', 'AND') . " GROUP BY sid ORDER BY date ASC";
+    $sql['pgsql'] .= COM_getPermSql('AND') . COM_getLangSQL('sid', 'AND') . " GROUP BY sid ORDER BY date ASC";
 
     $result = DB_query($sql);
-    $numRows = DB_numRows($result);
+    $numrows = DB_numRows($result);
 
-    if ($numRows > 0) {
+    if ($numrows > 0) {
         $entries = array();
         $mday = 0;
 
-        for ($i = 0; $i < $numRows; $i++) {
+        for ($i = 0; $i < $numrows; $i++) {
             $A = DB_fetchArray($result);
 
             if ($mday != $A['mday']) {
@@ -303,173 +289,197 @@ function DIR_displayMonth($template, $dir_topic, $year, $month)
                     $entries = array();
                 }
 
-                list($day, ) = COM_getUserDateTimeFormat($A['day'], 'shortdate');
+                $day = strftime($_CONF['shortdate'], $A['day']);
 
                 if (TEMPLATE_EXISTS) {
                     $template->set_var('section_title', $day);
-                    $retval .= $template->parse('title', 'section-title') . PHP_EOL;
+                    $retval .= $template->parse('title', 'section-title') . LB;
                 } else {
-                    $retval .= '<h3>' . $day . '</h3>' . PHP_EOL;
+                    $retval .= '<h3>' . $day . '</h3>' . LB;
                 }
 
                 $mday = $A['mday'];
             }
 
-            $url = COM_buildURL($_CONF['site_url'] . '/article.php?story=' . $A['sid']);
+            $url = COM_buildUrl($_CONF['site_url'] . '/article.php?story='
+                                . $A['sid']);
             $entries[] = COM_createLink(stripslashes($A['title']), $url);
         }
 
         if (count($entries) > 0) {
             $retval .= COM_makeList($entries);
         }
+
     } else {
         if (TEMPLATE_EXISTS) {
-            $retval .= $template->parse('message', 'no-articles') . PHP_EOL;
+            $retval .= $template->parse('message', 'no-articles') . LB;
         } else {
-            $retval .= '<p>' . $LANG_DIR['no_articles'] . '</p>' . PHP_EOL;
+            $retval .= '<p>' . $LANG_DIR['no_articles'] . '</p>' . LB;
         }
     }
 
-    $retval .= PHP_EOL;
+    $retval .= LB;
 
     return $retval;
 }
 
 /**
- * Display year view
- *
- * @param    Template $template  reference of the template
- * @param    string   $dir_topic current topic
- * @param    int      $year      year to display
- * @return   string                list of months (+ number of stories) for given year
- */
-function DIR_displayYear($template, $dir_topic, $year)
+* Display year view
+*
+* @param    ref    &$template   reference of the template
+* @param    string  $dir_topic  current topic
+* @param    int     $year   year to display
+* @return   string          list of months (+ number of stories) for given year
+*
+*/
+function DIR_displayYear(&$template, $dir_topic, $year)
 {
-    global $_TABLES, $LANG_DIR;
+    global $_CONF, $_TABLES, $LANG_MONTH, $LANG_DIR;
 
     $retval = '';
 
-    $currentTime = time();
-    $currentYear = date('Y', $currentTime);
-    $currentMonth = date('m', $currentTime);
+    $currenttime = time();
+    $currentyear  = date('Y', $currenttime);
+    $currentmonth = date('m', $currenttime);
 
     $start = sprintf('%04d-01-01 00:00:00', $year);
-    $end = sprintf('%04d-12-31 23:59:59', $year);
+    $end   = sprintf('%04d-12-31 23:59:59', $year);
 
-    $monthSql = array();
-    $monthSql['mysql'] = "SELECT MONTH(s.date) AS month, COUNT(DISTINCT s.sid) AS cnt
+    $monthsql = array();
+    $monthsql['mysql'] = "SELECT DISTINCT MONTH(s.date) AS month, COUNT(DISTINCT s.sid) AS count
         FROM {$_TABLES['stories']} s, {$_TABLES['topic_assignments']} ta
         WHERE (s.date >= '$start') AND (s.date <= '$end') AND (s.draft_flag = 0) AND (s.date <= NOW())
         AND ta.type = 'article' AND ta.id = s.sid ";
 
-    $monthSql['pgsql'] = "SELECT EXTRACT(Month from date) AS month,COUNT(DISTINCT sid) AS cnt
+    $monthsql['mssql'] = "SELECT MONTH(date) AS month,COUNT(DISTINCT sid) AS count
+        FROM {$_TABLES['stories']}, {$_TABLES['topic_assignments']} ta
+        WHERE (date >= '$start') AND (date <= '$end') AND (draft_flag = 0) AND (date <= NOW())
+        AND ta.type = 'article' AND ta.id = sid ";
+
+    $monthsql['pgsql'] = "SELECT EXTRACT(Month from date) AS month,COUNT(DISTINCT sid) AS count
         FROM {$_TABLES['stories']} , {$_TABLES['topic_assignments']} ta
         WHERE (date >= '$start') AND (date <= '$end') AND (draft_flag = 0) AND (date <= NOW())
         AND ta.type = 'article' AND ta.id = sid ";
 
-    if ($dir_topic !== 'all') {
+    if ($dir_topic != 'all') {
         // Retrieve list of inherited topics
         $tid_list = TOPIC_getChildList($dir_topic);
-        $dir_topic_escaped = DB_escapeString($dir_topic);
-        $monthSql['mysql'] .= " AND (ta.tid IN({$tid_list}) AND (ta.inherit = 1 OR (ta.inherit = 0 AND ta.tid = '{$dir_topic_escaped}')))";
-        $monthSql['pgsql'] .= " AND (ta.tid IN({$tid_list}) AND (ta.inherit = 1 OR (ta.inherit = 0 AND ta.tid = '{$dir_topic_escaped}')))";
+        $monthsql['mysql'] .= " AND (ta.tid IN({$tid_list}) AND (ta.inherit = 1 OR (ta.inherit = 0 AND ta.tid = '{$dir_topic}')))";
+        $monthsql['mssql'] .= " AND (ta.tid IN({$tid_list}) AND (ta.inherit = 1 OR (ta.inherit = 0 AND ta.tid = '{$dir_topic}')))";
+        $monthsql['pgsql'] .= " AND (ta.tid IN({$tid_list}) AND (ta.inherit = 1 OR (ta.inherit = 0 AND ta.tid = '{$dir_topic}')))";
     } else {
-        $monthSql['mysql'] .= COM_getTopicSQL('AND', 0, 'ta');
-        $monthSql['pgsql'] .= COM_getTopicSQL('AND', 0, 'ta');
+        $monthsql['mysql'] .= COM_getTopicSql('AND', 0, 'ta');
+        $monthsql['mssql'] .= COM_getTopicSql('AND', 0, 'ta');
+        $monthsql['pgsql'] .= COM_getTopicSql('AND', 0, 'ta');
     }
-    $monthSql['mysql'] .= COM_getPermSql('AND') . COM_getLangSQL('sid', 'AND') . " GROUP BY date ORDER BY date ASC";
-    $monthSql['pgsql'] .= COM_getPermSql('AND') . COM_getLangSQL('sid', 'AND') . " GROUP BY date ORDER BY DATE ASC";
+    $monthsql['mysql'] .= COM_getPermSql('AND') . COM_getLangSQL('sid', 'AND') . " GROUP BY MONTH(date) ORDER BY date ASC";
+    $monthsql['mssql'] .= COM_getPermSql('AND') . COM_getLangSQL('sid', 'AND') . " GROUP BY MONTH(date) ORDER BY month(date) ASC";
+    $monthsql['pgsql'] .= COM_getPermSql('AND') . COM_getLangSQL('sid', 'AND') . " GROUP BY month,date ORDER BY DATE ASC";
 
-    $mResult = DB_query($monthSql);
-    $numMonths = DB_numRows($mResult);
+    $mresult = DB_query($monthsql);
+    $nummonths = DB_numRows($mresult);
 
-    // The above query returns records with duplicate months.  So, let's sort them out.
-    if ($numMonths > 0) {
-        $numArticles = array_fill(1, 12, 0);
-
-        while (($M = DB_fetchArray($mResult, false)) !== false) {
-            $month = (int) $M['month'];
-            $cnt = (int) $M['cnt'];
-            $numArticles[$month] += $cnt;
-        }
-
+    if ($nummonths > 0) {
         $items = array();
-        $lastMonth = ($year == $currentYear) ? $currentMonth : 12;
+        $lastm = 1;
+        for ($j = 0; $j < $nummonths; $j++) {
+            $M = DB_fetchArray($mresult);
 
-        for ($month = 1; $month <= $lastMonth; $month++) {
-            $items[] = DIR_monthLink($dir_topic, $year, $month, $numArticles[$month]);
+            for (; $lastm < $M['month']; $lastm++) {
+                $items[] = DIR_monthLink($dir_topic, $year, $lastm, 0);
+            }
+            $lastm = $M['month'] + 1;
+
+            $items[] = DIR_monthLink($dir_topic, $year, $M['month'], $M['count']);
         }
 
+        if ($year == $currentyear) {
+            $fillm = $currentmonth;
+        } else {
+            $fillm = 12;
+        }
+
+        if ($lastm <= $fillm) {
+            for (; $lastm <= $fillm; $lastm++) {
+                $items[] = DIR_monthLink($dir_topic, $year, $lastm, 0);
+            }
+        }
         $retval .= COM_makeList($items);
     } else {
         if (TEMPLATE_EXISTS) {
-            $retval .= $template->parse('message', 'no-articles') . PHP_EOL;
+            $retval .= $template->parse('message', 'no-articles') . LB;
         } else {
-            $retval .= '<p>' . $LANG_DIR['no_articles'] . '</p>' . PHP_EOL;
+            $retval .= '<p>' . $LANG_DIR['no_articles'] . '</p>' . LB;
         }
     }
 
-    $retval .= PHP_EOL;
+    $retval .= LB;
 
     return $retval;
 }
 
 /**
- * Display main view (list of years)
- * Displays an overview of all the years and months, starting with the first
- * year for which a story has been posted. Can optionally display a list of
- * the stories for the current month at the top of the page.
- *
- * @param    Template $template  reference of the template
- * @param    string   $dir_topic current topic
- * @return   string              list of all the years in the db
- */
-function DIR_displayAll($template, $dir_topic)
+* Display main view (list of years)
+*
+* Displays an overview of all the years and months, starting with the first
+* year for which a story has been posted. Can optionally display a list of
+* the stories for the current month at the top of the page.
+*
+* @param    ref    &$template  reference of the template
+* @param    string  $dir_topic current topic
+* @return   string             list of all the years in the db
+*
+*/
+function DIR_displayAll(&$template, $dir_topic)
 {
     global $_TABLES, $LANG_DIR;
 
     $retval = '';
 
-    $yearSql = array(
-        'mysql' =>
-            "SELECT DISTINCT YEAR(date) AS year
+    $yearsql = array();
+    $yearsql['mysql'] = "SELECT DISTINCT YEAR(date) AS year,date
         FROM {$_TABLES['stories']}, {$_TABLES['topic_assignments']} ta
         WHERE (draft_flag = 0) AND (date <= NOW())
-        AND ta.type = 'article' AND ta.id = sid "
-            . COM_getTopicSQL('AND', 0, 'ta') . COM_getPermSql('AND') . COM_getLangSQL('sid', 'AND')
-            . " GROUP BY date ORDER BY date DESC",
+        AND ta.type = 'article' AND ta.id = sid
+        " . COM_getTopicSql('AND', 0, 'ta') . COM_getPermSql('AND')  . COM_getLangSQL('sid', 'AND');
 
-        'pgsql' =>
-            "SELECT EXTRACT(YEAR from date) AS year
+    $yearsql['mssql'] = "SELECT YEAR(date) AS year
         FROM {$_TABLES['stories']}, {$_TABLES['topic_assignments']} ta
         WHERE (draft_flag = 0) AND (date <= NOW())
-        AND ta.type = 'article' AND ta.id = sid "
-            . COM_getTopicSQL('AND', 0, 'ta') . COM_getPermSql('AND') . COM_getLangSQL('sid', 'AND')
-            . " GROUP BY year ORDER BY year DESC",
-    );
-    $yResult = DB_query($yearSql);
-    $years = array();
+        AND ta.type = 'article' AND ta.id = sid
+        " . COM_getTopicSql('AND', 0, 'ta') . COM_getPermSql('AND')  . COM_getLangSQL('sid', 'AND');
 
-    while (($A = DB_fetchArray($yResult, false))) {
-        $years[] = $A['year'];
-    }
+    $yearsql['pgsql'] = "SELECT EXTRACT( YEAR from date) AS year
+        FROM {$_TABLES['stories']}, {$_TABLES['topic_assignments']} ta
+        WHERE (draft_flag = 0) AND (date <= NOW())
+        AND ta.type = 'article' AND ta.id = sid
+        " . COM_getTopicSql('AND', 0, 'ta') . COM_getPermSql('AND')  . COM_getLangSQL('sid', 'AND');
 
-    if (count($years) > 0) {
-        foreach ($years as $year) {
+    $ysql = array();
+    $ysql['mysql'] = $yearsql['mysql'] . " GROUP BY YEAR(date) ORDER BY date DESC";
+    $ysql['mssql'] = $yearsql['mssql'] . " GROUP BY YEAR(date) ORDER BY YEAR(date) DESC";
+    $ysql['pgsql'] = $yearsql['pgsql'] . " GROUP BY year,date ORDER BY year DESC";
+
+    $yresult = DB_query($ysql);
+    $numyears = DB_numRows($yresult);
+    if ($numyears > 0) {
+        for ($i = 0; $i < $numyears; $i++) {
+            $Y = DB_fetchArray($yresult);
+
             if (TEMPLATE_EXISTS) {
-                $template->set_var('section_title', $year);
-                $retval .= $template->parse('title', 'section-title') . PHP_EOL;
+                $template->set_var('section_title', $Y['year']);
+                $retval .= $template->parse('title', 'section-title') . LB;
             } else {
-                $retval .= '<h3>' . $year . '</h3>' . PHP_EOL;
+                $retval .= '<h3>' . $Y['year'] . '</h3>' . LB;
             }
 
-            $retval .= DIR_displayYear($template, $dir_topic, $year);
+            $retval .= DIR_displayYear($template, $dir_topic, $Y['year']);
         }
     } else {
         if (TEMPLATE_EXISTS) {
-            $retval .= $template->parse('message', 'no-articles') . PHP_EOL;
+            $retval .= $template->parse('message', 'no-articles') . LB;
         } else {
-            $retval .= '<p>' . $LANG_DIR['no_articles'] . '</p>' . PHP_EOL;
+            $retval .= '<p>' . $LANG_DIR['no_articles'] . '</p>' . LB;
         }
     }
 
@@ -477,52 +487,46 @@ function DIR_displayAll($template, $dir_topic)
 }
 
 /**
- * Return a canonical link
- *
- * @param    string $dir_topic current topic or 'all'
- * @param    int    $year      current year
- * @param    int    $month     current month
- * @return   string          <link rel="canonical"> tag
- */
+* Return a canonical link
+*
+* @param    string  $dir_topic  current topic or 'all'
+* @param    int     $year   current year
+* @param    int     $month  current month
+* @return   string          <link rel="canonical"> tag
+*
+*/
 function DIR_canonicalLink($dir_topic, $year = 0, $month = 0)
 {
     global $_CONF;
 
     $script = $_CONF['site_url'] . '/' . THIS_SCRIPT;
-    $args = array(
-        'topic' => $dir_topic,
-    );
 
+    $tp = '?topic=' . urlencode($dir_topic);
+    $parts = '';
     if (($year != 0) && ($month != 0)) {
-        $args['year'] = $year;
-        $args['month'] = $month;
+        $parts .= "&amp;year=$year&amp;month=$month";
     } elseif ($year != 0) {
-        $args['year'] = $year;
-    } elseif ($dir_topic === 'all') {
-        unset($args['topic']);
+        $parts .= "&amp;year=$year";
+    } elseif ($dir_topic == 'all') {
+        $tp = '';
     }
+    $url = COM_buildUrl($script . $tp . $parts);
 
-    if (count($args) > 0) {
-        $url = COM_buildURL($script . '?' . http_build_query($args));
-    } else {
-        $url = COM_buildURL($script);
-    }
-
-    return '<link rel="canonical" href="' . $url . '"' . XHTML . '>' . PHP_EOL;
+    return '<link rel="canonical" href="' . $url . '"' . XHTML . '>' . LB;
 }
 
 // MAIN
 $display = '';
 
-if (isset($_POST['topic'], $_POST['year'], $_POST['month'])) {
-    $dir_topic = \Geeklog\Input::post('topic');
-    $year = (int) \Geeklog\Input::post('year');
-    $month = (int) \Geeklog\Input::post('month');
+if (isset($_POST['topic']) && isset($_POST['year']) && isset($_POST['month'])) {
+    $dir_topic = $_POST['topic'];
+    $year = $_POST['year'];
+    $month = $_POST['month'];
 } else {
     COM_setArgNames(array('topic', 'year', 'month'));
     $dir_topic = COM_getArgument('topic');
-    $year = (int) COM_getArgument('year');
-    $month = (int) COM_getArgument('month');
+    $year = COM_getArgument('year');
+    $month = COM_getArgument('month');
 }
 
 $dir_topic = COM_applyFilter($dir_topic);
@@ -531,17 +535,16 @@ if (empty($dir_topic)) {
 }
 
 // Topic stuff already set in lib-common but need to double check if URL_Write is_a enabled
-// Set topic for rest of site
-if ($dir_topic === 'all') {
+//Set topic for rest of site
+if ($dir_topic == 'all') {
     $topic = '';
 } else {
     $topic = $dir_topic;
 }
-
 // See if user has access to view topic.
 if ($topic != '') {
-    $test_topic = DB_getItem($_TABLES['topics'], 'tid', "tid = '" . DB_escapeString($topic) . "' " . COM_getPermSQL('AND'));
-    if (strtolower($topic) !== strtolower($test_topic)) {
+    $test_topic = DB_getItem($_TABLES['topics'], 'tid', "tid = '$topic' " . COM_getPermSQL('AND'));
+    if (strtolower($topic) != strtolower($test_topic)) {
         $topic = '';
         $dir_topic = 'all';
     } else {
@@ -550,6 +553,7 @@ if ($topic != '') {
     }
 }
 
+$year = COM_applyFilter($year, true);
 if ($year < 0) {
     $year = 0;
 }
@@ -559,11 +563,12 @@ if (($month < 1) || ($month > 12)) {
 }
 
 $dir_topicName = '';
-if ($dir_topic !== 'all') {
-    $dir_topicName = DB_getItem($_TABLES['topics'], 'topic', "tid = '" . DB_escapeString($dir_topic) . "'");
+if ($dir_topic != 'all') {
+    $dir_topicName = DB_getItem($_TABLES['topics'], 'topic',
+                            "tid = '" . DB_escapeString($dir_topic) . "'");
 }
 
-$template = null;
+$template = NULL;
 if (TEMPLATE_EXISTS) {
     $template = COM_newTemplate($_CONF['path_layout']);
     $template->set_file('t_directory', 'directory.thtml');
@@ -573,34 +578,36 @@ if (TEMPLATE_EXISTS) {
 }
 
 if (($year != 0) && ($month != 0)) {
-    $title = sprintf($LANG_DIR['title_month_year'], $LANG_MONTH[$month], $year);
-    if ($dir_topic !== 'all') {
+    $title = sprintf ($LANG_DIR['title_month_year'],
+                      $LANG_MONTH[$month], $year);
+    if ($dir_topic != 'all') {
         $title .= ': ' . $dir_topicName;
     }
-
-    $headerCode = DIR_canonicalLink($dir_topic, $year, $month);
+    $headercode = DIR_canonicalLink($dir_topic, $year, $month);
     $directory = DIR_displayMonth($template, $dir_topic, $year, $month);
     $page_navigation = DIR_navBar($dir_topic, $year, $month);
     $block_title = $LANG_MONTH[$month] . ' ' . $year;
     $val_year = $year;
     $val_month = $month;
-} elseif ($year != 0) {
+
+} else if ($year != 0) {
     $title = sprintf($LANG_DIR['title_year'], $year);
-    if ($dir_topic !== 'all') {
+    if ($dir_topic != 'all') {
         $title .= ': ' . $dir_topicName;
     }
-    $headerCode = DIR_canonicalLink($dir_topic, $year);
+    $headercode = DIR_canonicalLink($dir_topic, $year);
     $directory = DIR_displayYear($template, $dir_topic, $year);
     $page_navigation = DIR_navBar($dir_topic, $year);
     $block_title = $year;
     $val_year = $year;
     $val_month = 0;
+
 } else {
     $title = $LANG_DIR['title'];
-    if ($dir_topic !== 'all') {
+    if ($dir_topic != 'all') {
         $title .= ': ' . $dir_topicName;
     }
-    $headerCode = DIR_canonicalLink($dir_topic);
+    $headercode = DIR_canonicalLink($dir_topic);
     $directory = DIR_displayAll($template, $dir_topic);
     $page_navigation = '';
     $block_title = $LANG_DIR['title'];
@@ -608,17 +615,17 @@ if (($year != 0) && ($month != 0)) {
     $val_month = 0;
 
     if ($conf_list_current_month) {
-        $currentTime = time();
-        $currentYear = date('Y', $currentTime);
-        $currentMonth = date('n', $currentTime);
-        $thisMonth = COM_startBlock($LANG_MONTH[$currentMonth])
-            . DIR_displayMonth($template, $dir_topic,
-                $currentYear, $currentMonth)
-            . COM_endBlock();
+        $currenttime = time();
+        $currentyear  = date('Y', $currenttime);
+        $currentmonth = date('n', $currenttime);
+        $thismonth = COM_startBlock($LANG_MONTH[$currentmonth])
+                   . DIR_displayMonth($template, $dir_topic,
+                         $currentyear, $currentmonth)
+                   . COM_endBlock();
         if (TEMPLATE_EXISTS) {
-            $template->set_var('current_month', $thisMonth);
+            $template->set_var('current_month', $thismonth);
         } else {
-            $display .= $thisMonth;
+            $display .= $thismonth;
         }
     }
 }
@@ -638,19 +645,15 @@ if (TEMPLATE_EXISTS) {
     $template->parse('output', 't_directory');
     $display .= $template->finish($template->get_var('output'));
 } else {
-    $display .= COM_startBlock($block_title)
-        . DIR_topicList($dir_topic, $val_year, $val_month) . PHP_EOL
-        . $directory
-        . '<div class="pagenav">' . $page_navigation . '</div>' . PHP_EOL
-        . COM_endBlock();
+    $display .= COM_startBlock($block_title);
+    $display .= DIR_topicList($dir_topic, $val_year, $val_month) . LB;
+    $display .= $directory;
+    $display .= '<div class="pagenav">' . $page_navigation . '</div>' . LB;
+    $display .= COM_endBlock();
 }
 
-$display = COM_createHTMLDocument(
-    $display,
-    array(
-        'pagetitle'  => $title,
-        'headercode' => $headerCode,
-    )
-);
-
+$display = COM_createHTMLDocument($display, array('pagetitle' => $title,
+    'headercode' => $headercode));
 COM_output($display);
+
+?>

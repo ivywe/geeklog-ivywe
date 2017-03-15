@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 2.1                                                               |
+// | Geeklog 1.6                                                               |
 // +---------------------------------------------------------------------------+
 // | upload.class.php                                                          |
 // |                                                                           |
@@ -31,281 +31,273 @@
 // +---------------------------------------------------------------------------+
 
 /**
- * This class will allow you to securely upload one or more files from a form
- * submitted via POST method.  Please read documentation as there are a number of
- * security related features that will come in handy for you.
- *
- * @author       Tony Bibbs, tony AT tonybibbs DOT com
- */
-class Upload
+* This class will allow you to securely upload one or more files from a form
+* submitted via POST method.  Please read documentation as there are a number of
+* security related features that will come in handy for you.
+*
+* @author       Tony Bibbs, tony AT tonybibbs DOT com
+*
+*/
+class upload
 {
     /**
-     * @var array
-     */
-    private $_errors = array();
+    * @access private
+    */
+    var $_errors = array();               // Array
+    /**
+    * @access private
+    */
+    var $_warnings = array();             // Array
+    /**
+    * @access private
+    */
+    var $_debugMessages = array();        // Array
+    /**
+    * @access private
+    */
+    var $_allowedMimeTypes = array();     // Array
+    /**
+    * @access private
+    */
+    var $_availableMimeTypes = array();   // Array
+    /**
+    * @access private
+    */
+    var $_filesToUpload = array();        // Array
+    /**
+    * @access private
+    */
+    var $_currentFile = array();          // Array
+    /**
+    * @access private
+    */
+    var $_allowedIPS = array();           // Array
+    /**
+    * @access private
+    */
+    var $_uploadedFiles = array();        // Array
+    /**
+    * @access private
+    */
+    var $_maxImageWidth = 300;            // Pixels
+    /**
+    * @access private
+    */
+    var $_maxImageHeight = 300;           // Pixels
+    /**
+    * @access private
+    */
+    var $_maxFileSize = 1048576;          // Long, in bytes
+    /**
+    * @access private
+    */
+    var $_jpegQuality = 0;                // int (0-100)
+    /**
+    * @access private
+    */
+    var $_pathToMogrify = '';             // String
+    /**
+    * @access private
+    */
+    var $_pathToNetPBM= '';               // String
+    /**
+    * @access private
+    */
+    var $_imageLib = '';                 // Integer
+    /**
+    * @access private
+    */
+    var $_autoResize = false;             // boolean
+    /**
+    * @access private
+    */
+    var $_keepOriginalImage = false;      // boolean
+    /**
+    * @access private
+    */
+    var $_maxFileUploadsPerForm = 5;
+    /**
+    * @access private
+    */
+    var $_fileUploadDirectory = '';       // String
+    /**
+    * @access private
+    */
+    var $_fileNames = '';                 // String
+    /**
+    * @access private
+    */
+    var $_permissions = '';               // String
+    /**
+    * @access private
+    */
+    var $_logFile = '';                   // String
+    /**
+    * @access private
+    */
+    var $_doLogging = false;              // Boolean
+    /**
+    * @access private
+    */
+    var $_continueOnError = false;        // Boolean
+    /**
+    * @access private
+    */
+    var $_debug = false;                  // Boolean
+    /**
+    * @access private
+    */
+    var $_limitByIP = false;              // Boolean
+    /**
+    * @access private
+    */
+    var $_numSuccessfulUploads = 0;       // Integer
+    /**
+    * @access private
+    */
+    var $_imageIndex = 0;                 // Integer
+    /**
+    * @access private
+    */
+    var $_ignoreMimeTest = false;       // Boolean
 
     /**
-     * @var array
-     */
-    private $_warnings = array();
+    * @access private
+    */
+    var $_wasResized = false;             // Boolean
+
 
     /**
-     * @var array
-     */
-    private $_debugMessages = array();
-
-    /**
-     * @var array
-     */
-    private $_allowedMimeTypes = array();
-
-    /**
-     * @var array
-     */
-    private $_availableMimeTypes = array();
-
-    /**
-     * @var array
-     */
-    private $_filesToUpload = array();
-
-    /**
-     * @var array
-     */
-    private $_currentFile = array();
-
-    /**
-     * @var array
-     */
-    private $_allowedIPS = array();
-
-    /**
-     * @var array
-     */
-    private $_uploadedFiles = array();
-
-    /**
-     * @var int Pixels
-     */
-    private $_maxImageWidth = 300;
-
-    /**
-     * @var int Pixels
-     */
-    private $_maxImageHeight = 300;
-
-    /**
-     * @var int in bytes
-     */
-    private $_maxFileSize = 1048576;
-
-    /**
-     * @var int (0-100)
-     */
-    private $_jpegQuality = 0;
-
-    /**
-     * @var string
-     */
-    private $_pathToMogrify = '';
-
-    /**
-     * @var string
-     */
-    private $_pathToNetPBM = '';
-
-    /**
-     * @var string
-     */
-    private $_imageLib = '';
-
-    /**
-     * @var bool
-     */
-    private $_autoResize = false;
-
-    /**
-     * @var bool
-     */
-    private $_keepOriginalImage = false;
-
-    /**
-     * @var int
-     */
-    private $_maxFileUploadsPerForm = 5;
-
-    /**
-     * @var string
-     */
-    private $_fileUploadDirectory = '';
-
-    /**
-     * @var string
-     */
-    private $_fileNames = '';
-
-    /**
-     * @var string
-     */
-    private $_permissions = '';
-
-    /**
-     * @var string
-     */
-    private $_logFile = '';
-
-    /**
-     * @var bool
-     */
-    private $_doLogging = false;
-
-    /**
-     * @var bool
-     */
-    private $_continueOnError = false;
-
-    /**
-     * @var bool
-     */
-    private $_debug = false;
-
-    /**
-     * @var bool
-     */
-    private $_limitByIP = false;
-
-    /**
-     * @var int
-     */
-    private $_imageIndex = 0;
-
-    /**
-     * @var bool
-     */
-    private $_ignoreMimeTest = false;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
+    * Constructor
+    *
+    */
+    function upload()
     {
         $this->_setAvailableMimeTypes();
     }
 
-    /**
-     * Adds a warning that was encountered
-     *
-     * @param    string $warningText Text of warning
-     */
-    private function _addWarning($warningText)
-    {
-        $numWarnings = count($this->_warnings);
-        $numWarnings = $numWarnings + 1;
-        $this->_warnings[$numWarnings] = $warningText;
+    // PRIVATE METHODS
 
+    /**
+    * Adds a warning that was encountered
+    *
+    * @access   private
+    * @param    string  $warningText     Text of warning
+    *
+    */
+    function _addWarning($warningText)
+    {
+        $nwarnings = count($this->_warnings);
+        $nwarnings = $nwarnings + 1;
+        $this->_warnings[$nwarnings] = $warningText;
         if ($this->loggingEnabled()) {
-            $this->_logItem('Warning', $warningText);
+            $this->_logItem('Warning',$warningText);
         }
     }
 
     /**
-     * Adds an error that was encountered
-     *
-     * @param    string $errorText Text of error
-     */
-    private function _addError($errorText)
+    * Adds an error that was encountered
+    *
+    * @access   private
+    * @param    string      $errorText      Text of error
+    *
+    */
+    function _addError($errorText)
     {
-        $numErrors = count($this->_errors);
-        $numErrors = $numErrors + 1;
-        $this->_errors[$numErrors] = $errorText;
-
+        $nerrors = count($this->_errors);
+        $nerrors = $nerrors + 1;
+        $this->_errors[$nerrors] = $errorText;
         if ($this->loggingEnabled()) {
-            $this->_logItem('Error', $errorText);
+            $this->_logItem('Error',$errorText);
         }
     }
 
     /**
-     * Adds a debug message
-     *
-     * @param        string $debugText Text of debug message
-     */
-    private function _addDebugMsg($debugText)
+    * Adds a debug message
+    *
+    * @access   private
+    * @param        string      $debugText      Text of debug message
+    *
+    */
+    function _addDebugMsg($debugText)
     {
-        $numMessages = count($this->_debugMessages);
-        $numMessages = $numMessages + 1;
-        $this->_debugMessages[$numMessages] = $debugText;
-
+        $nmsgs = count($this->_debugMessages);
+        $nmsgs = $nmsgs + 1;
+        $this->_debugMessages[$nmsgs] = $debugText;
         if ($this->loggingEnabled()) {
-            $this->_logItem('Debug', $debugText);
+            $this->_logItem('Debug',$debugText);
         }
     }
 
     /**
-     * Logs an item to the log file
-     *
-     * @param    string $logType can be 'warning' or 'error'
-     * @param    string $text    Text to log to log file
-     * @return   boolean     Whether or not we successfully logged an item
-     */
-    private function _logItem($logType, $text)
+    * Logs an item to the log file
+    *
+    * @access   private
+    * @param    string      $logtype    can be 'warning' or 'error'
+    * @param    string      $text       Text to log to log file
+    * @return   boolean     Whether or not we successfully logged an item
+    *
+    */
+    function _logItem($logtype, $text)
     {
         $timestamp = strftime("%c");
         if (!$file = fopen($this->_logFile, 'a')) {
             // couldn't open log file for writing so let's disable logging and add an error
             $this->setLogging(false);
             $this->_addError('Error writing to log file: ' . $this->_logFile . '.  Logging has been disabled');
-
             return false;
         }
-        fputs($file, "{$timestamp} - {$logType}: {$text} " . PHP_EOL);
+        fputs ($file, "$timestamp - $logtype: $text \n");
         fclose($file);
-
         return true;
     }
 
     /**
-     * Defines superset of available Mime types.
-     *
-     * @param    array $mimeTypes string array of valid mime types this object will accept
-     */
-    private function _setAvailableMimeTypes($mimeTypes = array())
+    * Defines superset of available Mime types.
+    *
+    * @access   private
+    * @param    array   $mimeTypes  string array of valid mime types this object will accept
+    *
+    */
+    function _setAvailableMimeTypes($mimeTypes = array())
     {
-        if (count($mimeTypes) === 0) {
+        if (count($mimeTypes) == 0) {
             $this->_availableMimeTypes =
-                array(
-                    'application/x-gzip-compressed' => '.tar.gz,.tgz',
-                    'application/x-zip-compressed'  => '.zip',
-                    'application/x-tar'             => '.tar',
-                    'application/x-gtar'            => '.tar',
-                    'text/plain'                    => '.phps,.txt,.inc',
-                    'text/html'                     => '.html,.htm',
-                    'image/bmp'                     => '.bmp,.ico',
-                    'image/gif'                     => '.gif',
-                    'image/pjpeg'                   => '.jpg,.jpeg',
-                    'image/jpeg'                    => '.jpg,.jpeg',
-                    'image/png'                     => '.png',
-                    'image/x-png'                   => '.png',
-                    'audio/mpeg'                    => '.mp3',
-                    'audio/wav'                     => '.wav',
-                    'application/pdf'               => '.pdf',
-                    'application/x-shockwave-flash' => '.swf',
-                    'application/msword'            => '.doc',
-                    'application/vnd.ms-excel'      => '.xls',
-                    'application/octet-stream'      => '.fla,.psd',
-                );
+            array(
+                'application/x-gzip-compressed'     => '.tar.gz,.tgz',
+                'application/x-zip-compressed'      => '.zip',
+                'application/x-tar'                 => '.tar',
+                'application/x-gtar'                => '.tar',
+                'text/plain'                        => '.phps,.txt,.inc',
+                'text/html'                         => '.html,.htm',
+                'image/bmp'                         => '.bmp,.ico',
+                'image/gif'                         => '.gif',
+                'image/pjpeg'                       => '.jpg,.jpeg',
+                'image/jpeg'                        => '.jpg,.jpeg',
+                'image/png'                         => '.png',
+                'image/x-png'                       => '.png',
+                'audio/mpeg'                        => '.mp3',
+                'audio/wav'                         => '.wav',
+                'application/pdf'                   => '.pdf',
+                'application/x-shockwave-flash'     => '.swf',
+                'application/msword'                => '.doc',
+                'application/vnd.ms-excel'          => '.xls',
+                'application/octet-stream'          => '.fla,.psd'
+            );
         } else {
             $this->_availableMimeTypes = $mimeTypes;
         }
     }
 
     /**
-     * Checks if current file is an image
-     *
-     * @return boolean   returns true if file is an image, otherwise false
-     */
-    private function _isImage()
+    * Checks if current file is an image
+    *
+    * @access private
+    * @return boolean   returns true if file is an image, otherwise false
+    */
+    function _isImage()
     {
-        if (strpos($this->_currentFile['type'], 'image/') === 0) {
+        if (strpos ($this->_currentFile['type'], 'image/') === 0) {
             $isImage = true;
         } else {
             $isImage = false;
@@ -325,33 +317,40 @@ class Upload
     }
 
     /**
-     * Verifies the file size meets specified size limitations
-     *
-     * @return boolean   returns true of file size is within our limits otherwise false
-     */
-    private function _fileSizeOk()
+    * Verifies the file size meets specified size limitations
+    *
+    * @access private
+    * @return boolean   returns true of file size is within our limits otherwise false
+    */
+    function _fileSizeOk()
     {
         if ($this->_debug) {
             $this->_addDebugMsg('File size for ' . $this->_currentFile['name'] . ' is ' . $this->_currentFile['size'] . ' bytes');
         }
 
-        return ($this->_currentFile['size'] <= $this->_maxFileSize);
+        if ($this->_currentFile['size'] > $this->_maxFileSize) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /**
-     * Checks to see if file is an image and, if so, whether or not
-     * it meets width and height limitations
-     *
-     * @param  bool $doResizeCheck
-     * @return bool returns true if image height/width meet our limitations otherwise false
-     */
-    private function _imageSizeOK($doResizeCheck = true)
+    * Checks to see if file is an image and, if so, whether or not
+    * it meets width and height limitations
+    *
+    * @access   private
+    * @return   boolean     returns true if image height/width meet our limitations otherwise false
+    *
+    */
+    function _imageSizeOK($doResizeCheck=true)
     {
         if (!$this->_isImage()) {
             return true;
         }
 
-        $imageInfo = $this->_getImageDimensions();
+        $imageInfo = $this->_getImageDimensions($this->_currentFile['tmp_name']);
+
         $sizeOK = true;
 
         if ($this->_debug) {
@@ -360,7 +359,7 @@ class Upload
         }
 
         // If user set _autoResize then ignore these settings and try to resize on upload
-        if (($doResizeCheck && !($this->_autoResize)) || (!($doResizeCheck))) {
+        if (($doResizeCheck AND !($this->_autoResize)) OR (!($doResizeCheck))) {
             if ($imageInfo['width'] > $this->_maxImageWidth) {
                 $sizeOK = false;
                 if ($doResizeCheck) {
@@ -385,68 +384,70 @@ class Upload
     }
 
     /**
-     * Gets the width and height of an image
-     *
-     * @return array     Array with width and height of current image
-     */
-    private function _getImageDimensions()
+    * Gets the width and height of an image
+    *
+    * @access private
+    * @return array     Array with width and height of current image
+    */
+    function _getImageDimensions()
     {
-        $dimensions = getimagesize($this->_currentFile['tmp_name']);
+        $dimensions = GetImageSize($this->_currentFile['tmp_name']);
         if ($this->_debug) {
             $this->_addDebugMsg('in _getImageDimensions I got a width of ' . $dimensions[0] . ', and a height of ' . $dimensions[1]);
         }
-
         return array('width' => $dimensions[0], 'height' => $dimensions[1]);
     }
 
     /**
-     * Calculate the factor to scale images with if they're not meeting
-     * the size restrictions.
-     *
-     * @param    int $width  width of the unscaled image
-     * @param    int $height height of the unscaled image
-     * @return   double              resize factor
-     */
-    private function _calcSizeFactor($width, $height) // 1000
+    * Calculate the factor to scale images with if they're not meeting
+    * the size restrictions.
+    *
+    * @access   private
+    * @param    int     $width      width of the unscaled image
+    * @param    int     $height     height of the unscaled image
+    * @return   double              resize factor
+    *
+    */
+    function _calcSizefactor ($width, $height) // 1000
     {
         if (($width > $this->_maxImageWidth) ||
-            ($height > $this->_maxImageHeight)
-        ) {
-            // get both size factors that would resize one dimension correctly
-            $sizeFactorWidth = (double) ($this->_maxImageWidth / $width);
-            $sizeFactorHeight = (double) ($this->_maxImageHeight / $height);
-
+                ($height > $this->_maxImageHeight)) {
+            // get both sizefactors that would resize one dimension correctly
+            $sizefactor_w = (double) ($this->_maxImageWidth / $width);
+            $sizefactor_h = (double) ($this->_maxImageHeight / $height);
             // check if the height is ok after resizing the width
-            if (($height * $sizeFactorWidth) > ($this->_maxImageHeight)) {
-                // if no, get new size factor from height instead
-                $sizeFactor = $sizeFactorHeight;
+            if ( ($height * $sizefactor_w) > ($this->_maxImageHeight) ){
+                // if no, get new sizefactor from height instead
+                $sizefactor = $sizefactor_h;
             } else {
                 // otherwise the width factor it ok to fit max dimensions
-                $sizeFactor = $sizeFactorWidth;
+                $sizefactor = $sizefactor_w;
             }
         } else {
-            $sizeFactor = 1.0;
+            $sizefactor = 1.0;
         }
 
-        return $sizeFactor;
+        return $sizefactor;
     }
 
     /**
-     * Keep the original (unscaled) image file, if configured.
-     *
-     * @param    string $filename name of uploaded file
-     * @return   boolean             true: okay, false: an error occurred
-     */
-    private function _keepOriginalFile($filename)
+    * Keep the original (unscaled) image file, if configured.
+    *
+    * @access   private
+    * @param    string  $filename   name of uploaded file
+    * @return   boolean             true: okay, false: an error occured
+    *
+    */
+    function _keepOriginalFile ($filename)
     {
         if ($this->_keepOriginalImage) {
-            $lFilename_large = substr_replace($this->_getDestinationName(),
-                '_original.', strrpos($this->_getDestinationName(), '.'), 1);
+            $lFilename_large = substr_replace ($this->_getDestinationName (),
+                '_original.', strrpos ($this->_getDestinationName (), '.'), 1);
             $lFilename_large_complete = $this->_fileUploadDirectory . '/'
-                . $lFilename_large;
-            if (!copy($filename, $lFilename_large_complete)) {
-                $this->_addError("Couldn't copy $filename to $lFilename_large_complete.  You'll need to remove both files.");
-                $this->printErrors();
+                                      .  $lFilename_large;
+            if (!copy ($filename, $lFilename_large_complete)) {
+                $this->_addError ("Couldn't copy $filename to $lFilename_large_complete.  You'll need to remove both files.");
+                $this->printErrors ();
 
                 return false;
             }
@@ -456,11 +457,13 @@ class Upload
     }
 
     /**
-     * Gets destination file name for current file
-     *
-     * @return string    returns destination file name
-     */
-    private function _getDestinationName()
+    * Gets destination file name for current file
+    *
+    * @access private
+    * @return string    returns destination file name
+    *
+    */
+    function _getDestinationName()
     {
         if (is_array($this->_fileNames)) {
             $name = $this->_fileNames[$this->_imageIndex];
@@ -474,11 +477,13 @@ class Upload
     }
 
     /**
-     * Gets permissions for a file.  This is used to do a chmod
-     *
-     * @return   string  returns final permissions for current file
-     */
-    private function _getPermissions()
+    * Gets permissions for a file.  This is used to do a chmod
+    *
+    * @access   private
+    * @return   string  returns final permisisons for current file
+    *
+    */
+    function _getPermissions()
     {
         if (is_array($this->_permissions)) {
             if (count($this->_permissions) > 1) {
@@ -496,24 +501,23 @@ class Upload
     }
 
     /**
-     * This function actually completes the upload of a file
-     *
-     * @return   boolean     true if copy succeeds otherwise false
-     */
-    private function _copyFile()
+    * This function actually completes the upload of a file
+    *
+    * @access   private
+    * @return   boolean     true if copy succeeds otherwise false
+    *
+    */
+    function _copyFile()
     {
         if (!is_writable($this->_fileUploadDirectory)) {
             // Developer didn't check return value of setPath() method which would
             // have told them the upload directory was not writable.  Error out now
             $this->_addError('Specified upload directory, ' . $this->_fileUploadDirectory . ' exists but is not writable');
-
             return false;
         }
-
         $sizeOK = true;
-
-        if (!($this->_imageSizeOK(false)) && $this->_autoResize) {
-            $imageInfo = $this->_getImageDimensions();
+        if (!($this->_imageSizeOK(false)) AND $this->_autoResize) {
+            $imageInfo = $this->_getImageDimensions($this->_currentFile['tmp_name']);
             if ($imageInfo['width'] > $this->_maxImageWidth) {
                 $sizeOK = false;
             }
@@ -528,8 +532,7 @@ class Upload
             $returnMove = rename($this->_currentFile['tmp_name'], $this->_fileUploadDirectory . '/' . $this->_getDestinationName());
         } else {
             if (isset($this->_currentFile['_gl_data_dir']) &&
-                $this->_currentFile['_gl_data_dir']
-            ) {
+                    $this->_currentFile['_gl_data_dir']) {
                 // uploaded file was involved in a recreated POST after an expired
                 // token - can't use move_uploaded_file() here
                 $returnMove = rename($this->_currentFile['tmp_name'], $this->_fileUploadDirectory . '/' . $this->_getDestinationName());
@@ -540,82 +543,85 @@ class Upload
 
         if (!($sizeOK)) {
             // OK, resize
-            $sizeFactor = $this->_calcSizeFactor($imageInfo['width'],
-                $imageInfo['height']);
-            $newWidth = (int) ($imageInfo['width'] * $sizeFactor);
-            $newHeight = (int) ($imageInfo['height'] * $sizeFactor);
-            $this->_addDebugMsg('Going to resize image to ' . $newWidth . 'x'
-                . $newHeight . ' using ' . $this->_imageLib);
+            $sizefactor = $this->_calcSizefactor ($imageInfo['width'],
+                                                  $imageInfo['height']);
+            $newwidth = (int) ($imageInfo['width'] * $sizefactor);
+            $newheight = (int) ($imageInfo['height'] * $sizefactor);
+            $this->_addDebugMsg ('Going to resize image to ' . $newwidth . 'x'
+                                 . $newheight . ' using ' . $this->_imageLib);
 
             if ($this->_imageLib == 'imagemagick') {
-                $newSize = $newWidth . 'x' . $newHeight;
+
+                $newsize = $newwidth . 'x' . $newheight;
                 $quality = '';
                 if ($this->_jpegQuality > 0) {
                     $quality = sprintf(' -quality %d', $this->_jpegQuality);
                 }
-                $cmd = $this->_pathToMogrify . $quality . ' -resize ' . $newSize . ' "' . $this->_fileUploadDirectory . '/' . $this->_getDestinationName() . '" 2>&1';
+                $cmd = $this->_pathToMogrify . $quality . ' -resize '. $newsize . ' "' . $this->_fileUploadDirectory . '/' . $this->_getDestinationName() . '" 2>&1';
                 $this->_addDebugMsg('Attempting to resize with this command (imagemagick): ' . $cmd);
 
                 $filename = $this->_fileUploadDirectory . '/'
-                    . $this->_getDestinationName();
-                if (!$this->_keepOriginalFile($filename)) {
+                            . $this->_getDestinationName ();
+                if (!$this->_keepOriginalFile ($filename)) {
                     exit;
                 }
 
                 exec($cmd, $mogrify_output, $retval);
-            } elseif ($this->_imageLib === 'netpbm') {
+
+            } elseif ($this->_imageLib == 'netpbm') {
+
                 $cmd = $this->_pathToNetPBM;
                 $filename = $this->_fileUploadDirectory . '/' . $this->_getDestinationName();
-                $cmd_end = " '" . $filename . "' | " . $this->_pathToNetPBM . 'pnmscale -xsize=' . $newWidth . ' -ysize=' . $newHeight . ' | ' . $this->_pathToNetPBM;
+                $cmd_end = " '" . $filename . "' | " . $this->_pathToNetPBM . 'pnmscale -xsize=' . $newwidth . ' -ysize=' . $newheight . ' | ' . $this->_pathToNetPBM;
                 // convert to pnm, resize, convert back
                 if (($this->_currentFile['type'] == 'image/png') ||
-                    ($this->_currentFile['type'] == 'image/x-png')
-                ) {
-                    $tempFile = $this->_fileUploadDirectory . '/tmp.png';
-                    $cmd .= 'pngtopnm ' . $cmd_end . 'pnmtopng > ' . $tempFile;
+                    ($this->_currentFile['type'] == 'image/x-png')) {
+                    $tmpfile = $this->_fileUploadDirectory . '/tmp.png';
+                    $cmd .= 'pngtopnm ' . $cmd_end . 'pnmtopng > ' . $tmpfile;
                 } elseif (($this->_currentFile['type'] == 'image/jpeg') ||
-                    ($this->_currentFile['type'] == 'image/pjpeg')
-                ) {
-                    $tempFile = $this->_fileUploadDirectory . '/tmp.jpg';
+                          ($this->_currentFile['type'] == 'image/pjpeg')) {
+                    $tmpfile = $this->_fileUploadDirectory . '/tmp.jpg';
                     $quality = '';
                     if ($this->_jpegQuality > 0) {
                         $quality = sprintf(' -quality=%d', $this->_jpegQuality);
                     }
-                    $cmd .= 'jpegtopnm ' . $cmd_end . 'pnmtojpeg' . $quality . ' > ' . $tempFile;
+                    $cmd .= 'jpegtopnm ' . $cmd_end . 'pnmtojpeg' . $quality . ' > ' . $tmpfile;
                 } elseif ($this->_currentFile['type'] == 'image/gif') {
-                    $tempFile = $this->_fileUploadDirectory . '/tmp.gif';
+                    $tmpfile = $this->_fileUploadDirectory . '/tmp.gif';
                     $cmd .= 'giftopnm ' . $cmd_end . 'ppmquant 256 | '
-                        . $this->_pathToNetPBM . 'ppmtogif > ' . $tempFile;
+                         . $this->_pathToNetPBM . 'ppmtogif > ' . $tmpfile;
                 } else {
-                    $this->_addError("Image format of file $filename is not supported.");
-                    $this->printErrors();
+                    $this->_addError ("Image format of file $filename is not supported.");
+                    $this->printErrors ();
                     exit;
                 }
                 $this->_addDebugMsg('Attempting to resize with this command (netpbm): ' . $cmd);
                 exec($cmd, $netpbm_output, $retval);
 
-                if (!$this->_keepOriginalFile($filename)) {
+                if (!$this->_keepOriginalFile ($filename)) {
                     exit;
                 }
 
                 // Move tmp file to actual file
-                if (!copy($tempFile, $filename)) {
-                    $this->_addError("Couldn't copy $tempFile to $filename.  You'll need remove both files");
+                if (!copy($tmpfile,$filename)) {
+                    $this->_addError("Couldn't copy $tmpfile to $filename.  You'll need remove both files");
                     $this->printErrors();
                     exit;
                 } else {
                     // resize with netpbm worked, now remove tmpfile
-                    if (!unlink($tempFile)) {
-                        $this->_addError("Couldn't delete $tempFile.  You'll need to remove it manually");
+                    if (!unlink($tmpfile)) {
+                        $this->_addError("Couldn't delete $tmpfile.  You'll need to remove it manually");
                         $this->printErrors();
                         exit;
                     }
                 }
-            } elseif ($this->_imageLib === 'gdlib') {
-                $filename = $this->_fileUploadDirectory . '/'
-                    . $this->_getDestinationName();
 
-                if (!$this->_keepOriginalFile($filename)) {
+            } elseif ($this->_imageLib == 'gdlib') {
+
+                $filename = $this->_fileUploadDirectory . '/'
+                          . $this->_getDestinationName();
+
+                if (!$this->_keepOriginalFile ($filename)) {
                     exit;
                 }
 
@@ -625,111 +631,103 @@ class Upload
                     exit;
                 }
 
-                if (($this->_currentFile['type'] === 'image/png') ||
-                    ($this->_currentFile['type'] === 'image/x-png')
-                ) {
-                    if (!function_exists('imagecreatefrompng')) {
-                        $this->_addError('Sorry, this version of the GD library does not support PNG images.');
-                        $this->printErrors();
+                if (($this->_currentFile['type'] == 'image/png') OR
+                    ($this->_currentFile['type'] == 'image/x-png')) {
+                    if (!function_exists ('imagecreatefrompng')) {
+                        $this->_addError ('Sorry, this version of the GD library does not support PNG images.');
+                        $this->printErrors ();
                         exit;
                     }
-                    if (!$image_source = imagecreatefrompng($filename)) {
-                        $this->_addError('Could not create image from PNG: '
-                            . $filename);
-                        $this->printErrors();
+                    if (!$image_source = imagecreatefrompng ($filename)) {
+                        $this->_addError ('Could not create image from PNG: '
+                                          . $filename);
+                        $this->printErrors ();
                         exit;
                     }
-                } elseif (($this->_currentFile['type'] === 'image/jpeg') ||
-                    ($this->_currentFile['type'] === 'image/pjpeg')
-                ) {
-                    if (!function_exists('imagecreatefromjpeg')) {
-                        $this->_addError('Sorry, this version of the GD library does not support JPEG images.');
-                        $this->printErrors();
+                } elseif (($this->_currentFile['type'] == 'image/jpeg') OR
+                          ($this->_currentFile['type'] == 'image/pjpeg')) {
+                    if (!function_exists ('imagecreatefromjpeg')) {
+                        $this->_addError ('Sorry, this version of the GD library does not support JPEG images.');
+                        $this->printErrors ();
                         exit;
                     }
-                    if (!$image_source = imagecreatefromjpeg($filename)) {
-                        $this->_addError('Could not create image from JPEG: '
-                            . $filename);
-                        $this->printErrors();
+                    if (!$image_source = imagecreatefromjpeg ($filename)) {
+                        $this->_addError ('Could not create image from JPEG: '
+                                          . $filename);
+                        $this->printErrors ();
                         exit;
                     }
-                } elseif ($this->_currentFile['type'] === 'image/gif') {
-                    if (!function_exists('imagecreatefromgif')) {
-                        $this->_addError('Sorry, this version of the GD library does not support GIF images.');
-                        $this->printErrors();
+                } elseif ($this->_currentFile['type'] == 'image/gif') {
+                    if (!function_exists ('imagecreatefromgif')) {
+                        $this->_addError ('Sorry, this version of the GD library does not support GIF images.');
+                        $this->printErrors ();
                         exit;
                     }
-                    if (!$image_source = imagecreatefromgif($filename)) {
-                        $this->_addError('Could not create image from GIF: '
-                            . $filename);
-                        $this->printErrors();
+                    if (!$image_source = imagecreatefromgif ($filename)) {
+                        $this->_addError ('Could not create image from GIF: '
+                                          . $filename);
+                        $this->printErrors ();
                         exit;
                     }
                 } else {
-                    $this->_addError('MIME type ' . $this->_currentFile['type'] . ' not supported.');
-                    $this->printErrors();
+                    $this->_addError ('MIME type ' . $this->_currentFile['type']
+                                      . ' not supported.');
+                    $this->printErrors ();
                     exit;
                 }
 
                 // do resize
-                $sizeFactor = $this->_calcSizeFactor($imageInfo['width'], $imageInfo['height']);
-                $this->_addDebugMsg('Resizing image, factor=' . $sizeFactor);
-                $newWidth = (int) ($imageInfo['width'] * $sizeFactor);
-                $newHeight = (int) ($imageInfo['height'] * $sizeFactor);
-                $newSize = $newWidth . 'x' . $newHeight;
+                $sizefactor = $this->_calcSizefactor ($imageInfo['width'],
+                                                      $imageInfo['height']);
+                $this->_addDebugMsg ('Resizing image, factor=' . $sizefactor);
+                $newwidth = (int) ($imageInfo['width'] * $sizefactor);
+                $newheight = (int) ($imageInfo['height'] * $sizefactor);
+                $newsize = $newwidth . 'x' . $newheight;
 
                 // ImageCreateTrueColor may throw a fatal error on some PHP
                 // versions when GD2 is not installed. Ugly workaround, but
                 // there seems to be no better way. Also see the discussion at
                 // http://php.net/ImageCreateTrueColor
-                $image_dest = @imagecreatetruecolor($newWidth, $newHeight);
+                $image_dest = @ImageCreateTrueColor($newwidth, $newheight);
                 if (!$image_dest) {
-                    $thumb = imagecreate($newWidth, $newHeight);
+                    $thumb = imagecreate ($newwidth, $newheight);
                     if ($this->_jpegQuality > 0) {
                         imagejpeg($thumb, $filename, $this->_jpegQuality);
                     } else {
                         imagejpeg($thumb, $filename);
                     }
-                    imagedestroy($thumb);
-                    $image_dest = @imagecreatefromjpeg($filename);
-                    unlink($filename);
-                }
-
-                // Prevent transparent area of a JPEG image from being painted black
-                if (is_callable('imagealphablending') && is_callable('imagesavealpha')) {
-                    imagealphablending($image_dest, false);
-                    imagesavealpha($image_dest, true);
+                    imagedestroy ($thumb);
+                    $image_dest = @imagecreatefromjpeg ($filename);
+                    unlink ($filename);
                 }
 
                 imagecopyresampled($image_dest, $image_source, 0, 0, 0, 0,
-                    $newWidth, $newHeight, $imageInfo['width'],
-                    $imageInfo['height']);
-                if (($this->_currentFile['type'] === 'image/png') ||
-                    ($this->_currentFile['type'] === 'image/x-png')
-                ) {
-                    if (!imagepng($image_dest, $filename)) {
-                        $this->_addError('Could not create PNG: ' . $filename);
-                        $this->printErrors();
+                                   $newwidth, $newheight, $imageInfo['width'],
+                                   $imageInfo['height']);
+                if (($this->_currentFile['type'] == 'image/png') OR
+                    ($this->_currentFile['type'] == 'image/x-png')) {
+                    if (!imagepng ($image_dest, $filename)) {
+                        $this->_addError ('Could not create PNG: ' . $filename);
+                        $this->printErrors ();
                         exit;
                     }
-                } elseif (($this->_currentFile['type'] === 'image/jpeg') ||
-                    ($this->_currentFile['type'] === 'image/pjpeg')
-                ) {
+                } elseif (($this->_currentFile['type'] == 'image/jpeg') OR
+                          ($this->_currentFile['type'] == 'image/pjpeg')) {
                     if ($this->_jpegQuality > 0) {
                         $jpsuccess = imagejpeg($image_dest, $filename,
-                            $this->_jpegQuality);
+                                               $this->_jpegQuality);
                     } else {
                         $jpsuccess = imagejpeg($image_dest, $filename);
                     }
                     if (!$jpsuccess) {
-                        $this->_addError('Could not create JPEG: ' . $filename);
-                        $this->printErrors();
+                        $this->_addError ('Could not create JPEG: '. $filename);
+                        $this->printErrors ();
                         exit;
                     }
-                } elseif ($this->_currentFile['type'] === 'image/gif') {
-                    if (!imagegif($image_dest, $filename)) {
-                        $this->_addError('Could not create GIF: ' . $filename);
-                        $this->printErrors();
+                } elseif ($this->_currentFile['type'] == 'image/gif') {
+                    if (!imagegif ($image_dest, $filename)) {
+                        $this->_addError ('Could not create GIF: ' . $filename);
+                        $this->printErrors ();
                         exit;
                     }
                 }
@@ -737,28 +735,26 @@ class Upload
             }
 
             if ($retval > 0) {
-                if ($this->_imageLib === 'imagemagick') {
-                    $this->_addError('Image, ' . $this->_currentFile['name']
+                if ($this->_imageLib == 'imagemagick') {
+                    $this->_addError ('Image, ' . $this->_currentFile['name']
                         . ' had trouble being resized: ' . $mogrify_output[0]);
-                } elseif ($this->_imageLib === 'netpbm') {
-                    $this->_addError('Image, ' . $this->_currentFile['name']
+                } elseif ($this->_imageLib == 'netpbm') {
+                    $this->_addError ('Image, ' . $this->_currentFile['name']
                         . ' had trouble being resized: ' . $netpbm_output[0]);
                 }
                 $this->printErrors();
                 exit;
             } else {
-                $this->_addDebugMsg('Image, ' . $this->_currentFile['name'] . ' was resized from ' . $imageInfo['width'] . 'x' . $imageInfo['height'] . ' to ' . $newSize);
+                $this->_addDebugMsg ('Image, ' . $this->_currentFile['name'] . ' was resized from ' . $imageInfo['width'] . 'x' . $imageInfo['height'] . ' to ' . $newsize);
             }
         }
-
         $returnChmod = true;
         $perms = $this->_getPermissions();
-
         if (!empty($perms)) {
-            $returnChmod = chmod($this->_fileUploadDirectory . '/' . $this->_getDestinationName(), octdec($perms));
+            $returnChmod = chmod ($this->_fileUploadDirectory . '/' . $this->_getDestinationName (), octdec ($perms));
         }
 
-        if ($returnMove && $returnChmod) {
+        if ($returnMove AND $returnChmod) {
             return true;
         } else {
             if (!$returnMove) {
@@ -774,82 +770,84 @@ class Upload
     }
 
     /**
-     * Sets the path to where the mogrify ImageMagick function is
-     *
-     * @param     string $path_to_mogrify Absolute path to mogrify
-     * @return    boolean   True if set, false otherwise
-     */
-    public function setMogrifyPath($path_to_mogrify)
+    * Sets the path to where the mogrify ImageMagick function is
+    *
+    * @param     string    $path_to_mogrify    Absolute path to mogrify
+    * @return    boolean   True if set, false otherwise
+    *
+    */
+    function setMogrifyPath($path_to_mogrify)
     {
         $this->_imageLib = 'imagemagick';
         $this->_pathToMogrify = $path_to_mogrify;
-
         return true;
     }
 
     /**
-     * Sets the path to where the netpbm utilities are
-     *
-     * @param     string $path_to_netpbm Absolute path to netpbm dir
-     * @return    boolean   True if set, false otherwise
-     */
-    public function setNetPBM($path_to_netpbm)
+    * Sets the path to where the netpbm utilities are
+    *
+    * @param     string    $path_to_netpbm    Absolute path to netpbm dir
+    * @return    boolean   True if set, false otherwise
+    *
+    */
+    function setNetPBM($path_to_netpbm)
     {
         $this->_imageLib = 'netpbm';
         $this->_pathToNetPBM = $path_to_netpbm;
-
         return true;
     }
 
     /**
-     * Configure upload to use GD library
-     *
-     * @return    boolean   True if set, false otherwise
-     */
-    public function setGDLib()
+    * Configure upload to use GD library
+    *
+    * @return    boolean   True if set, false otherwise
+    *
+    */
+    function setGDLib()
     {
         $this->_imageLib = 'gdlib';
-
         return true;
     }
 
     /**
-     * Sets mode to automatically resize images that are either too wide or
-     * too tall
-     *
-     * @param    boolean $switch True to turn on, false to turn off
-     */
-    public function setAutomaticResize($switch)
+    * Sets mode to automatically resize images that are either too wide or
+    * too tall
+    *
+    * @param    boolean    $switch  True to turn on, false to turn off
+    *
+    */
+    function setAutomaticResize($switch)
     {
         $this->_autoResize = $switch;
     }
 
     /**
-     * Allows you to override default max file size
-     *
-     * @param    int $size_in_bytes Max. size for uploaded files
-     * @return   boolean true if we set it OK, otherwise false
-     */
-    public function setMaxFileSize($size_in_bytes)
+    * Allows you to override default max file size
+    *
+    * @param    int     $size_in_bytes      Max. size for uploaded files
+    * @return   boolean true if we set it OK, otherwise false
+    *
+    */
+    function setMaxFileSize($size_in_bytes)
     {
         if (!is_numeric($size_in_bytes)) {
             return false;
         }
         $this->_maxFileSize = $size_in_bytes;
-
         return true;
     }
 
     /**
-     * Allows you to override default max. image dimensions
-     *
-     * @param    int $width_pixels  Max. width allowed
-     * @param    int $height_pixels Max. height allowed
-     * @return   boolean true if we set values OK, otherwise false
-     */
-    public function setMaxDimensions($width_pixels, $height_pixels)
+    * Allows you to override default max. image dimensions
+    *
+    * @param    int    $width_pixels    Max. width allowed
+    * @param    int    $height_pixels   Max. height allowed
+    * @return   boolean true if we set values OK, otherwise false
+    *
+    */
+    function setMaxDimensions($width_pixels, $height_pixels)
     {
-        if (!is_numeric($width_pixels) || !is_numeric($height_pixels)) {
+        if (!is_numeric($width_pixels) OR !is_numeric($height_pixels)) {
             return false;
         }
 
@@ -860,40 +858,43 @@ class Upload
     }
 
     /**
-     * Sets the max number of files that can be uploaded per form
-     *
-     * @param     int $maxFiles Maximum number of files to allow. Default is 5
-     * @return    boolean   True if set, false otherwise
-     */
-    public function setMaxFileUploads($maxFiles)
+    * Sets the max number of files that can be uploaded per form
+    *
+    * @param     int       $maxfiles    Maximum number of files to allow. Default is 5
+    * @return    boolean   True if set, false otherwise
+    *
+    */
+    function setMaxFileUploads($maxfiles)
     {
-        $this->_maxFileUploadsPerForm = $maxFiles;
+        $this->_maxFileUploadsPerForm = $maxfiles;
+        return true;
+    }
+
+    /**
+    * Allows you to keep the original (unscaled) image.
+    *
+    * @param    boolean   $keepit   true = keep original, false = don't
+    * @return   boolean   true if we set values OK, otherwise false
+    *
+    */
+    function keepOriginalImage ($keepit)
+    {
+        $this->_keepOriginalImage = $keepit;
 
         return true;
     }
 
     /**
-     * Allows you to keep the original (unscaled) image.
-     *
-     * @param    boolean $keepIt true = keep original, false = don't
-     * @return   boolean   true if we set values OK, otherwise false
-     */
-    public function keepOriginalImage($keepIt)
-    {
-        $this->_keepOriginalImage = $keepIt;
-
-        return true;
-    }
-
-    /**
-     * Set JPEG quality
-     * NOTE:     The 'quality' is an arbitrary value used by the IJG library.
-     *           It is not a percent value! The default (and a good value) is 75.
-     *
-     * @param    int $quality JPEG quality (0-100)
-     * @return   boolean   true if we set values OK, otherwise false
-     */
-    public function setJpegQuality($quality)
+    * Set JPEG quality
+    *
+    * NOTE:     The 'quality' is an arbitrary value used by the IJG library.
+    *           It is not a percent value! The default (and a good value) is 75.
+    *
+    * @param    int       $quality  JPEG quality (0-100)
+    * @return   boolean   true if we set values OK, otherwise false
+    *
+    */
+    function setJpegQuality($quality)
     {
         if (($quality < 0) || ($quality > 100)) {
             return false;
@@ -905,70 +906,74 @@ class Upload
     }
 
     /**
-     * Extra security option that forces all attempts to upload a file to be done
-     * so from a set of VERY specific IP's.  This is only good for those who are
-     * paranoid
-     *
-     * @param    array $validIPS Array of valid IP addresses to allow file uploads from
-     * @return   boolean returns true if we successfully limited the IP's, otherwise false
-     */
-    public function limitByIP($validIPS = array('127.0.0.1'))
+    * Extra security option that forces all attempts to upload a file to be done
+    * so from a set of VERY specific IP's.  This is only good for those who are
+    * paranoid
+    *
+    * @param    array   $validIPS   Array of valid IP addresses to allow file uploads from
+    * @return   boolean returns true if we successfully limited the IP's, otherwise false
+    */
+    function limitByIP($validIPS = array('127.0.0.1'))
     {
         if (is_array($validIPS)) {
             $this->_limitByIP = true;
             $this->_allowedIPS = $validIPS;
-
             return true;
         } else {
             $this->_addError('Bad call to method limitByIP(), must pass array of valid IP addresses');
-
             return false;
         }
     }
 
     /**
-     * Allows you to specify whether or not to continue processing other files
-     * when an error occurs or exit immediately. Default is to exit immediately
-     * NOTE: this only affects the actual file upload process.
-     *
-     * @param    boolean $switch true or false
-     */
-    public function setContinueOnError($switch)
+    * Allows you to specify whether or not to continue processing other files
+    * when an error occurs or exit immediately. Default is to exit immediately
+    *
+    * NOTE: this only affects the actual file upload process.
+    *
+    * @param    boolean     $switch     true or false
+    *
+    */
+    function setContinueOnError($switch)
     {
-        $this->_continueOnError = (bool) $switch;
+        if ($switch) {
+            $this->_continueOnError = true;
+        } else {
+            $this->_continueOnError = false;
+        }
     }
 
     /**
-     * Sets log file
-     *
-     * @param    string $logFile fully qualified path to log files
-     * @return   boolean returns true if we set the log file, otherwise false
-     */
-    public function setLogFile($logFile = '')
+    * Sets log file
+    *
+    * @param    string  $logFile    fully qualified path to log files
+    * @return   boolean returns true if we set the log file, otherwise false
+    *
+    */
+    function setLogFile($logFile = '')
     {
-        if (empty($logFile) || !file_exists($logFile)) {
+        if (empty($logFile) OR !file_exists($logFile)) {
             // Log file doesn't exist, produce warning
             $this->_addWarning('Log file, ' . $logFile . ' does not exists, setLogFile() method failed');
             $this->_doLogging = false;
-
             return false;
         }
         $this->_logFile = $logFile;
-
         return true;
     }
 
     /**
-     * Enables/disables logging of errors and warnings
-     *
-     * @param    boolean $switch flag, true or false
-     */
-    public function setLogging($switch)
+    * Enables/disables logging of errors and warnings
+    *
+    * @param    boolean     $switch     flag, true or false
+    *
+    */
+    function setLogging($switch)
     {
-        if ($switch && !empty($this->_logFile)) {
+        if ($switch AND !empty($this->_logFile)) {
             $this->_doLogging = true;
         } else {
-            if ($switch && empty($this->_logFile)) {
+            if ($switch AND empty($this->_logFile)) {
                 $this->_addWarning('Unable to enable logging because no log file was set.  Use setLogFile() method');
             }
             $this->_doLogging = false;
@@ -976,22 +981,24 @@ class Upload
     }
 
     /**
-     * Returns whether or not logging is enabled
-     *
-     * @return   boolean returns true if logging is enabled otherwise false
-     */
-    public function loggingEnabled()
+    * Returns whether or not logging is enabled
+    *
+    * @return   boolean returns true if logging is enabled otherwise false
+    *
+    */
+    function loggingEnabled()
     {
         return $this->_doLogging;
     }
 
     /**
-     * Will force the debug messages in this class to be
-     * printed
-     *
-     * @param    boolean $switch flag, true or false
-     */
-    public function setDebug($switch)
+    * Will force the debug messages in this class to be
+    * printed
+    *
+    * @param    boolean     $switch     flag, true or false
+    *
+    */
+    function setDebug($switch)
     {
         if ($switch) {
             $this->_debug = true;
@@ -1003,163 +1010,171 @@ class Upload
     }
 
     /**
-     * If enabled will ignore the MIME checks on file uploads
-     *
-     * @param    boolean $switch flag, true or false
-     */
-    public function setIgnoreMimeCheck($switch)
+    * If enabled will ignore the MIME checks on file uploads
+    *
+    * @param    boolean     $switch     flag, true or false
+    *
+    */
+    function setIgnoreMimeCheck($switch)
     {
-        $this->_ignoreMimeTest = (bool) $switch;
+        if ($switch) {
+            $this->_ignoreMimeTest = true;
+        } else {
+            $this->_ignoreMimeTest = false;
+        }
     }
 
+
     /**
-     * This function will print any errors out.  This is useful in debugging
-     *
-     * @param    boolean $verbose whether or not to print immediately or return only a string
-     * @return   string  if $verbose is false it returns all errors otherwise just an empty string
-     */
-    public function printErrors($verbose = true)
+    * This function will print any errors out.  This is useful in debugging
+    *
+    * @param    boolean     $verbose    whether or not to print immediately or return only a string
+    * @return   string  if $verbose is false it returns all errors otherwise just an empty string
+    *
+    */
+    function printErrors($verbose=true)
     {
-        if (isset($this->_errors) && is_array($this->_errors)) {
+        if (isset($this->_errors) AND is_array($this->_errors)) {
             $retval = '';
             reset($this->_errors);
-            $numErrors = count($this->_errors);
-
-            for ($i = 1; $i <= $numErrors; $i++) {
+            $nerrors = count($this->_errors);
+            for ($i = 1; $i <= $nerrors; $i++) {
                 if ($verbose) {
-                    echo current($this->_errors) . '<br' . XHTML . '>' . PHP_EOL;
+                    print current($this->_errors) . "<br" . XHTML . ">\n";
                 } else {
-                    $retval .= current($this->_errors) . '<br' . XHTML . '>' . PHP_EOL;
+                    $retval .= current($this->_errors) . "<br" . XHTML . ">\n";
                 }
                 next($this->_errors);
             }
-
             return $retval;
-        } else {
-            return '';
         }
     }
 
     /**
-     * This function will print any warnings out.  This is useful in debugging
-     */
-    public function printWarnings()
+    * This function will print any warnings out.  This is useful in debugging
+    *
+    */
+    function printWarnings()
     {
-        if (isset($this->_warnings) && is_array($this->_warnings)) {
+        if (isset($this->_warnings) AND is_array($this->_warnings)) {
             reset($this->_warnings);
-            $numWarnings = count($this->_warnings);
-            for ($i = 1; $i <= $numWarnings; $i++) {
-                echo current($this->_warnings) . '<br' . XHTML . '>' . PHP_EOL;
+            $nwarnings = count($this->_warnings);
+            for ($i = 1; $i <= $nwarnings; $i++) {
+                print current($this->_warnings) . "<br" . XHTML . ">\n";
                 next($this->_warnings);
             }
         }
     }
 
     /**
-     * This function will print any debug messages out.
-     */
-    public function printDebugMsgs()
+    * This function will print any debug messages out.
+    *
+    */
+    function printDebugMsgs()
     {
-        if (isset($this->_debugMessages) && is_array($this->_debugMessages)) {
+        if (isset($this->_debugMessages) AND is_array($this->_debugMessages)) {
             reset($this->_debugMessages);
-            $numMessages = count($this->_debugMessages);
-            for ($i = 1; $i <= $numMessages; $i++) {
-                echo current($this->_debugMessages) . '<br' . XHTML . '>' . PHP_EOL;
+            $nmsgs = count($this->_debugMessages);
+            for ($i = 1; $i <= $nmsgs; $i++) {
+                print current($this->_debugMessages) . "<br" . XHTML . ">\n";
                 next($this->_debugMessages);
             }
         }
     }
 
     /**
-     * Returns if any errors have been encountered thus far
-     *
-     * @return   boolean returns true if there were errors otherwise false
-     */
-    public function areErrors()
+    * Returns if any errors have been encountered thus far
+    *
+    * @return   boolean returns true if there were errors otherwise false
+    *
+    */
+    function areErrors()
     {
-        return (count($this->_errors) > 0);
+        if (count($this->_errors) > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
-     * Sets allowed mime types for this instance
-     *
-     * @param    array $mimeTypes Array of allowed mime types
-     */
-    public function setAllowedMimeTypes($mimeTypes = array())
+    * Sets allowed mime types for this instance
+    *
+    * @param    array   allowedMimeTypes        Array of allowed mime types
+    *
+    */
+    function setAllowedMimeTypes($mimeTypes = array())
     {
         $this->_allowedMimeTypes = $mimeTypes;
     }
 
     /**
-     * Gets allowed mime types for this instance
-     *
-     * @return   array   Returns array of allowed mime types
-     */
-    public function getAllowedMimeTypes()
+    * Gets allowed mime types for this instance
+    *
+    * @return   array   Returns array of allowed mime types
+    *
+    */
+    function getAllowedMimeTypes()
     {
         return $this->_allowedMimeTypes;
     }
 
     /**
-     * Checks to see that mime type for current file is allowed for upload
-     *
-     * @return   boolean     true if current file's mime type is allowed otherwise false
-     */
-    public function checkMimeType()
+    * Checks to see that mime type for current file is allowed for upload
+    *
+    * @return   boolean     true if current file's mime type is allowed otherwise false
+    *
+    */
+    function checkMimeType()
     {
         if ($this->_ignoreMimeTest) {
             return true;
         }
 
-        $sc = strpos($this->_currentFile['type'], ';');
+        $sc = strpos ($this->_currentFile['type'], ';');
         if ($sc > 0) {
-            $this->_currentFile['type'] = substr($this->_currentFile['type'], 0, $sc);
+            $this->_currentFile['type'] = substr ($this->_currentFile['type'], 0, $sc);
         }
-        $mimeTypes = $this->getAllowedMimeTypes();
-
+        $mimeTypes = $this->getAllowedMimeTypes ();
         foreach ($mimeTypes as $mimeT => $extList) {
             if ($mimeT == $this->_currentFile['type']) {
                 // Each defined Mime Type can have multiple possible extesions - need to test each
                 if (is_array($extList)) {   // Used if allowedMimeTypes is being defined using the Online Config Manager
                     $extensions = array_keys($extList);
                 } else {
-                    $extensions = explode(',', $extList);
+                    $extensions = explode (',', $extList);
                 }
                 $fileName = $this->_currentFile['name'];
-
                 foreach ($extensions as $ext) {
                     $ext = trim($ext);
-                    if (strcasecmp(substr($fileName, -strlen($ext)), $ext) == 0) {
+                    if (strcasecmp (substr ($fileName, -strlen ($ext)), $ext) == 0) {
                         return true;
                     }
                 }
             }
         }
-
-        $this->_addError('Mime type, ' . $this->_currentFile['type']
-            . ', or extension of ' . $this->_currentFile['name']
-            . ' not in list of allowed types.');
-
+        $this->_addError ('Mime type, ' . $this->_currentFile['type']
+                          . ', or extension of ' . $this->_currentFile['name']
+                          . ' not in list of allowed types.');
         return false;
     }
 
     /**
-     * Sets file upload path
-     *
-     * @param    string $uploadDir Directory on server to store uploaded files
-     * @return   boolean returns true if we successfully set path otherwise false
-     */
-    public function setPath($uploadDir)
+    * Sets file upload path
+    *
+    * @param    string  $uploadDir  Directory on server to store uploaded files
+    * @return   boolean returns true if we successfully set path otherwise false
+    *
+    */
+    function setPath($uploadDir)
     {
         if (!is_dir($uploadDir)) {
             $this->_addError('Specified upload directory, ' . $uploadDir . ' is not a valid directory');
-
             return false;
         }
 
         if (!is_writable($uploadDir)) {
             $this->_addError('Specified upload directory, ' . $uploadDir . ' exists but is not writable');
-
             return false;
         }
 
@@ -1169,26 +1184,29 @@ class Upload
     }
 
     /**
-     * Returns directory to upload to
-     *
-     * @return   string  returns path to file upload directory
-     */
-    public function getPath()
+    * Returns directory to upload to
+    *
+    * @return   string  returns path to file upload directory
+    *
+    */
+    function getPath()
     {
         return $this->_fileUploadDirectory;
     }
 
     /**
-     * Sets file name(s) for files
-     * This function will set the name of any files uploaded.  If the
-     * number of file names sent doesn't match the number of uploaded
-     * files a warning will be generated but processing will continue
-     *
-     * @param    string|array $fileNames A string or string array of file names
-     */
-    public function setFileNames($fileNames = 'geeklog_uploadedfile')
+    * Sets file name(s) for files
+    *
+    * This function will set the name of any files uploaded.  If the
+    * number of file names sent doesn't match the number of uploaded
+    * files a warning will be generated but processing will continue
+    *
+    * @param    string|array    $fileNames      A string or string array of file names
+    *
+    */
+    function setFileNames($fileNames = 'geeklog_uploadedfile')
     {
-        if (isset($fileNames) && is_array($fileNames)) {
+        if (isset($fileNames) AND is_array($fileNames)) {
             // this is an array of file names, set them
             $this->_fileNames = $fileNames;
         } else {
@@ -1197,18 +1215,19 @@ class Upload
     }
 
     /**
-     * Changes permissions for uploaded files.  If only one set of perms is
-     * sent then they are applied to all uploaded files.  If more then one set
-     * of perms is sent (i.e. $perms is an array) then permissions are applied
-     * one by one.  Any files not having an associated permissions will be
-     * left alone.  NOTE: this is meant to be called BEFORE you do the upload
-     * and ideally is called right after setFileNames()
-     *
-     * @param    string|array $perms A string or string array of file permissions
-     */
-    public function setPerms($perms)
+    * Changes permissions for uploaded files.  If only one set of perms is
+    * sent then they are applied to all uploaded files.  If more then one set
+    * of perms is sent (i.e. $perms is an array) then permissions are applied
+    * one by one.  Any files not having an associated permissions will be
+    * left alone.  NOTE: this is meant to be called BEFORE you do the upload
+    * and ideally is called right after setFileNames()
+    *
+    * @param    string|array    $perms      A string or string array of file permissions
+    *
+    */
+    function setPerms($perms)
     {
-        if (isset($perms) && is_array($perms)) {
+        if (isset($perms) AND is_array($perms)) {
             // this is an array of file names, set them
             $this->_permissions = $perms;
         } else {
@@ -1217,39 +1236,40 @@ class Upload
     }
 
     /**
-     * Returns how many actual files were sent for upload.  NOTE: this will
-     * ignore HTML file fields that were left blank.
-     *
-     * @return   int returns number of files were sent to be uploaded
-     */
-    public function numFiles()
+    * Returns how many actual files were sent for upload.  NOTE: this will
+    * ignore HTML file fields that were left blank.
+    *
+    * @return   int returns number of files were sent to be uploaded
+    *
+    */
+    function numFiles()
     {
         if (empty($this->_filesToUpload)) {
             $this->_filesToUpload = $_FILES;
         }
 
-        $fileCount = 0;
+        $fcount = 0;
 
         for ($i = 1; $i <= count($_FILES); $i++) {
             $curFile = current($this->_filesToUpload);
 
             // Make sure file field on HTML form wasn't empty
             if (!empty($curFile['name'])) {
-                $fileCount++;
+                $fcount++;
             }
             next($this->_filesToUpload);
         }
         reset($_FILES);
 
-        return $fileCount;
+        return $fcount;
     }
 
     /**
-     * Uploads any posted files.
-     *
-     * @return   boolean returns true if no errors were encountered otherwise false
-     */
-    public function uploadFiles()
+    * Uploads any posted files.
+    *
+    * @return   boolean returns true if no errors were encountered otherwise false
+    */
+    function uploadFiles()
     {
         // Before we do anything, let's see if we are limiting file uploads by
         // IP address and, if so, verify the poster is originating from one of
@@ -1258,7 +1278,6 @@ class Upload
             if (!in_array($_SERVER['REMOTE_ADDR'], $this->_allowedIPS)) {
                 $this->_addError('The IP, ' . $_SERVER['REMOTE_ADDR'] . ' is not in the list of '
                     . 'accepted IP addresses.  Refusing to allow file upload(s)');
-
                 return false;
             }
         }
@@ -1271,7 +1290,6 @@ class Upload
         if ($numFiles > $this->_maxFileUploadsPerForm) {
             $this->_addError('Max. number of files you can upload from a form is '
                 . $this->_maxFileUploadsPerForm . ' and you sent ' . $numFiles);
-
             return false;
         }
 
@@ -1281,11 +1299,12 @@ class Upload
         }
 
         // Verify allowed mime types exist
-        if (!$this->_ignoreMimeTest && !$this->_allowedMimeTypes) {
+        if (!$this->_ignoreMimeTest AND !$this->_allowedMimeTypes) {
             $this->_addError('No allowed mime types specified, use setAllowedMimeTypes() method');
         }
 
         for ($i = 1; $i <= $numFiles; $i++) {
+
             $this->_currentFile = current($_FILES);
 
             // Make sure file field on HTML form wasn't empty before proceeding
@@ -1296,7 +1315,7 @@ class Upload
                 }
 
                 // If all systems check, do the upload
-                if ($this->checkMimeType() && $this->_imageSizeOK() && !$this->areErrors()) {
+                if ($this->checkMimeType() AND $this->_imageSizeOK() AND !$this->areErrors()) {
                     if ($this->_copyFile()) {
                         $this->_uploadedFiles[] = $this->_fileUploadDirectory . '/' . $this->_getDestinationName();
                     }
@@ -1304,7 +1323,7 @@ class Upload
 
                 $this->_currentFile = array();
 
-                if ($this->areErrors() && !$this->_continueOnError) {
+                if ($this->areErrors() AND !$this->_continueOnError) {
                     return false;
                 }
 
@@ -1317,134 +1336,12 @@ class Upload
         }
 
         // This function returns false if any errors were encountered
-        return !$this->areErrors();
-    }
-
-    /**
-     * @return string
-     */
-    public function getMogrifyPath()
-    {
-        return $this->_pathToMogrify;
-    }
-
-    /**
-     * @return string
-     */
-    public function getNetPBMPath()
-    {
-        return $this->_pathToNetPBM;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isAutoResize()
-    {
-        return $this->_autoResize;
-    }
-
-    /**
-     * @return int
-     */
-    public function getMaxFileSize()
-    {
-        return $this->_maxFileSize;
-    }
-
-    /**
-     * @return int
-     */
-    public function getMaxImageWidth()
-    {
-        return $this->_maxImageWidth;
-    }
-
-    /**
-     * @return int
-     */
-    public function getMaxImageHeight()
-    {
-        return $this->_maxImageHeight;
-    }
-
-    /**
-     * @return int
-     */
-    public function getMaxFileUploadsPerForm()
-    {
-        return $this->_maxFileUploadsPerForm;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function isKeepOriginalImage()
-    {
-        return $this->_keepOriginalImage;
-    }
-
-    /**
-     * @return int
-     */
-    public function getJpegQuality()
-    {
-        return $this->_jpegQuality;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function isContinueOnError()
-    {
-        return $this->_continueOnError;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLogFile()
-    {
-        return $this->_logFile;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function isDebug()
-    {
-        return $this->_debug;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function isIgnoreMimeTest()
-    {
-        return $this->_ignoreMimeTest;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPermissions()
-    {
-        return $this->_permissions;
-    }
-
-    /**
-     * @return string
-     */
-    public function getFileNames()
-    {
-        return $this->_fileNames;
-    }
-
-    /**
-     * @return string
-     */
-    public function getImageLib()
-    {
-        return $this->_imageLib;
+        if ($this->areErrors()) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
+
+?>

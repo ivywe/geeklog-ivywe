@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 2.1                                                               |
+// | Geeklog 2.0                                                               |
 // +---------------------------------------------------------------------------+
 // | search.php                                                                |
 // |                                                                           |
@@ -31,14 +31,15 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 
-require_once __DIR__ . '/lib-common.php';
+require_once 'lib-common.php';
+require_once $_CONF['path_system'] . 'classes/search.class.php';
 
 $searchObj = new Search();
 
 // Figure out topic to display
 TOPIC_getTopic();
 
-if (Geeklog\Input::get('mode') === 'search') {
+if (isset($_GET['mode']) && ($_GET['mode'] == 'search')) {
     $content = $searchObj->doSearch();
     $display = COM_createHTMLDocument($content, array('pagetitle' => $LANG09[11]));
 } else {
@@ -47,3 +48,5 @@ if (Geeklog\Input::get('mode') === 'search') {
 }
 
 COM_output($display);
+
+?>

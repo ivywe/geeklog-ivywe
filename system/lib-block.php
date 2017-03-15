@@ -36,15 +36,6 @@ if (strpos(strtolower($_SERVER['PHP_SELF']), 'lib-block.php') !== false) {
 // set to true to enable debug output in error.log
 $_BLOCK_DEBUG = false;
 
-// These constants are used by block position (onleft column in blocks table)
-// a topic option.
-// The global variable $topic should never be one of these. It should be set to
-// either a topic id the user has access to or empty (which means all topics).
-define("BLOCK_ALL_POSITIONS", -1);
-define("BLOCK_NONE_POSITION", 2);
-define("BLOCK_LEFT_POSITION", 1);
-define("BLOCK_RIGHT_POSITION", 0);
-
 /*
  * Implement *some* of the Plugin API functions for blocks. While blocks
  * aren't a plugin (and likely never will be), implementing some of the API
@@ -86,98 +77,4 @@ function plugin_group_changed_block($grp_id, $mode)
    }
 }
 
-/**
-* Implements the [block:] autotag.
-*
-* @param    string  $op         operation to perform
-* @param    string  $content    item (e.g. block text), including the autotag
-* @param    array   $autotag    parameters used in the autotag
-* @param    mixed               tag names (for $op='tagname') or formatted content
-*
-*/
-function plugin_autotags_block($op, $content = '', $autotag = '')
-{
-    global $_CONF, $_TABLES, $LANG21, $_GROUPS;
-
-    if ($op == 'tagname') {
-        return array('block');
-    } elseif ($op == 'permission' || $op == 'nopermission') {
-        if ($op == 'permission') {
-            $flag = true;
-        } else {
-            $flag = false;
-        }
-        $tagnames = array();
-
-        if (isset($_GROUPS['Block Admin'])) {
-            $group_id = $_GROUPS['Block Admin'];
-        } else {
-            $group_id = DB_getItem($_TABLES['groups'], 'grp_id',
-                                   "grp_name = 'Block Admin'");
-        }
-        $owner_id = SEC_getDefaultRootUser();
-
-        if (COM_getPermTag($owner_id, $group_id,
-            $_CONF['autotag_permissions_block'][0],
-            $_CONF['autotag_permissions_block'][1],
-            $_CONF['autotag_permissions_block'][2],
-            $_CONF['autotag_permissions_block'][3]) == $flag) {
-            $tagnames[] = 'block';
-        }
-
-        if (count($tagnames) > 0) {
-            return $tagnames;
-        }
-    } elseif ($op == 'description') {
-        return array (
-            'block' => $LANG21['autotag_desc_block']
-            );
-    } elseif ($op == 'parse') {
-        $name = COM_applyFilter($autotag['parm1']);
-        if (!empty($name)) {
-            $result = DB_query("SELECT * "
-                . "FROM {$_TABLES['blocks']} "
-                . "WHERE name = '$name' AND is_enabled = 1");
-            $A = DB_fetchArray($result);
-            if (DB_numRows($result) > 0) {
-
-                switch ($autotag['tag']) {
-                case 'block':
-                    $px = explode(' ', trim($autotag['parm2']));
-                    $css_class = "block-autotag";
-                    $css_style = "";
-
-                    if (is_array($px)) {
-                        foreach ($px as $part) {
-                            if (substr($part, 0, 6) == 'class:') {
-                                $a = explode(':', $part);
-                                // append a class
-                                $css_class .= ' ' . $a[1];
-                            } elseif (substr($part, 0, 6) == 'width:') {
-                                $a = explode(':', $part);
-                                // add width style
-                                $css_style = ' style="width:' . $a[1] . '"';
-                            } else {
-                                break;
-                            }
-                        }
-                    }
-
-                    $retval = COM_formatBlock($A, false, true);
-
-                    // COM_formatBlock could return '' if wrong device, etc...
-                    if ($retval != '') {
-                        // the class block-autotag will always be included with the div
-                        $retval = '<div class="' . $css_class . '"' . $css_style . '>' . $retval . '</div>';
-                    }
-
-                    break;
-                }
-
-                $content = str_replace($autotag['tagstr'], $retval, $content);
-            }
-        }
-    }
-
-    return $content;
-}
+?>

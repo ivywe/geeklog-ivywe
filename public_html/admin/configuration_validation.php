@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 2.1                                                               |
+// | Geeklog 1.7                                                               |
 // +---------------------------------------------------------------------------+
 // | configuration_validation.php                                              |
 // |                                                                           |
@@ -30,11 +30,9 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 
-if (stripos($_SERVER['PHP_SELF'], 'configuration_validation.php') !== false) {
+if (strpos(strtolower($_SERVER['PHP_SELF']), 'configuration_validation.php') !== false) {
     die('This file can not be used on its own!');
 }
-
-global $_CONF_VALIDATE;
 
 /* Subgroup Site, Tab Site */
 $_CONF_VALIDATE['Core']['site_url'] = array('rule' => 'url');
@@ -52,7 +50,6 @@ $_CONF_VALIDATE['Core']['copyrightyear'] = array(
     'message' => isset($LANG_VALIDATION['yearOrRange']) ? $LANG_VALIDATION['yearOrRange'] : $LANG_VALIDATION['default']
 );
 $_CONF_VALIDATE['Core']['url_rewrite'] = array('rule' => 'boolean');
-$_CONF_VALIDATE['Core']['url_routing'] = array('rule' => array('inList', array(0, 1, 2), false));
 $_CONF_VALIDATE['Core']['cdn_hosted'] = array('rule' => 'boolean');
 $_CONF_VALIDATE['Core']['meta_tags'] = array('rule' => array('inList', array(0, 1, 2), false));
 $_CONF_VALIDATE['Core']['meta_description'] = array('rule' => 'stringOrEmpty');
@@ -86,7 +83,6 @@ $_CONF_VALIDATE['Core']['mail_settings[username]'] = array('rule' => 'notEmpty')
 $_CONF_VALIDATE['Core']['mail_settings[password]'] = array('rule' => 'notEmpty');
 $_CONF_VALIDATE['Core']['cc_enabled'] = array('rule' => 'boolean');
 $_CONF_VALIDATE['Core']['cc_default'] = array('rule' => 'boolean');
-$_CONF_VALIDATE['Core']['mail_charset'] = array('rule' => 'stringOrEmpty');
 
 /* Subgroup Site, Tab Syndication */
 $_CONF_VALIDATE['Core']['backend'] = array('rule' => 'boolean');
@@ -152,11 +148,22 @@ $_CONF_VALIDATE['Core']['path_editors'] = array(
                  $LANG_VALIDATION['path'] : $LANG_VALIDATION['default']
 );
 
-/* Subgroup Site, Tab Database */
-$_CONF_VALIDATE['Core']['dbdump_filename_prefix'] = array('rule' => 'stringOrEmpty');
-$_CONF_VALIDATE['Core']['dbdump_tables_only'] = array('rule' => 'boolean');
-$_CONF_VALIDATE['Core']['dbdump_gzip'] = array('rule' => 'boolean');
-$_CONF_VALIDATE['Core']['dbdump_max_files'] = array('rule' => 'numeric');
+/* Subgroup Site, Tab Pear */
+$_CONF_VALIDATE['Core']['have_pear'] = array('rule' => 'boolean');
+$_CONF_VALIDATE['Core']['path_pear'] = array(
+    'rule' => 'path',
+    'message' => isset($LANG_VALIDATION['path']) ?
+                 $LANG_VALIDATION['path'] : $LANG_VALIDATION['default']
+);
+
+/* Subgroup Site, Tab MySQL */
+$_CONF_VALIDATE['Core']['allow_mysqldump'] = array('rule' => 'boolean');
+$_CONF_VALIDATE['Core']['mysqldump_path'] = array(
+    'rule' => 'file',
+    'message' => isset($LANG_VALIDATION['file']) ?
+                 $LANG_VALIDATION['file'] : $LANG_VALIDATION['default']
+);
+$_CONF_VALIDATE['Core']['mysqldump_filename_mask'] = array('rule' => 'notEmpty');
 
 /* Subgroup Site, Tab Search */
 $_CONF_VALIDATE['Core']['search_style'] = array('rule' => array('inList', array('google', 'table'), true));
@@ -187,7 +194,6 @@ $_CONF_VALIDATE['Core']['search_def_sort'] = array(
         'hits|desc', 'title|asc', 'title|desc'
     ), true)
 );
-$_CONF_VALIDATE['Core']['search_use_topic'] = array('rule' => 'boolean');
 
 /* Subgroup Stories and Trackback, Tab Story */
 $_CONF_VALIDATE['Core']['maximagesperarticle'] = array('rule' => 'numeric');
@@ -208,9 +214,7 @@ $_CONF_VALIDATE['Core']['show_topic_icon'] = array('rule' => 'boolean');
 $_CONF_VALIDATE['Core']['draft_flag'] = array('rule' => 'boolean');
 $_CONF_VALIDATE['Core']['frontpage'] = array('rule' => 'boolean');
 $_CONF_VALIDATE['Core']['hide_no_news_msg'] = array('rule' => 'boolean');
-$_CONF_VALIDATE['Core']['hide_main_page_navigation'] = array(
-    'rule' => array('inList', array('false', 'frontpage', 'frontpage_topics'), true)
-);
+$_CONF_VALIDATE['Core']['hide_main_page_navigation'] = array('rule' => 'boolean');
 $_CONF_VALIDATE['Core']['onlyrootfeatures'] = array('rule' => 'boolean');
 $_CONF_VALIDATE['Core']['aftersave_story'] = array(
     'rule' => array('inList', array('admin', 'home', 'list', 'item'), true)
@@ -264,7 +268,6 @@ $_CONF_VALIDATE['Core']['path_themes'] = array(
                  $LANG_VALIDATION['path_themes'] : $LANG_VALIDATION['default']
 );
 $_CONF_VALIDATE['Core']['cache_templates'] = array('rule' => 'boolean');
-$_CONF_VALIDATE['Core']['cache_mobile'] = array('rule' => 'boolean');
 
 /* Subgroup Theme, Tab Advanced Settings */
 $_CONF_VALIDATE['Core']['show_right_blocks'] = array('rule' => 'boolean');
@@ -330,9 +333,6 @@ $_CONF_VALIDATE['Core']['microsoft_consumer_secret'] = array('rule' => 'stringOr
 $_CONF_VALIDATE['Core']['yahoo_login'] = array('rule' => 'boolean');
 $_CONF_VALIDATE['Core']['yahoo_consumer_key'] = array('rule' => 'stringOrEmpty');
 $_CONF_VALIDATE['Core']['yahoo_consumer_secret'] = array('rule' => 'stringOrEmpty');
-$_CONF_VALIDATE['Core']['github_login'] = array('rule' => 'boolean');
-$_CONF_VALIDATE['Core']['github_consumer_key'] = array('rule' => 'stringOrEmpty');
-$_CONF_VALIDATE['Core']['github_consumer_secret'] = array('rule' => 'stringOrEmpty');
 
 $_CONF_VALIDATE['Core']['aftersave_user'] = array(
     'rule' => array('inList', array('admin', 'home', 'list', 'item'), true)
@@ -446,9 +446,6 @@ $_CONF_VALIDATE['Core']['default_photo'] = array('rule' => 'url');
 $_CONF_VALIDATE['Core']['use_gravatar'] = array('rule' => 'boolean');
 $_CONF_VALIDATE['Core']['gravatar_rating'] = array(
     'rule' => array('inList', array('G', 'PG', 'R', 'X'), true)
-);
-$_CONF_VALIDATE['Core']['gravatar_identicon'] = array(
-    'rule' => array('inList', array('mm', 'identicon', 'monsterid', 'wavatar', 'retro'), true)
 );
 
 /* Subgroup Language, Tab Language */
@@ -607,58 +604,6 @@ $_CONF_VALIDATE['Core']['autotag_permissions_user[3]'] = array(
     'rule' => array('inList', array(0, 2), true)
 );
 
-$_CONF_VALIDATE['Core']['autotag_permissions_topic[0]'] = array(
-    'rule' => array('inList', array(0, 2), true)
-);
-$_CONF_VALIDATE['Core']['autotag_permissions_topic[1]'] = array(
-    'rule' => array('inList', array(0, 2), true)
-);
-$_CONF_VALIDATE['Core']['autotag_permissions_topic[2]'] = array(
-    'rule' => array('inList', array(0, 2), true)
-);
-$_CONF_VALIDATE['Core']['autotag_permissions_topic[3]'] = array(
-    'rule' => array('inList', array(0, 2), true)
-);
-
-$_CONF_VALIDATE['Core']['autotag_permissions_related_topics[0]'] = array(
-    'rule' => array('inList', array(0, 2), true)
-);
-$_CONF_VALIDATE['Core']['autotag_permissions_related_topics[1]'] = array(
-    'rule' => array('inList', array(0, 2), true)
-);
-$_CONF_VALIDATE['Core']['autotag_permissions_related_topics[2]'] = array(
-    'rule' => array('inList', array(0, 2), true)
-);
-$_CONF_VALIDATE['Core']['autotag_permissions_related_topics[3]'] = array(
-    'rule' => array('inList', array(0, 2), true)
-);
-
-$_CONF_VALIDATE['Core']['autotag_permissions_related_items[0]'] = array(
-    'rule' => array('inList', array(0, 2), true)
-);
-$_CONF_VALIDATE['Core']['autotag_permissions_related_items[1]'] = array(
-    'rule' => array('inList', array(0, 2), true)
-);
-$_CONF_VALIDATE['Core']['autotag_permissions_related_items[2]'] = array(
-    'rule' => array('inList', array(0, 2), true)
-);
-$_CONF_VALIDATE['Core']['autotag_permissions_related_items[3]'] = array(
-    'rule' => array('inList', array(0, 2), true)
-);
-
-$_CONF_VALIDATE['Core']['autotag_permissions_block[0]'] = array(
-    'rule' => array('inList', array(0, 2), true)
-);
-$_CONF_VALIDATE['Core']['autotag_permissions_block[1]'] = array(
-    'rule' => array('inList', array(0, 2), true)
-);
-$_CONF_VALIDATE['Core']['autotag_permissions_block[2]'] = array(
-    'rule' => array('inList', array(0, 2), true)
-);
-$_CONF_VALIDATE['Core']['autotag_permissions_block[3]'] = array(
-    'rule' => array('inList', array(0, 2), true)
-);
-
 /* Subgroup Misc, Tab Story Webservices */
 $_CONF_VALIDATE['Core']['disable_webservices'] = array('rule' => 'boolean');
 $_CONF_VALIDATE['Core']['restrict_webservices'] = array('rule' => 'boolean');
@@ -680,14 +625,12 @@ $_CONF_VALIDATE['Core']['filemanager_default_view_mode']   = array(
 $_CONF_VALIDATE['Core']['filemanager_show_confirmation']   = array('rule' => 'boolean');
 $_CONF_VALIDATE['Core']['filemanager_search_box']          = array('rule' => 'boolean');
 $_CONF_VALIDATE['Core']['filemanager_file_sorting']        = array(
-    'rule' => array(
-        'inList',
-        array(
-            'default', 'NAME_ASC', 'NAME_DESC', 'TYPE_ASC', 'TYPE_DESC',
-            'MODIFIED_ASC', 'MODIFIED_DESC'
-        ),
-        true
-    )
+    'inList',
+    array(
+        'default', 'NAME_ASC', 'NAME_DESC', 'TYPE_ASC', 'TYPE_DESC',
+        'MODIFIED_ASC', 'MODIFIED_DESC'
+    ),
+    true
 );
 $_CONF_VALIDATE['Core']['filemanager_chars_only_latin']    = array('rule' => 'boolean');
 $_CONF_VALIDATE['Core']['filemanager_date_format']         = array('rule' => 'notEmpty');
@@ -717,3 +660,5 @@ $_CONF_VALIDATE['Core']['filemanager_videos_player_height'] = array('rule' => 'n
 // Subgroup Filemanager, Tab Audios
 $_CONF_VALIDATE['Core']['filemanager_show_audio_player'] = array('rule' => 'boolean');
 //$_CONF_VALIDATE['Core']['filemanager_audios_ext'] = array('rule' => 'boolean');
+
+?>

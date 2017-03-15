@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 2.1                                                               |
+// | Geeklog 1.6                                                               |
 // +---------------------------------------------------------------------------+
 // | auth.inc.php                                                              |
 // |                                                                           |
@@ -45,7 +45,8 @@ if (COM_checkSpeedlimit('login', $_CONF['login_attempts']) > 0) {
 $uid = '';
 if (!empty($_POST['loginname']) && !empty($_POST['passwd'])) {
     if ($_CONF['user_login_method']['standard']) {
-        $status = SEC_authenticate(Geeklog\Input::fPost('loginname'), Geeklog\Input::post('passwd'), $uid);
+        $status = SEC_authenticate(COM_applyFilter($_POST['loginname']),
+                                   $_POST['passwd'], $uid);
     } else {
         $status = '';
     }
@@ -81,11 +82,13 @@ if ($status == USER_ACCOUNT_ACTIVE) {
         }
     }
     if (!SEC_hasRights('story.edit,block.edit,topic.edit,user.edit,plugin.edit,syndication.edit','OR')) {
-        COM_redirect($_CONF['site_admin_url'] . '/index.php');
+        $display .= COM_refresh($_CONF['site_admin_url'] . '/index.php');
     } else {
-        COM_redirect($_CONF['site_url'] . '/index.php');
+        $display .= COM_refresh($_CONF['site_url'] . '/index.php');
     }
-} elseif (!SEC_hasRights('story.edit,block.edit,topic.edit,user.edit,plugin.edit,user.mail,syndication.edit','OR') && (count(PLG_getAdminOptions()) == 0) && !SEC_hasConfigAccess()) {
+    echo $display;
+    exit;
+} else if (!SEC_hasRights('story.edit,block.edit,topic.edit,user.edit,plugin.edit,user.mail,syndication.edit','OR') && (count(PLG_getAdminOptions()) == 0) && !SEC_hasConfigAccess()) {
     COM_updateSpeedlimit('login');
 
     $display .= COM_startBlock($LANG20[1]);
@@ -97,7 +100,7 @@ if ($status == USER_ACCOUNT_ACTIVE) {
         if (isset($_POST['warn'])) {
             $display .= $LANG20[2]
                      . '<br' . XHTML . '><br' . XHTML . '>'
-                     . COM_accessLog($LANG20[3] . ' ' . Geeklog\Input::post('loginname'));
+                     . COM_accessLog($LANG20[3] . ' ' . $_POST['loginname']);
         }
 
         $display .= '<form action="' . $_CONF['site_admin_url'] . '/index.php" method="post">'
@@ -121,3 +124,5 @@ if ($status == USER_ACCOUNT_ACTIVE) {
     COM_output($display);
     exit;
 }
+
+?>

@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 2.1                                                               |
+// | Geeklog 1.8                                                               |
 // +---------------------------------------------------------------------------+
 // | unpacker.class.php                                                        |
 // |                                                                           |
@@ -31,144 +31,147 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 
-use splitbrain\PHPArchive\ArchiveIOException;
-use splitbrain\PHPArchive\Tar;
-use splitbrain\PHPArchive\Zip;
-
 /**
  * Geeklog plugin unpacker - Archive Libs Wrapper
+ *
  * This class wraps calls to pecl Zip, pear Zip, pear Tar, using the best
  * package available to unpack or list information about the archive.
  *
  * @author Justin Carlson, justin DOT carlson AT gmail DOT com
+ *
  */
-class Unpacker
-{
-    // MIME types (these are not very reliable, varies browser to browser)
-    // for the best results, pass the real filename as well as the MIME type
-    private $mime_def = array(
-        'application/zip'               => 'zip',
-        'application/x-zip'             => 'zip',
-        'application/x-zip-compressed'  => 'zip',
-        'multipart/x-zip'               => 'zip',
-        'application/gzip'              => 'tar',
-        'application/tar'               => 'tar',
-        'application/x-tar'             => 'tar',
-        'application/x-gtar'            => 'tar',
-        'application/x-gzip'            => 'tar',
-        'application/x-gzip-compressed' => 'tar',
-        'application/octet-stream'      => 'tar',
-        'application/x-compress'        => 'tar',
-        'application/x-compressed'      => 'tar',
-    );
+class unpacker {
 
-    private $file = null; // archive name
-    private $fileSize = null; // archive size (in bytes)
-    private $ext = null; // archive ext
-    private $contents = null; // archive contents
+    // mime types ( these are not very reliable, varies browser to browser )
+    // for the best results, pass the real filename as well as the mime type
+    var $mime_def = array('application/zip'              => 'zip',
+                          'application/x-zip'            => 'zip',
+                          'application/x-zip-compressed' => 'zip',
+                          'multipart/x-zip'              => 'zip',
+                          'application/gzip'             => 'tar',
+                          'application/tar'              => 'tar',
+                          'application/x-tar'            => 'tar',
+                          'application/x-gtar'           => 'tar',
+                          'application/x-gzip'           => 'tar',
+                          'application/x-gzip-compressed'=> 'tar',
+                          'application/octet-stream'     => 'tar',
+                          'application/x-compress'       => 'tar',
+                          'application/x-compressed'     => 'tar');
 
-    /**
-     * @var \splitbrain\PHPArchive\Archive
-     */
-    private $archive = null; // archive resource handle
-    private $errorNo = null; // error number ( set when returned false )
-    private $error = null; // error text ( set when returned false )
-    private $u_size = null; // uncompressed archive size
-    private $type = null; // archive type
-    private $comp = null; // archive compression type (private)
+    var $file = null; // archive name
+    var $filesize = null; // archive size (in bytes)
+    var $ext = null; // archive ext
+    var $contents = null; // archive contents
+    var $archive = null; // archive resource handle
+    var $errorno = null; // error number ( set when returned false )
+    var $error = null; // error text ( set when returned false )
+    var $u_size = null; // uncompressed archive size
+    var $d_sep = null; // directory separator default
+    var $type = null; // archive type
+    var $comp = null; // archive compression type (private)
+
 
     /**
      * Constructor
      *
-     * @param string $file     full path to archive
-     * @param string $mimeType mime type ( optional, application/zip, /tar, etc )
+     * @param string $file full path to archive
+     * @param string $mime_type mime type ( optional, application/zip, /tar, etc )
+     * @return boolean $success result of loading archive passed
      */
-    public function __construct($file, $mimeType = null)
-    {
-        $this->open($file, $mimeType);
-    }
+    function unpacker($file, $mime_type = null) {
 
-    /**
-     * Open an archive file
-     *
-     * @param  string $file     full path to archive
-     * @param  string $mimeType mime type ( application/zip, /tar, etc )
-     * @return bool   result of loading archive passed
-     */
-    public function open($file, $mimeType = null)
-    {
-        $this->ext = null;
-        $this->file = null;
-        $this->fileSize = null;
-        $this->contents = null;
-        $this->archive = null;
-        $this->errorNo = null;
-        $this->error = null;
-        $this->u_size = null;
-        $this->type = null;
+        // default directory separator
+        $this->d_sep = DIRECTORY_SEPARATOR;
 
-        // if the file doesn't exist in the designated path, assume local
-        if (!file_exists($file)) {
-            $file = getcwd() . DIRECTORY_SEPARATOR . $file;
+        // if the file doesn't have it's path, assume local
+        if (! strstr($file, $this->d_sep)) {
+            $file = getcwd() . $this->d_sep . $file;
         }
 
         // make sure the file exists
         if (file_exists($file)) {
+
             // copy vars
             $this->file = $file;
-            $this->fileSize = filesize($file);
-            $this->ext = strtolower(substr($file, strrpos($file, '.')));
+            $this->filesize = filesize($file);
+            $this->ext = strtolower(substr($file, - 4));
 
             // if the type is passed, store it
-            if (!empty($mimeType)) {
-                if (isset($this->mime_def[$mimeType])) {
-                    $this->type = $this->mime_def[$mimeType];
+            if ($mime_type != null) {
+
+                if (isset($this->mime_def[$mime_type])) {
+                    $this->type = $this->mime_def[$mime_type];
                 } else {
                     return $this->setError('400', 'Invalid MIME Type');
                 }
+
             }
 
-            if ($this->type == null || $this->type === 'other') {
+            if ($this->type == null || $this->type == 'other') {
+
                 // if a known mime type was not provided, expect real filename
-                // mime types are not reliable so this is the recommended way
+                // mime types are not reliable so this is the reccommended way
                 // for example: unpacker($_FILES['foo']['name'],$type);
                 // .tar, .tgz, .tar.gz, .tar.bz2, and .tar.bz are supported
-                if ($this->ext === '.gz' || $this->ext === '.tgz') {
+                if ($this->ext == 'r.gz' || $this->ext == '.tgz') {
                     $this->type = 'tar';
                     $this->comp = 'gz';
-                } elseif ($this->ext === '.bz' || $this->ext === '.bz2') {
+                } elseif ($this->ext == 'r.bz' || $this->ext == '.bz2') {
                     $this->type = 'tar';
                     $this->comp = 'bz2';
-                } elseif ($this->ext === '.zip') {
-                    $this->type = 'zip';
-                    $this->comp = 'zip';
                 } else {
                     $this->type = str_replace('.', '', $this->ext);
                 }
 
                 // see if we know of a mime type for this ext
-                if (!in_array($this->type, $this->mime_def)) {
+                if (in_array($this->type, $this->mime_def) === false) {
                     return $this->setError('400', 'Invalid File Extension');
                 }
             }
 
             // call the load wrapper, return result
-            return $this->loadFile();
+            return $this->load_file();
+
         } else {
             // file did not exist
             return false;
         }
+
     }
 
     /**
+     * Open - Constructor Wrapper
+     * This clears the vars and loads another file.
+     * ( May never be used )
+     *
+     * @param string $file full path to archive
+     * @param string $optional_type mime type ( application/zip, /tar, etc )
+     * @return boolean $success result of loading archive passed
+     */
+    function open($file, $optional_type = false) {
+
+        $this->ext = null;
+        $this->file = null;
+        $this->filesize = null;
+        $this->contents = null;
+        $this->archive = null;
+        $this->errorno = null;
+        $this->error = null;
+        $this->u_size = null;
+        $this->d_sep = null;
+        $this->type = null;
+        return $this->unpacker($file, $optional_type);
+    }
+
+    /**
+     *
      * Decides which loader to call, or returns false if one isn't found.
      *
-     * @return bool result of loading archive passed
+     * @return boolean $success result of loading archive passed
      */
-    private function loadFile()
-    {
-        $handler = 'load_' . $this->type;
+    function load_file() {
 
+        $handler = 'load_' . $this->type;
         if (method_exists($this, $handler)) {
             return $this->$handler();
         } else {
@@ -177,129 +180,125 @@ class Unpacker
     }
 
     /**
-     * Load a zip archive
+     * load a zip archive
      *
-     * @return bool result of loading archive passed
+     * @return boolean $success result of loading archive passed
      */
-    private function load_zip()
-    {
-        // Use splitbrain\PHPArchive\Zip
-        $this->archive = new Zip();
+    function load_zip() {
 
-        try {
-            $this->archive->open($this->file);
-        } catch (ArchiveIOException $e) {
-            return $this->setError(-1, $e->getMessage());
+        if (class_exists('ZipArchive')) {
+
+            // Use PECL ZIP
+            $this->archive = new ZipArchive();
+            $result = $this->archive->open($this->file);
+            if ($result === false) {
+                return $this->setError($result, 'ZipArchive Error');
+            }
+
+        } else {
+
+            // use Pear Archive_Zip
+            require_once 'Archive/Zip.php';
+            $this->archive = new Archive_Zip($this->file);
+            // unfortunately, we can't tell if it succeeded
+
         }
 
+        // return resource handle or result
         return true;
     }
 
     /**
-     * Load a tar archive
+     * load a tar archive
      *
-     * @return bool result of loading archive passed
+     * @return boolean $success result of loading archive passed
      */
-    private function load_tar()
-    {
-        // Use splitbrain\PHPArchive\Tar
-        $this->archive = new Tar();
+    function load_tar() {
 
-        try {
-            $this->archive->open($this->file);
-        } catch (ArchiveIOException $e) {
-            return $this->setError(-1, $e->getMessage());
-        }
+        // use Pear Archive_Tar
+        require_once 'Archive/Tar.php';
+        $this->archive = new Archive_Tar($this->file, $this->comp);
 
-        return true;
+        // unfortunately, we can't tell if it succeeded
+        return ($this->archive);
+
     }
 
     /**
-     * Return contents of archive (wrapper)
+     * return contents of archive (wrapper)
      *
-     * @return array|false array(array('filename','size','etc')) archive contents
+     * @return array array(array('filename','size','etc')) archive contents
      */
-    public function getList()
-    {
-        // See if contents are cached
+    function getlist() {
+
+        // see if content are cached
         if (is_array($this->contents)) {
             return $this->contents;
         }
 
-        // If not cached, load and cache the content list
+        // not cached, load and cache the content list
         $handler = 'list_' . $this->type;
-
         if (method_exists($this, $handler)) {
             $this->contents = $this->$handler();
-
             return $this->contents;
         } else {
-            return $this->setError('405', 'Unpacker called getList ' . 'with unknown handler.');
+            return $this->setError('405', 'Unpacker called getlist ' . 'with unknown handler.');
         }
+
     }
 
     /**
-     * Convert an array of FileInfo objects into an associative array which is used
-     * by 'Archive/Zip.php' and 'Archive/Tar.php'
+     * return contents of zip archive
      *
-     * @param  array $items an array of FileInfo objects
-     * @return array
+     * @return array array(array('filename','size','etc')) archive contents
      */
-    private function convertFileInfoToArray(array $items)
-    {
-        $retval = array();
+    function list_zip() {
 
-        foreach ($items as $item) {
-            $retval[] = array(
-                'size'       => $item->getSize(),
-                'compressed' => $item->getCompressedSize(),
-                'mtime'      => $item->getMtime(),
-                'gid'        => $item->getGid(),
-                'uid'        => $item->getUid(),
-                'comment'    => $item->getComment(),
-                'group'      => $item->getGroup(),
-                'isdir'      => $item->getIsdir(),
-                'mode'       => $item->getMode(),
-                'owner'      => $item->getOwner(),
-                'filename'   => $item->getPath(),
-                'method'     => '',
-            );
-        }
+        // using PECL::ZipArchive
+        if (class_exists('ZipArchive')) {
 
-        return $retval;
-    }
+            // catch empty archive
+            if ($this->archive->numFiles < 1) {
+                return $this->setError('411', 'Archive is empty.');
+            }
 
-    /**
-     * Return contents of a zip archive
-     *
-     * @return array|false array(array('filename','size','etc')) archive contents
-     */
-    private function list_zip()
-    {
-        // Use splitbrain\PHPArchive\Zip
-        try {
-            $this->contents = $this->convertFileInfoToArray($this->archive->contents());
+            // reset cache
+            $this->contents = array();
+            for ($i = 0; $i < $this->archive->numFiles; $i ++) {
 
-            if (is_array($this->contents) && (count($this->contents) > 0)) {
+                // Make ZipArchive's info look like Archive_Zip's
+                $zip_entry = $this->archive->statIndex($i);
+                $this->contents[$i]['filename'] = $zip_entry['name'];
+                $this->contents[$i]['size'] = $zip_entry['size'];
+                $this->contents[$i]['compressed'] = $zip_entry['comp_size'];
+                $this->contents[$i]['method'] = $zip_entry['comp_method'];
+
+            }
+            // return the contents list
+            return $this->contents;
+
+        // using PEAR::Archive_Zip
+        } else {
+
+            $this->contents = $this->archive->listContent();
+            if (is_array($this->contents)) {
                 return $this->contents;
             } else {
                 return $this->setError('411', 'Archive is empty.');
             }
-        } catch (ArchiveIOException $e) {
-            return $this->setError(-1, $e->getMessage());
+
         }
     }
 
     /**
      * return contents of tar archive
      *
-     * @return array|false array(array('filename','size','etc')) archive contents
+     * @return array array(array('filename','size','etc')) archive contents
      */
-    private function list_tar()
-    {
-        $this->contents = $this->convertFileInfoToArray($this->archive->contents());
+    function list_tar() {
 
-        if (is_array($this->contents) && (count($this->contents) > 0)) {
+        $this->contents = $this->archive->listContent();
+        if (is_array($this->contents)) {
             return $this->contents;
         } else {
             return $this->setError('411', 'Archive is empty.');
@@ -309,26 +308,25 @@ class Unpacker
     /**
      * unpack the archive in the target path (wrapper)
      *
-     * @param  string $target_path destination
-     * @param  string $item        specific file to extract
-     * @return bool   result
+     * @param string $target_path destination
+     * @param array $item_array array of specific path/file(s)
+     * @return boolean result
      */
-    public function unpack($target_path, $item = null)
-    {
+    function unpack($target_path, $item_array = null) {
+
         // make sure it's writable
         if (is_writable($target_path) === false) {
             return $this->setError('403', 'Permission denied writing to path.');
         }
 
         // make sure target ends with slash
-        if (substr($target_path, -1) !== DIRECTORY_SEPARATOR) {
-            $target_path .= DIRECTORY_SEPARATOR;
+        if (substr($target_path, - 1) != $this->d_sep) {
+            $target_path .= $this->d_sep;
         }
 
         $handler = 'unpack_' . $this->type;
-
         if (method_exists($this, $handler)) {
-            return $this->$handler($target_path, $item);
+            return $this->$handler($target_path, $item_array);
         } else {
             return $this->setError('405', 'Called unpack ' . 'with unknown handler.');
         }
@@ -337,49 +335,79 @@ class Unpacker
     /**
      * unpack a zip archive in the target path
      *
-     * @param  string $target_path destination
-     * @param  array  $item_array  array of specific path/file(s)
-     * @return bool   result
+     * @param string $target_path destination
+     * @param array $item_array array of specific path/file(s)
+     * @return boolean result
      */
-    private function unpack_zip($target_path, $item_array = null)
-    {
-        // Use splitbrain\PHPArchive\Zip
-        try {
-            $this->archive->open($this->file);
+    function unpack_zip($target_path, $item_array = null) {
 
-            if (is_array($item_array)) {
-                $result = $this->archive->extract($target_path, '', '', $item_array);
+        // using PECL::ZipArchive
+        if (class_exists('ZipArchive')) {
+
+            if ($this->archive) {
+
+                if (is_array($item_array)) {
+
+                    // bleh: it won't handle an array with one item
+                    // we have to watch for that and send the string instead
+                    if (count($item_array) == 1) {
+                        $item_array = $item_array[0];
+                    }
+
+                    if ($this->archive->extractTo($target_path, $item_array)) {
+                        return true;
+                    } else {
+                        return $this->setError('406', 'Could not extract ' . ' the archive.');
+                    }
+
+                } else {
+
+                    if ($this->archive->extractTo($target_path)) {
+                        return true;
+                    }
+
+                }
+
             } else {
-                $result = $this->archive->extract($target_path);
+
+                return $this->setError('415', 'Tried to unpack nothing!');
             }
 
-            return (count($result) > 0);
-        } catch (ArchiveIOException $e) {
-            return $this->setError(-3, $e->getMessage());
+        // using PEAR::Archive_Zip
+        } else {
+
+            if (is_array($item_array) === true) {
+                $result = $this->archive->extract(array('add_path' => $target_path, 'by_name' => $item_array));
+            } else {
+                $result = $this->archive->extract(array('add_path' => $target_path));
+            }
+            // extract() returns an array on success and 0 on failure
+            if ($result === 0) {
+                return false;
+            } else {
+                return true;
+            }
+
         }
     }
 
     /**
      * unpack a tar archive in the target path
      *
-     * @param  string $target_path destination
-     * @param  array  $item_array  array of specific path/file(s)
-     * @return bool   result
+     * @param string $target_path destination
+     * @param array $item_array array of specific path/file(s)
+     * @return boolean result
      */
-    private function unpack_tar($target_path, $item_array = null)
-    {
-        try {
-            $this->archive->open($this->file);
+    function unpack_tar($target_path, $item_array = null) {
 
-            if (is_array($item_array)) {
-                $retval = $this->archive->extract($target_path, '', '', $item_array);
-            } else {
-                $retval = $this->archive->extract($target_path);
+        if (is_array($item_array)) {
+            if ($this->archive->extractList($item_array, $target_path)) {
+                return true;
             }
-
-            return (count($retval) > 0);
-        } catch (ArchiveIOException $e) {
-            return $this->setError(-4, $e->getMessage());
+        } else {
+            if ($this->archive->extract($target_path)) {
+                return true;
+            }
         }
     }
 
@@ -388,12 +416,11 @@ class Unpacker
      *
      * @return mixed string directory name, or boolean false
      */
-    private function getDir()
-    {
-        if (!is_array($this->contents)) {
-            $this->contents = $this->getList();
-        }
+    function getdir() {
 
+        if (is_array($this->contents) === false) {
+            $this->contents = $this->getlist();
+        }
         if (is_array($this->contents) && is_array($this->contents[0])) {
             return trim(preg_replace('/\/.*$/', '', $this->contents[0]['filename']));
         } else {
@@ -406,41 +433,43 @@ class Unpacker
      *
      * @return mixed (size in bytes or false on error)
      */
-    private function getUnpackedSize()
-    {
-        if ($this->u_size !== null) {
+    function getunpackedsize() {
+
+        if (is_null($this->u_size) === false) {
             return $this->u_size;
         }
-
-        if (!is_array($this->contents)) {
-            $this->contents = $this->getList();
+        if (is_array($this->contents) === false) {
+            $this->contents = $this->getlist();
         }
-
         if (is_array($this->contents) && is_array($this->contents[0])) {
-            foreach ($this->contents as $temp) {
-                $this->u_size += intval($temp['size'], 10);
+            foreach ( $this->contents as $temp ) {
+                $this->u_size += $temp['size'];
             }
+            unset($temp);
 
-            return $this->u_size;
+            return ($this->u_size);
+
         } else {
             return false;
         }
     }
 
-    /**
-     * Sets an error number and string to report if asked
+     /**
+     * sets an error number and string to report if asked
      * acts as a wrapper for return false, to set an error
      * at the same time
      *
-     * @param string $errorNo error number ( anything goes )
-     * @param string $error   error text ( anything goes )
+     * @param string $errorno error number ( anything goes )
+     * @param string $error error text ( anything goes )
      * @return boolean, always false
      */
-    private function setError($errorNo, $error)
-    {
-        $this->errorNo = $errorNo;
-        $this->error = $error;
+    function setError($errorno, $error) {
 
+        $this->errorno = $errorno;
+        $this->error = $error;
         return false;
     }
+
 }
+
+?>

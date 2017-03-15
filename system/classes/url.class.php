@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 2.1                                                               |
+// | Geeklog 1.8                                                               |
 // +---------------------------------------------------------------------------+
 // | url.class.php                                                             |
 // |                                                                           |
@@ -30,224 +30,212 @@
 // +---------------------------------------------------------------------------+
 
 /**
- * This class will allow you to use friendlier URL's, like:
- * http://www.example.com/index.php/arg_value_1/arg_value_2/ instead of
- * uglier http://www.example.com?arg1=value1&arg2=value2.
- * NOTE: this does not currently work under windows as there is a well documented
- * bug with IIS and PATH_INFO.  Not sure yet if this will work with windows under
- * apache.  This was built so you could use this class and just disable it
- * if you are an IIS user.
- *
- * @author       Tony Bibbs <tony@tonybibbs.com>
- */
-class Url
-{
+* This class will allow you to use friendlier URL's, like:
+* http://www.example.com/index.php/arg_value_1/arg_value_2/ instead of
+* uglier http://www.example.com?arg1=value1&arg2=value2.
+* NOTE: this does not currently work under windows as there is a well documented
+* bug with IIS and PATH_INFO.  Not sure yet if this will work with windows under
+* apache.  This was built so you could use this class and just disable it
+* if you are an IIS user.
+*
+* @author       Tony Bibbs <tony@tonybibbs.com>
+*
+*/
+class url {
     /**
-     * @var array
-     */
-    private $arguments = array();  // Array of argument names
+    * @access private
+    */
+    private $_arguments = array();  // Array of argument names
+    /**
+    * @access private
+    */
+    private $_enabled = true;
 
     /**
-     * @var bool
-     */
-    private $urlRewrite = true;
-
-    /**
-     * @var int
-     */
-    private $urlRouting;
-
-    /**
-     * Constructor
-     *
-     * @param  bool $urlRewrite whether rewriting is enabled
-     * @param  int  $urlRouting URL routing mode, see Router class
-     */
-    public function __construct($urlRewrite = true, $urlRouting = Router::ROUTING_DISABLED)
+    * Constructor
+    *
+    * @param        boolean     $enabled    whether rewriting is enabled
+    *
+    */
+    function url($enabled=true)
     {
-        $this->urlRewrite = (bool) $urlRewrite;
-        $urlRouting = (int) $urlRouting;
-
-        if (($urlRouting >= Router::ROUTING_DISABLED) && ($urlRouting <= Router::ROUTING_WITHOUT_INDEX_PHP)) {
-            $this->urlRouting = $urlRouting;
-        } else {
-            $this->urlRouting = Router::ROUTING_DISABLED;
-        }
-
-        $this->arguments = array();
-
-        if ($this->urlRewrite) {
-            $this->getArguments();
+        $this->setEnabled($enabled);
+        $this->_arguments = array();
+        if ($this->_enabled) {
+            $this->_getArguments();
         }
     }
 
     /**
-     * Returns the number of variables found in query string
-     * This is particularly useful just before calling setArgNames() method
-     *
-     * @return   int     Number of arguments found in URL
-     */
-    public function numArguments()
+    * Grabs any variables from the query string
+    *
+    * @access   private
+    */
+    function _getArguments()
     {
-        return count($this->arguments);
-    }
-
-    /**
-     * Assigns logical names to query string variables
-     *
-     * @param        array $names String array of names to assign to variables pulled from query string
-     * @return       boolean     true on success otherwise false
-     */
-    public function setArgNames(array $names)
-    {
-        if ($this->urlRewrite) {
-            $this->getArguments();
-            $newArray = array();
-
-            foreach ($names as $name) {
-                $newArray[$name] = array_shift($this->arguments);
+        if (isset($_SERVER['PATH_INFO'])) {
+            if ($_SERVER['PATH_INFO'] == '') {
+                if (isset($_ENV['ORIG_PATH_INFO'])) {
+                    $this->_arguments = explode('/', $_ENV['ORIG_PATH_INFO']);
+                } else {
+                    $this->_arguments = array();
+                }
+            } else {
+                $this->_arguments = explode('/', $_SERVER['PATH_INFO']);
             }
+            array_shift($this->_arguments);
+        } elseif (isset($_ENV['ORIG_PATH_INFO'])) {
+            $this->_arguments = explode('/', substr($_ENV['ORIG_PATH_INFO'], 1));
+        } elseif (isset($_SERVER['ORIG_PATH_INFO'])) {
+            $this->_arguments = explode('/', substr($_SERVER['ORIG_PATH_INFO'], 1));
 
-            $this->arguments = $newArray;
+            // Added for IIS 7 to work in FastCGI mode
+            array_shift ($this->_arguments);
+            if ( $this->_arguments[0] == substr($_SERVER['SCRIPT_NAME'],1) ) {
+                array_shift($this->_arguments);
+            }
+            // end of add
 
-            return true;
+        } else {
+            $this->_arguments = array();
+        }
+    }
+
+    /**
+    * Enables url rewriting, otherwise URL's are passed back
+    *
+    * @param        boolean     $switch     turns URL rewriting on/off
+    *
+    */
+    function setEnabled($switch)
+    {
+        if ($switch) {
+            $this->_enabled = true;
+        } else {
+            $this->_enabled = false;
+        }
+    }
+
+    /**
+    * Returns whether or not URL rewriting is enabled
+    *
+    * @return   boolean true if URl rewriting is enabled, otherwise false
+    *
+    */
+    function isEnabled()
+    {
+        return $this->_enabled;
+    }
+
+    /**
+    * Returns the number of variables found in query string
+    *
+    * This is particularly useful just before calling setArgNames() method
+    *
+    * @return   int     Number of arguments found in URL
+    *
+    */
+    function numArguments()
+    {
+        return count($this->_arguments);
+    }
+
+    /**
+    * Assigns logical names to query string variables
+    *
+    * @param        array       $names      String array of names to assign to variables pulled from query string
+    * @return       boolean     true on success otherwise false
+    *
+    */
+    function setArgNames($names)
+    {
+        if (count($names) < count($this->_arguments)) {
+            print "URL Class: number of names passed to setArgNames must be equal or greater than number of arguments found in URL";
+            exit;
+        }
+        if (is_array($names)) {
+            $newArray = array();
+            for ($i = 1; $i <= count($this->_arguments); $i++) {
+                $newArray[current($names)] = current($this->_arguments);
+                next($names);
+        next($this->_arguments);
+            }
+            $this->_arguments = $newArray;
+            reset($this->_arguments);
         } else {
             return false;
         }
+        return true;
     }
 
     /**
-     * Gets the value for an argument
-     *
-     * @param        string $name Name of argument to fetch value for
-     * @return       mixed       returns value for a given argument
-     */
-    public function getArgument($name)
+    * Gets the value for an argument
+    *
+    * @param        string      $name       Name of argument to fetch value for
+    * @return       mixed       returns value for a given argument
+    *
+    */
+    function getArgument($name)
     {
         // if in GET VARS array return it
         if (!empty($_GET[$name])) {
-            return Geeklog\Input::get($name);
+            return $_GET[$name];
         }
 
         // Added for IIS 7 to work in FastCGI mode
         // if in REQUEST VARS array return it
         if (!empty($_REQUEST[$name])) {
-            return Geeklog\Input::request($name);
+            return $_REQUEST[$name];
         }
         // end of add
 
         // ok, pull from query string
-        if (in_array($name, array_keys($this->arguments))) {
-            return $this->arguments[$name];
+        if (in_array($name,array_keys($this->_arguments))) {
+            return $this->_arguments[$name];
         }
 
         return '';
     }
 
     /**
-     * Builds crawler friendly URL if URL rewriting is enabled
-     * This function will attempt to build a crawler friendly URL.  If this feature is
-     * disabled because of platform issue it just returns original $url value
-     *
-     * @param  string $url URL to try and convert
-     * @return string      rewritten if $this->urlRewrite is true otherwise original url
-     */
-    public function buildURL($url)
+    * Builds crawler friendly URL if URL rewriting is enabled
+    *
+    * This function will attempt to build a crawler friendly URL.  If this feature is
+    * disabled because of platform issue it just returns original $url value
+    *
+    * @param        string      $url    URL to try and convert
+    * @return       string      rewritten if _isenabled is true otherwise original url
+    *
+    */
+    function buildURL($url)
     {
-        if (!$this->urlRewrite) {
+        if (!$this->isEnabled()) {
             return $url;
         }
 
-        if (($this->urlRouting === Router::ROUTING_WITH_INDEX_PHP) ||
-            ($this->urlRouting === Router::ROUTING_WITHOUT_INDEX_PHP)
-        ) {
-            $newUrl = Router::convertUrl($url);
-
-            if ($newUrl !== $url) {
-                return $newUrl;
-            }
-        }
-
-        $pos = strpos($url, '?');
-        $query_string = substr($url, $pos + 1);
+        $pos = strpos($url,'?');
+        $query_string = substr($url,$pos+1);
         $finalList = array();
-        $paramList = explode('&', $query_string);
-
+        $paramList = explode('&',$query_string);
         for ($i = 1; $i <= count($paramList); $i++) {
-            $keyValuePairs = explode('=', current($paramList));
+            $keyValuePairs = explode('=',current($paramList));
             if (is_array($keyValuePairs)) {
                 $argName = current($keyValuePairs);
                 next($keyValuePairs);
                 $finalList[$argName] = current($keyValuePairs);
             }
-
             next($paramList);
         }
-
         $newArgs = '/';
-
         for ($i = 1; $i <= count($finalList); $i++) {
             $newArgs .= current($finalList);
-
-            if ($i !== count($finalList)) {
+            if ($i <> count($finalList)) {
                 $newArgs .= '/';
             }
-
             next($finalList);
         }
-
-        return str_replace('?' . $query_string, $newArgs, $url);
-    }
-
-    /**
-     * Grabs any variables from the query string
-     */
-    private function getArguments()
-    {
-        if (isset($_SERVER['PATH_INFO'])) {
-            if ($_SERVER['PATH_INFO'] == '') {
-                if (isset($_ENV['ORIG_PATH_INFO'])) {
-                    $this->arguments = explode('/', $_ENV['ORIG_PATH_INFO']);
-                } else {
-                    $this->arguments = array();
-                }
-            } else {
-                $this->arguments = explode('/', $_SERVER['PATH_INFO']);
-            }
-            array_shift($this->arguments);
-        } elseif (isset($_ENV['ORIG_PATH_INFO'])) {
-            $this->arguments = explode('/', substr($_ENV['ORIG_PATH_INFO'], 1));
-        } elseif (isset($_SERVER['ORIG_PATH_INFO'])) {
-            $this->arguments = explode('/', substr($_SERVER['ORIG_PATH_INFO'], 1));
-
-            // Added for IIS 7 to work in FastCGI mode
-            array_shift($this->arguments);
-            if ($this->arguments[0] == substr($_SERVER['SCRIPT_NAME'], 1)) {
-                array_shift($this->arguments);
-            }
-            // end of add
-        } else {
-            $this->arguments = array();
-        }
-    }
-
-    /**
-     * Return if URL rewrite feature is enabled
-     *
-     * @return bool
-     */
-    public function isEnabled()
-    {
-        return $this->urlRewrite;
-    }
-
-    /**
-     * Enable/Disable URL rewrite feature
-     *
-     * @param  bool $switch
-     */
-    public function setEnabled($switch)
-    {
-        $this->urlRewrite = (bool) $switch;
+        return str_replace('?' . $query_string,$newArgs,$url);
     }
 }
+
+?>

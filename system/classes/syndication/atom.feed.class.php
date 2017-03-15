@@ -30,19 +30,19 @@
 // $Id: atom.feed.class.php,v 1.14 2008/09/15 08:15:26 dhaun Exp $
 
 /**
- * Provides feed handlers for Atom 0.3 and Atom 1.0
- *
- * @author  Michael Jervis (mike@fuckingbrit.com)
- * @version 1.1
- */
+* Provides feed handlers for Atom 0.3 and Atom 1.0
+*
+* @author Michael Jervis (mike@fuckingbrit.com)
+* @version 1.1
+*/
 
 /**
- * atom10 provides reading and writing of Atom 1.0 format syndication feeds.
- *
- * @author    Michael Jervis (mike@fuckingbrit.com)
- * @copyright Michael Jervis 2005
- * @abstract
- */
+* atom10 provides reading and writing of Atom 1.0 format syndication feeds.
+*
+* @author Michael Jervis (mike@fuckingbrit.com)
+* @copyright Michael Jervis 2005
+* @abstract
+*/
 class Atom10 extends FeedParserBase
 {
     public function __construct()
@@ -52,32 +52,32 @@ class Atom10 extends FeedParserBase
     }
 
     /**
-     * Format an article into an Atom 0.3 <entry> tag.
-     * Takes an associative article array and turns it into an XML definition
-     * of an article. Uses merely title, link and summary.
-     *
-     * @param  array $article Associative array describing an article.
-     * @return string
-     */
+    * Format an article into an Atom 0.3 <entry> tag.
+    *
+    * Takes an associative article array and turns it into an XML definition
+    * of an article. Uses merely title, link and summary.
+    *
+    * @param array $article Associative array describing an article.
+    */
     protected function _formatArticle(array $article)
     {
         $xml = '<entry>' . self::LB
-            . '<title type="html">' . $this->_safeXML($article['title']) . '</title>' . self::LB
-            . '<link rel="alternate" type="text/html" href="' . $this->_safeXML($article['link'], false) . '"/>' . self::LB
-            . '<id>' . $this->_createId($article['link'], $article['date']) . '</id>' . self::LB
-            . '<published>' . $this->_RFC3339Date($article['date']) . '</published>' . self::LB
-            . '<updated>' . $this->_RFC3339Date($article['date']) . '</updated>' . self::LB;
+             . '<title type="html">' . $this->_safeXML($article['title']) . '</title>' . self::LB
+             . '<link rel="alternate" type="text/html" href="' . $this->_safeXML($article['link'], false) . '"/>' . self::LB
+             . '<id>' . $this->_createId($article['link'], $article['date']) . '</id>' . self::LB
+             . '<published>' . $this->_RFC3339Date($article['date']) . '</published>' . self::LB
+             . '<updated>' . $this->_RFC3339Date($article['date']) . '</updated>' . self::LB;
 
         if (array_key_exists('author', $article)) {
             $xml .= '<author>' . self::LB
-                . '<name>' . $this->_safeXML($article['author']) . '</name>' . self::LB
-                . '</author>' . self::LB;
+                 .  '<name>' . $this->_safeXML($article['author']) . '</name>' . self::LB
+                 . '</author>' . self::LB;
         }
 
         if (array_key_exists('summary', $article) && !empty($article['summary'])) {
             $xml .= '<content type="html">'
-                . $this->_safeXML($article['summary'])
-                . '</content>' . self::LB;
+                 .  $this->_safeXML($article['summary'])
+                 .  '</content>' . self::LB;
         }
 
         if (is_array($this->extensions)) {
@@ -89,26 +89,17 @@ class Atom10 extends FeedParserBase
         return $xml;
     }
 
-    /**
-     * @param  string $url
-     * @param  int    $date
-     * @return string
-     */
     protected function _createId($url, $date)
     {
         $start = strpos($url, '/') + 2;
-        $end = strpos($url, '/', $start);
-        $tag = 'tag:' . substr($url, $start, $end - $start)
-            . strftime(',%Y-%m-%d', $date) . ':' . substr($url, $end);
+        $end   = strpos($url, '/', $start);
+        $tag   = 'tag:' . substr($url, $start, $end - $start)
+               . strftime(',%Y-%m-%d', $date) . ':' . substr($url, $end);
 
         return $tag;
     }
 
-    /**
-     * @param  int $timestamp
-     * @return false|string
-     */
-    protected function _RFC3339Date($timestamp = null)
+    private function _RFC3339Date($timestamp = '')
     {
         if (empty($timestamp)) {
             $timestamp = time();
@@ -118,20 +109,19 @@ class Atom10 extends FeedParserBase
     }
 
     /**
-     * Return the formatted start of a feed.
-     * This will start the xml and create header information about the feed
-     * itself.
-     *
-     * @return string
-     */
+    * Return the formatted start of a feed.
+    *
+    * This will start the xml and create header information about the feed
+    * itself.
+    */
     protected function _feedHeader()
     {
         $xml = parent::_feedHeader()
-            . '<feed' . $this->_injectNamespaces() . '>' . self::LB
-            . '<title type="text">' . $this->_safeXML($this->title) . '</title>' . self::LB
-            . '<subtitle type="text">' . $this->_safeXML($this->description) . '</subtitle>' . self::LB
-            . '<link rel="self" href="' . $this->_safeXML($this->url, false) . '"/>' . self::LB
-            . '<link rel="alternate" type="text/html" href="' . $this->_safeXML($this->sitelink, false) . '/"/>' . self::LB;
+             . '<feed' . $this->_injectNamespaces() . '>' . self::LB
+             . '<title type="text">' . $this->_safeXML($this->title) . '</title>' . self::LB
+             . '<subtitle type="text">' . $this->_safeXML($this->description) . '</subtitle>' . self::LB
+             . '<link rel="self" href="' . $this->_safeXML($this->url, false) . '"/>' . self::LB
+             . '<link rel="alternate" type="text/html" href="' . $this->_safeXML($this->sitelink, false) . '/"/>' . self::LB;
 
 
         if ($this->feedlogo != '') {
@@ -139,37 +129,34 @@ class Atom10 extends FeedParserBase
         }
 
         $xml .= '<id>' . $this->_safeXML($this->sitelink, false) . '/</id>' . self::LB
-            . '<updated>' . $this->_RFC3339Date() . '</updated>' . self::LB
-            . '<author>' . self::LB . '<name>' . $this->_safeXML($this->title) . '</name>' . self::LB
-            . '<email>' . $this->_safeXML($this->sitecontact) . '</email>' . self::LB
-            . '</author>' . self::LB
-            . $this->_injectExtendingTags();
+             .  '<updated>' . $this->_RFC3339Date() . '</updated>' . self::LB
+             .  '<author>' . self::LB . '<name>' . $this->_safeXML($this->title) . '</name>' . self::LB
+             .  '<email>' . $this->_safeXML($this->sitecontact) . '</email>' . self::LB
+             .  '</author>' . self::LB
+             .  $this->_injectExtendingTags();
 
         return $xml;
     }
 
     /**
-     * Return the formatted end of a feed.
-     * just closes things off nicely.
-     *
-     * @return string
-     */
+    * Return the formatted end of a feed.
+    *
+    * just closes things off nicely.
+    */
     protected function _feedFooter()
     {
         return '</feed>' . self::LB;
     }
 
     /**
-     * Handle the beginning of an XML element
-     * This is called from the parser factory once the type of data has been
-     * determined. Standard XML_PARSER element handler.
-     *
-     * @author    Michael Jervis (mike@fuckingbrit.com)
-     * @copyright Michael Jervis 2004
-     * @param  resource $parser
-     * @param  string   $name
-     * @param  array    $attributes
-     */
+    * Handle the begining of an XML element
+    *
+    * This is called from the parserfactory once the type of data has been
+    * determined. Standard XML_PARSER element handler.
+    *
+    * @author Michael Jervis (mike@fuckingbrit.com)
+    * @copyright Michael Jervis 2004
+    */
     public function startElement($parser, $name, $attributes)
     {
         if ($name === 'ENTRY') {
@@ -180,7 +167,7 @@ class Atom10 extends FeedParserBase
                 'summary' => '',
                 'date'    => '',
             );
-        } elseif ($this->_inItem) {
+        } else if ($this->_inItem) {
             if ($name === 'LINK') {
                 $this->_currentItem['link'] = $attributes['HREF'];
             }
@@ -194,12 +181,10 @@ class Atom10 extends FeedParserBase
     }
 
     /**
-     * Handle the close of an XML element
-     * Called by the parser factory during parsing.
-     *
-     * @param  resource $parser
-     * @param  string   $name
-     */
+    * Handle the close of an XML element
+    *
+    * Called by the parserfactory during parsing.
+    */
     public function endElement($parser, $name)
     {
         if ($name === 'ENTRY') {
@@ -211,28 +196,26 @@ class Atom10 extends FeedParserBase
     }
 
     /**
-     * Handles character data.
-     * Called by the parser factory during parsing.
-     *
-     * @param  resource $parser
-     * @param  string   $data
-     */
+    * Handles character data.
+    *
+    * Called by the parserfactory during parsing.
+    */
     public function charData($parser, $data)
     {
         if ($this->_inItem) {
             if ($this->_currentTag === 'TITLE') {
                 $this->_currentItem['title'] .= $data;
-            } elseif ($this->_currentTag === 'CONTENT') {
+            } else if ($this->_currentTag === 'CONTENT') {
                 $this->_currentItem['summary'] .= $data;
-            } elseif ($this->_currentTag === 'UPDATED') {
+            } else if ($this->_currentTag === 'UPDATED') {
                 $this->_currentItem['date'] = $data;
-            } elseif ($this->_currentTag === 'PUBLISHED') {
-                $this->_currentItem['date'] = $data;
+            } else if ($this->_currentTag === 'PUBLISHED') {
+                 $this->_currentItem['date'] = $data;
             }
         } else {
             if ($this->_currentTag === 'TITLE') {
                 $this->title .= $data;
-            } elseif ($this->_currentTag === 'SUBTITLE') {
+            } else if ($this->_currentTag === 'SUBTITLE') {
                 $this->description .= $data;
             }
         }
@@ -240,12 +223,12 @@ class Atom10 extends FeedParserBase
 }
 
 /**
- * atom03 provides reading and writing of Atom 0.3 format syndication feeds.
- *
- * @author    Michael Jervis (mike@fuckingbrit.com)
- * @copyright Michael Jervis 2004
- * @abstract
- */
+* atom03 provides reading and writing of Atom 0.3 format syndication feeds.
+*
+* @author Michael Jervis (mike@fuckingbrit.com)
+* @copyright Michael Jervis 2004
+* @abstract
+*/
 class Atom03 extends Atom10
 {
     public function __construct()
@@ -255,35 +238,35 @@ class Atom03 extends Atom10
     }
 
     /**
-     * Format an article into an Atom 0.3 <entry> tag.
-     * Takes an associative article array and turns it into an XML definition
-     * of an article. Uses merely title, link and summary.
-     *
-     * @param  array $article Associative array describing an article.
-     * @return string
-     */
+    * Format an article into an Atom 0.3 <entry> tag.
+    *
+    * Takes an associative article array and turns it into an XML definition
+    * of an article. Uses merely title, link and summary.
+    *
+    * @param array $article Associative array describing an article.
+    */
     protected function _formatArticle(array $article)
     {
         $xml = '<entry>' . self::LB
-            . '<title mode="escaped">'
-            . $this->_safeXML($article['title'])
-            . '</title>' . self::LB
-            . '<link rel="alternate" type="text/html" href="'
-            . $this->_safeXML($article['link'], false) . '"/>' . self::LB
-            . '<id>' . $this->_safeXML($article['link'], false) . '</id>' . self::LB
-            . '<issued>' . $this->_RFC3339Date($article['date']) . '</issued>' . self::LB
-            . '<modified>' . $this->_RFC3339Date($article['date']) . '</modified>' . self::LB;
+             . '<title mode="escaped">'
+             . $this->_safeXML($article['title'])
+             . '</title>' . self::LB
+             . '<link rel="alternate" type="text/html" href="'
+             . $this->_safeXML($article['link'], false) . '"/>' . self::LB
+             . '<id>' . $this->_safeXML($article['link'], false) . '</id>' . self::LB
+             . '<issued>' . $this->_RFC3339Date($article['date']) . '</issued>' . self::LB
+             . '<modified>' . $this->_RFC3339Date($article['date']) . '</modified>' . self::LB;
 
         if (array_key_exists('author', $article)) {
             $xml .= '<author>' . self::LB
-                . '<name>' . $this->_safeXML($article['author']) . '</name>' . self::LB
-                . '</author>' . self::LB;
+                 .  '<name>' . $this->_safeXML($article['author']) . '</name>' . self::LB
+                 .  '</author>' . self::LB;
         }
 
         if (array_key_exists('summary', $article) && !empty($article['summary'])) {
             $xml .= '<content type="text/html" mode="escaped">'
-                . $this->_safeXML($article['summary'])
-                . '</content>' . self::LB;
+                 .  $this->_safeXML($article['summary'])
+                 .  '</content>' . self::LB;
         }
 
         if (count($this->extensions) > 0) {
@@ -296,52 +279,51 @@ class Atom03 extends Atom10
     }
 
     /**
-     * Return the formatted start of a feed.
-     * This will start the xml and create header information about the feed
-     * itself.
-     *
-     * @return string
-     */
+    * Return the formatted start of a feed.
+    *
+    * This will start the xml and create header information about the feed
+    * itself.
+    */
     protected function _feedHeader()
     {
         $xml = parent::_feedHeader()
-            . '<feed version="0.3" ' . $this->_injectNamespaces() . '>' . self::LB
-            . '<title mode="escaped">' . $this->_safeXML($this->title) . '</title>' . self::LB
-            . '<tagline mode="escaped">' . $this->_safeXML($this->description) . '</tagline>' . self::LB
-            . '<link rel="alternate" type="text/html" href="' . $this->_safeXML($this->sitelink) . '"/>' . self::LB
-            . '<modified>' . $this->_RFC3339Date() . '</modified>' . self::LB
-            . '<author>' . self::LB . '<name>' . $this->_safeXML($this->title) . '</name>' . self::LB
-            . '<email>' . $this->_safeXML($this->sitecontact) . '</email>' . self::LB . '</author>' . self::LB
-            . $this->_injectExtendingTags();
+             . '<feed version="0.3" ' . $this->_injectNamespaces() . '>' . self::LB
+             . '<title mode="escaped">' . $this->_safeXML($this->title) . '</title>' . self::LB
+             . '<tagline mode="escaped">' . $this->_safeXML($this->description) . '</tagline>' . self::LB
+             . '<link rel="alternate" type="text/html" href="' . $this->_safeXML($this->sitelink) . '"/>' . self::LB
+             . '<modified>' . $this->_RFC3339Date() . '</modified>' . self::LB
+             . '<author>' . self::LB . '<name>' . $this->_safeXML($this->title) . '</name>' . self::LB
+             . '<email>' . $this->_safeXML($this->sitecontact) . '</email>' . self::LB . '</author>' . self::LB
+             . $this->_injectExtendingTags();
 
         return $xml;
     }
 
     /**
-     * Handles character data.
-     * Called by the parser factory during parsing.
-     *
-     * @param  resource $parser
-     * @param  string   $data
-     */
+      * Handles character data.
+      *
+      * Called by the parserfactory during parsing.
+      */
     public function charData($parser, $data)
     {
         if ($this->_inItem) {
             if ($this->_currentTag === 'TITLE') {
                 $this->_currentItem['title'] .= $data;
-            } elseif ($this->_currentTag === 'CONTENT') {
+            } else if ($this->_currentTag === 'CONTENT') {
                 $this->_currentItem['summary'] .= $data;
-            } elseif ($this->_currentTag === 'MODIFIED') {
+            } else if ($this->_currentTag === 'MODIFIED') {
                 $this->_currentItem['date'] = $data;
-            } elseif ($this->_currentTag === 'ISSUED') {
+            } else if ($this->_currentTag === 'ISSUED') {
                 $this->_currentItem['date'] = $data;
             }
         } else {
             if ($this->_currentTag === 'TITLE') {
                 $this->title .= $data;
-            } elseif ($this->_currentTag === 'TAGLINE') {
+            } else if ($this->_currentTag === 'TAGLINE') {
                 $this->description .= $data;
             }
         }
     }
 }
+
+?>

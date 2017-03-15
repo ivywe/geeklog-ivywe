@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 2.1                                                               |
+// | Geeklog 1.8                                                               |
 // +---------------------------------------------------------------------------+
 // | mail.php                                                                  |
 // |                                                                           |
@@ -70,7 +70,9 @@ function display_mailform($vars = array())
 
     require_once $_CONF['path_system'] . 'lib-admin.php';
 
-    $retval = COM_startBlock($LANG31[1], '',
+    $retval = '';
+
+    $retval .= COM_startBlock($LANG31[1], '',
                         COM_getBlockTemplate('_admin_block', 'header'));
 
     $menu_arr = array(
@@ -117,21 +119,21 @@ function display_mailform($vars = array())
     } else {
         $from = $_CONF['site_name'];
     }
-    $from = GLText::stripTags($from);
+    $from = strip_tags($from);
     $from = substr($from, 0, strcspn($from, "\r\n"));
     $from = htmlspecialchars(trim($from), ENT_QUOTES);
     $mail_templates->set_var('site_name', $from);
 
     $mail_templates->set_var('lang_replyto', $LANG31[3]);
     if (! empty($vars['fraepost'])) {
-        $fromEmail = $vars['fraepost'];
+        $fromemail = $vars['fraepost'];
     } else {
-        $fromEmail = $_CONF['site_mail'];
+        $fromemail = $_CONF['site_mail'];
     }
-    $fromEmail = GLText::stripTags($fromEmail);
-    $fromEmail = substr($fromEmail, 0, strcspn($fromEmail, "\r\n"));
-    $fromEmail = htmlspecialchars(trim($fromEmail), ENT_QUOTES);
-    $mail_templates->set_var('site_mail', $fromEmail);
+    $fromemail = strip_tags($fromemail);
+    $fromemail = substr($fromemail, 0, strcspn($fromemail, "\r\n"));
+    $fromemail = htmlspecialchars(trim($fromemail), ENT_QUOTES);
+    $mail_templates->set_var('site_mail', $fromemail);
     if (isset($vars['subject'])) {
         $mail_templates->set_var('subject', COM_applyFilter($vars['subject']));
     }
@@ -157,7 +159,6 @@ function display_mailform($vars = array())
     $mail_templates->set_var('lang_urgent', $LANG31[11]);
     $mail_templates->set_var('lang_ignoreusersettings', $LANG31[14]);
     $mail_templates->set_var('lang_send', $LANG31[12]);
-    $mail_templates->set_var('lang_mail_templatevars', $LANG31[27]);
     $mail_templates->set_var('end_block',
             COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer')));
     $mail_templates->set_var('gltoken_name', CSRF_TOKEN);
@@ -178,7 +179,7 @@ function display_mailform($vars = array())
 * @return   string          HTML with success or error message
 *
 */
-function send_messages(array $vars)
+function send_messages($vars)
 {
     global $_CONF, $_TABLES, $LANG31;
 
@@ -199,17 +200,26 @@ function send_messages(array $vars)
         $group_name = DB_getItem($_TABLES['groups'], 'grp_name',
                                  "grp_id = $to_group");
         if (! SEC_inGroup($group_name)) {
-            COM_redirect($_CONF['site_admin_url'] . '/mail.php');
+            return COM_refresh($_CONF['site_admin_url'] . '/mail.php');
         }
     } else {
-        COM_redirect($_CONF['site_admin_url'] . '/mail.php');
+        return COM_refresh($_CONF['site_admin_url'] . '/mail.php');
     }
 
     // Urgent message!
-    $priority = isset($vars['priority']) ? 1 : 0;
+    if (isset($vars['priority'])) {
+        $priority = 1;
+    } else {
+        $priority = 0;
+    }
 
     // If you want to send html mail
-    $html = isset($vars['html']);
+    if (isset($vars['html'])) {
+        $html = true;
+    } else {
+        $html = false;
+    }
+
     $groupList = implode(',', USER_getChildGroups($to_group));
 
     // and now mail it
@@ -225,63 +235,47 @@ function send_messages(array $vars)
     }
 
     $result = DB_query($sql);
-    $numRows = DB_numRows($result);
+    $nrows = DB_numRows($result);
 
-    $from = array($vars['fraepost'] => $vars['fra']);
+    $from = COM_formatEmailAddress($vars['fra'], $vars['fraepost']);
     $subject = COM_stripslashes($vars['subject']);
-    $subject = GLText::stripTags($subject);
+    $subject = strip_tags($subject);
     $message = COM_stripslashes($vars['message']);
-
-    if ($html) {
-        if (stripos($message, '<body') === false) {
-            $message = '<body>' . PHP_EOL . $message . PHP_EOL . '</body>' . PHP_EOL;
-        }
-
-        if (stripos($message, '<head') === false) {
-            $message = '<head></head>' . PHP_EOL . $message;
-        }
-
-        if (stripos($message, '<html') === false) {
-            $message = '<html>' . PHP_EOL . $message . '</html>' . PHP_EOL;
-        }
-    } else {
-        $message = GLText::stripTags($message);
+    if (! $html) {
+        $message = strip_tags($message);
     }
 
     // Loop through and send the messages!
     $successes = array();
     $failures = array();
-
-    for ($i = 0; $i < $numRows; $i++) {
+    for ($i = 0; $i < $nrows; $i++) {
         $A = DB_fetchArray($result);
         if (empty($A['fullname'])) {
-            $to = array($A['email'] => $A['username']);
+            $to = COM_formatEmailAddress($A['username'], $A['email']);
         } else {
-            $to = array($A['email'] => $A['fullname']);
+            $to = COM_formatEmailAddress($A['fullname'], $A['email']);
         }
 
-        $tempTo = is_array($to) ? implode('', array_keys($to)) : $to;
-
         if (! COM_mail($to, $subject, $message, $from, $html, $priority)) {
-            $failures[] = htmlspecialchars($tempTo);
+            $failures[] = htmlspecialchars($to);
         } else {
-            $successes[] = htmlspecialchars($tempTo);
+            $successes[] = htmlspecialchars($to);
         }
     }
 
     $retval .= COM_startBlock($LANG31[1]);
 
-    $failCount = count($failures);
-    $successCount = count($successes);
-    $mailResult = str_replace('<successcount>', $successCount, $LANG31[20]);
-    $retval .= str_replace('<failcount>', $failCount, $mailResult);
-    $retval .= '<h2>' . $LANG31[21] . '</h2>';
+    $failcount = count($failures);
+    $successcount = count($successes);
+    $mailresult = str_replace('<successcount>', $successcount, $LANG31[20]);
+    $retval .= str_replace('<failcount>', $failcount, $mailresult);
 
+    $retval .= '<h2>' . $LANG31[21] . '</h2>';
     for ($i = 0; $i < count($failures); $i++) {
         $retval .= current($failures) . '<br' . XHTML . '>';
         next($failures);
     }
-    if (count($failures) === 0) {
+    if (count($failures) == 0) {
         $retval .= $LANG31[23];
     }
 
@@ -290,7 +284,7 @@ function send_messages(array $vars)
         $retval .= current($successes) . '<br' . XHTML . '>';
         next($successes);
     }
-    if (count($successes) === 0) {
+    if (count($successes) == 0) {
         $retval .= $LANG31[24];
     }
 
@@ -300,7 +294,8 @@ function send_messages(array $vars)
 }
 
 // MAIN
-if ((Geeklog\Input::post('mail') === 'mail') && SEC_checkToken()) {
+
+if (isset($_POST['mail']) && ($_POST['mail'] == 'mail') && SEC_checkToken()) {
     $display .= send_messages($_POST);
 } else {
     $display .= COM_showMessageFromParameter();
@@ -310,3 +305,5 @@ if ((Geeklog\Input::post('mail') === 'mail') && SEC_checkToken()) {
 $display = COM_createHTMLDocument($display, array('pagetitle' => $LANG31[1]));
 
 COM_output($display);
+
+?>

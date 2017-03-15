@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 2.1                                                               |
+// | Geeklog 1.6                                                               |
 // +---------------------------------------------------------------------------+
 // | getimage.php                                                              |
 // |                                                                           |
@@ -31,31 +31,33 @@
 // +---------------------------------------------------------------------------+
 
 /**
- * For really strict webhosts, this file an be used to show images in pages that
- * serve the images from outside of the webtree to a place that the webserver
- * user can actually write too
- *
- * @author   Tony Bibbs, tony AT tonybibbs DOT com
- */
+* For really strict webhosts, this file an be used to show images in pages that
+* serve the images from outside of the webtree to a place that the webserver
+* user can actually write too
+*
+* @author   Tony Bibbs, tony AT tonybibbs DOT com
+*
+*/
 
 require_once 'lib-common.php';
 require_once $_CONF['path_system'] . 'classes/downloader.class.php';
 
 $downloader = new downloader();
+
 $downloader->setLogFile($_CONF['path_log'] . 'error.log');
+
 $downloader->setLogging(true);
-$downloader->setAllowedExtensions(
-    array(
-        'gif'  => 'image/gif',
-        'jpg'  => 'image/jpeg',
-        'jpeg' => 'image/jpeg',
-        'png'  => 'image/png',
-        'png'  => 'image/x-png',
-    )
-);
+
+$downloader->setAllowedExtensions(array('gif'  => 'image/gif',
+                                        'jpg'  => 'image/jpeg',
+                                        'jpeg' => 'image/jpeg',
+                                        'png'  => 'image/png',
+                                        'png'  => 'image/x-png'
+                                       )
+                                 );
 
 COM_setArgNames(array('mode', 'image'));
-$mode = COM_applyFilter(COM_getArgument('mode'));
+$mode  = COM_applyFilter(COM_getArgument('mode'));
 $image = COM_applyFilter(COM_getArgument('image'));
 
 if (strstr($image, '..')) {
@@ -71,15 +73,12 @@ switch ($mode) {
     case 'articles':
         $downloader->setPath($_CONF['path_images'] . 'articles/');
         break;
-
     case 'topics':
         $downloader->setPath($_CONF['path_images'] . 'topics/');
         break;
-
     case 'userphotos':
         $downloader->setPath($_CONF['path_images'] . 'userphotos/');
         break;
-
     default:
         // Hrm, got a bad path, just die
         exit;
@@ -88,15 +87,22 @@ switch ($mode) {
 // Let's see if we don't have a legit file.  If not bail
 $pathToImage = $downloader->getPath() . $image;
 if (is_file($pathToImage)) {
+
     // support conditional GET, if possible
     $st = @stat($pathToImage);
     if (is_array($st)) {
         // cf. RFC 2616, Section 3.3.1 Full Date
         $last_mod = str_replace('+0000', 'GMT', gmdate('r', $st['mtime']));
-        $etag = '"' . md5($image) . '"';
+        $etag     = '"' . md5($image) . '"';
 
-        $mod_since = Geeklog\Input::server('HTTP_IF_MODIFIED_SINCE', '');
-        $none_match = Geeklog\Input::server('HTTP_IF_NONE_MATCH', '');
+        $mod_since  = '';
+        $none_match = '';
+        if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
+            $mod_since = $_SERVER['HTTP_IF_MODIFIED_SINCE'];
+        }
+        if (isset($_SERVER['HTTP_IF_NONE_MATCH'])) {
+            $none_match = $_SERVER['HTTP_IF_NONE_MATCH'];
+        }
 
         if (($last_mod == $mod_since) && ($etag == $none_match)) {
             // image hasn't change - we're done
@@ -109,7 +115,7 @@ if (is_file($pathToImage)) {
         header('ETag: ' . $etag);
     }
 
-    if ($mode === 'show') {
+    if ($mode == 'show') {
         echo '<html><body><img src="' . $_CONF['site_url'] . '/getimage.php?mode=articles&amp;image=' . $image . '" alt=""' . XHTML . '></body></html>';
     } else {
         $downloader->downloadFile($image);
@@ -121,7 +127,9 @@ if (is_file($pathToImage)) {
     header('HTTP/1.1 404 Not Found');
     header('Status: 404 Not Found');
 
-    if ($mode === 'show') {
+    if ($mode == 'show') {
         echo COM_createHTMLDocument($display);
     }
 }
+
+?>
