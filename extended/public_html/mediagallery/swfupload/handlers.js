@@ -185,9 +185,9 @@ function addImage(src, id, filename ) {
 
     imgDiv.innerHTML = '<span style="font-weight:bold;vertical-align:top;">' + filename + '</span>';
     inputDiv.innerHTML = '<span style="font-weight:bold;vertical-align:top;">' + lang["title"] + '</span><br' + lang["xhtml"] + '>'
-	                   + '<input type="text" name="media_title[]" style="width:80%;" value=""><br' + lang["xhtml"] + '>'
+	                   + '<input type="text" class="uk-input" name="media_title[]" style="width:80%;" value=""><br' + lang["xhtml"] + '>'
 	                   + '<span style="font-weight:bold;vertical-align:top;">' + lang["description"] + '</span><br' + lang["xhtml"] + '>'
-	                   + '<textarea rows="2" cols="60" name="media_desc[]" style="width:80%;"></textarea>'
+	                   + '<textarea class="uk-textarea" rows="2" cols="60" name="media_desc[]" style="width:80%;"></textarea>'
 	                   + '<input type="hidden" name="media_id[]" value="' + id + '"' + lang["xhtml"] + '>';
 
     clrDiv.setAttribute('style','clear:both;border-bottom:1px solid;border-bottom-color:#D9E4FF;margin-bottom:5px;');
