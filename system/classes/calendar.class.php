@@ -47,7 +47,8 @@
 * the greater calendar class
 *
 */
-class CalendarDay {
+class CalendarDay
+{
     var $daynumber = 0;
     var $year = 0;
 
@@ -59,7 +60,12 @@ class CalendarDay {
     * Constructur
     *
     */
-    function CalendarDay()
+    public function __construct()
+    {
+        $this->reset();
+    }
+
+    public function reset()
     {
         $this->weekendflag = false;
         $this->holidayflag = false;
@@ -98,11 +104,10 @@ class CalendarDay {
     {
         return $this->selectedflag;
     }
-
 }
 
-class Calendar {
-
+class Calendar
+{
     // PRIVATE PROPERTIES
 
     /**
@@ -158,7 +163,12 @@ class Calendar {
     * Initializes calendar object
     *
     */
-    function Calendar()
+    public function __construct()
+    {
+        $this->reset();
+    }
+
+    public function reset()
     {
         $this->setRollingMode(false);
         $dateArray = getdate(time());
@@ -527,9 +537,6 @@ class Calendar {
             return $this->_matrix[$week][$daynum];
         }
 
-        return '';
+        return null;
     }
-
 }
-
-?>

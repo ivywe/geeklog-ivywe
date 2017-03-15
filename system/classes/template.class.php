@@ -55,30 +55,6 @@
 /* This should be the only Geeklog-isms in the file. Didn't want to "infect" the class but it was necessary.
  * These options are global to all templates.
  */
-
-// Usually not defined yet but will be later
-$xhtml = defined('XHTML') ? XHTML : '';
-
-$TEMPLATE_OPTIONS = array(
-    'path_cache'          => $_CONF['path_data'] . 'layout_cache/',   // location of template cache
-    'path_prefixes'       => array(                               // used to strip directories off file names. Order is important here.
-        $_CONF['path_themes'],  // this is not path_layout. When stripping directories, you want files in different themes to end up in different directories.
-        $_CONF['path'],
-        '/'                     // this entry must always exist and must always be last
-    ),
-    'incl_phpself_header' => true,          // set this to true if your template cache exists within your web server's docroot.
-    'cache_by_language'   => true,            // create cache directories for each language. Takes extra space but moves all $LANG variable text directly into the cached file
-    'default_vars'        => array(                                // list of vars found in all templates.
-        'xhtml'          => $xhtml, // Will be reset by lib-common
-        'site_url'       => $_CONF['site_url'],
-        'site_admin_url' => $_CONF['site_admin_url'],
-        'layout_url'     => $_CONF['layout_url'], // Can be set by lib-common on theme change
-        'anonymous_user' => true, // Set to false in lib-common if current visitor is logged in
-
-    ),
-    'hook'                => array(),
-);
-
 class Template
 {
     /**
@@ -290,17 +266,38 @@ class Template
     {
         global $_CONF, $TEMPLATE_OPTIONS;
 
-        $this->set_root($root);
-        $this->set_unknowns($unknowns);
+        // Set $TEMPLATE_OPTIONS if Template class is called during tests
+        if (empty($TEMPLATE_OPTIONS) || !is_array($TEMPLATE_OPTIONS)) {
+            $TEMPLATE_OPTIONS = array(
+                'path_cache'          => $_CONF['path_data'] . 'layout_cache/',   // location of template cache
+                'path_prefixes'       => array(                               // used to strip directories off file names. Order is important here.
+                    $_CONF['path_themes'],  // this is not path_layout. When stripping directories, you want files in different themes to end up in different directories.
+                    $_CONF['path'],
+                    '/'                     // this entry must always exist and must always be last
+                ),
+                'incl_phpself_header'   => true,          // set this to true if your template cache exists within your web server's docroot.
+                'cache_by_language'     => true,            // create cache directories for each language. Takes extra space but moves all $LANG variable text directly into the cached file
+                'cache_for_mobile'      => $_CONF['cache_mobile'],  // create cache directories for mobile devices. Non mobile devices uses regular directory. If disabled mobile uses regular cache files. Takes extra space
+                'default_vars'          => array(                                // list of vars found in all templates.
+                    'xhtml'             => (defined('XHTML') ? XHTML : ''),
+                    'site_url'          => $_CONF['site_url'],
+                    'site_admin_url'    => $_CONF['site_admin_url'],
+                    'layout_url'        => $_CONF['layout_url'], // Can be set by lib-common on theme change
+                    'anonymous_user'    => true,
+                    'device_mobile'     => false,
+                ),
+                'hook'                => array(),
+            );
+        }
 
-        if (is_array($TEMPLATE_OPTIONS) &&
-            array_key_exists('default_vars', $TEMPLATE_OPTIONS) &&
-            is_array($TEMPLATE_OPTIONS['default_vars'])
-        ) {
+        if (array_key_exists('default_vars', $TEMPLATE_OPTIONS) && is_array($TEMPLATE_OPTIONS['default_vars'])) {
             foreach ($TEMPLATE_OPTIONS['default_vars'] as $k => $v) {
                 $this->set_var($k, $v);
             }
         }
+
+        $this->set_root($root);
+        $this->set_unknowns($unknowns);
 
         if (isset($_CONF['cache_templates']) && ($_CONF['cache_templates'] == true)) {
             clearstatcache();
@@ -372,6 +369,26 @@ class Template
             $this->halt("set_root: at least on existing directory must be set as root.");
         }
         return false;
+    }
+
+    /**
+     * Return the root directory of the templates
+     *
+     * @return array|string
+     */
+    public function getRoot()
+    {
+        return $this->root;
+    }
+
+    /**
+     * Return unknowns
+     *
+     * @return string
+     */
+    public function getUnknowns()
+    {
+        return $this->unknowns;
     }
 
     /******************************************************************************
@@ -1027,7 +1044,7 @@ class Template
      * usage: get_undefined(string $varName)
      *
      * @param     string $varName a string containing the name the name of the variable to scan for unresolved variables
-     * @return    array
+     * @return    array|bool
      */
     public function get_undefined($varName)
     {
@@ -1136,7 +1153,7 @@ class Template
      * @return    string
      * @see       set_root
      */
-    private function filename($fileName)
+    public function filename($fileName)
     {
         if ($this->debug & 4) {
             echo "<p><b>filename:</b> filename = $fileName</p>\n";
@@ -1243,7 +1260,7 @@ class Template
      * @return    void
      * @see       $halt_on_error
      */
-    private function halt($msg)
+    public function halt($msg)
     {
         $this->last_error = $msg;
 
@@ -1667,7 +1684,7 @@ class Template
      */
     private function check_cache($varName, $filename)
     {
-        global $TEMPLATE_OPTIONS, $_CONF;
+        global $TEMPLATE_OPTIONS, $_CONF, $_DEVICE;
 
         if ($this->debug & 8) {
             printf("<check_cache> Var %s for file %s<br>", $varName, $filename);
@@ -1693,11 +1710,18 @@ class Template
             $extra_path = str_replace(array('/', '\\', ':'), '__', $extra_path);
         }
 
-        if ($TEMPLATE_OPTIONS['cache_by_language']) {
-            $extra_path = $_CONF['language'] . '/' . $extra_path;
-            if (!is_dir($TEMPLATE_OPTIONS['path_cache'] . $_CONF['language'])) {
-                @mkdir($TEMPLATE_OPTIONS['path_cache'] . $_CONF['language']);
-                @touch($TEMPLATE_OPTIONS['path_cache'] . $_CONF['language'] . '/index.html');
+        if ($TEMPLATE_OPTIONS['cache_by_language'] || $TEMPLATE_OPTIONS['cache_for_mobile']) {
+            $directory = '';
+            if ($TEMPLATE_OPTIONS['cache_by_language']) {
+                $directory = $_CONF['language'] . '/';
+            }
+            if ($TEMPLATE_OPTIONS['cache_for_mobile'] && $_DEVICE->is_mobile()) {
+                $directory .= 'mobile/';
+            }
+            $extra_path = $directory . '/' . $extra_path;
+            if (!is_dir($TEMPLATE_OPTIONS['path_cache'] . $directory)) {
+                @mkdir($TEMPLATE_OPTIONS['path_cache'] . $directory);
+                @touch($TEMPLATE_OPTIONS['path_cache'] . $directory . '/index.html');
             }
         }
         $phpFile = $TEMPLATE_OPTIONS['path_cache'] . $extra_path . $baseFile . '.php';
@@ -1881,7 +1905,7 @@ class Template
      */
     public function create_instance($iid, $fileVar)
     {
-        global $TEMPLATE_OPTIONS, $_CONF;
+        global $TEMPLATE_OPTIONS, $_CONF, $_DEVICE;
 
         $old_unknowns = $this->unknowns;
         $this->unknowns = 'PHP';
@@ -1890,6 +1914,9 @@ class Template
         if ($TEMPLATE_OPTIONS['cache_by_language']) {
             $path_cache .= $_CONF['language'] . '/';
         }
+        if ($TEMPLATE_OPTIONS['cache_for_mobile'] && $_DEVICE->is_mobile()) {
+            $path_cache .= 'mobile/';
+        }        
         $iid = str_replace(array('..', '/', '\\', ':'), '', $iid);
         // COMMENT ORIGINAL LINE below out since not sure why changing dashes to under scores ... this affects articles and staticpages
         // $iid = str_replace('-','_',$iid);
@@ -1928,12 +1955,15 @@ class Template
      */
     public function check_instance($iid, $fileVar)
     {
-        global $TEMPLATE_OPTIONS, $_CONF;
+        global $TEMPLATE_OPTIONS, $_CONF, $_DEVICE;
 
         $path_cache = $TEMPLATE_OPTIONS['path_cache'];
         if ($TEMPLATE_OPTIONS['cache_by_language']) {
             $path_cache .= $_CONF['language'] . '/';
         }
+        if ($TEMPLATE_OPTIONS['cache_for_mobile'] && $_DEVICE->is_mobile()) {
+            $path_cache .= 'mobile/';
+        }          
         $iid = str_replace(array('..', '/', '\\', ':'), '', $iid);
         // COMMENT ORIGINAL LINE below out since not sure why changing dashes to under scores ... this affects articles and staticpages
         // $iid = str_replace('-','_',$iid);
@@ -2019,7 +2049,7 @@ function CACHE_remove_instance($iid)
     // Confusion may have happened since this is done for cache theme template files but not cache instances
     // $iid = str_replace('-','_',$iid);
     $path_cache = substr($TEMPLATE_OPTIONS['path_cache'], 0, -1);
-    CACHE_clean_directories($path_cache, 'instance__' . $iid);
+    cache_clean_directories($path_cache, 'instance__' . $iid);
 }
 
 /******************************************************************************
@@ -2034,18 +2064,25 @@ function CACHE_remove_instance($iid)
  * @return void
  * @see    CACHE_check_instance, CACHE_remove_instance
  */
-function CACHE_create_instance($iid, $data, $bypass_lang = false)
+function CACHE_create_instance($iid, $data, $bypass_lang = false, $bypass_mobile = false)
 {
-    global $TEMPLATE_OPTIONS, $_CONF;
+    global $TEMPLATE_OPTIONS, $_CONF, $_DEVICE;
 
-    if ($TEMPLATE_OPTIONS['cache_by_language']) {
-        if (!is_dir($TEMPLATE_OPTIONS['path_cache'] . $_CONF['language'])) {
-            @mkdir($TEMPLATE_OPTIONS['path_cache'] . $_CONF['language']);
-            @touch($TEMPLATE_OPTIONS['path_cache'] . $_CONF['language'] . '/index.html');
+    if ($TEMPLATE_OPTIONS['cache_by_language'] || $TEMPLATE_OPTIONS['cache_for_mobile']) {
+        $directory = '';
+        if ($TEMPLATE_OPTIONS['cache_by_language']) {
+            $directory = $_CONF['language'] . '/';
+        }
+        if ($TEMPLATE_OPTIONS['cache_for_mobile'] && $_DEVICE->is_mobile()) {
+            $directory .= 'mobile/';
+        }
+        if (!is_dir($TEMPLATE_OPTIONS['path_cache'] . $directory)) {
+            @mkdir($TEMPLATE_OPTIONS['path_cache'] . $directory);
+            @touch($TEMPLATE_OPTIONS['path_cache'] . $directory . '/index.html');
         }
     }
 
-    $filename = CACHE_instance_filename($iid, $bypass_lang);
+    $filename = CACHE_instance_filename($iid, $bypass_lang, $bypass_mobile);
     @file_put_contents($filename, $data);
 }
 
@@ -2078,9 +2115,9 @@ function CACHE_create_instance($iid, $data, $bypass_lang = false)
  * @return string|false the data string or false is there is no such instance
  * @see    CACHE_check_instance, CACHE_remove_instance
  */
-function CACHE_check_instance($iid, $bypass_lang = false)
+function CACHE_check_instance($iid, $bypass_lang = false, $bypass_mobile = false)
 {
-    $filename = CACHE_instance_filename($iid, $bypass_lang);
+    $filename = CACHE_instance_filename($iid, $bypass_lang, $bypass_mobile);
     if (file_exists($filename)) {
         $str = @file_get_contents($filename);
         return ($str === false) ? false : $str;
@@ -2099,9 +2136,9 @@ function CACHE_check_instance($iid, $bypass_lang = false)
  * @return int unix_timestamp of when the instance was generated or false
  * @see    CACHE_check_instance, CACHE_remove_instance
  */
-function CACHE_get_instance_update($iid, $bypass_lang = false)
+function CACHE_get_instance_update($iid, $bypass_lang = false, $bypass_mobile = false)
 {
-    $filename = CACHE_instance_filename($iid, $bypass_lang);
+    $filename = CACHE_instance_filename($iid, $bypass_lang, $bypass_mobile);
     return @filemtime($filename);
 }
 
@@ -2117,13 +2154,16 @@ function CACHE_get_instance_update($iid, $bypass_lang = false)
  * @return int unix_timestamp of when the instance was generated or false
  * @see    CACHE_create_instance, CACHE_check_instance, CACHE_remove_instance
  */
-function CACHE_instance_filename($iid, $bypass_lang = false)
+function CACHE_instance_filename($iid, $bypass_lang = false, $bypass_mobile = false)
 {
-    global $TEMPLATE_OPTIONS, $_CONF;
+    global $TEMPLATE_OPTIONS, $_CONF, $_DEVICE;
 
     $path_cache = $TEMPLATE_OPTIONS['path_cache'];
     if (!$bypass_lang && $TEMPLATE_OPTIONS['cache_by_language']) {
         $path_cache .= $_CONF['language'] . '/';
+    }
+    if (!$bypass_mobile && $TEMPLATE_OPTIONS['cache_for_mobile'] && $_DEVICE->is_mobile()) {
+        $path_cache .= 'mobile/';
     }
     $iid = COM_sanitizeFilename($iid, true);
     $filename = $path_cache . 'instance__' . $iid . '.php';

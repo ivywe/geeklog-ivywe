@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 1.7                                                               |
+// | Geeklog 2.1                                                               |
 // +---------------------------------------------------------------------------+
 // | english.php                                                               |
 // |                                                                           |
@@ -69,7 +69,7 @@ $LANG_INSTALL = array(
     17 => 'User photos are disabled. The <code>userphotos</code> directory was not tested',
     18 => 'Images in articles are disabled. The <code>articles</code> directory was not tested',
     19 => 'In order to operate correctly Geeklog requires that certain files and directories be writable by the web server. Below is a list of file and directory permissions that you need to modify before continuing with the your installation.',
-    20 => 'Warning',
+    20 => 'WARNING',
     21 => 'There are still a few files or directories that have incorrect permissions. You cannot proceed until all permissions are correctly set.',
     22 => 'unknown',
     23 => 'Choose an Installation Method',
@@ -87,7 +87,7 @@ $LANG_INSTALL = array(
     35 => 'MySQL',
     36 => 'MySQL with InnoDB Table support',
     37 => 'Microsoft SQL',
-    38 => 'Error',
+    38 => 'ERROR',
     39 => 'Database Hostname',
     40 => 'Database Name',
     41 => 'Database Username',
@@ -108,7 +108,7 @@ $LANG_INSTALL = array(
     56 => 'Could not connect to database',
     57 => 'Sorry, but the installer could not find the database you specified. Either the database does not exist or you misspelled the name. Please go back and try again.',
     58 => '. Did you make sure the file is writable by the web server?',
-    59 => 'Notice',
+    59 => 'NOTICE',
     60 => 'InnoDB tables are not supported by your version of MySQL. Would you like to continue the installation without InnoDB support?',
     61 => 'Back',
     62 => 'Continue',
@@ -128,7 +128,7 @@ $LANG_INSTALL = array(
     76 => 'Select Your Current Geeklog Version',
     77 => 'The installer was unable to determine your current version of Geeklog, please select it from the list below:',
     78 => 'Upgrade Error',
-    79 => 'An error occured while upgrading your Geeklog installation.',
+    79 => 'An error occurred while upgrading your Geeklog installation.',
     80 => 'Change',
     81 => 'Stop!',
     82 => 'It is critical that you change permissions on the files listed below. Geeklog will not be able to be installed until you do so.',
@@ -136,13 +136,13 @@ $LANG_INSTALL = array(
     84 => 'The path ',
     85 => ' does not appear to be correct. Please go back and try again.',
     86 => 'Language',
-    87 => 'http://www.geeklog.net/forum/index.php?forum=1',
+    87 => 'https://www.geeklog.net/forum/index.php?forum=1',
     88 => 'Change directory and containing files to',
     89 => 'Current Version:',
     90 => 'Empty database?',
     91 => 'It appears that either your database is empty or the database credentials you entered are incorrect. Or maybe you wanted to perform a New Install (instead of an Upgrade)? Please go back and try again.',
     92 => 'Use UTF-8',
-    93 => 'Success',
+    93 => 'SUCCESS',
     94 => 'Here are some hints to find the correct path:',
     95 => 'The complete path to this file (the install script) is:',
     96 => 'The installer was looking for %s in:',
@@ -152,14 +152,20 @@ $LANG_INSTALL = array(
     100 => 'Invalid mode specified',
     101 => 'Step',
     102 => 'Enter configuration information',
-    103 => 'and configure additional plugins',
+    103 => '', 
     104 => 'Incorrect Admin Directory Path',
     105 => 'Sorry, but the admin directory path you entered does not appear to be correct. Please go back and try again.',
     106 => 'PostgreSQL',
     107 => 'Database Password is required for production environments.',
     108 => 'No Database Drivers found!',
     109 => 'Emergency Rescue Tool',
-    110 => 'The permissions seem to be correct but the install script still cannot write to the Geeklog directory. If you happen to be on SELinux, make sure the httpd process has write permissions for the same, try this out:'
+    110 => 'The permissions seem to be correct but the install script still cannot write to the Geeklog directory. If you happen to be on SELinux, make sure the httpd process has write permissions for the same, try this out:',
+    111 => 'Geeklog Version',
+    112 => 'Install (includes all plugins)',
+    113 => 'Install (then select plugins to install)',
+    114 => 'Only plugins that support being auto installed will be installed (all core plugins do). The plugins that don\'t support this can be installed via the Plugins Administration from the Geeklog Command & Control.',
+    115 => 'Upgrade',
+    116 => 'Clicking the "Upgrade" button will upgrade Geeklog to the latest version including all core plugins (if required).'
 );
 
 // +---------------------------------------------------------------------------+
@@ -188,18 +194,18 @@ $LANG_SUCCESS = array(
     19 => '<strong>Note:</strong> Because the security model has been changed, we have created a new account with the rights you need to administer your new site.  The username for this new account is <b>NewAdmin</b> and the password is <b>password</b>',
     20 => 'installed',
     21 => 'upgraded',
-    22 => 'migrated'
+    22 => 'migrated',
+    23 => 'Would you like to delete all the files and directories used during the installation?',
+    24 => 'Yes, please.',
+    25 => 'No, thanks.  I will manually delete them afterwards.',
 );
-
-// +---------------------------------------------------------------------------+
-// migrate.php
 
 $LANG_MIGRATE = array(
     0 => 'The migration process will overwrite any existing database information.',
-    1 => 'Before Proceding',
+    1 => 'Before Proceeding',
     2 => 'Be sure any previously installed plugins have been copied to your new server.',
     3 => 'Be sure any images from <code>public_html/images/articles/</code>, <code>public_html/images/topics/</code>, and <code>public_html/images/userphotos/</code>, have been copied to your new server.',
-    4 => 'If you\'re upgrading from a Geeklog version older than <strong>1.5.0</strong>, then make sure to copy over all your old <tt>config.php</tt> files so that the migration can pick up your settings.',
+    4 => 'If you\'re upgrading from a Geeklog version older than <strong>1.5.0</strong>, then make sure to copy over all your old <code>config.php</code> files so that the migration can pick up your settings.',
     5 => 'If you\'re upgrading to a new Geeklog version, then don\'t upload your theme just yet. Use the included default theme until you can be sure your migrated site works properly.',
     6 => 'Select an existing backup',
     7 => 'Choose file...',
@@ -235,7 +241,7 @@ $LANG_MIGRATE = array(
     37 => 'Migration Complete',
     38 => 'The migration process has completed. However, the installation script found the following issues:',
     39 => "Failed to set PEAR include path. Sorry, can't handle compressed database backups without PEAR.",
-    40 => "The archive '%s' does not appear to contain any SQL files.",
+    40 => 'The archive "%1$s" does not appear to contain any SQL files.  To retry, click on <a href="%2$s\">this</a>',
     41 => "Error extracting database backup '%s' from compressed backup file.",
     42 => "Backup file '%s' just vanished ...",
     43 => "Import aborted: The file '%s' does not appear to be an SQL dump.",
@@ -323,7 +329,13 @@ $LANG_ERROR = array(
     7 => 'The uploaded file exceeds the post_max_size directive in your php.ini. Please upload your database file using another method, such as FTP.',
     8 => 'Error',
     9 => 'Failed to connect to the database with the error: ',
-    10 => 'Check your database settings'
+    10 => 'Check your database settings',
+    11 => 'Warning', 
+    12 => 'Information',
+    14 => 'Upgrade Notices',
+    15 => 'Topic IDs and Names max length have changed from 128 to 75. This may cause issues when topic ids are truncated (if id is larger than 75 characters) during the upgrade. Please double check your topic ids that are larger than 75 characters will be unique when the max length is changed.',
+    16 => 'Topic IDs and Names have changed from 128 to 75. It has been detected you need to modify 1 or more topic ids before this upgrade can proceed.',
+    17 => 'Professional Theme support has been dropped from Geeklog. If you are currently using the Professional theme or Professional_css theme from Geeklog 2.1.1 or older your website may not function properly.'
 );
 
 // +---------------------------------------------------------------------------+
@@ -417,5 +429,3 @@ $LANG_LABEL = array(
     'migrate_file'   => $LANG_MIGRATE[6],
     'plugin_upload'  => $LANG_PLUGINS[10]
 );
-
-?>
