@@ -1340,10 +1340,10 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 					$p_retval .= $product->parse('', 'product') . '</tr>';
 					$col_number = 1;
 				} else if ($col_number == 1){
-					$p_retval .= '<tr class="uk-grid">' . $product->parse('', 'product') . '<td class="product-separator"></td>';
+					$p_retval .= $product->parse('', 'product');
 					$col_number = $col_number+1;
 				} else {
-					$p_retval .= $product->parse('', 'product') . '<td class="product-separator"></td>';
+					$p_retval .= $product->parse('', 'product');
 					$col_number = $col_number+1;
 				}
 			} else {
