@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 2.1                                                               |
+// | Geeklog 1.6                                                               |
 // +---------------------------------------------------------------------------+
 // | config-install.php                                                        |
 // |                                                                           |
@@ -29,7 +29,7 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 
-if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
+if (strpos(strtolower($_SERVER['PHP_SELF']), 'config-install.php') !== false) {
     die('This file can not be used on its own!');
 }
 
@@ -37,8 +37,11 @@ function install_config()
 {
     global $_CONF, $_TABLES;
 
+
     // Parameters for add function:  $param_name, $default_value, $type, $subgroup, $fieldset=null, $selection_array=null, $sort=0, $set=true, $group='Core', $tab=null
+
     $me = 'Core';
+
     $c = config::get_instance();
 
     // Subgroup: Site
@@ -54,7 +57,6 @@ function install_config()
     $c->add('owner_name','','text',0,0,NULL,1000,TRUE, $me, 0);
     $c->add('copyrightyear',date('Y'),'text',0,0,NULL,1440,FALSE, $me, 0);
     $c->add('url_rewrite',FALSE,'select',0,0,1,1800,TRUE, $me, 0);
-    $c->add('url_routing',0,'select',0,0,37,1850,TRUE, $me, 0);
     $c->add('cdn_hosted',FALSE,'select',0,0,1,1900,TRUE, $me, 0);
     $c->add('meta_tags',0,'select',0,0,23,2000,TRUE, $me, 0);
     $c->add('meta_description','Geeklog - The secure Content Management System.','textarea',0,0,NULL,2010,TRUE, $me, 0);
@@ -67,7 +69,6 @@ function install_config()
     $c->add('mail_settings',array ('backend' => 'mail', 'sendmail_path' => '/usr/bin/sendmail', 'sendmail_args' => '', 'host' => 'smtp.example.com','port' => '25', 'auth' => false, 'username' => 'smtp-username','password' => 'smtp-password'),'@text',0,1,NULL,160,TRUE, $me, 1);
     $c->add('mail_cc_enabled', 1, 'select', 0, 1, 0, 180, TRUE, $me, 1);
     $c->add('mail_cc_default', 0, 'select', 0, 1, 0, 190, TRUE, $me, 1);
-    $c->add('mail_charset', '', 'text', 0, 1, NULL, 195, TRUE, $me, 1);
 
     $c->add('tab_syndication', NULL, 'tab', 0, 2, NULL, 0, TRUE, $me, 2);
     $c->add('fs_syndication', NULL, 'fieldset', 0, 2, NULL, 0, TRUE, $me, 2);
@@ -94,12 +95,17 @@ function install_config()
     $c->add('path_images','','text',0,3,NULL,130,TRUE, $me, 3);
     $c->add('path_editors','','text',0,3,NULL,132,TRUE, $me, 3);
 
-    $c->add('tab_database', NULL, 'tab', 0, 5, NULL, 0, TRUE, $me, 5);
-    $c->add('fs_database_backup', NULL, 'fieldset', 0, 5, NULL, 0, TRUE, $me, 5);
-    $c->add('dbdump_filename_prefix','geeklog_db_backup','text',0,5,NULL,170,TRUE, $me, 5);    
-    $c->add('dbdump_tables_only',1,'select',0,5,0,175,TRUE, $me, 5);
-    $c->add('dbdump_gzip',1,'select',0,5,0,180,TRUE, $me, 5);
-    $c->add('dbdump_max_files',10,'text',0,5,NULL,185,TRUE, $me, 5);
+    $c->add('tab_pear', NULL, 'tab', 0, 4, NULL, 0, TRUE, $me, 4);
+    $c->add('fs_pear', NULL, 'fieldset', 0, 4, NULL, 0, TRUE, $me, 4);
+    $c->add('have_pear',FALSE,'select',0,4,1,135,TRUE, $me, 4);
+    $c->add('path_pear','','text',0,4,NULL,140,TRUE, $me, 4);
+
+    $c->add('tab_mysql', NULL, 'tab', 0, 5, NULL, 0, TRUE, $me, 5);
+    $c->add('fs_mysql', NULL, 'fieldset', 0, 5, NULL, 0, TRUE, $me, 5);
+    $c->add('allow_mysqldump',1,'select',0,5,0,170,TRUE, $me, 5);
+    $c->add('mysqldump_path','/usr/bin/mysqldump','text',0,5,NULL,175,TRUE, $me, 5);
+    $c->add('mysqldump_options','-Q','text',0,5,NULL,180,TRUE, $me, 5);
+    $c->add('mysqldump_filename_mask','geeklog_db_backup_%Y_%m_%d_%H_%M_%S.sql','text',0,5,NULL,185,TRUE, $me, 5);
 
     // squeeze search options between 640 (lastlogin) and 680 (loginrequired)
     $c->add('tab_search', NULL, 'tab', 0, 6, NULL, 0, TRUE, $me, 6);
@@ -115,7 +121,6 @@ function install_config()
     $c->add('search_def_keytype','phrase','select',0,6,20,672,TRUE, $me, 6);
     $c->add('search_use_fulltext', FALSE, 'hidden', 0, 6, NULL, 0, TRUE, $me, 6); // 675
     $c->add('search_def_sort','hits|desc','select',0,6,27,676,TRUE, $me, 6);
-    $c->add('search_use_topic',FALSE,'select',0,6,1,677,TRUE, $me, 6);
 
     // Subgroup: Stories and Trackback
     $c->add('sg_stories', NULL, 'subgroup', 1, 0, NULL, 0, TRUE, $me, 0);
@@ -136,7 +141,7 @@ function install_config()
     $c->add('draft_flag',0,'select',1,7,0,1280,TRUE, $me, 7);
     $c->add('frontpage',1,'select',1,7,0,1290,TRUE, $me, 7);
     $c->add('hide_no_news_msg',0,'select',1,7,0,1300,TRUE, $me, 7);
-    $c->add('hide_main_page_navigation','false','select',1,7,36,1310,TRUE, $me, 7);
+    $c->add('hide_main_page_navigation',0,'select',1,7,0,1310,TRUE, $me, 7);
     $c->add('onlyrootfeatures',0,'select',1,7,0,1320,TRUE, $me, 7);
     $c->add('aftersave_story','list','select',1,7,9,1330,TRUE, $me, 7);
     $c->add('related_topics',1,'select',1,7,32,1340,TRUE, $me, 7);
@@ -166,12 +171,11 @@ function install_config()
 
     $c->add('tab_theme', NULL, 'tab', 2, 10, NULL, 0, TRUE, $me, 10);
     $c->add('fs_theme', NULL, 'fieldset', 2, 10, NULL, 0, TRUE, $me, 10);
-    $c->add('theme','default','select',2,10,NULL,190,TRUE, $me, 10);
+    $c->add('theme','modern_curve','select',2,10,NULL,190,TRUE, $me, 10);
     $c->add('doctype','html401strict','select',2,10,21,195,TRUE, $me, 10);
     $c->add('menu_elements',array('contribute','search','stats','directory','plugins'),'%select',2,10,24,200,TRUE, $me, 10);
     $c->add('path_themes','','text',2,10,NULL,210,TRUE, $me, 10);
     $c->add('cache_templates',TRUE,'select',2,10,1,220,TRUE, $me, 10);
-    $c->add('cache_mobile',TRUE,'select',2,10,1,230,TRUE, $me, 10);
 
     $c->add('tab_theme_advanced', NULL, 'tab', 2, 11, NULL, 0, TRUE, $me, 11);
     $c->add('fs_theme_advanced', NULL, 'fieldset', 2, 11, NULL, 0, TRUE, $me, 11);
@@ -247,10 +251,6 @@ function install_config()
     $c->add('yahoo_login',0,'select',4,16,1,365,TRUE, $me, 16);
     $c->add('yahoo_consumer_key','','text',4,16,NULL,366,TRUE, $me, 16);
     $c->add('yahoo_consumer_secret','','text',4,16,NULL,367,TRUE, $me, 16);
-    $c->add('github_login',0,'select',4,16,1,368,TRUE, $me, 16);
-    $c->add('github_consumer_key','','text',4,16,NULL,369,TRUE, $me, 16);
-    $c->add('github_consumer_secret','','text',4,16,NULL,370,TRUE, $me, 16);    
-    
     $c->add('aftersave_user','item','select',4,16,9,1340,TRUE, $me, 16);
 
     $c->add('tab_spamx', NULL, 'tab', 4, 17, NULL, 0, TRUE, $me, 17);
@@ -294,7 +294,6 @@ function install_config()
     $c->add('advanced_editor',FALSE,'select',4,20,1,840,TRUE, $me, 20);
     $c->add('advanced_editor_name','ckeditor','select',4,20,NULL,845,TRUE, $me, 20);
     $c->add('wikitext_editor',FALSE,'select',4,20,1,850,TRUE, $me, 20);
-    $c->add('remove_4byte_chars',TRUE,'select',4,20,1,855,TRUE, $me, 20);
 
     $c->add('tab_comments', NULL, 'tab', 4, 21, NULL, 0, TRUE, $me, 21);
     $c->add('fs_comments', NULL, 'fieldset', 4, 21, NULL, 0, TRUE, $me, 21);
@@ -353,7 +352,6 @@ function install_config()
     $c->add('fs_gravatar', NULL, 'fieldset', 5, 27, NULL, 0, TRUE, $me, 27);
     $c->add('use_gravatar',FALSE,'select',5,27,1,1600,TRUE, $me, 27);
     $c->add('gravatar_rating','R','select',5,27,26,1610,FALSE, $me, 27);
-    $c->add('gravatar_identicon','identicon','select',5,27,38,1620,FALSE, $me, 27);
 
     // Subgroup: Languages and Locale
     $c->add('sg_locale', NULL, 'subgroup', 6, 0, NULL, 0, TRUE, $me, 0);
@@ -455,7 +453,6 @@ function install_config()
     $c->add('autotag_permissions_topic', array(2, 2, 2, 2), '@select', 7, 41, 28, 1890, TRUE, $me, 37);
     $c->add('autotag_permissions_related_topics', array(2, 2, 0, 0), '@select', 7, 41, 28, 1900, TRUE, $me, 37);
     $c->add('autotag_permissions_related_items', array(2, 2, 0, 0), '@select', 7, 41, 28, 1910, TRUE, $me, 37);
-    $c->add('autotag_permissions_block', array(2, 2, 0, 0), '@select', 7, 41, 28, 1920, TRUE, $me, 37);
 
     $c->add('tab_webservices', NULL, 'tab', 7, 40, NULL, 0, TRUE, $me, 40);
     $c->add('fs_webservices', NULL, 'fieldset', 7, 40, NULL, 0, TRUE, $me, 40);
@@ -568,3 +565,5 @@ function install_config()
     $c->add('filemanager_audios_ext', array('ogg', 'mp3', 'wav'), '%text', $sg, $fs, NULL, $so, TRUE, $me, $tab);
     $so += 10;
 }
+
+?>

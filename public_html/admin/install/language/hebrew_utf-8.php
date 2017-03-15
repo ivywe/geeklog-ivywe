@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 2.1                                                               |
+// | Geeklog 2.0.0#1                                                           |
 // +---------------------------------------------------------------------------+
 // | hebrew_utf-8.php                                                          |
 // |                                                                           |
@@ -131,7 +131,7 @@ $LANG_INSTALL = array(
     84 => 'הנתיב ',
     85 => '" נראה שאינו נכון. אנא חיזרו ונסו שוב.',
     86 => 'שפה',
-    87 => 'https://www.geeklog.net/forum/index.php?forum=1',
+    87 => 'http://www.geeklog.net/forum/index.php?forum=1',
     88 => 'שינוי הספרייה והקבצים שבה ל',
     89 => 'גירסה נוכחית:',
     90 => 'מאגר מידע ריק?',
@@ -147,20 +147,14 @@ $LANG_INSTALL = array(
     100 => 'סופק מצב לא נכון',
     101 => 'שלב',
     102 => 'הכניסו את מידע הכיוון',
-    103 => '',
+    103 => 'וכיוון plugins נוספים',
     104 => 'נתיב בספריית ניהול לא נכון',
     105 => 'מצטערים, אבל נתיב ספריית הניהול שהכנסתם אינו נראה נכון. אנא חיזרו אחורה ונסו שנית.',
     106 => 'PostgreSQL',
     107 => 'נחוצה סיסמת מאגר מידע לאתרים שבאוויר.',
     108 => 'לא נבחרו מנועי מאגר מידע!',
     109 => 'כלי סיוע חירום',
-    110 => 'The permissions seem to be correct but the install script still cannot write to the Geeklog directory. If you happen to be on SELinux, make sure the httpd process has write permissions for the same, try this out:',
-    111 => 'Geeklog Version',
-    112 => 'Install (includes all plugins)',
-    113 => 'Install (then select plugins to install)',
-    114 => 'Only plugins that support being auto installed will be installed (all core plugins do). The plugins that don\'t support this can be installed via the Plugins Administration from the Geeklog Command & Control.',
-    115 => 'Upgrade',
-    116 => 'Clicking the "Upgrade" button will upgrade Geeklog to the latest version including all core plugins (if required).'
+    110 => 'The permissions seem to be correct but the install script still cannot write to the Geeklog directory. If you happen to be on SELinux, make sure the httpd process has write permissions for the same, try this out:'
 );
 
 // +---------------------------------------------------------------------------+
@@ -189,21 +183,18 @@ $LANG_SUCCESS = array(
     19 => '<strong>שימו לב:</strong> עקב כך ששונה מודל האבטחה, יצרנו חשבון חדש עם ההרשאות שהנכם זקוקים להן כדי לנהל את אתרכם החדש.  שם המשתמש של חשבון חדש זה הוא <b>NewAdmin</b> והסיסמה היא <b>password</b>',
     20 => 'להתקין את',
     21 => 'לשדרג את',
-    22 => 'נדדה',
-    23 => 'Would you like to delete all the files and directories used during the installation?',
-    24 => 'Yes, please.',
-    25 => 'No, thanks.  I will manually delete them afterwards.'
+    22 => 'נדדה'
 );
 
 // +---------------------------------------------------------------------------+
-// migration
+// migrate.php
 
 $LANG_MIGRATE = array(
     0 => 'תהליך הנדידה ישכתב כל מידע קיים במאגר המידע.',
     1 => 'לפני שתמשיכו',
     2 => 'היו בטוחים שכל plugin שהותקן בעבר הועתק לשרתכם החדש.',
     3 => 'היו בטוחים שכל התמונות מ-<code dir="ltr">public_html/images/articles/</code>, <code dir="ltr">public_html/images/topics/</code>, ו-<code dir="ltr">public_html/images/userphotos/</code>, הועתקו לשרתכם החדש.',
-    4 => 'אם הנכם משדרגים מגירסת Geeklog ישנה יותר מ-<strong>1.5.0</strong>, אז היו בטוחים שהעתקתם כל קבצי ה-<code>config.php</code> כדי שהנדידה תוכל למצוא את הגדרותיכם.',
+    4 => 'אם הנכם משדרגים מגירסת Geeklog ישנה יותר מ-<strong>1.5.0</strong>, אז היו בטוחים שהעתקתם כל קבצי ה-<tt>config.php</tt> כדי שהנדידה תוכל למצוא את הגדרותיכם.',
     5 => 'אם הנכם משדרגים לגרסת Geeklog חדשה, אז אל תעלו את ה-theme שלכם עדיין. השתמשו ב-theme ברירת המחדל הכלול עד שתוכלו להיות בטוחים שאתרכם שנדד עובד כמו שצריך.',
     6 => 'ביחרו גיבוי קיים',
     7 => 'ביחרו קובץ...',
@@ -239,7 +230,7 @@ $LANG_MIGRATE = array(
     37 => 'הנדידה הושלמה',
     38 => 'תהליך הנדידה הושלם. עם זאת, סקריפט ההתקנה מצא את הדברים הבאים:',
     39 => 'נכשלה הגדרת נתיב PEAR include. מצטערים, אין דרך לטפל בגיבויי מאגר מידע מכווצים בלי PEAR.',
-    40 => 'הארכיון "s$1%" לא נראה שהוא הכיל קבצי SQL. כדי לנסות שוב, לחץ על <a href="s$2%\"> </a> זה ',
+    40 => 'הארכיון \'%s\' לא נראה שמכיל קבצי SQL.',
     41 => 'שגיאה בהוצאת גיבוי מאגר המידע \'%s\' מתוך קובץ הגיבוי המכווץ.',
     42 => 'קובץ הגיבוי \'%s\' פשוט נעלם ...',
     43 => 'היבוא בוטל. הקובץ  \'%s\' לא נראה כמו SQL dump.',
@@ -327,13 +318,7 @@ $LANG_ERROR = array(
     7 => 'הקובץ שהועלה עובר את הוראת post_max_size ב-php.ini. אנא העלו את קובץ מאגר המידע שלכם בשיטה אחרת, למשל FTP.',
     8 => 'שגיאה',
     9 => 'כשל בחיבור למאגר המידע שלכם עם השגיאה: ',
-    10 => 'בידקו את הגדרות מאגר המידע שלכם',
-    11 => 'Warning',
-    12 => 'Information',
-    14 => 'Upgrade Notices',
-    15 => 'Topic IDs and Names max length have changed from 128 to 75. This may cause issues when topic ids are truncated (if id is larger than 75 characters) during the upgrade. Please double check your topic ids that are larger than 75 characters will be unique when the max length is changed.',
-    16 => 'Topic IDs and Names have changed from 128 to 75. It has been detected you need to modify 1 or more topic ids before this upgrade can proceed.',
-    17 => 'Professional Theme support has been dropped from Geeklog. If you are currently using the Professional theme or Professional_css theme from Geeklog 2.1.1 or older your website may not function properly.'
+    10 => 'בידקו את הגדרות מאגר המידע שלכם'
 );
 
 // +---------------------------------------------------------------------------+
@@ -427,3 +412,5 @@ $LANG_LABEL = array(
     'migrate_file'   => $LANG_MIGRATE[6],
     'plugin_upload'  => $LANG_PLUGINS[10]
 );
+
+?>
