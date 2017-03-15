@@ -198,16 +198,16 @@ function CMT_commentBar( $sid, $title, $type, $order, $mode, $ccode = 0 )
     }
 
     // Order
-    $selector = '<select name="order">' . LB
+    $selector = '<select class="uk-select" name="order">' . LB
               . COM_optionList( $_TABLES['sortcodes'], 'code,name', $order )
               . LB . '</select>';
     $commentbar->set_var( 'order_selector', $selector);
 
     // Mode
     if ($is_comment_page) {
-        $selector = '<select name="format">';
+        $selector = '<select class="uk-select" name="format">';
     } else {
-        $selector = '<select name="mode">';
+        $selector = '<select class="uk-select" name="mode">';
     }
     $selector .= LB
                . COM_optionList( $_TABLES['commentmodes'], 'mode,name', $mode )
@@ -1120,7 +1120,7 @@ function CMT_commentForm($title, $comment, $sid, $pid='0', $type, $mode, $postmo
                 } else {
                     $name = COM_getDisplayName(1); // anonymous user
                 }
-                $usernameblock = '<input type="text" name="' . CMT_USERNAME . '" size="16" value="' .
+                $usernameblock = '<input type="text" class="uk-input" name="' . CMT_USERNAME . '" size="16" value="' .
                                  $name . '" maxlength="32"' . XHTML . '>';
                 $comment_template->set_var('username', $usernameblock);
 
@@ -1244,7 +1244,7 @@ function CMT_commentForm($title, $comment, $sid, $pid='0', $type, $mode, $postmo
                     $checked = ' checked="checked"';
                 }
                 $comment_template->set_var('notification',
-                    '<p><input type="checkbox"' . ' name="notify"' . $checked
+                    '<p><input type="checkbox" class="uk-checkbox"' . ' name="notify"' . $checked
                     . '>' . $LANG03[36] . '</p>');
             }
 

@@ -370,7 +370,7 @@ function TOPIC_checkList($selected_ids = '', $fieldname = '', $language_specific
                                 '&nbsp;&nbsp;&nbsp;',
                                 $_TOPICS[$count_topic]['branch_level'] - $start_topic + 1
                            )
-                        .  '<input type="checkbox" id="id-' . $id . '" name="'
+                        .  '<input type="checkbox" class="uk-checkbox" id="id-' . $id . '" name="'
                         .  $fieldname . '[]" value="' . $id . '"';
 
                 if (in_array($id, $selected_ids)) {

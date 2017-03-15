@@ -477,7 +477,7 @@ else{
 }
 ?>
 
-<span style="float:right;" class="help" title="IANA-recognized name of the input character-set; can be multiple ;- or space-separated values; may not work in some browsers"><span style="font-size: 85%;">Encoding: </span><input type="text" class="uk-input" size="8" id="enc" name="enc" style="vertical-align: middle;" value="<?php echo htmlspecialchars($_POST['enc']); ?>" /></span>
+<span style="float:right;" class="help" title="IANA-recognized name of the input character-set; can be multiple ;- or space-separated values; may not work in some browsers"><span style="font-size: 85%;">Encoding: </span><input type="text" class="uk-input" class="uk-input" size="8" id="enc" name="enc" style="vertical-align: middle;" value="<?php echo htmlspecialchars($_POST['enc']); ?>" /></span>
 
 </div>
 <br style="clear:both;" />
