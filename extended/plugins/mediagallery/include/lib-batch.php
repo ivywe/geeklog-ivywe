@@ -413,7 +413,7 @@ function mg_batch_session_ftpimport($row)
             COM_errorLog("MediaGallery: File " . $baseSrcFile . " exceeds maximum filesize for this album.");
             $statusMsg = addslashes(sprintf($LANG_MG02['upload_exceeds_max_filesize'], $baseSrcFile));
             MG_setSessionLog($session_id, $statusMsg);
-            continue;
+//            continue;
         }
 
         $filetype = "application/force-download";
