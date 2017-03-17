@@ -170,12 +170,14 @@ function LIB_Deleteconfig(
     global $_TABLES;
     $group=$pi_name;
 
-    DB_delete($_TABLES['conf_values'], 'group_name', $group);
-    unset($config->config_array[$group]);
-
     $box_conf="_".strtoupper($pi_name)."_CONF";
     global $$box_conf;
-    $$box_conf=array();
+    $box_conf=$$box_conf;
+    
+    foreach( $box_conf  as $nm => $value ){
+      $display.="del: ".$nm."=".$vl."<br>";
+      $config->del($nm,$group);
+    }
 
     $display.="..........{$pi_name} Config Delete"."<br>";
 
