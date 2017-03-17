@@ -38,7 +38,7 @@
 require_once '../../../lib-common.php';
 require_once '../../auth.inc.php';
 
-//echo COM_Debug($_POST);
+MAPS_getheadercode();
 
 $display = '';
 
@@ -439,7 +439,7 @@ function getMarkerForm($marker = array()) {
 	
 	$_SCRIPTS->setJavaScriptLibrary('jquery');
 	$_SCRIPTS->setJavaScriptFile('maps_simplecolor', '/' . $_MAPS_CONF['maps_folder'] . '/js/simple-color.js');
-	$js = LB . '<script  type="text/javascript" src= "https://maps.googleapis.com/maps/api/js?key=' . $_MAPS_CONF['google_api_key'] . '&sensor=false"> </script>
+	$js = LB . '
     <script type="text/javascript">
 	jQuery(document).ready(
         function()
@@ -579,9 +579,9 @@ switch ($_REQUEST['mode']) {
 				$msg = $LANG_MAPS_1['deletion_fail'];
 			}
 			// delete complete, return to map list
-			echo COM_refresh($_CONF['site_url'] . "/admin/plugins/maps/markers.php?msg=$msg");
+			COM_redirect($_CONF['site_url'] . "/admin/plugins/maps/markers.php?msg=$msg");
 		} else {
-		    echo COM_refresh($_CONF['site_url'] . "/admin/moderation.php");
+		    COM_redirect($_CONF['site_url'] . "/admin/moderation.php");
 		}
         exit();
         break;
@@ -771,8 +771,7 @@ switch ($_REQUEST['mode']) {
 			DB_delete($_TABLES['maps_submission'], 'mkid', $mkid);
         }
         // save complete, return to markers list
-        echo COM_refresh($_CONF['site_admin_url'] . "/plugins/maps/markers.php?msg=" . urlencode($msg));
-        exit();
+        COM_redirect($_CONF['site_admin_url'] . "/plugins/maps/markers.php?msg=" . urlencode($msg));
         break;
 
     /* this case is currently not used... future expansion? */
@@ -788,7 +787,7 @@ switch ($_REQUEST['mode']) {
             $A = DB_fetchArray($res);
             $display .= getMarkerForm($A);
         } else {
-            echo COM_refresh($_CONF['site_url']);
+            COM_redirect($_CONF['site_url']);
         }
         break;
 	
@@ -800,14 +799,13 @@ switch ($_REQUEST['mode']) {
 			
 			$nRows  = DB_numRows($res);
 		    if ($nRows < 1) {
-			    //echo COM_refresh($_MAPS_CONF['site_url'] . '/index.php');
-			    //exit ();
+			    //COM_redirect($_MAPS_CONF['site_url'] . '/index.php');
 		    }
 			
             $A = DB_fetchArray($res);
             $display .= getMarkerForm($A);
         } else {
-            echo COM_refresh($_CONF['site_url']);
+            COM_redirect($_CONF['site_url']);
         }
         break;
 

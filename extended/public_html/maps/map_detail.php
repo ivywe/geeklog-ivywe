@@ -39,9 +39,10 @@ require_once '../lib-common.php';
 
 // take user back to the homepage if the plugin is not active
 if (!in_array('maps', $_PLUGINS)) {
-    echo COM_refresh($_CONF['site_url'] . '/index.php');
-    exit;
+    COM_redirect($_CONF['site_url'] . '/index.php');
 }
+
+MAPS_getheadercode();
 
 // MAIN
 
@@ -49,10 +50,8 @@ $display = '';
 
 // Ensure user has the rights to access this page
 if (COM_isAnonUser() && (($_CONF['loginrequired'] == 1) || ($_MAPS_CONF['maps_login_required'] == 1))) {
-	$display .= COM_siteHeader('');
 	$display .= MAPS_user_menu();
-    $display .= COM_startBlock ($LANG_LOGIN[1], '',
-                                COM_getBlockTemplate ('_msg_block', 'header'));
+    $display .= COM_startBlock ($LANG_LOGIN[1], '', COM_getBlockTemplate ('_msg_block', 'header'));
     $login = new Template($_CONF['path'] . 'plugins/maps/templates');
     $login->set_file (array ('login'=>'submitloginrequired.thtml'));
     $login->set_var ( 'xhtml', XHTML );
@@ -65,7 +64,7 @@ if (COM_isAnonUser() && (($_CONF['loginrequired'] == 1) || ($_MAPS_CONF['maps_lo
     $login->parse ('output', 'login');
     $display .= $login->finish ($login->get_var('output'));
     $display .= COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
-    $display .= COM_siteFooter();
+    $display = COM_createHTMLDocument($display);
     COM_output($display);
     exit;
 }
@@ -84,11 +83,9 @@ if ($_REQUEST['mid'] !=0 && $_REQUEST['mid']>0) {
     //Display the Global Map 
 	$display .= MAPS_getGlobalMap();
 } else {
-    echo COM_refresh($_MAPS_CONF['site_url'] . '/index.php');
+    COM_redirect($_MAPS_CONF['site_url'] . '/index.php');
 }
 
 $display .= COM_siteFooter();
 
 echo $display;
-
-?>

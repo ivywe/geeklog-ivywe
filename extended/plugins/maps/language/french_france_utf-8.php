@@ -55,7 +55,7 @@ $LANG_MAPS_1 = array(
     'map'                   => 'carte',
     'online'                => 'en ligne',
     'google_maps_API'       => '<a href="">Google Maps API</a>',
-    'need_google_api'       => 'Attention, vous avez besoin d\'une <a href="http://code.google.com/apis/maps/signup.html" target="_blank">API Google Maps</a> pour commencer.',
+    'need_google_api'       => 'Attention, vous avez besoin d\'une <a href="//code.google.com/apis/maps/signup.html" target="_blank">API Google Maps</a> pour commencer.',
     'profile_title'         => 'Géolocalisation',
     'buy_marker'            => 'Acheter un  marqueur',
     'menu_label'            => 'Administration du plugin Maps',

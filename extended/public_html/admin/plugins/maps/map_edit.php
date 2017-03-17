@@ -41,6 +41,8 @@ require_once '../../../lib-common.php';
 require_once '../../auth.inc.php';
 require_once 'edit_functions.php';
 
+MAPS_getheadercode();
+
 $display = '';
 
 // Ensure user even has the rights to access this page
@@ -455,8 +457,7 @@ switch ($_REQUEST['mode']) {
         $msg = $LANG_MAPS_1['deletion_fail'];
     }
 		// delete complete, return to map list
-        echo COM_refresh($_CONF['site_url'] . "/admin/plugins/maps/index.php?msg=$msg");
-        exit();
+        COM_redirect($_CONF['site_url'] . "/admin/plugins/maps/index.php?msg=$msg");
         break;
 
     case 'save':
@@ -556,8 +557,7 @@ switch ($_REQUEST['mode']) {
             $msg = $LANG_MAPS_1['save_success'];
         }
         // save complete, return to map list
-        echo COM_refresh($_CONF['site_admin_url'] . "/plugins/maps/index.php?msg=$msg");
-        exit();
+        COM_redirect($_CONF['site_admin_url'] . "/plugins/maps/index.php?msg=$msg");
         break;
 
     case 'edit':
@@ -573,7 +573,7 @@ switch ($_REQUEST['mode']) {
 			}
             $display .= getMapForm($A);
         } else {
-            echo COM_refresh($_CONF['site_url']);
+            COM_redirect($_CONF['site_url']);
         }
         break;
 

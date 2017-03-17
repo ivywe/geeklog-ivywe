@@ -128,8 +128,7 @@ function MAPS_importCSV ($FILES = '', $map_id, $separator=';', $fields, $valid =
 	if($map_id == '') return MAPS_message('Map ID is missing');
 	
 	if ( !in_array($separator, array(',','tab',';')) ) {
-	    echo COM_refresh($_CONF['site_admin_url'] . '/plugins/maps/import_export.php');
-		exit();
+	    COM_redirect($_CONF['site_admin_url'] . '/plugins/maps/import_export.php');
 	}
 
 	if ($valid == false) {

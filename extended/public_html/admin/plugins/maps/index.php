@@ -38,6 +38,8 @@
 require_once '../../../lib-common.php';
 require_once '../../auth.inc.php';
 
+MAPS_getheadercode();
+
 $display = '';
 
 // Ensure user even has the rights to access this page
@@ -191,21 +193,18 @@ switch ($mode) {
 		
 	//Create a new marker for admin
     case 'edit' :
-	    echo COM_refresh($_CONF['site_url'] . "/admin/plugins/maps/marker_edit.php");
-        exit();
+	    COM_redirect($_CONF['site_url'] . "/admin/plugins/maps/marker_edit.php");
         break;
 		
 	//Edit marker sumission
     case 'editsubmission' :
         $id = $_REQUEST['id'];
-	    echo COM_refresh($_CONF['site_url'] . "/admin/plugins/maps/marker_edit.php?mode=editsubmission&amp;mkid=$id");
-        exit();
+	    COM_redirect($_CONF['site_url'] . "/admin/plugins/maps/marker_edit.php?mode=editsubmission&amp;mkid=$id");
         break;
 
     case 'setgeolocation' :
 	    MAPS_setGeoLocation();
-	    echo COM_refresh($_CONF['site_url'] . "/admin/plugins/maps/index.php?msg=" . urlencode($LANG_MAPS_1['set_geo_location']));
-        exit();
+	    COM_redirect($_CONF['site_url'] . "/admin/plugins/maps/index.php?msg=" . urlencode($LANG_MAPS_1['set_geo_location']));
         break;
 
     default :	

@@ -15,7 +15,7 @@
       padding:1px 5px;
     }
 </style>
-<script src="http://maps.googleapis.com/maps/api/js?key={key}&libraries=adsense&sensor=false&language=<?php echo COM_getLanguageId(); ?>" type="text/javascript"> </script>
+<script src="//maps.googleapis.com/maps/api/js?key={key}&libraries=adsense&sensor=false&language=<?php echo COM_getLanguageId(); ?>" type="text/javascript"> </script>
 <script type="text/javascript">
     /* Error messages for possible errors */
     var error_address_empty{gid}   = '{error_address_empty}';

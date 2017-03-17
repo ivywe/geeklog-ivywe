@@ -39,9 +39,10 @@ require_once '../lib-common.php';
 
 // take user back to the homepage if the plugin is not active
 if (!in_array('maps', $_PLUGINS)) {
-    echo COM_refresh($_CONF['site_url'] . '/index.php');
-    exit;
+    COM_redirect($_CONF['site_url'] . '/index.php');
 }
+
+MAPS_getheadercode();
 
 // Incoming variable filter
 $vars = array('mid' => 'int',
@@ -145,7 +146,7 @@ function MAPS_displayFrontPage ()
 			//hits
 		    $map->set_var('hits',  ' | ' . $A['hits'] . ' ' . $LANG_MAPS_1['hits']);
 				if (SEC_hasRights('maps.admin')){
-	        $map->set_var('edit_button', '<form class="uk-form" id="edit_map" action="' . $_CONF['site_admin_url'] . '/plugins/maps/map_edit.php" method="POST">
+	        $map->set_var('edit_button', '<form id="edit_map" action="' . $_CONF['site_admin_url'] . '/plugins/maps/map_edit.php" method="POST">
 	        <div style="float:right">
 	          <input type="image" src="' . $_CONF['site_admin_url'] . '/plugins/maps/images/edit.png" align="absmiddle" />
 			  <input type="hidden" name="mode" value="edit" />
@@ -270,21 +271,21 @@ switch ($_REQUEST['mode']) {
 			$display .= MAPS_getGlobalMap();
  
 		} else {
-			echo COM_refresh($_MAPS_CONF['site_url'] . '/index.php');
+			COM_redirect($_MAPS_CONF['site_url'] . '/index.php');
 		}
         break;
 	case 'markers':
 	    if ( ($_REQUEST['mid'] >= 0) ) {
 		    $display .= MAPS_ListMarkers($_REQUEST['mid']);
 		} else {
-			echo COM_refresh($_MAPS_CONF['site_url'] . '/index.php');
+			COM_redirect($_MAPS_CONF['site_url'] . '/index.php');
 		}
 	    break;
 	case 'marker':
 	    if ( isset($_REQUEST['mkid']) && $_REQUEST['mkid'] != '' && function_exists('MAPS_proViewMarker') ) {
 		    $display .= MAPS_proViewMarker($_REQUEST['mkid']);
 		} else {
-			echo COM_refresh($_MAPS_CONF['site_url'] . '/index.php');
+			COM_redirect($_MAPS_CONF['site_url'] . '/index.php');
 		}
 	    break;
 

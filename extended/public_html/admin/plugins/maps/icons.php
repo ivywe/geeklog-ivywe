@@ -51,6 +51,8 @@ if (! SEC_hasRights('maps.admin')) {
     exit;
 }
 
+MAPS_getheadercode();
+
 // Incoming variable filter
 $vars = array('mode' => 'alpha',
               'id' => 'alpha',
@@ -345,7 +347,7 @@ if ( !file_exists($_MAPS_CONF['path_icons_images']) || !is_writable($_MAPS_CONF[
 				$msg = $LANG_MAPS_1['deletion_fail'];
 			}
 			// delete complete, return to icon list
-			echo COM_refresh($_CONF['site_url'] . "/admin/plugins/maps/icons.php?msg=$msg");
+			COM_redirect($_CONF['site_url'] . "/admin/plugins/maps/icons.php?msg=$msg");
 
 			exit();
 			break;;
@@ -395,7 +397,7 @@ if ( !file_exists($_MAPS_CONF['path_icons_images']) || !is_writable($_MAPS_CONF[
 				MAPS_saveIconImage($_REQUEST, $_FILES, $id);
 			}
 			// save complete, return to icons list
-			echo COM_refresh($_CONF['site_admin_url'] . "/plugins/maps/icons.php?msg=" . urlencode($msg));
+			COM_redirect($_CONF['site_admin_url'] . "/plugins/maps/icons.php?msg=" . urlencode($msg));
 			exit();
 			break;
 			

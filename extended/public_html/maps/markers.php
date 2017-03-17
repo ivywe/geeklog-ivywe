@@ -39,16 +39,16 @@ require_once '../lib-common.php';
 
 // take user back to the homepage if the plugin is not active
 if (!in_array('maps', $_PLUGINS)) {
-    echo COM_refresh($_CONF['site_url'] . '/index.php');
+    COM_redirect($_CONF['site_url'] . '/index.php');
     exit;
 }
+
+MAPS_getheadercode();
 
 // Ensure user has the rights to access this page
 
 if (COM_isAnonUser() && $_MAPS_CONF['maps_login_required'] == 1) {
-	$display .= COM_siteHeader('');
-	$display .= MAPS_user_menu();
-
+	$display = MAPS_user_menu();
 	$display .= COM_startBlock ($LANG_LOGIN[1], '',
 								COM_getBlockTemplate ('_msg_block', 'header'));
 	$login = new Template($_CONF['path'] . 'plugins/maps/templates');
@@ -63,8 +63,7 @@ if (COM_isAnonUser() && $_MAPS_CONF['maps_login_required'] == 1) {
 	$login->parse ('output', 'login');
 	$display .= $login->finish ($login->get_var('output'));
 	$display .= COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
-
-    $display .= COM_siteFooter();
+    $display = COM_createHTMLDocument($display);
     COM_output($display);
     exit;
 }
@@ -203,7 +202,7 @@ function MAPS_listUserMarkers()
 */
 function plugin_getListField_userMarkers($fieldname, $fieldvalue, $A, $icon_arr)
 {
-    global $_CONF, $_MAPS_CONF, $LANG_ADMIN, $LANG_STATIC, $_TABLES;
+    global $_CONF, $_MAPS_CONF, $LANG_MAPS_1, $LANG_ADMIN, $LANG_STATIC, $_TABLES;
 
     switch($fieldname) {
         case "edit":
@@ -548,7 +547,7 @@ function getUserMarkerForm($marker = array()) {
 	
 	$_SCRIPTS->setJavaScriptLibrary('jquery');
 	$_SCRIPTS->setJavaScriptFile('maps_simplecolor', '/' . $_MAPS_CONF['maps_folder'] . '/js/simple-color.js');
-	$js = LB . '<script  type="text/javascript" src= "https://maps.googleapis.com/maps/api/js?key=' . $_MAPS_CONF['google_api_key'] . '&sensor=false"> </script>
+	$js = LB . '
     <script type="text/javascript">
 	jQuery(document).ready(
         function()
@@ -680,7 +679,7 @@ $display = '';
 switch ($_REQUEST['mode']) {
     case 'edit':
 	    if (SEC_hasRights('maps.admin')) {
-			    echo COM_refresh($_CONF['site_admin_url'] . '/plugins/maps/marker_edit.php?mode=edit&amp;mkid='. $_REQUEST['mkid'] );
+			    COM_redirect($_CONF['site_admin_url'] . '/plugins/maps/marker_edit.php?mode=edit&amp;mkid='. $_REQUEST['mkid'] );
 				exit();
 		}
 		// Get the marker to edit and display the form
@@ -696,13 +695,13 @@ switch ($_REQUEST['mode']) {
             $A = DB_fetchArray($res);			
 			
 			if (($A['owner_id'] != $_USER['uid']) OR ($_MAPS_CONF['marker_edition'] == 0) OR  $A['free_marker'] != 1) {
-			    echo COM_refresh($_CONF['site_url']);
+			    COM_redirect($_CONF['site_url']);
 				exit();
 			}
 			
             $display .= getUserMarkerForm($A);
         } else {
-            echo COM_refresh($_CONF['site_url']);
+            COM_redirect($_CONF['site_url']);
 			exit();
         }
         break;
@@ -728,8 +727,7 @@ switch ($_REQUEST['mode']) {
 		$A = DB_fetchArray($res);
 		
 		if (($A['owner_id'] != $_USER['uid']) OR ($_MAPS_CONF['marker_edition'] == 0) OR $A['free_marker'] != 1) {
-			echo COM_refresh($_CONF['site_url']);
-			exit();
+			COM_redirect($_CONF['site_url']);
 		}
 		$_REQUEST['mid'] = $A['mid'];
 		
@@ -795,11 +793,7 @@ switch ($_REQUEST['mode']) {
             $msg = $LANG_MAPS_1['save_success'];
         }
         // save complete, return to markers list
-        echo COM_refresh($_MAPS_CONF['site_url'] . '/markers.php?mode=show&mkid=' . $_REQUEST['mkid'] . '&mid=' . $_REQUEST['mid'] . '&msg=' . urlencode($msg));
-        exit();
-		
-        break;
-		
+        COM_redirect($_MAPS_CONF['site_url'] . '/markers.php?mode=show&mkid=' . $_REQUEST['mkid'] . '&mid=' . $_REQUEST['mid'] . '&msg=' . urlencode($msg));
 		break;
 	 
 	case 'show':
@@ -813,7 +807,7 @@ switch ($_REQUEST['mode']) {
 			}
             $display .= MAPS_ViewMarkerInfos($_REQUEST['mkid']);
         } else {
-		    echo COM_refresh($_MAPS_CONF['site_url'] . '/index.php' );
+		    COM_redirect($_MAPS_CONF['site_url'] . '/index.php' );
 		}
         break;
 		
@@ -827,7 +821,7 @@ switch ($_REQUEST['mode']) {
 			COM_output($display);
 			exit();
         } else {
-		    echo COM_refresh($_MAPS_CONF['site_url'] . '/index.php' );
+		    COM_redirect($_MAPS_CONF['site_url'] . '/index.php' );
 		}
         break;
 
