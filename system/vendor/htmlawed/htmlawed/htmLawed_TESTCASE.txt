@@ -20,7 +20,7 @@ character encoding to Unicode/UTF-8
 <h6>Attributes</h6>
 
 <strong>Xml:lang:</strong><a lang="en" xml:lang="en"></a>, <a lang="en"></a>, <a xml:lang="en"></a><br />
-<strong>Standard, predefined value, or empty attribute:</strong> <input type="text" disabled />, <input type="text" disabled="DISABLED" />, <input type="text" disabled="1" /><br />
+<strong>Standard, predefined value, or empty attribute:</strong> <input type="text" class="uk-input" disabled />, <input type="text" class="uk-input" disabled="DISABLED" />, <input type="text" class="uk-input" disabled="1" /><br />
 <strong>Required:</strong> <img />, <img alt="image" /><br />
 <strong>Quote & space variation:</strong> <a id=id1 name=xy>a</a>, <a id='id2' name="xy">a</a>, <a   id=' id3 ' name = "n"  >a</a><br />
 <strong>Invalid:</strong> <a id="id4" src="s">a</a><br />
@@ -186,10 +186,10 @@ text <img src="none" alt="none" /> 	<b>t<em> e <strong> x </strong> t</em></b>
 <script type="text/javascript">s</script>
 <fieldset><legend>p</legend>l <input name="personal_lastname" type="text" tabindex="1"></fieldset>
 <input name="h" type="checkbox" value="h" tabindex="20"> h
-<textarea name="t">t</textarea>
+<textarea class="uk-textarea" name="t">t</textarea>
 <form action="a" method="get"></form></form><br />
-<form action="b" method="get"><p><input type="text" value="i" /></form><br />
-<form>B:<input type="text" value="b" />C:<input type="text" value="c" /></form><br />
+<form action="b" method="get"><p><input type="text" class="uk-input" value="i" /></form><br />
+<form>B:<input type="text" class="uk-input" value="b" />C:<input type="text" class="uk-input" value="c" /></form><br />
 (try each of these lines separately)<br />
 <form action="a">what<br />
 <form action="a">what
@@ -267,7 +267,7 @@ Invalid:</strong> <em <!-- check -->>comment in tag content</em>, <!--check-->
 <ul><li id="search" class="widget widget_search">			<form id="searchform" method="get" action="http://kohei.us">
 			<div>
 
-			<input type="text" name="s" id="s" size="15" /><br />
+			<input type="text" class="uk-input" name="s" id="s" size="15" /><br />
 			<input type="submit" value="Search" />
 			</div>
 			</form>

@@ -1064,7 +1064,7 @@ function SEC_getGroupDropdown($group_id, $access)
     if ($access == 3) {
         $usergroups = SEC_getUserGroups();
 
-        $groupdd .= '<select id="group_id" name="group_id">' . LB;
+        $groupdd .= '<select class="uk-select" id="group_id" name="group_id">' . LB;
         foreach ($usergroups as $ug_name => $ug_id) {
             $groupdd .= '<option value="' . $ug_id . '"';
             if ($group_id == $ug_id) {
@@ -1846,7 +1846,7 @@ function SEC_loginForm($use_config = array())
                     . $modules[0] . '"' . XHTML . '>' . $modules[0];
             } else {
                 // Build select
-                $select = '<select name="service">';
+                $select = '<select class="uk-select" name="service">';
                 if ($_CONF['user_login_method']['standard']) {
                     $select .= '<option value="">' . $_CONF['site_name']
                         . '</option>';
