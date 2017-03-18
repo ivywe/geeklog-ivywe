@@ -326,6 +326,7 @@ $LANG_MAPS_EMAIL = array(
     'on_map'                => 'マップ上:',
     'submissions'           => '投稿: ',
     'marker_submissions'    => 'マーカーの投稿',
+    'description'           => '説明:',
 );
 
 // Messages for the plugin upgrade
