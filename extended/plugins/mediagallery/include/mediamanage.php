@@ -1088,7 +1088,7 @@ function MG_saveMediaEdit($album_id, $media_id, $actionURL)
     $musicalbum = addslashes(COM_applyFilter(COM_stripslashes($_POST['musicalbum']) ) );
     $genre      = addslashes(COM_applyFilter(COM_stripslashes($_POST['genre']) ) );
 
-    $media_time = mktime($media_time_hour,$media_time_minute,0,$media_time_month,$media_time_day,$media_time_year,1);
+    $media_time = mktime($media_time_hour,$media_time_minute,0,$media_time_month,$media_time_day,$media_time_year);
 
     $owner_sql = '';
     if (isset($_POST['owner_name'])) {
