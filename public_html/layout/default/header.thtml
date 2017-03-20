@@ -15,9 +15,9 @@
 
 
 <!-- Favicons Generated with favicon.il.ly -->
-<link rel="icon" sizes="16x16 32x32 48x48 64x64" href="{site_url}/favicon.ico"{xhtml}>
+<link rel="icon" sizes="16x16 32x32 48x48 64x64" href="{site_url}/favicon.ico?v=2"{xhtml}>
 <!--[if IE]>
-<link rel="shortcut icon" href="{site_url}/favicon.ico"{xhtml}>
+<link rel="shortcut icon" href="{site_url}/favicon.ico?v=2"{xhtml}>
 <![endif]-->
 <!-- Optional: Android & iPhone-->
 <link rel="apple-touch-icon-precomposed" href="{site_url}/favicon-152.png"{xhtml}>
