@@ -950,7 +950,7 @@ class Installer
             $retval = $dbs[$remaining[0]]['label']
                 . ' <input type="hidden" name="db_type" value="' . $remaining[0] . '">' . PHP_EOL;
         } else {
-            $retval = '<select class="uk-select" id="db_type" name="db_type">' . PHP_EOL
+            $retval = '<select id="db_type" name="db_type">' . PHP_EOL
                 . $retval
                 . '</select>' . PHP_EOL;
         }
@@ -3498,15 +3498,15 @@ class Installer
             . '<input type="hidden" name="language" value="' . $this->env['language'] . '">' . PHP_EOL
             . '<input type="hidden" name="mode" value="migrate">'
             . '<input type="hidden" name="dbconfig_path" value="' . htmlspecialchars($this->env['dbconfig_path']) . '">' . PHP_EOL
-            . '<div class="uk-form-row"><label class="uk-form-label">' . $LANG_INSTALL[34] . ' ' . $this->getHelpLink('db_type') . '</label> <div class="uk-form-controls"><select class="uk-select" name="db[type]">' . PHP_EOL
+            . '<div class="uk-form-row"><label class="uk-form-label">' . $LANG_INSTALL[34] . ' ' . $this->getHelpLink('db_type') . '</label> <div class="uk-form-controls"><select name="db[type]">' . PHP_EOL
             . '<option value="mysql">' . $LANG_INSTALL[35] . '</option>' . PHP_EOL
             . '</select></div></div>' . PHP_EOL
-            . '<div class="uk-form-row"><label class="uk-form-label">' . $LANG_INSTALL[39] . ' ' . $this->getHelpLink('db_host') . '</label> <div class="uk-form-controls"><input type="text" class="uk-input" name="db[host]" value="' . $_FORM['host'] . '" size="20"></div></div>' . PHP_EOL
-            . '<div class="uk-form-row"><label class="uk-form-label">' . $LANG_INSTALL[40] . ' ' . $this->getHelpLink('db_name') . '</label> <div class="uk-form-controls"><input type="text" class="uk-input" name="db[name]" value="' . $_FORM['name'] . '" size="20"></div></div>' . PHP_EOL
-            . '<div class="uk-form-row"><label class="uk-form-label">' . $LANG_INSTALL[41] . ' ' . $this->getHelpLink('db_user') . '</label> <div class="uk-form-controls"><input type="text" class="uk-input" name="db[user]" value="' . $_FORM['user'] . '" size="20"></div></div>' . PHP_EOL
+            . '<div class="uk-form-row"><label class="uk-form-label">' . $LANG_INSTALL[39] . ' ' . $this->getHelpLink('db_host') . '</label> <div class="uk-form-controls"><input type="text" name="db[host]" value="' . $_FORM['host'] . '" size="20"></div></div>' . PHP_EOL
+            . '<div class="uk-form-row"><label class="uk-form-label">' . $LANG_INSTALL[40] . ' ' . $this->getHelpLink('db_name') . '</label> <div class="uk-form-controls"><input type="text" name="db[name]" value="' . $_FORM['name'] . '" size="20"></div></div>' . PHP_EOL
+            . '<div class="uk-form-row"><label class="uk-form-label">' . $LANG_INSTALL[41] . ' ' . $this->getHelpLink('db_user') . '</label> <div class="uk-form-controls"><input type="text" name="db[user]" value="' . $_FORM['user'] . '" size="20"></div></div>' . PHP_EOL
             . '<div class="uk-form-row"><label class="uk-form-label">' . $LANG_INSTALL[42] . ' ' . $this->getHelpLink('db_pass') . '</label> <div class="uk-form-controls"><input type="password" name="db[pass]" value="' . $_FORM['pass'] . '" size="20"></div></div>' . PHP_EOL
-            . '<div class="uk-form-row"><label class="uk-form-label">' . $LANG_INSTALL[45] . ' ' . $this->getHelpLink('site_url') . '</label> <div class="uk-form-controls"><input type="text" class="uk-input" name="site_url" value="' . htmlspecialchars($site_url) . '" size="50">  &nbsp; ' . $LANG_INSTALL[46] . '</div></div>' . PHP_EOL
-            . '<div class="uk-form-row"><label class="uk-form-label">' . $LANG_INSTALL[47] . ' ' . $this->getHelpLink('site_admin_url') . '</label> <div class="uk-form-controls"><input type="text" class="uk-input" name="site_admin_url" value="' . htmlspecialchars($site_admin_url) . '" size="50">  &nbsp; ' . $LANG_INSTALL[46] . '</div></div>' . PHP_EOL;
+            . '<div class="uk-form-row"><label class="uk-form-label">' . $LANG_INSTALL[45] . ' ' . $this->getHelpLink('site_url') . '</label> <div class="uk-form-controls"><input type="text" name="site_url" value="' . htmlspecialchars($site_url) . '" size="50">  &nbsp; ' . $LANG_INSTALL[46] . '</div></div>' . PHP_EOL
+            . '<div class="uk-form-row"><label class="uk-form-label">' . $LANG_INSTALL[47] . ' ' . $this->getHelpLink('site_admin_url') . '</label> <div class="uk-form-controls"><input type="text" name="site_admin_url" value="' . htmlspecialchars($site_admin_url) . '" size="50">  &nbsp; ' . $LANG_INSTALL[46] . '</div></div>' . PHP_EOL;
 
         // Identify the backup files in backups/ and order them newest to oldest
         $gl_path = str_replace(self::DB_CONFIG_FILE, '', $this->env['dbconfig_path']);
@@ -3526,7 +3526,7 @@ class Installer
         $display .= '<div class="uk-form-row"><label class="uk-form-label">'
             . $LANG_MIGRATE[6] . ' ' . $this->getHelpLink('migrate_file')
             . '</label>' . PHP_EOL
-            . '<div class="uk-form-controls"><select class="uk-select" name="migration_type" onchange="INST_selectMigrationType()">' . PHP_EOL
+            . '<div class="uk-form-controls"><select name="migration_type" onchange="INST_selectMigrationType()">' . PHP_EOL
             . '<option value="">' . $LANG_MIGRATE[7] . '</option>' . PHP_EOL
             . '<option value="select">' . $LANG_MIGRATE[8] . '</option>' . PHP_EOL
             . '<option value="upload">' . $LANG_MIGRATE[9] . '</option>' . PHP_EOL
@@ -3536,7 +3536,7 @@ class Installer
 
         // Check if there are any files in the backups directory
         if (count($backupFiles) > 0) {
-            $display .= '<select class="uk-select" name="backup_file">' . PHP_EOL
+            $display .= '<select name="backup_file">' . PHP_EOL
                 . '<option value="">' . $LANG_MIGRATE[10] . '</option>' . PHP_EOL;
 
             // List each of the backup files in the backups directory
@@ -3908,7 +3908,7 @@ class Installer
     private function migrateStep4()
     {
         global $_CONF, $_DB_dbms, $_DB_host, $_DB_name, $_DB_user, $_DB_pass, $_DB_table_prefix,
-               $_TABLES, $LANG_INSTALL, $LANG_MIGRATE, $_DEVICE;
+               $_TABLES, $LANG_INSTALL, $LANG_MIGRATE, $_DEVICE, $_URL;
 
         if (empty($this->env['dbconfig_path'])) {
             $this->env['dbconfig_path'] = $_CONF['path'] . 'db-config.php';
