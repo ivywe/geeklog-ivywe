@@ -114,7 +114,17 @@ function plugin_getListField_paypal_IPNlog($fieldname, $fieldvalue, $A, $icon_ar
 	
 	//$A['ipn_data'] = base64_decode($A['ipn_data']);
 	
-	$out = preg_replace('!s:(\d+):"(.*?)";!se', "'s:'.strlen('$2').':\"$2\";'", $A['ipn_data'] ); 
+	// PHP7 error {
+	// $out = preg_replace('!s:(\d+):"(.*?)";!se', "'s:'.strlen('$2').':\"$2\";'", $A['ipn_data'] ); 
+
+    $out = preg_replace(
+        '!s:(\d+):"(.*?)";!s',
+        function ($args) {
+            return sprintf('s:%d:"%s";', strlen($args[2]), $args[2]);
+        },
+        $A['ipn_data']
+    );
+	// } PHP7 error
 	
 	if (!$ipn = unserialize($out)) {
 	    $ipn = repairSerializedArray($A['ipn_data']);
@@ -230,7 +240,19 @@ function PAYPAL_ipnlog_single($id, $txn_id) {
 		//Diagnotic
 		PAYPAL_check_serialization( $A['ipn_data'], $errmsg );
 		//Serialize fixer
-		$out = preg_replace('!s:(\d+):"(.*?)";!se', "'s:'.strlen('$2').':\"$2\";'", $A['ipn_data'] ); 
+
+	// PHP7 error {
+	// $out = preg_replace('!s:(\d+):"(.*?)";!se', "'s:'.strlen('$2').':\"$2\";'", $A['ipn_data'] ); 
+
+    $out = preg_replace(
+        '!s:(\d+):"(.*?)";!s',
+        function ($args) {
+            return sprintf('s:%d:"%s";', strlen($args[2]), $args[2]);
+        },
+        $A['ipn_data']
+    );
+	// } PHP7 error
+
 		
 		PAYPAL_check_serialization( $out, $errmsg );
         if (!$ipn = unserialize($out)) {
