@@ -154,7 +154,7 @@ function liststories($current_topic = '')
     }
 
     $filter = $LANG_ADMIN['topic']
-        . ': <select class="uk-select" name="tid" style="width: 125px" onchange="this.form.submit()">'
+        . ': <select class="uk-select uk-form-width-xsmall" name="tid" style="width: 125px" onchange="this.form.submit()">'
         . $seltopics . '</select>';
 
     $header_arr = array(
@@ -682,7 +682,7 @@ function storyeditor($sid = '', $mode = '', $errormsg = '')
     if (($_CONF['onlyrootfeatures'] == 1 && SEC_inGroup('Root'))
         or ($_CONF['onlyrootfeatures'] !== 1)
     ) {
-        $featured_options = "<select name=\"featured\">" . LB
+        $featured_options = "<select class=\"uk-form-width-xsmall\" name=\"featured\">" . LB
             . COM_optionList($_TABLES['featurecodes'], 'code,name', $story->EditElements('featured'))
             . "</select>" . LB;
     } else {
