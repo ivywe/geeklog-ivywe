@@ -9,24 +9,24 @@
 
       <dt><label for="admin-storyeditor-publish_month">{lang_date}</label></dt>
       <dd>
-        <select name="publish_year">
+        <select class="uk-select" name="publish_year">
           {publish_year_options}
         </select>
         /
-        <select name="publish_month" id="admin-storyeditor-publish_month">
+        <select class="uk-select" name="publish_month" id="admin-storyeditor-publish_month">
           {publish_month_options}
         </select>
         /
-        <select name="publish_day">
+        <select class="uk-select" name="publish_day">
           {publish_day_options}
         </select>
         &nbsp;&nbsp;
 
-        <select name="publish_hour">
+        <select class="uk-select" name="publish_hour">
           {publish_hour_options}
         </select>
         :
-        <select name="publish_minute">
+        <select class="uk-select" name="publish_minute">
           {publish_minute_options}
         </select>
 
@@ -35,52 +35,52 @@
       <dd class="description">{publish_date_explanation}</dd>
 
       <dt><label for="admin-storyeditor-title">{lang_title}</label></dt>
-      <dd><input type="text" size="48" maxlength="128" {!if titletoid}onkeyup="TitleToId('admin-storyeditor-title','admin-storyeditor-sid');" {!endif}value="{story_title}" name="title" id="admin-storyeditor-title" class="text"{xhtml}></dd>
+      <dd><input type="text" class="uk-input" size="48" maxlength="128" {!if titletoid}onkeyup="TitleToId('admin-storyeditor-title','admin-storyeditor-sid');" {!endif}value="{story_title}" name="title" id="admin-storyeditor-title" class="text"{xhtml}></dd>
 
       <dt><label for="admin-storyeditor-page_title">{lang_page_title}</label></dt>
-      <dd><input type="text" size="48" maxlength="128" value="{page_title}" name="page_title" id="admin-storyeditor-page_title" class="text"{xhtml}></dd>
+      <dd><input type="text" class="uk-input" size="48" maxlength="128" value="{page_title}" name="page_title" id="admin-storyeditor-page_title" class="text"{xhtml}></dd>
 
       <dt>{lang_topic}</dt>
       <dd>{topic_selection}</dd>
 
       <dt><label for="admin-storyeditor-show_topic_icon">{lang_show_topic_icon}</label></dt>
-      <dd><input type="checkbox" {show_topic_icon_checked} name="show_topic_icon" id="admin-storyeditor-show_topic_icon"{xhtml}></dd>
+      <dd><input type="checkbox" class="uk-checkbox" {show_topic_icon_checked} name="show_topic_icon" id="admin-storyeditor-show_topic_icon"{xhtml}></dd>
 
       <dt><label for="admin-storyeditor-cachetime">{lang_cachetime}</label></dt>
-      <dd><input type="text" size="8" value="{cache_time}" name="cache_time" id="admin-storyeditor-cachetime" class="text"{xhtml}></dd>
+      <dd><input type="text" class="uk-input" size="8" value="{cache_time}" name="cache_time" id="admin-storyeditor-cachetime" class="text"{xhtml}></dd>
       <dd class="description">{lang_cachetime_desc}</dd>
 
       <dt><label for="admin-storyeditor-draft_flag">{lang_draft}</label></dt>
-      <dd><input type="checkbox" {is_checked} name="draft_flag" id="admin-storyeditor-draft_flag"{xhtml}></dd>
+      <dd><input type="checkbox" class="uk-checkbox" {is_checked} name="draft_flag" id="admin-storyeditor-draft_flag"{xhtml}></dd>
 
       <dt><label for="admin-storyeditor-archiveflag">{lang_archivetitle}</label></dt>
       <dd>
         <label for="admin-storyeditor-archiveflag">{lang_enabled}</label>&nbsp;
-        <input type="checkbox" value="1" {is_checked2} onclick="enablearchive(this);" name="archiveflag" id="admin-storyeditor-archiveflag"{xhtml}>
-        <input type="checkbox" name="statuscode" id="storycode10" value="10" {is_checked3}{xhtml}><label for="storycode10">{lang_optionarchive}</label>
-        &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="statuscode" id="storycode11" value="11" {is_checked4}{xhtml}>
+        <input type="checkbox" class="uk-checkbox" value="1" {is_checked2} onclick="enablearchive(this);" name="archiveflag" id="admin-storyeditor-archiveflag"{xhtml}>
+        <input type="checkbox" class="uk-checkbox" name="statuscode" id="storycode10" value="10" {is_checked3}{xhtml}><label for="storycode10">{lang_optionarchive}</label>
+        &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="uk-checkbox" name="statuscode" id="storycode11" value="11" {is_checked4}{xhtml}>
         &nbsp;<label for="storycode11">{lang_optiondelete}</label>
       </dd>
 
       <dt><label for="admin-storyeditor-expire_month"></label></dt>
       <dd>{lang_date}&nbsp;
-        <select name="expire_year">
+        <select class="uk-select" name="expire_year">
           {expire_year_options}
         </select>
         /
-        <select name="expire_month" id="admin-storyeditor-expire_month">
+        <select class="uk-select" name="expire_month" id="admin-storyeditor-expire_month">
           {expire_month_options}
         </select>
         /
-        <select name="expire_day">
+        <select class="uk-select" name="expire_day">
           {expire_day_options}
         </select>&nbsp;&nbsp;
 
-        <select name="expire_hour">
+        <select class="uk-select" name="expire_hour">
           {expire_hour_options}
         </select>
         :
-        <select name="expire_minute">
+        <select class="uk-select" name="expire_minute">
           {expire_minute_options}
         </select>
         {expireampm_selection}
@@ -89,14 +89,14 @@
       <dt>{lang_mode}</dt>
       <dd>
         {featured_options}
-        <select name="frontpage">
+        <select class="uk-select" name="frontpage">
           {frontpage_options}
         </select>
         <br{xhtml}>
-        <select name="commentcode">
+        <select class="uk-select" name="commentcode">
           {comment_options}
         </select>
-        <select name="trackbackcode">
+        <select class="uk-select" name="trackbackcode">
           {trackback_options}
         </select>
       </dd>
@@ -104,26 +104,26 @@
       <dt><label for="cmt_close_flag">{lang_cmt_disable}</label>:</dt>
       <dd>
         <label for="cmt_close_flag">{lang_enabled}</label>&nbsp;
-        <input type="checkbox" name="cmt_close_flag" id="cmt_close_flag" value="1" {is_checked5} onclick="enablecmtclose(this);"{xhtml}>
+        <input type="checkbox" class="uk-checkbox" name="cmt_close_flag" id="cmt_close_flag" value="1" {is_checked5} onclick="enablecmtclose(this);"{xhtml}>
            &nbsp;
            <span dir="ltr">
-           <select name="cmt_close_year">
+           <select class="uk-select" name="cmt_close_year">
               {cmt_close_year_options}
            </select>
            /
-           <select name="cmt_close_month">
+           <select class="uk-select" name="cmt_close_month">
                    {cmt_close_month_options}
            </select>
            /
-           <select name="cmt_close_day">
+           <select class="uk-select" name="cmt_close_day">
               {cmt_close_day_options}
            </select>&nbsp;&nbsp;
 
-           <select name="cmt_close_hour">
+           <select class="uk-select" name="cmt_close_hour">
                {cmt_close_hour_options}
            </select>
            :
-           <select name="cmt_close_minute">
+           <select class="uk-select" name="cmt_close_minute">
                {cmt_close_minute_options}
            </select>
                {cmt_close_ampm_selection}
@@ -132,7 +132,7 @@
       </dd>
 
       <dt><label for="admin-storyeditor-sid">{lang_sid}</label></dt>
-      <dd><input type="text" size="48" maxlength="128" value="{story_id}" name="sid" id="admin-storyeditor-sid" class="text"{xhtml}></dd>
+      <dd><input type="text" class="uk-input" size="48" maxlength="128" value="{story_id}" name="sid" id="admin-storyeditor-sid" class="text"{xhtml}></dd>
 
       <dt{hide_meta}><label for="admin-storyeditor-metadescription">{lang_metadescription}</label></dt>
       <dd{hide_meta}><textarea cols="70" rows="2" name="meta_description" id="admin-storyeditor-metadescription">{meta_description}</textarea></dd>
@@ -148,7 +148,7 @@
 
       <dt><label for="admin-storyeditor-postmode">{lang_postmode}</label></dt>
       <dd>
-        <select name="postmode" id="admin-storyeditor-postmode">
+        <select class="uk-select" name="postmode" id="admin-storyeditor-postmode">
           {post_options}
         </select>
       </dd>

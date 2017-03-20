@@ -108,7 +108,7 @@ function getImportExportForm() {
 	$template->set_var('checkall', $LANG_MAPS_1['checkall']);
 	$valid_fieds = MAPS_getFieldsImportExport();
 	foreach ( $valid_fieds as $value ) {
-		$fields_selector .= '<input type="checkbox" name="import_export[]" value="' . $value . '" />' . $value . '<br' . XHTML . '>' . LB;
+		$fields_selector .= '<input type="checkbox" class="uk-checkbox"  name="import_export[]" value="' . $value . '" />' . $value . '<br' . XHTML . '>' . LB;
     } 
 	$template->set_var('fields_selector', $fields_selector);
 	//Form validation

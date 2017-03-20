@@ -28,19 +28,19 @@ function LIB_datetimeedit(
     $rt="";
     //Year
     $year_options = COM_getYearFormOptions ($datetime_year);
-    $rt.="<select name=\"".$datetime_name."_year\">".LB;
+    $rt.="<select class=\"uk-select\" name=\"".$datetime_name."_year\">".LB;
     $rt.=$year_options.LB;
     $rt.="</select>".$lang_ary['yy'].LB;
 
     //month
     $month_options = COM_getMonthFormOptions ($datetime_month);
-    $rt.="<select name=\"".$datetime_name."_month\">".LB;
+    $rt.="<select class=\"uk-select\" name=\"".$datetime_name."_month\">".LB;
     $rt.=$month_options.LB;
     $rt.="</select>".$lang_ary['mm'].LB;
 
     //day
     $day_options = COM_getDayFormOptions ($datetime_day);
-    $rt.="<select name=\"".$datetime_name."_day\">".LB;
+    $rt.="<select class=\"uk-select\" name=\"".$datetime_name."_day\">".LB;
     $rt.=$day_options.LB;
     $rt.="</select>".$lang_ary['dd'].LB;
 
@@ -66,14 +66,14 @@ function LIB_datetimeedit(
             $hour_options = COM_getHourFormOptions ($datetime_hour_wk);
         }
 
-        $rt.="<select name=\"".$datetime_name."_hour\">".LB;
+        $rt.="<select class=\"uk-select\" name=\"".$datetime_name."_hour\">".LB;
         $rt.=$hour_options.LB;
         $rt.="</select>:".LB;
 
         //minute
         $minute_options = COM_getMinuteFormOptions ($datetime_minute);
 
-        $rt.="<select name=\"".$datetime_name."_minute\">".LB;
+        $rt.="<select class=\"uk-select\" name=\"".$datetime_name."_minute\">".LB;
         $rt.=$minute_options.LB;
         $rt.="</select>".LB;
 

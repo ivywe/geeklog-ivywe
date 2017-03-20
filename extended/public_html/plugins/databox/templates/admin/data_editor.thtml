@@ -32,7 +32,7 @@
     <div class="uk-form-row">
       <label class="uk-form-label" >{lang_draft} {help_draft}</label>
       <div class="uk-form-controls">
-        <input type="checkbox" name="draft_flag" value="1" {draft_flag}{xhtml}>
+        <input type="checkbox" class="uk-checkbox"  name="draft_flag" value="1" {draft_flag}{xhtml}>
       </div>
     </div>
 
@@ -40,7 +40,7 @@
     <div class="uk-form-row">
       <label class="uk-form-label" >{lang_code} {help_code}<span class="uk-text-danger">{lang_must_code}</span>{help_code}</label>
       <div class="uk-form-controls">
-        <input type="text" class="uk-form-width-medium" size="48" maxlength="160" name="code" value="{code}" required{xhtml}>
+        <input type="text" class="uk-input"  class="uk-form-width-medium" size="48" maxlength="160" name="code" value="{code}" required{xhtml}>
       </div>
     </div>
 
@@ -48,7 +48,7 @@
     <div class="uk-form-row">
       <label class="uk-form-label" >{lang_title} {help_title}<span class="uk-text-danger">{lang_must}</span></label>
       <div class="uk-form-controls">
-        <input type="text" class="uk-width-1-1" size="48" maxlength="160" name="title" value="{title}" required{xhtml}>
+        <input type="text" class="uk-input"  class="uk-width-1-1" size="48" maxlength="160" name="title" value="{title}" required{xhtml}>
       </div>
     </div>
 
@@ -56,7 +56,7 @@
     <div class="uk-form-row">
       <label class="uk-form-label" >{lang_page_title} {help_page_title}</label>
       <div class="uk-form-controls">
-        <input type="text" class="uk-width-1-1" size="48" maxlength="160" name="page_title" value="{page_title}" {xhtml}>
+        <input type="text" class="uk-input"  class="uk-width-1-1" size="48" maxlength="160" name="page_title" value="{page_title}" {xhtml}>
       </div>
     </div>
 
@@ -64,7 +64,7 @@
     <div class="uk-form-row">
       <label class="uk-form-label" for="databox_description">{lang_description} {help_description}</label>
       <div class="uk-form-controls">
-        <textarea name="description" class="uk-width-1-1" rows="5" id="databox_description"
+        <textarea class="uk-textarea" name="description" class="uk-width-1-1" rows="5" id="databox_description"
       onKeyup="var n={maxlength_description}-this.value.length;var s=document.getElementById('description_cnt');s.innerHTML='('+n+')';">{description}</textarea>
         <span class="uk-form-help-inline uk-text-bold" id="description_cnt"></span>
       </div>
@@ -82,7 +82,7 @@
     <div class="uk-form-row"{hide_meta}>
       <label class="uk-form-label" for="databox_description">{lang_meta_description} {help_meta_description}</label>
       <div class="uk-form-controls">
-        <textarea name="meta_description" class="uk-width-1-1" rows="2" id="databox_description"
+        <textarea class="uk-textarea" name="meta_description" class="uk-width-1-1" rows="2" id="databox_description"
       onKeyup="var n={maxlength_meta_description}-this.value.length;var s=document.getElementById('meta_description_cnt');s.innerHTML='('+n+')';">{meta_description}</textarea>
         <span class="uk-form-help-inline uk-text-bold" id="meta_description_cnt"></span>
       </div>
@@ -93,7 +93,7 @@
     <div class="uk-form-row"{hide_meta}>
       <label class="uk-form-label" for="meta_keywords">{lang_meta_keywords} {help_meta_keywords}</label>
       <div class="uk-form-controls">
-        <textarea name="meta_keywords" class="uk-width-1-1" rows="2" id="meta_keywords" 
+        <textarea class="uk-textarea" name="meta_keywords" class="uk-width-1-1" rows="2" id="meta_keywords" 
   onKeyup="var n={maxlength_meta_keywords}-this.value.length;var s=document.getElementById('meta_keywords_cnt');s.innerHTML='('+n+')';">{meta_keywords}</textarea>
         <span class="uk-form-help-inline uk-text-bold" id="meta_keywords_cnt"></span>
       </div>
@@ -137,7 +137,7 @@
     <div class="uk-form-row">
       <label class="uk-form-label" >{lang_comment_expire} {help_comment_expire}</label>
       <div class="uk-form-controls">
-        {lang_enabled}:<input type="checkbox"name="comment_expire_flag" value="1" {is_checked_comment_expire} onclick="enable_comment_expire(this);"{xhtml}><span class="uk-form-help-inline">{datetime_comment_expire}</span>
+        {lang_enabled}:<input type="checkbox" class="uk-checkbox" name="comment_expire_flag" value="1" {is_checked_comment_expire} onclick="enable_comment_expire(this);"{xhtml}><span class="uk-form-help-inline">{datetime_comment_expire}</span>
       </div>
     </div>
 
@@ -145,7 +145,7 @@
     <div class="uk-form-row">
       <label class="uk-form-label" >{lang_modified} {help_modified}</label>
       <div class="uk-form-controls">
-        {lang_modified_autoupdate}:<input type="checkbox" name="modified_autoupdate" value="1" checked="checked"{xhtml}><span class="uk-form-help-inline">{datetime_modified}</span>
+        {lang_modified_autoupdate}:<input type="checkbox" class="uk-checkbox"  name="modified_autoupdate" value="1" checked="checked"{xhtml}><span class="uk-form-help-inline">{datetime_modified}</span>
       </div>
     </div>
 
@@ -161,7 +161,7 @@
     <div class="uk-form-row">
       <label class="uk-form-label" >{lang_expired} {help_expire}</label>
       <div class="uk-form-controls">
-        {lang_enabled}:<input type="checkbox"name="expired_flag" value="1" {is_checked_expired} onclick="enable_expired(this);"{xhtml}><span class="uk-form-help-inline">{datetime_expired}</span>
+        {lang_enabled}:<input type="checkbox" class="uk-checkbox" name="expired_flag" value="1" {is_checked_expired} onclick="enable_expired(this);"{xhtml}><span class="uk-form-help-inline">{datetime_expired}</span>
       </div>
     </div>
 
@@ -169,7 +169,7 @@
     <div class="uk-form-row">
       <label class="uk-form-label">{lang_orderno} {help_orderno}</label>
       <div class="uk-form-controls">
-        <input type="text" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
+        <input type="text" class="uk-input"  size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
       </div>
     </div>
 
@@ -187,7 +187,7 @@
     <div class="uk-form-row">
       <label class="uk-form-label" >{lang_cache_time} {help_cache_time}</label>
       <div class="uk-form-controls">
-        <input type="text" size="8" maxlength="160" name="cache_time" value="{cache_time}"{xhtml}><span class="uk-form-help-inline">{lang_cache_time_desc}</span>
+        <input type="text" class="uk-input"  size="8" maxlength="160" name="cache_time" value="{cache_time}"{xhtml}><span class="uk-form-help-inline">{lang_cache_time_desc}</span>
       </div>
     </div>
 

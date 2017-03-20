@@ -13,7 +13,7 @@
 
 		<p><font color="red"><strong><small>*</font> {required_field}</small></strong></p>
 		<div>
-			<select name="mode" >
+			<select class="uk-select" name="mode" >
 			<option value="save" selected="selected">{save_button}</option>
 			{delete_button}
 			</select>

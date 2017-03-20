@@ -6,7 +6,7 @@
     {page_hidden}
     <div class="search-part" style="{show_limit}">
       <label for="search-results-limit">{lang_limit}:</label>
-      <select id="search-results-limit" name="results">
+      <select class="uk-select" id="search-results-limit" name="results">
         {page_limit}
       </select>
       <button type="submit" value="{lang_submit}" class="uk-button">{lang_submit}</button>

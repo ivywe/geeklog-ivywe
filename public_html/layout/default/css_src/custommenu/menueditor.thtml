@@ -34,7 +34,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="cmeditor-is_enabled">{lang_is_enabled}</label>
         <div class="uk-form-controls">
-            <input type="checkbox" class="uk-checkbox"  class="uk-margin-small-top" name="is_enabled" id="cmeditor-is_enabled" {val_is_enabled}{xhtml}>
+            <input type="checkbox" class="uk-checkbox" class="uk-checkbox"  class="uk-margin-small-top" name="is_enabled" id="cmeditor-is_enabled" {val_is_enabled}{xhtml}>
         </div>
     </div>
     <div class="uk-form-row">
@@ -95,7 +95,7 @@
         <div class="uk-form-controls">
             <input type="text" class="uk-input" name="pattern" id="cmeditor-pattern" value="{val_pattern}" size="48" class="uk-form-width-medium"{xhtml}>
         	<label>{lang_is_preg}:</label>
-            <input type="checkbox" class="uk-checkbox"  class="uk-margin-small-top" name="is_preg" aria-describedby="cmeditor-d10"{val_is_preg}{xhtml}>
+            <input type="checkbox" class="uk-checkbox" class="uk-checkbox"  class="uk-margin-small-top" name="is_preg" aria-describedby="cmeditor-d10"{val_is_preg}{xhtml}>
             <span class="uk-form-help-inline" id="cmeditor-d10">{lang_pattern_info}</span>
         </div>
     </div>

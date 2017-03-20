@@ -154,7 +154,7 @@ function liststories($current_topic = '')
     }
 
     $filter = $LANG_ADMIN['topic']
-        . ': <select name="tid" style="width: 125px" onchange="this.form.submit()">'
+        . ': <select class="uk-select" name="tid" style="width: 125px" onchange="this.form.submit()">'
         . $seltopics . '</select>';
 
     $header_arr = array(
@@ -753,7 +753,7 @@ function storyeditor($sid = '', $mode = '', $errormsg = '')
                     . COM_createLink($I['ai_filename'],
                         $_CONF['site_url'] . '/images/articles/' . $I['ai_filename'])
                     . '&nbsp;&nbsp;&nbsp;' . $LANG_ADMIN['delete']
-                    . ': <input type="checkbox" name="delete[' . $I['ai_img_num']
+                    . ': <input type="checkbox" class="uk-checkbox" name="delete[' . $I['ai_img_num']
                     . ']"' . XHTML . '><br' . XHTML . '>';
             }
         }

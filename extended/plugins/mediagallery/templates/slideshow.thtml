@@ -235,7 +235,7 @@ function setCaption(text) {
 <form name="TopForm" id="TopForm" action="" class="uk-form">
   <div class="mg_navbar" style="text-align:center">
     &nbsp;<a href='#' onclick='stopOrStart(); return false;'><span id='stopOrStartText'>{play}</span></a>&nbsp;&nbsp;|&nbsp;&nbsp;{full_toggle}&nbsp;&nbsp;|&nbsp;&nbsp;{delay}:
-    <select name="time" size="1" onchange="reset_timer()">
+    <select class="uk-select" name="time" size="1" onchange="reset_timer()">
       <option value="1" > 1 {seconds}</option>
       <option value="2" > 2 {seconds}</option>
       <option value="3" selected="selected"> 3 {seconds}</option>
@@ -251,7 +251,7 @@ function setCaption(text) {
     //<![CDATA[
     /* show the blend select if appropriate */
     if (browserCanBlend) {
-        document.write('&nbsp;{transition}: <select name="transitionType" size="1"  onchange="change_transition()"> <option value="0" selected="selected">{lang_blend}</option><option value="1"> {lang_blinds}</option> <option value="2" > {lang_checkerboard}</option> <option value="3" > {lang_diagonal}</option> <option value="4" > {lang_doors}</option> <option value="5" > {lang_gradient}</option> <option value="6" > {lang_iris}</option> <option value="7" > {lang_pinwheel}</option> <option value="8" > {lang_pixelate}</option> <option value="9" > {lang_radial}</option> <option value="10" > {lang_rain}</option> <option value="11" > {lang_slide}</option> <option value="12" > {lang_snow}</option> <option value="13" > {lang_spiral}</option> <option value="14" > {lang_stretch}</option> <option value="15" > {lang_random}</option> </select> ');
+        document.write('&nbsp;{transition}: <select class="uk-select" name="transitionType" size="1"  onchange="change_transition()"> <option value="0" selected="selected">{lang_blend}</option><option value="1"> {lang_blinds}</option> <option value="2" > {lang_checkerboard}</option> <option value="3" > {lang_diagonal}</option> <option value="4" > {lang_doors}</option> <option value="5" > {lang_gradient}</option> <option value="6" > {lang_iris}</option> <option value="7" > {lang_pinwheel}</option> <option value="8" > {lang_pixelate}</option> <option value="9" > {lang_radial}</option> <option value="10" > {lang_rain}</option> <option value="11" > {lang_slide}</option> <option value="12" > {lang_snow}</option> <option value="13" > {lang_spiral}</option> <option value="14" > {lang_stretch}</option> <option value="15" > {lang_random}</option> </select> ');
     }
     //]]>
     </script>

@@ -11,7 +11,7 @@
       <tr>
         <th style="text-align: right;">{lang_admin_theme}:</th>
         <td>
-          <select name="theme">
+          <select class="uk-select" name="theme">
             {theme_options}
           </select>
         </td>
@@ -63,7 +63,7 @@
                 {lang_admin_tb_allow_upload}
               </th>
               <td>
-                <select name="tb_allow_upload">
+                <select class="uk-select" name="tb_allow_upload">
                   {tb_allow_upload_options}
                 </select>
               </td>
@@ -73,7 +73,7 @@
                 {lang_admin_tb_allow_edit}
               </th>
               <td>
-                <select name="tb_allow_edit">
+                <select class="uk-select" name="tb_allow_edit">
                   {tb_allow_edit_options}
                 </select>
               </td>
@@ -83,7 +83,7 @@
                 {lang_admin_tb_allow_delete}
               </th>
               <td>
-                <select name="tb_allow_delete">
+                <select class="uk-select" name="tb_allow_delete">
                   {tb_allow_delete_options}
                 </select>
               </td>
@@ -93,7 +93,7 @@
                 {lang_admin_tb_allow_folders}
               </th>
               <td>
-                <select name="tb_allow_folders">
+                <select class="uk-select" name="tb_allow_folders">
                   {tb_allow_folders_options}
                 </select>
               </td>
@@ -104,7 +104,7 @@
       <tr>
         <th style="text-align: right;">{lang_admin_enter_function}:</th>
         <td>
-          <select name="enter_function">
+          <select class="uk-select" name="enter_function">
             {enter_options}
           </select>
         </td>
@@ -112,7 +112,7 @@
       <tr>
         <th style="text-align: right;">{lang_admin_grp_name}:</th>
         <td>
-          <select name="group_id">
+          <select class="uk-select" name="group_id">
             {group_options}
           </select>
         </td>

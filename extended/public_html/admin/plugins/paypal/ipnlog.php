@@ -303,7 +303,7 @@ function PAYPAL_ipnlog_single($id, $txn_id) {
 			$errors .= '<div id="paypal_ipn_replace" class="paypal_ipn_replace">
 			    <p>' .  $LANG_PAYPAL_1['replace_ipn'] . '</p>
 				<form action="">
-				    <textarea id="ipn_textarea" class="paypal_handle_ipn"></textarea>
+				    <textarea class="uk-textarea" id="ipn_textarea" class="paypal_handle_ipn"></textarea>
 					<br' . XHTML . '><input class="paypal_new_ipn" id="' . $A['txn_id'] . '" type="submit">
 				<form>
 				</div>';

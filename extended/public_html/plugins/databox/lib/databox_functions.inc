@@ -486,7 +486,7 @@ global $_TABLES;
 
         $A = DB_fetchArray( $result, true );
         $retval .= '<span style="white-space:nowrap">';
-        $retval .= '<input type="checkbox" name="' . $fname . '[]" value="' . $A[0] ;
+        $retval .= '<input type="checkbox" class="uk-checkbox"  name="' . $fname . '[]" value="' . $A[0] ;
         $retval .= '"';
         for( $x = 0; $x < sizeof( $S ); $x++ )            {
             if( $A[0] == $S[$x] )                {
@@ -1134,7 +1134,7 @@ function DATABOX_getaddtionfieldsEdit(
                 case 19:// 複数行テキストフィールド(HTML OK  CKEditor)//@@@@@
                      if ($disabled===""){
                         $cntname="afieldcnt".$fid;
-                        $fieldhtml .= "<textarea ";
+                        $fieldhtml .= "<textarea class='uk-textarea' ";
                         $fieldhtml .= " name=\"afield[".$fid."]\" ";
                         $fieldhtml .= " style=\"width:95%\"";
                         $fieldhtml .= " rows=\"".$rows."\"";
@@ -2701,7 +2701,7 @@ global $_TABLES;
             
                 if  ($A['input_type']==0){
                     $retval .= '<span style="white-space:nowrap">';
-                    $retval .= '<input type="checkbox" name="category[]" value="' . $A2['category_id'] ;
+                    $retval .= '<input type="checkbox" class="uk-checkbox"  name="category[]" value="' . $A2['category_id'] ;
                     $retval .= '"';
                     $retval .= $checked;
                     $retval .= $disabled.' >' . stripslashes( $A2['name'] ) . '</span>' . LB;
@@ -2711,7 +2711,7 @@ global $_TABLES;
                     $retval .= ' >' . stripslashes( $A2['name'] ) ;
                     $retval .= '</option>' . LB;
                 }else  if  ($A['input_type']==2){
-                    $retval .= '<input type="radio" name="category[]" value="' . $A2['category_id'];
+                    $retval .= '<input type="radio" class="uk-radio" name="category[]" value="' . $A2['category_id'];
                     $retval .= '"';
                     $retval .= $checked;
                     $retval .= ' '.$disabled.' >' . stripslashes( $A2['name'] ) . '</span>' . LB;
@@ -6037,7 +6037,7 @@ function DATABOX_getcheckboxary(
 	
     foreach($ary as $k => $v) {
         $retval .= '<span style="white-space:nowrap">';
-        $retval .= '<input type="checkbox" name="' . $fld . '[]" value="' . $k ;
+        $retval .= '<input type="checkbox" class="uk-checkbox"  name="' . $fld . '[]" value="' . $k ;
         $retval .= '"';
 		if  ($selected==""){
 		}else{

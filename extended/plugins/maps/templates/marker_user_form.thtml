@@ -30,7 +30,7 @@
 		<fieldset style="margin-top: 10px;">
 		<legend>{arrow}<b><a style="text-decoration: none;" onClick="elementToggle('presentation_tab'); return false;" href="#">{presentation_tab}</a></b></legend>
 			<div id="presentation_tab" style="display:block;">
-				<p><b>{description_label}</b><br{xhtml}><textarea rows="4" id="description" name="description" cols="51" style="width:99%">{description}</textarea>
+				<p><b>{description_label}</b><br{xhtml}><textarea class="uk-textarea" rows="4" id="description" name="description" cols="51" style="width:99%">{description}</textarea>
 				</p>
 				<p><b>{street_label}</b> {street}</p>
 				<p><b>{code_label}</b> {code}</p>
@@ -45,7 +45,7 @@
 		
 		<p><font color="red"><strong><small>*</font> {required_field}</small></strong></p>
 		<div>
-			<select name="mode" >
+			<select class="uk-select" name="mode" >
 			<option value="save" selected="selected">{save_button}</option>
 			</select>
 			<input type="hidden" name="submission" value="{submission}">

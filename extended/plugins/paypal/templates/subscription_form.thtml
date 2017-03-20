@@ -10,12 +10,12 @@
 	<h2>{expiration_label}<font color="red">*</font> <input type="text" class="uk-input" id="expiration" name="expiration" value="{expiration}" size="80" maxlength="80" {xhtml}></h2></h2>
 	<h2>{price_label} <input type="text" class="uk-input" name="price" value="{price}" size="20" maxlength="20" {xhtml}>  {currency}</h2>
 	<h2>{status_label}<input type="text" class="uk-input" name="status" value="{status}" size="20" maxlength="20" READONLY {xhtml}></h2>
-	<h2>{add_to_group_label}<font color="red">*</font> <select name="add_to_group">{add_to_group_options}</select></h2>
+	<h2>{add_to_group_label}<font color="red">*</font> <select class="uk-select" name="add_to_group">{add_to_group_options}</select></h2>
 	<h2>{notification_label} {notification_select}</h2>
   </fieldset>
 	
     <p><strong><font color="red">*</font><em> {required_field}</em></strong></p>
-    <select name="mode">
+    <select class="uk-select" name="mode">
 	<option value="save" selected="selected">{save_button}</option>
     <option value="delete">{delete_button}</option>
 	</select>

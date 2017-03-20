@@ -122,7 +122,7 @@
 <div id="map_directions">
 
     <small>&nbsp; {need_directions}<br />
-    <input type="text" id="from_address{gid}" value="{value}" onfocus="if (this.value=='{value}')this.value='';" onblur="if(this.value=='')this.value='{value}';" size="30" style="width:200px;"/>
+    <input type="text" class="uk-input"  id="from_address{gid}" value="{value}" onfocus="if (this.value=='{value}')this.value='';" onblur="if(this.value=='')this.value='{value}';" size="30" style="width:200px;"/>
     <input type="button" value="{get_directions}"  onClick="get_directions{gid}();" />
     </small>
 

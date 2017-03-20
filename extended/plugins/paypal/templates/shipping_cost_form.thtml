@@ -6,7 +6,7 @@
 	{shipping_id}
 	
 	<p><label>{shipper_label}</label>
-	<select name="shipping_shipper_id" >
+	<select class="uk-select" name="shipping_shipper_id" >
 	{shipper}
 	</select>
 	</p>
@@ -15,7 +15,7 @@
 	<p><label>{shipping_max_label}<font color="red"> *</font></label> <input type="text" class="uk-input" name="shipping_max" value="{shipping_max}" size="10" {xhtml}></p>
 	
 	<p><label>{destination_label}</label>
-	<select name="shipping_destination_id" >
+	<select class="uk-select" name="shipping_destination_id" >
 	{destination}
 	</select>
 	</p>
@@ -26,7 +26,7 @@
 
 	
     <p><strong><font color="red">*</font><em> {required_field}</em></strong></p>
-    <select name="op" >
+    <select class="uk-select" name="op" >
 	<option value="save_shipping_cost" selected="selected">{save_button}</option>
     {delete_button}
 	</select>

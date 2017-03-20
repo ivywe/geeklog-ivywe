@@ -6,7 +6,7 @@
     <p>{submit_marker_text}        
     </p>
     <p>
-    <input type="text" style="width:350px" id="geoaddress" name="geoaddress" value="1600 Amphitheatre Pky, Mountain View, CA" onkeyup="copyText()"/>
+    <input type="text" class="uk-input"  style="width:350px" id="geoaddress" name="geoaddress" value="1600 Amphitheatre Pky, Mountain View, CA" onkeyup="copyText()"/>
     <input type="submit" value="{go}" onfocus="copyText();" />
     </p>
     <div id="map_contener_submission">
@@ -22,10 +22,10 @@
     <fieldset style="margin-top: 10px;padding:10px;">
     <legend>{arrow}<b>{informations}</b></legend>
       <div id="informations">
-        <p><b>{name_label}</b><font color="red">*</font> <input type="text" name="name" value="{name}" size="80" maxlength="255"></p>
-        <p><b>{address_label}</b><font color="red">*</font> <input type="text" id="address" name="address" value="{address}" size="80" maxlength="255"></p>
-        <p><b>{lat}</b> <input type="text" id="lat" name="lat" value="{lat_value}" size="25" maxlength="12">&nbsp;&nbsp; 
-        <b>{lng}</b> <input type="text" id="lng" name="lng" value="{lng_value}" size="25" maxlength="12"><br{xhtml}>
+        <p><b>{name_label}</b><font color="red">*</font> <input type="text" class="uk-input"  name="name" value="{name}" size="80" maxlength="255"></p>
+        <p><b>{address_label}</b><font color="red">*</font> <input type="text" class="uk-input"  id="address" name="address" value="{address}" size="80" maxlength="255"></p>
+        <p><b>{lat}</b> <input type="text" class="uk-input"  id="lat" name="lat" value="{lat_value}" size="25" maxlength="12">&nbsp;&nbsp; 
+        <b>{lng}</b> <input type="text" class="uk-input"  id="lng" name="lng" value="{lng_value}" size="25" maxlength="12"><br{xhtml}>
         {empty_for_geo}</p>
         <p><b>{mid_label}</b> &nbsp;<select id="mid" name="mid">{map_options}</select><br{xhtml}>
         {select_marker_map}</p>
@@ -35,7 +35,7 @@
     <fieldset style="margin-top: 10px;">
     <legend>{arrow}<b>{presentation_tab}</b></legend>
       <div id="presentation_tab">
-        <p><b>{description_label}</b><br{xhtml}><textarea rows="4" id="description" name="description" cols="51" style="width:99%">{description}</textarea>
+        <p><b>{description_label}</b><br{xhtml}><textarea class="uk-textarea" rows="4" id="description" name="description" cols="51" style="width:99%">{description}</textarea>
         </p>
         <p><b>{street_label}</b> {street}</p>
         <p><b>{code_label}</b> {code}</p>

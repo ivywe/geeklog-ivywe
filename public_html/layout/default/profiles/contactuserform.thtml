@@ -20,7 +20,7 @@
       <dd class="description" id="desc-contactuserform-message">{lang_nohtml}</dd>
 
       <dt{cc_enabled}><label for="contactuserform-cc">{lang_cc}</label></dt>
-      <dd{cc_enabled}><label><input type="checkbox" class="uk-checkbox"  name="cc" id="contactuserform-cc"{cc}{xhtml}>&nbsp;{lang_cc_description}</label></dd>
+      <dd{cc_enabled}><label><input type="checkbox" class="uk-checkbox" class="uk-checkbox"  name="cc" id="contactuserform-cc"{cc}{xhtml}>&nbsp;{lang_cc_description}</label></dd>
 
     </dl>
 

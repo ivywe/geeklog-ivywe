@@ -2345,7 +2345,7 @@ function COM_checkList($table, $selection, $where = '', $selected = '', $fieldNa
         }
 
         if ($access) {
-            $retval .= '<li><label><input type="checkbox" name="' . $fieldName . '[]" value="' . $A[0] . '"';
+            $retval .= '<li><label><input type="checkbox" class="uk-checkbox" name="' . $fieldName . '[]" value="' . $A[0] . '"';
 
             $sizeS = count($S);
             for ($x = 0; $x < $sizeS; $x++) {
@@ -2965,7 +2965,7 @@ function COM_userMenu($help = '', $title = '', $position = '')
                         . $modules[0] . '"' . XHTML . '>' . $modules[0];
                 } else {
                     // Build select
-                    $select = '<select name="service" id="service">';
+                    $select = '<select class="uk-select" name="service" id="service">';
                     if ($_CONF['user_login_method']['standard']) {
                         $select .= '<option value="">' . $_CONF['site_name']
                             . '</option>';
@@ -5902,7 +5902,7 @@ function COM_getAmPmFormSelection($name, $selected = '')
             $selected = date('a');
         }
 
-        $retval .= '<select name="' . $name . '">' . LB;
+        $retval .= '<select class="uk-select" name="' . $name . '">' . LB;
         $retval .= '<option value="am"';
         if ($selected === 'am') {
             $retval .= ' selected="selected"';
@@ -7345,7 +7345,7 @@ function phpblock_switch_language()
         $retval .= '<input type="hidden" name="oldlang" value="' . $langId
             . '"' . XHTML . '>' . LB;
 
-        $retval .= '<select onchange="change.submit()" name="lang">';
+        $retval .= '<select class="uk-select" onchange="change.submit()" name="lang">';
         foreach ($_CONF['languages'] as $key => $value) {
             if ($lang == $_CONF['language_files'][$key]) {
                 $selected = ' selected="selected"';

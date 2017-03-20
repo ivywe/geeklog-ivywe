@@ -4,7 +4,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="cmeditor-mmode">{lang_mode}</label>
         <div class="uk-form-controls">
-            <select name="mmode" id="cmeditor-mmode" aria-describedby="cmeditor-d1">
+            <select class="uk-select" name="mmode" id="cmeditor-mmode" aria-describedby="cmeditor-d1">
                 <option value="fixation" {val_mode_fixation}>{lang_mode_fixation}</option>
                 <option value="variable" {val_mode_variable}>{lang_mode_variable}</option>
                 <option value="php" {val_mode_php}>{lang_mode_php}</option>
@@ -34,7 +34,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="cmeditor-is_enabled">{lang_is_enabled}</label>
         <div class="uk-form-controls">
-            <input type="checkbox" class="uk-margin-small-top" name="is_enabled" id="cmeditor-is_enabled" {val_is_enabled}{xhtml}>
+            <input type="checkbox" class="uk-checkbox" class="uk-margin-small-top" name="is_enabled" id="cmeditor-is_enabled" {val_is_enabled}{xhtml}>
         </div>
     </div>
     <div class="uk-form-row">
@@ -65,7 +65,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="cmeditor-tid">{lang_topic}</label>
         <div class="uk-form-controls">
-            <select name="tid" id="cmeditor-tid">
+            <select class="uk-select" name="tid" id="cmeditor-tid">
                 <option value="all" {all_selected}>{lang_all}</option>
                 <option value="homeonly" {homeonly_selected}>{lang_homeonly}</option>
                 {topic_options}
@@ -95,7 +95,7 @@
         <div class="uk-form-controls">
             <input type="text" class="uk-input" name="pattern" id="cmeditor-pattern" value="{val_pattern}" size="48" class="uk-form-width-medium"{xhtml}>
         	<label>{lang_is_preg}:</label>
-            <input type="checkbox" class="uk-margin-small-top" name="is_preg" aria-describedby="cmeditor-d10"{val_is_preg}{xhtml}>
+            <input type="checkbox" class="uk-checkbox" class="uk-margin-small-top" name="is_preg" aria-describedby="cmeditor-d10"{val_is_preg}{xhtml}>
             <span class="uk-form-help-inline" id="cmeditor-d10">{lang_pattern_info}</span>
         </div>
     </div>

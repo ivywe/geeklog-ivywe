@@ -18,19 +18,19 @@
     <tr>
       <td class="mg_alignright">{lang_ascending}: </td>
       <td>
-        <input type="radio" name="sortorder" value="0" checked="checked"{xhtml}>
+        <input type="radio" class="uk-radio" name="sortorder" value="0" checked="checked"{xhtml}>
       </td>
     </tr>
     <tr>
       <td class="mg_alignright">{lang_descending}: </td>
       <td>
-        <input type="radio" name="sortorder" value="1"{xhtml}>
+        <input type="radio" class="uk-radio" name="sortorder" value="1"{xhtml}>
       </td>
     </tr>
     <tr>
       <td class="mg_alignright">{lang_process_subs}: </td>
       <td>
-        <input type="checkbox" name="processsub" value="1"{xhtml}>
+        <input type="checkbox" class="uk-checkbox"  name="processsub" value="1"{xhtml}>
       </td>
     </tr>
   </table>

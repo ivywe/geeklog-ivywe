@@ -188,7 +188,7 @@ function form_hidden_input($name,$value) {
 // **************************GENERATE FORM TEXT ELEMENT*****************************
 function form_text_input($name,$label,$value,$size,$maxlength) {
 if ($label) {?><label for="<?php echo $name; ?>"><?php echo $label; ?></label><?php } ?>
-<input type="text" name="<?php echo $name; ?>" size="<?php echo $size; ?>" maxlength="<?php echo $maxlength; ?>" value="<?php echo $value; ?>" /><?php
+<input type="text" class="uk-input"  name="<?php echo $name; ?>" size="<?php echo $size; ?>" maxlength="<?php echo $maxlength; ?>" value="<?php echo $value; ?>" /><?php
 }
 
 // **************************GENERATE FORM SUBMIT BUTTON*****************************

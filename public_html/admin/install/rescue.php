@@ -114,7 +114,7 @@ function langSelector() {
 
     $retval = '<form action="" method="post">' . LB
             . '<div>' . LB
-            . '<select name="lang">' . LB;
+            . '<select class="uk-select" name="lang">' . LB;
     $files = glob(dirname(__FILE__) . '/language/*.php');
 
     if ($files !== FALSE) {
@@ -288,7 +288,7 @@ function render($renderType, $args = array()) {
         <div id="plugins" name="options" class="box option" style="display: none;">
             <h3><?php e(35); ?></h3>
             <form id="plugin-operator" method="post">
-                <select name="target" onchange="toggleRadio(this.options[this.selectedIndex].getAttribute('class') == 'disabled', this.form.elements['value']);">
+                <select class="uk-select" name="target" onchange="toggleRadio(this.options[this.selectedIndex].getAttribute('class') == 'disabled', this.form.elements['value']);">
                     <option selected="selected" value=""><?php e(36); ?></option>
                     <?php
                     $result = DB_query("SELECT * FROM {$_TABLES['plugins']}");
@@ -298,8 +298,8 @@ function render($renderType, $args = array()) {
                     }
                     ?>
                 </select>
-                <input type="radio" name="value" id="enable_plugin" value="1" /><label for="enable_plugin"><?php e(37); ?></label>
-                <input type="radio" name="value" id="disable_plugin" value="0" checked="checked" /><label for="disable_plugin"><?php e(38); ?></label><br />
+                <input type="radio" class="uk-radio" name="value" id="enable_plugin" value="1" /><label for="enable_plugin"><?php e(37); ?></label>
+                <input type="radio" class="uk-radio" name="value" id="disable_plugin" value="0" checked="checked" /><label for="disable_plugin"><?php e(38); ?></label><br />
                 <input type="hidden" name="view" value="handleRequest" />
                 <input type="hidden" name="args" value="operation:UPDATE|table:plugins|field:pi_enabled|where:pi_name" />
                 <input type="submit" value="<?php e(41); ?>" onclick="this.disabled=true;this.form.submit();" />
@@ -309,7 +309,7 @@ function render($renderType, $args = array()) {
         <div id="blocks" name="options" class="box option" style="display: none;">
             <h3><?php e(39); ?></h3>
             <form id="block-operator" method="post">
-                <select name="target" onchange="toggleRadio(this.options[this.selectedIndex].getAttribute('class') == 'disabled', this.form.elements['value']);">
+                <select class="uk-select" name="target" onchange="toggleRadio(this.options[this.selectedIndex].getAttribute('class') == 'disabled', this.form.elements['value']);">
                     <option selected="selected" value=""><?php e(40); ?></option>
                     <?php
                     $result = DB_query("SELECT * FROM {$_TABLES['blocks']}");
@@ -319,8 +319,8 @@ function render($renderType, $args = array()) {
                     }
                     ?>
                 </select>
-                <input type="radio" name="value" id="enable_block" value="1" /><label for="enable_block"><?php e(37); ?></label>
-                <input type="radio" name="value" id="disable_block" value="0" checked="checked" /><label for="disable_block"><?php e(38); ?></label><br />
+                <input type="radio" class="uk-radio" name="value" id="enable_block" value="1" /><label for="enable_block"><?php e(37); ?></label>
+                <input type="radio" class="uk-radio" name="value" id="disable_block" value="0" checked="checked" /><label for="disable_block"><?php e(38); ?></label><br />
                 <input type="hidden" name="table" value="blocks" />
                 <input type="hidden" name="view" value="handleRequest" />
                 <input type="hidden" name="args" value="operation:UPDATE|table:blocks|field:is_enabled|where:name" />
@@ -337,7 +337,7 @@ function render($renderType, $args = array()) {
                         $res = DB_query($sql);
                         $row = DB_fetchArray($res);
                 ?>
-                        <fieldset><legend><?php echo $config; ?>:</legend><input type="text" size="80" id="<?php echo $config; ?>" name="<?php echo $config; ?>" value="<?php echo unserialize($row['value']); ?>" /></fieldset>
+                        <fieldset><legend><?php echo $config; ?>:</legend><input type="text" class="uk-input" size="80" id="<?php echo $config; ?>" name="<?php echo $config; ?>" value="<?php echo unserialize($row['value']); ?>" /></fieldset>
                 <?php
                     }
                 ?>

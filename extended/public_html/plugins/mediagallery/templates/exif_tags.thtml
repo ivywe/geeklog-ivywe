@@ -32,7 +32,7 @@ function doUnCheckAll_exif()
     <!-- BEGIN exifRow -->
     <tr>
       <td>
-        <input type="checkbox" name="sel[]" value="{tag}" {selected}{xhtml}>
+        <input type="checkbox" class="uk-checkbox"  name="sel[]" value="{tag}" {selected}{xhtml}>
         <input type="hidden"   name="tag[]" value="{tag}"{xhtml}>
       </td>
       <td>

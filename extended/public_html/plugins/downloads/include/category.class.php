@@ -284,7 +284,7 @@ class DLCategory
             $sizeattributes = 'width="' . $newwidth . '" height="' . $newheight . '"';
         }
         $preview = '<img src="' . $imgurl . '" alt="category image" ' . $sizeattributes . XHTML . '>';
-        if ($delform) $preview .= LB . '<input type="checkbox" name="deleteimg"' . XHTML . '>&nbsp;' . $LANG_DLM['delete'];
+        if ($delform) $preview .= LB . '<input type="checkbox" class="uk-checkbox"  name="deleteimg"' . XHTML . '>&nbsp;' . $LANG_DLM['delete'];
 
         return $preview;
     }

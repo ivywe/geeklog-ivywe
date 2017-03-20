@@ -10,11 +10,11 @@
 
     <dl>
       <dt>{lang_search}</dt>
-      <dd><input type="text" size="20" value="{last_query}" name="q" class="text"{xhtml}></dd>
+      <dd><input type="text" class="uk-input" size="20" value="{last_query}" name="q" class="text"{xhtml}></dd>
 
       <dt>{lang_limit_results}</dt>
       <dd>
-        <select name="query_limit">
+        <select class="uk-select" name="query_limit">
           <option value="10" {10_selected}>10</option>
           <option value="20" {20_selected}>20</option>
           <option value="50" {50_selected}>50</option>

@@ -2509,7 +2509,7 @@ function CALENDARJP_getAmPmFormSelection( $name, $selected = '' )
             $selected = date('a');
         }
 
-        $retval .= '<select name="' . $name . '">' . LB;
+        $retval .= '<select class="uk-select" name="' . $name . '">' . LB;
         $retval .= '<option value="am"';
         if ($selected == 'am') {
             $retval .= ' selected="selected"';

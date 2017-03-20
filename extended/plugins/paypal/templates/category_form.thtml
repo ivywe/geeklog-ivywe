@@ -6,7 +6,7 @@
 	<h2>{category_label}<font color="red"> *</font></h2>
 	<p><input type="text" class="uk-input" name="category" value="{cat_name}" size="40" maxlength="255" {xhtml}></p>
 	<h2>{parent_id}</h2>
-	<select name="parent_id">
+	<select class="uk-select" name="parent_id">
           <option value="0">{top_cat}</option>
           {parent_cat}
         </select>
@@ -20,7 +20,7 @@
 	<p><textarea class="uk-textarea" name="description" style="width:100%" cols="45" rows="5">{description}</textarea></p>
 	
 	<h2>{enabled}</h2>
-	<select name="enabled">
+	<select class="uk-select" name="enabled">
      <option value="0"{enabled_no}>{no}</option>
      <option value="1"{enabled_yes}>{yes}</option>
 	 </select>
@@ -42,7 +42,7 @@
 	</fieldset>
 	
     <p><strong><font color="red">*</font><em> {required_field}</em></strong></p>
-    <select name="op" >
+    <select class="uk-select" name="op" >
 	<option value="save" selected="selected">{save_button}</option>
     {delete_button}
 	</select>

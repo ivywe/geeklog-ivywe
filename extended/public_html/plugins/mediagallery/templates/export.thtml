@@ -29,8 +29,8 @@ For more detailed directions, see the <a href="http://www.gllabs.org/wiki/doku.p
         Destination System:
       </td>
       <td>
-        <input type="radio" name="unix" value=0{xhtml}>Windows&nbsp;&nbsp;
-        <input type="radio" name="unix" value=1>Unix
+        <input type="radio" class="uk-radio" name="unix" value=0{xhtml}>Windows&nbsp;&nbsp;
+        <input type="radio" class="uk-radio" name="unix" value=1>Unix
       </td>
     </tr>
     <tr>
@@ -38,8 +38,8 @@ For more detailed directions, see the <a href="http://www.gllabs.org/wiki/doku.p
         Move or Copy:
       </td>
       <td>
-        <input type="radio" name="moveorcopy" value=0{xhtml}>Move&nbsp;&nbsp;
-        <input type="radio" name="moveorcopy" value=1>Copy
+        <input type="radio" class="uk-radio" name="moveorcopy" value=0{xhtml}>Move&nbsp;&nbsp;
+        <input type="radio" class="uk-radio" name="moveorcopy" value=1>Copy
       </td>
     </tr>
     <tr>
@@ -47,7 +47,7 @@ For more detailed directions, see the <a href="http://www.gllabs.org/wiki/doku.p
         Temp directory on dest system:
       </td>
       <td>
-        <input type="text" name="srcroot" size="40" value="">
+        <input type="text" class="uk-input"  name="srcroot" size="40" value="">
       </td>
     </tr>
     <tr>
@@ -55,7 +55,7 @@ For more detailed directions, see the <a href="http://www.gllabs.org/wiki/doku.p
         Base Directory:
       </td>
       <td>
-        <input type="text" name="destroot" size="40" value="">
+        <input type="text" class="uk-input"  name="destroot" size="40" value="">
       </td>
     </tr>
   </table>

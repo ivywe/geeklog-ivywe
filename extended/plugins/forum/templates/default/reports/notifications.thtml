@@ -25,7 +25,7 @@
   	<div class="uk-width-7-10">
 		<form class="uk-form" action="{phpself}" method="post">
 			<div class="uk-form-controls">
-				<select name="filter" onchange="this.form.submit();">{filter_options}</select>
+				<select class="uk-select" name="filter" onchange="this.form.submit();">{filter_options}</select>
 			</div>
 		</form>
 	</div>

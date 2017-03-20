@@ -7,53 +7,53 @@
       <dd><input type="text" class="uk-input" maxlength="128" name="title" value="{event_title}" id="calendar-eventeditor-title" class="size6"{xhtml}></dd>
 
       <dt><label for="calendar-eventeditor-event_type">{lang_eventtype}</label></dt>
-      <dd><select name="event_type" id="calendar-eventeditor-event_type">
+      <dd><select class="uk-select" name="event_type" id="calendar-eventeditor-event_type">
             <option value="">--</option>
             {type_options}
           </select></dd>
 
       <dt><label>{lang_eventstartdate}</label></dt>
       <dd><span dir="ltr">
-            <select name="start_month">
+            <select class="uk-select" name="start_month">
                 {startmonth_options}
             </select>
             /
-            <select name="start_day">
+            <select class="uk-select" name="start_day">
                 {startday_options}
             </select>
             /
-            <select name="start_year">
+            <select class="uk-select" name="start_year">
                 {startyear_options}
             </select>&nbsp;&nbsp;
             {lang_starttime}: 
-            <select name="start_hour">
+            <select class="uk-select" name="start_hour">
                 {starthour_options}
             </select>
             :
-            <select name="start_minute">
+            <select class="uk-select" name="start_minute">
                 {startminute_options}
             </select>
             {startampm_selection}
           </span></dd>
       <dt><label>{lang_eventenddate}</label></dt>
       <dd><span dir="ltr">
-            <select name="end_month">
+            <select class="uk-select" name="end_month">
                 {endmonth_options}
             </select>
             /
-            <select name="end_day">
+            <select class="uk-select" name="end_day">
                 {endday_options}
             </select>
             /
-            <select name="end_year">
+            <select class="uk-select" name="end_year">
                 {endyear_options}
             </select>&nbsp;&nbsp;
             {lang_endtime}: 
-            <select name="end_hour">
+            <select class="uk-select" name="end_hour">
                 {endhour_options}
             </select>
             :
-            <select name="end_minute">
+            <select class="uk-select" name="end_minute">
                 {endminute_options}
             </select>
             {endampm_selection}
@@ -95,7 +95,7 @@
               <img src="{layout_url}/images/expand.png" title="{lang_expandhelp}" alt="" onclick="changeHTMLTextAreaSize('html_description','larger');"{xhtml}>
               <img src="{layout_url}/images/collapse.png" title="{lang_reducehelp}" alt="" onclick="changeHTMLTextAreaSize('html_description','smaller');"{xhtml}>
               <span style="padding-left:15px;">{lang_toolbar}:&nbsp;
-                  <select id="fckeditor_toolbar_selector" name="fckeditor_toolbar_selector" onchange="changeToolbar(this.value);">
+                  <select class="uk-select" id="fckeditor_toolbar_selector" name="fckeditor_toolbar_selector" onchange="changeToolbar(this.value);">
                       <option value="editor-toolbar1" selected="selected">{toolbar1}</option>
                       <option value="editor-toolbar2">{toolbar2}</option>
                       <option value="editor-toolbar3">{toolbar3}</option>
@@ -106,7 +106,7 @@
           </div>
       </dd>
       <dt><label for="sel_editmode">{lang_postmode}</label></dt>
-      <dd><select name="postmode" id="sel_editmode" {change_editormode}>
+      <dd><select class="uk-select" name="postmode" id="sel_editmode" {change_editormode}>
             {post_options}
           </select><br{xhtml}>{lang_allowed_html}</dd>
 

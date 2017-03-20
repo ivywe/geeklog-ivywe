@@ -324,7 +324,7 @@ function plugin_getListField_autotags($fieldname, $fieldvalue, $A, $icon_arr) {
                          ."<input type=\"checkbox\" name=\"tagenable\" onclick=\"submit()\" value=\"{$A['tag']}\" $switch>"
                          ."<input type=\"hidden\" name=\"tagChange\" value=\"{$A['tag']}\"></form>";
                 */         
-                $retval = '<input type="checkbox" name="enabledtags[]" '
+                $retval = '<input type="checkbox" class="uk-checkbox"  name="enabledtags[]" '
                             . 'onclick="submit()" value="' . $A['tag'] . '"'
                             . $switch . XHTML . '>'
                             . '<input type="hidden" name="visibletags[]" value="'

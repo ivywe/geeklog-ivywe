@@ -13,7 +13,7 @@
                                     <tr>
                                         <td align="right"><b>{lang_category}:</b></td>
                                         <td>
-                                            <select name="categorydd">
+                                            <select class="uk-select" name="categorydd">
                                                 {banner_category_options}
                                             </select> 
                                         </td>

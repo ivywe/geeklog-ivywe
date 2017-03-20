@@ -6,7 +6,7 @@
         <tr>
             <td align="right" style="width:10em">{lang_title}:</td>
             <td>
-                <input type="text" size="48" maxlength="128" name="title"{xhtml}>
+                <input type="text" class="uk-input"  size="48" maxlength="128" name="title"{xhtml}>
             </td>
         </tr>
         <tr>
@@ -74,41 +74,41 @@
         </tr>
         <tr>
             <td align="right">{lang_alldayevent}:</td>
-            <td><input type="checkbox" name="allday"{xhtml}></td>
+            <td><input type="checkbox" class="uk-checkbox"  name="allday"{xhtml}></td>
         </tr>
         <tr>
             <td align="right" valign="top">{lang_location}:</td>
             <td>
-                <textarea name="location" cols="35" rows="2"></textarea>
+                <textarea class="uk-textarea" name="location" cols="35" rows="2"></textarea>
             </td>
         </tr>
         <tr>
             <td align="right" style="whight-space:nowrap">{lang_zipcode}:</td>
-            <td><input type="text" name="zipcode" size="16" maxlength="16"{xhtml}></td>
+            <td><input type="text" class="uk-input"  name="zipcode" size="16" maxlength="16"{xhtml}></td>
         </tr>
         <tr>
             <td align="right">{lang_state}:</td>
-            <td><input type="text" name="state" size="40"{xhtml}></td>
+            <td><input type="text" class="uk-input"  name="state" size="40"{xhtml}></td>
         </tr>
         <tr>
             <td align="right" style="whight-space:nowrap">{lang_city}:</td>
-            <td><input type="text" name="city" size="40" maxlength="60"{xhtml}></td>
+            <td><input type="text" class="uk-input"  name="city" size="40" maxlength="60"{xhtml}></td>
         </tr>
         <tr>
             <td align="right" style="whight-space:nowrap">{lang_addressline1}:</td>
-            <td><input type="text" name="address1" size="40"{xhtml}></td>
+            <td><input type="text" class="uk-input"  name="address1" size="40"{xhtml}></td>
         </tr>
         <tr>
             <td align="right" style="whight-space:nowrap">{lang_addressline2}:</td>
-            <td><input type="text" name="address2" size="40"{xhtml}></td>
+            <td><input type="text" class="uk-input"  name="address2" size="40"{xhtml}></td>
         </tr>
         <tr>
             <td align="right">{lang_link}:</td>
-            <td><input type="text" dir="ltr" size="48" maxlength="{max_url_length}" name="url" value=""{xhtml}> {lang_includehttp}</td>
+            <td><input type="text" class="uk-input"  dir="ltr" size="48" maxlength="{max_url_length}" name="url" value=""{xhtml}> {lang_includehttp}</td>
         </tr>
         <tr>
             <td align="right" valign="top">{lang_description}:</td>
-            <td><textarea name="description" style="width:98%" cols="50" rows="10"></textarea><br{xhtml}>
+            <td><textarea class="uk-textarea" name="description" style="width:98%" cols="50" rows="10"></textarea><br{xhtml}>
             {lang_allowed_html}</td>
         </tr>
         {captcha}

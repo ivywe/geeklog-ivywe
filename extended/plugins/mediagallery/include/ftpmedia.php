@@ -152,7 +152,7 @@ function MG_listDir($dir, $album_id, $purgefiles, $recurse)
 
     // build a select box of valid albums for upload
     require_once $_CONF['path'].'plugins/mediagallery/include/classAlbum.php';
-    $album_selectbox  = '<select name="' . $dest . '">' . LB;
+    $album_selectbox  = '<select class="uk-select" name="' . $dest . '">' . LB;
     $root_album = new mgAlbum(0);
     $root_album->buildAlbumBox($album_selectbox, $album_id, 3, -1, 'upload');
     $album_selectbox .= '</select>' . LB;
@@ -260,7 +260,7 @@ function MG_listDir($dir, $album_id, $purgefiles, $recurse)
             'filename'      => ($isadirectory ? $dirlink : $filename),
             'fullname'      => $filetmp,
             'filesize'      => COM_numberFormat((filesize($filetmp))/1024) . ' kB',
-            'parent_select' => '<select name="parentaid">' . LB . $album_selectbox,
+            'parent_select' => '<select class="uk-select" name="parentaid">' . LB . $album_selectbox,
             'color'         => ($toobig ? '<span style="font-color:red;">' : '<span style="font-color:black;">'),
             'type'          => $type,
         ));
@@ -353,7 +353,7 @@ function MG_FTPpickFiles($album_id, $dir, $purgefiles, $recurse)
 
     $filelist = MG_listDir($dir, $album_id, $purgefiles, $recurse, $session_id);
 
-    $album_jumpbox  = '<select name="parentaid">';
+    $album_jumpbox  = '<select class="uk-select" name="parentaid">';
     if (SEC_hasRights('mediagallery.admin')) {
         $album_jumpbox .= '<option value="0">' . $LANG_MG01['root_album'] . '</option>';
     } else {

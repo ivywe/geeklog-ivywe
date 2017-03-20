@@ -27,7 +27,7 @@
 
       <div class="uk-form-row">
         <label class="uk-form-label" for="sp-advanced_editor-sp_onmenu">{lang_addtomenu}</label> 
-        <div class="uk-form-controls"><input type="checkbox" class="uk-checkbox"  name="sp_onmenu" id="sp-advanced_editor-sp_onmenu" {onmenu_checked}{xhtml}></div>
+        <div class="uk-form-controls"><input type="checkbox" class="uk-checkbox" class="uk-checkbox"  name="sp_onmenu" id="sp-advanced_editor-sp_onmenu" {onmenu_checked}{xhtml}></div>
       </div>
 
       <div class="uk-form-row">
@@ -104,7 +104,7 @@
 
       <div class="uk-form-row">
         <label class="uk-form-label" for="sp-advanced_editor-draft_flag">{lang_draft}</label> 
-        <div class="uk-form-controls"><input type="checkbox" class="uk-checkbox"  name="draft_flag" id="sp-advanced_editor-draft_flag" {draft_flag_checked}{xhtml}></div>
+        <div class="uk-form-controls"><input type="checkbox" class="uk-checkbox" class="uk-checkbox"  name="draft_flag" id="sp-advanced_editor-draft_flag" {draft_flag_checked}{xhtml}></div>
       </div>
 
       <div class="uk-form-row">
@@ -132,7 +132,7 @@
 
       <div class="uk-form-row">
         <label class="uk-form-label" for="sp-advanced_editor-template_flag">{lang_template}</label> 
-        <div class="uk-form-controls"><input type="checkbox" class="uk-checkbox"  name="template_flag" id="sp-advanced_editor-template_flag" {template_flag_checked}{xhtml}>&nbsp;&nbsp;{lang_template_flag_msg}</div>
+        <div class="uk-form-controls"><input type="checkbox" class="uk-checkbox" class="uk-checkbox"  name="template_flag" id="sp-advanced_editor-template_flag" {template_flag_checked}{xhtml}>&nbsp;&nbsp;{lang_template_flag_msg}</div>
       </div>
 
       <div class="uk-form-row">
@@ -144,7 +144,7 @@
 
       <div class="uk-form-row">
         <label class="uk-form-label" for="sp-advanced_editor-sp_centerblock">{lang_centerblock}</label> 
-        <div class="uk-form-controls"><input type="checkbox" class="uk-checkbox"  name="sp_centerblock" id="sp-advanced_editor-sp_centerblock" {centerblock_checked}{xhtml}>&nbsp;&nbsp;{lang_centerblock_msg}</div>
+        <div class="uk-form-controls"><input type="checkbox" class="uk-checkbox" class="uk-checkbox"  name="sp_centerblock" id="sp-advanced_editor-sp_centerblock" {centerblock_checked}{xhtml}>&nbsp;&nbsp;{lang_centerblock_msg}</div>
       </div>
 
       <div class="uk-form-row">
@@ -157,7 +157,7 @@
       <div class="uk-form-row">
         <label class="uk-form-label" for="sp-advanced_editor-sp_inblock">{inblock_msg}</label> 
         <div class="uk-form-controls">
-      <input type="checkbox" class="uk-checkbox"  name="sp_inblock" id="sp-advanced_editor-sp_inblock" {inblock_checked}{xhtml}>&nbsp;&nbsp;{inblock_info}
+      <input type="checkbox" class="uk-checkbox" class="uk-checkbox"  name="sp_inblock" id="sp-advanced_editor-sp_inblock" {inblock_checked}{xhtml}>&nbsp;&nbsp;{inblock_info}
         </div>
       </div>
 
@@ -175,7 +175,7 @@
 
       <div class="uk-form-row">
         <label class="uk-form-label" for="sp-advanced_editor-sp_nf">{exit_msg}</label> 
-        <div class="uk-form-controls"><input type="checkbox" class="uk-checkbox"  name="sp_nf" id="sp-advanced_editor-sp_nf" {exit_checked}{xhtml}>&nbsp;&nbsp;{exit_info}</div>
+        <div class="uk-form-controls"><input type="checkbox" class="uk-checkbox" class="uk-checkbox"  name="sp_nf" id="sp-advanced_editor-sp_nf" {exit_checked}{xhtml}>&nbsp;&nbsp;{exit_info}</div>
       </div>
 
 <fieldset class="uk-margin-large-top">

@@ -66,15 +66,15 @@
                 {userphoto_option}
                 <tr>
                     <td style="width:100px;"><label for="sig">{lang_signature}:</label></td>
-                    <td><textarea id="sig" name="sig" style="width:100%" cols="20" rows="4">{signature_value}</textarea></td>
+                    <td><textarea class="uk-textarea" id="sig" name="sig" style="width:100%" cols="20" rows="4">{signature_value}</textarea></td>
                 </tr>
                 <tr>
                     <td style="width:100px;"><label for="about">{lang_about}:</label></td>
-                    <td><textarea id="about" name="about" style="width:100%" cols="20" rows="4">{about_value}</textarea></td>
+                    <td><textarea class="uk-textarea" id="about" name="about" style="width:100%" cols="20" rows="4">{about_value}</textarea></td>
                 </tr>
                 <tr>
                     <td style="width:100px;"><label for="pgpkey">{lang_pgpkey}:</label></td>
-                    <td><textarea id="pgpkey" name="pgpkey" style="width:100%" cols="20" rows="4">{pgpkey_value}</textarea></td>
+                    <td><textarea class="uk-textarea" id="pgpkey" name="pgpkey" style="width:100%" cols="20" rows="4">{pgpkey_value}</textarea></td>
                 </tr>
                 <!-- Forum ****************************************** -->
                 <tr>

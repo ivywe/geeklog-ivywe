@@ -291,7 +291,7 @@ function MG_watermarkUpload($actionURL = '')
     $T->set_block('upload', 'public-access');
     if ($root_album->owner_id) {
         $T->set_var('lang_public_access', $LANG_MG01['public_access']);
-        $T->set_var('public_access', '<input type="checkbox" name="wm_public" id="wm_public" value="1"' . XHTML . '>');
+        $T->set_var('public_access', '<input type="checkbox" class="uk-checkbox"  name="wm_public" id="wm_public" value="1"' . XHTML . '>');
         $T->parse('public-access', 'public-access');
     } else {
         $T->set_var('public-access', '');

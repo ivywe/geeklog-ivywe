@@ -3019,7 +3019,7 @@ function DATABOX_getoptionlistary(
 
     $retval = '';
 
-    $retval .= "<select name='$fld'       $disabled>".LB;
+    $retval .= "<select class='uk-select' name='$fld'       $disabled>".LB;
     $retval .= "<option value=0>{$$lang_databox['selectit']}</option>".LB;
 
     for ($i = 0; $i < count($ary); $i++) {
@@ -3078,7 +3078,7 @@ global $_TABLES;
 
     $retval = '';
 
-	$retval .= "<select name='$kind' $disabled>".LB;
+	$retval .= "<select class='uk-select' name='$kind' $disabled>".LB;
 //echo "selectlist=".$selectlist."<br>";
 	if ($selectit){
 //echo "AA<br>";

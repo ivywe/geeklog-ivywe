@@ -2089,7 +2089,7 @@ function PAYPAL_loginForm($use_config = array())
                         . $modules[0] . '"' . XHTML . '>' . $modules[0];
             } else {
                 // Build select
-                $select = '<select name="service">';
+                $select = '<select class="uk-select" name="service">';
                 if ($_CONF['user_login_method']['standard']) {
                     $select .= '<option value="">' .  $_CONF['site_name']
                             . '</option>';

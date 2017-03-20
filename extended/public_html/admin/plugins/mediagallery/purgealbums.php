@@ -94,7 +94,7 @@ function MG_selectAlbums()
                 $lastlogin = MG_getUserDateTimeFormat($siteUsers[ $child_album->owner_id ]['lastlogin']);
             }
             $T->set_var(array(
-                'select'    => '<input type="checkbox" name="album[]" value="' . $child_album->id . '">',
+                'select'    => '<input type="checkbox" class="uk-checkbox"  name="album[]" value="' . $child_album->id . '">',
                 'aid'       => $child_album->id,
                 'title'     => $child_album->title,
                 'owner'     => $siteUsers[ $child_album->owner_id ]['username'] . '/' . $siteUsers[ $child_album->owner_id ]['fullname'],

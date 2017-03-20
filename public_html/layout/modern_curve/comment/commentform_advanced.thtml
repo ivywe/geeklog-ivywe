@@ -20,7 +20,7 @@
              <span{hidewhenediting}><a href="{action_url}" rel="nofollow" class="logoutorcreateaccount">{lang_logoutorcreateaccount}</a></span>
           </dd>
           <dt class="title"><label for="commentform-title">{lang_title}</label></dt>
-          <dd class="title"><input type="text" size="32" value="{title}" maxlength="96" name="title" id="commentform-title" class="text"{xhtml}></dd>
+          <dd class="title"><input type="text" class="uk-input" size="32" value="{title}" maxlength="96" name="title" id="commentform-title" class="text"{xhtml}></dd>
 
           <dt><label for="comment_text">{lang_comment}</label></dt>
           <dd>
@@ -35,7 +35,7 @@
 
           <dt><label for="commentform-postmode">{lang_postmode}</label></dt>
           <dd>
-            <select id="sel_editmode" name="postmode" onchange="change_editmode(this);">
+            <select class="uk-select" id="sel_editmode" name="postmode" onchange="change_editmode(this);">
               {postmode_options}
             </select>
           </dd>

@@ -268,7 +268,7 @@ function MG_userUpload($album_id)
     }
     $cRows = count($catRow);
     if ($cRows > 0) {
-        $cat_select = '<select name="cat_id[]">';
+        $cat_select = '<select class="uk-select" name="cat_id[]">';
         $cat_select .= '<option value="0">' . $LANG_MG01['no_category'] . '</option>';
         for ($i=0; $i < $cRows; $i++) {
             $cat_select .= '<option value="' . $catRow[$i]['cat_id'] . '">' . $catRow[$i]['cat_name'] . '</option>';

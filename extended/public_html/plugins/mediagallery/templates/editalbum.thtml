@@ -15,11 +15,11 @@ function change(what) {
 <form enctype="multipart/form-data" method="post" action="{s_form_action}" class="uk-form uk-form-horizontal">
         <div class="uk-form-row">
             <label class="uk-form-label">{lang_title}</label>
-            <div class="uk-form-controls"><input type="text" name="album_name" value="{album_title}" class="uk-form-width-large"{xhtml}></div>
+            <div class="uk-form-controls"><input type="text" class="uk-input"  name="album_name" value="{album_title}" class="uk-form-width-large"{xhtml}></div>
         </div>
         <div class="uk-form-row">
             <label class="uk-form-label">{lang_description}</label>
-            <div class="uk-form-controls"><textarea name="album_desc" cols="50" rows="3" class="uk-width-1-1">{album_desc}</textarea></div>
+            <div class="uk-form-controls"><textarea class="uk-textarea" name="album_desc" cols="50" rows="3" class="uk-width-1-1">{album_desc}</textarea></div>
         </div>
         <div class="uk-form-row">
             <label class="uk-form-label">{lang_parent_album}</label>
@@ -254,13 +254,13 @@ function change(what) {
             <table>
               <tr>
                 <td align="left">
-                  <input type="checkbox" name="format_jpg" value="1" {jpg_checked}{xhtml}> <span class="uk-form-help-inline">{lang_jpg}</span><br{xhtml}>
-                  <input type="checkbox" name="format_png" value="2" {png_checked}{xhtml}> <span class="uk-form-help-inline">{lang_png}</span><br{xhtml}>
-                  <input type="checkbox" name="format_tif" value="4" {tif_checked}{xhtml}> <span class="uk-form-help-inline">{lang_tif}</span><br{xhtml}>
-                  <input type="checkbox" name="format_gif" value="8" {gif_checked}{xhtml}> <span class="uk-form-help-inline">{lang_gif}</span><br{xhtml}>
-                  <input type="checkbox" name="format_bmp" value="16" {bmp_checked}{xhtml}> <span class="uk-form-help-inline">{lang_bmp}</span><br{xhtml}>
-                  <input type="checkbox" name="format_tga" value="32" {tga_checked}{xhtml}> <span class="uk-form-help-inline">{lang_tga}</span><br{xhtml}>
-                  <input type="checkbox" name="format_psd" value="64" {psd_checked}{xhtml}> <span class="uk-form-help-inline">{lang_psd}</span><br{xhtml}>
+                  <input type="checkbox" class="uk-checkbox"  name="format_jpg" value="1" {jpg_checked}{xhtml}> <span class="uk-form-help-inline">{lang_jpg}</span><br{xhtml}>
+                  <input type="checkbox" class="uk-checkbox"  name="format_png" value="2" {png_checked}{xhtml}> <span class="uk-form-help-inline">{lang_png}</span><br{xhtml}>
+                  <input type="checkbox" class="uk-checkbox"  name="format_tif" value="4" {tif_checked}{xhtml}> <span class="uk-form-help-inline">{lang_tif}</span><br{xhtml}>
+                  <input type="checkbox" class="uk-checkbox"  name="format_gif" value="8" {gif_checked}{xhtml}> <span class="uk-form-help-inline">{lang_gif}</span><br{xhtml}>
+                  <input type="checkbox" class="uk-checkbox"  name="format_bmp" value="16" {bmp_checked}{xhtml}> <span class="uk-form-help-inline">{lang_bmp}</span><br{xhtml}>
+                  <input type="checkbox" class="uk-checkbox"  name="format_tga" value="32" {tga_checked}{xhtml}> <span class="uk-form-help-inline">{lang_tga}</span><br{xhtml}>
+                  <input type="checkbox" class="uk-checkbox"  name="format_psd" value="64" {psd_checked}{xhtml}> <span class="uk-form-help-inline">{lang_psd}</span><br{xhtml}>
                 </td>
               </tr>
             </table>
@@ -269,16 +269,16 @@ function change(what) {
             <table>
               <tr>
                 <td align="left">
-                  <input type="checkbox" name="format_mp3" value="128" {mp3_checked}{xhtml}> <span class="uk-form-help-inline">{lang_mp3}</span><br{xhtml}>
-                  <input type="checkbox" name="format_ogg" value="256" {ogg_checked}{xhtml}> <span class="uk-form-help-inline">{lang_ogg}</span><br{xhtml}>
-                  <input type="checkbox" name="format_asf" value="512" {asf_checked}{xhtml}> <span class="uk-form-help-inline">{lang_asf}</span><br{xhtml}>
-                  <input type="checkbox" name="format_swf" value="1024" {swf_checked}{xhtml}> <span class="uk-form-help-inline">{lang_swf}</span><br{xhtml}>
-                  <input type="checkbox" name="format_mov" value="2048" {mov_checked}{xhtml}> <span class="uk-form-help-inline">{lang_mov}</span><br{xhtml}>
-                  <input type="checkbox" name="format_mp4" value="4096" {mp4_checked}{xhtml}> <span class="uk-form-help-inline">{lang_mp4}</span><br{xhtml}>
-                  <input type="checkbox" name="format_mpg" value="8192" {mpg_checked}{xhtml}> <span class="uk-form-help-inline">{lang_mpg}</span><br{xhtml}>
-                  <input type="checkbox" name="format_flv" value="131072" {flv_checked}{xhtml}> <span class="uk-form-help-inline">{lang_flv}</span><br{xhtml}>
-                  <input type="checkbox" name="format_rflv" value="262144" {rflv_checked}{xhtml}> <span class="uk-form-help-inline">{lang_rflv}</span><br{xhtml}>
-                  <input type="checkbox" name="format_emb" value="524288" {emb_checked}{xhtml}> <span class="uk-form-help-inline">{lang_emb}</span><br{xhtml}>
+                  <input type="checkbox" class="uk-checkbox"  name="format_mp3" value="128" {mp3_checked}{xhtml}> <span class="uk-form-help-inline">{lang_mp3}</span><br{xhtml}>
+                  <input type="checkbox" class="uk-checkbox"  name="format_ogg" value="256" {ogg_checked}{xhtml}> <span class="uk-form-help-inline">{lang_ogg}</span><br{xhtml}>
+                  <input type="checkbox" class="uk-checkbox"  name="format_asf" value="512" {asf_checked}{xhtml}> <span class="uk-form-help-inline">{lang_asf}</span><br{xhtml}>
+                  <input type="checkbox" class="uk-checkbox"  name="format_swf" value="1024" {swf_checked}{xhtml}> <span class="uk-form-help-inline">{lang_swf}</span><br{xhtml}>
+                  <input type="checkbox" class="uk-checkbox"  name="format_mov" value="2048" {mov_checked}{xhtml}> <span class="uk-form-help-inline">{lang_mov}</span><br{xhtml}>
+                  <input type="checkbox" class="uk-checkbox"  name="format_mp4" value="4096" {mp4_checked}{xhtml}> <span class="uk-form-help-inline">{lang_mp4}</span><br{xhtml}>
+                  <input type="checkbox" class="uk-checkbox"  name="format_mpg" value="8192" {mpg_checked}{xhtml}> <span class="uk-form-help-inline">{lang_mpg}</span><br{xhtml}>
+                  <input type="checkbox" class="uk-checkbox"  name="format_flv" value="131072" {flv_checked}{xhtml}> <span class="uk-form-help-inline">{lang_flv}</span><br{xhtml}>
+                  <input type="checkbox" class="uk-checkbox"  name="format_rflv" value="262144" {rflv_checked}{xhtml}> <span class="uk-form-help-inline">{lang_rflv}</span><br{xhtml}>
+                  <input type="checkbox" class="uk-checkbox"  name="format_emb" value="524288" {emb_checked}{xhtml}> <span class="uk-form-help-inline">{lang_emb}</span><br{xhtml}>
                 </td>
               </tr>
             </table>
@@ -287,8 +287,8 @@ function change(what) {
             <table>
               <tr>
                 <td align="left">
-                  <input type="checkbox" name="format_zip" value="16384" {zip_checked}{xhtml}> <span class="uk-form-help-inline">{lang_zip}</span><br{xhtml}>
-                  <input type="checkbox" name="format_other" value="32768" {other_checked}{xhtml}> <span class="uk-form-help-inline">{lang_other}</span><br{xhtml}>
+                  <input type="checkbox" class="uk-checkbox"  name="format_zip" value="16384" {zip_checked}{xhtml}> <span class="uk-form-help-inline">{lang_zip}</span><br{xhtml}>
+                  <input type="checkbox" class="uk-checkbox"  name="format_other" value="32768" {other_checked}{xhtml}> <span class="uk-form-help-inline">{lang_other}</span><br{xhtml}>
                 </td>
               </tr>
             </table>

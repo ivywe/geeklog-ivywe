@@ -12,7 +12,7 @@
         <tr>
             <td align="right">{lang_eventtype}:</td>
             <td>
-                <select name="event_type">
+                <select class="uk-select" name="event_type">
                     <option value="">--</option>
                     {type_options}
                 </select>
@@ -22,23 +22,23 @@
             <td align="right">{lang_startdate}:</td>
             <td>
               <span dir="ltr">
-                <select name="start_year">
+                <select class="uk-select" name="start_year">
                     {year_options}
                 </select>
                 {lang_tail_year}
-                <select name="start_month">
+                <select class="uk-select" name="start_month">
                     {month_options}
                 </select>
                 {lang_tail_month}
-                <select name="start_day">
+                <select class="uk-select" name="start_day">
                     {day_options}
                 </select>
                 {lang_tail_day}&nbsp;&nbsp;{lang_starttime}: 
-                <select name="start_hour">
+                <select class="uk-select" name="start_hour">
                     {hour_options}
                 </select>
                 :
-                <select name="start_minute">
+                <select class="uk-select" name="start_minute">
                     {minute_options}
                 </select>
                 {startampm_selection}
@@ -49,23 +49,23 @@
             <td align="right">{lang_enddate}:</td>
             <td>
               <span dir="ltr">
-                <select name="end_year">
+                <select class="uk-select" name="end_year">
                     {year_options}
                 </select>
                 {lang_tail_year}
-                <select name="end_month">
+                <select class="uk-select" name="end_month">
                     {month_options}
                 </select>
                 {lang_tail_month}
-                <select name="end_day">
+                <select class="uk-select" name="end_day">
                     {day_options}
                 </select>
                 {lang_tail_day}&nbsp;&nbsp;{lang_endtime}: 
-                <select name="end_hour">
+                <select class="uk-select" name="end_hour">
                     {hour_options}
                 </select>
                 :
-                <select name="end_minute">
+                <select class="uk-select" name="end_minute">
                     {minute_options}
                 </select>
                 {startampm_selection}

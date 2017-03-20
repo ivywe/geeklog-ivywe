@@ -27,20 +27,20 @@
 		<p>{map_width}<input type="text" id="width" name="width" value="{width}" size="8" maxlength="6"></p>
 		<p>{map_height}<input type="text" id="height" name="height" value="{height}" size="8" maxlength="6"></p>
 		<p>{map_zoom}<input type="text" id="zoom" name="zoom" value="{zoom}" size="2" maxlength="2"></p>
-		<p>{map_type}<select id="type" name="type">{options}</select></p>
-		<p>{active} <select name="active">
+		<p>{map_type}<select class="uk-select" id="type" name="type">{options}</select></p>
+		<p>{active} <select class="uk-select" name="active">
 		<option value="0"{active_no}>{no}</option>
 		<option value="1"{active_yes}>{yes}</option>
 		</select></p>
-		<p>{hidden} <select name="hidden">
+		<p>{hidden} <select class="uk-select" name="hidden">
 		<option value="0"{hidden_no}>{no}</option>
 		<option value="1"{hidden_yes}>{yes}</option>
 		</select></p>
-		<p>{free_marker} <select name="free_marker">
+		<p>{free_marker} <select class="uk-select" name="free_marker">
 		<option value="0"{free_marker_no}>{no}</option>
 		<option value="1"{free_marker_yes}>{yes}</option>
 		</select></p>
-		<p>{paid_marker} <select name="paid_marker">
+		<p>{paid_marker} <select class="uk-select" name="paid_marker">
 		<option value="0"{paid_marker_no}>{no}</option>
 		<option value="1"{paid_marker_yes}>{yes}</option>
 		</select></p>
@@ -49,7 +49,7 @@
 
 	<fieldset style="margin-top: 10px;"><legend>{arrow}<a style="text-decoration: none;" onClick="elementToggle('marker_label'); return false;" href="#"><b>{marker_label}</b></a></legend>
 		<div id="marker_label" style="display:none;">
-		<p>{mk_default} <select name="mk_default">
+		<p>{mk_default} <select class="uk-select" name="mk_default">
 		<option value="0"{mk_default_no}>{no}</option>
 		<option value="1"{mk_default_yes}>{yes}</option>
 		</select></p>
@@ -59,7 +59,7 @@
 		<p>{stroke_color_label}: 
 		<input type="text" id="stroke_color" name="stroke_color" value="{stroke_color}" size="7" maxlength="7"></p>
 		<p>{label_label}: <input type="text" id="label" name="label" value="{label}" size="1" maxlength="1"></p>
-		<p>{label_color_label}:  <select name="label_color">
+		<p>{label_color_label}:  <select class="uk-select" name="label_color">
 		<option value="0"{label_color_black}>{black}</option>
 		<option value="1"{label_color_white}>{white}</option>
 		</select>
@@ -69,9 +69,9 @@
 	<fieldset style="margin-top: 10px;"><legend>{arrow}<a style="text-decoration: none;" onClick="elementToggle('header_footer'); return false;" href="#"><b>{header_footer}</b></a></legend>
 		<div id="header_footer" style="display:none;">
 		<p><a style="text-decoration: none;" onClick="elementToggle('map_header_content'); return false;" href="#">{map_header_label}</a></p>
-		<div id="map_header_content"  style="display:none"><textarea rows="12" id="mapheader" name="map_header" cols="44">{map_header}</textarea></div>
+		<div id="map_header_content"  style="display:none"><textarea class="uk-textarea" rows="12" id="mapheader" name="map_header" cols="44">{map_header}</textarea></div>
 		<p><a style="text-decoration: none;" onClick="elementToggle('map_footer_content'); return false;" href="#">{map_footer_label}</a></p>
-		<div id="map_footer_content"  style="display:none"><textarea rows="12" id="mapfooter" name="map_footer" cols="44">{map_footer}</textarea></div>
+		<div id="map_footer_content"  style="display:none"><textarea class="uk-textarea" rows="12" id="mapfooter" name="map_footer" cols="44">{map_footer}</textarea></div>
 		</div>
 	</fieldset>
 
@@ -92,7 +92,7 @@
 	</fieldset>
 
 	<div>
-		<select name="mode" >
+		<select class="uk-select" name="mode" >
 		<option value="save" selected="selected">{save_button}</option>
 		<option value="delete">{delete_button}</option>
 		</select>

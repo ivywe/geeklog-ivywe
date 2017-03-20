@@ -8,7 +8,7 @@
 	</fieldset>
 	
     <p><strong><font color="red">*</font><em> {required_field}</em></strong></p>
-    <select name="op" >
+    <select class="uk-select" name="op" >
 	<option value="save" selected="selected">{save_button}</option>
     {delete_button}
 	</select>

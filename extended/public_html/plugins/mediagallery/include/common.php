@@ -1417,7 +1417,7 @@ function MG_optionlist($info)
 
 function MG_checkbox($info)
 {
-    $retval = '<input type="checkbox" name="' . $info['name'] . '" '
+    $retval = '<input type="checkbox" class="uk-checkbox"  name="' . $info['name'] . '" '
             . 'value="' . $info['value'] . '"'
             . ($info['checked'] ? ' checked="checked"' : '') . XHTML . '>';
 

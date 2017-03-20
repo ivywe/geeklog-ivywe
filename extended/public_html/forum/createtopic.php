@@ -939,7 +939,7 @@ if (($method == 'newtopic' || $method == 'postreply' || $method == 'edit') || ($
             } else {
                 $notify_val = '';
             }
-            //$notify_prompt = '<label for="notify">' . $LANG_GF02['msg38']. '</label><br' . XHTML . '><input type="checkbox" name="notify" id="notify" value="on" ' . $notify_val. XHTML . '>';
+            //$notify_prompt = '<label for="notify">' . $LANG_GF02['msg38']. '</label><br' . XHTML . '><input type="checkbox" class="uk-checkbox"  name="notify" id="notify" value="on" ' . $notify_val. XHTML . '>';
             // Notify Option
 			$submissionform_main->set_var ('LANG_OPTION', $LANG_GF02['msg38']);
 			$submissionform_main->set_var ('option_name', 'notify');

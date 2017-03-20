@@ -35,7 +35,7 @@
   <div class="uk-form-row">
     <label class="uk-form-label" for="sp-editor-sp_onmenu">{lang_addtomenu}</label>
     <div class="uk-form-controls">
-      <input type="checkbox" class="uk-checkbox"  name="sp_onmenu" id="sp-editor-sp_onmenu" {onmenu_checked}{xhtml}>
+      <input type="checkbox" class="uk-checkbox" class="uk-checkbox"  name="sp_onmenu" id="sp-editor-sp_onmenu" {onmenu_checked}{xhtml}>
     </div>
   </div>
 
@@ -95,7 +95,7 @@
   <div class="uk-form-row">
     <label class="uk-form-label" for="sp-editor-draft_flag">{lang_draft}</label>
     <div class="uk-form-controls">
-      <input type="checkbox" class="uk-checkbox"  name="draft_flag" id="sp-editor-draft_flag" {draft_flag_checked}{xhtml}>
+      <input type="checkbox" class="uk-checkbox" class="uk-checkbox"  name="draft_flag" id="sp-editor-draft_flag" {draft_flag_checked}{xhtml}>
     </div>
   </div>
 
@@ -132,7 +132,7 @@
   <div class="uk-form-row">
     <label class="uk-form-label" for="sp-editor-template_flag">{lang_template}</label>
     <div class="uk-form-controls">
-      <input type="checkbox" class="uk-checkbox"  name="template_flag" id="sp-editor-template_flag" {template_flag_checked}{xhtml}>
+      <input type="checkbox" class="uk-checkbox" class="uk-checkbox"  name="template_flag" id="sp-editor-template_flag" {template_flag_checked}{xhtml}>
       <span class="uk-form-help-inline">{lang_template_flag_msg}</span>
     </div>
   </div>
@@ -149,7 +149,7 @@
   <div class="uk-form-row">
     <label class="uk-form-label" for="sp-editor-sp_centerblock">{lang_centerblock}</label>
     <div class="uk-form-controls">
-      <input type="checkbox" class="uk-checkbox"  name="sp_centerblock" id="sp-editor-sp_centerblock" {centerblock_checked}{xhtml}>
+      <input type="checkbox" class="uk-checkbox" class="uk-checkbox"  name="sp_centerblock" id="sp-editor-sp_centerblock" {centerblock_checked}{xhtml}>
       <span class="uk-form-help-inline">{lang_centerblock_msg}</span>
     </div>
   </div>
@@ -164,7 +164,7 @@
   <div class="uk-form-row">
     <label class="uk-form-label" for="sp-editor-sp_inblock">{inblock_msg}</label>
     <div class="uk-form-controls">
-      <input type="checkbox" class="uk-checkbox"  name="sp_inblock" id="sp-editor-sp_inblock" {inblock_checked}{xhtml}>
+      <input type="checkbox" class="uk-checkbox" class="uk-checkbox"  name="sp_inblock" id="sp-editor-sp_inblock" {inblock_checked}{xhtml}>
       <span class="uk-form-help-inline">{inblock_info}</span>
     </div>
   </div>
@@ -186,7 +186,7 @@
   <div class="uk-form-row">
     <label class="uk-form-label" for="sp-editor-sp_nf">{exit_msg}</label>
     <div class="uk-form-controls">
-      <input type="checkbox" class="uk-checkbox"  name="sp_nf" id="sp-editor-sp_nf" {exit_checked}{xhtml}>
+      <input type="checkbox" class="uk-checkbox" class="uk-checkbox"  name="sp_nf" id="sp-editor-sp_nf" {exit_checked}{xhtml}>
       <span class="uk-form-help-inline">{exit_info}</span>
     </div>
   </div>

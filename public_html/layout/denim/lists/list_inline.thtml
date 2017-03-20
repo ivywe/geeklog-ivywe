@@ -6,16 +6,16 @@
     {page_hidden}
     <div class="search-part" style="{show_sort}">
       <label for="search-results-order">{lang_sort}:</label>
-      <select id="search-results-order" name="order">
+      <select class="uk-select" id="search-results-order" name="order">
         {page_sort}
       </select>
-      <select name="direction">
+      <select class="uk-select" name="direction">
         {page_direction}
       </select>
     </div>
     <div class="search-part" style="{show_limit}">
       <label for="search-results-limit">{lang_limit}:</label>
-      <select id="search-results-limit" name="results">
+      <select class="uk-select" id="search-results-limit" name="results">
         {page_limit}
       </select>
     </div>

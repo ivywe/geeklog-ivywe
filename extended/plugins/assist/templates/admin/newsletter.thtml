@@ -32,7 +32,7 @@
         <tr>
             <th style="width:30%; text-align:right">{lang_sid}{help_sid}</th>
             <td style="width:70%">
-            <select name="sid"; style="width:400px">
+            <select class="uk-select" name="sid"; style="width:400px">
                 {optionlist_sid}
             </select>
             </td>
@@ -74,7 +74,7 @@
         <tr>
             <th style="width:30%; text-align:right">{lang_selectgroup}{help_selectgroup}</th>
             <td style="width:70%">
-            <select name="selectgroup"; style="width:400px">
+            <select class="uk-select" name="selectgroup"; style="width:400px">
                 {optionlist_selectgroup}
 			</select>
 			<br{xhtml}>{user_wkymlmguser}
@@ -105,20 +105,20 @@
         <tr>
             <th style="width:30%; text-align:right">{lang_reserv_datetime}{help_reserv_datetime}</th>
             <td style="width:70%">
-                <select name="{datetime}_year">
+                <select class="uk-select" name="{datetime}_year">
                     {datetime_year_options}
                 </select>{lang_yy}
-                <select name="{datetime}_month">
+                <select class="uk-select" name="{datetime}_month">
                     {datetime_month_options}
                 </select>{lang_mm}
-                <select name="{datetime}_day">
+                <select class="uk-select" name="{datetime}_day">
                     {datetime_day_options}
                 </select>{lang_dd}
                  &nbsp;
-                <select name="{datetime}_hour">
+                <select class="uk-select" name="{datetime}_hour">
                     {datetime_hour_options}
                 </select>:
-                <select name="{datetime}_minute">
+                <select class="uk-select" name="{datetime}_minute">
                     {datetime_minute_options}
 				</select>
 				<br{xhtml}>

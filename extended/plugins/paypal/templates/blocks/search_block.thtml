@@ -2,7 +2,7 @@
 
 <a href="{site_url}/index.php">{store}</a>
 <form action="{site_url}/index.php" method="GET">
-  <select name="catagory_search" style="width:140px">
+  <select class="uk-select" name="catagory_search" style="width:140px">
 	{options}
   </select>
   <input type="text" class="uk-input" name="name_search" />

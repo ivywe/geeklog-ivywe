@@ -331,10 +331,10 @@ function getMapForm($map = array()) {
 	
 	$radio = '<p>' . $LANG_MAPS_1['choose_icon'] . '</p>';
 	($map['mk_icon'] == 0) ? $checked = ' checked="checked"' : $checked = '';
-	$radio .= '<input type="radio" name="mk_icon" value="0"' . $checked . '>' . $LANG_MAPS_1['no_icon'] . '&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;';
+	$radio .= '<input type="radio" class="uk-radio" name="mk_icon" value="0"' . $checked . '>' . $LANG_MAPS_1['no_icon'] . '&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;';
 	while ($icon = DB_fetchArray($result, false)) {
 		($map['mk_icon'] == $icon['icon_id']) ? $checked = ' checked="checked"' : $checked = '';  
-		$radio .= '<input type="radio" name="mk_icon" value="' . $icon['icon_id'] . '"' . $checked . '> <img src="' . $_MAPS_CONF['images_icons_url'] . $icon['icon_image'] . '" alt="' . $icon['icon_image'] . '">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;';
+		$radio .= '<input type="radio" class="uk-radio" name="mk_icon" value="' . $icon['icon_id'] . '"' . $checked . '> <img src="' . $_MAPS_CONF['images_icons_url'] . $icon['icon_image'] . '" alt="' . $icon['icon_image'] . '">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;';
 	}
 	$radio .= '<hr'. XHTML .'>';
 	$template->set_var('icon', $radio);

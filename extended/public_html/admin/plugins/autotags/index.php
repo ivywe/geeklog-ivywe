@@ -100,7 +100,7 @@ function form ($A, $error = false)
         $at_template->set_var('lang_function', $LANG_AUTO['function']);
         if (($_AUTO_CONF['allow_php'] == 1) && SEC_hasRights ('autotags.PHP'))
         {
-            $is_function_checkbox = '<td valign="top"><input type="checkbox" name="is_function"';
+            $is_function_checkbox = '<td valign="top"><input type="checkbox" class="uk-checkbox"  name="is_function"';
             if ($A['is_function'] == 1)
             {
                 $is_function_checkbox .= ' checked="checked"';

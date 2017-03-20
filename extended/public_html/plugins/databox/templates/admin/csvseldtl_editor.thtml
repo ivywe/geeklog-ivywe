@@ -22,7 +22,7 @@
     <div class="uk-form-row">
       <label class="uk-form-label">{lang_csvheader}</label>
       <div class="uk-form-controls">
-        <input type="text" size="48" maxlength="160" name="csvheader" value="{csvheader}"{xhtml}>
+        <input type="text" class="uk-input"  size="48" maxlength="160" name="csvheader" value="{csvheader}"{xhtml}>
         <span class="uk-form-help-inline">{help_csvheader}</span>
       </div>
     </div>
@@ -31,7 +31,7 @@
     <div class="uk-form-row">
       <label class="uk-form-label">{lang_value}</label>
       <div class="uk-form-controls">
-        <input type="text" size="48" maxlength="160" name="value" value="{value}"{xhtml}>
+        <input type="text" class="uk-input"  size="48" maxlength="160" name="value" value="{value}"{xhtml}>
         <span class="uk-form-help-inline">{help_value}</span>
       </div>
     </div>

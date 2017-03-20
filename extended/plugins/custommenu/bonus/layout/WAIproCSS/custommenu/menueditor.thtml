@@ -5,7 +5,7 @@
   <div class="admin_basic">
     <dl class="form_block">
       <dt><label for="cmeditor-mmode">{lang_mode}</label></dt>
-      <dd><select name="mmode" id="cmeditor-mmode">
+      <dd><select class="uk-select" name="mmode" id="cmeditor-mmode">
             <option value="fixation" {val_mode_fixation}>{lang_mode_fixation}</option>
             <option value="variable" {val_mode_variable}>{lang_mode_variable}</option>
             <option value="php" {val_mode_php}>{lang_mode_php}</option>
@@ -43,7 +43,7 @@
           <br{xhtml}><div class="pluginMediumText">{lang_class_name_info}</div></dd>
 
       <dt><label for="cmeditor-tid">{lang_topic}</label></dt>
-      <dd><select name="tid" id="cmeditor-tid">
+      <dd><select class="uk-select" name="tid" id="cmeditor-tid">
               <option value="all" {all_selected}>{lang_all}</option>
               <option value="homeonly" {homeonly_selected}>{lang_homeonly}</option>
               {topic_options}

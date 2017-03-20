@@ -796,7 +796,7 @@ class Precheck
 				. '<legend>' . PRECHECK_str('info') . '</legend>' . LB
 				. '<p><label class="lbl right">' . PRECHECK_str('db_type')
 				. ':</label>&nbsp;' . LB
-				. '<select id="db_type" name="db_type">' . LB
+				. '<select class="uk-select" id="db_type" name="db_type">' . LB
 				. '<option value="mysql" selected="selected"' . $mysql
 				. '>MySQL</option>' . LB
 				. '<option value="mysql-innodb"' . $mysql
@@ -807,17 +807,17 @@ class Precheck
 				. '</p>' . LB
 				. '<p><label class="lbl right">' . PRECHECK_str('db_host')
 				. ':</label>&nbsp;'
-				. '<input type="text" id="db_host" name="db_host" size="30" maxlength="30" value="localhost" /></p>' . LB
+				. '<input type="text" class="uk-input" id="db_host" name="db_host" size="30" maxlength="30" value="localhost" /></p>' . LB
 				. '<p><label class="lbl right">' . PRECHECK_str('db_user')
 				. ':</label>&nbsp;'
-				. '<input type="text" id="db_user" name="db_user" size="30" maxlength="30" /></p>' . LB
+				. '<input type="text" class="uk-input" id="db_user" name="db_user" size="30" maxlength="30" /></p>' . LB
 				. '<p><label class="lbl right">' . PRECHECK_str('db_pass')
 				. ':</label>&nbsp;'
 				. '<input type="password" id="db_pass" name="db_pass" size="30" maxlength="30" /></p>' . LB
 				. '<p><label class="lbl right">' . PRECHECK_str('db_name')
 				. ':</label>&nbsp;'
-				. '<input type="text" id="db_name_input" name="db_name" size="30" maxlength="30" />'
-				. '<select id="db_name" name="db_name" class="none">'
+				. '<input type="text" class="uk-input" id="db_name_input" name="db_name" size="30" maxlength="30" />'
+				. '<select class="uk-select" id="db_name" name="db_name" class="none">'
 				. '<option>--</option>'
 				. '</select></p>'
 				. '<p><span id="e_database_not_empty" class="hidden">'
@@ -828,7 +828,7 @@ class Precheck
 				. '</span></p>' . LB
 				. '<p><label class="lbl right">' . PRECHECK_str('db_prefix')
 				. ':</label>&nbsp;'
-				. '<input type="text" id="db_prefix" name="db_prefix" size="30" maxlength="30" value="gl_" /></p>' . LB
+				. '<input type="text" class="uk-input" id="db_prefix" name="db_prefix" size="30" maxlength="30" value="gl_" /></p>' . LB
 				. '<p>'
 				. '<label class="lbl right">'
 				. PRECHECK_str('use_utf8')

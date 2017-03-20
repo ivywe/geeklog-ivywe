@@ -17,11 +17,11 @@
                                     <form method="post" action="{site_url}/calendarjp/index.php">
                                         <div>
                                             <input type="hidden" name="mode" value="{mode}"{xhtml}>
-                                            <select name="year" onchange="this.form.submit()">
+                                            <select class="uk-select" name="year" onchange="this.form.submit()">
                                                 {year_options}
                                             </select>
                                             年&nbsp;
-                                            <select name="month" onchange="this.form.submit()">
+                                            <select class="uk-select" name="month" onchange="this.form.submit()">
                                                 {month_options}
                                             </select>
                                             月

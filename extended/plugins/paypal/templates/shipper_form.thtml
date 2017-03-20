@@ -13,7 +13,7 @@
 	<textarea class="uk-textarea" name="shipper_service_description" style="width:100%" cols="45" rows="5">{shipper_service_description}</textarea></p>
 	
 	<p><label>{exclude_cat_label}</label>
-	<select name="shipper_service_exclude_cat" >
+	<select class="uk-select" name="shipper_service_exclude_cat" >
 	{exclude_cat}
 	</select></p>
 	
@@ -21,7 +21,7 @@
 
 	
     <p><strong><font color="red">*</font><em> {required_field}</em></strong></p>
-    <select name="op" >
+    <select class="uk-select" name="op" >
 	<option value="save_shipper" selected="selected">{save_button}</option>
     {delete_button}
 	</select>

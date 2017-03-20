@@ -16,7 +16,7 @@
 				</p>
 				<p><b>{zoom_min_label}</b> <input type="text" id="zoom_min" name="zoom_min" value="{zoom_min}" size="2" maxlength="2">&nbsp;&nbsp;
 				<b>{zoom_max_label}</b> <input type="text" id="zoom_max" name="zoom_max" value="{zoom_max}" size="2" maxlength="2"></p>
-				<p><b>{active}</b> <select name="active">
+				<p><b>{active}</b> <select class="uk-select" name="active">
 				<option value="0"{active_no}>{no}</option>
 				<option value="1"{active_yes}>{yes}</option>
 				</select></p>
@@ -31,7 +31,7 @@
 
 		<p><font color="red"><strong><small>*</font> {required_field}</small></strong></p>
 		<div>
-			<select name="mode" >
+			<select class="uk-select" name="mode" >
 			<option value="save" selected="selected">{save_button}</option>
 			{delete_button}
 			</select>

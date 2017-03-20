@@ -7,7 +7,7 @@
 	<h3>{lang_common_setting}</h3>
 	<fieldset style="width: 600px;">
 		<legend>{lang_sp_setting}</legend>
-		{lang_sp_type}: <select name="sp_type">{sp_options}</select><br{xhtml}>
+		{lang_sp_type}: <select class="uk-select" name="sp_type">{sp_options}</select><br{xhtml}>
 		{lang_sp_except}: <input name="sp_except" type="text" value="{sp_except}" size="50" maxlength="255"{xhtml}>
 	</fieldset><br{xhtml}>
 	

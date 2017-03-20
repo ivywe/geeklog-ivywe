@@ -21,7 +21,7 @@
     <div class="uk-form-row">
       <label class="uk-form-label" >{lang_name}<span class="uk-text-danger">{lang_must}</span></label>
       <div class="uk-form-controls">
-        <input type="text" class="uk-width-1-1" size="48" maxlength="160" name="name" value="{name}" required{xhtml}>
+        <input type="text" class="uk-input"  class="uk-width-1-1" size="48" maxlength="160" name="name" value="{name}" required{xhtml}>
       </div>
     </div>
   
@@ -29,7 +29,7 @@
     <div class="uk-form-row">
       <label class="uk-form-label" >{lang_description} {help_description}</label>
       <div class="uk-form-controls">
-        <textarea name="description" class="uk-width-1-1" rows="2" id="databox_description">{description}</textarea>
+        <textarea class="uk-textarea" name="description" class="uk-width-1-1" rows="2" id="databox_description">{description}</textarea>
       </div>
     </div>
   

@@ -1017,7 +1017,7 @@ function DBMAN_showSQLConsole() {
 	
 	$retval = DBMAN_createMenu('console', DBMAN_str('desc_exec_sql'))
 			. DBMAN_form()
-			. '<textarea name="SQL" rows="10" cols="80"></textarea><br' . XHTML . '>' . LB
+			. '<textarea class="uk-textarea" name="SQL" rows="10" cols="80"></textarea><br' . XHTML . '>' . LB
 			. '<input name="cmd" type="hidden" value="console_exec"' . XHTML . '>' . LB
 			. '<input name="submit" type="submit" value="' . DBMAN_str('lbl_exec_sql')
 			. '"' . XHTML . '>' . LB

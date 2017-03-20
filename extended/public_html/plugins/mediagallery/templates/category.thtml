@@ -39,7 +39,7 @@ function doUnCheckAll_cat()
     <!-- BEGIN catRow -->
     <tr>
       <td>
-        <input type="checkbox" name="sel[]" value="{cat_id}"{xhtml}>
+        <input type="checkbox" class="uk-checkbox"  name="sel[]" value="{cat_id}"{xhtml}>
         <input type="hidden" name="cat_id[]" value="{cat_id}"{xhtml}>
       </td>
       <td>{edit_cat_id}</td>

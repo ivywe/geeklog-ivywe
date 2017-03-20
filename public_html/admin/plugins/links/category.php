@@ -285,12 +285,12 @@ function links_edit_category($cid, $pid)
         $alltopics .= ' selected="selected"';
     }
     $alltopics .= '>' . $LANG_LINKS_ADMIN[35] . '</option>' . LB;
-    $T->set_var('topic_selection', '<select name="tid">' . $alltopics
+    $T->set_var('topic_selection', '<select class="uk-select" name="tid">' . $alltopics
                                    . $topics . '</select>');
     */
     $T->set_var(
         'topic_selection',
-        '<select name="tid" id="tid">' . TOPIC_getTopicListSelect($A['tid'], 2, true) . '</select>'
+        '<select class="uk-select" name="tid" id="tid">' . TOPIC_getTopicListSelect($A['tid'], 2, true) . '</select>'
     );
 
     if (empty($cid)) {

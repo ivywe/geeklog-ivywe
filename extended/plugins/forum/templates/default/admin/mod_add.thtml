@@ -31,10 +31,10 @@
 							<input type="radio" name="modtype" id="modtype-group" value="group" onclick="toggleModeratorMode('group');"{xhtml}><label for="modtype-group" accesskey="g"> {LANG_group}</label>
 						</div>
 						<div id="selusers" class="uk-form-controls">
-							<select name="sel_user[]" id="sel_user" size="6" multiple>{sel_users}</select>
+							<select class="uk-select" name="sel_user[]" id="sel_user" size="6" multiple>{sel_users}</select>
 						</div>
 						<div id="selgroup" class="uk-form-controls" style="display:none;">
-							<select name="sel_group">{sel_groups}</select>
+							<select class="uk-select" name="sel_group">{sel_groups}</select>
 						</div>
 					</div>
 				</div>
@@ -42,7 +42,7 @@
 					<div class="uk-form-row">
 						<label class="uk-form-label" for="selforum">{LANG_forum}</label>
 						<div class="uk-form-controls">
-							<select name="sel_forum[]" id="selforum" size="6" multiple>{sel_forums}</select>
+							<select class="uk-select" name="sel_forum[]" id="selforum" size="6" multiple>{sel_forums}</select>
 						</div>
 					</div>
 				</div>

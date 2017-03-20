@@ -5,7 +5,7 @@
 					{topic}<input type="hidden" name="tid{n}" value="{tid}"{xhtml}>
 				</td>
 				<td>
-					<select name="uid{n}">
+					<select class="uk-select" name="uid{n}">
 						{options}
 					</select>
 				</td>

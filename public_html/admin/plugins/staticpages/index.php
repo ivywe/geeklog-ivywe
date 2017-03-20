@@ -255,7 +255,7 @@ function staticpageeditor_form($A)
     }
 
     $sp_template->set_var('lang_position', $LANG_STATIC['position']);
-    $position = '<select name="sp_where">';
+    $position = '<select class="uk-select" name="sp_where">';
     $position .= '<option value="1"';
     if ($A['sp_where'] == 1) {
         $position .= ' selected="selected"';
@@ -283,7 +283,7 @@ function staticpageeditor_form($A)
         if (!isset($A['sp_php'])) {
             $A['sp_php'] = 0;
         }
-        $selection = '<select name="sp_php">' . LB;
+        $selection = '<select class="uk-select" name="sp_php">' . LB;
         $selection .= '<option value="0"';
         if (($A['sp_php'] <= 0) || ($A['sp_php'] > 2)) {
             $selection .= ' selected="selected"';
@@ -400,7 +400,7 @@ function staticpageeditor_form($A)
         $template_none .= ' selected="selected"';
     }
     $template_none .= '>' . $LANG_STATIC['none'] . '</option>';
-    $sp_template->set_var('use_template_selection', '<select name="template_id">'
+    $sp_template->set_var('use_template_selection', '<select class="uk-select" name="template_id">'
         . $template_none . $template_list . '</select>');
     $sp_template->set_var('lang_use_template', $LANG_STATIC['use_template']);
     $sp_template->set_var('lang_use_template_msg', $LANG_STATIC['use_template_msg']);

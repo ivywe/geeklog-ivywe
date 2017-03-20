@@ -253,7 +253,7 @@ function MG_listDir($dir, $album_id, $purgefiles, $recurse)
 
         $T->set_var(array(
             'row_class'     => ($rowcounter % 2) ? '2' : '1',
-            'checkbox'      => '<input type="checkbox" name="pic[]" value="' . $pvalue . '"' . XHTML . '>',
+            'checkbox'      => '<input type="checkbox" class="uk-checkbox"  name="pic[]" value="' . $pvalue . '"' . XHTML . '>',
             'palbum'        => '<input type="hidden" name="album_lb_id_' . $pvalue . '" value="' . $dest . '"' . XHTML . '>',
             'pfile'         => '<input type="hidden" name="picfile_' . $pvalue . '" value="' . $filetmp . '"' . XHTML . '>',
             'dirid'         => '<input type="hidden" name="dest" value="' . $dest . '"' . XHTML . '>',

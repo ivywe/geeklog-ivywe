@@ -335,7 +335,7 @@ function fnc_GetCSVFieldsList(
        fnc_GetFieldAry2($pi_name,$field_ary);
        
        //------
-    $retval .= "<select name=field >".LB;
+    $retval .= "<select class='uk-select' name=field >".LB;
     $c=count($field_ary);
     if ($c>0){
         foreach( $field_ary as $fid => $fvalue ){

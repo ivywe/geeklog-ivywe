@@ -18,12 +18,12 @@
 <form name="theme_browser" method="post" action="">
 	<p style="border: solid 1px #7f9db9; padding: 5px;">
 		{temp_lang_dest}:&nbsp;
-		<select name="thm_theme" onChange="this.form.submit()">{temp_themes}</select>
+		<select class="uk-select" name="thm_theme" onChange="this.form.submit()">{temp_themes}</select>
 		<noscript>
 			<input name="dummy" type="submit" value="{temp_lang_change}"{xhtml}>
 		</noscript>&nbsp;&nbsp;
 		{temp_lang_dir}:&nbsp;
-		<select name="thm_dir" onChange="this.form.submit()">{temp_dirs}</select>
+		<select class="uk-select" name="thm_dir" onChange="this.form.submit()">{temp_dirs}</select>
 		<noscript>
 			<input name="dummy" type="submit" value="{temp_lang_change}"{xhtml}>
 		</noscript>

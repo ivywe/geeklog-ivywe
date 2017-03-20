@@ -320,15 +320,15 @@ if (INST_phpOutOfDate()) {
             . '<input type="hidden" name="step" value="2"' . XHTML . '>' . LB
             . '<input type="hidden" name="language" value="' . $language . '"' . XHTML . '>' . LB
             . '<input type="hidden" name="dbconfig_path" value="' . htmlspecialchars($dbconfig_path) . '"' . XHTML . '>' . LB
-            . '<p><label class="' . $form_label_dir . '">' . $LANG_INSTALL[34] . ' ' . INST_helpLink('db_type') . '</label> <select name="db[type]">' . LB
+            . '<p><label class="' . $form_label_dir . '">' . $LANG_INSTALL[34] . ' ' . INST_helpLink('db_type') . '</label> <select class="uk-select" name="db[type]">' . LB
                 . '<option value="mysql">' . $LANG_INSTALL[35] . '</option>' . LB
             . '</select></p>' . LB
-            . '<p><label class="' . $form_label_dir . '">' . $LANG_INSTALL[39] . ' ' . INST_helpLink('db_host') . '</label> <input type="text" name="db[host]" value="' . $_FORM['host'] .'" size="20"' . XHTML . '></p>' . LB
-            . '<p><label class="' . $form_label_dir . '">' . $LANG_INSTALL[40] . ' ' . INST_helpLink('db_name') . '</label> <input type="text" name="db[name]" value="' . $_FORM['name'] . '" size="20"' . XHTML . '></p>' . LB
-            . '<p><label class="' . $form_label_dir . '">' . $LANG_INSTALL[41] . ' ' . INST_helpLink('db_user') . '</label> <input type="text" name="db[user]" value="' . $_FORM['user'] . '" size="20"' . XHTML . '></p>' . LB
+            . '<p><label class="' . $form_label_dir . '">' . $LANG_INSTALL[39] . ' ' . INST_helpLink('db_host') . '</label> <input type="text" class="uk-input" name="db[host]" value="' . $_FORM['host'] .'" size="20"' . XHTML . '></p>' . LB
+            . '<p><label class="' . $form_label_dir . '">' . $LANG_INSTALL[40] . ' ' . INST_helpLink('db_name') . '</label> <input type="text" class="uk-input" name="db[name]" value="' . $_FORM['name'] . '" size="20"' . XHTML . '></p>' . LB
+            . '<p><label class="' . $form_label_dir . '">' . $LANG_INSTALL[41] . ' ' . INST_helpLink('db_user') . '</label> <input type="text" class="uk-input" name="db[user]" value="' . $_FORM['user'] . '" size="20"' . XHTML . '></p>' . LB
             . '<p><label class="' . $form_label_dir . '">' . $LANG_INSTALL[42] . ' ' . INST_helpLink('db_pass') . '</label> <input type="password" name="db[pass]" value="' . $_FORM['pass'] . '" size="20"' . XHTML . '></p>' . LB
-            . '<p><label class="' . $form_label_dir . '">' . $LANG_INSTALL[45] . ' ' . INST_helpLink('site_url') . '</label> <input type="text" name="site_url" value="' . htmlspecialchars($site_url) . '" size="50"' . XHTML . '>  &nbsp; ' . $LANG_INSTALL[46] . '</p>' . LB
-            . '<p><label class="' . $form_label_dir . '">' . $LANG_INSTALL[47] . ' ' . INST_helpLink('site_admin_url') . '</label> <input type="text" name="site_admin_url" value="' . htmlspecialchars($site_admin_url) . '" size="50"' . XHTML . '>  &nbsp; ' . $LANG_INSTALL[46] . '</p>' . LB;
+            . '<p><label class="' . $form_label_dir . '">' . $LANG_INSTALL[45] . ' ' . INST_helpLink('site_url') . '</label> <input type="text" class="uk-input" name="site_url" value="' . htmlspecialchars($site_url) . '" size="50"' . XHTML . '>  &nbsp; ' . $LANG_INSTALL[46] . '</p>' . LB
+            . '<p><label class="' . $form_label_dir . '">' . $LANG_INSTALL[47] . ' ' . INST_helpLink('site_admin_url') . '</label> <input type="text" class="uk-input" name="site_admin_url" value="' . htmlspecialchars($site_admin_url) . '" size="50"' . XHTML . '>  &nbsp; ' . $LANG_INSTALL[46] . '</p>' . LB;
 
         // Identify the backup files in backups/ and order them newest to oldest
         $backup_files = array();
@@ -343,7 +343,7 @@ if (INST_phpOutOfDate()) {
         $display .= '<p><label class="' . $form_label_dir . '">'
             . $LANG_MIGRATE[6] . ' ' . INST_helpLink('migrate_file')
             . '</label>' . LB
-            . '<select name="migration_type" onchange="INST_selectMigrationType()">' . LB
+            . '<select class="uk-select" name="migration_type" onchange="INST_selectMigrationType()">' . LB
             . '<option value="">' . $LANG_MIGRATE[7] . '</option>' . LB
             . '<option value="select">' . $LANG_MIGRATE[8] . '</option>' . LB
             . '<option value="upload">' . $LANG_MIGRATE[9] . '</option>' . LB
@@ -354,7 +354,7 @@ if (INST_phpOutOfDate()) {
         // Check if there are any files in the backups directory
         if (count($backup_files) > 0) {
 
-            $display .= '<select name="backup_file">' . LB
+            $display .= '<select class="uk-select" name="backup_file">' . LB
                 . '<option value="">' . $LANG_MIGRATE[10] . '</option>' . LB;
 
             // List each of the backup files in the backups directory

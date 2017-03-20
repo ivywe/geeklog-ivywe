@@ -5,7 +5,7 @@
         <table border="0" cellspacing="0" cellpadding="2" width="100%">
             <tr>
                 <td align="right" width="150">{lang_parent}</td>
-                <td><select name="pid">{category_options}</select></td>
+                <td><select class="uk-select" name="pid">{category_options}</select></td>
             </tr>
             <tr>
                 <td align="right">{lang_category}</td>

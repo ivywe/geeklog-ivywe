@@ -23,7 +23,7 @@
     {lang_search_for}:
   </td>
   <td class="uk-text-left">
-    <input type="text" name="keywords" size="40" value="{search_keywords}"{xhtml}>&nbsp;
+    <input type="text" class="uk-input"  name="keywords" size="40" value="{search_keywords}"{xhtml}>&nbsp;
     {keytype_select}
   </td>
 </tr>

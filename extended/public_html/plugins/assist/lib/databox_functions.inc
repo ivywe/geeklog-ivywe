@@ -367,7 +367,7 @@ global $_TABLES;
             }
         }
         $retval .="<nobr>";
-        $retval .= '<input type="checkbox" name="' . $kind . '[]" value="' . $A[0] ;
+        $retval .= '<input type="checkbox" class="uk-checkbox"  name="' . $kind . '[]" value="' . $A[0] ;
         $retval .= '"';
         $retval .= ' class="clcr" ';
         for( $x = 0; $x < sizeof( $S ); $x++ )            {
@@ -953,7 +953,7 @@ global $_TABLES;
                 case 1:// 複数行テキストフィールド(HTML OK)
                 case 10:// 複数行テキストフィールド(HTML NG)
                     if ($disabled===""){
-                        $fieldhtml .= "<textarea ";
+                        $fieldhtml .= "<textarea class='uk-textarea' ";
                         $fieldhtml .= " name=\"afield[".$fid."]\" ";
                         $fieldhtml .= " style=\"width:95%\"";
                         $fieldhtml .= " rows=\"".$rows."\"";

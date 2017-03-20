@@ -1134,7 +1134,7 @@ function DATABOX_getaddtionfieldsEdit(
                 case 19:// 複数行テキストフィールド(HTML OK  CKEditor)//@@@@@
                      if ($disabled===""){
                         $cntname="afieldcnt".$fid;
-                        $fieldhtml .= "<textarea ";
+                        $fieldhtml .= "<textarea 'uk-textarea' ";
                         $fieldhtml .= " name=\"afield[".$fid."]\" ";
                         $fieldhtml .= " style=\"width:95%\"";
                         $fieldhtml .= " rows=\"".$rows."\"";
@@ -2675,9 +2675,9 @@ global $_TABLES;
             $retval .="</div>".LB;
         
             if  ($A['input_type']==1){
-                $retval .='<select name="category[]" multiple style="height:10em" '.$disabled.' >'.LB;
+                $retval .='<select class="uk-select" name="category[]" multiple style="height:10em" '.$disabled.' >'.LB;
             }else if ($A['input_type']==3){
-                $retval .='<select name="category[]" '. $disabled .' >'.LB;
+                $retval .='<select class="uk-select" name="category[]" '. $disabled .' >'.LB;
             }
             
             for( $i2 = 0; $i2 < $nrows2; $i2++ )    {
@@ -4305,7 +4305,7 @@ function DATABOX_getoptionlistary(
     }
     $retval = '';
 
-    $retval .= "<select ";
+    $retval .= "<select 'uk-select' ";
     if ($type==14 OR $type==18){
         $retval .= ' name="'.$fld.'[]" ';
         $retval .= ' multiple="multiple" ';
@@ -4399,7 +4399,7 @@ global $LANG_configselects;
     
     $retval = '';
 
-    $retval .= "<select name='$fname' $disabled>".LB;
+    $retval .= "<select class='uk-select' name='$fname' $disabled>".LB;
     if ($selectit==="all"){
         $retval .= "<option value=\"all\">{$lang_box['selectall']}</option>".LB;
     }elseif ($selectit){
@@ -5095,19 +5095,19 @@ function DATABOX_datetimeedit(
     $rt="";
     //Year
     $year_options = COM_getYearFormOptions ($datetime_year);
-    $rt.="<select name=\"".$datetime_name."_year\">".LB;
+    $rt.="<select class=\"uk-select\" name=\"".$datetime_name."_year\">".LB;
     $rt.=$year_options.LB;
     $rt.="</select>".$lang_ary['yy'].LB;
 
     //month
     $month_options = COM_getMonthFormOptions ($datetime_month);
-    $rt.="<select name=\"".$datetime_name."_month\">".LB;
+    $rt.="<select class=\"uk-select\" name=\"".$datetime_name."_month\">".LB;
     $rt.=$month_options.LB;
     $rt.="</select>".$lang_ary['mm'].LB;
 
     //day
     $day_options = COM_getDayFormOptions ($datetime_day);
-    $rt.="<select name=\"".$datetime_name."_day\">".LB;
+    $rt.="<select class=\"uk-select\" name=\"".$datetime_name."_day\">".LB;
     $rt.=$day_options.LB;
     $rt.="</select>".$lang_ary['dd'].LB;
 
@@ -5133,14 +5133,14 @@ function DATABOX_datetimeedit(
             $hour_options = COM_getHourFormOptions ($datetime_hour_wk);
         }
 
-        $rt.="<select name=\"".$datetime_name."_hour\">".LB;
+        $rt.="<select class=\"uk-select\" name=\"".$datetime_name."_hour\">".LB;
         $rt.=$hour_options.LB;
         $rt.="</select>:".LB;
 
         //minute
         $minute_options = COM_getMinuteFormOptions ($datetime_minute);
 
-        $rt.="<select name=\"".$datetime_name."_minute\">".LB;
+        $rt.="<select class=\"uk-select\" name=\"".$datetime_name."_minute\">".LB;
         $rt.=$minute_options.LB;
         $rt.="</select>".LB;
 
@@ -5169,19 +5169,19 @@ function DATABOX_datetimeedit_R(
     
     //Year
     $year_options = COM_getYearFormOptions ($datetime_ary['year']);
-    $rt.="<select name=\"".$datetime_name."_year\">".LB;
+    $rt.="<select class=\"uk-select\" name=\"".$datetime_name."_year\">".LB;
     $rt.=$year_options.LB;
     $rt.="</select>".$lang_ary['yy'].LB;
 
     //month
     $month_options = COM_getMonthFormOptions ($datetime_ary['month']);
-    $rt.="<select name=\"".$datetime_name."_month\">".LB;
+    $rt.="<select class=\"uk-select\" name=\"".$datetime_name."_month\">".LB;
     $rt.=$month_options.LB;
     $rt.="</select>".$lang_ary['mm'].LB;
 
     //day
     $day_options = COM_getDayFormOptions ($datetime_ary['day']);
-    $rt.="<select name=\"".$datetime_name."_day\">".LB;
+    $rt.="<select class=\"uk-select\" name=\"".$datetime_name."_day\">".LB;
     $rt.=$day_options.LB;
     $rt.="</select>".$lang_ary['dd'].LB;
 
@@ -5198,14 +5198,14 @@ function DATABOX_datetimeedit_R(
             $hour_options = COM_getHourFormOptions ($datetime_ary['hour']);
         }
 
-        $rt.="<select name=\"".$datetime_name."_hour\">".LB;
+        $rt.="<select class=\"uk-select\" name=\"".$datetime_name."_hour\">".LB;
         $rt.=$hour_options.LB;
         $rt.="</select>:".LB;
 
         //minute
         $minute_options = COM_getMinuteFormOptions ($datetime_ary['minute']);
 
-        $rt.="<select name=\"".$datetime_name."_minute\">".LB;
+        $rt.="<select class=\"uk-select\" name=\"".$datetime_name."_minute\">".LB;
         $rt.=$minute_options.LB;
         $rt.="</select>".LB;
 

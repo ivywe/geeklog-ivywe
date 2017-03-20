@@ -13,7 +13,7 @@
 
       <dt><label for="admin-routereditor-method">{lang_router_method}</label></dt>
       <dd>
-        <select id="admin-routereditor-method" name="method">
+        <select class="uk-select" id="admin-routereditor-method" name="method">
           <option value="1"{get_selected}>GET</option>
           <option value="2"{post_selected}>POST</option>
           <option value="3"{put_selected}>PUT</option>
@@ -23,13 +23,13 @@
       </dd>
 
       <dt><label for="admin-routereditor-rule">{lang_router_rule}</label></dt>
-      <dd><input type="text" size="40" value="{rule}" name="rule" id="admin-routereditor-rule" class="size7"{xhtml}></dd>
+      <dd><input type="text" class="uk-input" size="40" value="{rule}" name="rule" id="admin-routereditor-rule" class="size7"{xhtml}></dd>
 
       <dt><label for="admin-routereditor-route">{lang_router_route}</label></dt>
-      <dd><input type="text" size="40" value="{route}" name="route" id="admin-routereditor-route" class="size7"{xhtml}></dd>
+      <dd><input type="text" class="uk-input" size="40" value="{route}" name="route" id="admin-routereditor-route" class="size7"{xhtml}></dd>
 
       <dt><label for="admin-routereditor-priority">{lang_router_priority}</label></dt>
-      <dd><input type="text" size="20" value="{priority}" name="priority" id="admin-routereditor-priority" class="size1"{xhtml}></dd>
+      <dd><input type="text" class="uk-input" size="20" value="{priority}" name="priority" id="admin-routereditor-priority" class="size1"{xhtml}></dd>
     </dl>
 
     <div class="submit">

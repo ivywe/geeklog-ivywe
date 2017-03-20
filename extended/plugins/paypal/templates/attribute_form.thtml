@@ -6,7 +6,7 @@
 	<h2>{attribute_label}<font color="red"> *</font> <input type="text" class="uk-input" name="at_name" value="{at_name}" size="80" maxlength="255" {xhtml}></h2>	
 	<h2>{code_label} <input type="text" class="uk-input" name="at_code" value="{code}" size="20" maxlength="30" {xhtml}></h2>
 	<h2>{type_label}<font color="red"> *</font> 
-	<select name="at_tid">{types}</select> </h2>
+	<select class="uk-select" name="at_tid">{types}</select> </h2>
 	<h2>{price_label} <input type="text" class="uk-input" name="at_price" value="{price}" size="20" maxlength="20" {xhtml}>  {currency} </h2>
 	<small>{price_edit}</small>
 	<h2>{image}</h2>
@@ -16,14 +16,14 @@
 
 	
 	<h2>{enabled}</h2>
-	<select name="at_enabled">
+	<select class="uk-select" name="at_enabled">
      <option value="0"{enabled_no}>{no}</option>
      <option value="1"{enabled_yes}>{yes}</option>
 	 </select>
 	</fieldset>
 	
     <p><strong><font color="red">*</font><em> {required_field}</em></strong></p>
-    <select name="op" >
+    <select class="uk-select" name="op" >
 	<option value="save" selected="selected">{save_button}</option>
     {delete_button}
 	</select>

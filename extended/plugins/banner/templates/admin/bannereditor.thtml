@@ -38,7 +38,7 @@ window.onload = function() {
                                         <tr>
                                             <td align="right">{lang_category}:</td>
                                             <td>
-                                                <select name="categorydd">
+                                                <select class="uk-select" name="categorydd">
                                                     {category_options}
                                                 </select>
                                             </td>

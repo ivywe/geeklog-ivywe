@@ -21,7 +21,7 @@
     <div class="uk-form-row">
       <label class="uk-form-label">{lang_name}<span class="uk-text-danger">{lang_must}</span></label>
       <div class="uk-form-controls">
-         <input type="text" class="uk-form-width-medium" size="48" maxlength="160" name="name" value="{name}" required{xhtml}>
+         <input type="text" class="uk-input"  class="uk-form-width-medium" size="48" maxlength="160" name="name" value="{name}" required{xhtml}>
       </div>
     </div>
 
@@ -29,7 +29,7 @@
     <div class="uk-form-row">
       <label class="uk-form-label">{lang_templatesetvar}<span class="uk-text-danger">{lang_must}</span></label>
       <div class="uk-form-controls">
-        <input type="text" class="uk-form-width-medium" size="48" maxlength="160" name="templatesetvar" value="{templatesetvar}" required{xhtml}>
+        <input type="text" class="uk-input"  class="uk-form-width-medium" size="48" maxlength="160" name="templatesetvar" value="{templatesetvar}" required{xhtml}>
       </div>
     </div>
 
@@ -37,7 +37,7 @@
     <div class="uk-form-row">
       <label class="uk-form-label">{lang_description} {help_description}</label>
       <div class="uk-form-controls">
-        <textarea name="description" class="uk-width-1-1" rows="2" id="databox_description">{description}</textarea>
+        <textarea class="uk-textarea" name="description" class="uk-width-1-1" rows="2" id="databox_description">{description}</textarea>
       </div>
     </div>
 
@@ -45,7 +45,7 @@
     <div class="uk-form-row">
       <label class="uk-form-label">{lang_description2} {help_description2}</label>
       <div class="uk-form-controls">
-        <textarea name="description2" class="uk-width-1-1" rows="2" id="databox_description2">{description2}</textarea>
+        <textarea class="uk-textarea" name="description2" class="uk-width-1-1" rows="2" id="databox_description2">{description2}</textarea>
       </div>
     </div>
 
@@ -85,7 +85,7 @@
     <div class="uk-form-row">
       <label class="uk-form-label">{lang_orderno}</label>
       <div class="uk-form-controls">
-         <input type="text" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
+         <input type="text" class="uk-input"  size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
       </div>
     </div>
 
@@ -112,14 +112,14 @@
       <div class="uk-form-row">
         <label class="uk-form-label">{lang_initial_value} {help_initial_value}</label>
         <div class="uk-form-controls">
-           <textarea name="initial_value" class="uk-width-1-1" rows="2" id="databox_initial_value">{initial_value}</textarea>
+           <textarea class="uk-textarea" name="initial_value" class="uk-width-1-1" rows="2" id="databox_initial_value">{initial_value}</textarea>
         </div>
       </div>
       {# 範囲 range #}
       <div class="uk-form-row">
         <label class="uk-form-label">{lang_range}</label>
         <div class="uk-form-controls">
-           <input type="text" class="uk-form-width-small" size="12" maxlength="160" name="range_start" value="{range_start}"{xhtml}> - <input type="text" class="uk-form-width-small" size="12" maxlength="160" name="range_end" value="{range_end}"{xhtml}>
+           <input type="text" class="uk-input"  class="uk-form-width-small" size="12" maxlength="160" name="range_start" value="{range_start}"{xhtml}> - <input type="text" class="uk-input"  class="uk-form-width-small" size="12" maxlength="160" name="range_end" value="{range_end}"{xhtml}>
         </div>
       </div>
 
@@ -159,7 +159,7 @@
       <div class="uk-form-row">
         <label class="uk-form-label">{lang_size}</label>
         <div class="uk-form-controls">
-          <input type="text" class="uk-form-width-small" size="12" maxlength="160" name="size" value="{size}"{xhtml}>
+          <input type="text" class="uk-input"  class="uk-form-width-small" size="12" maxlength="160" name="size" value="{size}"{xhtml}>
         </div>
       </div>
 
@@ -167,7 +167,7 @@
       <div class="uk-form-row">
         <label class="uk-form-label">{lang_maxlength}</label>
         <div class="uk-form-controls">
-          <input type="text" class="uk-form-width-small" size="12" maxlength="160" name="maxlength" value="{maxlength}"{xhtml}>
+          <input type="text" class="uk-input"  class="uk-form-width-small" size="12" maxlength="160" name="maxlength" value="{maxlength}"{xhtml}>
         </div>
       </div>
 
@@ -175,7 +175,7 @@
       <div class="uk-form-row">
         <label class="uk-form-label">{lang_rows}</label>
         <div class="uk-form-controls">
-          <input type="text" class="uk-form-width-small" size="12" maxlength="160" name="rows" value="{rows}"{xhtml}>
+          <input type="text" class="uk-input"  class="uk-form-width-small" size="12" maxlength="160" name="rows" value="{rows}"{xhtml}>
         </div>
       </div>
 
@@ -183,7 +183,7 @@
       <div class="uk-form-row">
         <label class="uk-form-label">{lang_br}</label>
         <div class="uk-form-controls">
-          <input type="text" size="1" maxlength="1" name="br" value="{br}"{xhtml}>{help_br}
+          <input type="text" class="uk-input"  size="1" maxlength="1" name="br" value="{br}"{xhtml}>{help_br}
         </div>
       </div>
 
@@ -191,7 +191,7 @@
       <div class="uk-form-row">
         <label class="uk-form-label" for="databox_selection">{lang_selection} {help_selection}</label>
         <div class="uk-form-controls">
-          <textarea name="selection" class="uk-width-1-1" rows="10" id="databox_selection">{selection}</textarea>
+          <textarea class="uk-textarea" name="selection" class="uk-width-1-1" rows="10" id="databox_selection">{selection}</textarea>
         </div>
       </div>
 

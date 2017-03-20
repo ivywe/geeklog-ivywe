@@ -749,7 +749,7 @@ class DLDownload
 //            $sizeattributes = 'width="' . $snapwidth . '" height="' . $snapheight . '" ';
             $shot = '<div class="dlm_snap_tn"><a href="' . $_DLM_CONF['snapstore_url'] . '/' . $safename . '" title="">'
                   . '<img src="' . $tnimgurl . '" ' . $sizeattributes . ' alt=""' . XHTML . '></a></div>' . LB
-                  . '<input type="checkbox" name="deletesnap"' . XHTML . '>&nbsp;'
+                  . '<input type="checkbox" class="uk-checkbox"  name="deletesnap"' . XHTML . '>&nbsp;'
                   . $LANG_DLM['delete'] . '<br' . XHTML . '>';
         } else {
             $tnimgurl = $_CONF['site_url'] . '/downloads/images/blank.png';

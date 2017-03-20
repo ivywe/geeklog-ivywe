@@ -374,7 +374,7 @@ header('Content-Type: text/html; charset=utf-8');
     <div id="footer">
         <form name="search" id="search" method="get">
             <div>
-                <input type="text" value="" name="q" id="q"/>
+                <input type="text" class="uk-input" value="" name="q" id="q"/>
                 <a id="reset" href="#" class="q-reset"></a>
                 <span class="q-inactive"></span>
             </div>

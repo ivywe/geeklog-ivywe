@@ -132,7 +132,7 @@
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_commentcode}{help_commentcode}</th>
             <td class="admin-list-field">
-              <select name="commentcode">
+              <select class="uk-select" name="commentcode">
                 {optionlist_commentcode}
               </select>
             </td>
@@ -175,7 +175,7 @@
           <tr class="pluginRow1">
              <th class="admin-list-field">{lang_trackbackcode}{help_trackbackcode}</th>
                <td class="admin-list-field">
-               <select name="trackbackcode">
+               <select class="uk-select" name="trackbackcode">
                  {optionlist_trackbackcode}
                </select>
              </td>
