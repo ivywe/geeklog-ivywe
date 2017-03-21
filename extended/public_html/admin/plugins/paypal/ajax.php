@@ -190,14 +190,14 @@ switch ($_POST['action']) {
 	// PHP7 error {
 	// $out = preg_replace('!s:(\d+):"(.*?)";!se', "'s:'.strlen('$2').':\"$2\";'", $A['ipn_data'] ); 
 
-    $out = preg_replace(
+		$out = preg_replace_callback(
         '!s:(\d+):"(.*?)";!s',
         function ($args) {
             return sprintf('s:%d:"%s";', strlen($args[2]), $args[2]);
         },
         $A['ipn_data']
-    );
-	// } PHP7 error
+
+    );	// } PHP7 error
 
 
 

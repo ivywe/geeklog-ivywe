@@ -138,7 +138,19 @@ function PAYPAL_getListField_paypal_transactions($fieldname, $fieldvalue, $A, $i
 {
     global $_CONF, $_PAY_CONF, $LANG_PAYPAL_1;
 	
-//	$out = preg_replace('!s:(\d+):"(.*?)";!se', "'s:'.strlen('$2').':\"$2\";'", $A['ipn_data'] ); 
+	// PHP7 error {
+	// $out = preg_replace('!s:(\d+):"(.*?)";!se', "'s:'.strlen('$2').':\"$2\";'", $A['ipn_data'] ); 
+
+		$out = preg_replace_callback(
+        '!s:(\d+):"(.*?)";!s',
+        function ($args) {
+            return sprintf('s:%d:"%s";', strlen($args[2]), $args[2]);
+        },
+        $A['ipn_data']
+
+    );	// } PHP7 error
+
+
 	$out = $A['ipn_data']; 
     $ipn = unserialize($out);
 	if (!is_array($ipn)) {
@@ -205,7 +217,20 @@ if ($_REQUEST['mode'] == 'edit') {
 	// Allow all serialized data to be available to the template
 	$ipn ='';
 	if ($A['ipn_data'] != '') {
-//		$out = preg_replace('!s:(\d+):"(.*?)";!se', "'s:'.strlen('$2').':\"$2\";'", $A['ipn_data'] ); 
+
+	// PHP7 error {
+	// $out = preg_replace('!s:(\d+):"(.*?)";!se', "'s:'.strlen('$2').':\"$2\";'", $A['ipn_data'] ); 
+
+		$out = preg_replace_callback(
+        '!s:(\d+):"(.*?)";!s',
+        function ($args) {
+            return sprintf('s:%d:"%s";', strlen($args[2]), $args[2]);
+        },
+        $A['ipn_data']
+
+    );	// } PHP7 error
+
+
 		$out =  $A['ipn_data'] ; 
 		$ipn = unserialize($out);
 	}
