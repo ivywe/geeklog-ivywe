@@ -272,7 +272,6 @@ JCART v1.1
 http://conceptlogic.com/jcart/
 */
 
-#jcart *, #jcart_block * { margin:0; padding:0;  font-size:100%;  }
 
 #jcart fieldset , #jcart_block fieldset{ border:0; }
 

@@ -16,7 +16,7 @@
     <ul class="uk-iconnav uk-float-right">
       {!if email_icon}<li><a title="{lang_email_story}" href="{email_story_url}" class="uk-icon-button" uk-icon="icon: mail"></a></li>{!endif}
       {!if print_icon}<li><a title="{lang_print_story}" href="{print_story_url}" class="uk-icon-button" uk-icon="icon: copy"></a></li>{!endif}
-      {!if edit_icon}<li><a title="{lang_edit_text}" href="{edit_url}" class="uk-icon-button" uk-icon="file-edit"></a></li>{!endif}
+      {!if edit_icon}<li><a title="{lang_edit_text}" href="{edit_url}" class="uk-icon-button" uk-icon="icon: file-edit"></a></li>{!endif}
     </ul>
 
     <ul class="uk-subnav uk-flex-inline uk-flex-center uk-article-meta">
