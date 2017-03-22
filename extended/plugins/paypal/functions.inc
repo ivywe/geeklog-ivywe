@@ -1091,7 +1091,7 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
     						$cat->set_var('cat_description', '');
 						}
 						if ($_PAY_CONF['categoryHeading'] == '' ) {
-						    $cat->set_var('category_heading', '<br' . XHTML .  '>&nbsp;');
+						    $cat->set_var('category_heading', '');
 						} else {
     						$cat->set_var('category_heading', '<h2>' . $_PAY_CONF['categoryHeading'] . '</h2>');
 						}
