@@ -1139,6 +1139,7 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
     $product->set_var('cs', $_PAY_CONF['cs']);
     $product->set_var('cs', $_PAY_CONF['cs']);
     $product->set_var('charset', $_CONF['default_charset']);
+    $product->set_var('category', $category);
 
     if ($_PAY_CONF['image_url']) {
         $product->set_var('image_url', $_PAY_CONF['image_url']);
@@ -1335,7 +1336,7 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 
 			if (($A['hidden'] == 0)  || SEC_hasRights('paypal.admin')) {
 				if ($_PAY_CONF['products_col'] == 1) {
-					$p_retval .= '<tr class="uk-grid">' . $product->parse('', 'product') . '</tr>';
+					$p_retval .= $product->parse('', 'product') ;
 				} else if ($col_number == $_PAY_CONF['products_col']) {
 					$p_retval .= $product->parse('', 'product') . '</tr>';
 					$col_number = 1;
