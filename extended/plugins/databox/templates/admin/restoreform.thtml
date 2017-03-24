@@ -4,7 +4,7 @@
 
 <form class="uk-form uk-form-horizontal" action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data">
 
-  <div class="uk-form-row">
+  <div class="uk-form-row uk-clearfix">
     <div class="uk-form-controls">
       {select_filename}
       <input type='submit' name='action' value='{lang_submit}'{xhtml}>

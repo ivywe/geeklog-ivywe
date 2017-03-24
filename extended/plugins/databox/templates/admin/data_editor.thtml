@@ -21,7 +21,7 @@
     <legend>{lang_basicfields}</legend>
 
     {# id #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_id} {help_id}</label>
       <div class="uk-form-controls">
         {id}<input type="hidden" name="id" value="{id}"{xhtml}>
@@ -29,7 +29,7 @@
     </div>
 
     {# DRAFT #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" >{lang_draft} {help_draft}</label>
       <div class="uk-form-controls">
         <input type="checkbox" class="uk-checkbox" name="draft_flag" value="1" {draft_flag}{xhtml}>
@@ -37,31 +37,31 @@
     </div>
 
     {# code #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" >{lang_code} {help_code}<span class="uk-text-danger">{lang_must_code}</span>{help_code}</label>
       <div class="uk-form-controls">
-        <input type="text" class="uk-input" class="uk-form-width-medium" size="48" maxlength="160" name="code" value="{code}" required{xhtml}>
+        <input type="text" class="uk-input" size="48" maxlength="160" name="code" value="{code}" required{xhtml}>
       </div>
     </div>
 
     {# title #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" >{lang_title} {help_title}<span class="uk-text-danger">{lang_must}</span></label>
       <div class="uk-form-controls">
-        <input type="text" class="uk-input" class="uk-width-1-1" size="48" maxlength="160" name="title" value="{title}" required{xhtml}>
+        <input type="text" class="uk-input uk-width-1-1" size="48" maxlength="160" name="title" value="{title}" required{xhtml}>
       </div>
     </div>
 
     {# page title #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" >{lang_page_title} {help_page_title}</label>
       <div class="uk-form-controls">
-        <input type="text" class="uk-input" class="uk-width-1-1" size="48" maxlength="160" name="page_title" value="{page_title}" {xhtml}>
+        <input type="text" class="uk-input uk-width-1-1" size="48" maxlength="160" name="page_title" value="{page_title}" {xhtml}>
       </div>
     </div>
 
     {# description #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" for="databox_description">{lang_description} {help_description}</label>
       <div class="uk-form-controls">
         <textarea class="uk-textarea" name="description" class="uk-width-1-1" rows="5" id="databox_description"
@@ -71,7 +71,7 @@
     </div>
 
     {# defaulttemplatesdirectory #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_defaulttemplatesdirectory} {help_defaulttemplatesdirectory}</label>
       <div class="uk-form-controls">
         {select_defaulttemplatesdirectory}
@@ -79,7 +79,7 @@
     </div>
 
     {# meta_description #}
-    <div class="uk-form-row"{hide_meta}>
+    <div class="uk-form-row uk-clearfix"{hide_meta}>
       <label class="uk-form-label" for="databox_description">{lang_meta_description} {help_meta_description}</label>
       <div class="uk-form-controls">
         <textarea class="uk-textarea" name="meta_description" class="uk-width-1-1" rows="2" id="databox_description"
@@ -90,7 +90,7 @@
 
     {# meta_keywords #}
 
-    <div class="uk-form-row"{hide_meta}>
+    <div class="uk-form-row uk-clearfix"{hide_meta}>
       <label class="uk-form-label" for="meta_keywords">{lang_meta_keywords} {help_meta_keywords}</label>
       <div class="uk-form-controls">
         <textarea class="uk-textarea" name="meta_keywords" class="uk-width-1-1" rows="2" id="meta_keywords" 
@@ -100,7 +100,7 @@
     </div>
 
     {# language_id  #}
-    <div class="uk-form-row"{hide_language_id}>
+    <div class="uk-form-row uk-clearfix"{hide_language_id}>
       <label class="uk-form-label">{lang_language_id} {help_language_id}</label>
       <div class="uk-form-controls">
         {select_language_id}
@@ -108,7 +108,7 @@
     </div>
 
     {# hits #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
         <label class="uk-form-label">{lang_hits} {help_hits}</label>
         <div class="uk-form-controls">
           <input type="hidden" name="hits" value="{hits}"{xhtml}>{hits}
@@ -116,7 +116,7 @@
     </div>
 
     {# comments #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" >{lang_comments} {help_comments}</label>
       <div class="uk-form-controls">
         <input type="hidden" name="comments" value="{comments}"{xhtml}><span class="uk-form-help-inline">{comments}</span>
@@ -124,7 +124,7 @@
     </div>
 
     {# commentcode #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" >{lang_commentcode} {help_commentcode}</label>
       <div class="uk-form-controls">
         <select class="uk-select" name="commentcode">
@@ -134,7 +134,7 @@
     </div>
 
     {# comment_expire #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" >{lang_comment_expire} {help_comment_expire}</label>
       <div class="uk-form-controls">
         {lang_enabled}:<input type="checkbox" class="uk-checkbox"name="comment_expire_flag" value="1" {is_checked_comment_expire} onclick="enable_comment_expire(this);"{xhtml}><span class="uk-form-help-inline">{datetime_comment_expire}</span>
@@ -142,7 +142,7 @@
     </div>
 
     {# 編集日付 #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" >{lang_modified} {help_modified}</label>
       <div class="uk-form-controls">
         {lang_modified_autoupdate}:<input type="checkbox" class="uk-checkbox" name="modified_autoupdate" value="1" checked="checked"{xhtml}><span class="uk-form-help-inline">{datetime_modified}</span>
@@ -150,7 +150,7 @@
     </div>
 
     {# 公開日 #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" >{lang_released} {help_released}</label>
       <div class="uk-form-controls">
         {datetime_released}
@@ -158,7 +158,7 @@
     </div>
 
     {# 公開終了日 #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" >{lang_expired} {help_expire}</label>
       <div class="uk-form-controls">
         {lang_enabled}:<input type="checkbox" class="uk-checkbox"name="expired_flag" value="1" {is_checked_expired} onclick="enable_expired(this);"{xhtml}><span class="uk-form-help-inline">{datetime_expired}</span>
@@ -166,15 +166,15 @@
     </div>
 
     {# order #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_orderno} {help_orderno}</label>
       <div class="uk-form-controls">
-        <input type="text" class="uk-input" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
+        <input type="text" class="uk-input uk-form-width-small" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
       </div>
     </div>
 
     {# trackbackcode #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_trackbackcode} {help_trackbackcode}</label>
       <div class="uk-form-controls">
         <select class="uk-select" name="trackbackcode">
@@ -184,10 +184,10 @@
     </div>
 
     {# cache_time #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" >{lang_cache_time} {help_cache_time}</label>
       <div class="uk-form-controls">
-        <input type="text" class="uk-input" size="8" maxlength="160" name="cache_time" value="{cache_time}"{xhtml}><span class="uk-form-help-inline">{lang_cache_time_desc}</span>
+        <input type="text" class="uk-input uk-form-width-small" size="8" maxlength="160" name="cache_time" value="{cache_time}"{xhtml}><span class="uk-form-help-inline">{lang_cache_time_desc}</span>
       </div>
     </div>
 
@@ -198,7 +198,7 @@
   <fieldset class="uk-margin-large-top">
     <legend>{lang_category}</legend>
 
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" >{lang_category} {help_category}</label>
       <div class="uk-form-controls">
               {checklist_category}
@@ -218,35 +218,35 @@
   <fieldset class="uk-margin-large-top">
     <legend>{lang_accessrights}</legend>
 
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" >{lang_owner}</label>
       <div class="uk-form-controls">
         {owner_name}<input type="hidden" name="owner_id" value="{owner_id}"{xhtml}>( UID: {owner_id} )
       </div>
     </div>
 
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" >{lang_group}</label>
       <div class="uk-form-controls">
         {group_dropdown}
       </div>
     </div>
 
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" >{lang_permissions}</label>
       <div class="uk-form-controls">
         {lang_perm_key}
       </div>
     </div>
 
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" ></label>
       <div class="uk-form-controls">
         {permissions_editor}
       </div>
     </div>
 
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" ></label>
       <div class="uk-form-controls">
         {lang_permissions_msg}
@@ -254,7 +254,7 @@
     </div>
 
     {# タイムスタンプ #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" >{lang_udatetime}</label>
       <div class="uk-form-controls">
         {udatetime} {lang_uuid}:{uuid}
@@ -262,7 +262,7 @@
       </div>
     </div>
 
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" >{lang_created}</label>
       <div class="uk-form-controls">
         {created}

@@ -54,7 +54,7 @@ function fncList()
     }
 
     $filter = "{$LANG_DATABOX_ADMIN['fieldset']}:";
-    $filter .="<select name='filter_val' style='width: 125px' onchange='this.form.submit()'>";
+    $filter .="<select class=\"uk-select\" name='filter_val' style='width: 125px' onchange='this.form.submit()'>";
     $filter .="<option value='{$LANG09[9]}'";
 
     if  ($filter_val==$LANG09[9]){
@@ -1009,7 +1009,7 @@ function fnctemplatesdirectory (
     global $_DATABOX_CONF;
 
     //
-    $selection = '<select id="defaulttemplatesdirectory" name="defaulttemplatesdirectory">' . LB;
+    $selection = '<select class="uk-select" id="defaulttemplatesdirectory" name="defaulttemplatesdirectory">' . LB;
 	$selection .= "<option value=\"\">  </option>".LB;
 
 	if ($_DATABOX_CONF['templates']==="theme"){

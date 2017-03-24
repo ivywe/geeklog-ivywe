@@ -2,9 +2,9 @@
 
 <form class="uk-form uk-form-stacked" action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data">
 
-  <div class="uk-form-row">
+  <div class="uk-form-row uk-clearfix">
     <div class="uk-form-controls">
-      <input type="text" class="uk-input" class="uk-form-width-large" dir="ltr" name="importurl" size="48"{xhtml}>
+      <input type="text" class="uk-input ="uk-form-width-large" dir="ltr" name="importurl" size="48"{xhtml}>
     </div>
   </div>
   <div class="uk-form-row uk-margin-large-bottom">

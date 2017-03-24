@@ -4,7 +4,7 @@
 
 <form class="uk-form uk-form-stacked" action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data">
 
-  <div class="uk-form-row">
+  <div class="uk-form-row uk-clearfix">
     <label class="uk-form-label" >{lang_inst}</label>
     <div class="uk-form-controls">
       {lang_fieldset} {list_fieldset}

@@ -8,7 +8,7 @@
     <legend>CSV</legend>
 
     {# seq #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" >{lang_seq}</label>
       <div class="uk-form-controls">
         {seq}
@@ -17,16 +17,16 @@
     </div>
 
     {# csvheader #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" >{lang_csvheader}<span class="must">{lang_must}</span></label>
       <div class="uk-form-controls">
-        <input type="text" class="uk-input" class="uk-form-width-medium" size="48" maxlength="160" name="csvheader" value="{csvheader}" required{xhtml}>
+        <input type="text" class="uk-input ="uk-form-width-medium" size="48" maxlength="160" name="csvheader" value="{csvheader}" required{xhtml}>
         <span class="uk-form-help-inline">{help_csvheader}</span>
       </div>
     </div>
 
     {# field #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" >{lang_field}<span class="must">{lang_must}</span></label>
       <div class="uk-form-controls">
           {list_field}
@@ -35,16 +35,16 @@
     </div>
 
     {# value #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" >{lang_value}</label>
       <div class="uk-form-controls">
-        <input type="text" class="uk-input" class="uk-form-width-medium" size="48" maxlength="160" name="value" value="{value}"{xhtml}>
+        <input type="text" class="uk-input ="uk-form-width-medium" size="48" maxlength="160" name="value" value="{value}"{xhtml}>
         <span class="uk-form-help-inline">{help_value}</span>
       </div>
     </div>
 
     {# Update date #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" >{lang_udatetime}</label>
       <div class="uk-form-controls">
         {udatetime} {lang_uuid}:{uuid}

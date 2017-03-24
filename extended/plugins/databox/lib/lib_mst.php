@@ -49,7 +49,7 @@ function LIB_List(
     }
 
     $filter = "{$lang_box_admin['kind']}:";
-    $filter .="<select class='uk-select' name='filter_val' style='width: 125px' onchange='this.form.submit()'>";
+    $filter .="<select class='uk-select uk-form-width-medium' name='filter_val' style='width: 125px' onchange='this.form.submit()'>";
     $filter .="<option value='{$LANG09[9]}'";
 
     if  ($filter_val==$LANG09[9]){

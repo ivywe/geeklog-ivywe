@@ -8,7 +8,7 @@
     <legend>{csv_select}</legend>
 
     {# id #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" >{lang_id}</label>
       <div class="uk-form-controls">
         {id}<input type="hidden" name="id" value="{id}"{xhtml}>
@@ -16,7 +16,7 @@
     </div>
 
     {# name #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" >{lang_name}</label>
       <div class="uk-form-controls">
         <input type="text" class="uk-input" size="48" maxlength="160" name="name" value="{name}"{xhtml}>
@@ -25,7 +25,7 @@
     </div>
 
     {# description #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" for="databox_description">{lang_description}</label>
       <div class="uk-form-controls">
         <textarea class="uk-textarea" name="description" class="uk-width-1-1" rows="2" id="databox_description"
@@ -35,7 +35,7 @@
     </div>
 
     {# Update date #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" >{lang_udatetime}</label>
       <div class="uk-form-controls">
         {udatetime} {lang_uuid}:{uuid}

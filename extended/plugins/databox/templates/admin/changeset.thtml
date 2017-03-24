@@ -7,7 +7,7 @@
   <input type="hidden" name="id" value="{id}"{xhtml}>
   <div class="uk-text-primary">{lang_inst_changeset}</div>
 
-  <div class="uk-form-row">
+  <div class="uk-form-row uk-clearfix">
     <div class="uk-form-controls">
       {lang_fieldset} {list_fieldset}
       <input type="submit" value="{lang_changeset}" name="mode" class="uk-button"{xhtml}>
