@@ -1338,7 +1338,7 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 				if ($_PAY_CONF['products_col'] == 1) {
 					$p_retval .= $product->parse('', 'product') ;
 				} else if ($col_number == $_PAY_CONF['products_col']) {
-					$p_retval .= $product->parse('', 'product') . '</tr>';
+					$p_retval .= $product->parse('', 'product') ;
 					$col_number = 1;
 				} else if ($col_number == 1){
 					$p_retval .= $product->parse('', 'product');
@@ -2466,27 +2466,27 @@ function PAYPAL_Breadcrumbs($id)
 
 function PAYPAL_realId ($ids)
 {
-   
+
 	if (is_array($ids)) {
-	    $realids = array();
+			$realids = array();
 	    foreach ($ids as $id) {
 		    $realid = COM_sanitizeID(explode("|", $id));
 			if($realid[0] != 0) {
 				$realids[] = $realid[0];
-				if ( DEBUG ) COM_errorLog('PAYPAL: Real id for item is: ' . $realid[0]);
+				if ( DEBUG ) COM_errorLog('PAYPAL: 1  Real id for item is: ' . $realid[0]);
 			} else {
 				$realids[] = $id;
-				if ( DEBUG ) COM_errorLog('PAYPAL: Real id for item is: ' . $id);
+				if ( DEBUG ) COM_errorLog('PAYPAL: 2 Real id for item is: ' . $id);
 			}
 		}
 	} else if ($ids != '') {
 	    $realid = COM_sanitizeID(explode("|", $ids));
 		if($realid[0] != 0) {
 		    $realids = $realid[0];
-			if ( DEBUG ) COM_errorLog('PAYPAL: Real id for item is: ' . $realid[0]);
+			if ( DEBUG ) COM_errorLog('PAYPAL: 3 Real id for item is: ' . $realid[0]);
 		} else {
 		    $realids = $ids;
-			if ( DEBUG ) COM_errorLog('PAYPAL: Real id for item is: ' . $id);
+			if ( DEBUG ) COM_errorLog('PAYPAL: 4 Real id for item is: ' . $id);
 		}
 	}
 	return $realids;
@@ -2500,11 +2500,11 @@ function PAYPAL_productPrice ($product)
 	
 	if ($product['discount_a'] != '' && $product['discount_a'] != 0) {
     	$price = $product['price'] - $product['discount_a'];
-	    return number_format($price, 2, '.', '');
+	    return number_format($price, $_CONF['decimal_count'], '.', '');
 	}
 	if ($product['discount_p'] != '' && $product['discount_p'] != 0) $price = $product['price'] - ($product['price'] * ($product['discount_p']/100));
 	
-	return number_format($price, 2, '.', '');
+	return number_format($price, $_CONF['decimal_count'], '.', '');
 }
 
 function PAYPAL_getStockId($item_number)
@@ -2675,7 +2675,7 @@ function PAYPAL_handlePurchase( $products, $quantity, $data, $names, $prices, $r
 
 		//Create our private IPN
 		$ipn['mc_gross'] = ($quantity[$i] * $prices[$i]) + $ipn['mc_gross'];
-		$ipn['mc_gross_'.$i] = number_format($quantity[$i] * $prices[$i], 2, '.', '');
+		$ipn['mc_gross_'.$i] = number_format($quantity[$i] * $prices[$i], $_CONF['decimal_count'], '.', '');
 		$ipn['quantity'.$i] = $quantity[$i];
 		$ipn['item_number'.$i] = $products[$i];
 		$ipn['item_name'.$i] = $names[$i];
@@ -2717,7 +2717,7 @@ function PAYPAL_handlePurchase( $products, $quantity, $data, $names, $prices, $r
 		//continue to build our ipn data  
 		$ipn['txn_type'] = 'check';
 		$ipn['order_date'] = date('H:i:s M d, Y T'); //13:49:40 Jul 06, 2011 PDT
-		$ipn['mc_gross'] = number_format($ipn['mc_gross'] + $_REQUEST['shipping'], 2, '.', '');
+		$ipn['mc_gross'] = number_format($ipn['mc_gross'] + $_REQUEST['shipping'], $_CONF['decimal_count'], '.', '');
 		$ipn['mc_currency'] = $_PAY_CONF['currency'];
 		$ipn['custom'] = $user_id;
 		$ipn['address_name'] = $informations['user_name'];
