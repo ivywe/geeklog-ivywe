@@ -2307,7 +2307,8 @@ function PAYPAL_getDetailsForm ($details, $url, $button, $shipping = 0)
 	$template->set_var('xhtml', XHTML);
     $template->set_var('uid', '<input type="hidden" name="user_id" value="' . $details['user_id'] .'" />');
 	if ($_REQUEST['pay_by'] == 'check') {
-    	$template->set_var('operation', '<input type="hidden" name="pay_by" value="check" /><input type="hidden" name="shipping" value="' . $shipping . '" />');
+//    	$template->set_var('operation', '<input type="hidden" name="pay_by" value="check" /><input type="hidden" name="shipping" value="' . $shipping . '" />');
+    	$template->set_var('operation', '<input type="hidden" name="pay_by" value="check" /><input type="hidden" name="shipping" value="0" />');
 	} else {
 	    $template->set_var('operation', '');
 	}
