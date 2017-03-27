@@ -59,7 +59,12 @@ paypal_filterVars($vars, $_REQUEST);
 $items = array();
 $i = 1;
 $quantities = array();
+
+$realid = array();
+
 $valid_prices = true;
+$item_id = 0;
+
 foreach ($cart->get_contents() as $item) {
     $realid = PAYPAL_realId($item['id']);
 	$item_id	= $realid[0];
@@ -67,15 +72,19 @@ foreach ($cart->get_contents() as $item) {
 	$namesfromcart[$i] = $item['name'];
 	$quantities[$i] = $item['qty'];
 	$item_price[$i]	= $item['price'];
+
 	$A = DB_fetchArray(DB_query("SELECT * FROM {$_TABLES['paypal_products']} WHERE id = '{$item_id}' LIMIT 1"));
-	if ($item_price[$i] <> PAYPAL_productPrice($A) || !SEC_hasAccess2($A) || $A['active'] != '1') $valid_prices = false;
+	if ($item_price[$i] <> PAYPAL_productPrice($A) || !SEC_hasAccess2($A) || $A['active'] != '1'){
+		COM_errorLog("PAYPAL:confirmation.php 72 : item_id=". $item_id . 'realid=' . $realid . ' item_price $i=' . $item_price[$i] . ' PAYPAL_productPrice$A=' . PAYPAL_productPrice($A), 1);
+		$valid_prices = false;
+	}
 	$i++;
 }
-if ($valid_prices !== true) {
+if ($valid_prices !== true) { 
+
 	echo COM_refresh($_CONF['site_url'] . '/index.php');
 	exit;
 }
-
 
 //Main
 
