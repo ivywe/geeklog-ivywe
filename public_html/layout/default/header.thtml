@@ -99,7 +99,7 @@
 <?php global $_USER, $_CONF; if (isset($_USER['uid']) && $_USER['uid'] > 1) { ?>
 								<a href="{site_url}/usersettings.php?mode=edit"  class="uk-button uk-button-secondary uk-text-danger"  uk-icon="icon: cog"></a>
 <?php } else { ?>
-								<a href="{site_url}/users.php"  class="uk-button uk-button-secondary uk-text-danger" uk-icon="icon: sign-in"></a>
+								<a href="{site_url}/users.php"  class="uk-button uk-button-secondary uk-text-danger"><img src="{layout_url}/images/custom/config.png" alt="プロフィール"style="width:20px; height:20px"></a>
 <?php } ?>
 								<div class="uk-navbar-dropdown">
 									<ul class="uk-nav uk-navbar-dropdown-nav gl-navbar-nav">
