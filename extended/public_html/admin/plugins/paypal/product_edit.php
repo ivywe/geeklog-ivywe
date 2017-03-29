@@ -387,7 +387,7 @@ function PAYPAL_getProductForm($product = array(), $type = 'product') {
                 for ($z = 1; $z <= $icount; $z++) {
                     $I = DB_fetchArray($result_products);
                     $saved_images .= '<div><p>' . $z . ') '
-					    . '<a class="lightbox" href="' . $_PAY_CONF['images_url'] . $I['pi_filename'] . '"><img align="top" class="lightbox" src="'. $_PAY_CONF['site_url'] . '/timthumb.php?src='. $_PAY_CONF['images_url'] . $I['pi_filename'] . '&amp;w=75&amp;h=75&amp;zc=1&amp;q=100" alt="' . $I['pi_filename'] . '" /></a>'
+					    . '<a class="lightbox" href="' . $_PAY_CONF['images_url'] . $I['pi_filename'] . '"><img align="top" class="lightbox" src="' . $_PAY_CONF['images_url'] . $I['pi_filename']. '" alt="' . $I['pi_filename'] . '" style="max-width: 150px" /></a>'
                         . '&nbsp;&nbsp;&nbsp;' . $LANG_ADMIN['delete']
                         . ': <input type="checkbox" class="uk-checkbox"  name="delete[' .$I['pi_img_num']
                         . ']"' . XHTML . '><br' . XHTML . '></p></div>';

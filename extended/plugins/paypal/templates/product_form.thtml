@@ -4,15 +4,20 @@
 
 <div>
 {# tabs #}
-<ul class="tabNavigation uk-margin-large-top">
-<li><a href="#product">{informations}</a></li>
-<li><a href="#attributes">{customisation}</a></li>
-</ul>
+
+<nav class="uk-navbar uk-margin">
+	<div class="uk-navbar-left">
+		<ul class="uk-navbar-nav">
+			<li><a href="#product"  class="uk-button uk-button-default">{informations}</a></li>
+			<li><a href="#attributes" class="uk-button uk-button-default">{customisation}</a></li>
+		</ul>
+	</div>
+</nav>
 
 {# tab containers #}
 <div id="product" style="padding:5px 10px;">
 	
-<form action="{site_url}/admin/plugins/paypal/product_edit.php" method="POST" enctype="multipart/form-data"  class="paypal_form">
+<form action="{site_url}/admin/plugins/paypal/product_edit.php" method="POST" enctype="multipart/form-data"  class="uk-form">
 {id}{product_type}
   <fieldset style="margin-top: 10px;"><legend><b>{informations}</b></legend>
   	<h2>{item_id_label} <input type="text" class="uk-input" name="item_id" value="{item_id}" size="20" maxlength="80" {xhtml}></h2>

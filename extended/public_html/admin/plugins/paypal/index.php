@@ -371,8 +371,8 @@ function PAYPAL_getCategoryForm( $category = array() ) {
 	//Image
 	$cat_image = $_PAY_CONF['path_cat_images'] . $category['image'];
 	if (is_file($cat_image)) {
-		$template->set_var('cat_image','<p>' . $LANG_PAYPAL_ADMIN['image_replace'] . '<p><p><img src="' . $_PAY_CONF['site_url'] . '/timthumb.php?src='
-		. $_PAY_CONF['images_cat_url'] . $category['image'] . '&amp;w=150&amp;q=70&amp;zc=1" class="cat_image" alt="" /></p>');
+		$template->set_var('cat_image','<p>' . $LANG_PAYPAL_ADMIN['image_replace'] . '<p><p><img src="' . 
+		$_PAY_CONF['images_cat_url'] . $category['image'] . '" class="cat_image" alt="" /></p>');
 	} else {
 		$template->set_var('cat_image', '');
 	}
