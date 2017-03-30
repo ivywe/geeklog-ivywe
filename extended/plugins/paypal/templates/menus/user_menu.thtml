@@ -33,6 +33,4 @@ $product = $_GET['product'];
 	</div>
 </nav>
 
-<?php } ?>
-
 {# end {templatelocation} #}
