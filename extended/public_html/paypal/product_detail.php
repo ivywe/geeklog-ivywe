@@ -696,16 +696,16 @@ if ($A['customisable'] != 0 && !function_exists('PAYPALPRO_displayAttributes') )
 
 $display .= PAYPAL_siteHeader($A['name'] . ' - '  . $A['cat_name']);
 
+$breadcrumbs = PAYPAL_Breadcrumbs($A['cat_id']);
+if ($breadcrumbs != '') {
+				   $display .= '<ul class="uk-breadcrumb">' . $breadcrumbs . '<li>' . $A['name'] . '</li></ul>';
+				}
+
 if (SEC_hasRights('paypal.user', 'paypal.admin')) {
     $display .= paypal_user_menu();
 } else {
     $display .= paypal_viewer_menu();
 }
-
-$breadcrumbs = PAYPAL_Breadcrumbs($A['cat_id']);
-if ($breadcrumbs != '') {
-				   $display .= '<ul class="uk-breadcrumb">' . $breadcrumbs . '</ul>';
-				}
 
 $product = COM_newTemplate($_CONF['path'] . 'plugins/paypal/templates');
 $product->set_file(array('product' => 'product_detail.thtml',

@@ -1117,14 +1117,15 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 
     // Create product template
     $product = COM_newTemplate($_CONF['path'] . 'plugins/paypal/templates');
-    $product->set_file(array('start'   => 'product_list_start.thtml',
-                             'end'     => 'product_list_end.thtml',
-                             'product' => 'product_list_item.thtml',
-                             'buy'     => 'buy_now_button.thtml',
-							 'custom' => 'customise_button.thtml',
-                             'cart'    => 'add_to_cart_button.thtml'));
+    $product->set_file(array(
+				'start'   => 'product_list_start.thtml',
+				'end'     => 'product_list_end.thtml',
+				'product' => 'product_list_item.thtml',
+				'buy'     => 'buy_now_button.thtml',
+				'custom' => 'customise_button.thtml',
+				'cart'    => 'add_to_cart_button.thtml'));
     $product->set_var('edit', '');
-	$product->set_var('free_shipping', '');
+		$product->set_var('free_shipping', '');
     $product->set_var('site_url', $_PAY_CONF['site_url']);
     $product->set_var('paypal_url', 'https://' . $_PAY_CONF['paypalURL']);
     $product->set_var('buy_now_url', $_PAY_CONF['site_url'] . '/buy_now.php');
@@ -1140,6 +1141,7 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
     $product->set_var('cs', $_PAY_CONF['cs']);
     $product->set_var('charset', $_CONF['default_charset']);
     $product->set_var('category', $category);
+    $product->set_var('count', $count);
 
     if ($_PAY_CONF['image_url']) {
         $product->set_var('image_url', $_PAY_CONF['image_url']);
