@@ -3,9 +3,6 @@
 <nav class="uk-navbar gl-navbar-small uk-margin">
 	<div class="uk-navbar-left">
 		<ul class="uk-navbar-nav">
-			<li class="uk-button uk-button-primary">
-				{product_list_label}
-			</li>
 			{!if memberships}<li class="uk-button uk-button-primary">
 				{memberships}
 			</li>{!endif}
