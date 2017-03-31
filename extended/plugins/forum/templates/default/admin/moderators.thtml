@@ -43,7 +43,7 @@
 				<input type="radio" name="filtermode" id="filtermode_user" value="user" {userfilter}{xhtml}><label for="filtermode_user" accesskey="u">&nbsp;{LANG_userrecords}</label> 
 				<input type="radio" name="filtermode" id="filtermode_group" value="group" {groupfilter}{xhtml}><label for="filtermode_group" accesskey="g">&nbsp;{LANG_grouprecords}</label> 
 				&nbsp;&nbsp;			
-				<select class="uk-select" name="sel_forum">{sel_forums}</select>
+				<select class="uk-select uk-form-width-small" name="sel_forum">{sel_forums}</select>
 				&nbsp;&nbsp;
 				<button class="uk-button" name="filter" type="submit" value="{LANG_filterview}">{LANG_filterview}</button>
 			</div>

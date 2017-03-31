@@ -8,7 +8,7 @@
 		<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
 		
 		<h3 class="uk-panel-title">{alert_title}</h3>
-		<p>{alert_message} <select class="uk-select" name="new_id">{forumlist}</select></p>
+		<p>{alert_message} <select class="uk-select uk-form-width-small" name="new_id">{forumlist}</select></p>
 		<div class="uk-grid">
 			<div class="uk-width-1-1 uk-text-center">
 				<button class="uk-button" type="submit" name="mode" value="{LANG_MERGE}">{LANG_MERGE}</button>

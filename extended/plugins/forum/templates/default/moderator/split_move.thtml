@@ -6,7 +6,7 @@
 	<input type="hidden" name="forum" value="{forum}"{xhtml}>
 	<div class="uk-form-row">
 		<label class="uk-form-label" for="form-movetoforum">{$LANG_GF03[selectforum]}:</label>
-		<select class="uk-select" id="form-movetoforum" name="movetoforum">
+		<select class="uk-select uk-form-width-small" id="form-movetoforum" name="movetoforum">
 			{forumoptions}
 	   </select>
 	</div>

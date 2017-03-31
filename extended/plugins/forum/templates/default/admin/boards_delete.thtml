@@ -11,7 +11,7 @@
 		<p>{alert_message}</p>
 		<div class="uk-grid">
 			<div class="uk-width-1-1 uk-text-center">
-				<button class="uk-button" type="submit" name="mode" value="{LANG_DELETE}">{LANG_DELETE}</button>
+				<button class="uk-button uk-button-danger" type="submit" name="mode" value="{LANG_DELETE}">{LANG_DELETE}</button>
                 <button class="uk-button" type="submit" name="submit" value="{LANG_CANCEL}">{LANG_CANCEL}</button>
 			</div>
 		</div>
