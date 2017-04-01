@@ -1,7 +1,7 @@
-{# begin {templatelocation} #}
+<!-- plugins/assist/templates/rss/default/rss_col.thtml  { -->
 
 <dt><a href="{link}">{title}</a></dt>
 <dd>{pubdate}</dd>
 <dd>{description}</dd>
 
-{# end {templatelocation} #}
+<!-- } plugins/assist/templates/rss/default/rss_col.thtml -->

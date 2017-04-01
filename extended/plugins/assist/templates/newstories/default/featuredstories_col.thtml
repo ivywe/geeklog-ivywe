@@ -1,9 +1,10 @@
-{# begin {templatelocation} #}
+<!-- plugins/assist/templates/newstories/default/featuredstories_col.thtml  20131029{ -->
 
-<dt>{day}</dt>
-<dd><a href="{url}" class="uk-text-bold">{title}</a>{new_img}
-<div class="uk-text-small uk-text-ignore uk-text-truncate">{introtext}</div>
-<a href="{url}" class="uk-text-right">...続きを読む</a>
-</dd>
+<dt class="assist_date">{day}</dt>
+<dd class="assist_stories"><a href="{url}" class="gl-tooltip" style="cursor: pointer; ">{title}<span class="classic" style="top: 2.2em; left: 2.2em;">{meta_description}</span></a>{new_img}</dd>
 
-{# end {templatelocation} #}
+<!-- 
+{introtext}
+ -->
+
+<!-- } plugins/assist/templates/newstories/default/featuredstories_col.thtml -->

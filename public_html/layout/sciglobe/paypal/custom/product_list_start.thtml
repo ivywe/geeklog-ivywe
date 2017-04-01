@@ -1,0 +1,47 @@
+{# begin {templatelocation} #}
+
+{title}
+
+<?php 
+$n = $_GET['n'];
+?>
+
+{!!if {category} == 9 !!}
+<ul class="uk-subnav uk-flex-center">
+<li><a href="https://www.sciglobe.net/paypal/index.php?n=<?php echo $n; ?>&amp;category={category}">ALL</a></li>
+<li><a href="https://www.sciglobe.net/paypal/index.php?n=<?php echo $n; ?>&amp;category={category}&amp;m=CE440">EAI社製CE-440用</a></li>
+<li><a href="https://www.sciglobe.net/paypal/index.php?n=<?php echo $n; ?>&amp;category={category}&amp;m=PE2400">PE社製2400用</a></li>
+</ul>
+{!endif}
+
+{!!if {category} == 1 || {category} == 2 || {category} == 3 || {category} == 4 || {category} == 5 !!}
+<ul class="uk-subnav uk-flex-center">
+<li><a href="https://www.sciglobe.net/paypal/index.php?n=<?php echo $n; ?>&amp;category={category}">ALL</a></li>
+<li><a href="https://www.sciglobe.net/paypal/index.php?n=<?php echo $n; ?>&amp;category={category}&amp;m=Perkin%20Elmer">Perkin Elmer</a></li>
+<li><a href="https://www.sciglobe.net/paypal/index.php?n=<?php echo $n; ?>&amp;category={category}&amp;m=Thermo%20Fisher">Thermo Fisher</a></li>
+<li><a href="https://www.sciglobe.net/paypal/index.php?n=<?php echo $n; ?>&amp;category={category}&amp;m=elementar">elementar</a></li>
+<li><a href="https://www.sciglobe.net/paypal/index.php?n=<?php echo $n; ?>&amp;category={category}&amp;m=LECO">LECO</a></li>
+</ul>
+
+{!endif}
+
+{!!if {count} != 0 !!}
+
+<table id="paypal" class="display uk-width-1-1">
+	<thead>
+    <tr>
+      <th style="height:80px; padding:3px">Image</th>
+      <th>ID</th>
+      <th>品名</th>
+{!!if {category} == 1 || {category} == 2 || {category} == 3 || {category} == 4 || {category} == 5 || {category} == 9 !!}
+      <th>対応メーカー・機種</th>
+{!endif}
+      <th>価格</th>
+      <th>カート</th>
+    </tr>
+	</thead>
+	<tbody>
+
+{!endif}
+
+{# end {templatelocation} #}

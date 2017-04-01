@@ -1,0 +1,33 @@
+{# begin {templatelocation} #}
+
+<?php 
+$category = $_GET['category'];
+$n = $_GET['n'];
+$product = $_GET['product'];
+?>
+
+<?php if($product == ""){ ?>
+
+<ul class="uk-breadcrumb">
+    <li><a href="/">HOME</a></li>
+    <li><a href="/paypal/index.php">SHOP</a></li>
+    <li><span href="#"><?php echo $n; ?></span></li>
+</ul>
+
+<nav class="uk-navbar gl-navbar-small uk-margin">
+	<div class="uk-navbar-left">
+		<ul class="uk-navbar-nav">
+			{!if my_purchases}<li class="uk-button uk-button-primary"><a href="{site_url}/purchase_history.php">{my_purchases}</a></li>{!endif}
+			{!if my_details}<li class="uk-button uk-button-primary"><a href="{site_url}/details.php">{my_details}</a></li>{!endif}
+			{!if memberships}<li class="uk-button uk-button-primary">{memberships}</li>{!endif}
+			{!if admin}<li class="uk-button uk-button-danger"><a href="/admin/plugins/paypal/index.php">管理</a></li>{!endif}
+		</ul>
+	</div>
+	<div class="uk-navbar-right">
+		<ul class="uk-navbar-nav">
+			<li class="uk-button uk-button-danger"><a href="{site_url}/checkout.php"><span uk-icon="icon: cart" style="margin:0 5px 2px 0" class="uk-icon"></span> {view_cart}</a></li>
+		</ul>
+	</div>
+</nav>
+
+{# end {templatelocation} #}

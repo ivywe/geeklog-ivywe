@@ -1,0 +1,7 @@
+{# begin {templatelocation} #}
+
+<nav>
+  <h2 class="uk-heading-bullet"><a href="#">{block_title}{block_help}</a></h2>
+  <ul class="uk-list">
+
+{# end {templatelocation} #}

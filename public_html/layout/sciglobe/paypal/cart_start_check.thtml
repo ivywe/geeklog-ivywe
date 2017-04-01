@@ -1,0 +1,29 @@
+{# begin {templatelocation} #}
+
+<!-- cart_start_check.thtml -->
+
+<div id="jcart">
+  {steps}
+  {error_message}
+  {informations}
+
+	  <table class="uk-table uk-table-small uk-text-nowrap">
+		<caption>{cart_title} ({itemcount})</caption>
+		  <tr>
+<thead>
+		  <th class="jcart-item-header">
+		    {description}
+		  </th>
+		  <th class="jcart-item-header">
+		    {unit_price}
+		  </th>
+		  <th class="jcart-item-header">
+		    {quantity}
+		  </th>
+			<th class="jcart-item-header uk-text-right">
+		    {item_price}
+		  </th>
+		</tr>
+</thead>
+
+{# end {templatelocation} #}

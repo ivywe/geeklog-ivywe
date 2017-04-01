@@ -1,0 +1,17 @@
+{# begin {templatelocation} #}
+
+ <tr>
+  <td align="center" valign="top" style="border:1px solid #CCC;">
+   <a href={small_pic}><img src="{small_pic}" alt="{name}" style="width:100%; max-width:150px" /></a>
+  </td>
+  <td valign="top" style="border:1px solid #CCC; width:100%;">
+   <b><a style="ctext-decoration: none; font-size: 1.2em" onClick="elementToggle('product-detail{id}'); return false;" href="#">{name}</a>&nbsp;</b> <div style="float:right"> <input type="image" src="{site_url}/paypal/images/edit.png" name="id" value="{id}" align="absmiddle" /></div>
+   <div id="product-detail{id}" style="display:none">
+   <div>{price_label} {currency} {price}</div>
+   <div>{short_description}</div>
+   <div>{description}</div>
+   </div>
+  </td>
+ </tr>
+
+{# end {templatelocation} #}

@@ -181,6 +181,18 @@ $LANG_ASSIST_ADMIN['xml_def'] = 'XML definition';
 $LANG_ASSIST_ADMIN['init'] = 'Initualize';
 $LANG_ASSIST_ADMIN['list'] = 'List';
 
+$LANG_ASSIST_ADMIN['configbackup'] = 'Configuration Backup';
+$LANG_ASSIST_ADMIN['configinit'] = 'Configuration Initialize';
+$LANG_ASSIST_ADMIN['configrestore'] = 'Configuration restore';
+$LANG_ASSIST_ADMIN['configupdate'] = 'Configuration update';
+$LANG_ASSIST_ADMIN['configbackupmsg'] = 'Configuration Backup';
+$LANG_ASSIST_ADMIN['configinitmsg'] = 'Configuration Initialize';
+$LANG_ASSIST_ADMIN['configrestoremsg'] = 'Configuration restore';
+$LANG_ASSIST_ADMIN['configupdatemsg'] = 'Configuration update';
+
+$LANG_ASSIST_ADMIN['submit'] = 'Submit';
+$LANG_ASSIST_ADMIN['confirm'] = 'Sure you want to execute?';
+
 $LANG_ASSIST_ADMIN['path'] = 'Path';
 $LANG_ASSIST_ADMIN['url'] = 'URL';
 
@@ -198,9 +210,12 @@ Log file is assist_xmlimport.log.<br'.XHTML.'>
 //
 $LANG_ASSIST_ADMIN['document'] = 'Document';
 $LANG_ASSIST_ADMIN['configuration'] = 'Configuration';
+$LANG_ASSIST_ADMIN['install'] = 'install';
 $LANG_ASSIST_ADMIN['autotags'] = 'Auto tags';
+$LANG_ASSIST_ADMIN['files'] = 'files';
 $LANG_ASSIST_ADMIN['online'] = 'Online';
 $LANG_ASSIST_ADMIN['templatesetvar'] = 'templatesetvar';
+$LANG_ASSIST_ADMIN['templatesetvars'] = 'templatesetvar';
 
 //Admin
 $LANG_ASSIST_ADMIN['about_admin_information'] = ' ';

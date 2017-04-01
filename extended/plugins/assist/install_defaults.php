@@ -121,7 +121,7 @@ $_ASSIST_DEFAULT['path_xml_out']=$_CONF['path'].'data/assist';
 * @return   boolean     true: success; false: an error occurred
 *
 */
-function plugin_initconfig_assist()
+function plugin_initconfig_assist($initialize="")
 {
     global $_ASSIST_CONF;
     global $_ASSIST_DEFAULT;
@@ -133,7 +133,7 @@ function plugin_initconfig_assist()
     }
 
     $c = config::get_instance();
-    if (!$c->group_exists('assist')) {
+    if (!$c->group_exists('assist') OR $initialize ) {
 
     /* add(
         $param_name

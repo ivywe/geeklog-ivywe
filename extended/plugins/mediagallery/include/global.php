@@ -75,8 +75,8 @@ function MG_globalAlbumPermEditor($adminMenu=0)
     $groupdd = '';
     $moddd = '';
 
-    $groupdd .= '<select class="uk-select" name="group_id">';
-    $moddd .= '<select class="uk-select" name="mod_id">';
+    $groupdd .= '<select class="uk-select uk-form-width-small" name="group_id">';
+    $moddd .= '<select class="uk-select uk-form-width-small" name="mod_id">';
     for ($i = 0; $i < count($usergroups); $i++) {
         if ($usergroups[key($usergroups)] != 2 && $usergroups[key($usergroups)] != 13) {
             $groupdd .= '<option value="' . $usergroups[key($usergroups)] . '"';
@@ -233,20 +233,20 @@ function MG_globalAlbumAttributeEditor($adminMenu=0)
 
     // build exif select box...
 
-    $exif_select  = '<select class="uk-select" name="enable_exif">';
+    $exif_select  = '<select class="uk-select uk-form-width-small" name="enable_exif">';
     $exif_select .= '<option value="0">' . $LANG_MG01['disable_exif'] . '</option>';
     $exif_select .= '<option value="1">' . $LANG_MG01['display_below_media']  . '</option>';
     $exif_select .= '<option value="2">' . $LANG_MG01['display_in_popup'] . '</option>';
     $exif_select .= '<option value="3">' . $LANG_MG01['both'] . '</option>';
     $exif_select .= '</select>';
 
-    $full_select  = '<select class="uk-select" name="full_display">';
+    $full_select  = '<select class="uk-select uk-form-width-small" name="full_display">';
     $full_select .= '<option value="0"' . ($A['full_display']==0 ? 'selected="selected"' : '') . '>' . $LANG_MG01['always'] . '</option>';
     $full_select .= '<option value="1"' . ($A['full_display']==1 ? 'selected="selected"' : '') . '>' . $LANG_MG01['members_only']  . '</option>';
     $full_select .= '<option value="2"' . ($A['full_display']==2 ? 'selected="selected"' : '') . '>' . $LANG_MG01['disabled'] . '</option>';
     $full_select .= '</select>';
 
-    $ranking_select = '<select class="uk-select" name="enable_rating">';
+    $ranking_select = '<select class="uk-select uk-form-width-small" name="enable_rating">';
     $ranking_select .= '<option value="0"' . ($A['enable_rating']==0 ? 'selected="selected"' : '') . '>' . $LANG_MG01['disabled'] . '</option>';
     $ranking_select .= '<option value="1"' . ($A['enable_rating']==1 ? 'selected="selected"' : '') . '>' . $LANG_MG01['members_only'] . '</option>';
     $ranking_select .= '<option value="2"' . ($A['enable_rating']==2 ? 'selected="selected"' : '') . '>' . $LANG_MG01['always'] . '</option>';
@@ -259,7 +259,7 @@ function MG_globalAlbumAttributeEditor($adminMenu=0)
     $filename_title_select = '<input type="checkbox" class="uk-checkbox" name="filename_title" value="1"' . XHTML . '>';
 
     $comment_select = '<input type="checkbox" class="uk-checkbox" name="enable_comments" value="1"' . XHTML . '>';
-    $ss_select      = '<select class="uk-select" name="enable_slideshow">';
+    $ss_select      = '<select class="uk-select uk-form-width-small" name="enable_slideshow">';
     $ss_select      .= '<option value="0">' . $LANG_MG01['disabled'] . '</option>';
     $ss_select      .= '<option value="1">' . $LANG_MG01['js_slideshow'] . '</option>';
     $ss_select      .= '<option value="2">' . $LANG_MG01['lightbox'] . '</option>';
@@ -272,7 +272,7 @@ function MG_globalAlbumAttributeEditor($adminMenu=0)
     $afirst_select  = '<input type="checkbox" class="uk-checkbox" name="albums_first" value="1"' . XHTML . '>';
     $album_views_select   = '<input type="checkbox" class="uk-checkbox" name="enable_album_views" value="1"' . XHTML . '>';
 
-    $tn_size_select  = '<select class="uk-select" name="tn_size">';
+    $tn_size_select  = '<select class="uk-select uk-form-width-small" name="tn_size">';
     $tn_size_select .= '<option value="0">' . $LANG_MG01['include_small'] . '</option>';
     $tn_size_select .= '<option value="1">' . $LANG_MG01['include_medium'] . '</option>';
     $tn_size_select .= '<option value="2">' . $LANG_MG01['include_large'] . '</option>';
@@ -286,7 +286,7 @@ function MG_globalAlbumAttributeEditor($adminMenu=0)
     $tnheight_input = '<input type="text" class="uk-input" size="3" name="tnheight" value=""' . XHTML . '>';
     $tnwidth_input  = '<input type="text" class="uk-input" size="3" name="tnwidth" value=""' . XHTML . '>';
 
-    $display_image_size_select  = '<select class="uk-select" name="display_image_size">';
+    $display_image_size_select  = '<select class="uk-select uk-form-width-small" name="display_image_size">';
     $display_image_size_select .= '<option value="0">' . $LANG_MG01['size_500x375'] . '</option>';
     $display_image_size_select .= '<option value="1">' . $LANG_MG01['size_600x450'] . '</option>';
     $display_image_size_select .= '<option value="2">' . $LANG_MG01['size_620x465'] . '</option>';
@@ -306,7 +306,7 @@ function MG_globalAlbumAttributeEditor($adminMenu=0)
     $rows_input      = '<input type="text" class="uk-input" size="3" name="display_rows" value="' . $_MG_CONF['display_rows'] . '"' . XHTML . '>';
     $columns_input   = '<input type="text" class="uk-input" size="3" name="display_columns" value="' . $_MG_CONF['display_columns'] . '"' . XHTML . '>';
 
-    $playback_type  = '<select class="uk-select" name="playback_type">';
+    $playback_type  = '<select class="uk-select uk-form-width-small" name="playback_type">';
     $playback_type .= '<option value="0">' . $LANG_MG01['play_in_popup'] . '</option>';
     $playback_type .= '<option value="1">' . $LANG_MG01['download_to_local'] . '</option>';
     $playback_type .= '<option value="2">' . $LANG_MG01['play_inline'] . '</option>';
@@ -320,16 +320,16 @@ function MG_globalAlbumAttributeEditor($adminMenu=0)
 
     // build album list for starting point...
 
-    $album_jumpbox  = '<select class="uk-select" name="startaid">';
+    $album_jumpbox  = '<select class="uk-select uk-form-width-small" name="startaid">';
     $album_jumpbox .= '<option value="0">------</option>';
     $root_album = new mgAlbum(0);
     $root_album->buildJumpBox($album_jumpbox, 0, 3);
     $album_jumpbox .= '</select>';
 
     $skins = MG_getFrames();
-    $skin_select  = '<select class="uk-select" name="skin">';
-    $askin_select = '<select class="uk-select" name="askin">';
-    $dskin_select = '<select class="uk-select" name="dskin">';
+    $skin_select  = '<select class="uk-select uk-form-width-small" name="skin">';
+    $askin_select = '<select class="uk-select uk-form-width-small" name="askin">';
+    $dskin_select = '<select class="uk-select uk-form-width-small" name="dskin">';
     for ($i=0; $i < count($skins); $i++) {
         $skin_select  .= '<option value="' . $skins[$i]['dir'] . '"' . ($_MG_CONF['ad_image_skin']   == $skins[$i]['dir'] ? ' selected="selected" ': '') .'>' . $skins[$i]['name'] .  '</option>';
         $askin_select .= '<option value="' . $skins[$i]['dir'] . '"' . ($_MG_CONF['ad_album_skin']   == $skins[$i]['dir'] ? ' selected="selected" ': '') .'>' . $skins[$i]['name'] .  '</option>';
@@ -340,7 +340,7 @@ function MG_globalAlbumAttributeEditor($adminMenu=0)
     $dskin_select .= '</select>';
 
     $themes = MG_getThemes();
-    $album_theme_select = '<select class="uk-select" name="album_theme">';
+    $album_theme_select = '<select class="uk-select uk-form-width-small" name="album_theme">';
     for ($i = 0; $i < count($themes); $i++) {
         $album_theme_select .= '<option value="' . $themes[$i] . '"' . ($A['skin'] == $themes[$i] ? 'selected="selected"' : '') . '>' . $themes[$i] . '</option>';
     }

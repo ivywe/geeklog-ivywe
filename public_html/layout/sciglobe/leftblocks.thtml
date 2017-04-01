@@ -1,0 +1,7 @@
+
+    <hr class="separator"{xhtml}>
+
+    <div id="leftblocks" role="complementary">
+
+      {geeklog_blocks}
+    </div>

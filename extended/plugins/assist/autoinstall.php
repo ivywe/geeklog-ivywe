@@ -58,7 +58,7 @@ function plugin_autoinstall_assist(
         'pi_name'         => $pi_name,
         'pi_display_name' => $pi_display_name,
         'pi_version'      => $_ASSIST_CONF['version'],
-        'pi_gl_version'   => '1.8.1',
+        'pi_gl_version'   => '2.1.1',
         'pi_homepage'     => 'http://www.geeklog.jp/filemgmt/index.php?id=339',
     );
 

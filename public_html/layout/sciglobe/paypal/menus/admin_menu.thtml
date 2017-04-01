@@ -1,0 +1,16 @@
+{# begin {templatelocation} #}
+
+<nav class="uk-navbar gl-navbar-small uk-margin">
+	<div class="uk-navbar-left">
+		<ul class="uk-navbar-nav">
+			<li class="uk-button uk-button-primary"><a href="{site_url}/admin/plugins/paypal/purchase_history.php">{purchase_history}</a></li>
+			<li class="uk-button uk-button-primary"><a href="{site_url}/admin/plugins/paypal/subscriptions.php">{subscriptions}</a></li>
+			<li class="uk-button uk-button-primary"><a href="{site_url}/admin/plugins/paypal/index.php">{product_list_label}</a></li>
+			{!if downloads_history}<li class="uk-button uk-button-primary"><a href="{site_url}/admin/plugins/paypal/downloads_history.php">{downloads_history}</a></li>{!endif}
+			{!if view_IPN_log}<li class="uk-button uk-button-primary"><a href="{site_url}/admin/plugins/paypal/ipnlog.php">{view_IPN_log}</a></li>{!endif}
+			{!if store}<li class="uk-button uk-button-primary"><a href="{paypal_url}/index.php">{store}</a></li>{!endif}
+		</ul>
+	</div>
+</nav>
+
+{# end {templatelocation} #}

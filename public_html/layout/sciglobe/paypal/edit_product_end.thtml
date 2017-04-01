@@ -1,0 +1,7 @@
+{# begin {templatelocation} #}
+
+</table>
+<input type="hidden" name="op" value="edit" />
+</form>
+
+{# end {templatelocation} #}

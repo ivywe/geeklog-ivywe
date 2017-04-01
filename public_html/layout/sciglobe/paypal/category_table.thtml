@@ -1,0 +1,8 @@
+{# begin {templatelocation} #}
+
+{category_heading}
+<div class="uk-grid-small" uk-grid>
+{categories}
+</div>
+
+{# end {templatelocation} #}

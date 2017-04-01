@@ -165,7 +165,7 @@ function fncMenu()
 	
     $retval .= ADMIN_createMenu(
         $menu_arr,
-        $LANG_PROFILE_ADMIN['instructions'],
+        "",
         $iconurl
 	);
 	
@@ -490,7 +490,7 @@ function fncimport ()
 
 
     $pi_name="assist";
-    $tmplfld=databox_templatePath('admin','default',$pi_name);
+    $tmplfld=assist_templatePath('admin','default',$pi_name);
     $tmpl = new Template($tmplfld);
 
     $tmpl->set_file(array('import' => 'import.thtml'));

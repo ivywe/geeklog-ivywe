@@ -29,7 +29,7 @@ function formControl(){
       <legend>{lang_file_number}1</legend>
       <dl class="form_block">
         <dt><label class="uk-form-label">{lang_remote_media_type}</label></dt>
-        <dd><select class="uk-select" name="type[]" onchange="formControl()">
+        <dd><select class="uk-select uk-form-width-small" name="type[]" onchange="formControl()">
               <option value="-1">------</option>
               <option value="0">{lang_flv_stream}</option>
               {!if enable_remote_images}
@@ -72,7 +72,7 @@ function formControl(){
       <legend>{lang_file_number}2</legend>
       <dl class="form_block">
         <dt><label class="uk-form-label">{lang_remote_media_type}</label></dt>
-        <dd><select class="uk-select" name="type[]" onchange="formControl()">
+        <dd><select class="uk-select uk-form-width-small" name="type[]" onchange="formControl()">
               <option value="-1">------</option>
               <option value="0">{lang_flv_stream}</option>
               {!if enable_remote_images}
@@ -115,7 +115,7 @@ function formControl(){
       <legend>{lang_file_number}3</legend>
       <dl class="form_block">
         <dt><label class="uk-form-label">{lang_remote_media_type}</label></dt>
-        <dd><select class="uk-select" name="type[]" onchange="formControl()">
+        <dd><select class="uk-select uk-form-width-small" name="type[]" onchange="formControl()">
               <option value="-1">------</option>
               <option value="0">{lang_flv_stream}</option>
               {!if enable_remote_images}
@@ -158,7 +158,7 @@ function formControl(){
       <legend>{lang_file_number}4</legend>
       <dl class="form_block">
         <dt><label class="uk-form-label">{lang_remote_media_type}</label></dt>
-        <dd><select class="uk-select" name="type[]" onchange="formControl()">
+        <dd><select class="uk-select uk-form-width-small" name="type[]" onchange="formControl()">
               <option value="-1">------</option>
               <option value="0">{lang_flv_stream}</option>
               {!if enable_remote_images}

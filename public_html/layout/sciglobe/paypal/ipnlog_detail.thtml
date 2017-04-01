@@ -1,0 +1,19 @@
+{# begin {templatelocation} #}
+
+<table  class="uk-width-1-1 uk-table uk-table-small"
+  <tr><td><b>{IPN_log}</b></td><td>{id}</td></tr>
+  <tr><td><b>{IP_address}</b></td><td>{ip_addr}<br/ ></td></tr>
+  <tr><td><b>{date_time}</b></td><td>{time}<br /></td></tr>
+  <tr><td><b>{Verified}</b></td><td>{verified}<br /></td></tr>
+  <tr><td><b>{transaction}</b></td><td>{txn_id}<br /></td></tr>
+  <tr><td><b>{gross_payment}</b></td><td>{mc_gross} {mc_currency}<br /></td></tr>
+  <tr><td><b>{payment_status_label}</b></td><td>{payment_status}<br /></td></tr>
+</table>
+
+<hr>
+{errormsg}
+<p>{ipn_data}<br>
+ {raw}
+</p>
+
+{# end {templatelocation} #}

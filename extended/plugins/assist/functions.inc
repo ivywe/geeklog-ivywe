@@ -548,4 +548,157 @@ function plugin_templatesetvars_assist(
 	}
 }
 
+function assist_Confirmation(
+    $pi_name
+    ,$mode
+)
+// +---------------------------------------------------------------------------+
+// | 機能 確認画面
+// | 書式 assist_Confirmation($pi_name,$mode)
+/// +---------------------------------------------------------------------------+
+// | 引数 $pi_name:plugin名
+// | 引数 $mode:configbackup,configinit,configrestore,onfigupdate
+// +---------------------------------------------------------------------------+
+// | 戻値 nomal:
+// +---------------------------------------------------------------------------+
+{
+    global $_CONF;
+    global $LANG_ADMIN;
+
+
+    $lang_box_admin="LANG_".strtoupper($pi_name)."_ADMIN";
+    global $$lang_box_admin;
+    $lang_box_admin=$$lang_box_admin;
+
+    $tmpl->set_file(array('confirm' => 'confirmation.thtml'));
+
+
+    $tmpl->set_var('site_admin_url', $_CONF['site_admin_url']);
+    $tmpl->set_var('gltoken_name', CSRF_TOKEN);
+    $tmpl->set_var('gltoken', SEC_createToken());
+    $tmpl->set_var ( 'xhtml', XHTML );
+
+    //
+    $actionname=$lang_box_admin[$mode];
+    $actionprg="{$_CONF['site_admin_url']}/plugins/".THIS_SCRIPT."?mode={$mode}exec";
+
+    $tmpl->set_var('actionname', $actionname);
+    $tmpl->set_var('actionprg', $actionprg);
+    
+    $tmpl->set_var('help', $lang_box_admin[$mode.'msg']);
+    $btn_value=$LANG_ADMIN['submit'];
+    $confirm_value=$lang_box_admin['confirm'];
+    $btn2="";
+    $btn3="";
+    if ($mode==="datadelete"){
+        $tmpl->set_var('lang_checklist', $lang_box_admin['fieldset'].":");
+        $checklist=DATABOX_getcheckList ("fieldset","",$pi_name);
+        $tmpl->set_var('checklist', $checklist);
+        $btn_value=$lang_box_admin['delete1'];
+        $confirm_value=$lang_box_admin['delete1']." ".$lang_box_admin['confirm'];
+        $confirm_value2=$lang_box_admin['delete2']." ".$lang_box_admin['confirm'];
+        $confirm_value3=$lang_box_admin['delete3']." ".$lang_box_admin['confirm'];
+        $btn2="<input type='submit' name='action' value='{$lang_box_admin['delete2']}'" 
+             ." onclick=\"return confirm('{$confirm_value2}');\"".xhtml.">".LB;
+        $btn3="<input type='submit' name='action' value='{$lang_box_admin['delete3']}'" 
+             ." onclick=\"return confirm('{$confirm_value3}');\"".xhtml.">".LB;
+    }
+
+    // SAVE、CANCEL ボタン
+    $tmpl->set_var('lang_confirm', $confirm_value);
+    $tmpl->set_var('lang_submit', $btn_value);
+    $tmpl->set_var('btn2', $btn2);
+    $tmpl->set_var('btn3', $btn3);
+    $tmpl->set_var('lang_cancel', $LANG_ADMIN['cancel']);
+    $tmpl->set_var('mode', $mode."exec");
+
+    $tmpl->parse ('output', 'confirm');
+    $comfirm = $tmpl->finish ($tmpl->get_var ('output'));
+
+    $retval = $comfirm;
+
+
+    return $retval;
+}
+function assist_displaypage (
+    $pi_name= 'databox'
+    ,$kind = ''
+    ,$display = ''
+    ,$information = ''
+)
+//$information
+// 'what'  'none' no left blocks are returned
+//         'menu' (default)  right blocks are returned
+// 'pagetitle'     Optional content for the page's <title>
+// 'breadcrumbs'   Optional content for the page's <title>
+// 'headercode'    Optional code to go into the page's <head>
+// 'rightblock'    右ブロックを表示するかどうか　 default is no (-1)
+// 'custom'        An array defining custom function to be used to 
+
+{
+    global $_CONF;
+
+    $box_conf="_".strtoupper($pi_name)."_CONF";
+    global $$box_conf;
+    $box_conf=$$box_conf;
+
+    if  ($kind=="_admin" OR $kind==""){
+        $layout=$box_conf['layout'.$kind];
+    }else{
+        $layout=$kind;
+    }
+    
+    //全画面表示（ヘッダ・フッタ・ブロックなし）
+    if  ($layout=='blankpage'){
+        
+    }else{
+        switch ($layout) {
+            // ヘッダ・フッタ・左ブロックあり（右ブロックはテーマ設定による）
+            case 'standard':
+                //$display=COM_siteHeader ('menu', $page_title,$headercode);
+                //$display .= COM_siteFooter(false,$custom);
+                $information['what']='menu';
+                $information['rightblock']=false;
+                break;
+            //ヘッダ・フッタ・左右ブロックあり
+            case 'leftrightblocks':
+                //$display=COM_siteHeader ('menu', $page_title,$headercode);
+                //$display .= COM_siteFooter(true,$custom);
+                $information['what']='menu';
+                $information['rightblock']=true;
+                break;
+            //ヘッダ・フッタ・左ブロックあり（右ブロックなし）
+            case 'leftblocks':
+                //$display=COM_siteHeader ('menu', $page_title,$headercode);
+                $information['what']='menu';
+                $_CONF['show_right_blocks']=0;
+                $_CONF['left_blocks_in_footer']=0;
+                //$display .= COM_siteFooter(false,$custom);
+                $information['rightblock']=false;
+                break;
+            //ヘッダ・フッタ・右ブロックあり（左ブロックなし）
+            case 'rightblocks':
+                //$display=COM_siteHeader ('none', $page_title,$headercode);
+                $information['what']='none';
+                //$display .= COM_siteFooter(true,$custom);
+                $information['rightblock']=true;
+                break;
+            //ヘッダ・フッタあり（ブロックなし）
+            case 'noblocks':
+                //$display=COM_siteHeader ('none', $page_title,$headercode);
+                $information['what']='none';
+                $_CONF['show_right_blocks']=0;
+                $_CONF['left_blocks_in_footer']=0;
+                //$display .= COM_siteFooter(false,$custom);
+                $information['rightblock']=false;
+                break;
+        }
+        
+        $display = COM_createHTMLDocument($display,$information);
+    }
+
+
+    return $display;
+}
+
 ?>

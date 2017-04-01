@@ -1,5 +1,5 @@
-{# begin {templatelocation} #}
+<!-- plugins/assist/templates/articles/default/grp.thtml 20110727 { -->
 
     <h3>{group_name} </h3>
 
-{# end {templatelocation} #}
+<!-- } plugins/assist/templates/articles/default/grp.thtml -->

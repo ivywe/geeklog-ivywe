@@ -107,7 +107,7 @@ function change(what) {
         </div>
         <div uk-grid>
             <div class="uk-width-1-1"><label class="uk-form-label">{lang_tn_size}</label></div>
-            <div class="uk-form-controls uk-width-expand@m"><select class="uk-select" name="tn_size">
+            <div class="uk-form-controls uk-width-expand@m"><select class="uk-select uk-form-width-small" name="tn_size">
 <option value="0">Include:100x100</option>
 <option value="1">Include:150x150</option>
 <option value="2">Include:200x200</option>

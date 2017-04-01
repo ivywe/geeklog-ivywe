@@ -1,0 +1,7 @@
+{# begin {templatelocation} #}
+
+<dl class="uk-description-list-horizontal">
+{stories_col}
+</dl>
+
+{# end {templatelocation} #}

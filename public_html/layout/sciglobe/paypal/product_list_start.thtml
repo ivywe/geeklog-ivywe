@@ -1,0 +1,10 @@
+{title}
+<table id="paypal" class="display uk-width-1-1">
+            <tr>
+                <th style="height:80px; padding:3px">Image</th>
+                <th>ID</th>
+                <th>品名</th>
+                <th>対応メーカー</th>
+                <th>価格</th>
+                <th>カート</th>
+            </tr>

@@ -1,0 +1,52 @@
+{# begin {templatelocation} #}
+
+<div>
+<form id="informations" name="informations" action="{validation_url}" method="POST" class="uk-form">
+
+<fieldset class="uk-fieldset">
+<legend class="uk-legend">{my_details}</legend>
+
+<div class="uk-margin">
+<input type="text" class="uk-input uk-form-width-large"  name="name" value="{name}" size="55" maxlength="80"  placeholder="お名前" required{xhtml}> <span class="uk-text-small uk-text-danger">*必須</span>
+</div>
+<div class="uk-margin">
+	<input type="text" class="uk-input uk-form-width-large" name="street1" value="{street1}" size="55" maxlength="50"  placeholder="{street1_label}" required{xhtml}> <span class="uk-text-small uk-text-danger">*必須</span>
+</div>
+<div class="uk-margin">
+	<input type="text" class="uk-input uk-form-width-large" name="street2" value="{street2}" size="55" maxlength="50" placeholder="{street2_label}"  {xhtml}>
+</div>
+<div class="uk-margin">
+	<input type="text" class="uk-input uk-form-width-large" name="postal" value="{postal}" size="15" maxlength="20" placeholder="{postal_label}" required{xhtml}> <span class="uk-text-small uk-text-danger">*必須</span>
+</div>
+<div class="uk-margin">
+	<input type="text" class="uk-input uk-form-width-large" name="city" value="{city}" size="40" maxlength="30" placeholder="{city_label}" {xhtml}>
+</div>
+<div class="uk-margin">
+	<input type="text" class="uk-input uk-form-width-large" name="phone1" value="{phone1}" size="55" maxlength="20" placeholder="{phone1_label}" required{xhtml}> <span class="uk-text-small uk-text-danger">*必須</span>
+</div>
+<div class="uk-margin">
+	<input type="text" class="uk-input uk-form-width-large" name="phone2" value="{phone2}" size="55" maxlength="20"  placeholder="{phone2_label}" {xhtml}>
+</div>
+<div class="uk-margin">
+	<input type="text" class="uk-input uk-form-width-large" name="fax" value="{fax}" size="55" maxlength="25"  placeholder="{fax_label}" {xhtml}>
+</div>
+<div class="uk-margin">
+	<input type="text" class="uk-input uk-form-width-large" name="contact" value="{contact}" size="55" maxlength="80"  placeholder="{contact_label}" {xhtml}>
+</div>
+<div class="uk-margin">
+	<input type="text" class="uk-input uk-form-width-large" name="proid" value="{proid}" size="55" maxlength="20"  placeholder="{proid_label}" {xhtml}>
+</div>
+<div class="uk-margin">
+	<p>{uid}{operation}</p>
+  <p class="uk-text-center"><input type="submit" name="submit" value="{save_button}"  class="uk-button uk-button-danger uk-button-large"  {xhtml}></p>
+</div>
+	<input type="hidden" name="country" value="" {xhtml}>
+
+<p class="uk-text-small uk-text-warning">上の「注文を確定する」ボタンを押してご注文いただくことで、お客様は当サイトの{!!autotag staticpage:privacypolicy プライバシー規約 !!} および{!!autotag staticpage:terms 利用規約 !!}に同意の上、商品をご注文されたことになります。 </a>
+
+</fieldset>
+
+</form>
+</div>
+
+{# end {templatelocation} #}

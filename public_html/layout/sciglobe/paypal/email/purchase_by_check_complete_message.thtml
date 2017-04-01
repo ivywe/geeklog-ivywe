@@ -1,0 +1,10 @@
+<p>{address_name}</p>
+
+<p>{thank_you}
+{products}
+</p>
+<p>{attached_files}</p>
+<p>{thanks}<p>
+<p>{site_name}<br{xhtml}>
+{site_url}</p>
+<p>{payment_date}</p>

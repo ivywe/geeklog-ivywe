@@ -65,7 +65,7 @@ function MG_remoteUpload($album_id)
     $cRows = count($catRow);
     $cat_select = '';
     if ($cRows > 0) {
-        $cat_select = '<select class="uk-select" name="cat_id[]">';
+        $cat_select = '<select class="uk-select uk-form-width-small" name="cat_id[]">';
         $cat_select .= '<option value="0">' . $LANG_MG01['no_category'] . '</option>';
         for ($i=0; $i < $cRows; $i++) {
             $cat_select .= '<option value="' . $catRow[$i]['cat_id'] . '">' . $catRow[$i]['cat_name'] . '</option>';

@@ -1,0 +1,12 @@
+{# begin {templatelocation} #}
+
+<tr>
+	<td style="width:80px">{small_pic}</td>
+	<td>{item_id}</td>
+	<td>{link_name}</td>
+	<td>{short_description}</td>
+	<td><span class="uk-text-large uk-text-danger uk-text-bold">&#165;{price}</span><span class="uk-text-danger"></span>{!if price_ref} ’è‰¿:<span class="uk-text-bold">{price_ref}</span>{discount}{!endif}<span class="uk-text-small">(Á”ïÅ‚İ)</span></td>
+	<td>{add2cart}{customisable}{login}{edit}</td>
+</tr>
+
+{# end {templatelocation} #}
