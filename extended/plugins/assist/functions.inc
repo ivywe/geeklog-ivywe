@@ -570,6 +570,7 @@ function assist_Confirmation(
     global $$lang_box_admin;
     $lang_box_admin=$$lang_box_admin;
 
+    $tmpl = new Template ($_CONF['path'] . "plugins/".THIS_PLUGIN."/templates/admin/");
     $tmpl->set_file(array('confirm' => 'confirmation.thtml'));
 
 
