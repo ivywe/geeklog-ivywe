@@ -127,7 +127,7 @@
     <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" >{lang_commentcode} {help_commentcode}</label>
       <div class="uk-form-controls">
-        <select class="uk-select" name="commentcode">
+        <select class="uk-select uk-form-width-small" name="commentcode">
           {optionlist_commentcode}
         </select>
       </div>
@@ -177,7 +177,7 @@
     <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_trackbackcode} {help_trackbackcode}</label>
       <div class="uk-form-controls">
-        <select class="uk-select" name="trackbackcode">
+        <select class="uk-select uk-form-width-small" name="trackbackcode">
           {optionlist_trackbackcode}
         </select>
       </div>

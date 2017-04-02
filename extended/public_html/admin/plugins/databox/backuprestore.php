@@ -587,7 +587,7 @@ function fncgetselectfilename (
     global $_CONF;
 
     //
-    $selection = '<select class="uk-select" id="filename" name="filename">' . LB;
+    $selection = '<select class="uk-select uk-form-width-small" id="filename" name="filename">' . LB;
 
     $fd=$_CONF['backup_path']."databox/";
     $files=DATABOX_getfilelist($fd,"xml");
