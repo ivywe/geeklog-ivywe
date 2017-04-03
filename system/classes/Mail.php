@@ -68,7 +68,7 @@ class Mail
                 break;
 
             case 'smtp':
-                $transport = \Swift_SmtpTransport::newInstance($_CONF['mail_settings']['host'], $_CONF['mail_settings']['port']);
+                $transport = \Swift_SmtpTransport::newInstance($_CONF['mail_settings']['host'], $_CONF['mail_settings']['port'], 'ssl');
 
                 if (!empty($_CONF['mail_settings']['auth'])) {
                     $transport->setUsername($_CONF['mail_settings']['username']);
