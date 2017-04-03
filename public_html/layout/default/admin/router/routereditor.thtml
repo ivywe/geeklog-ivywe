@@ -13,7 +13,7 @@
 
       <dt><label for="admin-routereditor-method">{lang_router_method}</label></dt>
       <dd>
-        <select class="uk-select" id="admin-routereditor-method" name="method">
+        <select class="uk-select uk-form-width-small" id="admin-routereditor-method" name="method">
           <option value="1"{get_selected}>GET</option>
           <option value="2"{post_selected}>POST</option>
           <option value="3"{put_selected}>PUT</option>

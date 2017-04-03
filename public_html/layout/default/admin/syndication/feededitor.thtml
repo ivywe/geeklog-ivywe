@@ -19,7 +19,7 @@
 
       <dt><label for="admin-feededitor-header_tid">{lang_header_topic}</label></dt>
       <dd>
-        <select class="uk-select" name="header_tid" id="admin-feededitor-header_tid">
+        <select class="uk-select uk-form-width-small" name="header_tid" id="admin-feededitor-header_tid">
           {header_topic_options}
         </select>
       </dd>

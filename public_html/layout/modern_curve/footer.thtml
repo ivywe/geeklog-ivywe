@@ -13,18 +13,17 @@
       <hr class="separator"{xhtml}>
 
       <!-- #footer { -->
-      <div id="footer" itemscope="itemscope" itemtype="http://schema.org/WPFooter">
+      <div class="uk-clearfix" id="footer" itemscope="itemscope" itemtype="http://schema.org/WPFooter">
         <div id="footer-content">
-        <ul class="copyright" itemprop="copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization">
-          <li class="copyright_notice" itemprop="name"><address>{copyright_notice}</address></li>
-        </ul>
-        <ul class="site_info">
-          <li class="powered_by">{powered_by}&nbsp;<a href="https://www.geeklog.net/">Geeklog</a></li>
-          <!-- Theme by Fumito Arakawa as Phize (http://phize.net/) -->
-          <li class="execution_textandtime">{execution_textandtime}</li>
-        </ul>
+        	<ul class="copyright" itemprop="copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization">
+          	<li class="copyright_notice" itemprop="name"><address>{copyright_notice}</address></li>
+        	</ul>
+        	<ul class="site_info">
+	          <li class="powered_by">{powered_by}&nbsp;<a href="https://www.geeklog.net/">Geeklog</a></li>
+	          <!-- Theme by Fumito Arakawa as Phize (http://phize.net/) -->
+	          <li class="execution_textandtime">{execution_textandtime}</li>
+        	</ul>
         </div>
-        <div style="clear: both;"></div>
       </div>
       <!-- } #footer -->
 

@@ -9,7 +9,7 @@
 				<input type="text" class="uk-input uk-form-width-medium" size="20" name="q" value="{last_query}" placeholder="{lang_search}" {xhtml}>
 	    </div>
 	    <div uk-form-custom="target: > * > span:first">
-				<select class="uk-select" name="query_limit">
+				<select class="uk-select uk-form-width-small" name="query_limit">
 					<option value="10" {10_selected}>{lang_limit_results}</option>
 	        <option value="10" {10_selected}>10</option>
 	        <option value="20" {20_selected}>20</option>

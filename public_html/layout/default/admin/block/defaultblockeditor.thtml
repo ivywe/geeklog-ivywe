@@ -23,7 +23,7 @@
       <dd class="controls_text">{topic_selection}</dd>
 
       <dt><label for="admin-blockeditor-onleft">{lang_position}</label></dt>
-      <dd><select class="uk-select" name="onleft" id="admin-blockeditor-onleft">
+      <dd><select class="uk-select uk-form-width-small" name="onleft" id="admin-blockeditor-onleft">
           <option value="2" {none_selected}>{lang_none}</option>
           <option value="1" {left_selected}>{lang_left}</option>
           <option value="0" {right_selected}>{lang_right}</option>

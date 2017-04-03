@@ -37,7 +37,7 @@
 
           <dt><label for="sel_editmode">{lang_postmode}</label></dt>
           <dd>
-            <select class="uk-select" id="sel_editmode" name="postmode" onchange="change_editmode(this);">
+            <select class="uk-select uk-form-width-small" id="sel_editmode" name="postmode" onchange="change_editmode(this);">
               {postmode_options}
             </select>
           </dd>

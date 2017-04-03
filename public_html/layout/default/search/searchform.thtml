@@ -9,7 +9,7 @@
       <dt><label for="advsearchform-query">{lang_keywords}</label></dt>
       <dd>
         <input type="text" class="uk-input" maxlength="35" value="{query}" name="query" id="advsearchform-query" class="uk-input uk-form-width-small"{xhtml}>
-        <select class="uk-select" name="keyType" title="{lang_keytype}" id="advsearchform-keyType">
+        <select class="uk-select uk-form-width-small" name="keyType" title="{lang_keytype}" id="advsearchform-keyType">
           <option value="phrase" {key_phrase_selected}>{lang_exact_phrase}</option>
           <option value="all" {key_all_selected}>{lang_all_words}</option>
           <option value="any" {key_any_selected}>{lang_any_word}</option>
@@ -25,14 +25,14 @@
 
       <dt><label for="advsearchform-topic">{lang_topic}</label></dt>
       <dd>
-        <select class="uk-select" name="topic" id="advsearchform-topic">
+        <select class="uk-select uk-form-width-small" name="topic" id="advsearchform-topic">
           {topic_option_list}
         </select>
       </dd>
 
       <dt><label for="advsearchform-type">{lang_type}</label></dt>
       <dd>
-        <select class="uk-select" name="type" id="advsearchform-type">
+        <select class="uk-select uk-form-width-small" name="type" id="advsearchform-type">
           {plugin_types}
         </select>
       </dd>
@@ -41,7 +41,7 @@
 
       <dt><label for="advsearchform-results">{lang_results}</label></dt>
       <dd>
-        <select class="uk-select" name="results" id="advsearchform-results">
+        <select class="uk-select uk-form-width-small" name="results" id="advsearchform-results">
           {search_limits}
         </select>
         {lang_per_page}

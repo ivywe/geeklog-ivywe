@@ -18,7 +18,7 @@
 
       <dt><label for="admin-topiceditor-parent_id">{lang_parent_id}</label></dt>
       <dd>
-        <select class="uk-select" name="parent_id" id="admin-topiceditor-parent_id">
+        <select class="uk-select uk-form-width-small" name="parent_id" id="admin-topiceditor-parent_id">
             {parent_id_options}
         </select>
       </dd>

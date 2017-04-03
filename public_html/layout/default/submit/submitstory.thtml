@@ -15,7 +15,7 @@
 
       <dt><label for="submitstory-postmode">{lang_postmode}</label></dt>
       <dd>
-        <select class="uk-select" name="postmode" id="submitstory-postmode">
+        <select class="uk-select uk-form-width-small" name="postmode" id="submitstory-postmode">
           {story_postmode_options}
         </select>
       </dd>

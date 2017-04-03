@@ -27,7 +27,7 @@
 
       <dt><label for="admin-blockeditor-onleft">{lang_position}</label></dt>
       <dd>
-        <select class="uk-select" name="onleft" id="admin-blockeditor-onleft">
+        <select class="uk-select uk-form-width-small" name="onleft" id="admin-blockeditor-onleft">
           <option value="2" {none_selected}>{lang_none}</option>
           <option value="1" {left_selected}>{lang_left}</option>
           <option value="0" {right_selected}>{lang_right}</option>
@@ -48,7 +48,7 @@
       
       <dt><label for="admin-blockeditor-type">{lang_blocktype}</label></dt>
       <dd>
-        <select class="uk-select" name="type" id="admin-blockeditor-type">
+        <select class="uk-select uk-form-width-small" name="type" id="admin-blockeditor-type">
           <option value="normal" {normal_selected}>{lang_normalblock}</option>
           <option value="phpblock" {php_selected}>{lang_phpblock}</option>
           <option value="portal" {portal_selected}>{lang_portalblock}</option>

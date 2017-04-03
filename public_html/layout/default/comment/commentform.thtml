@@ -38,7 +38,7 @@
 
       <dt><label for="commentform-postmode">{lang_postmode}</label></dt>
       <dd>
-        <select class="uk-select" name="postmode" id="commentform-postmode">
+        <select class="uk-select uk-form-width-small" name="postmode" id="commentform-postmode">
           {postmode_options}
         </select>
       </dd>

@@ -17,7 +17,7 @@
 
           <dt><label for="sel_editmode">{lang_postmode}</label></dt>
           <dd>
-            <select class="uk-select" name="postmode" id="sel_editmode" {change_editormode}>
+            <select class="uk-select uk-form-width-small" name="postmode" id="sel_editmode" {change_editormode}>
               {story_postmode_options}
             </select>
           </dd>

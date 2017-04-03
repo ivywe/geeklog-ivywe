@@ -9,24 +9,24 @@
 
       <dt><label for="admin-storyeditor-publish_month">{lang_date}</label></dt>
       <dd>
-        <select class="uk-select" name="publish_year" id="admin-storyeditor-publish_month" aria-describedby="admin-storyeditor-j-d1">
+        <select class="uk-select uk-form-width-xsmall" name="publish_year" id="admin-storyeditor-publish_month" aria-describedby="admin-storyeditor-j-d1">
           {publish_year_options}
         </select>
         /
-        <select class="uk-select" name="publish_month">
+        <select class="uk-select uk-form-width-xsmall" name="publish_month">
           {publish_month_options}
         </select>
         /
-        <select class="uk-select" name="publish_day">
+        <select class="uk-select uk-form-width-xsmall" name="publish_day">
           {publish_day_options}
         </select>
         &nbsp;&nbsp;
 
-        <select class="uk-select" name="publish_hour">
+        <select class="uk-select uk-form-width-xsmall" name="publish_hour">
           {publish_hour_options}
         </select>
         :
-        <select class="uk-select" name="publish_minute">
+        <select class="uk-select uk-form-width-xsmall" name="publish_minute">
           {publish_minute_options}
         </select>
 
@@ -44,44 +44,44 @@
       <dd>{topic_selection}</dd>
 
       <dt><label for="admin-storyeditor-show_topic_icon">{lang_show_topic_icon}</label></dt>
-      <dd><input type="checkbox" class="uk-checkbox"  {show_topic_icon_checked} name="show_topic_icon" id="admin-storyeditor-show_topic_icon"{xhtml}></dd>
+      <dd><input type="checkbox" class="uk-checkbox" class="uk-checkbox"  {show_topic_icon_checked} name="show_topic_icon" id="admin-storyeditor-show_topic_icon"{xhtml}></dd>
 
       <dt><label for="admin-storyeditor-cachetime">{lang_cachetime}</label></dt>
       <dd><input type="text" class="uk-input" size="8" value="{cache_time}" name="cache_time" id="admin-storyeditor-cachetime" class="text" aria-describedby="admin-storyeditor-j-d2"{xhtml}></dd>
       <dd class="description" id="admin-storyeditor-j-d2">{lang_cachetime_desc}</dd>
 
       <dt><label for="admin-storyeditor-draft_flag">{lang_draft}</label></dt>
-      <dd><input type="checkbox" class="uk-checkbox"  {is_checked} name="draft_flag" id="admin-storyeditor-draft_flag"{xhtml}></dd>
+      <dd><input type="checkbox" class="uk-checkbox" class="uk-checkbox"  {is_checked} name="draft_flag" id="admin-storyeditor-draft_flag"{xhtml}></dd>
 
       <dt><label for="admin-storyeditor-archiveflag">{lang_archivetitle}</label></dt>
       <dd>
         <label for="admin-storyeditor-archiveflag">{lang_enabled}</label>&nbsp;
-        <input type="checkbox" class="uk-checkbox"  value="1" {is_checked2} onclick="enablearchive(this);" name="archiveflag" id="admin-storyeditor-archiveflag"{xhtml}>
-        <input type="checkbox" class="uk-checkbox"  name="statuscode" id="storycode10" value="10" {is_checked3}{xhtml}>{lang_optionarchive}
-        &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="uk-checkbox"  name="statuscode" id="storycode11" value="11" {is_checked4}{xhtml}>
+        <input type="checkbox" class="uk-checkbox" class="uk-checkbox"  value="1" {is_checked2} onclick="enablearchive(this);" name="archiveflag" id="admin-storyeditor-archiveflag"{xhtml}>
+        <input type="checkbox" class="uk-checkbox" class="uk-checkbox"  name="statuscode" id="storycode10" value="10" {is_checked3}{xhtml}>{lang_optionarchive}
+        &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="uk-checkbox" class="uk-checkbox"  name="statuscode" id="storycode11" value="11" {is_checked4}{xhtml}>
         &nbsp;<label for="storycode11">{lang_optiondelete}</label>
       </dd>
 
       <dt><label for="admin-storyeditor-expire_month">{lang_archivetitle}({lang_date})</label></dt>
       <dd>
-        <select class="uk-select" name="expire_year" id="admin-storyeditor-expire_month">
+        <select class="uk-select uk-form-width-xsmall" name="expire_year" id="admin-storyeditor-expire_month">
           {expire_year_options}
         </select>
         /
-        <select class="uk-select" name="expire_month">
+        <select class="uk-select uk-form-width-xsmall" name="expire_month">
           {expire_month_options}
         </select>
         /
-        <select class="uk-select" name="expire_day">
+        <select class="uk-select uk-form-width-xsmall" name="expire_day">
           {expire_day_options}
         </select>
         &nbsp;&nbsp;
 
-        <select class="uk-select" name="expire_hour">
+        <select class="uk-select uk-form-width-xsmall" name="expire_hour">
           {expire_hour_options}
         </select>
         :
-        <select class="uk-select" name="expire_minute">
+        <select class="uk-select uk-form-width-xsmall" name="expire_minute">
           {expire_minute_options}
         </select>
         {expireampm_selection}
@@ -90,14 +90,14 @@
       <dt><label>{lang_mode}</label></dt>
       <dd>
         {featured_options}
-        <select class="uk-select" name="frontpage">
+        <select class="uk-select uk-form-width-small" name="frontpage">
           {frontpage_options}
         </select>
         <br{xhtml}>
-        <select class="uk-select" name="commentcode">
+        <select class="uk-select uk-form-width-small" name="commentcode">
           {comment_options}
         </select>
-        <select class="uk-select" name="trackbackcode">
+        <select class="uk-select uk-form-width-small" name="trackbackcode">
           {trackback_options}
         </select>
       </dd>
@@ -105,27 +105,27 @@
       <dt><label id="admin-storyeditor-j-d3">{lang_cmt_disable}:</label></dt>
       <dd>
         <label for="cmt_close_flag">{lang_enabled}</label>&nbsp;
-        <input type="checkbox" class="uk-checkbox"  name="cmt_close_flag" id="cmt_close_flag" value="1" {is_checked5} onclick="enablecmtclose(this);" aria-describedby="admin-storyeditor-j-d3"{xhtml}>
+        <input type="checkbox" class="uk-checkbox" class="uk-checkbox"  name="cmt_close_flag" id="cmt_close_flag" value="1" {is_checked5} onclick="enablecmtclose(this);" aria-describedby="admin-storyeditor-j-d3"{xhtml}>
            &nbsp;
            <span dir="ltr">
-           <select class="uk-select" name="cmt_close_year">
+           <select class="uk-select uk-form-width-xsmall" name="cmt_close_year">
              {cmt_close_year_options}
            </select>
            /
-           <select class="uk-select" name="cmt_close_month">
+           <select class="uk-select uk-form-width-xsmall" name="cmt_close_month">
                    {cmt_close_month_options}
            </select>
            /
-           <select class="uk-select" name="cmt_close_day">
+           <select class="uk-select uk-form-width-xsmall" name="cmt_close_day">
               {cmt_close_day_options}
            </select>
            &nbsp;&nbsp;
 
-           <select class="uk-select" name="cmt_close_hour">
+           <select class="uk-select uk-form-width-xsmall" name="cmt_close_hour">
                {cmt_close_hour_options}
            </select>
            :
-           <select class="uk-select" name="cmt_close_minute">
+           <select class="uk-select uk-form-width-xsmall" name="cmt_close_minute">
                {cmt_close_minute_options}
            </select>
                {cmt_close_ampm_selection}
@@ -144,7 +144,7 @@
 
       <dt><label for="admin-storyeditor-postmode">{lang_postmode}</label></dt>
       <dd>
-        <select class="uk-select" name="postmode" id="admin-storyeditor-postmode">
+        <select class="uk-select uk-form-width-small" name="postmode" id="admin-storyeditor-postmode">
           {post_options}
         </select>
       </dd>

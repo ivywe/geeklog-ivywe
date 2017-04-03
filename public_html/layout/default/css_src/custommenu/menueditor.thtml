@@ -4,7 +4,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="cmeditor-mmode">{lang_mode}</label>
         <div class="uk-form-controls">
-            <select class="uk-select" name="mmode" id="cmeditor-mmode" aria-describedby="cmeditor-d1">
+            <select class="uk-select uk-form-width-small" name="mmode" id="cmeditor-mmode" aria-describedby="cmeditor-d1">
                 <option value="fixation" {val_mode_fixation}>{lang_mode_fixation}</option>
                 <option value="variable" {val_mode_variable}>{lang_mode_variable}</option>
                 <option value="php" {val_mode_php}>{lang_mode_php}</option>
@@ -65,7 +65,7 @@
     <div class="uk-form-row">
         <label class="uk-form-label" for="cmeditor-tid">{lang_topic}</label>
         <div class="uk-form-controls">
-            <select class="uk-select" name="tid" id="cmeditor-tid">
+            <select class="uk-select uk-form-width-small" name="tid" id="cmeditor-tid">
                 <option value="all" {all_selected}>{lang_all}</option>
                 <option value="homeonly" {homeonly_selected}>{lang_homeonly}</option>
                 {topic_options}

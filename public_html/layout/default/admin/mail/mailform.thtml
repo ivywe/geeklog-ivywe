@@ -6,7 +6,7 @@
     <dl class="form_block">
       <dt><label for="admin-mailform-to_group">{lang_to}</label></dt>
       <dd>
-        <select class="uk-select" name="to_group" id="admin-mailform-to_group">
+        <select class="uk-select uk-form-width-small" name="to_group" id="admin-mailform-to_group">
           <option value="">{lang_selectgroup}</option>
           {group_options}
         </select>

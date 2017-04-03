@@ -42,7 +42,7 @@
 
       <div class="uk-form-row">
         <label class="uk-form-label" for="sp-advanced_editor-sp_format">{lang_pageformat}</label>        <div class="uk-form-controls">
-          <select class="uk-select" name="sp_format" id="sp-advanced_editor-sp_format">
+          <select class="uk-select uk-form-width-small" name="sp_format" id="sp-advanced_editor-sp_format">
             <option value="blankpage" {blankpage_selected}>{lang_blankpage}</option>
             <option value="noblocks" {noblock_selected}>{lang_noblocks}</option>
             <option value="leftblocks" {leftblocks_selected}>{lang_leftblocks}</option>
@@ -54,7 +54,7 @@
       <div class="uk-form-row">
         <label class="uk-form-label" for="sp-advanced_editor-commentcode">{lang_mode}</label> 
         <div class="uk-form-controls">
-          <select class="uk-select" name="commentcode" id="sp-advanced_editor-commentcode">
+          <select class="uk-select uk-form-width-small" name="commentcode" id="sp-advanced_editor-commentcode">
             {comment_options}
           </select>
         </div>
@@ -75,7 +75,7 @@
       <div class="uk-form-row">
         <label class="uk-form-label" for="sel_editmode">{lang_postmode}</label> 
         <div class="uk-form-controls">
-          <select class="uk-select" name="postmode" id="sel_editmode" {change_editormode}>
+          <select class="uk-select uk-form-width-small" name="postmode" id="sel_editmode" {change_editormode}>
             {post_options}
           </select>
         </div>
@@ -83,7 +83,7 @@
 
       <div class="uk-form-row uk-margin-large-top">
         <span id="sel_toolbar" style="display:{show_adveditor};">{lang_toolbar}:&nbsp;
-          <select class="uk-select" id="fckeditor_toolbar_selector" name="fckeditor_toolbar_selector" onchange="changeToolbar(this.value);">
+          <select class="uk-select uk-form-width-small" id="fckeditor_toolbar_selector" name="fckeditor_toolbar_selector" onchange="changeToolbar(this.value);">
             <option value="editor-toolbar1">{toolbar1}</option>
             <option value="editor-toolbar2" selected="selected">{toolbar2}</option>
             <option value="editor-toolbar3">{toolbar3}</option>
