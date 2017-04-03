@@ -36,11 +36,11 @@ $locale = array();
 if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
     $locale['ja'] = array(
         'locale'    => (version_compare(VERSION, '2.1.2', '>=') ? 'ja_JP' : 'C'),
-        'date'      => '%Y年%m月%d日 %H:%M',
-        'daytime'   => '%m月%d日 %H:%M',
-        'shortdate' => '%d日',
-        'dateonly'  => '%m月%d日',
-        'timeonly'  => '%H:%M',
+        'date'      => '%Y/%m/%d %H:%M %Z',
+        'daytime'   => '%m/%d %H:%M %Z',
+        'shortdate' => '%m/%d %H:%M %Z',
+        'dateonly'  => '%m/%d',
+        'timeonly'  => '%H:%M %Z',
     );
 } else {
     $locale['ja'] = array(
@@ -48,10 +48,10 @@ if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
                             ? 'ja_JP'
                             : 'ja_JP.UTF-8'
                        ),
-        'date'      => '%Y年%B%e日(%a) %H:%M %Z',
+        'date'      => '%Y/%m/%d %H:%M %Z',
         'daytime'   => '%m/%d %H:%M %Z',
-        'shortdate' => '%Y年%B%e日',
-        'dateonly'  => '%B%e日',
+        'shortdate' => '%m/%d %H:%M %Z',
+        'dateonly'  => '%m/%d',
         'timeonly'  => '%H:%M %Z',
     );
 }
