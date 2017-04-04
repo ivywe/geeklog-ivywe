@@ -1333,7 +1333,7 @@ function COM_siteFooter($rightBlock = -1, $custom = '')
         . $copyrightyear . ' ' . $copyrightname . '<br' . XHTML . '>&nbsp;'
         . $LANG01[94]);
     $footer->set_var('copyright_msg', $LANG01[93] . ' &copy; '
-        . $copyrightyear . ' ' . $_CONF['site_name']);
+        . $copyrightyear . ' ' . $copyrightname);
     $footer->set_var('current_year', $year);
     $footer->set_var('lang_copyright', $LANG01[93]);
     $footer->set_var('trademark_msg', $LANG01[94]);
@@ -1892,7 +1892,7 @@ function COM_createHTMLDocument(&$content = '', $information = array())
         . $copyrightYear . ' ' . $copyrightName . '<br' . XHTML . '>&nbsp;'
         . $LANG01[94]);
     $footer->set_var('copyright_msg', $LANG01[93] . ' &copy; '
-        . $copyrightYear . ' ' . $_CONF['site_name']);
+        . $copyrightYear . ' ' . $copyrightName);
     $footer->set_var('current_year', $year);
     $footer->set_var('lang_copyright', $LANG01[93]);
     $footer->set_var('trademark_msg', $LANG01[94]);
