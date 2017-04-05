@@ -542,7 +542,7 @@ function LIB_Edit(
 
     //delete_option
     if ($delflg){
-        $delbutton = '<input type="submit" value="' . $LANG_ADMIN['delete']
+        $delbutton = '<input type="submit" class="uk-button uk-button-danger" value="' . $LANG_ADMIN['delete']
                    . '" name="mode"%s>';
         $jsconfirm = ' onclick="return confirm(\'' . $MESSAGE[76] . '\');"';
         $templates->set_var ('delete_option',

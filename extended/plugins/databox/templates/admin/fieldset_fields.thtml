@@ -14,12 +14,10 @@ head.appendChild(lnk);
 //-->
 </script>
 
-<div class=" uk-clearfix"></div>
-
 <form class="uk-form uk-form-horizontal" name="fieldsetfields" action="{site_admin_url}/plugins/{script}" method="post" id="admin-fieldsetfields">
 
-  <div class="uk-grid uk-overflow-container">
-    <div class="uk-width-2-5">
+  <div uk-grid>
+    <div>
 
       <dl class="uk-description-list-line">
         <dt><label class="uk-text-nowrap" for="admin-groupmembers-fieldFrom">{LANG_fieldlist}</label></dt>
@@ -34,22 +32,22 @@ head.appendChild(lnk);
       </dl>
 
     </div>
-    <div class="uk-width-1-5">
+    <div>
 
       <ul class="uk-list uk-margin-large-top uk-margin-small-bottom">
         <li>
-          <input type="button" name="right"
+          <input type="button" name="right" class="uk-button uk-button-primary"
           value="{LANG_add}"
           onclick="moveSelectedOptions(this.form[ 'fieldFrom' ],this.form[ 'fieldTo' ],false)"
           class="uk-margin-small-bottom"{xhtml}></li>
         <li>
-          <input type="button" name="left"
+          <input type="button" name="left" class="uk-button uk-button-primary"
           value="{LANG_remove}"
           onclick="moveSelectedOptions(this.form[ 'fieldTo' ],this.form[ 'fieldFrom' ],false)"{xhtml}></li>
       </ul>
 
     </div>
-    <div class="uk-width-2-5">
+    <div>
 
       <dl class="uk-description-list-line">
         <dt><label class="uk-text-nowrap" for="admin-groupmembers-fieldTo">{LANG_fieldsetfields}</label></dt>
@@ -68,8 +66,8 @@ head.appendChild(lnk);
 
   <div class="uk-form-row uk-margin-large-top">
     <div class="uk-form-controls">
-      <input type="submit" value="{lang_save}" onclick="return setUsers(this.form)" style="min-width:10em"{xhtml}>
-      <input type="button" value="{lang_cancel}" onclick="javascript:history.go(-1)"{xhtml}>
+      <input type="submit" value="{lang_save}" class="uk-button uk-button-primary" onclick="return setUsers(this.form)"{xhtml}>
+      <input type="button" value="{lang_cancel}" class="uk-button" onclick="javascript:history.go(-1)"{xhtml}>
       <input type="hidden" name="mode" value="savefieldsetfields"{xhtml}>
       <input type="hidden" name="groupmembers"{xhtml}>
       <input type="hidden" name="id" value="{id}"{xhtml}>

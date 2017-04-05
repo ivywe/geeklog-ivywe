@@ -2711,7 +2711,7 @@ global $_TABLES;
                     $retval .= ' >' . stripslashes( $A2['name'] ) ;
                     $retval .= '</option>' . LB;
                 }else  if  ($A['input_type']==2){
-                    $retval .= '<input type="radio" name="category[]" value="' . $A2['category_id'];
+                    $retval .= '<input type="radio" class="uk-radio" name="category[]" value="' . $A2['category_id'];
                     $retval .= '"';
                     $retval .= $checked;
                     $retval .= ' '.$disabled.' >' . stripslashes( $A2['name'] ) . '</span>' . LB;
@@ -4242,7 +4242,7 @@ function DATABOX_getradiolist(
     foreach( $ary as $id => $value ){
 
         //echo "ary".$i."=".$ary[$i]."<br>";
-        $retval .= "<input type='radio' NAME='$fld' $disabled VALUE='$id'";
+        $retval .= "<input type='radio' class='uk-radio' NAME='$fld' $disabled VALUE='$id'";
 		if  ($selected==""){
 		}else{
             if( $id == $selected ){

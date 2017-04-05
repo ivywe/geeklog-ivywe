@@ -22,7 +22,7 @@
     <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_csvheader}</label>
       <div class="uk-form-controls">
-        <input type="text" class="uk-input" size="48" maxlength="160" name="csvheader" value="{csvheader}"{xhtml}>
+        <input type="text" class="uk-input uk-form-width-small" size="48" maxlength="160" name="csvheader" value="{csvheader}"{xhtml}>
         <span class="uk-form-help-inline">{help_csvheader}</span>
       </div>
     </div>
@@ -31,7 +31,7 @@
     <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_value}</label>
       <div class="uk-form-controls">
-        <input type="text" class="uk-input" size="48" maxlength="160" name="value" value="{value}"{xhtml}>
+        <input type="text" class="uk-input uk-form-width-small" size="48" maxlength="160" name="value" value="{value}"{xhtml}>
         <span class="uk-form-help-inline">{help_value}</span>
       </div>
     </div>
@@ -49,7 +49,7 @@
     <div class="uk-form-row uk-margin-large uk-margin-large-bottom">
       <div class="uk-form-controls">
         {# Submit button - Save Cancel Delete #}
-        <input type="submit" value="{lang_save}" name="mode" class="uk-button uk-form-width-medium"{xhtml}>
+        <input type="submit" value="{lang_save}" name="mode" class="uk-button uk-button-primary"{xhtml}>
         <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
         <input type="hidden" value="{code}" name="old_code"{xhtml}>
         {delete_option}{lang_delete_help}

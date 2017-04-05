@@ -8,7 +8,7 @@
     <label class="uk-form-label" >{lang_inst}</label>
     <div class="uk-form-controls">
       {lang_fieldset} {list_fieldset}
-      <input type="submit" value="{lang_export}" name="mode" class="uk-button"{xhtml}>
+      <input type="submit" value="{lang_export}" class="uk-button uk-button-primary" name="mode" class="uk-button"{xhtml}>
       <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
       <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
     </div>

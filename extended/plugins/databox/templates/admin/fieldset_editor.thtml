@@ -61,18 +61,16 @@
   </fieldset>
   <div class="uk-form-row uk-margin-large-top">
     <div class="uk-form-controls">
-      <input type="submit" value="{lang_save}" name="mode" class="uk-button uk-form-width-medium"{xhtml}>
+      <input type="submit" value="{lang_save}" name="mode" class="uk-button uk-button-primary"{xhtml}>
       <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
       <input type="hidden" value="{code}" name="old_code"{xhtml}>
       {delete_option}
-      <span class="uk-form-help-inline uk-text-bold uk-text-danger">{lang_delete_help}</span>
       <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
       {# Submit button - Save Cancel Delete #}
     </div>
+    <span class="uk-form-help-inline uk-text-bold uk-text-danger">{lang_delete_help}</span>
   </div>
 
 </form>
-
-</div>
 
 {# end {templatelocation} #}

@@ -29,8 +29,12 @@ fieldset {
 
 .uk-navbar-dropdown{opacity: 0.6; }
 
-  #footer {
-    border: none;
-    color: #ccc;
-    background-color: #000;
-  }
+#footer {
+  border: none;
+  color: #ccc;
+  background-color: #000;
+}
+
+#admin-topmenu {
+	border: none;
+}

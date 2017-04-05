@@ -40,7 +40,7 @@
     <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" >{lang_code} {help_code}<span class="uk-text-danger">{lang_must_code}</span>{help_code}</label>
       <div class="uk-form-controls">
-        <input type="text" class="uk-input" size="48" maxlength="160" name="code" value="{code}" required{xhtml}>
+        <input type="text" class="uk-input uk-form-width-small" size="48" maxlength="160" name="code" value="{code}" required{xhtml}>
       </div>
     </div>
 
@@ -169,7 +169,7 @@
     <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_orderno} {help_orderno}</label>
       <div class="uk-form-controls">
-        <input type="text" class="uk-input uk-form-width-small" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
+        <input type="text" class="uk-input uk-form-width-xsmall" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
       </div>
     </div>
 

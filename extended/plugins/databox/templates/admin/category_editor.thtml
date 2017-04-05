@@ -22,7 +22,7 @@
     <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_code} {help_code}</label>
       <div class="uk-form-controls">
-        <input type="text" class="uk-input ="uk-form-width-medium" size="48" maxlength="160" name="code" value="{code}" required{xhtml}>
+        <input type="text" class="uk-input uk-form-width-medium" size="48" maxlength="160" name="code" value="{code}" required{xhtml}>
       </div>
     </div>
 
@@ -30,7 +30,7 @@
     <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_name}<span class="uk-text-danger">{lang_must}</span></label>
       <div class="uk-form-controls">
-        <input type="text" class="uk-input ="uk-form-width-medium" size="48" maxlength="160" name="name" value="{name}" required{xhtml}>
+        <input type="text" class="uk-input uk-form-width-medium" size="48" maxlength="160" name="name" value="{name}" required{xhtml}>
       </div>
     </div>
 
@@ -70,7 +70,7 @@
     <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_orderno}</label>
       <div class="uk-form-controls">
-        <input type="text" class="uk-input ="uk-form-width-small" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
+        <input type="text" class="uk-input uk-form-width-xsmall" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
       </div>
     </div>
 
@@ -95,13 +95,13 @@
     <label class="uk-form-label"></label>
     <div class="uk-form-controls">
       {# Submit button - Save Cancel Delete #}
-      <input type="submit" value="{lang_save}" name="mode" class="uk-button uk-form-width-medium"{xhtml}>
+      <input type="submit" value="{lang_save}" name="mode" class="uk-button uk-button-primary"{xhtml}>
       <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
       <input type="hidden" value="{code}" name="old_code"{xhtml}>
       {delete_option}
-      <span class="uk-form-help-inline">{lang_delete_help}</span>
       <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
     </div>
+		<span class="uk-form-help-inline">{lang_delete_help}</span>
   </div>
 </form>
 

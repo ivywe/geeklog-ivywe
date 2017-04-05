@@ -1,8 +1,10 @@
 {# begin {templatelocation} #}
 
+<!--
 		<div id="shipping_cart">
         <dl class="uk-descliption-list-line"><dt>{choose_shipping}</dt>
         <dd>{shipping_radio_buttons}</dd>
 		</div>
+-->
 
 {# end {templatelocation} #}

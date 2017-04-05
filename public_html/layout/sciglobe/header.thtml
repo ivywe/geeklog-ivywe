@@ -34,17 +34,18 @@
 <link rel="start contents" href="{site_url}"{xhtml}>
 
 {feed_url}
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.css">
+
+<link rel="stylesheet" type="text/css" href="{layout_url}/vendor/FullscreenSlitSlider/css/demo.css" />
+<link rel="stylesheet" type="text/css" href="{layout_url}/vendor/FullscreenSlitSlider/css/style.css" />
+<link rel="stylesheet" type="text/css" href="{layout_url}/vendor/FullscreenSlitSlider/css/custom.css" />
+<script type="text/javascript" src="{layout_url}/vendor/FullscreenSlitSlider/js/modernizr.custom.79639.js"></script>
+<noscript>
+	<link rel="stylesheet" type="text/css" href="{layout_url}/vendor/FullscreenSlitSlider/css/styleNoJS.css" />
+</noscript>
+
 {rel_links}
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.css">
-
-		<link rel="stylesheet" type="text/css" href="{layout_url}/vendor/FullscreenSlitSlider/css/demo.css" />
-		<link rel="stylesheet" type="text/css" href="{layout_url}/vendor/FullscreenSlitSlider/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="{layout_url}/vendor/FullscreenSlitSlider/css/custom.css" />
-		<script type="text/javascript" src="{layout_url}/vendor/FullscreenSlitSlider/js/modernizr.custom.79639.js"></script>
-		<noscript>
-			<link rel="stylesheet" type="text/css" href="{layout_url}/vendor/FullscreenSlitSlider/css/styleNoJS.css" />
-		</noscript>
-
 
 
 

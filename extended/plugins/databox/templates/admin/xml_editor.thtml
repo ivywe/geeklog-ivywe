@@ -21,7 +21,7 @@
     <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" >{lang_tag}<span class="must">{lang_must}</span></label>
       <div class="uk-form-controls">
-        <input type="text" class="uk-input" size="48" maxlength="160" name="tag" value="{tag}" required{xhtml}>
+        <input type="text" class="uk-input uk-form-width-small" size="48" maxlength="160" name="tag" value="{tag}" required{xhtml}>
       </div>
     </div>
 
@@ -29,7 +29,7 @@
     <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" >{lang_value}</label>
       <div class="uk-form-controls">
-        <input type="text" class="uk-input" size="48" maxlength="160" name="value" value="{value}"{xhtml}>                </div>
+        <input type="text" class="uk-input uk-form-width-small" size="48" maxlength="160" name="value" value="{value}"{xhtml}>                </div>
     </div>
 
     {# field #}
@@ -53,7 +53,7 @@
   <div class="uk-form-row uk-margin-large-top">
     <div class="uk-form-controls">
       {# Submit button - Save Cancel Delete #}
-      <input type="submit" value="{lang_save}" name="mode" class="uk-button uk-form-width-medium"{xhtml}>
+      <input type="submit" value="{lang_save}" name="mode" class="uk-button uk-button-primary"{xhtml}>
       <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
       <input type="hidden" value="{code}" name="old_code"{xhtml}>
       {delete_option}
