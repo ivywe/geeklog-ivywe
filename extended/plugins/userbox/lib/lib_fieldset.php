@@ -322,7 +322,7 @@ function LIB_Edit(
         if ($wkcnt>0){
             $templates->set_var('lang_delete_help', $lang_box_admin['delete_help_fieldset']);
         }else{
-            $delbutton = '<input type="submit" value="' . $LANG_ADMIN['delete']
+            $delbutton = '<input type="submit" class="uk-button uk-button-danger" value="' . $LANG_ADMIN['delete']
                    . '" name="mode"%s>';
             $jsconfirm = ' onclick="return confirm(\'' . $MESSAGE[76] . '\');"';
             $templates->set_var ('delete_option',
@@ -984,8 +984,6 @@ function LIB_editfields(
     $templates->parse('output', 'editor');
     $retval .= $templates->finish($templates->get_var('output'));
 	
-    $retval .= COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
-
     return $retval;
 }
 function LIB_selectFields(
@@ -1417,7 +1415,7 @@ function LIB_templatesdirectory (
 	}
 		
     //
-    $selection = '<select class="uk-select" id="defaulttemplatesdirectory" name="defaulttemplatesdirectory">' . LB;
+    $selection = '<select class="uk-select uk-form-width-medium" id="defaulttemplatesdirectory" name="defaulttemplatesdirectory">' . LB;
 	$selection .= "<option value=\"\">  </option>".LB;
 
     //

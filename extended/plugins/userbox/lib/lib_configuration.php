@@ -172,12 +172,15 @@ function LIB_Deleteconfig(
 
     $box_conf="_".strtoupper($pi_name)."_CONF";
     global $$box_conf;
-    $box_conf=$$box_conf;
+    $ary=$$box_conf;
     
-    foreach( $box_conf  as $nm => $value ){
+    foreach( $ary  as $nm => $value ){
       $display.="del: ".$nm."=".$vl."<br>";
       $config->del($nm,$group);
     }
+    $$box_conf=array();
+	$config->del(null,$group);
+    DB_delete($_TABLES['conf_values'], 'group_name', $group);	
 
     $display.="..........{$pi_name} Config Delete"."<br>";
 
@@ -203,7 +206,7 @@ function LIB_Initializeconfig(
     require_once $_CONF['path'] . 'plugins/'.$pi_name.'/install_defaults.php';
 
     $function="plugin_initconfig_".$pi_name;
-    $rt=$function();
+    $rt=$function(1);
 
     $display.="..........{$pi_name} Config Initialization finished!!!"."<br>";
 

@@ -984,8 +984,6 @@ function LIB_editfields(
     $templates->parse('output', 'editor');
     $retval .= $templates->finish($templates->get_var('output'));
 	
-    $retval .= COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
-
     return $retval;
 }
 function LIB_selectFields(

@@ -49,7 +49,7 @@ function LIB_List(
     }
 
     $filter = "{$lang_box_admin['kind']}:";
-    $filter .="<select class='uk-select' name='filter_val' style='width: 125px' onchange='this.form.submit()'>";
+    $filter .="<select class='uk-select uk-form-width-medium' name='filter_val' style='width: 125px' onchange='this.form.submit()'>";
     $filter .="<option value='{$LANG09[9]}'";
 
     if  ($filter_val==$LANG09[9]){
@@ -355,7 +355,7 @@ function LIB_Edit(
         if ($wkcnt>0){
             $templates->set_var('lang_delete_help', $lang_box_admin['delete_help_mst']);
         }else{
-            $delbutton = '<input type="submit" value="' . $LANG_ADMIN['delete']
+            $delbutton = '<input type="submit" class="uk-button uk-button-danger" value="' . $LANG_ADMIN['delete']
                    . '" name="mode"%s>';
             $jsconfirm = ' onclick="return confirm(\'' . $MESSAGE[76] . '\');"';
             $templates->set_var ('delete_option',

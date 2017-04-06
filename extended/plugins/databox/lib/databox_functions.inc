@@ -830,7 +830,7 @@ function DATABOX_getselectionary(
 {
     $selectionary=array();
     $ary=array();
-    $ary=explode("\r" , $selection);
+    $ary=split("\r" , $selection);
 
     $j=0;
     for ($ii = 0; $ii < count($ary); $ii++) {
