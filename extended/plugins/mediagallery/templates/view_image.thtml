@@ -6,10 +6,10 @@
   <div class="mg_album_title"><strong>{album_title}</strong>{!if rsslink}&nbsp;{rsslink}{!endif}</div>
   <div class="mg_search">
     <form name="mgsearch" method="post" action="{site_url}/search.php" class="uk-form"><div>
-      <input type="text" name="keywords" value="{keywords}"{xhtml}>
+      <input type="text" class="uk-input" name="keywords" value="{keywords}"{xhtml}>
       <input type="hidden" name="mode" value="search"{xhtml}>
       <input type="hidden" name="swhere" value="0"{xhtml}>
-      <input type="submit" value="{lang_search}"{xhtml}>
+      <input type="submit" class="uk-button uk-button-primary" value="{lang_search}"{xhtml}>
     </div></form>
   </div>
 </div>

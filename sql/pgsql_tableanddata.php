@@ -25,6 +25,7 @@ CREATE TABLE {$_TABLES['blocks']} (
   type varchar(20) NOT NULL default 'normal',
   title varchar(48) default NULL,
   blockorder smallint NOT NULL default '1',
+  device varchar(15) NOT NULL default 'all',
   content text,
   allow_autotags smallint NOT NULL DEFAULT '0',
   cache_time INT NOT NULL DEFAULT '0',
@@ -208,6 +209,17 @@ CREATE TABLE {$_TABLES['groups']} (
 ";
 
 $_SQL[] = "
+CREATE TABLE {$_TABLES['language_items']} (
+  id SERIAL NOT NULL,
+  var_name VARCHAR(30) NOT NULL,
+  language VARCHAR(30) NOT NULL,
+  name VARCHAR(30) NOT NULL,
+  value VARCHAR(255) DEFAULT '' NOT NULL,
+  PRIMARY KEY (id)
+)
+";
+
+$_SQL[] = "
 CREATE TABLE {$_TABLES['maillist']} (
   code SERIAL,
   name varchar(32) default NULL,
@@ -249,6 +261,16 @@ CREATE TABLE {$_TABLES['postmodes']} (
 )
 ";
 
+$_SQL[] = "CREATE TABLE {$_TABLES['routes']} (
+    rid SERIAL,
+    method int NOT NULL DEFAULT 1,
+    rule varchar(255) NOT NULL DEFAULT '',
+    route varchar(255) NOT NULL DEFAULT '',
+    priority int NOT NULL DEFAULT 100,
+    PRIMARY KEY (rid)
+)
+";
+
 $_SQL[] = "
 CREATE TABLE {$_TABLES['sessions']} (
   sess_id int NOT NULL default '0',
@@ -257,7 +279,7 @@ CREATE TABLE {$_TABLES['sessions']} (
   uid smallint NOT NULL default '1',
   md5_sess_id varchar(128) default NULL,
   whos_online smallint NOT NULL default '1',
-  topic varchar(128) NOT NULL default '',
+  topic varchar(75) NOT NULL default '',
   PRIMARY KEY (sess_id)
 );
   CREATE INDEX {$_TABLES['sessions']}_start_time ON {$_TABLES['sessions']} (start_time);
@@ -357,8 +379,8 @@ $_SQL[] = "
 CREATE TABLE {$_TABLES['syndication']} (
   fid SERIAL,
   type varchar(30) NOT NULL default 'article',
-  topic varchar(128) NOT NULL default '::all',
-  header_tid varchar(128) NOT NULL default 'none',
+  topic varchar(75) NOT NULL default '::all',
+  header_tid varchar(75) NOT NULL default 'none',
   format varchar(20) NOT NULL default 'RSS-2.0',
   limits varchar(5) NOT NULL default '10',
   content_length smallint NOT NULL default '0',
@@ -392,7 +414,7 @@ CREATE TABLE {$_TABLES['tokens']} (
 
 $_SQL[] = "
 CREATE TABLE {$_TABLES['topic_assignments']} (
-  tid varchar(128) NOT NULL,
+  tid varchar(75) NOT NULL,
   type varchar(30) NOT NULL,
   id varchar(128) NOT NULL,
   inherit smallint NOT NULL default '1',
@@ -403,8 +425,8 @@ CREATE TABLE {$_TABLES['topic_assignments']} (
 
 $_SQL[] = "
 CREATE TABLE {$_TABLES['topics']} (
-  tid varchar(128) NOT NULL default '',
-  topic varchar(128) default NULL,
+  tid varchar(75) NOT NULL default '',
+  topic varchar(75) default NULL,
   imageurl varchar(255) default NULL,
   meta_description TEXT NULL,
   meta_keywords TEXT NULL,
@@ -544,7 +566,7 @@ CREATE TABLE {$_TABLES['users']} (
 $_SQL[] = "
 CREATE TABLE {$_TABLES['vars']} (
   name varchar(20) NOT NULL default '',
-  value varchar(128) default NULL,
+  value TEXT default NULL,
   PRIMARY KEY (name)
 )
 ";
@@ -635,6 +657,7 @@ $_DATA[] = "INSERT INTO {$_TABLES['access']} (acc_ft_id, acc_grp_id) VALUES (64,
 $_DATA[] = "INSERT INTO {$_TABLES['access']} (acc_ft_id, acc_grp_id) VALUES (65,16) ";
 $_DATA[] = "INSERT INTO {$_TABLES['access']} (acc_ft_id, acc_grp_id) VALUES (66,16) ";
 $_DATA[] = "INSERT INTO {$_TABLES['access']} (acc_ft_id, acc_grp_id) VALUES (67,16) ";
+$_DATA[] = "INSERT INTO {$_TABLES['access']} (acc_ft_id, acc_grp_id) VALUES (68,18) ";
 
 $_DATA[] = "INSERT INTO {$_TABLES['blocks']} (bid, is_enabled, name, type, title, blockorder, content, rdfurl, rdfupdated, onleft, phpblockfn, group_id, owner_id, perm_owner, perm_group, perm_members, perm_anon) VALUES ((SELECT NEXTVAL('{$_TABLES['blocks']}_bid_seq')),1,'user_block','gldefault','User Functions',20,'','','epoch',1,'',4,2,3,3,2,2) ";
 $_DATA[] = "INSERT INTO {$_TABLES['blocks']} (bid, is_enabled, name, type, title, blockorder, content, rdfurl, rdfupdated, onleft, phpblockfn, group_id, owner_id, perm_owner, perm_group, perm_members, perm_anon) VALUES ((SELECT NEXTVAL('{$_TABLES['blocks']}_bid_seq')),1,'admin_block','gldefault','Admins Only',20,'','','epoch',1,'',4,2,3,3,2,2) ";
@@ -752,6 +775,7 @@ $_DATA[] = "INSERT INTO {$_TABLES['features']} (ft_id, ft_name, ft_descr, ft_gl_
 $_DATA[] = "INSERT INTO {$_TABLES['features']} (ft_id, ft_name, ft_descr, ft_gl_core) VALUES ((SELECT nextval('{$_TABLES['features']}_ft_id_seq')), 'config.Filemanager.tab_images', 'Access to configure Filemanager Images Settings', 0)";
 $_DATA[] = "INSERT INTO {$_TABLES['features']} (ft_id, ft_name, ft_descr, ft_gl_core) VALUES ((SELECT nextval('{$_TABLES['features']}_ft_id_seq')), 'config.Filemanager.tab_videos', 'Access to configure Filemanager Videos Settings', 0)";
 $_DATA[] = "INSERT INTO {$_TABLES['features']} (ft_id, ft_name, ft_descr, ft_gl_core) VALUES ((SELECT nextval('{$_TABLES['features']}_ft_id_seq')), 'config.Filemanager.tab_audios', 'Access to configure Filemanager Audios Settings', 0)";
+$_DATA[] = "INSERT INTO {$_TABLES['features']} (ft_id, ft_name, ft_descr, ft_gl_core) VALUES ((SELECT nextval('{$_TABLES['features']}_ft_id_seq')), 'language.edit', 'Can manage Language Settings', 1)";
 
 $_DATA[] = "INSERT INTO {$_TABLES['frontpagecodes']} (code, name) VALUES (0,'Show Only in Topic') ";
 $_DATA[] = "INSERT INTO {$_TABLES['frontpagecodes']} (code, name) VALUES (1,'Show on Front Page') ";
@@ -789,6 +813,7 @@ $_DATA[] = "INSERT INTO {$_TABLES['group_assignments']} (ug_main_grp_id, ug_uid,
 $_DATA[] = "INSERT INTO {$_TABLES['group_assignments']} (ug_main_grp_id, ug_uid, ug_grp_id) VALUES (15,NULL,1) ";
 $_DATA[] = "INSERT INTO {$_TABLES['group_assignments']} (ug_main_grp_id, ug_uid, ug_grp_id) VALUES (16,NULL,1) ";
 $_DATA[] = "INSERT INTO {$_TABLES['group_assignments']} (ug_main_grp_id, ug_uid, ug_grp_id) VALUES (17,NULL,1) ";
+$_DATA[] = "INSERT INTO {$_TABLES['group_assignments']} (ug_main_grp_id, ug_uid, ug_grp_id) VALUES (18,NULL,1) ";
 
 // Traditionally, grp_id 1 = Root, 2 = All Users, 13 = Logged-In Users
 $_DATA[] = "INSERT INTO {$_TABLES['groups']} (grp_id, grp_name, grp_descr, grp_gl_core) VALUES ((SELECT nextval('{$_TABLES['groups']}_grp_id_seq')),'Root','Has full access to the site',1) ";
@@ -808,6 +833,7 @@ $_DATA[] = "INSERT INTO {$_TABLES['groups']} (grp_id, grp_name, grp_descr, grp_g
 $_DATA[] = "INSERT INTO {$_TABLES['groups']} (grp_id, grp_name, grp_descr, grp_gl_core) VALUES ((SELECT nextval('{$_TABLES['groups']}_grp_id_seq')), 'Comment Submitters', 'Can submit comments', 0);";
 $_DATA[] = "INSERT INTO {$_TABLES['groups']} (grp_id, grp_name, grp_descr, grp_gl_core) VALUES ((SELECT nextval('{$_TABLES['groups']}_grp_id_seq')), 'Configuration Admin', 'Has full access to configuration', 1);";
 $_DATA[] = "INSERT INTO {$_TABLES['groups']} (grp_id, grp_name, grp_descr, grp_gl_core) VALUES ((SELECT nextval('{$_TABLES['groups']}_grp_id_seq')), 'Filemanager Admin', 'Has full access to File Manager', 1);";
+$_DATA[] = "INSERT INTO {$_TABLES['groups']} (grp_id, grp_name, grp_descr, grp_gl_core) VALUES ((SELECT nextval('{$_TABLES['groups']}_grp_id_seq')), 'Language Admin', 'Has full access to language', 1);";
 
 $_DATA[] = "INSERT INTO {$_TABLES['maillist']} (code, name) VALUES ((SELECT nextval('{$_TABLES['maillist']}_code_seq')),'Don''t Email') ";
 $_DATA[] = "INSERT INTO {$_TABLES['maillist']} (code, name) VALUES ((SELECT nextval('{$_TABLES['maillist']}_code_seq')),'Email Headlines Each Night') ";
@@ -816,6 +842,13 @@ $_DATA[] = "INSERT INTO {$_TABLES['pingservice']} (pid, name, site_url, ping_url
 
 $_DATA[] = "INSERT INTO {$_TABLES['postmodes']} (code, name) VALUES ('plaintext','Plain Old Text') ";
 $_DATA[] = "INSERT INTO {$_TABLES['postmodes']} (code, name) VALUES ('html','HTML Formatted') ";
+
+$_DATA[] = "INSERT INTO {$_TABLES['routes']} (method, rule, route, priority) VALUES (1, '/article/@sid/print', '/article.php?story=@sid&mode=print', 100)";
+$_DATA[] = "INSERT INTO {$_TABLES['routes']} (method, rule, route, priority) VALUES (1, '/article/@sid', '/article.php?story=@sid', 110)";
+$_DATA[] = "INSERT INTO {$_TABLES['routes']} (method, rule, route, priority) VALUES (1, '/archives/@topic/@year/@month', '/directory.php?topic=@topic&year=@year&month=@month', 120)";
+$_DATA[] = "INSERT INTO {$_TABLES['routes']} (method, rule, route, priority) VALUES (1, '/page/@page', '/staticpages/index.php?page=@page', 130)";
+$_DATA[] = "INSERT INTO {$_TABLES['routes']} (method, rule, route, priority) VALUES (1, '/links/portal/@item', '/links/portal.php?what=link&item=@item', 140)";
+$_DATA[] = "INSERT INTO {$_TABLES['routes']} (method, rule, route, priority) VALUES (1, '/links/category/@cat', '/links/index.php?category=@cat', 150)";
 
 $_DATA[] = "INSERT INTO {$_TABLES['sortcodes']} (code, name) VALUES ('ASC','Oldest First') ";
 $_DATA[] = "INSERT INTO {$_TABLES['sortcodes']} (code, name) VALUES ('DESC','Newest First') ";
@@ -859,7 +892,7 @@ $_DATA[] = "INSERT INTO {$_TABLES['userprefs']} (uid, noicons, willing, dfid, tz
 #
 
 $_DATA[] = "INSERT INTO {$_TABLES['users']} (uid, username, fullname, passwd, email, homepage, sig, regdate, cookietimeout, theme, status) VALUES ((SELECT NEXTVAL('{$_TABLES['users']}_uid_seq')),'Anonymous','Anonymous','',NULL,NULL,'',NOW(),0,NULL,3) ";
-$_DATA[] = "INSERT INTO {$_TABLES['users']} (uid, username, fullname, passwd, email, homepage, sig, regdate, cookietimeout, theme, status) VALUES ((SELECT NEXTVAL('{$_TABLES['users']}_uid_seq')),'Admin','Geeklog SuperUser','5f4dcc3b5aa765d61d8327deb882cf99','root@localhost','http://www.geeklog.net/','',NOW(),28800,NULL,3) ";
+$_DATA[] = "INSERT INTO {$_TABLES['users']} (uid, username, fullname, passwd, email, homepage, sig, regdate, cookietimeout, theme, status) VALUES ((SELECT NEXTVAL('{$_TABLES['users']}_uid_seq')),'Admin','Geeklog SuperUser','5f4dcc3b5aa765d61d8327deb882cf99','root@localhost','https://www.geeklog.net/','',NOW(),28800,NULL,3) ";
 
 $_DATA[] = "INSERT INTO {$_TABLES['vars']} (name, value) VALUES ('totalhits','0') ";
 $_DATA[] = "INSERT INTO {$_TABLES['vars']} (name, value) VALUES ('lastemailedstories','') ";
@@ -869,4 +902,3 @@ $_DATA[] = "INSERT INTO {$_TABLES['vars']} (name, value) VALUES ('database_versi
 
 $_DATA[] = "INSERT INTO {$_TABLES['trackbackcodes']} (code, name) VALUES (0,'Trackback Enabled') ";
 $_DATA[] = "INSERT INTO {$_TABLES['trackbackcodes']} (code, name) VALUES (-1,'Trackback Disabled') ";
-?>

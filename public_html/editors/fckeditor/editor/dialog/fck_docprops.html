@@ -407,7 +407,7 @@ function SetUrl( url )
 						<tr>
 							<td>
 								<span fcklang="DlgDocLangDir">Language Direction</span><br />
-								<select id="selDirection">
+								<select class="uk-select" id="selDirection">
 									<option value="" selected="selected"></option>
 									<option value="ltr" fcklang="DlgDocLangDirLTR">Left to Right (LTR)</option>
 									<option value="rtl" fcklang="DlgDocLangDirRTL">Right to Left (RTL)</option>
@@ -426,7 +426,7 @@ function SetUrl( url )
 						<tr>
 							<td style="white-space: nowrap">
 								<span fcklang="DlgDocCharSet">Character Set Encoding</span><br />
-								<select id="selCharSet" onchange="CheckOther( this, 'txtCustomCharSet' );">
+								<select class="uk-select" id="selCharSet" onchange="CheckOther( this, 'txtCustomCharSet' );">
 									<option value="" selected="selected"></option>
 									<option value="us-ascii">ASCII</option>
 									<option fcklang="DlgDocCharSetCE" value="iso-8859-2">Central European</option>
@@ -456,7 +456,7 @@ function SetUrl( url )
 						<tr>
 							<td nowrap="nowrap">
 								<span fcklang="DlgDocDocType">Document Type Heading</span><br />
-								<select id="selDocType" onchange="CheckOther( this, 'txtDocType' );">
+								<select class="uk-select" id="selDocType" onchange="CheckOther( this, 'txtDocType' );">
 									<option value="" selected="selected"></option>
 									<option value='&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"&gt;'>HTML
 										4.01 Transitional</option>
@@ -575,10 +575,10 @@ function SetUrl( url )
 				</div>
 				<div id="divMeta" style="display: none">
 					<span fcklang="DlgDocMeIndex">Document Indexing Keywords (comma separated)</span><br />
-					<textarea id="txtMetaKeywords" style="width: 100%" rows="2" cols="20"></textarea>
+					<textarea class="uk-textarea" id="txtMetaKeywords" style="width: 100%" rows="2" cols="20"></textarea>
 					<br />
 					<span fcklang="DlgDocMeDescr">Document Description</span><br />
-					<textarea id="txtMetaDescription" style="width: 100%" rows="4" cols="20"></textarea>
+					<textarea class="uk-textarea" id="txtMetaDescription" style="width: 100%" rows="4" cols="20"></textarea>
 					<br />
 					<span fcklang="DlgDocMeAuthor">Author</span><br />
 					<input id="txtMetaAuthor" style="width: 100%" type="text" /><br />

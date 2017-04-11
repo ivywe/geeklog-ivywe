@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | geeklog/plugins/dbman/install_defaults.php                                |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2011-2014 mystral-kk - geeklog AT mystral-kk DOT net        |
+// | Copyright (C) 2011-2016 mystral-kk - geeklog AT mystral-kk DOT net        |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
 // +---------------------------------------------------------------------------+
@@ -68,7 +68,7 @@ $_DBMAN_DEFAULT['backup_except']   = array();
 $_DBMAN_DEFAULT['backup_except'][] = "/^{$_DB_table_prefix}gus_/";
 
 // The flag to decide whether to backup with psedo-cron
-$_DBMAN_DEFAULT['cron_backup'] = true;
+$_DBMAN_DEFAULT['cron_backup'] = false;
 
 // Maximum number of backup files to be kept.  When set to 0, no backup file
 // will be deleted.

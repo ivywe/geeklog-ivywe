@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Maps Plugin 1.2                                                           |
+// | Maps Plugin 1.4                                                           |
 // +---------------------------------------------------------------------------+
 // | japanese_utf-8.php                                                        |
 // |                                                                           |
@@ -326,6 +326,7 @@ $LANG_MAPS_EMAIL = array(
     'on_map'                => 'マップ上:',
     'submissions'           => '投稿: ',
     'marker_submissions'    => 'マーカーの投稿',
+    'description'           => '説明:',
 );
 
 // Messages for the plugin upgrade

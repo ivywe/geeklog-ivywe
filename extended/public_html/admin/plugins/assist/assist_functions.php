@@ -37,7 +37,7 @@ $navbarMenu = array();
 $navbarMenu[$LANG_ASSIST_admin_menu['1']]= $adminurl.'information.php';
 $navbarMenu[$LANG_ASSIST_admin_menu['2']]= $adminurl.'user.php';
 $navbarMenu[$LANG_ASSIST_admin_menu['3']]= $adminurl.'vars.php';
-$navbarMenu[$LANG_ASSIST_admin_menu['4']]= $adminurl.'newsletter.php';
+//$navbarMenu[$LANG_ASSIST_admin_menu['4']]= $adminurl.'newsletter.php';
 $navbarMenu[$LANG_ASSIST_admin_menu['5']]= $adminurl.'backuprestore.php';
 
 

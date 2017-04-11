@@ -1330,10 +1330,10 @@ function MG_buildAlbumJumpbox(&$album, $album_id, $access=1, $hide=0)
     global $_MG_CONF, $LANG_MG03;
 
     $retval  = '<form name="jumpbox" id="jumpbox" action="' . $_MG_CONF['site_url'] . '/album.php' . '" method="get" class="uk-form"><div>' . LB;
-    $retval .= $LANG_MG03['jump_to'] . ':&nbsp;<select name="aid" onchange="forms[\'jumpbox\'].submit()">' . LB;
+    $retval .= $LANG_MG03['jump_to'] . ':&nbsp;<select class="uk-select uk-form-width-small" name="aid" onchange="forms[\'jumpbox\'].submit()">' . LB;
     $album->buildJumpBox($retval, $album_id, $access, $hide);
     $retval .= '</select>' . LB;
-    $retval .= '<input type="submit" value="' . $LANG_MG03['go'] . '"' . XHTML . '>' . LB;
+    $retval .= '<input type="submit" class="uk-button uk-button-primary" value="' . $LANG_MG03['go'] . '"' . XHTML . '>' . LB;
     $retval .= '<input type="hidden" name="page" value="1"' . XHTML . '>' . LB;
     $retval .= '</div></form>' . LB;
 
@@ -1349,7 +1349,7 @@ function MG_buildAlbumBox(&$album, $album_id, $access=1, $hide=0, $type='upload'
     $items = '';
     $album->buildAlbumBox($items, $album_id, $access, $hide, $type);
     if (!empty($items)) {
-        $retval  = '<select name="album_id" onchange="onAlbumChange()">' . LB;
+        $retval  = '<select class="uk-select uk-form-width-small" name="album_id" onchange="onAlbumChange()">' . LB;
         $retval .= $items;
         $retval .= '</select>' . LB;
     }
@@ -1403,7 +1403,7 @@ function MG_options($info)
 function MG_optionlist($info)
 {
     $disabled = isset($info['disabled']) ? $info['disabled'] : '';
-    $retval = '<select name="' . $info['name'] . '"'
+    $retval = '<select class="uk-select uk-form-width-small" name="' . $info['name'] . '"'
             . ($disabled ? ' disabled="disabled"' : '') . '>' . LB;
     foreach ($info['values'] as $key => $val) {
         $retval .= '<option value="' . $key . '"'
@@ -1417,7 +1417,7 @@ function MG_optionlist($info)
 
 function MG_checkbox($info)
 {
-    $retval = '<input type="checkbox" name="' . $info['name'] . '" '
+    $retval = '<input type="checkbox" class="uk-checkbox" name="' . $info['name'] . '" '
             . 'value="' . $info['value'] . '"'
             . ($info['checked'] ? ' checked="checked"' : '') . XHTML . '>';
 

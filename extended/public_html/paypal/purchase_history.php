@@ -50,7 +50,21 @@ paypal_access_check();
 
 /* Purchase history for anonymous users/paypal viewers doesn't make sense */
 if (!SEC_hasRights('paypal.user','paypal.admin','OR') || COM_isAnonUser() ) {
-    $display = COM_siteHeader();
+
+		$display = "";
+
+    switch( $_PAY_CONF['display_blocks'] ) {
+    case 0 :    // none
+    case 2 :    // right only
+        $display .= COM_siteHeader('none', $pagetitle);
+        break;
+    case 1 :    // left only
+    case 3 :    // both
+    default :
+        $display .= COM_siteHeader('none', $pagetitle);
+        break;
+    }
+
     $display .= paypal_viewer_menu();
     $display .= PAYPAL_loginRequiredForm();
     $display .= COM_siteFooter();
@@ -60,7 +74,7 @@ if (!SEC_hasRights('paypal.user','paypal.admin','OR') || COM_isAnonUser() ) {
 
 //Main
 
-$display = COM_siteHeader();
+$display = COM_siteHeader('none');
 $display .= paypal_user_menu();
 
 if (!empty($_REQUEST['msg'])) $display .= COM_showMessageText( stripslashes($_REQUEST['msg']), $LANG_PAYPAL_1['message']);

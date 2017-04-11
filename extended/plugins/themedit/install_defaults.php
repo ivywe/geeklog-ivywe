@@ -71,7 +71,7 @@ $_THM_DEFAULT['enable_all_files'] = FALSE;
 * @NOTE: theme names are case-sensitive
 */
 $_THM_DEFAULT['allowed_themes'] = array(
-	'professional',
+	'default',
 );
 
 /**

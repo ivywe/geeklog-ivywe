@@ -41,7 +41,7 @@ CREATE TABLE {$_TABLES['maps_geo']} (
   lat FLOAT( 10, 6 ) NOT NULL ,
   lng FLOAT( 10, 6 ) NOT NULL ,
   PRIMARY KEY (gid)
-) ENGINE=InnoDB
+) ENGINE=MyISAM
 ";
 
 $_SQL[] = "
@@ -78,7 +78,7 @@ CREATE TABLE {$_TABLES['maps_maps']} (
   perm_members tinyint(1) unsigned NOT NULL default '2',
   perm_anon tinyint(1) unsigned NOT NULL default '2',
   PRIMARY KEY (mid)
-) ENGINE=InnoDB
+) ENGINE=MyISAM
 ";
 
 $_SQL[] = "
@@ -134,7 +134,7 @@ CREATE TABLE {$_TABLES['maps_markers']} (
   perm_anon tinyint(1) unsigned NOT NULL default '2',
   submission tinyint(1) unsigned NOT NULL default '0',
   PRIMARY KEY (mkid)
-) ENGINE=InnoDB
+) ENGINE=MyISAM
 ";
 
 $_SQL[] = "
@@ -185,7 +185,7 @@ CREATE TABLE {$_TABLES['maps_submission']} (
   perm_anon tinyint(1) unsigned NOT NULL default '2',
   submission tinyint(1) unsigned NOT NULL default '1',
   PRIMARY KEY (mkid)
-) ENGINE=InnoDB
+) ENGINE=MyISAM
 ";
 
 $_SQL[] = "
@@ -203,7 +203,7 @@ CREATE TABLE {$_TABLES['maps_overlays']} (
   o_ne_lng FLOAT( 10, 6 ) NOT NULL,
   o_order smallint(5) unsigned NOT NULL default '1',
   PRIMARY KEY (oid)
-) ENGINE=InnoDB
+) ENGINE=MyISAM
 ";
 
 $_SQL[] = "CREATE TABLE {$_TABLES['maps_map_overlay']} (
@@ -211,7 +211,7 @@ $_SQL[] = "CREATE TABLE {$_TABLES['maps_map_overlay']} (
 	mo_mid int(11),
 	mo_oid int(11),
 	PRIMARY KEY (mo_id)
-) ENGINE=InnoDB
+) ENGINE=MyISAM
 ";
 
 $_SQL[] = "
@@ -220,7 +220,7 @@ CREATE TABLE {$_TABLES['maps_map_icons']} (
   icon_name VARCHAR(255),
   icon_image VARCHAR(255),
   PRIMARY KEY (icon_id)
-) ENGINE=InnoDB
+) ENGINE=MyISAM
 ";
 
 $_SQL[] = "
@@ -228,7 +228,7 @@ CREATE TABLE {$_TABLES['maps_overlays_groups']} (
   o_group_id SMALLINT(5) UNSIGNED NOT NULL AUTO_INCREMENT,
   o_group_name VARCHAR(255),
   PRIMARY KEY (o_group_id)
-) ENGINE=InnoDB
+) ENGINE=MyISAM
 ";
 
 $_SQL[] = "INSERT INTO {$_TABLES['vars']} (name, value) VALUES ('globalMapHits', '0')";

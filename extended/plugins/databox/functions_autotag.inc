@@ -1493,7 +1493,7 @@ function databox_field(
         }
         $mkids=rtrim($mkids," ");
         $mkidary=array();
-        $mkid_ary=split(" " , $mkids);
+        $mkid_ary=explode(" " , $mkids);
         $selectedMarkers="";
         if (function_exists("MAPS_selectedMarkers") AND $mkids<>"") {
             $selectedMarkers=MAPS_selectedMarkers(
@@ -3618,7 +3618,7 @@ function databox_search(
         }
         $mkids=rtrim($mkids," ");
         $mkidary=array();
-        $mkid_ary=split(" " , $mkids);
+        $mkid_ary=explode(" " , $mkids);
         $selectedMarkers="";
         if (function_exists("MAPS_selectedMarkers") AND $mkids<>"") {
             $selectedMarkers=MAPS_selectedMarkers(

@@ -24,7 +24,7 @@
         <tr>
             <th style="width:30%" class="alignright">{lang_tag}<span class="must">{lang_must}</span></th>
             <td style="width:70%">
-                <input type="text" size="60" maxlength="160" name="tag" value="{tag}"{xhtml}>
+                <input type="text" class="uk-input" size="60" maxlength="160" name="tag" value="{tag}"{xhtml}>
             </td>
         </tr>
 
@@ -32,7 +32,7 @@
         <tr>
             <th style="width:30%" class="alignright">{lang_value}</th>
             <td style="width:70%">
-                <input type="text" size="60" maxlength="160" name="value" value="{value}"{xhtml}>
+                <input type="text" class="uk-input" size="60" maxlength="160" name="value" value="{value}"{xhtml}>
             </td>
         </tr>
 

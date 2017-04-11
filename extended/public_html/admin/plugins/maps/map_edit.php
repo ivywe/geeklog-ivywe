@@ -41,6 +41,8 @@ require_once '../../../lib-common.php';
 require_once '../../auth.inc.php';
 require_once 'edit_functions.php';
 
+MAPS_getheadercode();
+
 $display = '';
 
 // Ensure user even has the rights to access this page
@@ -329,10 +331,10 @@ function getMapForm($map = array()) {
 	
 	$radio = '<p>' . $LANG_MAPS_1['choose_icon'] . '</p>';
 	($map['mk_icon'] == 0) ? $checked = ' checked="checked"' : $checked = '';
-	$radio .= '<input type="radio" name="mk_icon" value="0"' . $checked . '>' . $LANG_MAPS_1['no_icon'] . '&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;';
+	$radio .= '<input type="radio" class="uk-radio" name="mk_icon" value="0"' . $checked . '>' . $LANG_MAPS_1['no_icon'] . '&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;';
 	while ($icon = DB_fetchArray($result, false)) {
 		($map['mk_icon'] == $icon['icon_id']) ? $checked = ' checked="checked"' : $checked = '';  
-		$radio .= '<input type="radio" name="mk_icon" value="' . $icon['icon_id'] . '"' . $checked . '> <img src="' . $_MAPS_CONF['images_icons_url'] . $icon['icon_image'] . '" alt="' . $icon['icon_image'] . '">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;';
+		$radio .= '<input type="radio" class="uk-radio" name="mk_icon" value="' . $icon['icon_id'] . '"' . $checked . '> <img src="' . $_MAPS_CONF['images_icons_url'] . $icon['icon_image'] . '" alt="' . $icon['icon_image'] . '">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;';
 	}
 	$radio .= '<hr'. XHTML .'>';
 	$template->set_var('icon', $radio);
@@ -455,8 +457,7 @@ switch ($_REQUEST['mode']) {
         $msg = $LANG_MAPS_1['deletion_fail'];
     }
 		// delete complete, return to map list
-        echo COM_refresh($_CONF['site_url'] . "/admin/plugins/maps/index.php?msg=$msg");
-        exit();
+        COM_redirect($_CONF['site_url'] . "/admin/plugins/maps/index.php?msg=$msg");
         break;
 
     case 'save':
@@ -556,8 +557,7 @@ switch ($_REQUEST['mode']) {
             $msg = $LANG_MAPS_1['save_success'];
         }
         // save complete, return to map list
-        echo COM_refresh($_CONF['site_admin_url'] . "/plugins/maps/index.php?msg=$msg");
-        exit();
+        COM_redirect($_CONF['site_admin_url'] . "/plugins/maps/index.php?msg=$msg");
         break;
 
     case 'edit':
@@ -573,7 +573,7 @@ switch ($_REQUEST['mode']) {
 			}
             $display .= getMapForm($A);
         } else {
-            echo COM_refresh($_CONF['site_url']);
+            COM_redirect($_CONF['site_url']);
         }
         break;
 

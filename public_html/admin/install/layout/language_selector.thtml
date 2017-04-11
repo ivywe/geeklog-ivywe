@@ -1,0 +1,14 @@
+<form action="index.php" method="post" style="display: inline;" class="uk-form">
+    {% for item in hidden_items %}
+        <input type="hidden" name="{! item.name !}" value="{! item.value !}">
+    {% endfor %}
+
+    {{ LANG.INSTALL.86 }}: <select class="uk-select" name="language">
+        {% for language in languages %}
+            <option value="{! language.value !}"{{ language.selected }}>
+                {! language.text !}
+            </option>
+        {% endfor %}
+    </select>&nbsp;
+    <button type="submit" class="uk-button" value="{{ LANG.INSTALL.80 }}">{{ LANG.INSTALL.80 }}</button>
+</form>

@@ -55,7 +55,7 @@ function doUnCheckAll_sessions()
 <!-- BEGIN sessRow -->
   <tr>
     <td>
-      <input type="checkbox" name="sel[]" value="{session_id}"{xhtml}>
+      <input type="checkbox" class="uk-checkbox" name="sel[]" value="{session_id}"{xhtml}>
       <input type="hidden" name="session_id[]" value="{session_id}"{xhtml}>
     </td>
     <td>{session_description}</td>
@@ -72,9 +72,9 @@ function doUnCheckAll_sessions()
 <!-- END sessItems -->
 <div class="mg_submit_center">
   <input type="hidden" name="action" value="sessions"{xhtml}>
-  <input type="submit" name="mode"   value="{lang_save}"{xhtml}>
-  <input type="submit" name="mode"   value="{lang_cancel}"{xhtml}>
-  <input type="submit" name="mode"   value="{lang_delete}"{xhtml}>
+  <input type="submit" class="uk-button uk-button-primary" name="mode"   value="{lang_save}"{xhtml}>
+  <input type="submit" class="uk-button uk-button-primary" name="mode"   value="{lang_cancel}"{xhtml}>
+  <input type="submit" class="uk-button uk-button-primary" name="mode"   value="{lang_delete}"{xhtml}>
 </div>
 </form>
 

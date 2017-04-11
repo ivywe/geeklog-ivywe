@@ -7,12 +7,13 @@
 // public_html/admin/plugins/assist/backuprestore.php
 // 20111108 tsuchitani AT ivywe DOT co DOT jp
 
-define ('THIS_SCRIPT', 'backuprestore.php');
-//define ('THIS_SCRIPT', 'test.php');
+define ('THIS_SCRIPT', 'assist/backuprestore.php');
+//define ('THIS_SCRIPT', 'assist/test.php');
 
 require_once('assist_functions.php');
 require_once ($_CONF['path'] . 'plugins/assist/lib/lib_configuration.php');
 
+require_once( $_CONF['path_system'] . 'lib-admin.php' );
 
 //
 // +---------------------------------------------------------------------------+
@@ -27,15 +28,13 @@ function fncDisply($pi_name)
     global $_CONF;
     global $LANG_ASSIST_ADMIN;
 
-    $pi_name="assist";
     $tmplfld=assist_templatePath('admin','default',$pi_name);
     $templates = new Template($tmplfld);
-
     $templates->set_file (array (
         'list' => 'backuprestore.thtml',
     ));
 
-//@@@@@    $templates->set_var('about_thispage', $LANG_ASSIST_ADMIN['about_admin_backuprestore']);
+    $templates->set_var('about_thispage', $LANG_ASSIST_ADMIN['about_admin_backuprestore']);
     $templates->set_var ('site_admin_url', $_CONF['site_admin_url']);
 
     $token = SEC_createToken();
@@ -44,6 +43,7 @@ function fncDisply($pi_name)
     $templates->set_var('gltoken', $token);
     $templates->set_var ( 'xhtml', XHTML );
 
+    $templates->set_var('script', THIS_SCRIPT);
 
     $templates->set_var ( 'config', $LANG_ASSIST_ADMIN['config']);
     $templates->set_var ( 'config_backup', $LANG_ASSIST_ADMIN['config_backup']);
@@ -78,6 +78,32 @@ function fncDisply($pi_name)
     return $retval ;
 
 }
+function fncMenu(
+)
+// +---------------------------------------------------------------------------+
+// | 機能  menu表示  
+// | 書式 fncMenu()
+// +---------------------------------------------------------------------------+
+// | 戻値 menu 
+// +---------------------------------------------------------------------------+
+{
+
+    global $_CONF;
+    global $LANG_ADMIN;
+
+    global $LANG_ASSIST_ADMIN;
+
+    $retval = '';
+    //
+    $menu_arr[]=array('url' => $_CONF['site_admin_url'],'text' => $LANG_ADMIN['admin_home']);
+    $retval .= ADMIN_createMenu(
+        $menu_arr,
+        $LANG_ASSIST_ADMIN['about_admin_backuprestore'],
+        plugin_geticon_assist()
+    );
+    
+    return $retval;
+}
 
 
 // +---------------------------------------------------------------------------+
@@ -91,8 +117,19 @@ $action ="";
 if (isset ($_REQUEST['action'])) {
     $action = COM_applyFilter($_REQUEST['action'],false);
 }
+if (isset ($_REQUEST['mode'])) {
+    $mode = COM_applyFilter ($_REQUEST['mode'], false);
+}
+if ($action == $LANG_ADMIN['cancel'])  { // cancel
+    $mode="";
+}
 
-if ($action=="" ) {
+if ($mode=="" 
+    OR $mode=="configinit"
+    OR $mode=="configbackup"
+    OR $mode=="configrestore"
+    OR $mode=="configupdate"
+    ) {
 }else{
     if (!SEC_checkToken()){
         COM_accessLog("User {$_USER['username']} tried to illegally and failed CSRF checks.");
@@ -105,8 +142,8 @@ if ($action=="" ) {
 $display='';
 $menuno=5;
 $information = array();
-$information['what']='menu';
-$information['rightblock']=false;
+//$information['what']='menu';
+//$information['rightblock']=false;
 $information['pagetitle']=$LANG_ASSIST_ADMIN['piname']."backup and restore";
 
 $display.=ppNavbarjp($navbarMenu,$LANG_ASSIST_admin_menu[$menuno]);
@@ -115,34 +152,47 @@ if (isset ($_REQUEST['msg'])) {
                                                   true), $pi_name);
 }
 
-switch ($action) {
-    case $LANG_ASSIST_ADMIN['config_init']:
-        $display.=LIB_Deleteconfig($pi_name,$config);
-        $display.=LIB_Initializeconfig($pi_name);
+switch ($mode) {
+    case 'configinitexec':
+        $display .= fncMenu();
+        $dummy=LIB_Deleteconfig($pi_name,$config);
+        $dummy=LIB_Initializeconfig($pi_name);
+        $display.="config init";
+        $display.=fncDisply($pi_name);
         break;
-    case $LANG_ASSIST_ADMIN['config_backup']:
-        $display.=LIB_Backupconfig($pi_name);	
+    case 'configbackupexec':
+        $display.=LIB_Backupconfig($pi_name);
         break;
-    case $LANG_ASSIST_ADMIN['config_restore'];
+    case 'configrestoreexec';
         $display.=LIB_Restoreconfig($pi_name,$config);
         break;
-    case $LANG_ASSIST_ADMIN['config_update']:
-		$display.=LIB_Backupconfig($pi_name,"update");
-			$display.=LIB_Deleteconfig($pi_name,$config);
-			$display.=LIB_Initializeconfig($pi_name);
-			$display.=LIB_Restoreconfig($pi_name,$config,"update");
-	
+    case 'configupdateexec':
+        $display .= fncMenu();
+        $dummy=LIB_Backupconfig($pi_name,"update");
+        $dummy=LIB_Deleteconfig($pi_name,$config);
+        $dummy=LIB_Initializeconfig($pi_name);
+        $dummy=LIB_Restoreconfig($pi_name,$config,"update");
+        $display.="config update";
+        $display.=fncDisply($pi_name);
+	    break;
+	case 'configbackup':
+	case 'configinit':
+	case 'configrestore':
+	case 'configupdate':
+        $information['pagetitle']=$LANG_ASSIST_ADMIN['piname'];
+        $display .= fncMenu();
+        $display .= assist_Confirmation($pi_name,$mode);
         break;
     default:
+        $display .= fncMenu();
+        $display.=fncDisply($pi_name);
 }
-$display.=fncDisply($pi_name);
-//FOR GL2.0.0 
-if (COM_versionCompare(VERSION, "2.0.0",  '>=')){
-	$display = COM_createHTMLDocument($display,$information);
-}else{
-	$display = COM_siteHeader ($information['what'], $information['pagetitle']).$display;
-	$display .= COM_siteFooter($information['rightblock']);
-}
+$display=COM_startBlock($LANG_ASSIST_ADMIN['piname'],''
+         ,COM_getBlockTemplate('_admin_block', 'header'))
+         .$display
+         .COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
+
+$display=assist_displaypage($pi_name,'_admin',$display,$information);
 COM_output($display);
 
 

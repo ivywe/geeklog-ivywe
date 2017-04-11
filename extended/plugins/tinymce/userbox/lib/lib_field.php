@@ -440,7 +440,7 @@ function LIB_Edit(
     $templates->set_var('lang_dfid', $lang_box_admin['dfid']);
     $templates->set_var('help_dfid', $lang_box_admin['help_dfid']);
     //$list_dfid=DATABOX_getoptionlistary ($lang_box_textcheck,"textcheck",$textcheck,$pi_name);
-    $list_dfid = '<select id="dfid" name="dfid">' . LB
+    $list_dfid = '<select class="uk-select" id="dfid" name="dfid">' . LB
                . COM_optionList ($_TABLES['dateformats'], 'dfid,description',
                                  $dfid) . '</select>';
     $templates->set_var( 'list_dfid', $list_dfid);

@@ -117,7 +117,7 @@ function plugin_getBlocks_langsel($side, $topic='')
         $language = MBYTE_languageList($_CONF['default_charset']);
         $display .= '<form action="' . $_CONF['site_url'] . '/langsel/index.php" method="post" class="uk-form">' . LB;
         $display .= '<div>' . LB;
-        $display .= '<select style="width: 100%" name="langsel" id="langsel">' . LB;
+        $display .= '<select class="uk-select " name="langsel" id="langsel">' . LB;
         foreach ($language as $langFile => $langName) {
             $display .= '<option value="' . $langFile . '"';
             if ($langFile == COM_getLanguage()) {

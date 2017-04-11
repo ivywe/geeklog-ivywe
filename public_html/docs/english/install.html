@@ -7,7 +7,7 @@
 </head>
 
 <body>
-<p><a href="http://www.geeklog.net/" style="background:transparent"><img src="../images/newlogo.gif" alt="Geeklog" width="243" height="90" /></a></p>
+<p><a href="https://www.geeklog.net/" style="background:transparent"><img src="../images/newlogo.gif" alt="Geeklog" width="243" height="90" /></a></p>
 <div class="menu"><a href="index.html">Geeklog Documentation</a> - Installation Instructions</div>
 
 <h1>Installing Geeklog</h1>
@@ -40,9 +40,11 @@
 
     <h3><a name="preinstall">Required Software</a></h3>
 
-        <p>To install and use Geeklog you will need to have a server running Apache or Microsoft IIS with PHP 5.2.0 or higher installed. You will also need either <a href="http://dev.mysql.com/downloads/">MySQL</a> 4.1.2 or later (<a href="http://mariadb.org/">MariaDB</a> 5.1 or later will also work), <a href="http://www.postgresql.org/download/">PostgreSQL</a> 9.1.7 or greater, or <a href="http://www.microsoft.com/sqlserver/">Microsoft SQL Server 2000</a> or newer.</p>
+        <p>To install and use Geeklog you will need to have a server running Apache or Microsoft IIS with PHP 5.3.3 or higher installed (PHP 7.X is supported). You will also need either <a href="http://dev.mysql.com/downloads/">MySQL</a> 4.1.3 or later (<a href="http://mariadb.org/">MariaDB</a> 5.1 or later will also work), or <a href="http://www.postgresql.org/download/">PostgreSQL</a> 9.1.7 or greater.</p>
 
-        <p><strong>Note for PostgreSQL users:</strong> Geeklog currently requires that the Postgres option <tt>standard_conforming_strings</tt> is set to <tt>off</tt> (it is <tt>on</tt> by default as of PostgreSQL 9.1).</p>
+        <p><strong>Note for PostgreSQL users:</strong> Geeklog currently requires that the Postgres option <span class="tt">standard_conforming_strings</span> is set to <span class="tt">off</span> (it is <span class="tt">on</span> by default as of PostgreSQL 9.1).</p>
+        
+        <p><strong>Note for MySQL users:</strong> For multi language sites you generally want to use the database collation utf8_general_ci. This collation will be able to handle the character sets of different languages. As of version 5.5.3 MySQL supports 4-byte characters. In this case if you want to support for example emoji icons characters which are 4 bytes you will need to use a collation which supports it like utf8mb4_general_ci. For existing Geeklog databases which are using a different collation you can use a tool like phpMyAdmin to change your database default collation along with all the table collations. Be warned depending on what your initial collation is you may need to also update the data in your tables.</p>        
 
     <h3><a name="things_you_should_know">Things You Should Know</a></h3>
 
@@ -51,6 +53,7 @@
         <li>Know how to determine the path of your root web directory. (<a href="#glossary">What is a path?</a>)</li>
         <li>Have the ability to unpack the downloaded Geeklog tarball file.</li>
         <li>Have the ability to create a new database or have access to an existing one.</li>
+        <li>Have a db user that can modify the database. For MySQL this includes a user that has been granted all privileges on the database (Plus the LOCK permission which is not included in the ALL permissions when granting permissions).</li>
         <li>Have access to your web server via SSH or FTP so you can change permissions on a few files and directories.</li>
     </ul>
 
@@ -59,7 +62,7 @@
 
     <ol>
         <li>
-            <p>Download the current version of Geeklog from <a href="http://www.geeklog.net/">Geeklog.net</a>.</p>
+            <p>Download the current version of Geeklog from <a href="https://www.geeklog.net/">Geeklog.net</a>.</p>
         </li>
         <li>
             <p>Unpack the downloaded tarball file by running: </p>
@@ -68,7 +71,7 @@
             <p><strong>Note:</strong> Some users have reported that WinZip corrupts certain Geeklog files during decompression. This will cause errors during the installation process. You are strongly urged not to use WinZip. Try <a href="http://www.7-zip.org/">7-Zip</a> or <a href="http://www.rarlab.com/">WinRAR</a> if you must decompress the file locally.</p>
         </li>
         <li>
-            <p>Create a blank MySQL, PostgreSQL, or Microsoft SQL database and a user account with privileges to modify it. Your hosting provider may have already set up a database and account for you, contact them if you need assistance with this step.</p>
+            <p>Create a blank MySQL or PostgreSQL database and a user account with privileges to modify it. For MySQL this includes a user that has been granted all privileges on the database (including LOCK which is not included in the ALL permission). Your hosting provider may have already set up a database and account for you, contact them if you need assistance with this step.</p>
         </li>
         <li>
             <p>Place the contents of <code>geeklog-2.0.0/public_html/</code> into your web root directory on your web server. The web root directory is often named "public_html", "htdocs", or "www".</p>
@@ -107,7 +110,7 @@
     <p><strong>YOU HAVE BEEN WARNED.</strong></p>
     <ol>
         <li>
-            <p>Download the current version of Geeklog from <a href="http://www.geeklog.net/">Geeklog.net</a>.</p>
+            <p>Download the current version of Geeklog from <a href="https://www.geeklog.net/">Geeklog.net</a>.</p>
         </li>
         <li>
             <p>Unpack the downloaded tarball file by running: </p>
@@ -120,8 +123,8 @@
         </li>
         <li>Depending on the version you're upgrading from:
             <ul>
-                <li><p><strong>When upgrading from Geeklog 1.4.1 or earlier</strong>: Put the <tt>config.php</tt> files from your old install back into their place now (the main <tt>config.php</tt> and those for the plugins). The install script will read these files during the upgrade to pre-populate the new Configuration admin panel with your settings. If you skip this step, you will end up with default settings for Geeklog and the pre-installed plugins.</p></li>
-                <li><p><strong>When upgrading from Geeklog 1.5.0 or later</strong>: Put the <tt>db-config.php</tt> and <tt>siteconfig.php</tt> from your old install back into their place now, overwriting the files of the same name that came in the tarball. Otherwise, you would have to enter your database credentials and other information during the upgrade process again.</p></li>
+                <li><p><strong>When upgrading from Geeklog 1.4.1 or earlier</strong>: Put the <span class="tt">config.php</span> files from your old install back into their place now (the main <span class="tt">config.php</span> and those for the plugins). The install script will read these files during the upgrade to pre-populate the new Configuration admin panel with your settings. If you skip this step, you will end up with default settings for Geeklog and the pre-installed plugins.</p></li>
+                <li><p><strong>When upgrading from Geeklog 1.5.0 or later</strong>: Put the <span class="tt">db-config.php</span> and <span class="tt">siteconfig.php</span> from your old install back into their place now, overwriting the files of the same name that came in the tarball. Otherwise, you would have to enter your database credentials and other information during the upgrade process again.</p></li>
             </ul>
         </li>
         <li>
@@ -142,7 +145,7 @@
 
 <p>After clicking on "Migrate", you will have to enter the database credentials for your (new) database server, as usual. Note that you don't need to enter a table prefix, as the Migrate option will detect it automatically.</p>
 
-<p>You then have the option to upload a database backup from your computer, to import from a backup that's already on the server (in Geeklog's <tt>backups</tt> directory), or you can use the current content of the database, in case you already imported it through other means.</p>
+<p>You then have the option to upload a database backup from your computer, to import from a backup that's already on the server (in Geeklog's <span class="tt">backups</span> directory), or you can use the current content of the database, in case you already imported it through other means.</p>
 
 <p><strong>Note:</strong> Uploading a backup file from your computer will only work as long as the size of the backup file is below the server's max. upload limit. The max. allowed size will be displayed when you select this option. If your backup file is over that limit, try compressing it (zip or gzip should work) or use one of the other two options.</p>
 
@@ -225,7 +228,7 @@ Cannnot connect to DB server</code></p>
         <p>If you still have problems, please do one or more of the following:</p>
         <ol>
             <li>
-                <p>Go to <a href="http://www.geeklog.net">http://www.geeklog.net</a> and check out the Support section. The Support section includes a <a href="http://www.geeklog.net/faqman/" title="Frequently Asked Questions">FAQ</a>, <a href="http://www.geeklog.net/forum/">forums</a>, and a <a href="http://www.geeklog.net/search.php">search system</a> (try searching for the error message, if you get one).</p>
+                <p>Go to <a href="https://www.geeklog.net">https://www.geeklog.net</a> and check out the Support section. The Support section includes a <a href="https://www.geeklog.net/faqman/" title="Frequently Asked Questions">FAQ</a>, <a href="https://www.geeklog.net/forum/">forums</a>, and a <a href="https://www.geeklog.net/search.php">search system</a> (try searching for the error message, if you get one).</p>
             </li>
             <li>
                 <p>Visit the mailing list archives at <a href="http://eight.pairlist.net/pipermail/geeklog-users/">http://lists.geeklog.net/pipermail/geeklog-users/</a>. You can also <a href="http://lists.geeklog.net/mailman/listinfo/geeklog-users">subscribe to the mailing list</a> and post your question to the Geeklog community.</p>

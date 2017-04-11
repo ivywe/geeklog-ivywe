@@ -199,7 +199,9 @@ function ip_to_hostname($ip) {
 	switch ($_GUS_CONF['host_lookup']) {
 		case 'host':
 			$timeout = $_GUS_CONF['host_lookup_timeout'];
-//			$output = `host -W {$timeout} {$ip}`;
+
+// shell_exec() has been disabled for security reasons
+//			$output = `host -W {$timeout} {$ip}`; 
 			
 			if (preg_match('/.*pointer ([A-Za-z0-9.-]+)\..*/', $output, $regs)) {
 				return $regs[1];
@@ -239,7 +241,7 @@ function ip_to_hostname($ip) {
  * @return string    plugin version
 */
 function plugin_chkVersion_gus() {
-	return '1.7.3';
+	return '1.7.4';
 }
 
 // Add the CSS file if we are browsing a GUS page
@@ -490,6 +492,18 @@ function GUS_doUpgrades($current_gus_version) {
             
 				$current_gus_version = '1.7.3';
 				break;
+                
+			case '1.7.3':
+				$_SQL = array();
+				
+				require_once $_CONF['path'] . 'plugins/gus/sql/updates/gus_1.7.3_to_1.7.4.php';
+
+				foreach ($_SQL as $sql) {
+					DB_query($sql);
+				}
+            
+				$current_gus_version = '1.7.4';
+				break;
 				
 			default:
 				$done = TRUE;
@@ -516,6 +530,7 @@ function plugin_uninstall_gus() {
 						'gus_ignore_page',
 						'gus_ignore_ua',
 						'gus_ignore_host',
+                        'gus_ignore_referrer',
 						'gus_vars' 
 	);
 

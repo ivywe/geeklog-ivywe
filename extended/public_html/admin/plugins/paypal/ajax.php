@@ -185,7 +185,22 @@ switch ($_POST['action']) {
 		// Allow all serialized data to be available to the template
 		$ipn ='';
 		if ($A['ipn_data'] != '') {
-			$out = preg_replace('!s:(\d+):"(.*?)";!se', "'s:'.strlen('$2').':\"$2\";'", $A['ipn_data'] ); 
+
+
+	// PHP7 error {
+	// $out = preg_replace('!s:(\d+):"(.*?)";!se', "'s:'.strlen('$2').':\"$2\";'", $A['ipn_data'] ); 
+
+		$out = preg_replace_callback(
+        '!s:(\d+):"(.*?)";!s',
+        function ($args) {
+            return sprintf('s:%d:"%s";', strlen($args[2]), $args[2]);
+        },
+        $A['ipn_data']
+
+    );	// } PHP7 error
+
+
+
 			$ipn = unserialize($out);
 		}
 		

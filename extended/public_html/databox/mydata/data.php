@@ -698,7 +698,7 @@ function fncSave (
 
     $addition_def=DATABOX_getadditiondef();
 
-    $retval = '';
+		$retval = array();
 
     // clean 'em up
     $id = COM_applyFilter($_POST['id'],true);

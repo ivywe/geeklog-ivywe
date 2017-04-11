@@ -35,14 +35,14 @@ function doUnCheckAll_mediaitems() {
   </tr>
   <tr>
     <td colspan="7" style="text-align:center;">
-      <input type="radio" name="cover" value="-2"{val_reset_cover}{xhtml}>&nbsp;&nbsp;{lang_reset_cover}
+      <input type="radio" class="uk-radio" name="cover" value="-2"{val_reset_cover}{xhtml}>&nbsp;&nbsp;{lang_reset_cover}
     </td>
   </tr>
   <!-- BEGIN ImageRow -->
   <!-- BEGIN ImageColumn -->
   <tr>
     <td style="vertical-align:middle;text-align:center;">
-      <input type="checkbox" name="sel[]" value="{mid}"{xhtml}>
+      <input type="checkbox" class="uk-checkbox" name="sel[]" value="{mid}"{xhtml}>
       <input type="hidden" name="mid[]" value="{mid}"{xhtml}>
     </td>
     <td style="vertical-align:middle;text-align:center;">
@@ -54,7 +54,7 @@ function doUnCheckAll_mediaitems() {
       {watermarked}
     </td>
     <td style="vertical-align:middle;text-align:center;">
-      <input type="text" name="seq[]" value="{order}" size="3"{xhtml}>
+      <input type="text" class="uk-input" name="seq[]" value="{order}" size="3"{xhtml}>
       <input type="hidden" name="oldseq[]" value="{order}"{xhtml}>
     </td>
     <td style="vertical-align:middle;text-align:center;">
@@ -64,9 +64,9 @@ function doUnCheckAll_mediaitems() {
       {include_ss}
     </td>
     <td style="vertical-align:middle;">
-      <div style="margin:4px 2px 0"><input type="text" name="mtitle[]" value="{media_title}" placeholder="タイトル" size="30" style="width:80%;"{xhtml}></div>
-      <textarea name="mdesc[]" cols="40" rows="2" style="width:96%;" placeholder="説明">{media_desc}</textarea><br{xhtml}>
-      <div style="margin:4px 2px 0"><input type="text" name="mkeywords[]" value="{media_keywords}" size="30" style="width:80%;" placeholder="キーワード"{xhtml}></div>
+      <div style="margin:4px 2px 0"><input type="text" class="uk-input" name="mtitle[]" value="{media_title}" placeholder="タイトル" size="30" style="width:80%;"{xhtml}></div>
+      <textarea class="uk-textarea" name="mdesc[]" cols="40" rows="2" style="width:96%;" placeholder="説明">{media_desc}</textarea><br{xhtml}>
+      <div style="margin:4px 2px 0"><input type="text" class="uk-input" name="mkeywords[]" value="{media_keywords}" size="30" style="width:80%;" placeholder="キーワード"{xhtml}></div>
       <div style="margin:4px 2px;">{lang_category}:&nbsp;{cat_select}</div>
     </td>
   </tr>
@@ -80,11 +80,11 @@ function doUnCheckAll_mediaitems() {
 </div>
 
 <div style="margin-top:5px">
-  {lang_albumsel}&nbsp;&nbsp;{albumselect}&nbsp;<input type="submit" name="mode" value="{lang_move}"{xhtml}>
+  {lang_albumsel}&nbsp;&nbsp;{albumselect}&nbsp;<input type="submit" class="uk-button uk-button-primary" name="mode" value="{lang_move}"{xhtml}>
 </div>
 
 <div style="margin-top:5px">
-  {lang_batch_options}&nbsp;&nbsp;{batchoptionselect}&nbsp;<input type="submit" name="mode" value="{lang_batch}"{xhtml}>
+  {lang_batch_options}&nbsp;&nbsp;{batchoptionselect}&nbsp;<input type="submit" class="uk-button uk-button-primary" name="mode" value="{lang_batch}"{xhtml}>
 </div>
 
 <ul class="uk-nav uk-nav-parent-icon uk-margin-top" data-uk-nav>

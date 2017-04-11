@@ -8,7 +8,7 @@
     <legend>{csv_select}</legend>
 
     {# id #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" >{lang_id}</label>
       <div class="uk-form-controls">
         {id}<input type="hidden" name="id" value="{id}"{xhtml}>
@@ -16,26 +16,26 @@
     </div>
 
     {# name #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" >{lang_name}</label>
       <div class="uk-form-controls">
-        <input type="text" size="48" maxlength="160" name="name" value="{name}"{xhtml}>
+        <input type="text" class="uk-input uk-form-width-small" size="48" maxlength="160" name="name" value="{name}"{xhtml}>
         <span class="uk-form-help-inline">{help_name}</span>
       </div>
     </div>
 
     {# description #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" for="databox_description">{lang_description}</label>
       <div class="uk-form-controls">
-        <textarea name="description" class="uk-width-1-1" rows="2" id="databox_description"
+        <textarea class="uk-textarea" name="description" class="uk-width-1-1" rows="2" id="databox_description"
         onKeyup="var n={maxlength_description}-this.value.length;var s=document.getElementById('description_cnt');s.innerHTML='('+n+')';">{description}</textarea>
         <span class="uk-form-help-inline uk-text-bold" id="description_cnt"></span>
       </div>
     </div>
 
     {# Update date #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" >{lang_udatetime}</label>
       <div class="uk-form-controls">
         {udatetime} {lang_uuid}:{uuid}
@@ -47,7 +47,7 @@
   <div class="uk-form-row uk-margin-large uk-margin-large-bottom">
     <div class="uk-form-controls">
       {# Submit button - Save Cancel Delete #}
-      <input type="submit" value="{lang_save}" name="mode" class="uk-button uk-form-width-medium"{xhtml}>
+      <input type="submit" value="{lang_save}" name="mode" class="uk-button uk-button-primary"{xhtml}>
       <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
       <input type="hidden" value="{code}" name="old_code"{xhtml}>
       {delete_option}{lang_delete_help}

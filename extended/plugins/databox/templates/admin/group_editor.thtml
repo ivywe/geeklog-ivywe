@@ -10,7 +10,7 @@
     <legend>Group</legend>
 
     {# id #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_group_id}</label>
       <div class="uk-form-controls">
         {id}
@@ -19,39 +19,39 @@
     </div>
 
     {# code #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_code} {help_code}</label>
       <div class="uk-form-controls">
-        <input type="text" class="uk-form-width-medium" size="48" maxlength="160" name="code" value="{code}" required{xhtml}>
+        <input type="text" class="uk-input uk-form-width-medium" size="48" maxlength="160" name="code" value="{code}" required{xhtml}>
       </div>
     </div>
 
     {# name #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_name}<span class="uk-text-danger">{lang_must}</span></label>
       <div class="uk-form-controls">
-        <input type="text" class="uk-form-width-medium" size="48" maxlength="160" name="name" value="{name}" required{xhtml}>
+        <input type="text" class="uk-input uk-form-width-medium" size="48" maxlength="160" name="name" value="{name}" required{xhtml}>
       </div>
     </div>
 
     {# description #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" for="databox_description">{lang_description} {help_description}</label>
       <div class="uk-form-controls">
-        <textarea name="description" class="uk-width-1-1" rows="2" id="databox_description">{description}</textarea>
+        <textarea class="uk-textarea" name="description" class="uk-width-1-1" rows="2" id="databox_description">{description}</textarea>
       </div>
     </div>
 
     {# order #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_orderno}</label>
       <div class="uk-form-controls">
-        <input type="text" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
+        <input type="text" class="uk-input uk-form-width-xsmall" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
       </div>
     </div>
 
     {# 親グループ？ #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_parent_flg} {help_parent_flg}</label>
       <div class="uk-form-controls">
         {list_parent_flg}
@@ -59,7 +59,7 @@
     </div>
 
     {# 入力タイプ #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_input_type} {help_input_type}</label>
       <div class="uk-form-controls">
         {list_input_type}
@@ -67,7 +67,7 @@
     </div>
 
     {# defaulttemplatesdirectory #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_defaulttemplatesdirectory}{help_defaulttemplatesdirectory}</label>
       <div class="uk-form-controls">
         {select_defaulttemplatesdirectory}
@@ -75,7 +75,7 @@
     </div>
 
     {# allow_display #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_allow_display}{help_allow_display}</label>
       <div class="uk-form-controls">
         {list_allow_display}
@@ -83,7 +83,7 @@
     </div>
 
     {# allow_edit #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_allow_edit}{help_allow_edit}</label>
       <div class="uk-form-controls">
         {list_allow_edit}
@@ -91,7 +91,7 @@
     </div>
 
     {# Update date #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_udatetime}</label>
       <div class="uk-form-controls">
         {udatetime} {lang_uuid}:{uuid}
@@ -104,7 +104,7 @@
     <label class="uk-form-label"></label>
     <div class="uk-form-controls">
       {# Submit button - Save Cancel Delete #}
-      <input type="submit" value="{lang_save}" name="mode" class="uk-button uk-form-width-medium"{xhtml}>
+      <input type="submit" value="{lang_save}" name="mode" class="uk-button uk-button-primary"{xhtml}>
       <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
       <input type="hidden" value="{code}" name="old_code"{xhtml}>
       {delete_option}

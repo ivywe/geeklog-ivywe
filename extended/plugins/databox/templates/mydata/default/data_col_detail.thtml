@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-  <div class="uk-form-row">
+  <div class="uk-form-row uk-clearfix">
     <label class="uk-form-label">
       {fieldgroup} {# {fieldgroup_name} #} {additionfield_name}
       <span class="uk-form-help-inline uk-text-danger">{lang_must_additionfield}</span>

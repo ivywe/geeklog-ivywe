@@ -4,16 +4,16 @@
     <table style="width: 99%;">
       <tr>
         <th style="width: 100px; text-align: right;">{lang_title}:</th>
-        <td><input type="text" name="title" value="{title}" style="width: 200px;"{xhtml}></td>
+        <td><input type="text" class="uk-input" name="title" value="{title}" style="width: 200px;"{xhtml}></td>
       </tr>
       <tr>
         <th style="width: 100px; text-align: right;">{lang_description}:</th>
-        <td><input type="text" name="description" value="{description}" style="width: 400px;"{xhtml}></td>
+        <td><input type="text" class="uk-input" name="description" value="{description}" style="width: 400px;"{xhtml}></td>
       </tr>
       <tr>
         <th style="width: 100px; text-align: right;">{lang_content}:</th>
         <td>
-          <textarea name="content" id="content" style="width: 99%; height: 360px;">{content}
+          <textarea class="uk-textarea" name="content" id="content" style="width: 99%; height: 360px;">{content}
           </textarea>
         </td>
       </tr>

@@ -75,7 +75,7 @@ function MG_imageAdmin($album_id, $page, $actionURL = '')
 
     $album_cover = $album->cover;
 
-    $album_selectbox = '<select name="album">';
+    $album_selectbox = '<select class="uk-select uk-form-width-small" name="album">';
     $root_album = new mgAlbum(0);
     $root_album->buildAlbumBox($album_selectbox, $album_id, 3, $album_id, 'manage');
     $album_selectbox .= '</select>';
@@ -102,7 +102,7 @@ function MG_imageAdmin($album_id, $page, $actionURL = '')
     $result = DB_query($sql);
     $nrows = DB_numRows($result);
 
-    $batchOptionSelect = '<select name="batchOption">';
+    $batchOptionSelect = '<select class="uk-select uk-form-width-small" name="batchOption">';
     if ($_CONF['image_lib'] == 'gdlib' && !function_exists("imagerotate")) {
         $batchOptionSelect .= '';
     } else {
@@ -170,7 +170,7 @@ function MG_imageAdmin($album_id, $page, $actionURL = '')
                 $radio_box = '&nbsp;';
                 if (($row['media_type'] == 0 || $row['media_tn_attached'] == 1) && $album->tn_attached == 0) {
                     $checked = ($album_cover == $row['media_id']) ? ' checked="checked"' : '';
-                    $radio_box = '<input type="radio" name="cover" value="'
+                    $radio_box = '<input type="radio" class="uk-radio" name="cover" value="'
                                . $row['media_id'] . '"' . $checked . XHTML . '>';
                     $album_cover_check = $checked;
                 }
@@ -178,7 +178,7 @@ function MG_imageAdmin($album_id, $page, $actionURL = '')
                 $include_ss = '&nbsp;';
                 if ($row['media_type'] == 0) {
                     $checked = ($row['include_ss'] == 1) ? ' checked="checked"' : '';
-                    $include_ss = '<input type="checkbox" name="ss[' . $counter . ']" value="1"'
+                    $include_ss = '<input type="checkbox" class="uk-checkbox" name="ss[' . $counter . ']" value="1"'
                                 . $checked . XHTML . '>';
                 }
 
@@ -208,7 +208,7 @@ function MG_imageAdmin($album_id, $page, $actionURL = '')
                     $thumbnail = $_MG_CONF['mediaobjects_url'] . '/missing.svg';
                 }
 
-                $cat_select = '<select name="cat_id[]">';
+                $cat_select = '<select class="uk-select uk-form-width-small" name="cat_id[]">';
                 $cat_select .= '<option value="0">' . $LANG_MG01['no_category'] . '</option>';
                 $cRows = count($catRow);
                 for ($i=0; $i < $cRows; $i++) {
@@ -449,7 +449,7 @@ function MG_mediaEdit($album_id, $media_id, $actionURL='', $mqueue=0, $view=0, $
     }
 
     // Build Album List
-    $album_jumpbox = '<select name="albums" width="40">';
+    $album_jumpbox = '<select class="uk-select uk-form-width-small" name="albums" width="40">';
     $root_album = new mgAlbum(0);
     $root_album->buildJumpBox($album_jumpbox, $album_id);
     $album_jumpbox .= '</select>';
@@ -473,11 +473,11 @@ function MG_mediaEdit($album_id, $media_id, $actionURL='', $mqueue=0, $view=0, $
     $media_time_hour   = date("H", $row['media_time']);
     $media_time_minute = date("i", $row['media_time']);
 
-    $month_select = '<select name="media_month">';
+    $month_select = '<select class="uk-select uk-form-width-small" name="media_month">';
     $month_select .= COM_getMonthFormOptions($media_time_month);
     $month_select .= '</select>';
 
-    $day_select = '<select name="media_day">';
+    $day_select = '<select class="uk-select uk-form-width-small" name="media_day">';
     for ($i = 1; $i < 32; $i++) {
         $day_select .= '<option value="' . $i . '"'
             . ($media_time_day == $i ? 'selected="selected"' : "") . '>'
@@ -488,7 +488,7 @@ function MG_mediaEdit($album_id, $media_id, $actionURL='', $mqueue=0, $view=0, $
     $current_year = (int) date("Y");
     $end_year = $current_year + 10;
 
-    $year_select = '<select name="media_year">';
+    $year_select = '<select class="uk-select uk-form-width-small" name="media_year">';
     for ($i = 1998; $i < $end_year; $i++) {
         $year_select .= '<option value="' . $i . '"'
             . ($media_time_year == $i ? 'selected="selected"' : "") . '>'
@@ -496,7 +496,7 @@ function MG_mediaEdit($album_id, $media_id, $actionURL='', $mqueue=0, $view=0, $
     }
     $year_select .= '</select>';
 
-    $hour_select = '<select name="media_hour">';
+    $hour_select = '<select class="uk-select uk-form-width-small" name="media_hour">';
     for ($i = 0; $i < 24; $i++) {
         $hour_select .= '<option value="' . $i . '"'
             . ($media_time_hour == $i ? 'selected="selected"' : "") . '>'
@@ -504,7 +504,7 @@ function MG_mediaEdit($album_id, $media_id, $actionURL='', $mqueue=0, $view=0, $
     }
     $hour_select .= '</select>';
 
-    $minute_select = '<select name="media_minute">';
+    $minute_select = '<select class="uk-select uk-form-width-small" name="media_minute">';
     for ($i = 0; $i < 60; $i++) {
         $minute_select .= '<option value="' . $i . '"'
             . ($media_time_minute == $i ? 'selected="selected"' : "") . '>'
@@ -812,7 +812,7 @@ function MG_mediaEdit($album_id, $media_id, $actionURL='', $mqueue=0, $view=0, $
     // user information
     $username = '';
     if (SEC_hasRights('mediagallery.admin')) {
-        $username = '<select name="owner_name"> ';
+        $username = '<select class="uk-select uk-form-width-small" name="owner_name"> ';
         $sql = "SELECT * FROM {$_TABLES['users']} WHERE status=3 AND uid > 1 ORDER BY username ASC";
         $result = DB_query($sql);
         while ($userRow = DB_fetchArray($result)) {
@@ -828,7 +828,7 @@ function MG_mediaEdit($album_id, $media_id, $actionURL='', $mqueue=0, $view=0, $
         }
     }
 
-    $cat_select = '<select name="cat_id" id="cat_id">';
+    $cat_select = '<select class="uk-select uk-form-width-small" name="cat_id" id="cat_id">';
     $cat_select .= '<option value="">' . $LANG_MG01['no_category'] . '</option>';
     $result = DB_query("SELECT * FROM {$_TABLES['mg_category']} ORDER BY cat_id ASC");
     while ($catRow = DB_fetchArray($result)) {
@@ -1088,7 +1088,7 @@ function MG_saveMediaEdit($album_id, $media_id, $actionURL)
     $musicalbum = addslashes(COM_applyFilter(COM_stripslashes($_POST['musicalbum']) ) );
     $genre      = addslashes(COM_applyFilter(COM_stripslashes($_POST['genre']) ) );
 
-    $media_time = mktime($media_time_hour,$media_time_minute,0,$media_time_month,$media_time_day,$media_time_year,1);
+    $media_time = mktime($media_time_hour,$media_time_minute,0,$media_time_month,$media_time_day,$media_time_year);
 
     $owner_sql = '';
     if (isset($_POST['owner_name'])) {

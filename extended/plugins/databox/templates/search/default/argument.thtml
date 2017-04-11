@@ -17,7 +17,7 @@
     <!-- Category -->
 
     <!-- gor_1 Group id=1 OR -->
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">Group {gor_1_names} id:1 OR</label>
       <div class="uk-form-controls">
         {gor_1}
@@ -26,7 +26,7 @@
     </div>
 
     <!-- gand_2 Group id=2 AND -->
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">Group {gand_2_names} id:2 AND</label>
       <div class="uk-form-controls">
         {gand_2}
@@ -36,13 +36,13 @@
 
     <!-- Title -->
 
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">Title(Include)</label>
       <div class="uk-form-controls">
         <input value="{t}" type="text" name="t" style="width:130px">
       </div>
     </div>
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">Title(Equal)</label>
       <div class="uk-form-controls">
         <input value="{teq}" type="text" name="teq" style="width:130px">
@@ -52,7 +52,7 @@
     <!-- Attribute -->
 
     <!-- aeq_1 == X (attribute id=1) -->
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{persons_name}(Equal)</label>
       <div class="uk-form-controls">
         <input size="12" class="uk-form-width-small" maxlength="160" name="aeq_1" value="" type="text">
@@ -60,7 +60,7 @@
     </div>
 
     <!-- afr_2 =< X =< ato_2 (attribute id=2) -->
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{ossname_name}(Between)</label>
       <div class="uk-form-controls">
         <input size="6" class="uk-form-width-small" maxlength="160" name="afr_2" value="" type="text"> - <input size="6" class="uk-form-width-small" maxlength="160" name="ato_2" value="" type="text">

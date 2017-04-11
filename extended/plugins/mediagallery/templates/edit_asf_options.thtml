@@ -19,8 +19,8 @@
     <label class="uk-form-label">{lang_auto_start}</label>
   </div>
   <div style="width:10%;float:left;white-space:nowrap;">
-    <input type="radio" name="autostart" value="0" {autostart_disabled}>
-    <input type="radio" name="autostart" value="1" {autostart_enabled}>
+    <input type="radio" class="uk-radio" name="autostart" value="0" {autostart_disabled}>
+    <input type="radio" class="uk-radio" name="autostart" value="1" {autostart_enabled}>
   </div>
   <div style="float:left;width:70%;">
     {lang_auto_start_help}
@@ -32,8 +32,8 @@
     <label class="uk-form-label">{lang_enable_context_menu}</label>
   </div>
   <div style="width:10%;float:left;white-space:nowrap;">
-    <input type="radio" name="enablecontextmenu" value="0" {enablecontextmenu_disabled}>
-    <input type="radio" name="enablecontextmenu" value="1" {enablecontextmenu_enabled}>
+    <input type="radio" class="uk-radio" name="enablecontextmenu" value="0" {enablecontextmenu_disabled}>
+    <input type="radio" class="uk-radio" name="enablecontextmenu" value="1" {enablecontextmenu_enabled}>
   </div>
   <div style="float:left;width:70%;">
     {lang_enable_context_menu_help}
@@ -45,8 +45,8 @@
     <label class="uk-form-label">{lang_stretch_to_fit}</label>
   </div>
   <div style="width:10%;float:left;white-space:nowrap;">
-    <input type="radio" name="stretchtofit" value="0" {stretchtofit_disabled}>
-    <input type="radio" name="stretchtofit" value="1" {stretchtofit_enabled}>
+    <input type="radio" class="uk-radio" name="stretchtofit" value="0" {stretchtofit_disabled}>
+    <input type="radio" class="uk-radio" name="stretchtofit" value="1" {stretchtofit_enabled}>
   </div>
   <div style="float:left;width:70%;">
     {lang_stretch_to_fit_help}
@@ -58,8 +58,8 @@
     <label class="uk-form-label">{lang_status_bar}</label>
   </div>
   <div style="width:10%;float:left;white-space:nowrap;">
-    <input type="radio" name="showstatusbar" value="0" {showstatusbar_disabled}>
-    <input type="radio" name="showstatusbar" value="1" {showstatusbar_enabled}>
+    <input type="radio" class="uk-radio" name="showstatusbar" value="0" {showstatusbar_disabled}>
+    <input type="radio" class="uk-radio" name="showstatusbar" value="1" {showstatusbar_enabled}>
   </div>
   <div style="float:left;width:70%;">
     {lang_status_bar_help}
@@ -83,7 +83,7 @@
     <label class="uk-form-label">{lang_playcount}</label>
   </div>
   <div style="width:10%;float:left;white-space:nowrap;">
-    <input type="text" name="playcount" value="{playcount}" size="5">
+    <input type="text" class="uk-input" name="playcount" value="{playcount}" size="5">
   </div>
   <div style="float:left;width:70%;">
     {lang_playcount_help}
@@ -95,7 +95,7 @@
     <label class="uk-form-label">{lang_bgcolor}</label>
   </div>
   <div style="width:10%;float:left;white-space:nowrap;">
-    <input type="text" name="bgcolor" value="{bgcolor}" size="7">
+    <input type="text" class="uk-input" name="bgcolor" value="{bgcolor}" size="7">
   </div>
   <div style="float:left;width:70%;">
     {lang_bgcolor_help}
@@ -107,7 +107,7 @@
     <label for="width">{lang_width}</label>
   </div>
   <div style="width:10%;float:left;white-space:nowrap;">
-    <input type="text" name="width" id="width" value="{width}" size="3">
+    <input type="text" class="uk-input" name="width" id="width" value="{width}" size="3">
   </div>
   <div style="float:left;width:70%;">
       {lang_width_help}
@@ -119,7 +119,7 @@
     <label for="height">{lang_height}</label>
   </div>
   <div style="width:10%;float:left;white-space:nowrap;">
-    <input type="text" name="height" id="height" value="{height}" size="3">
+    <input type="text" class="uk-input" name="height" id="height" value="{height}" size="3">
   </div>
   <div style="float:left;width:70%;">
       {lang_height_help}

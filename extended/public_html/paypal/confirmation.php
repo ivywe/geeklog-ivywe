@@ -59,16 +59,21 @@ paypal_filterVars($vars, $_REQUEST);
 $items = array();
 $i = 1;
 $quantities = array();
+
+
 $valid_prices = true;
 foreach ($cart->get_contents() as $item) {
-    $realid = PAYPAL_realId($item['id']);
-	$item_id	= $realid[0];
+
+  $item_id = PAYPAL_realId($item['id']); 
 	$items[$i] = $item['id'];
 	$namesfromcart[$i] = $item['name'];
 	$quantities[$i] = $item['qty'];
 	$item_price[$i]	= $item['price'];
 	$A = DB_fetchArray(DB_query("SELECT * FROM {$_TABLES['paypal_products']} WHERE id = '{$item_id}' LIMIT 1"));
-	if ($item_price[$i] <> PAYPAL_productPrice($A) || !SEC_hasAccess2($A) || $A['active'] != '1') $valid_prices = false;
+	if ($item_price[$i] <> PAYPAL_productPrice($A) || !SEC_hasAccess2($A) || $A['active'] != '1'){
+	 $valid_prices = false;
+		COM_errorLog("PAYPAL:confirmation.php 72 : item_id=". $item_id . ' realid='.$realid.' item_price $i=' . $item_price[$i] . ' PAYPAL_productPrice$A=' . PAYPAL_productPrice($A), 1);
+	}
 	$i++;
 }
 if ($valid_prices !== true) {
@@ -91,10 +96,10 @@ switch ($_REQUEST['mode']) {
 
         //Display cart
         $display .= '
-		             <div class="uk-width-1-1 uk-margin uk-margin-small-bottom "><div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-text-center uk-button-group">
-			           <button class="uk-button uk-button-default uk-margin-small-bottom uk-text-nowrap">' . $LANG_PAYPAL_1['checkout_step_1'] . '</li>
-                 <button class="uk-button uk-button-default uk-margin-small-bottom uk-text-nowrap">' . $LANG_PAYPAL_1['checkout_step_2'] . '</li>
-							   <button class="uk-button uk-button-secondary uk-margin-small-bottom uk-text-nowrap">' . $LANG_PAYPAL_1['checkout_step_3'] . '</div>
+		             <div class="uk-width-1-1 uk-margin uk-margin-top"><div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-text-center uk-button-group">
+			           <button class="uk-button uk-button-default uk-margin-small-bottom uk-text-nowrap" style="cursor: default">' . $LANG_PAYPAL_1['checkout_step_1'] . '</li>
+                 <button class="uk-button uk-button-default uk-margin-small-bottom uk-text-nowrap" style="cursor: default">' . $LANG_PAYPAL_1['checkout_step_2'] . '</li>
+							   <button class="uk-button uk-button-secondary uk-margin-small-bottom uk-text-nowrap" style="cursor: default">' . $LANG_PAYPAL_1['checkout_step_3'] . '</div>
 						</div></div>';
 
 		$display .= PAYPAL_handlePurchase($items, $quantities, $data, $namesfromcart, $item_price);

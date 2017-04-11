@@ -36,6 +36,8 @@
 require_once '../../../lib-common.php';
 require_once '../../auth.inc.php';
 
+MAPS_getheadercode();
+
 $display = '';
 
 // Ensure user even has the rights to access this page

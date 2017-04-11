@@ -56,7 +56,7 @@ if (!defined('VERSION')) {
     * This constant defines Geeklog's version number. It will be written to
     * siteconfig.php and the database (in the latter case minus any suffix).
     */
-    define('VERSION', '2.1.1');
+    define('VERSION', '2.1.2');
 }
 if (!defined('XHTML')) {
     define('XHTML', ' /');
@@ -1309,7 +1309,7 @@ function INST_listOfSupportedDBs($gl_path, $selected_dbtype, $list_innodb = fals
                 . ' <input type="hidden" name="db_type" value="'
                 . $remaining[0] . '"' . XHTML . '>' . LB;
     } else {
-        $retval = '<select name="db_type">' . LB . $retval . '</select>' . LB;
+        $retval = '<select class="uk-select" name="db_type">' . LB . $retval . '</select>' . LB;
     }
 
     return $retval;

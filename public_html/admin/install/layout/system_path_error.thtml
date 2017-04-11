@@ -1,0 +1,13 @@
+<h1 class="heading">{{ LANG.INSTALL.3 }}</h1>
+
+<p>
+    <span class="error">{{ LANG.INSTALL.38 }}</span>
+    {{ LANG.INSTALL.84 }}<code>{! path_db_config !}</code>{{ LANG.INSTALL.85 }}
+</p>
+
+<div class="uk-margin">
+    <form action="index.php" method="post" class="uk-form">
+        <input type="hidden" name="language" value="{{ language }}">
+        <button type="submit" class="uk-button uk-button-primary uk-button-large" value="{{ LANG.INSTALL.61 }}">{{ icon_arrow_prev }}&nbsp;&nbsp;{{ LANG.INSTALL.61 }}</button>
+    </form>
+</div>

@@ -79,7 +79,7 @@ MapIconMaker.createMarkerIcon = function (opts) {
     var strokeColor = opts.strokeColor || "#000000";
     var cornerColor = opts.cornerColor || "#ffffff";
 
-    var baseUrl = "http://chart.apis.google.com/chart?cht=mm";
+    var baseUrl = "//chart.apis.google.com/chart?cht=mm";
     var iconUrl = baseUrl + "&chs=" + width + "x" + height +
         "&chco=" + cornerColor.replace("#", "") + "," +
         primaryColor.replace("#", "") + "," +
@@ -92,7 +92,7 @@ MapIconMaker.createMarkerIcon = function (opts) {
     icon.anchor = new google.maps.Point(width / 2, height);
     icon.size = new google.maps.Size(width, height);
 
-    shadow.url = 'http://maps.gstatic.com/mapfiles/shadow50.png';
+    shadow.url = '//maps.gstatic.com/mapfiles/shadow50.png';
     shadow.anchor = new google.maps.Point(width / 2, height);
     shadow.size = new google.maps.Size(Math.floor(width * 1.6), height);
     shadow.scaledSize = new google.maps.Size(Math.floor(width * 1.6), height);
@@ -143,7 +143,7 @@ MapIconMaker.createFlatIcon = function (opts) {
     var shape = opts.shape || "circle";
     var shapeCode = (shape === "circle") ? "it" : "itr";
 
-    var baseUrl = "http://chart.apis.google.com/chart?cht=" + shapeCode;
+    var baseUrl = "//chart.apis.google.com/chart?cht=" + shapeCode;
     var iconUrl = baseUrl + "&chs=" + width + "x" + height +
         "&chco=" + primaryColor.replace("#", "") + "," +
         shadowColor.replace("#", "") + "ff,ffffff01" +
@@ -200,7 +200,7 @@ MapIconMaker.createLabeledMarkerIcon = function (opts) {
     var addStar = opts.addStar || false;
 
     var pinProgram = (addStar) ? "pin_star" : "pin";
-    var baseUrl = "http://chart.apis.google.com/chart?cht=d&chdp=mapsapi&chl=";
+    var baseUrl = "//chart.apis.google.com/chart?cht=d&chdp=mapsapi&chl=";
     var iconUrl = baseUrl + pinProgram + "'i\\" + "'[" + label +
         "'-2'f\\" + "hv'a\\]" + "h\\]o\\" +
         primaryColor.replace("#", "") + "'fC\\" +
@@ -221,7 +221,7 @@ MapIconMaker.createLabeledMarkerIcon = function (opts) {
     icon.url = iconUrl + "&ext=.png";
     icon.size = new google.maps.Size(width, height);
 
-    shadow.url = 'http://maps.gstatic.com/mapfiles/shadow50.png';
+    shadow.url = '//maps.gstatic.com/mapfiles/shadow50.png';
     shadow.anchor = new google.maps.Point(width / 2, height);
     shadow.size = new google.maps.Size(Math.floor(width * 1.6), height);
     shadow.scaledSize = new google.maps.Size(Math.floor(width * 1.6), height);

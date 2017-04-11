@@ -66,15 +66,15 @@
                 {userphoto_option}
                 <tr>
                     <td style="width:100px;"><label for="sig">{lang_signature}:</label></td>
-                    <td><textarea id="sig" name="sig" style="width:100%" cols="20" rows="4">{signature_value}</textarea></td>
+                    <td><textarea class="uk-textarea" id="sig" name="sig" style="width:100%" cols="20" rows="4">{signature_value}</textarea></td>
                 </tr>
                 <tr>
                     <td style="width:100px;"><label for="about">{lang_about}:</label></td>
-                    <td><textarea id="about" name="about" style="width:100%" cols="20" rows="4">{about_value}</textarea></td>
+                    <td><textarea class="uk-textarea" id="about" name="about" style="width:100%" cols="20" rows="4">{about_value}</textarea></td>
                 </tr>
                 <tr>
                     <td style="width:100px;"><label for="pgpkey">{lang_pgpkey}:</label></td>
-                    <td><textarea id="pgpkey" name="pgpkey" style="width:100%" cols="20" rows="4">{pgpkey_value}</textarea></td>
+                    <td><textarea class="uk-textarea" id="pgpkey" name="pgpkey" style="width:100%" cols="20" rows="4">{pgpkey_value}</textarea></td>
                 </tr>
                 <!-- Forum ****************************************** -->
                 <tr>
@@ -111,8 +111,8 @@
         <input type="hidden" name="uid" value="{uid_value}"{xhtml}>
         <input type="hidden" name="mode" value="saveuser"{xhtml}>
         <input type="hidden" name="username" value="{username_value}"{xhtml}>
-        <span style="padding-right:50px;"><input type="submit" name="btnsubmit" value="{lang_submit}"{xhtml}></span>
-        <input type="submit" name="btncancel" value="{lang_cancel}"{xhtml}>
+        <span style="padding-right:50px;"><input type="submit" name="btnsubmit" value="{lang_submit}" class="uk-button uk-button-primary"{xhtml}></span>
+        <input type="submit" name="btncancel" value="{lang_cancel}" class="uk-button"{xhtml}>
     </p>
     </form>
 </div>

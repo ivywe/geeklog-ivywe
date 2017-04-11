@@ -1,32 +1,34 @@
-{# begin {templatelocation} #}
 
         </main>
       </div>
-      {# end Center Block Container #}
 
       {left_blocks}
 
       {right_blocks}
 
     </div>
-    {# end #wrapper #}
+    <!-- } #wrapper -->
 
-  </div>
-  {# end #container #}
+    <div class="uk-text-center uk-margin-large-bottom">
+      <a href="#container" class="uk-icon-button" uk-icon="icon: chevron-up" uk-scroll></a>
+    </div>
 
-  <div class="uk-margin-large-top uk-margin-large-bottom uk-text-center"><a class="uk-icon-small uk-icon-hover uk-icon-chevron-up" data-uk-smooth-scroll="" href="#"></a></div>
+    <hr class="separator"{xhtml}>
 
-    <footer id="footer" class="uk-clearfix">
+    <footer id="footer" role="contentinfo" class="clearfix" itemscope="itemscope" itemtype="//schema.org/WPFooter">
       <div id="footer-content">
-        <p class="uk-float-left uk-text-small">{copyright_msg}</p>
-        <p class="uk-float-right uk-text-small">
-          <span>{powered_by}&nbsp;<a href="http://www.geeklog.net/">Geeklog</a></span><br{xhtml}>
-          <span>{execution_textandtime}</span>
-        </p>
+        <div id="copyright" itemprop="copyrightHolder" itemscope="itemscope" itemtype="//schema.org/Organization"><span itemprop="name"><address>{copyright_msg}</address></div>
+        <div id="powered_by">{powered_by}&nbsp;<a href="https://www.geeklog.net/">Geeklog</a></div>
+        <div id="execution_textandtime">{execution_textandtime}</div>
       </div>
     </footer>
 
+
+  </div>
+  <!-- } #container -->
+
   {plg_footercode}
+
 
 <script>window.twttr = (function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0],
@@ -43,8 +45,9 @@
   };
  
   return t;
-}(document, "script", "twitter-wjs"));
-</script>
+}(document, "script", "twitter-wjs"));</script>
+
+
 
   <!-- Depending on the situation, HTML body element's class attribute to specify a value by JavaScript
        The argument from the left, the right block container, the middle block left the right block id attribute value -->

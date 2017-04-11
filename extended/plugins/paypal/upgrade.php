@@ -519,7 +519,32 @@ function paypal_upgrade()
 				// Allow all serialized data to be available to the template
 				$ipn ='';
 				if ($B['ipn_data'] != '') {
-					$out = preg_replace('!s:(\d+):"(.*?)";!se', "'s:'.strlen('$2').':\"$2\";'", $B['ipn_data'] ); 
+
+
+	// PHP7 error {
+	// $out = preg_replace('!s:(\d+):"(.*?)";!se', "'s:'.strlen('$2').':\"$2\";'", $A['ipn_data'] ); 
+
+    $out = preg_replace(
+        '!s:(\d+):"(.*?)";!s',
+        function ($args) {
+            return sprintf('s:%d:"%s";', strlen($args[2]), $args[2]);
+        },
+        $A['ipn_data']
+    );
+	// } PHP7 error
+
+
+					$out = preg_replace(
+						'!s:(\d+):"(.*?)";!s',
+						function ($args) {
+						return sprintf('s:%d:"%s";', strlen($args[2]), $args[2]);
+						},
+						$A['ipn_data']
+					);
+
+
+
+
 					$ipn = unserialize($out);
 					
 					if ($ipn['quantity1'] != '') {

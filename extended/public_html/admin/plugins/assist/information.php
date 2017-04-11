@@ -13,6 +13,7 @@
 define ('THIS_SCRIPT', 'information.php');
 
 include_once('assist_functions.php');
+require_once( $_CONF['path_system'] . 'lib-admin.php' );
 
 // +---------------------------------------------------------------------------+
 // | 機能  表示                                                                |
@@ -23,6 +24,7 @@ include_once('assist_functions.php');
 function fncDisplay()
 {
     global $_CONF;
+    global $LANG_ADMIN;
 	global $LANG_ASSIST_ADMIN;
     global $_ASSIST_CONF;
 	global $_DB_dbms;
@@ -30,6 +32,16 @@ function fncDisplay()
     $retval="";
 
     $pi_name="assist";
+
+    $menu_arr[]=array('url' => $_CONF['site_admin_url'],'text' => $LANG_ADMIN['admin_home']);
+    $function="plugin_geticon_".$pi_name;
+    $icon=$function();
+    $retval .= ADMIN_createMenu(
+        $menu_arr
+        ,$LANG_ASSIST_ADMIN['about_admin_information']
+        ,$icon
+       );
+
     $tmplfld=assist_templatePath('admin','default',$pi_name);
     $T = new Template($tmplfld);
 	
@@ -64,7 +76,9 @@ function fncDisplay()
 	$T->set_var('online', $LANG_ASSIST_ADMIN['online']);
 	$T->set_var('lang_configuration', $LANG_ASSIST_ADMIN['configuration']);
 	$T->set_var('lang_autotags', $LANG_ASSIST_ADMIN['autotags']);
-	$T->set_var('lang_templatesetvar', $LANG_ASSIST_ADMIN['templatesetvar']);
+    $T->set_var('lang_templatesetvars', $LANG_ASSIST_ADMIN['templatesetvars']);
+    $T->set_var('lang_install', $LANG_ASSIST_ADMIN['install']);
+    $T->set_var('lang_files', $LANG_ASSIST_ADMIN['files']);
 	
     $T->set_var('site_url', $_CONF['site_url']);
     $T->set_var('site_admin_url', $_CONF['site_admin_url']);

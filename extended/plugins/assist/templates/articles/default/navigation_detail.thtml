@@ -1,6 +1,6 @@
-{# begin {templatelocation} #}
+<!-- plugins/assist/templates/articles/default/navigation_detail.thtml 20101110{ -->
 
-<div>
+<div id="databox">
 
     <div class='order'>
         {order_date}|{order_orderno}|{order_code} |{order_title}|{order_description}|{order_id}|{order_tel}|{order_zipcode}
@@ -13,7 +13,7 @@
   </div>
   <div style="clear:both"></div>
 
-  <ul>
+  <ul class="contents" id="list">
     <li>{lang_title} ({lang_id}) ({lang_code})|{lang_description}|{lang_date}{lang_addfield}{name_zipcode}{name_tel}{name_additionfield1}{name_additionfield2}</li>
     {row_var}
   </ul>
@@ -26,4 +26,4 @@
 
 </div>
 
-{# end {templatelocation} #}
+<!-- } plugins/assist/templates/articles/default/navigation_detail.thtml -->

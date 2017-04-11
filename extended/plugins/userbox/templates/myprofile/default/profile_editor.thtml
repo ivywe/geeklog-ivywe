@@ -57,18 +57,18 @@
           <tr class="pluginRow1">  
             <th class="admin-list-field">{lang_draft}{help_draft}</th>
             <td class="admin-list-field">
-              <input type="checkbox" name="draft_flag" value="1" {draft_flag}{xhtml} disabled><br{xhtml}>{draft_msg}</td>
+              <input type="checkbox" class="uk-checkbox" name="draft_flag" value="1" {draft_flag}{xhtml} disabled><br{xhtml}>{draft_msg}</td>
           </tr>
           {# page title #}
           <tr class="pluginRow1">  
             <th class="admin-list-field">{lang_page_title}{help_page_title}</th>            <td class="admin-list-field">
-               <input type="text" size="48" maxlength="160" name="page_title" value="{page_title}"{xhtml}></td>
+               <input type="text" class="uk-input" size="48" maxlength="160" name="page_title" value="{page_title}"{xhtml}></td>
           </tr>
           {# description #}
           <tr class="pluginRow1">  
             <th class="admin-list-field">{lang_description}{help_description}</th>
             <td class="admin-list-field">
-    	      <textarea name="description" style="width:95%" rows="2" id="userbox_description"
+    	      <textarea class="uk-textarea" name="description" style="width:95%" rows="2" id="userbox_description"
     	      onKeyup="var n={maxlength_description}-this.value.length;var s=document.getElementById('description_cnt');s.innerHTML='('+n+')';">{description}</textarea>
     	      <br{xhtml}>
               <span style="font-weight:bold" id='description_cnt'></span>

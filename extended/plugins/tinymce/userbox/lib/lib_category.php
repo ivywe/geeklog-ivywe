@@ -53,7 +53,7 @@ function LIB_List(
     }
 
     $filter = "{$lang_box_admin['group']}:";
-    $filter .="<select name='filter_val' style='width: 125px' onchange='this.form.submit()'>";
+    $filter .="<select class='uk-select' name='filter_val' style='width: 125px' onchange='this.form.submit()'>";
     $filter .="<option value='{$LANG09[9]}'";
 
     if  ($filter_val==$LANG09[9]){
@@ -923,7 +923,7 @@ function LIB_templatesdirectory (
     $box_conf=$$box_conf;
 
     //
-    $selection = '<select id="defaulttemplatesdirectory" name="defaulttemplatesdirectory">' . LB;
+    $selection = '<select class="uk-select" id="defaulttemplatesdirectory" name="defaulttemplatesdirectory">' . LB;
 
     //
     if ($box_conf['templates']==="theme"){

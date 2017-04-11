@@ -286,7 +286,7 @@ $_DATABOX_DEFAULT['maps_cron_schedule_interval']="0";
 * @return   boolean     true: success; false: an error occurred
 *
 */
-function plugin_initconfig_databox()
+function plugin_initconfig_databox($initialize="")
 {
     global $_DATABOX_CONF;
     global $_DATABOX_DEFAULT;
@@ -302,7 +302,7 @@ function plugin_initconfig_databox()
 
     $c = config::get_instance();
 
-    if (!$c->group_exists($pi_name)) {
+	if (!$c->group_exists($pi_name) OR $initialize ){
     /**
      * Adds a configuration variable to the config object
      *

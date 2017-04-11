@@ -12,31 +12,31 @@
     <tr>
       <td class="mg_alignright" style="width:50%;">{lang_media_capture_time}</td>
       <td>
-        <input type="radio" name="sortyby" value="0"{xhtml}>
+        <input type="radio" class="uk-radio" name="sortyby" value="0"{xhtml}>
       </td>
     </tr>
     <tr>
       <td class="mg_alignright" style="width:50%;">{lang_media_upload_time}</td>
       <td>
-        <input type="radio" name="sortyby" value="1"{xhtml}>
+        <input type="radio" class="uk-radio" name="sortyby" value="1"{xhtml}>
       </td>
     </tr>
     <tr>
       <td class="mg_alignright" style="width:50%;">{lang_media_title}</td>
       <td>
-        <input type="radio" name="sortyby" value="2"{xhtml}>
+        <input type="radio" class="uk-radio" name="sortyby" value="2"{xhtml}>
       </td>
     </tr>
     <tr>
       <td class="mg_alignright" style="width:50%;">{lang_media_filename}</td>
       <td>
-        <input type="radio" name="sortyby" value="3"{xhtml}>
+        <input type="radio" class="uk-radio" name="sortyby" value="3"{xhtml}>
       </td>
     </tr>
     <tr>
       <td class="mg_alignright" style="width:50%;">{lang_rating}</td>
       <td>
-        <input type="radio" name="sortyby" value="4"{xhtml}>
+        <input type="radio" class="uk-radio" name="sortyby" value="4"{xhtml}>
       </td>
     </tr>
     <tr>
@@ -47,13 +47,13 @@
     <tr>
       <td class="mg_alignright" style="width:50%;">{lang_ascending}</td>
       <td>
-        <input type="radio" name="sortorder" value="0"{xhtml}>
+        <input type="radio" class="uk-radio" name="sortorder" value="0"{xhtml}>
       </td>
     </tr>
     <tr>
       <td class="mg_alignright" style="width:50%;">{lang_descending}</td>
       <td>
-        <input type="radio" name="sortorder" value="1"{xhtml}>
+        <input type="radio" class="uk-radio" name="sortorder" value="1"{xhtml}>
       </td>
     </tr>
   </table>
@@ -61,8 +61,8 @@
 <div class="mg_submit_center">
   <input type="hidden" name="action" value="staticsort"{xhtml}>
   <input type="hidden" name="album_id" value="{album_id}"{xhtml}>
-  <input type="submit" name="mode" value="{lang_save}"{xhtml}>
-  <input type="submit" name="mode" value="{lang_cancel}"{xhtml}>
+  <input type="submit" class="uk-button uk-button-primary" name="mode" value="{lang_save}"{xhtml}>
+  <input type="submit" class="uk-button uk-button-primary" name="mode" value="{lang_cancel}"{xhtml}>
 </div>
 </form>
 

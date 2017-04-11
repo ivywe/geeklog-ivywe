@@ -37,9 +37,9 @@ CREATE TABLE IF NOT EXISTS {$_TABLES['gus_userstats']} (
   host VARCHAR(75) DEFAULT '',
   page VARCHAR(50) DEFAULT '',
   username VARCHAR(16) DEFAULT '',
-  referer VARCHAR(255) DEFAULT '',
+  referer VARCHAR(191) DEFAULT '',
   request VARCHAR(10) DEFAULT '',
-  query_string VARCHAR(255) DEFAULT '',
+  query_string VARCHAR(191) DEFAULT '',
   `date` DATE DEFAULT NULL,
   `time` TIME NOT NULL DEFAULT '00:00:00',
   ua_id SMALLINT(5) unsigned NOT NULL DEFAULT '0',
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS {$_TABLES['gus_userstats']} (
   KEY refer (referer),
   KEY ua_id (ua_id),
   KEY `date` (`date`)
-)";
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
 
 $_SQL[] = "
 CREATE TABLE IF NOT EXISTS {$_TABLES['gus_user_agents']} (
@@ -60,50 +60,50 @@ CREATE TABLE IF NOT EXISTS {$_TABLES['gus_user_agents']} (
   platform VARCHAR(30) DEFAULT NULL,
   PRIMARY KEY (ua_id),
   UNIQUE KEY user_agent (user_agent)
-)";
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
 
 $_SQL[] = "
 CREATE TABLE IF NOT EXISTS {$_TABLES['gus_ignore_ip']} (
   ip VARCHAR(20) NOT NULL DEFAULT '0.0.0.0',
   PRIMARY KEY (ip)
-)";
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
 
 $_SQL[] = "
 CREATE TABLE IF NOT EXISTS {$_TABLES['gus_ignore_user']} (
   username VARCHAR(16) NOT NULL DEFAULT '',
   PRIMARY KEY (username)
-)";
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
 
 $_SQL[] = "
 CREATE TABLE IF NOT EXISTS {$_TABLES['gus_ignore_page']} (
-  page VARCHAR(255) NOT NULL DEFAULT '',
+  page VARCHAR(191) NOT NULL DEFAULT '',
   PRIMARY KEY (page)
-)";
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
 
 $_SQL[] = "
 CREATE TABLE IF NOT EXISTS {$_TABLES['gus_ignore_ua']} (
   ua VARCHAR(128) NOT NULL DEFAULT '',
   PRIMARY KEY (ua)
-)";
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
 
 $_SQL[] = "
 CREATE TABLE IF NOT EXISTS {$_TABLES['gus_ignore_host']} (
   host VARCHAR(128) NOT NULL DEFAULT '',
   PRIMARY KEY (host)
-)";
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
 
 $_SQL[] = "
 CREATE TABLE IF NOT EXISTS {$_TABLES['gus_ignore_referrer']} (
   referrer VARCHAR(128) NOT NULL DEFAULT '',
   PRIMARY KEY (referrer)
-)";
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
 
 $_SQL[] = "
 CREATE TABLE IF NOT EXISTS {$_TABLES['gus_vars']} (
   name VARCHAR(10) NOT NULL DEFAULT '',
   `value` VARCHAR(32) DEFAULT '',
   PRIMARY KEY (name)
-)";
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
 
 $_DATA = array();
 

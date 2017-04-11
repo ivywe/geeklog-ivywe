@@ -11,14 +11,14 @@ and replace the image with a Media Gallery auto tag.</p>
     <legend>Import Options</legend>
     <div style="padding:10px 0">
     <label for="autotag">Autotag&nbsp;&nbsp;</label>
-        <select id="autotag" name="autotag">
+        <select class="uk-select uk-form-width-small" id="autotag" name="autotag">
         <option value="image">image:</option>
         <option value="media">media:</option>
         </select>
     </div>
     <div style="padding-bottom:10px">
     <label for="alignment">Alignment&nbsp;&nbsp;</label>
-        <select id="alignment" name="alignment">
+        <select class="uk-select uk-form-width-small" id="alignment" name="alignment">
         <option value="none">None</option>
         <option value="left">Left</option>
         <option value="right">Right</option>
@@ -27,7 +27,7 @@ and replace the image with a Media Gallery auto tag.</p>
     </div>
     <div style="padding-bottom:10px">
     <label for="delete">Delete Reference&nbsp;&nbsp;</label>
-        <select id="delete" name="delete">
+        <select class="uk-select uk-form-width-small" id="delete" name="delete">
         <option value="0">No</option>
         <option value="1">Yes</option>
         </select>
@@ -47,8 +47,8 @@ and replace the image with a Media Gallery auto tag.</p>
 the batch import queue to be processed.</p>
 </div>
 <div class="mg_submit_center">
-  <input type="submit" name="mode" value="convert"{xhtml}>
-  <input type="submit" name="mode" value="cancel"{xhtml}>
+  <input type="submit" class="uk-button uk-button-primary" name="mode" value="convert"{xhtml}>
+  <input type="submit" class="uk-button uk-button-primary" name="mode" value="cancel"{xhtml}>
 </div>
 </form>
 

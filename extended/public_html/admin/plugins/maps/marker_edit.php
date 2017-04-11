@@ -38,7 +38,7 @@
 require_once '../../../lib-common.php';
 require_once '../../auth.inc.php';
 
-//echo COM_Debug($_POST);
+MAPS_getheadercode();
 
 $display = '';
 
@@ -188,10 +188,10 @@ function getMarkerForm($marker = array()) {
 		
 		$radio = '<p>' . $LANG_MAPS_1['choose_icon'] . '</p>';
 		($marker['mk_icon'] == 0) ? $checked = ' checked="checked"' : $checked = '';
-		$radio .= '<input type="radio" name="mk_icon" value="0"' . $checked . '>' . $LANG_MAPS_1['no_icon'] . '&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;';
+		$radio .= '<input type="radio" class="uk-radio" name="mk_icon" value="0"' . $checked . '>' . $LANG_MAPS_1['no_icon'] . '&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;';
 		while ($icon = DB_fetchArray($result, false)) {
 		    ($marker['mk_icon'] == $icon['icon_id']) ? $checked = ' checked="checked"' : $checked = '';  
-		    $radio .= '<input type="radio" name="mk_icon" value="' . $icon['icon_id'] . '"' . $checked . '> <img src="' . $_MAPS_CONF['images_icons_url'] . $icon['icon_image'] . '" alt="' . $icon['icon_image'] . '">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;';
+		    $radio .= '<input type="radio" class="uk-radio" name="mk_icon" value="' . $icon['icon_id'] . '"' . $checked . '> <img src="' . $_MAPS_CONF['images_icons_url'] . $icon['icon_image'] . '" alt="' . $icon['icon_image'] . '">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;';
 		}
 		$radio .= '<hr'. XHTML .'>';
 		$template->set_var('icon', $radio);
@@ -300,56 +300,56 @@ function getMarkerForm($marker = array()) {
 		
 	    $template->set_var('street_label', $LANG_MAPS_1['street_label']);
 		if ($_MAPS_CONF['street'] == 1) {
-		  $template->set_var('street', '<input type="text" name="street" value="' . stripslashes($marker['street']) . '" size="80" maxlength="255">');
+		  $template->set_var('street', '<input type="text" class="uk-input"  name="street" value="' . stripslashes($marker['street']) . '" size="80" maxlength="255">');
 		} else {
 		  $template->set_var('street', $LANG_MAPS_1['not_use_see_config']);
 		}
 		
 		$template->set_var('code_label', $LANG_MAPS_1['code_label']);
 		if ($_MAPS_CONF['code'] == 1) {
-		  $template->set_var('code', '<input type="text" name="code" value="' . $marker['code'] . '" size="10" maxlength="10">');
+		  $template->set_var('code', '<input type="text" class="uk-input"  name="code" value="' . $marker['code'] . '" size="10" maxlength="10">');
 		} else {
 		  $template->set_var('code', $LANG_MAPS_1['not_use_see_config']);
 		}
 		
 		$template->set_var('city_label', $LANG_MAPS_1['city_label']);
 		if ($_MAPS_CONF['city'] == 1) {
-		  $template->set_var('city', '<input type="text" name="city" value="' . stripslashes($marker['city']) . '" size="80" maxlength="255">');
+		  $template->set_var('city', '<input type="text" class="uk-input"  name="city" value="' . stripslashes($marker['city']) . '" size="80" maxlength="255">');
 		} else {
 		  $template->set_var('city', $LANG_MAPS_1['not_use_see_config']);
 		}
 		
 		$template->set_var('state_label', $LANG_MAPS_1['state_label']);
 		if ($_MAPS_CONF['state'] == 1) {
-		  $template->set_var('state', '<input type="text" name="state" value="' . stripslashes($marker['state']) . '" size="80" maxlength="255">');
+		  $template->set_var('state', '<input type="text" class="uk-input"  name="state" value="' . stripslashes($marker['state']) . '" size="80" maxlength="255">');
 		} else {
 		  $template->set_var('state', $LANG_MAPS_1['not_use_see_config']);
 		}
 		
 		$template->set_var('country_label', $LANG_MAPS_1['country_label']);
 		if ($_MAPS_CONF['country'] == 1) {
-		  $template->set_var('country', '<input type="text" name="country" value="' . stripslashes($marker['country']) . '" size="80" maxlength="255">');
+		  $template->set_var('country', '<input type="text" class="uk-input"  name="country" value="' . stripslashes($marker['country']) . '" size="80" maxlength="255">');
 		} else {
 		  $template->set_var('country', $LANG_MAPS_1['not_use_see_config']);
 		}
 		
 		$template->set_var('tel_label', $LANG_MAPS_1['tel_label']);
 		if ($_MAPS_CONF['tel'] == 1) {
-		  $template->set_var('tel', '<input type="text" name="tel" value="' . $marker['tel'] . '" size="20" maxlength="20">');
+		  $template->set_var('tel', '<input type="text" class="uk-input"  name="tel" value="' . $marker['tel'] . '" size="20" maxlength="20">');
 		} else {
 		  $template->set_var('tel', $LANG_MAPS_1['not_use_see_config']);
 		}
 		
 		$template->set_var('fax_label', $LANG_MAPS_1['fax_label']);
 		if ($_MAPS_CONF['fax'] == 1) {
-		  $template->set_var('fax', '<input type="text" name="fax" value="' . $marker['fax'] . '" size="20" maxlength="20">');
+		  $template->set_var('fax', '<input type="text" class="uk-input"  name="fax" value="' . $marker['fax'] . '" size="20" maxlength="20">');
 		} else {
 		  $template->set_var('fax', $LANG_MAPS_1['not_use_see_config']);
 		}
 		
 		$template->set_var('web_label', $LANG_MAPS_1['web_label']);
 		if ($_MAPS_CONF['web'] == 1) {
-		  $template->set_var('web', '<input type="text" name="web" value="' . stripslashes($marker['web']) . '" size="80" maxlength="255">');
+		  $template->set_var('web', '<input type="text" class="uk-input"  name="web" value="' . stripslashes($marker['web']) . '" size="80" maxlength="255">');
 		} else {
 		  $template->set_var('web', $LANG_MAPS_1['not_use_see_config']);
 		}
@@ -439,7 +439,7 @@ function getMarkerForm($marker = array()) {
 	
 	$_SCRIPTS->setJavaScriptLibrary('jquery');
 	$_SCRIPTS->setJavaScriptFile('maps_simplecolor', '/' . $_MAPS_CONF['maps_folder'] . '/js/simple-color.js');
-	$js = LB . '<script  type="text/javascript" src= "https://maps.googleapis.com/maps/api/js?key=' . $_MAPS_CONF['google_api_key'] . '&sensor=false"> </script>
+	$js = LB . '
     <script type="text/javascript">
 	jQuery(document).ready(
         function()
@@ -579,9 +579,9 @@ switch ($_REQUEST['mode']) {
 				$msg = $LANG_MAPS_1['deletion_fail'];
 			}
 			// delete complete, return to map list
-			echo COM_refresh($_CONF['site_url'] . "/admin/plugins/maps/markers.php?msg=$msg");
+			COM_redirect($_CONF['site_url'] . "/admin/plugins/maps/markers.php?msg=$msg");
 		} else {
-		    echo COM_refresh($_CONF['site_url'] . "/admin/moderation.php");
+		    COM_redirect($_CONF['site_url'] . "/admin/moderation.php");
 		}
         exit();
         break;
@@ -771,8 +771,7 @@ switch ($_REQUEST['mode']) {
 			DB_delete($_TABLES['maps_submission'], 'mkid', $mkid);
         }
         // save complete, return to markers list
-        echo COM_refresh($_CONF['site_admin_url'] . "/plugins/maps/markers.php?msg=" . urlencode($msg));
-        exit();
+        COM_redirect($_CONF['site_admin_url'] . "/plugins/maps/markers.php?msg=" . urlencode($msg));
         break;
 
     /* this case is currently not used... future expansion? */
@@ -788,7 +787,7 @@ switch ($_REQUEST['mode']) {
             $A = DB_fetchArray($res);
             $display .= getMarkerForm($A);
         } else {
-            echo COM_refresh($_CONF['site_url']);
+            COM_redirect($_CONF['site_url']);
         }
         break;
 	
@@ -800,14 +799,13 @@ switch ($_REQUEST['mode']) {
 			
 			$nRows  = DB_numRows($res);
 		    if ($nRows < 1) {
-			    //echo COM_refresh($_MAPS_CONF['site_url'] . '/index.php');
-			    //exit ();
+			    //COM_redirect($_MAPS_CONF['site_url'] . '/index.php');
 		    }
 			
             $A = DB_fetchArray($res);
             $display .= getMarkerForm($A);
         } else {
-            echo COM_refresh($_CONF['site_url']);
+            COM_redirect($_CONF['site_url']);
         }
         break;
 

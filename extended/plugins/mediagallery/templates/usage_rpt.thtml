@@ -27,7 +27,7 @@
   <!-- END usagerow -->
 </table>
 <div class="mg_submit_center">
-  <input type="submit" name="return" value="{lang_new_report}"{xhtml}>
+  <input type="submit" class="uk-button uk-button-primary" name="return" value="{lang_new_report}"{xhtml}>
 </div>
 </form>
 

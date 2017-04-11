@@ -15,7 +15,7 @@
 	<div>
 	<form method="post" action="">
 		<input type="hidden" name="A[]" value="0"{xhtml}>
-		<input type="checkbox" id="ch1" name="A[]" value="1"{checked1}{xhtml}>
+		<input type="checkbox" class="uk-checkbox" id="ch1" name="A[]" value="1"{checked1}{xhtml}>
 		<label for="ch1">1. テーブル構造・データの日本語化</label>
 		<ul>
 			<li>フィード: 文字コードをutf-8、言語をjaに変更</li>
@@ -24,13 +24,13 @@
 			<li>話題: General Newsをおしらせに変更</li>
 		</ul>
 		
-		<input type="checkbox" id="ch2" name="A[]" value="2"{checked2}{xhtml}>
+		<input type="checkbox" class="uk-checkbox" id="ch2" name="A[]" value="2"{checked2}{xhtml}>
 		<label for="ch2">2. グループ管理画面の説明文の日本語化</label><br{xhtml}>
 		
-		<input type="checkbox" id="ch3" name="A[]" value="4"{checked3}{xhtml}>
+		<input type="checkbox" class="uk-checkbox" id="ch3" name="A[]" value="4"{checked3}{xhtml}>
 		<label for="ch3">3. 初期ブロックタイトルの日本語化</label><br{xhtml}>
 		
-		<input type="checkbox" id="ch4" name="A[]" value="8"{checked4}{xhtml}>
+		<input type="checkbox" class="uk-checkbox" id="ch4" name="A[]" value="8"{checked4}{xhtml}>
 		<label for="ch4">4. コンフィギュレーションの日本語化</label>
 		<ul>
 			<li>サイト: disabledmsg.htmlのURLを設定</li>
@@ -50,13 +50,13 @@
 			<li>カレンダープラグイン: イベントの種類の日本語化</li>
 		</ul>
 		
-		<input type="checkbox" id="ch5" name="A[]" value="16"{checked5}{xhtml}>
+		<input type="checkbox" class="uk-checkbox" id="ch5" name="A[]" value="16"{checked5}{xhtml}>
 		<label for="ch5">5. 更新pingサーバーの追加</label>
 		<ul>
 			<li>BlogPeople, PING.BLOGGERS.JP, gooブログ, Googleブログ検索を追加</li>
 		</ul>
 
-		<input type="checkbox" id="ch6" name="A[]" value="32"{checked6}{xhtml}>
+		<input type="checkbox" class="uk-checkbox" id="ch6" name="A[]" value="32"{checked6}{xhtml}>
 		<label for="ch6">6. 権限のツールチップの日本語化</label><br{xhtml}><br{xhtml}>
 		
 		<input type="submit" name="execute" value="{lang_execute}"{xhtml}>&nbsp;&nbsp;

@@ -859,19 +859,29 @@ if (($method == 'newtopic' || $method == 'postreply' || $method == 'edit') || ($
             $notifyTopicid = $id;
         }
 
-        $sql  = "(SELECT id FROM {$_TABLES['forum_watch']} WHERE ((topic_id='$notifyTopicid' AND uid='$uid')) ) UNION ALL "
-              . "(SELECT id FROM {$_TABLES['forum_watch']} WHERE ((forum_id='{$forum}') AND (topic_id='0') AND (uid='$uid')) ) ";
-        $notifyquery = DB_query($sql);
 
-        if (DB_getItem($_TABLES['forum_userprefs'],'alwaysnotify', "uid='$uid'") == 1 OR DB_numRows($notifyquery) > 0) {
-            $notify = 1;
-            // check and see if user has un-subscribed to this topic
-            $nid = -$notifyTopicid;
-            if ($notifyTopicid > 0 AND DB_getItem($_TABLES['forum_watch'],'id', "forum_id='{$edittopic['forum']}' AND topic_id=$nid AND uid='$uid'") > 1) {
+        // If not new topic then check if user has unsubscribed
+        if ($notifyTopicid != '') {
+            $sql  = "(SELECT id FROM {$_TABLES['forum_watch']} WHERE ((topic_id='$notifyTopicid' AND uid='$uid')) ) UNION ALL "
+                  . "(SELECT id FROM {$_TABLES['forum_watch']} WHERE ((forum_id='{$forum}') AND (topic_id='0') AND (uid='$uid')) ) ";
+            $notifyquery = DB_query($sql);
+
+            if (DB_getItem($_TABLES['forum_userprefs'],'alwaysnotify', "uid='$uid'") == 1 OR DB_numRows($notifyquery) > 0) {
+                $notify = 1;
+                // check and see if user has un-subscribed to this topic
+                $nid = -$notifyTopicid;
+                if ($notifyTopicid > 0 AND DB_getItem($_TABLES['forum_watch'],'id', "forum_id='{$edittopic['forum']}' AND topic_id=$nid AND uid='$uid'") > 1) {
+                    $notify = '';
+                }
+            } else {
                 $notify = '';
             }
         } else {
-            $notify = '';
+            if (DB_getItem($_TABLES['forum_userprefs'],'alwaysnotify', "uid='$uid'") == 1) {
+                $notify = 1;
+            } else {
+                $notify = '';
+            }
         }
     }
     $locked_prompt = '';
@@ -929,7 +939,7 @@ if (($method == 'newtopic' || $method == 'postreply' || $method == 'edit') || ($
             } else {
                 $notify_val = '';
             }
-            //$notify_prompt = '<label for="notify">' . $LANG_GF02['msg38']. '</label><br' . XHTML . '><input type="checkbox" name="notify" id="notify" value="on" ' . $notify_val. XHTML . '>';
+            //$notify_prompt = '<label for="notify">' . $LANG_GF02['msg38']. '</label><br' . XHTML . '><input type="checkbox" class="uk-checkbox"  name="notify" id="notify" value="on" ' . $notify_val. XHTML . '>';
             // Notify Option
 			$submissionform_main->set_var ('LANG_OPTION', $LANG_GF02['msg38']);
 			$submissionform_main->set_var ('option_name', 'notify');
@@ -1050,7 +1060,7 @@ if (($method == 'newtopic' || $method == 'postreply' || $method == 'edit') || ($
 
 }
 
-$display = gf_createHTMLDocument($display);
+$display = gf_createHTMLDocument($display, '', true);
 COM_output($display);
 
 

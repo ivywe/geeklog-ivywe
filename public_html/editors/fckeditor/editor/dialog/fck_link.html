@@ -32,7 +32,7 @@
 	<body scroll="no" style="OVERFLOW: hidden">
 		<div id="divInfo" style="DISPLAY: none">
 			<span fckLang="DlgLnkType">Link Type</span><br />
-			<select id="cmbLinkType" onchange="SetLinkType(this.value);">
+			<select class="uk-select" id="cmbLinkType" onchange="SetLinkType(this.value);">
 				<option value="url" fckLang="DlgLnkTypeURL" selected="selected">URL</option>
 				<option value="anchor" fckLang="DlgLnkTypeAnchor">Anchor in this page</option>
 				<option value="email" fckLang="DlgLnkTypeEMail">E-Mail</option>
@@ -44,7 +44,7 @@
 					<tr>
 						<td nowrap="nowrap">
 							<span fckLang="DlgLnkProto">Protocol</span><br />
-							<select id="cmbLinkProtocol">
+							<select class="uk-select" id="cmbLinkProtocol">
 								<option value="http://" selected="selected">http://</option>
 								<option value="https://">https://</option>
 								<option value="ftp://">ftp://</option>
@@ -75,14 +75,14 @@
 						<tr>
 							<td width="50%">
 								<span fckLang="DlgLnkAnchorByName">By Anchor Name</span><br />
-								<select id="cmbAnchorName" onchange="GetE('cmbAnchorId').value='';" style="WIDTH: 100%">
+								<select class="uk-select" id="cmbAnchorName" onchange="GetE('cmbAnchorId').value='';" style="WIDTH: 100%">
 									<option value="" selected="selected"></option>
 								</select>
 							</td>
 							<td>&nbsp;&nbsp;&nbsp;</td>
 							<td width="50%">
 								<span fckLang="DlgLnkAnchorById">By Element Id</span><br />
-								<select id="cmbAnchorId" onchange="GetE('cmbAnchorName').value='';" style="WIDTH: 100%">
+								<select class="uk-select" id="cmbAnchorId" onchange="GetE('cmbAnchorName').value='';" style="WIDTH: 100%">
 									<option value="" selected="selected"></option>
 								</select>
 							</td>
@@ -99,7 +99,7 @@
 				<span fckLang="DlgLnkEMailSubject">Message Subject</span><br />
 				<input id="txtEMailSubject" style="WIDTH: 100%" type="text" /><br />
 				<span fckLang="DlgLnkEMailBody">Message Body</span><br />
-				<textarea id="txtEMailBody" style="WIDTH: 100%" rows="3" cols="20"></textarea>
+				<textarea class="uk-textarea" id="txtEMailBody" style="WIDTH: 100%" rows="3" cols="20"></textarea>
 			</div>
 		</div>
 		<div id="divUpload" style="DISPLAY: none">
@@ -118,7 +118,7 @@
 				<tr>
 					<td nowrap="nowrap">
 						<span fckLang="DlgLnkTarget">Target</span><br />
-						<select id="cmbTarget" onchange="SetTarget(this.value);">
+						<select class="uk-select" id="cmbTarget" onchange="SetTarget(this.value);">
 							<option value="" fckLang="DlgGenNotSet" selected="selected">&lt;not set&gt;</option>
 							<option value="frame" fckLang="DlgLnkTargetFrame">&lt;frame&gt;</option>
 							<option value="popup" fckLang="DlgLnkTargetPopup">&lt;popup window&gt;</option>
@@ -218,7 +218,7 @@
 							<tr>
 								<td width="60%">
 									<span fckLang="DlgGenLangDir">Language Direction</span><br />
-									<select id="cmbAttLangDir" style="WIDTH: 100%">
+									<select class="uk-select" id="cmbAttLangDir" style="WIDTH: 100%">
 										<option value="" fckLang="DlgGenNotSet" selected>&lt;not set&gt;</option>
 										<option value="ltr" fckLang="DlgGenLangDirLtr">Left to Right (LTR)</option>
 										<option value="rtl" fckLang="DlgGenLangDirRtl">Right to Left (RTL)</option>

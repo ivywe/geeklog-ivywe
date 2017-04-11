@@ -60,7 +60,7 @@ function plugin_autoinstall_databox($pi_name)
         'pi_name'         => $pi_name,
         'pi_display_name' => $pi_display_name,
         'pi_version'      => $_DATABOX_CONF['version'],
-        'pi_gl_version'   => '2.1.0',
+        'pi_gl_version'   => '2.1.1',
         'pi_homepage'     => 'http://www.ivywe.co.jp',
     );
 

@@ -7,7 +7,7 @@
 {mod_submitter}
 
       <dt><label for="downloads-filetitle">{lang_filetitle}</label></dt>
-      <dd><input type="text" maxlength="200" name="title" value="{title}" id="downloads-filetitle" size="48" class="size5"{xhtml}></dd>
+      <dd><input type="text" class="uk-input"  maxlength="200" name="title" value="{title}" id="downloads-filetitle" size="48" class="size5"{xhtml}></dd>
 
 {mod_file_id}
 {mod_dl_file_name}
@@ -17,13 +17,13 @@
       <dd>{categorylist}</dd>
 
       <dt>{lang_tags}</dt>
-      <dd><input type="text" maxlength="150" name="tags" value="{tags}" id="downloads-tags" size="48" class="size5"{xhtml}></dd>
+      <dd><input type="text" class="uk-input"  maxlength="150" name="tags" value="{tags}" id="downloads-tags" size="48" class="size5"{xhtml}></dd>
 
       <dt><label for="downloads-homepage">{lang_homepage}</label></dt>
-      <dd><input type="text" maxlength="250" name="homepage" value="{homepage}" id="downloads-homepage" size="48" class="size5"{xhtml}></dd>
+      <dd><input type="text" class="uk-input"  maxlength="250" name="homepage" value="{homepage}" id="downloads-homepage" size="48" class="size5"{xhtml}></dd>
 
       <dt><label for="downloads-ver">{lang_ver}</label></dt>
-      <dd><input type="text" maxlength="10" name="version" value="{version}" id="downloads-ver" size="10" class="size2"{xhtml}></dd>
+      <dd><input type="text" class="uk-input"  maxlength="10" name="version" value="{version}" id="downloads-ver" size="10" class="size2"{xhtml}></dd>
 
 {mod_file_size}
 
@@ -31,7 +31,7 @@
       <dd><div id="text_editor" style="display:{show_texteditor}; width:95%">
             <img src="{layout_url}/images/expand.png" title="{lang_expandhelp}" alt="" onclick="changeTextAreaSize('text_description','larger');"{xhtml}>
             <img src="{layout_url}/images/collapse.png" title="{lang_reducehelp}" alt="" onclick="changeTextAreaSize('text_description','smaller');"{xhtml}>
-            <textarea id="text_description" name="text_description" style="width:100%; font-size:small;" cols="50" rows="10">{description}</textarea>
+            <textarea class="uk-textarea" id="text_description" name="text_description" style="width:100%; font-size:small;" cols="50" rows="10">{description}</textarea>
           </div>
 
           <div id="html_editor" style="display:{show_htmleditor}; width:95%">
@@ -45,20 +45,20 @@
                 <option value="Default">{lang_toolbar5}</option>
               </select>
             </span>
-            <textarea id="html_description" name="html_description" style="width:100%" cols="50" rows="10">{description}</textarea>
+            <textarea class="uk-textarea" id="html_description" name="html_description" style="width:100%" cols="50" rows="10">{description}</textarea>
           </div></dd>
 
       <dt>{lang_detail}</dt>
       <dd><div id="text_editor2" style="display:{show_texteditor}; width:95%">
             <img src="{layout_url}/images/expand.png" title="{lang_expandhelp}" alt="" onclick="changeTextAreaSize('text_detail','larger');"{xhtml}>
             <img src="{layout_url}/images/collapse.png" title="{lang_reducehelp}" alt="" onclick="changeTextAreaSize('text_detail','smaller');"{xhtml}>
-            <textarea id="text_detail" name="text_detail" style="width:100%; font-size:small;" cols="50" rows="10">{detail}</textarea>
+            <textarea class="uk-textarea" id="text_detail" name="text_detail" style="width:100%; font-size:small;" cols="50" rows="10">{detail}</textarea>
           </div>
 
           <div id="html_editor2" style="display:{show_htmleditor}; width:95%">
             <img src="{layout_url}/images/expand.png" title="{lang_expandhelp}" alt="" onclick="changeHTMLTextAreaSize('html_detail','larger');"{xhtml}>
             <img src="{layout_url}/images/collapse.png" title="{lang_reducehelp}" alt="" onclick="changeHTMLTextAreaSize('html_detail','smaller');"{xhtml}>
-            <textarea id="html_detail" name="html_detail" style="width:100%" cols="50" rows="10">{detail}</textarea>
+            <textarea class="uk-textarea" id="html_detail" name="html_detail" style="width:100%" cols="50" rows="10">{detail}</textarea>
           </div></dd>
 
       <dt><label for="sel_editmode">{lang_postmode}</label></dt>
@@ -92,7 +92,7 @@
 {mod_date}
 
       <dt><label for="downloads-project">{lang_project}</label></dt>
-      <dd><input type="text" maxlength="150" name="project" value="{project}" id="downloads-project" size="48" class="size5"{xhtml}></dd>
+      <dd><input type="text" class="uk-input"  maxlength="150" name="project" value="{project}" id="downloads-project" size="48" class="size5"{xhtml}></dd>
     </dl>
   </div>
 

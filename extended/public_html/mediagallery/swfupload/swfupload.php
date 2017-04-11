@@ -43,7 +43,10 @@ if (!in_array('mediagallery', $_PLUGINS)) {
     exit;
 }
 
-$uid = (isset($_POST['uid'])) ? COM_applyFilter($_POST['uid'], true)  : '';
+// $uid = (isset($_POST['uid'])) ? COM_applyFilter($_POST['uid'], true)  : '';
+$uid = (isset($_POST['uid'])) ? COM_applyFilter($_POST['uid'], true)  : 1;
+ 
+
 $sid = (isset($_POST['sid'])) ? COM_applyFilter($_POST['sid'], false) : '';
 $aid = (isset($_POST['aid'])) ? COM_applyFilter($_POST['aid'], true)  : '';
 

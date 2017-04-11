@@ -88,7 +88,7 @@ function _showSelectTree($aid=0, $level=0)
 
         $px = ($level - 1) * 15;
         $retval .= '<div style="margin-left:' . $px . 'px;">'
-                 . '<input type="checkbox" name="album[' . $album->id . ']" id="album_' . $album->id . '" value="1" ' . $block . XHTML . '>&nbsp;&nbsp;'
+                 . '<input type="checkbox" class="uk-checkbox"  name="album[' . $album->id . ']" id="album_' . $album->id . '" value="1" ' . $block . XHTML . '>&nbsp;&nbsp;'
                  . strip_tags($album->title) . ' (' . COM_numberFormat($album->album_disk_usage/1024) . ' Kb)</div>' . LB;
     }
 

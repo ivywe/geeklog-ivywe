@@ -298,7 +298,9 @@ class SitemapXML
         if ($retval === null) {
             if (isset($_CONF['timezone'])) {
                 $timezone = $_CONF['timezone'];
-                require_once 'Date/TimeZone.php';
+
+                // Load Date_TimeZone class
+                Date_TimeZone::getDefault();
 
                 if (array_key_exists($timezone, $GLOBALS['_DATE_TIMEZONE_DATA'])) {
                     $offset = $GLOBALS['_DATE_TIMEZONE_DATA'][$timezone]['offset'];
@@ -592,8 +594,6 @@ class SitemapXML
         $sitemapUrl = $_CONF['site_url'] . '/' . basename($sitemap);
         $sitemapUrl = urlencode($sitemapUrl);
 
-        require_once 'HTTP/Request.php';
-
         foreach ($destinations as $dest) {
             $dest = strtolower($dest);
 
@@ -620,18 +620,24 @@ class SitemapXML
 
             // Sends a ping to the endpoint of a search engine
             if ($url !== '') {
-                $req = new HTTP_Request($url);
-                $req->setMethod(HTTP_REQUEST_METHOD_GET);
-                $req->addHeader('User-Agent', 'Geeklog/' . VERSION);
-                $response = $req->sendRequest();
+                $req = new HTTP_Request2(
+                    $url,
+                    HTTP_Request2::METHOD_GET
+                );
+                $req->setHeader('User-Agent', 'Geeklog/' . VERSION);
 
-                if (PEAR::isError($response)) {
-                    COM_errorLog(__METHOD__ . ': HTTP error: ' . $response->getMessage());
-                } else if ($req->getResponseCode() != 200) {
-                    COM_errorLog(__METHOD__ . ': HTTP error code: ' . $req->getResponseCode());
-                } else {
-                    $success++;
-                    $records[$dest] = time();
+                try {
+                    $response = $req->send();
+                    $status = $response->getStatus();
+
+                    if ($status == 200) {
+                        $success++;
+                        $records[$dest] = time();
+                    } else {
+                        COM_errorLog(__METHOD__ . ': HTTP status ' . $status);
+                    }
+                } catch (HTTP_Request2_Exception $e) {
+                    COM_errorLog(__METHOD__ . ': ' . $e->getMessage());
                 }
             }
         }

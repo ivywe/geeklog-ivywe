@@ -93,7 +93,19 @@ if ($_REQUEST['mode'] == 'print') {
 // Allow all serialized data to be available to the template
 $ipn ='';
 if ($A['ipn_data'] != '') {
-	$out = preg_replace('!s:(\d+):"(.*?)";!se', "'s:'.strlen('$2').':\"$2\";'", $A['ipn_data'] ); 
+
+	// PHP7 error {
+	// $out = preg_replace('!s:(\d+):"(.*?)";!se', "'s:'.strlen('$2').':\"$2\";'", $A['ipn_data'] ); 
+
+		$out = preg_replace_callback(
+        '!s:(\d+):"(.*?)";!s',
+        function ($args) {
+            return sprintf('s:%d:"%s";', strlen($args[2]), $args[2]);
+        },
+        $A['ipn_data']
+
+    );	// } PHP7 error
+
 	$ipn = unserialize($out);
 	if (!is_array($ipn)) {
 		$ipn = array();
@@ -195,7 +207,7 @@ if ($purchase_status == 'complete' || $purchase_status == '') {
     $transaction->set_var('paid_on', $LANG_PAYPAL_1['order_on'] . ' ' . $purchase_date[0]);
 	if (SEC_hasRights('paypal.admin') && $A['status'] == 'pending') {
 	    $transaction->set_var('edit', '<p><a href="' . $_CONF['site_url'] . '/admin/plugins/paypal/purchase_history.php?mode=edit&amp;txn_id=' . 
-		$ipn['txn_id'] . '" onclick="return confirm(\'' . $LANG_PAYPAL_1['confirm_edit_status'] .'\');">>> ' . $LANG_PAYPAL_1['validate_order'] . '</a></p>');
+		$ipn['txn_id'] . '" onclick="return confirm(\'' . $LANG_PAYPAL_1['confirm_edit_status'] .'\');"> >> ' . $LANG_PAYPAL_1['validate_order'] . '</a></p>');
 	}
 }
 

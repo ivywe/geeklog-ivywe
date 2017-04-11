@@ -252,12 +252,12 @@ function fncGetListField($fieldname, $fieldvalue, $A, $icon_arr, $selected = '')
             if (($A['grp_name'] == 'All Users') ||
                 ($A['grp_name'] == 'Logged-in Users') ||
                 ($A['grp_name'] == 'Remote Users')) {
-                $retval = '<input type="checkbox" disabled="disabled"'
+                $retval = '<input type="checkbox" class="uk-checkbox"  disabled="disabled"'
                         . $checked . XHTML . '>'
                         . '<input type="hidden" name="groups[]" value="'
                         . $A['grp_id'] . '"' . $checked . XHTML . '>';
             } else {
-                $retval = '<input type="checkbox" name="groups[]" value="'
+                $retval = '<input type="checkbox" class="uk-checkbox"  name="groups[]" value="'
                         . $A['grp_id'] . '"' . $checked . XHTML . '>';
             }
             break;

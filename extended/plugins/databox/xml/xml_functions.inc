@@ -286,7 +286,7 @@ function fnc_Edit(
 
     //delete_option
     if ($delflg){
-        $delbutton = '<input type="submit" value="' . $LANG_ADMIN['delete']
+        $delbutton = '<input type="submit" class="uk-button uk-button-danger" value="' . $LANG_ADMIN['delete']
                . '" name="mode"%s>';
         $jsconfirm = ' onclick="return confirm(\'' . $MESSAGE[76] . '\');"';
             $templates->set_var ('delete_option',
@@ -323,7 +323,7 @@ function fnc_GetXmlFieldsList(
     fnc_GetFieldAry2($pi_name,$field_ary);
     
     //------
-    $retval .= "<select name=field >".LB;
+    $retval .= "<select class='uk-select uk-form-width-medium' name=field >".LB;
     $c=count($field_ary);
     if ($c>0){
         foreach( $field_ary as $fid => $fvalue ){

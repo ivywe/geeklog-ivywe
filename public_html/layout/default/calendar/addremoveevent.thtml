@@ -1,5 +1,0 @@
-{# begin {templatelocation} #}
-
-&nbsp;<span class="uk-text-small">[{lang_addremovefromcal}]</span>
-
-{# end {templatelocation} #}

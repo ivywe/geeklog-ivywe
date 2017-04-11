@@ -9,17 +9,17 @@
     <fieldset>
         <dl class="form_block">
           <dt><label class="uk-form-label">{lang_directory}</label></dt>
-          <dd><span>{ftp_path}</span> <input type="text" name="directory" id="directory" class="size2"{xhtml}></dd>
+          <dd><span>{ftp_path}</span> <input type="text" class="uk-input" name="directory" id="directory" class="size2"{xhtml}></dd>
 
           <dt><label class="uk-form-label">{lang_delete_files}</label></dt>
-          <dd><input type="radio" name="purgefiles" value="0" checked="checked"{xhtml}>{lang_no}&nbsp;&nbsp;
-              <input type="radio" name="purgefiles" value="1"{xhtml}>{lang_yes}</dd>
+          <dd><input type="radio" class="uk-radio" name="purgefiles" value="0" checked="checked"{xhtml}>{lang_no}&nbsp;&nbsp;
+              <input type="radio" class="uk-radio" name="purgefiles" value="1"{xhtml}>{lang_yes}</dd>
         </dl>
     </fieldset>
 
     <div class="mg_submit">
-      <input type="submit" value="{lang_save}" name="mode" class="submit"{xhtml}>
-      <input type="submit" value="{lang_cancel}" name="mode" class="submit"{xhtml}>
+      <input type="submit" class="uk-button uk-button-primary" value="{lang_save}" name="mode" class="uk-button uk-button-primary"{xhtml}>
+      <input type="submit" class="uk-button uk-button-primary" value="{lang_cancel}" name="mode" class="uk-button uk-button-primary"{xhtml}>
       <input type="hidden" name="album_id" value="{album_id}"{xhtml}>
       <input type="hidden" name="action" value="{action}"{xhtml}>
     </div>

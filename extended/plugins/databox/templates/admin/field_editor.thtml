@@ -9,7 +9,7 @@
     <legend>Addition Fields</legend>
 
     {# id #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_field_id}</label>
       <div class="uk-form-controls">
           {id}
@@ -18,39 +18,39 @@
     </div>
 
     {# name #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_name}<span class="uk-text-danger">{lang_must}</span></label>
       <div class="uk-form-controls">
-         <input type="text" class="uk-form-width-medium" size="48" maxlength="160" name="name" value="{name}" required{xhtml}>
+         <input type="text" class="uk-input uk-form-width-medium" size="48" maxlength="160" name="name" value="{name}" required{xhtml}>
       </div>
     </div>
 
     {# templatesetvar #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_templatesetvar}<span class="uk-text-danger">{lang_must}</span></label>
       <div class="uk-form-controls">
-        <input type="text" class="uk-form-width-medium" size="48" maxlength="160" name="templatesetvar" value="{templatesetvar}" required{xhtml}>
+        <input type="text" class="uk-input uk-form-width-medium" size="48" maxlength="160" name="templatesetvar" value="{templatesetvar}" required{xhtml}>
       </div>
     </div>
 
     {# description #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_description} {help_description}</label>
       <div class="uk-form-controls">
-        <textarea name="description" class="uk-width-1-1" rows="2" id="databox_description">{description}</textarea>
+        <textarea class="uk-textarea" name="description" class="uk-width-1-1" rows="2" id="databox_description">{description}</textarea>
       </div>
     </div>
 
     {# description2 #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_description2} {help_description2}</label>
       <div class="uk-form-controls">
-        <textarea name="description2" class="uk-width-1-1" rows="2" id="databox_description2">{description2}</textarea>
+        <textarea class="uk-textarea" name="description2" class="uk-width-1-1" rows="2" id="databox_description2">{description2}</textarea>
       </div>
     </div>
 
     {# fieldgroupno #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_fieldgroupno} {help_fieldgroupno}</label>
       <div class="uk-form-controls">
         {list_fieldgroupno}
@@ -58,7 +58,7 @@
     </div>
 
     {# allow_display  #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_allow_display} {help_allow_display}</label>
       <div class="uk-form-controls">
         {list_allow_display}
@@ -66,7 +66,7 @@
     </div>
 
     {# allow_edit #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_allow_edit} {help_allow_edit}</label>
       <div class="uk-form-controls">
         {list_allow_edit}
@@ -74,7 +74,7 @@
     </div>
 
     {# 検索対象にする searchtarget #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_searchtarget} {help_searchtarget}</label>
       <div class="uk-form-controls">
         {list_searchtarget}
@@ -82,15 +82,15 @@
     </div>
 
     {# order #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_orderno}</label>
       <div class="uk-form-controls">
-         <input type="text" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
+         <input type="text" class="uk-input uk-form-width-xsmall" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
       </div>
     </div>
 
     {# Update date #}
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_udatetime}</label>
       <div class="uk-form-controls">
          {udatetime} {lang_uuid}:{uuid}
@@ -98,7 +98,7 @@
     </div>
 
     <div class="uk-panel uk-panel-box uk-panel-box-primary uk-margin">
-      <div class="uk-form-row">
+      <div class="uk-form-row uk-clearfix">
         <label class="uk-form-label">{lang_type} {help_type}</label>
         <div class="uk-form-controls">
           {list_type}
@@ -109,22 +109,22 @@
     <div class="uk-panel uk-panel-box uk-margin">
 
       {# 初期値 initial value #}
-      <div class="uk-form-row">
+      <div class="uk-form-row uk-clearfix">
         <label class="uk-form-label">{lang_initial_value} {help_initial_value}</label>
         <div class="uk-form-controls">
-           <textarea name="initial_value" class="uk-width-1-1" rows="2" id="databox_initial_value">{initial_value}</textarea>
+           <textarea class="uk-textarea" name="initial_value" class="uk-width-1-1" rows="2" id="databox_initial_value">{initial_value}</textarea>
         </div>
       </div>
       {# 範囲 range #}
-      <div class="uk-form-row">
+      <div class="uk-form-row uk-clearfix">
         <label class="uk-form-label">{lang_range}</label>
         <div class="uk-form-controls">
-           <input type="text" class="uk-form-width-small" size="12" maxlength="160" name="range_start" value="{range_start}"{xhtml}> - <input type="text" class="uk-form-width-small" size="12" maxlength="160" name="range_end" value="{range_end}"{xhtml}>
+           <input type="text" class="uk-input uk-form-width-xsmall" size="12" maxlength="160" name="range_start" value="{range_start}"{xhtml}> - <input type="text" class="uk-input uk-form-width-xsmall" size="12" maxlength="160" name="range_end" value="{range_end}"{xhtml}>
         </div>
       </div>
 
       {# 日時のフォーマット DateTime Format #}
-      <div class="uk-form-row">
+      <div class="uk-form-row uk-clearfix">
         <label class="uk-form-label">{lang_dfid} {help_dfid}</label>
         <div class="uk-form-controls">
               {list_dfid}
@@ -132,7 +132,7 @@
       </div>
 
       {# 入力チェック textcheck #}
-      <div class="uk-form-row">
+      <div class="uk-form-row uk-clearfix">
         <label class="uk-form-label">{lang_textcheck} {help_textcheck}</label>
         <div class="uk-form-controls">
           {list_textcheck}
@@ -140,7 +140,7 @@
       </div>
 
       {# 入力値変換 textconv #}
-      <div class="uk-form-row">
+      <div class="uk-form-row uk-clearfix">
         <label class="uk-form-label">{lang_textconv} {help_textconv}</label>
         <div class="uk-form-controls">
           {list_textconv}
@@ -148,7 +148,7 @@
       </div>
 
       {# check requried #}
-      <div class="uk-form-row">
+      <div class="uk-form-row uk-clearfix">
         <label class="uk-form-label">{lang_checkrequried} {help_checkrequried}</label>
         <div class="uk-form-controls">
           {list_checkrequried}
@@ -156,47 +156,47 @@
       </div>
 
       {# size #}
-      <div class="uk-form-row">
+      <div class="uk-form-row uk-clearfix">
         <label class="uk-form-label">{lang_size}</label>
         <div class="uk-form-controls">
-          <input type="text" class="uk-form-width-small" size="12" maxlength="160" name="size" value="{size}"{xhtml}>
+          <input type="text" class="uk-input uk-form-width-xsmall" size="12" maxlength="160" name="size" value="{size}"{xhtml}>
         </div>
       </div>
 
       {# maxlength #}
-      <div class="uk-form-row">
+      <div class="uk-form-row uk-clearfix">
         <label class="uk-form-label">{lang_maxlength}</label>
         <div class="uk-form-controls">
-          <input type="text" class="uk-form-width-small" size="12" maxlength="160" name="maxlength" value="{maxlength}"{xhtml}>
+          <input type="text" class="uk-input uk-form-width-xsmall" size="12" maxlength="160" name="maxlength" value="{maxlength}"{xhtml}>
         </div>
       </div>
 
       {# rows #}
-      <div class="uk-form-row">
+      <div class="uk-form-row uk-clearfix">
         <label class="uk-form-label">{lang_rows}</label>
         <div class="uk-form-controls">
-          <input type="text" class="uk-form-width-small" size="12" maxlength="160" name="rows" value="{rows}"{xhtml}>
+          <input type="text" class="uk-input uk-form-width-xsmall" size="12" maxlength="160" name="rows" value="{rows}"{xhtml}>
         </div>
       </div>
 
       {# br #}
-      <div class="uk-form-row">
+      <div class="uk-form-row uk-clearfix">
         <label class="uk-form-label">{lang_br}</label>
         <div class="uk-form-controls">
-          <input type="text" size="1" maxlength="1" name="br" value="{br}"{xhtml}>{help_br}
+          <input type="text" class="uk-input uk-form-width-xsmall" size="1" maxlength="1" name="br" value="{br}"{xhtml}>{help_br}
         </div>
       </div>
 
       {# selection #}
-      <div class="uk-form-row">
+      <div class="uk-form-row uk-clearfix">
         <label class="uk-form-label" for="databox_selection">{lang_selection} {help_selection}</label>
         <div class="uk-form-controls">
-          <textarea name="selection" class="uk-width-1-1" rows="10" id="databox_selection">{selection}</textarea>
+          <textarea class="uk-textarea" name="selection" class="uk-width-1-1" rows="10" id="databox_selection">{selection}</textarea>
         </div>
       </div>
 
       {# selectlist #}
-      <div class="uk-form-row">
+      <div class="uk-form-row uk-clearfix">
         <label class="uk-form-label">{lang_selectlist} {help_selectlist}</label>
         <div class="uk-form-controls">
           {list_selectlist}
@@ -210,7 +210,7 @@
   <div class="uk-form-row uk-margin-large-top">
     <div class="uk-form-controls">
       {# Submit button - Save Cancel Delete #}
-      <input type="submit" value="{lang_save}" name="mode" class="uk-button uk-form-width-medium"{xhtml}>
+      <input type="submit" value="{lang_save}" name="mode" class="uk-button uk-button-primary"{xhtml}>
       <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
       <input type="hidden" value="{code}" name="old_code"{xhtml}>
       <span data-uk-tooltip title="{lang_delete_help}">{delete_option}</span>

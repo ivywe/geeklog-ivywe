@@ -5,8 +5,8 @@
 {lang_details}
 </div>
 <div class="mg_submit">
-  <input type="submit" name="submit" value="{lang_next}"{xhtml}>&nbsp;
-  <input type="submit" name="submit" value="{lang_cancel}"{xhtml}>
+  <input type="submit" class="uk-button uk-button-primary" name="submit" value="{lang_next}"{xhtml}>&nbsp;
+  <input type="submit" class="uk-button uk-button-primary" name="submit" value="{lang_cancel}"{xhtml}>
 </div>
 </form>
 

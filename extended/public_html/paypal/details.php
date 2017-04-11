@@ -51,8 +51,8 @@ $vars = array('msg' => 'text',
 			  'city' => 'text',
               'country' => 'text',
 			  'phone1' => 'alpha', 
-			  'phone2' => 'alpha',
-              'fax' => 'alpha',
+			  'phone2' => 'text',
+              'fax' => 'text',
               'contact' => 'text',
 			  'proid' => 'alpha',
 			  'pay_by' => 'alpha', 
@@ -185,7 +185,7 @@ switch ($_REQUEST['mode']) {
         }
 	}
 
-$display = COM_siteHeader() . $display . COM_siteFooter();
+$display = COM_siteHeader('none') . $display . COM_siteFooter();
 
 
 COM_output($display);

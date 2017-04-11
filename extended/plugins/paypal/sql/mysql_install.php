@@ -40,7 +40,7 @@ $_SQL[] = "CREATE TABLE {$_TABLES['paypal_ipnlog']} (
     ip_addr varchar(15) NOT NULL,
     time datetime NOT NULL,
     verified tinyint(1) default '0',
-    txn_id varchar(255),
+    txn_id varchar(127),
     ipn_data text NOT NULL,
     PRIMARY KEY (id) 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -50,9 +50,9 @@ $_SQL[] = "CREATE TABLE {$_TABLES['paypal_products']} (
     id int auto_increment,
 	type varchar(15) default 'product',
 	item_id varchar(40) NOT NULL,
-    name varchar(255) NOT NULL,
+    name varchar(127) NOT NULL,
     cat_id int(11) unsigned NOT NULL default '0' ,
-    short_description varchar(255),
+    short_description varchar(127),
     description text,
 	created datetime DEFAULT NULL, 
     price decimal(12,2) unsigned,
@@ -64,7 +64,7 @@ $_SQL[] = "CREATE TABLE {$_TABLES['paypal_products']} (
 	weight FLOAT(6,3) DEFAULT '0.000',
 	shipping_type TINYINT(1) NOT NULL default '0',
 	logged tinyint(1) default '0',
-    file varchar(255),
+    file varchar(127),
     expiration int,
 	hits mediumint(8) unsigned NOT NULL default '0', 
 	hidden tinyint(1) default '0',
@@ -91,7 +91,7 @@ $_SQL[] = "CREATE TABLE {$_TABLES['paypal_products']} (
 $_SQL[] = "CREATE TABLE {$_TABLES['paypal_downloads']} (
     id int auto_increment,
     product_id int NOT NULL,
-    file varchar(255),
+    file varchar(127),
 	dl_date datetime,
 	user_id int NOT NULL,
     PRIMARY KEY (id)
@@ -101,10 +101,10 @@ $_SQL[] = "CREATE TABLE {$_TABLES['paypal_downloads']} (
 $_SQL[] = "CREATE TABLE {$_TABLES['paypal_purchases']} (
     id int auto_increment,
     product_id int NOT NULL,
-	product_name varchar(255),
+	product_name varchar(127),
     quantity int NOT NULL DEFAULT 1,
     user_id int NOT NULL,
-    txn_id varchar(255),
+    txn_id varchar(127),
     purchase_date datetime,
     status varchar(12),
     expiration datetime,
@@ -124,7 +124,7 @@ $_SQL[] = "CREATE TABLE {$_TABLES['paypal_subscriptions']} (
     id int(11) auto_increment,
     product_id int NOT NULL,
     user_id int NOT NULL,
-    txn_id varchar(255),
+    txn_id varchar(127),
     purchase_date datetime NOT NULL,
     expiration datetime NOT NULL,
     price decimal(12,2) unsigned,
@@ -156,9 +156,9 @@ $_SQL[] = "CREATE TABLE {$_TABLES['paypal_users']} (
 $_SQL[] = "CREATE TABLE {$_TABLES['paypal_categories']} (
     cat_id smallint(5) unsigned NOT NULL auto_increment,
     parent_id smallint(5) unsigned default '0',
-    cat_name varchar(255) default '',
+    cat_name varchar(127) default '',
     description text default '',
-	image varchar(255) default '',
+	image varchar(127) default '',
     enabled tinyint(1) unsigned default '1',
     group_id mediumint(8) unsigned NOT NULL default '1',
     owner_id mediumint(8) unsigned NOT NULL default '1',
@@ -173,11 +173,11 @@ $_SQL[] = "CREATE TABLE {$_TABLES['paypal_categories']} (
 $_SQL[] = "CREATE TABLE {$_TABLES['paypal_attributes']} (
 	at_id int(11) NOT NULL auto_increment,
 	at_type int(11) NOT NULL default '0',
-	at_name varchar(255),
+	at_name varchar(127),
 	at_code varchar(30),
 	at_enabled tinyint(1) default '1',
 	at_price decimal(12,2) default '0',
-	at_image varchar(255) default NULL,
+	at_image varchar(127) default NULL,
 	at_order smallint(5) unsigned NOT NULL default '1',
 	PRIMARY KEY (at_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -185,7 +185,7 @@ $_SQL[] = "CREATE TABLE {$_TABLES['paypal_attributes']} (
 
 $_SQL[] = "CREATE TABLE {$_TABLES['paypal_attribute_type']} (
 	at_tid int(11) NOT NULL auto_increment,
-	at_tname varchar(255),
+	at_tname varchar(127),
 	at_torder smallint(5) unsigned NOT NULL default '1',
 	PRIMARY KEY (at_tid)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -224,7 +224,7 @@ $_SQL[] = "CREATE TABLE {$_TABLES['paypal_stock_movements']} (
 	move_date datetime DEFAULT NULL,
 	move_qty int(6) DEFAULT '0',
 	move_cpid varchar(30) NOT NULL,
-	stock_id varchar(255) NOT NULL,
+	stock_id varchar(192) NOT NULL,
 	deli_id mediumint(8) NOT NULL,
 	PRIMARY KEY (mid)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -240,7 +240,7 @@ $_SQL[] = "CREATE TABLE {$_TABLES['paypal_providers']} (
 $_SQL[] = "CREATE TABLE {$_TABLES['paypal_shipper_service']} (
     shipper_service_id int(11) NOT NULL auto_increment,
     shipper_service_name varchar(100) NOT NULL,
-    shipper_service_service varchar(255) NOT NULL,
+    shipper_service_service varchar(192) NOT NULL,
     shipper_service_description text,
 	shipper_service_exclude_cat smallint(5) unsigned NOT NULL default '0',
     PRIMARY KEY  (shipper_service_id) 
@@ -249,7 +249,7 @@ $_SQL[] = "CREATE TABLE {$_TABLES['paypal_shipper_service']} (
 
 $_SQL[] = "CREATE TABLE {$_TABLES['paypal_shipping_to']} (
     shipping_to_id int(11) NOT NULL auto_increment,
-    shipping_to_name varchar(255) NOT NULL,
+    shipping_to_name varchar(127) NOT NULL,
 	shipping_to_order smallint(5) unsigned NOT NULL default '1',
     PRIMARY KEY  (shipping_to_id) 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

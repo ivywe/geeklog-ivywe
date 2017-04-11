@@ -471,7 +471,7 @@ function MG_deleteAlbumConfirm($album_id, $actionURL = '')
         return COM_showMessageText($LANG_MG00['access_denied_msg']);
     }
 
-    $album_selectbox = '<select name="target"><option value="0">' . $LANG_MG01['delete_all_media'] . '</option>';
+    $album_selectbox = '<select class="uk-select uk-form-width-small" name="target"><option value="0">' . $LANG_MG01['delete_all_media'] . '</option>';
     $root_album = new mgAlbum(0);
     $root_album->buildAlbumBox($album_selectbox, -1, 3, $album_id, 'upload');
     $album_selectbox .= '</select>';

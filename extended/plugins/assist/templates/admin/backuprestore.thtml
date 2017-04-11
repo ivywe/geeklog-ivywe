@@ -1,24 +1,18 @@
 {# begin {templatelocation} #}
-
-<h2>Assist</h2>
-<h3>backup & restore </h3>
+{# plugins/assist/templates/admin/backuprestore.thtml 20161116 #}
 {about_thispage}
 <fieldset style="margin-top:10px;">
 <legend>(1){config}</legend>
 <blockquote>
-<form class="uk-form" action='backuprestore.php'method='post'>
-{err_backup_file}
-<li><input type='submit' name='action' value='{config_backup}' {xhtml}>  {config_backup_help}</li>
-
-<li><input type='submit' name='action' value='{config_init}' {xhtml}>  {config_init_help}</li>
-
-<li><input type='submit' name='action' value='{config_restore}' {restore_disabled} {xhtml}>  {config_restore_help}
-<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}></li>
-
-<li><input type='submit' name='action' value='{config_update}' {xhtml}>  {config_update_help}</li>
-
-</form>
+<li><a href="{site_admin_url}/plugins/{script}?mode=configbackup">{config_backup}</a>
+{config_backup_help}</li>
+<li><a href="{site_admin_url}/plugins/{script}?mode=configinit">{config_init}</a>
+{config_init_help}</li>
+<li><a href="{site_admin_url}/plugins/{script}?mode=configrestore">{config_restore}</a>
+{config_restore_help}</li>
+<li><a href="{site_admin_url}/plugins/{script}?mode=configupdate">{config_update}</a>
+{config_update_help}</li>
+<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
 </blockquote>
 </fieldset>
-
 {# end {templatelocation} #}

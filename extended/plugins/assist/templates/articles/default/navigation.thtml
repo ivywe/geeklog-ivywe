@@ -1,6 +1,6 @@
-{# begin {templatelocation} #}
+<!-- plugins/assist/templates/articles/default/navigation.thtml { -->
 
-<div>
+<div id="databox">
 
   <div class='pagenav'>
     {page_navigation}
@@ -8,7 +8,7 @@
   </div>
   <div style="clear:both"></div>
 
-  <ul>
+  <ul class="contents" id="list">
     <li>{lang_name} ({lang_count})</li>
 {row_var}
   </ul>
@@ -21,4 +21,4 @@
 
 </div>
 
-{# end {templatelocation} #}
+<!-- } plugins/assist/templates/articles/default/navigation.thtml -->

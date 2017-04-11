@@ -18,20 +18,19 @@ $stage = 'admin'
 #admin-topmenu
     margin-bottom: 2em
     border: 1px solid rgba(0, 0, 0, 0.2)
-    padding: 10px 5px
+    padding: 10px
     line-height: 1.25
     border-radius: 4px
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1)
 
 .admin-menu-icon
     float: left
-    padding: 5px
     margin-right: 10px
     width: 48px
     height: 48px
 
 #instructions
-    padding: 5px
+    padding: 5px 0
     > p
         margin: 0 0 5px 0
         line-height: 1.25
@@ -88,56 +87,29 @@ $stage = 'admin'
         width: 900px
     .fieldset-table-wrapper > &
         width: 100%
-    text-align: left
-    // border-collapse: separate
-    // border-spacing: 1px
-    // border: none
-    font-size: 90%
-    tr
-        margin: 0
-        padding: 0
-        vertical-align: middle
+    font-size: 13px
+    border-collapse: collapse
+    border-spacing: 0
     th,
     td
         vertical-align: middle
-        line-height: 1.1em
-        height: 2.3em
-        padding-top: 2px
-        padding-bottom: 2px
-        // border: none
+        height: 24px
+        padding: 4px 8px
+        border-bottom: 1px solid #e5e5e5
     th
-        color: $admin-list-table-th-color
         background-color: $admin-list-table-th-background
     img
         vertical-align: middle
-    admin-table()
 
-.admin-table-changer
-    display: none
-    @media only screen and (max-width: $breakpoint-large-max)
-        display: block
-    text-align: right
-    margin-right: 2px
-    margin-bottom: 2px
-    a
-        width: 60px
-        text-align: center
-        font-size: 85%
-        padding: 2px 6px
+/*! UIkit Modifier */
+.uk-table tbody tr.uk-active > td
+    background: #f0f0f0
 
-.table-wrapper
-    width: 100%
-    overflow: scroll
+.uk-table-striped tbody tr:nth-of-type(odd)
+    background: #fafafa
 
-.table-wrapper-fit
-    width: 100%
-    overflow: visible
-    > .admin-list-table
-        width: 100%
-
-.table-wrapper-visible
-    width: 100%
-    overflow: visible
+.uk-table-hover tbody tr:hover > td
+    background: #f0f0f0
 
 /*! Navigation */
 .admin-list-navi
@@ -163,14 +135,6 @@ $stage = 'admin'
     border-spacing: 1px
     font-size: 13px
 
-.admin-list-headerfield
-    padding: 4px
-
-.admin-list-field
-    padding: 4px
-    a
-        padding: 4px 6px
-
 .search-part
     display: inline-block
     margin-right: 5px
@@ -184,13 +148,21 @@ $stage = 'admin'
 --------------------------------------*/
 
 #admin-permissions
-    admin-table()
+    $bordercolor = rgba(0, 0, 0, 0.2)
     margin: 0 0 0.5em 0
+    width: auto
     font-size: 13px
+    border-collapse: collapse
+    border-spacing: 0
+    border: 1px solid $bordercolor
+    th
+        background-color: $admin-list-table-th-background
     th, td
         font-weight: bold
         text-align: center
-        padding: 4px
+        vertical-align: middle
+        border-bottom: 1px solid $bordercolor
+        border-right: 1px solid $bordercolor
 
 /*!--------------------------------------
   Command and Control Page
@@ -367,13 +339,7 @@ b.status_black
     font-weight: bold
     color: #cc0000
 
-/*! PHPInfo Panel style and button */
-#panel_phpinfo
-    padding: 5px
-    width: 600px
-    margin: auto
-    text-align: center
-
+/*! PHPInfo Button and Panel style */
 #toggle_phpinfo
     padding: 5px
     width: 200px
@@ -382,8 +348,57 @@ b.status_black
     border: solid 1px #c3c3c3
 
 #panel_phpinfo
-    padding: 50px
     display: none
+    font-size: 13px
+    pre
+        margin: 0
+        font-family: monospace
+    a:link
+        color: #009
+        text-decoration: none
+        background-color: #fff
+    a:hover
+        text-decoration: underline
+    table
+        border-collapse: collapse
+        border: 0
+        width: 100%
+    .center
+        text-align: center
+        table
+            margin: 1em auto
+            text-align: left
+        th
+            text-align: center !important
+    td, th
+        border: 1px solid #666
+        vertical-align: baseline
+        padding: 4px 5px
+    .p
+        text-align: left
+    .e
+        background-color: #ccf
+        width: 300px
+        font-weight: bold
+    .h
+        background-color: #99c
+        font-weight: bold
+    .v
+        background-color: #f0f0f0
+        max-width: 300px
+        overflow-x: auto
+        word-wrap: break-word
+        i
+            color: #999
+        p
+            margin: 0
+    img
+        float: right
+        border: 0
+    hr
+        background-color: #ccc
+        border: 0
+        height: 1px
 
 /*!--------------------------------------
   Others
@@ -400,7 +415,7 @@ b.status_black
     bottom: 20px
     right: 20px
     text-align: center
-    font-size: 40px;
+    font-size: 40px
     cursor: pointer
     color: rgba(128,128,128,0.6)
 

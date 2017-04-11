@@ -2,19 +2,19 @@
 
 <form action="{datetime_script}" method="post" >
     {datetime_title}
-    <select name="{datetime}_year">
+    <select class="uk-select uk-form-width-xsmall" name="{datetime}_year">
         {datetime_year_options}
     </select>{lang_yy}
-    <select name="{datetime}_month">
+    <select class="uk-select uk-form-width-xsmall" name="{datetime}_month">
         {datetime_month_options}
     </select>{lang_mm}
-    <select name="{datetime}_day">
+    <select class="uk-select uk-form-width-xsmall" name="{datetime}_day">
         {datetime_day_options}
     </select>
-    <select name="{datetime}_hour">
+    <select class="uk-select uk-form-width-xsmall" name="{datetime}_hour">
         {datetime_hour_options}
     </select>:
-    <select name="{datetime}_minute">
+    <select class="uk-select uk-form-width-xsmall" name="{datetime}_minute">
         {datetime_minute_options}
     </select>
     <input type="hidden" name="mode" value="datetime">

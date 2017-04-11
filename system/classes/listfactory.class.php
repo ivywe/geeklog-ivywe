@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 1.8                                                               |
+// | Geeklog 2.1                                                               |
 // +---------------------------------------------------------------------------+
 // | listfactory.class.php                                                     |
 // |                                                                           |
@@ -31,7 +31,7 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 
-if (strpos(strtolower($_SERVER['PHP_SELF']), 'listfactory.class.php') !== false) {
+if (stripos($_SERVER['PHP_SELF'], 'listfactory.class.php') !== false) {
     die('This file can not be used on its own.');
 }
 
@@ -110,10 +110,10 @@ if (strpos(strtolower($_SERVER['PHP_SELF']), 'listfactory.class.php') !== false)
         else
         {
             // Create a link from the title and id
-            $row['title'] = '<a href="http://www.geeklog.net/list_test.php?id='.$row['id'].'">'.$row['title'].'</a>';
+            $row['title'] = '<a href="https://www.geeklog.net/list_test.php?id='.$row['id'].'">'.$row['title'].'</a>';
 
             // Shorten the text and strip any HTML tags
-            $row['text'] = substr(strip_tags($row['text']), 0, 20);
+            $row['text'] = substr(GLText::stripTags($row['text']), 0, 20);
         }
 
         // Return the reformatted row
@@ -123,17 +123,17 @@ if (strpos(strtolower($_SERVER['PHP_SELF']), 'listfactory.class.php') !== false)
 */
 
 /**
-* Geeklog List Factory Class
-*
-* @author Sami Barakat, s.m.barakat AT gmail DOT com
-*
-*/
-class ListFactory {
-
+ * Geeklog List Factory Class
+ *
+ * @author Sami Barakat, s.m.barakat AT gmail DOT com
+ */
+class ListFactory
+{
     // PRIVATE VARIABLES
     private $_fields = array();
     private $_sources_arr = array();
     private $_total_rank = 0;
+    private $_total_found = 0;
     private $_sort_arr = array();
     private $_def_sort_arr = array();
     private $_page = 1;
@@ -145,27 +145,25 @@ class ListFactory {
     private $_style = 'table';
 
     /**
-    * Constructor
-    *
-    * Sets up private url variable and defines the
-    * LF_SOURCE_TITLE, LF_SOURCE_NAME and LF_ROW_NUMBER constants.
-    *
-    * @access public
-    * @param string $url The URL of the page the table appears on
-    * @param array $limits The avaliable page limits
-    * @param int $per_page The default number or rows per page
-    *
-    */
-    function ListFactory( $url, $limits = '10,15,20,25,30,35', $per_page = 20 )
+     * Constructor
+     * Sets up private url variable and defines the
+     * LF_SOURCE_TITLE, LF_SOURCE_NAME and LF_ROW_NUMBER constants.
+     *
+     * @access public
+     * @param string       $url      The URL of the page the table appears on
+     * @param array|string $limits   The avaliable page limits
+     * @param int          $per_page The default number or rows per page
+     */
+    public function __construct($url, $limits = '10,15,20,25,30,35', $per_page = 20)
     {
-        $url .= (strpos($url,'?') === false ? '?' : '&amp;');
+        $url .= (strpos($url, '?') === false ? '?' : '&amp;');
         $this->_page_url = $url;
         $this->_style = 'table';
         $this->_per_page = $per_page;
 
         if (is_string($limits)) {
             $this->_page_limits = explode(',', $limits);
-        } else if (is_array($limits)) {
+        } elseif (is_array($limits)) {
             $this->_page_limits = $limits;
         } else {
             $this->_page_limits = array(10, 15, 20, 25, 30, 35);
@@ -177,170 +175,147 @@ class ListFactory {
     }
 
     /**
-    * Determins which set of templates to load when formatting the output
-    *
-    * @access public
-    * @param string $style Either 'table' or 'inline'
-    *
-    */
-    function setStyle( $style )
+     * Determine which set of templates to load when formatting the output
+     *
+     * @param string $style Either 'table' or 'inline'
+     */
+    public function setStyle($style)
     {
         $this->_style = $style;
     }
 
     /**
-    * Sets a field in the list.
-    *
-    * Note: LF_ROW_NUMBER cannot be sorted
-    *
-    * @access public
-    * @param string $title The title of the field which is displayed to the user
-    * @param string $name The local name given to the field
-    * @param boolean $display True if the field is to be displayed to the user otherwise false
-    * @param boolean $sort True if the field can be sorted otherwise false
-    * @param string $format The format string with one type specifier
-    *
-    */
-    function setField( $title, $name, $display = true, $sort = true, $format = '%s' )
+     * Sets a field in the list.
+     * Note: LF_ROW_NUMBER cannot be sorted
+     *
+     * @param string  $title   The title of the field which is displayed to the user
+     * @param string  $name    The local name given to the field
+     * @param boolean $display True if the field is to be displayed to the user otherwise false
+     * @param boolean $sort    True if the field can be sorted otherwise false
+     * @param string  $format  The format string with one type specifier
+     */
+    public function setField($title, $name, $display = true, $sort = true, $format = '%s')
     {
         if ($name === LF_ROW_NUMBER) {
             $sort = false;
         }
         $this->_fields[] = array(
-            'title' => $title,
-            'name' => $name,
+            'title'   => $title,
+            'name'    => $name,
             'display' => $display,
-            'sort' => $sort,
-            'format' => $format
+            'sort'    => $sort,
+            'format'  => $format,
         );
     }
 
     /**
-    * Sets the SQL query that will generate rows
-    *
-    * @access public
-    * @param string $title The text that's displayed to the user
-    * @param string $name The local name given to the query
-    * @param string $sql The SQL string without the ORDER BY or LIMIT clauses
-    * @param int $rank The rating that determins how many results will be returned
-    *
-    */
-    function setQuery( $title, $name, $sql, $rank )
+     * Sets the SQL query that will generate rows
+     *
+     * @param string $title The text that's displayed to the user
+     * @param string $name  The local name given to the query
+     * @param string $sql   The SQL string without the ORDER BY or LIMIT clauses
+     * @param int    $rank  The rating that determins how many results will be returned
+     */
+    public function setQuery($title, $name, $sql, $rank)
     {
         $this->_sources_arr[] = array(
-            'type' => 'sql',
+            'type'  => 'sql',
             'title' => $title,
-            'name' => $name,
-            'sql' => $sql,
-            'rank' => $rank
+            'name'  => $name,
+            'sql'   => $sql,
+            'rank'  => $rank,
         );
         $this->_total_rank += $rank;
     }
 
     /**
-    * Sets a callback function that provides another source for results.
-    *
-    * The function will be passed two parameters, $offset and $limit,
-    * which will determine how many results are requested. The callback
-    * function should then return a multidimensional array containing
-    * the results. This provides an alternative to the setQuery()
-    * function as results can be sourced from anywhere.
-    *
-    * @access public
-    * @param string $title The text that's displayed to the user
-    * @param string $name The local name given to the query
-    * @param string $function Any callable function, method or lambda
-    * @param int $rank The rating that determins how many results will be returned
-    * @param int $total The total number of results that are avaliable
-    *
-    */
-    function setCallback( $title, $name, $callback, $rank, $total )
+     * Sets a callback function that provides another source for results.
+     * The function will be passed two parameters, $offset and $limit,
+     * which will determine how many results are requested. The callback
+     * function should then return a multidimensional array containing
+     * the results. This provides an alternative to the setQuery()
+     * function as results can be sourced from anywhere.
+     *
+     * @param string $title    The text that's displayed to the user
+     * @param string $name     The local name given to the query
+     * @param string $callback Any callable function, method or lambda
+     * @param int    $rank     The rating that determins how many results will be returned
+     * @param int    $total    The total number of results that are avaliable
+     */
+    public function setCallback($title, $name, $callback, $rank, $total)
     {
         $this->_sources_arr[] = array(
-            'type' => 'callback',
+            'type'  => 'callback',
             'title' => $title,
-            'name' => $name,
-            'func' => $callback,
-            'rank' => $rank,
-            'total' => $total
+            'name'  => $name,
+            'func'  => $callback,
+            'rank'  => $rank,
+            'total' => $total,
         );
         $this->_total_rank += $rank;
     }
 
     /**
-    * Sets the callback function thats called on every row for styling
-    * or formatting.
-    *
-    * @access public
-    * @param callback $function Any callable function, method or lambda
-    *
-    */
-    function setRowFunction( $callback )
+     * Sets the callback function thats called on every row for styling
+     * or formatting.
+     *
+     * @param callback $callback Any callable function, method or lambda
+     */
+    public function setRowFunction($callback)
     {
         $this->_function = $callback;
     }
 
     /**
-    * Sets the default sort field
-    *
-    * @access public
-    * @param string $field The field name to sort
-    * @param string $direction 'asc' for ascending order and 'desc' for descending order
-    *
-    */
-    function setDefaultSort( $field, $direction = 'desc' )
+     * Sets the default sort field
+     *
+     * @param string $field     The field name to sort
+     * @param string $direction 'asc' for ascending order and 'desc' for descending order
+     */
+    public function setDefaultSort($field, $direction = 'desc')
     {
         $this->_def_sort_arr = array('field' => $field, 'direction' => $direction);
     }
 
     /**
-    * Appends a single result to the list
-    *
-    * @access public
-    * @param array $result A single result that will be appended to the rest
-    *
-    */
-    function addResult( $result )
+     * Appends a single result to the list
+     *
+     * @param array $result A single result that will be appended to the rest
+     */
+    public function addResult($result)
     {
         $this->_preset_rows[] = $result;
     }
 
     /**
-    * Appends several results to the list
-    *
-    * @access public
-    * @param array $result An array of result that will be appended to the rest
-    *
-    */
-    function addResultArray( $arr )
+     * Appends several results to the list
+     *
+     * @param array $arr An array of result that will be appended to the rest
+     */
+    public function addResultArray($arr)
     {
         $this->_preset_rows = array_merge($this->_preset_rows, $arr);
     }
 
     /**
-    * Gets the total number of results from source item, either an sql
-    * query or a callback function.
-    *
-    * @access private
-    * @param array $source The source we are currently working with
-    * @return int Total number of rows
-    *
-    */
-    function _getTotal( $source )
+     * Gets the total number of results from source item, either an sql
+     * query or a callback function.
+     *
+     * @param array $source The source we are currently working with
+     * @return int Total number of rows
+     */
+    private function _getTotal($source)
     {
         if ($source['type'] == 'callback') {
             return $source['total'];
-        }
-        else {
+        } else {
             $sql = $source['sql'];
         }
 
         if (is_array($sql)) {
             $sql['mysql'] = preg_replace('/SELECT.*?FROM/is', 'SELECT COUNT(*) FROM', $sql['mysql']);
-            $sql['mssql'] = preg_replace('/SELECT.*?FROM/is', 'SELECT COUNT(*) FROM', $sql['mssql']);
             $sql['pgsql'] = preg_replace('/SELECT.*?FROM/is', 'SELECT COUNT(*) FROM', $sql['pgsql']);
-        }
-        else {
+        } else {
             $sql = preg_replace('/SELECT.*?FROM/is', 'SELECT COUNT(*) FROM', $sql);
         }
         $result = DB_query($sql);
@@ -349,46 +324,38 @@ class ListFactory {
             $B = DB_fetchArray($result, true);
             $num_rows = $B[0];
         }
+
         return $num_rows ? $num_rows : 0;
     }
 
     /**
-    * Calculates the offset and limits for each query based on
-    * the number of rows to be displayed per query per page.
-    *
-    * @access private
-    * @param array $totals The total number of results per query
-    * @return array The offsets and limits for a given page
-    *
-    */
-    function _getLimits( $totals )
+     * Calculates the offset and limits for each query based on
+     * the number of rows to be displayed per query per page.
+     *
+     * @param  array $totals The total number of results per query
+     * @return array The offsets and limits for a given page
+     */
+    private function _getLimits($totals)
     {
-        $order = range(0, count($totals)-1);
+        $order = range(0, count($totals) - 1);
         array_multisort($totals, $order);
         $fin = array('total' => 0, 'offset' => 0, 'limit' => 0);
         $fin = array_fill(0, count($totals), $fin);
 
-        for ($p = 0; $p < $this->_page; $p++)
-        {
+        for ($p = 0; $p < $this->_page; $p++) {
             $extra = 0;
-            for ($q = 0; $q < count($totals); $q++)
-            {
+            for ($q = 0; $q < count($totals); $q++) {
                 $fin[$q]['offset'] = $fin[$q]['offset'] + $fin[$q]['limit'];
                 $extra_pp = $extra + $totals[$q]['pp'];
-                if ($extra_pp - $totals[$q]['total'] >= 0)
-                {
+                if ($extra_pp - $totals[$q]['total'] >= 0) {
                     $fin[$q]['limit'] = $totals[$q]['total'];
                     $extra = $extra_pp - $totals[$q]['total'];
                     $totals[$q]['total'] = 0;
-                }
-                else if ($totals[$q]['total'] - $extra_pp >= 0)
-                {
+                } elseif ($totals[$q]['total'] - $extra_pp >= 0) {
                     $fin[$q]['limit'] = $extra_pp;
                     $totals[$q]['total'] = $totals[$q]['total'] - $extra_pp;
                     $extra = 0;
-                }
-                else
-                {
+                } else {
                     $fin[$q]['limit'] = $totals[$q]['pp'];
                     $totals[$q]['total'] = $totals[$q]['total'] - $totals[$q]['pp'];
                 }
@@ -402,28 +369,25 @@ class ListFactory {
     }
 
     /**
-    * Applies styling to each row and adds extra meta details that are
-    * used else where in the ListFactory.
-    *
-    * @access private
-    * @param array $row_arr A single results row
-    * @param array $source The source we are currently working with
-    * @return array The row with styling applied and extra meta details
-    *
-    */
-    function _fillrow( $row_arr, $source )
+     * Applies styling to each row and adds extra meta details that are
+     * used else where in the ListFactory.
+     *
+     * @param  array $row_arr A single results row
+     * @param  array $source  The source we are currently working with
+     * @return array The row with styling applied and extra meta details
+     */
+    private function _fillrow($row_arr, $source)
     {
         $col = array();
         $col[LF_SOURCE_TITLE] = $source['title'];
         $col[LF_SOURCE_NAME] = $source['name'];
 
-        foreach ($this->_fields as $field)
-        {
+        foreach ($this->_fields as $field) {
             if (!is_numeric($field['name']) && $field['name'][0] != '_') {
-                if (empty($row_arr[ $field['name'] ])) {
-                    $col[ $field['name'] ] = 'LF_NULL';
+                if (empty($row_arr[$field['name']])) {
+                    $col[$field['name']] = 'LF_NULL';
                 } else {
-                    $col[ $field['name'] ] = $row_arr[ $field['name'] ];
+                    $col[$field['name']] = $row_arr[$field['name']];
                 }
             }
         }
@@ -438,13 +402,11 @@ class ListFactory {
     }
 
     /**
-    * Executes pre set queries
-    *
-    * @access public
-    * @return array The results found
-    *
-    */
-    function ExecuteQueries()
+     * Executes pre set queries
+     *
+     * @return array The results found
+     */
+    public function ExecuteQueries()
     {
         // Set to default sort, we will check the passed param in the next bit
         $this->_sort_arr['field'] = $this->_def_sort_arr['field'];
@@ -460,7 +422,7 @@ class ListFactory {
         }
 
         if (isset($_GET['direction'])) {
-            $this->_sort_arr['direction'] = $_GET['direction'] == 'asc' ? 'asc' : 'desc';
+            $this->_sort_arr['direction'] = (Geeklog\Input::get('direction') === 'asc') ? 'asc' : 'desc';
         } else {
             $this->_sort_arr['direction'] = $this->_def_sort_arr['direction'];
         }
@@ -473,9 +435,9 @@ class ListFactory {
         }
         $order_sql = ' ORDER BY ' . $ord . ' ' . strtoupper($this->_sort_arr['direction']);
 
-        $this->_page = isset($_GET['page']) ? COM_applyFilter($_GET['page'], true) : 1;
+        $this->_page = (int) Geeklog\Input::fGet('page', 1);
         if (isset($_GET['results'])) {
-            $this->_per_page = COM_applyFilter($_GET['results'], true);
+            $this->_per_page = (int) Geeklog\Input::fGet('results');
         }
 
         $rows_arr = $this->_preset_rows;
@@ -503,35 +465,32 @@ class ListFactory {
         }
         if ($pp_total < $this->_per_page) {
             $limits[0]['pp'] += $this->_per_page - $pp_total;
-        } else if ($this->_per_page < $pp_total) {
+        } elseif ($this->_per_page < $pp_total) {
             $limits[0]['pp'] -= $pp_total - $this->_per_page;
         }
         $limits = $this->_getLimits($limits);
 
         // Retrieve the results from each source in turn
-        for ($i = 0; $i < count($this->_sources_arr); $i++)
-        {
+        for ($i = 0; $i < count($this->_sources_arr); $i++) {
             if ($limits[$i]['limit'] <= 0) {
                 continue;
             }
 
             // This is a callback function
-            if ($this->_sources_arr[$i]['type'] == 'callback')
-            {
-                if (is_callable($this->_sources_arr[$i]['func']))
-                {
+            if ($this->_sources_arr[$i]['type'] == 'callback') {
+                if (is_callable($this->_sources_arr[$i]['func'])) {
                     $callback_rows = call_user_func_array(
                         $this->_sources_arr[$i]['func'],
                         array($limits[$i]['offset'],
-                        $limits[$i]['limit'])
+                            $limits[$i]['limit'])
                     );
 
                     foreach ($callback_rows as $row) {
                         $rows_arr[] = $this->_fillrow($row, $this->_sources_arr[$i]);
                     }
                 } else {
-                    COM_errorLog('ListFactory: A callback function was set for "'.
-                        $this->_sources_arr[$i]['name'].'", but it could not be found.');
+                    COM_errorLog('ListFactory: A callback function was set for "' .
+                        $this->_sources_arr[$i]['name'] . '", but it could not be found.');
                 }
                 continue;
             }
@@ -541,7 +500,6 @@ class ListFactory {
 
             if (is_array($this->_sources_arr[$i]['sql'])) {
                 $this->_sources_arr[$i]['sql']['mysql'] .= $order_sql . $limit_sql;
-                $this->_sources_arr[$i]['sql']['mssql'] .= $order_sql . $limit_sql;
             } else {
                 $this->_sources_arr[$i]['sql'] .= $order_sql . $limit_sql;
             }
@@ -556,7 +514,7 @@ class ListFactory {
         $direction = $this->_sort_arr['direction'] == 'asc' ? SORT_ASC : SORT_DESC;
         $column = array();
         foreach ($rows_arr as $sortarray) {
-            $c = strip_tags($sortarray[ $this->_sort_arr['field'] ]);
+            $c = GLText::stripTags($sortarray[$this->_sort_arr['field']]);
             $column[] = $c == 'LF_NULL' ? '0' : $c;
         }
         array_multisort($column, $direction, $rows_arr);
@@ -565,34 +523,31 @@ class ListFactory {
     }
 
     /**
-    * Generates the HTML code based on the preset style
-    *
-    * @access public
-    * @param array $rows_arr The rows to display in the list
-    * @param string $title The title of the list
-    * @param string $list_top HTML that will appear before the list is printed
-    * @param string $list_bottom HTML that will appear after the list is printed
-    * @param boolean $show_sort True to enable column sorting, false to disable
-    * @param boolean $show_limit True to show page limits, false to hide
-    * @return string HTML output
-    *
-    */
-    function getFormattedOutput( $rows_arr, $title, $list_top = '', $list_bottom = '', $show_sort = true, $show_limit = true )
+     * Generates the HTML code based on the preset style
+     *
+     * @param  array   $rows_arr    The rows to display in the list
+     * @param  string  $title       The title of the list
+     * @param  string  $list_top    HTML that will appear before the list is printed
+     * @param  string  $list_bottom HTML that will appear after the list is printed
+     * @param  boolean $show_sort   True to enable column sorting, false to disable
+     * @param  boolean $show_limit  True to show page limits, false to hide
+     * @return string HTML output
+     */
+    public function getFormattedOutput($rows_arr, $title, $list_top = '', $list_bottom = '', $show_sort = true, $show_limit = true)
     {
         global $_CONF, $_IMAGE_TYPE, $LANG_ADMIN, $LANG09;
 
         // get all template fields.
         $list_templates = COM_newTemplate($_CONF['path_layout'] . 'lists/' . $this->_style);
-        $list_templates->set_file (array (
-            'list' => 'list.thtml',
+        $list_templates->set_file(array(
+            'list'  => 'list.thtml',
             'limit' => 'page_limit.thtml',
-            'sort' => 'page_sort.thtml',
-            'row' => 'item_row.thtml',
-            'field' => 'item_field.thtml'
+            'sort'  => 'page_sort.thtml',
+            'row'   => 'item_row.thtml',
+            'field' => 'item_field.thtml',
         ));
 
-        if (count($rows_arr) == 0)
-        {
+        if (count($rows_arr) == 0) {
             $list_templates->set_var('show_sort', 'display:none;');
             $list_templates->set_var('show_limit', 'display:none;');
             $list_templates->set_var('message', $LANG_ADMIN['no_results']);
@@ -614,17 +569,14 @@ class ListFactory {
         }
 
         // Draw the page limit select box
-        if ($show_limit)
-        {
-            foreach ($this->_page_limits as $key => $val)
-            {
+        if ($show_limit) {
+            foreach ($this->_page_limits as $key => $val) {
                 $text = is_numeric($key) ? sprintf($LANG09[67], $val) : $key;
                 $href = $this->_page_url . "order={$this->_sort_arr['field']}&amp;" .
-                            "direction={$this->_sort_arr['direction']}&amp;results=$val";
+                    "direction={$this->_sort_arr['direction']}&amp;results=$val";
 
                 // Prevent displaying too many limit items
-                if ($this->_total_found <= $val)
-                {
+                if ($this->_total_found <= $val) {
                     // If this is the last item, chances are its going to be selected
                     $selected = $this->_per_page >= $val ? ' selected="selected"' : '';
                     $list_templates->set_var('limit_href', $href);
@@ -644,52 +596,43 @@ class ListFactory {
             if (empty($text)) {
                 $list_templates->set_var('show_limit', 'display:none;');
             }
-        }
-        else
-        {
+        } else {
             $list_templates->set_var('show_limit', 'display:none;');
         }
 
         // Create how to display the sort field
-        if ($this->_style == 'table')
-        {
+        if ($this->_style == 'table') {
             $arrow = $this->_sort_arr['direction'] == 'asc' ? 'bararrowdown' : 'bararrowup';
             $sort_selected = "{$_CONF['layout_url']}/images/$arrow.$_IMAGE_TYPE";
             $sort_selected = ' &nbsp;' . COM_createImage($sort_selected, $arrow);
             $sort_text = '';
-        }
-        else
-        {
+        } else {
             $sort_selected = '';
-            $sort_text = $LANG09[68].' ';
+            $sort_text = $LANG09[68] . ' ';
             if (!$show_sort) {
                 $list_templates->set_var('show_sort', 'display:none;');
             }
         }
 
         // Draw the sorting select box/table headings
-        foreach ($this->_fields as $field)
-        {
-            if ($field['display'] == true && $field['title'] != '')
-            {
+        foreach ($this->_fields as $field) {
+            if ($field['display'] == true && $field['title'] != '') {
                 $text = $sort_text . $field['title'];
                 $href = '';
                 $selected = '';
 
-                if ($this->_style == 'inline' && $show_sort && $field['sort'] != false)
-                {
+                if ($this->_style == 'inline' && $show_sort && $field['sort'] != false) {
                     $direction = $this->_def_sort_arr['direction'];
 
                     // Show the sort arrow
-                    if ($this->_sort_arr['field'] === $field['name'])
-                    {
+                    if ($this->_sort_arr['field'] === $field['name']) {
                         // Add drop down item for current sort order
                         if ($this->_sort_arr['direction'] == 'asc') {
                             $list_templates->set_var('sort_text',
-                                    $text . ' (' . $LANG09[71] . ')');
+                                $text . ' (' . $LANG09[71] . ')');
                         } else {
                             $list_templates->set_var('sort_text',
-                                    $text . ' (' . $LANG09[72] . ')');
+                                $text . ' (' . $LANG09[72] . ')');
                         }
                         $list_templates->set_var('sort_href', '');
                         $list_templates->set_var('sort_selected', ' selected="selected"');
@@ -704,22 +647,19 @@ class ListFactory {
                         }
                     }
                     $href = $this->_page_url . "results={$this->_per_page}&amp;" .
-                                "order={$field['name']}&amp;direction=$direction";
+                        "order={$field['name']}&amp;direction=$direction";
 
                     // Write field
                     $list_templates->set_var('sort_text', $text);
                     $list_templates->set_var('sort_href', $href);
                     $list_templates->set_var('sort_selected', '');
                     $list_templates->parse('page_sort', 'sort', true);
-                }
-                else if ($this->_style == 'table')
-                {
+                } elseif ($this->_style == 'table') {
                     $direction = $this->_sort_arr['direction'] == 'asc' ? 'desc' : 'asc';
                     $href = $this->_page_url . "results={$this->_per_page}&amp;" .
                         "order={$field['name']}&amp;direction=$direction";
 
-                    if ($show_sort && $field['sort'] != false)
-                    {
+                    if ($show_sort && $field['sort'] != false) {
                         $text = "<a href=\"$href\">$text</a>";
 
                         if ($this->_sort_arr['field'] === $field['name']) {
@@ -736,27 +676,24 @@ class ListFactory {
             }
         }
 
-        $offset = ($this->_page-1) * $this->_per_page;
+        $offset = ($this->_page - 1) * $this->_per_page;
 
         $list_templates->set_var('show_message', 'display:none;');
 
         // Run through all the results
         $r = 1;
-        foreach ($rows_arr as $row)
-        {
+        foreach ($rows_arr as $row) {
             if (is_callable($this->_function)) {
                 $row = call_user_func_array($this->_function, array(false, $row));
             }
 
-            foreach ($this->_fields as $field)
-            {
-                if ($field['display'] == true)
-                {
+            foreach ($this->_fields as $field) {
+                if ($field['display'] == true) {
                     $fieldvalue = '';
                     if ($field['name'] == LF_ROW_NUMBER) {
                         $fieldvalue = $r + $offset;
-                    } else if (!empty($row[ $field['name'] ])) {
-                        $fieldvalue = $row[ $field['name'] ];
+                    } elseif (!empty($row[$field['name']])) {
+                        $fieldvalue = $row[$field['name']];
                     }
 
                     if ($fieldvalue != 'LF_NULL') {
@@ -781,8 +718,8 @@ class ListFactory {
         }
 
         // Print page numbers
-        $page_url = $this->_page_url.'order='.$this->_sort_arr['field'] .
-                '&amp;direction='.$this->_sort_arr['direction'].'&amp;results='.$this->_per_page;
+        $page_url = $this->_page_url . 'order=' . $this->_sort_arr['field'] .
+            '&amp;direction=' . $this->_sort_arr['direction'] . '&amp;results=' . $this->_per_page;
         $num_pages = ceil($this->_total_found / $this->_per_page);
         if ($num_pages > 1) {
             $list_templates->set_var('google_paging', COM_printPageNavigation($page_url, $this->_page, $num_pages, 'page=', false, '', ''));
@@ -790,7 +727,232 @@ class ListFactory {
             $list_templates->set_var('google_paging', '');
         }
 
-        $list_top = sprintf($list_top, $offset+1, $r+$offset-1, $this->_total_found);
+        $list_top = sprintf($list_top, $offset + 1, $r + $offset - 1, $this->_total_found);
+        $list_templates->set_var('list_top', $list_top);
+        $list_templates->set_var('list_bottom', $list_bottom);
+
+        $list_templates->parse('output', 'list');
+
+        // Do the actual output
+        $retval = '';
+
+        if (!empty($title)) {
+            $retval .= COM_startBlock($title, '', COM_getBlockTemplate('_admin_block', 'header'));
+        }
+
+        $retval .= $list_templates->finish($list_templates->get_var('output'));
+
+        if (!empty($title)) {
+            $retval .= COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
+        }
+
+        return $retval;
+    }
+
+    /**
+     * Generates the HTML code based on the preset style
+     *
+     * @param  array   $rows_arr    The rows to display in the list
+     * @param  string  $title       The title of the list
+     * @param  string  $list_top    HTML that will appear before the list is printed
+     * @param  string  $list_bottom HTML that will appear after the list is printed
+     * @param  boolean $show_sort   True to enable column sorting, false to disable
+     * @param  boolean $show_limit  True to show page limits, false to hide
+     * @param  array   $params_arr  GET params array
+     * @return string HTML output
+     */
+    public function getFormattedOutput2($rows_arr, $title, $list_top = '', $list_bottom = '', $show_sort = true, $show_limit = true,
+                                        $params_arr = null)
+    {
+        global $_CONF, $_IMAGE_TYPE, $LANG_ADMIN, $LANG09;
+
+        $list_templates = COM_newTemplate($_CONF['path_layout'] . 'lists/');
+        $list_templates->set_file('list',
+            ($this->_style == 'inline') ? 'list_inline.thtml' : 'list_table.thtml');
+
+        $blocks = array('field', 'row', 'limit',
+            'sort', 'direction', 'input_hidden');
+        foreach ($blocks as $block) {
+            $list_templates->set_block('list', $block);
+        }
+
+        $list_templates->set_var('lang_submit', $LANG09[73]);
+        $list_templates->set_var('lang_sort', $LANG09[68]);
+        $list_templates->set_var('lang_limit', $LANG09[74]);
+        $list_templates->set_var('page_url', $_CONF['site_url'] . '/search.php');
+
+        if ($this->_style == 'table') {
+            $params_arr = array_merge($params_arr, array(
+                'order'     => $this->_sort_arr['field'],
+                'direction' => $this->_sort_arr['direction'],
+            ));
+        }
+
+        foreach ($params_arr as $key => $val) {
+            $list_templates->set_var('hidden_name', $key);
+            $list_templates->set_var('hidden_val', $val);
+            $list_templates->parse('page_hidden', 'input_hidden', true);
+        }
+
+        if (count($rows_arr) == 0) {
+            $list_templates->set_var('show_sort', 'display:none;');
+            $list_templates->set_var('show_limit', 'display:none;');
+            $list_templates->set_var('message', $LANG_ADMIN['no_results']);
+            $list_templates->set_var('list_top', $list_top);
+            $list_templates->set_var('list_bottom', $list_bottom);
+            $list_templates->parse('output', 'list');
+
+            // No results to show so quickly print a message and exit
+            $retval = '';
+            if (!empty($title)) {
+                $retval .= COM_startBlock($title, '', COM_getBlockTemplate('_admin_block', 'header'));
+            }
+            $retval .= $list_templates->finish($list_templates->get_var('output'));
+            if (!empty($title)) {
+                $retval .= COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
+            }
+
+            return $retval;
+        }
+
+        // Draw the page limit select box
+        if ($show_limit) {
+            foreach ($this->_page_limits as $key => $val) {
+                $text = is_numeric($key) ? $val : $key;
+                $selected = $this->_per_page == $val ? ' selected="selected"' : '';
+                $list_templates->set_var('limit_val', $val);
+                $list_templates->set_var('limit_text', $text);
+                $list_templates->set_var('limit_selected', $selected);
+                $list_templates->parse('page_limit', 'limit', true);
+            }
+            if (empty($text)) {
+                $list_templates->set_var('show_limit', 'display:none;');
+            }
+        } else {
+            $list_templates->set_var('show_limit', 'display:none;');
+        }
+
+        // Create how to display the sort field
+        if ($this->_style == 'table') {
+            $arrow = $this->_sort_arr['direction'] == 'asc' ? 'bararrowdown' : 'bararrowup';
+            $sort_selected = "{$_CONF['layout_url']}/images/$arrow.$_IMAGE_TYPE";
+            $sort_selected = ' &nbsp;' . COM_createImage($sort_selected, $arrow);
+            $sort_text = '';
+        } else {
+            $sort_selected = '';
+            $sort_text = '';
+            if (!$show_sort) {
+                $list_templates->set_var('show_sort', 'display:none;');
+            }
+        }
+
+        // Draw the sorting select box/table headings
+        foreach ($this->_fields as $field) {
+            if ($field['display'] == true && $field['title'] != '') {
+                $text = $sort_text . $field['title'];
+                $href = '';
+                $selected = '';
+
+                if ($this->_style == 'inline' && $show_sort && $field['sort'] != false) {
+                    if ($this->_sort_arr['field'] === $field['name']) {
+                        $selected = ' selected="selected"';
+                    }
+
+                    // Write field
+                    $list_templates->set_var('sort_text', $text);
+                    $list_templates->set_var('sort_val', $field['name']);
+                    $list_templates->set_var('sort_selected', $selected);
+                    $list_templates->parse('page_sort', 'sort', true);
+                } elseif ($this->_style == 'table') {
+                    $direction = $this->_sort_arr['direction'] == 'asc' ? 'desc' : 'asc';
+                    $href = $this->_page_url . "results={$this->_per_page}&amp;" .
+                        "order={$field['name']}&amp;direction=$direction";
+
+                    if ($show_sort && $field['sort'] != false) {
+                        $text = "<a href=\"$href\">$text</a>";
+
+                        if ($this->_sort_arr['field'] === $field['name']) {
+                            $selected = $sort_selected;
+                        }
+                    }
+
+                    // Write field
+                    $list_templates->set_var('sort_text', $text);
+                    $list_templates->set_var('sort_href', $href);
+                    $list_templates->set_var('sort_val', $field['name']);
+                    $list_templates->set_var('sort_selected', $selected);
+                    $list_templates->parse('page_sort', 'sort', true);
+                }
+            }
+        }
+
+        // Draw the sort direction select box
+        if ($this->_style == 'inline' && $show_sort) {
+            foreach (array('desc', 'asc') as $direction) {
+                $direction_text = ($direction == 'asc') ? $LANG09[71] : $LANG09[72];
+                $list_templates->set_var('direction_text', $direction_text);
+                $list_templates->set_var('direction_val', $direction);
+                $direction_selected = '';
+                if ($this->_sort_arr['direction'] == $direction) {
+                    $direction_selected = ' selected="selected"';
+                }
+                $list_templates->set_var('direction_selected', $direction_selected);
+                $list_templates->parse('page_direction', 'direction', true);
+            }
+        }
+
+        $offset = ($this->_page - 1) * $this->_per_page;
+
+        $list_templates->set_var('show_message', 'display:none;');
+
+        // Run through all the results
+        $r = 1;
+        foreach ($rows_arr as $row) {
+            if (is_callable($this->_function)) {
+                $row = call_user_func_array($this->_function, array(false, $row));
+            }
+
+            foreach ($this->_fields as $field) {
+                if ($field['display'] == true) {
+                    $fieldvalue = '';
+                    if ($field['name'] == LF_ROW_NUMBER) {
+                        $fieldvalue = $r + $offset;
+                    } elseif (!empty($row[$field['name']])) {
+                        $fieldvalue = $row[$field['name']];
+                    }
+
+                    if ($fieldvalue != 'LF_NULL') {
+                        $fieldvalue = sprintf($field['format'], $fieldvalue, $field['title']);
+
+                        // Write field
+                        $list_templates->set_var('field_text', $fieldvalue);
+                        $list_templates->parse('item_field', 'field', true);
+                    } else {
+                        // Write an empty field
+                        $list_templates->set_var('field_text', ' ');
+                        $list_templates->parse('item_field', 'field', true);
+                    }
+                }
+            }
+
+            // Write row
+            $r++;
+            $list_templates->set_var('cssid', ($r % 2) + 1);
+            $list_templates->parse('item_row', 'row', true);
+            $list_templates->clear_var('item_field');
+        }
+
+        // Print page numbers
+        $page_url = $this->_page_url . 'order=' . $this->_sort_arr['field'] .
+            '&amp;direction=' . $this->_sort_arr['direction'] . '&amp;results=' . $this->_per_page;
+        $num_pages = ceil($this->_total_found / $this->_per_page);
+        if ($num_pages > 1) {
+            $list_templates->set_var('google_paging', COM_printPageNavigation($page_url, $this->_page, $num_pages, 'page=', false, '', ''));
+        } else {
+            $list_templates->set_var('google_paging', '');
+        }
+
+        $list_top = sprintf($list_top, $offset + 1, $r + $offset - 1, $this->_total_found);
         $list_templates->set_var('list_top', $list_top);
         $list_templates->set_var('list_bottom', $list_bottom);
 
@@ -812,5 +974,3 @@ class ListFactory {
         return $retval;
     }
 }
-
-?>

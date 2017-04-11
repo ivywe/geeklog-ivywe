@@ -23,7 +23,7 @@
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_name}<span class="must">{lang_must}</span></th>
             <td class="admin-list-field" colspan="2">
-              <input type="text" size="48" maxlength="160" name="name" value="{name}"{xhtml}>
+              <input type="text" class="uk-input" size="48" maxlength="160" name="name" value="{name}"{xhtml}>
             </td>
           </tr>
 
@@ -31,7 +31,7 @@
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_templatesetvar}<span class="must">{lang_must}</span></th>
             <td class="admin-list-field" colspan="2">
-              <input type="text" size="48" maxlength="160" name="templatesetvar" value="{templatesetvar}"{xhtml}>
+              <input type="text" class="uk-input" size="48" maxlength="160" name="templatesetvar" value="{templatesetvar}"{xhtml}>
             </td>
           </tr>
 
@@ -39,7 +39,7 @@
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_description}{help_description}</th>
             <td class="admin-list-field" colspan="2">
-              <textarea name="description" style="width:95%" rows="2" id="userbox_description">{description}</textarea>
+              <textarea class="uk-textarea" name="description" style="width:95%" rows="2" id="userbox_description">{description}</textarea>
             </td>
           </tr>
 
@@ -78,15 +78,15 @@
           <tr class="pluginRow2">
             <th class="admin-list-field2" colspan="2">{lang_initial_value} {help_initial_value}</th>
             <td class="admin-list-field" colspan="2">
-               <textarea name="initial_value" style="width:95%" rows="2" id="databox_initial_value">{initial_value}</textarea>
+               <textarea class="uk-textarea" name="initial_value" style="width:95%" rows="2" id="databox_initial_value">{initial_value}</textarea>
             </td>
           </tr>
           <!-- 範囲 range -->
           <tr class="pluginRow2">
             <th class="admin-list-field2" colspan="2">{lang_range}</th>
             <td class="admin-list-field2">
-              <input type="text" size="40" maxlength="160" name="range_start" value="{range_start}"{xhtml}>
-              〜<input type="text" size="40" maxlength="160" name="range_end" value="{range_end}"{xhtml}>
+              <input type="text" class="uk-input" size="40" maxlength="160" name="range_start" value="{range_start}"{xhtml}>
+              〜<input type="text" class="uk-input" size="40" maxlength="160" name="range_end" value="{range_end}"{xhtml}>
             </td>
           </tr>
           <!-- 日時のフォーマット DateTime Format -->
@@ -117,7 +117,7 @@
           <tr class="pluginRow1">
             <th class="admin-list-field2" colspan="2">{lang_size}</th>
             <td class="admin-list-field2">
-              <input type="text" size="48" maxlength="160" name="size" value="{size}"{xhtml}>
+              <input type="text" class="uk-input" size="48" maxlength="160" name="size" value="{size}"{xhtml}>
             </td>
           </tr>
 
@@ -125,7 +125,7 @@
           <tr class="pluginRow1">
             <th class="admin-list-field2" colspan="2">{lang_maxlength}</th>
             <td class="admin-list-field2">
-              <input type="text" size="48" maxlength="160" name="maxlength" value="{maxlength}"{xhtml}>
+              <input type="text" class="uk-input" size="48" maxlength="160" name="maxlength" value="{maxlength}"{xhtml}>
             </td>
           </tr>
 
@@ -133,7 +133,7 @@
           <tr class="pluginRow1">
             <th class="admin-list-field2" colspan="2">{lang_rows}</th>
             <td class="admin-list-field2">
-              <input type="text" size="48" maxlength="160" name="rows" value="{rows}"{xhtml}>
+              <input type="text" class="uk-input" size="48" maxlength="160" name="rows" value="{rows}"{xhtml}>
             </td>
           </tr>
 
@@ -141,7 +141,7 @@
           <tr class="pluginRow1">
             <th class="admin-list-field2" colspan="2">{lang_br}</th>
             <td class="admin-list-field2">
-              <input type="text" size="1" maxlength="1" name="br" value="{br}"{xhtml}>{help_br}
+              <input type="text" class="uk-input" size="1" maxlength="1" name="br" value="{br}"{xhtml}>{help_br}
             </td>
           </tr>
 
@@ -149,7 +149,7 @@
           <tr class="pluginRow1">
             <th class="admin-list-field2" colspan="2">{lang_selection}{help_selection}</th>
             <td class="admin-list-field2">
-              <textarea name="selection"style="width:95%" rows="10" id="userbox_selection">{selection}</textarea>
+              <textarea class="uk-textarea" name="selection"style="width:95%" rows="10" id="userbox_selection">{selection}</textarea>
             </td>
           </tr>
 
@@ -167,7 +167,7 @@
           <tr class="pluginRow1">
             <th class="admin-list-field">{lang_orderno}</th>
             <td class="admin-list-field" colspan="2">
-              <input type="text" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
+              <input type="text" class="uk-input" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
             </td>
           </tr>
 

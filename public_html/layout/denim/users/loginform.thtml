@@ -9,7 +9,7 @@
 
       <dl class="form_block">
         <dt><label for="users-loginform-loginname">{lang_username}</label></dt>
-        <dd><input type="text" name="loginname" id="users-loginform-loginname" class="size3"{xhtml}></dd>
+        <dd><input type="text" class="uk-input" name="loginname" id="users-loginform-loginname" class="size3"{xhtml}></dd>
 
         {services}
 

@@ -73,7 +73,7 @@ function MG_editUser($uid)
     $T = new Template($_MG_CONF['template_path']);
     $T->set_file('admin', 'useredit.thtml');
 
-    $active_select = '<input type="checkbox" name="active" value="1" '
+    $active_select = '<input type="checkbox" class="uk-checkbox"  name="active" value="1" '
                    . ($active ? ' checked="checked"' : '') . XHTML . '>';
 
     $T->set_var(array(

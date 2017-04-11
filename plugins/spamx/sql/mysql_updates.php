@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Spam-X Plugin 1.2                                                         |
+// | Spam-X Plugin 1.3                                                         |
 // +---------------------------------------------------------------------------+
 // | Upgrade SQL                                                               |
 // +---------------------------------------------------------------------------+
@@ -33,10 +33,9 @@
 */
 
 $_UPDATES = array(
-
     '1.2.0' => array(
         "INSERT INTO {$_TABLES['features']} (ft_name, ft_descr) VALUES ('spamx.skip', 'Skip checking posts for Spam')",
-        "UPDATE {$_TABLES['plugins']} SET pi_homepage = 'http://www.geeklog.net/' WHERE pi_name = 'spamx'"
+        "UPDATE {$_TABLES['plugins']} SET pi_homepage = 'https://www.geeklog.net/' WHERE pi_name = 'spamx'"
     ),
 
     '1.2.1' => array(
@@ -50,6 +49,13 @@ $_UPDATES = array(
     '1.3.0' => array(
         "ALTER TABLE {$_TABLES['spamx']} ADD counter INT NOT NULL DEFAULT '0'",
         "ALTER TABLE {$_TABLES['spamx']} ADD regdate datetime NOT NULL default '0000-00-00 00:00:00'"
+    ),
+
+    '1.3.2' => array(
+        "ALTER TABLE {$_TABLES['spamx']} MODIFY COLUMN regdate DATETIME DEFAULT NULL",
+        "DROP INDEX `primary` ON {$_TABLES['spamx']}",
+        "DROP INDEX `spamx_name` ON {$_TABLES['spamx']}",
+        "ALTER TABLE {$_TABLES['spamx']} ADD PRIMARY KEY (name)"
     )
 );
 
@@ -102,5 +108,3 @@ function spamx_update_ConfigSecurity_1_2_2()
         }
     }
 }
-
-?>

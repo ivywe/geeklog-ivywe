@@ -107,7 +107,7 @@ function phpblock_calendarjp( $help='', $title='' )
 {
     global $_CONF, $_TABLES, $_USER, $_CAJP_CONF, $LANG_CALJP_1, $_DB_dbms, $LANG_WEEK;
 
-    $retval = '<dl class="uk-description-list-line">';
+    $retval = '';
 
     $ja = ($_CONF['language'] == 'japanese_utf-8');
 
@@ -186,10 +186,10 @@ function phpblock_calendarjp( $help='', $title='' )
                 $theRow = 1;           // Start with today!
                 $oldDate1 = 'no_day';  // Invalid Date!
                 $oldDate2 = 'last_d';  // Invalid Date!
-                $classname = 'uk-list';
+                $classname = 'list-new-plugins';
                 $headline = false;
             } else {
-                $classname = 'uk-list';
+                $classname = 'list-new-plugins';
                 $headline = false;
             }
             if( $_CAJP_CONF['personalcalendars'] == 0 ) {
@@ -209,11 +209,11 @@ function phpblock_calendarjp( $help='', $title='' )
                     if( !$headline ) {
                         if($z == 2) {
                             if( $numRows > 0 ) {
-                                $retval .= '<dt>' . $LANG_CALJP_1[23] . '</dt><dd>';
+                                $retval .= '<p><b>' . $LANG_CALJP_1[23] . '</b><br' . XHTML . '>';
                             }
                         } else {
                             if( $totalrows > 0 ) {
-                                $retval .= '<dt>' . $LANG_CALJP_1[24] . '</dt><dd>';
+                                $retval .= '<b>' . $LANG_CALJP_1[24] . '</b><br' . XHTML . '>';
                             }
                         }
                         $headline = true;
@@ -262,39 +262,33 @@ function phpblock_calendarjp( $help='', $title='' )
                             if( $skipFirstBreak ) {
                                 $skipFirstBreak = false;
                             } else {
-//                                $retval .= '<br' . XHTML . '>';
-                                $retval .= '<dd>';
+                                $retval .= '<br' . XHTML . '>';
                             }
                             if( $todaysEvent ) {
-//                                $retval .= '<span class="' . $todaysClassName . '">';
-                                $retval .= '';
+                                $retval .= '<span class="' . $todaysClassName . '">';
                             }
                             if ($ja == 'ja') {
-                                $retval .= '<dt>' . $abbrDate1. '(' . $dayName1 . ')';
+                                $retval .= '<b>' . $abbrDate1. '(' . $dayName1 . ')</b>';
                             } else {
-//                              $retval .= '<dt>' . $dayName1 
-//                                      . $abbrDate1 . '</dd>';
-                                $retval .= '<dt>' . $dayName1 
-                                        . $abbrDate1 . '</dd>';
+//                              $retval .= '<b>' . $dayName1 . '</b>&nbsp;<small>'
+//                                      . $abbrDate1 . '</small>';
+                                $retval .= '<b>' . $dayName1 . '</b>&nbsp;'
+                                        . $abbrDate1 . '';
                             }
 
                             // If different start and end dates, then display end date:
                             if( $abbrDate1 != $abbrDate2 ) {
                                 if ($ja == 'ja') {
-                                    $retval .= ' - '. $abbrDate2 . '(' . $dayName2 . ')';
+                                    $retval .= ' - <b>'. $abbrDate2 . '(' . $dayName2 . ')</b>';
                                 } else {
-//                                  $retval .= ' - ' . $dayName2
-//                                           . $abbrDate2;
-                                    $retval .= ' - ' . $dayName2 
-                                              . $abbrDate2;
+//                                  $retval .= ' - <br' . XHTML . '><b>' . $dayName2 . '</b>'
+//                                           . '&nbsp;<small>' . $abbrDate2 . '</small>';
+                                    $retval .= ' - <br' . XHTML . '><b>' . $dayName2 . '</b>'
+                                             . '&nbsp;' . $abbrDate2 . '';
                                 }
                             }
-                            $retval .= '</dt>';
-
-
-
                             if( $todaysEvent ) {
-                                $retval .= '</dl><!-- } todaysEvent -->';
+                                $retval .= '</span>';
                             }
                         }
                         $newevents = array();
@@ -1972,7 +1966,7 @@ function plugin_getListField_calendarjp($fieldname, $fieldvalue, $A, $icon_arr)
 
     switch($fieldname) {
     case 'delete':
-        $retval = "<input type=\"checkbox\" name=\"delitem[{$A['eid']}]\" checked=\"checked\"" . XHTML . ">";
+        $retval = "<input type=\"checkbox\" class=\"uk-checkbox\" name=\"delitem[{$A['eid']}]\" checked=\"checked\"" . XHTML . ">";
         break;
 
     case 'edit':
@@ -2515,7 +2509,7 @@ function CALENDARJP_getAmPmFormSelection( $name, $selected = '' )
             $selected = date('a');
         }
 
-        $retval .= '<select name="' . $name . '">' . LB;
+        $retval .= '<select class="uk-select" name="' . $name . '">' . LB;
         $retval .= '<option value="am"';
         if ($selected == 'am') {
             $retval .= ' selected="selected"';

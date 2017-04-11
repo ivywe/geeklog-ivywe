@@ -2,9 +2,9 @@
 
 {current_month}
 {blockheader}
-<form class="uk-float-right uk-form uk-margin-remove" action="{url}" method="post">
+<form class="floatright uk-form" action="{url}" method="get" style="margin:0">
   <div>
-    <select name="topic" onchange="this.form.submit()">
+    <select class="uk-select uk-form-width-small" name="topic" onchange="this.form.submit()">
     {topic_list}
     </select>
     <input type="hidden" name="year" value="{val_year}"{xhtml}>
@@ -12,13 +12,13 @@
   </div>
 </form>
 <!-- BEGIN section-title -->
-<h2 class="uk-h2">{section_title}</h2>
+<h3>{section_title}</h3>
 <!-- END section-title -->
-<div class="uk-margin-left">{directory}</div>
+{directory}
 <!-- BEGIN no-articles -->
 <p>{lang_no_articles}</p>
 <!-- END no-articles -->
-<div class="uk-flex uk-flex-center">{page_navigation}</div>
+<div class="pagenav">{page_navigation}</div>
 {blockfooter}
 
 {# end {templatelocation} #}

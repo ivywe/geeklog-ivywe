@@ -42,7 +42,7 @@ if (! in_array('paypal', $_PLUGINS)) {
 paypal_access_check('paypal.viewer');
 
 //Main
-
+		$display = "";
 
     switch( $_PAY_CONF['display_blocks'] ) {
     case 0 :    // none

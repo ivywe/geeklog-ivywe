@@ -91,7 +91,7 @@ function MG_selectUsers($page)
         $T->set_var(array(
             'uid'      => $uid,
             'username' => $username . ' ' . $remote . ' - ' . $row['fullname'],
-            'select'   => '<input type="checkbox" name="user[]" value="' . $uid . '"' . XHTML . '>',
+            'select'   => '<input type="checkbox" class="uk-checkbox"  name="user[]" value="' . $uid . '"' . XHTML . '>',
         ));
         $T->parse('uRow', 'UserRow', true);
     }

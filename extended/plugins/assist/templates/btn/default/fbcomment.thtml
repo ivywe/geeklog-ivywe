@@ -1,4 +1,4 @@
-{# begin {templatelocation} #}
+<!-- plugins/assist/templates/btn/default/fbcomments.thtml  { -->
 
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -10,4 +10,4 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 <div class="fb-comments" data-href="{currenturl}" data-width="470"></div>
 
-{# end {templatelocation} #}
+<!-- } plugins/assist/templates/btn/default/fbcomments.thtml -->

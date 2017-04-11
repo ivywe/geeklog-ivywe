@@ -32,7 +32,7 @@ function doUnCheckAll_exif()
     <!-- BEGIN exifRow -->
     <tr>
       <td>
-        <input type="checkbox" name="sel[]" value="{tag}" {selected}{xhtml}>
+        <input type="checkbox" class="uk-checkbox" name="sel[]" value="{tag}" {selected}{xhtml}>
         <input type="hidden"   name="tag[]" value="{tag}"{xhtml}>
       </td>
       <td>
@@ -46,8 +46,8 @@ function doUnCheckAll_exif()
     <input onclick="javascript:doUnCheckAll_exif()" type="button" value="{lang_uncheck_all}"{xhtml}>
   </div>
   <div class="mg_submit_center">
-    <input type="submit" name="mode" value="{lang_save}"{xhtml}>
-    <input type="submit" name="mode" value="{lang_cancel}"{xhtml}>
+    <input type="submit" class="uk-button uk-button-primary" name="mode" value="{lang_save}"{xhtml}>
+    <input type="submit" class="uk-button uk-button-primary" name="mode" value="{lang_cancel}"{xhtml}>
   </div>
 </form>
 

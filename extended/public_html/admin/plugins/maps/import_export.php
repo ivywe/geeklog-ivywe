@@ -108,7 +108,7 @@ function getImportExportForm() {
 	$template->set_var('checkall', $LANG_MAPS_1['checkall']);
 	$valid_fieds = MAPS_getFieldsImportExport();
 	foreach ( $valid_fieds as $value ) {
-		$fields_selector .= '<input type="checkbox" name="import_export[]" value="' . $value . '" />' . $value . '<br' . XHTML . '>' . LB;
+		$fields_selector .= '<input type="checkbox" class="uk-checkbox"  name="import_export[]" value="' . $value . '" />' . $value . '<br' . XHTML . '>' . LB;
     } 
 	$template->set_var('fields_selector', $fields_selector);
 	//Form validation
@@ -128,8 +128,7 @@ function MAPS_importCSV ($FILES = '', $map_id, $separator=';', $fields, $valid =
 	if($map_id == '') return MAPS_message('Map ID is missing');
 	
 	if ( !in_array($separator, array(',','tab',';')) ) {
-	    echo COM_refresh($_CONF['site_admin_url'] . '/plugins/maps/import_export.php');
-		exit();
+	    COM_redirect($_CONF['site_admin_url'] . '/plugins/maps/import_export.php');
 	}
 
 	if ($valid == false) {
