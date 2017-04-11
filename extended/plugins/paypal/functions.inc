@@ -1251,7 +1251,7 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 			if ($A['pi_filename'] == '') {
 				$product->set_var('small_pic', '');
 
-				$product->set_var('small_pic', '<a class="product-details" href="' . $_PAY_CONF['site_url'] . '/product_detail.php?n=' . urlencode($A['name']) . '&amp;product='. $A['id'] . '"><img class="" src="' . $_PAY_CONF['images_url'] . 'nophoto.png" style="max-width:100%; min-width:80px" alt="' . $A['name'] . '" /></a>');
+				$product->set_var('small_pic', '<a class="product-details" href="' . $_PAY_CONF['site_url'] . '/product_detail.php?n=' . urlencode($A['name']) . '&amp;product='. $A['id'] . '"><img class="" src="' . $_PAY_CONF['images_url'] . 'nophoto.png" style="max-width:100px; height:auto" alt="' . $A['name'] . '" /></a>');
 
 
 			} else {
@@ -1265,7 +1265,7 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 				    $width = '100%';
 					$height = '100%';
 				}
-				$product->set_var('small_pic', '<a class="product-details" href="' . $_PAY_CONF['site_url'] . '/product_detail.php?n=' . urlencode($A['name']) . '&amp;product='. $A['id'] . '"><img class="" src="' . $_PAY_CONF['images_url'] . $A['pi_filename'] . '" style="max-width:100%" alt="' . $A['name'] . '" /></a>');
+				$product->set_var('small_pic', '<a class="product-details" href="' . $_PAY_CONF['site_url'] . '/product_detail.php?n=' . urlencode($A['name']) . '&amp;product='. $A['id'] . '"><img class="" src="' . $_PAY_CONF['images_url'] . $A['pi_filename'] . '" style="max-width:100px; height:auto" alt="' . $A['name'] . '" /></a>');
 				
 			}
 

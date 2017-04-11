@@ -1,10 +1,10 @@
 {# begin {templatelocation} #}
 {# plugins/userbox/templates/myprofile/default/profile_editor.thtml 20151111 #}
-<div id="userbox_admin">
+<div>
   {about_thispage}
   <a href="{site_url}/userbox/myprofile/view.php?id={id}">{lang_view}</a>
   {lang_fieldset}{fieldset_name}(Type id:{fieldset_id})
-  <form enctype="multipart/form-data" name="frmuserbox" action="{site_url}/{script}" method="post">
+  <form enctype="multipart/form-data" name="frmuserbox" action="{site_url}/{script}" method="post" class="uk-form">
     <input type="hidden" name="fieldset" value="{fieldset_id}"{xhtml}>
     <input type="hidden" name="fieldset_name" value="{fieldset_name}"{xhtml}>
     
@@ -32,7 +32,7 @@
           <tr class="pluginRow1">  
             <th class="admin-list-field">{lang_fullname}{help_fullname}</th>
             <td class="admin-list-field">
-            <input type="fullname" size="48" maxlength="160" name="fullname" value="{fullname}"{xhtml}></td>
+            <input type="text" class="uk-input" size="48" maxlength="160" name="fullname" value="{fullname}"{xhtml}></td>
           </tr>
         </table>
       </div>

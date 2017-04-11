@@ -163,17 +163,15 @@
     <!-- #wrapper { -->
     <div id="wrapper">
 
-<nav class="uk-navbar-container" uk-navbar>
+			<nav class="uk-navbar-container" uk-navbar>
 
-    <div class="uk-navbar-left">
+			<div class="uk-navbar-left">
+				<ul class="uk-navbar-nav">
+					{menu_elements}
+				</ul>
+			</div>
 
-        <ul class="uk-navbar-nav">
-			          {menu_elements}
-        </ul>
-
-    </div>
-
-</nav>
+		</nav>
 
 
       <!-- Center Block Container -->
