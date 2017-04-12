@@ -1,5 +1,21 @@
 {# begin {templatelocation} #}
 
+<?php 
+$category = $_GET['category'];
+$n = $_GET['n'];
+$product = $_GET['product'];
+?>
+
+<?php if($product == ""){ ?>
+
+<ul class="uk-breadcrumb">
+    <li><a href="https://www.sciglobe.net/">HOME</a></li>
+    <li><a href="https://www.sciglobe.net/paypal/index.php">SHOP</a></li>
+    <li><span href="#"><?php echo $n; ?></span></li>
+</ul>
+
+<?php } ?>
+
 <nav class="uk-navbar gl-navbar-small uk-margin">
 	<div class="uk-navbar-left">
 		<ul class="uk-navbar-nav">

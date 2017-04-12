@@ -20,10 +20,10 @@
 <form action="{site_url}/admin/plugins/paypal/product_edit.php" method="POST" enctype="multipart/form-data"  class="uk-form">
 {id}{product_type}
   <fieldset style="margin-top: 10px;"><legend><b>{informations}</b></legend>
-  	<h2>{item_id_label}</h2><input type="text" class="uk-input" name="item_id" value="{item_id}" size="20" maxlength="80" {xhtml}>
-	<h2>{name_label}</h2><font color="red">*</font> <input type="text" class="uk-input" name="name" value="{name}" size="80" maxlength="255" required {xhtml}>
+  	<h2>{item_id_label}</h2><input type="text" class="uk-input uk-form-width-medium" name="item_id" value="{item_id}" size="20" maxlength="80" {xhtml}>
+	<h2>{name_label}</h2><font color="red">*</font> <input type="text" class="uk-input uk-form-width-large" name="name" value="{name}" size="80" maxlength="255" required {xhtml}>
     
-	<h2>{short_description_label}</h2><font color="red">*</font> <input type="text" class="uk-input" name="short_description" value="{short_description}" size="80" maxlength="255" required {xhtml}>
+	<h2>{short_description_label}</h2><font color="red">*</font> <input type="text" class="uk-input uk-form-width-large" name="short_description" value="{short_description}" size="80" maxlength="255" required {xhtml}>
     
 	<h2>{category_label}</h2>
 	<select class="uk-select uk-form-width-medium" name="category">{categories}</select> 

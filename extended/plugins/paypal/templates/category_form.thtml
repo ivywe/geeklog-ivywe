@@ -46,7 +46,7 @@
 	<option value="save" selected="selected">{save_button}</option>
     {delete_button}
 	</select>
-    <input type="submit" class="uk-button uk^button-primary" name="submit" value="{ok_button}" {xhtml}>
+    <input type="submit" class="uk-button uk-button-primary" name="submit" value="{ok_button}" {xhtml}>
     
 </form>
 
