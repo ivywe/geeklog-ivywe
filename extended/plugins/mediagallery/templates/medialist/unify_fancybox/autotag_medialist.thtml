@@ -1,0 +1,14 @@
+{# begin {templatelocation} #}
+
+{!if edit}
+<div>
+<a href="{site_url}/mediagallery/album.php?aid={album_id}&page=1"><i class="uk-icon-file-image-o"></i> {album_title}</a>
+<a href="{site_url}/mediagallery/admin.php?album_id={album_id}&mode=media">edit</a>
+</div>
+{!endif}
+
+<ul class="portfolio-items">
+{medialist_col}
+</ul>
+
+{# end {templatelocation} #}
