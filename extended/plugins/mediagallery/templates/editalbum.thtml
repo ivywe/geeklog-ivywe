@@ -12,376 +12,320 @@ function change(what) {
 //-->
 </script>
 
-<form enctype="multipart/form-data" method="post" action="{s_form_action}" class="uk-form uk-form-horizontal">
-        <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_title}</label></div>
-            <div class="uk-form-controls uk-width-expand@m"><input type="text" class="uk-input" name="album_name" value="{album_title}" class="uk-form-width-large"{xhtml}></div>
-        </div>
-        <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_description}</label></div>
-            <div class="uk-form-controls uk-width-expand@m"><textarea class="uk-textarea" name="album_desc" cols="50" rows="3" class="uk-width-1-1">{album_desc}</textarea></div>
-        </div>
-        <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_parent_album}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{parent_select}</div>
-        </div>
+	<form enctype="multipart/form-data" method="post" action="{s_form_action}" class="uk-form uk-form-horizontal">
+    <div class="admin_basic gl_mg_album">
+	    <fieldset class="uk-margin-large-top">
+	      <dl class="form_block">
+					<dt><label class="uk-form-label">{lang_title}</label></dt>
+					<dd class="uk-clearfix"><input type="text" class="uk-input uk-form-width-large" name="album_name" value="{album_title}" class="uk-form-width-large"{xhtml}></dd>
+					<dt><label class="uk-form-label">{lang_description}</label></dt>
+					<dd class="uk-clearfix"><textarea class="uk-textarea uk-form-width-large" name="album_desc" cols="50" rows="3" class="uk-width-1-1">{album_desc}</textarea></dd>
+					<dt><label class="uk-form-label">{lang_parent_album}</label></dt>
+					<dd class="uk-clearfix">{parent_select}</dd>
+				</dl>
+	    </fieldset>
+	    <fieldset class="uk-margin-large-top">
+	      <legend>{lang_album_attributes}</legend>
+				<dl class="form_block">
 
-    <fieldset class="uk-margin-large-top">
-      <legend>{lang_album_attributes}</legend>
-        <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_theme_select}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{album_theme_select}</div>
-        </div>
-        <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_comments}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{comment_select}</div>
-        </div>
-        <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_enable_exif}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{exif_select}</div>
-        </div>
-        <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_enable_ratings}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{ranking_select}</div>
-        </div>
-        <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_enable_rss}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{rss_select}</div>
-        </div>
-        <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_rsschildren}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{rsschildren_select}</div>
-        <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_podcast}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{podcast_select}</div>
-        </div>
-        <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_mp3ribbon}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{mp3ribbon_select}</div>
-        </div>
-        <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_enable_sort}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{sort_select}</div>
-        </div>
-        <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_album_sort}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{album_sort_select}</div>
-        </div>
+          <dt><label class="uk-form-label">{lang_theme_select}</label></dt>
+          <dd class="uk-clearfix">{album_theme_select}</dd>
+
+          <dt><label class="uk-form-label">{lang_comments}</label></dt>
+          <dd class="uk-clearfix">{comment_select}</dd>
+
+          <dt><label class="uk-form-label">{lang_enable_exif}</label></dt>
+          <dd class="uk-clearfix">{exif_select}</dd>
+
+          <dt><label class="uk-form-label">{lang_enable_ratings}</label></dt>
+          <dd class="uk-clearfix">{ranking_select}</dd>
+
+          <dt><label class="uk-form-label">{lang_enable_rss}</label></dt>
+          <dd class="uk-clearfix">{rss_select}</dd>
+
+          <dt><label class="uk-form-label">{lang_rsschildren}</label></dt>
+          <dd class="uk-clearfix">{rsschildren_select}</dd>
+
+          <dt><label class="uk-form-label">{lang_podcast}</label></dt>
+          <dd class="uk-clearfix">{podcast_select}</dd>
+
+          <dt><label class="uk-form-label">{lang_mp3ribbon}</label></dt>
+          <dd class="uk-clearfix">{mp3ribbon_select}</dd>
+
+          <dt><label class="uk-form-label">{lang_enable_sort}</label></dt>
+          <dd class="uk-clearfix">{sort_select}</dd>
+
+          <dt><label class="uk-form-label">{lang_album_sort}</label></dt>
+          <dd class="uk-clearfix">{album_sort_select}</dd>
 <!-- 
-        <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_enable_postcard}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{postcard_select}</div>
-        </div>
+          <dt><label class="uk-form-label">{lang_enable_postcard}</label></dt>
+          <dd class="uk-clearfix">{postcard_select}</dd>
 -->
-        <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_display_album_desc}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{display_album_desc_select}</div>
-        </div>
-        <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_enable_album_views}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{album_views_select}</div>
-        </div>
-        <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_enable_views}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{views_select}</div>
-        </div>
-        <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_enable_keywords}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{keywords_select}</div>
-        </div>
-        <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_image_skin}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{skin_select}</div>
-        </div>
-        <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_display_skin}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{dskin_select}</div>
-        </div>
-        <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_album_skin}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{askin_select}</div>
-        </div>
-        <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_albums_first}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{afirst_select}</div>
-        </div>
-        <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_tn_size}</label></div>
-            <div class="uk-form-controls uk-width-expand@m"><select class="uk-select uk-form-width-small" name="tn_size">
-<option value="0">Include:100x100</option>
-<option value="1">Include:150x150</option>
-<option value="2">Include:200x200</option>
-<option value="3">Include:Custom</option>
-<option value="10">Crop:100x100</option>
-<option value="11">Crop:150x150</option>
-<option value="12">Crop:200x200</option>
-<option value="13" selected="selected">Crop:Custom</option>
-</select></div>
-        </div>
-        <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_tnwidth}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{tnwidth_input}</div>
-        </div>
-        <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_tnheight}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{tnheight_input}</div>
-        </div>
-        <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_av_play_options}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{playback_type}</div>
-        </div>
-        <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_ss_enable}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{ss_select}</div>
-        </div>
-        <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_rows}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{rows_input}</div>
-        </div>
-        <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_columns}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{columns_input}</div>
-        </div>
-    </fieldset>
+          <dt><label class="uk-form-label">{lang_display_album_desc}</label></dt>
+          <dd class="uk-clearfix">{display_album_desc_select}</dd>
 
-    <fieldset class="uk-margin-large-top">
-      <legend>{lang_album_cover}</legend>
+          <dt><label class="uk-form-label">{lang_enable_album_views}</label></dt>
+          <dd class="uk-clearfix">{album_views_select}</dd>
+
+          <dt><label class="uk-form-label">{lang_enable_views}</label></dt>
+          <dd class="uk-clearfix">{views_select}</dd>
+
+          <dt><label class="uk-form-label">{lang_enable_keywords}</label></dt>
+          <dd class="uk-clearfix">{keywords_select}</dd>
+
+          <dt><label class="uk-form-label">{lang_image_skin}</label></dt>
+          <dd class="uk-clearfix">{skin_select}</dd>
+
+          <dt><label class="uk-form-label">{lang_display_skin}</label></dt>
+          <dd class="uk-clearfix">{dskin_select}</dd>
+
+          <dt><label class="uk-form-label">{lang_album_skin}</label></dt>
+          <dd class="uk-clearfix">{askin_select}</dd>
+
+          <dt><label class="uk-form-label">{lang_albums_first}</label></dt>
+          <dd class="uk-clearfix">{afirst_select}</dd>
+
+          <dt><label class="uk-form-label">{lang_tn_size}</label></dt>
+          <dd class="uk-clearfix">{tn_size_select}</dd>
+
+          <dt><label class="uk-form-label">{lang_tnwidth}</label></dt>
+          <dd class="uk-clearfix">{tnwidth_input}</dd>
+
+          <dt><label class="uk-form-label">{lang_tnheight}</label></dt>
+          <dd class="uk-clearfix">{tnheight_input}</dd>
+
+          <dt><label class="uk-form-label">{lang_av_play_options}</label></dt>
+          <dd class="uk-clearfix">{playback_type}</dd>
+
+          <dt><label class="uk-form-label">{lang_ss_enable}</label></dt>
+          <dd class="uk-clearfix">{ss_select}</dd>
+
+          <dt><label class="uk-form-label">{lang_rows}</label></dt>
+          <dd class="uk-clearfix">{rows_input}</dd>
+
+          <dt><label class="uk-form-label">{lang_columns}</label></dt>
+          <dd class="uk-clearfix">{columns_input}</dd>
+
+				</dl>
+			</fieldset>
+
+	    <fieldset class="uk-margin-large-top">
+	      <legend>{lang_album_cover}</legend>
+	      <dl class="form_block">
 {!if thumbnail}
-        <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_thumbnail}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{thumbnail}</div>
-        </div>
+          <dt><label class="uk-form-label">{lang_thumbnail}</label></dt>
+          <dd class="uk-clearfix">{thumbnail}</dd>
 {!endif}
-        <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_attached_thumbnail}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{attach_select}</div>
-        </div>
-        <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_thumbnail}</label></div>
-            <div class="uk-form-controls uk-width-expand@m"><input type="file" dir="ltr" name="thumbnail"{xhtml}></div>
-        </div>
-    </fieldset>
+          <dt><label class="uk-form-label">{lang_attached_thumbnail}</label></dt>
+          <dd class="uk-clearfix">{attach_select}</dd>
 
-    <fieldset class="uk-margin-large-top">
-      <legend>{lang_featured_album}</legend>
-        <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_set_featured}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{featured_select}
-                <span class="uk-form-help-inline">{lang_featured_help}</span></div>
-        </div>
-          <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_position}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{feature_position}</div>
-        </div>
+          <dt><label class="uk-form-label">{lang_thumbnail}</label></dt>
+          <dd class="uk-clearfix"><input type="file" dir="ltr" name="thumbnail"{xhtml}></dd>
+      	</dl>
+			</fieldset>
 
-          <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_topic}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{feature_page_select}</div>
-        </div>
-    </fieldset>
+			<fieldset class="uk-margin-large-top">
+				<legend>{lang_featured_album}</legend>
+				<dl class="form_block">
+          <dt><label class="uk-form-label">{lang_set_featured}</label></dt>
+          <dd class="uk-clearfix">{featured_select}
+              <span class="uk-form-help-inline">{lang_featured_help}</span></dd>
 
-    <fieldset class="uk-margin-large-top">
-      <legend>{lang_media_attributes}</legend>
-          <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_filename_title}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{filename_title_select}</div>
-        </div>
-          <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_allow_download}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{allow_download_select}</div>
-        </div>
-          <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_full_display}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{full_select}</div>
-        </div>
-          <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_ri_enable}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{ri_select}</div>
-        </div>
-          <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_max_image_width}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{width_input}</div>
-        </div>
-          <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_max_image_height}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{height_input}</div>
-        </div>
-          <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_max_filesize}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{max_size_input}&nbsp;Kb {lang_unlimited}</div>
-        </div>
-          <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_display_image_size}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{display_image_size}</div>
-        </div>
-          <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_usealternate}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{usealternate_select}</div>
-        </div>
-    </fieldset>
+          <dt><label class="uk-form-label">{lang_position}</label></dt>
+          <dd class="uk-clearfix">{feature_position}</dd>
 
-    <fieldset class="uk-margin-large-top">
-      <legend>{lang_watermark}</legend>
-          <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_wm_auto}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{wm_auto_select}</div>
-        </div>
-          <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_wm_opacity}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{wm_opacity_select}</div>
-        </div>
-          <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_wm_location}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{wm_location_select}</div>
-        </div>
-          <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_wm_id}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{wm_select}
-              <span class="uk-form-help-inline">{wm_current}</span></div>
-        </div>
-    </fieldset>
+          <dt><label class="uk-form-label">{lang_topic}</label></dt>
+          <dd class="uk-clearfix">{feature_page_select}</dd>
+				</dl>
+			</fieldset>
 
-    <fieldset class="uk-margin-large-top">
-      <legend>{lang_allowed_formats}</legend>
-      <table class="uk-table uk-table-condensed uk-table-striped uk-width-1-1" style="background:#ffffff;">
-        <tr>
-          <th style="text-align:center">{lang_image}</th>
-          <th style="text-align:center">{lang_audio} / {lang_video}</th>
-          <th style="text-align:center">{lang_other}</th>
-        </tr>
-        <tr>
-          <td valign="top" align="center">
-            <table>
-              <tr>
-                <td align="left">
-                  <input type="checkbox" class="uk-checkbox" name="format_jpg" value="1" {jpg_checked}{xhtml}> <span class="uk-form-help-inline">{lang_jpg}</span><br{xhtml}>
-                  <input type="checkbox" class="uk-checkbox" name="format_png" value="2" {png_checked}{xhtml}> <span class="uk-form-help-inline">{lang_png}</span><br{xhtml}>
-                  <input type="checkbox" class="uk-checkbox" name="format_tif" value="4" {tif_checked}{xhtml}> <span class="uk-form-help-inline">{lang_tif}</span><br{xhtml}>
-                  <input type="checkbox" class="uk-checkbox" name="format_gif" value="8" {gif_checked}{xhtml}> <span class="uk-form-help-inline">{lang_gif}</span><br{xhtml}>
-                  <input type="checkbox" class="uk-checkbox" name="format_bmp" value="16" {bmp_checked}{xhtml}> <span class="uk-form-help-inline">{lang_bmp}</span><br{xhtml}>
-                  <input type="checkbox" class="uk-checkbox" name="format_tga" value="32" {tga_checked}{xhtml}> <span class="uk-form-help-inline">{lang_tga}</span><br{xhtml}>
-                  <input type="checkbox" class="uk-checkbox" name="format_psd" value="64" {psd_checked}{xhtml}> <span class="uk-form-help-inline">{lang_psd}</span><br{xhtml}>
-                </td>
-              </tr>
-            </table>
-          </td>
-          <td valign="top" align="center">
-            <table>
-              <tr>
-                <td align="left">
-                  <input type="checkbox" class="uk-checkbox" name="format_mp3" value="128" {mp3_checked}{xhtml}> <span class="uk-form-help-inline">{lang_mp3}</span><br{xhtml}>
-                  <input type="checkbox" class="uk-checkbox" name="format_ogg" value="256" {ogg_checked}{xhtml}> <span class="uk-form-help-inline">{lang_ogg}</span><br{xhtml}>
-                  <input type="checkbox" class="uk-checkbox" name="format_asf" value="512" {asf_checked}{xhtml}> <span class="uk-form-help-inline">{lang_asf}</span><br{xhtml}>
-                  <input type="checkbox" class="uk-checkbox" name="format_swf" value="1024" {swf_checked}{xhtml}> <span class="uk-form-help-inline">{lang_swf}</span><br{xhtml}>
-                  <input type="checkbox" class="uk-checkbox" name="format_mov" value="2048" {mov_checked}{xhtml}> <span class="uk-form-help-inline">{lang_mov}</span><br{xhtml}>
-                  <input type="checkbox" class="uk-checkbox" name="format_mp4" value="4096" {mp4_checked}{xhtml}> <span class="uk-form-help-inline">{lang_mp4}</span><br{xhtml}>
-                  <input type="checkbox" class="uk-checkbox" name="format_mpg" value="8192" {mpg_checked}{xhtml}> <span class="uk-form-help-inline">{lang_mpg}</span><br{xhtml}>
-                  <input type="checkbox" class="uk-checkbox" name="format_flv" value="131072" {flv_checked}{xhtml}> <span class="uk-form-help-inline">{lang_flv}</span><br{xhtml}>
-                  <input type="checkbox" class="uk-checkbox" name="format_rflv" value="262144" {rflv_checked}{xhtml}> <span class="uk-form-help-inline">{lang_rflv}</span><br{xhtml}>
-                  <input type="checkbox" class="uk-checkbox" name="format_emb" value="524288" {emb_checked}{xhtml}> <span class="uk-form-help-inline">{lang_emb}</span><br{xhtml}>
-                </td>
-              </tr>
-            </table>
-          </td>
-          <td valign="top" align="center">
-            <table>
-              <tr>
-                <td align="left">
-                  <input type="checkbox" class="uk-checkbox" name="format_zip" value="16384" {zip_checked}{xhtml}> <span class="uk-form-help-inline">{lang_zip}</span><br{xhtml}>
-                  <input type="checkbox" class="uk-checkbox" name="format_other" value="32768" {other_checked}{xhtml}> <span class="uk-form-help-inline">{lang_other}</span><br{xhtml}>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-      </table>
-    </fieldset>
+			<fieldset class="uk-margin-large-top">
+    		<legend>{lang_media_attributes}</legend>
+ 		 		<dl class="form_block">
+          <dt><label class="uk-form-label">{lang_filename_title}</label></dt>
+          <dd class="uk-clearfix">{filename_title_select}</dd>
 
-{!if perms_editor_admin}
-    <fieldset class="uk-margin-large-top">
-      <legend>{lang_uploads}</legend>
-          <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_member_upload}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{uploads}</div>
-        </div>
-          <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_moderate_album}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{moderate}</div>
-        </div>
-          <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_mod_group}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{mod_dropdown}</div>
-        </div>
-          <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_email_mods_on_submission}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{email_mod_select}</div>
-        </div>
-    </fieldset>
+          <dt><label class="uk-form-label">{lang_allow_download}</label></dt>
+          <dd class="uk-clearfix">{allow_download_select}</dd>
 
-    <fieldset class="uk-margin-large-top">
-      <legend>{lang_accessrights}</legend>
+          <dt><label class="uk-form-label">{lang_full_display}</label></dt>
+          <dd class="uk-clearfix">{full_select}</dd>
 
-          <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_owner}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{owner_select}</div>
-        </div>
-          <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_group}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{group_dropdown}</div>
-        </div>
-          <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_permissions}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{permissions_editor}
-            <span class="uk-form-help-inline">{lang_perm_key}</span></div>
-        </div>
-          <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_hidden}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{hidden}</div>
-        </div>
-          <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_force_child_update}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{force_child_update}</div>
-        </div>
-    </fieldset>
-{!endif}
+          <dt><label class="uk-form-label">{lang_ri_enable}</label></dt>
+          <dd class="uk-clearfix">{ri_select}</dd>
 
-{!if perms_editor_member}
-    <fieldset class="uk-margin-large-top">
-      <legend>{lang_accessrights}</legend>
-          <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_owner}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">
-                {owner_username}<input type="hidden" name="owner_id" value="{owner_id}"{xhtml}></div>
-        </div>
-          <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_permissions}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{permissions_editor}
-              <span class="uk-form-help-inline">{lang_perm_key}</span></div>
-        </div>
-          <div uk-grid>
-            <div class="uk-width-1-1"><label class="uk-form-label">{lang_force_child_update}</label></div>
-            <div class="uk-form-controls uk-width-expand@m">{force_child_update}</div>
-        </div>
-    </fieldset>
-{!endif}
+          <dt><label class="uk-form-label">{lang_max_image_width}</label></dt>
+          <dd class="uk-clearfix">{width_input}</dd>
 
-          <div uk-grid>
-            <div class="uk-form-controls uk-width-expand@m">
-          <input type="submit" class="uk-button uk-button-primary" value="{lang_save}" name="mode" class="uk-button uk-button-primary"{xhtml}>
-          <input type="submit" class="uk-button uk-button-danger" value="{lang_delete}" name="mode" class="uk-button uk-button-primary"{xhtml}>
-          <input type="submit" class="uk-button uk-button-secondary" value="{lang_cancel}" name="mode" class="uk-button uk-button-primary"{xhtml}>
-          <input type="hidden" name="album_id" value="{album_id}"{xhtml}>
-          <input type="hidden" name="cover" value="{album_cover}"{xhtml}>
-          <input type="hidden" name="owner" value="{album_owner}"{xhtml}>
-          <input type="hidden" name="order" value="{album_order}"{xhtml}>
-          <input type="hidden" name="album_cover_filename" value="{album_cover_filename}"{xhtml}>
-          <input type="hidden" name="last_update" value="{last_update}"{xhtml}>
-          <input type="hidden" name="media_count" value="{media_count}"{xhtml}>
-          <input type="hidden" name="action" value="{action}"{xhtml}>
-          <input type="hidden" name="origaid" value="{old_album_id}"{xhtml}>
-            </div>
-          </div>
-</form>
+          <dt><label class="uk-form-label">{lang_max_image_height}</label></dt>
+          <dd class="uk-clearfix">{height_input}</dd>
+
+          <dt><label class="uk-form-label">{lang_max_filesize}</label></dt>
+          <dd class="uk-clearfix">{max_size_input}&nbsp;Kb {lang_unlimited}</dd>
+
+          <dt><label class="uk-form-label">{lang_display_image_size}</label></dt>
+          <dd class="uk-clearfix">{display_image_size}</dd>
+
+          <dt><label class="uk-form-label">{lang_usealternate}</label></dt>
+          <dd class="uk-clearfix">{usealternate_select}</dd>
+				</dl>
+  		</fieldset>
+
+			<fieldset class="uk-margin-large-top">
+				<legend>{lang_watermark}</legend>
+				<dl class="form_block">
+
+					<dt><label class="uk-form-label">{lang_wm_auto}</label></dt>
+					<dd class="uk-clearfix">{wm_auto_select}</dd>
+
+					<dt><label class="uk-form-label">{lang_wm_opacity}</label></dt>
+					<dd class="uk-clearfix">{wm_opacity_select}</dd>
+
+					<dt><label class="uk-form-label">{lang_wm_location}</label></dt>
+					<dd class="uk-clearfix">{wm_location_select}</dd>
+
+					<dt><label class="uk-form-label">{lang_wm_id}</label></dt>
+					<dd class="uk-clearfix">{wm_select}
+					<span class="uk-form-help-inline">{wm_current}</span></dd>
+				</dl>
+			</fieldset>
+
+			<fieldset class="uk-margin-large-top">
+
+  			<legend>{lang_allowed_formats}</legend>
+
+	      <table class="uk-table uk-table-condensed uk-table-striped uk-width-1-1" style="background:#ffffff;">
+	        <tr>
+	          <th>{lang_image}</th>
+	          <th>{lang_audio} / {lang_video}</th>
+	          <th>{lang_other}</th>
+	        </tr>
+	        <tr>
+	          <td valign="top" align="center">
+	            <table>
+	              <tr>
+	                <td align="left">
+	                  <input type="checkbox" class="uk-checkbox" name="format_jpg" value="1" {jpg_checked}{xhtml}> <span class="uk-form-help-inline">{lang_jpg}</span><br{xhtml}>
+	                  <input type="checkbox" class="uk-checkbox" name="format_png" value="2" {png_checked}{xhtml}> <span class="uk-form-help-inline">{lang_png}</span><br{xhtml}>
+	                  <input type="checkbox" class="uk-checkbox" name="format_tif" value="4" {tif_checked}{xhtml}> <span class="uk-form-help-inline">{lang_tif}</span><br{xhtml}>
+	                  <input type="checkbox" class="uk-checkbox" name="format_gif" value="8" {gif_checked}{xhtml}> <span class="uk-form-help-inline">{lang_gif}</span><br{xhtml}>
+	                  <input type="checkbox" class="uk-checkbox" name="format_bmp" value="16" {bmp_checked}{xhtml}> <span class="uk-form-help-inline">{lang_bmp}</span><br{xhtml}>
+	                  <input type="checkbox" class="uk-checkbox" name="format_tga" value="32" {tga_checked}{xhtml}> <span class="uk-form-help-inline">{lang_tga}</span><br{xhtml}>
+	                  <input type="checkbox" class="uk-checkbox" name="format_psd" value="64" {psd_checked}{xhtml}> <span class="uk-form-help-inline">{lang_psd}</span><br{xhtml}>
+	                </td>
+	              </tr>
+	            </table>
+	          </td>
+	          <td valign="top" align="center">
+	            <table>
+	              <tr>
+	                <td align="left">
+	                  <input type="checkbox" class="uk-checkbox" name="format_mp3" value="128" {mp3_checked}{xhtml}> <span class="uk-form-help-inline">{lang_mp3}</span><br{xhtml}>
+	                  <input type="checkbox" class="uk-checkbox" name="format_ogg" value="256" {ogg_checked}{xhtml}> <span class="uk-form-help-inline">{lang_ogg}</span><br{xhtml}>
+	                  <input type="checkbox" class="uk-checkbox" name="format_asf" value="512" {asf_checked}{xhtml}> <span class="uk-form-help-inline">{lang_asf}</span><br{xhtml}>
+	                  <input type="checkbox" class="uk-checkbox" name="format_swf" value="1024" {swf_checked}{xhtml}> <span class="uk-form-help-inline">{lang_swf}</span><br{xhtml}>
+	                  <input type="checkbox" class="uk-checkbox" name="format_mov" value="2048" {mov_checked}{xhtml}> <span class="uk-form-help-inline">{lang_mov}</span><br{xhtml}>
+	                  <input type="checkbox" class="uk-checkbox" name="format_mp4" value="4096" {mp4_checked}{xhtml}> <span class="uk-form-help-inline">{lang_mp4}</span><br{xhtml}>
+	                  <input type="checkbox" class="uk-checkbox" name="format_mpg" value="8192" {mpg_checked}{xhtml}> <span class="uk-form-help-inline">{lang_mpg}</span><br{xhtml}>
+	                  <input type="checkbox" class="uk-checkbox" name="format_flv" value="131072" {flv_checked}{xhtml}> <span class="uk-form-help-inline">{lang_flv}</span><br{xhtml}>
+	                  <input type="checkbox" class="uk-checkbox" name="format_rflv" value="262144" {rflv_checked}{xhtml}> <span class="uk-form-help-inline">{lang_rflv}</span><br{xhtml}>
+	                  <input type="checkbox" class="uk-checkbox" name="format_emb" value="524288" {emb_checked}{xhtml}> <span class="uk-form-help-inline">{lang_emb}</span><br{xhtml}>
+	                </td>
+	              </tr>
+	            </table>
+	          </td>
+	          <td valign="top" align="center">
+	            <table>
+	              <tr>
+	                <td align="left">
+	                  <input type="checkbox" class="uk-checkbox" name="format_zip" value="16384" {zip_checked}{xhtml}> <span class="uk-form-help-inline">{lang_zip}</span><br{xhtml}>
+	                  <input type="checkbox" class="uk-checkbox" name="format_other" value="32768" {other_checked}{xhtml}> <span class="uk-form-help-inline">{lang_other}</span><br{xhtml}>
+	                </td>
+	              </tr>
+	            </table>
+	          </td>
+	        </tr>
+	      </table>
+  		</fieldset>
+
+	{!if perms_editor_admin}
+	    <fieldset class="uk-margin-large-top">
+	      <legend>{lang_uploads}</legend>
+				<dl class="form_block">
+
+					<dt><label class="uk-form-label">{lang_member_upload}</label></dt>
+					<dd class="uk-clearfix">{uploads}</dd>
+
+					<dt><label class="uk-form-label">{lang_moderate_album}</label></dt>
+					<dd class="uk-clearfix">{moderate}</dd>
+
+					<dt><label class="uk-form-label">{lang_mod_group}</label></dt>
+					<dd class="uk-clearfix">{mod_dropdown}</dd>
+
+					<dt><label class="uk-form-label">{lang_email_mods_on_submission}</label></dt>
+					<dd class="uk-clearfix">{email_mod_select}</dd>
+
+				</dl>
+	    </fieldset>
+
+	    <fieldset class="uk-margin-large-top">
+	      <legend>{lang_accessrights}</legend>
+				<dl class="form_block">
+
+					<dt><label class="uk-form-label">{lang_owner}</label></dt>
+					<dd class="uk-clearfix">{owner_select}</dd>
+
+					<dt><label class="uk-form-label">{lang_group}</label></dt>
+					<dd class="uk-clearfix">{group_dropdown}</dd>
+
+					<dt><label class="uk-form-label">{lang_permissions}</label></dt>
+					<dd class="uk-clearfix">{permissions_editor}
+					<span class="uk-form-help-inline">{lang_perm_key}</span></dd>
+
+					<dt><label class="uk-form-label">{lang_hidden}</label></dt>
+					<dd class="uk-clearfix">{hidden}</dd>
+
+					<dt><label class="uk-form-label">{lang_force_child_update}</label></dt>
+					<dd class="uk-clearfix">{force_child_update}</dd>
+
+				</dl>
+	    </fieldset>
+	{!endif}
+
+	{!if perms_editor_member}
+	    <fieldset class="uk-margin-large-top">
+	      <legend>{lang_accessrights}</legend>
+	      	<dl class="form_block">
+	            <dt><label class="uk-form-label">{lang_owner}</label></dt>
+	            <dd class="uk-clearfix">
+	                {owner_username}<input type="hidden" name="owner_id" value="{owner_id}"{xhtml}></dd>
+
+	            <dt><label class="uk-form-label">{lang_permissions}</label></dt>
+	            <dd class="uk-clearfix">{permissions_editor}
+	              <span class="uk-form-help-inline">{lang_perm_key}</span></dd>
+
+	            <dt><label class="uk-form-label">{lang_force_child_update}</label></dt>
+	            <dd class="uk-clearfix">{force_child_update}</dd>
+	        </dl>
+	    </fieldset>
+	{!endif}
+
+      <div class="submit">
+        <button type="submit" class="uk-button uk-button-primary" value="{lang_save}" name="mode">{lang_save}</button>
+        <button type="submit" class="uk-button uk-button-danger" value="{lang_delete}" name="mode">{lang_delete}</button>
+        <button type="submit" class="uk-button" value="{lang_cancel}" name="mode">{lang_cancel}</button>
+        <input type="hidden" name="album_id" value="{album_id}"{xhtml}>
+        <input type="hidden" name="cover" value="{album_cover}"{xhtml}>
+        <input type="hidden" name="owner" value="{album_owner}"{xhtml}>
+        <input type="hidden" name="order" value="{album_order}"{xhtml}>
+        <input type="hidden" name="album_cover_filename" value="{album_cover_filename}"{xhtml}>
+        <input type="hidden" name="last_update" value="{last_update}"{xhtml}>
+        <input type="hidden" name="media_count" value="{media_count}"{xhtml}>
+        <input type="hidden" name="action" value="{action}"{xhtml}>
+        <input type="hidden" name="origaid" value="{old_album_id}"{xhtml}>
+			</div>
+		</div>
+	</form>
 {end_block}
 
 {# end {templatelocation} #}

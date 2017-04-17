@@ -283,8 +283,8 @@ function MG_globalAlbumAttributeEditor($adminMenu=0)
     $tn_size_select .= '<option value="13">' . $LANG_MG01['crop_custom'] . '</option>';
     $tn_size_select .= '</select>';
 
-    $tnheight_input = '<input type="text" class="uk-input" size="3" name="tnheight" value=""' . XHTML . '>';
-    $tnwidth_input  = '<input type="text" class="uk-input" size="3" name="tnwidth" value=""' . XHTML . '>';
+    $tnheight_input = '<input type="text" class="uk-input uk-form-width-xsmall" size="3" name="tnheight" value=""' . XHTML . '>';
+    $tnwidth_input  = '<input type="text" class="uk-input uk-form-width-xsmall" size="3" name="tnwidth" value=""' . XHTML . '>';
 
     $display_image_size_select  = '<select class="uk-select uk-form-width-small" name="display_image_size">';
     $display_image_size_select .= '<option value="0">' . $LANG_MG01['size_500x375'] . '</option>';
@@ -299,12 +299,12 @@ function MG_globalAlbumAttributeEditor($adminMenu=0)
     $display_image_size_select .= '<option value="9">' . $LANG_MG01['size_custom'] . $_MG_CONF['custom_image_width'] . 'x' . $_MG_CONF['custom_image_height'] . '</option>';
     $display_image_size_select .= '</select>';
 
-    $max_image_height_input = '<input type="text" class="uk-input" size="4" name="max_image_height" value="0"' . XHTML .'>';
-    $max_image_width_input  = '<input type="text" class="uk-input" size="4" name="max_image_width" value="0"' . XHTML . '>';
-    $max_filesize_input     = '<input type="text" class="uk-input" size="10" name="max_filesize" value="0"' . XHTML . '>';
+    $max_image_height_input = '<input type="text" class="uk-input uk-form-width-xsmall" size="4" name="max_image_height" value="0"' . XHTML .'>';
+    $max_image_width_input  = '<input type="text" class="uk-input uk-form-width-xsmall" size="4" name="max_image_width" value="0"' . XHTML . '>';
+    $max_filesize_input     = '<input type="text" class="uk-input uk-form-width-xsmall" size="10" name="max_filesize" value="0"' . XHTML . '>';
 
-    $rows_input      = '<input type="text" class="uk-input" size="3" name="display_rows" value="' . $_MG_CONF['display_rows'] . '"' . XHTML . '>';
-    $columns_input   = '<input type="text" class="uk-input" size="3" name="display_columns" value="' . $_MG_CONF['display_columns'] . '"' . XHTML . '>';
+    $rows_input      = '<input type="text" class="uk-input uk-form-width-xsmall" size="3" name="display_rows" value="' . $_MG_CONF['display_rows'] . '"' . XHTML . '>';
+    $columns_input   = '<input type="text" class="uk-input uk-form-width-xsmall" size="3" name="display_columns" value="' . $_MG_CONF['display_columns'] . '"' . XHTML . '>';
 
     $playback_type  = '<select class="uk-select uk-form-width-small" name="playback_type">';
     $playback_type .= '<option value="0">' . $LANG_MG01['play_in_popup'] . '</option>';

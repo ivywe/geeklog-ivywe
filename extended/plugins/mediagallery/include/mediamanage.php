@@ -75,7 +75,7 @@ function MG_imageAdmin($album_id, $page, $actionURL = '')
 
     $album_cover = $album->cover;
 
-    $album_selectbox = '<select class="uk-select uk-form-width-small" name="album">';
+    $album_selectbox = '<select class="uk-select uk-form-width-medium" name="album">';
     $root_album = new mgAlbum(0);
     $root_album->buildAlbumBox($album_selectbox, $album_id, 3, $album_id, 'manage');
     $album_selectbox .= '</select>';
@@ -102,7 +102,7 @@ function MG_imageAdmin($album_id, $page, $actionURL = '')
     $result = DB_query($sql);
     $nrows = DB_numRows($result);
 
-    $batchOptionSelect = '<select class="uk-select uk-form-width-small" name="batchOption">';
+    $batchOptionSelect = '<select class="uk-select uk-form-width-medium" name="batchOption">';
     if ($_CONF['image_lib'] == 'gdlib' && !function_exists("imagerotate")) {
         $batchOptionSelect .= '';
     } else {
@@ -148,7 +148,7 @@ function MG_imageAdmin($album_id, $page, $actionURL = '')
         'val_reset_cover'         => (($album_cover == '-1') ? ' checked="checked"' : ''),
     ));
 
-    $tn_size = 1; // include:150x150
+    $tn_size = 13; // crop_custom:200x200
     $rowclass = 0;
     $counter = 0;
     if ($nrows == 0) {
@@ -199,16 +199,16 @@ function MG_imageAdmin($album_id, $page, $actionURL = '')
                 $media_time = MG_getUserDateTimeFormat($row['media_time']);
 
                 if ($img_size != false) {
-                    list($width, $height) = Media::getImageWH($img_size[0], $img_size[1], 150, 150);
+                    list($width, $height) = Media::getImageWH($img_size[0], $img_size[1], 200, 200);
                 } else {
                     //$width = 100;
                     //$height = 75;
-                    $width = 150;
-                    $height = 112;
+                    $width = 200;
+                    $height = 200;
                     $thumbnail = $_MG_CONF['mediaobjects_url'] . '/missing.svg';
                 }
 
-                $cat_select = '<select class="uk-select uk-form-width-small" name="cat_id[]">';
+                $cat_select = '<select class="uk-select uk-form-width-medium" name="cat_id[]">';
                 $cat_select .= '<option value="0">' . $LANG_MG01['no_category'] . '</option>';
                 $cRows = count($catRow);
                 for ($i=0; $i < $cRows; $i++) {
@@ -449,7 +449,7 @@ function MG_mediaEdit($album_id, $media_id, $actionURL='', $mqueue=0, $view=0, $
     }
 
     // Build Album List
-    $album_jumpbox = '<select class="uk-select uk-form-width-small" name="albums" width="40">';
+    $album_jumpbox = '<select class="uk-select uk-form-width-medium" name="albums" width="40">';
     $root_album = new mgAlbum(0);
     $root_album->buildJumpBox($album_jumpbox, $album_id);
     $album_jumpbox .= '</select>';
@@ -473,7 +473,7 @@ function MG_mediaEdit($album_id, $media_id, $actionURL='', $mqueue=0, $view=0, $
     $media_time_hour   = date("H", $row['media_time']);
     $media_time_minute = date("i", $row['media_time']);
 
-    $month_select = '<select class="uk-select uk-form-width-small" name="media_month">';
+    $month_select = '<select class="uk-select uk-form-width-medium" name="media_month">';
     $month_select .= COM_getMonthFormOptions($media_time_month);
     $month_select .= '</select>';
 
@@ -514,13 +514,13 @@ function MG_mediaEdit($album_id, $media_id, $actionURL='', $mqueue=0, $view=0, $
 
     $media_time = MG_getUserDateTimeFormat($row['media_time']);
 
-    $tn_size = 1;
+    $tn_size = 13;
     list($thumbnail, $pThumbnail, $size) = Media::getThumbInfo($row, $tn_size);
     $attached_thumbnail ='';
     if ($row['media_tn_attached'] == 1) {
         $atnsize = '';
         if ($size != false) {
-            list($newwidth, $newheight) = Media::getImageWH($size[0], $size[1], 150, 150);
+            list($newwidth, $newheight) = Media::getImageWH($size[0], $size[1], 200, 200);
             $atnsize = 'width="' . $newwidth . '" height="' . $newheight . '"';
         }
         $attached_thumbnail = '<img src="' . $thumbnail . '" alt="" ' . $atnsize . XHTML . '>';
