@@ -1,0 +1,5 @@
+{# begin {templatelocation} #}
+
+			<li><a data-slide-index="<?php global $inc; echo intval($inc); $inc=$inc+1; ?>" href=""><img src="{filename}" alt="{media_title}" alt="{media_title}"{xhtml}></a></li>
+
+{# end {templatelocation} #}

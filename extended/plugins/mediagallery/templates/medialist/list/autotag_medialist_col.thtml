@@ -1,17 +1,5 @@
 {# begin {templatelocation} #}
 
-  <div class="uk-margin-large {class}">
-    {!if media_title}<h3 class="uk-container-center">{media_title}</h3>{!endif}
-    <a href="{filename_disp}" data-uk-lightbox="{ group:'my-group{albumid}' }" title="{media_title}{!if media_desc}: {media_desc}{!endif}">
-
-      <figure class="uk-overlay uk-overlay-hover uk-text-center ">
-        <img src="{filename_disp}" alt="{media_title}" class="uk-container-center uk-overlay-scale uk-border-rounded  {class}" alt="{media_title}"{xhtml}>
-
-          <figcaption class="uk-overlay-panel uk-overlay-background  uk-overlay-bottom uk-overlay-slide-bottom">
-          {media_title}{!if media_desc}: {media_desc}{!endif}
-        </figcaption>
-      </figure>
-    </a>
-  </div>
+      <li><img src="{filename}" alt="{media_title}" alt="{media_title}"{xhtml}></li>
 
 {# end {templatelocation} #}

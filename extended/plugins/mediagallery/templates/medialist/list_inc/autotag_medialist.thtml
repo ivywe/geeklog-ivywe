@@ -2,6 +2,8 @@
 
 {!if edit}<!-- album_title:{album_title} album_url: {site_url}/mediagallery/album.php?aid={album_id}&page=1 -->{!endif}
 
+<?php global $inc; $inc=0; ?>
+
   {medialist_col}
 
 {# end {templatelocation} #}
