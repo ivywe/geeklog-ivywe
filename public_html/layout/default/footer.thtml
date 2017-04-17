@@ -30,6 +30,104 @@
   {plg_footercode}
 
 
+<!-- bxSlider Javascript file -->
+<script src="{layout_url}/vendor/bxslider/jquery.bxslider.js"></script>
+<!-- bxSlider用記述 Start-->
+<script>$(document).ready(function(){
+//メインスライド用の記述
+  $('.bxslider11').bxSlider({
+  pagerCustom: '#bx-pager1',//ページャーをカスタマイズする（サムネイルにする）ための記述
+  controls:false//前後の矢印を消すための記述
+  });
+  $('.bxslider21').bxSlider({
+  pagerCustom: '#bx-pager2',//ページャーをカスタマイズする（サムネイルにする）ための記述
+  controls:false//前後の矢印を消すための記述
+  });
+  $('.bxslider31').bxSlider({
+  pagerCustom: '#bx-pager3',//ページャーをカスタマイズする（サムネイルにする）ための記述
+  controls:false//前後の矢印を消すための記述
+  });
+  $('.bxslider41').bxSlider({
+  pagerCustom: '#bx-pager4',//ページャーをカスタマイズする（サムネイルにする）ための記述
+  controls:false//前後の矢印を消すための記述
+  });
+  $('.bxslider51').bxSlider({
+  pagerCustom: '#bx-pager5',//ページャーをカスタマイズする（サムネイルにする）ための記述
+  controls:false//前後の矢印を消すための記述
+  });
+});
+
+//サムネイルをスライドさせるための記述
+$(document).ready(function(){
+  $('.bxslider12').bxSlider({
+  pager:false,
+  minSlides: 5,//１スライドに表示するサムネイルの数
+  maxSlides: 10,//１スライドに表示するサムネイルの最大数
+  slideWidth: 90,//サムネイルの横幅（単位はpx）
+  slideMargin: 10,//サムネイル間の余白（単位はpx）
+  nextSelector: '#NextIcon1',//"次へ”矢印をカスタマイズするための記述
+  prevSelector: '#PrevIcon1'//"前へ”矢印をカスタマイズするための記述
+      });
+  $('.bxslider22').bxSlider({
+  pager:false,
+  minSlides: 5,//１スライドに表示するサムネイルの数
+  maxSlides: 10,//１スライドに表示するサムネイルの最大数
+  slideWidth: 90,//サムネイルの横幅（単位はpx）
+  slideMargin: 10,//サムネイル間の余白（単位はpx）
+  nextSelector: '#NextIcon2',//"次へ”矢印をカスタマイズするための記述
+  prevSelector: '#PrevIcon2'//"前へ”矢印をカスタマイズするための記述
+      });
+  $('.bxslider32').bxSlider({
+  pager:false,
+  minSlides: 5,//１スライドに表示するサムネイルの数
+  maxSlides: 10,//１スライドに表示するサムネイルの最大数
+  slideWidth: 90,//サムネイルの横幅（単位はpx）
+  slideMargin: 10,//サムネイル間の余白（単位はpx）
+  nextSelector: '#NextIcon3',//"次へ”矢印をカスタマイズするための記述
+  prevSelector: '#PrevIcon3'//"前へ”矢印をカスタマイズするための記述
+      });
+  $('.bxslider42').bxSlider({
+  pager:false,
+  minSlides: 5,//１スライドに表示するサムネイルの数
+  maxSlides: 10,//１スライドに表示するサムネイルの最大数
+  slideWidth: 90,//サムネイルの横幅（単位はpx）
+  slideMargin: 10,//サムネイル間の余白（単位はpx）
+  nextSelector: '#NextIcon4',//"次へ”矢印をカスタマイズするための記述
+  prevSelector: '#PrevIcon4'//"前へ”矢印をカスタマイズするための記述
+      });
+  $('.bxslider52').bxSlider({
+  pager:false,
+  minSlides: 5,//１スライドに表示するサムネイルの数
+  maxSlides: 10,//１スライドに表示するサムネイルの最大数
+  slideWidth: 90,//サムネイルの横幅（単位はpx）
+  slideMargin: 10,//サムネイル間の余白（単位はpx）
+  nextSelector: '#NextIcon5',//"次へ”矢印をカスタマイズするための記述
+  prevSelector: '#PrevIcon5'//"前へ”矢印をカスタマイズするための記述
+      });
+});
+</script> 
+<!-- //bxSlider用記述 End -->
+{# 自動タグプラグインAutotagに、medialist_bxslider を追加。内容は以下。#}
+<!--
+	<div class="slider">
+		<ul class="bxslider#21">
+			[medialist:#1 src:disp theme:list]
+		</ul>
+		<div class="controlWrap  uk-flex-center uk-inline uk-visible-toggle uk-light">
+			<ul id="bx-pager#2" class="bxslider#22">
+				[medialist:#1 src:tn theme:list_inc]
+			</ul>
+			<p id="PrevIcon#2" class="uk-position-left uk-flex uk-flex-middle"></p>
+			<p id="NextIcon#2" class="uk-position-right uk-flex uk-flex-middle"></p>
+		</div>
+	</div>
+本文に、[medialist_bxslider:(アルバムNO) (1,2,3,4,5)]
+例）[medialist_bxslider:12 1]
+同一ページに、複数置く場合は、2つ目の数字をかならず別の数字にして競合しないようにしてください。
+-->
+
+
+
 <script>window.twttr = (function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0],
     t = window.twttr || {};

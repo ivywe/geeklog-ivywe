@@ -37,8 +37,10 @@
 
 {feed_url}
 {rel_links}
-
 {plg_headercode}
+
+<!-- bxSlider CSS file -->
+<link href="{layout_url}/vendor/bxslider/jquery.bxslider.css" rel="stylesheet" />
 
 <!--[if lt IE 8]><link rel="stylesheet" type="text/css" href="{layout_url}/css_{direction}/ie8.css"{xhtml}><![endif]-->
 <!--[if lt IE 9]><script type="text/javascript" src="{layout_url}/javascript/respond.min.js"></script><![endif]-->
