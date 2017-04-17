@@ -55,8 +55,8 @@
 
     // CONTROLS
     controls: true,
-    nextText: 'Next',
-    prevText: 'Prev',
+    nextText: '<span class="uk-margin-small-right" uk-icon="icon: chevron-right; ratio: 2"></span>',
+    prevText: '<span class="uk-margin-small-right" uk-icon="icon: chevron-left; ratio: 2"></span>',
     nextSelector: null,
     prevSelector: null,
     autoControls: false,
