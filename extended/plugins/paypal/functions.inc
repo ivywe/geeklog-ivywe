@@ -1223,7 +1223,7 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 			}
 			$product->set_var('link_name', '<a class="product-details" href="' . $_PAY_CONF['site_url'] . '/product_detail.php?product=' . $A['id'] . '&amp;n='. urlencode($A['name']) . '">' . $A['name'] . '</a>');
 			if (($A['hidden'] == 1) && SEC_hasRights('paypal.admin')) {
-			  $product->set_var('hidden','<strong><font color="red">' . $LANG_PAYPAL_1['hidden'] . '</font></strong><br/>');
+			  $product->set_var('hidden','<span class="uk-text-danger uk-text-bold">' . $LANG_PAYPAL_1['hidden'] . '</span><br/>');
 			} else {
 			  $product->set_var('hidden','');
 			}

@@ -11,8 +11,8 @@
 	</select>
 	</p>
 	
-	<p><label>{shipping_min_label}<font color="red"> *</font></label> <input type="text" class="uk-input uk-form-width-small" name="shipping_min" value="{shipping_min}" size="10" {xhtml}></p>
-	<p><label>{shipping_max_label}<font color="red"> *</font></label> <input type="text" class="uk-input uk-form-width-small" name="shipping_max" value="{shipping_max}" size="10" {xhtml}></p>
+	<p><label>{shipping_min_label}<span class="uk-text-danger">*</span></label> <input type="text" class="uk-input uk-form-width-small" name="shipping_min" value="{shipping_min}" size="10" {xhtml}></p>
+	<p><label>{shipping_max_label}<span class="uk-text-danger">*</span></label> <input type="text" class="uk-input uk-form-width-small" name="shipping_max" value="{shipping_max}" size="10" {xhtml}></p>
 	
 	<p><label>{destination_label}</label>
 	<select class="uk-select uk-form-width-small" name="shipping_destination_id" >
@@ -20,12 +20,12 @@
 	</select>
 	</p>
 	
-	<p><label>{shipping_amt_label}<font color="red"> *</font></label>
+	<p><label>{shipping_amt_label}<span class="uk-text-danger">*</span></label>
 	<input type="text" class="uk-input uk-form-width-small" name="shipping_amt" value="{shipping_amt}" size="40" maxlength="255" {xhtml}></p>
 	</fieldset>
 
 	
-    <p><strong><font color="red">*</font><em> {required_field}</em></strong></p>
+    <p><strong><span class="uk-text-danger">*</span><em> {required_field}</em></strong></p>
     <select class="uk-select uk-form-width-small" name="op" >
 	<option value="save_shipping_cost" selected="selected">{save_button}</option>
     {delete_button}

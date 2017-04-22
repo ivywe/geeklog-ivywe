@@ -3,7 +3,7 @@
 <form action="{admin_url}/plugins/paypal/index.php?mode=categories" method="POST" enctype="multipart/form-data"  class="uk-form paypal_form">
 	<fieldset style="margin-top: 10px;"><legend><b>{main_settings}</b></legend>
 	{cat_id}
-	<h2>{category_label}<font color="red"> *</font></h2>
+	<h2>{category_label}<span class="uk-text-danger">*</span></h2>
 	<p><input type="text" class="uk-input uk-form-width-small" name="category" value="{cat_name}" size="40" maxlength="255" {xhtml}></p>
 	<h2>{parent_id}</h2>
 	<select class="uk-select uk-form-width-small" name="parent_id">
@@ -41,7 +41,7 @@
 		</div>
 	</fieldset>
 	
-    <p><strong><font color="red">*</font><em> {required_field}</em></strong></p>
+    <p><strong><span class="uk-text-danger">*</span><em> {required_field}</em></strong></p>
     <select class="uk-select uk-form-width-small" name="op" >
 	<option value="save" selected="selected">{save_button}</option>
     {delete_button}

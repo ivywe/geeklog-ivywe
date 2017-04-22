@@ -3,12 +3,12 @@
 <form action="{admin_url}/plugins/paypal/index.php?mode=shipping" method="POST" class="paypal_form">
 	<fieldset style="margin-top: 10px;"><legend><b>{main_settings}</b></legend>
 	{shipping_to_id}
-	<p><label>{shipping_to_label}</label> <font color="red">*</font>
+	<p><label>{shipping_to_label}</label> <span class="uk-text-danger">*</span>
 	<input type="text" class="uk-input uk-form-width-small" name="shipping_to_name" value="{shipping_to_name}" size="40" maxlength="255" {xhtml}></p>
 	<p><label>{order_label}</label> <input type="text" class="uk-input uk-form-width-small" name="shipping_to_order" value="{shipping_to_order}" size="20" maxlength="30" {xhtml}></p>
 	</fieldset>
 
-    <p><strong><font color="red">*</font><em> {required_field}</em></strong></p>
+    <p><strong><span class="uk-text-danger">*</span><em> {required_field}</em></strong></p>
     <select class="uk-select uk-form-width-small" name="op" >
 	<option value="save_shipping_to" selected="selected">{save_button}</option>
     {delete_button}

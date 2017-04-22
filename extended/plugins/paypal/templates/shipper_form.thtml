@@ -3,10 +3,10 @@
 <form action="{admin_url}/plugins/paypal/index.php?mode=shipping" method="POST"  class="paypal_form">
 	<fieldset style="margin-top: 10px;"><legend><b>{main_settings}</b></legend>
 	{shipper_id}
-	<p><label>{shipper_label}</label> <font color="red">*</font>
+	<p><label>{shipper_label}</label> <span class="uk-text-danger">*</span>
 	<input type="text" class="uk-input uk-form-width-small" name="shipper_service_name" value="{shipper_service_name}" size="40" maxlength="100" {xhtml}></p>
 	
-	<p><label>{service_label}</label> <font color="red">*</font>
+	<p><label>{service_label}</label> <span class="uk-text-danger">*</span>
 	<input type="text" class="uk-input uk-form-width-small" name="shipper_service_service" value="{shipper_service_service}" size="40" maxlength="255" {xhtml}></p>
 	
 	<p><label>{description_label}<label>
@@ -20,7 +20,7 @@
 	</fieldset>
 
 	
-    <p><strong><font color="red">*</font><em> {required_field}</em></strong></p>
+    <p><strong><span class="uk-text-danger">*</span><em> {required_field}</em></strong></p>
     <select class="uk-select uk-form-width-small" name="op" >
 	<option value="save_shipper" selected="selected">{save_button}</option>
     {delete_button}

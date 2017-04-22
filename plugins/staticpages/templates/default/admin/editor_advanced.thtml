@@ -156,8 +156,8 @@
       </fieldset>
 
       <div class="submit">
-        <input type="submit" value="{lang_save}" name="mode" class="submit"{xhtml}>
-        <input type="submit" value="{lang_cancel}" name="mode" class="submit"{xhtml}>
+        <input type="submit" value="{lang_save}" name="mode" class="uk-button uk-button-primary"{xhtml}>
+        <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
         {delete_option}
         <input type="hidden" name="sp_old_id" value="{sp_old_id}"{xhtml}>
         <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>

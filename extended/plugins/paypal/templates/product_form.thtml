@@ -21,9 +21,9 @@
 {id}{product_type}
   <fieldset style="margin-top: 10px;"><legend><b>{informations}</b></legend>
   	<h2>{item_id_label}</h2><input type="text" class="uk-input uk-form-width-medium" name="item_id" value="{item_id}" size="20" maxlength="80" {xhtml}>
-	<h2>{name_label}</h2><font color="red">*</font> <input type="text" class="uk-input uk-form-width-large" name="name" value="{name}" size="80" maxlength="255" required {xhtml}>
+	<h2>{name_label}</h2><span class="uk-text-danger">*</span> <input type="text" class="uk-input uk-form-width-large" name="name" value="{name}" size="80" maxlength="255" required {xhtml}>
     
-	<h2>{short_description_label}</h2><font color="red">*</font> <input type="text" class="uk-input uk-form-width-large" name="short_description" value="{short_description}" size="80" maxlength="255" required {xhtml}>
+	<h2>{short_description_label}</h2><span class="uk-text-danger">*</span> <input type="text" class="uk-input uk-form-width-large" name="short_description" value="{short_description}" size="80" maxlength="255" required {xhtml}>
     
 	<h2>{category_label}</h2>
 	<select class="uk-select uk-form-width-medium" name="category">{categories}</select> 
@@ -31,7 +31,7 @@
 	<h2>{description_label}</h2>
     <div style="margin-bottom:15px;"><p><textarea class="uk-textarea" rows="12" id="description" name="description" cols="44">{description}</textarea></p></div>
 	
-	<h2>{price_label}</h2><font color="red">*</font> <input type="text" class="uk-input uk-form-width-small" name="price" value="{price}" size="20" maxlength="20" required{xhtml}>  {currency} 
+	<h2>{price_label}</h2><span class="uk-text-danger">*</span> <input type="text" class="uk-input uk-form-width-small" name="price" value="{price}" size="20" maxlength="20" required{xhtml}>  {currency} 
 	<p><small>{price_edit}</small></p>
 	
   </fieldset>
@@ -130,7 +130,7 @@
   </fieldset>
   
   <fieldset style="margin-top: 10px; {display_subscription}"><legend><b>{subscription_product_label}</b></legend>
-    <h2>{duration_label}</h2><font color="red">*</font> <input type="text" class="uk-input uk-form-width-small" name="duration" size="5" value="{duration}" required {xhtml}>
+    <h2>{duration_label}</h2><span class="uk-text-danger">*</span> <input type="text" class="uk-input uk-form-width-small" name="duration" size="5" value="{duration}" required {xhtml}>
     <select class="uk-select uk-form-width-small" name="duration_type">
       <option value="day" {sel_day}>{day}</option>
       <option value="week" {sel_week}>{week}</option>
@@ -157,7 +157,7 @@
 		</div>
 	</fieldset>
 	
-    <p><strong><font color="red">*</font><em> {required_field}</em></strong></p>
+    <p><span class="uk-text-danger uk-text-bold">* {required_field}</em><span></p>
 
     <select class="uk-select uk-form-width-small" name="op" >
 	<option value="save" selected="selected">{save_button}</option>
@@ -169,7 +169,7 @@
 
 </div>
 <div id="attributes">
-  <div id="load" style="padding:30px;" align="center"><img src="images/loading.gif" width="28" height="28" align="absmiddle"/> Loading...</div>
+  <div id="load" class="uk-margin uk-align-middle"><img src="{site_url}/images/loading.gif" style="width:28px; height:28px" /> Loading...</div>
   <fieldset style="margin-top: 10px;"><legend><b>{customisation}</b></legend>	
 	<div id="attributes_actions">
 		<div id="attributes_list">{attributes}</div>
