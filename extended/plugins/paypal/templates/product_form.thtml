@@ -2,7 +2,6 @@
 
 {adveditor}
 
-<div>
 {# tabs #}
 
 <nav class="uk-navbar uk-margin">
@@ -15,28 +14,28 @@
 </nav>
 
 {# tab containers #}
-<div id="product" style="padding:5px 10px;">
+<div id="product" class="uk-margin">
 	
 <form action="{site_url}/admin/plugins/paypal/product_edit.php" method="POST" enctype="multipart/form-data"  class="uk-form">
 {id}{product_type}
-  <fieldset style="margin-top: 10px;"><legend><b>{informations}</b></legend>
-  	<h2>{item_id_label}</h2><input type="text" class="uk-input uk-form-width-medium" name="item_id" value="{item_id}" size="20" maxlength="80" {xhtml}>
-	<h2>{name_label}</h2><span class="uk-text-danger">*</span> <input type="text" class="uk-input uk-form-width-large" name="name" value="{name}" size="80" maxlength="255" required {xhtml}>
+  <fieldset  class="uk-margin-top uk-text-bold"><legend>{informations}</legend>
+  	<h3>{item_id_label}</h3> <input type="text" class="uk-input uk-form-width-large" name="item_id" value="{item_id}" size="20" maxlength="80" {xhtml}>
+	<h3>{name_label}</h3><span class="uk-text-danger">*</span> <input type="text" class="uk-input uk-form-width-large" name="name" value="{name}" size="80" maxlength="255" {xhtml}>
     
-	<h2>{short_description_label}</h2><span class="uk-text-danger">*</span> <input type="text" class="uk-input uk-form-width-large" name="short_description" value="{short_description}" size="80" maxlength="255" required {xhtml}>
+	<h3>{short_description_label}</h3><span class="uk-text-danger">*</span> <input type="text" class="uk-input uk-form-width-large" name="short_description" value="{short_description}" size="80" maxlength="255" {xhtml}>
     
-	<h2>{category_label}</h2>
-	<select class="uk-select uk-form-width-medium" name="category">{categories}</select> 
+	<h3>{category_label}</h3>
+	<select class="uk-select uk-form-width-small" name="category">{categories}</select> 
 	
-	<h2>{description_label}</h2>
+	<h3>{description_label}</h3>
     <div style="margin-bottom:15px;"><p><textarea class="uk-textarea" rows="12" id="description" name="description" cols="44">{description}</textarea></p></div>
 	
-	<h2>{price_label}</h2><span class="uk-text-danger">*</span> <input type="text" class="uk-input uk-form-width-small" name="price" value="{price}" size="20" maxlength="20" required{xhtml}>  {currency} 
+	<h3>{price_label}</h3><span class="uk-text-danger">*</span> <input type="text" class="uk-input uk-form-width-small" name="price" value="{price}" size="20" maxlength="20" {xhtml}>  {currency} 
 	<p><small>{price_edit}</small></p>
 	
   </fieldset>
 
-  <fieldset style="margin-top: 10px;"><legend><a style="text-decoration: none;" onClick="elementToggle('discount'); return false;" href="#"><b>{discount_label}</b></a></legend>
+  <fieldset class="uk-margin-top uk-text-bold"><legend><a style="text-decoration: none;" onClick="elementToggle('discount'); return false;" href="#">{discount_label}</a></legend>
     <div id="discount" style="display:none;">
 	<p><label>{discount_a_label}</label> <input type="text" class="uk-input uk-form-width-small" name="discount_a" value="{discount_a}" size="10" maxlength="10" {xhtml}> {currency}</p>
 	<p>{price_edit}</p>
@@ -48,41 +47,41 @@
 
   </fieldset>
 
-  <fieldset style="margin-top: 10px;"><legend><b>{access_display}</b></legend>	
-	<h2>{logged_to_purchase}</h2><select class="uk-select uk-form-width-small" name="logged">
+  <fieldset class="uk-margin-top uk-text-bold"><legend>{access_display}</legend>	
+	<h3>{logged_to_purchase}</h3> <select class="uk-select uk-form-width-small" name="logged">
      <option value="0"{logged_no}>{no}</option>
      <option value="1"{logged_yes}>{yes}</option>
 	 </select>
 	 
-	<h2>{hidden}</h2><select class="uk-select uk-form-width-small" name="hidden">
+	<h3>{hidden}</h3> <select class="uk-select uk-form-width-small" name="hidden">
      <option value="0"{hidden_no}>{no}</option>
      <option value="1"{hidden_yes}>{yes}</option>
 	 </select>
 	
-	<h2>{active}</h2><select class="uk-select uk-form-width-small" name="active">
+	<h3>{active}</h3> <select class="uk-select uk-form-width-small" name="active">
      <option value="0"{active_no}>{no}</option>
      <option value="1"{active_yes}>{yes}</option>
 	 </select>
 	 
-	<h2>{show_in_blocks}</h2><select class="uk-select uk-form-width-small" name="show_in_blocks">
+	<h3>{show_in_blocks}</h3> <select class="uk-select uk-form-width-small" name="show_in_blocks">
      <option value="0"{show_in_blocks_no}>{no}</option>
      <option value="1"{show_in_blocks_yes}>{yes}</option>
 	 </select>
   </fieldset>
   
-  <fieldset style="margin-top: 10px;"><legend><b>{customisation}</b></legend>	
-	<h2>{customisable}</h2><select class="uk-select uk-form-width-small" name="customisable">
+  <fieldset class="uk-margin-top uk-text-bold"><legend>{customisation}</legend>	
+	<h3>{customisable}</h3> <select class="uk-select uk-form-width-small" name="customisable">
      <option value="0"{customisable_no}>{no}</option>
      <option value="1"{customisable_yes}>{yes}</option>
 	 </select>
   </fieldset>
     
-  <fieldset style="margin-top: 10px;"><legend><b>{lang_images}</b></legend>
+  <fieldset class="uk-margin-top uk-text-bold"><legend>{lang_images}</legend>
     {saved_images}
     {image_form_elements}
   </fieldset>
   
-  <fieldset style="margin-top: 10px; {display_product}"><legend><b>{delivery_info_label}</b></legend>
+  <fieldset   class="uk-margin-top uk-text-bold" syule="{display_product}"><legend>{delivery_info_label}</legend>
   
     <p>
       <label>{prod_type}</label>
@@ -94,17 +93,14 @@
     </p>
 	
     <div id="type_download">
-		<p>
         <label>{filename_label}</label> <select class="uk-select uk-form-width-small" name="file">
 		  <option value="">-- {select_file} --</option>
 		  {file_selection}
-		</select></p>
+		</select>
 		
 		<!-- Not Yet Supported
-		<p>
         <label>{upload_new}</label>
 		 <input type="file" name="uploadfile" {xhtml}>
-        </p>		 
 		 <div id="r"></div>
 		-->
 		
@@ -129,8 +125,8 @@
 
   </fieldset>
   
-  <fieldset style="margin-top: 10px; {display_subscription}"><legend><b>{subscription_product_label}</b></legend>
-    <h2>{duration_label}</h2><span class="uk-text-danger">*</span> <input type="text" class="uk-input uk-form-width-small" name="duration" size="5" value="{duration}" required {xhtml}>
+  <fieldset  class="uk-margin-top uk-text-bold" style="10px; {display_subscription}"><legend>{subscription_product_label}</legend>
+    <h3>{duration_label}</h3><span class="uk-text-danger">*</span> <input type="text" class="uk-input uk-form-width-small" name="duration" size="5" value="{duration}" {xhtml}>
     <select class="uk-select uk-form-width-small" name="duration_type">
       <option value="day" {sel_day}>{day}</option>
       <option value="week" {sel_week}>{week}</option>
@@ -138,18 +134,18 @@
       <option value="year" {sel_year}>{year}</option>
     </select>
 
-    <h2>{add_to_group_label}</h2> <select class="uk-select uk-form-width-small" name="add_to_group">{add_to_group_options}</select>
+    <h3>{add_to_group_label}</h3> <select class="uk-select uk-form-width-small" name="add_to_group">{add_to_group_options}</select>
     
   </fieldset>
 
-	<fieldset style="margin-top: 10px;"><legend><a style="text-decoration: none;" onClick="elementToggle('lang_accessrights'); return false;" href="#"><b>{lang_accessrights}</b></a></legend>
+	<fieldset class="uk-margin-top uk-text-bold"><legend><a style="text-decoration: none;" onClick="elementToggle('lang_accessrights'); return false;" href="#">{lang_accessrights}</a></legend>
 		<div id="lang_accessrights" style="display:none;">
 		<div><p>{lang_owner}: {owner_name}<input type="hidden" name="owner_id" value="{owner_id}"{xhtml}></p></div>
 		<div><p>{lang_group}: {group_dropdown}</p></div>
 		</div>
 	</fieldset>
 
-	<fieldset style="margin-top: 10px;"><legend><a style="text-decoration: none;" onClick="elementToggle('lang_permissions'); return false;" href="#"><b>{lang_permissions}</b></a></legend>
+	<fieldset  class="uk-margin-top uk-text-bold"><legend><a style="text-decoration: none;" onClick="elementToggle('lang_permissions'); return false;" href="#">{lang_permissions}</a></legend>
 		<div id="lang_permissions" style="display:none;">
 		<p>{lang_perm_key}</p>
 		<p>{permissions_editor}</p>
@@ -157,26 +153,25 @@
 		</div>
 	</fieldset>
 	
-    <p><span class="uk-text-danger uk-text-bold">* {required_field}</em><span></p>
+    <p><span class="uk-text-danger uk-text-danger">* {required_field}</p>
 
-    <select class="uk-select uk-form-width-small" name="op" >
+    <select class="uk-select uk-width-small" name="op" >
 	<option value="save" selected="selected">{save_button}</option>
     <option value="delete">{delete_button}</option>
 	</select>
-    <input type="submit" class="uk-button uk^button-primary" name="submit" value="{ok_button}" {xhtml}>
+    <input type="submit" name="submit" class="uk-button uk-button-primary" value="{ok_button}" {xhtml}>
 
 </form>
 
 </div>
 <div id="attributes">
-  <div id="load" class="uk-margin uk-align-middle"><img src="{site_url}/images/loading.gif" style="width:28px; height:28px" /> Loading...</div>
-  <fieldset style="margin-top: 10px;"><legend><b>{customisation}</b></legend>	
+  <div id="load" class="uk-margin uk-text-center"><img src="images/loading.gif" width="28" height="28" align="absmiddle"/> Loading...</div>
+  <fieldset class="uk-margin-top uk-text-bold"><legend>{customisation}</legend>	
 	<div id="attributes_actions">
 		<div id="attributes_list">{attributes}</div>
 		<div id="add_attributes">{add_attributes}</div>
 	</div>
   </fieldset>
-</div>
 </div>
 
 {# end {templatelocation} #}
