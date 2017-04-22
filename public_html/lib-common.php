@@ -982,11 +982,12 @@ function COM_siteHeader($what = 'menu', $pagetitle = '', $headercode = '')
                 $format_type = SYND_getMimeType($A['format']);
                 $format_name = SYND_getFeedType($A['format']);
                 $feed_title = $format_name . ' Feed: ' . $A['title'];
-
+/*
                 $feed_url[] = '<link rel="alternate" type="' . $format_type
                     . '" hreflang="' . $A['language'] . '" href="'
                     . $baseUrl . $A['filename'] . '" title="'
                     . htmlspecialchars($feed_title) . '"' . XHTML . '>';
+*/
             }
         }
     }
