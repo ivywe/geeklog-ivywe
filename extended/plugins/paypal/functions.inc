@@ -2792,10 +2792,21 @@ function PAYPAL_handlePurchase( $products, $quantity, $data, $names, $prices, $r
 			for ($i2 = 0; $i2 < count($products) +1; $i2++) {
 				$products_list .= $namelist[$i2];
 			}
+
+$products_list .= '<dl>';
+
 			if ($ipn['mc_handling'] > 0) {
-				$products_list .= '<p>' . $LANG_PAYPAL_1['shipping'] . ' ' . number_format($ipn['mc_handling'], $_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']) . ' ' . $_PAY_CONF['currency'] . '</p>';
+				$products_list .= '<dt>' . $LANG_PAYPAL_1['shipping'] . '<dt><dd>' . number_format($ipn['mc_handling'], $_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']) . ' ' . $_PAY_CONF['currency'] . '</dd>';
 			}
-			$products_list .= '<p>' . $LANG_PAYPAL_1['total_row_label'] . ' ' . number_format($ipn['mc_gross'], $_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']) . ' ' . $_PAY_CONF['currency'] . '</p>';
+			$products_list .= '<dt>' . $LANG_PAYPAL_1['total_row_label'] . '<dt><dd>' . number_format($ipn['mc_gross'], $_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']) . ' ' . $_PAY_CONF['currency'] . '</dd>';
+
+			$products_list .= '<dt>' . '消費税' . '<dt><dd>' . number_format($ipn['mc_gross']*0.08, $_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']) . ' ' . $_PAY_CONF['currency'] . '</dd>';
+
+			$products_list .= '<dt>' . '合計' . '<dt><dd>' . number_format($ipn['mc_gross']*1.08, $_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']) . ' ' . $_PAY_CONF['currency'] . '</dd></dl>';
+
+
+
+
 			$message->set_var('products', $products_list);
 			
 			//Email messages

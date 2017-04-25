@@ -66,6 +66,8 @@ class jcart {
 			$item['name'] = $this->itemname[$tmp_item];
 			$item['weight'] = $this->itemweights[$tmp_item];
 			$item['subtotal'] = $item['qty'] * $item['price'];
+			$item['tax_subtotal'] = $item['qty'] * $item['price'] * 0.08;
+			$item['totalwithtax'] = $item['qty'] * $item['price'] * 1.08;
 			$items[] = $item;
 			}
 		return $items;
@@ -498,6 +500,8 @@ class jcart {
 				$cart->set_var('currency_symbol', $text['currency_symbol']);
 				$cart->set_var('qty', $item['qty']);
 				$cart->set_var('subtotal', number_format($item['subtotal'], $_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']));
+				$cart->set_var('tax_subtotal', number_format($item['subtotal']*0.08, $_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']));
+				$cart->set_var('totalwidthtax', number_format($item['subtotal']*1.08, $_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']));
 				$cart->set_var('remove_png', $_PAY_CONF['site_url']. '/images/remove.png');
 				$cart->set_var('remove', $LANG_PAYPAL_CART['remove']);
 				$retval .= $cart->parse('', 'cart_item');
@@ -514,9 +518,20 @@ class jcart {
 		// DISPLAY THE CART FOOTER
 
 		//Subtotal
-		($block == 0) ? $cart->set_var('subtotal', $text['subtotal'] . number_format($this->total,$_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']) 
-		. ' ' . $text['currency_symbol'] . '</strong>') : $cart->set_var('subtotal', number_format($this->total,$_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']) 
-		. ' ' . $text['currency_symbol'] . '</strong>');
+		($block == 0) ? $cart->set_var('subtotal', number_format($this->total,$_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']) 
+		. ' ' . $text['currency_symbol']) : $cart->set_var('subtotal', number_format($this->total,$_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']) 
+		. ' ' . $text['currency_symbol']);
+
+		//tax_subtotal
+		($block == 0) ? $cart->set_var('tax_subtotal', number_format($this->total*0.08,$_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']) 
+		. ' ' . $text['currency_symbol']) : $cart->set_var('tax_subtotal', number_format($this->total * 0.08,$_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']) 
+		. ' ' . $text['currency_symbol']);
+
+		//totalwidthtax
+		($block == 0) ? $cart->set_var('totalwidthtax', number_format($this->total*1.08,$_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']) 
+		. ' ' . $text['currency_symbol']) : $cart->set_var('totalwidthtax', number_format($this->total * 1.08,$_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']) 
+		. ' ' . $text['currency_symbol']);
+
 		
 		// IF THIS IS THE CHECKOUT HIDE THE CART CHECKOUT BUTTON
 		if ($is_checkout !== true && $_REQUEST['pay_by'] != 'check') {
