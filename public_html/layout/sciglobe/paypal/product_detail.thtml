@@ -5,7 +5,7 @@
 	<table class="uk-table uk-table-small">
 		<tr>
 			<td class="uk-width-1-3">
-				{pictures}
+				{!if pictures}{pictures}{!else}<img class="" src="{site_url}/images/paypal/products/nophoto.png" style="max-width:100%" alt="{name}" />{!endif}
 			</td>
 			<td class="uk-width-2-3" >
 				<div id="product-details">
@@ -17,7 +17,7 @@
 					{subscription}
 					{donation}
 					{rent}
-					<div id="product-button">{add2cart2}</div>
+					<div id="product-button">{add2cart} </div>
 				</div>
 			</td>
 		</tr>

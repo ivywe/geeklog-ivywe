@@ -1,12 +1,31 @@
 {# begin {templatelocation} #}
 
+<?php 
+$m = $_GET['m'];
+$dm = urldecode($m);
+
+if(
+$dm == NULL ||
+( strpos($this->get_var('short_description'), $dm) !== false ) ) {
+  ?>
+
 <tr>
-	<td style="width:80px">{small_pic}</td>
+	<td style="width:100px">{small_pic}</td>
 	<td>{item_id}</td>
-	<td>{link_name}</td>
-	<td>{short_description}</td>
-	<td><span class="uk-text-large uk-text-danger uk-text-bold">&#165;{price}</span><span class="uk-text-danger"></span>{!if price_ref} íËâø:<span class="uk-text-bold">{price_ref}</span>{discount}{!endif}<span class="uk-text-small">(è¡îÔê≈çûÇ›)</span></td>
-	<td>{add2cart}{customisable}{login}{edit}</td>
+	<td>{link_name}<br>{customisable}{login}{edit}</td>
+
+{!!if {category} == 1 || {category} == 2 || {category} == 3 || {category} == 4 || {category} == 5 || {category} == 9 !!}
+
+	<td class="uk-text-center">
+		{short_description}
+	</td>
+{!endif}
+
+	<td class="uk-text-large uk-text-danger uk-text-bold uk-text-right">&#165;{price}</td>
+	<td style="width:5em">{add2cart}</td>
 </tr>
+
+
+<?php } ?>
 
 {# end {templatelocation} #}
