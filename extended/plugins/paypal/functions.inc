@@ -2824,7 +2824,7 @@ $products_list .= '<dl>';
 			if ($_PAY_CONF['shop_fax'] != '') $shop_informations_bottom .= '<dt>'.$LANG_confignames['paypal']['shop_fax'].'</dt><dd>' .  $_PAY_CONF['shop_fax'] . '<br' . XHTML . '>';
 			if ($_PAY_CONF['shop_siret'] != '') $shop_informations_bottom .= '<dt>'.$LANG_confignames['paypal']['shop_siret'] .'</dt><dd>' . $_PAY_CONF['shop_siret'] . '</dd>';
 
-			$shop_informations_bottom .= '<dt>振込先</dt><dd>' . PLG_replaceTags('[staticpage_content:bank]') . '</dd>';
+			$shop_informations_bottom .= '<dt>振込先</dt><dd>' . PLG_replaceTags('[staticpage_content:_bank]') . '</dd>';
 
 			$shop_informations_bottom .= '</dl>';
 									
