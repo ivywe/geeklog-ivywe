@@ -79,7 +79,7 @@ function MG_buildAdminbox(&$root_album)
     $retval .= $options;
     $retval .= '</select>' . LB;
     $retval .= '<input type="hidden" name="album_id" value="0"' . XHTML . '>' . LB;
-    $retval .= '<input type="submit" value="' . $LANG_MG03['go'] . '"' . XHTML . '>' . LB;
+    $retval .= '<input type="submit" class="uk-button uk-button-primary" value="' . $LANG_MG03['go'] . '"' . XHTML . '>' . LB;
     $retval .= '</div></form>' . LB;
 
     return $retval;

@@ -173,7 +173,7 @@ function MG_buildSortbox($album_id, $sortOrder, $page)
         )
     ));
     $retval .= '</select>' . LB;
-    $retval .= '<input type="submit" value="' . $LANG_MG03['go'] . '"' . XHTML . '>' . LB;
+    $retval .= '<input type="submit" class="uk-button uk-button-primary" value="' . $LANG_MG03['go'] . '"' . XHTML . '>' . LB;
     $retval .= '</div></form>' . LB;
 
     return $retval;
