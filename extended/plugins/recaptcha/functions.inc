@@ -278,16 +278,17 @@ function plugin_itemPreSave_recaptcha($type, $content = '') {
 		$resp = $recaptcha->verify(@$_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
 		
 		if (!$resp->isSuccess()) {
+			$msg = implode(', ', $resp->getErrorCodes());
+
 			if ($_RECAPTCHA_CONF['logging']) {
-				$errorCode = implode(', ', $resp->getErrorCodes());
-				$msg = sprintf(
+				$entry = sprintf(
 					RECAPTCHA_str('entry_error', true),
 					$type,
 					$_SERVER['REMOTE_ADDR'],
-					$errorCode
+					$msg
 				);
-				$msg = RECAPTCHA_esc($msg);
-				RECAPTCHA_errorLog($msg);
+				$entry = RECAPTCHA_esc($entry);
+				RECAPTCHA_errorLog($entry);
 			}
 		}
 	}
