@@ -95,13 +95,13 @@
 								<a href="{site_url}/index.php/topic/General"  class="uk-button uk-button-secondary uk-text-nowrap">NEWS</a>
 							</li>
 							<li style="min-width:6em;">
-								<a href="{site_url}/staticpages/index.php/contact"  class="uk-button uk-button-secondary uk-text-nowrap">CONTACT</a>
+								<a href="{site_url}/staticpages/index.php/contact" class="uk-button uk-button-secondary uk-text-nowrap">CONTACT</a>
 							</li>
 							<li style="min-width:6em;">
 <?php global $_USER, $_CONF; if (isset($_USER['uid']) && $_USER['uid'] > 1) { ?>
-								<a href="{site_url}/usersettings.php?mode=edit" class="uk-button uk-button-secondary"><img src="{layout_url}/images/custom/config.png" alt="プロフィール"style="width:20px; height:20px"></a>
+								<a href="{site_url}/usersettings.php?mode=edit" class="uk-button uk-button-secondary"><img src="{layout_url}/images/custom/config.png" alt="{$LANG29[4]}"style="width:20px; height:20px"></a>
 <?php } else { ?>
-								<a href="{site_url}/users.php" class="uk-button uk-button-secondary"><img src="{layout_url}/images/custom/login.png" alt="ログイン" style="width:20px; height:20px"></a>
+								<a href="{site_url}/users.php" class="uk-button uk-button-secondary"><img src="{layout_url}/images/custom/login.png" alt="{$LANG01[58]}" style="width:20px; height:20px"></a>
 <?php } ?>
 								<div class="uk-navbar-dropdown">
 									<ul class="uk-nav uk-navbar-dropdown-nav gl-navbar-nav">
@@ -115,6 +115,7 @@
 
 	        					<li class="uk-active gl-active"><a href="{site_url}/users.php?mode=new" class="uk-button uk-button-primary"><i class="uk-icon-user"></i> {$LANG04[27]}</a></li>
 <?php } ?>
+										<li class="uk-active gl-active"><a href="{site_url}/users.php" class="uk-button uk-button-primary">{$LANG01[58]}</a></li>
 <?php } ?>
 <?php global $_USER, $_CONF; if (isset($_USER['uid']) && $_USER['uid'] > 1) { ?>
 	        					<li class="uk-active uk-text-bold uk-margin-top" class="uk-button">{$LANG01[20]}</li>
