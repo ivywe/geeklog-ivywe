@@ -208,7 +208,7 @@ function MG_imageAdmin($album_id, $page, $actionURL = '')
                     $thumbnail = $_MG_CONF['mediaobjects_url'] . '/missing.svg';
                 }
 
-                $cat_select = '<select class="uk-select uk-form-width-medium" name="cat_id[]">';
+                $cat_select = '<select class="uk-select uk-form-width-small" name="cat_id[]">';
                 $cat_select .= '<option value="0">' . $LANG_MG01['no_category'] . '</option>';
                 $cRows = count($catRow);
                 for ($i=0; $i < $cRows; $i++) {
@@ -473,11 +473,11 @@ function MG_mediaEdit($album_id, $media_id, $actionURL='', $mqueue=0, $view=0, $
     $media_time_hour   = date("H", $row['media_time']);
     $media_time_minute = date("i", $row['media_time']);
 
-    $month_select = '<select class="uk-select uk-form-width-medium" name="media_month">';
+    $month_select = '<select class="uk-select uk-form-width-xsmall" name="media_month">';
     $month_select .= COM_getMonthFormOptions($media_time_month);
     $month_select .= '</select>';
 
-    $day_select = '<select class="uk-select uk-form-width-small" name="media_day">';
+    $day_select = '<select class="uk-select uk-form-width-xsmall" name="media_day">';
     for ($i = 1; $i < 32; $i++) {
         $day_select .= '<option value="' . $i . '"'
             . ($media_time_day == $i ? 'selected="selected"' : "") . '>'
@@ -488,7 +488,7 @@ function MG_mediaEdit($album_id, $media_id, $actionURL='', $mqueue=0, $view=0, $
     $current_year = (int) date("Y");
     $end_year = $current_year + 10;
 
-    $year_select = '<select class="uk-select uk-form-width-small" name="media_year">';
+    $year_select = '<select class="uk-select uk-form-width-xsmall" name="media_year">';
     for ($i = 1998; $i < $end_year; $i++) {
         $year_select .= '<option value="' . $i . '"'
             . ($media_time_year == $i ? 'selected="selected"' : "") . '>'
@@ -496,7 +496,7 @@ function MG_mediaEdit($album_id, $media_id, $actionURL='', $mqueue=0, $view=0, $
     }
     $year_select .= '</select>';
 
-    $hour_select = '<select class="uk-select uk-form-width-small" name="media_hour">';
+    $hour_select = '<select class="uk-select uk-form-width-xsmall" name="media_hour">';
     for ($i = 0; $i < 24; $i++) {
         $hour_select .= '<option value="' . $i . '"'
             . ($media_time_hour == $i ? 'selected="selected"' : "") . '>'
@@ -504,7 +504,7 @@ function MG_mediaEdit($album_id, $media_id, $actionURL='', $mqueue=0, $view=0, $
     }
     $hour_select .= '</select>';
 
-    $minute_select = '<select class="uk-select uk-form-width-small" name="media_minute">';
+    $minute_select = '<select class="uk-select uk-form-width-xsmall" name="media_minute">';
     for ($i = 0; $i < 60; $i++) {
         $minute_select .= '<option value="' . $i . '"'
             . ($media_time_minute == $i ? 'selected="selected"' : "") . '>'

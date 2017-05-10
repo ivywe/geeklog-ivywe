@@ -1,8 +1,7 @@
 {# begin {templatelocation} #}
 
-	{products_total}
+		{products_total}
 	</table>
-	</div>
-	<div class="uk-text-center">{pagination}</div>
+	<div class="uk-text-center uk-margin-large">{pagination}</div>
 
 {# end {templatelocation} #}

@@ -1134,7 +1134,7 @@ function DATABOX_getaddtionfieldsEdit(
                 case 19:// 複数行テキストフィールド(HTML OK  CKEditor)//@@@@@
                      if ($disabled===""){
                         $cntname="afieldcnt".$fid;
-                        $fieldhtml .= "<textarea class='uk-textarea' ";
+                        $fieldhtml .= "<textarea ";
                         $fieldhtml .= " name=\"afield[".$fid."]\" ";
                         $fieldhtml .= " style=\"width:95%\"";
                         $fieldhtml .= " rows=\"".$rows."\"";
@@ -1145,11 +1145,12 @@ function DATABOX_getaddtionfieldsEdit(
                         $fieldhtml .="s=document.getElementById";
                         $fieldhtml .="('".$cntname."');s.innerHTML='('+n+')';\"";
                         if  ($type==20){
-                            $fieldhtml .= " class=\"tinymce_enabled\"";
-                        }
-                        if  ($type==19){
-                            $fieldhtml .= " class=\"wide\"";
-                        }
+                            $fieldhtml .= " class=\"uk-textarea tinymce_enabled\"";
+                        } else if  ($type==19){
+                            $fieldhtml .= " class=\"uk-textarea uk-width-1-1\"";
+                        } else {
+                            $fieldhtml .= " class=\"uk-textarea uk-width-1-1\"";
+												}
                         $fieldhtml .= ">";
                         $fieldhtml .= $fvalue;
                         $fieldhtml .= "</textarea>";
@@ -1332,7 +1333,7 @@ function DATABOX_getaddtionfieldsEdit(
                         $fieldhtml.=$wk;
                         
                         $fieldhtml .= "        <input ";
-                        $fieldhtml .= " type=\"text\" class=\"uk-input\"";
+                        $fieldhtml .= " type=\"text\" class=\"uk-input uk-form-width-small\"";
                         $fieldhtml .= "  id=\"afield".$fid."\"";
                         $fieldhtml .= " size=\"".$size."\"";
                         $fieldhtml .= " maxlength=\"".$maxlength."\" ";
@@ -1362,7 +1363,7 @@ function DATABOX_getaddtionfieldsEdit(
 
                         $fieldhtml .= "        <input ";
                         $fieldhtml .= " data-uk-datepicker=\"{format:'YYYY/MM/DD'}\"";
-                        $fieldhtml .= " type=\"text\" class=\"uk-input\"";
+                        $fieldhtml .= " type=\"text\" class=\"uk-input uk-form-width-small\"";
                         $fieldhtml .= "  id=\"afield".$fid."\"";
                         $fieldhtml .= " size=\"".$size."\"";
                         $fieldhtml .= " maxlength=\"".$maxlength."\" ";
@@ -1396,7 +1397,10 @@ function DATABOX_getaddtionfieldsEdit(
                 default:
                     if ($disabled===""){
                         $fieldhtml .= "        <input ";
-                        $fieldhtml .= " type=\"text\" class=\"uk-input\"";
+
+if($size < 21){ $ukformwidth = " uk-form-width-small"; } else { $ukformwidth=""; } 
+
+                        $fieldhtml .= " type=\"text\" class=\"uk-input". $ukformwidth . '"';
                         $fieldhtml .= " size=\"".$size."\"";
                         $fieldhtml .= " maxlength=\"".$maxlength."\" ";
                         $fieldhtml .= " name=\"afield[".$fid."]\" ";
@@ -5040,9 +5044,9 @@ function DATABOX_Confirmation(
         $confirm_value=$lang_box_admin['delete1']." ".$lang_box_admin['confirm'];
         $confirm_value2=$lang_box_admin['delete2']." ".$lang_box_admin['confirm'];
         $confirm_value3=$lang_box_admin['delete3']." ".$lang_box_admin['confirm'];
-        $btn2="<input type='submit' name='action' value='{$lang_box_admin['delete2']}'" 
+        $btn2="<input type='submit' class='uk-button uk-button-danger' name='action' value='{$lang_box_admin['delete2']}'" 
              ." onclick=\"return confirm('{$confirm_value2}');\"".xhtml.">".LB;
-        $btn3="<input type='submit' name='action' value='{$lang_box_admin['delete3']}'" 
+        $btn3="<input type='submit' class='uk-button uk-button-danger' name='action' value='{$lang_box_admin['delete3']}'" 
              ." onclick=\"return confirm('{$confirm_value3}');\"".xhtml.">".LB;
     }
 
