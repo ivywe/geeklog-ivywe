@@ -65,9 +65,6 @@ function theme_css_default()
 
     return array(
         array('file' => '/layout/' . $_CONF['theme'] . '/vendor/uikit/css' . $direction . '/uikit.min.css', 'attributes' => array('media' => 'all'), 'priority' => 80),
-        array('file' => '/layout/' . $_CONF['theme'] . '/vendor/uikit/css' . $direction . '/slider.min.css', 'attributes' => array('media' => 'all'), 'priority' => 81),
-        array('file' => '/layout/' . $_CONF['theme'] . '/vendor/uikit/css' . $direction . '/slideshow.min.css', 'attributes' => array('media' => 'all'), 'priority' => 82),
-        array('file' => '/layout/' . $_CONF['theme'] . '/vendor/uikit/css' . $direction . '/slidenav.min.css', 'attributes' => array('media' => 'all'), 'priority' => 83),
         array('file' => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/style.css', 'attributes' => array('media' => 'all'), 'priority' => 100),
         array('file' => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/custom.css', 'attributes' => array('media' => 'all'), 'priority' => 110), 
         array('file' => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/theme.css', 'attributes' => array('media' => 'all'), 'priority' => 120), 
