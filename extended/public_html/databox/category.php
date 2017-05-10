@@ -18,12 +18,6 @@ if (!in_array('databox', $_PLUGINS)) {
     exit;
 }
 
-if(!SEC_inGroup('Root')){
-	COM_handle404();
-	exit;
-}
-
-
 $perpage=$_DATABOX_CONF['perpage']; // 1ページの行数 @@@@@
 
 //debug 時 true
