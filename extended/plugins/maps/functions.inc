@@ -72,9 +72,11 @@ require_once $_CONF['path'] . 'plugins/maps/maps.php';
 function plugin_getheadercode_maps()
 {
     global $_MAPS_CONF, $_SCRIPTS, $_PLUGINS;
+		
+		if( COM_getLanguageId() == ""){ $mapsapilang="ja"; } else { $mapsapilang=COM_getLanguageId(); }
 
     $_SCRIPTS->setJavaScriptLibrary('jquery');
-    $_SCRIPTS->setJavaScript('<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=' . $_MAPS_CONF['google_api_key'] . '&amp;libraries=adsense&language=' . COM_getLanguageId() . '"></script>', false, false);
+    $_SCRIPTS->setJavaScript('<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=' . $_MAPS_CONF['google_api_key'] . '&amp;libraries=adsense&language=' . $mapsapilang . '"></script>', false, false);
 
     //Maps for calendar plugin
     $str = '';
