@@ -263,7 +263,7 @@ $_USERBOX_DEFAULT['path_xml_out']=$_CONF['path']."data/userbox_data";
 * @return   boolean     true: success; false: an error occurred
 *
 */
-function plugin_initconfig_userbox()
+function plugin_initconfig_userbox($initialize="")
 {
     global $_USERBOX_CONF;
     global $_USERBOX_DEFAULT;
@@ -276,7 +276,7 @@ function plugin_initconfig_userbox()
 
     $c = config::get_instance();
 
-    if (!$c->group_exists($pi_name)) {
+    if (!$c->group_exists($pi_name) OR $initialize ) {
     /**
      * Adds a configuration variable to the config object
      *
