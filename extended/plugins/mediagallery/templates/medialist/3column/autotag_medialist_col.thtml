@@ -1,12 +1,27 @@
 {# begin {templatelocation} #}
 
-  <div class="uk-width-medium-1-3 uk-width-small-1-2  {class}">
-    <a href="{filename_disp}"  class="uk-text-center" data-uk-lightbox="{ group:'my-group{albumid}' }" title="{media_title}">
-      <img src="{filename_disp}" alt="{media_title}" class="uk-container-center uk-overlay-scale uk-border-rounded  {class}" alt="{media_title}"{xhtml}>
+		<div class="uk-width-1-3@m">
 
-      <div class="uk-text-bold uk-margin-min">{media_title}</div>
-    </a>
-    <div class="uk-left">{media_desc}</div>
-  </div>
+<a href="#modal-full-{media_id}" uk-toggle><img src="{filename_tn}" alt="{media_title}" class="uk-container-center uk-overlay-scale uk-border-rounded  {class}" alt="{media_title}"{xhtml}></a>
+			<h3>{media_title}</h3>
+			<div>{media_desc}</div>
+
+
+<div id="modal-full-{media_id}" class="uk-modal-full" uk-modal>
+    <div class="uk-modal-dialog">
+        <button class="uk-modal-close-full uk-close-large" type="button" uk-close></button>
+        <div class="uk-grid-collapse uk-child-width-1-2@s uk-flex-middle" uk-grid>
+            <div class="uk-background-cover" style="background-image: url('{filename_orig}');" uk-height-viewport></div>
+            <div class="uk-padding-large">
+                <h1>{media_title}</h1>
+				        <div>{media_desc}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+		</div>
 
 {# end {templatelocation} #}
+

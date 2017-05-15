@@ -1,10 +1,18 @@
+
 {# begin {templatelocation} #}
 
-		<div class="uk-width-1-2@m">
+<div uk-grid>
 
-<a href="#modal-full-{media_id}" uk-toggle><img src="{filename_tn}" alt="{media_title}" class="uk-container-center uk-overlay-scale uk-border-rounded  {class}" alt="{media_title}"{xhtml}></a>
-			<h3>{media_title}</h3>
-			<div>{media_desc}</div>
+  <div class="uk-width-medium-4-10@m uk-vertical-align-top">
+
+		<a class="uk-button uk-button-default" href="#modal-full-{media_id}" uk-toggle><img src="{filename_tn}" alt="{media_title}" class="uk-container-center uk-overlay-scale uk-border-rounded  {class}" alt="{media_title}"{xhtml}></a>
+
+	</div>
+  <div class="uk-width-medium-6-10 uk-vertical-align-top">
+		{!if class}<h3>{media_title}</h3>{!endif}
+	  <div>{media_desc}</div>
+  </div>
+
 
 
 <div id="modal-full-{media_id}" class="uk-modal-full" uk-modal>
@@ -14,14 +22,15 @@
             <div class="uk-background-cover" style="background-image: url('{filename_orig}');" uk-height-viewport></div>
             <div class="uk-padding-large">
                 <h1>{media_title}</h1>
-				        <div>{media_desc}</div>
+							  <div>{media_desc}</div>
             </div>
         </div>
     </div>
 </div>
 
 
-		</div>
+</div>
 
 {# end {templatelocation} #}
+
 

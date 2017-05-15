@@ -1,0 +1,12 @@
+{# begin {templatelocation} #}
+
+  <div class="uk-margin {class}">
+    <a href="{filename_disp}"  class="uk-text-center" data-uk-lightbox="{ group:'my-group{albumid}' }" title="{media_title}">
+      <img src="{filename_disp}" alt="{media_title}" class="uk-container-center uk-overlay-scale uk-border-rounded  {class}" alt="{media_title}"{xhtml}>
+
+      {!if media_title}<div class="uk-text-bold uk-margin-min">{media_title}</div>{!endif}
+    </a>
+    <div class="uk-left">{media_desc}</div>
+  </div>
+
+{# end {templatelocation} #}
