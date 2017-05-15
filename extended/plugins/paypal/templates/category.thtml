@@ -9,7 +9,7 @@
                 <a href="{category_link}" style="font-size:13p; line-height:1.2;" class="uk-text-small">{category_name}</a>
             </div>
         </div>
-
+				{cat_description}
     </div>
 
 

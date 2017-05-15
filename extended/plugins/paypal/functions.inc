@@ -1086,7 +1086,7 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 
 						//Description
 						if ($_PAY_CONF['displayCatDescription'] == 1 ) {
-						    $cat->set_var('cat_description', '<p class="cat_description">' . $C['description'] . '</p>');
+						    $cat->set_var('cat_description', $C['description'] );
 						} else {
     						$cat->set_var('cat_description', '');
 						}
