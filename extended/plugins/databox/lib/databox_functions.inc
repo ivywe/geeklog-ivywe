@@ -1398,13 +1398,13 @@ function DATABOX_getaddtionfieldsEdit(
                     if ($disabled===""){
                         $fieldhtml .= "        <input ";
 
-if($size < 21){ $ukformwidth = " uk-form-width-small"; } else { $ukformwidth=""; } 
+if($size < 8){ $ukformwidth .= " uk-form-width-xsmall"; } else if ($size < 17) { $ukformwidth .= " uk-form-width-small"; }  else if ($size < 31) { $ukformwidth .= " uk-form-width-large"; } 
 
                         $fieldhtml .= " type=\"text\" class=\"uk-input". $ukformwidth . '"';
                         $fieldhtml .= " size=\"".$size."\"";
                         $fieldhtml .= " maxlength=\"".$maxlength."\" ";
                         $fieldhtml .= " name=\"afield[".$fid."]\" ";
-                        $fieldhtml .= " style=\"max-width:95%\"";
+                        $fieldhtml .= " style=\"width:". $size . "0px; max-width:95%\"";
                         $fieldhtml .= " value=\"".$fvalue."\"";
                         $fieldhtml .= " ".XHTML.">";
                     }else{
