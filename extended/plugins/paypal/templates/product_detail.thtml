@@ -11,12 +11,22 @@
 				<div id="product-details">
 				  <p class="product-short-description">{active} {short_description}</p>
 					<p class="product-price"><span class="uk-text-large uk-text-danger uk-text-bold">{price}</span><span class="uk-text-danger">{currency}</span>{!if price_ref} 定価:<span class="uk-text-bold">{price_ref}{currency}{!endif}</span>{discount} {!if free_shipping} {!endif}(消費税別途)</p> 
+
+	<?php if ( SEC_inGroup('Root') || file_exists( COM_buildURL($_CONF['site_url'] . '/staticpages/index.php?page=item-' . $this->get_var('item_id') ))){ ?>
+
+	<div><a href="/staticpages/index.php/item-{item_id}" class="uk-badge"><span uk-icon="icon: database"></span> 製品説明</a></div>
+
+	<?php } ?>
+
+
 					<div id="product-button">{login}{customisable}</div>
 					<div class="product-description">{description}</div>
 <div>商品コード: {item_id}</duv>
 					{subscription}
 					{donation}
 					{rent}
+
+
 					<div id="product-button">{add2cart} </div>
 				</div>
 			</td>
@@ -26,8 +36,7 @@
 				&nbsp;
 			</td>
 			<td>
-				<p class="rating-product">{rating}{edit}
-</p>
+				<p class="rating-product">{rating}{edit}</p>
 				{review}
 			</td>
 		</tr>

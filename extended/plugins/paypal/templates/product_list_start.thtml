@@ -1,7 +1,30 @@
 {# begin {templatelocation} #}
 
-{title}
+<h1>{title}</h1>
+
+<span>
+	<?php if ( SEC_inGroup('Root') || file_exists( COM_buildURL($_CONF['site_url'] . '/staticpages/index.php?page=categorydesc-' . $this->get_var('category') ))){ ?>
+		<a href="/staticpages/index.php?page=categorydesc-{category}" uk-icon="icon: file-edit"></a>
+	<?php if ( !file_exists( COM_buildURL($_CONF['site_url'] . '/staticpages/index.php?page=categorydesc-' . $this->get_var('category') )) && $this->get_var('category') != "0"  ){ ?>
+		
+	<?php } } ?>
+</span>
+
+{!!autotag staticpage_content:categorydesc-' . {category} . ' !!}
+
+<span>
+	<?php if ( SEC_inGroup('Root') || file_exists( COM_buildURL($_CONF['site_url'] . '/staticpages/index.php?page=category-' . $this->get_var('category') ))){ ?>
+		<a href="/staticpages/index.php?page=category-{category}" class="uk-button uk-button-primary"> 詳細はこちら</a>
+	<?php if ( !file_exists( COM_buildURL($_CONF['site_url'] . '/staticpages/index.php?page=category-' . $this->get_var('category') )) && $this->get_var('category') != "0"  ){ ?>
+		
+	<?php } } ?>
+</span>
+
+
+{!!if {count} != 0 !!}
 
 <table class="uk-table uk-width-1-1 uk-table-small">
+
+{!endif}
 
 {# end {templatelocation} #}

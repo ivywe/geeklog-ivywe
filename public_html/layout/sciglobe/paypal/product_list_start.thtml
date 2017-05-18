@@ -1,6 +1,5 @@
 {# begin {templatelocation} #}
 
-{title}
 
 <?php 
 $n = $_GET['n'];
@@ -26,6 +25,26 @@ $dm = urldecode($m);
 	</div>
 {!endif}
 
+<h1>{title}</h1>
+
+<span>
+	<?php if ( SEC_inGroup('Root') || file_exists( COM_buildURL($_CONF['site_url'] . '/staticpages/index.php?page=categorydesc-' . $this->get_var('category') ))){ ?>
+		<a href="/admin/plugins/staticpages/index.php?mode=edit&sp_id=categorydesc-{category}" uk-icon="icon: file-edit"></a>
+	<?php if ( !file_exists( COM_buildURL($_CONF['site_url'] . '/staticpages/index.php?page=categorydesc-' . $this->get_var('category') )) && $this->get_var('category') != "0"  ){ ?>
+		
+	<?php } } ?>
+</span>
+
+{!!autotag staticpage_content:categorydesc-' . {category} . ' !!}
+
+<span>
+	<?php if ( SEC_inGroup('Root') || file_exists( COM_buildURL($_CONF['site_url'] . '/staticpages/index.php?page=category-' . $this->get_var('category') ))){ ?>
+		<a href="/staticpages/index.php?page=category-{category}" class="uk-button uk-button-primary"> カテゴリ説明</a>
+	<?php if ( !file_exists( COM_buildURL($_CONF['site_url'] . '/staticpages/index.php?page=category-' . $this->get_var('category') )) && $this->get_var('category') != "0"  ){ ?>
+		
+	<?php } } ?>
+</span>
+
 {!!if {count} != 0 !!}
 
 <table id="paypal" class="display uk-width-1-1">
@@ -35,7 +54,9 @@ $dm = urldecode($m);
       <th>ID</th>
       <th>品名</th>
 {!!if {category} == 1 || {category} == 2 || {category} == 3 || {category} == 4 || {category} == 5 || {category} == 9 !!}
-      <th>対応メーカー・機種</th>
+      <th>対応機種</th>
+{!else}
+      <th>説明</th>
 {!endif}
       <th>価格</th>
       <th>カート</th>

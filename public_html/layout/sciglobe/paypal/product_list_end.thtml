@@ -7,7 +7,9 @@
       <th>ID</th>
       <th>品名</th>
 {!!if {category} == 1 || {category} == 2 || {category} == 3 || {category} == 4 || {category} == 5 || {category} == 9 !!}
-      <th>対応メーカー・機種</th>
+      <th>対応機種</th>
+{!else}
+      <th>説明</th>
 {!endif}
       <th>価格</th>
       <th>カート</th>

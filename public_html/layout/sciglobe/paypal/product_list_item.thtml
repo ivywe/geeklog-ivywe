@@ -11,16 +11,24 @@ $dm == NULL ||
 
 <tr>
 	<td style="width:100px">{small_pic}</td>
-	<td>{item_id}</td>
-	<td>{link_name}<br>{customisable}{login}{edit}</td>
+	<td class="uk-text-nowrap">{item_id}</td>
+	<td>{link_name}<br>{customisable}{login}{edit}
 
-{!!if {category} == 1 || {category} == 2 || {category} == 3 || {category} == 4 || {category} == 5 || {category} == 9 !!}
+<div class="uk-float-right uk-margin-bottom">
+	<?php if ( SEC_inGroup('Root') || file_exists( COM_buildURL($_CONF['site_url'] . '/staticpages/index.php?page=item-' . $this->get_var('item_id') ))){ ?>
 
-	<td class="uk-text-center">
-		{short_description}
+	<a href="/staticpages/index.php/item-{item_id}" class="uk-badge"><span uk-icon="icon: database"></span> 製品説明</a>
+	<?php if ( !file_exists( COM_buildURL($_CONF['site_url'] . '/staticpages/index.php/item-' . $this->get_var('item_id') )) ){ ?>
+		<span class="uk-text-danger">まだ作成されていません。</span>
+	<?php } } ?>
+</div>
+
 	</td>
-{!endif}
+	<td class="class="uk-text-nowrap">
 
+<?php echo str_replace(", ", "<br>", $this->get_var('short_description')); ?>
+
+	</td>
 	<td class="uk-text-large uk-text-danger uk-text-bold uk-text-right">&#165;{price}</td>
 	<td style="width:5em">{add2cart}</td>
 </tr>
