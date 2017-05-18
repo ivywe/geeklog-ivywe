@@ -3,9 +3,7 @@
 		<div class="uk-width-1-2@m">
 
 <a href="#modal-full-{media_id}" uk-toggle><img src="{filename_tn}" alt="{media_title}" class="uk-container-center uk-overlay-scale uk-border-rounded  {class}" alt="{media_title}"{xhtml}></a>
-			<h3>{media_title}</h3>
-			<div>{media_desc}</div>
-
+			<div>{media_title}<div>
 
 <div id="modal-full-{media_id}" class="uk-modal-full" uk-modal>
     <div class="uk-modal-dialog">
