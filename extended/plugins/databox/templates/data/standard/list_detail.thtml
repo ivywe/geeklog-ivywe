@@ -1,7 +1,6 @@
 {# begin {templatelocation} #}
 
-<div class="uk-form uk-width-1-1 <?php if(SEC_inGroup('Root')){ ?>gl-edit<?php } ?>">
-{!!if {edit}||{draft} !!}<div class="uk-float-right">{edit} {draft}</div>{!endif}
+{edit} {draft}
 
   <ul class="uk-breadcrumb">
     <li><a href="{site_url}/">HOME{home}</a></li>
@@ -530,5 +529,7 @@
 
   </div>
 </div>
+
+{edit} {draft}
 
 {# end {templatelocation} #}
