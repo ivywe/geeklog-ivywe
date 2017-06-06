@@ -1,6 +1,0 @@
-{# begin {templatelocation} #}
-
-    <li>{field_link}・嘴value_link}&nbsp;({count})
-    &nbsp;{field_description} &nbsp;{field_name}&nbsp;{field_url}
-    &nbsp;{value_url}&nbsp;{value}</li>
-{# end {templatelocation} #}

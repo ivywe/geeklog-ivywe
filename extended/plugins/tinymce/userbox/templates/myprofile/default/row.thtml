@@ -1,3 +1,0 @@
-{# begin {templatelocation} #}
-<tr class="pluginRow1">{col_var}</tr>
-{# end {templatelocation} #}

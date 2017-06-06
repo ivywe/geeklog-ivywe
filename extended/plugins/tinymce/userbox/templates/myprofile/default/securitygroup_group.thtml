@@ -1,9 +1,0 @@
-{# begin {templatelocation} #}
-
-<tr class="pluginRow1">
-  <td colspan="2">
-     {group_options}
-  </td>
-</tr>
-
-{# end {templatelocation} #}
