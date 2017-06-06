@@ -42,9 +42,11 @@ $self = basename(__FILE__);
 
 // The conf_values we're making available to edit.
 $configs = array(
-    'site_url', 'site_admin_url', 'site_mail', 'rdf_file', 'language', 'path_html',
-    'path_themes', 'path_editors', 'path_images', 'path_log', 'path_language',
-    'backup_path', 'path_data', 'path_pear', 'theme', 'cookie_path', 'cookiedomain',
+		'site_url','site_admin_url','site_mail','rdf_file','language','path_html',
+		'path_themes','path_editors','path_images','path_log','path_language',
+		'backup_path','path_data','path_pear','theme','cookie_path','cookiedomain',
+		'site_name','site_slogan','meta_description','comment_feeds_article_tag','languages','datedaytime',
+		'shortdate','dateonly','timeonly','language','login_attempts','login_speedlimit','language_files','languages',
 );
 
 // Start it off
