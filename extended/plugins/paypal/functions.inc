@@ -1095,6 +1095,8 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 						} else {
     						$cat->set_var('category_heading', '<h2>' . $_PAY_CONF['categoryHeading'] . '</h2>');
 						}
+						$cat->set_var('cat_id', $C['cat_id']  );
+
 						$cat->set_var('category_name', $C['cat_name']);
 						$cat->set_var('category_link', $_PAY_CONF['site_url'] . '/index.php?n=' 
 								. urlencode($C['cat_name']) . '&amp;category='. $C['cat_id'] 
@@ -1250,9 +1252,10 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 			//First product image	
 			if ($A['pi_filename'] == '') {
 				$product->set_var('small_pic', '');
+				$product->set_var('small_pic_url', '');
 
 				$product->set_var('small_pic', '<a class="product-details" href="' . $_PAY_CONF['site_url'] . '/product_detail.php?n=' . urlencode($A['name']) . '&amp;product='. $A['id'] . '"><img class="" src="' . $_PAY_CONF['images_url'] . 'nophoto.png" style="max-width:100px; height:auto" alt="' . $A['name'] . '" /></a>');
-
+				$product->set_var('small_pic_url', $_PAY_CONF['images_url'] . 'nophoto.png' );
 
 			} else {
 				if ($autotag==0) {
@@ -1267,6 +1270,8 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 				}
 				$product->set_var('small_pic', '<a class="product-details" href="' . $_PAY_CONF['site_url'] . '/product_detail.php?n=' . urlencode($A['name']) . '&amp;product='. $A['id'] . '"><img class="" src="' . $_PAY_CONF['images_url'] . $A['pi_filename'] . '" style="max-width:100px; height:auto" alt="' . $A['name'] . '" /></a>');
 				
+				$product->set_var('small_pic_url', $_PAY_CONF['images_url'] . $A['pi_filename']);
+
 			}
 
 			// FIXME: If a user purchased once with no expiration, this query will not operate correctly
@@ -1563,6 +1568,10 @@ function phpblock_paypal_randomBlock()
 	//Todo make shorten name
 	$T->set_var('item_name', $A['name']);
 	$T->set_var('price', PAYPAL_productPrice($A) . $_PAY_CONF['currency']);
+
+	$T->set_var('small_pic_url', $_PAY_CONF['images_url'] . $A['pi_filename']);
+
+
 	if ($A['price_ref'] != '' && ($A['price_ref'] > $A['price'])) $T->set_var('price', '<span class="price_deleted">' . number_format($A['price_ref'], $_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']) . '</span>' . $_PAY_CONF['currency']);
 	$retval .= $T->parse('', 'random_block');
 
