@@ -692,7 +692,7 @@ if (DB_numRows($result) > 0) {
     $page_str = 'orderby=' . $orderby . '&amp;page=';
     $T->set_var('page_navigation', COM_printPageNavigation($base_url, $page, $numpages, $page_str));
 } else {
-    $T->set_var('filelisting_records', '<div class="pluginAlert dlm_alert">' . $LANG_DLM['nofiles'] . '</div>');
+    $T->set_var('filelisting_records', '<div class="uk-card uk-card-default">' . $LANG_DLM['nofiles'] . '</div>');
 }
 $display .= PLG_replaceTags($T->finish($T->parse('output', 'page')));
 

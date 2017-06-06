@@ -4,9 +4,9 @@
 	<fieldset style="margin-top: 10px;"><legend><b>{main_settings}</b></legend>
 	{cat_id}
 	<h2>{category_label}<font color="red"> *</font></h2>
-	<p><input type="text" class="uk-input" name="category" value="{cat_name}" size="40" maxlength="255" {xhtml}></p>
+	<p><input type="text" class="uk-input uk-form-width-large" name="category" value="{cat_name}" size="40" maxlength="255" {xhtml}></p>
 	<h2>{parent_id}</h2>
-	<select class="uk-select" name="parent_id">
+	<select class="uk-select uk-form-width-large" name="parent_id">
           <option value="0">{top_cat}</option>
           {parent_cat}
         </select>
@@ -20,7 +20,7 @@
 	<p><textarea class="uk-textarea" name="description" style="width:100%" cols="45" rows="5">{description}</textarea></p>
 	
 	<h2>{enabled}</h2>
-	<select class="uk-select" name="enabled">
+	<select class="uk-select uk-form-width-small" name="enabled">
      <option value="0"{enabled_no}>{no}</option>
      <option value="1"{enabled_yes}>{yes}</option>
 	 </select>
@@ -42,11 +42,11 @@
 	</fieldset>
 	
     <p><strong><font color="red">*</font><em> {required_field}</em></strong></p>
-    <select class="uk-select" name="op" >
+    <select class="uk-select uk-form-width-small" name="op" >
 	<option value="save" selected="selected">{save_button}</option>
     {delete_button}
 	</select>
-    <input type="submit" name="submit" value="{ok_button}" {xhtml}>
+    <input type="submit" class="uk-button uk-button-primary" name="submit" value="{ok_button}" {xhtml}>
     
 </form>
 

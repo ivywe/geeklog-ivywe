@@ -1,5 +1,11 @@
 {# begin {templatelocation} #}
 
+<?php 
+$d = $_GET['d'];
+?>
+
+{!!if {count} != 0 !!}
+
 	</tbody>
 	<tfooter>
     <tr>
@@ -11,22 +17,33 @@
 {!else}
       <th>説明</th>
 {!endif}
+<?php if( $d == NULL ){ ?>
       <th>価格</th>
       <th>カート</th>
+<?php } ?>
     </tr>
 	</tfooter>
 
 	</table>
+
+{!endif}
+
+
+<?php if( $d == NULL ){ ?>
+
 	{products_total}
 	<div class="uk-text-center">{pagination}</div>
+<?php } ?>
+
 
 {!!if {category} == 9 !!}
     <script src="{layout_url}/vendor/datatables/js/jquery.dataTables-CE440.js"></script>
 {!else}
     <script src="{layout_url}/vendor/datatables/js/jquery.dataTables.js"></script>
-{!endif}
 
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/plug-ins/1.10.6/sorting/currency.js"></script>
+{!endif}
+
 
 		<script type="text/javascript" class="init">
 			$(document).ready(function() {

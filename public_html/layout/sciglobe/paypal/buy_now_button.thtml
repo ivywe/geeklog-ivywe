@@ -5,7 +5,7 @@
   <input type="hidden" name="item_number" value="{id}" />
   <input type="hidden" name="amount" value="{price2}" />
   <input type="hidden" name="item_weight" value="{item_weight}" />
-  <input type="submit" value="{buy_now_button}" name="submit" />
+  <input type="submit" class="uk-button uk^button-primary" value="{buy_now_button}" name="submit" />
  </form>
 </div>
 

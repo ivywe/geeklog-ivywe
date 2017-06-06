@@ -3,6 +3,22 @@
 <?php 
 $m = $_GET['m'];
 $dm = urldecode($m);
+$d = $_GET['d'];
+
+
+    global $_TABLES;
+    global $_PLUGINS;
+
+    $sql = "SELECT sp_php, sp_content FROM {$_TABLES['staticpage']} "
+         . "WHERE (sp_id = '" . addslashes('item-' . $this->get_var('item_id')) . "') "
+         . "AND " . SP_getPerms();
+    $result = DB_query($sql);
+
+    if (DB_error() OR (DB_numRows($result) == 0)) { $file = 0; } else { $file=1; }
+
+
+
+
 
 if(
 $dm == NULL ||
@@ -10,16 +26,75 @@ $dm == NULL ||
   ?>
 
 <tr>
-	<td style="width:100px">{small_pic}</td>
+	<td style="width:100px">
+
+<?php if( $d == NULL ){ ?>
+{small_pic}
+<?php } else { ?>
+	<?php if ( $file == 1){ ?>
+		<a href="/staticpages/index.php/item-{item_id}"><img src="{small_pic_url}" alt="{name}" style="max-width:100px; height:auto"></a>
+	<?php } else { ?>
+		<img src="{small_pic_url}" alt="{name}" style="max-width:100px; height:auto">
+	<?php } ?>
+<?php } ?>
+
+
+
+	</td>
 	<td class="uk-text-nowrap">{item_id}</td>
-	<td>{link_name}<br>{customisable}{login}{edit}
+	<td>
+
+<?php if( $d == NULL ){ ?>
+{link_name}
+<?php } else { ?>
+
+
+
+
+	<?php if ( SEC_inGroup('Root') ) { ?>
+
+
+
+		<a href="/staticpages/index.php/item-{item_id}">{name}</a>
+
+		<?php if ( $file == 1 ){ ?>
+		<?php } else { ?>
+			未
+		<?php } ?>
+
+	<?php } else { ?>
+
+		<?php if ( $file == 1){ ?>
+		
+		<a href="/staticpages/index.php/item-{item_id}">{name}</a>
+		
+  	<?php } else { ?>
+
+			{name}
+
+		<?php } ?>
+
+
+
+  <?php } ?>
+
+
+
+
+
+
+<?php } ?>
+
+
+
+<br>{customisable}{login}{edit}
 
 <div class="uk-float-right uk-margin-bottom">
-	<?php if ( SEC_inGroup('Root') || file_exists( COM_buildURL($_CONF['site_url'] . '/staticpages/index.php?page=item-' . $this->get_var('item_id') ))){ ?>
+	<?php if ( $d == NULL && SEC_inGroup('Root') || file_exists( COM_buildURL($_CONF['site_url'] . '/staticpages/index.php?page=item-' . $this->get_var('item_id') ))){ ?>
 
 	<a href="/staticpages/index.php/item-{item_id}" class="uk-badge"><span uk-icon="icon: database"></span> 製品説明</a>
 	<?php if ( !file_exists( COM_buildURL($_CONF['site_url'] . '/staticpages/index.php/item-' . $this->get_var('item_id') )) ){ ?>
-		<span class="uk-text-danger">まだ作成されていません。</span>
+		<span class="uk-text-danger">未</span>
 	<?php } } ?>
 </div>
 
@@ -29,8 +104,10 @@ $dm == NULL ||
 <?php echo str_replace(", ", "<br>", $this->get_var('short_description')); ?>
 
 	</td>
+<?php if( $d == NULL ){ ?>
 	<td class="uk-text-large uk-text-danger uk-text-bold uk-text-right">&#165;{price}</td>
 	<td style="width:5em">{add2cart}</td>
+<?php } ?>
 </tr>
 
 

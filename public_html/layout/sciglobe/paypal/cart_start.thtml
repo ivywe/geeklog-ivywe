@@ -2,6 +2,13 @@
 
 {# cart_start.thtml #}
 
+<?php 
+$d = $_GET['d'];
+?>
+
+<?php if( $d == NULL ){ ?>
+
+
 <div>
   {steps}
   {error_message}
@@ -9,7 +16,7 @@
 		
 		  
 		  
-	  <table class="uk-table uk-table-small uk-text-nowrap">
+	  <table class="uk-table uk-table-small uk-text-nowrap uk-margin-large-top">
 <caption>{cart_title}({itemcount})</caption>
 <thead>
 		  <tr>
@@ -27,5 +34,8 @@
 		  </th>
 		</tr>
 </thead>
+
+<?php } ?>
+
 
 {# end {templatelocation} #}
