@@ -1,6 +1,6 @@
 {# start {templatelocation} #}
 
-                                <tr class="pluginRow{cssid}" onmouseover="className='pluginRollOver';" onmouseout="className='pluginRow{cssid}';">
+                                <tr class="pluginRow{cssid} gl-search" onmouseover="className='pluginRollOver';" onmouseout="className='pluginRow{cssid}';">
                                     {item_field}
                                 </tr>
 

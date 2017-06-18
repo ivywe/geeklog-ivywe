@@ -39,3 +39,9 @@ fieldset {
 #admin-topmenu {
 	border: none;
 }
+
+div.gl-search img,
+tr.gl-search img {
+max-width:130px; height:auto;
+}
+

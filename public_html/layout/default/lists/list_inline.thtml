@@ -36,7 +36,7 @@
 <!-- END field -->
 
 <!-- BEGIN row -->
-<div style="margin-bottom:15px">{item_field}</div>
+<div class="gl-search" style="margin-bottom:15px">{item_field}</div>
 <!-- END row -->
 
 <!-- BEGIN limit -->

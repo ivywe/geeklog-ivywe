@@ -14,7 +14,7 @@
   </div>
 </form>
 <div class="uk-overflow-container">
-  <table class="admin-list-table uk-table uk-table-hover uk-table-striped" style="{show_sort}">
+  <table class="admin-list-table uk-table uk-table-hover uk-table-striped gl-search" style="{show_sort}">
     <tr>
       {page_sort}
     </tr>
