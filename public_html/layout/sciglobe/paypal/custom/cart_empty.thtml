@@ -1,0 +1,13 @@
+{# begin {templatelocation} #}
+
+<?php 
+$d = $_GET['d'];
+?>
+
+<?php if( $d == NULL ){ ?>
+
+        <tr><td colspan="4">{empty}</td></tr>
+
+<?php } ?>
+
+{# end {templatelocation} #}
