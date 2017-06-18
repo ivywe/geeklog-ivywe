@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
+<h1>{name}</h1>
+
 <div id="product" class="uk-grid tm-grid-truncate uk-width-medium-1-1" data-uk-grid-margin="">
 	<h1 class="uk-text-capitalize uk-text-bold">{name}</h1>
 	<table class="uk-table uk-table-small">

@@ -33,4 +33,9 @@ $product = $_GET['product'];
 	</div>
 </nav>
 
+<?php if($product == ""){ ?>
+<h1 class="uk-text-bold"><?php echo $n; ?></h1>
+<?php } ?>
+
+
 {# end {templatelocation} #}
