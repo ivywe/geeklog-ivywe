@@ -1042,6 +1042,10 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 			
 			$breadcrumbs = PAYPAL_Breadcrumbs($category);
 			
+
+
+
+
 			if ($breadcrumbs != '') {
 				    $retval .= '<ul class="uk-breadcrumb">' . $breadcrumbs . '</ul>';
 				} else {
@@ -1049,16 +1053,15 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 				}
 
 
+
         if ($nrows > 0) {
 				$cat = COM_newTemplate($_CONF['path'] . 'plugins/paypal/templates');
-				$cat->set_file(array('table'    => 'category_table.thtml'));
+				$cat->set_file(array('table'    => 'category_table.thtml','product_list_start'    => 'product_list_start.thtml'));// ivy
 				$cat->set_var('width', floor (100 / $_PAY_CONF['categoryColumns']));
 				
 
 				$cat->set_file(array('row'      => 'category_row.thtml',
-								 'category' => 'category.thtml',
-								 'list_start' => 'product_list_start.thtml',
-)); // ivy
+								 'category' => 'category.thtml')); 
 
 				for ($i = 1; $i <= $nrows; $i++) {
 						$C = DB_fetchArray ($cat_res);
@@ -1105,6 +1108,7 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 								. urlencode($C['cat_name']) . '&amp;category='. $C['cat_id'] 
 								);
 
+						$cat->parse('list_start', 'category', true); // ivy
 						$cat->parse('catrow', 'category', true);
 						if ($i % $_PAY_CONF['categoryColumns'] == 0) {
 							$cat->parse('categories', 'row', true);
