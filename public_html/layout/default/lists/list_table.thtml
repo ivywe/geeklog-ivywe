@@ -40,7 +40,7 @@
 <!-- END limit -->
 
 <!-- BEGIN sort -->
-<th class="admin-list-headerfield" onmouseover="this.style.cursor='pointer';" {sort_subtags}>{sort_text}{sort_selected}</th>
+<th class="admin-list-headerfield uk-text-nowrap" onmouseover="this.style.cursor='pointer';" {sort_subtags}>{sort_text}{sort_selected}</th>
 <!-- END sort -->
 
 <!-- BEGIN input_hidden -->
