@@ -103,6 +103,11 @@ function theme_js_files_default()
         'priority' => 100 // Not required, default = 100
     );
     $result[] = array(
+        'file'     => '/layout/' . $_CONF['theme'] . '/vendor/uikit/js/uikit-icons.min.js',
+        'footer'   => false, // Not required, default = true
+        'priority' => 101 // Not required, default = 100
+    );
+    $result[] = array(
         'file'     => '/layout/' . $_CONF['theme'] . '/javascript/script.js',
         'footer'   => true, // Not required, default = true
         'priority' => 110 // Not required, default = 100
