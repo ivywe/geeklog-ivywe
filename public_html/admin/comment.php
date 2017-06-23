@@ -103,7 +103,7 @@ function ADMIN_getListField_comments($fieldName, $fieldValue, $A, $iconArray, $s
 
     switch ($fieldName) {
         case 'selector':
-            $fieldValue = '<input type="checkbox" class="uk-checkbox" name="cids' . $suffix . '[]" value="' . $commentId . '"' . XHTML . '>';
+            $fieldValue = '<input type="checkbox" name="cids' . $suffix . '[]" value="' . $commentId . '"' . XHTML . '>';
             break;
 
         case 'edit':
@@ -190,7 +190,7 @@ function getTypeSelector($itemType)
     global $_PLUGINS, $LANG_ADMIN, $LANG09, $LANG_STATIC, $LANG_POLLS;
 
     $retval = $LANG_ADMIN['type']
-        . ': <select class="uk-select" name="item_type" style="width: 125px;" onchange="this.form.submit()">' . LB;
+        . ': <select name="item_type" style="width: 125px;" onchange="this.form.submit()">' . LB;
 
     $selected = ($itemType === 'all') ? ' selected="selected"' : '';
     $retval .= '<option value="all"' . $selected . '>' . $LANG09[4] . '</option>' . LB;
@@ -227,7 +227,7 @@ function ADMIN_buildCommentList($suffix, $tableName, $securityToken)
 
     $headerArray = array(
         array(
-            'text'  => '<input type="checkbox" class="uk-checkbox" name="select_all' . $suffix . '" id="select_all' . $suffix . '"' . XHTML . '>',
+            'text'  => '<input type="checkbox" name="select_all' . $suffix . '" id="select_all' . $suffix . '"' . XHTML . '>',
             'field' => 'selector',
             'sort'  => false,
         ),
@@ -301,7 +301,7 @@ function ADMIN_buildCommentList($suffix, $tableName, $securityToken)
 
     $filter = getTypeSelector($itemType);
     $options = array();
-    $actionSelector = '<select class="uk-select" name="bulk_action' . $suffix . '" id="bulk_action' . $suffix . '">' . LB
+    $actionSelector = '<select name="bulk_action' . $suffix . '" id="bulk_action' . $suffix . '">' . LB
         . '<option value="do_nothing">' . $LANG03[102] . '</option>' . LB;
 
     if ($suffix === SUFFIX_COMMENT_SUBMISSIONS) {

@@ -19,7 +19,7 @@
                                                     <td><b>{lang_time}</b></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><input type="text" class="uk-input" size="20" maxlength="96" name="title"{xhtml}></td>
+                                                    <td><input type="text" size="20" maxlength="96" name="title"{xhtml}></td>
                                                     <td>
                                                       <span dir="ltr">
                                                         <select name="start_month">

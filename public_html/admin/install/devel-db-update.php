@@ -61,6 +61,59 @@ if (!SEC_inGroup('Root')) {
     exit;
 }
 
+function update_DatabaseFor213()
+{
+    global $_TABLES, $_CONF, $_PLUGINS, $use_innodb, $_DB_table_prefix, $gl_devel_version;
+
+    // ***************************************     
+    // Add database Geeklog Core updates here. 
+    // NOTE: Cannot use ones found in normal upgrade script as no checks are performed to see if already done.
+    
+    
+    
+    
+    
+    // ***************************************     
+    // Core Plugin Updates Here
+    
+    // Staticpages
+    $_SQL[] = "UPDATE {$_TABLES['plugins']} SET pi_version='1.6.9', pi_gl_version='". VERSION ."' WHERE pi_name='staticpages'";    
+    
+    
+    // SpamX
+    $_SQL[] = "DROP INDEX `primary` ON {$_TABLES['spamx']}";
+    $_SQL[] = "ALTER TABLE {$_TABLES['spamx']} MODIFY COLUMN `value` VARCHAR(191)";
+    $_SQL[] = "ALTER TABLE {$_TABLES['spamx']} ADD PRIMARY KEY (name, value)";    
+    $_SQL[] = "UPDATE {$_TABLES['plugins']} SET pi_version='1.3.4' WHERE pi_name='spamx'";
+    
+    
+    // Links
+    $_SQL[] = "UPDATE {$_TABLES['plugins']} SET pi_version='2.1.5' WHERE pi_name='links'";
+    
+    
+    // Polls
+    $_SQL[] = "UPDATE {$_TABLES['plugins']} SET pi_version='2.1.8' WHERE pi_name='polls'";
+
+    
+    
+
+    if ($use_innodb) {
+        $statements = count($_SQL);
+        for ($i = 0; $i < $statements; $i++) {
+            $_SQL[$i] = str_replace('MyISAM', 'InnoDB', $_SQL[$i]);
+        }
+    }
+
+    foreach ($_SQL as $sql) {
+        DB_query($sql,1);
+    }
+
+    // update Geeklog version number
+    DB_query("INSERT INTO {$_TABLES['vars']} SET value='$gl_devel_version',name='geeklog'",1);
+    DB_query("UPDATE {$_TABLES['vars']} SET value='$gl_devel_version' WHERE name='geeklog'",1);
+    
+    return true;
+}
 
 function update_DatabaseFor212()
 {
@@ -201,8 +254,8 @@ function update_DatabaseFor212()
 
 $display = '<h2>Development Database Update</h2>';
 
-$gl_prev_version = "2.1.1";
-$gl_devel_version = "2.1.2";
+$gl_prev_version = "2.1.2";
+$gl_devel_version = "2.1.3";
 
 $display .= "<p>This update is for Geeklog Core and Core Plugins. Can include changes to database structure and data, along with configuration options. All Core plugins must be installed when you run this script.</p> 
              <p>Update works for Geeklog $gl_prev_version up to latest Geeklog development version for $gl_devel_version.</p>";
@@ -212,7 +265,11 @@ $display .= "<p>This update is for Geeklog Core and Core Plugins. Can include ch
 // Geeklog Core Updates
 $display .= '<ul><li>Performing Geeklog Core configuration upgrades if necessary...<ul><li>';
 
-require_once($_CONF['path'] . 'sql/updates/' . $_DB_dbms . '_' . $gl_prev_version . '_to_' . $gl_devel_version . '.php');
+
+$geeklog_sqlfile_upgrade = $_CONF['path'] . 'sql/updates/' . $_DB_dbms . '_' . $gl_prev_version . '_to_' . $gl_devel_version . '.php';
+if (file_exists ($geeklog_sqlfile_upgrade)) {
+    require_once($geeklog_sqlfile_upgrade);
+}
 
 $short_version = str_replace(".","", $gl_devel_version);
 $function = 'update_ConfValuesFor' . $short_version;
@@ -240,18 +297,19 @@ foreach ($corePlugins AS $pi_name) {
     switch ($pi_name) {
         case 'staticpages':
             $new_plugin_version = true;
-            $plugin_version = '1.6.8';
+            $plugin_version = '1.6.9';
             break;
         case 'spamx':
             $new_plugin_version = true;
-            $plugin_version = '1.3.3';
+            $plugin_version = '1.3.4';
             break;
         case 'links':
-            $plugin_version = '2.1.4';
+            $new_plugin_version = true;
+            $plugin_version = '2.1.5';
             break;
         case 'polls':
             $new_plugin_version = true;
-            $plugin_version = '2.1.7';
+            $plugin_version = '2.1.8';
             break;
         case 'calendar':
             $plugin_version = '1.1.5';
@@ -263,15 +321,20 @@ foreach ($corePlugins AS $pi_name) {
     
     $display .= "<li>";
     if ($new_plugin_version) {
-        require_once $_CONF['path'] . 'plugins/' . $pi_name . '/install_updates.php';
+        $plugin_install_updates_file = $_CONF['path'] . 'plugins/' . $pi_name . '/install_updates.php';
+        if (file_exists($plugin_install_updates_file)) {
+            require_once $plugin_install_updates_file;
 
-        $function = $pi_name . '_update_ConfValues_' . str_replace(".","_", $plugin_version);
-        
-        if (function_exists($function)) {
-            if ($function()) {;
-                $display .= "Configuration settings updated successfully for $pi_name plugin.";
+            $function = $pi_name . '_update_ConfValues_' . str_replace(".","_", $plugin_version);
+            
+            if (function_exists($function)) {
+                if ($function()) {;
+                    $display .= "Configuration settings updated successfully for $pi_name plugin.";
+                } else {
+                    $display .= "There was problems updating the configuration settings for $pi_name plugin.";
+                }
             } else {
-                $display .= "There was problems updating the configuration settings for $pi_name plugin.";
+                $display .= "No configuration settings found for updating $pi_name plugin.";
             }
         } else {
             $display .= "No configuration settings found for updating $pi_name plugin.";

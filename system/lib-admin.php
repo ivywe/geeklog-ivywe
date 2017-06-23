@@ -116,7 +116,7 @@ function ADMIN_simpleList($fieldFunction, $header_arr, $text_arr,
         $min_data = $options['chkminimum'];
     }
     if (count($data_arr) > $min_data && is_array($options) && isset($options['chkdelete']) && $options['chkdelete']) {
-        $admin_templates->set_var('header_text', '<input type="checkbox" class="uk-checkbox" name="chk_selectall" title="' . $LANG01[126] . '" onclick="caItems(this.form);"' . XHTML . '>');
+        $admin_templates->set_var('header_text', '<input type="checkbox" name="chk_selectall" title="' . $LANG01[126] . '" onclick="caItems(this.form);"' . XHTML . '>');
         $admin_templates->set_var('class', "admin-list-field");
         $admin_templates->set_var('show_deleteimage', '');
         $admin_templates->parse('header_row', 'header', true);
@@ -150,7 +150,7 @@ function ADMIN_simpleList($fieldFunction, $header_arr, $text_arr,
         $useFieldFunction = is_callable($fieldFunction);
         for ($i = 0; $i < count($data_arr); $i++) {
             if (count($data_arr) > $min_data && is_array($options) && isset($options['chkdelete']) && $options['chkdelete']) {
-                $admin_templates->set_var('itemtext', '<input type="checkbox" class="uk-checkbox" name="delitem[]" value="' . $data_arr[$i][$options['chkfield']] . '"' . XHTML . '>');
+                $admin_templates->set_var('itemtext', '<input type="checkbox" name="delitem[]" value="' . $data_arr[$i][$options['chkfield']] . '"' . XHTML . '>');
                 $admin_templates->set_var('class', "admin-list-field");
                 $admin_templates->parse('item_field', 'field', true);
             }
@@ -299,7 +299,7 @@ function ADMIN_list($component, $fieldFunction, $header_arr, $text_arr,
 
     // Check if the delete checkbox and support for the delete all feature should be displayed
     if (is_array($options) && isset($options['chkdelete']) && $options['chkdelete']) {
-        $admin_templates->set_var('header_text', '<input type="checkbox" class="uk-checkbox" name="chk_selectall" title="' . $LANG01[126] . '" onclick="caItems(this.form);"' . XHTML . '>');
+        $admin_templates->set_var('header_text', '<input type="checkbox" name="chk_selectall" title="' . $LANG01[126] . '" onclick="caItems(this.form);"' . XHTML . '>');
         $admin_templates->set_var('class', "admin-list-field");
         $admin_templates->set_var('show_deleteimage', '');
         $admin_templates->parse('header_row', 'header', true);
@@ -508,7 +508,7 @@ function ADMIN_list($component, $fieldFunction, $header_arr, $text_arr,
         $this_row = false; # as long as no fields are returned, dont print row
         if (is_array($options) && isset($options['chkdelete']) && $options['chkdelete']) {
             $admin_templates->set_var('class', "admin-list-field");
-            $admin_templates->set_var('itemtext', '<input type="checkbox" class="uk-checkbox" name="delitem[]" value="' . $A[$options['chkfield']] . '"' . XHTML . '>');
+            $admin_templates->set_var('itemtext', '<input type="checkbox" name="delitem[]" value="' . $A[$options['chkfield']] . '"' . XHTML . '>');
             $admin_templates->parse('item_field', 'field', true);
         }
         for ($j = 0; $j < count($header_arr); $j++) {
@@ -732,7 +732,7 @@ function ADMIN_getListField_blocks($fieldName, $fieldValue, $A, $icon_arr, $toke
                     } else {
                         $switch = '';
                     }
-                    $retval = '<input type="checkbox" class="uk-checkbox" name="enabledblocks[]" '
+                    $retval = '<input type="checkbox" name="enabledblocks[]" '
                         . 'onclick="submit()" value="' . $A['bid'] . '"'
                         . $switch . XHTML . '>'
                         . '<input type="hidden" name="visibleblocks[]" value="'
@@ -942,7 +942,7 @@ function ADMIN_getListField_groups($fieldName, $fieldValue, $A, $icon_arr, $sele
                 break;
 
             case 'checkbox':
-                $retval = '<input type="checkbox" class="uk-checkbox" name="groups[]" value="'
+                $retval = '<input type="checkbox" name="groups[]" value="'
                     . $A['grp_id'] . '"';
                 if (is_array($selected) && in_array($A['grp_id'], $selected)) {
                     $retval .= ' checked="checked"';
@@ -951,7 +951,7 @@ function ADMIN_getListField_groups($fieldName, $fieldValue, $A, $icon_arr, $sele
                 break;
 
             case 'disabled-checkbox':
-                $retval = '<input type="checkbox" class="uk-checkbox" checked="checked" '
+                $retval = '<input type="checkbox" checked="checked" '
                     . 'disabled="disabled"' . XHTML . '>'
                     . '<input type="hidden" name="groups[]" value="'
                     . $A['grp_id'] . '"' . XHTML . '>';
@@ -985,7 +985,7 @@ function ADMIN_getListField_users($fieldName, $fieldValue, $A, $icon_arr)
 
     switch ($fieldName) {
         case 'delete':
-            $retval = '<input type="checkbox" class="uk-checkbox" name="delitem[]" checked="checked"' . XHTML . '>';
+            $retval = '<input type="checkbox" name="delitem[]" checked="checked"' . XHTML . '>';
             break;
 
         case 'edit':
@@ -1243,7 +1243,7 @@ function ADMIN_getListField_syndication($fieldName, $fieldValue, $A, $icon_arr, 
             } else {
                 $switch = '';
             }
-            $retval = '<input type="checkbox" class="uk-checkbox" name="enabledfeeds[]" onclick="submit()" value="' . $A['fid'] . '"' . $switch . XHTML . '>'
+            $retval = '<input type="checkbox" name="enabledfeeds[]" onclick="submit()" value="' . $A['fid'] . '"' . $switch . XHTML . '>'
                 . '<input type="hidden" name="visiblefeeds[]" value="' . $A['fid'] . '"' . XHTML . '>';
             break;
 
@@ -1468,16 +1468,15 @@ function ADMIN_getListField_moderation($fieldName, $fieldValue, $A, $icon_arr)
                 $retval = TOPIC_getTopicAdminColumn('article', $A[0]);
             } elseif (($fieldName == 2) && ($type === 'comment')) {
                 $commentText = COM_getTextContent($A['comment']);
-                $excerpt = htmlspecialchars(COM_truncate($commentText, 140, '...'));
-
+                $commentText = htmlspecialchars_decode($commentText, ENT_QUOTES);
+                $excerpt = htmlspecialchars(COM_truncate($commentText, 140, '...'), ENT_QUOTES, COM_getEncodingt());
                 // try to provide a link to the parent item (e.g. article, poll)
                 $info = PLG_getItemInfo($A['type'], $A['sid'], 'title,url');
                 if (empty($info) || empty($info[0]) || empty($info[1])) {
                     // if not available, display excerpt from the comment
-                    $retval = htmlspecialchars(COM_truncate($commentText, 40, '...'));
+                    $retval = htmlspecialchars(COM_truncate($commentText, 40, '...'), ENT_QUOTES, COM_getEncodingt());
                     if (strlen($commentText) > 40) {
-                        $retval = '<span title="' . $excerpt . '">' . $retval
-                            . '</span>';
+                        $retval = '<span title="' . $excerpt . '">' . $retval . '</span>';
                     }
                 } else {
                     $retval = COM_createLink($info[0], $info[1], array('title' => $excerpt));
@@ -1534,7 +1533,7 @@ function ADMIN_getListField_trackback($fieldName, $fieldValue, $A, $icon_arr, $t
             } else {
                 $switch = '';
             }
-            $retval = '<input type="checkbox" class="uk-checkbox" name="enabledservices[]" '
+            $retval = '<input type="checkbox" name="enabledservices[]" '
                 . 'onclick="submit()" value="' . $A['pid'] . '"'
                 . $switch . XHTML . '>'
                 . '<input type="hidden" name="visibleservices[]" value="'
@@ -1582,14 +1581,14 @@ function ADMIN_getListField_usergroups($fieldName, $fieldValue, $A, $icon_arr, $
                     ($A['grp_name'] === 'Logged-in Users') ||
                     ($A['grp_name'] === 'Remote Users')
                 ) {
-                    $retval = '<input type="checkbox" class="uk-checkbox" disabled="disabled"'
+                    $retval = '<input type="checkbox" disabled="disabled"'
                         . $checked . XHTML . '>';
                     if (!empty($checked)) {
                         $retval .= '<input type="hidden" name="groups[]" value="'
                             . $A['grp_id'] . '"' . $checked . XHTML . '>';
                     }
                 } else {
-                    $retval = '<input type="checkbox" class="uk-checkbox" name="groups[]" value="'
+                    $retval = '<input type="checkbox" name="groups[]" value="'
                         . $A['grp_id'] . '"' . $checked . XHTML . '>';
                 }
                 break;

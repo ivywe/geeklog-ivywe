@@ -172,7 +172,7 @@ abstract class BaseAdmin
         $retval = $fieldValue;
 
         if ($fieldName === 'id') {
-            $retval = '<input type="checkbox" class="uk-checkbox" name="delitem[]" value="'
+            $retval = '<input type="checkbox" name="delitem[]" value="'
                 . $this->escape($fieldValue) . '"' . XHTML . '>';
         } elseif ($fieldName === 'value') {
             $retval = COM_createLink(
@@ -205,7 +205,7 @@ abstract class BaseAdmin
         $fieldfunction = array($this, 'fieldFunction');
         $header_arr = array(
             array(
-                'text'  => '<input type="checkbox" class="uk-checkbox" name="chk_selectall" title="' . $LANG01[126] . '" onclick="caItems(this.form);"' . XHTML . '>',
+                'text'  => '<input type="checkbox" name="chk_selectall" title="' . $LANG01[126] . '" onclick="caItems(this.form);"' . XHTML . '>',
                 'field' => 'id',
                 'sort'  => false,
             ),
@@ -283,7 +283,7 @@ abstract class BaseAdmin
             . '<p>' . $LANG_SX00['e2'] . '</p>' . LB
             . '<form method="post" class="uk-form" action="' . $_CONF['site_admin_url']
             . '/plugins/spamx/index.php?command=' . $this->command . '">' . LB
-            . '<div><input type="text" class="uk-input" size="31" name="pentry"' . XHTML
+            . '<div><input type="text" size="31" name="pentry"' . XHTML
             . '>&nbsp;&nbsp;&nbsp;'
             . '<button type="submit" name="paction" value="'
             . $LANG_SX00['addentry'] . '" class="uk-button">'

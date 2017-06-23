@@ -255,7 +255,7 @@ function staticpageeditor_form($A)
     }
 
     $sp_template->set_var('lang_position', $LANG_STATIC['position']);
-    $position = '<select class="uk-select uk-form-width-medium" name="sp_where">';
+    $position = '<select name="sp_where">';
     $position .= '<option value="1"';
     if ($A['sp_where'] == 1) {
         $position .= ' selected="selected"';
@@ -283,7 +283,7 @@ function staticpageeditor_form($A)
         if (!isset($A['sp_php'])) {
             $A['sp_php'] = 0;
         }
-        $selection = '<select class="uk-select uk-form-width-medium" name="sp_php">' . LB;
+        $selection = '<select name="sp_php">' . LB;
         $selection .= '<option value="0"';
         if (($A['sp_php'] <= 0) || ($A['sp_php'] > 2)) {
             $selection .= ' selected="selected"';
@@ -400,7 +400,7 @@ function staticpageeditor_form($A)
         $template_none .= ' selected="selected"';
     }
     $template_none .= '>' . $LANG_STATIC['none'] . '</option>';
-    $sp_template->set_var('use_template_selection', '<select class="uk-select uk-form-width-medium" name="template_id">'
+    $sp_template->set_var('use_template_selection', '<select name="template_id">'
         . $template_none . $template_list . '</select>');
     $sp_template->set_var('lang_use_template', $LANG_STATIC['use_template']);
     $sp_template->set_var('lang_use_template_msg', $LANG_STATIC['use_template_msg']);
@@ -563,6 +563,7 @@ function liststaticpages()
     }
     $header_arr[] = array('text' => $LANG_STATIC['date'], 'field' => 'unixdate', 'sort' => true);
     $header_arr[] = array('text' => $LANG_STATIC['head_centerblock'], 'field' => 'sp_centerblock', 'sort' => true);
+    $header_arr[] = array('text' => $LANG_STATIC['template'], 'field' => 'template_id', 'sort' => true);
 
     switch ($_SP_CONF['sort_list_by']) {
         case 'author':
@@ -672,7 +673,6 @@ function staticpageeditor($sp_id, $mode = '', $editor = '')
             $A['unixdate'] = time();
             $A['sp_hits'] = 0;
             $A['sp_old_id'] = '';
-            $A['commentcode'] = $_SP_CONF['comment_code'];
         }
     } else {
         $A = $_POST;
@@ -800,6 +800,7 @@ if (($mode == $LANG_ADMIN['delete']) && !empty($LANG_ADMIN['delete']) && SEC_che
         $args = array(
             'sp_id' => $sp_id,
         );
+        
         PLG_invokeService('staticpages', 'delete', $args, $display, $svc_msg);
     }
 } elseif ($mode == 'edit') {

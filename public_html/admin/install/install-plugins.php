@@ -343,7 +343,7 @@ switch ($step) {
                 }
 
                 $content .= '<tr>' . PHP_EOL
-                    . '<td align="center"><input type="checkbox" class="uk-checkbox" name="plugins[' . $plugin . '][install]"'
+                    . '<td align="center"><input type="checkbox" name="plugins[' . $plugin . '][install]"'
                     . ($missing_autoinstall ? ' disabled="disabled"' : ' checked="checked"') . '>' . PHP_EOL
                     . '</td>' . PHP_EOL
                     . '<td valign="top">' . PHP_EOL

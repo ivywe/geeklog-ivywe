@@ -646,6 +646,7 @@ class GLText
 
         return $var;
     }
+
     /**
      * Generate unqiue string
      *

@@ -185,16 +185,16 @@ function CMT_commentBar($sid, $title, $type, $order, $mode, $ccode = 0)
     }
 
     // Order
-    $selector = '<select class="uk-select" name="order">' . LB
+    $selector = '<select name="order">' . LB
         . COM_optionList($_TABLES['sortcodes'], 'code,name', $order)
         . LB . '</select>';
     $commentBar->set_var('order_selector', $selector);
 
     // Mode
     if ($is_comment_page) {
-        $selector = '<select class="uk-select" name="format">';
+        $selector = '<select name="format">';
     } else {
-        $selector = '<select class="uk-select" name="mode">';
+        $selector = '<select name="mode">';
     }
     $selector .= LB
         . COM_optionList($_TABLES['commentmodes'], 'mode,name', $mode)
@@ -1102,7 +1102,7 @@ function CMT_commentForm($title, $comment, $sid, $pid = 0, $type, $mode, $postMo
                 } else {
                     $name = COM_getDisplayName(1); // anonymous user
                 }
-                $usernameblock = '<input type="text" class="uk-input" name="' . CMT_USERNAME . '" size="16" value="' .
+                $usernameblock = '<input type="text" name="' . CMT_USERNAME . '" size="16" value="' .
                     $name . '" maxlength="32"' . XHTML . '>';
                 $comment_template->set_var('username', $usernameblock);
 
@@ -1520,9 +1520,10 @@ function CMT_sendNotification($title, $comment, $uid, $username, $ipaddress, $ty
 
     if ($_CONF['emailstorieslength'] > 0) {
         if ($_CONF['emailstorieslength'] > 1) {
-            $comment = MBYTE_substr($comment, 0, $_CONF['emailstorieslength'])
-                . '...';
+            $comment = COM_truncate($comment, $_CONF['emailstorieslength'], '...'); 
         }
+        $comment = htmlspecialchars_decode($comment);
+        
         $mailbody .= $comment . "\n\n";
     }
 
@@ -1729,9 +1730,10 @@ function CMT_sendReport($cid, $type)
 
     if ($_CONF['emailstorieslength'] > 0) {
         if ($_CONF['emailstorieslength'] > 1) {
-            $comment = MBYTE_substr($comment, 0, $_CONF['emailstorieslength'])
-                . '...';
+            $comment = COM_truncate($comment, $_CONF['emailstorieslength'], '...'); 
         }
+        $comment = htmlspecialchars_decode($comment);
+        
         $mailBody .= $comment . "\n\n";
     }
 

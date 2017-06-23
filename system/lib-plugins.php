@@ -82,19 +82,19 @@ while ($A = DB_fetchArray($result)) {
  * Calls a function for all enabled plugins
  *
  * @param    string $function_name holds name of function to call
+ * @param    array  $args     arguments to send to function
  * @return   void
  * @access   private
  * @internal not to be used by plugins
- * @todo     only supports functions without any parameters
  */
-function PLG_callFunctionForAllPlugins($function_name)
+function PLG_callFunctionForAllPlugins($function_name, array $args = array())
 {
     global $_PLUGINS;
 
     foreach ($_PLUGINS as $pi_name) {
         $function = 'plugin_' . $function_name . '_' . $pi_name;
         if (function_exists($function)) {
-            $function();
+            PLG_callFunctionForOnePlugin($function, $args);
         }
     }
     $function = 'CUSTOM_' . $function_name;
@@ -1407,12 +1407,16 @@ function PLG_profileBlocksDisplay($uid)
  * @param    string $plugin name of a specific plugin or empty(all plugins)
  * @return   void
  */
-function PLG_profileExtrasSave($plugin = '')
+function PLG_profileExtrasSave($plugin = '', $uid = '')
 {
+    $args = array(
+        1 => $uid
+    );     
+    
     if (empty($plugin)) {
-        PLG_callFunctionForAllPlugins('profileextrassave');
+        PLG_callFunctionForAllPlugins('profileextrassave', $args);
     } else {
-        PLG_callFunctionForOnePlugin('plugin_profileextrassave_' . $plugin);
+        PLG_callFunctionForOnePlugin('plugin_profileextrassave_' . $plugin, $args);
     }
 }
 
@@ -1576,7 +1580,6 @@ function PLG_collectTags($type = 'tagname')
                 }
             }
         }
-
     }
 
     return $autolinkModules;
@@ -1610,9 +1613,12 @@ function PLG_replaceTags($content, $plugin = '', $remove = false)
     } else {
         $autolinkModules = PLG_collectTags();
     }
+    
+    //See if any tags require close tags
+    $tags_requireclose = array_flip(PLG_collectTags('closetag'));
 
     for ($i = 1; $i <= 5; $i++) {
-        list($content, $markers) = GLText::protectJavascript($content);
+        // list($content, $markers) = GLText::protectJavascript($content);
 
         // For each supported module, scan the content looking for any AutoLink tags
         $tags = array();
@@ -1623,18 +1629,15 @@ function PLG_replaceTags($content, $plugin = '', $remove = false)
             $offset = 0;
             $prev_offset = 0;
             while ($offset < $contentLength) {
-                $start_pos = MBYTE_strpos($content_lower, $autotag_prefix,
-                    $offset);
-                if ($start_pos === false) {
+                $start_pos_tag = MBYTE_strpos($content_lower, $autotag_prefix, $offset);
+                if ($start_pos_tag === false) {
                     break;
                 } else {
-                    $end_pos = MBYTE_strpos($content_lower, ']', $start_pos);
-                    $next_tag = MBYTE_strpos($content_lower, '[', $start_pos + 1);
-                    if (($end_pos > $start_pos) &&
-                        (($next_tag === false) || ($end_pos < $next_tag))
-                    ) {
-                        $tagLength = $end_pos - $start_pos + 1;
-                        $tag = MBYTE_substr($content, $start_pos, $tagLength);
+                    $end_pos_tag = MBYTE_strpos($content_lower, ']', $start_pos_tag);
+                    $next_tag = MBYTE_strpos($content_lower, '[', $start_pos_tag + 1);
+                    if (($end_pos_tag > $start_pos_tag) && (($next_tag === false) || ($end_pos_tag < $next_tag))) {
+                        $tagLength = $end_pos_tag - $start_pos_tag + 1;
+                        $tag = MBYTE_substr($content, $start_pos_tag, $tagLength);
                         $params = explode(' ', $tag);
 
                         // Extra test to see if autotag was entered with a space
@@ -1644,8 +1647,7 @@ function PLG_replaceTags($content, $plugin = '', $remove = false)
                             $label = str_replace(']', '', MBYTE_substr($tag, $startPos));
                             $tagId = $params[1];
                         } else {
-                            $label = str_replace(']', '', MBYTE_substr($tag,
-                                MBYTE_strlen($params[0]) + 1));
+                            $label = str_replace(']', '', MBYTE_substr($tag, MBYTE_strlen($params[0]) + 1));
                             $params = explode(':', $params[0]);
                             if (count($params) > 2) {
                                 // whoops, there was a ':' in the tag id ...
@@ -1655,23 +1657,49 @@ function PLG_replaceTags($content, $plugin = '', $remove = false)
                                 $tagId = $params[1];
                             }
                         }
-
+                        
+                        // [tag:parameter1 And the rest here is parameter2]This is parameter3 if exist.[/tag]
                         $newTag = array(
                             'module'   => $module,
                             'tag'      => $moduleTag,
                             'tagstr'   => $tag,
-                            'startpos' => $start_pos,
+                            'startpos' => $start_pos_tag,
                             'length'   => $tagLength,
                             'parm1'    => str_replace(']', '', $tagId),
                             'parm2'    => $label,
                         );
-                        $tags[] = $newTag;
+                        
+                        if (in_array($moduleTag, $tags_requireclose)) {
+                            // Check for close tag after end of start tag. if exist we have a parm3
+                            $close_tag = '[/' . $moduleTag . ']';
+                            $start_pos_close_tag = MBYTE_strpos($content_lower, $close_tag, $end_pos_tag);
+                            if ($start_pos_close_tag > $end_pos_tag) { // make sure close tag is after tag
+                                $end_of_whole_tag_pos = $start_pos_close_tag + strlen($close_tag);
+                                $wrapped_text_length = $start_pos_close_tag - ($end_pos_tag + 1);
+                                $wrapped_text = MBYTE_substr($content, ($end_pos_tag + 1), $wrapped_text_length);
+                                
+                                // New parm3
+                                $newTag['parm3'] = $wrapped_text;
+                                // Since parm3 now update tagstr and length as well
+                                $newTag['tagstr'] = $tag . $wrapped_text . $close_tag;
+                                $newTag['length'] = $end_of_whole_tag_pos - $start_pos_tag;
+                                
+                                $tags[] = $newTag; // add completed tag to list
+                            } else {
+                                // Error: no close tag found - return with no changes
+                                // return GLText::unprotectJavaScript($content, $markers) . $LANG32[32];
+                                return $content . $LANG32[32];
+                            }
+                        } else {
+                            $tags[] = $newTag; // add completed tag to list
+                        }
                     } else {
-                        // Error: tags do not match - return with no changes
-                        return GLText::unprotectJavaScript($content, $markers) . $LANG32[32];
+                        // Error: tags do not match - return with no changes since error could cause loop if multiple autotags exist in content
+                        // return GLText::unprotectJavaScript($content, $markers) . $LANG32[32];
+                        return $content . $LANG32[32];
                     }
                     $prev_offset = $offset;
-                    $offset = $end_pos;
+                    $offset = $end_pos_tag;
                 }
             }
         }
@@ -1691,9 +1719,9 @@ function PLG_replaceTags($content, $plugin = '', $remove = false)
                 }
             }
 
-            $content = GLText::unprotectJavaScript($content, $markers);
+            // $content = GLText::unprotectJavaScript($content, $markers);
         } else {
-            $content = GLText::unprotectJavaScript($content, $markers);
+            // $content = GLText::unprotectJavaScript($content, $markers);
             break;
         }
     }

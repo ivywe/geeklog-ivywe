@@ -8,7 +8,7 @@
                                 <table border="0" cellspacing="0" cellpadding="3">
                                     <tr>
                                         <td align="right"><b>{lang_title}:</b></td>
-                                        <td><input type="text" class="uk-input" size="36" maxlength="96" name="title" value="{event_title}"{xhtml}></td>
+                                        <td><input type="text" size="36" maxlength="96" name="title" value="{event_title}"{xhtml}></td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>{lang_eventtype}:</b></td>
@@ -75,41 +75,41 @@
                                     </tr>
                                     <tr>
                                         <td align="right"><b>{lang_alldayevent}:</b></td>
-                                        <td><input type="checkbox" class="uk-checkbox" name="allday" {allday_checked}{xhtml}></td>
+                                        <td><input type="checkbox" name="allday" {allday_checked}{xhtml}></td>
                                     </tr>
                                     <tr>
                                         <td align="right" valign="top"><b>{lang_location}:</b></td>
                                         <td>
-                                            <textarea class="textarea" name="location" cols="45" rows="2">{event_location}</textarea>
+                                            <textarea name="location" cols="45" rows="2">{event_location}</textarea>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>{lang_addressline1}:</b></td>
-                                        <td><input type="text" class="uk-input" name="address1" size="36" value="{event_address1}"{xhtml}></td>
+                                        <td><input type="text" name="address1" size="36" value="{event_address1}"{xhtml}></td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>{lang_addressline2}:</b></td>
-                                        <td><input type="text" class="uk-input" name="address2" size="36" value="{event_address2}"{xhtml}></td>
+                                        <td><input type="text" name="address2" size="36" value="{event_address2}"{xhtml}></td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>{lang_city}:</b></td>
-                                        <td><input type="text" class="uk-input" name="city" size="36" value="{event_city}"{xhtml}></td>
+                                        <td><input type="text" name="city" size="36" value="{event_city}"{xhtml}></td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>{lang_state}:</b></td>
-                                        <td><input type="text" class="uk-input" name="state" size="36" value="{event_state}"{xhtml}></td>
+                                        <td><input type="text" name="state" size="36" value="{event_state}"{xhtml}></td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>{lang_zipcode}:</b></td>
-                                        <td><input type="text" class="uk-input" name="zipcode" size="16" maxlength="16" value="{event_zipcode}"{xhtml}></td>
+                                        <td><input type="text" name="zipcode" size="16" maxlength="16" value="{event_zipcode}"{xhtml}></td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>{lang_link}:</b></td>
-                                        <td><input type="text" class="uk-input" size="36" maxlength="128" name="url" value="{event_url}"{xhtml}></td>
+                                        <td><input type="text" size="36" maxlength="128" name="url" value="{event_url}"{xhtml}></td>
                                     </tr>
                                     <tr>
                                         <td align="right" valign="top"><b>{lang_description}:</b></td>
-                                        <td><textarea class="textarea" name="description" style="width:100%" cols="50" rows="20">{event_description}</textarea></td>
+                                        <td><textarea name="description" style="width:100%" cols="50" rows="20">{event_description}</textarea></td>
                                     </tr>
                                     <tr>
                                         <td align="center" colspan="2">{lang_htmlnotallowed}</td>

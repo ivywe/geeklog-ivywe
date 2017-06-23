@@ -6,7 +6,7 @@
 class Installer
 {
     // Geeklog version
-    const GL_VERSION = '2.1.2';
+    const GL_VERSION = '2.1.3';
 
     // System requirements
     const SUPPORTED_PHP_VER = '5.3.3';
@@ -2878,7 +2878,12 @@ class Installer
                     $currentGlVersion = '2.1.2';
                     $_SQL = array();
                     break;
-
+                case '2.1.2':
+                    // there were no database changes in 2.1.2
+                
+                    $currentGlVersion = '2.1.3';
+                    break;
+                    
                 default:
                     $done = true;
                     break;

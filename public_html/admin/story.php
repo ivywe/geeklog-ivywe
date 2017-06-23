@@ -154,7 +154,7 @@ function liststories($current_topic = '')
     }
 
     $filter = $LANG_ADMIN['topic']
-        . ': <select class="uk-select uk-form-width-xsmall" name="tid" style="width: 125px" onchange="this.form.submit()">'
+        . ': <select name="tid" style="width: 125px" onchange="this.form.submit()">'
         . $seltopics . '</select>';
 
     $header_arr = array(
@@ -327,14 +327,7 @@ function storyeditor($sid = '', $mode = '', $errormsg = '')
     // Load HTML templates
     $story_templates = COM_newTemplate($_CONF['path_layout'] . 'admin/story');
     if ($_CONF['advanced_editor'] && $_USER['advanced_editor']) {
-        $story_templates->set_file(array('editor'=>'storyeditor_advanced.thtml'));
-        $thtml = $_CONF['path_layout'] . 'admin/story/storyeditor_advanced.' . $_CONF['language'] . '.thtml';
-        if (file_exists($thtml)) {
-            $thtml = 'storyeditor_advanced.' . $_CONF['language'] . '.thtml';
-        } else {
-            $thtml = 'storyeditor_advanced.thtml';
-        }
-        $story_templates->set_file('editor', $thtml);
+        $story_templates->set_file(array('editor' => 'storyeditor_advanced.thtml'));
         $advanced_editormode = true;
         $story_templates->set_var('change_editormode', 'onchange="change_editmode(this);"');
 
@@ -358,13 +351,7 @@ function storyeditor($sid = '', $mode = '', $errormsg = '')
             $story_templates->set_var('show_htmleditor', 'none');
         }
     } else {
-        $thtml = $_CONF['path_layout'] . 'admin/story/storyeditor.' . $_CONF['language'] . '.thtml';
-        if (file_exists($thtml)) {
-            $thtml = 'storyeditor.' . $_CONF['language'] . '.thtml';
-        } else {
-            $thtml = 'storyeditor.thtml';
-        }
-        $story_templates->set_file('editor', $thtml);
+        $story_templates->set_file(array('editor' => 'storyeditor.thtml'));
         $advanced_editormode = false;
     }
     $story_templates->set_var('hour_mode', $_CONF['hour_mode']);
@@ -682,7 +669,7 @@ function storyeditor($sid = '', $mode = '', $errormsg = '')
     if (($_CONF['onlyrootfeatures'] == 1 && SEC_inGroup('Root'))
         or ($_CONF['onlyrootfeatures'] !== 1)
     ) {
-        $featured_options = "<select class=\"uk-form-width-xsmall\" name=\"featured\">" . LB
+        $featured_options = "<select name=\"featured\">" . LB
             . COM_optionList($_TABLES['featurecodes'], 'code,name', $story->EditElements('featured'))
             . "</select>" . LB;
     } else {
@@ -753,7 +740,7 @@ function storyeditor($sid = '', $mode = '', $errormsg = '')
                     . COM_createLink($I['ai_filename'],
                         $_CONF['site_url'] . '/images/articles/' . $I['ai_filename'])
                     . '&nbsp;&nbsp;&nbsp;' . $LANG_ADMIN['delete']
-                    . ': <input type="checkbox" class="uk-checkbox" name="delete[' . $I['ai_img_num']
+                    . ': <input type="checkbox" name="delete[' . $I['ai_img_num']
                     . ']"' . XHTML . '><br' . XHTML . '>';
             }
         }

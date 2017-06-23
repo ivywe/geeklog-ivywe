@@ -955,7 +955,7 @@ A PHP Labware internal utility - http://www.bioinformatics.org/phplabware/intern
 
   Nesting/content rules for each of the 86 elements in htmLawed's default set (see section:- #3.3) are defined in function 'hl_bal()'. This means that if a non-standard element besides 'embed' is being permitted through '$config["elements"]', the element's tag content will end up getting removed if '$config["balance"]' is set to '1'.
 
-  Plain text and/or certain elements nested inside 'blockquote', 'form', 'map' and 'noscript' need to be in block-level elements. This point is often missed during manual writing of HTML code. htmLawed attempts to address this during balancing. E.g., if the parent container is set as 'form', the input 'B:<input type="text" class="uk-input" value="b" />C:<input type="text" class="uk-input" value="c" />' is converted to '<div>B:<input type="text" class="uk-input" value="b" />C:<input type="text" class="uk-input" value="c" /></div>'.
+  Plain text and/or certain elements nested inside 'blockquote', 'form', 'map' and 'noscript' need to be in block-level elements. This point is often missed during manual writing of HTML code. htmLawed attempts to address this during balancing. E.g., if the parent container is set as 'form', the input 'B:<input type="text" value="b" />C:<input type="text" value="c" />' is converted to '<div>B:<input type="text" value="b" />C:<input type="text" value="c" /></div>'.
 
 
 -- 3.3.4  Elements requiring child elements ------------------------o
