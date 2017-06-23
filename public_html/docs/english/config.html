@@ -142,8 +142,8 @@ manually.</p>
     that replying to those emails is recommended.</td></tr>
 <tr><td valign="top"><a name="desc_mail_settings_backend">backend</a></td>
     <td valign="top">mail</td>
-    <td valign="top">Used to select how to send email. Can be one of 'smtp',
-        'sendmail', or 'mail'.</td></tr>
+    <td valign="top">Used to select how to send email. Can be one of 'smtp', 'smtps',
+        'sendmail', or 'mail'. The smtps protocol requires the PHP extension OpenSSL to work.</td></tr>
 <tr><td valign="top"><a name="desc_mail_settings_sendmail_path">sendmail_path</a></td>
     <td valign="top"><span class="tt">/usr/bin/sendmail</span></td>
     <td valign="top">If you chose 'sendmail' for the backend setting, this
@@ -155,24 +155,24 @@ manually.</p>
         binary.</td></tr>
 <tr><td valign="top"><a name="desc_mail_settings_host">host</a></td>
     <td valign="top">smtp.example.com</td>
-    <td valign="top">If you chose 'smtp' for the backend setting, this is the
+    <td valign="top">If you chose 'smtp' or 'smtps' for the backend setting, this is the
         SMTP server to use.</td></tr>
 <tr><td valign="top"><a name="desc_mail_settings_port">port</a></td>
     <td valign="top">25</td>
-    <td valign="top">If you chose 'smtp' for the backend setting, this is the
+    <td valign="top">If you chose 'smtp' (port 25) or 'smtps' (port 587) for the backend setting, this is the
         port number to talk to on the SMTP server.</td></tr>
 <tr><td valign="top"><a name="desc_mail_settings_auth">auth</a></td>
     <td valign="top">0</td>
-    <td valign="top">If you chose 'smtp' for the backend setting, set this to
+    <td valign="top">If you chose 'smtp' or 'smtps' for the backend setting, set this to
         <code>1</code> if your SMTP server requires authorization, and
         <code>0</code> (or leave the field empty) if it doesn't.</td></tr>
 <tr><td valign="top"><a name="desc_mail_settings_username">username</a></td>
     <td valign="top">smtp-username</td>
-    <td valign="top">If you chose 'smtp' for the backend setting, this is the
+    <td valign="top">If you chose 'smtp' or 'smtps' for the backend setting, this is the
         name of your SMTP account.</td></tr>
 <tr><td valign="top"><a name="desc_mail_settings_password">password</a></td>
     <td valign="top">smtp-password</td>
-    <td valign="top">If you chose 'smtp' for the backend setting, this is the
+    <td valign="top">If you chose 'smtp' or 'smtps' for the backend setting, this is the
         password for your SMTP account.</td></tr>
 <tr><td valign="top"><a name="desc_mail_cc_enabled">cc_enabled</a></td>
     <td valign="top">True</td>
@@ -593,7 +593,11 @@ the admin panel.</p>
   should improve performance of the web site.  In some cases, caching could 
   slow performance down.  For example, if the disk access is slow on the web 
   server or if the web server is accessing Windows shared drives, setting this 
-  option to FALSE may improve performance.</td></tr>
+  option to FALSE may improve performance. Another reason to disable caching of template files is if you use 
+  autotags in the themes template files that need to display updated information to the visitor (since the 
+  autotags would only be run at the time when the cache file is created. Note: As stated this only affects 
+  the theme template files. Caching of other items like Articles, Blocks, Staticpages, etc... have there own 
+  config options for caching.</td></tr>
 <tr>
   <td valign="top"><a name="desc_cache_mobile">cache_mobile</a></td>
   <td valign="top">true</td>
@@ -1789,7 +1793,7 @@ the admin panel.</p>
 <tr>
   <td valign="top"><a name="desc_censorreplace">censorreplace</a></td>
   <td valign="top">*censored*</td>
-  <td valign="top">Text to replace a censored word with</td></tr>
+  <td valign="top">Text to replace a censored word with. Note: If the text being checked for censored words contains tags (like HTML or BBCode) censored words may not be found if the actual word is embedded with tags. For example if "badword" was in the Censor List. The text "This is a bad&#60;b&#62;wo&#60;/b&#62;rd." would not get censored because of the bold tags.</td></tr>
 <tr>
   <td valign="top"><a name="desc_censorlist">censorlist</a></td>
   <td valign="top">array(<em>a list of "bad" words goes here ...</em>)</td>
