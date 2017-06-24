@@ -6,7 +6,7 @@
     {page_hidden}
     <div style="display:inline-block;{show_limit}">
       <label for="search-results-limit">{lang_limit}:</label>
-      <select class="uk-select" id="search-results-limit" name="results">
+      <select id="search-results-limit" name="results">
         {page_limit}
       </select>
       <input type="submit" value="{lang_submit}"{xhtml}>

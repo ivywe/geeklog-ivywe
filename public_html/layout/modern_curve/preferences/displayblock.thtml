@@ -13,13 +13,13 @@
     {theme_selection}
 
     <dt><label for="displayprefs-noicons">{lang_noicons}</label></dt>
-    <dd><input type="checkbox" class="uk-checkbox" {noicons_checked} name="noicons" id="displayprefs-noicons" class="text"{xhtml}>{lang_noicons_text}</dd>
+    <dd><input type="checkbox" {noicons_checked} name="noicons" id="displayprefs-noicons" class="text"{xhtml}>{lang_noicons_text}</dd>
 
     <dt><label for="displayprefs-noboxes">{lang_noboxes}</label></dt>
-    <dd><input type="checkbox" class="uk-checkbox" {noboxes_checked} name="noboxes" id="displayprefs-noboxes" class="text"{xhtml}>{lang_noboxes_text}</dd>
+    <dd><input type="checkbox" {noboxes_checked} name="noboxes" id="displayprefs-noboxes" class="text"{xhtml}>{lang_noboxes_text}</dd>
 
     <dt><label for="displayprefs-maxstories">{lang_maxstories}</label></dt>
-    <dd><input type="text" class="uk-input" size="3" maxlength="3" value="{maxstories_value}" name="maxstories" id="displayprefs-maxstories" class="text"{xhtml}></dd>
+    <dd><input type="text" size="3" maxlength="3" value="{maxstories_value}" name="maxstories" id="displayprefs-maxstories" class="text"{xhtml}></dd>
 
     {advanced_editor_option}
 

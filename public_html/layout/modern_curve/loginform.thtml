@@ -4,7 +4,7 @@
   <div>
     <dl>
       <dt><label for="loginform-loginname">{lang_username}</label></dt>
-      <dd><input type="text" class="uk-input" size="12" value="" name="loginname" id="loginform-loginname" class="text"{xhtml}></dd>
+      <dd><input type="text" size="12" value="" name="loginname" id="loginform-loginname" class="text"{xhtml}></dd>
 
       {services}
 
