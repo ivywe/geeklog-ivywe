@@ -56,9 +56,13 @@ $LANG_AUTO = array(
     'invalid_tag' => 'The tag must contain only alphanumeric characters (a-z, A-Z, 0-9), dashes (-) or underscores (_).',
 
     'instructions' => '<p>自動タグの編集・削除は、タグの編集アイコンをクリックしてください。新規作成は、上の"新規作成"をクリックしてください。編集できないか、有効にできないタグがある場合は、それらは関数ベースのタグであり、あなたに autotags.PHP権限がないか、コンフィギュレーションで「PHPを許可する」を「いいえ」にしているため、関数ベースの自動タグが無効になっています。</p>',
-    'replace_explain' => '自動タグの記述形式は <b>[tag:parameter1 parameter2]</b> です。<br' . XHTML . '>置換文字列フィールドにはHTMLを記述できます。<br' . XHTML . '>置換文字列フィールドの文字列中に <b>#1</b> や <b>#2</b> を記述することにより、<b>parameter1</b> や <b>parameter2</b> を含めることができます。</p>'
-                        .'<p>自動タグは、一般的にリンクを作成するために使用されます。<br' . XHTML . '>タグ <b>[tag:foo This is a link]</b> が、置換文字列フィールドの文字列<br' . XHTML . '> <b>&lt;a href="http://path.to.somewhere/#1"&gt;#2&lt;/a&gt;</b> <br' . XHTML . '>に関連付けられているとき、そのタグは文字列<br' . XHTML . '> <b>&lt;a href="http://path.to.somewhere/foo"&gt;This is a link&lt;/a&gt;</b><br' . XHTML . '>に置換されます。</p>'
-                        . '<p>#1 と #2 に加えて、<b>#0</b> は最初のコロンの後の全文字列です。 <b>#U</b> はサイトのベースURLです。</p>',
+    'replace_explain' => '<p>Autotags can take either form:</p>
+        <ul>
+        </ul>
+        
+        
+        ',
+
 
     'php_not_activated' => '自動タグでPHPが有効になっていません。コンフィギュレーションを確認してください。',
 
