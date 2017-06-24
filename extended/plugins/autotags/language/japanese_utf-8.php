@@ -58,8 +58,14 @@ $LANG_AUTO = array(
     'instructions' => '<p>自動タグの編集・削除は、タグの編集アイコンをクリックしてください。新規作成は、上の"新規作成"をクリックしてください。編集できないか、有効にできないタグがある場合は、それらは関数ベースのタグであり、あなたに autotags.PHP権限がないか、コンフィギュレーションで「PHPを許可する」を「いいえ」にしているため、関数ベースの自動タグが無効になっています。</p>',
     'replace_explain' => '<p>Autotags can take either form:</p>
         <ul>
+            <li><b>[tag:parameter1 parameter2]</b></li>
+            <li><b>[tag:parameter1 parameter2]parameter3[/tag]</b></li>
         </ul>
+        <p>どのようなHTMLにも使えます。parameter1 そして必要なら parameter2 そしてまた必要なら parameter3 (もしあれば) を #1 #2 #3 から置き換えます。</p>
+        <p>#1, #2 and #3に加えて, #0は、すべての引数になります。(#3は含まず)。#UはサイトのURLです。</p>
+        <p>Example 1: リンクを作れます。<b>&lt;a href="http://path.to.somewhere/#1"&gt;#2&lt;/a&gt;</b>  <b>[tag:foo This is a link]</b>  <b>&lt;a href="http://path.to.somewhere/foo"&gt;リンク&lt;/a&gt;</b></p>
         
+        <p>Example 2 (閉じタグ付き): <b>&lt;#1&gt;#3&lt;/#1&gt;</b> 閉じタグ<b>[tag:h1]ヘッダータイトル[/tag]</b> <b>&lt;h1&gt;This is a Heading&lt;/h1&gt;</b></p>
         
         ',
 
