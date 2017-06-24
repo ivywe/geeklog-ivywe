@@ -99,7 +99,7 @@ function DIR_topicList($dir_topic = 'all', $year = 0, $month = 0)
     $retval = '<form class="floatright" action="'
         . $_CONF['site_url'] . '/' . THIS_SCRIPT
         . '" method="get" style="margin: 0;"><div>' . PHP_EOL
-        . '<select class="uk-select" name="topic" onchange="this.form.submit()">' . PHP_EOL
+        . '<select name="topic" onchange="this.form.submit()">' . PHP_EOL
         . TOPIC_getTopicListSelect($dir_topic, 2, true) . PHP_EOL
         . '</select>' . PHP_EOL
         . '<input type="hidden" name="year" value="' . $year . '"' . XHTML . '>' . PHP_EOL

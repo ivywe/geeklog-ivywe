@@ -8,7 +8,7 @@
  *
  */
 
-if (stripos($_SERVER['PHP_SELF'], 'siteconfig.php') !== false) {
+if (strpos(strtolower($_SERVER['PHP_SELF']), 'siteconfig.php') !== false) {
     die('This file can not be used on its own!');
 }
 
@@ -41,12 +41,14 @@ $_CONF['default_charset'] = 'utf-8';
 
 $_CONF_FCK['imagelibrary'] = '/images/library';
 
+
 // Useful Stuff
 
 if (!defined('LB')) {
   define('LB',"\n");
 }
-
 if (!defined('VERSION')) {
-  define('VERSION', '2.1.2');
+  define('VERSION', '2.1.3');
 }
+
+?>
