@@ -34,11 +34,11 @@
       </dd>
 
       <dt class="title"><label for="commentform-title">{lang_title}</label></dt>
-      <dd class="title"><input type="text" class="uk-input" value="{title}" maxlength="96" name="title" id="commentform-title" class="size6"{xhtml}></dd>
+      <dd class="title"><input type="text" value="{title}" maxlength="96" name="title" id="commentform-title" class="size6"{xhtml}></dd>
 
       <dt><label for="commentform-postmode">{lang_postmode}</label></dt>
       <dd>
-        <select class="uk-select" name="postmode" id="commentform-postmode">
+        <select name="postmode" id="commentform-postmode">
           {postmode_options}
         </select>
       </dd>

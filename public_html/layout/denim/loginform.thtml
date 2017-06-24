@@ -7,7 +7,7 @@
     <div class="loginform">
       <div class="form_part">
         <label for="loginform-loginname" style="display:none">{lang_username}</label>
-        <input type="text" class="uk-input" value="" name="loginname" id="loginform-loginname" class="size2" placeholder="{lang_username}"{xhtml}>
+        <input type="text" value="" name="loginname" id="loginform-loginname" class="size2" placeholder="{lang_username}"{xhtml}>
       </div>
 
       {services}
