@@ -1,8 +1,8 @@
 {# start {templatelocation} #}
 
 <form action="{site_admin_url}/syndication.php" method="post" id="admin-selecttype" class="uk-form">
-  <fieldset class="uk-fieldset">
-    <legend class="uk-legend">{lang_go}</legend>
+  <fieldset>
+    <legend>{lang_go}</legend>
 
     <p class="form_message">{lang_explain}</p>
 

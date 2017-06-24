@@ -2,16 +2,17 @@
 
 <article class="storytext archivestorytext">
   <header>
-    <h1 class=" class="uk-article-title  uk-clearfix" itemprop="headline">{start_storylink_anchortag}{story_title}{end_storylink_anchortag}</h1>
+    <h2 class="story_title" itemprop="headline">{story_title_link}</h2>
 
-    <div class="uk-float-right">
-      {!if email_icon}<a title="{lang_email_story}" href="{email_story_url}" class="uk-icon-button" uk-icon="icon: mail"></a>{!endif}
-      {!if print_icon}<a title="{lang_print_story}" href="{print_story_url}" class="uk-icon-button" uk-icon="icon: copy"></a>{!endif}
-      {!if edit_icon}<a title="{lang_edit_text}" href="{edit_url}" class="uk-icon-button" uk-icon="file-edit"></a>{!endif}    </div>
+    <div class="story_icon">
+      {!if email_icon}<a title="{lang_email_story}" href="{email_story_url}" class="uk-icon-hover uk-icon-envelope-o"></a>{!endif}
+      {!if print_icon}<a title="{lang_print_story}" href="{print_story_url}" class="uk-icon-hover uk-icon-print"></a>{!endif}
+      {!if edit_icon}<a title="{lang_edit_text}" href="{edit_url}" class="uk-icon-hover uk-icon-pencil"></a>{!endif}
+    </div>
 
-    <ul class="uk-subnav uk-flex-inline uk-flex-center uk-article-meta">
-      <li class="uk-first-column">{story_date}</li>
-      <li>{start_contributedby_anchortag}{lang_contributed_by} <span itemprop="author" itemscope itemtype="http://schema.org/Person">{contributedby_author}</span>{end_contributedby_anchortag}</li>
+    <ul class="story_status">
+      <li itemprop="datePublished">{story_date}</li>
+      <li>{lang_contributed_by} {start_contributedby_anchortag}<span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{contributedby_author}</span></span>{end_contributedby_anchortag}</li>
       <li>{lang_views} {story_hits}</li>
     </ul>
   </header>
@@ -47,5 +48,29 @@
   </footer>
 {!endif}
 </article>
+
+<!-- BEGIN image_noalign -->
+{!if link_url}
+<a href="{link_url}" title="{link_title}" class="uk-thumbnail" data-uk-lightbox><img {sizeAttributes} src="{imgSrc}" alt=""{XHTML}></a>
+{!else}
+<div class="uk-thumbnail"><img {sizeAttributes} src="{imgSrc}" alt=""{XHTML}></div>
+{!endif}
+<!-- END image_noalign -->
+
+<!-- BEGIN image_leftalign -->
+{!if link_url}
+<a href="{link_url}" title="{link_title}" class="uk-thumbnail uk-align-left" data-uk-lightbox><img {sizeAttributes} src="{imgSrc}" alt=""{XHTML}></a>
+{!else}
+<div class="uk-thumbnail uk-align-left"><img {sizeAttributes} src="{imgSrc}" alt=""{XHTML}></div>
+{!endif}
+<!-- END image_leftalign -->
+
+<!-- BEGIN image_rightalign -->
+{!if link_url}
+<a href="{link_url}" title="{link_title}" class="uk-thumbnail uk-align-right" data-uk-lightbox><img {sizeAttributes} src="{imgSrc}" alt=""{XHTML}></a>
+{!else}
+<div class="uk-thumbnail uk-align-right"><img {sizeAttributes} src="{imgSrc}" alt=""{XHTML}></div>
+{!endif}
+<!-- END image_rightalign -->
 
 {# end {templatelocation} #}

@@ -11,7 +11,7 @@
     <div id="config_menu">
         <section id="search-configuration-container" class="uk-form" role="search">
             <h2 class="block-title" id="desc-search-configuration">{search_configuration_label}</h2>
-            <input class="uk-input" name="search-configuration" id="search-configuration" type="text" value="{search_configuration_value}" aria-describedby="desc-search-configuration"{xhtml}>
+            <input name="search-configuration" id="search-configuration" type="text" value="{search_configuration_value}" aria-describedby="desc-search-configuration"{xhtml}>
             <input name="tab-id" id="tab-id" type="hidden" value="{tab_id_value}"{xhtml}>
         </section>
         {config_menu}
@@ -55,8 +55,8 @@
 
                 </div>
                 <div id="bottom_buttons" class="aligncenter">
-                    <input type="submit" class="uk-button uk-button-primary" id="save_changes" value="{lang_save_changes}"{xhtml}>
-                    <input type="submit" class="uk-button" id="form_reset" name="form_reset" value="{lang_reset_form}"{xhtml}>
+                    <input type="submit" id="save_changes" value="{lang_save_changes}"{xhtml}>
+                    <input type="submit" id="form_reset" name="form_reset" value="{lang_reset_form}"{xhtml}>
                 </div>
             </form>
         </div>

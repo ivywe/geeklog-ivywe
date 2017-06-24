@@ -1,7 +1,7 @@
 {# start {templatelocation} #}
 
-<fieldset class="uk-fieldset">
-  <legend class="uk-legend">{lang_boxes_title}</legend>
+<fieldset>
+  <legend>{lang_boxes_title}</legend>
 
   <div class="linear">
     <div class="profile_notes uk-panel uk-panel-box">
@@ -16,7 +16,7 @@
   <div class="compact">
     <dl class="form_block">
       <dt><label>{lang_blocks}</label></dt>
-      <dd>{boxes_checklist}</dd>
+      <dd><div id="exclude_blocks" class="uk-scrollable-box">{boxes_checklist}</div></dd>
     </dl>
   </div>
 </fieldset>
