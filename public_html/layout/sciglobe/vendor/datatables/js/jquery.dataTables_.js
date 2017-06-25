@@ -4156,7 +4156,7 @@
 		var language = settings.oLanguage;
 		var previousSearch = settings.oPreviousSearch;
 		var features = settings.aanFeatures;
-		var input = '<select onChange="this.form.submit()"><option value="-">--- select maker ---</option><option value="thermofisher">Thermo Fisher</option><option value="perkinelmer">Perkin Elmer</option><option value="leco">LECO</option><option value="erkinelmer">elementar</option><option value="ce440">CE440</option><option value="pe2400">PE2400</select>';
+		var input = '<select class="uk-select" onChange="this.form.submit()"><option value="-">--- select maker ---</option><option value="thermofisher">Thermo Fisher</option><option value="perkinelmer">Perkin Elmer</option><option value="leco">LECO</option><option value="erkinelmer">elementar</option><option value="ce440">CE440</option><option value="pe2400">PE2400</select>';
 	
 		var str = language.sSearch;
 		str = str.match(/_INPUT_/) ?

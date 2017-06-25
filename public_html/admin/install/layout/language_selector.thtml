@@ -3,7 +3,7 @@
         <input type="hidden" name="{! item.name !}" value="{! item.value !}">
     {% endfor %}
 
-    {{ LANG.INSTALL.86 }}: <select name="language">
+    {{ LANG.INSTALL.86 }}: <select class="uk-select" name="language">
         {% for language in languages %}
             <option value="{! language.value !}"{{ language.selected }}>
                 {! language.text !}

@@ -272,7 +272,7 @@ function CUSTOM_userEdit($uid)
 
     $var = "Value from custom table";
     $cookietimeout = DB_getitem($_TABLES['users'], 'cookietimeout', $uid);
-    $selection = '<select class="uk-select" name="cooktime">' . LB;
+    $selection = '<select class="uk-select uk-form-width-small" class="uk-select" name="cooktime">' . LB;
     $selection .= COM_optionList($_TABLES['cookiecodes'], 'cc_value,cc_descr', $cookietimeout, 0);
     $selection .= '</select>';
     $retval .= '<tr>

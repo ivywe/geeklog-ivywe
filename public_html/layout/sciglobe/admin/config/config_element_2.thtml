@@ -71,7 +71,7 @@
 <!-- BEGIN keyed-add-button -->
 <div id="add_{id_name}" class="config_name">
 <input type="button" value="{lang_add_element}" class="add_ele_input" onclick="handleAdd(this, '{array_type}', '{arr_name}')"{xhtml}>
-<input type="text" class="uk-input" style="width: 65px"{xhtml}>
+<input type="text" class="uk-input uk-form-width-medium" style="width: 65px"{xhtml}>
 </div>
 <!-- END keyed-add-button -->
 

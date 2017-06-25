@@ -33,7 +33,7 @@
              <span{hidewhenediting}>[<a href="{action_url}" rel="nofollow" class="logoutorcreateaccount">{lang_logoutorcreateaccount}</a>]</span>
           </dd>
           <dt class="title"><label for="commentform-title">{lang_title}</label></dt>
-          <dd class="title"><input type="text" class="uk-input" value="{title}" maxlength="96" name="title" id="commentform-title" class="uk-input uk-form-width-medium"{xhtml}></dd>
+          <dd class="title"><input type="text" class="uk-input uk-form-width-medium" value="{title}" maxlength="96" name="title" id="commentform-title" class="uk-input uk-form-width-medium"{xhtml}></dd>
 
           <dt><label for="sel_editmode">{lang_postmode}</label></dt>
           <dd>

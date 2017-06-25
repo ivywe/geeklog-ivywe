@@ -22,7 +22,7 @@
       <dl class="form_block">
         {username_option}
         <dt><label for="profile-fullname">{lang_fullname}</label></dt>
-        <dd><input type="text" class="uk-input" maxlength="80" value="{fullname_value}" name="fullname" id="profile-fullname" class="uk-input uk-form-width-large"{xhtml}></dd>
+        <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="80" value="{fullname_value}" name="fullname" id="profile-fullname" class="uk-input uk-form-width-large"{xhtml}></dd>
       </dl>
     </div>
   </fieldset>
@@ -51,11 +51,11 @@
         <dd>{cooktime_selector}</dd>
 
         <dt><label for="profile-email">{lang_email}</label></dt>
-        <dd><input type="text" class="uk-input" maxlength="96" value="{email_value}" name="email" id="profile-email" class="uk-input uk-form-width-medium" aria-describedby="desc-profile-email"{xhtml}></dd>
+        <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="96" value="{email_value}" name="email" id="profile-email" class="uk-input uk-form-width-medium" aria-describedby="desc-profile-email"{xhtml}></dd>
         <dd class="description" id="desc-profile-email">{lang_email_text}</dd>
 
         <dt><label for="profile-email_conf">{lang_email_conf}</label></dt>
-        <dd><input type="text" class="uk-input" maxlength="96" value="{email_value}" name="email_conf" id="profile-email_conf" class="uk-input uk-form-width-medium"{xhtml}></dd>
+        <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="96" value="{email_value}" name="email_conf" id="profile-email_conf" class="uk-input uk-form-width-medium"{xhtml}></dd>
 
         {current_password_option}
       </dl>
@@ -81,11 +81,11 @@
     <div class="compact">
       <dl class="form_block">
         <dt><label for="profile-homepage">{lang_homepage}</label></dt>
-        <dd><input type="text" class="uk-input" maxlength="96" value="{homepage_value}" name="homepage" id="profile-homepage" class="uk-input uk-form-width-large"  aria-describedby="desc-profile-homepage"{xhtml}></dd>
+        <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="96" value="{homepage_value}" name="homepage" id="profile-homepage" class="uk-input uk-form-width-large"  aria-describedby="desc-profile-homepage"{xhtml}></dd>
         <dd class="description" id="desc-profile-homepage">{lang_homepage_text}</dd>
 
         <dt><label for="profile-location">{lang_location}</label></dt>
-        <dd><input type="text" class="uk-input" maxlength="96" value="{location_value}" name="location" id="profile-location" class="uk-input uk-form-width-large" aria-describedby="desc-profile-location"{xhtml}></dd>
+        <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="96" value="{location_value}" name="location" id="profile-location" class="uk-input uk-form-width-large" aria-describedby="desc-profile-location"{xhtml}></dd>
         <dd class="description" id="desc-profile-location">{lang_location_text}</dd>
 
         {userphoto_option}

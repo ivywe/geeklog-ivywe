@@ -70,7 +70,7 @@ $display = COM_startBlock($LANG_LOGVIEW['log_viewer'], '', COM_getBlockTemplate(
 
 $display .= '<form method="post" action="' . $_CONF['site_admin_url'] . '/logviewer.php" class="uk-form"><div>'
     . $LANG_LOGVIEW['logs'] . ':&nbsp;&nbsp;&nbsp;'
-    . '<select name="log">';
+    . '<select class="uk-select" name="log">';
 
 foreach (glob($_CONF['path_log'] . '*.log') as $file) {
     $file = basename($file);

@@ -3042,7 +3042,7 @@
       if (prefix) {
         raw += '<span style="font-family: monospace">' + prefix + '</span>';
       }
-      raw += '<input type="text"/> ' +
+      raw += '<input type="text" class="uk-input uk-form-width-medium"/> ' +
           '<span style="color: #888">';
       if (desc) {
         raw += '<span style="color: #888">';

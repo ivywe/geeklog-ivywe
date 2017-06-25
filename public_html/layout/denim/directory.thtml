@@ -4,7 +4,7 @@
 {blockheader}
 <form class="floatright uk-form" action="{url}" method="get" style="margin:0">
   <div>
-    <select name="topic" onchange="this.form.submit()">
+    <select class="uk-select" name="topic" onchange="this.form.submit()">
     {topic_list}
     </select>
     <input type="hidden" name="year" value="{val_year}"{xhtml}>

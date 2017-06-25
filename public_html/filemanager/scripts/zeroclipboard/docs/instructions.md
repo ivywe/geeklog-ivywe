@@ -134,7 +134,7 @@ Setting the clipboard text can be done in 4 ways:
   <button id="my-button_textarea" data-clipboard-target="clipboard_textarea">Copy to Clipboard</button>
   <button id="my-button_pre" data-clipboard-target="clipboard_pre">Copy to Clipboard</button>
 
-  <input type="text" class="uk-input" id="clipboard_text" value="Clipboard Text"/>
+  <input type="text" class="uk-input uk-form-width-medium" id="clipboard_text" value="Clipboard Text"/>
   <textarea class="uk-textarea" id="clipboard_textarea">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
   tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
   quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo

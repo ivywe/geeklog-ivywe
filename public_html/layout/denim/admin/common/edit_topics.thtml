@@ -8,21 +8,21 @@
 </div>
 <div id="panel_topic_options" style="vertical-align:top;width:38%;display:inline-block;{topic_hide}">
     <div style="vertical-align:top;">{lang_assigned}:</div>
-    <select name="tid[]" multiple="multiple" class="multiple" size="4" id="tid" style="width:98%;">
+    <select class="uk-select" name="tid[]" multiple="multiple" class="multiple" size="4" id="tid" style="width:98%;">
         {topic_options}
     </select>
 </div>
 <div id="panel_inherit_options" style="vertical-align:top;width:28%;display:inline-block;{inherit_hide}">
     <input type="hidden" name="topic_inherit_hide" value="{topic_inherit_hide}"{xhtml}>
     <div style="vertical-align:top;" id="desc-inherit_tid">{lang_inherit}:</div>
-    <select name="inherit_tid[]" multiple="multiple" class="multiple" size="4" id="inherit_tid" style="width:98%;" aria-describedby="desc-inherit_tid">
+    <select class="uk-select" name="inherit_tid[]" multiple="multiple" class="multiple" size="4" id="inherit_tid" style="width:98%;" aria-describedby="desc-inherit_tid">
         {inherit_options}
     </select>
 </div>
 <div id="panel_default_options" style="vertical-align:top;width:28%;display:inline-block;{default_hide}">
     <input type="hidden" name="topic_default_hide" value="{topic_default_hide}"{xhtml}>
     <div style="vertical-align:top;" id="desc-default_tid">{lang_default}:</div>
-    <select name="default_tid" id="default_tid" style="width:98%;" aria-describedby="desc-default_tid">
+    <select class="uk-select" name="default_tid" id="default_tid" style="width:98%;" aria-describedby="desc-default_tid">
         {default_options}
     </select>
 </div>

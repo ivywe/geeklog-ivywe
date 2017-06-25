@@ -24,7 +24,7 @@
       {password_option}
 
       <dt><label for="admin-edituser-email">{lang_emailaddress}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="255" value="{user_email}" name="email" id="admin-edituser-email"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-large" maxlength="255" value="{user_email}" name="email" id="admin-edituser-email"{xhtml}></dd>
 
       <dt><label for="admin-edituser-homepage">{lang_homepage}</label></dt>
       <dd><input type="text" class="uk-inputuk-form-width-medium" maxlength="255" value="{user_homepage}" name="homepage" id="admin-edituser-homepage"{xhtml}></dd>

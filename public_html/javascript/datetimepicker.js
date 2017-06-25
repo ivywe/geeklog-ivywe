@@ -166,7 +166,7 @@ geeklog.datetimepicker = {
         inputId = selectorName + '_value_hidden';
 
         $("select[name='" + selectorName + "_month']")
-            .before('<input type="text" class="uk-input" id="' + inputId + '" style="display:none;" value=""' + geeklog.xhtml + '>&nbsp;');
+            .before('<input type="text" class="uk-input uk-form-width-medium" id="' + inputId + '" style="display:none;" value=""' + geeklog.xhtml + '>&nbsp;');
 
         // Attaches a datetimepicker to the input field
         $('#' + inputId).datetimepicker(this.options);

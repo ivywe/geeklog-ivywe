@@ -807,16 +807,16 @@ class Precheck
 				. '</p>' . LB
 				. '<p><label class="lbl right">' . PRECHECK_str('db_host')
 				. ':</label>&nbsp;'
-				. '<input type="text" class="uk-input" id="db_host" name="db_host" size="30" maxlength="30" value="localhost" /></p>' . LB
+				. '<input type="text" class="uk-input uk-form-width-medium" id="db_host" name="db_host" size="30" maxlength="30" value="localhost" /></p>' . LB
 				. '<p><label class="lbl right">' . PRECHECK_str('db_user')
 				. ':</label>&nbsp;'
-				. '<input type="text" class="uk-input" id="db_user" name="db_user" size="30" maxlength="30" /></p>' . LB
+				. '<input type="text" class="uk-input uk-form-width-medium" id="db_user" name="db_user" size="30" maxlength="30" /></p>' . LB
 				. '<p><label class="lbl right">' . PRECHECK_str('db_pass')
 				. ':</label>&nbsp;'
 				. '<input type="password" id="db_pass" name="db_pass" size="30" maxlength="30" /></p>' . LB
 				. '<p><label class="lbl right">' . PRECHECK_str('db_name')
 				. ':</label>&nbsp;'
-				. '<input type="text" class="uk-input" id="db_name_input" name="db_name" size="30" maxlength="30" />'
+				. '<input type="text" class="uk-input uk-form-width-medium" id="db_name_input" name="db_name" size="30" maxlength="30" />'
 				. '<select class="uk-select" id="db_name" name="db_name" class="none">'
 				. '<option>--</option>'
 				. '</select></p>'
@@ -828,7 +828,7 @@ class Precheck
 				. '</span></p>' . LB
 				. '<p><label class="lbl right">' . PRECHECK_str('db_prefix')
 				. ':</label>&nbsp;'
-				. '<input type="text" class="uk-input" id="db_prefix" name="db_prefix" size="30" maxlength="30" value="gl_" /></p>' . LB
+				. '<input type="text" class="uk-input uk-form-width-medium" id="db_prefix" name="db_prefix" size="30" maxlength="30" value="gl_" /></p>' . LB
 				. '<p>'
 				. '<label class="lbl right">'
 				. PRECHECK_str('use_utf8')

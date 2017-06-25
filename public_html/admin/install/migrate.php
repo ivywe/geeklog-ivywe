@@ -323,12 +323,12 @@ if (INST_phpOutOfDate()) {
             . '<p><label class="' . $form_label_dir . '">' . $LANG_INSTALL[34] . ' ' . INST_helpLink('db_type') . '</label> <select class="uk-select" name="db[type]">' . LB
                 . '<option value="mysql">' . $LANG_INSTALL[35] . '</option>' . LB
             . '</select></p>' . LB
-            . '<p><label class="' . $form_label_dir . '">' . $LANG_INSTALL[39] . ' ' . INST_helpLink('db_host') . '</label> <input type="text" class="uk-input" name="db[host]" value="' . $_FORM['host'] .'" size="20"' . XHTML . '></p>' . LB
-            . '<p><label class="' . $form_label_dir . '">' . $LANG_INSTALL[40] . ' ' . INST_helpLink('db_name') . '</label> <input type="text" class="uk-input" name="db[name]" value="' . $_FORM['name'] . '" size="20"' . XHTML . '></p>' . LB
-            . '<p><label class="' . $form_label_dir . '">' . $LANG_INSTALL[41] . ' ' . INST_helpLink('db_user') . '</label> <input type="text" class="uk-input" name="db[user]" value="' . $_FORM['user'] . '" size="20"' . XHTML . '></p>' . LB
+            . '<p><label class="' . $form_label_dir . '">' . $LANG_INSTALL[39] . ' ' . INST_helpLink('db_host') . '</label> <input type="text" class="uk-input uk-form-width-medium" name="db[host]" value="' . $_FORM['host'] .'" size="20"' . XHTML . '></p>' . LB
+            . '<p><label class="' . $form_label_dir . '">' . $LANG_INSTALL[40] . ' ' . INST_helpLink('db_name') . '</label> <input type="text" class="uk-input uk-form-width-medium" name="db[name]" value="' . $_FORM['name'] . '" size="20"' . XHTML . '></p>' . LB
+            . '<p><label class="' . $form_label_dir . '">' . $LANG_INSTALL[41] . ' ' . INST_helpLink('db_user') . '</label> <input type="text" class="uk-input uk-form-width-medium" name="db[user]" value="' . $_FORM['user'] . '" size="20"' . XHTML . '></p>' . LB
             . '<p><label class="' . $form_label_dir . '">' . $LANG_INSTALL[42] . ' ' . INST_helpLink('db_pass') . '</label> <input type="password" name="db[pass]" value="' . $_FORM['pass'] . '" size="20"' . XHTML . '></p>' . LB
-            . '<p><label class="' . $form_label_dir . '">' . $LANG_INSTALL[45] . ' ' . INST_helpLink('site_url') . '</label> <input type="text" class="uk-input" name="site_url" value="' . htmlspecialchars($site_url) . '" size="50"' . XHTML . '>  &nbsp; ' . $LANG_INSTALL[46] . '</p>' . LB
-            . '<p><label class="' . $form_label_dir . '">' . $LANG_INSTALL[47] . ' ' . INST_helpLink('site_admin_url') . '</label> <input type="text" class="uk-input" name="site_admin_url" value="' . htmlspecialchars($site_admin_url) . '" size="50"' . XHTML . '>  &nbsp; ' . $LANG_INSTALL[46] . '</p>' . LB;
+            . '<p><label class="' . $form_label_dir . '">' . $LANG_INSTALL[45] . ' ' . INST_helpLink('site_url') . '</label> <input type="text" class="uk-input uk-form-width-medium" name="site_url" value="' . htmlspecialchars($site_url) . '" size="50"' . XHTML . '>  &nbsp; ' . $LANG_INSTALL[46] . '</p>' . LB
+            . '<p><label class="' . $form_label_dir . '">' . $LANG_INSTALL[47] . ' ' . INST_helpLink('site_admin_url') . '</label> <input type="text" class="uk-input uk-form-width-medium" name="site_admin_url" value="' . htmlspecialchars($site_admin_url) . '" size="50"' . XHTML . '>  &nbsp; ' . $LANG_INSTALL[46] . '</p>' . LB;
 
         // Identify the backup files in backups/ and order them newest to oldest
         $backup_files = array();

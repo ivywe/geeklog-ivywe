@@ -146,7 +146,7 @@ var callback = {
 	},
 	
 	/**
-	* Change <input type="text"> element into <select>
+	* Change <input type="text" class="uk-input uk-form-width-medium"> element into <select>
 	*/
 	modifyDbnameField: function() {
 		var db_name_parent, select, db_name_warning;

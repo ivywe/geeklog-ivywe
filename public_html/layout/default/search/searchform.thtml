@@ -8,13 +8,13 @@
     <dl class="form_block">
       <dt><label for="advsearchform-query">{lang_keywords}</label></dt>
       <dd>
-        <input type="text" class="uk-input" maxlength="35" value="{query}" name="query" id="advsearchform-query" class="uk-input uk-form-width-small"{xhtml}>
+        <input type="text" class="uk-input uk-form-width-medium" maxlength="35" value="{query}" name="query" id="advsearchform-query" class="uk-input uk-form-width-small"{xhtml}>
         <select class="uk-select uk-form-width-small" name="keyType" title="{lang_keytype}" id="advsearchform-keyType">
           <option value="phrase" {key_phrase_selected}>{lang_exact_phrase}</option>
           <option value="all" {key_all_selected}>{lang_all_words}</option>
           <option value="any" {key_any_selected}>{lang_any_word}</option>
         </select>
-        <label><input type="checkbox" class="uk-checkbox" class="uk-checkbox"  value="true" name="title"{title_checked}{xhtml}>{lang_titles}</label>
+        <label><input type="checkbox" class="uk-checkbox"  value="true" name="title"{title_checked}{xhtml}>{lang_titles}</label>
       </dd>
 
       <dt><label for="advsearchform-datestart">{lang_date}</label></dt>

@@ -26,7 +26,7 @@
         <dd class="controls_text">{topic_selection}</dd>
 
         <dt><label for="sp-editor-sp_format">{lang_pageformat}</label></dt>
-        <dd><select name="sp_format" class="uk-select" id="sp-editor-sp_format">
+        <dd><select class="uk-select uk-form-width-small" name="sp_format" class="uk-select" id="sp-editor-sp_format">
               <option value="blankpage" {blankpage_selected}>{lang_blankpage}</option>
               <option value="noblocks" {noblock_selected}>{lang_noblocks}</option>
               <option value="leftblocks" {leftblocks_selected}>{lang_leftblocks}</option>
@@ -34,7 +34,7 @@
             </select></dd>
 
         <dt><label for="sp-editor-commentcode">{lang_mode}</label></dt>
-        <dd><select name="commentcode" class="uk-select" id="sp-editor-commentcode">
+        <dd><select class="uk-select uk-form-width-small" name="commentcode" class="uk-select" id="sp-editor-commentcode">
               {comment_options}
             </select></dd>
 
@@ -94,7 +94,7 @@
         <dd class="controls_text"><input type="checkbox" class="uk-checkbox" name="sp_inblock" id="sp-editor-sp_inblock" {inblock_checked}{xhtml}>&nbsp;&nbsp;{inblock_info}</dd>
 
         <dt><label for="sp-editor-sp_help">{lang_centerblock_help}</label></dt>
-        <dd><input type="text" class="uk-input" name="sp_help" value="{centerblock_help}" id="sp-editor-sp_help" class="size5"{xhtml}>&nbsp;{lang_centerblock_include}
+        <dd><input type="text" class="uk-input uk-form-width-medium" name="sp_help" value="{centerblock_help}" id="sp-editor-sp_help" class="size5"{xhtml}>&nbsp;{lang_centerblock_include}
             <br{xhtml}>{lang_centerblock_desc}</dd>
 
         <dt><label>{php_msg}</label></dt>

@@ -476,7 +476,7 @@ function printrights($grp_id = '', $core = 0)
             $ftcount++;
 
             $retval .= '<td class="' . $pluginRow . '">'
-                . '<input type="checkbox" id="' . $id . '" name="features[]" value="'
+                . '<input type="checkbox" class="uk-checkbox" id="' . $id . '" name="features[]" value="'
                 . $A['ft_id'] . '"';
             if (!empty($grpftarray[$A['ft_name']])) {
                 if ($grpftarray[$A['ft_name']] == 'direct') {
@@ -496,7 +496,7 @@ function printrights($grp_id = '', $core = 0)
                 $ftcount++;
 
                 $retval .= '<td class="' . $pluginRow . '">'
-                    . '<input type="checkbox" checked="checked" '
+                    . '<input type="checkbox" class="uk-checkbox" checked="checked" '
                     . 'disabled="disabled"' . XHTML . '>'
                     . '<input type="hidden" name="features[]" value="'
                     . $A['ft_id'] . '"' . XHTML . '>'

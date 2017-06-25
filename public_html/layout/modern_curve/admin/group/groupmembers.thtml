@@ -8,7 +8,7 @@
     <dl class="sitemembers">
       <dt><label for="admin-groupmembers-fieldFrom">{LANG_sitemembers}</label></dt>
       <dd>
-        <select multiple="multiple" size="10" onDblClick="moveSelectedOptions(this.form['fieldFrom'],this.form['fieldTo'],false)" name="fieldFrom" id="admin-groupmembers-fieldFrom">
+        <select class="uk-select" multiple="multiple" size="10" onDblClick="moveSelectedOptions(this.form['fieldFrom'],this.form['fieldTo'],false)" name="fieldFrom" id="admin-groupmembers-fieldFrom">
           {sitemembers}
         </select>
       </dd>
@@ -22,7 +22,7 @@
     <dl class="grpmembers">
       <dt><label for="admin-groupmembers-fieldTo">{LANG_grpmembers}</label></dt>
       <dd>
-        <select multiple="multiple" size="10" onDblClick="moveSelectedOptions(this.form['fieldTo'],this.form['fieldFrom'],false)" name="fieldTo" id="admin-groupmembers-fieldTo">
+        <select class="uk-select" multiple="multiple" size="10" onDblClick="moveSelectedOptions(this.form['fieldTo'],this.form['fieldFrom'],false)" name="fieldTo" id="admin-groupmembers-fieldTo">
           {group_list}
         </select>
       </dd>

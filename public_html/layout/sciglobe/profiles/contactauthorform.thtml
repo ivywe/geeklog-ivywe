@@ -9,16 +9,16 @@
         <dd>{story_link}</dd>
 
         <dt><label for="contactauthorform-from">{lang_fromname}</label></dt>
-        <dd><input type="text" class="uk-input" maxlength="96" value="{name}" name="from" id="contactauthorform-from" class="uk-input uk-form-width-medium"{xhtml}></dd>
+        <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="96" value="{name}" name="from" id="contactauthorform-from" class="uk-input uk-form-width-medium"{xhtml}></dd>
 
         <dt><label for="contactauthorform-fromemail">{lang_fromemailaddress}</label></dt>
-        <dd><input type="text" class="uk-input" maxlength="96" value="{email}" name="fromemail" id="contactauthorform-fromemail" class="uk-input uk-form-width-medium"{xhtml}></dd>
+        <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="96" value="{email}" name="fromemail" id="contactauthorform-fromemail" class="uk-input uk-form-width-medium"{xhtml}></dd>
 
         <dt><label for="contactauthorform-to">{lang_toname}</label></dt>
-        <dd><input type="text" class="uk-input" maxlength="96" value="{toname}" name="to" id="contactauthorform-to" class="uk-input uk-form-width-medium"{xhtml}></dd>
+        <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="96" value="{toname}" name="to" id="contactauthorform-to" class="uk-input uk-form-width-medium"{xhtml}></dd>
 
         <dt><label for="contactauthorform-toemail">{lang_toemailaddress}</label></dt>
-        <dd><input type="text" class="uk-input" maxlength="96" value="{toemail}" name="toemail" id="contactauthorform-toemail" class="uk-input uk-form-width-medium"{xhtml}></dd>
+        <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="96" value="{toemail}" name="toemail" id="contactauthorform-toemail" class="uk-input uk-form-width-medium"{xhtml}></dd>
 
         <dt><label for="contactauthorform-shortmsg">{lang_shortmessage}</label></dt>
         <dd><textarea class="uk-textarea" rows="8" cols="50" name="shortmsg" id="contactauthorform-shortmsg" class="wide">{shortmsg}</textarea></dd>

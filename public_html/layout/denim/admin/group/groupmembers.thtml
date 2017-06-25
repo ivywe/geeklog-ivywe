@@ -7,7 +7,7 @@
   <div class="admin_basic clearfix" style="height:300px">
     <div class="listmembers">
       <div class="aligncenter"><label for="admin-groupmembers-fieldFrom">{LANG_sitemembers}</label></div>
-      <select multiple="multiple" ondblclick="moveSelectedOptions(this.form['fieldFrom'],this.form['fieldTo'],false)" name="fieldFrom" id="admin-groupmembers-fieldFrom" style="height:250px">
+      <select class="uk-select" multiple="multiple" ondblclick="moveSelectedOptions(this.form['fieldFrom'],this.form['fieldTo'],false)" name="fieldFrom" id="admin-groupmembers-fieldFrom" style="height:250px">
         {sitemembers}
       </select>
     </div>
@@ -19,7 +19,7 @@
 
     <div class="listmembers">
       <div class="aligncenter"><label for="admin-groupmembers-fieldTo">{LANG_grpmembers}</label></div>
-      <select multiple="multiple" ondblclick="moveSelectedOptions(this.form['fieldTo'],this.form['fieldFrom'],false)" name="fieldTo" id="admin-groupmembers-fieldTo" style="height:250px">
+      <select class="uk-select" multiple="multiple" ondblclick="moveSelectedOptions(this.form['fieldTo'],this.form['fieldFrom'],false)" name="fieldTo" id="admin-groupmembers-fieldTo" style="height:250px">
         {group_list}
       </select>
     </div>

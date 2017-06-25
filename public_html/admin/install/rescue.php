@@ -338,7 +338,7 @@ function render($renderType, $args = array()) {
                         $res = DB_query($sql);
                         $row = DB_fetchArray($res);
                 ?>
-                        <fieldset><legend><?php echo $config; ?>:</legend><input type="text" class="uk-input" size="80" id="<?php echo $config; ?>" name="<?php echo $config; ?>" value="<?php echo unserialize($row['value']); ?>" /></fieldset>
+                        <fieldset><legend><?php echo $config; ?>:</legend><input type="text" class="uk-input uk-form-width-medium" size="80" id="<?php echo $config; ?>" name="<?php echo $config; ?>" value="<?php echo unserialize($row['value']); ?>" /></fieldset>
                 <?php
                     }
                 ?>

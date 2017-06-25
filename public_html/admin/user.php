@@ -230,7 +230,7 @@ function edituser($uid = '', $msg = '')
         } else {
             $user_templates->set_var('lang_delete_photo', $LANG28[28]);
             $user_templates->set_var('delete_photo_option',
-                '<input type="checkbox" name="delete_photo"' . XHTML . '>');
+                '<input type="checkbox" class="uk-checkbox" name="delete_photo"' . XHTML . '>');
         }
     } else {
         $user_templates->set_var('user_photo', '');
@@ -305,7 +305,7 @@ function edituser($uid = '', $msg = '')
         $statusarray[USER_ACCOUNT_AWAITING_APPROVAL] = $LANG28[44];
     }
     asort($statusarray);
-    $statusselect = '<select name="userstatus">';
+    $statusselect = '<select class="uk-select" name="userstatus">';
     foreach ($statusarray as $key => $value) {
         $statusselect .= '<option value="' . $key . '"';
         if ($key == $A['status']) {

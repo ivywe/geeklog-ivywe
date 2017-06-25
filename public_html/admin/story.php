@@ -154,7 +154,7 @@ function liststories($current_topic = '')
     }
 
     $filter = $LANG_ADMIN['topic']
-        . ': <select name="tid" style="width: 125px" onchange="this.form.submit()">'
+        . ': <select class="uk-select" name="tid" style="width: 125px" onchange="this.form.submit()">'
         . $seltopics . '</select>';
 
     $header_arr = array(
@@ -669,7 +669,7 @@ function storyeditor($sid = '', $mode = '', $errormsg = '')
     if (($_CONF['onlyrootfeatures'] == 1 && SEC_inGroup('Root'))
         or ($_CONF['onlyrootfeatures'] !== 1)
     ) {
-        $featured_options = "<select name=\"featured\">" . LB
+        $featured_options = "<select class=\"uk-select uk-form-width-medium\" name=\"featured\">" . LB
             . COM_optionList($_TABLES['featurecodes'], 'code,name', $story->EditElements('featured'))
             . "</select>" . LB;
     } else {
@@ -740,7 +740,7 @@ function storyeditor($sid = '', $mode = '', $errormsg = '')
                     . COM_createLink($I['ai_filename'],
                         $_CONF['site_url'] . '/images/articles/' . $I['ai_filename'])
                     . '&nbsp;&nbsp;&nbsp;' . $LANG_ADMIN['delete']
-                    . ': <input type="checkbox" name="delete[' . $I['ai_img_num']
+                    . ': <input type="checkbox" class="uk-checkbox" name="delete[' . $I['ai_img_num']
                     . ']"' . XHTML . '><br' . XHTML . '>';
             }
         }

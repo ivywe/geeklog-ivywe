@@ -8,13 +8,13 @@
       <dd>{groupname_static}<input type="{groupname_inputtype}" maxlength="50" value="{group_name}" name="grp_name" id="admin-groupeditor-grp_name" class="size3"{xhtml}></dd>
 
       <dt><label for="admin-groupeditor-grp_descr">{lang_description}</label></dt>
-      <dd><input type="text" maxlength="255" value="{group_description}" name="grp_descr" id="admin-groupeditor-grp_descr" class="size5"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-large" maxlength="255" value="{group_description}" name="grp_descr" id="admin-groupeditor-grp_descr" class="size5"{xhtml}></dd>
 
     </dl>
 
     <dl class="form_block" {hide_adminoption}>
       <dt>{lang_admingroup}</dt>
-      <dd class="controls_text"><label><input type="checkbox" name="chk_grpadmin" value="1" {chk_adminuse}{xhtml}>
+      <dd class="controls_text"><label><input type="checkbox" class="uk-checkbox" name="chk_grpadmin" value="1" {chk_adminuse}{xhtml}>
           <span class="fieldhelp">{lang_admingrp_msg}</span></label>
       </dd>
     </dl>
@@ -22,7 +22,7 @@
     <dl class="form_block" {hide_defaultoption}>
       <dt>{lang_defaultgroup}</dt>
       <dd class="controls_text">
-          <label><input type="checkbox" name="chk_grpdefault" id="chk1" onclick="showHide('msg1')" value="1" {chk_defaultuse}{xhtml}>
+          <label><input type="checkbox" class="uk-checkbox" name="chk_grpdefault" id="chk1" onclick="showHide('msg1')" value="1" {chk_defaultuse}{xhtml}>
           <span class="fieldhelp">{lang_defaultgrp_msg}</span></label>
       </dd>
     </dl>
@@ -31,7 +31,7 @@
       <dt></dt>
       <dd>
         <div style="display:none" id="msg1">
-          <label><input type="checkbox" name="chk_applydefault" id="chk2" value="1"{xhtml}>
+          <label><input type="checkbox" class="uk-checkbox" name="chk_applydefault" id="chk2" value="1"{xhtml}>
           <span class="fieldhelp">{lang_applydefault_msg}</span></label>
         </div>
       </dd>

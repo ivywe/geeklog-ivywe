@@ -4,7 +4,7 @@
   <div class="admin_basic">
     <dl class="form_block">
       <dt><label for="calendar-eventeditor-title">{lang_eventtitle}</label></dt>
-      <dd><input type="text" maxlength="128" name="title" value="{event_title}" id="calendar-eventeditor-title" class="size6"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-large" maxlength="128" name="title" value="{event_title}" id="calendar-eventeditor-title" class="size6"{xhtml}></dd>
 
       <dt><label for="calendar-eventeditor-event_type">{lang_eventtype}</label></dt>
       <dd><select name="event_type" id="calendar-eventeditor-event_type">
@@ -61,31 +61,31 @@
           </span></dd>
 
       <dt><label for="calendar-eventeditor-allday">{lang_alldayevent}</label></dt>
-      <dd class="controls_text"><input type="checkbox" name="allday" id="calendar-eventeditor-allday" {allday_checked}{xhtml}></dd>
+      <dd class="controls_text"><input type="checkbox" class="uk-checkbox" name="allday" id="calendar-eventeditor-allday" {allday_checked}{xhtml}></dd>
 
       <dt><label for="calendar-eventeditor-location">{lang_location}</label></dt>
-      <dd><textarea name="location" cols="45" rows="2" id="calendar-eventeditor-location" class="size6">{event_location}</textarea></dd>
+      <dd><textarea class="uk-textarea" name="location" cols="45" rows="2" id="calendar-eventeditor-location" class="size6">{event_location}</textarea></dd>
 
       <dt><label for="calendar-eventeditor-address1">{lang_addressline1}</label></dt>
-      <dd><input type="text" name="address1" value="{event_address1}" id="calendar-eventeditor-address1" class="size6"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" name="address1" value="{event_address1}" id="calendar-eventeditor-address1" class="size6"{xhtml}></dd>
 
       <dt><label for="calendar-eventeditor-address2">{lang_addressline2}</label></dt>
-      <dd><input type="text" name="address2" value="{event_address2}" id="calendar-eventeditor-address2" class="size6"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" name="address2" value="{event_address2}" id="calendar-eventeditor-address2" class="size6"{xhtml}></dd>
 
       <dt><label for="calendar-eventeditor-city">{lang_city}</label></dt>
-      <dd><input type="text" name="city"  maxlength="60" value="{event_city}" id="calendar-eventeditor-city" class="size6"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" name="city"  maxlength="60" value="{event_city}" id="calendar-eventeditor-city" class="size6"{xhtml}></dd>
 
       <dt><label for="calendar-eventeditor-state">{lang_state}</label></dt>
-      <dd><input type="text" name="state" value="{event_state}" id="calendar-eventeditor-state" class="size6"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" name="state" value="{event_state}" id="calendar-eventeditor-state" class="size6"{xhtml}></dd>
 
       <dt><label for="calendar-eventeditor-zipcode">{lang_zipcode}</label></dt>
-      <dd><input type="text" name="zipcode" maxlength="16" value="{event_zipcode}" id="calendar-eventeditor-zipcode" class="size1"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" name="zipcode" maxlength="16" value="{event_zipcode}" id="calendar-eventeditor-zipcode" class="size1"{xhtml}></dd>
 
       <dt><label for="calendar-eventeditor-url">{lang_eventurl}</label></dt>
-      <dd><input type="text" dir="ltr" name="url" maxlength="{max_url_length}" value="{event_url}" id="calendar-eventeditor-url" class="size6"{xhtml}> {lang_includehttp}</dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" dir="ltr" name="url" maxlength="{max_url_length}" value="{event_url}" id="calendar-eventeditor-url" class="size6"{xhtml}> {lang_includehttp}</dd>
 
       <dt><label for="calendar-eventeditor-description">{lang_eventdescription}</label></dt>
-      <dd><textarea name="description" cols="45" rows="8" id="calendar-eventeditor-description" class="wide">{event_description}</textarea></dd>
+      <dd><textarea class="uk-textarea" name="description" cols="45" rows="8" id="calendar-eventeditor-description" class="wide">{event_description}</textarea></dd>
 
       <dt><label for="calendar-eventeditor-postmode">{lang_postmode}</label></dt>
       <dd><select name="postmode" id="calendar-eventeditor-postmode">

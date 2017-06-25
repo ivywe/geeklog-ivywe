@@ -33,11 +33,11 @@
              <span{hidewhenediting}>[<a href="{action_url}" rel="nofollow" class="logoutorcreateaccount">{lang_logoutorcreateaccount}</a>]</span>
           </dd>
           <dt class="title"><label for="commentform-title">{lang_title}</label></dt>
-          <dd class="title"><input type="text" value="{title}" maxlength="96" name="title" id="commentform-title" class="size6"{xhtml}></dd>
+          <dd class="title"><input type="text" class="uk-input uk-form-width-medium" value="{title}" maxlength="96" name="title" id="commentform-title" class="size6"{xhtml}></dd>
 
           <dt><label for="sel_editmode">{lang_postmode}</label></dt>
           <dd>
-            <select id="sel_editmode" name="postmode" onchange="change_editmode(this);">
+            <select class="uk-select uk-form-width-small" id="sel_editmode" name="postmode" onchange="change_editmode(this);">
               {postmode_options}
             </select>
           </dd>
@@ -45,10 +45,10 @@
           <dt><label for="comment_text">{lang_comment}</label></dt>
           <dd>
             <div id="text_editor" style="display: {show_texteditor};">
-              <textarea cols="45" rows="10" name="comment" id="comment_text" class="wide" aria-describedby="desc-comment_text">{comment}</textarea>
+              <textarea class="uk-textarea" cols="45" rows="10" name="comment" id="comment_text" class="wide" aria-describedby="desc-comment_text">{comment}</textarea>
             </div>
             <div id="html_editor" style="display: {show_htmleditor};">
-              <textarea cols="45" rows="10" name="comment_html" id="comment_html" class="wide" aria-describedby="desc-comment_text">{comment}</textarea>
+              <textarea class="uk-textarea" cols="45" rows="10" name="comment_html" id="comment_html" class="wide" aria-describedby="desc-comment_text">{comment}</textarea>
             </div>
           </dd>
           <dd class="description" id="desc-comment_text">{allowed_html}</dd>

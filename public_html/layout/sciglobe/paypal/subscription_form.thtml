@@ -5,7 +5,7 @@
   <fieldset style="margin-top: 10px;"><legend><b>{informations}</b></legend>  	
 	<h2>{product_id_label} {product_id_select}</h2>	
 	<h2>{user_id_label}<font color="red">*</font> {user_select}</h2> 
-	<h2>{txn_id_label} <input type="text" class="uk-input" name="txn_id" value="{txn_id}" size="80" maxlength="255" READONLY {xhtml}></h2>
+	<h2>{txn_id_label} <input type="text" class="uk-input uk-form-width-medium" name="txn_id" value="{txn_id}" size="80" maxlength="255" READONLY {xhtml}></h2>
 	<h2>{purchase_date_label}<font color="red">*</font> <input type="text" class="uk-input uk-form-width-small" id="purchase_date" name="purchase_date" value="{purchase_date}" size="80" maxlength="80" {xhtml}></h2>
 	<h2>{expiration_label}<font color="red">*</font> <input type="text" class="uk-input uk-form-width-small" id="expiration" name="expiration" value="{expiration}" size="80" maxlength="80" {xhtml}></h2></h2>
 	<h2>{price_label} <input type="text" class="uk-input uk-form-width-small" name="price" value="{price}" size="20" maxlength="20" {xhtml}>  {currency}</h2>

@@ -25,7 +25,7 @@
       <dd class="controls_text"><label><input type="checkbox" class="uk-checkbox"  {noboxes_checked} name="noboxes" id="displayprefs-noboxes"{xhtml}>{lang_noboxes_text}</label></dd>
 
       <dt><label for="displayprefs-maxstories">{lang_maxstories}</label></dt>
-      <dd><input type="text" class="uk-input" maxlength="3" value="{maxstories_value}" name="maxstories" id="displayprefs-maxstories" class="uk-input uk-form-width-xsmall"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="3" value="{maxstories_value}" name="maxstories" id="displayprefs-maxstories" class="uk-input uk-form-width-xsmall"{xhtml}></dd>
 
       {advanced_editor_option}
 

@@ -38,7 +38,7 @@
 <!-- BEGIN select-element -->
 <div{hide_row} class="config_name"><div class="config_label">{display_name} {doc_link} {unset_link}</div>
 <input type="hidden" value="true" name="{name}[nameholder]"{xhtml}>
-<select name="{name}" class="opt{error_class}">
+<select class="uk-select" name="{name}" class="opt{error_class}">
   <!-- BEGIN select-options -->
     <option {selected} value="{opt_value}">{opt_name}</option>
   <!-- END select-options -->
@@ -71,7 +71,7 @@
 <!-- BEGIN keyed-add-button -->
 <div id="add_{id_name}" class="config_name">
 <input type="button" value="{lang_add_element}" class="add_ele_input" onclick="handleAdd(this, '{array_type}', '{arr_name}')"{xhtml}>
-<input type="text" style="width: 65px"{xhtml}>
+<input type="text" class="uk-input uk-form-width-medium" style="width: 65px"{xhtml}>
 </div>
 <!-- END keyed-add-button -->
 

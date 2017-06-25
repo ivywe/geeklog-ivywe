@@ -11,21 +11,21 @@
         <tr>
             <th style="width:30%; text-align:right" >{lang_fromname}{help_fromname}</th>
             <td style="width:70%">
-                <input type="text" class="uk-input" size="60" maxlength="160" name="fromname" value="{fromname}"{xhtml}>
+                <input type="text" class="uk-input uk-form-width-medium" size="60" maxlength="160" name="fromname" value="{fromname}"{xhtml}>
             </td>
         </tr>
         <!-- 差出人メールアドレス -->
         <tr>
             <th style="width:30%; text-align:right">{lang_replyto}{help_replyto}</th>
             <td style="width:70%">
-                <input type="text" class="uk-input" size="60" maxlength="160" name="replyto" value="{replyto}"{xhtml}>
+                <input type="text" class="uk-input uk-form-width-medium" size="60" maxlength="160" name="replyto" value="{replyto}"{xhtml}>
             </td>
         </tr>
         <!-- SUBJECT接頭子 -->
         <tr>
             <th style="width:30%; text-align:right">{lang_sprefix}{help_sprefix}</th>
             <td style="width:70%">
-                <input type="text" class="uk-input" size="60" maxlength="160" name="sprefix" value="{sprefix}"{xhtml}>
+                <input type="text" class="uk-input uk-form-width-medium" size="60" maxlength="160" name="sprefix" value="{sprefix}"{xhtml}>
             </td>
         </tr>  
         <!-- sid -->
@@ -56,7 +56,7 @@
         <tr>
             <th style="width:30%; text-align:right">{lang_testto}{help_testto}</th>
             <td style="width:70%">
-                <input type="text" class="uk-input" size="60" maxlength="160" name="testto" value="{testto}"{xhtml}>
+                <input type="text" class="uk-input uk-form-width-medium" size="60" maxlength="160" name="testto" value="{testto}"{xhtml}>
                 <input type="submit" value="{lang_testsend}" name="mode"{xhtml}>
             </td>
         </tr>
@@ -80,7 +80,7 @@
       <br{xhtml}>{user_wkymlmguser}
       <!-- オプション　ユーザの受信許可設定を無視して送る　 overstyr -->
       <br{xhtml}>
-        <input type="checkbox" class="uk-checkbox" class="uk-checkbox"  name="overstyr" value="1" {is_checked_overstyr}{xhtml}>{lang_overstyr}{help_overstyr}
+        <input type="checkbox" class="uk-checkbox"  name="overstyr" value="1" {is_checked_overstyr}{xhtml}>{lang_overstyr}{help_overstyr}
 
             </td>
         </tr>
@@ -95,8 +95,8 @@
         <tr>
             <th style="width:30%; text-align:right">{lang_sendto}{help_sendto}</th>
             <td style="width:70%">
-                {lang_uidfrom}<input type="text" class="uk-input" size="5" maxlength="160" name="uidfrom" value="{uidfrom}"{xhtml}>
-                ～{lang_uidto}<input type="text" class="uk-input" size="5" maxlength="160" name="uidto" value="{uidto}"{xhtml}>
+                {lang_uidfrom}<input type="text" class="uk-input uk-form-width-xsmall" size="5" maxlength="160" name="uidfrom" value="{uidfrom}"{xhtml}>
+                ～{lang_uidto}<input type="text" class="uk-input uk-form-width-xsmall" size="5" maxlength="160" name="uidto" value="{uidto}"{xhtml}>
         <input type="submit" value="{lang_send}" name="mode"{xhtml}>
         <br{xhtml}>{lang_sendto_remarks}
             </td>
@@ -122,8 +122,8 @@
                     {datetime_minute_options}
         </select>
         <br{xhtml}>
-                <input type="text" class="uk-input" size="12" maxlength="4" name="bulkmm" value="{bulkmm}"{xhtml}>{minute}{every}
-                <input type="text" class="uk-input" size="12" maxlength="4" name="bulkcnt" value="{bulkcnt}"{xhtml}>{increments}
+                <input type="text" class="uk-input uk-form-width-small" size="12" maxlength="4" name="bulkmm" value="{bulkmm}"{xhtml}>{minute}{every}
+                <input type="text" class="uk-input uk-form-width-small" size="12" maxlength="4" name="bulkcnt" value="{bulkcnt}"{xhtml}>{increments}
         <input type="submit" value="{lang_reserv}" name="mode"{xhtml}>
         <br{xhtml}>{lang_reserv_datetime_remarks}
             </td>

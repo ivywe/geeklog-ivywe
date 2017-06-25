@@ -23,7 +23,7 @@
       {username_option}
 
       <dt><label for="profile-fullname">{lang_fullname}</label></dt>
-      <dd><input type="text" size="60" maxlength="80" value="{fullname_value}" name="fullname" id="profile-fullname" class="text"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" size="60" maxlength="80" value="{fullname_value}" name="fullname" id="profile-fullname" class="text"{xhtml}></dd>
     </dl>
   </fieldset>
 
@@ -45,11 +45,11 @@
       <dd>{cooktime_selector}</dd>
 
       <dt><label for="profile-email">{lang_email}</label></dt>
-      <dd><input type="text" size="60" maxlength="96" value="{email_value}" name="email" id="profile-email" class="text"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" size="60" maxlength="96" value="{email_value}" name="email" id="profile-email" class="text"{xhtml}></dd>
       <dd class="description">{lang_email_text}</dd>
 
       <dt><label for="profile-email_conf">{lang_email_conf}</label></dt>
-      <dd><input type="text" size="60" maxlength="96" value="{email_value}" name="email_conf" id="profile-email_conf" class="text"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" size="60" maxlength="96" value="{email_value}" name="email_conf" id="profile-email_conf" class="text"{xhtml}></dd>
 
       {current_password_option}
 
@@ -69,11 +69,11 @@
 
     <dl>
       <dt><label for="profile-homepage">{lang_homepage}</label></dt>
-      <dd><input type="text" size="60" maxlength="96" value="{homepage_value}" name="homepage" id="profile-homepage" class="text"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" size="60" maxlength="96" value="{homepage_value}" name="homepage" id="profile-homepage" class="text"{xhtml}></dd>
       <dd class="description">{lang_homepage_text}</dd>
 
       <dt><label for="profile-location">{lang_location}</label></dt>
-      <dd><input type="text" size="60" maxlength="96" value="{location_value}" name="location" id="profile-location" class="text"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" size="60" maxlength="96" value="{location_value}" name="location" id="profile-location" class="text"{xhtml}></dd>
       <dd class="description">{lang_location_text}</dd>
 
       {userphoto_option}
@@ -118,7 +118,7 @@
 
 <!-- BEGIN display_field -->
         <dt><label for="profile-{fieldname}">{lang_field}</label></dt>
-        <dd><input type="text" maxlength="{fieldmaxlength}" value="{field}" name="{fieldname}" id="profile-{fieldname}" class="size7" aria-describedby="desc-profile-{fieldname}"{xhtml}></dd>
+        <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="{fieldmaxlength}" value="{field}" name="{fieldname}" id="profile-{fieldname}" class="size7" aria-describedby="desc-profile-{fieldname}"{xhtml}></dd>
         {!if lang_field_text}
         <dd class="description" id="desc-profile-{fieldname}">{lang_field_text}</dd>      
         {!endif}
