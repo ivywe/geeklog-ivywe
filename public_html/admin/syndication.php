@@ -322,7 +322,7 @@ function editfeed($fid = 0, $type = '')
     }
 
     $formats = find_feedFormats();
-    $selection = '<select class="uk-select" name="format">' . LB;
+    $selection = '<select class="uk-select uk-form-width-medium" name="format">' . LB;
     foreach ($formats as $f) {
         // if one changes this format below ('name-version'), also change parsing
         // in COM_createHTMLDocument. It uses explode( "-" , $string )
@@ -343,7 +343,7 @@ function editfeed($fid = 0, $type = '')
         $limits = substr($A['limits'], 0, -1);
         $hours = true;
     }
-    $selection = '<select class="uk-select" name="limits_in">' . LB;
+    $selection = '<select class="uk-select uk-form-width-medium" name="limits_in">' . LB;
     $selection .= '<option value="0"';
     if (!$hours) {
         $selection .= ' selected="selected"';
@@ -369,7 +369,7 @@ function editfeed($fid = 0, $type = '')
     }
     $options = PLG_getFeedNames($A['type']);
 
-    $selection = '<select class="uk-select" name="topic">' . LB;
+    $selection = '<select class="uk-select uk-form-width-medium" name="topic">' . LB;
     foreach ($options as $o) {
         $selection .= '<option value="' . $o['id'] . '"';
         if ($A['topic'] == $o['id']) {
@@ -410,7 +410,7 @@ function newfeed()
 
     $plugins = PLG_supportingFeeds();
 
-    $selection = '<select class="uk-select" name="type">' . LB;
+    $selection = '<select class="uk-select uk-form-width-medium" name="type">' . LB;
     foreach ($plugins as $p) {
         $selection .= '<option value="' . $p . '">' . ucwords($p)
             . '</option>' . LB;

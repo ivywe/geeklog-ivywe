@@ -190,7 +190,7 @@ function getTypeSelector($itemType)
     global $_PLUGINS, $LANG_ADMIN, $LANG09, $LANG_STATIC, $LANG_POLLS;
 
     $retval = $LANG_ADMIN['type']
-        . ': <select class="uk-select" name="item_type" style="width: 125px;" onchange="this.form.submit()">' . LB;
+        . ': <select class="uk-select uk-form-width-medium" name="item_type" style="width: 125px;" onchange="this.form.submit()">' . LB;
 
     $selected = ($itemType === 'all') ? ' selected="selected"' : '';
     $retval .= '<option value="all"' . $selected . '>' . $LANG09[4] . '</option>' . LB;
@@ -301,7 +301,7 @@ function ADMIN_buildCommentList($suffix, $tableName, $securityToken)
 
     $filter = getTypeSelector($itemType);
     $options = array();
-    $actionSelector = '<select class="uk-select" name="bulk_action' . $suffix . '" id="bulk_action' . $suffix . '">' . LB
+    $actionSelector = '<select class="uk-select uk-form-width-medium" name="bulk_action' . $suffix . '" id="bulk_action' . $suffix . '">' . LB
         . '<option value="do_nothing">' . $LANG03[102] . '</option>' . LB;
 
     if ($suffix === SUFFIX_COMMENT_SUBMISSIONS) {
