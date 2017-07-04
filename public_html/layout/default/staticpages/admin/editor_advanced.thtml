@@ -22,13 +22,13 @@
         <dd class="controls_text"><input type="checkbox" class="uk-checkbox" name="sp_onmenu" id="sp-advanced_editor-sp_onmenu" {onmenu_checked}{xhtml}></dd>
 
         <dt><label for="sp-advanced_editor-sp_label">{lang_label}</label></dt>
-        <dd><input type="text" class="uk-input  uk-form-width-small" name="sp_label" maxlength="64" value="{sp_label}" id="sp-advanced_editor-sp_label" class="size5"{xhtml}></dd>
+        <dd><input type="text" class="uk-input uk-form-width-medium" name="sp_label" maxlength="64" value="{sp_label}" id="sp-advanced_editor-sp_label" class="size5"{xhtml}></dd>
 
         <dt><label>{lang_topic}</label></dt>
         <dd class="controls_text">{topic_selection}</dd>
 
         <dt><label for="sp-advanced_editor-sp_format">{lang_pageformat}</label></dt>
-        <dd><select class="uk-select uk-form-width-small" name="sp_format" class="uk-select uk-form-width-small" id="sp-advanced_editor-sp_format">
+        <dd><select name="sp_format" id="sp-advanced_editor-sp_format">
               <option value="blankpage" {blankpage_selected}>{lang_blankpage}</option>
               <option value="noblocks" {noblock_selected}>{lang_noblocks}</option>
               <option value="leftblocks" {leftblocks_selected}>{lang_leftblocks}</option>
@@ -36,12 +36,12 @@
             </select></dd>
 
         <dt><label for="sp-advanced_editor-commentcode">{lang_mode}</label></dt>
-        <dd><select class="uk-select uk-form-width-small" name="commentcode" class="uk-select uk-form-width-small" id="sp-advanced_editor-commentcode">
+        <dd><select name="commentcode" id="sp-advanced_editor-commentcode">
               {comment_options}
             </select></dd>
 
         <dt><label for="sel_editmode">{lang_postmode}</label></dt>
-        <dd><select class="uk-select uk-form-width-small" name="postmode" class="uk-select uk-form-width-small" id="sel_editmode" {change_editormode}>
+        <dd><select name="postmode" id="sel_editmode" {change_editormode}>
               {post_options}
             </select></dd>
 
@@ -54,7 +54,7 @@
 
       <div class="story_editor">
         <span id="sel_toolbar" style="display:{show_adveditor};">{lang_toolbar}:&nbsp;
-          <select class="uk-select uk-form-width-small" id="fckeditor_toolbar_selector" name="fckeditor_toolbar_selector" onchange="changeToolbar(this.value);">
+          <select id="fckeditor_toolbar_selector" name="fckeditor_toolbar_selector" onchange="changeToolbar(this.value);">
             <option value="editor-toolbar1">{toolbar1}</option>
             <option value="editor-toolbar2" selected="selected">{toolbar2}</option>
             <option value="editor-toolbar3">{toolbar3}</option>
@@ -106,10 +106,10 @@
       <hr style="margin-bottom: 15px;"{xhtml}>
       <dl class="form_block">
         <dt><label for="sp-advanced_editor-template_flag">{lang_template}</label></dt>
-        <dd class="controls_text"><input type="checkbox" class="uk-checkbox" name="template_flag" id="sp-advanced_editor-template_flag" {template_flag_checked}{xhtml}></dd><dd>{lang_template_flag_msg}</dd>
+        <dd class="controls_text"><input type="checkbox" class="uk-checkbox" name="template_flag" id="sp-advanced_editor-template_flag" {template_flag_checked}{xhtml}>&nbsp;&nbsp;{lang_template_flag_msg}</dd>
 
         <dt><label>{lang_use_template}</label></dt>
-        <dd>{use_template_selection}</dd><dd>{lang_use_template_msg}</dd>
+        <dd>{use_template_selection}&nbsp;&nbsp;&nbsp;{lang_use_template_msg}</dd>
       </dl>
 
       <hr style="margin-bottom: 15px;"{xhtml}>

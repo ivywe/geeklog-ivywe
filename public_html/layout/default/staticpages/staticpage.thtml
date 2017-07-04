@@ -1,11 +1,14 @@
 {# begin {templatelocation} #}
 
 {breadcrumb_trail}
-<?php if(SEC_inGroup('Root')){ ?>{edit_icon}<?php } ?>
 {block_start}
 {content}
 {block_end}
-<ul class="uk-subnav uk-subnav-line uk-flex-center uk-margin-large-top"><li>{lastupdate}{!if hits}</li><li>{!endif}{hits} {print_icon}{edit_icon}</li></ul>
+<p class="uk-text-center">
+    {!if lastupdate}{lastupdate}<span class="uk-margin-small-left uk-margin-small-right">|</span>{!endif}
+    {!if hits}{hits}{!endif}
+     {print_icon}{edit_icon}
+</p>
 {commentbar}
 
 {# end {templatelocation} #}
