@@ -1040,7 +1040,7 @@ function plugin_getuseroption_mediagallery()
     if (COM_isAnonUser()) return '';
 
     $menuitems = array();
-
+/*
     if ($_MG_CONF['up_display_rows_enabled'] != 0 ||
         $_MG_CONF['up_display_columns_enabled'] != 0 ||
         $_MG_CONF['up_mp3_player_enabled'] != 0 ||
@@ -1060,7 +1060,7 @@ function plugin_getuseroption_mediagallery()
             $menuitems[] = array($LANG_MG03['your_member_album'], $_MG_CONF['site_url'] . '/album.php?aid=' . $album_id, 0);
         }
     }
-
+*/
     return $menuitems;
 }
 
