@@ -14,7 +14,7 @@
         {services}
 
         <dt><label for="users-loginform-passwd">{lang_password}</label></dt>
-        <dd><input type="password"  class="uk-input uk-form-width-medium" name="passwd" id="users-loginform-passwd"{xhtml}></dd>
+        <dd><input type="password" class="uk-input uk-form-width-medium" name="passwd" id="users-loginform-passwd"{xhtml}></dd>
       </dl>
 
       <div class="loginform-submit" style="margin-bottom:1em"><button type="submit" value="{lang_login}" class="uk-button uk-button-primary">{lang_login}</button></div>

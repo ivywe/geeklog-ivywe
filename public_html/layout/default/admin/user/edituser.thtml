@@ -30,7 +30,7 @@
       <dd><input type="text" class="uk-input uk-form-width-large" maxlength="255" value="{user_homepage}" name="homepage" id="admin-edituser-homepage" class="size5"{xhtml}></dd>
       
       <dt><label for="admin-edituser-location">{lang_location}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="96" value="{user_location}" name="location" id="admin-edituser-location" class="size7" aria-describedby="desc-admin-edituser-location"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="96" value="{user_location}" name="location" id="admin-edituser-location" aria-describedby="desc-admin-edituser-location"{xhtml}></dd>
       <dd class="description" id="desc-admin-edituser-location">{lang_location_text}</dd>
 
       <dt><label for="admin-edituser-sig">{lang_signature}</label></dt>

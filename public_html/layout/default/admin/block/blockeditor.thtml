@@ -13,13 +13,13 @@
 
       <dt><label for="admin-blockeditor-help">{lang_blockhelpurl}</label></dt>
       <dd>
-        <input type="text" class="uk-input uk-form-width-medium" value="{block_help}" name="help" id="admin-blockeditor-help" class="size5" aria-describedby="desc-admin-blockeditor-help1 desc-admin-blockeditor-help2"{xhtml}>
+        <input type="text" class="uk-input uk-form-width-medium" value="{block_help}" name="help" id="admin-blockeditor-help" aria-describedby="desc-admin-blockeditor-help1 desc-admin-blockeditor-help2"{xhtml}>
       </dd>
       <dd id="desc-admin-blockeditor-help1" class="description">{lang_includehttp}</dd>
       <dd id="desc-admin-blockeditor-help2" class="description">{lang_explanation}</dd>
 
       <dt><label for="admin-blockeditor-name">{lang_blockname}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" value="{block_name}" name="name" id="admin-blockeditor-name" class="size5" aria-describedby="desc-admin-blockeditor-name"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" value="{block_name}" name="name" id="admin-blockeditor-name" aria-describedby="desc-admin-blockeditor-name"{xhtml}></dd>
       <dd id="desc-admin-blockeditor-name" class="description">{lang_nospaces}</dd>
 
       <dt><label>{lang_topic}</label></dt>
@@ -35,7 +35,7 @@
       </dd>
 
       <dt><label for="admin-blockeditor-blockorder">{lang_blockorder}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" value="{block_order}" name="blockorder" id="admin-blockeditor-blockorder" class="size1" aria-describedby="desc-admin-blockeditor-blockorder"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" value="{block_order}" name="blockorder" id="admin-blockeditor-blockorder" aria-describedby="desc-admin-blockeditor-blockorder"{xhtml}></dd>
       <dd id="desc-admin-blockeditor-blockorder" class="description">0-9999</dd>
 
       <dt><label>{lang_device}</label></dt>
@@ -56,7 +56,7 @@
       </dd>
 
       <dt><label for="admin-blockeditor-cachetime">{lang_cachetime}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-small" size="8" value="{cache_time}" name="cache_time" id="admin-blockeditor-cachetime" class="size1" aria-describedby="desc-admin-blockeditor-cachetime"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-small" size="8" value="{cache_time}" name="cache_time" id="admin-blockeditor-cachetime" aria-describedby="desc-admin-blockeditor-cachetime"{xhtml}></dd>
       <dd id="desc-admin-blockeditor-cachetime" class="description">{lang_cachetime_desc}</dd>
     </dl>
 
@@ -65,7 +65,7 @@
 
       <dl class="form_block">
         <dt><label for="admin-blockeditor-phpblockfn">{lang_blockfunction}</label></dt>
-        <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="50" value="{block_phpblockfn}" name="phpblockfn" id="admin-blockeditor-phpblockfn" class="size5" aria-describedby="desc-admin-blockeditor-phpblockfn"{xhtml}></dd>
+        <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="50" value="{block_phpblockfn}" name="phpblockfn" id="admin-blockeditor-phpblockfn" aria-describedby="desc-admin-blockeditor-phpblockfn"{xhtml}></dd>
         <dd id="desc-admin-blockeditor-phpblockfn" class="description">{lang_phpblockwarning}</dd>
       </dl>
     </fieldset>
