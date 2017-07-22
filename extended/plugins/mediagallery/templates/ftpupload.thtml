@@ -9,7 +9,7 @@
     <fieldset>
         <dl class="form_block">
           <dt><label class="uk-form-label">{lang_directory}</label></dt>
-          <dd><span>{ftp_path}</span> <input type="text" class="uk-input" name="directory" id="directory" class="size2"{xhtml}></dd>
+          <dd><span>{ftp_path}</span> <input type="text" class="uk-input" name="directory" id="directory"{xhtml}></dd>
 
           <dt><label class="uk-form-label">{lang_delete_files}</label></dt>
           <dd><input type="radio" class="uk-radio" name="purgefiles" value="0" checked="checked"{xhtml}>{lang_no}&nbsp;&nbsp;

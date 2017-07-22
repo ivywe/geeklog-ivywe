@@ -8,7 +8,7 @@
       <dd><input type="file" dir="ltr" name="newmedia[]"{xhtml}></dd>
       <dd class="description">{lang_wmupload_help}</dd>
       <dt>{lang_description}</dt>
-      <dd><textarea class="uk-textarea" name="description[]" cols="45" rows="2" class="size6"></textarea></dd>
+      <dd><textarea class="uk-textarea" name="description[]" cols="45" rows="2"></textarea></dd>
 <!-- BEGIN public-access -->
       <dt><label for="wm_public">{lang_public_access}</label></dt>
       <dd>{public_access}</dd>

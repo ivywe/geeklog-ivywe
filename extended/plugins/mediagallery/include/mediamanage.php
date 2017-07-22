@@ -208,7 +208,7 @@ function MG_imageAdmin($album_id, $page, $actionURL = '')
                     $thumbnail = $_MG_CONF['mediaobjects_url'] . '/missing.svg';
                 }
 
-                $cat_select = '<select class="uk-select uk-form-width-small" name="cat_id[]">';
+                $cat_select = '<select class="uk-select uk-form-width-medium" name="cat_id[]">';
                 $cat_select .= '<option value="0">' . $LANG_MG01['no_category'] . '</option>';
                 $cRows = count($catRow);
                 for ($i=0; $i < $cRows; $i++) {
@@ -812,7 +812,7 @@ function MG_mediaEdit($album_id, $media_id, $actionURL='', $mqueue=0, $view=0, $
     // user information
     $username = '';
     if (SEC_hasRights('mediagallery.admin')) {
-        $username = '<select class="uk-select uk-form-width-small" name="owner_name"> ';
+        $username = '<select class="uk-select uk-form-width-medium" name="owner_name"> ';
         $sql = "SELECT * FROM {$_TABLES['users']} WHERE status=3 AND uid > 1 ORDER BY username ASC";
         $result = DB_query($sql);
         while ($userRow = DB_fetchArray($result)) {
@@ -828,7 +828,7 @@ function MG_mediaEdit($album_id, $media_id, $actionURL='', $mqueue=0, $view=0, $
         }
     }
 
-    $cat_select = '<select class="uk-select uk-form-width-small" name="cat_id" id="cat_id">';
+    $cat_select = '<select class="uk-select uk-form-width-medium" name="cat_id" id="cat_id">';
     $cat_select .= '<option value="">' . $LANG_MG01['no_category'] . '</option>';
     $result = DB_query("SELECT * FROM {$_TABLES['mg_category']} ORDER BY cat_id ASC");
     while ($catRow = DB_fetchArray($result)) {

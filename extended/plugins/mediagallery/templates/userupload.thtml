@@ -25,13 +25,13 @@
       <dd><input type="checkbox" class="uk-checkbox" name="attachtn[]"{xhtml}> <input type="file" name="thumbnail[]"{xhtml}></dd>
 
       <dt><label class="uk-form-label">{lang_caption}</label></dt>
-      <dd><input type="text" class="uk-input" name="caption[]" class="size6" value=""{xhtml}></dd>
+      <dd><input type="text" class="uk-input" name="caption[]" value=""{xhtml}></dd>
 
       <dt><label class="uk-form-label">{lang_description}</label></dt>
-      <dd><textarea class="uk-textarea" name="description[]" cols="60" rows="2" class="size6"></textarea></dd>
+      <dd><textarea class="uk-textarea" name="description[]" cols="60" rows="2"></textarea></dd>
 
       <dt><label class="uk-form-label">{lang_keywords}</label></dt>
-      <dd><input type="text" class="uk-input" name="keywords[]" class="size6" value=""{xhtml}></dd>
+      <dd><input type="text" class="uk-input" name="keywords[]" value=""{xhtml}></dd>
 
       <dt><label class="uk-form-label">{lang_category}</label></dt>
       <dd>{cat_select}</dd>
@@ -51,13 +51,13 @@
       <dd><input type="checkbox" class="uk-checkbox" name="attachtn[]"{xhtml}> <input type="file" name="thumbnail[]"{xhtml}></dd>
 
       <dt><label class="uk-form-label">{lang_caption}</label></dt>
-      <dd><input type="text" class="uk-input" name="caption[]" class="size6" value=""{xhtml}></dd>
+      <dd><input type="text" class="uk-input" name="caption[]" value=""{xhtml}></dd>
 
       <dt><label class="uk-form-label">{lang_description}</label></dt>
-      <dd><textarea class="uk-textarea" name="description[]" cols="60" rows="2" class="size6"></textarea></dd>
+      <dd><textarea class="uk-textarea" name="description[]" cols="60" rows="2"></textarea></dd>
 
       <dt><label class="uk-form-label">{lang_keywords}</label></dt>
-      <dd><input type="text" class="uk-input" name="keywords[]" class="size6" value=""{xhtml}></dd>
+      <dd><input type="text" class="uk-input" name="keywords[]" value=""{xhtml}></dd>
 
       <dt><label class="uk-form-label">{lang_category}</label></dt>
       <dd>{cat_select}</dd>
@@ -77,13 +77,13 @@
       <dd><input type="checkbox" class="uk-checkbox" name="attachtn[]"{xhtml}> <input type="file" name="thumbnail[]"{xhtml}></dd>
 
       <dt><label class="uk-form-label">{lang_caption}</label></dt>
-      <dd><input type="text" class="uk-input" name="caption[]" class="size6" value=""{xhtml}></dd>
+      <dd><input type="text" class="uk-input" name="caption[]" value=""{xhtml}></dd>
 
       <dt><label class="uk-form-label">{lang_description}</label></dt>
-      <dd><textarea class="uk-textarea" name="description[]" cols="60" rows="2" class="size6"></textarea></dd>
+      <dd><textarea class="uk-textarea" name="description[]" cols="60" rows="2"></textarea></dd>
 
       <dt><label class="uk-form-label">{lang_keywords}</label></dt>
-      <dd><input type="text" class="uk-input" name="keywords[]" class="size6" value=""{xhtml}></dd>
+      <dd><input type="text" class="uk-input" name="keywords[]" value=""{xhtml}></dd>
 
       <dt><label class="uk-form-label">{lang_category}</label></dt>
       <dd>{cat_select}</dd>
@@ -103,13 +103,13 @@
       <dd><input type="checkbox" class="uk-checkbox" name="attachtn[]"{xhtml}> <input type="file" name="thumbnail[]"{xhtml}></dd>
 
       <dt><label class="uk-form-label">{lang_caption}</label></dt>
-      <dd><input type="text" class="uk-input" name="caption[]" class="size6" value=""{xhtml}></dd>
+      <dd><input type="text" class="uk-input" name="caption[]" value=""{xhtml}></dd>
 
       <dt><label class="uk-form-label">{lang_description}</label></dt>
-      <dd><textarea class="uk-textarea" name="description[]" cols="60" rows="2" class="size6"></textarea></dd>
+      <dd><textarea class="uk-textarea" name="description[]" cols="60" rows="2"></textarea></dd>
 
       <dt><label class="uk-form-label">{lang_keywords}</label></dt>
-      <dd><input type="text" class="uk-input" name="keywords[]" class="size6" value=""{xhtml}></dd>
+      <dd><input type="text" class="uk-input" name="keywords[]" value=""{xhtml}></dd>
 
       <dt><label class="uk-form-label">{lang_category}</label></dt>
       <dd>{cat_select}</dd>

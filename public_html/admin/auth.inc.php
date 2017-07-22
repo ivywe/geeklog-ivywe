@@ -106,8 +106,8 @@ if ($status == USER_ACCOUNT_ACTIVE) {
             .'<td><input type="text" class="uk-input uk-form-width-medium" name="loginname" id="loginname" size="16" maxlength="16"' . XHTML . '></td>'.LB
             .'</tr>'.LB
             .'<tr>'.LB
-            .'<td class="alignright"><b><label for="passwd">'.$LANG20[5].'</label></b></td>'.LB
-            .'<td><input type="password" name="passwd" id="passwd" size="16"' . XHTML . '></td>'
+            .'<td class="uk-text-right"><b><label for="passwd">'.$LANG20[5].'</label></b></td>'.LB
+            .'<td><input type="password" class="uk-input uk-form-width-medium" name="passwd" id="passwd" size="16"' . XHTML . '></td>'
             .'</tr>'.LB
             .'<tr>'.LB
             .'<td colspan="2" align="center" class="warning">'.$LANG20[6].'<input type="hidden" name="warn" value="1"' . XHTML . '>'

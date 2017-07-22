@@ -11,7 +11,7 @@
     <table>
         <!-- seq -->
         <tr>
-            <th style="width:30%" class="alignright">{lang_seq}</th>
+            <th style="width:30%" class="uk-text-right">{lang_seq}</th>
             <td style="width:70%">
                 {seq}
                 <input type="hidden" name="seq" value="{seq}"{xhtml}>
@@ -22,7 +22,7 @@
 
         <!-- tag -->
         <tr>
-            <th style="width:30%" class="alignright">{lang_tag}<span class="must">{lang_must}</span></th>
+            <th style="width:30%" class="uk-text-right">{lang_tag}<span class="must">{lang_must}</span></th>
             <td style="width:70%">
                 <input type="text" class="uk-input uk-form-width-medium" size="60" maxlength="160" name="tag" value="{tag}"{xhtml}>
             </td>
@@ -30,7 +30,7 @@
 
         <!-- value -->
         <tr>
-            <th style="width:30%" class="alignright">{lang_value}</th>
+            <th style="width:30%" class="uk-text-right">{lang_value}</th>
             <td style="width:70%">
                 <input type="text" class="uk-input uk-form-width-medium" size="60" maxlength="160" name="value" value="{value}"{xhtml}>
             </td>
@@ -38,7 +38,7 @@
 
         <!-- field -->
         <tr>
-            <th style="width:30%" class="alignright">{lang_field}<span class="must">{lang_must}</span></th>
+            <th style="width:30%" class="uk-text-right">{lang_field}<span class="must">{lang_must}</span></th>
             <td style="width:70%">
                 {list_field}
             </td>
@@ -46,7 +46,7 @@
 
         <!-- 保存日 -->
         <tr>
-            <th style="width:30%" class="alignright">{lang_udatetime}</th>
+            <th style="width:30%" class="uk-text-right">{lang_udatetime}</th>
             <td style="width:70%">{udatetime} {lang_uuid}:{uuid}</td>
         </tr>
 

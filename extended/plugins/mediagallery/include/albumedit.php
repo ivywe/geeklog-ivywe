@@ -128,7 +128,7 @@ function MG_editAlbum($mode ='', $actionURL='', $oldaid = 0)
     // construct the album jumpbox
     $select = ($mode == 'create') ? $oldaid : $album->parent;
     $valid_albums = 0;
-    $album_selectbox  = '<select class="uk-select uk-form-width-small" name="parentaid">';
+    $album_selectbox  = '<select class="uk-select uk-form-width-medium" name="parentaid">';
     $root_album = new mgAlbum(0);
     $valid_albums += $root_album->buildAlbumBox($album_selectbox, $select, 3, $album_id, $mode);
     $album_selectbox .= '</select>';
@@ -361,7 +361,7 @@ function MG_editAlbum($mode ='', $actionURL='', $oldaid = 0)
     ));
 
     $themes = MG_getThemes();
-    $album_theme_select = '<select class="uk-select uk-form-width-small" name="album_theme">';
+    $album_theme_select = '<select class="uk-select uk-form-width-medium" name="album_theme">';
     for ($i = 0; $i < count($themes); $i++) {
         $album_theme_select .= '<option value="' . $themes[$i] . '"'
             . ($album->skin == $themes[$i] ? ' selected="selected"' : '')
@@ -377,7 +377,7 @@ function MG_editAlbum($mode ='', $actionURL='', $oldaid = 0)
 
     $result = DB_query("SELECT * FROM {$_TABLES['users']}");
     $nRows  = DB_numRows($result);
-    $owner_select = '<select class="uk-select uk-form-width-small" name="owner_id">';
+    $owner_select = '<select class="uk-select uk-form-width-medium" name="owner_id">';
     for ($i=0; $i<$nRows; $i++) {
         $row = DB_fetchArray($result);
         if ($row['uid'] == 1) continue;
@@ -415,7 +415,7 @@ function MG_editAlbum($mode ='', $actionURL='', $oldaid = 0)
         ));
 
         // build featurepage select...
-        $featurepage_select = '<select class="uk-select uk-form-width-small" name="featurepage">';
+        $featurepage_select = '<select class="uk-select uk-form-width-medium" name="featurepage">';
         $featurepage_select .= MG_options(array(
             'current' => $album->cbpage,
             'values'  => array(
@@ -568,7 +568,7 @@ function MG_editAlbum($mode ='', $actionURL='', $oldaid = 0)
     $sql = "SELECT * FROM {$_TABLES['mg_watermarks']} " . $whereClause . "ORDER BY owner_id";
     $result = DB_query($sql);
     $nRows  = DB_numRows($result);
-    $wm_select =  '<select class="uk-select uk-form-width-small" name="wm_id" onchange="change(this)">';
+    $wm_select =  '<select class="uk-select uk-form-width-medium" name="wm_id" onchange="change(this)">';
     $wm_select .= '<option value="blank.png">' . $LANG_MG01['no_watermark'] . '</option>';
     $wm_current = '<img src="' . $_MG_CONF['site_url'] . '/watermarks/blank.png" name="myImage" alt=""' . XHTML . '>';
     for ($i=0; $i<$nRows; $i++) {
@@ -606,8 +606,8 @@ function MG_editAlbum($mode ='', $actionURL='', $oldaid = 0)
     // permission template
 
     $usergroups = SEC_getUserGroups();
-    $groupdd = '<select class="uk-select uk-form-width-small" name="group_id">';
-    $moddd   = '<select class="uk-select uk-form-width-small" name="mod_id">';
+    $groupdd = '<select class="uk-select uk-form-width-medium" name="group_id">';
+    $moddd   = '<select class="uk-select uk-form-width-medium" name="mod_id">';
     for ($i = 0; $i < count($usergroups); $i++) {
         if ($usergroups[key($usergroups)] != 2 && $usergroups[key($usergroups)] != 13) {
             $groupdd .= '<option value="' . $usergroups[key($usergroups)] . '"';

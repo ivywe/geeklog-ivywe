@@ -85,7 +85,7 @@
     <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_orderno}</label>
       <div class="uk-form-controls">
-         <input type="text" class="uk-input uk-form-width-xsmall" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
+         <input type="text" class="uk-input uk-form-width-small" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
       </div>
     </div>
 
@@ -119,7 +119,7 @@
       <div class="uk-form-row uk-clearfix">
         <label class="uk-form-label">{lang_range}</label>
         <div class="uk-form-controls">
-           <input type="text" class="uk-input uk-form-width-xsmall" size="12" maxlength="160" name="range_start" value="{range_start}"{xhtml}> - <input type="text" class="uk-input uk-form-width-xsmall" size="12" maxlength="160" name="range_end" value="{range_end}"{xhtml}>
+           <input type="text" class="uk-input uk-form-width-small" size="12" maxlength="160" name="range_start" value="{range_start}"{xhtml}> - <input type="text" class="uk-input uk-form-width-small" size="12" maxlength="160" name="range_end" value="{range_end}"{xhtml}>
         </div>
       </div>
 
@@ -159,7 +159,7 @@
       <div class="uk-form-row uk-clearfix">
         <label class="uk-form-label">{lang_size}</label>
         <div class="uk-form-controls">
-          <input type="text" class="uk-input uk-form-width-xsmall" size="12" maxlength="160" name="size" value="{size}"{xhtml}>
+          <input type="text" class="uk-input uk-form-width-small" size="12" maxlength="160" name="size" value="{size}"{xhtml}>
         </div>
       </div>
 
@@ -167,7 +167,7 @@
       <div class="uk-form-row uk-clearfix">
         <label class="uk-form-label">{lang_maxlength}</label>
         <div class="uk-form-controls">
-          <input type="text" class="uk-input uk-form-width-xsmall" size="12" maxlength="160" name="maxlength" value="{maxlength}"{xhtml}>
+          <input type="text" class="uk-input uk-form-width-small" size="12" maxlength="160" name="maxlength" value="{maxlength}"{xhtml}>
         </div>
       </div>
 
@@ -175,7 +175,7 @@
       <div class="uk-form-row uk-clearfix">
         <label class="uk-form-label">{lang_rows}</label>
         <div class="uk-form-controls">
-          <input type="text" class="uk-input uk-form-width-xsmall" size="12" maxlength="160" name="rows" value="{rows}"{xhtml}>
+          <input type="text" class="uk-input uk-form-width-small" size="12" maxlength="160" name="rows" value="{rows}"{xhtml}>
         </div>
       </div>
 
@@ -183,7 +183,7 @@
       <div class="uk-form-row uk-clearfix">
         <label class="uk-form-label">{lang_br}</label>
         <div class="uk-form-controls">
-          <input type="text" class="uk-input uk-form-width-xsmall" size="1" maxlength="1" name="br" value="{br}"{xhtml}>{help_br}
+          <input type="text" class="uk-input uk-form-width-small" size="1" maxlength="1" name="br" value="{br}"{xhtml}>{help_br}
         </div>
       </div>
 

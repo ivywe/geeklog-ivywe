@@ -46,7 +46,7 @@ function formControl(){
         <dd><input type="file" name="thumbnail[]"{xhtml}></dd>
 
         <dt><label class="uk-form-label">{lang_remote_url}</label></dt>
-        <dd><textarea class="uk-textarea" name="remoteurl[]" cols="60" rows="2" class="size6"></textarea></dd>
+        <dd><textarea class="uk-textarea" name="remoteurl[]" cols="60" rows="2"></textarea></dd>
 
         <dt><label class="uk-form-label">{lang_width}</label></dt>
         <dd><input type="text" class="uk-input" name="width[]" size="3"{xhtml}></dd>
@@ -55,13 +55,13 @@ function formControl(){
         <dd><input type="text" class="uk-input" name="height[]" size="3"{xhtml}></dd>
 
         <dt><label class="uk-form-label">{lang_caption}</label></dt>
-        <dd><input type="text" class="uk-input" name="caption[]" class="size6" value=""{xhtml}></dd>
+        <dd><input type="text" class="uk-input" name="caption[]" value=""{xhtml}></dd>
 
         <dt><label class="uk-form-label">{lang_description}</label></dt>
-        <dd><textarea class="uk-textarea" name="description[]" cols="60" rows="2" class="size6"></textarea></dd>
+        <dd><textarea class="uk-textarea" name="description[]" cols="60" rows="2"></textarea></dd>
 
         <dt><label class="uk-form-label">{lang_keywords}</label></dt>
-        <dd><input type="text" class="uk-input" name="keywords[]" class="size6" value=""{xhtml}></dd>
+        <dd><input type="text" class="uk-input" name="keywords[]" value=""{xhtml}></dd>
 
         <dt><label class="uk-form-label">{lang_category}</label></dt>
         <dd>{cat_select}</dd>
@@ -89,7 +89,7 @@ function formControl(){
         <dd><input type="file" name="thumbnail[]"{xhtml}></dd>
 
         <dt><label class="uk-form-label">{lang_remote_url}</label></dt>
-        <dd><textarea class="uk-textarea" name="remoteurl[]" cols="60" rows="2" class="size6"></textarea></dd>
+        <dd><textarea class="uk-textarea" name="remoteurl[]" cols="60" rows="2"></textarea></dd>
 
         <dt><label class="uk-form-label">{lang_width}</label></dt>
         <dd><input type="text" class="uk-input" name="width[]" size="3"{xhtml}></dd>
@@ -98,13 +98,13 @@ function formControl(){
         <dd><input type="text" class="uk-input" name="height[]" size="3"{xhtml}></dd>
 
         <dt><label class="uk-form-label">{lang_caption}</label></dt>
-        <dd><input type="text" class="uk-input" name="caption[]" class="size6" value=""{xhtml}></dd>
+        <dd><input type="text" class="uk-input" name="caption[]" value=""{xhtml}></dd>
 
         <dt><label class="uk-form-label">{lang_description}</label></dt>
-        <dd><textarea class="uk-textarea" name="description[]" cols="60" rows="2" class="size6"></textarea></dd>
+        <dd><textarea class="uk-textarea" name="description[]" cols="60" rows="2"></textarea></dd>
 
         <dt><label class="uk-form-label">{lang_keywords}</label></dt>
-        <dd><input type="text" class="uk-input" name="keywords[]" class="size6" value=""{xhtml}></dd>
+        <dd><input type="text" class="uk-input" name="keywords[]" value=""{xhtml}></dd>
 
         <dt><label class="uk-form-label">{lang_category}</label></dt>
         <dd>{cat_select}</dd>
@@ -132,7 +132,7 @@ function formControl(){
         <dd><input type="file" name="thumbnail[]"{xhtml}></dd>
 
         <dt><label class="uk-form-label">{lang_remote_url}</label></dt>
-        <dd><textarea class="uk-textarea" name="remoteurl[]" cols="60" rows="2" class="size6"></textarea></dd>
+        <dd><textarea class="uk-textarea" name="remoteurl[]" cols="60" rows="2"></textarea></dd>
 
         <dt><label class="uk-form-label">{lang_width}</label></dt>
         <dd><input type="text" class="uk-input" name="width[]" size="3"{xhtml}></dd>
@@ -141,13 +141,13 @@ function formControl(){
         <dd><input type="text" class="uk-input" name="height[]" size="3"{xhtml}></dd>
 
         <dt><label class="uk-form-label">{lang_caption}</label></dt>
-        <dd><input type="text" class="uk-input" name="caption[]" class="size6" value=""{xhtml}></dd>
+        <dd><input type="text" class="uk-input" name="caption[]" value=""{xhtml}></dd>
 
         <dt><label class="uk-form-label">{lang_description}</label></dt>
-        <dd><textarea class="uk-textarea" name="description[]" cols="60" rows="2" class="size6"></textarea></dd>
+        <dd><textarea class="uk-textarea" name="description[]" cols="60" rows="2"></textarea></dd>
 
         <dt><label class="uk-form-label">{lang_keywords}</label></dt>
-        <dd><input type="text" class="uk-input" name="keywords[]" class="size6" value=""{xhtml}></dd>
+        <dd><input type="text" class="uk-input" name="keywords[]" value=""{xhtml}></dd>
 
         <dt><label class="uk-form-label">{lang_category}</label></dt>
         <dd>{cat_select}</dd>
@@ -175,7 +175,7 @@ function formControl(){
         <dd><input type="file" name="thumbnail[]"{xhtml}></dd>
 
         <dt><label class="uk-form-label">{lang_remote_url}</label></dt>
-        <dd><textarea class="uk-textarea" name="remoteurl[]" cols="60" rows="2" class="size6"></textarea></dd>
+        <dd><textarea class="uk-textarea" name="remoteurl[]" cols="60" rows="2"></textarea></dd>
 
         <dt><label class="uk-form-label">{lang_width}</label></dt>
         <dd><input type="text" class="uk-input" name="width[]" size="3"{xhtml}></dd>
@@ -184,13 +184,13 @@ function formControl(){
         <dd><input type="text" class="uk-input" name="height[]" size="3"{xhtml}></dd>
 
         <dt><label class="uk-form-label">{lang_caption}</label></dt>
-        <dd><input type="text" class="uk-input" name="caption[]" class="size6" value=""{xhtml}></dd>
+        <dd><input type="text" class="uk-input" name="caption[]" value=""{xhtml}></dd>
 
         <dt><label class="uk-form-label">{lang_description}</label></dt>
-        <dd><textarea class="uk-textarea" name="description[]" cols="60" rows="2" class="size6"></textarea></dd>
+        <dd><textarea class="uk-textarea" name="description[]" cols="60" rows="2"></textarea></dd>
 
         <dt><label class="uk-form-label">{lang_keywords}</label></dt>
-        <dd><input type="text" class="uk-input" name="keywords[]" class="size6" value=""{xhtml}></dd>
+        <dd><input type="text" class="uk-input" name="keywords[]" value=""{xhtml}></dd>
 
         <dt><label class="uk-form-label">{lang_category}</label></dt>
         <dd>{cat_select}</dd>

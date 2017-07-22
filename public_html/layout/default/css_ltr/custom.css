@@ -1,6 +1,6 @@
 html {font-size:14px;}
 
-.uk-navbar-dropdown {background: rgba(255,255,255,0.3); }
+.uk-navbar-dropdown {background: rgba(255,255,255,0.9); }
 .uk-navbar-dropdown-nav>li.uk-active.gl-active>a{color:#fff}
 
 .admin-list-table th,
@@ -27,8 +27,6 @@ nav.uk-navbar.gl-navbar-small li  {
 fieldset {
 	border: none;
 }
-
-.uk-navbar-dropdown{opacity: 0.6; }
 
 #footer {
   border: none;

@@ -26,7 +26,7 @@
         <dd class="controls_text">{topic_selection}</dd>
 
         <dt><label for="sp-editor-sp_format">{lang_pageformat}</label></dt>
-        <dd><select name="sp_format" id="sp-editor-sp_format">
+        <dd><select class="uk-select uk-form-width-large" name="sp_format" id="sp-editor-sp_format">
               <option value="blankpage" {blankpage_selected}>{lang_blankpage}</option>
               <option value="noblocks" {noblock_selected}>{lang_noblocks}</option>
               <option value="leftblocks" {leftblocks_selected}>{lang_leftblocks}</option>
@@ -34,7 +34,7 @@
             </select></dd>
 
         <dt><label for="sp-editor-commentcode">{lang_mode}</label></dt>
-        <dd><select name="commentcode" id="sp-editor-commentcode">
+        <dd><select class="uk-select uk-form-width-large" name="commentcode" id="sp-editor-commentcode">
               {comment_options}
             </select></dd>
 

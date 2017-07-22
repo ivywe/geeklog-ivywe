@@ -8,7 +8,7 @@
 {formfields_top}
 </div>
 
-<div class="uk-overflow-container">
+<div class="uk-overflow-auto">
 <table class="admin-list-table uk-table uk-table-hover uk-table-striped">
 <tr>
 {header_row}</tr>
