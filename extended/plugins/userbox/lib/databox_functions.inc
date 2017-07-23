@@ -1404,7 +1404,7 @@ if($size < 8){ $ukformwidth .= " uk-form-width-xsmall"; } else if ($size < 17) {
                         $fieldhtml .= " size=\"".$size."\"";
                         $fieldhtml .= " maxlength=\"".$maxlength."\" ";
                         $fieldhtml .= " name=\"afield[".$fid."]\" ";
-                        $fieldhtml .= " style=\"width: \". $size . "em; max-width:95%\"";
+                        $fieldhtml .= " style=\"width:". $size . "0px; max-width:95%\"";
                         $fieldhtml .= " value=\"".$fvalue."\"";
                         $fieldhtml .= " ".XHTML.">";
                     }else{
@@ -2674,7 +2674,7 @@ global $_TABLES;
         $nrows2 = DB_numRows( $result2 );
         
         if ($nrows2>0){
-            $retval .="<div class=\"databox_admin_data_title\">";
+            $retval .="<div class=\"databox_admin_data_title uk-text-bold uk-margin-top\">";
             $retval .=$A['group_name'];
             $retval .="</div>".LB;
         
