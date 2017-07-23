@@ -137,7 +137,7 @@ class TimeZoneConfig
     {
         $timezones = self::listAvailableTimeZones();
 
-        $selection = '<select class="uk-select uk-form-width-small"';
+        $selection = '<select class="uk-select uk-form-width-medium"';
         foreach ($attributes as $name => $value) {
             $selection .= sprintf(' %s="%s"', $name, $value);
         }

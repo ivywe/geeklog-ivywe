@@ -64,7 +64,7 @@
     <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" for="databox_description">{lang_description} {help_description}</label>
       <div class="uk-form-controls">
-        <textarea class="uk-textarea" name="description" class="uk-width-1-1" rows="5" id="databox_description"
+        <textarea class="uk-textarea uk-width-1-1" name="description" class="uk-width-1-1" rows="5" id="databox_description"
       onKeyup="var n={maxlength_description}-this.value.length;var s=document.getElementById('description_cnt');s.innerHTML='('+n+')';">{description}</textarea>
         <span class="uk-form-help-inline uk-text-bold" id="description_cnt"></span>
       </div>
@@ -82,7 +82,7 @@
     <div class="uk-form-row uk-clearfix"{hide_meta}>
       <label class="uk-form-label" for="databox_description">{lang_meta_description} {help_meta_description}</label>
       <div class="uk-form-controls">
-        <textarea class="uk-textarea" name="meta_description" class="uk-width-1-1" rows="2" id="databox_description"
+        <textarea class="uk-textarea uk-width-1-1" name="meta_description" class="uk-width-1-1" rows="2" id="databox_description"
       onKeyup="var n={maxlength_meta_description}-this.value.length;var s=document.getElementById('meta_description_cnt');s.innerHTML='('+n+')';">{meta_description}</textarea>
         <span class="uk-form-help-inline uk-text-bold" id="meta_description_cnt"></span>
       </div>
@@ -93,7 +93,7 @@
     <div class="uk-form-row uk-clearfix"{hide_meta}>
       <label class="uk-form-label" for="meta_keywords">{lang_meta_keywords} {help_meta_keywords}</label>
       <div class="uk-form-controls">
-        <textarea class="uk-textarea" name="meta_keywords" class="uk-width-1-1" rows="2" id="meta_keywords" 
+        <textarea class="uk-textarea uk-width-1-1" name="meta_keywords" class="uk-width-1-1" rows="2" id="meta_keywords" 
   onKeyup="var n={maxlength_meta_keywords}-this.value.length;var s=document.getElementById('meta_keywords_cnt');s.innerHTML='('+n+')';">{meta_keywords}</textarea>
         <span class="uk-form-help-inline uk-text-bold" id="meta_keywords_cnt"></span>
       </div>

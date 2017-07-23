@@ -221,7 +221,7 @@ function edituser()
         $preferences->set_var('username_option', '');
     }
 
-    $selection = '<select class="uk-select" id="cooktime" name="cooktime">' . LB;
+    $selection = '<select class="uk-select uk-form-width-medium" id="cooktime" name="cooktime">' . LB;
     $selection .= COM_optionList($_TABLES['cookiecodes'], 'cc_value,cc_descr',
         $A['cookietimeout'], 0);
     $selection .= '</select>';
@@ -510,7 +510,7 @@ function editpreferences()
             $similarLang = $tmp[0];
         }
 
-        $selection = '<select class="uk-select" id="language" name="language">' . LB;
+        $selection = '<select class="uk-select uk-form-width-medium" id="language" name="language">' . LB;
 
         foreach ($language as $langFile => $langName) {
             $selection .= '<option value="' . $langFile . '"';
@@ -533,7 +533,7 @@ function editpreferences()
     }
 
     if ($_CONF['allow_user_themes'] == 1) {
-        $selection = '<select class="uk-select" id="theme" name="theme">' . LB;
+        $selection = '<select class="uk-select uk-form-width-medium" id="theme" name="theme">' . LB;
 
         if (empty($_USER['theme'])) {
             $usertheme = $_CONF['theme'];
@@ -629,7 +629,7 @@ function editpreferences()
     }
 
     $preferences->set_var('maxstories_value', $A['maxstories']);
-    $selection = '<select class="uk-select" id="dfid" name="dfid">' . LB
+    $selection = '<select class="uk-select uk-form-width-medium" id="dfid" name="dfid">' . LB
         . COM_optionList($_TABLES['dateformats'], 'dfid,description',
             $A['dfid']) . '</select>';
     $preferences->set_var('dateformat_selector', $selection);
@@ -688,7 +688,7 @@ function editpreferences()
         } else {
             $Selboxsize = 15;
         }
-        $preferences->set_var('exclude_author_checklist', '<select class="uk-select" name="selauthors[]" multiple="multiple" size="' . $Selboxsize . '">' . $selauthors . '</select>');
+        $preferences->set_var('exclude_author_checklist', '<select class="uk-select uk-form-width-medium" name="selauthors[]" multiple="multiple" size="' . $Selboxsize . '">' . $selauthors . '</select>');
     } else {
         $preferences->set_var('lang_authors', '');
         $preferences->set_var('exclude_author_checklist', '');
@@ -749,13 +749,13 @@ function editpreferences()
         $A['commentlimit'] = 100;
     }
 
-    $selection = '<select class="uk-select" id="commentmode" name="commentmode">';
+    $selection = '<select class="uk-select uk-form-width-medium" id="commentmode" name="commentmode">';
     $selection .= COM_optionList($_TABLES['commentmodes'], 'mode,name',
         $A['commentmode']);
     $selection .= '</select>';
     $preferences->set_var('displaymode_selector', $selection);
 
-    $selection = '<select class="uk-select" id="commentorder" name="commentorder">';
+    $selection = '<select class="uk-select uk-form-width-medium" id="commentorder" name="commentorder">';
     $selection .= COM_optionList($_TABLES['sortcodes'], 'code,name',
         $A['commentorder']);
     $selection .= '</select>';

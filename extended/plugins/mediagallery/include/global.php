@@ -301,7 +301,7 @@ function MG_globalAlbumAttributeEditor($adminMenu=0)
 
     $max_image_height_input = '<input type="text" class="uk-input uk-form-width-xsmall" size="4" name="max_image_height" value="0"' . XHTML .'>';
     $max_image_width_input  = '<input type="text" class="uk-input uk-form-width-xsmall" size="4" name="max_image_width" value="0"' . XHTML . '>';
-    $max_filesize_input     = '<input type="text" class="uk-input uk-form-width-xsmall" size="10" name="max_filesize" value="0"' . XHTML . '>';
+    $max_filesize_input     = '<input type="text" class="uk-input uk-form-width-small" size="10" name="max_filesize" value="0"' . XHTML . '>';
 
     $rows_input      = '<input type="text" class="uk-input uk-form-width-xsmall" size="3" name="display_rows" value="' . $_MG_CONF['display_rows'] . '"' . XHTML . '>';
     $columns_input   = '<input type="text" class="uk-input uk-form-width-xsmall" size="3" name="display_columns" value="' . $_MG_CONF['display_columns'] . '"' . XHTML . '>';

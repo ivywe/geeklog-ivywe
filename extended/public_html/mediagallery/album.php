@@ -121,11 +121,11 @@ function MG_buildAdminbox(&$album, &$root_album, &$T)
         $action = $_MG_CONF['site_url'] . '/admin.php';
         $admin_box = '<form name="adminbox" id="adminbox" action="' . $action . '" method="get" class="uk-form"><div>' . LB;
         $admin_box .= '<input type="hidden" name="album_id" value="' . $album->id . '"' . XHTML . '>' . LB;
-        $admin_box .= '<select class="uk-select uk-form-width-small" name="mode" onchange="forms[\'adminbox\'].submit()">' . LB;
+        $admin_box .= '<select class="uk-select uk-form-width-medium" name="mode" onchange="forms[\'adminbox\'].submit()">' . LB;
         $admin_box .= '<option label="' . $LANG_MG01['options'] .'" value="">Options</option>' . LB;
         $admin_box .= $admin_box_option;
         $admin_box .= '</select>' . LB;
-        $admin_box .= '<input type="submit" value="' . $LANG_MG03['go'] . '"' . XHTML . '>' . LB;
+        $admin_box .= '<input type="submit" class="uk-button uk-button-primary" value="' . $LANG_MG03['go'] . '"' . XHTML . '>' . LB;
         $admin_box .= '</div></form>' . LB;
     }
 
@@ -154,7 +154,7 @@ function MG_buildSortbox($album_id, $sortOrder, $page)
     $retval .= '<input type="hidden" name="aid" value="' . $album_id . '"' . XHTML . '>' . LB;
     $retval .= '<input type="hidden" name="page" value="' . $page . '"' . XHTML . '>' . LB;
     $retval .= $LANG_MG03['sort_by'] . ':&nbsp;'
-             . '<select class="uk-select uk-form-width-small" name="sort" onchange="forms[\'sortbox\'].submit()">' . LB;
+             . '<select class="uk-select uk-form-width-medium" name="sort" onchange="forms[\'sortbox\'].submit()">' . LB;
     $retval .= MG_options(array(
         'current' => $sortOrder,
         'values'  => array(
