@@ -4,33 +4,33 @@
   <div class="admin_basic">
     <dl class="form_block">
       <dt><label for="calendar-eventeditor-title">{lang_eventtitle}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-large" maxlength="128" name="title" value="{event_title}" id="calendar-eventeditor-title" class="size6"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-large" maxlength="128" name="title" value="{event_title}" id="calendar-eventeditor-title" required{xhtml}></dd>
 
       <dt><label for="calendar-eventeditor-event_type">{lang_eventtype}</label></dt>
-      <dd><select name="event_type" id="calendar-eventeditor-event_type">
+      <dd><select name="event_type" class="uk-select uk-form-width-medium" id="calendar-eventeditor-event_type">
             <option value="">--</option>
             {type_options}
           </select></dd>
 
       <dt><label>{lang_eventstartdate}</label></dt>
       <dd><span dir="ltr">
-            <select name="start_month">
+            <select name="start_month" class="uk-select uk-form-width-xsmall">
                 {startmonth_options}
             </select>
             /
-            <select name="start_day">
+            <select name="start_day" class="uk-select uk-form-width-xsmall">
                 {startday_options}
             </select>
             /
-            <select name="start_year">
+            <select name="start_year" class="uk-select uk-form-width-xsmall">
                 {startyear_options}
             </select>&nbsp;&nbsp;
             {lang_starttime}:
-            <select name="start_hour">
+            <select name="start_hour" class="uk-select uk-form-width-xsmall">
                 {starthour_options}
             </select>
             :
-            <select name="start_minute">
+            <select name="start_minute" class="uk-select uk-form-width-xsmall">
                 {startminute_options}
             </select>
             {startampm_selection}
@@ -38,23 +38,23 @@
 
       <dt><label>{lang_eventenddate}</label></dt>
       <dd><span dir="ltr">
-            <select name="end_month">
+            <select name="end_month" class="uk-select uk-form-width-xsmall">
                 {endmonth_options}
             </select>
             /
-            <select name="end_day">
+            <select name="end_day" class="uk-select uk-form-width-xsmall">
                 {endday_options}
             </select>
             /
-            <select name="end_year">
+            <select name="end_year" class="uk-select uk-form-width-xsmall">
                 {endyear_options}
             </select>&nbsp;&nbsp;
             {lang_endtime}:
-            <select name="end_hour">
+            <select name="end_hour" class="uk-select uk-form-width-xsmall">
                 {endhour_options}
             </select>
             :
-            <select name="end_minute">
+            <select name="end_minute" class="uk-select uk-form-width-xsmall">
                 {endminute_options}
             </select>
             {endampm_selection}
@@ -64,31 +64,31 @@
       <dd><input type="checkbox" class="uk-checkbox" name="allday" id="calendar-eventeditor-allday" {allday_checked}{xhtml}></dd>
 
       <dt><label for="calendar-eventeditor-location">{lang_location}</label></dt>
-      <dd><textarea class="uk-textarea" name="location" cols="45" rows="2" id="calendar-eventeditor-location" class="size6">{event_location}</textarea></dd>
+      <dd><textarea class="uk-textarea uk-width-1-1" name="location" cols="45" rows="2" id="calendar-eventeditor-location" required>{event_location}</textarea></dd>
 
       <dt><label for="calendar-eventeditor-address1">{lang_addressline1}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" name="address1" value="{event_address1}" id="calendar-eventeditor-address1" class="size6"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" name="address1" value="{event_address1}" id="calendar-eventeditor-address1"{xhtml}></dd>
 
       <dt><label for="calendar-eventeditor-address2">{lang_addressline2}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" name="address2" value="{event_address2}" id="calendar-eventeditor-address2" class="size6"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" name="address2" value="{event_address2}" id="calendar-eventeditor-address2"{xhtml}></dd>
 
       <dt><label for="calendar-eventeditor-city">{lang_city}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" name="city"  maxlength="60" value="{event_city}" id="calendar-eventeditor-city" class="size6"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" name="city"  maxlength="60" value="{event_city}" id="calendar-eventeditor-city"{xhtml}></dd>
 
       <dt><label for="calendar-eventeditor-state">{lang_state}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" name="state" value="{event_state}" id="calendar-eventeditor-state" class="size6"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" name="state" value="{event_state}" id="calendar-eventeditor-state"{xhtml}></dd>
 
       <dt><label for="calendar-eventeditor-zipcode">{lang_zipcode}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" name="zipcode" maxlength="16" value="{event_zipcode}" id="calendar-eventeditor-zipcode" class="size1"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-small" name="zipcode" maxlength="16" value="{event_zipcode}" id="calendar-eventeditor-zipcode"{xhtml}></dd>
 
       <dt><label for="calendar-eventeditor-url">{lang_eventurl}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" dir="ltr" name="url" maxlength="{max_url_length}" value="{event_url}" id="calendar-eventeditor-url" class="size6"{xhtml}> {lang_includehttp}</dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" dir="ltr" name="url" maxlength="{max_url_length}" value="{event_url}" id="calendar-eventeditor-url"{xhtml}> {lang_includehttp}</dd>
 
       <dt><label for="calendar-eventeditor-description">{lang_eventdescription}</label></dt>
-      <dd><textarea class="uk-textarea" name="description" cols="45" rows="8" id="calendar-eventeditor-description" class="wide">{event_description}</textarea></dd>
+      <dd><textarea class="uk-textarea uk-width-1-1" name="description" cols="45" rows="8" id="calendar-eventeditor-description" required>{event_description}</textarea></dd>
 
       <dt><label for="calendar-eventeditor-postmode">{lang_postmode}</label></dt>
-      <dd><select name="postmode" id="calendar-eventeditor-postmode">
+      <dd><select name="postmode" class="uk-select uk-form-width-small" id="calendar-eventeditor-postmode">
             {post_options}
           </select><br{xhtml}>{lang_allowed_html}</dd>
 
@@ -114,8 +114,8 @@
     </fieldset>
 
     <div class="submit">
-      <input type="submit" value="{lang_save}" name="mode" class="submit"{xhtml}>
-      <input type="submit" value="{lang_cancel}" name="mode" class="submit"{xhtml}>
+      <input type="submit" value="{lang_save}" name="mode" class="uk-button uk-button-primary"{xhtml}>
+      <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
       <input type="hidden" name="eid" value="{event_id}"{xhtml}>
       <input type="hidden" name="hour_mode" value="{hour_mode}"{xhtml}>
       {delete_option}

@@ -157,7 +157,7 @@ function CALENDAR_editEvent($mode, $A, $msg = '')
     $retval .= SEC_getTokenExpiryNotice($token);
 
     if (!empty($A['eid'])) {
-        $delbutton = '<input type="submit" value="' . $LANG_ADMIN['delete']
+        $delbutton = '<input type="submit" class="uk-button" value="' . $LANG_ADMIN['delete']
             . '" name="mode"%s' . XHTML . '>';
         $jsconfirm = ' onclick="return confirm(\'' . $MESSAGE[76] . '\');"';
         $event_templates->set_var('delete_option',
