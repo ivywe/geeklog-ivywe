@@ -522,13 +522,13 @@ if (($mode === $LANG_ADMIN['delete']) && !empty($LANG_ADMIN['delete'])) {
         Geeklog\Input::post('perm_anon')
     );
 } elseif ($mode === 'editsubmission') {
-    $display .= editlink($mode, Geeklog\Input::fGet('id'));
+    $display .= editlink($mode, Geeklog\Input::fGet('lid'));
     $display = COM_createHTMLDocument($display, array('pagetitle' => $LANG_LINKS_ADMIN[1]));
 } elseif ($mode === 'edit') {
     if (empty($_GET['lid'])) {
         $display .= editlink($mode);
     } else {
-        $display .= editlink($mode, Geeklog\Input::fGet('id'));
+        $display .= editlink($mode, Geeklog\Input::fGet('lid'));
     }
     $display = COM_createHTMLDocument($display, array('pagetitle' => $LANG_LINKS_ADMIN[1]));
 } else { // 'cancel' or no mode at all
