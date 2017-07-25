@@ -156,17 +156,13 @@
 
     <!-- #wrapper { -->
     <div id="wrapper">
-
 			<nav class="uk-navbar-container" uk-navbar>
-
-			<div class="uk-navbar-left">
-				<ul class="uk-navbar-nav">
-					{menu_elements}
-				</ul>
-			</div>
-
-		</nav>
-
+				<div class="uk-navbar-left">
+					<ul class="uk-navbar-nav">
+						{menu_elements}
+					</ul>
+				</div>
+			</nav>
 
       <!-- Center Block Container -->
       <div id="centerblocks">
@@ -179,3 +175,4 @@
 					<div class="uk-width-1-1">
 						<div class="uk-container">
 
+{# end {templatelocation} #}
