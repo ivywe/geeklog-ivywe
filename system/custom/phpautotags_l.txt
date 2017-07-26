@@ -1,0 +1,167 @@
+= 自動タグ[l:]を使い多言語サイトで対応言語用コンテンツ表示を実装するカスタム関数 =
+
+                                                     Modified Date: 2017/07/25
+                                                    Author: Hiroshi Sakuramoto
+                                                  Presented by: IVY WE CO.,LTD
+                                                                Version: 1.0.0
+                                                 対応バージョン: Geeklog 2.1.4
+
+Geeklogの記事や静的ページなどのコアプラグインは多言語化されているがForumやMediaGalleryなどにおいて多言語対応されていないもので多言語化をするために閉じタグが使える新しい自動タグ(Autotags)を応用して、言語ID(LanguageID)のときにそれに対応する自動タグで囲まれた内容を返しそれ以外のものは空白を返す自動タグを開発することで多言語化を行う。
+このタグを閉じることができるautotagsはGeeklog2.1.3以降についているautotags1.1.1から利用できます
+
+使用例）
+タイトルや説明に　[l:ja]日本語です[/l][l:en]English.[/l]　と入力
+
+これで表示の際に
+LanguageID=jaのときには「日本語です」のみを返します
+LanguageID=enのときには「English.」のみを返します
+このように多言語化した表示にすることができる自動タグ[l:<LanguageID>]を利用可能になります。
+
+
+== インストール方法/使用方法(Geeklog2.1.4以降) ==
+
+ 1) phpautotags_l.php を <geeklog_dir>/system/custom/ へアップロード
+
+
+ 2) <geeklog_dir>/system/lib-custom.php の末尾に以下を追加
+
+<code>
+/* 自動タグ[l:]を使い多言語サイトで対応言語用コンテンツ表示する by hiroron  */
+require_once( 'custom/phpautotags_l.php' );
+</code>
+
+ 3) autotagプラグインをインストールして、グループにてautotag.PHPを有効にしてPHP関数を使えるようにして新規自動タグでlを作成します。
+
+
+
+== インストール方法/使用方法(Geeklog2.1.3用) ==
+
+ 1) Geeklog2.1.4以降用の手順の1から3を行う
+
+ 2) <geeklog_dir>/plugins/autotags/functions.inc の末尾あたりにあるplugin_autotags_autotags関数の中の以下のphpautotags_関数(409行付近)の処理を変更します
+
+元のコード
+<code>
+                    $function = 'phpautotags_'.$autotag['tag'];
+                    if (function_exists($function))
+                    {
+                        $replace = $function($p1, $p2, $autotag['tagstr']);
+                        $content = str_replace($autotag['tagstr'], $replace, $content);
+                    }
+</code>
+
+以下のように変更します
+<code>
+                    $function = 'phpautotags_'.$autotag['tag'];
+                    if (function_exists($function))
+                    {
+                        $reffunc = new ReflectionFunction($function);
+                        if (isset($p3) && $reffunc->getNumberOfParameters() >= 4) {
+                            $replace = $function($p1, $p2, $autotag['tagstr'], $p3);
+                        } else {
+                            $replace = $function($p1, $p2, $autotag['tagstr']);
+                        }
+                        $content = str_replace($autotag['tagstr'], $replace, $content);
+                    }
+</code>
+
+ 3) autotagプラグインをインストールして、グループにてautotag.PHPを有効にしてPHP関数を使えるようにして新規自動タグでlを作成します。
+
+
+
+== 応用編/MediaGalleryプラグインを[l:]自動タグを使い多言語対応にするためのハック ==
+
+MediaGallery Version: 1.7.0
+以下のハックを行うことで、メディアギャラリーのアルバムのタイトルと説明、メディアのタイトルと説明とキーワードの表示にて[l:]自動タグが正しく機能するようになります。
+
+
+ 1) <geeklog_dir>plugins/mediagallery/include/lib-media.php
+:1219行
+<code>
+        $keyWords = explode(' ', $media['media_keywords']);
+</code>
+から以下に変更
+<code>
+        $keyWords = explode(' ', PLG_replaceTags($media['media_keywords']));
+</code>
+
+:1281行
+<code>
+        'album_title'         => $mg_album->title,
+</code>
+から以下に変更
+<code>
+        'album_title'         => PLG_replaceTags($mg_album->title),
+</code>
+
+:1358行
+<code>
+        $retval .= CMT_userComments($sid, $media['media_title'], 'mediagallery',
+</code>
+から以下に変更
+<code>
+        $retval .= CMT_userComments($sid, PLG_replaceTags($media['media_title']), 'mediagallery',
+</code>
+
+:1362行
+<code>
+    return array(strip_tags($media['media_title']), $retval, $aid);
+</code>
+から以下に変更
+<code>
+    return array(strip_tags(PLG_replaceTags($media['media_title'])), $retval, $aid);
+</code>
+
+
+
+ 2) <geeklog_dir>plugins/mediagallery/include/classMedia.php
+:699行
+<code>
+                $keyWords = explode(' ', $this->keywords);
+</code>
+から以下に変更
+<code>
+                $keyWords = explode(' ', PLG_replaceTags($this->keywords));
+</code>
+
+
+
+ 3) <geeklog_dir>plugins/mediagallery/include/common.php
+:754行
+<code>
+        'media_tag'        => (isset($title) && $title != ' ') ? strip_tags($title) : '',
+</code>
+から以下に変更
+<code>
+        'media_tag'        => (isset($title) && $title != ' ') ? strip_tags(PLG_replaceTags($title)) : '',
+</code>
+
+:1094行
+<code>
+        'album_title'          => $album_data['album_title'],
+</code>
+から以下に変更
+<code>
+        'album_title'          => PLG_replaceTags($album_data['album_title']),
+</code>
+
+:1134行
+<code>
+        $title = strip_tags($album_data['album_title']);
+</code>
+から以下に変更
+<code>
+        $title = strip_tags(PLG_replaceTags($album_data['album_title']));
+</code>
+
+
+
+ 4) <geeklog_dir>plugins/mediagallery/include/classAlbum.php
+:766行
+<code>
+                    $tatitle = strip_tags($this->title);
+</code>
+から以下に変更
+<code>
+                    $tatitle = strip_tags(PLG_replaceTags($this->title));
+</code>
