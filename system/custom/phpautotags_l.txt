@@ -76,7 +76,7 @@ MediaGallery Version: 1.7.0
 
 
  1) <geeklog_dir>plugins/mediagallery/include/lib-media.php
-:1219行
+:1210行
 <code>
         $keyWords = explode(' ', $media['media_keywords']);
 </code>
