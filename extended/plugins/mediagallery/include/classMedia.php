@@ -696,7 +696,7 @@ class Media {
             if (!empty($this->keywords)) {
                 $kwText = '';
                 $keyWords = array();
-                $keyWords = explode(' ', $this->keywords);
+                $keyWords = explode(' ', PLG_replaceTags($this->keywords));
                 $numKeyWords = count($keyWords);
                 for ($i=0; $i<$numKeyWords; $i++) {
                     $keyWords[$i] = str_replace('"', ' ', $keyWords[$i]);

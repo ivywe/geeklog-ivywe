@@ -763,7 +763,7 @@ class mgAlbum {
             if ($this->id != $hide) {
                 if (!$this->hidden || ($this->hidden && $mgadmin)) {
                     $album_jumpbox .= '<option value="' . $this->id . '"' . ($this->id == $selected ? ' selected="selected" ' : '') . '>' . $indent;
-                    $tatitle = strip_tags($this->title);
+                    $tatitle = strip_tags(PLG_replaceTags($this->title));
                     if (strlen($tatitle) > 50) {
                         $aTitle = COM_truncate($tatitle, 50) . '...';
                     } else {

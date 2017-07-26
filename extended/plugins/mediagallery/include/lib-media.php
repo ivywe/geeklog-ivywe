@@ -1207,7 +1207,7 @@ function MG_displayMedia($id, $full=0, $sortOrder=0, $comments=0, $spage=0)
     if ($mg_album->enable_keywords == 1 && !empty($media['media_keywords'])) {
         $lang_keywords = $LANG_MG01['keywords'];
         $keyWords = array();
-        $keyWords = explode(' ', $media['media_keywords']);
+        $keyWords = explode(' ', PLG_replaceTags($media['media_keywords']));
         $numKeyWords = count($keyWords);
         for ($i=0; $i<$numKeyWords; $i++) {
             $keyWords[$i] = str_replace('"', ' ', $keyWords[$i]);
@@ -1278,7 +1278,7 @@ function MG_displayMedia($id, $full=0, $sortOrder=0, $comments=0, $spage=0)
         'lang_slideshow_link' => $LANG_MG03['slide_show'],
         'image_detail'        => $u_image,
         'media_title'         => (isset($media['media_title']) && $media['media_title'] != ' ') ? PLG_replaceTags($media['media_title']) : '',
-        'album_title'         => $mg_album->title,
+        'album_title'         => PLG_replaceTags($mg_album->title),
         'media_desc'          => (isset($media['media_desc']) && $media['media_desc'] != ' ') ? $media_desc : '',
         'media_time'          => $media_date[0],
         'media_views'         => ($mg_album->enable_views ? $media['media_views'] : ''),
@@ -1355,11 +1355,11 @@ function MG_displayMedia($id, $full=0, $sortOrder=0, $comments=0, $spage=0)
             $commode = COM_applyFilter($_GET['mode']);
         }
         $commentcode = 0; // ¡‚Ì‚Æ‚±‚ë–³ğŒ‚ÉƒRƒƒ“ƒg“Še‚ğ‹–‰ÂB
-        $retval .= CMT_userComments($sid, $media['media_title'], 'mediagallery',
+        $retval .= CMT_userComments($sid, PLG_replaceTags($media['media_title']), 'mediagallery',
                        $comorder, $commode, 0, $page, false, $delete_option, $commentcode);
     }
 
-    return array(strip_tags($media['media_title']), $retval, $aid);
+    return array(strip_tags(PLG_replaceTags($media['media_title'])), $retval, $aid);
 }
 
 

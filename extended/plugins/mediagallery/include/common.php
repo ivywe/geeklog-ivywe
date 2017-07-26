@@ -751,7 +751,7 @@ function MG_getFramedImage($skin, $title, $u_pic, $u_image, $imageWidth, $imageH
         'media_height'     => $imageHeight,
         'media_width'      => $imageWidth,
         'media_title'      => (isset($title) && $title != ' ') ? PLG_replaceTags($title) : '',
-        'media_tag'        => (isset($title) && $title != ' ') ? strip_tags($title) : '',
+        'media_tag'        => (isset($title) && $title != ' ') ? strip_tags(PLG_replaceTags($title)) : '',
         'xhtml'            => XHTML,
     ));
     return $F->finish($F->parse('media', 'media_frame'));
@@ -1091,7 +1091,7 @@ function MG_albumThumbnail($album_id)
         'media_item_thumbnail' => $media_item_thumbnail,
         'u_viewalbum'          => $_MG_CONF['site_url'] . '/album.php?aid=' . $album_id .'&amp;page=1',
         'album_last_image'     => $album_last_image,
-        'album_title'          => $album_data['album_title'],
+        'album_title'          => PLG_replaceTags($album_data['album_title']),
         'album_media_count'    => $album_data['media_count'],
         'subalbum_media_count' => $total_images_subalbums,
         'album_desc'           => PLG_replaceTags($album_data['album_desc']),
@@ -1131,7 +1131,7 @@ function MG_getBirdseed($album_id, $hot=0, $sortOrder=0, $page=0)
                 $url .= '&amp;page=' . $page;
             }
         }
-        $title = strip_tags($album_data['album_title']);
+        $title = strip_tags(PLG_replaceTags($album_data['album_title']));
         if ($_MG_CONF['truncate_breadcrumb'] > 0) {
             $title = COM_truncate($title, $_MG_CONF['truncate_breadcrumb'], '...');
         }
