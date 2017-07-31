@@ -1,10 +1,27 @@
-<!-- plugins/assist/templates/newstories/default/featuredstories_col.thtml  20131029{ -->
+{# begin {templatelocation} #}
 
-<dt class="assist_date">{day}</dt>
-<dd class="assist_stories"><a href="{url}" class="gl-tooltip" style="cursor: pointer; ">{title}<span class="classic" style="top: 2.2em; left: 2.2em;">{meta_description}</span></a>{new_img}</dd>
+<div class="uk-width-1-5@m uk-margin-remove">{day}</div>
+<div class="uk-width-4-5@m uk-margin-remove">
+<div>
+<a href="{site_url}/index.php/topic/{topicids}" class="uk-text-bold">{topics}</a>::<a href="{url}" class="uk-text-truncate uk-text-bold">{title}</a>{!if new_img}<span class="uk-label-danger"><span class="uk-margin-small-left uk-margin-small-right">new!</span></span>{!endif}
+</div>
+<div class="uk-text-small">{introtext}</div>
+</div>
 
-<!-- 
-{introtext}
- -->
+{#  
+new_img:{new_img}
+introtext:{introtext}
+class:{class}
+permission:{permission}
+topicslink:{topicslink}</br>
+topicidslink:{topicidslink}</br>
+topics:{topics}</br>
+topicids:{topicids}</br>
+topicidspipeline:{topicidspipeline}</br>
+topics_li:{topics_li}</br>
+topicids_li:{topicids_li}</br>
+topicslink_li:{topicslink_li}</br>
+topicidslink_li:{topicidslink_li}</br>
+#}
 
-<!-- } plugins/assist/templates/newstories/default/featuredstories_col.thtml -->
+{# end {templatelocation} #}

@@ -5,10 +5,10 @@
   <div class="admin_basic compact">
     <dl class="form_block">
       <dt><label for="admin-groupeditor-grp_name">{lang_groupname}</label></dt>
-      <dd>{groupname_static}<input type="{groupname_inputtype}" maxlength="50" value="{group_name}" name="grp_name" id="admin-groupeditor-grp_name" class="size3"{xhtml}></dd>
+      <dd>{groupname_static}<input type="{groupname_inputtype}" class="uk-input uk-form-width-medium" maxlength="50" value="{group_name}" name="grp_name" id="admin-groupeditor-grp_name"{xhtml}></dd>
 
       <dt><label for="admin-groupeditor-grp_descr">{lang_description}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-large" maxlength="255" value="{group_description}" name="grp_descr" id="admin-groupeditor-grp_descr" class="size5"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-width-1-1" maxlength="255" value="{group_description}" name="grp_descr" id="admin-groupeditor-grp_descr"{xhtml}></dd>
 
     </dl>
 

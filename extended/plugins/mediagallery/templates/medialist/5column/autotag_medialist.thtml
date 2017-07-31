@@ -1,0 +1,12 @@
+{# begin {templatelocation} #}
+
+{!if edit}
+<a href="{site_url}/mediagallery/album.php?aid={album_id}&page=1"><i class="uk-icon-file-image-o"></i> {album_title}</a>
+{!endif}
+
+<div uk-grid>
+  {medialist_col}
+</div>
+
+
+{# end {templatelocation} #}

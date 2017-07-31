@@ -1,0 +1,8 @@
+{# begin {templatelocation} #}
+
+<li><span uk-icon="icon: triangle-right"></span>
+<a href="{site_url}/index.php/topic/{topicids}" class="uk-text-bold">{topics}</a>::<a href="{url}" class="uk-text-truncate uk-text-bold">{title}</a><span class="uk-margin-small-left">({day})</span>{!if new_img}<span class="uk-margin-small-left uk-label">new!</span>{!endif}
+<div class="uk-text-small uk-margin-large-left">{introtext}</div>
+</li>
+
+{# end {templatelocation} #}

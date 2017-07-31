@@ -1,15 +1,14 @@
 {# begin {templatelocation} #}
-{# plugins/assist/templates/newstories/default/stories_col.thtml  20160407 #}
 
-<dt class="assist_date">{day}</dt>
-<dd class="assist_stories"><a href="{url}" {class_a} style="cursor: pointer; ">{title}
-<span {class_c} style="top: 2.2em; left: 2.2em;">{meta_description}</span>
-</a>{new_img}[{topicslink}]
-</dd>
+<div class="uk-width-1-5@m uk-margin-remove">{day}</div>
+<div class="uk-width-4-5@m uk-margin-remove">
+	<div>
+	<a href="{site_url}/index.php/topic/{topicids}" class="uk-text-bold">{topics}</a>::<a href="{url}" class="uk-text-truncate uk-text-bold">{title}</a>{!if new_img}<span class="uk-label-danger"><span class="uk-margin-small-left uk-margin-small-right">new!</span></span>{!endif}
+	</div>
+</div>
 
 {#  
-
-
+new_img:{new_img}
 introtext:{introtext}
 class:{class}
 permission:{permission}

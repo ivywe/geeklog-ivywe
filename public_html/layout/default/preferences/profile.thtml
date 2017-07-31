@@ -55,7 +55,7 @@
         <dd class="description" id="desc-profile-email">{lang_email_text}</dd>
 
         <dt><label for="profile-email_conf">{lang_email_conf}</label></dt>
-        <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="96" value="{email_value}" name="email_conf" id="profile-email_conf" class="size6"{xhtml}></dd>
+        <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="96" value="{email_value}" name="email_conf" id="profile-email_conf"{xhtml}></dd>
 
         {current_password_option}
       </dl>

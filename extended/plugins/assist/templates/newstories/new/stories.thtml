@@ -1,8 +1,8 @@
 {# begin {templatelocation} #}
 
-<div class="uk-grid-small" uk-grid>
+<ul class="uk-list">
 {stories_col}
-</div>
+</ul>
 
 {#
 <p class="assist_rss"><a href="{rss_url}">{rss_title}</a></p>
