@@ -258,7 +258,7 @@ function MG_autotags($op, $content = '', $autotag = '')
         $align = '';
     }
     // sanity check incase the album has been deleted or something...
-    if (!in_array($autotag['tag'], array('media','image','video','audio','download','oimage','img','mlink','alink','playall'))) {
+    if (!in_array($autotag['tag'], array('media','media_url','image','video','audio','download','oimage','img','mlink','alink','playall'))) {
         if (DB_count($_TABLES['mg_albums'], 'album_id', intval($parm1)) == 0)
             return str_replace($autotag['tagstr'], '', $content);
     }
@@ -1195,6 +1195,7 @@ function MG_autotags($op, $content = '', $autotag = '')
             break;
 
         case 'media' :
+        case 'media_url' :
         /* image, oimage and img are depreciated */
         case 'image' :
         case 'oimage' :
@@ -1393,6 +1394,8 @@ if(strlen($class) != 0){$class =" ".$class;}
 
             if ($autotag['tag'] == 'img') {
                 $link = MG_helper_getContainer($link, $align, 'div');
+            } elseif ($autotag['tag'] == 'media_url') {
+                $link = $media_thumbnail;
             } else {
                 $T = COM_newTemplate($_MG_CONF['template_path']);
                 $T->set_file('tag', ($border == 0) ? 'autotag_nb.thtml' : 'autotag.thtml');
