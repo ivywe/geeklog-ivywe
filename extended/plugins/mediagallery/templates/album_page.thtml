@@ -29,13 +29,13 @@
 </div>
 
 {!if album_description}
-<div class="mg_album_description">
+<div class="uk-clearfix mg_album_description">
    {album_description}
 </div>
 {!endif}
 
 {!if album_body}
-<div style="width:100%;margin:10px 0;clear:both">
+<div class="uk-width-1-1">
 <!-- BEGIN ImageRow -->
 <!-- BEGIN ImageColumn -->
 <div class="mg_album_cell" style="width:{table_column_width};{clear_float}">
