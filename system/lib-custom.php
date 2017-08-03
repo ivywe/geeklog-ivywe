@@ -628,3 +628,8 @@ if (file_exists($_CONF['path'] . 'system/custom/custom_handle404.php')) {
 // autotag: (title) forumcenterblock
 //          (mode) Use PHP
 //          (content) return CUSTOM_centerblock_forum ($p1);
+//
+/* 自動タグ[l:]を使い多言語サイトで対応言語用コンテンツ表示する by hiroron */
+if (file_exists($_CONF['path'] . 'system/custom/phpautotags_l.php')) {
+  require_once $_CONF['path'] . 'system/custom/phpautotags_l.php';
+}
