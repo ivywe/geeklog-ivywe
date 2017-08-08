@@ -218,7 +218,7 @@ class dpxyDriver_Calendarjp extends dpxyDriver
 			$entry['title']     = stripslashes( $A['title'] );
 			$entry['uri']       = $_CONF['site_url'] . '/calendarjp/event.php?eid='
 								. $entry['id'];
-			$entry['date']      = (int) $A['day1'] + (int) $A['day2'];
+			$entry['date']      = (int) $A['day1'];
 			$entry['image_uri'] = FALSE;
 			$entries[] = $entry;
 		}

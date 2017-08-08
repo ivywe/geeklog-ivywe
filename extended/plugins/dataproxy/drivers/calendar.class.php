@@ -217,7 +217,7 @@ class dpxyDriver_Calendar extends dpxyDriver
 			$entry['title']     = stripslashes( $A['title'] );
 			$entry['uri']       = $_CONF['site_url'] . '/calendar/event.php?eid='
 								. $entry['id'];
-			$entry['date']      = (int) $A['day1'] + (int) $A['day2'];
+			$entry['date']      = (int) $A['day1'] ;
 			$entry['image_uri'] = FALSE;
 			$entries[] = $entry;
 		}
