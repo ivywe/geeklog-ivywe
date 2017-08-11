@@ -18,4 +18,4 @@ $_DB_user = 'username';
 $_DB_pass = 'password';
 $_DB_table_prefix = 'gl_';
 $_DB_dbms = 'mysql';
-$_DB_charset = 'utf8';
+$_DB_charset = 'utf-8';
