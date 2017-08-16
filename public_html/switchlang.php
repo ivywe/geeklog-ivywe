@@ -67,17 +67,23 @@ function switch_language($url, $newLang, $oldLang)
 
         // for "rewritten" URLs we assume that the first parameter after
         // the script name is the ID, e.g. /article.php/story-id-here_en
+        // Geeklog2.1.3から追加 e.g. /index.php/topic/home_en
+        // hack by hiroron 2017/08/16
         $changed = false;
         $p = explode('/', $the_url);
         $parts = count($p);
         for ($i = 0; $i < $parts; $i++) {
             if (substr($p[$i], -4) === '.php') {
-                // found the script name - assume next parameter is the ID
-                if (isset($p[$i + 1])) {
-                    if (substr($p[$i + 1], -($lang_len + 1)) === '_' . $oldLang) {
-                        $p[$i + 1] = substr_replace($p[$i + 1], $newLang, -$lang_len);
-                        $changed = true;
-                    }
+                // (NG)found the script name - assume next parameter is the ID
+                // script名以降のどこかにlangIDがある(nextではなくなった)
+                for ($j = $i; $j < $parts; $j++) {
+                  if (isset($p[$j + 1])) {
+                      if (substr($p[$j + 1], -($lang_len + 1)) === '_' . $oldLang) {
+                          $p[$j + 1] = substr_replace($p[$j + 1], $newLang, -$lang_len);
+                          $changed = true;
+                          break;
+                      }
+                  }
                 }
                 break;
             }
