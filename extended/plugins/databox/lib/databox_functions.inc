@@ -486,7 +486,7 @@ global $_TABLES;
 
         $A = DB_fetchArray( $result, true );
         $retval .= '<span style="white-space:nowrap">';
-        $retval .= '<input type="checkbox" name="' . $fname . '[]" value="' . $A[0] ;
+        $retval .= '<input type="checkbox" class="uk-checkbox" name="' . $fname . '[]" value="' . $A[0] ;
         $retval .= '"';
         for( $x = 0; $x < sizeof( $S ); $x++ )            {
             if( $A[0] == $S[$x] )                {
@@ -2705,7 +2705,7 @@ global $_TABLES;
             
                 if  ($A['input_type']==0){
                     $retval .= '<span style="white-space:nowrap">';
-                    $retval .= '<input type="checkbox" name="category[]" value="' . $A2['category_id'] ;
+                    $retval .= '<input type="checkbox" class="uk-checkbox" name="category[]" value="' . $A2['category_id'] ;
                     $retval .= '"';
                     $retval .= $checked;
                     $retval .= $disabled.' >' . stripslashes( $A2['name'] ) . '</span>' . LB;
