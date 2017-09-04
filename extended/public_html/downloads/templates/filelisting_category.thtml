@@ -1,6 +1,7 @@
 {# begin {templatelocation} #}
 
-<div id="dlm_cat_part"><ul>
-{category_records}</ul></div>
+<div id="dlm_cat_part">
+<ul>{category_records}</ul>
+</div>
 
 {# end {templatelocation} #}

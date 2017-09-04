@@ -5,7 +5,7 @@
     <div class="admin_basic">
         <dl class="form_block">
             <dt><label for="autotags-autotageditor-tag">{lang_tag}</label></dt>
-            <dd><input type="text" class="uk-input uk-form-width-medium" name="tag" value="{tag}" maxlength="24" id="autotags-autotageditor-tag"{xhtml}></dd>
+            <dd><input type="text" class="uk-input uk-form-width-medium" name="tag" value="{tag}" maxlength="24" id="autotags-autotageditor-tag" required{xhtml}></dd>
             
             <dt><label for="autotags-autotageditor-tag">{lang_desc}</label></dt>
             <dd><input type="text" class="uk-input" name="description" value="{description}" maxlength="255" id="autotags-autotageditor-tag"{xhtml}></dd>            
@@ -26,7 +26,7 @@
             
             <dt><label for="autotags-autotageditor-replacement">{lang_replacement}</label></dt>
             <dd>
-                <textarea name="replacement" class="uk-textarea" rows="8" id="autotags-autotageditor-replacement">{replacement}</textarea>
+                <textarea name="replacement" class="uk-textarea" rows="8" id="autotags-autotageditor-replacement" required>{replacement}</textarea>
                 {lang_replace_explain}
             </dd>
         </dl>

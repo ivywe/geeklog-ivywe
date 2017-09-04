@@ -7,7 +7,7 @@
 {mod_submitter}
 
       <dt><label for="downloads-filetitle">{lang_filetitle}</label></dt>
-      <dd><input type="text" class="uk-input"  maxlength="200" name="title" value="{title}" id="downloads-filetitle" size="48" class="size5"{xhtml}></dd>
+      <dd><input type="text" class="uk-input" maxlength="200" name="title" value="{title}" id="downloads-filetitle" size="48" class="size5" required{xhtml}></dd>
 
 {mod_file_id}
 {mod_dl_file_name}
@@ -31,7 +31,7 @@
       <dd><div id="text_editor" style="display:{show_texteditor}; width:95%">
             <img src="{layout_url}/images/expand.png" title="{lang_expandhelp}" alt="" onclick="changeTextAreaSize('text_description','larger');"{xhtml}>
             <img src="{layout_url}/images/collapse.png" title="{lang_reducehelp}" alt="" onclick="changeTextAreaSize('text_description','smaller');"{xhtml}>
-            <textarea class="uk-textarea" id="text_description" name="text_description" style="width:100%; font-size:small;" cols="50" rows="10">{description}</textarea>
+            <textarea class="uk-textarea" id="text_description" name="text_description" style="width:100%; font-size:small;" cols="50" rows="10" required>{description}</textarea>
           </div>
 
           <div id="html_editor" style="display:{show_htmleditor}; width:95%">

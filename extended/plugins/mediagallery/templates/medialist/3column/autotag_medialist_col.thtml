@@ -5,7 +5,7 @@
 		<img src="{filename}" alt="{media_title}" class="uk-container-center uk-overlay-scale uk-border-rounded  {class}" alt="{media_title}"{xhtml}>
 	</a>
 	<div>
-		<h2 class="uk-margin-remove">{media_title}</h2>
+		<p class="uk-margin-remove uk-text-bold">{media_title}</p>
 		<p class="uk-margin-remove">{media_desc}</p>
 		<p class="uk-margin-remove">{media_keywords}</p>
 	</div>
@@ -17,7 +17,7 @@
 				<div class="uk-background-cover" style="background-image: url('{filename_orig}');" uk-height-viewport>
 				</div>
 				<div class="uk-padding-large">
-					<h1>{media_title}</h1>
+					<p class="uk-margin-remove uk-text-bold">{media_title}</p>
 					<div>{media_desc}</div>
 				</div>
 			</div>

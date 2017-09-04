@@ -26,6 +26,7 @@
     </ul>
   </header>
 
+
   <div class="story_introtext" itemprop="description">
 {!if story_anchortag_and_image_no_align}
     <span class="story_image">{story_anchortag_and_image_no_align}</span>

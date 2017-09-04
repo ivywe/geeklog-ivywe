@@ -44,7 +44,7 @@ max-width:130px; height:auto;
 }
 
 .uk-icon-button {
-	padding: 8px;
+	padding: 10px;
 }
 
 .uk-label {
@@ -57,4 +57,14 @@ max-width:130px; height:auto;
     vertical-align: middle;
     white-space: nowrap;
     border-radius: 2px;
+}
+.uk-subnav>*>:first-child {
+font-size: 1em;
+}
+
+.uk-form-label {
+    font-size: 0.9em;
+}
+.uk-navbar-item, .uk-navbar-nav>li>a, .uk-navbar-toggle {
+    font-size: 0.9em;
 }

@@ -7,16 +7,16 @@
       <dd class="controls_text"><span>{id_to_display}</span></dd>
 
       <dt><label for="admin-language-editor-language">{lang_language}</label></dt>
-      <dd><select class="uk-select uk-form-width-small" name="language" id="admin-language-editor-language">{language_options}</select></dd>
+      <dd><select class="uk-select uk-form-width-medium" name="language" id="admin-language-editor-language">{language_options}</select></dd>
 
       <dt><label for="admin-language-editor-var_name">{lang_var_name}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" size="30" maxlength="30" value="{var_name}" name="var_name" id="admin-language-editor-var_name"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" size="30" maxlength="30" value="{var_name}" name="var_name" id="admin-language-editor-var_name" placeholder="e.g. LANG04" required{xhtml}></dd>
 
       <dt><label for="admin-language-editor-name">{lang_name}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" size="30" maxlength="30" value="{name}" name="name" id="admin-language-editor-name"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" size="30" maxlength="30" value="{name}" name="name" id="admin-language-editor-name" placeholder="e.g. user_login_message" required{xhtml}></dd>
 
       <dt><label for="admin-language-editor-value">{lang_value}</label></dt>
-      <dd><input type="text" class="uk-input uk-width-1-1" size="50" maxlength="255" value="{value}" name="value" id="admin-language-editor-value"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-width-1-1" size="50" maxlength="255" value="{value}" name="value" id="admin-language-editor-value" placeholder="e.g. 会員の方は、ログインしてご利用ください。" required{xhtml}></dd>
     </dl>
 
     <div class="submit">

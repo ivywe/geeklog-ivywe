@@ -1415,7 +1415,7 @@ function LIB_templatesdirectory (
 	}
 		
     //
-    $selection = '<select class="uk-select uk-form-width-medium" id="defaulttemplatesdirectory" name="defaulttemplatesdirectory">' . LB;
+    $selection = '<select class="uk-select uk-form-width-large" id="defaulttemplatesdirectory" name="defaulttemplatesdirectory">' . LB;
 	$selection .= "<option value=\"\">  </option>".LB;
 
     //

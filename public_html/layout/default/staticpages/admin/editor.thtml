@@ -5,10 +5,10 @@
     <div class="admin_basic">
       <dl class="form_block">
         <dt><label for="sp-editor-sp_title">{lang_title}</label></dt>
-        <dd><input type="text" class="uk-input uk-form-width-large" maxlength="128" {!if titletoid}onkeyup="TitleToId('sp-editor-sp_title','sp-editor-sp_id');" {!endif}name="sp_title" value="{sp_title}" id="sp-editor-sp_title"{xhtml}></dd>
+        <dd><input type="text" class="uk-input uk-form-width-large" maxlength="128" {!if titletoid}onkeyup="TitleToId('sp-editor-sp_title','sp-editor-sp_id');" {!endif}name="sp_title" value="{sp_title}" id="sp-editor-sp_title" required{xhtml}></dd>
 
         <dt><label for="sp-editor-sp_id">{lang_id}</label></dt>
-        <dd><input type="text" class="uk-input uk-form-width-medium" dir="ltr" name="sp_id" maxlength="128" value="{sp_id}" id="sp-editor-sp_id"{xhtml}></dd>
+        <dd><input type="text" class="uk-input uk-form-width-medium" dir="ltr" name="sp_id" maxlength="128" value="{sp_id}" id="sp-editor-sp_id" required{xhtml}></dd>
 
         <dt><label>{lang_url}</label></dt>
         <dd class="controls_text"><span class="break-word">{example_url}</span></dd>
