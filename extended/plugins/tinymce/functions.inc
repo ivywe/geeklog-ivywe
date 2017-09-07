@@ -73,8 +73,8 @@ function plugin_getheadercode_tinymce() {
 	
 	$retval .= '<script type="text/javascript" src="' . $baseUrl
 			.  '/tiny_mce/tiny_mce.js"></script>' . LB
-			.  '<script type="application/javascript" src="' . $baseUrl
-			.  '/tiny_mce/plugins/tinybrowser/tb_tinymce.js.php"></script>' . LB
+//			.  '<script type="application/javascript" src="' . $baseUrl
+//			.  '/tiny_mce/plugins/tinybrowser/tb_tinymce.js.php"></script>' . LB
 			.  '<script type="text/javascript" src="' . $baseUrl
 			.  '/tinymce_loader.js.php"></script>' . LB
 			.  '<!-- End of TinyMCE plugin -->' . LB;
