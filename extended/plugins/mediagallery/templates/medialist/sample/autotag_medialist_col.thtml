@@ -16,7 +16,7 @@
       <dt>album_title</dt><dd>{album_title}</dd>
       <dt>album_desc</dt><dd>{album_desc}</dd>
       <dt>media_id</dt><dd>{media_id}</dd>
-      <dt>media_filename</dt><dd class="uk-text-truncate" style="max-width:400px">{media_filename}</dd>
+      <dt>filename</dt><dd class="uk-text-truncate" style="max-width:400px">{filename}</dd>
       <dt>filename_tn</dt><dd class="uk-text-truncate" style="max-width:400px">{filename_tn}</dd>
       <dt>filename_disp</dt><dd class="uk-text-truncate" style="max-width:400px">{filename_disp}</dd>
       <dt>filename_orig</dt><dd class="uk-text-truncate" style="max-width:400px">{filename_orig}</dd>
