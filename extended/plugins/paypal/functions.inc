@@ -2724,7 +2724,7 @@ function PAYPAL_handlePurchase( $products, $quantity, $data, $names, $prices, $r
 			}
 		}
 
-		$namelist[] =  $ipn['item_name'.$i] . ' x ' .$ipn['quantity'.$i] . ' = '  . number_format(($ipn['mc_gross_'.$i]/$ipn['quantity'.$i]), $_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']) . ' ' . $_PAY_CONF['currency'] . '<br>';
+		$namelist[] =  $ipn['item_name'.$i] . ' : ' . number_format($prices[$i], $_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']) . ' ' . $_PAY_CONF['currency'] .' x ' .$ipn['quantity'.$i] . ' = '  . number_format(($ipn['mc_gross_'.$i]), $_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']) . ' ' . $_PAY_CONF['currency'] . '<br>';
 		
 		// stock movement
 		$stock_id = PAYPAL_getStockId($ipn['item_number'.$i]);
@@ -2739,6 +2739,7 @@ function PAYPAL_handlePurchase( $products, $quantity, $data, $names, $prices, $r
 		$ipn['mc_gross'] = number_format($ipn['mc_gross'] + $_REQUEST['shipping'], $_CONF['decimal_count'], '.', '');
 		$ipn['mc_currency'] = $_PAY_CONF['currency'];
 		$ipn['custom'] = $user_id;
+		$ipn['address_phone1'] = $informations['user_phone1'];
 		$ipn['address_name'] = $informations['user_name'];
 		$ipn['address_street'] = $informations['user_street1'] . ' ' . $informations['user_street2'];
 		$ipn['address_zip'] = $informations['user_postal'];
