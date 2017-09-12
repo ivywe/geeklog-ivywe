@@ -1,30 +1,12 @@
 {# begin {templatelocation} #}
 
 <div uk-grid>
-
-  <div class="uk-width-1-4@m uk-vertical-align-top">
-
-		<a href="#modal-full-{media_id}" uk-toggle><img src="{filename_tn}" alt="{media_title}" class="uk-container-center uk-overlay-scale uk-border-rounded  {class}" alt="{media_title}"{xhtml}></a>
-
+  <div class="uk-width-1-4@m uk-vertical-align-top uk-text-center" uk-lightbox>
+		<a href="{filename_orig}" uk-toggle><img src="{filename_tn}" alt="{media_title}" class="uk-container-center uk-overlay-scale uk-border-rounded  {class}" alt="{media_title}"{xhtml}></a>
 	</div>
-  <div class="uk-width-3-4@m uk-vertical-align-top uk-text-left">
-		{!if media_title}<h3>{media_title}</h3>{!endif}
+  <div class="uk-width-3-4@m uk-vertical-align-top">
 	  <div>{media_desc}</div>
   </div>
-
-	<div id="modal-full-{media_id}" class="uk-modal-full" uk-modal>
-	    <div class="uk-modal-dialog">
-	        <button class="uk-modal-close-full uk-close-large" type="button" uk-close></button>
-	        <div class="uk-grid-collapse uk-child-width-1-2@s uk-flex-middle" uk-grid>
-	            <div class="uk-background-cover" style="background-image: url('{filename_orig}');" uk-height-viewport></div>
-	            <div class="uk-padding-large">
-	                <h1>{media_title}</h1>
-								  <div>{media_desc}</div>
-	            </div>
-	        </div>
-	    </div>
-	</div>
-
 </div>
 
 {# end {templatelocation} #}

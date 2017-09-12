@@ -55,3 +55,7 @@ node_modules/
 
 # ignore thumbnails created by OSX
 .DS_Store
+extended/plugins/paypal/functions.inc
+extended/plugins/paypal/proversion/proversion.php
+extended/plugins/paypal/proversion/readme.txt
+extended/plugins/paypal/functions.inc

@@ -1,27 +1,13 @@
 {# begin {templatelocation} #}
 
-<div class="uk-width-1-2@m">
-	<a href="#modal-full-{media_id}" uk-toggle>
-		<img src="{filename}" alt="{media_title}" class="uk-container-center uk-overlay-scale uk-border-rounded  {class}" alt="{media_title}"{xhtml}>
+<div class="uk-width-1-2@m" uk-lightbox>
+	<a href="{filename_orig}">
+		<img src="{filename_orig}" alt="{media_title}" class="uk-container-center uk-overlay-scale uk-border-rounded {class}" alt="{media_title}"{xhtml}>
 	</a>
 	<div>
 		<p class="uk-text-bold">{media_title}</p>
 		<p class="uk-margin-remove">{media_desc}</p>
 		<p class="uk-margin-remove">{media_keywords}</p>
-	</div>
-	<div id="modal-full-{media_id}" class="uk-modal-full" uk-modal>
-		<div class="uk-modal-dialog">
-			<button class="uk-modal-close-full uk-close-large" type="button" uk-close>
-			</button>
-			<div class="uk-grid-collapse uk-child-width-1-2@s uk-flex-middle" uk-grid>
-				<div class="uk-background-cover" style="background-image: url('{filename_orig}');" uk-height-viewport>
-				</div>
-				<div class="uk-padding-large">
-					<p class="uk-text-bold">{media_title}</p>
-					<div>{media_desc}</div>
-				</div>
-			</div>
-		</div>
 	</div>
 </div>
 
