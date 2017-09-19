@@ -1315,7 +1315,7 @@ function ADMIN_getListField_plugins($fieldName, $fieldValue, $A, $icon_arr, $tok
                 if ($A['pi_enabled'] == 1) {
                     $retval .= " <b>{$LANG32[38]}</b>";
                     $csrfToken = '&amp;' . CSRF_TOKEN . '=' . $token;
-                    $style = 'style="vertical-align: middle;"';
+                    $style = 'style="vertical-align: middle; min-width:28px"';
                     $img = $_CONF['layout_url'] . '/images/update.png';
                     $img = "<img $style alt=\"[" . $LANG32[38] . "]\" src=\"$img\"" . XHTML . ">";
                     $url = $_CONF['site_admin_url'] . '/plugins.php?mode=updatethisplugin&amp;pi_name=' . $A['pi_name'] . $csrfToken;
@@ -1689,7 +1689,7 @@ function ADMIN_getListField_topics($fieldName, $fieldValue, $A, $icon_arr, $toke
 
         case 'sortnum':
             if ($_CONF['sortmethod'] === 'sortnum') {
-                $style = 'style="vertical-align: middle;"';
+                $style = 'style="vertical-align: middle; min-width:28px"';
                 $upImage = $_CONF['layout_url'] . '/images/admin/up.png';
                 $downImage = $_CONF['layout_url'] . '/images/admin/down.png';
                 $url = $_CONF['site_admin_url'] . '/topic.php?mode=change_sortnum'

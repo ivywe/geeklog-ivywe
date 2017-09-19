@@ -1463,10 +1463,10 @@ class Story
                 $imgSrc = $_CONF['site_url'] . '/getimage.php?mode=articles&amp;image=' . $A['ai_filename'];
             }
 
-            $norm = $lLinkPrefix . '<img ' . $sizeAttributes . 'src="' . $imgSrc . '" alt=""' . XHTML . '>' . $lLinkSuffix;
-            $left = $lLinkPrefix . '<img ' . $sizeAttributes . 'class="floatleft" src="' . $imgSrc . '" alt=""' . XHTML . '>'
+            $norm = $lLinkPrefix . '<img ' . $sizeAttributes . 'class="uk-margin uk-margin-right" src="' . $imgSrc . '" alt=""' . XHTML . '>' . $lLinkSuffix;
+            $left = $lLinkPrefix . '<img ' . $sizeAttributes . 'class="floatleft uk-margin-right uk-margin-bottom" src="' . $imgSrc . '" alt=""' . XHTML . '>'
                 . $lLinkSuffix;
-            $right = $lLinkPrefix . '<img ' . $sizeAttributes . 'class="floatright" src="' . $imgSrc . '" alt=""' . XHTML . '>'
+            $right = $lLinkPrefix . '<img ' . $sizeAttributes . 'class="floatright uk-margin-left uk-margin-bottom" src="' . $imgSrc . '" alt=""' . XHTML . '>'
                 . $lLinkSuffix;
 
             $text = str_replace($norm, $imageX, $text);
