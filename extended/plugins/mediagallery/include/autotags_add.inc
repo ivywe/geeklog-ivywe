@@ -121,14 +121,14 @@ function MG_medialist (
 			$filename_disp=$_MG_CONF['mediaobjects_url'].'/'."disp".$fn. '.' . $ext;
 		}
 		//
-		$wk=$_MG_CONF['path_mediaobjects']."tn".$fn.'_custom';
+		$wk=$_MG_CONF['path_mediaobjects']."tn".$fn.'_cropcustom';
 		$tnext = MG_getMediaExt($wk);
     $media_size = @getimagesize($wk . $tnext);
     $ext = substr($tnext,1,3); 
     if ($media_size == false) {
 			$filename_tn="";
 		}else{
-			$filename_tn=$_MG_CONF['mediaobjects_url'].'/'."tn".$fn.'_custom'. '.' . $ext;
+			$filename_tn=$_MG_CONF['mediaobjects_url'].'/'."tn".$fn.'_cropcustom'. '.' . $ext;
 		}
 		if  ($src=="orig"){
 			$filename=$filename_orig;

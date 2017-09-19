@@ -5,7 +5,7 @@
 	  <p>{edit_marker_text}        
 	  </p>
 	  <p>
-		<input type="text" style="width:350px" id="geoaddress" name="geoaddress" value="{default_address}" onkeyup="copyText()"/>
+		<input type="text" class="uk-input" style="width:350px" id="geoaddress" name="geoaddress" value="{default_address}" onkeyup="copyText()"/>
 		<input type="submit" value="{go}" onfocus="copyText();" />
 	  </p>
 	  <div id="map_contener_submission">
@@ -21,10 +21,10 @@
 		<fieldset style="margin-top: 10px;padding:10px;">
 		<legend>{arrow}<a style="text-decoration: none;" onClick="elementToggle('informations'); return false;" href="#"><b>{informations}</b></a></legend>
 			<div id="informations">
-				<p><b>{name_label}</b><font color="red">*</font> <input type="text" name="name" value="{name}" size="80" maxlength="255"></p>
-				<p><b>{address_label}</b><font color="red">*</font> <input type="text" id="address" name="address" value="{address}" size="80" maxlength="255"></p>
-				<p><b>{lat}</b> <input type="text" id="lat" name="lat" value="{lat_value}" size="14" maxlength="12">&nbsp;&nbsp; 
-				<b>{lng}</b> <input type="text" id="lng" name="lng" value="{lng_value}" size="14" maxlength="12"><br{xhtml}>
+				<p><b>{name_label}</b><font color="red">*</font> <input type="text" class="uk-input" name="name" value="{name}" size="80" maxlength="255"></p>
+				<p><b>{address_label}</b><font color="red">*</font> <input type="text" class="uk-input" id="address" name="address" value="{address}" size="80" maxlength="255"></p>
+				<p><b>{lat}</b> <input type="text" class="uk-input uk-form-width-small" id="lat" name="lat" value="{lat_value}" size="14" maxlength="12">&nbsp;&nbsp; 
+				<b>{lng}</b> <input type="text" class="uk-input uk-form-width-small" id="lng" name="lng" value="{lng_value}" size="14" maxlength="12"><br{xhtml}>
 				{empty_for_geo}</p>
 				<p><b>{mid_label}</b> &nbsp;<select class="uk-select" id="mid" name="mid">{map_options}</select><br{xhtml}>
 				{select_marker_map}</p>
@@ -33,18 +33,18 @@
 		</fieldset>	
         <fieldset style="margin-top: 10px;"><legend>{arrow}<a style="text-decoration: none;" onClick="elementToggle('marker_label'); return false;" href="#"><b>{marker_customisation}</b></a></legend>
 			<div id="marker_label"  style="display:none;">
-				<p>{mk_default} <select class="uk-select" name="mk_default">
+				<p>{mk_default} <select class="uk-select uk-form-width-small" name="mk_default">
 				<option value="0"{mk_default_no}>{no}</option>
 				<option value="1"{mk_default_yes}>{yes}</option>
 				</select></p>
 				<div>{icon}</div>
 				<p>{primary_color_label}
 				
-				<input type="text" id="primary_color" name="primary_color" value="{primary_color}" size="7" maxlength="7"></p>
+				<input type="text" class="uk-input uk-form-width-small" id="primary_color" name="primary_color" value="{primary_color}" size="7" maxlength="7"></p>
 				<p>{stroke_color_label}
 				
-				<input type="text" id="stroke_color" name="stroke_color" value="{stroke_color}" size="7" maxlength="7"></p>
-				<p>{label_label} <input type="text" id="label" name="label" value="{label}" size="1" maxlength="1">&nbsp;&nbsp;&nbsp;{label_color_label}  <select class="uk-select" name="label_color">
+				<input type="text" class="uk-input uk-form-width-small" id="stroke_color" name="stroke_color" value="{stroke_color}" size="7" maxlength="7"></p>
+				<p>{label_label} <input type="text" class="uk-input uk-form-width-xsmall" id="label" name="label" value="{label}" size="1" maxlength="1">&nbsp;&nbsp;&nbsp;{label_color_label}  <select class="uk-select uk-form-width-small" name="label_color">
 				<option value="0"{label_color_black}>{black}</option>
 				<option value="1"{label_color_white}>{white}</option>
 				</select>
@@ -54,24 +54,24 @@
 		<fieldset style="margin-top: 10px;">
 		<legend>{arrow}<b><a style="text-decoration: none;" onClick="elementToggle('general_settings'); return false;" href="#">{general_settings}</a></h3></b></legend>
 			<div id="general_settings" style="display:none;">
-				<p>{payed} <select class="uk-select" name="payed">
+				<p>{payed} <select class="uk-select uk-form-width-small" name="payed">
 				<option value="0"{payed_no}>{no}</option>
 				<option value="1"{payed_yes}>{yes}</option>
 				</select>&nbsp;&nbsp;&nbsp;
-				{active} <select class="uk-select" name="active">
+				{active} <select class="uk-select uk-form-width-small" name="active">
 				<option value="0"{active_no}>{no}</option>
 				<option value="1"{active_yes}>{yes}</option>
 				</select>&nbsp;&nbsp;&nbsp;
-				{hidden} <select class="uk-select" name="hidden">
+				{hidden} <select class="uk-select uk-form-width-small" name="hidden">
 				<option value="0"{hidden_no}>{no}</option>
 				<option value="1"{hidden_yes}>{yes}</option>
 				</select></p>
-				<p>{marker_validity} <select class="uk-select" id="validity" name="validity" OnChange="changeValidity();">
+				<p>{marker_validity} <select class="uk-select uk-form-width-small" id="validity" name="validity" OnChange="changeValidity();">
 				<option value="0"{validity_no}>{no}</option>
 				<option value="1"{validity_yes}>{yes}</option>
 				</select>
-				&nbsp;&nbsp;&nbsp;{from_label} <input type="text" id="from" name="from" value="{from}" size="14" maxlength="12"{disabled}>
-				&nbsp;&nbsp;&nbsp;{to_label}  <input type="text" id="to" name="to" value="{to}" size="14" maxlength="12"{disabled}></p>
+				&nbsp;&nbsp;&nbsp;{from_label} <input type="text" class="uk-input uk-form-width-small" id="from" name="from" value="{from}" size="14" maxlength="12"{disabled}>
+				&nbsp;&nbsp;&nbsp;{to_label}  <input type="text" class="uk-input uk-form-width-small" id="to" name="to" value="{to}" size="14" maxlength="12"{disabled}></p>
 				<p><a style="text-decoration: none;" onClick="elementToggle('remark'); return false;" href="#">{remark_label}</a></p>
 				<div id="remark" style="display:none">
 				    <textarea class="uk-textarea" rows="5" id="remark" name="remark" cols="51" style="width:99%">{remark}</textarea></p>
@@ -117,12 +117,12 @@
 		</fieldset>
 		<p><font color="red"><strong><small>*</font> {required_field}</small></strong></p>
 		<div>
-			<select class="uk-select" name="mode" >
-			<option value="save" selected="selected">{save_button}</option>
-			<option value="delete">{delete_button}</option>
+			<select class="uk-select uk-form-width-small" name="mode" >
+				<option value="save" selected="selected">{save_button}</option>
+				<option value="delete">{delete_button}</option>
 			</select>
 			<input type="hidden" name="submission" value="{submission}">
-			<input type="submit" name="submit" value="{ok_button}">
+			<input type="submit" class="uk-button uk-button-primary" name="submit" value="{ok_button}">
 			{mkid}
 		</div>
 	</form>

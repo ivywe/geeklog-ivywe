@@ -97,8 +97,10 @@
       </div>
     </div>
 
-    <div class="uk-panel uk-panel-box uk-panel-box-primary uk-margin">
-      <div class="uk-form-row uk-clearfix">
+<div class="uk-card uk-card-default uk-margin uk-margin-left uk-margin-right">
+
+    <div class="uk-margin uk-margin-top uk-margin-left uk-margin-right">
+      <div class=" uk-form-row uk-clearfix">
         <label class="uk-form-label">{lang_type} {help_type}</label>
         <div class="uk-form-controls">
           {list_type}
@@ -106,7 +108,7 @@
       </div>
     </div>
 
-    <div class="uk-panel uk-panel-box uk-margin">
+    <div class="uk-margin uk-margin-large-left uk-margin-right">
 
       {# 初期値 initial value #}
       <div class="uk-form-row uk-clearfix">
@@ -203,7 +205,8 @@
         </div>
       </div>
 
-    </div>
+	</div>
+</div>
 
   </fieldset>
 

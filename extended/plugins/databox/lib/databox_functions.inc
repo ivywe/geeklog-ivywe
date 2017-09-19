@@ -4309,7 +4309,7 @@ function DATABOX_getoptionlistary(
     }
     $retval = '';
 
-    $retval .= "<select class='uk-select  uk-form-width-medium' ";
+    $retval .= "<select class='uk-select uk-width-1-1' ";
     if ($type==14 OR $type==18){
         $retval .= ' name="'.$fld.'[]" ';
         $retval .= ' multiple="multiple" ';
