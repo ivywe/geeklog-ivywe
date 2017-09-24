@@ -1,10 +1,16 @@
-{# begin {templatelocation} #}
 
+<!-- start filedetail_no_tn.thtml -->
 {block_header}
 
 <div style="padding-bottom:10px;">{category_path_link}</div>
 
 <div class="dlm_download">
+
+
+
+
+
+
 
     <div class="dlm_heading_no_tn">
         <div class="dlm_title">
@@ -52,5 +58,4 @@
 {project_filelist}
 {comment_records}
 {block_footer}
-
-{# end {templatelocation} #}
+<!-- end filedetail_no_tn.thtml -->

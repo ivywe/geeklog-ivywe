@@ -1,5 +1,3 @@
-{# begin {templatelocation} #}
-
+<!-- start mod_submit_preview.thtml -->
     <input type="submit" value="{lang_preview}" name="mode" class="submit"{xhtml}>
-
-{# end {templatelocation} #}
+<!-- end mod_submit_preview.thtml -->

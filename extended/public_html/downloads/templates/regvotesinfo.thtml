@@ -1,8 +1,8 @@
-{# begin {templatelocation} #}
 
+<!-- start regvotesinfo.thtml -->
     <h2>{totalvotes}</h2>
     <div style="margin-top:10px;">{votes}</div>
-    <form class="uk-form" method="post" action="index.php">
+    <form method="post" action="index.php">
       <input type="hidden" name="op" value=""{xhtml}>
       <input type="hidden" name="rid" value=""{xhtml}>
       <input type="hidden" name="lid" value="{lid}"{xhtml}>
@@ -22,5 +22,4 @@
 
       </table>
     </form>
-
-{# end {templatelocation} #}
+<!-- end regvotesinfo.thtml -->

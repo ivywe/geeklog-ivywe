@@ -1,6 +1,6 @@
-{# begin {templatelocation} #}
 
-<form class="uk-form" method="post" action="ratefile.php">
+<!-- start vote.thtml -->
+<form method="post" action="ratefile.php">
     <div style="width:100%" class="plugin">
         <p class="pluginHeader" style="padding:10px 0 0 10px;">{lang_file}:&nbsp;{val_title}</p>
         <p style="padding:0 0 0 10px;">{lang_ratefiletitle}</p>
@@ -22,6 +22,7 @@
         </div>
     </div>
 </form>
+<!-- end vote.thtml -->
 
 <table width='100%' border='0' cellspacing='1' cellpadding='4' class='plugin'>
     <tr>
@@ -52,5 +53,3 @@
     </tr>
 </table>
 <br>
-
-{# end {templatelocation} #}

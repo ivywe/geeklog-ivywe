@@ -1,5 +1,5 @@
-{# begin {templatelocation} #}
 
+<!-- start mod_access.thtml -->
   <fieldset>
     <legend>{lang_accessrights}</legend>
 
@@ -16,5 +16,4 @@
       <dd class="description">{lang_permmsg}</dd>
     </dl>
   </fieldset>
-
-{# end {templatelocation} #}
+<!-- end mod_access.thtml -->

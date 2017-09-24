@@ -1,7 +1,7 @@
-{# begin {templatelocation} #}
 
+<!-- start unregvotesinfo.thtml -->
     <div style="margin-top:10px;">{unregvotes}</div>
-    <form class="uk-form" method="post" action="index.php" onsubmit="alert(this.form.op.value)">
+    <form method="post" action="index.php" onsubmit="alert(this.form.op.value)">
       <input type="hidden" name="op" value=""{xhtml}>
       <input type="hidden" name="rid" value=""{xhtml}>
       <input type="hidden" name="lid" value="{lid}"{xhtml}>
@@ -15,5 +15,4 @@
 {unregvoteitems}
       </table>
     </form>
-
-{# end {templatelocation} #}
+<!-- end unregvotesinfo.thtml -->

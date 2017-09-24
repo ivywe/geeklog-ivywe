@@ -1,6 +1,12 @@
-{# begin {templatelocation} #}
+
+<!-- start filelisting_record_no_tn.thtml -->
+
+
+
 
 <div class="pluginRow{cssid}" style="padding:10px; height:1%; overflow:hidden;">
+
+
 
     <div class="dlm_filelist_down_btn">
         <a href="{visitfile_url}" title="{download_title}" class="dlbtn-green">{lang_download_button}</a>
@@ -33,6 +39,13 @@
 {snaplinkicon}
         </div>
 
+
+
+
+
+
+
+
         <div class="dlm_description">{file_description}</div>
 
         <div class="dlm_filelist_footer">
@@ -45,4 +58,6 @@
     </div>
 </div>
 
-{# end {templatelocation} #}
+
+
+<!-- end filelisting_record_no_tn.thtml -->

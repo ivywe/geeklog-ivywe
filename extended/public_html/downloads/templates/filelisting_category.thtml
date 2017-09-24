@@ -1,7 +1,5 @@
-{# begin {templatelocation} #}
 
-<div id="dlm_cat_part">
-<ul>{category_records}</ul>
-</div>
-
-{# end {templatelocation} #}
+<!-- start filelisting_category.thtml -->
+<div id="dlm_cat_part"><ul>
+{category_records}</ul></div>
+<!-- end filelisting_category.thtml -->

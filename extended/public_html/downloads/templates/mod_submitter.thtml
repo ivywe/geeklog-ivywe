@@ -1,6 +1,5 @@
-{# begin {templatelocation} #}
 
+<!-- start mod_submitter.thtml -->
       <dt>{lang_submitter}</dt>
       <dd><a href="{site_url}/users.php?mode=profile&amp;uid={submitter}">{displayName}</a></dd>
-
-{# end {templatelocation} #}
+<!-- end mod_submitter.thtml -->
