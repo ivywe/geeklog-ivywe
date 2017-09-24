@@ -54,7 +54,7 @@ if (get_magic_quotes_gpc()) {
     $_POST = array_map('stripslashes', $_POST);
 }
 
-$lang = 'english';
+$lang = 'japanese_utf-8';
 
 if (isset($_POST['lang'])) {
     $lang = preg_replace('/[^0-9_a-z-]/i', '', $_POST['lang']);
@@ -65,7 +65,7 @@ if (isset($_POST['lang'])) {
 $langfile = dirname(__FILE__) . '/language/' . $lang . '.php';
 
 if (!file_exists($langfile)) {
-    $lang = 'english';
+    $lang = 'japanese_utf-8';
     $langfile = dirname(__FILE__) . '/language/' . $lang . '.php';
 }
 
