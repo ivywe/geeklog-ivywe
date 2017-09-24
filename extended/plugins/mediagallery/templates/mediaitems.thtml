@@ -21,7 +21,8 @@ function doUnCheckAll_mediaitems() {
 }
 // End script --></script>
 
-<div class="uk-text-success">&#91;medialist:{album_id}&#93;</div>
+<div class="uk-text-success">&#91;medialist:{album_id} theme:xx limitcnt:xx order:RANDOM &#123;class&#125; &#93;</div>
+<div class="uk-text-success">テンプレート記述例 &#123;!!autotag medialist:{album_id} theme:xx limitcnt:xx order:RANDOM '.&#123;class&#125;.' !!&#125;</div>
 
 <table class="uk-table uk-table-condensed uk-table-striped uk-width-1-1" style="background:#ffffff;">
   <tr>

@@ -1,5 +1,6 @@
 {# begin {templatelocation} #}
 
+{edit_icon}
 {breadcrumb_trail}
 {block_start}
 {content}
@@ -7,7 +8,7 @@
 <p class="uk-text-center">
     {!if lastupdate}{lastupdate}<span class="uk-margin-small-left uk-margin-small-right">|</span>{!endif}
     {!if hits}{hits}{!endif}
-     {print_icon}{edit_icon}
+    {print_icon}
 </p>
 {commentbar}
 

@@ -3,7 +3,6 @@
 {start_block_loginagain}
   <form action="{site_url}/users.php" method="post" id="userloginform" class="compact uk-form">
     <fieldset>
-      <legend>{lang_login}</legend>
 
       <p class="form_message">{lang_message}</p>
 
