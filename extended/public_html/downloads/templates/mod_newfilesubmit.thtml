@@ -1,5 +1,10 @@
+{# begin {templatelocation} #}
 
-<!-- start mod_newfilesubmit.thtml -->
       <dt>{lang_dlfilename}</dt>
-      <dd><input type="file" name="newfile" size="48" maxlength="200"{xhtml}></dd>
-<!-- end mod_newfilesubmit.thtml -->
+      <dd>
+				<div uk-form-custom>
+					<input type="file" name="newfile" size="48" maxlength="200"{xhtml}>
+					<button class="uk-button uk-button-primary" type="button">{lang_upload}</button>
+				</div>
+
+{# end {templatelocation} #}

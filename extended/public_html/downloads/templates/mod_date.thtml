@@ -1,25 +1,26 @@
+{# begin {templatelocation} #}
 
-<!-- start mod_date.thtml -->
       <dt>{lang_release_date}</dt>
       <dd><span dir="ltr">
-            <select name="release_year">
+            <select class="uk-select uk-form-width-xsmall" name="release_year">
               {year_options}
             </select>&nbsp;-
-            <select name="release_month">
+            <select class="uk-select uk-form-width-xsmall" name="release_month">
               {month_options}
             </select>&nbsp;-
-            <select name="release_day">
+            <select class="uk-select uk-form-width-xsmall" name="release_day">
               {day_options}
             </select>
             &nbsp;&nbsp;
-            <select name="release_hour">
+            <select class="uk-select uk-form-width-xsmall" name="release_hour">
               {hour_options}
             </select>&nbsp;:
-            <select name="release_minute">
+            <select class="uk-select uk-form-width-xsmall" name="release_minute">
               {minute_options}
             </select>&nbsp;:
-            <select name="release_second">
+            <select class="uk-select uk-form-width-xsmall" name="release_second">
               {second_options}
             </select>
           </span></dd>
-<!-- end mod_date.thtml -->
+
+{# end {templatelocation} #}

@@ -1,7 +1,13 @@
+{# begin {templatelocation} #}
 
-<!-- start mod_newfileshot.thtml -->
       <dt>{lang_shotimage}</dt>
       <dd><input type="text" name="logourl" value="{logourl}" maxlength="250" class="uk-input"{xhtml}>
-          <p style="margin:5px 0;">{lang_upload}: <input type="file" name="newfileshot" size="48"{xhtml}></p>
+
+				<div uk-form-custom>
+					<input type="file" name="newfileshot" size="48">
+					<button class="uk-button uk-button-primary" type="button">{lang_upload}</button>
+				</div>
+
           <div style="margin:5px 0;" class="dlm_shot_wrapper">{shot}</div></dd>
-<!-- end mod_newfileshot.thtml -->
+
+{# end {templatelocation} #}

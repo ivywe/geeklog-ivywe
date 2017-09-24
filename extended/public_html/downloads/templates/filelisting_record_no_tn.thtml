@@ -1,11 +1,8 @@
-
-<!-- start filelisting_record_no_tn.thtml -->
-
+{# begin {templatelocation} #}
 
 
 
 <div class="pluginRow{cssid}" style="padding:10px; height:1%; overflow:hidden;">
-
 
 
     <div class="dlm_filelist_down_btn">
@@ -43,9 +40,6 @@
 
 
 
-
-
-
         <div class="dlm_description">{file_description}</div>
 
         <div class="dlm_filelist_footer">
@@ -60,4 +54,4 @@
 
 
 
-<!-- end filelisting_record_no_tn.thtml -->
+{# end {templatelocation} #}

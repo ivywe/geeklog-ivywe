@@ -1,6 +1,7 @@
+{# begin {templatelocation} #}
 
-<!-- start novotes.thtml -->
         <tr>
           <td align="center" colspan="7">{novotes}<br{xhtml}></td>
         </tr>
-<!-- end novotes.thtml -->
+
+{# end {templatelocation} #}

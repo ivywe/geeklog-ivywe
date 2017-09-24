@@ -1,5 +1,5 @@
+{# begin {templatelocation} #}
 
-<!-- start mod_download.thtml -->
 {js_script}
 <form enctype="multipart/form-data" action="{action}" method="post" onsubmit="set_postcontent();" class="compact">
   <div class="admin_basic">
@@ -38,7 +38,7 @@
             <img src="{layout_url}/images/expand.png" title="{lang_expandhelp}" alt="" onclick="changeHTMLTextAreaSize('html_description','larger');"{xhtml}>
             <img src="{layout_url}/images/collapse.png" title="{lang_reducehelp}" alt="" onclick="changeHTMLTextAreaSize('html_description','smaller');"{xhtml}>
             <span style="padding-left:15px;">{lang_toolbar}:&nbsp;
-              <select id="fckeditor_toolbar_selector" name="fckeditor_toolbar_selector" onchange="changeToolbar(this.value);">
+              <select class="uk-select uk-form-width-small" id="fckeditor_toolbar_selector" name="fckeditor_toolbar_selector" onchange="changeToolbar(this.value);">
                 <option value="editor-toolbar1" selected="selected">{lang_toolbar1}</option>
                 <option value="editor-toolbar2">{lang_toolbar2}</option>
                 <option value="editor-toolbar3">{lang_toolbar3}</option>
@@ -62,7 +62,7 @@
           </div></dd>
 
       <dt><label for="sel_editmode">{lang_postmode}</label></dt>
-      <dd><select id="sel_editmode" name="postmode" onchange="change_editmode(this);">
+      <dd><select class="uk-select uk-form-width-small" id="sel_editmode" name="postmode" onchange="change_editmode(this);">
 {post_options}
           </select>
           <br{xhtml}>
@@ -73,18 +73,18 @@
 {mod_mg_autotag}
 
       <dt>{lang_comment_mode}</dt>
-      <dd><select name="commentcode">
+      <dd><select class="uk-select uk-form-width-small" name="commentcode">
 {comment_options}
           </select></dd>
 
       <dt>{lang_released}</dt>
-      <dd><select name="is_released">
+      <dd><select class="uk-select uk-form-width-small" name="is_released">
             <option value="1" {val_is_released_1}>{lang_yes}</option>
             <option value="0" {val_is_released_0}>{lang_no}</option>
           </select></dd>
 
       <dt>{lang_listing}</dt>
-      <dd><select name="is_listing">
+      <dd><select class="uk-select uk-form-width-small" name="is_listing">
             <option value="1" {val_is_listing_1}>{lang_yes}</option>
             <option value="0" {val_is_listing_0}>{lang_no}</option>
           </select></dd>
@@ -109,4 +109,5 @@
   </div>
 </form>
 {mod_votes}
-<!-- end mod_download.thtml -->
+
+{# end {templatelocation} #}

@@ -1,5 +1,5 @@
+{# begin {templatelocation} #}
 
-<!-- start vote.thtml -->
 <form method="post" action="ratefile.php">
     <div style="width:100%" class="plugin">
         <p class="pluginHeader" style="padding:10px 0 0 10px;">{lang_file}:&nbsp;{val_title}</p>
@@ -12,7 +12,7 @@
         </ul>
         <div style="text-align:center; padding-bottom:10px;">
             <p>
-              <select name="rating">
+              <select class="uk-select uk-form-width-small" name="rating">
                 {option_list}
               </select>
             </p>
@@ -22,7 +22,8 @@
         </div>
     </div>
 </form>
-<!-- end vote.thtml -->
+
+{# end {templatelocation} #}
 
 <table width='100%' border='0' cellspacing='1' cellpadding='4' class='plugin'>
     <tr>

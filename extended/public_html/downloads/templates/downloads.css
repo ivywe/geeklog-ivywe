@@ -2,7 +2,6 @@
 /* Note: This CSS file is optimized for Denim theme which is based on Responsive Web Design.       */
 /***************************************************************************************************/
 
-
 .dlm_download {
   padding: 10px;
   height: 1%;
@@ -406,7 +405,6 @@ a.dlbtn-green:active {
   -webkit-box-shadow: 0 1px 2px 0 #CCCCCC inset;
   box-shadow: 0 1px 2px 0 #CCCCCC inset;
 }
-
 
 /***************************************************************************************************/
 /* Note: If you want to disable the Responsive Web Design, please delete the code below this line. */

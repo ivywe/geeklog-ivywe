@@ -1,5 +1,5 @@
+{# begin {templatelocation} #}
 
-<!-- start filedetail.thtml -->
 {block_header}
 
 <div style="padding-bottom:10px;">{category_path_link}</div>
@@ -8,7 +8,6 @@
     <div class="dlm_snap_wrapper">
 {snapshot}{mg_autotag}
     </div>
-
 
 
 
@@ -60,4 +59,5 @@
 {project_filelist}
 {comment_records}
 {block_footer}
-<!-- end filedetail.thtml -->
+
+{# end {templatelocation} #}
