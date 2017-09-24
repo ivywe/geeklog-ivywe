@@ -1,11 +1,6 @@
 {# begin {templatelocation} #}
 
       <dt>{lang_shotimage}</dt>
-      <dd>
-				<div uk-form-custom>
-					<input type="file" name="newfileshot" size="48">
-					<button class="uk-button uk-button-primary" type="button">{lang_upload}</button>
-				</div>
-			</dd>
+      <dd><input type="file" name="newfileshot" size="48"{xhtml}></dd>
 
 {# end {templatelocation} #}

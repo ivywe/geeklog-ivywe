@@ -1,13 +1,7 @@
 {# begin {templatelocation} #}
 
       <dt>{lang_dlfilename}</dt>
-      <dd>
-
-				<div uk-form-custom>
-					<input type="file" name="newfile" size="48" maxlength="200">
-					<button class="uk-button uk-button-primary" type="button">{lang_upload}</button>
-				</div>
-
-				<input type="hidden" name="url" value="{url}"{xhtml}></dd>
+      <dd><input type="file" name="newfile" size="48" maxlength="200"{xhtml}>
+          <input type="hidden" name="url" value="{url}"{xhtml}></dd>
 
 {# end {templatelocation} #}
