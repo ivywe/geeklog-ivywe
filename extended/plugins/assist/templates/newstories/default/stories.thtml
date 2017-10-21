@@ -1,12 +1,7 @@
 {# begin {templatelocation} #}
 
-<div class="uk-grid-small" uk-grid>
+<dl class="uk-description-list-horizontal">
 {stories_col}
-</div>
-
-{#
-<p class="assist_rss"><a href="{rss_url}">{rss_title}</a></p>
-<p class="more"><a href="{more_url}">{more_title}</a></p>
-#}
+</dl>
 
 {# end {templatelocation} #}

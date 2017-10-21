@@ -1,27 +1,6 @@
 {# begin {templatelocation} #}
 
-<div class="uk-width-1-5@m uk-margin-remove">{day}</div>
-<div class="uk-width-4-5@m uk-margin-remove">
-<div>
-<a href="{site_url}/index.php/topic/{topicids}" class="uk-text-bold">{topics}</a>::<a href="{url}" class="uk-text-truncate uk-text-bold">{title}</a>{!if new_img}<span class="uk-label-danger"><span class="uk-margin-small-left uk-margin-small-right">new!</span></span>{!endif}
-</div>
-<div class="uk-text-small">{introtext}</div>
-</div>
-
-{#  
-new_img:{new_img}
-introtext:{introtext}
-class:{class}
-permission:{permission}
-topicslink:{topicslink}</br>
-topicidslink:{topicidslink}</br>
-topics:{topics}</br>
-topicids:{topicids}</br>
-topicidspipeline:{topicidspipeline}</br>
-topics_li:{topics_li}</br>
-topicids_li:{topicids_li}</br>
-topicslink_li:{topicslink_li}</br>
-topicidslink_li:{topicidslink_li}</br>
-#}
+<dt>{day}</dt>
+<dd><a href="{url}">{title}</a>{new_img}</dd>
 
 {# end {templatelocation} #}

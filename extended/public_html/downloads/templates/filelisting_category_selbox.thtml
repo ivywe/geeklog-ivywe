@@ -3,7 +3,7 @@
 <div id="dlm_cat_selbox">
 <form action="{site_url}/downloads/index.php" method="post"><div>
 {downloads_selbox}
-<input type="submit" value="{lang_go}" name="mode"{xhtml}>
+<input type="submit" value="{lang_go}" name="mode" class="uk-button uk-button-primary"{xhtml}>
 {hidden_values}
 </div></form>
 </div>

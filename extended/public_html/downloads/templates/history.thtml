@@ -16,7 +16,7 @@
                 {option_list}
               </select>
             </p>
-            <input type="submit" name="submit" value="{lang_rateit}"{xhtml}>
+            <input type="submit" name="submit" value="{lang_rateit}" class="uk-button uk-button-primary"{xhtml}>
             <input type="button" value="{lang_cancel}" onclick="javascript:history.go(-1)"{xhtml}>
             <input type="hidden" name="lid" value="{val_lid}"{xhtml}>
         </div>

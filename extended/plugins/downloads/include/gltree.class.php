@@ -254,7 +254,7 @@ class GLTree {
         if ($sel_name == '') {
             $sel_name = $this->_id;
         }
-        $retval = '<select class="uk-select" name="' . $sel_name . '" id="select_' . $sel_name . '"';
+        $retval = '<select class="uk-select uk-form-width-small" name="' . $sel_name . '" id="select_' . $sel_name . '"';
         if ($onchange != '') {
             $retval .= ' onchange="' . $onchange . '"';
         }

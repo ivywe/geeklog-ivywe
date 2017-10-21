@@ -2,6 +2,8 @@
 
       <dt>{lang_dlfilename}</dt>
       <dd><input type="file" name="newfile" size="48" maxlength="200"{xhtml}>
-          <input type="hidden" name="url" value="{url}"{xhtml}></dd>
+          <input type="hidden" name="url" value="{url}"{xhtml}>
+					<div class="uk-text-warning">ファイル名は半角英数にしてください。</div>
+			</dd>
 
 {# end {templatelocation} #}

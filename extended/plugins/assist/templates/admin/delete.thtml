@@ -1,16 +1,14 @@
 {# begin {templatelocation} #}
-
-{msg}
-<form class="uk-form" action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data">
+<form action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data">
 <div>
 {deletemsg}
 <p>
 {lang_uidfrom}:
-<input type="text" class="uk-input" size="10" maxlength="6" name="uidfrom" value="{uidfrom}"{xhtml}>
+<input type="text" class="uk-input uk-form-width-small" size="10" maxlength="6" name="uidfrom" value="{uidfrom}"{xhtml}>
 </p>
 <p>
 {lang_uidto}:
-<input type="text" class="uk-input" size="10" maxlength="6" name="uidto" value="{uidto}"{xhtml}>
+<input type="text" class="uk-input uk-form-width-small" size="10" maxlength="6" name="uidto" value="{uidto}"{xhtml}>
 </p>
 <input type="hidden" name="mode" value="delete" {xhtml}>
 <input type="submit" value="{submit}" name="submit"{xhtml}>
@@ -18,5 +16,4 @@
 <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
 </div>
 </form>
-
 {# end {templatelocation} #}

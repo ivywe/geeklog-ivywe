@@ -1,4 +1,4 @@
-<!-- plugins/assist/templates/headercode/default/frontpage.thtml 20130318{ -->
+{# begin {templatelocation} #}
 
 <meta property="og:type" content="{og_type}" {xhtml}>
 <meta property="og:title" content="{og_title}" {xhtml}>
@@ -9,4 +9,10 @@
 <meta property="fb:app_id" content="{facebook_consumer_key}" {xhtml}>
 <meta name="twitter:card" content="summary">
 
-<!-- } plugins/assist/templates/headercode/default/frongpate.thtml -->
+{# 
+<link rel="alternate" href="{site_url}/index.php?topic=home_ja" hreflang="ja" />
+<link rel="alternate" href="{site_url}/index.php?topic=home_en" hreflang="en" />
+<link rel="alternate" href="{site_url}/" hreflang="x-default" />
+ #}
+
+{# end {templatelocation} #}

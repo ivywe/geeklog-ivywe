@@ -9,8 +9,6 @@
 {snapshot}{mg_autotag}
     </div>
 
-
-
     <div class="dlm_heading">
         <div class="dlm_title">
             <a href="{filedetail_url}" title="{dtitle}">
@@ -57,7 +55,7 @@
     </div>
 </div>
 {project_filelist}
-{comment_records}
+<!-- comment_records -->
 {block_footer}
 
 {# end {templatelocation} #}
