@@ -1150,7 +1150,7 @@ function INST_getSiteAdminUrl()
  */
 function INST_getLanguage()
 {
-    $language = 'english';
+    $language = 'japanese_utf-8';
     if (isset($_POST['language'])) {
         $lng = $_POST['language'];
     } elseif (isset($_GET['language'])) {
