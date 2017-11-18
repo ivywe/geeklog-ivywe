@@ -171,8 +171,4 @@
 		      <p class="welcome_msg">{welcome_msg}&nbsp;{datetime}</p>
 		      {breadcrumb_trail}
 
-
-					<div class="uk-width-1-1">
-						<div class="uk-container">
-
 {# end {templatelocation} #}
