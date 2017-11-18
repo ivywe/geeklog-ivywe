@@ -1,6 +1,7 @@
 {# begin {templatelocation} #}
 
   <div class="uk-margin-large uk-text-center {class}" uk-lightbox="animation: slide">
+    {!if media_title}<h3 class="uk-h3 uk-text-left">{media_title}</h3>{!endif}
     <a href="{filename_orig}" class="uk-inline" uk-lightbox title="{media_title}" caption="{media_title}">
       <img src="{filename}" alt="{media_title}" class="uk-container-center uk-overlay-scale uk-border-rounded  {class}" alt="{media_title}" style="border:1px solid #ccc"{xhtml}>
     </a>

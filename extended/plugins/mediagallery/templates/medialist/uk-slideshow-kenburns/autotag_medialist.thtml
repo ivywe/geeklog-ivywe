@@ -1,0 +1,23 @@
+{# begin {templatelocation} #}
+
+{!if edit}
+<a href="{site_url}/mediagallery/album.php?aid={album_id}&page=1"><i class="uk-icon-file-image-o"></i> {album_title}</a>
+{!endif}
+
+<div uk-slideshow="min-height: 200; max-height: 300">
+	<ul class="uk-slideshow-items" uk-height-viewport="min-height: 200,autoplay: true">
+		{medialist_col}
+	</ul>
+
+       <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+        <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+
+    <ul class="uk-dotnav uk-flex-center uk-margin">
+        <li uk-slideshow-item="0"><a href="#">Item 1</a></li>
+        <li uk-slideshow-item="1"><a href="#">Item 2</a></li>
+        <li uk-slideshow-item="2"><a href="#">Item 3</a></li>
+    </ul>
+
+</div>
+
+{# end {templatelocation} #}
