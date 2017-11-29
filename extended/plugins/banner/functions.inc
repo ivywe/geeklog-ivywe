@@ -182,11 +182,11 @@ function plugin_autotags_banner($op, $content = '', $autotag = '')
                 $result = DB_query("SELECT b.bid, b.title, b.description, b.url FROM {$_TABLES['banner']} AS b LEFT JOIN {$_TABLES['bannercategories']} AS c ON b.cid=c.cid WHERE c.cid='{$cid}' AND (b.publishstart IS NULL OR b.publishstart < NOW()) and (b.publishend IS NULL OR b.publishend > NOW())" . COM_getPermSQL('AND', 0, 2, 'c') . ' ORDER BY RAND() LIMIT 1');
                 $nrows = DB_numRows($result);
                 if ($nrows > 0) {
-                    list($bid, $bannertitle, $bannerimg) = DB_fetchArray($result);
+										list($bid, $bannertitle, $bannerimg , $banneruri) = DB_fetchArray($result);
                     if (!empty($autotag['parm2'])) {
                         $bannertitle = $autotag['parm2'];
                     }
-                    $flg_link = empty($A['url']) ? false : true ;
+										$flg_link = empty($banneruri) ? false : true ;
                     $banner = banner_buildBanner($bid, $bannertitle, $bannerimg, $flg_link);
                 }
                 break;
