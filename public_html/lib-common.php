@@ -8675,7 +8675,7 @@ function COM_getLanguageFromURL($url='') {
     global $_CONF;
     $retval = '';
     $langid = COM_getLanguageIdFromURL($url);
-    if (!empty($langid)) {
+    if (!empty($langid) && isset($_CONF['language_files'])) {
         if (array_key_exists($langid, $_CONF['language_files'])) {
             $retval = $_CONF['language_files'][$langid];
         }
