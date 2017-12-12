@@ -1124,6 +1124,7 @@ function MG_autotags($op, $content = '', $autotag = '')
                 } else {    // portrait
                     $ratio = $media_size[1] / 200;
                     $newheight = 200;
+										if($ratio==0){$ratio=1;} // komma 20171213
                     $newwidth = round($media_size[0] / $ratio);
                 }
             } else if ($width == 0 && $height > 0) {
