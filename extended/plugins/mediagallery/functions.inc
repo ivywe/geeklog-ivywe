@@ -573,7 +573,7 @@ function plugin_getheadercode_mediagallery()
     }
     $retval .= LB . '<link rel="stylesheet" type="text/css" href="' . $styleFile . '"' . XHTML . '>' . LB;
 
-    $_SCRIPTS->setJavaScriptFile('swfobject', '/mediagallery/js/swfobject_2.1.js', false);
+//    $_SCRIPTS->setJavaScriptFile('swfobject', '/mediagallery/js/swfobject_2.1.js', false);
 
     $_SCRIPTS->setJavaScriptFile('mediagallery', '/mediagallery/js/mediagallery.js');
 
