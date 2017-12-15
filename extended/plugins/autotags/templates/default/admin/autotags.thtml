@@ -26,7 +26,7 @@
             
             <dt><label for="autotags-autotageditor-replacement">{lang_replacement}</label></dt>
             <dd>
-                <textarea name="replacement" class="uk-textarea" rows="8" id="autotags-autotageditor-replacement" required>{replacement}</textarea>
+                <textarea name="replacement" class="uk-textarea" rows="8" id="autotags-autotageditor-replacement">{replacement}</textarea>
                 {lang_replace_explain}
             </dd>
         </dl>
