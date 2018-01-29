@@ -341,7 +341,7 @@ function DBMAN_checkNumFile() {
 function DBMAN_isBackupExcept($table_name) {
 	global $_DBMAN_CONF;
 	
-	foreach ($_DBMAN_CONF['backup_except'] as $pattern) {
+	foreach ((array)$_DBMAN_CONF['backup_except'] as $pattern) {
 		if (preg_match($pattern, $table_name)) {
 			return true;
 		}
