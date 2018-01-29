@@ -7,7 +7,7 @@
 <div class="uk-form-row">
 	<label class="uk-form-label" for="form-forum-subject">{LANG_SUBJECT}</label>
 	<div class="uk-form-controls">
-		<input id="form-forum-subject" type="text" placeholder="" class="uk-form-width-large" name="subject" value="{subject}" maxlength="255"{xhtml}>
+		<input id="form-forum-subject" type="text" placeholder="" class="uk-input uk-form-width-large" name="subject" value="{subject}" maxlength="255"{xhtml}>
 	</div>	
 </div>
 <div class="uk-form-row">

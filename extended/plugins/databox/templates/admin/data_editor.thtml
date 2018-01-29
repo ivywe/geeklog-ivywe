@@ -155,6 +155,19 @@
       <div class="uk-form-controls">
         {datetime_released}
       </div>
+
+
+<div class="uk-form-controls">
+
+公開日年はこちらが優先します。
+
+<!-- debug DATABOX_datetimeedit_R COM_getYearFormOptions -->
+<select class="uk-select uk-form-width-xsmall" name="released_year">
+<option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option><option value="2017" selected="selected">2017</option><option value="2018">2018</option><option value="2019">2019</option><option value="2020">2020</option><option value="2021">2021</option><option value="2022">2022</option>
+</select>年
+
+      </div>
+
     </div>
 
     {# 公開終了日 #}

@@ -153,7 +153,7 @@ function DATABOX_templatePath (
         if (is_dir($tmplfld)) {
 
         }else{
-            COM_handle404();
+            // COM_handle404();
             exit;
         }
     }else if  ($conf_templates==="custom"){
@@ -486,7 +486,7 @@ global $_TABLES;
 
         $A = DB_fetchArray( $result, true );
         $retval .= '<span style="white-space:nowrap">';
-        $retval .= '<input type="checkbox" name="' . $fname . '[]" value="' . $A[0] ;
+        $retval .= '<input type="checkbox" class="uk-checkbox" name="' . $fname . '[]" value="' . $A[0] ;
         $retval .= '"';
         for( $x = 0; $x < sizeof( $S ); $x++ )            {
             if( $A[0] == $S[$x] )                {
@@ -2705,7 +2705,7 @@ global $_TABLES;
             
                 if  ($A['input_type']==0){
                     $retval .= '<span style="white-space:nowrap">';
-                    $retval .= '<input type="checkbox" name="category[]" value="' . $A2['category_id'] ;
+                    $retval .= '<input type="checkbox" class="uk-checkbox" name="category[]" value="' . $A2['category_id'] ;
                     $retval .= '"';
                     $retval .= $checked;
                     $retval .= $disabled.' >' . stripslashes( $A2['name'] ) . '</span>' . LB;
@@ -4309,7 +4309,7 @@ function DATABOX_getoptionlistary(
     }
     $retval = '';
 
-    $retval .= "<select class='uk-select  uk-form-width-medium' ";
+    $retval .= "<select class='uk-select uk-width-1-1' ";
     if ($type==14 OR $type==18){
         $retval .= ' name="'.$fld.'[]" ';
         $retval .= ' multiple="multiple" ';

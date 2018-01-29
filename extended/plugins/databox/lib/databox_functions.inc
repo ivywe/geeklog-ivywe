@@ -153,7 +153,8 @@ function DATABOX_templatePath (
         if (is_dir($tmplfld)) {
 
         }else{
-            COM_handle404();
+            // COM_handle404(); 
+						echo "404 error DATABOX_templatePath: ".$template;
             exit;
         }
     }else if  ($conf_templates==="custom"){
@@ -169,7 +170,8 @@ function DATABOX_templatePath (
         if (is_dir($tmplfld)){
 
         }else{
-            COM_handle404();
+            // COM_handle404();
+						echo "404 error DATABOX_templatePath: ".$template;
             exit;
         }
     }else{
