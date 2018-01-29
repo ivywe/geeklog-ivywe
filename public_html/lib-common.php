@@ -1060,7 +1060,7 @@ function COM_siteHeader($what = 'menu', $pagetitle = '', $headercode = '')
         }
     } else {
         $title_and_name = '';
-        if (!empty($pagetitle)) {
+        if (!empty($pagetitle) && strpos($topic, 'home_') === FALSE) {
             $title_and_name = $pagetitle . ' - ';
         }
         $title_and_name .= $_CONF['site_name'];
@@ -1660,7 +1660,7 @@ function COM_createHTMLDocument(&$content = '', $information = array())
         }
     } else {
         $title_and_name = '';
-        if (!empty($pageTitle)) {
+        if (!empty($pageTitle) && strpos($topic, 'home_') === FALSE) {
             $title_and_name = $pageTitle . ' - ';
         }
         $title_and_name .= $_CONF['site_name'];
