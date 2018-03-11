@@ -633,3 +633,7 @@ if (file_exists($_CONF['path'] . 'system/custom/custom_handle404.php')) {
 if (file_exists($_CONF['path'] . 'system/custom/phpautotags_l.php')) {
   require_once $_CONF['path'] . 'system/custom/phpautotags_l.php';
 }
+/* 自動タグ[currenturl:]を使い指定言語のカレントURLを返す by hiroron */
+if (file_exists($_CONF['path'] . 'system/custom/phpautotags_currenturl.php')) {
+  require_once $_CONF['path'] . 'system/custom/phpautotags_currenturl.php';
+}
