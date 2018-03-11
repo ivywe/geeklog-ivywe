@@ -13,7 +13,7 @@
       <tr>
         <th style="width: 100px; text-align: right;">{lang_content}:</th>
         <td>
-          <textarea class="uk-textarea" name="content" id="content" style="width: 99%; height: 360px;">{content}
+          <textarea class="uk-textarea" name="content" id="content2" style="width: 99%; height: 360px;">{content}
           </textarea>
         </td>
       </tr>
