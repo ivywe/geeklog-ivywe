@@ -9,7 +9,7 @@
 // |
 // | Authors: hiroron    - hiroron AT hiroron DOT com
 // |
-// | Version: 1.0.0 (2018-03-09)
+// | Version: 1.0.1 (2018-03-12)
 // |
 // +---------------------------------------------------------------------------+
 if (strpos(strtolower($_SERVER['PHP_SELF']), 'phpautotags_currenturl.php') !== false) {
@@ -25,10 +25,12 @@ function phpautotags_currenturl($p1, $p2, $p0) {
 
     if (empty($p1)) { return COM_getCurrentURL(); }
 
-    $loc = MBYTE_strrpos($p2, 'topicid:');
-    if ($loc !== false) {
-        $topicid = MBYTE_substr($p2, ($loc + 8));
-        return TOPIC_getUrl($topicid . '_' . $p1);
+    if (COM_onFrontpage()) {
+        $loc = MBYTE_strrpos($p2, 'topicid:');
+        if ($loc !== false) {
+            $topicid = MBYTE_substr($p2, ($loc + 8));
+            return TOPIC_getUrl($topicid . '_' . $p1);
+        }
     }
 
     $curl = COM_getCurrentURL();
@@ -38,7 +40,7 @@ function phpautotags_currenturl($p1, $p2, $p0) {
     }
 
     $new_url = $curl;
-    if ($p1 != $current_lang_id) {
+    if (($loc > 0) && ($p1 != $current_lang_id)) {
         $new_url = substr_replace($curl, $p1, $loc + 1, strlen($current_lang_id));
     }
 
