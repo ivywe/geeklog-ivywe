@@ -44,21 +44,7 @@ function CUSTOM_handle404($alternate_url = '')
     $logEntry = @strftime('%c') . ' - ' . $logEntry . PHP_EOL;
     @file_put_contents($_CONF['path_log'] . '404.log', $logEntry, FILE_APPEND | LOCK_EX);
 
-    $display = COM_startBlock($LANG_404[1]);
-    
-    if (is_callable('CUSTOM_getStaticpage')) {
-        $display .= CUSTOM_getStaticpage('404');
-    }
-    
-    $display .= COM_endBlock();
-    $display = COM_createHTMLDocument(
-        $display,
-        array(
-            'what' => 'none',
-            'pagetitle' => $LANG_404[1], 
-            'rightblock' => false
-        )
-    );
+    $display = SP_returnStaticpage('404');
     COM_output($display);
     exit; // Do not want to go any further
 }
