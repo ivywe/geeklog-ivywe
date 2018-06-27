@@ -552,8 +552,8 @@ function plugin_getiteminfo_databox(
     }
     // prepare SQL request
     $where = LB.' WHERE'.LB;
-	//下書データはのぞく
-	$where .=  " draft_flag=0".LB;
+	//下書データはのぞく WHERE (draft_flag = 0)
+	$where .=  " (draft_flag = 0)".LB;
 	if ($id == '*') {
     } else {
         $where .= " AND (id = '" . DB_escapeString($id) . "') ".LB;

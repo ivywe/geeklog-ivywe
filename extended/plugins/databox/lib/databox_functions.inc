@@ -153,9 +153,9 @@ function DATABOX_templatePath (
         if (is_dir($tmplfld)) {
 
         }else{
-            // COM_handle404(); 
-						echo "404 error DATABOX_templatePath: ".$template;
-            exit;
+					COM_errorLog ("[$pi_name $kind] Not found theme template:$template");
+					COM_handleError(1,"[$pi_name $kind] Not found theme template:$template");
+					exit;
         }
     }else if  ($conf_templates==="custom"){
 
@@ -170,8 +170,8 @@ function DATABOX_templatePath (
         if (is_dir($tmplfld)){
 
         }else{
-            // COM_handle404();
-						echo "404 error DATABOX_templatePath: ".$template;
+					COM_errorLog ("[$pi_name $kind] Not found theme template:$template");
+					COM_handleError(1,"[$pi_name $kind] Not found theme template:$template");
             exit;
         }
     }else{
