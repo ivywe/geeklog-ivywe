@@ -21,37 +21,15 @@ function CUSTOM_getStaticpage($sp_id) {
         return $retval;
     }
     
-    $sql = "SELECT sp_php, sp_content FROM {$_TABLES['staticpage']} "
-         . "WHERE (sp_id = '" . addslashes($sp_id) . "') "
+    $sql = "SELECT sp_php, sp_content, cache_time, template_id FROM {$_TABLES['staticpage']} "
+         . "WHERE (sp_id = '" . COM_applyBasicFilter($sp_id) . "') "
          . "AND " . SP_getPerms();
     $result = DB_query($sql);
     if (DB_error() OR (DB_numRows($result) == 0)) {
         return $retval;
     } else {
         $A = DB_fetchArray($result);
-        $sp_php     = $A['sp_php'];
-        $sp_content = stripslashes($A['sp_content']);
-    }
-    
-    if ($_SP_CONF['allow_php'] == 1) {
-        // Check for type (i.e. html or php)
-        if ($sp_php == 1) {
-            $retval .= eval($sp_content);
-        } else if ($sp_php == 2) {
-            ob_start();
-            eval($sp_content);
-            $retval .= ob_get_contents();
-            ob_end_clean();
-        } else {
-            $retval .= PLG_replacetags($sp_content);
-        }
-    } else {
-        if ($sp_php != 0) {
-            COM_errorLog("PHP in static pages is disabled.  Cannot display page '{$sp_id}'.", 1);
-            $retval .= $LANG_STATIC['deny_msg'];
-        } else {
-            $retval .= $sp_content;
-        }
+        $retval = SP_render_content($sp_id, $A['sp_content'], $A['sp_php'], $A['cache_time'], $A['template_id']);
     }
     
     return $retval;
