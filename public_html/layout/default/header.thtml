@@ -51,7 +51,7 @@
 {# start {templatelocation} #}
 
 	<!-- #container { -->
-	<div id="container">
+	<div id="container" class="container">
 
 		<div class="uk-position-relative">
 			<?php if( COM_onFrontpage() ) { ?>
