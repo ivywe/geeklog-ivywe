@@ -151,6 +151,7 @@ class RSS20 extends FeedParserBase
                 . '</description>' . self::LB;
         }
 
+/*
         if (strlen($this->sitecontact) > 0) {
             $xml .= '<managingEditor>'
                 . $this->_safeXML($this->sitecontact)
@@ -161,19 +162,19 @@ class RSS20 extends FeedParserBase
                 . ' (' . $_CONF['site_name'] . ')'
                 . '</webMaster>' . self::LB;
         }
-
+*/
         if (strlen($this->copyright) > 0) {
             $xml .= '<copyright>'
                 . $this->_safeXML($this->copyright)
                 . '</copyright>' . self::LB;
         }
-
+/*
         if (strlen($this->system) > 0) {
             $xml .= '<generator>'
                 . $this->_safeXML($this->system)
                 . '</generator>' . self::LB;
         }
-
+*/
         $xml .= '<pubDate>' . $this->_RFC822DateFormat() . '</pubDate>' . self::LB
             . '<language>' . $this->lang . '</language>' . self::LB;
 
