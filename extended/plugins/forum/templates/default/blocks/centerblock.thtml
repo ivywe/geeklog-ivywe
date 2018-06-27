@@ -18,7 +18,7 @@
     <div class=" uk-margin-left">
     	<i class="uk-icon-file-text-o"></i> <a href="{site_url}/forum/viewtopic.php?showtopic={topic_id}" data-uk-tooltip title="{topicinfo}">{topic_subject}</a>
 
-		<div class="uk-grid">
+		<div uk-grid>
 			<div class="uk-width-medium-1-2">
 				{topicinfo_short}
 			</div>

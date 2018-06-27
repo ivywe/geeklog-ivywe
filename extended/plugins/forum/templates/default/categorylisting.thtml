@@ -1,7 +1,7 @@
 {# begin {templatelocation} #}
 
-<div class="uk-grid uk-margin-small-top">
-  	<div class="uk-width-1-2">
+<div class="uk-margin-small-top" uk-grid>
+  	<div class="uk-width-1-2@m">
 		<div itemscope itemtype="http://schema.org/BreadcrumbList">
 			<ul class="uk-breadcrumb">
 				<li><i class="uk-icon-folder-o"></i></li>
@@ -20,7 +20,7 @@
 			</ul>
 		</div>			
     </div>
-  	<div class="uk-width-1-2">
+  	<div class="uk-width-1-2@m">
 	    <div class="uk-text-right">
 			{categorymenu_link}
 			{# Buttons instead of Menu - Remove comments to enable (plus remove categorymenu_link template variable) and change related links in forum_links.html #}
@@ -35,16 +35,16 @@
 <table class="uk-table uk-table-hover">
 	<thead>
 		<tr>
-			<th class="uk-width-large-6-10 uk-width-medium-7-10 uk-width-6-10">
+			<th class="uk-width-6-10@m uk-width-medium-7-10 uk-width-6-10@m">
 				{cat_desc}
 			</th>
-			<th class="uk-width-large-1-10 uk-text-center uk-visible-large">
+			<th class="uk-width-large-1-10@m uk-text-center uk-visible-large">
 				{LANGGF01_TOPICS}
 			</th>
-			<th class="uk-width-large-1-10 uk-text-center uk-visible-large">
+			<th class="uk-width-large-1-10@m uk-text-center uk-visible-large">
 				{LANGGF01_POSTS}
 			</th>
-			<th class="uk-width-large-2-10 uk-width-medium-3-10 uk-width-4-10 uk-text-center">
+			<th class="uk-width-large-2-10@m uk-width-medium-3-10 uk-width-4-10@m uk-text-center">
 				{LANGGF01_LASTPOST}
 			</th>
 		</tr>

@@ -21,15 +21,15 @@
 
 {navmenu}
 
-<div class="uk-grid">
-  	<div class="uk-width-7-10">
+<div uk-grid>
+  	<div class="uk-width-7-10@m">
 		<form class="uk-form" action="{phpself}" method="post">
 			<div class="uk-form-controls">
 				<select class="uk-select uk-form-width-small" name="filter" onchange="this.form.submit();">{filter_options}</select>
 			</div>
 		</form>
 	</div>
-	<div class="uk-width-3-10 uk-text-right">
+	<div class="uk-width-3-10@m uk-text-right">
 		{select_forum}
 	</div>
 </div>
@@ -41,16 +41,16 @@
 			<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-text-nowrap">
 				<thead>
 					<tr>
-						<th class="uk-width-1-10 uk-text-center">
+						<th class="uk-width-1-10@m uk-text-center">
 							<input type="checkbox" class="checkbox" name="chk_record_all" id="chk_record_all" value="y" onclick="if(!allChecked) checkAll(document.report_table.elements['chk_record_delete[]']); else uncheckAll(document.report_table.elements['chk_record_delete[]']);"{xhtml}>
 						</th>
-						<th class="uk-width-large-2-10 uk-width-medium-3-10 uk-width-3-10">{LANG_Heading2}</th>
-						<th class="uk-width-large-2-10 uk-width-medium-3-10 uk-width-3-10">{LANG_Heading3}</th>
-						<th class="uk-width-1-10">{LANG_Heading4}</th>
-						<th class="uk-width-1-10">{LANG_Heading5}</th>
-						<th class="uk-width-1-10 uk-visible-large uk-text-center">{LANG_Heading6}</th>
-						<th class="uk-width-1-10 uk-visible-large uk-text-center">{LANG_Heading7}</th>
-						<th class="uk-width-1-10">{LANG_Heading8}</th>
+						<th class="uk-width-large-2-10@m uk-width-medium-3-10 uk-width-3-10@m">{LANG_Heading2}</th>
+						<th class="uk-width-large-2-10@m uk-width-medium-3-10 uk-width-3-10@m">{LANG_Heading3}</th>
+						<th class="uk-width-1-10@m">{LANG_Heading4}</th>
+						<th class="uk-width-1-10@m">{LANG_Heading5}</th>
+						<th class="uk-width-1-10@m uk-visible-large uk-text-center">{LANG_Heading6}</th>
+						<th class="uk-width-1-10@m uk-visible-large uk-text-center">{LANG_Heading7}</th>
+						<th class="uk-width-1-10@m">{LANG_Heading8}</th>
 					</tr>
 				</thead>
 				<tfoot>

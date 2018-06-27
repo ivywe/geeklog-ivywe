@@ -3,8 +3,8 @@
 <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
 	<thead>
 		<tr>
-			<th class="uk-width-7-10">{statsmsg}</th>
-			<th class="uk-width-3-10"></th>
+			<th class="uk-width-7-10@m">{statsmsg}</th>
+			<th class="uk-width-3-10@m"></th>
 		</tr>
 	</thead>
 	<tbody>                                
@@ -19,8 +19,8 @@
 <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
 	<thead>
 		<tr>
-			<th class="uk-width-7-10">{avgpmsg}</th>
-			<th class="uk-width-3-10"></th>
+			<th class="uk-width-7-10@m">{avgpmsg}</th>
+			<th class="uk-width-3-10@m"></th>
 		</tr>
 	</thead>
 	<tbody>                                
@@ -33,8 +33,8 @@
 <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
 	<thead>
 		<tr>
-			<th class="uk-width-7-10">{avgvmsg}</th>
-			<th class="uk-width-3-10"></th>
+			<th class="uk-width-7-10@m">{avgvmsg}</th>
+			<th class="uk-width-3-10@m"></th>
 		</tr>
 	</thead>
 	<tbody>                                

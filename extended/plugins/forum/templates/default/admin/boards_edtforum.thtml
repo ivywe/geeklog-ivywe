@@ -57,7 +57,7 @@
 					<input type="checkbox" class="checkbox" name="no_newposts" id="no_newposts" value="1" {chk_newposts}{xhtml}><label for="no_newposts"> {LANG_hidepostsdscp}</label>
 				</div>
 			</div>
-			<div class="uk-grid uk-margin-top">
+			<div class="uk-margin-top" uk-grid>
 				<div class="uk-width-1-1 uk-text-right">
 					<button class="uk-button uk-button-primary" type="submit" name="submit" value="{LANG_SAVE}">{LANG_SAVE}</button>
 					<button class="uk-button uk-button-primary" type="submit" name="submit" value="{LANG_CANCEL}">{LANG_CANCEL}</button>		

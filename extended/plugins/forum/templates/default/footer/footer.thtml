@@ -3,7 +3,7 @@
 <div class="uk-panel uk-panel-box uk-margin">
 	{forum_time}
 	<hr{xhtml}>
-	<div class="uk-grid">
+	<div uk-grid>
 		{forum_legend}
 		{forum_rules}
 	</div>

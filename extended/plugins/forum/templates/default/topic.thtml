@@ -1,21 +1,21 @@
 {# begin {templatelocation} #}
 
 <hr{xhtml}>
-<div class="uk-grid">
-	<div class="uk-width-6-10">
+<div uk-grid>
+	<div class="uk-width-6-10@m">
 		<i class="uk-icon-comment-o"></i>&nbsp;{posted_date}{preview_topic_subject}&nbsp;{read_msg}&nbsp;{topiclocked_icon}
 		<a id="#{topic_post_id}"></a> {# topic post link jump point #}
 	</div>
-	<div class="uk-width-4-10 uk-text-right">
+	<div class="uk-width-4-10@m uk-text-right">
 		{mod_functions}
 	</div>
 </div>
 
-<div class="uk-grid uk-margin-small-top">
-	<div class="uk-width-large-1-6">
+<div class="uk-margin-small-top" uk-grid>
+	<div class="uk-width-1-6@m">
 		{user_information}
 	</div>
-	<div class="uk-width-large-5-6">
+	<div class="uk-width-5-6@m">
 		{# <div class="uk-panel uk-panel-box uk-width-medium-1-1 uk-panel-box-primary uk-text-break uk-margin topic-panel gl-forum-post-link" style="{comment_minheight};"> #}
 		<div class="uk-panel uk-panel-box uk-width-medium-1-1 uk-panel-box-primary uk-text-break uk-margin gl-forum-post-link">
 			{topic_comment}
@@ -70,7 +70,7 @@
 <!-- END block_anon_user_name -->
 
 <!-- BEGIN block_anon_user_information -->
-        <div class="uk-grid">
+        <div uk-grid>
         	<div class="uk-width-1-1 uk-text-center">
 				{mood_icon}
 			</div>

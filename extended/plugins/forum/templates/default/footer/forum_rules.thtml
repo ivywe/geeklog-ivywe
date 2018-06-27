@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<div class="uk-width-4-10 uk-text-right">
+<div class="uk-width-4-10@m uk-text-right">
 	<ul class="uk-list uk-list-space">
 		<li>{anonymous_msg}&nbsp;{anon_perm_image}</li>
 		<li>{postingperm_msg}&nbsp;{post_perm_image}</li>

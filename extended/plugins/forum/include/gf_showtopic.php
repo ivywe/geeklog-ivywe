@@ -507,7 +507,7 @@ function forum_getmodFunctions($showtopic) {
     }
 
     if ($options != '') {
-        $retval .= '<select class="uk-select uk-form-width-small" name="modfunction">';
+        $retval .= '<select class="uk-select uk-form-width-medium" name="modfunction">';
         $retval .= $options;
 
         if ($showtopic['pid'] == 0) {

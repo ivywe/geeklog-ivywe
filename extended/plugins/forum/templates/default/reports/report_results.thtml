@@ -6,23 +6,23 @@
 <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
 	<thead>
 		<tr>
-			<th class="uk-width-4-10 uk-text-center">
+			<th class="uk-width-4-10@m uk-text-center">
 				{LANG_Heading1}<br{xhtml}>
 				<a href="{phpself}&amp;order=0&amp;sort=1{sort_url_extra}">{img_asc1}</a>&nbsp;
 				<a href="{phpself}&amp;order=1&amp;sort=1{sort_url_extra}">{img_desc1}</a>
 			</th>
-			<th class="uk-width-1-10 uk-text-center">
+			<th class="uk-width-1-10@m uk-text-center">
 				{LANG_Heading2}<br{xhtml}>
 				<a href="{phpself}&amp;order=0&amp;sort=2{sort_url_extra}">{img_asc2}</a>&nbsp;
 				<a href="{phpself}&amp;order=1&amp;sort=2{sort_url_extra}">{img_desc2}</a>
 				
 			</th>
-			<th class="uk-width-1-10 uk-text-center">
+			<th class="uk-width-1-10@m uk-text-center">
 				{LANG_Heading3}<br{xhtml}>
 				<a href="{phpself}&amp;order=0&amp;sort=3{sort_url_extra}">{img_asc3}</a>&nbsp;
 				<a href="{phpself}&amp;order=1&amp;sort=3{sort_url_extra}">{img_desc3}</a>
 			</th>
-          	<th class="uk-width-4-10 uk-text-center">
+          	<th class="uk-width-4-10@m uk-text-center">
 				{LANG_Heading4}<br{xhtml}>
 				<a href="{phpself}&amp;order=0&amp;sort=4{sort_url_extra}">{img_asc4}</a>&nbsp;
 				<a href="{phpself}&amp;order=1&amp;sort=4{sort_url_extra}">{img_desc4}</a>
@@ -51,7 +51,7 @@
 <!-- END no_records_message -->
 
 <!-- BEGIN links -->
-<div class="uk-grid uk-grid-small">
+<div class="uk-grid-small" uk-grid>
 	<div class="uk-width-1-1 uk-text-right">
 		{link1}
 		{link2}
@@ -64,7 +64,7 @@
 <!-- END title -->
 
 <!-- BEGIN report_controls_popular -->
-<div class="uk-grid uk-grid-small">
+<div class="uk-grid-small" uk-grid>
 	<div class="uk-width-1-1 uk-text-right">
 		<form class="uk-form" action="{site_url}/forum/index.php?op=popular" method="post" name="reportcontrols">
 			<div class="uk-form-row">
