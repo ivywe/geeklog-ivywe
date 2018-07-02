@@ -113,7 +113,7 @@ $LANG_USERBOX_ADMIN['importfile'] = 'パス';
 $LANG_USERBOX_ADMIN['importurl'] = 'URL';
 
 $LANG_USERBOX_ADMIN['delete'] = '削除';
-$LANG_USERBOX_ADMIN['deletemsg_user'] = "データを一括削除します。<br".xhtml.">";
+$LANG_USERBOX_ADMIN['deletemsg_user'] = "データを一括削除します。<br".XHTML.">";
 
 $LANG_USERBOX_ADMIN['idfrom'] = "開始ID";
 $LANG_USERBOX_ADMIN['idto'] = "終了ID";
@@ -608,7 +608,7 @@ $PLG_userbox_MESSAGE3002 = $LANG32[9];
 ###############################################################################
 #
 $LANG_USERBOX_autotag_desc['userbox']="
-[userbox:count]他 <br".xhtml.">	
+[userbox:count]他 <br".XHTML.">	
 詳細は、userboxプラグインのドキュメントを参照してください。
 <a href=\"{$_CONF['site_admin_url']}/plugins/userbox/docs/japanese/autotags.html\">*</a>
 ";

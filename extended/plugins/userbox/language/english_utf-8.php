@@ -109,7 +109,7 @@ $LANG_USERBOX_ADMIN['importfile'] = 'Path';
 $LANG_USERBOX_ADMIN['importurl'] = 'URL';
 
 $LANG_USERBOX_ADMIN['delete'] = 'Delete';
-$LANG_USERBOX_ADMIN['deletemsg_user'] = "Delete all.<br ".xhtml.">";
+$LANG_USERBOX_ADMIN['deletemsg_user'] = "Delete all.<br ".XHTML.">";
 
 $LANG_USERBOX_ADMIN['idfrom'] = "From ID";
 $LANG_USERBOX_ADMIN['idto'] = "To ID";
@@ -597,7 +597,7 @@ $PLG_userbox_MESSAGE3002 = $LANG32[9];
 ###############################################################################
 #
 $LANG_USERBOX_autotag_desc['userbox']="
-[userbox:count] <br".xhtml.">	
+[userbox:count] <br".XHTML.">	
 More, see UserBox Plugin documents.
 <a href=\"{$_CONF['site_admin_url']}/plugins/userbox/docs/japanese/autotags.html\">*</a>
 ";

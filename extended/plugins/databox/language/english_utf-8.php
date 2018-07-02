@@ -103,7 +103,7 @@ $LANG_DATABOX_ADMIN['importfile'] = 'Path';
 $LANG_DATABOX_ADMIN['importurl'] = 'URL';
 
 $LANG_DATABOX_ADMIN['delete'] = 'Delete';
-$LANG_DATABOX_ADMIN['deletemsg_user'] = "Delete all.<br ".xhtml.">";
+$LANG_DATABOX_ADMIN['deletemsg_user'] = "Delete all.<br ".XHTML.">";
 
 $LANG_DATABOX_ADMIN['idfrom'] = "From ID";
 $LANG_DATABOX_ADMIN['idto'] = "To ID";
@@ -722,7 +722,7 @@ $PLG_databox_MESSAGE3002 = $LANG32[9];
 ###############################################################################
 #
 $LANG_DATABOX_autotag_desc['databox']="
-[databox:count] <br".xhtml.">	
+[databox:count] <br".XHTML.">	
 More, see Databox Plugin documents.
 <a href=\"{$_CONF['site_admin_url']}/plugins/databox/docs/japanese/autotags.html\">*</a>
 ";
