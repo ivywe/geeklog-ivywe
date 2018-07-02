@@ -1,8 +1,11 @@
 {# begin {templatelocation} #}
 
 {!if edit}
-<a href="{site_url}/mediagallery/album.php?aid={album_id}&page=1" class="uk-text-small"><i class="uk-icon-file-image-o"></i> {album_title}</a>{!endif}
+<div><a href="{site_url}/mediagallery/album.php?aid={album_id}&page=1" class="uk-text-small"><i class="uk-icon-file-image-o"></i> {album_title}</a></div>
+{!endif}
 
+<div class="uk-grid uk-grid-large">
 {medialist_col}
+</div>
 
 {# end {templatelocation} #}

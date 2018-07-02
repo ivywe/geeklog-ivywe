@@ -1,14 +1,15 @@
 {# begin {templatelocation} #}
 
-<div uk-grid>
-  <div class="uk-width-1-4@m uk-vertical-align-top uk-text-center" uk-lightbox>
-		<a href="{filename_orig}" uk-toggle><img src="{filename_tn}" alt="{media_title}" class="uk-container-center uk-overlay-scale uk-border-rounded  {class}" alt="{media_title}"{xhtml}></a>
+  <div class="uk-width-medium-2-10 uk-width-small-1-2 uk-vertical-align-top uk-margin-large-bottom">
+		<a href="{filename_orig}" data-uk-lightbox="{ group:'my-group{albumid}' }" title="{media_title}">
+			<figure class="uk-overlay uk-overlay-hover">
+	      <img src="{filename_disp}" class="uk-overlay-scale uk-responsive-width uk-border-rounded {class}" alt="{!if media_title}{media_title}{!else}{album_title}{!endif}" style="max-width:480px"{xhtml}>
+			</figure>
+    </a>
 	</div>
-  <div class="uk-width-3-4@m uk-vertical-align-top">
-	  <div>{media_desc}</div>
+  <div class="uk-width-medium-8-10 uk-vertical-align-top uk-margin-large-bottom">
+		{!if media_title}<h2>{media_title}</h2>{!endif}
+	  {media_desc}
   </div>
-</div>
 
 {# end {templatelocation} #}
-
-
