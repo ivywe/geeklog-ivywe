@@ -565,19 +565,6 @@ class Scripts
         // Strip '{' and '}' from both ends of $str
         $str = substr($str, 1);
         $str = substr($str, 0, strlen($str) - 1);
-        $headercode .= <<<EOD
-<script type="text/javascript">
-var geeklog = {
-    doc: document,
-    win: window,
-    $: function (id) {
-        return this.doc.getElementById(id);
-    },
-    {$str}
-};
-</script>
-
-EOD;
 
         if (isset($this->scripts['header'])) {
             foreach ($this->scripts['header'] as $script) {
