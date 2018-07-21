@@ -27,7 +27,7 @@
 	{!endif}
 	</div>
 </div>
-<div class="uk-card uk-card-small uk-card-body uk-card-secondary">
+<div>
 	<div class="uk-text-success uk-text-small">&#91;medialist:<span style="color:#ffffff">{album_id}</span> theme:xx limitcnt:xx order:(RANDOM|order) &#123;class&#125; &#93; &#91;media:<span style="color:#ffffff">media_id</span> src:(tn|disp|org)&#93; 
 	&#91;media_url:<span style="color:#ffffff">media_id</span> &#93;
 	</div>
