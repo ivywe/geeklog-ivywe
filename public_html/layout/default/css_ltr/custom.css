@@ -1,6 +1,15 @@
 @charset "utf-8";
 
-html {font-size:14px;}
+html {
+	font-family: helvetica, arial, 'hiragino kaku gothic pro', meiryo, 'ms pgothic', sans-serif;
+	line-height: 1.7;
+	font-size:14px;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-weight:bold;
+	color: #666;
+}
 
 .uk-navbar-dropdown {background: rgba(255,255,255,0.9); }
 .uk-navbar-dropdown-nav>li.uk-active.gl-active>a{color:#fff}
