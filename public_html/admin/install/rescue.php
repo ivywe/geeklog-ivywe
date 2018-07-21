@@ -46,6 +46,7 @@ $configs = array(
     'path_editors', 'path_images', 'path_log', 'path_language',
     'backup_path', 'path_data', 'path_pear', 'theme', 'cookie_path', 'cookiedomain',
 		'shortdate','dateonly','timeonly','language','login_attempts','login_speedlimit',
+		'cookie_session','cookie_session','cookie_name','cookie_password','cookie_theme'
 );
 
 // Start it off
