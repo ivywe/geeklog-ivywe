@@ -80,7 +80,8 @@ $LANG_AUTO = array(
     'usagepermissionskey' => 'U = usage',
     
     'window_close' => 'Close',
-    'main_menulabel' => 'Autotag List'
+    'main_menulabel' => 'Autotag List',
+    'list_all_title' => 'Autotag Manager'
 );
 
 // Localization of the Admin Configuration UI

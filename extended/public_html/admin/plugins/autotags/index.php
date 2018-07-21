@@ -417,7 +417,7 @@ function changeTagStatus ($tag)
 */
 function changeTagStatus($enabledtags, $visibletags)
 {
-    global $_CONF, $_TABLES;
+    global $_CONF, $_TABLES, $LANG_AUTO;
 
     $disabled = array_diff($visibletags, $enabledtags);
 

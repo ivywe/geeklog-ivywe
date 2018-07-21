@@ -81,6 +81,7 @@ $LANG_AUTO = array(
     
     'window_close' => 'クローズ',
     'main_menulabel' => '自動タグ一覧',
+    'list_all_title' => '自動タグマネージャ'
 );
 
 // Localization of the Admin Configuration UI
