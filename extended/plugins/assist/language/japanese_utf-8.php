@@ -5,6 +5,9 @@
 # Last Update 20170319
 ###############################################################################
 ## 管理画面
+
+global $LANG32;
+
 $LANG_ASSIST_admin_menu = array();
 $LANG_ASSIST_admin_menu['1']= '情報';
 $LANG_ASSIST_admin_menu['2']= 'ユーザー関連';
