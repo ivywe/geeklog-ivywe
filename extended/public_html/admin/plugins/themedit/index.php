@@ -219,7 +219,7 @@ if ($op === $LANG_THM['preview']) {
 		$is_css = preg_match("/\.css$/i", $file);
 		
 		if ($is_css) {
-			$fh = fopen($_CONF['path_html'] . 'admin/plugins/themedit/preview.css', 'wb');
+			$fh = fopen($_CONF['site_admin_url'] . '/plugins/themedit/preview.css', 'wb');
 			
 			if ($fh !== FALSE) {
 				fwrite($fh, $contents);
