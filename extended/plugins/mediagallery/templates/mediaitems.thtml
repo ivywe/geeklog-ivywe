@@ -21,8 +21,11 @@ function doUnCheckAll_mediaitems() {
 }
 // End script --></script>
 
-<div class="uk-text-success">&#91;medialist:{album_id} theme:xx limitcnt:xx order:RANDOM &#123;class&#125; &#93;</div>
-<div class="uk-text-success">テンプレート記述例 &#123;!!autotag medialist:{album_id} theme:xx limitcnt:xx order:RANDOM '.&#123;class&#125;.' !!&#125;</div>
+<div class="uk-card uk-card-small uk-card-body uk-card-secondary">
+	<div class="uk-text-success uk-text-small">&#91;medialist:<span style="color:#ffffff">{album_id}</span> theme:xx limitcnt:xx order:(RANDOM|order) &#123;class&#125; &#93; &#91;media:<span style="color:#ffffff">media_id</span> src:(tn|disp|org)&#93; 
+	&#91;media_url:<span style="color:#ffffff">media_id</span> &#93;
+	</div>
+</div>
 
 <table class="uk-table uk-table-condensed uk-table-striped uk-width-1-1" style="background:#ffffff;">
   <tr>
@@ -48,7 +51,7 @@ function doUnCheckAll_mediaitems() {
     </td>
     <td>
       <a href="/mediagallery/media.php?f=0&sort=0&s={mid}"><img src="{u_thumbnail}" height="{height}" width="{width}" alt=""{xhtml}></a>
-      <div class="uk-text-success">&#91;media:{media_id}<br{xhtml}> src:(tn/disp/orig) class:(class)&#93;</div>
+      <div class="uk-text-success"><input class="uk-input uk-form-width-medium" value="{media_id}"></div>
       <a href="{media_edit}">{lang_edit}</a>
     </td>
     <td>

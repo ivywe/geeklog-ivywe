@@ -11,7 +11,7 @@
   <div class="uk-grid">
     <div class="uk-width-1-2@s">
       <h1 class="uk-margin-remove">{album_title}</h1>
-			<span class="uk-text-small uk-margin-left" style="font-family:arial; font-size:14px">&#91;medialist:{album_id} limitcnt:* theme:*&#93;</span>
+			
 			{!if rsslink}&nbsp;&nbsp;{rsslink}{!endif}
     </div>
     <div class="uk-width-1-2@s">
@@ -32,6 +32,13 @@
     </div>
   </div>
 </div>
+
+<div class="uk-card uk-card-small uk-card-body uk-card-secondary">
+	<div class="uk-text-success uk-text-small">&#91;medialist:<span style="color:#ffffff">{album_id}</span> theme:xx limitcnt:xx order:(RANDOM|order) &#123;class&#125; &#93; &#91;media:<span style="color:#ffffff">media_id</span> src:(tn|disp|org)&#93; 
+	&#91;media_url:<span style="color:#ffffff">media_id</span> &#93;
+	</div>
+</div>
+
 
 <div>
 

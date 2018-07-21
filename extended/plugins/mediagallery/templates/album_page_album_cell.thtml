@@ -8,6 +8,7 @@
 
 <div class="uk-text-small">{album_desc}</div>
 
+
 {!if updated}
 <div class="uk-text-small"><span class="uk-text-bold">{updated}</span> {album_last_update}</div>
 {!endif}

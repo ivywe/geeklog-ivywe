@@ -35,7 +35,7 @@
     <noscript><div class="SWFUcontent">{swfupload_noscript}</div></noscript>
     <div id="divLoadingContent" class="SWFUcontent" style="display: none;">{swfupload_is_loading}</div>
     <div id="divLongLoading" class="SWFUcontent" style="display: none;">{swfupload_not_loading}</div>
-    <div id="divAlternateContent" class="SWFUcontent" style="display: none;">{swfupload_didnt_load}</div>
+    <div id="divAlternateContent" class="uk-card uk-card-default uk-card-body" style="display: none;">{swfupload_didnt_load}</div>
   </form>
 
   <div id="divSWFThumbnails">

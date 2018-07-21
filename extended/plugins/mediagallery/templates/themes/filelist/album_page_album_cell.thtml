@@ -1,7 +1,9 @@
 {# begin {templatelocation} #}
 
   <tr>
-    <td style="min-width:150px">{media_item_thumbnail}</td>
+    <td style="min-width:150px">{media_item_thumbnail}
+
+</td>
     <td>{media_link_start}{media_title}{media_link_end}<br{xhtml}<div><span class="uk-text-bold">{lang_album} {album_title}</span> ({subalbum_media_count})</div>
 </td>
     <td style="max-width:250px">{media_description}&nbsp;</td>

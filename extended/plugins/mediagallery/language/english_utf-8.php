@@ -386,7 +386,7 @@ $LANG_MG01 = array (
     'swfupload_noscript'        => 'Warning: SWFUpload could not load.  You must have JavaScript enabled to use SWFUpload.',
     'swfupload_is_loading'      => 'SWFUpload is loading. Please wait a moment...',
     'swfupload_not_loading'     => 'SWFUpload is taking a long time to load or the load has failed.  Please make sure that the Flash Plugin is enabled and that a working version of the Adobe Flash Player is installed.',
-    'swfupload_didnt_load'      => 'Warning: SWFUpload could not load.  You may need to install or upgrade Flash Player.  Visit the <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash">Adobe website</a> to get the Flash Player.',
+    'swfupload_didnt_load'      => '<span class="uk-text-warning">Warning: SWFUpload could not load. </span><a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" class="uk-button uk-button-primary">Install or upgrade Flash Player</a>',
     'download'                  => 'Download',
     'zip_enable'                => 'Enable ZIP Uploads',
     'zip_path'                  => 'Path to unzip program',

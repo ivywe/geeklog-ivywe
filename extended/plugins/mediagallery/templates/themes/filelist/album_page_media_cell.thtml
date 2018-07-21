@@ -1,7 +1,7 @@
 {# begin {templatelocation} #}
 
   <tr>
-    <td style="min-width:150px">{media_item_thumbnail}</td>
+    <td style="min-width:150px">{media_item_thumbnail}<div><input class="uk-input uk-form-width-medium" value="{media_id}"></div></td>
     <td>{media_link_start}{media_title}{media_link_end}</td>
     <td style="max-width:250px">{media_description}&nbsp;</td>
     <td>{filesize}</td>

@@ -391,7 +391,7 @@ $LANG_MG01 = array (
     'swfupload_noscript'        => '警告: SWFUpload はロードできませんでした。SWFUpload を使用するために JavaScript を有効にしてください。',
     'swfupload_is_loading'      => 'SWFUpload をロードしています。 しばらくお待ちください...',
     'swfupload_not_loading'     => 'SWFUpload のロードに長時間を要すか、またはロードに失敗しました。Flashプラグインを有効にし、最新の Adobe Flash Player をインストールしてください。',
-    'swfupload_didnt_load'      => '警告: SWFUpload はロードできませんでした。Flash Player をアップグレードする必要があります。<a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash">Adobe Webサイト</a>から Flash Player を入手してください。',
+    'swfupload_didnt_load'      => '<span class="uk-text-warning">警告: Flashを許可してください。</span><a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" class="uk-button uk-button-primary">Flashを許可</a>',
     'download'                  => 'ダウンロード',
     'zip_enable'                => 'ZIPのアップロードを有効にする',
     'zip_path'                  => 'Unzipバイナリのパス',

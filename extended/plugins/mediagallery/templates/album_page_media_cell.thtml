@@ -4,12 +4,11 @@
   <div class="mg_thumbnail_wrapper">{media_item_thumbnail}{mp3_podcast}</div>
 </div>
 
-<div class="uk-h2">
-{media_title}
-{!if musicalbum}
-&nbsp;/&nbsp;{musicalbum}
+{!if media_title}
+<div class="uk-h2">{media_title} {musicalbum}</div>
 {!endif}
-</div>
+
+<div><input class="uk-input uk-form-width-medium" value="{media_id}"></div>
 
 {!if artist}
 <div class="mg_artist">{artist}</div>
