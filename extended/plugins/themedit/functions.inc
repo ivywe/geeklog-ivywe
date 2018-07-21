@@ -205,8 +205,11 @@ function plugin_upgrade_themedit() {
 function plugin_getheadercode_themedit() {
 	global $_CONF;
 	
+
+if(SEC_hasRights('themedit.admin')){ 
 	$header = '<script type="text/javascript" src="' . THEMEDIT_BASE_URL
 			. '/js/selection.js' . '"></script>' . LB;
+}
 	return $header;
 }
 
