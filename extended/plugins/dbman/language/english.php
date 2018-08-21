@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | geeklog/plugins/dbman/language/english.php                                |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2008-2016 mystral-kk - geeklog AT mystral-kk DOT net        |
+// | Copyright (C) 2008-2018 mystral-kk - geeklog AT mystral-kk DOT net        |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
 // | Copyright (C) 2002 by the following authors:                              |

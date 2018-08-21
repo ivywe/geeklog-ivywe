@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | public_html/admin/plugins/dbman/index.php                                 |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2008-2016 mystral-kk - geeklog AT mystral-kk DOT net        |
+// | Copyright (C) 2008-2018 mystral-kk - geeklog AT mystral-kk DOT net        |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
 // | Copyright (C) 2002 by the following authors:                              |
@@ -36,8 +36,12 @@ global $_CONF, $_USER;
 require_once '../../../lib-common.php';
 
 if (!in_array('dbman', $_PLUGINS)) {
-	echo COM_refresh($_CONF['site_url']);
-	exit;
+	if (is_callable('COM_redirect')) {
+		COM_redirect($_CONF['site_url']);
+	} else {
+		echo COM_refresh($_CONF['site_url']);
+		exit;
+	}
 }
 
 if (!defined('XHTML')) {
@@ -114,7 +118,7 @@ if ($msg > 0) {
 				$compress_data  = isset($_POST['compress_data']);
 				$download_as_file = isset($_POST['download_as_file']);
 				$rst = DBMAN_backup($add_drop_table, $compress_data, $download_as_file);
-			
+
 				if ($rst == 2) {		//  failed
 					$content .= '<p style="font-size: 20px; font-weight: bold; color: red;">'
 						. DBMAN_str('backup_failure')
@@ -133,11 +137,11 @@ if ($msg > 0) {
 				}
 			}
 			// fall through to 'backup_option'
-	
+
 		case 'backup_option':
 			$content .= DBMAN_backupOptions($add_drop_table, $compress_data, $download_as_file);
 			break;
-	
+
 		case 'restore_select':
 			$content .= DBMAN_restoreSelectFile();
 			break;
@@ -145,7 +149,7 @@ if ($msg > 0) {
 		case 'restore_option':
 			if ($is_submit) {
 				DBMAN_checkToken();
-			
+
 				if (isset($_POST['filename'])) {
 					$filename = COM_applyFilter($_POST['filename']);	//  not good enough
 					$content .= DBMAN_restoreOption($filename);
@@ -156,22 +160,22 @@ if ($msg > 0) {
 						. '</p>';
 				}
 			}
-		
+
 			break;
-	
+
 		case 'restore':
 			if ($is_submit) {
 				DBMAN_checkToken();
 				$filename = COM_applyFilter($_POST['filename']);	//  maybe not very good
-			
+
 				if (isset($_POST['restore_structure'])) {
 					$restore_structure = $_POST['restore_structure'];
 				}
-			
+
 				if (isset($_POST['restore_data'])) {
 					$restore_data = $_POST['restore_data'];
 				}
-			
+
 				if (DBMAN_restore($filename, $restore_structure, $restore_data)) {
 					$content = COM_refresh($_CONF['site_admin_url'] . '/plugins/dbman/index.php') . $content
 						. '<p style="font-size: 20px; font-weight: bold; color: green;">'
@@ -182,18 +186,18 @@ if ($msg > 0) {
 							 .  DBMAN_str('restore_failure') . '</p>';
 				}
 			}
-		
+
 			break;
-	
+
 		case 'delete':
 			if (isset($_POST['deletefiles'])) {
 				DBMAN_checkToken();
 				$content .= COM_startBlock(DBMAN_str('ttl_delete_file'));
 				$deletefiles = $_POST['deletefiles'];
-			
+
 				foreach ($deletefiles as $deletefile) {
 					$result = DBMAN_delete(COM_applyFilter($deletefile));
-				
+
 					if ($result) {
 						COM_errorLog("Dbman: successfully deleted {$deletefile}.");
 						$content .= '<span style="color: green;">[success]</span> <strong>'
@@ -204,23 +208,23 @@ if ($msg > 0) {
 								 .  $deletefile . '</strong><br' . XHTML . '>';
 					}
 				}
-			
+
 				$content .= '<p><a href="' . $_CONF['site_admin_url']
 						 .  '/plugins/dbman/index.php' . '">Dbman HOME</a></p>'
 						 .  COM_endBlock();
 			}
-		
+
 			break;
-	
+
 		case 'console':
 			$content .= DBMAN_showSQLConsole();
 			break;
-	
+
 		case 'console_exec':
 			DBMAN_checkToken();
 			$content .= DBMAN_execSQL();
 			break;
-	
+
 		case 'list':
 			$content .= DBMAN_listBackups();
 			break;

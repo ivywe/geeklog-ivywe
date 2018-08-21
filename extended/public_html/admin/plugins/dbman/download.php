@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | public_html/admin/plugins/dbman/download.php                              |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2008-2016 mystral-kk - geeklog AT mystral-kk DOT net        |
+// | Copyright (C) 2008-2018 mystral-kk - geeklog AT mystral-kk DOT net        |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
 // | Copyright (C) 2002 by the following authors:                              |
@@ -34,8 +34,12 @@
 require_once '../../../lib-common.php';
 
 if (!in_array('dbman', $_PLUGINS)) {
-	echo COM_refresh($_CONF['site_url']);
-	exit;
+	if (is_callable('COM_redirect')) {
+		COM_redirect($_CONF['site_url']);
+	} else {
+		echo COM_refresh($_CONF['site_url']);
+		exit;
+	}
 }
 
 // Check if user has rights to access this page
@@ -45,13 +49,13 @@ if (!SEC_hasRights('dbman.edit')) {
 	$content = COM_startBlock($LANG_DBMAN['access_denied'])
 			 . DBMAN_str('access_denied_msg')
 			 . COM_endBlock();
-	
+
 	if (is_callable('COM_createHTMLDocument')) {
 		$display = COM_createHTMLDocument($content);
 	} else {
 		$display = COM_siteHeader() . $content . COM_siteFooter();
 	}
-	
+
 	echo $display;
 	exit;
 }
@@ -94,7 +98,12 @@ if (!file_exists($filename)) {
 		$display = COM_siteHeader() . $content . COM_siteFooter();
 	}
 
-	echo $display;
+	if (is_callable('COM_output')) {
+		COM_output($display);
+	} else {
+		echo $display;
+	}
+
 	exit;
 }
 
