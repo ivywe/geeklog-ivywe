@@ -28,6 +28,8 @@ function fncDisplay()
 	global $LANG_ASSIST_ADMIN;
     global $_ASSIST_CONF;
 	global $_DB_dbms;
+	global $LANG_ASSIST_admin_menu;
+
 
     $retval="";
 
@@ -95,15 +97,6 @@ function fncDisplay()
 // +---------------------------------------------------------------------------+
 // 引数
 
-if ($mode=="" OR $mode=="importform" OR $mode=="deleteform") {
-}else{
-    if (!SEC_checkToken()){
- //    if (SEC_checkToken()){//テスト用
-        COM_accessLog("User {$_USER['username']} tried to illegally and failed CSRF checks.");
-        echo COM_refresh($_CONF['site_admin_url'] . '/index.php');
-        exit;
-    }
-}
 $menuno=1;
 $display = '';
 
