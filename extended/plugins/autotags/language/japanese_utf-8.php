@@ -56,19 +56,9 @@ $LANG_AUTO = array(
     'invalid_tag' => 'The tag must contain only alphanumeric characters (a-z, A-Z, 0-9), dashes (-) or underscores (_).',
 
     'instructions' => '<p>自動タグの編集・削除は、タグの編集アイコンをクリックしてください。新規作成は、上の"新規作成"をクリックしてください。編集できないか、有効にできないタグがある場合は、それらは関数ベースのタグであり、あなたに autotags.PHP権限がないか、コンフィギュレーションで「PHPを許可する」を「いいえ」にしているため、関数ベースの自動タグが無効になっています。</p>',
-    'replace_explain' => '<p>Autotags can take either form:</p>
-        <ul>
-            <li><b>[tag:parameter1 parameter2]</b></li>
-            <li><b>[tag:parameter1 parameter2]parameter3[/tag]</b></li>
-        </ul>
-        <p>どのようなHTMLにも使えます。parameter1 そして必要なら parameter2 そしてまた必要なら parameter3 (もしあれば) を #1 #2 #3 から置き換えます。</p>
-        <p>#1, #2 and #3に加えて, #0は、すべての引数になります。(#3は含まず)。#UはサイトのURLです。</p>
-        <p>Example 1: リンクを作れます。<b>&lt;a href="http://path.to.somewhere/#1"&gt;#2&lt;/a&gt;</b>  <b>[tag:foo This is a link]</b>  <b>&lt;a href="http://path.to.somewhere/foo"&gt;リンク&lt;/a&gt;</b></p>
-        
-        <p>Example 2 (閉じタグ付き): <b>&lt;#1&gt;#3&lt;/#1&gt;</b> 閉じタグ<b>[tag:h1]ヘッダータイトル[/tag]</b> <b>&lt;h1&gt;This is a Heading&lt;/h1&gt;</b></p>
-        
-        ',
-
+    'replace_explain' => '自動タグの記述形式は <b>[tag:parameter1 parameter2]</b> です。<br' . XHTML . '>置換文字列フィールドにはHTMLを記述できます。<br' . XHTML . '>置換文字列フィールドの文字列中に <b>#1</b> や <b>#2</b> を記述することにより、<b>parameter1</b> や <b>parameter2</b> を含めることができます。</p>'
+                        .'<p>自動タグは、一般的にリンクを作成するために使用されます。<br' . XHTML . '>タグ <b>[tag:foo This is a link]</b> が、置換文字列フィールドの文字列<br' . XHTML . '> <b>&lt;a href="http://path.to.somewhere/#1"&gt;#2&lt;/a&gt;</b> <br' . XHTML . '>に関連付けられているとき、そのタグは文字列<br' . XHTML . '> <b>&lt;a href="http://path.to.somewhere/foo"&gt;This is a link&lt;/a&gt;</b><br' . XHTML . '>に置換されます。</p>'
+                        . '<p>#1 と #2 に加えて、<b>#0</b> は最初のコロンの後の全文字列です。 <b>#U</b> はサイトのベースURLです。</p>',
 
     'php_not_activated' => '自動タグでPHPが有効になっていません。コンフィギュレーションを確認してください。',
 
@@ -81,7 +71,6 @@ $LANG_AUTO = array(
     
     'window_close' => 'クローズ',
     'main_menulabel' => '自動タグ一覧',
-    'list_all_title' => '自動タグマネージャ'
 );
 
 // Localization of the Admin Configuration UI

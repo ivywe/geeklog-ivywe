@@ -1,14 +1,12 @@
 {# begin {templatelocation} #}
 
-<table class="uk-table">
-    <thead>
-        <tr>
-            <th>{lang_autotag}</th><th>{lang_desc}</th>
-        </tr>
-    </thead>
-    <tbody>
-        {autotag_rows}
-    </tbody>
+<table width="90%">
+    <tr>
+        <td><b>{lang_autotag}</b></td><td><b>{lang_desc}</b></td>
+    </tr>
+
+    {autotag_rows}
+
 </table>
 
 <!-- BEGIN autotag_row -->

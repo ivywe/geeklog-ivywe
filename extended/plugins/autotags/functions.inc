@@ -157,8 +157,8 @@ function plugin_upgrade_autotags()
         return 3002;
     }
 
+    // Retrieve other plugin info like min geeklog version and homepage 
     $inst_parms = plugin_autoinstall_autotags('autotags');
-    $pi_gl_version = $inst_parms['info']['pi_gl_version'];
 
     require_once $_CONF['path'] . 'plugins/autotags/sql/'
                                 . $_DB_dbms . '_updates.php';
@@ -206,14 +206,27 @@ function plugin_upgrade_autotags()
             
             $current_version = '1.1.1';
             break;            
+            
+        case '1.1.1':
 
+            $current_version = '1.1.2';
+            break;      
+
+        case '1.1.2':
+
+            $current_version = '1.1.3';
+            break;              
+        
         default:
             $done = true;
         }
     }
 
-    DB_query("UPDATE {$_TABLES['plugins']} SET pi_version = '$code_version', pi_gl_version = '$pi_gl_version' WHERE pi_name = 'autotags'");
+    // update plugin version number and other info
+    DB_query("UPDATE {$_TABLES['plugins']} SET pi_version = '$code_version', pi_gl_version = '{$inst_parms['info']['pi_gl_version']}', pi_homepage = '{$inst_parms['info']['pi_homepage']}' WHERE pi_name = 'autotags'");
 
+    COM_errorLog( "Updated autotags plugin from v$installed_version to v$code_version", 1 );
+    
     return true;
 }
 
@@ -325,16 +338,21 @@ function plugin_getListField_autotags($fieldname, $fieldvalue, $A, $icon_arr) {
                 $retval = ($A['is_enabled'] == 1) ? $LANG_ACCESS['yes'] : $LANG_ACCESS['no'];
             } else {
                 $switch = ($A['is_enabled'] == 1) ? 'checked="checked"' : '';
-                /*
-                $retval = "<form action=\"{$_CONF['site_admin_url']}/plugins/autotags/index.php\" method=\"post\">"
-                         ."<input type=\"checkbox\" name=\"tagenable\" onclick=\"submit()\" value=\"{$A['tag']}\" $switch>"
-                         ."<input type=\"hidden\" name=\"tagChange\" value=\"{$A['tag']}\"></form>";
-                */         
-                $retval = '<input type="checkbox" name="enabledtags[]" '
-                            . 'onclick="submit()" value="' . $A['tag'] . '"'
-                            . $switch . XHTML . '>'
-                            . '<input type="hidden" name="visibletags[]" value="'
-                            . $A['tag'] . '"' . XHTML . '>';
+                if (COM_versionCompare(VERSION, '2.2.0', '>=')) {
+                    $retval = COM_createControl('type-checkbox', array(
+                        'name' => 'enabledtags[]',
+                        'onclick' => 'this.form.submit()',
+                        'value' => $A['tag'],
+                        'checked' => $switch
+                    ));                    
+                    $retval .= '<input type="hidden" name="visibletags[]" value="' . $A['tag'] . '"' . XHTML . '>';
+                } else {
+                    $retval = '<input type="checkbox" name="enabledtags[]" '
+                                . 'onclick="submit()" value="' . $A['tag'] . '"'
+                                . $switch . XHTML . '>'
+                                . '<input type="hidden" name="visibletags[]" value="'
+                                . $A['tag'] . '"' . XHTML . '>';
+                }
             }
             break;
         default:
@@ -369,17 +387,17 @@ function plugin_autotags_autotags ($op, $content = '', $autotag = '')
             }
         }        
         
-        if (is_array($tagname)) {
+        if (isset($tagname) && is_array($tagname)) {
             return $tagname;
         }
     } elseif ($op == 'closetag') {
         foreach ($_AUTOTAGS as $tag) {
-            if ($tag['close_tag']) {
+            if (isset($tag['close_tag']) && $tag['close_tag']) {
                 $closetag[] = $tag['tag']; 
             }
         }
         
-        if (is_array($closetag)) {
+        if (isset($closetag) && is_array($closetag)) {
             return $closetag;
         }          
     } elseif ($op == 'description') {
@@ -409,12 +427,13 @@ function plugin_autotags_autotags ($op, $content = '', $autotag = '')
                     $function = 'phpautotags_'.$autotag['tag'];
                     if (function_exists($function))
                     {
-                        $reffunc = new ReflectionFunction($function);
-                        if (isset($p3) && $reffunc->getNumberOfParameters() >= 4) {
-                            $replace = $function($p1, $p2, $autotag['tagstr'], $p3);
-                        } else {
-                            $replace = $function($p1, $p2, $autotag['tagstr']);
-                        }
+                        $reffunc = new ReflectionFunction($function); 
+                        if (isset($p3) && $reffunc->getNumberOfParameters() >= 4) { 
+                            $replace = $function($p1, $p2, $autotag['tagstr'], $p3); 
+                        } else { 
+                            $replace = $function($p1, $p2, $autotag['tagstr']); 
+                        } 
+
                         $content = str_replace($autotag['tagstr'], $replace, $content);
                     }
                 } else {
@@ -427,7 +446,8 @@ function plugin_autotags_autotags ($op, $content = '', $autotag = '')
                         $evalstring .= '$p3 = "' . addslashes($p3) . '";';
                         $evalstring .= '$p3 = stripslashes($p3);';
                     }
-                    $evalstring .= '$tagstr = "' . $tagstr . '";';
+                    $evalstring .= '$tagstr = "' . addslashes($autotag['tagstr']) . '";';
+                    $evalstring .= '$tagstr = stripslashes($tagstr);';
                     $evalstring .= $record['replacement'];
                     $replace = eval($evalstring);
                     $content = str_replace($autotag['tagstr'], $replace, $content);
