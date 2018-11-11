@@ -1,0 +1,7 @@
+span.w3-button.langsel.active {
+  font-weight: bold !important;
+}
+
+a.w3-bar-item.w3-button {
+  text-decoration: none !important;
+}

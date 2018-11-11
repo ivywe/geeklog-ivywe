@@ -1,0 +1,14 @@
+<div class="w3-dropdown-hover">
+  <button class="w3-button">{lang_title}</button>
+  <div class="w3-dropdown-content w3-bar-block w3-card-4">
+    {items}
+  </div>
+</div>
+
+  <!-- BEGIN item -->
+  {!if active}
+    <span class="w3-button langsel active" direction="{dir}" unicode-bidi="embed">{text}</span>
+  {!else}
+    <a class="w3-bar-item w3-button" direction="{dir}" unicode-bidi="embed" href="{url}">{text}</a>
+  {!endif}
+  <!-- END item -->

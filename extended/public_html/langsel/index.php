@@ -2,13 +2,13 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Language Selection Block Plugin 1.0.0                                     |
+// | Language Selection Block Plugin                                           |
 // +---------------------------------------------------------------------------+
 // | index.php                                                                 |
 // |                                                                           |
 // | Public plugin page                                                        |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2011 by the following authors:                              |
+// | Copyright (C) 2011-2018 by the following authors:                         |
 // |                                                                           |
 // | Authors: Rouslan Placella - rouslan AT placella DOT com                   |
 // +---------------------------------------------------------------------------+
@@ -39,8 +39,7 @@ require_once '../lib-common.php';
 
 // take user back to the homepage if the plugin is not active
 if (! in_array('langsel', $_PLUGINS)) {
-    echo COM_refresh($_CONF['site_url'] . '/index.php');
-    exit;
+    COM_redirect($_CONF['site_url'] . '/index.php');
 }
 
 // Figure out where to go back after changing the language
@@ -53,8 +52,7 @@ if (isset($_REQUEST['target']) && $_REQUEST['target'] == COM_applyFilter($_REQUE
 // Check if the language is valid
 if (! array_key_exists($_REQUEST['langsel'], MBYTE_languageList($_CONF['default_charset']))) {
     // Invalid language - let's silently bail out
-    echo COM_refresh($target);
-    exit;
+    COM_redirect($target);
 } else {
     $language = $_REQUEST['langsel'];
 }
@@ -62,8 +60,7 @@ if (! array_key_exists($_REQUEST['langsel'], MBYTE_languageList($_CONF['default_
 // Perform language switch
 setcookie($_CONF['cookie_language'], $language, 0, '/');
 if ($_USER['uid'] > 1) {
-    DB_query("UPDATE {$_TABLES['users']} SET language='$language' WHERE uid='{$_USER['uid']}'");
+    $language = DB_escapeString($language);
+    DB_query("UPDATE {$_TABLES['users']} SET language='{$language}' WHERE uid='{$_USER['uid']}'");
 }
-echo COM_refresh($target);
-exit;
-?>
+COM_redirect($target);

@@ -2,13 +2,13 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Language Selection Block Plugin 1.0.0                                     |
+// | Language Selection Block Plugin                                           |
 // +---------------------------------------------------------------------------+
 // | english.php                                                               |
 // |                                                                           |
 // | English language file                                                     |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2011 by the following authors:                              |
+// | Copyright (C) 2011-2018 by the following authors:                         |
 // |                                                                           |
 // | Authors: Rouslan Placella - rouslan AT placella DOT com                   |
 // +---------------------------------------------------------------------------+
@@ -36,10 +36,11 @@
 */
 
 $LANG_LANGSEL_1 = array(
-    'plugin_name' => 'Language Selection Block',
-    'conf_link'   => 'Configuration',
-	'title'       => 'Language Selection',
-	'submit'      => 'Go'
+    'plugin_name'          => 'Language Selection Block',
+    'conf_link'            => 'Configuration',
+    'title'                => 'Language Selection',
+    'submit'               => 'Go',
+    'autotag_desc_langsel' => 'Langsel autotag provides a language selector.',
 );
 
 // Localization of the Admin Configuration UI
@@ -66,6 +67,5 @@ $LANG_fs['langsel'] = array(
 );
 
 $LANG_configselects['langsel'] = array(
-    1 => array('Left Blocks' => 1, 'Right Blocks' => 0)
+    1 => array('No Block' => 2, 'Left Blocks' => 1, 'Right Blocks' => 0)
 );
-?>

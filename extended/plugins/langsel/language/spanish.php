@@ -4,9 +4,9 @@
 // +---------------------------------------------------------------------------+
 // | Language Selection Block Plugin                                           |
 // +---------------------------------------------------------------------------+
-// | english.php                                                               |
+// | spanish_utf-8.php                                                         |
 // |                                                                           |
-// | English language file                                                     |
+// | Spanish language file                                                     |
 // +---------------------------------------------------------------------------+
 // | Copyright (C) 2011-2018 by the following authors:                         |
 // |                                                                           |
@@ -36,36 +36,36 @@
 */
 
 $LANG_LANGSEL_1 = array(
-    'plugin_name'          => 'Language Selection Block',
-    'conf_link'            => 'Configuration',
-    'title'                => 'Language Selection',
-    'submit'               => 'Go',
-    'autotag_desc_langsel' => 'Langsel autotag provides a language selector.',
+    'plugin_name'          => 'Bloque Selección de Idioma',
+    'conf_link'            => 'Configuración',
+    'title'                => 'Selecciona idioma',
+    'submit'               => 'Ir',
+    'autotag_desc_langsel' => 'Autotag Langsel proporciona un selector de idioma.',
 );
 
 // Localization of the Admin Configuration UI
 $LANG_configsections['langsel'] = array(
-    'label' => 'Language Selection Block',
-    'title' => 'Language Selection Block Configuration'
+    'label' => 'Bloque Selección de Idioma',
+    'title' => 'Configuración del bloque de Selección de Idioma'
 );
 
 $LANG_confignames['langsel'] = array(
-    'block_pos' => 'Where to show the block',
-    'block_order' => 'Block Order',
+    'block_pos' => 'Lugar donde se mostrará el bloque',
+    'block_order' => 'Orden del bloque',
 );
 
 $LANG_configsubgroups['langsel'] = array(
-    'sg_main' => 'Main Settings'
+    'sg_main' => 'Ajustes principales'
 );
 
 $LANG_tab['langsel'] = array(
-    'tab_main' => 'Language Selection Block Main Settings'
+    'tab_main' => 'Ajustes principales del bloque de selección de idioma'
 );
 
 $LANG_fs['langsel'] = array(
-    'fs_main' => 'Language Selection Block Main Settings'
+    'fs_main' => 'Ajustes principales del bloque de selección de idioma'
 );
 
 $LANG_configselects['langsel'] = array(
-    1 => array('No Block' => 2, 'Left Blocks' => 1, 'Right Blocks' => 0)
+    1 => array('No como un bloque' => 2, 'Izquierda' => 1, 'Derecha' => 0)
 );

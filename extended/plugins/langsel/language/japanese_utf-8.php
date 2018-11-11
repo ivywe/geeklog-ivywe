@@ -4,13 +4,14 @@
 // +---------------------------------------------------------------------------+
 // | Language Selection Block Plugin                                           |
 // +---------------------------------------------------------------------------+
-// | english.php                                                               |
+// | japanese_utf-8.php                                                        |
 // |                                                                           |
-// | English language file                                                     |
+// | Japanese language file                                                    |
 // +---------------------------------------------------------------------------+
 // | Copyright (C) 2011-2018 by the following authors:                         |
 // |                                                                           |
 // | Authors: Rouslan Placella - rouslan AT placella DOT com                   |
+// |          Kenji ITO        - mystralkk AT gmail DOT com                    |
 // +---------------------------------------------------------------------------+
 // | Created with the Geeklog Plugin Toolkit.                                  |
 // +---------------------------------------------------------------------------+
@@ -36,36 +37,36 @@
 */
 
 $LANG_LANGSEL_1 = array(
-    'plugin_name'          => 'Language Selection Block',
-    'conf_link'            => 'Configuration',
-    'title'                => 'Language Selection',
-    'submit'               => 'Go',
-    'autotag_desc_langsel' => 'Langsel autotag provides a language selector.',
+    'plugin_name'          => '言語選択ブロック',
+    'conf_link'            => '設定',
+    'title'                => '言語選択',
+    'submit'               => '実行',
+    'autotag_desc_langsel' => 'Langsel自動タグは言語セレクターを表示します。',
 );
 
 // Localization of the Admin Configuration UI
 $LANG_configsections['langsel'] = array(
-    'label' => 'Language Selection Block',
-    'title' => 'Language Selection Block Configuration'
+    'label' => '言語選択ブロック',
+    'title' => '言語選択ブロックの設定'
 );
 
 $LANG_confignames['langsel'] = array(
-    'block_pos' => 'Where to show the block',
-    'block_order' => 'Block Order',
+    'block_pos' => 'ブロックの表示位置',
+    'block_order' => 'ブロックの順序',
 );
 
 $LANG_configsubgroups['langsel'] = array(
-    'sg_main' => 'Main Settings'
+    'sg_main' => '主要設定'
 );
 
 $LANG_tab['langsel'] = array(
-    'tab_main' => 'Language Selection Block Main Settings'
+    'tab_main' => '言語選択ブロックの主要設定'
 );
 
 $LANG_fs['langsel'] = array(
-    'fs_main' => 'Language Selection Block Main Settings'
+    'fs_main' => '言語選択ブロックの主要設定'
 );
 
 $LANG_configselects['langsel'] = array(
-    1 => array('No Block' => 2, 'Left Blocks' => 1, 'Right Blocks' => 0)
+    1 => array('ブロックなし' => 2, '左ブロック' => 1, '右ブロック' => 0)
 );
