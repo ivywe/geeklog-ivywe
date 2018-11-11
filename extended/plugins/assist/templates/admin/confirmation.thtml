@@ -1,14 +1,17 @@
-{# begin {templatelocation} #}
-
-<h1>{actionname}</h1>
+{# plugins/assist/templates/admin/confirmation.thtml  20161117 #}
+<h3>{actionname}</h3>
 <form action="{actionprg}" method="post">
-<div>{lang_checklist}{checklist}</div>
-<div>
-<input type='submit' name='action' value='{lang_submit}'{xhtml}>
-<input type='submit' name='action' value='{lang_cancel}'{xhtml}>
-<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
-<input type="hidden" value="{mode}" name="mode"{xhtml}>
-</div>
+  <div>
+    <div>{lang_checklist} {checklist}</div>
+    <input type='submit' name='action' value='{lang_submit}' onclick="return confirm('{lang_confirm}');"{xhtml}>
+    {btn2}
+    {btn3}
+	<input type='submit' name='action' value='{lang_cancel}'{xhtml}>
+    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+    <input type="hidden" value="{mode}" name="mode"{xhtml}>
+  </div>
+  <div>
+    {help}
+  </div>
 </form>
-
 {# end {templatelocation} #}

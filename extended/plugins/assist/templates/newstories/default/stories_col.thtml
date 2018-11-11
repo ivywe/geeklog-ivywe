@@ -1,6 +1,26 @@
 {# begin {templatelocation} #}
 
-<dt>{day}</dt>
-<dd><a href="{url}">{title}</a>{new_img}</dd>
+<dt class="assist_date">{day}</dt>
+<dd class="assist_stories"><a href="{url}" {class_a} style="cursor: pointer; ">{title}
+<span {class_c} style="top: 2.2em; left: 2.2em;">{meta_description}</span>
+</a>{new_img}[{topicslink}]
+</dd>
+
+{#  
+
+
+introtext:{introtext}
+class:{class}
+permission:{permission}
+topicslink:{topicslink}</br>
+topicidslink:{topicidslink}</br>
+topics:{topics}</br>
+topicids:{topicids}</br>
+topicidspipeline:{topicidspipeline}</br>
+topics_li:{topics_li}</br>
+topicids_li:{topicids_li}</br>
+topicslink_li:{topicslink_li}</br>
+topicidslink_li:{topicidslink_li}</br>
+#}
 
 {# end {templatelocation} #}

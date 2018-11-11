@@ -8,7 +8,7 @@
 // public_html/admin/plugins/assist/information.php
 // 20091204 tsuchi AT geeklog DOT jp
 // $Id: information.php
-// last update 20111021
+// last update 20181102 hiroron AT hiroron DOT com
 
 define ('THIS_SCRIPT', 'information.php');
 
@@ -24,18 +24,29 @@ require_once( $_CONF['path_system'] . 'lib-admin.php' );
 function fncDisplay()
 {
     global $_CONF;
+    global $LANG_ASSIST_admin_menu;
     global $LANG_ADMIN;
 	global $LANG_ASSIST_ADMIN;
     global $_ASSIST_CONF;
 	global $_DB_dbms;
-	global $LANG_ASSIST_admin_menu;
-
 
     $retval="";
 
     $pi_name="assist";
 
-    $menu_arr[]=array('url' => $_CONF['site_admin_url'],'text' => $LANG_ADMIN['admin_home']);
+    $adminurl=$_CONF['site_admin_url'] .'/plugins/'.THIS_PLUGIN."/";
+    $menu_arr=array(
+        array('text' => $LANG_ASSIST_admin_menu['1'], 'url' => $adminurl.'information.php'),
+        array('text' => $LANG_ASSIST_admin_menu['2'], 'url' => $adminurl.'user.php'),
+        array('text' => $LANG_ASSIST_admin_menu['3'], 'url' => $adminurl.'vars.php'),
+//        array('text' => $LANG_ASSIST_admin_menu['4'], 'url' => $adminurl.'newsletter.php'),
+        array('text' => $LANG_ASSIST_admin_menu['5'], 'url' => $adminurl.'backuprestore.php'),
+        array('text' => $LANG_ADMIN['admin_home'], 'url' => $_CONF['site_admin_url'])
+    );
+    $pro=$_CONF['path'] . 'plugins/assist/proversion/';
+    if (file_exists($pro)) {
+        $menu_arr[]=array('text' => $LANG_ASSIST_admin_menu['8'], 'url' => $adminurl.'pro.php');
+    }
     $function="plugin_geticon_".$pi_name;
     $icon=$function();
     $retval .= ADMIN_createMenu(
@@ -97,6 +108,15 @@ function fncDisplay()
 // +---------------------------------------------------------------------------+
 // 引数
 
+if ($mode=="" OR $mode=="importform" OR $mode=="deleteform") {
+}else{
+    if (!SEC_checkToken()){
+ //    if (SEC_checkToken()){//テスト用
+        COM_accessLog("User {$_USER['username']} tried to illegally and failed CSRF checks.");
+        echo COM_refresh($_CONF['site_admin_url'] . '/index.php');
+        exit;
+    }
+}
 $menuno=1;
 $display = '';
 
@@ -109,7 +129,8 @@ if (isset ($_REQUEST['msg'])) {
     $display .= COM_showMessage (COM_applyFilter ($_REQUEST['msg'],
                                                   true), 'assist');
 }
-$display.=ppNavbarjp($navbarMenu,$LANG_ASSIST_admin_menu[$menuno]);
+//uikit3でnavbarが使えなくなったのでコメントアウト
+//$display.=ppNavbarjp($navbarMenu,$LANG_ASSIST_admin_menu[$menuno]);
 $display.=fncDisplay();
 
 

@@ -6,6 +6,7 @@
 // $Id: backuprestore.php
 // public_html/admin/plugins/assist/backuprestore.php
 // 20111108 tsuchitani AT ivywe DOT co DOT jp
+// last update 20181102 hiroron AT hiroron DOT com
 
 define ('THIS_SCRIPT', 'assist/backuprestore.php');
 //define ('THIS_SCRIPT', 'assist/test.php');
@@ -78,24 +79,30 @@ function fncDisply($pi_name)
     return $retval ;
 
 }
-function fncMenu(
-)
+
 // +---------------------------------------------------------------------------+
 // | 機能  menu表示  
 // | 書式 fncMenu()
 // +---------------------------------------------------------------------------+
 // | 戻値 menu 
 // +---------------------------------------------------------------------------+
+function fncMenu(
+)
 {
 
     global $_CONF;
     global $LANG_ADMIN;
-
     global $LANG_ASSIST_ADMIN;
 
     $retval = '';
+
+    $adminurl=$_CONF['site_admin_url'] .'/plugins/'.THIS_PLUGIN."/";
     //
-    $menu_arr[]=array('url' => $_CONF['site_admin_url'],'text' => $LANG_ADMIN['admin_home']);
+    $menu_arr = array (
+        array('text' => $LANG_ASSIST_ADMIN['piname'], 'url' => $adminurl.'information.php'),
+        //
+        array('text' => $LANG_ADMIN['admin_home'], 'url' => $_CONF['site_admin_url'])
+    );
     $retval .= ADMIN_createMenu(
         $menu_arr,
         $LANG_ASSIST_ADMIN['about_admin_backuprestore'],
@@ -146,7 +153,8 @@ $information = array();
 //$information['rightblock']=false;
 $information['pagetitle']=$LANG_ASSIST_ADMIN['piname']."backup and restore";
 
-$display.=ppNavbarjp($navbarMenu,$LANG_ASSIST_admin_menu[$menuno]);
+//uikit3でnavbarが使えなくなったのでコメントアウト
+//$display.=ppNavbarjp($navbarMenu,$LANG_ASSIST_admin_menu[$menuno]);
 if (isset ($_REQUEST['msg'])) {
     $display .= COM_showMessage (COM_applyFilter ($_REQUEST['msg'],
                                                   true), $pi_name);

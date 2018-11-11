@@ -343,7 +343,7 @@ function CMED_replaceLabel($label)
 
 function CMED_replaceUrl($url)
 {
-    global $_CONF;
+    global $_CONF, $_CMED_CONF;
 
     $url = preg_replace('/\[site_url\]/i',       $_CONF['site_url'],       $url);
     $url = preg_replace('/\[site_admin_url\]/i', $_CONF['site_admin_url'], $url);

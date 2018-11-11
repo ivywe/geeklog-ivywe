@@ -600,9 +600,9 @@ function assist_Confirmation(
         $confirm_value2=$lang_box_admin['delete2']." ".$lang_box_admin['confirm'];
         $confirm_value3=$lang_box_admin['delete3']." ".$lang_box_admin['confirm'];
         $btn2="<input type='submit' name='action' value='{$lang_box_admin['delete2']}'" 
-             ." onclick=\"return confirm('{$confirm_value2}');\"".XHTML.">".LB;
+             ." onclick=\"return confirm('{$confirm_value2}');\"".xhtml.">".LB;
         $btn3="<input type='submit' name='action' value='{$lang_box_admin['delete3']}'" 
-             ." onclick=\"return confirm('{$confirm_value3}');\"".XHTML.">".LB;
+             ." onclick=\"return confirm('{$confirm_value3}');\"".xhtml.">".LB;
     }
 
     // SAVE、CANCEL ボタン

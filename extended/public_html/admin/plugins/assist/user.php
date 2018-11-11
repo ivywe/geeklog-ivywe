@@ -7,6 +7,7 @@
 // $Id: profile.php
 // public_html/admin/plugins/assist/user.php
 // 2009/01/26 tsuchitani AT ivywe DOT co DOT jp
+// last update 20181102 hiroron AT hiroron DOT com
 
 // Set this to true to get various debug messages from this script
 $_ASSIST_VERBOSE = false;
@@ -147,19 +148,18 @@ function fncMenu()
     //$url2=$_CONF['site_url'] . "/".THIS_SCRIPT;
     //$url3=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=drafton';
     //$url4=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?mode=draftoff';
-    $url_import=$_CONF['site_admin_url'] . '/plugins/'.THIS_PLUGIN."/".THIS_SCRIPT
-            .'?mode=importform';
-    $url_delete=$_CONF['site_admin_url'] . '/plugins/'.THIS_PLUGIN."/".THIS_SCRIPT
-            .'?mode=deleteform';
+    $adminurl=$_CONF['site_admin_url'] .'/plugins/'.THIS_PLUGIN."/";
+    $url_import=$adminurl.THIS_SCRIPT.'?mode=importform';
+    $url_delete=$adminurl.THIS_SCRIPT.'?mode=deleteform';
     //
     $menu_arr = array (
-        array('url' => $url_import,
-              'text' => $LANG_ASSIST_ADMIN['import']),
-        array('url' => $url_delete,
-              'text' => $LANG_ASSIST_ADMIN['delete']),
+        array('text' => $LANG_ASSIST_ADMIN['piname'], 'url' => $adminurl.'information.php'),
         //
-        array('url' => $_CONF['site_admin_url'],
-              'text' => $LANG_ADMIN['admin_home']));
+        array('text' => $LANG_ASSIST_ADMIN['import'], 'url' => $url_import),
+        array('text' => $LANG_ASSIST_ADMIN['delete'], 'url' => $url_delete),
+        //
+        array('text' => $LANG_ADMIN['admin_home'], 'url' => $_CONF['site_admin_url'])
+    );
 	//
 	$iconurl=plugin_geticon_assist();
 	
@@ -678,7 +678,8 @@ if ($mode=="" OR $mode=="importform" OR $mode=="deleteform") {
 //
 $menuno=2;
 $display = '';
-$display.=ppNavbarjp($navbarMenu,$LANG_ASSIST_admin_menu[$menuno]);
+//uikit3でnavbarが使えなくなったのでコメントアウト
+//$display.=ppNavbarjp($navbarMenu,$LANG_ASSIST_admin_menu[$menuno]);
 
 $information = array();
 $information['what']='menu';

@@ -2,13 +2,13 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Language Selection Block Plugin 1.0.0                                     |
+// | Language Selection Block Plugin                                           |
 // +---------------------------------------------------------------------------+
 // | autoinstall.php                                                           |
 // |                                                                           |
 // | This file provides helper functions for the automatic plugin install.     |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2011 by the following authors:                              |
+// | Copyright (C) 2011-2018 by the following authors:                         |
 // |                                                                           |
 // | Authors: Rouslan Placella - rouslan AT placella DOT com                   |
 // +---------------------------------------------------------------------------+
@@ -51,9 +51,9 @@ function plugin_autoinstall_langsel($pi_name)
     $info = array(
         'pi_name'         => $pi_name,
         'pi_display_name' => $pi_display_name,
-        'pi_version'      => '1.0.0',
-        'pi_gl_version'   => '1.8.0',
-        'pi_homepage'     => 'http://code.google.com/p/geeklog/'
+        'pi_version'      => '1.1.0',
+        'pi_gl_version'   => '2.1.2',
+        'pi_homepage'     => 'https://github.com/Geeklog-Plugins/langsel'
     );
 
     $groups = array(
@@ -118,5 +118,3 @@ function plugin_compatible_with_this_version_langsel($pi_name)
     }
     return true;
 }
-
-?>

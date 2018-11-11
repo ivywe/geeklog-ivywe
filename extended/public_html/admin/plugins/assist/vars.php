@@ -7,7 +7,7 @@
 // $Id: vars.php
 // public_html/admin/plugins/assist/vars.php
 // 2009/12/09 tsuchitani AT ivywe DOT co DOT jp
-// 20120702
+// last update 20181102 hiroron AT hiroron DOT com
 
 // Set this to true to get various debug messages from this script
 $_ASSIST_VERBOSE = false;
@@ -16,6 +16,8 @@ define ('THIS_SCRIPT', 'vars.php');
 //define ('THIS_SCRIPT', 'test.php');
 
 include_once('assist_functions.php');
+
+require_once( $_CONF['path_system'] . 'lib-admin.php' );
 
 //
 function fncdatetimeedit(
@@ -95,12 +97,12 @@ function fncdatetimeedit(
 }
 
 // +---------------------------------------------------------------------------+
-// | 機能  表示                                                            |
-// | 書式 fncMebu()                                                            |
+// | 機能  Varsの擬似クーロン実施日表示                                        |
+// | 書式 fncVarsDateTime()                                                    |
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:一覧                                                           |
 // +---------------------------------------------------------------------------+
-function fncMenu()
+function fncVarsDateTime()
 {
     global $_CONF;
     global $_TABLES;
@@ -113,7 +115,6 @@ function fncMenu()
 
     //擬似クーロン実行日
     $datetime = DB_getItem( $_TABLES['vars'], 'value', "name = 'last_scheduled_run'" );
-
     if ($datetime===""){
         $datetime=time();
     }
@@ -134,6 +135,42 @@ function fncMenu()
 
     return $retval;
 }
+
+// +---------------------------------------------------------------------------+
+// | 機能  menu表示                                                            |
+// | 書式 fncMenu()                                                            |
+// +---------------------------------------------------------------------------+
+// | 戻値 menu                                                                 |
+// +---------------------------------------------------------------------------+
+function fncMenu()
+{
+    global $_CONF;
+    global $LANG_ADMIN;
+    global $LANG_ASSIST_ADMIN;
+
+    $retval = '';
+
+    //MENU設定 はじまり
+    $adminurl=$_CONF['site_admin_url'] .'/plugins/'.THIS_PLUGIN."/";
+    $url_import=$adminurl.THIS_SCRIPT.'?mode=importform';
+    $url_delete=$adminurl.THIS_SCRIPT.'?mode=deleteform';
+    //
+    $menu_arr = array (
+        array('text' => $LANG_ASSIST_ADMIN['piname'], 'url' => $adminurl.'information.php'),
+        //
+        array('text' => $LANG_ADMIN['admin_home'], 'url' => $_CONF['site_admin_url'])
+    );
+
+    $retval .= ADMIN_createMenu(
+        $menu_arr,
+        "",
+        plugin_geticon_assist()
+    );
+    //MENU設定 おわり
+
+    return $retval;
+}
+
 // +---------------------------------------------------------------------------+
 // | 機能  擬似クーロン実施日更新                                              |
 // | 書式 fncdatetime ()                                                       |
@@ -188,7 +225,8 @@ if ($mode=="datetime") {
 //
 $menuno=3;
 $display = '';
-$display.=ppNavbarjp($navbarMenu,$LANG_ASSIST_admin_menu[$menuno]);
+//uikit3でnavbarが使えなくなったのでコメントアウト
+//$display.=ppNavbarjp($navbarMenu,$LANG_ASSIST_admin_menu[$menuno]);
 
 $information = array();
 $information['what']='menu';
@@ -196,6 +234,7 @@ $information['rightblock']=false;
 $information['pagetitle']=$LANG_ASSIST_ADMIN['piname'];
 
 $display .= fncMenu();
+$display .= fncVarsDateTime();
 
 //FOR GL2.0.0 
 if (COM_versionCompare(VERSION, "2.0.0",  '>=')){

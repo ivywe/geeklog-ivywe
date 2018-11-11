@@ -2,16 +2,17 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Language Selection Block Plugin 1.0.0                                     |
+// | Language Selection Block Plugin                                           |
 // +---------------------------------------------------------------------------+
 // | functions.inc                                                             |
 // |                                                                           |
 // | This file does two things: 1) it implements the necessary Geeklog Plugin  |
 // | API methods and 2) implements all the common code needed by this plugin.  |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2011 by the following authors:                              |
+// | Copyright (C) 2011-2018 by the following authors:                         |
 // |                                                                           |
 // | Authors: Rouslan Placella - rouslan AT placella DOT com                   |
+// |          Kenji ITO        - mystralkk AT gmail DOT com                    |
 // +---------------------------------------------------------------------------+
 // | Created with the Geeklog Plugin Toolkit.                                  |
 // +---------------------------------------------------------------------------+
@@ -36,7 +37,7 @@
 * @package LanguageSelectionBlock
 */
 
-if (strpos(strtolower($_SERVER['PHP_SELF']), 'functions.inc') !== false) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     die ('This file can not be used on its own.');
 }
 
@@ -58,14 +59,24 @@ $PLG_langsel_MESSAGE3002 = $LANG32[9];
 */ 
 if (!isset($_LANGSEL_CONF)) {
     require_once $_CONF['path_system'] . 'classes/config.class.php';
-    
+
     $langsel_config = config::get_instance();
     $_LANGSEL_CONF = $langsel_config->get_config('langsel');
 }
 
+$_LANGSEL_langList = include __DIR__ . '/langlist.php';
+
 // +---------------------------------------------------------------------------+
 // | Geeklog Plugin API Implementation                                         |
 // +---------------------------------------------------------------------------+
+
+function plugin_getheadercode_langsel()
+{
+    global $_SCRIPTS;
+
+    $_SCRIPTS->setCSSFile('w3', CTL_plugin_themeFindFile('langsel', 'css', 'w3.css'), false);
+    $_SCRIPTS->setCSSFile('langsel', CTL_plugin_themeFindFile('langsel', 'css', 'style.css'), false);
+}
 
 /**
 * Gets Geeklog blocks from plugins
@@ -81,7 +92,7 @@ if (!isset($_LANGSEL_CONF)) {
 */
 function plugin_getBlocks_langsel($side, $topic='')
 {
-    global $_USER, $_CONF, $_LANGSEL_CONF, $LANG_LANGSEL_1, $_SCRIPTS;
+    global $_USER, $_CONF, $_LANGSEL_CONF, $LANG_LANGSEL_1, $_SCRIPTS, $_LANGSEL_langList;
 
     $retval = array();
 
@@ -115,15 +126,17 @@ function plugin_getBlocks_langsel($side, $topic='')
         }
         $display = '';
         $language = MBYTE_languageList($_CONF['default_charset']);
-        $display .= '<form action="' . $_CONF['site_url'] . '/langsel/index.php" method="post" class="uk-form">' . LB;
+        $display .= '<form action="' . $_CONF['site_url'] . '/langsel/index.php" method="post">' . LB;
         $display .= '<div>' . LB;
-        $display .= '<select class="uk-select " name="langsel" id="langsel">' . LB;
+        $display .= '<select style="width: 100%" name="langsel" id="langsel">' . LB;
         foreach ($language as $langFile => $langName) {
-            $display .= '<option value="' . $langFile . '"';
+            $langName = str_replace('_utf-8', '', $langFile);
+            $display .= '<option value="' . $langFile . '" direction="'
+                . $_LANGSEL_langList[$langName][0] . '" unicode-bidi="embed"';
             if ($langFile == COM_getLanguage()) {
                 $display .= ' selected="selected"';
             }
-            $display .= '>' . $langName . '</option>' . LB;
+            $display .= '>' . $_LANGSEL_langList[$langName][1] . '</option>' . LB;
         }
         $display .= '</select>' . LB;
         $display .= '<input type="hidden" name="target" value="' . htmlentities(COM_getCurrentURL(), ENT_QUOTES) . '">' . LB;
@@ -155,9 +168,11 @@ function plugin_cclabel_langsel()
 
     $retval = array();
     if (SEC_hasRights('langsel.admin')) {
-        $retval = array($LANG_LANGSEL_1['plugin_name'],
+        $retval = array(
+            $LANG_LANGSEL_1['plugin_name'],
             $_CONF['site_admin_url'] . '/plugins/langsel/index.php',
-            plugin_geticon_langsel());
+            plugin_geticon_langsel()
+        );
     }
 
     return $retval;
@@ -275,4 +290,126 @@ function plugin_autouninstall_langsel()
     return $out;
 }
 
-?>
+/**
+ * Build language selector to display as a list or a dropdown menu
+ *
+ * @param  array  $options array of language names. e.g., ['english', 'japanese', 'french']
+ * @return string
+ */
+function LANGSEL_buildSelector(array $options = array())
+{
+    global $_CONF, $LANG_LANGSEL_1, $_LANGSEL_langList;
+
+    $currentLanguage = str_replace('_utf-8', '', COM_getLanguage());
+    $allLanguages = array_keys($_LANGSEL_langList);
+    $target = COM_getCurrentURL();
+
+    // If the $options array is empty, then fill the array automatically based
+    // on whether the muiti-language mode is enabled
+    if (count($options) === 0) {
+        if (isset($_CONF['languages'], $_CONF['language_files']) &&
+                is_array($_CONF['languages']) && is_array($_CONF['language_files'])) {
+            foreach ($_CONF['language_files'] as $langId => $langFile) {
+                $options[] = str_replace('_utf-8', '', $langFile);
+            }
+        } else {
+            $options = $allLanguages;
+        }
+    }
+
+    $T = COM_newTemplate(CTL_plugin_templatePath('langsel'));
+    $T->set_file(array('menu' => 'menu.thtml'));
+
+    $T->set_var('lang_title', $LANG_LANGSEL_1['title']);
+    $T->set_block('menu', 'item');
+
+    foreach ($options as $option) {
+        $option = strtolower($option);
+
+        if (in_array($option, $allLanguages)) {
+            $text = htmlspecialchars($_LANGSEL_langList[$option][1], ENT_QUOTES, 'utf-8');
+            $dir = $_LANGSEL_langList[$option][0];
+            $active = ($option === $currentLanguage);
+
+            if ($active) {
+                $url = '';
+            } else {
+                $url = $_CONF['site_url'] . '/langsel/index.php?'
+                    . http_build_query(array(
+                        'langsel' => $option . '_utf-8',
+                        'target'  => $target,
+                      ));
+            }
+        }
+
+        $T->set_var(array(
+            'text'   => $text,
+            'dir'    => $dir,
+            'active' => $active,
+            'url'    => $url,
+        ));
+        $T->parse('items', 'item', true);
+    }
+
+    $T->parse('output', 'menu');
+    $retval = $T->finish($T->get_var('output'));
+
+    return $retval;
+}
+
+/**
+ * Implement the [langsel: language_names_separated_by space] autotag.
+ *
+ * @param  string $op
+ * @param  string $content
+ * @param  array  $autotag
+ * @return string
+ */
+function plugin_autotags_langsel($op, $content = '', array $autotag = array())
+{
+    global $LANG_LANGSEL_1;
+
+    if ($op === 'tagname') {
+        return array('langsel');
+    } elseif ($op === 'permission') {
+        return array('langsel');
+    } elseif ($op === 'description') {
+        return array(
+            'langsel' => $LANG_LANGSEL_1['autotag_desc_langsel'],
+        );
+    } elseif ($op === 'parse') {
+        if ($autotag['tag'] === 'langsel') {
+            $params = $autotag['parm1'];
+
+            if (!empty($autotag['parm2'])) {
+                $params .= ' ' . $autotag['parm2'];
+            }
+
+            $params = COM_applyFilter($params);
+            $params = strtolower($params);
+            $params = trim($params);
+
+            if (($params === '*') || ($params === 'auto')) {
+                $params = array();
+            } else {
+                $params = preg_split('/\s\s*/', $params);
+            }
+
+            $replace = LANGSEL_buildSelector($params);
+            $content = str_replace($autotag['tagstr'], $replace, $content);
+        }
+
+        return $content;
+    }
+}
+
+/**
+ * Set langueage selector as a template variable {langsel}
+ *
+ * @param  string   $templateName
+ * @param  Template $template
+*/
+function plugin_templatesetvars_langsel($templateName, $template)
+{
+    $template->set_var('langsel', LANGSEL_buildSelector());
+}

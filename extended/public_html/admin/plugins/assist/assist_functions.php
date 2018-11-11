@@ -1,15 +1,17 @@
 <?php
 // +---------------------------------------------------------------------------+
-// | assist_function 共通＆navbarMenu設定
+// | assist_function 共通(権限チェック)
 // +---------------------------------------------------------------------------+
 // $Id: assist_function.php
 // public_html/admin/plugins/assist/assist_function.php
 // 2010/12/17 tsuchitani AT ivywe DOT co DOT jp
+// last update 20181102 hiroron AT hiroron DOT com
 
 define ('THIS_PLUGIN', 'assist');
 
 require_once('../../../lib-common.php');
-require_once ($_CONF['path'] . 'plugins/assist/lib/ppNavbar.php');
+//uikit3へ対応するためnavbar機能をやめる
+//require_once ($_CONF['path'] . 'plugins/assist/lib/ppNavbar.php');
 
 $edt_flg=FALSE;
 
@@ -30,20 +32,6 @@ if (SEC_hasRights('assist.admin')) {
     echo $display;
 
     exit;
-}
-
-$adminurl=$_CONF['site_admin_url'] .'/plugins/'.THIS_PLUGIN."/";
-$navbarMenu = array();
-$navbarMenu[$LANG_ASSIST_admin_menu['1']]= $adminurl.'information.php';
-$navbarMenu[$LANG_ASSIST_admin_menu['2']]= $adminurl.'user.php';
-$navbarMenu[$LANG_ASSIST_admin_menu['3']]= $adminurl.'vars.php';
-//$navbarMenu[$LANG_ASSIST_admin_menu['4']]= $adminurl.'newsletter.php';
-$navbarMenu[$LANG_ASSIST_admin_menu['5']]= $adminurl.'backuprestore.php';
-
-
-$pro=$_CONF['path'] . 'plugins/assist/proversion/';
-if (file_exists($pro)) {
-    $navbarMenu[$LANG_ASSIST_admin_menu['8']]= $adminurl.'pro.php';
 }
 
 ?>

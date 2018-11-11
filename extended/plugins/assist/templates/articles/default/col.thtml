@@ -1,5 +1,5 @@
-{# begin {templatelocation} #}
+<!-- plugins/assist/templates/articles/default/col.thtml 20110204 { -->
 
     <li>{category_link} {category_description}({count}) &nbsp;{category_name} &nbsp;{category_url}</li>
 
-{# end {templatelocation} #}
+<!-- } plugins/assist/templates/articles/default/col.thtml -->
