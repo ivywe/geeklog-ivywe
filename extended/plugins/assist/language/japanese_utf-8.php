@@ -24,6 +24,7 @@ $LANG_ASSIST= array(
     999 => ''
 );
 
+global $LANG32;
 
 $LANG_ASSIST['home_id']['sub'] = 'sub';
 $LANG_ASSIST['home_id']['home'] = 'home';
