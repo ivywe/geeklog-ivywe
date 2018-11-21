@@ -16,8 +16,9 @@ function CUSTOM_handle404($alternate_url = '')
         } else {
             $url = 'https';
         }
-
+    	if (isset($_SERVER['SCRIPT_URI'])) {
         $url .= '://' . @$_SERVER['HTTP_HOST'] . strip_tags($_SERVER['SCRIPT_URI']);
+			}
     }
 
     // Add log stuff
