@@ -16,8 +16,9 @@ function CUSTOM_handle404($alternate_url = '')
         } else {
             $url = 'https';
         }
-
+    	if (isset($_SERVER['SCRIPT_URI'])) {
         $url .= '://' . @$_SERVER['HTTP_HOST'] . strip_tags($_SERVER['SCRIPT_URI']);
+			}
     }
 
     // Add log stuff
@@ -44,7 +45,7 @@ function CUSTOM_handle404($alternate_url = '')
     $logEntry = @strftime('%c') . ' - ' . $logEntry . PHP_EOL;
     @file_put_contents($_CONF['path_log'] . '404.log', $logEntry, FILE_APPEND | LOCK_EX);
 
-    $display = SP_returnStaticpage('_404');
+    $display = SP_returnStaticpage('-404');
     COM_output($display);
     exit; // Do not want to go any further
 }

@@ -33,6 +33,8 @@ function fncList()
     global $LANG09;
     global $LANG28 ;
     global $LANG_ASSIST_ADMIN;
+    global $LANG_PROFILE_ADMIN;
+
 
     $retval = '';
 
@@ -64,6 +66,9 @@ function fncList()
     $sql .= " WHERE ";
     $sql .= " 1=1";
     //
+
+$exclude = "";
+
     $query_arr = array(
         'table' => 'users',
         'sql' => $sql,
@@ -657,6 +662,7 @@ function fncdelete ()
 // | MAIN                                                                      |
 // +---------------------------------------------------------------------------+
 // 引数
+$mode='';
 if (isset ($_REQUEST['mode'])) {
     $mode = COM_applyFilter ($_REQUEST['mode'], false);
 }
@@ -672,6 +678,8 @@ if ($mode=="" OR $mode=="importform" OR $mode=="deleteform") {
         exit;
     }
 }
+
+
 
 
 

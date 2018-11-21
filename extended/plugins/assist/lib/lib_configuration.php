@@ -23,6 +23,7 @@ function LIB_Backupconfig(
 	COM_errorLog("[".strtoupper($pi_name)."] configuration backup");
 	
 	global $_CONF;
+  $display="";
 
 	if ($pi_name==""){
 		$xconf_name="_CONF";
@@ -165,10 +166,14 @@ function LIB_Deleteconfig(
 	,$config
 )
 {
+
+$vl="";
+
 	COM_errorLog("[".strtoupper($pi_name)."] configuration delete");
 
     global $_TABLES;
     $group=$pi_name;
+		$display = "";
 
     $box_conf="_".strtoupper($pi_name)."_CONF";
     global $$box_conf;
