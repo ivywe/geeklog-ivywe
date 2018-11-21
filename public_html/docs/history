@@ -85,7 +85,7 @@ December 9, 2015 (2.1.1)
 - [Feature] Change default admin page to index.php from moderation.php [Dengen]
 - [Feature] Search form part of the theme is not accessible. [Dengen]
 - [Feature] Localization of message "Unfortunately, an error has occurred rendering this page." [Mystralkk]
-- [Feature] Add Pagination with rel=“next” and rel=“prev” [Tom]
+- [Feature] Add Pagination with rel=?next? and rel=?prev? [Tom]
 - [Bug] Added email check to Com_mail to prevent plugins from sending email to users who don't have an address (Oauth users) [Tom]
 - [Bug] Cached Articles Sometimes do not Display on website [Tom]
 - [Bug] Current LDAP module doesn't work properly - new Simple_LDAP Authentication provided [Mystralkk]
@@ -717,7 +717,7 @@ Changes since 1.7.0rc1:
 - Fixed a typo in the install check that prevented Geeklog from detecting if it
   was installed in a subdirectory (bug #0001148) [Dirk]
 
-- New and updated German language files, provided by Markus Wollschläger
+- New and updated German language files, provided by Markus Wollschlè‡ er
 - New and updated Slovenian language files, provided by Mateja B.
 
 
@@ -737,7 +737,7 @@ Changes since 1.7.0b1:
   page [Tom]
 - Fixed Last 10 Comments display in user profiles [Tom]
 
-- Updated Estonian language file, provided by Artur Räpp
+- Updated Estonian language file, provided by Artur RèˆŠp
 - Updated Hebrew language files, provided by LWC
 - Updated Italian language files, provided by Rouslan Placella
 - Updated Japanese language files and documentation, provided by the
@@ -976,8 +976,8 @@ Changes since 1.6.1rc1:
   db-config.php and siteconfig.php to 755. These files don't need to be
   executable, so recommend 644 instead (bug #0001036) [Dirk]
 
-- Updated Estonian language files, provided by Artur Räpp
-- Updated German language files, provided by Markus Wollschläger
+- Updated Estonian language files, provided by Artur RèˆŠp
+- Updated German language files, provided by Markus Wollschlè‡ er
 - Updated Japanese language files, provided by the Geeklog.jp group
 
 Static Pages Plugin
@@ -1004,7 +1004,7 @@ Changes since 1.6.1b1:
 - The search results page used HTML <br> tags even when XHTML was requested
   (bug #0001022, patch provided by taca)
 - Fixed wrong path reported in case of a missing 'data' directory (reported by
-  Markus Wollschläger) [Dirk]
+  Markus Wollschlè‡ er) [Dirk]
 - When a plugin returns 0 items for its entry in the Admins Block, don't display
   that as 'N/A' (bug #0001025) [Dirk]
 - Fixed a bug in the Group Editor that didn't let you add groups to other groups
@@ -1237,7 +1237,7 @@ the 2008 Google Summer of Code:
 + Comment moderation and editable comments, by Jared Wenerd
 
 Changes since 1.6.0rc2:
-- Updated language file for formal German, provided by Markus Wollschläger
+- Updated language file for formal German, provided by Markus Wollschlè‡ er
 - Updated Japanese language file and documentation, provided by the
   Geeklog.jp group
 
@@ -1256,7 +1256,7 @@ Changes since 1.6.0rc1:
 - Fixed warning in migration script when no backups are available (bug #0000918,
   patch provided by hiroron)
 
-- Updated Estonian language files, provided by Artur Räpp
+- Updated Estonian language files, provided by Artur RèˆŠp
 - Updated Hebrew language files, provided by LWC
 - Updated Japanese language files and documentation, provided by the
   Geeklog.jp group
@@ -1282,7 +1282,7 @@ Changes since 1.6.0b2:
 - Made the link to a comment's parent object from the comment bar work properly
   for plugins [Dirk]
 - Allow searching by topic (without a query string) again (reported by Markus
-  Wollschläger) [Dirk]
+  Wollschlè‡ er) [Dirk]
 - Fixed handling of $_CONF['comment_close_rec_stories'] (bug #0000899) [Dirk]
 - Improved selection of text portion displayed in search results [Dirk]
 - Fixed an error that occured after deleting a trackback [Dirk]
@@ -1382,7 +1382,7 @@ XMLSitemap plugin
 - Remove sitemap files when uninstalling the plugin [Dirk]
 - Don't include Links in the sitemap.xml automatically [Dirk]
 - Fixed "missing argument 2" error when changing config options (reported by
-  Markus Wollschläger) [Dirk]
+  Markus Wollschlè‡ er) [Dirk]
 
 
 May 1, 2009 (1.6.0b1)
@@ -1641,7 +1641,7 @@ Feb 8, 2009 (1.5.2)
   [Dirk]
 - Display a message when sending the email for a new password failed [Dirk]
 
-- Updated Estonian language file for the Calendar plugin, provided by Artur Räpp
+- Updated Estonian language file for the Calendar plugin, provided by Artur RèˆŠp
 - Updated Japanese language file, provided by the Geeklog.jp group
 
 Static Pages plugin
@@ -1783,7 +1783,7 @@ Sep 22, 2008 (1.5.1)
   set name was written in uppercase (bug #0000731) [Dirk]
 
 - Updated Hebrew language files, provided by LWC
-- Updated Estonian language files, provided by Artur Räpp
+- Updated Estonian language files, provided by Artur RèˆŠp
 - Updated Japanese language files, provided by the Geeklog.jp group
 - Updated Slovenian language files, provided by gape
 
@@ -1943,12 +1943,12 @@ Changes since 1.5.0rc2:
   when doing a database upgrade or re-running the install (reported by Mark
   Evans) [Dirk]
 - Links plugin: The word "Root" wasn't taken from the language file for the page
-  title of the public list of links (reported by Markus Wollschläger) [Dirk]
+  title of the public list of links (reported by Markus Wollschlè‡ er) [Dirk]
 - Fixed remaining places where the Admin panels had inconsistent layouts:
   Calendar list of events, Polls editor (bug #0000650) [Dirk]
 
 - Updated Hebrew language file, provided by LWC
-- Updated German language files, provided by Markus Wollschläger
+- Updated German language files, provided by Markus Wollschlè‡ er
 - Some Korean language files had a mixture of CR/LF and LF as line separators
   (bug #0000655) [Dirk]
 
@@ -1989,7 +1989,7 @@ Changes since 1.5.0rc1:
 - Fixed problems with the text direction in the install script (reported by LWC)
   [Dirk]
 
-- Updated Estonian language files, provided by Artur Räpp
+- Updated Estonian language files, provided by Artur RèˆŠp
 - Updated Hebrew language files, provided by LWC
 - Updated Japanese language files, provided by Takahiro Kambe, Tetsuko Komma,
   and the Geeklog.jp group
@@ -2017,7 +2017,7 @@ Changes since 1.5.0b2:
   future use (cf. bug #0000635) [Dirk]
 
 - Updated Chinese language files, provided by Samuel M. Stone
-- Updated Estonian language files, provided by Artur Räpp
+- Updated Estonian language files, provided by Artur RèˆŠp
 - Updated Slovenian language file, provided by gape
 
 Calendar plugin
@@ -2052,7 +2052,7 @@ Changes since 1.5.0b1:
 - The URL sent in a user registration notification contained an &amp; where it
   should have been a simple & [Dirk]
 
-- Updated German language files, provided by Markus Wollschläger
+- Updated German language files, provided by Markus Wollschlè‡ er
 
 Links plugin
 ------------
@@ -2075,7 +2075,7 @@ Static Pages plugin
   centerblock.thtml template file and defined the {lastupdate} and {hits}
   variables there (bug #0000628) [Dirk]
 - Removed an extra } from the Static Pages staticpage.thtml template file
-  (reported by Markus Wollschläger) [Dirk]
+  (reported by Markus Wollschlè‡ er) [Dirk]
 
 
 
@@ -2091,7 +2091,7 @@ May 5, 2008 (1.5.0b1)
 - Emails sent from Geeklog now have an X-Originating-IP header to help track
   spam or abuse [Dirk]
 - The topic editor allowed you to enter topic IDs with more than 20 characters
-  (reported by Markus Wollschläger) [Dirk]
+  (reported by Markus Wollschlè‡ er) [Dirk]
 - Ease restriction that email addresses have to be unique: Remote accounts can
   have non-unique addresses, on-site accounts can't [Dirk]
 - Bug: Email user form doesn't display correctly with " in subject when sending
@@ -2117,7 +2117,7 @@ May 5, 2008 (1.5.0b1)
   (patches provided by dengen from geeklog.jp)
 - Added batch admin feature to send out account reminders [Blaine]
 - Hide "Create Account" link in the story submission form when new account
-  registration has been disabled (reported by Markus Wollschläger) [Dirk]
+  registration has been disabled (reported by Markus Wollschlè‡ er) [Dirk]
 - Updated COM_startBlock to set a unique {blockid} template variable [Blaine]
 - Fixed checking of "Show Admin lists" in Group Admin when going to 2nd page of
   results [Oliver]
@@ -2302,7 +2302,7 @@ Dec 31, 2006 (1.4.1)
 - In lists created from the Links and Calendar plugins, use "links-new-plugin"
   as the CSS class name [Oliver]
 
-- Updated Estonian language file, provided by Artur Räpp
+- Updated Estonian language file, provided by Artur RèˆŠp
 - Updated Russian language file, provided by Alexander Yurchenko
 - New Russian language file for the Calendar plugin, provided by Alexander
   Yurchenko
@@ -2458,7 +2458,7 @@ Nov 5, 2006 (1.4.1b2)
   display when a user doesn't have a userphoto [Dirk]
 
 - New Estonian language files for Geeklog and most of the plugins, provided
-  by Artur Räpp
+  by Artur RèˆŠp
 - Updated Hebrew language file, provided by LWC
 - Updated Japanese language files for Geeklog and all the plugins, provided
   by the Geeklog Japanese group
