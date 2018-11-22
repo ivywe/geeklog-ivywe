@@ -6,6 +6,7 @@
 // $Id: backuprestore.php
 // public_html/admin/plugins/databox/backuprestore.php
 // 20121023 tsuchitani AT ivywe DOT co DOT jp
+//last update 20181106 hiroron AT hiroron DOT COM
 
 // @@@@@追加予定：サンプルデータのインポート
 
@@ -45,7 +46,7 @@ function fncDisply(
     $retval .= SEC_getTokenExpiryNotice($token);
     $templates->set_var('gltoken_name', CSRF_TOKEN);
     $templates->set_var('gltoken', $token);
-    $templates->set_var ( 'xhtml', XHTML );
+    $templates->set_var ( 'XHTML', XHTML );
     
     $templates->set_var('script', THIS_SCRIPT);
 
@@ -109,8 +110,7 @@ function fncMenu(
 
     $retval .= ADMIN_createMenu(
         $menu_arr,
-        $LANG_DATABOX_ADMIN['instructions'],
-        plugin_geticon_databox()
+        $LANG_DATABOX_ADMIN['instructions']
     );
     
     return $retval;
@@ -336,7 +336,7 @@ function fncbackuprestore (
 
     $tmpl->set_var('gltoken_name', CSRF_TOKEN);
     $tmpl->set_var('gltoken', SEC_createToken());
-    $tmpl->set_var ( 'xhtml', XHTML );
+    $tmpl->set_var ( 'XHTML', XHTML );
 
     $tmpl->set_var('script', THIS_SCRIPT);
 
@@ -587,7 +587,7 @@ function fncgetselectfilename (
     global $_CONF;
 
     //
-    $selection = '<select class="uk-select uk-form-width-small" id="filename" name="filename">' . LB;
+    $selection = '<select id="filename" name="filename">' . LB;
 
     $fd=$_CONF['backup_path']."databox/";
     $files=DATABOX_getfilelist($fd,"xml");
@@ -651,7 +651,8 @@ $menuno=6;
 $information = array();
 
 $information['pagetitle']=$LANG_DATABOX_ADMIN['piname']."backup and restore";
-$display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
+//$display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
+$display.=$admin_menu_top;
 if (isset ($_REQUEST['msg'])) {
     $display .= COM_showMessage (COM_applyFilter ($_REQUEST['msg'],
                                                   true), $pi_name);

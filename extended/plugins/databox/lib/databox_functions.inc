@@ -6,6 +6,7 @@
 // +---------------------------------------------------------------------------+
 // $Id: plugins/databox/lib/databox_functions.inc
 //20100818 tsuchitani AT ivywe DOT co DOT jp http://www.ivywe.co.jp/
+//last update 20181106 hiroron AT hiroron DOT COM
 
 if (strpos ($_SERVER['PHP_SELF'], 'databox_functions.inc') !== false) {
     die ('This file can not be used on its own.');
@@ -153,9 +154,9 @@ function DATABOX_templatePath (
         if (is_dir($tmplfld)) {
 
         }else{
-					COM_errorLog ("[$pi_name $kind] Not found theme template:$template");
-					COM_handleError(1,"[$pi_name $kind] Not found theme template:$template");
-					exit;
+            COM_errorLog ("[$pi_name $kind] Not found theme template:$template");
+            COM_handleError(1,"[$pi_name $kind] Not found theme template:$template");
+            exit;
         }
     }else if  ($conf_templates==="custom"){
 
@@ -170,8 +171,8 @@ function DATABOX_templatePath (
         if (is_dir($tmplfld)){
 
         }else{
-					COM_errorLog ("[$pi_name $kind] Not found theme template:$template");
-					COM_handleError(1,"[$pi_name $kind] Not found theme template:$template");
+            COM_errorLog ("[$pi_name $kind] Not found custom template:$template");
+            COM_handleError(1,"[$pi_name $kind] Not found custom template:$template");
             exit;
         }
     }else{
@@ -186,6 +187,8 @@ function DATABOX_templatePath (
 
     return $tmplfld;
 }
+
+
 
 function DATABOX_siteHeader (
     $pi_name= 'databox'
@@ -317,6 +320,21 @@ function DATABOX_siteFooter (
 
 //$retval = SP_returnStaticpage($page, $display_mode, $comment_order, $comment_mode, $comment_page, $msg, $query);
 
+// +---------------------------------------------------------------------------+
+// | 機能 HTMLドキュメントを作成
+// | 書式 DATABOX_displaypage($pi_name,'_admin',$content,$information)
+// |   COM_createHTMLDocumentのDatabox用関数
+// +---------------------------------------------------------------------------+
+// | 引数  string  $pi_name : 'databox' 'userbox' 'formbox'
+// | 引数  string  $kind    : '' '_admin'
+// | 引数  string  $content : htmlのメインの内容
+// | 引数  array   $information : 配列で出力を作成するときに使用する変数を定義
+// |                              string 'pagetitle'   <title>文字列
+// |                              string 'headercode'  <head>に出すcode
+// |                              array  'custom'      右ブロックのフォーマットに使用するカスタム関数を定義する配列
+// +---------------------------------------------------------------------------+
+// | 戻値  string           : フォーマットされたHTMLドキュメント
+// +---------------------------------------------------------------------------+
 function DATABOX_displaypage (
     $pi_name= 'databox'
     ,$kind = ''
@@ -399,7 +417,6 @@ function DATABOX_displaypage (
             $display .= COM_siteFooter($information['rightblock']);
         }
     }
-
 
     return $display;
 }
@@ -487,8 +504,8 @@ global $_TABLES;
     for( $i = 0; $i < $nrows; $i++ )    {
 
         $A = DB_fetchArray( $result, true );
-        $retval .= '<span class="uk-text-nowrap">';
-        $retval .= '<input type="checkbox" class="uk-checkbox" name="' . $fname . '[]" value="' . $A[0] ;
+        $retval .= '<span style="white-space:nowrap">';
+        $retval .= '<input type="checkbox" name="' . $fname . '[]" value="' . $A[0] ;
         $retval .= '"';
         for( $x = 0; $x < sizeof( $S ); $x++ )            {
             if( $A[0] == $S[$x] )                {
@@ -1147,12 +1164,11 @@ function DATABOX_getaddtionfieldsEdit(
                         $fieldhtml .="s=document.getElementById";
                         $fieldhtml .="('".$cntname."');s.innerHTML='('+n+')';\"";
                         if  ($type==20){
-                            $fieldhtml .= " class=\"uk-textarea tinymce_enabled\"";
-                        } else if  ($type==19){
-                            $fieldhtml .= " class=\"uk-textarea uk-width-1-1\"";
-                        } else {
-                            $fieldhtml .= " class=\"uk-textarea uk-width-1-1\"";
-												}
+                            $fieldhtml .= " class=\"tinymce_enabled\"";
+                        }
+                        if  ($type==19){
+                            $fieldhtml .= " class=\"wide\"";
+                        }
                         $fieldhtml .= ">";
                         $fieldhtml .= $fvalue;
                         $fieldhtml .= "</textarea>";
@@ -1335,7 +1351,7 @@ function DATABOX_getaddtionfieldsEdit(
                         $fieldhtml.=$wk;
                         
                         $fieldhtml .= "        <input ";
-                        $fieldhtml .= " type=\"text\" class=\"uk-input uk-form-width-small\"";
+                        $fieldhtml .= " type=\"text\"";
                         $fieldhtml .= "  id=\"afield".$fid."\"";
                         $fieldhtml .= " size=\"".$size."\"";
                         $fieldhtml .= " maxlength=\"".$maxlength."\" ";
@@ -1365,7 +1381,7 @@ function DATABOX_getaddtionfieldsEdit(
 
                         $fieldhtml .= "        <input ";
                         $fieldhtml .= " data-uk-datepicker=\"{format:'YYYY/MM/DD'}\"";
-                        $fieldhtml .= " type=\"text\" class=\"uk-input uk-form-width-small\"";
+                        $fieldhtml .= " type=\"text\"";
                         $fieldhtml .= "  id=\"afield".$fid."\"";
                         $fieldhtml .= " size=\"".$size."\"";
                         $fieldhtml .= " maxlength=\"".$maxlength."\" ";
@@ -1380,7 +1396,7 @@ function DATABOX_getaddtionfieldsEdit(
                 case 17://フラグ
                     if ($disabled===""){
                         $wk =" <input ";
-                        $wk .= " type=\"checkbox\" class\"uk-checkbox\"";
+                        $wk .= " type=\"checkbox\"";
                         $wk .= " name=\"afield[".$fid."]\" ";
                         $wk .= " value=\"1\"";
                         if  ($fvalue==1) {
@@ -1399,14 +1415,11 @@ function DATABOX_getaddtionfieldsEdit(
                 default:
                     if ($disabled===""){
                         $fieldhtml .= "        <input ";
-
-if($size < 8){ $ukformwidth .= " uk-form-width-xsmall"; } else if ($size < 17) { $ukformwidth .= " uk-form-width-small"; }  else if ($size < 31) { $ukformwidth .= " uk-form-width-large"; } 
-
-                        $fieldhtml .= " type=\"text\" class=\"uk-input". $ukformwidth . '"';
+                        $fieldhtml .= " type=\"text\"";
                         $fieldhtml .= " size=\"".$size."\"";
                         $fieldhtml .= " maxlength=\"".$maxlength."\" ";
                         $fieldhtml .= " name=\"afield[".$fid."]\" ";
-                        $fieldhtml .= " style=\"width:". $size . "0px; max-width:95%\"";
+                        $fieldhtml .= " style=\"max-width:95%\"";
                         $fieldhtml .= " value=\"".$fvalue."\"";
                         $fieldhtml .= " ".XHTML.">";
                     }else{
@@ -1572,7 +1585,7 @@ function DATABOX_figurehtml12(
     $retval .= " ".XHTML.">".LB;
     
     $retval .= "<input ";
-    $retval .= " type=\"text\" class=\"uk-input\"";
+    $retval .= " type=\"text\"";
     $retval .= " size=\"".$size."\"";
     $retval .= " maxlength=\"".$maxlength."\" ";
     $retval .= " name=\"afield_alt[".$fid."]\" ";
@@ -2676,14 +2689,14 @@ global $_TABLES;
         $nrows2 = DB_numRows( $result2 );
         
         if ($nrows2>0){
-            $retval .="<div class=\"databox_admin_data_title uk-text-bold uk-margin-top\">";
+            $retval .="<div class=\"databox_admin_data_title\">";
             $retval .=$A['group_name'];
             $retval .="</div>".LB;
         
             if  ($A['input_type']==1){
-                $retval .='<select class="uk-select uk-form-width-medium" name="category[]" multiple style="height:10em" '.$disabled.' >'.LB;
+                $retval .='<select name="category[]" multiple style="height:10em" '.$disabled.' >'.LB;
             }else if ($A['input_type']==3){
-                $retval .='<select class="uk-select uk-form-width-medium" name="category[]" '. $disabled .' >'.LB;
+                $retval .='<select name="category[]" '. $disabled .' >'.LB;
             }
             
             for( $i2 = 0; $i2 < $nrows2; $i2++ )    {
@@ -2706,8 +2719,8 @@ global $_TABLES;
                 }
             
                 if  ($A['input_type']==0){
-                    $retval .= '<span class="uk-text-nowrap">';
-                    $retval .= '<input type="checkbox" class="uk-checkbox" name="category[]" value="' . $A2['category_id'] ;
+                    $retval .= '<span style="white-space:nowrap">';
+                    $retval .= '<input type="checkbox" name="category[]" value="' . $A2['category_id'] ;
                     $retval .= '"';
                     $retval .= $checked;
                     $retval .= $disabled.' >' . stripslashes( $A2['name'] ) . '</span>' . LB;
@@ -2717,7 +2730,7 @@ global $_TABLES;
                     $retval .= ' >' . stripslashes( $A2['name'] ) ;
                     $retval .= '</option>' . LB;
                 }else  if  ($A['input_type']==2){
-                    $retval .= '<input type="radio" class="uk-radio" name="category[]" value="' . $A2['category_id'];
+                    $retval .= '<input type="radio" name="category[]" value="' . $A2['category_id'];
                     $retval .= '"';
                     $retval .= $checked;
                     $retval .= ' '.$disabled.' >' . stripslashes( $A2['name'] ) . '</span>' . LB;
@@ -4248,7 +4261,7 @@ function DATABOX_getradiolist(
     foreach( $ary as $id => $value ){
 
         //echo "ary".$i."=".$ary[$i]."<br>";
-        $retval .= "<input type='radio' class='uk-radio' NAME='$fld' $disabled VALUE='$id'";
+        $retval .= "<input type='radio' NAME='$fld' $disabled VALUE='$id'";
 		if  ($selected==""){
 		}else{
             if( $id == $selected ){
@@ -4311,7 +4324,7 @@ function DATABOX_getoptionlistary(
     }
     $retval = '';
 
-    $retval .= "<select class='uk-select uk-form-width-medium' ";
+    $retval .= "<select ";
     if ($type==14 OR $type==18){
         $retval .= ' name="'.$fld.'[]" ';
         $retval .= ' multiple="multiple" ';
@@ -4405,7 +4418,7 @@ global $LANG_configselects;
     
     $retval = '';
 
-    $retval .= "<select class='uk-select uk-form-width-medium' name='$fname' $disabled>".LB;
+    $retval .= "<select name='$fname' $disabled>".LB;
     if ($selectit==="all"){
         $retval .= "<option value=\"all\">{$lang_box['selectall']}</option>".LB;
     }elseif ($selectit){
@@ -4785,7 +4798,7 @@ function DATABOX_getheadercode(
             'tpl' => 'headercode.thtml',
             ));
     
-        $tpl->set_var('xhtml', XHTML);
+        $tpl->set_var('XHTML', XHTML);
         $tpl->set_var('site_url', $_CONF['site_url']);
         $tpl->set_var('site_admin_url', $_CONF['site_admin_url']);
         $tpl->set_var('layout_url', $_CONF['layout_url']);
@@ -5024,7 +5037,7 @@ function DATABOX_Confirmation(
     $tmpl->set_var('site_admin_url', $_CONF['site_admin_url']);
     $tmpl->set_var('gltoken_name', CSRF_TOKEN);
     $tmpl->set_var('gltoken', SEC_createToken());
-    $tmpl->set_var ( 'xhtml', XHTML );
+    $tmpl->set_var ( 'XHTML', XHTML );
 
     //
     $actionname=$lang_box_admin[$mode];
@@ -5046,9 +5059,9 @@ function DATABOX_Confirmation(
         $confirm_value=$lang_box_admin['delete1']." ".$lang_box_admin['confirm'];
         $confirm_value2=$lang_box_admin['delete2']." ".$lang_box_admin['confirm'];
         $confirm_value3=$lang_box_admin['delete3']." ".$lang_box_admin['confirm'];
-        $btn2="<input type='submit' class='uk-button uk-button-danger' name='action' value='{$lang_box_admin['delete2']}'" 
+        $btn2="<input type='submit' name='action' value='{$lang_box_admin['delete2']}'" 
              ." onclick=\"return confirm('{$confirm_value2}');\"".XHTML.">".LB;
-        $btn3="<input type='submit' class='uk-button uk-button-danger' name='action' value='{$lang_box_admin['delete3']}'" 
+        $btn3="<input type='submit' name='action' value='{$lang_box_admin['delete3']}'" 
              ." onclick=\"return confirm('{$confirm_value3}');\"".XHTML.">".LB;
     }
 
@@ -5101,19 +5114,19 @@ function DATABOX_datetimeedit(
     $rt="";
     //Year
     $year_options = COM_getYearFormOptions ($datetime_year);
-    $rt.="<select class=\"uk-select uk-form-width-xsmall\" name=\"".$datetime_name."_year\">".LB;
+    $rt.="<select name=\"".$datetime_name."_year\">".LB;
     $rt.=$year_options.LB;
     $rt.="</select>".$lang_ary['yy'].LB;
 
     //month
     $month_options = COM_getMonthFormOptions ($datetime_month);
-    $rt.="<select class=\"uk-select uk-form-width-xsmall\" name=\"".$datetime_name."_month\">".LB;
+    $rt.="<select name=\"".$datetime_name."_month\">".LB;
     $rt.=$month_options.LB;
     $rt.="</select>".$lang_ary['mm'].LB;
 
     //day
     $day_options = COM_getDayFormOptions ($datetime_day);
-    $rt.="<select class=\"uk-select uk-form-width-xsmall\" name=\"".$datetime_name."_day\">".LB;
+    $rt.="<select name=\"".$datetime_name."_day\">".LB;
     $rt.=$day_options.LB;
     $rt.="</select>".$lang_ary['dd'].LB;
 
@@ -5139,14 +5152,14 @@ function DATABOX_datetimeedit(
             $hour_options = COM_getHourFormOptions ($datetime_hour_wk);
         }
 
-        $rt.="<select class=\"uk-select uk-form-width-xsmall\" name=\"".$datetime_name."_hour\">".LB;
+        $rt.="<select name=\"".$datetime_name."_hour\">".LB;
         $rt.=$hour_options.LB;
         $rt.="</select>:".LB;
 
         //minute
         $minute_options = COM_getMinuteFormOptions ($datetime_minute);
 
-        $rt.="<select class=\"uk-select uk-form-width-xsmall\" name=\"".$datetime_name."_minute\">".LB;
+        $rt.="<select name=\"".$datetime_name."_minute\">".LB;
         $rt.=$minute_options.LB;
         $rt.="</select>".LB;
 
@@ -5175,19 +5188,19 @@ function DATABOX_datetimeedit_R(
     
     //Year
     $year_options = COM_getYearFormOptions ($datetime_ary['year']);
-    $rt.="<select class=\"uk-select uk-form-width-xsmall\" name=\"".$datetime_name."_year\">".LB;
+    $rt.="<select name=\"".$datetime_name."_year\">".LB;
     $rt.=$year_options.LB;
     $rt.="</select>".$lang_ary['yy'].LB;
 
     //month
     $month_options = COM_getMonthFormOptions ($datetime_ary['month']);
-    $rt.="<select class=\"uk-select uk-form-width-xsmall\" name=\"".$datetime_name."_month\">".LB;
+    $rt.="<select name=\"".$datetime_name."_month\">".LB;
     $rt.=$month_options.LB;
     $rt.="</select>".$lang_ary['mm'].LB;
 
     //day
     $day_options = COM_getDayFormOptions ($datetime_ary['day']);
-    $rt.="<select class=\"uk-select uk-form-width-xsmall\" name=\"".$datetime_name."_day\">".LB;
+    $rt.="<select name=\"".$datetime_name."_day\">".LB;
     $rt.=$day_options.LB;
     $rt.="</select>".$lang_ary['dd'].LB;
 
@@ -5204,14 +5217,14 @@ function DATABOX_datetimeedit_R(
             $hour_options = COM_getHourFormOptions ($datetime_ary['hour']);
         }
 
-        $rt.="<select class=\"uk-select uk-form-width-xsmall\" name=\"".$datetime_name."_hour\">".LB;
+        $rt.="<select name=\"".$datetime_name."_hour\">".LB;
         $rt.=$hour_options.LB;
         $rt.="</select>:".LB;
 
         //minute
         $minute_options = COM_getMinuteFormOptions ($datetime_ary['minute']);
 
-        $rt.="<select class=\"uk-select uk-form-width-xsmall\" name=\"".$datetime_name."_minute\">".LB;
+        $rt.="<select name=\"".$datetime_name."_minute\">".LB;
         $rt.=$minute_options.LB;
         $rt.="</select>".LB;
 
@@ -6042,7 +6055,7 @@ function DATABOX_getcheckboxary(
 	$retval = '';
 	
     foreach($ary as $k => $v) {
-        $retval .= '<span class="uk-text-nowrap">';
+        $retval .= '<span style="white-space:nowrap">';
         $retval .= '<input type="checkbox" name="' . $fld . '[]" value="' . $k ;
         $retval .= '"';
 		if  ($selected==""){

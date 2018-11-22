@@ -7,6 +7,7 @@
 // $Id: plugins/userbox/functions_autotag.inc
 //20101223 tsuchitani AT ivywe DOT co DOT jp http://www.ivywe.co.jp/
 //20120416 userbox_category {data_edit}
+//last update 20181106 hiroron AT hiroron DOT COM
 
 if (strpos ($_SERVER['PHP_SELF'], 'functions_autotag.inc') !== false) {
     die ('This file can not be used on its own.');
@@ -515,27 +516,6 @@ function userbox_category(
     $offset = ($page - 1) * $perpage;
     $sql .= " LIMIT $offset, $perpage";
 
-    //自動タグでない時　ヘッダ、左ブロック
-    if ($autotag==="notautotag"){
-        if ($page > 1) {
-            $page_title = sprintf ('%s (%d)', $category_name, $page);
-        } else {
-            $page_title = sprintf ('%s ', $category_name);
-        }
-        // Meta Tags
-        $headercode=DATABOX_getheadercode(    
-            "category"
-            ,$template
-            ,$pi_name
-            ,$category_id
-            ,$category_name
-            ,$category_description
-            ,$category_name
-            ,$category_description);
-        $retval .= DATABOX_siteHeader($pi_name,'',$page_title,$headercode) ;
-    }
-
-
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
 
@@ -854,6 +834,27 @@ function userbox_category(
     }
 
     $retval =PLG_replacetags ($retval);
+
+    //自動タグでない時　ヘッダ、左ブロック
+    if ($autotag==="notautotag"){
+        if ($page > 1) {
+            $page_title = sprintf ('%s (%d)', $category_name, $page);
+        } else {
+            $page_title = sprintf ('%s ', $category_name);
+        }
+        // Meta Tags
+        $headercode=DATABOX_getheadercode(    
+            "category"
+            ,$template
+            ,$pi_name
+            ,$category_id
+            ,$category_name
+            ,$category_description
+            ,$category_name
+            ,$category_description);
+//        $retval .= DATABOX_siteHeader($pi_name,'',$page_title,$headercode) ;
+        $retval = DATABOX_displaypage($pi_name,'',$retval,array('pagetitle'=>$page_title,'headercode'=>$headercode));
+    }
 
     //return $dbg.$retval;
     return $retval;
@@ -1787,25 +1788,6 @@ function userbox_field(
     $offset = ($page - 1) * $perpage;
     $sql .= " LIMIT $offset, $perpage";
     
-    //ヘッダ、左ブロック
-    if ($autotag==="notautotag"){
-        if ($page > 1) {
-            $page_title = sprintf ('%s (%d)', $field_name, $page);
-        } else {
-            $page_title = sprintf ('%s ', $field_name);
-        }
-        $headercode=DATABOX_getheadercode(    
-            "attribute"
-            ,$template
-            ,$pi_name
-            ,$field_id
-            ,$field_name
-            ,$field_description
-            ,$field_name
-            ,$field_description);
-        $retval .= DATABOX_siteHeader($pi_name,'',$page_title,$headercode);
-    }
-    
     $addition_def=DATABOX_getadditiondef($pi_name);
     //
     $url=$_CONF['site_url']."/userbox/attribute.php";
@@ -2139,6 +2121,26 @@ function userbox_field(
     }
 
     $retval =PLG_replacetags ($retval);
+    
+    //ヘッダ、左ブロック
+    if ($autotag==="notautotag"){
+        if ($page > 1) {
+            $page_title = sprintf ('%s (%d)', $field_name, $page);
+        } else {
+            $page_title = sprintf ('%s ', $field_name);
+        }
+        $headercode=DATABOX_getheadercode(    
+            "attribute"
+            ,$template
+            ,$pi_name
+            ,$field_id
+            ,$field_name
+            ,$field_description
+            ,$field_name
+            ,$field_description);
+//        $retval .= DATABOX_siteHeader($pi_name,'',$page_title,$headercode);
+        $retval = DATABOX_displaypage($pi_name,'',$retval,array('pagetitle'=>$page_title,'headercode'=>$headercode));
+    }
 
     return $retval;
 }

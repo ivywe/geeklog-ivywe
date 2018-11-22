@@ -6,6 +6,7 @@
 // $Id: backuprestore.php
 // public_html/admin/plugins/userbox/backuprestore.php
 // 20120327 tsuchitani AT ivywe DOT co DOT jp
+//last update 20181106 hiroron AT hiroron DOT COM
 
 
 // @@@@@追加予定：データのバックアップリストア
@@ -107,8 +108,7 @@ function fncMenu(
 
     $retval .= ADMIN_createMenu(
         $menu_arr,
-        $LANG_USERBOX_ADMIN['instructions'],
-        plugin_geticon_userbox()
+        $LANG_USERBOX_ADMIN['instructions']
     );
     
     return $retval;
@@ -141,7 +141,9 @@ $menuno=6;
 $information = array();
 
 $information['pagetitle']=$LANG_USERBOX_ADMIN['piname']."backup and restore";
-$display.=ppNavbarjp($navbarMenu,$LANG_USERBOX_admin_menu[$menuno]);
+//uikit3でnavbarが使えなくなったのでコメントアウト
+//$display.=ppNavbarjp($navbarMenu,$LANG_USERBOX_admin_menu[$menuno]);
+$display.=$admin_menu_top;
 
 if (isset ($_REQUEST['msg'])) {
     $display .= COM_showMessage (COM_applyFilter ($_REQUEST['msg'],

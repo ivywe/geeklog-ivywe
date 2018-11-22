@@ -6,6 +6,7 @@
 // $Id: view.php
 // public_html/admin/plugins/databox/view.php
 // 20110627 tsuchitani AT ivywe DOT co DOT jp
+//last update 20181106 hiroron AT hiroron DOT COM
 
 define ('THIS_SCRIPT', 'databox/view.php');
 //define ('THIS_SCRIPT', 'databox/test.php');
@@ -94,9 +95,10 @@ $template = COM_applyFilter($_REQUEST['template']);
 $display="";
 
 $page_title=$LANG_DATABOX_ADMIN['piname'];
-$display .= databox_siteHeader($pi_name,'_admin',$page_title);
+//$display .= databox_siteHeader($pi_name,'_admin',$page_title);
 $display .= fncview($id,$template);
-$display .= databox_siteFooter($pi_name,'_admin');
+//$display .= databox_siteFooter($pi_name,'_admin');
+$display = DATABOX_displaypage($pi_name,'_admin',$display,array('pagetitle'=>$page_title));
 
 echo $display;
 

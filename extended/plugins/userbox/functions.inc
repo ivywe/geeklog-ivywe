@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // $Id: plugins/userbox/functions.inc
 //20110622 tsuchitani AT ivywe DOT co DOT jp http://www.ivywe.co.jp/
-//20120406
+//last update 20181106 hiroron AT hiroron DOT COM
 
 if (strpos ($_SERVER['PHP_SELF'], 'functions.inc') !== false) {
     die ('This file can not be used on its own.');
@@ -446,7 +446,7 @@ function plugin_user_create_userbox (
     $sql.=" ,".$perm_anon.LB ;
     $sql.=" ,".$perm_members.LB ;
     $sql.=" ,".$draft_flag.LB ;
-	$sql.=",".$_CONF[trackback_code];
+	$sql.=",".$_CONF['trackback_code'];
 	$sql.=",".$_USERBOX_CONF['commentcode'];
 	$sql.=",".$_USERBOX_CONF['default_cache_time'];
 

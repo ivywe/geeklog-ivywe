@@ -5,6 +5,7 @@
 // +---------------------------------------------------------------------------+
 // $Id: mst.php
 // 20121204 tsuchitani AT ivywe DOT co DOT jp
+//last update 20181106 hiroron AT hiroron DOT COM
 
 define ('THIS_SCRIPT', 'userbox/mst.php');
 //define ('THIS_SCRIPT', 'userbox/test.php');
@@ -123,7 +124,9 @@ switch ($mode) {
 }
 $display =COM_startBlock($LANG_USERBOX_ADMIN['piname'],''
             ,COM_getBlockTemplate('_admin_block', 'header'))
-         .ppNavbarjp($navbarMenu,$LANG_USERBOX_admin_menu[$menuno])
+//uikit3でnavbarが使えなくなったのでコメントアウト
+//         .ppNavbarjp($navbarMenu,$LANG_USERBOX_admin_menu[$menuno])
+         .$admin_menu_top
          .LIB_Menu($pi_name)
          .$display
          .COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));

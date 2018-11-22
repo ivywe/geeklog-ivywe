@@ -6,7 +6,7 @@
 // $Id: information.php
 // public_html/admin/plugins/databox/information.php
 // 20100910 tsuchitani AT ivywe DOT co DOT jp
-// 20120720
+//last update 20181106 hiroron AT hiroron DOT COM
 
 define ('THIS_SCRIPT', 'information.php');
 
@@ -37,7 +37,6 @@ function fncDisplay()
     $retval .= ADMIN_createMenu(
         $menu_arr
         ,$LANG_DATABOX_ADMIN['about_admin_information']
-        ,$icon
        );
 	
     $tmplfld=DATABOX_templatePath('admin','default',$pi_name);
@@ -93,7 +92,8 @@ $display = '';
 $information = array();
 
 $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'];
-$display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
+//$display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
+$display.=$admin_menu_top;
 $display.=fncDisplay();
 
 $display=COM_startBlock($LANG_DATABOX_ADMIN['piname'],''

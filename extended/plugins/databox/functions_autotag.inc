@@ -7,6 +7,7 @@
 // $Id: plugins/databox/functions_autotag.inc
 //20101008 tsuchitani AT ivywe DOT co DOT jp http://www.ivywe.co.jp/
 //20120416 databox_category {data_edit}
+//last update 20181106 hiroron AT hiroron DOT COM
 
 if (strpos ($_SERVER['PHP_SELF'], 'functions_autotag.inc') !== false) {
     die ('This file can not be used on its own.');
@@ -578,28 +579,6 @@ function databox_category(
     $offset = ($page - 1) * $perpage;
     $sql .= " LIMIT $offset, $perpage";
 
-    //自動タグでない時　ヘッダ、左ブロック
-    if ($autotag==="notautotag"){
-        if ($page > 1) {
-            $page_title = sprintf ('%s (%d)', $category_name, $page);
-        } else {
-            $page_title = sprintf ('%s ', $category_name);
-        }
-        
-        // Meta Tags
-        $headercode=DATABOX_getheadercode(
-            "category"
-            ,$template
-            ,$pi_name
-            ,$category_id
-            ,$category_name
-            ,$category_description
-            ,$category_name
-            ,$category_description);
-        $retval .= DATABOX_siteHeader($pi_name,'',$page_title,$headercode) ;
-    }
-    
-
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
 
@@ -887,7 +866,7 @@ function databox_category(
             $templates->set_var ('category_description',$category_description);
             
                         
-            $templates->set_var('xhtml', XHTML);
+            $templates->set_var('XHTML', XHTML);
             $templates->set_var('site_url', $_CONF['site_url']);
             $templates->set_var('site_admin_url', $_CONF['site_admin_url']);
             $templates->set_var('layout_url', $_CONF['layout_url']);
@@ -900,13 +879,30 @@ function databox_category(
 
         }
         
-        
-        
-        
-        
     }
 
     $retval =PLG_replacetags ($retval);
+
+    //自動タグでない時　ヘッダ、左ブロック
+    if ($autotag==="notautotag"){
+        if ($page > 1) {
+            $page_title = sprintf ('%s (%d)', $category_name, $page);
+        } else {
+            $page_title = sprintf ('%s ', $category_name);
+        }
+        // Meta Tags
+        $headercode=DATABOX_getheadercode(
+            "category"
+            ,$template
+            ,$pi_name
+            ,$category_id
+            ,$category_name
+            ,$category_description
+            ,$category_name
+            ,$category_description);
+//        $retval .= DATABOX_siteHeader($pi_name,'',$page_title,$headercode) ;
+        $retval = DATABOX_displaypage($pi_name,'',$retval,array('pagetitle'=>$page_title,'headercode'=>$headercode));
+    }
 
     return $retval;
 }
@@ -1220,27 +1216,6 @@ function databox_field(
     $offset = ($page - 1) * $perpage;
     $sql .= " LIMIT $offset, $perpage";
 
-    //自動タグでない時　ヘッダ、左ブロック
-    if ($autotag==="notautotag"){
-        if ($page > 1) {
-            $page_title = sprintf ('%s (%d)', $field_name, $page);
-        } else {
-            $page_title = sprintf ('%s ', $field_name);
-        }
-        $headercode=DATABOX_getheadercode(    
-            "attribute"
-            ,$template
-            ,$pi_name
-            ,$field_id
-            ,$field_name
-            ,$field_description
-            ,$field_name
-            ,$field_description);
-
-        $retval .= DATABOX_siteHeader($pi_name,'',$page_title,$headercode);
-    }
-
-    
     //
     $addition_def=DATABOX_getadditiondef($pi_name);
     //
@@ -1564,7 +1539,7 @@ function databox_field(
             
             $templates->set_var ('fieldvalue',$fieldvalue);
                         
-            $templates->set_var('xhtml', XHTML);
+            $templates->set_var('XHTML', XHTML);
             $templates->set_var('site_url', $_CONF['site_url']);
             $templates->set_var('site_admin_url', $_CONF['site_admin_url']);
             $templates->set_var('layout_url', $_CONF['layout_url']);
@@ -1579,6 +1554,27 @@ function databox_field(
     }
 
     $retval =PLG_replacetags ($retval);
+
+    //自動タグでない時　ヘッダ、左ブロック
+    if ($autotag==="notautotag"){
+        if ($page > 1) {
+            $page_title = sprintf ('%s (%d)', $field_name, $page);
+        } else {
+            $page_title = sprintf ('%s ', $field_name);
+        }
+        $headercode=DATABOX_getheadercode(    
+            "attribute"
+            ,$template
+            ,$pi_name
+            ,$field_id
+            ,$field_name
+            ,$field_description
+            ,$field_name
+            ,$field_description);
+
+//        $retval .= DATABOX_siteHeader($pi_name,'',$page_title,$headercode);
+        $retval = DATABOX_displaypage($pi_name,'',$retval,array('pagetitle'=>$page_title,'headercode'=>$headercode));
+    }
 
     return $retval;
 }
@@ -2015,7 +2011,7 @@ function databox_data(
             $templates->set_var ('site_admin_url', $_CONF['site_admin_url']);
             $templates->set_var ('site_url',$_CONF['site_url']);
             //
-            $templates->set_var('xhtml', XHTML);
+            $templates->set_var('XHTML', XHTML);
             $templates->set_var('layout_url', $_CONF['layout_url']);
         
             $templates->set_var ('site_name', $_CONF['site_name']);
@@ -2255,7 +2251,7 @@ function databox_data(
                 'list' => 'nohit.thtml',
             ));
             $templates->set_var ('lang_nohit', $LANG_DATABOX['nohit']);
-            $templates->set_var('xhtml', XHTML);
+            $templates->set_var('XHTML', XHTML);
             $templates->set_var('site_url', $_CONF['site_url']);
             $templates->set_var('site_admin_url', $_CONF['site_admin_url']);
             $templates->set_var('layout_url', $_CONF['layout_url']);
@@ -3674,7 +3670,7 @@ function databox_search(
             $templates->set_var ('lang_referer',$LANG_DATABOX['return']);
             $templates->set_var ('fieldset_name',$fieldset_name);
                         
-            $templates->set_var('xhtml', XHTML);
+            $templates->set_var('XHTML', XHTML);
             $templates->set_var('site_url', $_CONF['site_url']);
             $templates->set_var('site_admin_url', $_CONF['site_admin_url']);
             $templates->set_var('layout_url', $_CONF['layout_url']);

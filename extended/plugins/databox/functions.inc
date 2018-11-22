@@ -5,6 +5,7 @@
 // +---------------------------------------------------------------------------+
 // $Id: plugins/databox/functions.inc
 //20110622 tsuchitani AT ivywe DOT co DOT jp http://www.ivywe.co.jp/
+//last update 20181103 hiroron AT hiroron DOT COM
 
 if (strpos ($_SERVER['PHP_SELF'], 'functions.inc') !== false) {
     die ('This file can not be used on its own.');
@@ -552,8 +553,8 @@ function plugin_getiteminfo_databox(
     }
     // prepare SQL request
     $where = LB.' WHERE'.LB;
-	//下書データはのぞく WHERE (draft_flag = 0)
-	$where .=  " (draft_flag = 0)".LB;
+	//下書データはのぞく
+	$where .=  " draft_flag=0".LB;
 	if ($id == '*') {
     } else {
         $where .= " AND (id = '" . DB_escapeString($id) . "') ".LB;
