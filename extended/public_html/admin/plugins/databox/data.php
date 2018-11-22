@@ -2303,10 +2303,15 @@ function fncMenu(
 	
     $menu_arr[]=array('url' => $_CONF['site_admin_url'],'text' => $LANG_ADMIN['admin_home']);
 	
+
+if(isset($LANG_DATABOX_ADMIN['instructions'])) {
+
     $retval .= ADMIN_createMenu(
         $menu_arr,
         $LANG_DATABOX_ADMIN['instructions']
     );
+
+}
 
     return $retval;
 }
@@ -2342,6 +2347,8 @@ if (isset($_REQUEST['old_mode'])) {
         $mode = $old_mode;
     }
 }
+
+$mode = "";
 
 if (($mode == $LANG_ADMIN['save']) && !empty ($LANG_ADMIN['save'])) { // save
     $mode="save";

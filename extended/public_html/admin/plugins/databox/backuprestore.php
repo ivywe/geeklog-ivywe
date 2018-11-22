@@ -43,7 +43,7 @@ function fncDisply(
     $templates->set_var ('site_admin_url', $_CONF['site_admin_url']);
 
     $token = SEC_createToken();
-    $retval .= SEC_getTokenExpiryNotice($token);
+    $retval = SEC_getTokenExpiryNotice($token);
     $templates->set_var('gltoken_name', CSRF_TOKEN);
     $templates->set_var('gltoken', $token);
     $templates->set_var ( 'XHTML', XHTML );
@@ -108,11 +108,12 @@ function fncMenu(
     //
     $menu_arr[]=array('url' => $_CONF['site_admin_url'],'text' => $LANG_ADMIN['admin_home']);
 
-    $retval .= ADMIN_createMenu(
-        $menu_arr,
-        $LANG_DATABOX_ADMIN['instructions']
-    );
-    
+		if (isset ($LANG_DATABOX_ADMIN['instructions'])) {
+	    $retval .= ADMIN_createMenu(
+	        $menu_arr,
+	        $LANG_DATABOX_ADMIN['instructions']
+	    );
+		}
     return $retval;
 }
 
@@ -618,7 +619,7 @@ $action = '';
 if (isset ($_REQUEST['action'])) {
     $action = COM_applyFilter ($_REQUEST['action'], false);
 }
-
+$mode="";
 if (isset ($_REQUEST['mode'])) {
     $mode = COM_applyFilter ($_REQUEST['mode'], false);
 }

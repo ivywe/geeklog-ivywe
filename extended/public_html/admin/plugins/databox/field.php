@@ -54,6 +54,8 @@ if (isset($_REQUEST['old_mode'])) {
     }
 }
 
+$mode = "";
+
 if (($mode == $LANG_ADMIN['save']) && !empty ($LANG_ADMIN['save'])) { // save
     $mode="save";
 }else if (($mode == $LANG_ADMIN['delete']) && !empty ($LANG_ADMIN['delete'])) {

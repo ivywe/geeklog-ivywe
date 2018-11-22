@@ -983,11 +983,12 @@ function LIB_Menu(
     $function="plugin_geticon_".$pi_name;
     $icon=$function();
 
-    $retval .= ADMIN_createMenu(
-        $menu_arr,
-        $lang_box_admin['instructions']
-    );
-
+		if (isset ($lang_box_admin['instructions'])) {
+	    $retval .= ADMIN_createMenu(
+	        $menu_arr,
+	        $lang_box_admin['instructions']
+	    );
+		}
     return $retval;
 }
 

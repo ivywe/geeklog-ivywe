@@ -16,6 +16,8 @@ if (!in_array('databox', $_PLUGINS)) {
     exit;
 }
 
+global $LANG_USERBOX_ADMIN;
+
 //require_once ($_CONF['path'] . 'plugins/databox/lib/ppNavbar.php');
 require_once( $_CONF['path_system'] . 'lib-admin.php' );
 

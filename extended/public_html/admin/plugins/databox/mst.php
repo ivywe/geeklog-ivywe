@@ -40,6 +40,7 @@ if (isset ($_REQUEST['id'])) {
 }
 
 $old_mode="";
+$mode = "";
 if (isset($_REQUEST['old_mode'])) {
     $old_mode = COM_applyFilter($_REQUEST['old_mode'],false);
     if ($mode==$LANG_ADMIN['cancel']) {

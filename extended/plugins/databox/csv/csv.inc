@@ -13,6 +13,7 @@ require_once( $_CONF['path_system'] . 'lib-admin.php' );
 //
 require_once($_CONF['path'] . 'plugins/databox/csv/csv_functions.inc');
 require_once($_CONF['path'] . 'plugins/databox/csv/csv_importexec.inc');
+include_once($_CONF['path'] . 'plugins/databox/lib/ppNavbar.php');
 
 //log 出力モード設定　0:作成しない,1:ファイルに出力
 $logmode =1;
@@ -185,6 +186,7 @@ $pi_name    = 'databox';
 
 // 引数
 $action = '';
+$mode = '';
 if (isset ($_REQUEST['action'])) {
     $action = COM_applyFilter ($_REQUEST['action'], false);
 }

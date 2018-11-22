@@ -24,6 +24,9 @@ $pi_name    = 'databox';
 //############################
 
 // 引数
+
+$mode = "";
+
 $action = '';
 if (isset ($_REQUEST['action'])) {
     $action = COM_applyFilter ($_REQUEST['action'], false);
@@ -47,6 +50,7 @@ if (isset($_REQUEST['old_mode'])) {
         $mode = $old_mode;
     }
 }
+
 
 if (($mode == $LANG_ADMIN['save']) && !empty ($LANG_ADMIN['save'])) { // save
     $mode="save";

@@ -57,6 +57,8 @@ function LIB_List(
     $sql .= " group_id<>0";
     //
 
+$exclude = "";
+
     $query_arr = array(
         'table' => $table,
         'sql' => $sql,
@@ -67,6 +69,7 @@ function LIB_List(
     //List 取得
     //ADMIN_list($component, $fieldfunction, $header_arr, $text_arr,
     //       $query_arr, $menu_arr, $defsort_arr, $filter = '', $extra = '', $options = '')
+		$retval = "";
     $retval .= ADMIN_list(
         $pi_name
         , "LIB_GetListField"
@@ -869,11 +872,13 @@ function LIB_Menu(
 	
     $function="plugin_geticon_".$pi_name;
     $icon=$function();
-    $retval .= ADMIN_createMenu(
-        $menu_arr,
-        $lang_box_admin['instructions']
-    );
-
+		
+		if (isset ($lang_box_admin['instructions'])) {
+	    $retval .= ADMIN_createMenu(
+	        $menu_arr,
+	        $lang_box_admin['instructions']
+	    );
+		}
     return $retval;
 }
 
