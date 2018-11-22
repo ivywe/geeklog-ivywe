@@ -385,6 +385,9 @@ if (!function_exists('CUSTOM_menuEntries')) {
             }
             $sql .= " ORDER BY menuorder ASC";
             $result = DB_query($sql);
+
+		$class_name = "";
+
             while ($A = DB_fetchArray($result)) {
 
                 $sql2 = "SELECT * FROM {$_TABLES['menuitems']} "
@@ -497,19 +500,21 @@ if (!function_exists('CUSTOM_menuEntries')) {
     {
         global $_CONF, $_TABLES, $topic, $_CMED_CONF;
 
+				$class_name = "";
         $custom_count = 0;
         $custom_size = sizeof($custom_entries);
         foreach ($custom_entries as $entry) {
             $custom_count++;
-            if (empty($entry['url']) || empty($entry['label'])) continue;
+          	if (empty($entry['url']) || empty($entry['label'])){ continue; }
 
-            $class_name = $entry['menuitem_class'];
-            $class_name = trim($class_name) . ' ' . $entry['class_name'];
+						if ( isset($entry['menuitem_class']) ){
+	            $class_name = $entry['menuitem_class'];
+						}
+	          $class_name = trim($class_name) . ' ' . $entry['class_name'];
             $class_name = trim($class_name) . ' ' . $entry['selected'];
             $class_name = trim($class_name) . (($custom_count == $custom_size) ? ' last' : '');
             $class_name = trim($class_name);
             $class_property = (empty($class_name)) ? '' : (' class="' . $class_name . '"');
-
             if (empty($entry['submenu_entries'])) {
                 $T->set_var('menuitem_url',   $entry['url']);
                 $T->set_var('menuitem_text',  $entry['label']);
