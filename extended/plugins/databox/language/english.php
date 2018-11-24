@@ -454,6 +454,7 @@ $LANG_DATABOX_MAIL['message_data']=
 
 
 
+if (isset($_USER['username']) && isset($_CONF['site_name']) && isset( $_USER['uid'])) {
 
 $LANG_DATABOX_MAIL['subject_category'] =
 "【{$_CONF['site_name']}】Category Update by {$_USER['username']}.";
@@ -472,6 +473,7 @@ $LANG_DATABOX_MAIL['subject_fieldset'] =
 
 $LANG_DATABOX_MAIL['message_fieldset']=
 "Type was updated by {$_USER['username']}(user no.{$_USER['uid']}).".LB.LB;
+}
 
 #
 $LANG_DATABOX_MAIL['sig'] = LB
@@ -481,6 +483,7 @@ $LANG_DATABOX_MAIL['sig'] = LB
 ."This is automaticaly sended.".LB
 ."------------------------------------".LB
 ;
+if (isset($_USER['username']) && isset($_CONF['site_name']) && isset( $_USER['uid'])) {
 
 $LANG_DATABOX_MAIL['subject_data_delete'] =
 "【{$_CONF['site_name']}】DataDelete by {$_USER['username']}";
@@ -502,6 +505,7 @@ $LANG_DATABOX_MAIL['subject_fieldset_delete'] =
 "【{$_CONF['site_name']}】Type removed by {$_USER['username']}.";
 $LANG_DATABOX_MAIL['message_fieldset_delete']=
 "Attributes set was removed by {$_USER['username']}(user no.{$_USER['uid']}).".LB;
+}
 
 ###############################################################################
 #

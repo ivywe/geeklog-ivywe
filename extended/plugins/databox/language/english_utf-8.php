@@ -103,7 +103,7 @@ $LANG_DATABOX_ADMIN['importfile'] = 'Path';
 $LANG_DATABOX_ADMIN['importurl'] = 'URL';
 
 $LANG_DATABOX_ADMIN['delete'] = 'Delete';
-$LANG_DATABOX_ADMIN['deletemsg_user'] = "Delete all.<br ".XHTML.">";
+$LANG_DATABOX_ADMIN['deletemsg_user'] = "Delete all.<br ".xhtml.">";
 
 $LANG_DATABOX_ADMIN['idfrom'] = "From ID";
 $LANG_DATABOX_ADMIN['idto'] = "To ID";
@@ -570,6 +570,7 @@ $LANG_DATABOX_MAIL['message_data']=
 
 
 
+if (isset($_USER['username']) && isset($_CONF['site_name']) && isset( $_USER['uid'])) {
 
 $LANG_DATABOX_MAIL['subject_category'] =
 "【{$_CONF['site_name']}】Category Update by {$_USER['username']}.";
@@ -588,6 +589,7 @@ $LANG_DATABOX_MAIL['subject_fieldset'] =
 
 $LANG_DATABOX_MAIL['message_fieldset']=
 "Type was updated by {$_USER['username']}(user no.{$_USER['uid']}).".LB.LB;
+}
 
 #
 $LANG_DATABOX_MAIL['sig'] = LB
@@ -597,6 +599,8 @@ $LANG_DATABOX_MAIL['sig'] = LB
 ."This is automaticaly sended.".LB
 ."------------------------------------".LB
 ;
+
+if (isset($_USER['username']) && isset($_CONF['site_name']) && isset( $_USER['uid'])) {
 
 $LANG_DATABOX_MAIL['subject_data_delete'] =
 "【{$_CONF['site_name']}】DataDelete by {$_USER['username']}";
@@ -618,6 +622,7 @@ $LANG_DATABOX_MAIL['subject_fieldset_delete'] =
 "【{$_CONF['site_name']}】Type removed by {$_USER['username']}.";
 $LANG_DATABOX_MAIL['message_fieldset_delete']=
 "Attributes set was removed by {$_USER['username']}(user no.{$_USER['uid']}).".LB;
+}
 
 ###############################################################################
 #
@@ -722,7 +727,7 @@ $PLG_databox_MESSAGE3002 = $LANG32[9];
 ###############################################################################
 #
 $LANG_DATABOX_autotag_desc['databox']="
-[databox:count] <br".XHTML.">	
+[databox:count] <br".xhtml.">	
 More, see Databox Plugin documents.
 <a href=\"{$_CONF['site_admin_url']}/plugins/databox/docs/japanese/autotags.html\">*</a>
 ";
