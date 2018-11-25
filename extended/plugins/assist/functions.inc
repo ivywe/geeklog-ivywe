@@ -492,6 +492,8 @@ function plugin_templatesetvars_assist(
 {
 	global $_ASSIST_CONF;
     global $_USER;
+		$login_username = '';
+		$login_fullname = '';
 	
 	$languageid=COM_getLanguageId();
     $language= COM_getLanguage();

@@ -15,6 +15,9 @@
 
 ###############################################################################
 ## 管理画面 menu
+
+global $LANG04, $_USER, $LANG32;
+
 $LANG_DATABOX_admin_menu = array();
 $LANG_DATABOX_admin_menu['1']= '情報';
 $LANG_DATABOX_admin_menu['2']= 'データ';
@@ -609,6 +612,7 @@ $LANG_DATABOX_MAIL['message_data']=
 
 
 
+if (isset($_USER['username']) && isset($_CONF['site_name']) && isset( $_USER['uid'])) {
 $LANG_DATABOX_MAIL['subject_category'] =
 "【{$_CONF['site_name']}】カテゴリ更新 by {$_USER['username']}";
 
@@ -626,6 +630,8 @@ $LANG_DATABOX_MAIL['subject_fieldset'] =
 
 $LANG_DATABOX_MAIL['message_fieldset']=
 "{$_USER['username']}さん(user no.{$_USER['uid']})によって、データタイプが更新されました。".LB.LB;
+}
+
 
 #
 $LANG_DATABOX_MAIL['sig'] = LB
@@ -635,6 +641,8 @@ $LANG_DATABOX_MAIL['sig'] = LB
 ."このメールは自動送信されたものです。".LB
 ."------------------------------------".LB
 ;
+
+if (isset($_USER['username']) && isset($_CONF['site_name']) && isset( $_USER['uid'])) {
 
 $LANG_DATABOX_MAIL['subject_data_delete'] =
 "【{$_CONF['site_name']}】データ削除 by {$_USER['username']}";
@@ -656,6 +664,8 @@ $LANG_DATABOX_MAIL['subject_fieldset_delete'] =
 "【{$_CONF['site_name']}】データタイプ削除 by {$_USER['username']}";
 $LANG_DATABOX_MAIL['message_fieldset_delete']=
 "{$_USER['username']}さん(user no.{$_USER['uid']})によって、データタイプが削除されました。".LB;
+
+}
 
 ###############################################################################
 #
@@ -733,10 +743,12 @@ $LANG_DATABOX_TYPE[13] = '添付ファイル';
 
 ###############################################################################
 #
+if (isset($LANG_DATABOX_SEARCH['type'])) {
 $LANG_DATABOX_SEARCH['type'] = 'DataBox';
-
+}
+if (isset($LANG_DATABOX_SEARCH['results_databox'])) {
 $LANG_DATABOX_SEARCH['results_databox'] = 'DataBoxの検索結果';
-
+}
 $LANG_DATABOX_SEARCH['title'] =  'タイトル';
 $LANG_DATABOX_SEARCH['udate'] =  '更新日';
 
@@ -776,8 +788,8 @@ $LANG_configsections['databox']['title'] = 'DataBoxの設定';
 $LANG_configsubgroups['databox']['sg_main'] = 'メイン';
 //--(0)
 
-$LANG_tab['databox'][tab_main] = 'メイン設定';
-$LANG_fs['databox'][fs_main] = 'DataBoxのメイン設定';
+// $LANG_tab['databox'][tab_main] = 'メイン設定';
+// $LANG_fs['databox'][fs_main] = 'DataBoxのメイン設定';
 $LANG_confignames['databox']['perpage'] = 'ページあたりのデータ数';
 $LANG_confignames['databox']['loginrequired'] = 'ログイン要求する';
 $LANG_confignames['databox']['hidemenu'] = 'メニューに表示しない';
@@ -834,8 +846,8 @@ $LANG_confignames['databox']['disable_permission_ignore'] = '新着データの�
 $LANG_confignames['databox']['sitemap_excepts'] = 'サイトマップ XMLSitemap から除外するコード';
 
 //--(1)
-$LANG_tab['databox'][tab_whatsnew] = '新着情報ブロック';
-$LANG_fs['databox'][fs_whatsnew] = '新着情報ブロック';
+// $LANG_tab['databox'][tab_whatsnew] = '新着情報ブロック';
+// $LANG_fs['databox'][fs_whatsnew] = '新着情報ブロック';
 $LANG_confignames['databox']['whatsnew_interval'] = '新着の期間';
 $LANG_confignames['databox']['hide_whatsnew'] = '新着ページを表示しない';
 $LANG_confignames['databox']['title_trim_length'] = 'タイトル最大長';
@@ -844,19 +856,19 @@ $LANG_confignames['databox']['title_trim_length'] = 'タイトル最大長';
 
 
 //---(2)
-$LANG_tab['databox'][tab_search] = '検索';
-$LANG_fs['databox'][fs_search] = '検索結果';
+// $LANG_tab['databox'][tab_search] = '検索';
+// $LANG_fs['databox'][fs_search] = '検索結果';
 $LANG_confignames['databox']['include_search'] = 'データを検索する';
 $LANG_confignames['databox']['additionsearch'] = '検索対象にするアトリビュートの数';
 
 //---(3)
-$LANG_tab['databox'][tab_permissions] = 'パーミッション';
-$LANG_fs['databox'][fs_permissions] = 'データのパーミッションのデフォルト（[0]所有者 [1]グループ [2]メンバー [3]ゲスト）';
+// $LANG_tab['databox'][tab_permissions] = 'パーミッション';
+// $LANG_fs['databox'][fs_permissions] = 'データのパーミッションのデフォルト（[0]所有者 [1]グループ [2]メンバー [3]ゲスト）';
 $LANG_confignames['databox']['default_permissions'] = 'パーミッション';
 
 //---(4)
-$LANG_tab['databox'][tab_autotag] = '自動タグ';
-$LANG_fs['databox'][fs_autotag] = '自動タグ';
+// $LANG_tab['databox'][tab_autotag] = '自動タグ';
+// $LANG_fs['databox'][fs_autotag] = '自動タグ';
 $LANG_confignames['databox']['intervalday']="表示期間（日）";
 $LANG_confignames['databox']['limitcnt']="表示件数";//@@@@@
 $LANG_confignames['databox']['newmarkday']="新着マーク表示期間（日）";//@@@@@
