@@ -36,6 +36,8 @@
 // +---------------------------------------------------------------------------+
 //
 
+global $MESSAGE,$LANG_ADMIN,$LANG_ACCESS,$LANG32;
+
 $LANG_CMED = array(
     'display_name'        => 'カスタムメニュー',
     'menu_title'          => 'カスタムメニュー',

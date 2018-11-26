@@ -117,7 +117,7 @@ function plugin_getListField_paypal_IPNlog($fieldname, $fieldvalue, $A, $icon_ar
 	// PHP7 error {
 	// $out = preg_replace('!s:(\d+):"(.*?)";!se', "'s:'.strlen('$2').':\"$2\";'", $A['ipn_data'] ); 
 
-    $out = preg_replace_callback(
+    $out = preg_replace(
         '!s:(\d+):"(.*?)";!s',
         function ($args) {
             return sprintf('s:%d:"%s";', strlen($args[2]), $args[2]);
@@ -244,7 +244,7 @@ function PAYPAL_ipnlog_single($id, $txn_id) {
 	// PHP7 error {
 	// $out = preg_replace('!s:(\d+):"(.*?)";!se', "'s:'.strlen('$2').':\"$2\";'", $A['ipn_data'] ); 
 
-    $out = preg_replace_callback(
+    $out = preg_replace(
         '!s:(\d+):"(.*?)";!s',
         function ($args) {
             return sprintf('s:%d:"%s";', strlen($args[2]), $args[2]);

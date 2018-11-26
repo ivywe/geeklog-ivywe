@@ -70,7 +70,7 @@
     <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_orderno}</label>
       <div class="uk-form-controls">
-        <input type="text" class="uk-input uk-form-width-small" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
+        <input type="text" class="uk-input uk-form-width-xsmall" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
       </div>
     </div>
 

@@ -1,0 +1,10 @@
+{# begin {templatelocation} #}
+
+<dt class="assist_date">{day}</dt>
+<dd class="assist_stories"><a href="{url}" class="gl-tooltip" style="cursor: pointer; ">{title}<span class="classic" style="top: 2.2em; left: 2.2em;">{meta_description}</span></a>{new_img}</dd>
+
+<!-- 
+{introtext}
+ -->
+
+{# end {templatelocation} #}

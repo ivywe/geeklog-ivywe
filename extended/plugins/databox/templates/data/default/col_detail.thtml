@@ -55,6 +55,10 @@
 <dt class="uk-text-success">&#123;{additionfield_templatesetvar}_readfile&#125;</dt>
 <dd>{additionfield_value_readfile}</dd>
 {!endif}
+{!if additionfield_value_readfile}
+<dt class="uk-text-success">&#123;{additionfield_templatesetvar}_readfile&#125;</dt>
+<dd>{additionfield_value_readfile}</dd>
+{!endif}
   </dl>
 </td>
 <td class="uk-text-success uk-text-small" style="width:5%">
