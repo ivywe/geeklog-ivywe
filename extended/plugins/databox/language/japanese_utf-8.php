@@ -612,7 +612,7 @@ $LANG_DATABOX_MAIL['message_data']=
 
 
 
-if (isset($_USER['username']) && isset($_CONF['site_name']) && isset( $_USER['uid'])) {
+if (isset($_USER['username']) && isset($_CONF['site_name']) && isset($_USER['uid']) ) {
 $LANG_DATABOX_MAIL['subject_category'] =
 "【{$_CONF['site_name']}】カテゴリ更新 by {$_USER['username']}";
 
