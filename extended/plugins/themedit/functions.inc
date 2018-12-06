@@ -66,7 +66,7 @@ if (isset($_THM_CONF['enable_all_files'])
  AND $_THM_CONF['enable_all_files'] == TRUE) {
 	$_THM_CONF['allowed_files'] = array();
 	$_THM_CONF['allowed_files'] = THM_getAllThemeFiles(
-		$_CONF['path_themes'] . 'professional', TRUE
+		$_CONF['path_themes'] . 'default', TRUE
 	);
 }
 
@@ -710,7 +710,7 @@ function THM_getAllThemeFiles($path, $top_level = FALSE) {
 	if ($top_level) {
 		for ($i = 0; $i < count($retval); $i ++) {
 			$retval[$i] = substr(
-				$retval[$i], strlen($_CONF['path_themes'] . 'professional/')
+				$retval[$i], strlen($_CONF['path_themes'] . 'default/')
 			);
 		}
 	}
