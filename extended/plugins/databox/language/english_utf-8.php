@@ -12,6 +12,8 @@
 # plugins/databox/language/english_utf-8.php
 
 ###############################################################################
+global $LANG04, $_USER, $LANG32;
+
 ## Admin menu
 $LANG_DATABOX_admin_menu = array();
 $LANG_DATABOX_admin_menu['1']= 'Information';
@@ -570,25 +572,24 @@ $LANG_DATABOX_MAIL['message_data']=
 
 
 
-if (isset($_USER['username']) && isset($_CONF['site_name']) && isset( $_USER['uid'])) {
-
+if (isset($_USER['username']) && isset($_CONF['site_name']) && isset($_USER['uid']) ) {
 $LANG_DATABOX_MAIL['subject_category'] =
-"【{$_CONF['site_name']}】Category Update by {$_USER['username']}.";
+"【{$_CONF['site_name']}】カテゴリ更新 by {$_USER['username']}";
 
 $LANG_DATABOX_MAIL['message_category']=
-"Category was edited by {$_USER['username']}(user no.{$_USER['uid']}).".LB.LB;
+"{$_USER['username']}さん(user no.{$_USER['uid']})によって、カテゴリが更新されました。".LB.LB;
 
 $LANG_DATABOX_MAIL['subject_group'] =
-"[{$_CONF['site_name']}] Group was edited by {$_USER['username']}.";
+"【{$_CONF['site_name']}】グループ更新 by {$_USER['username']}";
 
 $LANG_DATABOX_MAIL['message_group']=
-"Group was edited by {$_USER['username']}(user no.{$_USER['uid']}).".LB.LB;
+"{$_USER['username']}さん(user no.{$_USER['uid']})によって、グループが更新されました。".LB.LB;
 
 $LANG_DATABOX_MAIL['subject_fieldset'] =
-"【{$_CONF['site_name']}】Type was edted by {$_USER['username']}";
+"【{$_CONF['site_name']}】データタイプ更新 by {$_USER['username']}";
 
 $LANG_DATABOX_MAIL['message_fieldset']=
-"Type was updated by {$_USER['username']}(user no.{$_USER['uid']}).".LB.LB;
+"{$_USER['username']}さん(user no.{$_USER['uid']})によって、データタイプが更新されました。".LB.LB;
 }
 
 #

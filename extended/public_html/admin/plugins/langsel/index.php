@@ -38,15 +38,18 @@
 require_once '../../../lib-common.php';
 require_once '../../auth.inc.php';
 
+$display = '';
+
 // Ensure user even has the rights to access this page
 if (! SEC_hasRights('langsel.admin')) {
-    $content = COM_showMessageText($MESSAGE[29], $MESSAGE[30]);
-    $display = COM_createHTMLDocument($content, array('menu' =>  $MESSAGE[30]));
+    $display .= COM_siteHeader('menu', $MESSAGE[30])
+             . COM_showMessageText($MESSAGE[29], $MESSAGE[30])
+             . COM_siteFooter();
 
     // Log attempt to access.log
     COM_accessLog("User {$_USER['username']} tried to illegally access the Language Selection Block plugin administration screen.");
 
-    COM_output($display);
+    echo $display;
     exit;
 }
 
@@ -65,23 +68,18 @@ $_SCRIPTS->setJavascript('
 ');
 
 $css = "float:left; text-align:center; margin:10px; width:200px;";
-$content = COM_startBlock($LANG_LANGSEL_1['plugin_name'])
-    . '<p>Welcome to the ' . $LANG_LANGSEL_1['plugin_name'] . ' plugin, ' 
-    . $_USER['username'] . '!</p>'
-    . '<div id="langsel_conf" style="' . $css . '">'
-    . '<a href="' . $_CONF['site_admin_url'] . '/configuration.php">'
-    . '<img alt="" src="' . $_CONF['site_admin_url'] . '/plugins/langsel/images/configuration.png"'
-    . XHTML . '>'
-    . '<br' . XHTML . '>' . $LANG_LANGSEL_1['conf_link'] . '</a>'
-    . '<form action="' . $_CONF['site_admin_url'] . '/configuration.php" method="POST">'
-    . '<input type="hidden" name="conf_group" value="langsel">'
-    . '</form>'
-    . '</div>'
-    . COM_endBlock();
-$display = COM_createHTMLDocument(
-    $content,
-    array(
-        'menu' => $LANG_LANGSEL_1['plugin_name']
-    )
-);
-COM_output($display);
+$display .= COM_siteHeader('menu', $LANG_LANGSEL_1['plugin_name']);
+$display .= COM_startBlock($LANG_LANGSEL_1['plugin_name']);
+$display .= '<p>Welcome to the ' . $LANG_LANGSEL_1['plugin_name'] . ' plugin, '
+         . $_USER['username'] . '!</p>';
+$display .= "<div id='langsel_conf' style='$css'><a href='{$_CONF['site_admin_url']}/configuration.php'>"
+         . "<img alt='' src='{$_CONF['site_admin_url']}/plugins/langsel/images/configuration.png'" . XHTML . ">"
+         . "<br" . XHTML . ">{$LANG_LANGSEL_1['conf_link']}</a>"
+         . "<form action='{$_CONF['site_admin_url']}/configuration.php' method='POST'>"
+         . "<input type='hidden' name='conf_group' value='langsel'></form></div>";
+$display .= COM_endBlock();
+$display .= COM_siteFooter();
+
+echo $display;
+
+?>

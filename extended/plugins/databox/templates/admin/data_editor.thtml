@@ -4,8 +4,8 @@
 
 <a href="{document_url}docs/japanese/input_data.html" class="uk-button uk-button-small">Document</a>
 
-<ul class="uk-subnav uk-flex-center" style="font-size:1.25rem">
-  <li><a href="{site_admin_url}/plugins/databox/view.php?id={id}&template=standard" data-uk-tooltip title="利用できるテーマ変数の確認に利用してください。">{lang_ref}</a></li>
+<ul class="uk-subnav uk-flex-center">
+  <li><a href="{site_admin_url}/plugins/databox/view.php?id={id}&template=standard" class="uk-button" data-uk-tooltip title="利用できるテーマ変数の確認に利用してください。">{lang_ref}</a></li>
   <li>{view}</li>
   <li>{lang_fieldset}: {fieldset_name}(id: {fieldset_id})</li>
 </ul>
@@ -127,7 +127,7 @@
     <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label" >{lang_commentcode} {help_commentcode}</label>
       <div class="uk-form-controls">
-        <select class="uk-select uk-form-width-medium" name="commentcode">
+        <select class="uk-select uk-form-width-small" name="commentcode">
           {optionlist_commentcode}
         </select>
       </div>
@@ -169,7 +169,7 @@
     <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_orderno} {help_orderno}</label>
       <div class="uk-form-controls">
-        <input type="text" class="uk-input uk-form-width-small" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
+        <input type="text" class="uk-input uk-form-width-xsmall" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
       </div>
     </div>
 
@@ -177,7 +177,7 @@
     <div class="uk-form-row uk-clearfix">
       <label class="uk-form-label">{lang_trackbackcode} {help_trackbackcode}</label>
       <div class="uk-form-controls">
-        <select class="uk-select uk-form-width-medium" name="trackbackcode">
+        <select class="uk-select uk-form-width-small" name="trackbackcode">
           {optionlist_trackbackcode}
         </select>
       </div>

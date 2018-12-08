@@ -171,17 +171,17 @@ function MG_usageReportMenu()
     $year  = $local['tm_year'] + 1900;
 
     // Month Select
-    $month_select = '<select class="uk-select"  name="month">';
+    $month_select = '<select name="month">';
     $month_select .= COM_getMonthFormOptions($month);
     $month_select .= '</select>';
 
-    $day_select = '<select class="uk-select"  name="day">';
+    $day_select = '<select name="day">';
     for ($i = 1; $i <= 31; $i++) {
         $day_select  .= '<option value="' . $i . '"' . (($day == $i) ? ' selected="selected"' : "") . '>' . $i . '</option>';
     }
     $day_select .= '</select>';
 
-    $year_select = '<select class="uk-select"  name="year">';
+    $year_select = '<select name="year">';
     for ($i = 2004; $i < 2038 ;$i++) {
         $year_select .= '<option value="' . $i . '"' . (($year == $i) ? ' selected="selected"' : "") . '>' . $i . '</option>';
     }
@@ -191,7 +191,7 @@ function MG_usageReportMenu()
 
     $result = DB_query("SELECT * FROM {$_TABLES['users']} ORDER BY username");
     $nRows = DB_numRows($result);
-    $user_select = '<select class="uk-select"  name="user"><option value="" ' . UC_SELECTED . '>' . $LANG_MG01['all'] . '</option>';
+    $user_select = '<select name="user"><option value="" ' . UC_SELECTED . '>' . $LANG_MG01['all'] . '</option>';
     for ($x=0; $x<$nRows; $x++) {
         $row = DB_fetchArray($result);
         $show = sprintf("%-25s = %s", $row['username'], $row['fullname']);

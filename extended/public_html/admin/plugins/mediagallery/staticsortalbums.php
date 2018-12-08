@@ -132,14 +132,14 @@ function MG_staticSortAlbumOptions()
     // build album list for starting point...
 
     $root_album = new mgAlbum(0);
-    $album_jumpbox  = '<select class="uk-select"  name="startaid">';
+    $album_jumpbox  = '<select name="startaid">';
     $album_jumpbox .= '<option value="0">------</option>';
     $root_album->buildJumpBox($album_jumpbox, 0, 3);
     $album_jumpbox .= '</select>';
 
     // build sort fields select
 
-    $sort_field     = '<select class="uk-select"  name="sortfield">';
+    $sort_field     = '<select name="sortfield">';
     $sort_field    .= '<option value="0">' . $LANG_MG01['album_title'] . '</option>';
     $sort_field    .= '<option value="1">' . $LANG_MG01['media_count'] . '</option>';
     $sort_field    .= '<option value="2">' . $LANG_MG01['last_update'] . '</option>';

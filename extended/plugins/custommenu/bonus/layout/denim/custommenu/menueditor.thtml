@@ -9,37 +9,37 @@
             <option value="variable" {val_mode_variable}>{lang_mode_variable}</option>
             <option value="php" {val_mode_php}>{lang_mode_php}</option>
           </select>
-          <br{XHTML}><div class="pluginMediumText">{lang_mode_info}</div></dd>
+          <br{xhtml}><div class="pluginMediumText">{lang_mode_info}</div></dd>
 
       <dt><label for="cmeditor-title_fixation">{lang_title_fixation}</label></dt>
-      <dd><input type="text" class="uk-input" name="title_fixation" id="cmeditor-title_fixation" value="{val_title_fixation}" size="48" class="size6"{XHTML}>
-          <br{XHTML}><div class="pluginMediumText">{lang_title_fixation_info}</div></dd>
+      <dd><input type="text" class="uk-input" name="title_fixation" id="cmeditor-title_fixation" value="{val_title_fixation}" size="48" class="size6"{xhtml}>
+          <br{xhtml}><div class="pluginMediumText">{lang_title_fixation_info}</div></dd>
 
       <dt><label for="cmeditor-title_variable">{lang_title_variable}</label></dt>
-      <dd><input type="text" class="uk-input" name="title_variable" id="cmeditor-title_variable" value="{val_title_variable}" size="48" class="size6"{XHTML}>
-          <br{XHTML}><div class="pluginMediumText">{lang_title_variable_info}</div></dd>
+      <dd><input type="text" class="uk-input" name="title_variable" id="cmeditor-title_variable" value="{val_title_variable}" size="48" class="size6"{xhtml}>
+          <br{xhtml}><div class="pluginMediumText">{lang_title_variable_info}</div></dd>
 
       <dt><label for="cmeditor-php_function">{lang_php_function}</label></dt>
-      <dd><input type="text" class="uk-input" name="php_function" id="cmeditor-php_function" value="{val_php_function}" size="48" class="size6"{XHTML}>
-          <br{XHTML}><div class="pluginMediumText">{lang_php_function_info}</div></dd>
+      <dd><input type="text" class="uk-input" name="php_function" id="cmeditor-php_function" value="{val_php_function}" size="48" class="size6"{xhtml}>
+          <br{xhtml}><div class="pluginMediumText">{lang_php_function_info}</div></dd>
 
       <dt><label for="cmeditor-is_enabled">{lang_is_enabled}</label></dt>
-      <dd><input type="checkbox" class="uk-checkbox" name="is_enabled" id="cmeditor-is_enabled" {val_is_enabled}{XHTML}></dd>
+      <dd><input type="checkbox" class="uk-checkbox" name="is_enabled" id="cmeditor-is_enabled" {val_is_enabled}{xhtml}></dd>
 
       <dt><label for="cmeditor-url">{lang_menuitemurl}</label></dt>
-      <dd><input type="text" class="uk-input" name="url" id="cmeditor-url" value="{val_menuitemurl}" size="48" class="size6"{XHTML}>
-          <br{XHTML}><div class="pluginMediumText">{lang_includehttp}</div></dd>
+      <dd><input type="text" class="uk-input" name="url" id="cmeditor-url" value="{val_menuitemurl}" size="48" class="size6"{xhtml}>
+          <br{xhtml}><div class="pluginMediumText">{lang_includehttp}</div></dd>
 
       <dt><label for="cmeditor-mid">{lang_menuitemid}</label></dt>
-      <dd><input type="text" class="uk-input" name="mid" id="cmeditor-mid" value="{val_mid}" size="48" class="size6" {mid_readonly}{XHTML}>
-          <br{XHTML}><div class="pluginMediumText">{lang_nospaces}</div></dd>
+      <dd><input type="text" class="uk-input" name="mid" id="cmeditor-mid" value="{val_mid}" size="48" class="size6" {mid_readonly}{xhtml}>
+          <br{xhtml}><div class="pluginMediumText">{lang_nospaces}</div></dd>
 
       <dt><label>{lang_parentitemid}</label></dt>
       <dd>{selpmid}</dd>
 
       <dt><label for="cmeditor-class_name">{lang_class_name}</label></dt>
-      <dd><input type="text" class="uk-input" name="class_name" id="cmeditor-class_name" value="{val_class_name}" size="48" class="size6"{XHTML}>
-          <br{XHTML}><div class="pluginMediumText">{lang_class_name_info}</div></dd>
+      <dd><input type="text" class="uk-input" name="class_name" id="cmeditor-class_name" value="{val_class_name}" size="48" class="size6"{xhtml}>
+          <br{xhtml}><div class="pluginMediumText">{lang_class_name_info}</div></dd>
 
       <dt><label for="cmeditor-tid">{lang_topic}</label></dt>
       <dd><select class="uk-select" name="tid" id="cmeditor-tid">
@@ -49,21 +49,21 @@
           </select></dd>
 
       <dt><label for="cmeditor-menuorder">{lang_menuitemorder}</label></dt>
-      <dd><input type="text" class="uk-input" name="menuorder" id="cmeditor-menuorder" value="{val_menuorder}" size="4"{XHTML}>
+      <dd><input type="text" class="uk-input" name="menuorder" id="cmeditor-menuorder" value="{val_menuorder}" size="4"{xhtml}>
           <span class="pluginMediumText"> 0 - 9999</span></dd>
 
       <dt><label>{lang_menuitemtype}</label></dt>
       <dd>{lang_type}</dd>
 
       <dt><label for="cmeditor-icon_url">{lang_icon_url}</label></dt>
-      <dd><input type="text" class="uk-input" name="icon_url" id="cmeditor-icon_url" value="{val_icon_url}" size="48" class="size6"{XHTML}>
-          <br{XHTML}><div class="pluginMediumText">{lang_icon_url_info}</div></dd>
+      <dd><input type="text" class="uk-input" name="icon_url" id="cmeditor-icon_url" value="{val_icon_url}" size="48" class="size6"{xhtml}>
+          <br{xhtml}><div class="pluginMediumText">{lang_icon_url_info}</div></dd>
 
       <dt><label for="cmeditor-pattern">{lang_pattern}</label></dt>
-      <dd><input type="text" class="uk-input" name="pattern" id="cmeditor-pattern" value="{val_pattern}" size="48" class="size6"{XHTML}>
+      <dd><input type="text" class="uk-input" name="pattern" id="cmeditor-pattern" value="{val_pattern}" size="48" class="size6"{xhtml}>
           &nbsp;{lang_is_preg}:
-          <input type="checkbox" class="uk-checkbox" name="is_preg" {val_is_preg}{XHTML}>
-          <br{XHTML}><div class="pluginMediumText">{lang_pattern_info}</div></dd>
+          <input type="checkbox" class="uk-checkbox" name="is_preg" {val_is_preg}{xhtml}>
+          <br{xhtml}><div class="pluginMediumText">{lang_pattern_info}</div></dd>
     </dl>
 
     <fieldset>
@@ -83,13 +83,13 @@
     </fieldset>
 
     <div class="submit">
-      <input type="submit" name="mode" value="{lang_save}" class="submit"{XHTML}>
-      <input type="submit" name="mode" value="{lang_cancel}" class="submit"{XHTML}>
-      <input type="submit" name="mode" value="{lang_delete}" class="submit" onclick="return confirm('{lang_confirm}');" {delete_disabled}{XHTML}>
-      <input type="hidden" name="type" value="{val_type}"{XHTML}>
-      <input type="hidden" name="owner_id" value="{owner_id}"{XHTML}>
-      <input type="hidden" name="old_mid" value="{val_old_mid}"{XHTML}>
-      <input type="hidden" name="{gltoken_name}" value="{gltoken}"{XHTML}>
+      <input type="submit" name="mode" value="{lang_save}" class="submit"{xhtml}>
+      <input type="submit" name="mode" value="{lang_cancel}" class="submit"{xhtml}>
+      <input type="submit" name="mode" value="{lang_delete}" class="submit" onclick="return confirm('{lang_confirm}');" {delete_disabled}{xhtml}>
+      <input type="hidden" name="type" value="{val_type}"{xhtml}>
+      <input type="hidden" name="owner_id" value="{owner_id}"{xhtml}>
+      <input type="hidden" name="old_mid" value="{val_old_mid}"{xhtml}>
+      <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
     </div>
   </div>
 </form>
