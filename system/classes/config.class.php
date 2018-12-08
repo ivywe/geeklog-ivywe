@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 2.1                                                               |
+// | Geeklog 2.2                                                               |
 // +---------------------------------------------------------------------------+
 // | config.class.php                                                          |
 // |                                                                           |
@@ -889,7 +889,7 @@ class config
             }
         }
 
-        $t = COM_newTemplate($_CONF['path_layout'] . 'admin/config');
+        $t = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout'] . 'admin/config'));
         $t->set_file(array(
             'main'      => 'configuration.thtml',
             'menugroup' => 'menu_element.thtml',
@@ -994,7 +994,38 @@ class config
             $current_fs = '';
             $fs_flag = false;
             $table_flag = false;
+            //print_r($params);
             foreach ($params as $name => $e) {
+                if (isset($_CONF['demo_mode']) && $_CONF['demo_mode']) {
+                    if ( in_array($name,array(
+                    'site_url','site_admin_url'
+                    ,'url_routing'
+                    
+                    ,'path_html','path_log','path_language','backup_path','path_data','path_data','path_themes','path_images','path_editors','rdf_file'
+                    
+                    ,'path_to_mogrify', 'path_to_netpbm', 'image_lib'
+                    
+                    ,'custom_registration','user_login_method'
+                    
+                    ,'mail_cc_enabled','mail_cc_default'
+                    
+                    ,'facebook_login','facebook_consumer_key','facebook_consumer_secret'
+                    ,'linkedin_login','linkedin_consumer_key','linkedin_consumer_secret'
+                    ,'twitter_login','twitter_consumer_key','twitter_consumer_secret'
+                    ,'google_login','google_consumer_key','google_consumer_secret'
+                    ,'microsoft_login','microsoft_consumer_key','microsoft_consumer_secret'
+                    ,'yahoo_login','yahoo_consumer_key','yahoo_consumer_secret'
+                    ,'github_login','github_consumer_secret','github_consumer_key'
+                    
+                    ,'filemanager_upload_restrictions','filemanager_images_ext','filemanager_videos_ext','filemanager_audios_ext'
+                    
+                    // For reCaptcha Plugin
+                    ,'public_key','private_key','enable_emailstory','enable_registration','enable_contact','remoteusers','anonymous_only'
+                    ))) {
+                        continue;
+                    }
+                }     
+
                 if ($e['type'] === 'fieldset' && $e['fieldset'] != $current_fs) {
                     $fs_flag = true;
                     if ($current_fs != '') {
@@ -1110,7 +1141,7 @@ class config
      * @param  int    $sg      Configuration subgroup
      * @return string          string of HTML to be displayed on message box
      */
-    function _UI_get_change_block($changes, $group = null, $sg = null)
+    private function _UI_get_change_block($changes, $group = null, $sg = null)
     {
         $display = '';
         $anchors = array();
@@ -1162,7 +1193,7 @@ class config
      * @param  object $t        Template object
      * @return string tab name to display based on current language
      */
-    function _UI_get_tab($group, $contents, $tab_id, &$t)
+    private function _UI_get_tab($group, $contents, $tab_id, &$t)
     {
         global $_TABLES, $LANG_tab, $LANG_CONFIG;
 
@@ -1203,7 +1234,7 @@ class config
      * @param  Template $t        Template object
      * @return void
      */
-    function _UI_get_fs($group, $contents, $fs_id, $t)
+    private function _UI_get_fs($group, $contents, $fs_id, $t)
     {
         global $_TABLES, $LANG_fs;
 
@@ -1261,7 +1292,7 @@ class config
     {
         global $LANG_CONFIG;
 
-        $t = COM_newTemplate($GLOBALS['_CONF']['path_layout'] . 'admin/config');
+        $t = COM_newTemplate(CTL_core_templatePath($GLOBALS['_CONF']['path_layout'] . 'admin/config'));
         $t->set_file('element', 'config_element.thtml');
 
         $blocks = array(
@@ -1321,15 +1352,22 @@ class config
                     . $LANG_CONFIG['disable'] . "'>X</a>)");
             }
             if (($a = strrchr($name, '[')) !== false) {
-                $on = substr($a, 1, -1);
+                //$on = substr($a, 1, -1);
                 $o = str_replace(array('[', ']'), array('_', ''), $name);
             } else {
                 $o = $name;
-                $on = $name;
+                //$on = $name;
             }
+            /*  As of v2.2.0 Removed numeric check for config help which indicates a config option variable is an array.
+                The only thing that uses config variables which are an array at the moment is Security Default Permissions for items like Articles, Dynamic Blocks and Autotags usage permissions.
+                It was determined tooltip was needed since users where wondering what they are needed for.
+                This should not affect anything else.
+
             if (!is_numeric($on)) {
                 $this->_set_ConfigHelp($t, $group, $o);
             }
+            */ 
+            $this->_set_ConfigHelp($t, $group, $o);
         }
 
         if ($type === 'unset') {
@@ -1388,7 +1426,7 @@ class config
         } elseif (strpos($type, '@') === 0) {
             $result = '';
             foreach ($val as $valkey => $valval) {
-                $result .= self::_UI_get_conf_element($group,
+                $result .= $this->_UI_get_conf_element($group,
                     $name . '[' . $valkey . ']',
                     $display_name . '[' . $valkey . ']',
                     substr($type, 1), $valval, $selectionArray,
@@ -1405,14 +1443,14 @@ class config
             $t->set_var('my_add_element_button', $button);
             $result = "";
             if ($type === '%select') {
-                $result .= self::_UI_get_conf_element($group,
+                $result .= $this->_UI_get_conf_element($group,
                     $name . '[placeholder]', 'placeholder',
                     substr($type, 1), 'placeholder', $selectionArray,
                     true
                 );
             }
             foreach ($val as $valkey => $valval) {
-                $result .= self::_UI_get_conf_element($group,
+                $result .= $this->_UI_get_conf_element($group,
                     $name . '[' . $valkey . ']', $valkey,
                     substr($type, 1), $valval, $selectionArray,
                     true);
@@ -1449,7 +1487,7 @@ class config
     {
         global $LANG_CONFIG;
 
-        $t = COM_newTemplate($GLOBALS['_CONF']['path_layout'] . 'admin/config');
+        $t = COM_newTemplate(CTL_core_templatePath($GLOBALS['_CONF']['path_layout'] . 'admin/config'));
         $t->set_file('element', 'config_element_2.thtml');
 
         $blocks = array(
@@ -1508,15 +1546,22 @@ class config
                     . $LANG_CONFIG['disable'] . "'>X</a>)");
             }
             if (($a = strrchr($name, '[')) !== false) {
-                $on = substr($a, 1, -1);
+                //$on = substr($a, 1, -1);
                 $o = str_replace(array('[', ']'), array('_', ''), $name);
             } else {
                 $o = $name;
-                $on = $name;
+                //$on = $name;
             }
+            /*  As of v2.2.0 Removed numeric check for config help which indicates a config option variable is an array.
+                The only thing that uses config variables which are an array at the moment is Security Default Permissions for items like Articles, Dynamic Blocks and Autotags usage permissions.
+                It was determined tooltip was needed since users where wondering what they are needed for.
+                This should not affect anything else.
+
             if (!is_numeric($on)) {
                 $this->_set_ConfigHelp($t, $group, $o);
             }
+            */
+            $this->_set_ConfigHelp($t, $group, $o);
         }
         // if $name is like "blah[0]", separate name and index
         $n = explode('[', $name);
@@ -1918,7 +1963,7 @@ class config
     {
         global $_CONF_VALIDATE, $LANG_VALIDATION;
 
-        $_validator = validator::getInstance();
+        $_validator = Validator::getInstance();
 
         if (isset($_CONF_VALIDATE[$group][$config]) &&
             !empty($_CONF_VALIDATE[$group][$config])
@@ -2011,7 +2056,7 @@ class config
      * @param  int    $sg         Configuration subgroup
      * @return string
      */
-    function _UI_configmanager_menu($conf_group, $sg = 0)
+    private function _UI_configmanager_menu($conf_group, $sg = 0)
     {
         global $_CONF, $LANG_ADMIN, $LANG_CONFIG, $LANG_configsections, $LANG_configsubgroups;
 

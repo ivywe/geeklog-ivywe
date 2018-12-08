@@ -146,7 +146,7 @@ $LANG01 = array(
     98 => 'Prikljuèni moduli',
     99 => 'Èlanki',
     100 => 'Ni novih èlankov',
-    101 => 'There are no older stories',
+    101 => 'There are no older articles',
     102 => '',
     103 => 'Varnostne kopije DB',
     104 => 'z',
@@ -188,6 +188,7 @@ $LANG01 = array(
     140 => 'Allowed Autotags:',
     141 => 'An Error Occurred',
     142 => 'Unfortunately, an error has occurred rendering this page. Please try again later.',
+    143 => 'Comment (%d)',
     'facebook' => 'Login with Facebook',
     'twitter' => 'Login with Twitter',
     'linkedin' => 'Login with LinkedIn',
@@ -197,7 +198,8 @@ $LANG01 = array(
     'github' => 'Login with GitHub',
     'ctl' => 'Clear Cache',
     'ok' => 'OK',
-    'filemanager' => 'File Manager'
+    'filemanager' => 'File Manager',
+    'error_invalid_password' => 'Error, invalid password for username'
 );
 
 ###############################################################################
@@ -255,11 +257,13 @@ $LANG03 = array(
     103 => 'Ban this user',
     104 => 'Ban this IP address with the Spamx plugin',
     105 => 'IP Address',
-    106 => 'Perform bulk action on comments and comment submissions including approval, deleting, and banning of user or IP address.'
+    106 => 'Perform bulk action on comments and comment submissions including approval, deleting, and banning of user or IP address.',
+    'record_edit' => 'Record user and time of edit?',
+    'ban_plugin_ban_ip' => 'Ban this IP address with the Ban plugin'
 );
 
 ###############################################################################
-# users.php
+# usersettings.php
 
 $LANG04 = array(
     1 => 'Uporabnik',
@@ -356,7 +360,6 @@ $LANG04 = array(
     92 => 'Vpiši novo geslo',
     93 => 'Tvoja zadnja zahteva za novo geslo je bila sprejeta pred %d sekundami. Ta stran zahteva, da med spremembami gesla preteèe vsaj %d sekund.',
     94 => 'Izbriši raèun "%s"',
-    95 => 'Za izbris svojega uporabniškega raèuna iz naše baze podatkov klikni spodnji gumb "Izbriši raèun". Vsi prispevki, ki si jih prispeval/a pod tem raèunom, bodo <strong>ostali</strong> na naših straneh, ime objavitelja pa bo spremenjeno v "Anonimnež".',
     96 => 'Izbriši raèun',
     97 => 'Potrdi brisanje raèuna',
     98 => 'Hoèeš res izbrisati svoj uporabniški raèun? Po tem dejanju prijava na našo spletno stran ne bo veè mogoèa, razen èe si ustvariš nov raèun. Èe si preprièan/a o izbrisu, ponovno klikni "Izbriši raèun" v spodnjem obrazcu.',
@@ -427,9 +430,41 @@ $LANG04 = array(
     167 => 'Remote login',
     168 => 'You may also login with one on of the below remote authentication services',
     169 => 'User has updated his/her profile',
+    170 => "Admin at {$_CONF['site_name']} changed the password of your account as follows.  Please save this mail for further reference.",
     'user_login' => 'User Login',
     'user_login_message' => 'Please login below. You must enter both a username and password.',
-    'user_logged_in_message' => "You are already logged in. Whould you like to <a href=\"{$_CONF['site_url']}/users.php?mode=logout\" rel=\"nofollow\">logout</a>?"
+    'user_logged_in_message' => "You are already logged in. Whould you like to <a href=\"{$_CONF['site_url']}/users.php?mode=logout\" rel=\"nofollow\">logout</a>?",
+    'user_max_login_attempts' => 'Max Login Attempts and Speed Limit Reached',
+    'tfa_two_factor_auth' => 'Two Factor Authentication',
+    'tfa_help1' => 'Make sure to install "Google Authenticator" application on your mobile device before you enable Two Factor Authentication.',
+    'tfa_help2' => 'Enable Two Factor Authentication.',
+    'tfa_help3' => 'Run "Google Authenticator", tap on the plus icon and scan the QR code.',
+    'tfa_help4' => 'Print or download the backup codes below in case you cannot use your mobile device you installed the Google Authenticator.  Each backup code is valid only one-time.  If you generate a new set of backup codes, then the current set will be invalid.',
+    'tfa_help5' => 'Hit the "Save" button at the bottom of the screen.',
+    'tfa_enter_code' => 'Enter the %d-digit code your Google Authenticator app is showing or one of the backup code you have got in your preference page.',
+    'tfa_backup_code_desc' => 'Note: You can only use a backup code once, then it becomes invalid. Remember to generate more backup codes from the user preference page if you are getting low.',
+    'tfa_code' => 'Google Authenticator Code',
+    'tfa_authenticate' => 'Authenticate',
+    'tfa_qrcode' => 'QR Code',
+    'tfa_show_hide' => 'Show/Hide',
+    'tfa_backup_code' => 'Backup Codes',
+    'tfa_download' => 'Download Backup Codes',
+    'tfa_new_backup_code' => 'Generate a new set of backup codes',
+    'tfa_generate_confirm' => 'Go ahead?',
+    'lang_tfa_user_edit_desc' => 'You are only allowed to disable Two Factor Authentication (2FA) from this form if needed (like the user does not have their backup codes). It should not be enabled by Admins as the user themselves are required to enable and setup 2FA from their Account, including the Google Authenticator App for their phone and coping the backup codes.',
+    'desc_new_pwd_status' => 'You are required to enter a new password for your account. You can enter a new password for your account below. <em>Please note you will not be able to do anything with your account until your password is updated.</em>',
+    'new_email' => 'New Email',
+    'set_new_email' => 'Set New Email',
+    'confirm_new_email' => 'Confirm new email',
+    'enter_new_email' => 'Enter New Email',
+    'desc_new_email_status' => 'You are required to enter a new email address for your account. You can enter a new email for your account below. <em>Please note you will not be able to do anything with your account until your email is updated and verified.</em>',
+    'email_msg_email_status_1' => "You have updated your email address for your account \"%s\" on {$_CONF['site_name']}, <{$_CONF['site_url']}>.\n\nPlease click on the following link to verify this email address:\n\n",
+    'email_msg_email_status_2' => "If you do not verify this email address and you log into your account you will be required to enter a new email address and go through this email verification process again.\n\n",
+    'email_verify' => 'New Email to be Verified',
+    'email_verify_delete' => 'Delete email to be verified',
+    'email_verify_msg' => "You have previously updated your email address for your account but it still needs to be verified. Please check your email account for an email from {$_CONF['site_name']} that contains a verification link. Once you click on that link your new email address will be verified and your account will be updated to use it.<br" . XHTML . "><br" . XHTML . ">If you wish you may update the new email to be verified with the email fields above or you can delete it.",
+    'remove_account_msg' => 'To remove your account from our database, enter your current password into the above "Current Password", check the checkbox next to "Delete Option" below and click on "Save" . Please note that any articles and comments you posted under this account will <strong>not</strong> be deleted but show up as being posted by "Anonymous".',
+    'remove_remote_account_msg' => 'To remove your remote account from our database, check the checkbox next to "Delete Option" below and click on "Save" . Please note that any articles and comments you posted under this account will <strong>not</strong> be deleted but show up as being posted by "Anonymous".'
 );
 
 ###############################################################################
@@ -505,7 +540,8 @@ $LANG08 = array(
     40 => " seconds ago.  This site requires at least {$_CONF['speedlimit']} seconds between sending messages",
     41 => 'This user doesn\'t exist.',
     42 => 'This users email address doesn\'t exist. This most likely means is is an OAuth user account.',
-    43 => 'This users email address is invalid.'
+    43 => 'This users email address is invalid.',
+    44 => 'This users status is set to something other than Active or New Password therefore the email address is assumed bad.'
 );
 
 ###############################################################################
@@ -744,6 +780,9 @@ $LANG_ENVCHECK = array(
     'netpbm' => 'NetPBM Library',
     'np_ok' => 'The NetPBM library is installed',
     'np_not_found' => 'The NetPBM executables were not found.',
+    'fileinfo_library' => 'Fileinfo Library',
+    'fileinfo_ok' => 'The Fileinfo library is loaded. This library is required when uploading images for articles. It is used to get the mime type of the file being uploaded when creating a thumbnail of the image.',
+    'fileinfo_not_found' => 'The Fileinfo library is not loaded. This is required <strong>only</strong> when uploading images in the article editor.',
     'openssl_library' => 'OpenSSL Library',
     'openssl_ok' => 'The OpenSSL library is loaded. This library is required if you wish to use the OAuth user login method with Geeklog.',
     'openssl_not_found' => 'The OpenSSL library is not loaded. This is required <strong>only</strong> if you wish to use the OAuth user login method with Geeklog.',
@@ -798,7 +837,8 @@ $LANG20 = array(
     4 => 'Uporabniško ime:',
     5 => 'Geslo:',
     6 => 'Vsi dostopi do skrbniških delov tega spletnega mesta se beležijo in pregledujejo.<br' . XHTML . '>Te strani lahko uporabljajo samo pooblašèene osebe.<p>',
-    7 => 'prijava'
+    7 => 'prijava',
+    8 => 'Login'
 );
 
 ###############################################################################
@@ -874,7 +914,13 @@ $LANG21 = array(
     67 => 'Potrdi za odobritev samodejnih ukazov',
     68 => 'Združena vsebina tega bloka je predolga za prikaz. Prosim, v nastavitvah bloka nastavi najveèje število èlankov za uvoz ali nastavi najvišje število (global maximum) v nastavitvah Geekloga (Geeklog Configuration).',
     69 => 'Plugin Name',
+    70 => 'CSS ID',
+    71 => 'This field is optional',
+    72 => 'CSS Classes',
+    73 => 'This field is optional.  You can specify multiple classes separated by space',
     'autotag_desc_block' => '[block:name class:block-autotag] - Displays a block. Class not required. Class specifies the css class and will wrap the block in a div. The class block-autotag will always be included with the div.',
+    'newlines' => 'Newlines',
+    'convert_newlines' => 'Check to convert newlines (EOL) into line break HTML element',
     'position' => 'Position',
     'cache_time' => 'Cache Time',
     'cache_time_desc' => 'This block will be cached for no longer than this many seconds. If 0 caching is disabled. (3600 = 1 hour,  86400 = 1 day)',
@@ -886,7 +932,17 @@ $LANG21 = array(
 );
 
 ###############################################################################
-# admin/story.php
+# Block Locations
+
+$LANG23 = array(
+    'blocks_article_footer_name' => 'Article Footer',
+    'blocks_article_footer_desc' => 'Display Blocks in article Footer',
+    'blocks_article_topic_list_name' => 'Article Topic List',
+    'blocks_article_topic_list_desc' => 'Displays Blocks right after every X number of articles in topics.'
+);
+
+###############################################################################
+# admin/article.php
 
 $LANG24 = array(
     1 => 'Prejšnji èlanki',
@@ -929,8 +985,8 @@ $LANG24 = array(
     38 => 'Veè s podroèja',
     39 => 'Št. posredovanj po e-pošti',
     40 => '',
-    41 => "Poskušaš dostopiti do èlanka, do katerega nimaš pravice dostopa. Ta poskus je bil zabeležen in shranjen. Èlanek lahko samo prebereš, ne moreš pa ga urejati. Ko konèaš, pojdi prosim nazaj na <a href=\"{$_CONF['site_url']}/admin/story.php\">zaslon za skrbništvo èlankov</a>.",
-    42 => "Poskušaš dostopiti do èlanka, do katerega nimaš pravice dostopa. Ta poskus je bil zabeležen in shranjen. Pojdi prosim nazaj na <a href=\"{$_CONF['site_url']}/admin/story.php\">zaslon za skrbništvo èlankov</a>.",
+    41 => "Poskušaš dostopiti do èlanka, do katerega nimaš pravice dostopa. Ta poskus je bil zabeležen in shranjen. Èlanek lahko samo prebereš, ne moreš pa ga urejati. Ko konèaš, pojdi prosim nazaj na <a href=\"{$_CONF['site_url']}/admin/article.php\">zaslon za skrbništvo èlankov</a>.",
+    42 => "Poskušaš dostopiti do èlanka, do katerega nimaš pravice dostopa. Ta poskus je bil zabeležen in shranjen. Pojdi prosim nazaj na <a href=\"{$_CONF['site_url']}/admin/article.php\">zaslon za skrbništvo èlankov</a>.",
     43 => '',
     44 => '',
     45 => '',
@@ -966,7 +1022,7 @@ $LANG24 = array(
     75 => 'Vse funkcije',
     76 => 'Možnosti objave',
     77 => ' Za napredno urejanje mora biti Javascript omogoèen. Možnost lahko onemogoèiš na glavni strani config.php.',
-    78 => 'Za uporabo privzetega urejevalnika klikni <a href="%s/story.php?mode=edit&amp;sid=%s&amp;editopt=default">tukaj</a>.',
+    78 => 'Za uporabo privzetega urejevalnika klikni <a href="%s/article.php?mode=edit&amp;sid=%s&amp;editopt=default">tukaj</a>.',
     79 => 'Predogled',
     80 => 'Urejevalnik',
     81 => 'Možnosti objave',
@@ -981,7 +1037,13 @@ $LANG24 = array(
     90 => 'Meta Keywords',
     91 => 'Za podaljšanje trajanja seje klikni "Predogled".',
     92 => 'You might also like',
-    'autotag_desc_story' => '[story: id alternate title] - Displays a link to a Story using the Story Title as the title. An alternate title may be specified but is not required.',
+    93 => '#',
+    94 => 'Resized',
+    95 => 'Original',
+    96 => 'Upload | Replace',
+    97 => 'No Image',
+    'autotag_desc_story' => '[article: id alternate title] - Displays a link to an article using the Article Title as the title. An alternate title may be specified but is not required.',
+    'autotag_desc_article' => '[article: id alternate title] - Displays a link to an article using the Article Title as the title. An alternate title may be specified but is not required.',
     'cache_time' => 'Cache Time',
     'cache_time_desc' => 'This article will be cached for no longer than this many seconds. If 0 caching is disabled. If -1 cached until article is edited again. (3600 = 1 hour,  86400 = 1 day)'
 );
@@ -1041,7 +1103,7 @@ $LANG27 = array(
     49 => 'This Topic ID is already being used. Please choose another one.',
     50 => 'Yes',
     51 => 'No',
-    52 => 'Story',
+    52 => 'Article',
     53 => 'Image',
     54 => 'Selected',
     55 => 'Assigned',
@@ -1052,7 +1114,9 @@ $LANG27 = array(
     'autotag_desc_related_items' => '[related_items:id type:plugin max:max_items_listed trim:max_length include:plugin] - Create a clickable list of related items based on the item id and type.',
     'no_related_items' => 'No related items found.',
     'topics:' => 'Topics:',
-    'filed_under:' => 'Filed under:'
+    'filed_under:' => 'Filed under:',
+    'topic_title' => 'Topic Title',
+    'topic_title_desc' => 'Used as the page title for the topic. If empty the topic name will be used.'
 );
 
 ###############################################################################
@@ -1149,11 +1213,17 @@ $LANG28 = array(
     88 => 'Prednastavljena skupina',
     89 => 'Potrdi, da to postane prednastavljena skupina za nove uporabnike',
     90 => 'Vnesi spremembe "Prednastavljene skupine" obstojeèim uporabniškim raèunom',
-    'autotag_desc_user' => '[user: id alternate title] - Displays a link to a User using the Username as the title. An alternate title may be specified but is not required.'
+    91 => 'Send password to user',
+    92 => 'Only for new users or when changing password for existing user.',
+    'autotag_desc_user' => '[user: id alternate title] - Displays a link to a User using the Username as the title. An alternate title may be specified but is not required.',
+    'USER_ACCOUNT_LOCKED' => 'Locked',
+    'USER_ACCOUNT_NEW_EMAIL' => 'New Email Required',
+    'USER_ACCOUNT_NEW_PASSWORD' => 'New Password Required'
 );
 
 ###############################################################################
 # admin/moderation.php
+# admin/index.php
 
 $LANG29 = array(
     1 => 'Objavi',
@@ -1186,7 +1256,9 @@ $LANG29 = array(
     'plugins' => 'Plugins',
     'tools' => 'Tools',
     'users' => 'Users',
-    'submissions_desc' => 'To modify or delete a user submssion, click on that item\'s edit icon below. To approve and delete multiple submissions use the radio options in the lists and then click submit.'
+    'submissions_desc' => 'To modify or delete a user submssion, click on that item\'s edit icon below. To approve and delete multiple submissions use the radio options in the lists and then click submit.',
+    'max_invalid_login' => 'Max Invalid Logins Reached for User',
+    'max_invalid_login_msg' => 'This user has reached the maximum number of invalid login attempts () within the specified time limit ( seconds). The last IP to make an invalid login attempt is %s. Either the real user has forgotten the password for their account, or someone else is attempting to guess the password for this user account.'
 );
 
 ###############################################################################
@@ -1364,7 +1436,7 @@ $LANG33 = array(
 );
 
 ###############################################################################
-# admin/language.php
+# admin/language.php (since v2.1.2)
 
 $LANG_LANG = array(
     'language_admin_title' => 'Language Overrides',
@@ -1401,7 +1473,11 @@ $LANG_ROUTER = array(
     17 => 'Database error occurred.',
     18 => '<strong>To enable URL routing, you have to enable URL rewrite in the Configuration.</strong>',
     19 => '<strong>To enable URL routing, you have to enable URL routing in the Configuration.</strong>',
-    20 => '<ul><li>Placeholders (@) must be the same both in a rule and its route.</li><li>A placeholder starts with "@", followed by an alphabet, optionally followed by any length of alphabet or digit.</li><li>Placeholders are case-sensitive.</li></ul>'
+    20 => '<ul><li>Placeholders (@) must be the same both in a rule and its route.</li><li>A placeholder starts with "@", followed by an alphabet, optionally followed by any length of alphabet or digit.</li><li>Placeholders are case-sensitive.</li></ul>',
+    21 => 'Status Code',
+    22 => 'Enabled',
+    23 => 'Yes',
+    24 => 'No'
 );
 
 ###############################################################################
@@ -1424,16 +1500,16 @@ $MESSAGE = array(
     14 => 'Rubrika skupaj z vsemi èlanki in bloki je bila uspešno izbrisana.',
     15 => 'Komentar je poslan v pregled in bo objavljen, ko ga urednik odobri.',
     16 => 'Izpisali ste se. O odgovorih ne boste veè obvešèeni.',
-    17 => '',
+    17 => 'Your user account has been locked and access to it has been disabled. For more information please contact the Admin.',
     18 => '',
     19 => '',
     20 => '',
     21 => 'Uporabnik je bil uspešno shranjen.',
     22 => 'Uporabnik je bil uspešno izbrisan.',
-    23 => '',
-    24 => '',
-    25 => '',
-    26 => '',
+    23 => 'Your passwords must match, please try again. Passwords are case sensitive.',
+    24 => 'Your emails must match, please try again.',
+    25 => 'You have not entered a valid email address, please try again.',
+    26 => 'That email address is already being used by an account, please try again.',
     27 => 'Sporoèilo je bilo uspešno poslano.',
     28 => 'Vtiènik je bil uspešno shranjen',
     29 => 'Oprosti, do te uredniške strani nimaš dostopa. Vsi poskusi dostopa do nepooblašèenih funkcij se beležijo.',
@@ -1450,11 +1526,11 @@ $MESSAGE = array(
     40 => 'Sistemsko sporoèilo',
     41 => '',
     42 => '',
-    43 => '',
+    43 => 'Account does not exist.',
     44 => 'Vtiènik je uspešno namešèen.',
     45 => 'Vtiènik je uspešno odstranjen.',
-    46 => '',
-    47 => '',
+    46 => 'Your username or email address was not found, please try again.',
+    47 => 'Sorry you cannot currently request the password for your account. For more information please contact the Admin.',
     48 => "Hvala, da si zaprosil za èlanstvo v {$_CONF['site_name']}. Pregledali bomo tvojo prošnjo. Èe bo odobrena, boš dobil geslo na e-naslov, ki si ga ravnokar vnesel.",
     49 => 'Skupina je uspešno shranjena.',
     50 => 'Skupina je uspešno izbrisana.',
@@ -1530,12 +1606,18 @@ $MESSAGE = array(
     142 => 'Approved comment(s).',
     143 => 'Banned user(s).',
     144 => 'Banned IP addresses with the Spamx plugin.',
+    145 => 'Banned IP addresses with the Ban plugin.',
     150 => 'Successfully deleted all the files and directories used during the installation.',
     151 => 'Failed to delete some files and directories used during the installation.  Please remove them manually.',
     152 => 'All the files and directories used during the installation are left as they are.  It is dangerous to keep them on the server, so please don\'t forget to remove them manually.',
+    153 => 'You last emailed an article %1$d seconds ago.  This site requires at least %2$d seconds between emailing articles.',
     400 => 'Vsa zahtevana polja niso bila veljavno izpolnjena.',
     401 => 'Prosim, vnesi polno ime',
-    500 => 'The Template Cache has been successfully cleared.'
+    500 => 'The Template Cache has been successfully cleared.',
+    501 => 'A verification message has been sent to your email address. Please click on the link in the email to confirm your email address and update your account. If you log into your account again before you verify your email address you will be asked again for a email address.<br' . XHTML . '><br' . XHTML . '>Please note you have now been successfully logged out so you can complete this verification.',
+    502 => 'Your request for a new email has expired. Please try again below.',
+    503 => 'Your email has been successfully verified.',
+    504 => 'Passwords must have a minimum of 8 characters and contain at least 1 number and 1 letter. Passwords are case sensitive.'
 );
 
 ###############################################################################
@@ -1588,11 +1670,13 @@ $LANG_ACCESS = array(
     'listusers' => 'Èlani',
     'listthem' => 'seznam',
     'usersingroup' => 'Uporabniki v skupini %s',
+    'usersingroupmsg' => 'A list of users that belong to the group. Users lists here may belong directly to the group or are inherited from another group that has been added to this group.',
     'usergroupadmin' => 'Skrbništvo skupin uporabnikov',
     'add' => 'Dodaj',
     'remove' => 'Odstrani',
     'availmembers' => 'Èlani na voljo',
     'groupmembers' => 'Èlani skupine',
+    'inheritmembers' => 'Inherited Group Members',
     'canteditgroup' => 'Za urejanje te skupine moraš biti njen èlan. Èe misliš, da gre za napako, se posvetuj s skrbnikom sistema.',
     'cantlistgroup' => 'Da lahko vidiš èlane te skupine, moraš biti njen èlan. Èe misliš, da gre za napako, se posvetuj s skrbnikom sistema.',
     'editgroupmsg' => 'Za spreminjanje èlanstva v skupini klikni na izbrana imena èlanov in uporabi gumb Dodaj ali Odstrani. Èe je èlan tudi èlan te skupine, se bo njegovo ime pojavilo samo ne desni strani. Ko konèaš, pritisni na <b>Shrani</b>, da se skupina posodobi, in se vrni na glavno stran za skrbništvo skupin uporabnikov.',
@@ -1603,7 +1687,8 @@ $LANG_ACCESS = array(
     'group_id' => 'ID skupine',
     'plugin_access_denied_msg' => 'Nedovoljeno poskušaš dostopiti do strani za skrbništvo vtiènikov. Vsi poskusi dostopa do nepooblašèenih funkcij se beležijo.',
     'groupexists' => 'Ime skupine že obstaja',
-    'groupexistsmsg' => 'Skupina s tem imenom že obstaja. Imena skupin morajo biti razlièna.'
+    'groupexistsmsg' => 'Skupina s tem imenom že obstaja. Imena skupin morajo biti razlièna.',
+    'demo_mode_denied_msg' => 'This feature is currently disabled while the site is in Demo Mode.'
 );
 
 ###############################################################################
@@ -1780,11 +1865,11 @@ $LANG_TRB = array(
     'trackbacks' => 'Trackbacks',
     'editor_intro' => 'Prepare your trackback comment for <a href="%s">%s</a>.',
     'editor_intro_none' => 'Prepare your trackback comment.',
-    'trackback_note' => 'To send a trackback comment for a story, go to the list of stories and click on "Send Ping" for the story. To send a trackback that is not related to a story, <a href="%s">click here</a>.',
+    'trackback_note' => 'To send a trackback comment for an article, go to the list of articles and click on "Send Ping" for the article. To send a trackback that is not related to an article, <a href="%s">click here</a>.',
     'pingback_explain' => 'Enter a URL to send the Pingback to. The pingback will point to your site\'s homepage.',
     'pingback_url' => 'Pingback URL',
     'site_url' => 'This site\'s URL',
-    'pingback_note' => 'To send a pingback for a story, go to the list of stories and click on "Send Ping" for the story. To send a pingback that is not related to a story, <a href="%s">click here</a>.',
+    'pingback_note' => 'To send a pingback for an article, go to the list of articles and click on "Send Ping" for the article. To send a pingback that is not related to an article, <a href="%s">click here</a>.',
     'pbtarget_missing' => 'No Pingback URL',
     'pbtarget_required' => 'Please enter a pingback URL',
     'pb_error_details' => 'Error when sending the pingback:',
@@ -1830,10 +1915,10 @@ $LANG_SECTEST = array(
 ###############################################################################
 # "What's New" Time Strings
 # 
-# For the first two strings, you can use the following placeholders.
-# Order them so it makes sense in your language:
-# %i    item, "Stories"
-# %n    amount, "2", "20" etc.
+# This here determines the order of the sentence "No new articles in 2 hrs"
+# order it so it makes sense in your language:
+# %i    item, "Articles"
+# %n    amount, "2", "20" etc
 # %t    time, "2" (weeks)
 # %s    scale, "hrs", "weeks"
 
@@ -1930,6 +2015,7 @@ $LANG_ADMIN = array(
     'token_expiry' => 'Spremembe lahko narediš do %s. Po tem èasu bo varnostni žeton (token), vstavljen v to stran, potekel in spremembe bodo izgubljene.',
     'token_expired' => 'Varnostni žeton (token) za ta postopek je potekel. Za nadaljevanje prosim ponovno preveri pristnost (avtentifikacija).',
     'reauth_msg' => 'Varnostni žeton (token) za ta postopek je potekel. Èe hoèeš nadaljevati, prosim ponovno preveri pristnost (avtentificiraj)spodaj. To bo zagotovilo, da narejene spremembe ne bodo izgubljene.',
+    'token_expired_remote_user' => 'The security token for this operation has expired. Since you are a remote user you cannot re-authenticate, so you have lost your changes.',
     'authenticate' => 'Preveri pristnost',
     'approve' => 'Approve',
     'device' => 'Device',
@@ -1986,13 +2072,18 @@ $LANG_frontpagecodes = array(
 
 $LANG_postmodes = array(
     'plaintext' => 'Samo besedilo',
-    'html' => 'Oblikovano v HTML',
-    'wikitext' => 'Wiki-style format'
+    'html' => 'Oblikovano v HTML'
 );
 
 $LANG_sortcodes = array(
     'ASC' => 'Najprej najstarejši',
     'DESC' => 'Najprej najnovejši'
+);
+
+$LANG_statuscodes = array(
+    0 => 'Normal',
+    1 => 'Refreshing',
+    10 => 'Archive'
 );
 
 $LANG_trackbackcodes = array(
@@ -2055,15 +2146,18 @@ $LANG_confignames['Core'] = array(
     'path_themes' => 'Pot do tem',
     'cache_templates' => 'Cache Templates?',
     'cache_mobile' => 'Cache Mobile Devices Separately?',
+    'cache_resource' => 'Combine, Minify and Cache CSS and JavaScript Files?',
     'disable_new_user_registration' => 'Onemogoèi nove registracije',
     'allow_user_themes' => 'Dovoli uporabnikom izbiro postavitve',
     'allow_user_language' => 'Dovoli uporabnikom izbiro jezika',
+    'switchlang_homepage' => 'Switch Language Block Redirects to Homepage',
     'allow_user_photo' => 'Dovoli uporabnikom izbiro fotografije',
     'allow_username_change' => 'Dovoli uporabnikom spremembo uporabniškega imena',
     'allow_account_delete' => 'Dovoli brisanje raèuna',
     'hide_author_exclusion' => 'Dovoli skrivanje avtorja',
     'show_fullname' => 'Prikaži polno ime',
     'show_servicename' => 'Prikaži ime servisa',
+    'require_user_email' => 'Require User Email',
     'custom_registration' => 'Omogoèi registracijo po meri',
     'user_login_method' => 'Naèin prijave uporabnika',
     'facebook_login' => 'Enable OAuth Login Method Facebook',
@@ -2197,6 +2291,7 @@ $LANG_confignames['Core'] = array(
     'whats_related_max' => 'Max What\'s Related to Display',
     'whats_related_trim' => 'What\'s Related Title Length',
     'default_cache_time_article' => 'Default Article Cache Time',
+    'blocks_article_topic_list_repeat_after' => 'Article Topic List Blocks Location Repeat',
     'aftersave_user' => 'Po shranjevanju uporabnika',
     'show_right_blocks' => 'Vedno prikaži desne bloke?',
     'showfirstasfeatured' => 'Prikaži prvi èlanek kot udarni èlanek?',
@@ -2243,6 +2338,9 @@ $LANG_confignames['Core'] = array(
     'passwordspeedlimit' => 'Zahtevani èas med vpisi gesla',
     'login_attempts' => 'Najveèje število poizkusov prijave',
     'login_speedlimit' => 'Zahtevani èas med prijavami',
+    'invalidloginattempts' => 'Max. Invalid Login Attempts',
+    'invalidloginmaxtime' => 'Invalid Login Max Time',
+    'enable_twofactorauth' => 'Enable Two Factor Authentication?',
     'pass_alg' => 'Password Hash Algorithm',
     'pass_stretch' => 'Hash Stretch Count',
     'user_html' => 'Uporabnikov HTML',
@@ -2256,14 +2354,16 @@ $LANG_confignames['Core'] = array(
     'compressed_output' => 'Pošiljaj stisnjen izhod?',
     'frame_options' => 'Zašèiti proti "clickjackingu"',
     'page_navigation_max_pages' => 'Max Pages for Navigation',
+    'page_navigation_mobile_max_pages' => 'Max Pages for Navigation with Mobile Devices',
     'default_cache_time_block' => 'Default Block Cache Time',
     'titletoid' => 'Enable Title To Id?',
+    '404_log' => 'Log 404 Errors',
     'censormode' => 'Naèin cenzor?',
     'censorreplace' => 'Tekst namesto cenzuriranega',
     'censorlist' => 'seznam cenzur',
     'ip_lookup' => 'IP poizvedba (lookup)',
     'url_rewrite' => 'Omogoèi URL prepisovanje (Rewrite)',
-    'url_Routing' => 'Enable URL Routing',
+    'url_routing' => 'Enable URL Routing',
     'cdn_hosted' => 'Use CDN-hosted copy of jQuery',
     'meta_tags' => 'Meta Tags',
     'meta_description' => 'Default Meta Description',
@@ -2290,7 +2390,7 @@ $LANG_confignames['Core'] = array(
     'search_def_keytype' => 'Prednastavljena metoda iskanja',
     'search_def_sort' => 'Prednastavljen vrstni red sortiranja',
     'search_use_topic' => 'Use Current Topic',
-    'autotag_permissions_story' => '[story: ] Permissions',
+    'autotag_permissions_story' => '[article: ] Permissions',
     'autotag_permissions_user' => '[user: ] Permissions',
     'autotag_permissions_topic' => '[topic: ] Permissions',
     'autotag_permissions_related_topics' => '[related_topics: ] Permissions',
@@ -2418,7 +2518,7 @@ $LANG_tab['Core'] = array(
     'tab_whatsnew_block' => 'What\'s New Block',
     'tab_trackback' => 'Trackback',
     'tab_pingback' => 'Pingback',
-    'tab_story' => 'Story',
+    'tab_story' => 'Article',
     'tab_theme_advanced' => 'Advanced Settings',
     'tab_syndication' => 'Syndication',
     'tab_imagelib' => 'Image Library',
@@ -2467,7 +2567,7 @@ $LANG_configselects['Core'] = array(
     22 => array('Strict' => 'DENY', 'Same Origin' => 'SAMEORIGIN', '(disabled)' => ''),
     23 => array('Disabled' => 0, 'Enabled' => 1, 'Enabled (Default for Homepage only)' => 2),
     24 => array('Contribute' => 'contribute', 'Home' => 'home', 'Advanced Search' => 'search', 'Directory' => 'directory', 'Login' => 'login', 'My Account' => 'prefs', 'Plugin Entries' => 'plugins', 'Custom Entries' => 'custom', 'Site Statistics' => 'stats'),
-    25 => array('New Stories' => 'story', 'New Comments' => 'comment', 'New Trackbacks' => 'trackback', 'New Pingbacks' => 'pingback', 'New Users' => 'user', 'User Updates' => 'user_update'),
+    25 => array('New Articles' => 'article', 'New Comments' => 'comment', 'New Trackbacks' => 'trackback', 'New Pingbacks' => 'pingback', 'New Users' => 'user', 'User Updates' => 'user_update'),
     26 => array('G (General Audiences)' => 'G', 'PG (Parental Guidance)' => 'PG', 'R (Restricted)' => 'R', 'X (Explicit)' => 'X'),
     27 => array('Hits (asc)' => 'hits|asc', 'Hits (desc)' => 'hits|desc', 'Date (asc)' => 'date|asc', 'Date (desc)' => 'date|desc', 'Title (asc)' => 'title|asc', 'Title (desc)' => 'title|desc', 'Author (asc)' => 'uid|asc', 'Author (desc)' => 'uid|desc'),
     28 => array('No access' => 0, 'Use' => 2),

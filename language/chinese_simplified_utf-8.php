@@ -146,7 +146,7 @@ $LANG01 = array(
     98 => '插件',
     99 => '文章',
     100 => '没有新的文章',
-    101 => 'There are no older stories',
+    101 => 'There are no older articles',
     102 => '',
     103 => '资料库备份',
     104 => '由',
@@ -188,6 +188,7 @@ $LANG01 = array(
     140 => 'Allowed Autotags:',
     141 => 'An Error Occurred',
     142 => 'Unfortunately, an error has occurred rendering this page. Please try again later.',
+    143 => 'Comment (%d)',
     'facebook' => 'Login with Facebook',
     'twitter' => 'Login with Twitter',
     'linkedin' => 'Login with LinkedIn',
@@ -197,7 +198,8 @@ $LANG01 = array(
     'github' => 'Login with GitHub',
     'ctl' => 'Clear Cache',
     'ok' => 'OK',
-    'filemanager' => 'File Manager'
+    'filemanager' => 'File Manager',
+    'error_invalid_password' => 'Error, invalid password for username'
 );
 
 ###############################################################################
@@ -255,11 +257,13 @@ $LANG03 = array(
     103 => 'Ban this user',
     104 => 'Ban this IP address with the Spamx plugin',
     105 => 'IP Address',
-    106 => 'Perform bulk action on comments and comment submissions including approval, deleting, and banning of user or IP address.'
+    106 => 'Perform bulk action on comments and comment submissions including approval, deleting, and banning of user or IP address.',
+    'record_edit' => 'Record user and time of edit?',
+    'ban_plugin_ban_ip' => 'Ban this IP address with the Ban plugin'
 );
 
 ###############################################################################
-# users.php
+# usersettings.php
 
 $LANG04 = array(
     1 => '用户概况',
@@ -356,7 +360,6 @@ $LANG04 = array(
     92 => '输入新密码',
     93 => '你在 %d 秒钟前刚要了一个新密码. 此站规定最少要 %d 秒钟以后才可再次要求新密码。',
     94 => '将用户 \'%s\' 删除',
-    95 => '单据下面的 \'删除用户\' 便将你在我们资料库里的用户。请注意，你以其用户所登载过的文章和评论不会删除，可是会以无名作者的身份显示。',
     96 => '删除用户',
     97 => '确定用户删除',
     98 => '你肯定要删除你的用户吗? 其后你就不在能使用此站,除非你重新设定新用户. 若你肯定的话请再次单据下面的 “删除用户”.',
@@ -427,9 +430,41 @@ $LANG04 = array(
     167 => 'Remote login',
     168 => 'You may also login with one on of the below remote authentication services',
     169 => 'User has updated his/her profile',
+    170 => "Admin at {$_CONF['site_name']} changed the password of your account as follows.  Please save this mail for further reference.",
     'user_login' => 'User Login',
     'user_login_message' => 'Please login below. You must enter both a username and password.',
-    'user_logged_in_message' => "You are already logged in. Whould you like to <a href=\"{$_CONF['site_url']}/users.php?mode=logout\" rel=\"nofollow\">logout</a>?"
+    'user_logged_in_message' => "You are already logged in. Whould you like to <a href=\"{$_CONF['site_url']}/users.php?mode=logout\" rel=\"nofollow\">logout</a>?",
+    'user_max_login_attempts' => 'Max Login Attempts and Speed Limit Reached',
+    'tfa_two_factor_auth' => 'Two Factor Authentication',
+    'tfa_help1' => 'Make sure to install "Google Authenticator" application on your mobile device before you enable Two Factor Authentication.',
+    'tfa_help2' => 'Enable Two Factor Authentication.',
+    'tfa_help3' => 'Run "Google Authenticator", tap on the plus icon and scan the QR code.',
+    'tfa_help4' => 'Print or download the backup codes below in case you cannot use your mobile device you installed the Google Authenticator.  Each backup code is valid only one-time.  If you generate a new set of backup codes, then the current set will be invalid.',
+    'tfa_help5' => 'Hit the "Save" button at the bottom of the screen.',
+    'tfa_enter_code' => 'Enter the %d-digit code your Google Authenticator app is showing or one of the backup code you have got in your preference page.',
+    'tfa_backup_code_desc' => 'Note: You can only use a backup code once, then it becomes invalid. Remember to generate more backup codes from the user preference page if you are getting low.',
+    'tfa_code' => 'Google Authenticator Code',
+    'tfa_authenticate' => 'Authenticate',
+    'tfa_qrcode' => 'QR Code',
+    'tfa_show_hide' => 'Show/Hide',
+    'tfa_backup_code' => 'Backup Codes',
+    'tfa_download' => 'Download Backup Codes',
+    'tfa_new_backup_code' => 'Generate a new set of backup codes',
+    'tfa_generate_confirm' => 'Go ahead?',
+    'lang_tfa_user_edit_desc' => 'You are only allowed to disable Two Factor Authentication (2FA) from this form if needed (like the user does not have their backup codes). It should not be enabled by Admins as the user themselves are required to enable and setup 2FA from their Account, including the Google Authenticator App for their phone and coping the backup codes.',
+    'desc_new_pwd_status' => 'You are required to enter a new password for your account. You can enter a new password for your account below. <em>Please note you will not be able to do anything with your account until your password is updated.</em>',
+    'new_email' => 'New Email',
+    'set_new_email' => 'Set New Email',
+    'confirm_new_email' => 'Confirm new email',
+    'enter_new_email' => 'Enter New Email',
+    'desc_new_email_status' => 'You are required to enter a new email address for your account. You can enter a new email for your account below. <em>Please note you will not be able to do anything with your account until your email is updated and verified.</em>',
+    'email_msg_email_status_1' => "You have updated your email address for your account \"%s\" on {$_CONF['site_name']}, <{$_CONF['site_url']}>.\n\nPlease click on the following link to verify this email address:\n\n",
+    'email_msg_email_status_2' => "If you do not verify this email address and you log into your account you will be required to enter a new email address and go through this email verification process again.\n\n",
+    'email_verify' => 'New Email to be Verified',
+    'email_verify_delete' => 'Delete email to be verified',
+    'email_verify_msg' => "You have previously updated your email address for your account but it still needs to be verified. Please check your email account for an email from {$_CONF['site_name']} that contains a verification link. Once you click on that link your new email address will be verified and your account will be updated to use it.<br" . XHTML . "><br" . XHTML . ">If you wish you may update the new email to be verified with the email fields above or you can delete it.",
+    'remove_account_msg' => 'To remove your account from our database, enter your current password into the above "Current Password", check the checkbox next to "Delete Option" below and click on "Save" . Please note that any articles and comments you posted under this account will <strong>not</strong> be deleted but show up as being posted by "Anonymous".',
+    'remove_remote_account_msg' => 'To remove your remote account from our database, check the checkbox next to "Delete Option" below and click on "Save" . Please note that any articles and comments you posted under this account will <strong>not</strong> be deleted but show up as being posted by "Anonymous".'
 );
 
 ###############################################################################
@@ -505,7 +540,8 @@ $LANG08 = array(
     40 => " seconds ago.  This site requires at least {$_CONF['speedlimit']} seconds between sending messages",
     41 => 'This user doesn\'t exist.',
     42 => 'This users email address doesn\'t exist. This most likely means is is an OAuth user account.',
-    43 => 'This users email address is invalid.'
+    43 => 'This users email address is invalid.',
+    44 => 'This users status is set to something other than Active or New Password therefore the email address is assumed bad.'
 );
 
 ###############################################################################
@@ -576,7 +612,7 @@ $LANG09 = array(
     62 => '#',
     63 => 'Description',
     64 => 'Showing %1$d - %2$d of %3$d results',
-    65 => 'Story',
+    65 => 'Article',
     66 => 'Comment',
     67 => 'Show %d Results',
     68 => 'Sort By',
@@ -744,6 +780,9 @@ $LANG_ENVCHECK = array(
     'netpbm' => 'NetPBM Library',
     'np_ok' => 'The NetPBM library is installed',
     'np_not_found' => 'The NetPBM executables were not found.',
+    'fileinfo_library' => 'Fileinfo Library',
+    'fileinfo_ok' => 'The Fileinfo library is loaded. This library is required when uploading images for articles. It is used to get the mime type of the file being uploaded when creating a thumbnail of the image.',
+    'fileinfo_not_found' => 'The Fileinfo library is not loaded. This is required <strong>only</strong> when uploading images in the article editor.',
     'openssl_library' => 'OpenSSL Library',
     'openssl_ok' => 'The OpenSSL library is loaded. This library is required if you wish to use the OAuth user login method with Geeklog.',
     'openssl_not_found' => 'The OpenSSL library is not loaded. This is required <strong>only</strong> if you wish to use the OAuth user login method with Geeklog.',
@@ -798,7 +837,8 @@ $LANG20 = array(
     4 => '用户名：',
     5 => '密码：',
     6 => '这页只供授权人员使用。<br' . XHTML . '>所有存取将被记录和检查。',
-    7 => '登入'
+    7 => '登入',
+    8 => 'Login'
 );
 
 ###############################################################################
@@ -874,7 +914,13 @@ $LANG21 = array(
     67 => '打勾来准许自动标签',
     68 => '这入口组件的新闻馈入太长. 请在组件设定区里设定最多文章数限，或在志乐的全面设定区里设定最多文章数限。',
     69 => 'Plugin Name',
+    70 => 'CSS ID',
+    71 => 'This field is optional',
+    72 => 'CSS Classes',
+    73 => 'This field is optional.  You can specify multiple classes separated by space',
     'autotag_desc_block' => '[block:name class:block-autotag] - Displays a block. Class not required. Class specifies the css class and will wrap the block in a div. The class block-autotag will always be included with the div.',
+    'newlines' => 'Newlines',
+    'convert_newlines' => 'Check to convert newlines (EOL) into line break HTML element',
     'position' => 'Position',
     'cache_time' => 'Cache Time',
     'cache_time_desc' => 'This block will be cached for no longer than this many seconds. If 0 caching is disabled. (3600 = 1 hour,  86400 = 1 day)',
@@ -886,7 +932,17 @@ $LANG21 = array(
 );
 
 ###############################################################################
-# admin/story.php
+# Block Locations
+
+$LANG23 = array(
+    'blocks_article_footer_name' => 'Article Footer',
+    'blocks_article_footer_desc' => 'Display Blocks in article Footer',
+    'blocks_article_topic_list_name' => 'Article Topic List',
+    'blocks_article_topic_list_desc' => 'Displays Blocks right after every X number of articles in topics.'
+);
+
+###############################################################################
+# admin/article.php
 
 $LANG24 = array(
     1 => '上篇文章',
@@ -929,8 +985,8 @@ $LANG24 = array(
     38 => '更多发表於',
     39 => '电邮',
     40 => '',
-    41 => "企图存取不允许的文章已被记录。你可以以唯读模式观看下面文章。看完後请<a href=\"{$_CONF['site_admin_url']}/story.php\">反回文章管理员昼面</a>。",
-    42 => "企图存取不允许的文章已被记录。请<a href=\"{$_CONF['site_admin_url']}/story.php\">反回文章管理员昼面</a>。",
+    41 => "企图存取不允许的文章已被记录。你可以以唯读模式观看下面文章。看完後请<a href=\"{$_CONF['site_admin_url']}/article.php\">反回文章管理员昼面</a>。",
+    42 => "企图存取不允许的文章已被记录。请<a href=\"{$_CONF['site_admin_url']}/article.php\">反回文章管理员昼面</a>。",
     43 => '',
     44 => '',
     45 => '',
@@ -966,7 +1022,7 @@ $LANG24 = array(
     75 => '全部功能',
     76 => '出版选项',
     77 => '必须启动Javascript 来用高级的编辑器。此选项可再config.php 关掉。',
-    78 => '点击<a href="%s/story.php?mode=edit&amp;sid=%s&amp;editopt=default">这里</a>来用预设值的编辑器',
+    78 => '点击<a href="%s/article.php?mode=edit&amp;sid=%s&amp;editopt=default">这里</a>来用预设值的编辑器',
     79 => '预览',
     80 => '编辑器',
     81 => '出版选项',
@@ -981,7 +1037,13 @@ $LANG24 = array(
     90 => 'Meta Keywords',
     91 => 'You can always hit "Preview" to extend the expiry time.',
     92 => 'You might also like',
-    'autotag_desc_story' => '[story: id alternate title] - Displays a link to a Story using the Story Title as the title. An alternate title may be specified but is not required.',
+    93 => '#',
+    94 => 'Resized',
+    95 => 'Original',
+    96 => 'Upload | Replace',
+    97 => 'No Image',
+    'autotag_desc_story' => '[article: id alternate title] - Displays a link to an article using the Article Title as the title. An alternate title may be specified but is not required.',
+    'autotag_desc_article' => '[article: id alternate title] - Displays a link to an article using the Article Title as the title. An alternate title may be specified but is not required.',
     'cache_time' => 'Cache Time',
     'cache_time_desc' => 'This article will be cached for no longer than this many seconds. If 0 caching is disabled. If -1 cached until article is edited again. (3600 = 1 hour,  86400 = 1 day)'
 );
@@ -1019,7 +1081,7 @@ $LANG27 = array(
     27 => '或上载主题图像',
     28 => '最大',
     29 => '文件上载出了问题',
-    30 => 'Stories in Topic',
+    30 => 'Articles in Topic',
     31 => 'You have used a restricted Topic ID. Please choose another one.',
     32 => 'Parent Topic',
     33 => 'Inherit',
@@ -1041,7 +1103,7 @@ $LANG27 = array(
     49 => 'This Topic ID is already being used. Please choose another one.',
     50 => 'Yes',
     51 => 'No',
-    52 => 'Story',
+    52 => 'Article',
     53 => 'Image',
     54 => 'Selected',
     55 => 'Assigned',
@@ -1052,7 +1114,9 @@ $LANG27 = array(
     'autotag_desc_related_items' => '[related_items:id type:plugin max:max_items_listed trim:max_length include:plugin] - Create a clickable list of related items based on the item id and type.',
     'no_related_items' => 'No related items found.',
     'topics:' => 'Topics:',
-    'filed_under:' => 'Filed under:'
+    'filed_under:' => 'Filed under:',
+    'topic_title' => 'Topic Title',
+    'topic_title_desc' => 'Used as the page title for the topic. If empty the topic name will be used.'
 );
 
 ###############################################################################
@@ -1149,11 +1213,17 @@ $LANG28 = array(
     88 => 'Default Group',
     89 => 'Check to make this a default group for new users',
     90 => 'Apply "Default Group" change to existing user accounts',
-    'autotag_desc_user' => '[user: id alternate title] - Displays a link to a User using the Username as the title. An alternate title may be specified but is not required.'
+    91 => 'Send password to user',
+    92 => 'Only for new users or when changing password for existing user.',
+    'autotag_desc_user' => '[user: id alternate title] - Displays a link to a User using the Username as the title. An alternate title may be specified but is not required.',
+    'USER_ACCOUNT_LOCKED' => 'Locked',
+    'USER_ACCOUNT_NEW_EMAIL' => 'New Email Required',
+    'USER_ACCOUNT_NEW_PASSWORD' => 'New Password Required'
 );
 
 ###############################################################################
 # admin/moderation.php
+# admin/index.php
 
 $LANG29 = array(
     1 => '批准',
@@ -1186,7 +1256,9 @@ $LANG29 = array(
     'plugins' => 'Plugins',
     'tools' => 'Tools',
     'users' => 'Users',
-    'submissions_desc' => 'To modify or delete a user submssion, click on that item\'s edit icon below. To approve and delete multiple submissions use the radio options in the lists and then click submit.'
+    'submissions_desc' => 'To modify or delete a user submssion, click on that item\'s edit icon below. To approve and delete multiple submissions use the radio options in the lists and then click submit.',
+    'max_invalid_login' => 'Max Invalid Logins Reached for User',
+    'max_invalid_login_msg' => 'This user has reached the maximum number of invalid login attempts () within the specified time limit ( seconds). The last IP to make an invalid login attempt is %s. Either the real user has forgotten the password for their account, or someone else is attempting to guess the password for this user account.'
 );
 
 ###############################################################################
@@ -1358,13 +1430,13 @@ $LANG33 = array(
     50 => "跟网址有关 ({$_CONF['site_url']})",
     51 => '你所选的文件名已经在另一个文流中用着了。请选另一个。',
     52 => '错误: 文件名已存在',
-    53 => 'All Frontpage Stories',
+    53 => 'All Frontpage Articles',
     54 => 'Please select the type of feed to create.',
     55 => 'Articles'
 );
 
 ###############################################################################
-# admin/language.php
+# admin/language.php (since v2.1.2)
 
 $LANG_LANG = array(
     'language_admin_title' => 'Language Overrides',
@@ -1401,7 +1473,11 @@ $LANG_ROUTER = array(
     17 => 'Database error occurred.',
     18 => '<strong>To enable URL routing, you have to enable URL rewrite in the Configuration.</strong>',
     19 => '<strong>To enable URL routing, you have to enable URL routing in the Configuration.</strong>',
-    20 => '<ul><li>Placeholders (@) must be the same both in a rule and its route.</li><li>A placeholder starts with "@", followed by an alphabet, optionally followed by any length of alphabet or digit.</li><li>Placeholders are case-sensitive.</li></ul>'
+    20 => '<ul><li>Placeholders (@) must be the same both in a rule and its route.</li><li>A placeholder starts with "@", followed by an alphabet, optionally followed by any length of alphabet or digit.</li><li>Placeholders are case-sensitive.</li></ul>',
+    21 => 'Status Code',
+    22 => 'Enabled',
+    23 => 'Yes',
+    24 => 'No'
 );
 
 ###############################################################################
@@ -1424,16 +1500,16 @@ $MESSAGE = array(
     14 => '你的主题和所有相关的文章已被删除了。',
     15 => 'Your comment has been submitted for review and will be published when approved by a moderator.',
     16 => 'You have been unsubscribed. You will no longer be notified of new replies.',
-    17 => '',
+    17 => 'Your user account has been locked and access to it has been disabled. For more information please contact the Admin.',
     18 => '',
     19 => '',
     20 => '',
     21 => '用户已被保存了。',
     22 => '用户已被删除了。',
-    23 => '',
-    24 => '',
-    25 => '',
-    26 => '',
+    23 => 'Your passwords must match, please try again. Passwords are case sensitive.',
+    24 => 'Your emails must match, please try again.',
+    25 => 'You have not entered a valid email address, please try again.',
+    26 => 'That email address is already being used by an account, please try again.',
     27 => '信息已发送。',
     28 => '插件已被保存了。',
     29 => 'Sorry, you do not have access to this administration page.  Please note that all attempts to access unauthorized features are logged',
@@ -1450,11 +1526,11 @@ $MESSAGE = array(
     40 => '系统讯息',
     41 => '',
     42 => '',
-    43 => '',
+    43 => 'Account does not exist.',
     44 => '插件已被安装了。',
     45 => '插件已被删除了。',
-    46 => '',
-    47 => '',
+    46 => 'Your username or email address was not found, please try again.',
+    47 => 'Sorry you cannot currently request the password for your account. For more information please contact the Admin.',
     48 => "感谢你申请成为 {$_CONF['site_name']} 的会员。只要经过我们员工的核对，我们会把密码寄到你所登记的电邮中。",
     49 => '你的小组已被保存了。',
     50 => '小组已被删除了。',
@@ -1508,7 +1584,7 @@ $MESSAGE = array(
     98 => 'The plugin was successfully uploaded.',
     99 => 'The plugin already exists.',
     100 => 'The plugin file you uploaded was not a GZip or Zip compressed archive.',
-    101 => 'There are no topics (that you have access to). You need at least one topic to be able to submit stories.',
+    101 => 'There are no topics (that you have access to). You need at least one topic to be able to submit articles.',
     110 => 'Can not get URL for authentication.',
     111 => 'Authentication error.',
     112 => 'Certification has been canceled.',
@@ -1530,12 +1606,18 @@ $MESSAGE = array(
     142 => 'Approved comment(s).',
     143 => 'Banned user(s).',
     144 => 'Banned IP addresses with the Spamx plugin.',
+    145 => 'Banned IP addresses with the Ban plugin.',
     150 => 'Successfully deleted all the files and directories used during the installation.',
     151 => 'Failed to delete some files and directories used during the installation.  Please remove them manually.',
     152 => 'All the files and directories used during the installation are left as they are.  It is dangerous to keep them on the server, so please don\'t forget to remove them manually.',
+    153 => 'You last emailed an article %1$d seconds ago.  This site requires at least %2$d seconds between emailing articles.',
     400 => 'Not all required fields have been passed validation',
     401 => 'Please enter Fullname',
-    500 => 'The Template Cache has been successfully cleared.'
+    500 => 'The Template Cache has been successfully cleared.',
+    501 => 'A verification message has been sent to your email address. Please click on the link in the email to confirm your email address and update your account. If you log into your account again before you verify your email address you will be asked again for a email address.<br' . XHTML . '><br' . XHTML . '>Please note you have now been successfully logged out so you can complete this verification.',
+    502 => 'Your request for a new email has expired. Please try again below.',
+    503 => 'Your email has been successfully verified.',
+    504 => 'Passwords must have a minimum of 8 characters and contain at least 1 number and 1 letter. Passwords are case sensitive.'
 );
 
 ###############################################################################
@@ -1588,11 +1670,13 @@ $LANG_ACCESS = array(
     'listusers' => '列出用户',
     'listthem' => '列出',
     'usersingroup' => '属于 "%s" 小组的用户',
+    'usersingroupmsg' => 'A list of users that belong to the group. Users lists here may belong directly to the group or are inherited from another group that has been added to this group.',
     'usergroupadmin' => '用户小组管理',
     'add' => '加入',
     'remove' => '免除',
     'availmembers' => '可用的成员',
     'groupmembers' => '小组成员',
+    'inheritmembers' => 'Inherited Group Members',
     'canteditgroup' => '若要修改此小组, 你必要时这个小组的成员. 若你认为这是错误, 请你联络系统管理员.',
     'cantlistgroup' => '要看此小组的会员，你必须是此小组的会员。你若认为这是错误，请联络系统管理员。',
     'editgroupmsg' => '若要修改小组会员，点击会员名，然后用增加或删除的按钮. 如果一个会员是一个小组的会员，他们的名字只会显现在右边. 一旦完成，按 <b>保存</b> 来更新小组，然后回到小组管理主页.',
@@ -1603,7 +1687,8 @@ $LANG_ACCESS = array(
     'group_id' => '小组 ID',
     'plugin_access_denied_msg' => '你在非法的进入插件管理页.  请注意所有的非法登入都被登记.',
     'groupexists' => '小组名称已存在',
-    'groupexistsmsg' => '目前已有用此名的小组. 小组名称必须独特.'
+    'groupexistsmsg' => '目前已有用此名的小组. 小组名称必须独特.',
+    'demo_mode_denied_msg' => 'This feature is currently disabled while the site is in Demo Mode.'
 );
 
 ###############################################################################
@@ -1830,10 +1915,10 @@ $LANG_SECTEST = array(
 ###############################################################################
 # "What's New" Time Strings
 # 
-# For the first two strings, you can use the following placeholders.
-# Order them so it makes sense in your language:
-# %i    item, "Stories"
-# %n    amount, "2", "20" etc.
+# This here determines the order of the sentence "No new articles in 2 hrs"
+# order it so it makes sense in your language:
+# %i    item, "Articles"
+# %n    amount, "2", "20" etc
 # %t    time, "2" (weeks)
 # %s    scale, "hrs", "weeks"
 
@@ -1930,6 +2015,7 @@ $LANG_ADMIN = array(
     'token_expiry' => 'You have until %s to make changes. After that time, the security token embedded into this page will expire and you will lose your changes.',
     'token_expired' => 'The security token for this operation has expired. Please authenticate again to continue.',
     'reauth_msg' => 'The security token for this operation has expired. If you want to continue with this operation, then please authenticate again below. This will ensure that the changes you just made will not be lost.',
+    'token_expired_remote_user' => 'The security token for this operation has expired. Since you are a remote user you cannot re-authenticate, so you have lost your changes.',
     'authenticate' => 'Authenticate',
     'approve' => 'Approve',
     'device' => 'Device',
@@ -1986,13 +2072,18 @@ $LANG_frontpagecodes = array(
 
 $LANG_postmodes = array(
     'plaintext' => '普通文字',
-    'html' => 'HTML 格式',
-    'wikitext' => 'Wiki-style format'
+    'html' => 'HTML 格式'
 );
 
 $LANG_sortcodes = array(
     'ASC' => '最老的在前',
     'DESC' => '最新的在前'
+);
+
+$LANG_statuscodes = array(
+    0 => 'Normal',
+    1 => 'Refreshing',
+    10 => 'Archive'
 );
 
 $LANG_trackbackcodes = array(
@@ -2055,15 +2146,18 @@ $LANG_confignames['Core'] = array(
     'path_themes' => '画面主题的路径',
     'cache_templates' => 'Cache Templates?',
     'cache_mobile' => 'Cache Mobile Devices Separately?',
+    'cache_resource' => 'Combine, Minify and Cache CSS and JavaScript Files?',
     'disable_new_user_registration' => '关闭新登记',
     'allow_user_themes' => '允许用户版面主题',
     'allow_user_language' => '允许用户语言',
+    'switchlang_homepage' => 'Switch Language Block Redirects to Homepage',
     'allow_user_photo' => '允许用户照片',
     'allow_username_change' => '允许用户名更改',
     'allow_account_delete' => '允许用户删除',
     'hide_author_exclusion' => '允许隐藏作者',
     'show_fullname' => '显现全名',
     'show_servicename' => '显现服务名',
+    'require_user_email' => 'Require User Email',
     'custom_registration' => '激活自定登记',
     'user_login_method' => '用户登入方式',
     'facebook_login' => 'Enable OAuth Login Method Facebook',
@@ -2197,6 +2291,7 @@ $LANG_confignames['Core'] = array(
     'whats_related_max' => 'Max What\'s Related to Display',
     'whats_related_trim' => 'What\'s Related Title Length',
     'default_cache_time_article' => 'Default Article Cache Time',
+    'blocks_article_topic_list_repeat_after' => 'Article Topic List Blocks Location Repeat',
     'aftersave_user' => '存续用户后',
     'show_right_blocks' => '总是显示右边的组件?',
     'showfirstasfeatured' => '显示第一个文章为特载文章?',
@@ -2243,6 +2338,9 @@ $LANG_confignames['Core'] = array(
     'passwordspeedlimit' => '密码速度限定',
     'login_attempts' => '最多登入企图次数',
     'login_speedlimit' => '登入速度限定',
+    'invalidloginattempts' => 'Max. Invalid Login Attempts',
+    'invalidloginmaxtime' => 'Invalid Login Max Time',
+    'enable_twofactorauth' => 'Enable Two Factor Authentication?',
     'pass_alg' => 'Password Hash Algorithm',
     'pass_stretch' => 'Hash Stretch Count',
     'user_html' => '用户 HTML',
@@ -2256,14 +2354,16 @@ $LANG_confignames['Core'] = array(
     'compressed_output' => 'Send compressed output?',
     'frame_options' => 'Protection against "clickjacking"',
     'page_navigation_max_pages' => 'Max Pages for Navigation',
+    'page_navigation_mobile_max_pages' => 'Max Pages for Navigation with Mobile Devices',
     'default_cache_time_block' => 'Default Block Cache Time',
     'titletoid' => 'Enable Title To Id?',
+    '404_log' => 'Log 404 Errors',
     'censormode' => '检查方式?',
     'censorreplace' => '检查代替文字',
     'censorlist' => '检查列',
     'ip_lookup' => 'IP 搜寻',
     'url_rewrite' => '激活 URL Rewrite',
-    'url_Routing' => 'Enable URL Routing',
+    'url_routing' => 'Enable URL Routing',
     'cdn_hosted' => 'Use CDN-hosted copy of jQuery',
     'meta_tags' => 'Meta Tags',
     'meta_description' => 'Default Meta Description',
@@ -2276,7 +2376,7 @@ $LANG_confignames['Core'] = array(
     'restrict_webservices' => '限制 Webservices?',
     'article_comment_close_enabled' => 'Automatically close comments (default)',
     'article_comment_close_days' => 'Days to close comments (default)',
-    'comment_close_rec_stories' => 'Number of most recent stories enabled for comments',
+    'comment_close_rec_stories' => 'Number of most recent articles enabled for comments',
     'allow_reply_notifications' => 'Allow comment reply notifications?',
     'comment_on_same_page' => 'Comment on Same Page?',
     'show_comments_at_replying' => 'Show Comments at Replying?',
@@ -2290,7 +2390,7 @@ $LANG_confignames['Core'] = array(
     'search_def_keytype' => 'Default Search Method',
     'search_def_sort' => 'Default Sort Order',
     'search_use_topic' => 'Use Current Topic',
-    'autotag_permissions_story' => '[story: ] Permissions',
+    'autotag_permissions_story' => '[article: ] Permissions',
     'autotag_permissions_user' => '[user: ] Permissions',
     'autotag_permissions_topic' => '[topic: ] Permissions',
     'autotag_permissions_related_topics' => '[related_topics: ] Permissions',
@@ -2418,7 +2518,7 @@ $LANG_tab['Core'] = array(
     'tab_whatsnew_block' => 'What\'s New Block',
     'tab_trackback' => 'Trackback',
     'tab_pingback' => 'Pingback',
-    'tab_story' => 'Story',
+    'tab_story' => 'Article',
     'tab_theme_advanced' => 'Advanced Settings',
     'tab_syndication' => 'Syndication',
     'tab_imagelib' => 'Image Library',
@@ -2467,7 +2567,7 @@ $LANG_configselects['Core'] = array(
     22 => array('Strict' => 'DENY', 'Same Origin' => 'SAMEORIGIN', '(disabled)' => ''),
     23 => array('Disabled' => 0, 'Enabled' => 1, 'Enabled (Default for Homepage only)' => 2),
     24 => array('Contribute' => 'contribute', 'Home' => 'home', 'Advanced Search' => 'search', 'Directory' => 'directory', 'Login' => 'login', 'My Account' => 'prefs', 'Plugin Entries' => 'plugins', 'Custom Entries' => 'custom', 'Site Statistics' => 'stats'),
-    25 => array('New Stories' => 'story', 'New Comments' => 'comment', 'New Trackbacks' => 'trackback', 'New Pingbacks' => 'pingback', 'New Users' => 'user', 'User Updates' => 'user_update'),
+    25 => array('New Articles' => 'article', 'New Comments' => 'comment', 'New Trackbacks' => 'trackback', 'New Pingbacks' => 'pingback', 'New Users' => 'user', 'User Updates' => 'user_update'),
     26 => array('G (General Audiences)' => 'G', 'PG (Parental Guidance)' => 'PG', 'R (Restricted)' => 'R', 'X (Explicit)' => 'X'),
     27 => array('Hits (asc)' => 'hits|asc', 'Hits (desc)' => 'hits|desc', 'Date (asc)' => 'date|asc', 'Date (desc)' => 'date|desc', 'Title (asc)' => 'title|asc', 'Title (desc)' => 'title|desc', 'Author (asc)' => 'uid|asc', 'Author (desc)' => 'uid|desc'),
     28 => array('No access' => 0, 'Use' => 2),

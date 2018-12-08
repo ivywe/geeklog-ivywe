@@ -87,6 +87,44 @@ function plugin_group_changed_block($grp_id, $mode)
 }
 
 /**
+ * Set template variables for any additional block locations
+ *
+ * @param    string   $templatename name of template, e.g. 'header'
+ * @param    Template $template     reference of actual template
+ * @return   void
+ *                                  Note: A plugin should use its name as a prefix for the names of its
+ *                                  template variables, e.g. 'block_xxx' and 'lang_block_xxx'.
+ */
+function plugin_templatesetvars_block($templatename, &$template)
+{
+    global $_CONF;
+    
+    // Retrieve custom block position names
+    // A template can have more than one template variable assigned to a block location
+    // template_variable name should start with blocks_ and be returned in array like:
+    /*
+    $block_locations[] = array(
+        'id'                => 'theme_footer', // Unique string. No other block location (includes Geeklog itself and any other plugins or themes) can share the same id ("left" and "right" are already taken).
+        'name'              => 'Text Name of block location',
+        'description'       => 'Text description of block location',
+        'template_name'     => 'footer',
+        'template_variable' => 'blocks_footer'
+    );
+    */    
+
+    // Include block locations on behalf of the theme, plugins (and there supported themes)
+    $block_locations = PLG_getBlockLocations();
+
+    $keys = array_keys(array_column($block_locations, 'template_name'), $templatename);
+
+    // Template could have multiple block template variables so loop through found keys
+    foreach($keys as $key) {
+        //$template->set_var($block_locations[$key]['template_variable'], '<p><em>Time: ' . time() . '</em></p>', false, true);
+        $template->set_var($block_locations[$key]['template_variable'], COM_showBlocks($block_locations[$key]['id']), false, true); // need to insert as non cache variable
+    }
+}
+
+/**
 * Implements the [block:] autotag.
 *
 * @param    string  $op         operation to perform
@@ -180,4 +218,250 @@ function plugin_autotags_block($op, $content = '', $autotag = '')
     }
 
     return $content;
+}
+
+/**
+ * used for the list of blocks in admin/block.php
+ *
+ * @param  string $fieldName
+ * @param  string $fieldValue
+ * @param  array  $A
+ * @param  array  $icon_arr
+ * @param  string $token
+ * @return string
+ */
+function ADMIN_getListField_blocks($fieldName, $fieldValue, $A, $icon_arr, $token)
+{
+    global $_CONF, $LANG_ADMIN, $LANG21, $_IMAGE_TYPE;
+
+    $retval = false;
+
+    $access = SEC_hasAccess($A['owner_id'], $A['group_id'], $A['perm_owner'],
+        $A['perm_group'], $A['perm_members'], $A['perm_anon']
+    );
+
+    if (($access > 0) && (TOPIC_hasMultiTopicAccess('block', $A['bid']) > 0)) {
+        switch ($fieldName) {
+            case 'edit':
+                if ($access == 3) {
+                    $retval = COM_createLink($icon_arr['edit'],
+                        "{$_CONF['site_admin_url']}/block.php?mode=edit&amp;bid={$A['bid']}");
+                }
+                break;
+
+            case 'title':
+                $retval = stripslashes($A['title']);
+                if (empty($retval)) {
+                    $retval = '(' . $A['name'] . ')';
+                }
+                break;
+
+            case 'device':
+                switch ($A['device']) {
+                    case Device::ALL:
+                        $retval = $LANG_ADMIN['all'];
+                        break;
+
+                    case Device::MOBILE:
+                        $retval = $LANG_ADMIN['mobile'];
+                        break;
+
+                    case Device::COMPUTER:
+                        $retval = $LANG_ADMIN['computer'];
+                        break;
+                    default:
+                        $retval = '';
+                        break;
+                }
+                break;
+
+            case 'onleft':
+                switch ($A['onleft']) {
+                    case BLOCK_NONE_POSITION: 
+                        if ($A['onleft'] == BLOCK_NONE_POSITION && empty($A['location'])) {
+                            $retval = $LANG21[47];
+                        } else {
+                            $block_locations = PLG_getBlockLocations();
+                            $key = array_search($A['location'], array_column($block_locations, 'id'));
+                            if (is_numeric($key)) {
+                                $retval = $block_locations[$key]['name'];
+                            } else {
+                                // Block Position doesn't exist anymore for some reason so set to none
+                                $retval = $LANG21[47];
+                            }
+                        }
+                        break;
+
+                    case BLOCK_LEFT_POSITION:
+                        $retval = $LANG21[40];
+                        break;
+
+                    case BLOCK_RIGHT_POSITION:
+                        $retval = $LANG21[41];
+                        break;
+
+                    default:
+                        $retval = '';
+                        break;
+                }
+                break;
+
+            case 'blockorder':
+                if ($A['onleft'] == BLOCK_NONE_POSITION && empty($A['location'])) {
+                    $retval .= '';
+                } else {
+                    $retval .= $A['blockorder'];
+                }
+                break;
+
+            case 'is_enabled':
+                if ($access == 3) {
+                    $retval = COM_createControl('type-checkbox', array(
+                        'name' => 'enabledblocks[]',
+                        'value' => $A['bid'],
+                        'checked' => ($A['is_enabled'] == 1) ? true : '',
+                        'onclick' => 'submit()'
+                    ));
+                    $retval .= '<input type="hidden" name="visibleblocks[]" value="' . $A['bid'] . '"' . XHTML . '>';
+                }
+                break;
+
+            case 'move':
+                if ($access == 3) {
+                    if ($A['onleft'] != BLOCK_NONE_POSITION) {
+                        if ($A['onleft'] == 1) {
+                            $side = $LANG21[40];
+                            $blockControlImage = 'block-right.' . $_IMAGE_TYPE;
+                            $moveTitleMsg = $LANG21[59];
+                            $switchSide = '1';
+                        } else {
+                            $blockControlImage = 'block-left.' . $_IMAGE_TYPE;
+                            $moveTitleMsg = $LANG21[60];
+                            $switchSide = '0';
+                        }
+                        $csrfToken = '&amp;' . CSRF_TOKEN . '=' . $token;
+                        $retval .= "<img src=\"{$_CONF['layout_url']}/images/admin/$blockControlImage\" width=\"45\" height=\"20\" usemap=\"#arrow{$A['bid']}\" alt=\"\"" . XHTML . ">"
+                            . "<map id=\"arrow{$A['bid']}\" name=\"arrow{$A['bid']}\">"
+                            . "<area coords=\"0,0,12,20\"  title=\"{$LANG21[58]}\" href=\"{$_CONF['site_admin_url']}/block.php?mode=move&amp;bid={$A['bid']}&amp;where=up{$csrfToken}\" alt=\"{$LANG21[58]}\"" . XHTML . ">"
+                            . "<area coords=\"13,0,29,20\" title=\"$moveTitleMsg\" href=\"{$_CONF['site_admin_url']}/block.php?mode=move&amp;bid={$A['bid']}&amp;where=$switchSide{$csrfToken}\" alt=\"$moveTitleMsg\"" . XHTML . ">"
+                            . "<area coords=\"30,0,43,20\" title=\"{$LANG21[57]}\" href=\"{$_CONF['site_admin_url']}/block.php?mode=move&amp;bid={$A['bid']}&amp;where=dn${csrfToken}\" alt=\"{$LANG21[57]}\"" . XHTML . ">"
+                            . "</map>";
+                    }
+                }
+                break;
+
+            case 'topic':
+                $retval = TOPIC_getTopicAdminColumn('block', $A['bid']);
+                break;
+
+            case 'type':
+                if (in_array($fieldValue, array('gldefault', 'normal', 'phpblock', 'portal', 'dynamic'))) {
+                    $retval = $LANG21['block_type_' . $fieldValue];
+                } else {
+                    $retval = $fieldValue;
+                }
+                break;
+
+            default:
+                $retval = $fieldValue;
+                break;
+        }
+    }
+
+    return $retval;
+}
+
+/**
+ * used for the list of blocks in admin/block.php
+ *
+ * @param  string $fieldName
+ * @param  string $fieldValue
+ * @param  array  $A
+ * @param  array  $icon_arr
+ * @return string
+ */
+function ADMIN_getListField_dynamicblocks($fieldName, $fieldValue, $A, $icon_arr)
+{
+    global $LANG21, $_TABLES;
+
+    switch ($fieldName) {
+        case 'onleft':
+            switch ($A['onleft']) {
+                case BLOCK_NONE_POSITION:
+                    if ($A['onleft'] == BLOCK_NONE_POSITION && empty($A['location'])) {
+                        $retval = $LANG21[47];
+                    } else {
+                        $block_locations = PLG_getBlockLocations();
+                        $key = array_search($A['location'], array_column($block_locations, 'id'));
+                        if (is_numeric($key)) {
+                            $retval = $block_locations[$key]['name'];
+                        } else {
+                            // Block Position doesn't exist anymore for some reason so set to none
+                            $retval = $LANG21[47];
+                        }
+                    }
+                    break;
+
+                case BLOCK_LEFT_POSITION:
+                    $retval = $LANG21[40];
+                    break;
+
+                case BLOCK_RIGHT_POSITION:
+                    $retval = $LANG21[41];
+                    break;
+
+                default:
+                    $retval = '';
+                    break;
+            }
+            break;
+
+        case 'title':
+            $retval = stripslashes($A['title']);
+            if (empty($retval)) {
+                $retval = '(' . $A['name'] . ')';
+            }
+            break;
+
+        case 'is_enabled':
+            if ($A['enable'] == 1) {
+                $retval = $LANG21[5]; // Yes
+            } else {
+                $retval = $LANG21[6]; // No
+            }
+            break;
+
+        case 'topic':
+            if ($A['topic_option'] == TOPIC_ALL_OPTION) {
+                $retval = $LANG21[7];
+            } elseif ($A['topic_option'] == TOPIC_HOMEONLY_OPTION) {
+                $retval = $LANG21[43];
+            } else {
+                $element_num = count($A['topic']);
+
+                if ($element_num == 0) {
+                    $retval = $LANG21[47]; // None
+                } elseif ($element_num > 1) {
+                    $retval = $LANG21[44]; // Multiple
+                } else {
+                    $retval = DB_getItem($_TABLES['topics'], 'topic', "tid = '{$A['topic'][0]}'");
+                }
+            }
+
+            break;
+
+        case 'type':
+            if (in_array($fieldValue, array('gldefault', 'normal', 'phpblock', 'portal', 'dynamic'))) {
+                $retval = $LANG21['block_type_' . $fieldValue];
+            } else {
+                $retval = $fieldValue;
+            }
+            break;
+
+        default:
+            $retval = $fieldValue;
+            break;
+    }
+
+    return $retval;
 }

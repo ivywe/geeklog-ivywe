@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 2.1                                                               |
+// | Geeklog 2.2                                                               |
 // +---------------------------------------------------------------------------+
 // | lib-topic.php                                                             |
 // |                                                                           |
@@ -34,7 +34,7 @@ if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
 }
 
 // set to true to enable debug output in error.log
-$_TOPIC_DEBUG = false;
+$_TOPIC_DEBUG = COM_isEnableDeveloperModeLog('topic');
 
 // These constants are used by topic assignments table and when the user selects
 // a topic option.
@@ -239,8 +239,8 @@ function TOPIC_getChildList($id, $uid = 0)
 /**
  * This function creates html options for Inherited and default Topics
  *
- * @param    string $type  Type of object to display access for
- * @param    string $id    Id of onject
+ * @param    string $type Type of object to display access for
+ * @param    string $id   Id of onject
  * @param           string /array    $selected_ids   Topics Ids to mark as selected
  * @param           string /array    $tids           Topics Ids to use instead of retrieving from db
  * @return   HTML string
@@ -322,9 +322,7 @@ function TOPIC_getOtherListSelect($type, $id, $selected_ids = array(), $tids = a
  */
 function TOPIC_checkList($selected_ids = '', $fieldname = '', $language_specific = false, $remove_archive = false)
 {
-    global $_TABLES, $_TOPICS;
-
-    $retval = '<ul class="checkboxes-list">' . LB;
+    global $_TABLES, $_TOPICS, $_CONF;
 
     if (!empty($selected_ids)) {
         $selected_ids = explode(' ', $selected_ids);
@@ -346,6 +344,12 @@ function TOPIC_checkList($selected_ids = '', $fieldname = '', $language_specific
         $archive_tid = DB_getItem($_TABLES['topics'], 'tid', 'archive_flag = 1');
     }
 
+    $tcc = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout'] . 'controls'));
+    $tcc->set_file('checklist', 'checklist.thtml');
+    $tcc->set_block('checklist', 'item'); 
+    $tcc->set_block('checklist', 'item-default');
+    $tcc->set_block('checklist', 'item-indent');
+    
     for ($count_topic = $start_topic; $count_topic <= $total_topic; $count_topic++) {
         // Check to see if we need to include id (this is done for stuff like topic edits that cannot include themselves or child as parent
         if ($branch_level_skip >= $_TOPICS[$count_topic]['branch_level']) {
@@ -358,19 +362,21 @@ function TOPIC_checkList($selected_ids = '', $fieldname = '', $language_specific
             // Make sure to show topics for proper language and access level only
             if ($archive_tid != $id && $_TOPICS[$count_topic]['access'] > 0 && (($lang_id == '') || ($lang_id != '' && $_TOPICS[$count_topic]['language_id'] == $lang_id))) {
                 $title = $_TOPICS[$count_topic]['title'];
-                $retval .= '<li><label>'
-                    . str_repeat(
-                        '&nbsp;&nbsp;&nbsp;',
-                        $_TOPICS[$count_topic]['branch_level'] - $start_topic + 1
-                    )
-                    . '<input type="checkbox" name="'
-                    . $fieldname . '[]" value="' . $id . '"';
-
-                if (in_array($id, $selected_ids)) {
-                    $retval .= ' checked="checked"';
+                $tcc->set_var('name', $fieldname . '[]');
+                $tcc->set_var('value', $id);
+                $tcc->set_var('label', $title);
+                $tcc->set_var('indent', ''); // reset for next row
+                for ($i = 1; $i <= ($_TOPICS[$count_topic]['branch_level'] - $start_topic + 1); $i++) {
+                    $tcc->parse('indent', 'item-indent', true);
                 }
 
-                $retval .= XHTML . '>' . $title . '</label></li>' . LB;
+                if (in_array($id, $selected_ids)) {
+                    $tcc->set_var('checked', true);
+                } else {
+                    $tcc->set_var('checked', '');
+                }
+
+                $tcc->parse('items', 'item', true);
             } else {
                 // Cannot pick child as parent so skip
                 $branch_level_skip = $_TOPICS[$count_topic]['branch_level'];
@@ -378,7 +384,7 @@ function TOPIC_checkList($selected_ids = '', $fieldname = '', $language_specific
         }
     }
 
-    $retval .= '</ul>' . LB;
+    $retval = $tcc->finish($tcc->parse('output', 'checklist'));
 
     return $retval;
 }
@@ -566,11 +572,11 @@ function TOPIC_getList($sortcol = 0, $ignorelang = true, $title = true)
  * If multiple topics then will return the lowest access level found
  * (need to handle 'all' and 'homeonly' as special cases)
  *
- * @param    string $type                      Type of object to find topic access about. If 'topic' then will check
- *                                             post array for topic selection control
+ * @param    string $type                                Type of object to find topic access about. If 'topic' then
+ *                                                       will check post array for topic selection control
  * @param           string                     /array    $id     ID of object to check topic access for (not requried
  *                                                       if $type is
- *                                             'topic')
+ *                                                       'topic')
  * @param           string                     /array    $tid    ID of topic to check topic access for (not requried
  *                                                       and not used if $type is 'topic')
  * @return   int                     returns 3 for read/edit 2 for read only 0 for no access
@@ -859,7 +865,7 @@ function TOPIC_getTopicSelectionControl($type, $id, $show_options = false, $show
     $retval = '';
     $topic_info = $LANG27[40];
 
-    $topic_templates = COM_newTemplate($_CONF['path_layout'] . 'admin/common');
+    $topic_templates = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout'] . 'admin/common'));
     $topic_templates->set_file(array('editor' => 'edit_topics.thtml'));
 
     $_SCRIPTS->setJavaScriptLibrary('jquery');
@@ -908,7 +914,7 @@ function TOPIC_getTopicSelectionControl($type, $id, $show_options = false, $show
         $topic_templates->set_var('options_hide', $val_hide);
         $topic_templates->set_var('topic_options_hide', '1');
     }
- 
+
     $opt_dummy = '<option value="dummy">dummy</option>';
     $inherit_options = $opt_dummy;
     $topic_inherit_hide = '1';
@@ -1046,9 +1052,9 @@ function TOPIC_getTopicDefault($type, $id = '')
 }
 
 /**
- * Delete Topic Assignments for a specfic object
+ * Delete Topic Assignments for a specific object
  *
- * @param    string $type  Type of object to find topic access about.
+ * @param    string $type Type of object to find topic access about.
  * @param           string /array    $id     ID of object
  * @return   nothing
  */
@@ -1060,9 +1066,9 @@ function TOPIC_deleteTopicAssignments($type, $id)
 }
 
 /**
- * Add Topic Assignments for a specfic object
+ * Add Topic Assignments for a specific object
  *
- * @param    string $type  Type of object to find topic access about.
+ * @param    string $type Type of object to find topic access about.
  * @param           string /array    $id     ID of object
  * @return   nothing
  */
@@ -1081,7 +1087,7 @@ function TOPIC_addTopicAssignments($type, $id, $tid = '')
  * Return Topic list for Admin list Topic Column
  * (need to handle 'all' and 'homeonly' as special cases)
  *
- * @param    string $type  Type of object to find topic access about.
+ * @param    string $type Type of object to find topic access about.
  * @param           string /array    $id     ID of object
  * @return   string                  Returns topic list
  */
@@ -1120,7 +1126,7 @@ function TOPIC_getTopicAdminColumn($type, $id)
  * on page that is affected by the topic after lib-common.php so it can grab
  * topic in url if need be. Also if pass blank $type and $id then return just last topic
  *
- * @param    string $type  Type of object to find topic access about.
+ * @param    string $type Type of object to find topic access about.
  * @param           string /array    $id     ID of object
  * @return   void
  */
@@ -1146,11 +1152,19 @@ function TOPIC_getTopic($type = '', $id = '')
         }
     }
 
-    // Check and return Previous topic
+    // Check and return Previous topic if no current topic
     if ($topic == '') {
         // Blank could mean all topics or that we do not know topic
         // retrieve previous topic
         $last_topic = SESS_getVariable('topic');
+        
+        // Need to test last topic in session just in case it doesn't exist anymore or got corrupted some how (possibly by incorrect retrieval by 3rd party plugin)
+        $test_topic = DB_getItem($_TABLES['topics'], 'tid', "tid = '$last_topic' " . COM_getPermSQL('AND'));
+        if (strtolower($last_topic) != strtolower($test_topic)) {
+            $last_topic = '';
+        } else { // Make it equal to the db version since case maybe different
+            $last_topic = $test_topic;
+        }
     } else {
         $last_topic = $topic;
     }
@@ -1245,7 +1259,7 @@ function TOPIC_getTopic($type = '', $id = '')
 /**
  * If found returns one or more html breadcrumb. Used by Topics, Stories and Plugins.
  *
- * @param    string $type  Type of object to create breadcrumb trail
+ * @param    string $type Type of object to create breadcrumb trail
  * @param           string /array    $id     ID of object
  * @return   string                  1 or more breadcrumb trail in html
  */
@@ -1279,7 +1293,7 @@ function TOPIC_breadcrumbs($type, $id)
     }
     $result = DB_query($sql);
     if (DB_numRows($result) > 0) {
-        $breadcrumb_t = COM_newTemplate($_CONF['path_layout']);
+        $breadcrumb_t = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout']));
         $breadcrumb_t->set_file(array('breadcrumbs_list' => 'breadcrumbs.thtml'));
 
         $breadcrumb_t->set_block('breadcrumbs_list', 'breadcrumb');
@@ -1396,9 +1410,9 @@ function TOPIC_inPath($tid, $current_tid = '')
  * This function creates an html list of topics the object belongs too or
  * creates a similar list based on topics passed to it
  *
- * @param    string  $type  Type of object to display access for
- * @param    string  $id    Id of onject
- * @param    integer $max   Max number of items returned
+ * @param    string  $type Type of object to display access for
+ * @param    string  $id   Id of onject
+ * @param    integer $max  Max number of items returned
  * @param            string /array    $tids           Topics Ids to use instead of retrieving from db
  * @return   HTML string
  */
@@ -1447,7 +1461,7 @@ function TOPIC_relatedTopics($type, $id, $max = 6, $tids = array())
     $result = DB_query($sql);
     $nrows = DB_numRows($result);
     if ($nrows > 0) {
-        $topicrelated = COM_newTemplate($_CONF['path_layout']);
+        $topicrelated = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout']));
         $topicrelated->set_file(array(
             'topicrelated' => 'topicrelated.thtml',
         ));
@@ -1480,10 +1494,10 @@ function TOPIC_relatedTopics($type, $id, $max = 6, $tids = array())
  * This function creates a list of the newest and recently modified items that are related based on
  * the topics passed or that the object belongs too
  *
- * @param    string  $type  Type of object to display access for
- * @param    string  $id    Id of onject
- * @param    integer $max   Max number of items returned
- * @param    integer $trim  Max length of link text
+ * @param    string  $type Type of object to display access for
+ * @param    string  $id   Id of onject
+ * @param    integer $max  Max number of items returned
+ * @param    integer $trim Max length of link text
  * @param            string /array    $tids           Topics Ids to use instead of retrieving from db
  * @return   HTML string
  */
@@ -1569,7 +1583,26 @@ function TOPIC_getUrl($topicId)
 {
     global $_CONF;
 
-    if ($_CONF['url_rewrite']) {
+    if ($_CONF['url_rewrite'] && $_CONF['url_routing']) {
+        $retval = COM_buildURL(
+            $_CONF['site_url'] . '/index.php?'
+            . http_build_query(array(
+                'topic'           => $topicId,
+            ))
+        );
+    /*
+    if ($_CONF['url_rewrite'] && ($_CONF['url_routing'] == Router::ROUTING_WITH_INDEX_PHP)) {
+        $retval = COM_buildURL(
+            $_CONF['site_url'] . '/index.php?'
+            . http_build_query(array(
+                TOPIC_PLACEHOLDER => 'topic',
+                'topic'           => $topicId,
+            ))
+        );
+    } elseif ($_CONF['url_rewrite'] && ($_CONF['url_routing'] == Router::ROUTING_WITHOUT_INDEX_PHP)) {
+        $retval = $_CONF['site_url'] . '/topic/' . urlencode($topicId);
+    */
+    } elseif ($_CONF['url_rewrite']) {
         $retval = COM_buildURL(
             $_CONF['site_url'] . '/index.php?'
             . http_build_query(array(
@@ -1578,8 +1611,8 @@ function TOPIC_getUrl($topicId)
             ))
         );
     } else {
-        $retval = $_CONF['site_url'] . '/index.php?'
-            . http_build_query(array('topic' => $topicId));
+        // Traditional topic URL
+        $retval = $_CONF['site_url'] . '/index.php?' . http_build_query(array('topic' => $topicId));
     }
 
     return $retval;
@@ -1595,9 +1628,9 @@ function TOPIC_getUrl($topicId)
 /**
  * Implements the [topic:] autotag.
  *
- * @param    string $op                 operation to perform
- * @param    string $content            item (e.g. topic text), including the autotag
- * @param    array  $autotag            parameters used in the autotag
+ * @param    string $op      operation to perform
+ * @param    string $content item (e.g. topic text), including the autotag
+ * @param    array  $autotag parameters used in the autotag
  * @param           mixed               tag names (for $op='tagname') or formatted content
  */
 
@@ -1815,3 +1848,139 @@ function plugin_user_changed_topic($uid)
     $cacheInstance = 'topic_tree__' . CACHE_security_hash();
     CACHE_remove_instance($cacheInstance);
 }
+
+/**
+ * Return information for a topic
+ *
+ * @param    string $tid   Topic ID or '*'
+ * @param    string $what    comma-separated list of properties
+ * @param    int    $uid     user ID or 0 = current user
+ * @param    array  $options (reserved for future extensions)
+ * @return   mixed               string or array of strings with the information
+ */
+function plugin_getiteminfo_topic($tid, $what, $uid = 0, $options = array())
+{
+    global $_CONF, $_TABLES;
+
+    // parse $what to see what we need to pull from the database
+    $properties = explode(',', $what);
+    $fields = array();
+    foreach ($properties as $p) {
+        switch ($p) {
+            case 'description':
+            case 'excerpt':
+                $fields[] = 'meta_description';
+                break;
+
+            case 'id':
+                $fields[] = 'tid';
+                break;
+
+            case 'page_title':
+            case 'title':
+                $fields[] = 'topic';
+                break;
+
+            case 'url':
+                // needed for $tid == '*', but also in case we're only requesting
+                // the URL (so that $fields isn't empty)
+                $fields[] = 'tid';
+                break;
+
+            default:
+                // nothing to do
+                break;
+        }
+    }
+
+    $fields = array_unique($fields);
+
+    if (count($fields) == 0) {
+        $retval = array();
+
+        return $retval;
+    }
+
+    // prepare SQL request
+    $where = ' WHERE 1 ';
+    if ($tid != '*') {
+        $where .= " AND (tid = '" . DB_escapeString($tid) . "')";
+    }
+    if ($uid > 0) {
+        $permSql = COM_getPermSQL('AND', $uid);
+    } else {
+        $permSql = COM_getPermSQL('AND');
+    }
+    $sql = "SELECT " . implode(',', $fields)
+        . " FROM {$_TABLES['topics']}" . $where . $permSql;
+    if ($tid != '*') {
+        $sql .= ' LIMIT 1';
+    }
+
+    $result = DB_query($sql);
+    $numRows = DB_numRows($result);
+
+    $retval = array();
+    for ($i = 0; $i < $numRows; $i++) {
+        $A = DB_fetchArray($result);
+
+        $props = array();
+        foreach ($properties as $p) {
+            switch ($p) {
+                case 'description':
+                case 'excerpt':
+                    $props[$p] = stripslashes($retval['meta_description']);
+                    break;
+
+                case 'id':
+                    $props['id'] = $A['tid'];
+                    break;
+
+                case 'page_title':
+                case 'title':
+                    $props[$p] = stripslashes($A['topic']);
+                    break;
+
+                case 'url':
+                    if (empty($A['tid'])) {
+                        $props['url'] = COM_buildURL($_CONF['site_url']
+                            . '/index.php?topic=' . $tid);
+                    } else {
+                        $props['url'] = COM_buildURL($_CONF['site_url']
+                            . '/index.php?topic=' . $A['tid']);
+                    }
+                    break;
+
+                default:
+                    // return empty string for unknown properties
+                    $props[$p] = '';
+                    break;
+            }
+        }
+
+        $mapped = array();
+        foreach ($props as $key => $value) {
+            if ($tid == '*') {
+                if ($value != '') {
+                    $mapped[$key] = $value;
+                }
+            } else {
+                $mapped[] = $value;
+            }
+        }
+
+        if ($tid == '*') {
+            $retval[] = $mapped;
+        } else {
+            $retval = $mapped;
+            break;
+        }
+    }
+
+    if (($tid != '*') && (count($retval) == 1)) {
+        $retval = $retval[0];
+    }
+
+    return $retval;
+}
+

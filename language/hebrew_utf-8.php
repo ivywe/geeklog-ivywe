@@ -145,7 +145,7 @@ $LANG01 = array(
     98 => 'הרחבות Plugins',
     99 => 'מאמרים',
     100 => 'אין מאמרים חדשים',
-    101 => 'There are no older stories',
+    101 => 'There are no older articles',
     102 => '',
     103 => 'יצירת גיבוי',
     104 => 'על ידי',
@@ -187,6 +187,7 @@ $LANG01 = array(
     140 => 'Allowed Autotags:',
     141 => 'An Error Occurred',
     142 => 'Unfortunately, an error has occurred rendering this page. Please try again later.',
+    143 => 'Comment (%d)',
     'facebook' => 'כניסה בעזרת פייסבוק',
     'twitter' => 'כניסה בעזרת טוויטר',
     'linkedin' => 'כניסה בעזרת לינקדאין',
@@ -196,7 +197,8 @@ $LANG01 = array(
     'github' => 'Login with GitHub',
     'ctl' => 'Clear Cache',
     'ok' => 'OK',
-    'filemanager' => 'File Manager'
+    'filemanager' => 'File Manager',
+    'error_invalid_password' => 'Error, invalid password for username'
 );
 
 ###############################################################################
@@ -254,11 +256,13 @@ $LANG03 = array(
     103 => 'Ban this user',
     104 => 'Ban this IP address with the Spamx plugin',
     105 => 'IP Address',
-    106 => 'Perform bulk action on comments and comment submissions including approval, deleting, and banning of user or IP address.'
+    106 => 'Perform bulk action on comments and comment submissions including approval, deleting, and banning of user or IP address.',
+    'record_edit' => 'Record user and time of edit?',
+    'ban_plugin_ban_ip' => 'Ban this IP address with the Ban plugin'
 );
 
 ###############################################################################
-# users.php
+# usersettings.php
 
 $LANG04 = array(
     1 => 'פרופיל המשתמש של',
@@ -355,7 +359,6 @@ $LANG04 = array(
     92 => 'הכניסו סיסמה חדשה',
     93 => 'הבקשה האחרונה שלכם לקבלת סיסמה חדשה הייתה לפני %d שניות. אתר זה דורש לפחות %d שניות בין בקשות סיסמה.',
     94 => 'מיחקו את החשבון "%s"',
-    95 => 'ליחצו על הכפתור "מחיקת חשבון" שמתחת כדי למחוק את חשבונכם ממאגר המידע שלנו. אנא שימו לב שכל המאמרים והתגובות שכתבתם תחת חשבון זה <strong>לא</strong> ימחקו, אלא ייראו כאילו נכתבו על ידי "משתמש אנונימי".',
     96 => 'מחיקת חשבון',
     97 => 'אשרו את מחיקת החשבון',
     98 => 'האם הנכם בטוחים שאתה רוצים למחוק את חשבונכם? משמעות הדבר היא שלא תוכלו להתחבר לאתר יותר (אלא אם כן תיצרו משתמש חדש). אם הנכם בטוחים, ליחצו שוב על "מחיקת חשבון" שבטופס מתחת.',
@@ -426,9 +429,41 @@ $LANG04 = array(
     167 => 'כניסה מרחוק',
     168 => 'הנכם יכולים גם להיכנס עם אחד משירותי הזיהוי המרוחקים הבאים',
     169 => 'User has updated his/her profile',
+    170 => "Admin at {$_CONF['site_name']} changed the password of your account as follows.  Please save this mail for further reference.",
     'user_login' => 'User Login',
     'user_login_message' => 'Please login below. You must enter both a username and password.',
-    'user_logged_in_message' => "You are already logged in. Whould you like to <a href=\"{$_CONF['site_url']}/users.php?mode=logout\" rel=\"nofollow\">logout</a>?"
+    'user_logged_in_message' => "You are already logged in. Whould you like to <a href=\"{$_CONF['site_url']}/users.php?mode=logout\" rel=\"nofollow\">logout</a>?",
+    'user_max_login_attempts' => 'Max Login Attempts and Speed Limit Reached',
+    'tfa_two_factor_auth' => 'Two Factor Authentication',
+    'tfa_help1' => 'Make sure to install "Google Authenticator" application on your mobile device before you enable Two Factor Authentication.',
+    'tfa_help2' => 'Enable Two Factor Authentication.',
+    'tfa_help3' => 'Run "Google Authenticator", tap on the plus icon and scan the QR code.',
+    'tfa_help4' => 'Print or download the backup codes below in case you cannot use your mobile device you installed the Google Authenticator.  Each backup code is valid only one-time.  If you generate a new set of backup codes, then the current set will be invalid.',
+    'tfa_help5' => 'Hit the "Save" button at the bottom of the screen.',
+    'tfa_enter_code' => 'Enter the %d-digit code your Google Authenticator app is showing or one of the backup code you have got in your preference page.',
+    'tfa_backup_code_desc' => 'Note: You can only use a backup code once, then it becomes invalid. Remember to generate more backup codes from the user preference page if you are getting low.',
+    'tfa_code' => 'Google Authenticator Code',
+    'tfa_authenticate' => 'Authenticate',
+    'tfa_qrcode' => 'QR Code',
+    'tfa_show_hide' => 'Show/Hide',
+    'tfa_backup_code' => 'Backup Codes',
+    'tfa_download' => 'Download Backup Codes',
+    'tfa_new_backup_code' => 'Generate a new set of backup codes',
+    'tfa_generate_confirm' => 'Go ahead?',
+    'lang_tfa_user_edit_desc' => 'You are only allowed to disable Two Factor Authentication (2FA) from this form if needed (like the user does not have their backup codes). It should not be enabled by Admins as the user themselves are required to enable and setup 2FA from their Account, including the Google Authenticator App for their phone and coping the backup codes.',
+    'desc_new_pwd_status' => 'You are required to enter a new password for your account. You can enter a new password for your account below. <em>Please note you will not be able to do anything with your account until your password is updated.</em>',
+    'new_email' => 'New Email',
+    'set_new_email' => 'Set New Email',
+    'confirm_new_email' => 'Confirm new email',
+    'enter_new_email' => 'Enter New Email',
+    'desc_new_email_status' => 'You are required to enter a new email address for your account. You can enter a new email for your account below. <em>Please note you will not be able to do anything with your account until your email is updated and verified.</em>',
+    'email_msg_email_status_1' => "You have updated your email address for your account \"%s\" on {$_CONF['site_name']}, <{$_CONF['site_url']}>.\n\nPlease click on the following link to verify this email address:\n\n",
+    'email_msg_email_status_2' => "If you do not verify this email address and you log into your account you will be required to enter a new email address and go through this email verification process again.\n\n",
+    'email_verify' => 'New Email to be Verified',
+    'email_verify_delete' => 'Delete email to be verified',
+    'email_verify_msg' => "You have previously updated your email address for your account but it still needs to be verified. Please check your email account for an email from {$_CONF['site_name']} that contains a verification link. Once you click on that link your new email address will be verified and your account will be updated to use it.<br" . XHTML . "><br" . XHTML . ">If you wish you may update the new email to be verified with the email fields above or you can delete it.",
+    'remove_account_msg' => 'To remove your account from our database, enter your current password into the above "Current Password", check the checkbox next to "Delete Option" below and click on "Save" . Please note that any articles and comments you posted under this account will <strong>not</strong> be deleted but show up as being posted by "Anonymous".',
+    'remove_remote_account_msg' => 'To remove your remote account from our database, check the checkbox next to "Delete Option" below and click on "Save" . Please note that any articles and comments you posted under this account will <strong>not</strong> be deleted but show up as being posted by "Anonymous".'
 );
 
 ###############################################################################
@@ -504,7 +539,8 @@ $LANG08 = array(
     40 => " שניות.  אתר זה דורש לפחות {$_CONF['speedlimit']} שניות בין שליחת הודעות",
     41 => 'This user doesn\'t exist.',
     42 => 'This users email address doesn\'t exist. This most likely means is is an OAuth user account.',
-    43 => 'This users email address is invalid.'
+    43 => 'This users email address is invalid.',
+    44 => 'This users status is set to something other than Active or New Password therefore the email address is assumed bad.'
 );
 
 ###############################################################################
@@ -743,6 +779,9 @@ $LANG_ENVCHECK = array(
     'netpbm' => 'NetPBM Library',
     'np_ok' => 'The NetPBM library is installed',
     'np_not_found' => 'The NetPBM executables were not found.',
+    'fileinfo_library' => 'Fileinfo Library',
+    'fileinfo_ok' => 'The Fileinfo library is loaded. This library is required when uploading images for articles. It is used to get the mime type of the file being uploaded when creating a thumbnail of the image.',
+    'fileinfo_not_found' => 'The Fileinfo library is not loaded. This is required <strong>only</strong> when uploading images in the article editor.',
     'openssl_library' => 'OpenSSL Library',
     'openssl_ok' => 'The OpenSSL library is loaded. This library is required if you wish to use the OAuth user login method with Geeklog.',
     'openssl_not_found' => 'The OpenSSL library is not loaded. This is required <strong>only</strong> if you wish to use the OAuth user login method with Geeklog.',
@@ -797,7 +836,8 @@ $LANG20 = array(
     4 => 'שם משתמש',
     5 => 'סיסמה',
     6 => 'כל נסיונות הגישה לאיזורים הניהוליים של אתר זה נרשמים ביומן ונבדקים.<br' . XHTML . '>עמוד זה נועד לשימושם של אנשים מאושרים בלבד.',
-    7 => 'כניסה למערכת'
+    7 => 'כניסה למערכת',
+    8 => 'Login'
 );
 
 ###############################################################################
@@ -873,7 +913,13 @@ $LANG21 = array(
     67 => 'סמנו כדי לאפשר autotags',
     68 => 'הזנה זו לקוביית מידע זו של פורטל היא ארוכה מדי להצגה. אנא הגדירו מספר מקסימלי של מאמרים כדי לייבא לקוביית המידע במסך ההגדרות של קוביות המידע, או מקסימום גלובלי במסך הכיוון של Geeklog.',
     69 => 'שם ה-plugin',
+    70 => 'CSS ID',
+    71 => 'This field is optional',
+    72 => 'CSS Classes',
+    73 => 'This field is optional.  You can specify multiple classes separated by space',
     'autotag_desc_block' => '[block:name class:block-autotag] - Displays a block. Class not required. Class specifies the css class and will wrap the block in a div. The class block-autotag will always be included with the div.',
+    'newlines' => 'Newlines',
+    'convert_newlines' => 'Check to convert newlines (EOL) into line break HTML element',
     'position' => 'Position',
     'cache_time' => 'Cache Time',
     'cache_time_desc' => 'This block will be cached for no longer than this many seconds. If 0 caching is disabled. If -1 cached until block is edited again. (3600 = 1 hour,  86400 = 1 day)',
@@ -885,7 +931,17 @@ $LANG21 = array(
 );
 
 ###############################################################################
-# admin/story.php
+# Block Locations
+
+$LANG23 = array(
+    'blocks_article_footer_name' => 'Article Footer',
+    'blocks_article_footer_desc' => 'Display Blocks in article Footer',
+    'blocks_article_topic_list_name' => 'Article Topic List',
+    'blocks_article_topic_list_desc' => 'Displays Blocks right after every X number of articles in topics.'
+);
+
+###############################################################################
+# admin/article.php
 
 $LANG24 = array(
     1 => 'המאמרים הקודמים',
@@ -928,8 +984,8 @@ $LANG24 = array(
     38 => 'עוד מ:',
     39 => 'שליחות אימייל',
     40 => '',
-    41 => "הנכם מנסים לגשת למאמר שאין לכם זכויות לגביו. ניסיון זה נרשם ביומן. הינכם רשאים לצפות במאמר שלהלן במצב קריאה בלבד. אנא <a href=\"{$_CONF['site_url']}/admin/story.php\">חיזרו לחלון ניהול המאמרים</a> לאחר שתסיימו.",
-    42 => "הינכם מנסים לגשת למאמר שאין לכם זכויות לגביו. ניסיון זה נרשם ביומן. אנא <a href=\"{$_CONF['site_url']}/admin/story.php\">חיזרו לחלון ניהול המאמרים</a>.",
+    41 => "הנכם מנסים לגשת למאמר שאין לכם זכויות לגביו. ניסיון זה נרשם ביומן. הינכם רשאים לצפות במאמר שלהלן במצב קריאה בלבד. אנא <a href=\"{$_CONF['site_url']}/admin/article.php\">חיזרו לחלון ניהול המאמרים</a> לאחר שתסיימו.",
+    42 => "הינכם מנסים לגשת למאמר שאין לכם זכויות לגביו. ניסיון זה נרשם ביומן. אנא <a href=\"{$_CONF['site_url']}/admin/article.php\">חיזרו לחלון ניהול המאמרים</a>.",
     43 => '',
     44 => '',
     45 => '',
@@ -965,7 +1021,7 @@ $LANG24 = array(
     75 => 'מוצג במלואו',
     76 => 'אפשרויות פירסום',
     77 => 'Javascript חייב להיות מופעל בעורך המתקדם. האפשרות יכולה להיכבות בתפריט ניהול ההגדרות',
-    78 => 'ליחצו <a href="%s/story.php?mode=edit&amp;sid=%s&amp;editopt=default">כאן</a> כדי להשתמש בעורך ברירת המחדל',
+    78 => 'ליחצו <a href="%s/article.php?mode=edit&amp;sid=%s&amp;editopt=default">כאן</a> כדי להשתמש בעורך ברירת המחדל',
     79 => 'תצוגה מקדימה',
     80 => 'עורך',
     81 => 'אפשרויות פירסום',
@@ -980,7 +1036,13 @@ $LANG24 = array(
     90 => 'Meta Keywords',
     91 => 'הנכם יכולים תמיד ללחוץ על "תצוגה מקדימה" כדי להאריך את תוקף התפוגה.',
     92 => 'You might also like',
-    'autotag_desc_story' => '[story: id alternate title] - מציג קישור למאמר תוך שימוש בכותרת המאמר בתור הכותרת. ניתן לציין כותרת אלטרנטיבית אך זו לא חובה.',
+    93 => '#',
+    94 => 'Resized',
+    95 => 'Original',
+    96 => 'Upload | Replace',
+    97 => 'No Image',
+    'autotag_desc_story' => '[article: id alternate title] - מציג קישור למאמר תוך שימוש בכותרת המאמר בתור הכותרת. ניתן לציין כותרת אלטרנטיבית אך זו לא חובה.',
+    'autotag_desc_article' => '[article: id alternate title] - Displays a link to an article using the Article Title as the title. An alternate title may be specified but is not required.',
     'cache_time' => 'Cache Time',
     'cache_time_desc' => 'This article will be cached for no longer than this many seconds. If 0 caching is disabled. If -1 cached until article is edited again. (3600 = 1 hour,  86400 = 1 day)'
 );
@@ -1051,7 +1113,9 @@ $LANG27 = array(
     'autotag_desc_related_items' => '[related_items:id type:plugin max:max_items_listed trim:max_length include:plugin] - Create a clickable list of related items based on the item id and type.',
     'no_related_items' => 'No related items found.',
     'topics:' => 'Topics:',
-    'filed_under:' => 'Filed under:'
+    'filed_under:' => 'Filed under:',
+    'topic_title' => 'Topic Title',
+    'topic_title_desc' => 'Used as the page title for the topic. If empty the topic name will be used.'
 );
 
 ###############################################################################
@@ -1148,11 +1212,17 @@ $LANG28 = array(
     88 => 'קבוצת ברירת מחדל',
     89 => 'אפשרו לקבוצה זו להיות קבוצת ברירת מחדל למשתמשים חדשים',
     90 => 'הוסיפו את השינוי של "קבוצת ברירת מחדל" לחשבונות משתמשים קיימים',
-    'autotag_desc_user' => '[user: id alternate title] - הציגו קישור למשתמש תוך שימוש בשם המשתמש בתור הכותרת. ניתן לציין כותרת אלטרנטיבית אך זו לא חובה.'
+    91 => 'Send password to user',
+    92 => 'Only for new users or when changing password for existing user.',
+    'autotag_desc_user' => '[user: id alternate title] - הציגו קישור למשתמש תוך שימוש בשם המשתמש בתור הכותרת. ניתן לציין כותרת אלטרנטיבית אך זו לא חובה.',
+    'USER_ACCOUNT_LOCKED' => 'Locked',
+    'USER_ACCOUNT_NEW_EMAIL' => 'New Email Required',
+    'USER_ACCOUNT_NEW_PASSWORD' => 'New Password Required'
 );
 
 ###############################################################################
 # admin/moderation.php
+# admin/index.php
 
 $LANG29 = array(
     1 => 'אישור',
@@ -1185,7 +1255,9 @@ $LANG29 = array(
     'plugins' => 'Plugins',
     'tools' => 'Tools',
     'users' => 'Users',
-    'submissions_desc' => 'To modify or delete a user submssion, click on that item\'s edit icon below. To approve and delete multiple submissions use the radio options in the lists and then click submit.'
+    'submissions_desc' => 'To modify or delete a user submssion, click on that item\'s edit icon below. To approve and delete multiple submissions use the radio options in the lists and then click submit.',
+    'max_invalid_login' => 'Max Invalid Logins Reached for User',
+    'max_invalid_login_msg' => 'This user has reached the maximum number of invalid login attempts () within the specified time limit ( seconds). The last IP to make an invalid login attempt is %s. Either the real user has forgotten the password for their account, or someone else is attempting to guess the password for this user account.'
 );
 
 ###############################################################################
@@ -1363,7 +1435,7 @@ $LANG33 = array(
 );
 
 ###############################################################################
-# admin/language.php
+# admin/language.php (since v2.1.2)
 
 $LANG_LANG = array(
     'language_admin_title' => 'Language Overrides',
@@ -1400,7 +1472,11 @@ $LANG_ROUTER = array(
     17 => 'Database error occurred.',
     18 => '<strong>To enable URL routing, you have to enable URL rewrite in the Configuration.</strong>',
     19 => '<strong>To enable URL routing, you have to enable URL routing in the Configuration.</strong>',
-    20 => '<ul><li>Placeholders (@) must be the same both in a rule and its route.</li><li>A placeholder starts with "@", followed by an alphabet, optionally followed by any length of alphabet or digit.</li><li>Placeholders are case-sensitive.</li></ul>'
+    20 => '<ul><li>Placeholders (@) must be the same both in a rule and its route.</li><li>A placeholder starts with "@", followed by an alphabet, optionally followed by any length of alphabet or digit.</li><li>Placeholders are case-sensitive.</li></ul>',
+    21 => 'Status Code',
+    22 => 'Enabled',
+    23 => 'Yes',
+    24 => 'No'
 );
 
 ###############################################################################
@@ -1423,16 +1499,16 @@ $MESSAGE = array(
     14 => 'הנושא וכל המאמרים וקוביות המידע שבתוכו נמחקו בהצלחה.',
     15 => 'תגובתכם נשלחה לסקירה ותפורסם כאשר תאושר על ידי המשגיחים.',
     16 => 'רישומכם בוטל. לא תקבלו יותר הודעות על תגובות חדשות.',
-    17 => '',
+    17 => 'Your user account has been locked and access to it has been disabled. For more information please contact the Admin.',
     18 => '',
     19 => '',
     20 => '',
     21 => 'המשתמש נשמר בהצלחה.',
     22 => 'המשתמש נמחק בהצלחה.',
-    23 => '',
-    24 => '',
-    25 => '',
-    26 => '',
+    23 => 'Your passwords must match, please try again. Passwords are case sensitive.',
+    24 => 'Your emails must match, please try again.',
+    25 => 'You have not entered a valid email address, please try again.',
+    26 => 'That email address is already being used by an account, please try again.',
     27 => 'ההודעה נשלחה בהצלחה.',
     28 => 'ה-plugin נשמר בהצלחה',
     29 => 'מצטערים, אין לכם גישה לעמוד ניהול זה. אנא שימו לב שכל הנסיונות לגשת ליכולות לא מורשות נרשמות ביומן',
@@ -1449,11 +1525,11 @@ $MESSAGE = array(
     40 => 'הודעת מערכת',
     41 => '',
     42 => '',
-    43 => '',
+    43 => 'Account does not exist.',
     44 => 'ה-plugin הותקן בהצלחה!',
     45 => 'ה-plugin נמחק בהצלחה.',
-    46 => '',
-    47 => '',
+    46 => 'Your username or email address was not found, please try again.',
+    47 => 'Sorry you cannot currently request the password for your account. For more information please contact the Admin.',
     48 => "תודה לך על הגשת הבקשה שלך להצטרף ל-{$_CONF['site_name']}. אנו נבדוק את בקשתך. אם תאושר, סיסמתך תישלח אליך באימייל לכתובת האימייל שהרגע ציינת.",
     49 => 'קבוצתך נשמרה בהצלחה.',
     50 => 'הקבוצה נמחקה בהצלחה.',
@@ -1529,12 +1605,18 @@ $MESSAGE = array(
     142 => 'Approved comment(s).',
     143 => 'Banned user(s).',
     144 => 'Banned IP addresses with the Spamx plugin.',
+    145 => 'Banned IP addresses with the Ban plugin.',
     150 => 'Successfully deleted all the files and directories used during the installation.',
     151 => 'Failed to delete some files and directories used during the installation.  Please remove them manually.',
     152 => 'All the files and directories used during the installation are left as they are.  It is dangerous to keep them on the server, so please don\'t forget to remove them manually.',
+    153 => 'You last emailed an article %1$d seconds ago.  This site requires at least %2$d seconds between emailing articles.',
     400 => 'לא כל השדות הנדרשים עברו וידוא',
     401 => 'אנא הכניסו שם מלא',
-    500 => 'The Template Cache has been successfully cleared.'
+    500 => 'The Template Cache has been successfully cleared.',
+    501 => 'A verification message has been sent to your email address. Please click on the link in the email to confirm your email address and update your account. If you log into your account again before you verify your email address you will be asked again for a email address.<br' . XHTML . '><br' . XHTML . '>Please note you have now been successfully logged out so you can complete this verification.',
+    502 => 'Your request for a new email has expired. Please try again below.',
+    503 => 'Your email has been successfully verified.',
+    504 => 'Passwords must have a minimum of 8 characters and contain at least 1 number and 1 letter. Passwords are case sensitive.'
 );
 
 ###############################################################################
@@ -1587,11 +1669,13 @@ $LANG_ACCESS = array(
     'listusers' => 'חברים',
     'listthem' => 'רשימה',
     'usersingroup' => 'חברים בקבוצה "%s"',
+    'usersingroupmsg' => 'A list of users that belong to the group. Users lists here may belong directly to the group or are inherited from another group that has been added to this group.',
     'usergroupadmin' => 'ניהול קבוצות משתמשים',
     'add' => 'הוספה',
     'remove' => 'הסרה',
     'availmembers' => 'חברים אפשריים',
     'groupmembers' => 'חברי הקבוצה',
+    'inheritmembers' => 'Inherited Group Members',
     'canteditgroup' => 'כדי לערוך קבוצה זו, הינכם חייב להיות חברים בה. אנא צור קשר עם מנהלי המערכת אם הנכם מרגישים שמדובר בטעות.',
     'cantlistgroup' => 'כדי לצפות ברשימת חברי קבוצה זו, הינכם חייב להיות חברים בה בעצמך. אנא צרו קשר עם מנהלי המערכת אם הנכם מרגישים שמדובר בטעות.',
     'editgroupmsg' => 'על מנת לשנות את הרישום לקבוצות, ליחצו על שם החבר/ים והשתמשו בכפתורי ההוספה והסרה. אם החבר הוא חבר באותה קבוצה, שמם יופיע בצד הימני [השמאלי במצב שפה RTL] בלבד. ברגע שסיימתם - ליחצו על <b>Save</b> כדי לעדכן את הקבוצה ולחזור לעמוד ניהול הקבוצות הראשי.',
@@ -1602,7 +1686,8 @@ $LANG_ACCESS = array(
     'group_id' => 'קוד זיהוי הקבוצה',
     'plugin_access_denied_msg' => 'הנכם מנסים באופן לא חוקי לגשת לעמוד ניהול ה-plugins. אנא שימו לב שכל הנסיונות לגשת לעמוד זה באופן לא חוקי נרשמות ביומן.',
     'groupexists' => 'שם הקבוצה כבר קיים',
-    'groupexistsmsg' => 'כבר יש קבוצה בשם זה. שמות קבוצות חייבים להיות ייחודיים.'
+    'groupexistsmsg' => 'כבר יש קבוצה בשם זה. שמות קבוצות חייבים להיות ייחודיים.',
+    'demo_mode_denied_msg' => 'This feature is currently disabled while the site is in Demo Mode.'
 );
 
 ###############################################################################
@@ -1829,10 +1914,10 @@ $LANG_SECTEST = array(
 ###############################################################################
 # "What's New" Time Strings
 # 
-# For the first two strings, you can use the following placeholders.
-# Order them so it makes sense in your language:
-# %i    item, "Stories"
-# %n    amount, "2", "20" etc.
+# This here determines the order of the sentence "No new articles in 2 hrs"
+# order it so it makes sense in your language:
+# %i    item, "Articles"
+# %n    amount, "2", "20" etc
 # %t    time, "2" (weeks)
 # %s    scale, "hrs", "weeks"
 
@@ -1929,6 +2014,7 @@ $LANG_ADMIN = array(
     'token_expiry' => 'יש לכם עד %s לערוך שינויים. אחרי זמן זה, כרטיס הביטחון שמוטמע בעמוד זה יאבד את תוקפו ואתם תאבדו את השינויים שלכם.',
     'token_expired' => 'כרטיס הביטחון לפעולה זו פג. נא אמתו מחדש כדי להמשיך.',
     'reauth_msg' => 'כרטיס הביטחון לפעולה זו פג. אם ברצונכם להמשיך בפעולה זו, נא אמתו מחדש להלן. כך יובטח ששינויים שהרגע ביצעתם לא יאבדו.',
+    'token_expired_remote_user' => 'The security token for this operation has expired. Since you are a remote user you cannot re-authenticate, so you have lost your changes.',
     'authenticate' => 'אימות',
     'approve' => 'Approve',
     'device' => 'Device',
@@ -1985,13 +2071,18 @@ $LANG_frontpagecodes = array(
 
 $LANG_postmodes = array(
     'plaintext' => 'טקסט פשוט',
-    'html' => 'פורמט HTML',
-    'wikitext' => 'Wiki-style format'
+    'html' => 'פורמט HTML'
 );
 
 $LANG_sortcodes = array(
     'ASC' => 'הישן קודם',
     'DESC' => 'החדש קודם'
+);
+
+$LANG_statuscodes = array(
+    0 => 'Normal',
+    1 => 'Refreshing',
+    10 => 'Archive'
 );
 
 $LANG_trackbackcodes = array(
@@ -2054,15 +2145,18 @@ $LANG_confignames['Core'] = array(
     'path_themes' => 'נתיב לנושאים עיצוביים',
     'cache_templates' => 'Cache Templates?',
     'cache_mobile' => 'Cache Mobile Devices Separately?',
+    'cache_resource' => 'Combine, Minify and Cache CSS and JavaScript Files?',
     'disable_new_user_registration' => 'ביטול הרשמות חדשות',
     'allow_user_themes' => 'איפשור בחירת נושאים עיצוביים למשתמשים',
     'allow_user_language' => 'איפשור בחירת שפה למשתמשים',
+    'switchlang_homepage' => 'Switch Language Block Redirects to Homepage',
     'allow_user_photo' => 'איפשור תמונות של משתמשים',
     'allow_username_change' => 'איפשור שינוי שם משתמש',
     'allow_account_delete' => 'איפשור מחיקות משתמשים',
     'hide_author_exclusion' => 'איפשור החבאת המחבר',
     'show_fullname' => 'הציגו שם מלא',
     'show_servicename' => 'הציגו שם שירות',
+    'require_user_email' => 'Require User Email',
     'custom_registration' => 'איפשור הרשמה מותאמת אישית',
     'user_login_method' => 'שיטת הזדהות במערכת',
     'facebook_login' => 'אפשרו זיהוי OAuth של פייסבוק',
@@ -2196,6 +2290,7 @@ $LANG_confignames['Core'] = array(
     'whats_related_max' => 'Max What\'s Related to Display',
     'whats_related_trim' => 'What\'s Related Title Length',
     'default_cache_time_article' => 'Default Article Cache Time',
+    'blocks_article_topic_list_repeat_after' => 'Article Topic List Blocks Location Repeat',
     'aftersave_user' => 'לאחר שמירת משתמש',
     'show_right_blocks' => 'תמיד להציג קוביות מידע ימניות [שמאליות במצב שפה RTL]?',
     'showfirstasfeatured' => 'הצגת המאמר הראשון כמאמר המוצג היומי?',
@@ -2242,6 +2337,9 @@ $LANG_confignames['Core'] = array(
     'passwordspeedlimit' => 'הגבלת מהירות סיסמאות',
     'login_attempts' => 'הכמות המקסימלית של נסיונות הזדהות',
     'login_speedlimit' => 'הגבלת מהירות הזדהות',
+    'invalidloginattempts' => 'Max. Invalid Login Attempts',
+    'invalidloginmaxtime' => 'Invalid Login Max Time',
+    'enable_twofactorauth' => 'Enable Two Factor Authentication?',
     'pass_alg' => 'אלגוריתם קידוד הססמה',
     'pass_stretch' => 'ספירת מתיחת הקידוד',
     'user_html' => 'ה-HTML הזמין למשתמשים',
@@ -2255,14 +2353,16 @@ $LANG_confignames['Core'] = array(
     'compressed_output' => 'שליחת פלט מכווץ?',
     'frame_options' => 'הגנה נגד "clickjacking"',
     'page_navigation_max_pages' => 'המספר המקסימלי של הדפים לניווט',
+    'page_navigation_mobile_max_pages' => 'Max Pages for Navigation with Mobile Devices',
     'default_cache_time_block' => 'Default Block Cache Time',
     'titletoid' => 'Enable Title To Id?',
+    '404_log' => 'Log 404 Errors',
     'censormode' => 'הפעלת צנזורה?',
     'censorreplace' => 'צנזורת החלפת טקסט',
     'censorlist' => 'רשימת צנזורה',
     'ip_lookup' => 'בדיקת IP',
     'url_rewrite' => 'איפשור URL Rewrite',
-    'url_Routing' => 'Enable URL Routing',
+    'url_routing' => 'Enable URL Routing',
     'cdn_hosted' => 'השתמשו בעותק מאורח ב-CDN של jQuery',
     'meta_tags' => 'תגיות Meta',
     'meta_description' => 'ברירת המחדל של Meta Description',
@@ -2289,7 +2389,7 @@ $LANG_confignames['Core'] = array(
     'search_def_keytype' => 'שיטת חיפוש ברירת המחדל',
     'search_def_sort' => 'ברירת המחדל של סדר מיון',
     'search_use_topic' => 'Use Current Topic',
-    'autotag_permissions_story' => '[story: ] הרשאות',
+    'autotag_permissions_story' => '[article: ] הרשאות',
     'autotag_permissions_user' => '[user: ] הרשאות',
     'autotag_permissions_topic' => '[topic: ] Permissions',
     'autotag_permissions_related_topics' => '[related_topics: ] Permissions',
@@ -2466,7 +2566,7 @@ $LANG_configselects['Core'] = array(
     22 => array('נוקשה' => 'DENY', 'מאותו המקור' => 'SAMEORIGIN', '(מנוטרל)' => ''),
     23 => array('מנוטרל' => 0, 'מאופשר' => 1, 'מאופשר (ברירת המחדל לדף הבית בלבד)' => 2),
     24 => array('הגשות' => 'contribute', 'דף הבית' => 'home', 'חיפוש מתקדם' => 'search', 'ספרייה' => 'directory', 'Login' => 'login', 'החשבון שלי' => 'prefs', 'פריטי plugins' => 'plugins', 'פריטים מותאמים אישית' => 'custom', 'סטטיסטיקת אתר' => 'stats'),
-    25 => array('מאמרים חדשים' => 'story', 'תגובות חדשות' => 'comment', 'הפניות חדשות' => 'trackback', 'פינגים חוזרים חדשים' => 'pingback', 'משתמשים חדשים' => 'user', 'User Updates' => 'user_update'),
+    25 => array('מאמרים חדשים' => 'article', 'תגובות חדשות' => 'comment', 'הפניות חדשות' => 'trackback', 'פינגים חוזרים חדשים' => 'pingback', 'משתמשים חדשים' => 'user', 'User Updates' => 'user_update'),
     26 => array('G (קהל כללי)' => 'G', 'PG (ליווי הורים)' => 'PG', 'R (מוגבל)' => 'R', 'X (בוטה)' => 'X'),
     27 => array('כניסות (סדר עולה)' => 'hits|asc', 'כניסות (סדר יורד)' => 'hits|desc', 'תאריך (סדר עולה)' => 'date|asc', 'תאריך (סדר יורד)' => 'date|desc', 'כותרת (סדר עולה)' => 'title|asc', 'כותרת (סדר יורד)' => 'title|desc', 'יוצר (סדר עולה)' => 'uid|asc', 'יוצר (סדר יורד)' => 'uid|desc'),
     28 => array('ללא גישה' => 0, 'שימוש' => 2),

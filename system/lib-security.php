@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 2.1                                                               |
+// | Geeklog 2.2                                                               |
 // +---------------------------------------------------------------------------+
 // | lib-security.php                                                          |
 // |                                                                           |
@@ -56,17 +56,26 @@
  */
 
 // Turn this on to get various debug messages from the code in this library
-$_SEC_VERBOSE = false;
+// Need to perform check as lib-security is also loaded by the Geeklog Emergency Rescue Tool
+// which does not load lib-common.php
+if (function_exists('COM_isEnableDeveloperModeLog')) {
+    $_SEC_VERBOSE = COM_isEnableDeveloperModeLog('security');
+} else {
+    $_SEC_VERBOSE = false;
+}
 
-if (stripos($_SERVER['PHP_SELF'], 'lib-security.php') !== false) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     die('This file can not be used on its own!');
 }
 
-/* Constants for account stats */
+/* Constants for account status */
 define('USER_ACCOUNT_DISABLED', 0); // Account is banned/disabled
-define('USER_ACCOUNT_AWAITING_ACTIVATION', 1); // Account awaiting user to login.
+define('USER_ACCOUNT_AWAITING_ACTIVATION', 1); // Account awaiting user to login. Email has been sent
 define('USER_ACCOUNT_AWAITING_APPROVAL', 2); // Account awaiting moderator approval
-define('USER_ACCOUNT_ACTIVE', 3); // active account
+define('USER_ACCOUNT_ACTIVE', 3); // Active account
+define('USER_ACCOUNT_LOCKED', 4); // Account is locked. User cannot login, emails to account is disabled
+define('USER_ACCOUNT_NEW_EMAIL', 5); // Emails to account is disabled. User when login must submit new email address and verify before access to rest of website (under the user account)
+define('USER_ACCOUNT_NEW_PASSWORD', 6); // User when login must submit new password before access to rest of website (under the user account), Only for regular accounts and not remote
 
 /* Constant for Security Token */
 if (!defined('CSRF_TOKEN')) {
@@ -74,23 +83,26 @@ if (!defined('CSRF_TOKEN')) {
 }
 
 /**
- * Returns the groups a user belongs to
- * This is part of the GL security implementation.  This function returns
- * all the groups a user belongs to.  This function is called recursively
- * as groups can belong to other groups
- * Note: this is an expensive function -- if you are concerned about speed it should only
- *       be used once at the beginning of a page.  The resulting array $_GROUPS can then be
- *       used through out the page.
- *
- * @param        int $uid User ID to get information for. If empty current user.
- * @return   array   Associative Array grp_name -> ug_main_grp_id of group ID's user belongs to
- */
-function SEC_getUserGroups($uid = '')
+* Returns the groups a user belongs to
+*
+* This is part of the GL security implementation.  This function returns
+* all the groups a user belongs to.  This function is called recursively
+* as groups can belong to other groups
+*
+* Note: this is an expensive function -- if you are concerned about speed it should only
+*       be used once at the beginning of a page.  The resulting array $_GROUPS can then be
+*       used through out the page.
+*
+* @param    int     $uid            User ID to get information for. If empty current user.
+* @return   array   Associative Array grp_name -> ug_main_grp_id of group ID's user belongs to
+*
+*/
+function SEC_getUserGroups($uid = 0)
 {
-    global $_TABLES, $_USER, $_SEC_VERBOSE;
+    global $_TABLES, $_USER, $_SEC_VERBOSE, $_USER_MAINGROUPS;
 
     if ($_SEC_VERBOSE) {
-        COM_errorLog("****************in getusergroups(uid=$uid)***************", 1);
+        COM_errorLog("****************in SEC_getUserGroups(uid=$uid)***************",1);
     }
 
     $groups = array();
@@ -101,10 +113,13 @@ function SEC_getUserGroups($uid = '')
         } else {
             $uid = $_USER['uid'];
         }
+    } else {
+        $_USER_MAINGROUPS = array();
+        $tuid = $uid;
     }
 
     $result = DB_query("SELECT ug_main_grp_id,grp_name FROM {$_TABLES["group_assignments"]},{$_TABLES["groups"]}"
-        . " WHERE grp_id = ug_main_grp_id AND ug_uid = $uid", 1);
+            . " WHERE grp_id = ug_main_grp_id AND ug_uid = $uid", 1);
 
     if ($result === false) {
         return $groups;
@@ -113,7 +128,7 @@ function SEC_getUserGroups($uid = '')
     $nrows = DB_numRows($result);
 
     if ($_SEC_VERBOSE) {
-        COM_errorLog("got $nrows rows", 1);
+        COM_errorLog("got $nrows rows",1);
     }
 
     while ($nrows > 0) {
@@ -132,9 +147,10 @@ function SEC_getUserGroups($uid = '')
         }
 
         if (count($cgroups) > 0) {
+            if (empty($_USER_MAINGROUPS) && !empty($tuid)) { $_USER_MAINGROUPS = $cgroups; }
             $glist = implode(',', $cgroups);
             $result = DB_query("SELECT ug_main_grp_id,grp_name FROM {$_TABLES["group_assignments"]},{$_TABLES["groups"]}"
-                . " WHERE grp_id = ug_main_grp_id AND ug_grp_id IN ($glist)", 1);
+                    . " WHERE grp_id = ug_main_grp_id AND ug_grp_id IN ($glist)", 1);
             $nrows = DB_numRows($result);
         } else {
             $nrows = 0;
@@ -144,7 +160,7 @@ function SEC_getUserGroups($uid = '')
     uksort($groups, 'strcasecmp');
 
     if ($_SEC_VERBOSE) {
-        COM_errorLog("****************leaving getusergroups(uid=$uid)***************", 1);
+        COM_errorLog("****************leaving SEC_getUserGroups(uid=$uid)***************",1);
     }
 
     return $groups;
@@ -157,11 +173,11 @@ function SEC_getUserGroups($uid = '')
  * the group id for "Remote User" group is, because it's a later static
  * group, and upgraded systems could have it in any id slot.
  *
- * @param      groupid     int     The id of a group, which might be the remote users group
- * @param      groups      array   Array of group ids the user has access to.
+ * @param      int   $groupId  The id of a group, which might be the remote users group
+ * @param      array $groups   Array of group ids the user has access to.
  * @return     boolean
  */
-function SEC_groupIsRemoteUserAndHaveAccess($groupid, $groups)
+function SEC_groupIsRemoteUserAndHaveAccess($groupId, $groups)
 {
     global $_TABLES, $_CONF;
     if (!isset($_CONF['remote_users_group_id'])) {
@@ -171,7 +187,7 @@ function SEC_groupIsRemoteUserAndHaveAccess($groupid, $groups)
             $_CONF['remote_users_group_id'] = $row['grp_id'];
         }
     }
-    if ($groupid == $_CONF['remote_users_group_id']) {
+    if ($groupId == $_CONF['remote_users_group_id']) {
         if (in_array(1, $groups) || // root
             in_array(9, $groups) || // user admin
             in_array(11, $groups) // Group admin
@@ -192,10 +208,9 @@ function SEC_groupIsRemoteUserAndHaveAccess($groupid, $groups)
  *
  * @param        string $grp_to_verify Group we want to see if user belongs to
  * @param        int    $uid           ID for user to check. If empty current user.
- * @param        string $cur_grp_id    NOT USED Current group we are working with in hierarchy
- * @return       boolean     true if user is in group, otherwise false
+ * @return       bool                  true if user is in group, otherwise false
  */
-function SEC_inGroup($grp_to_verify, $uid = '', $cur_grp_id = '')
+function SEC_inGroup($grp_to_verify, $uid = 0)
 {
     global $_USER, $_GROUPS;
 
@@ -274,7 +289,7 @@ function SEC_hasConfigAccess()
 function SEC_hasConfigAcess()
 {
     COM_deprecatedLog(__FUNCTION__, '2.0.0', '3.0.0', 'SEC_hasConfigAccess');
-    
+
     return SEC_hasConfigAccess();
 }
 
@@ -312,7 +327,7 @@ function SEC_hasModerationAccess()
     }
 
     if (PLG_isModerator()) {
-        $hasAccess = false;
+        $hasAccess = true;
     }
 
     return $hasAccess;
@@ -477,7 +492,7 @@ function SEC_getPermissionsHTML($perm_owner, $perm_group, $perm_members, $perm_a
 
     $retval = '';
 
-    $perm_templates = COM_newTemplate($_CONF['path_layout'] . 'admin/common');
+    $perm_templates = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout'] . 'admin/common'));
     $perm_templates->set_file(array('editor' => 'edit_permissions.thtml'));
 
     $perm_templates->set_var('lang_owner', $LANG_ACCESS['owner']);
@@ -527,7 +542,7 @@ function SEC_getPermissionsHTML($perm_owner, $perm_group, $perm_members, $perm_a
  * @param    int $uid    User to check, if empty current user.
  * @return   string  returns comma delimited list of features the user has access to
  */
-function SEC_getUserPermissions($grp_id = '', $uid = '')
+function SEC_getUserPermissions($grp_id = 0, $uid = 0)
 {
     global $_TABLES, $_USER, $_SEC_VERBOSE, $_GROUPS;
 
@@ -687,11 +702,9 @@ function SEC_getPermissionValue($perm_x)
  * @param    int    $uid     (optional) user ID
  * @return   int                 group ID or 0
  */
-function SEC_getFeatureGroup($feature, $uid = '')
+function SEC_getFeatureGroup($feature, $uid = 0)
 {
     global $_GROUPS, $_TABLES, $_USER;
-
-    $ugroups = array();
 
     if (empty($uid)) {
         if (empty($_USER['uid'])) {
@@ -742,7 +755,7 @@ function SEC_authenticate($username, $password, &$uid)
 
     $password = str_replace(array("\015", "\012"), '', $password);
 
-    $result = DB_query("SELECT status, passwd, email, uid FROM {$_TABLES['users']} WHERE username='$username' AND ((remoteservice is null) or (remoteservice = ''))");
+    $result = DB_query("SELECT uid, status, passwd, email, uid, invalidlogins, lastinvalid + {$_CONF['invalidloginmaxtime']} lastinvalidcheck, UNIX_TIMESTAMP() currenttime  FROM {$_TABLES['users']} WHERE username='$username' AND ((remoteservice is null) or (remoteservice = ''))");
     $tmp = DB_error();
     $nrows = DB_numRows($result);
 
@@ -753,6 +766,36 @@ function SEC_authenticate($username, $password, &$uid)
             // banned, jump to here to save an password hash calc.
             return USER_ACCOUNT_DISABLED;
         } elseif (SEC_encryptUserPassword($password, $uid) < 0) {
+            $tmp = $LANG01['error_invalid_password'] . ": '" . $username . "'";
+            COM_accessLog($tmp);
+
+            // Check and record invalid user login attempt
+            if ($_CONF['invalidloginattempts'] > 0 AND $_CONF['invalidloginmaxtime'] > 0 ) {
+                // Check to see if time is within max value (need to deal with NULLS)
+                if (!empty($U['lastinvalidcheck']) AND ($U['lastinvalidcheck'] > $U['currenttime'])) {
+                    // Now check if Max login attempts reached for user
+                    if ((($U['invalidlogins'] + 1) >= $_CONF['invalidloginattempts'])) {
+                        // Send an email
+                        USER_sendInvalidLoginAlert($username, $U['email'], $U['uid']);
+
+                        // Notify any plugins
+                        PLG_invalidLoginsUser($U['uid']);
+
+                        // Reset Count
+                        $sql = "UPDATE {$_TABLES['users']} SET invalidlogins = 0, lastinvalid = UNIX_TIMESTAMP() WHERE uid = {$U['uid']}";
+                        DB_query($sql);
+                    } else {
+                        // If not
+                        $sql = "UPDATE {$_TABLES['users']} SET invalidlogins = invalidlogins + 1 WHERE uid = {$U['uid']}";
+                        DB_query($sql);
+                    }
+                } else {
+                    // Time limit has passed so reset everything
+                    $sql = "UPDATE {$_TABLES['users']} SET invalidlogins = 0, lastinvalid = UNIX_TIMESTAMP() WHERE uid = {$U['uid']}";
+                    DB_query($sql);
+                }
+            }
+
             return -1; // failed login
         } elseif ($U['status'] == USER_ACCOUNT_AWAITING_APPROVAL) {
             return USER_ACCOUNT_AWAITING_APPROVAL;
@@ -762,6 +805,12 @@ function SEC_authenticate($username, $password, &$uid)
                 'username', $username);
 
             return USER_ACCOUNT_ACTIVE;
+        } elseif ($U['status'] == USER_ACCOUNT_LOCKED) {
+            return USER_ACCOUNT_LOCKED;
+        } elseif ($U['status'] == USER_ACCOUNT_NEW_EMAIL) {
+            return USER_ACCOUNT_NEW_EMAIL;
+        } elseif ($U['status'] == USER_ACCOUNT_NEW_PASSWORD) {
+            return USER_ACCOUNT_NEW_PASSWORD;
         } else {
             return $U['status']; // just return their status
         }
@@ -856,6 +905,7 @@ function SEC_remoteAuthentication(&$loginname, $passwd, $service, &$uid)
     $servicefile = $_CONF['path_system'] . 'classes/authentication/' . $service
         . '.auth.class.php';
     if (file_exists($servicefile)) {
+        /** @noinspection PhpIncludeInspection */
         require_once $servicefile;
 
         $authmodule = new $service();
@@ -934,14 +984,16 @@ function SEC_collectRemoteAuthenticationModules()
  * @author Trinity L Bays, trinity93 AT gmail DOT com
  * @param  string $uid   Their user id
  * @param  string $gname The group name
- * @return boolean status, true or false.
+ * @return bool
  */
 function SEC_addUserToGroup($uid, $gname)
 {
-    global $_TABLES, $_CONF;
+    global $_TABLES;
 
     $remote_grp = DB_getItem($_TABLES['groups'], 'grp_id', "grp_name='" . $gname . "'");
-    DB_query("INSERT INTO {$_TABLES['group_assignments']} (ug_main_grp_id,ug_uid) VALUES ($remote_grp, $uid)");
+    $retval = DB_query("INSERT INTO {$_TABLES['group_assignments']} (ug_main_grp_id,ug_uid) VALUES ($remote_grp, $uid)");
+
+    return $retval;
 }
 
 /**
@@ -989,9 +1041,9 @@ function SEC_setDefaultPermissions(&$A, $use_permissions = array())
  */
 function SEC_buildAccessSql($clause = 'AND')
 {
-    global $_TABLES, $_USER;
+    global $_USER;
 
-    if (isset($_USER) AND $_USER['uid'] > 1) {
+    if (isset($_USER) && $_USER['uid'] > 1) {
         $uid = $_USER['uid'];
     } else {
         $uid = 1;
@@ -1063,8 +1115,6 @@ function SEC_getGroupDropdown($group_id, $access)
 
     if ($access == 3) {
         $usergroups = SEC_getUserGroups();
-
-        $groupdd .= '<select class="uk-select uk-form-width-small" id="group_id" name="group_id">' . LB;
         foreach ($usergroups as $ug_name => $ug_id) {
             $groupdd .= '<option value="' . $ug_id . '"';
             if ($group_id == $ug_id) {
@@ -1072,7 +1122,10 @@ function SEC_getGroupDropdown($group_id, $access)
             }
             $groupdd .= '>' . ucwords($ug_name) . '</option>' . LB;
         }
-        $groupdd .= '</select>' . LB;
+        $groupdd = COM_createControl('type-select', array(
+            'name' => 'group_id',
+            'select_items' => $groupdd
+        ));
     } else {
         // They can't set the group then
         $groupdd .= DB_getItem($_TABLES['groups'], 'grp_name',
@@ -1199,7 +1252,7 @@ function SEC_generateSalt()
  * @param  int    $uid      user id to authenticate
  * @return int     0 for success, non-zero for failure or error
  */
-function SEC_encryptUserPassword($password, $uid = '')
+function SEC_encryptUserPassword($password, $uid = 0)
 {
     global $_USER, $_CONF, $_TABLES;
 
@@ -1251,15 +1304,54 @@ function SEC_encryptUserPassword($password, $uid = '')
 }
 
 /**
- * Generate Random Password
- * Generates a random string of human readable characters.
+ * Check if password passes minimum strength tests
+ * Passwords must be a minimum of 8 characters and have at least 1 letter and 1 number
  *
- * @return  string  generated random password
+ * @param  string $password
+ * @return bool
+ */
+function SEC_checkPasswordStrength($password) {
+
+    return strlen($password) >= 8 && (
+        preg_match('(\pL)u', $password) // Letters
+      + preg_match('(\pN)u', $password) // Numbers
+      //+ preg_match('([^\pL\pN])u', $password) // Punctuation
+    ) >= 2;
+
+}
+
+/**
+ * Generate Random Password
+ * Generates a random string of human readable characters that has at least 1 number and 1 letter.
+ *
+ * @return string  generated random password
  */
 function SEC_generateRandomPassword()
 {
     // SEC_generateSalt is used here as it creates a random string using readable characters
-    return substr(SEC_generateSalt(), 0, 12);
+    // return substr(SEC_generateSalt(), 0, 12);
+
+    // Code borrowed from: https://stackoverflow.com/questions/26530629/php-random-string-with-one-number-and-one-letters
+    srand(time());
+    mt_srand(rand());
+    srand(mt_rand());
+
+    $entropy = str_split(hash('sha256', uniqid('awesomesalt', true) . SEC_randomBytes(64) . microtime() . rand() . mt_rand(), true));
+    $alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789!@#$%^&*()_+=-";
+    $pass = array(); //remember to declare $pass as an array
+    $alphaLength = strlen($alphabet); //put the length in cache
+    $rand = floor(ord(array_pop($entropy)) * 50 / 255.1);
+    $pass[] = $alphabet[0 + $rand]; // Grab a random letter.
+    $rand = floor(ord(array_pop($entropy)) * 10 / 255.1);
+    $pass[] = $alphabet[50 + $rand]; // Grab a random number.
+
+    for ($i = 0; $i < 6; $i++) {
+        $rand = (int) floor(ord(array_pop($entropy)) * $alphaLength / 255.1);
+        $pass[] = $alphabet[$rand];
+    }
+
+    shuffle($pass);
+    return implode($pass); //turn the array into a string
 }
 
 /**
@@ -1269,9 +1361,9 @@ function SEC_generateRandomPassword()
  *
  * @param  string $password Password to encrypt
  * @param  int    $uid      User id to update
- * @return int     0 for success, non-zero indicates error.
+ * @return int              0 for success, non-zero indicates error.
  */
-function SEC_updateUserPassword(&$password = '', $uid = '')
+function SEC_updateUserPassword(&$password = '', $uid = 0)
 {
     global $_TABLES, $_CONF, $_USER;
 
@@ -1314,7 +1406,7 @@ function SEC_updateUserPassword(&$password = '', $uid = '')
  */
 function SEC_createToken($ttl = 1200)
 {
-    global $_TABLES, $_USER;
+    global $_CONF, $_TABLES, $_USER;
 
     static $last_token;
 
@@ -1331,17 +1423,19 @@ function SEC_createToken($ttl = 1200)
     $token = md5($uid . $pageURL . uniqid(rand(), 1));
     $pageURL = DB_escapeString($pageURL);
 
-    /* Destroy exired tokens: */
+    /* Destroy expired tokens: */
     $sql['mysql'] = "DELETE FROM {$_TABLES['tokens']} WHERE (DATE_ADD(created, INTERVAL ttl SECOND) < NOW())"
         . " AND (ttl > 0)";
     $sql['pgsql'] = "DELETE FROM {$_TABLES['tokens']} WHERE ROUND(EXTRACT(EPOCH FROM ABSTIME(created)))::int4 + (SELECT ttl from {$_TABLES['tokens']} LIMIT 1) < ROUND(EXTRACT(EPOCH FROM ABSTIME(NOW())))::int4"
         . " AND (ttl > 0)";
     DB_query($sql);
 
-    /* Destroy tokens for this user/url combination. Since annonymous user share same id do not delete */
-    if ($uid != 1) {
-        $sql = "DELETE FROM {$_TABLES['tokens']} WHERE owner_id = '{$uid}' AND urlfor= '$pageURL'";
-        DB_query($sql);
+    /* Destroy tokens for this user/url combination. Since anonymous user share same id do not delete */
+    if (!(isset($_CONF['demo_mode']) && $_CONF['demo_mode'])) {
+        if ($uid != 1) {
+            $sql = "DELETE FROM {$_TABLES['tokens']} WHERE owner_id = '{$uid}' AND urlfor= '$pageURL'";
+            DB_query($sql);
+        }
     }
 
     /* Create a token for this user/url combination */
@@ -1379,31 +1473,34 @@ function SEC_checkToken()
         return true;
     }
 
-    /**
-     * Token not valid (probably expired): Ask user to authenticate again
-     */
-    $returnurl = COM_getCurrentUrl();
-    $method = strtoupper($_SERVER['REQUEST_METHOD']);
-    $postdata = serialize($_POST);
-    $getdata = serialize($_GET);
-    $files = '';
-    if (!empty($_FILES)) {
-        // rescue uploaded files
-        foreach ($_FILES as $key => $f) {
-            if (!empty($f['name'])) {
-                $filename = basename($f['tmp_name']);
-                move_uploaded_file($f['tmp_name'],
-                    $_CONF['path_data'] . $filename);
-                $_FILES[$key]['tmp_name'] = $filename; // drop temp. dir
+    // Token not valid (probably expired): Ask user to authenticate again
+    // Note: Currently Only Works with User Accounts that do not remotely login
+    if (!empty($_USER['remoteservice']) && (($_USER['remoteservice'] == 'openid') || (substr($_USER['remoteservice'],0,6) == 'oauth.'))) {
+        $display = COM_showMessageText($LANG_ADMIN['token_expired_remote_user']);
+    } else {
+        $returnurl = COM_getCurrentUrl();
+        $method = strtoupper($_SERVER['REQUEST_METHOD']);
+        $postdata = serialize($_POST);
+        $getdata = serialize($_GET);
+        $files = '';
+        if (!empty($_FILES)) {
+            // rescue uploaded files
+            foreach ($_FILES as $key => $f) {
+                if (!empty($f['name'])) {
+                    $filename = basename($f['tmp_name']);
+                    move_uploaded_file($f['tmp_name'],
+                        $_CONF['path_data'] . $filename);
+                    $_FILES[$key]['tmp_name'] = $filename; // drop temp. dir
+                }
             }
+            $files = serialize($_FILES);
         }
-        $files = serialize($_FILES);
+
+        $display = COM_showMessageText($LANG_ADMIN['token_expired'])
+            . SECINT_authform($returnurl, $method, $postdata, $getdata, $files);
     }
-
-    $display = COM_showMessageText($LANG_ADMIN['token_expired'])
-        . SECINT_authform($returnurl, $method, $postdata, $getdata, $files);
     $display = COM_createHTMLDocument($display, array('pagetitle' => $LANG20[1]));
-
+    
     COM_output($display);
     exit;
 
@@ -1419,10 +1516,9 @@ function SEC_checkToken()
  */
 function SECINT_checkToken()
 {
-    global $_TABLES, $_USER, $_DB_dbms;
+    global $_TABLES, $_USER;
 
     $token = Geeklog\Input::fGetOrPost(CSRF_TOKEN, ''); // Default to no token
-    $return = false; // Default to fail.
 
     if (trim($token) != '') {
         $sql['mysql'] = "SELECT ((DATE_ADD(created, INTERVAL ttl SECOND) < NOW()) AND ttl > 0) as expired, owner_id, urlfor FROM "
@@ -1468,7 +1564,8 @@ function SECINT_checkToken()
  * @param    string $method    original request method: POST or GET
  * @param    string $postdata  serialized POST data
  * @param    string $getdata   serialized GET data
- * @return   string              HTML for the authentication form
+ * @param    string $files
+ * @return   string            HTML for the authentication form
  * @access   private
  */
 function SECINT_authform($returnurl, $method, $postdata = '', $getdata = '', $files = '')
@@ -1494,7 +1591,8 @@ function SECINT_authform($returnurl, $method, $postdata = '', $getdata = '', $fi
     $cfg = array(
         'hide_forgotpw_link' => true,
         'no_newreg_link'     => true,
-        'no_openid_login'    => true, // TBD
+        'no_openid_login'    => true,
+        'no_oauth_login'     => true,
         'no_plugin_vars'     => true, // no plugin vars in re-auth form, please
 
         'title'       => $LANG20[1],
@@ -1611,8 +1709,8 @@ function SEC_getTokenExpiryTime($token)
 
 /**
  * Create a message informing the user when the security token is about to expire
- * This message is only created for Remote Users who logged in using OpenID,
- * since the re-authentication does not work with OpenID.
+ * This message is only created for Remote Users who logged in using OpenID and OAuth,
+ * since the re-authentication does not work with OpenID or OAuth.
  *
  * @param    string $token     the token
  * @param    string $extra_msg (optional) additional text to include in notice
@@ -1625,20 +1723,16 @@ function SEC_getTokenExpiryNotice($token, $extra_msg = '')
 
     $retval = '';
 
-    if (isset($_USER['remoteservice']) &&
-        ($_USER['remoteservice'] == 'openid')
-    ) {
+    if (!empty($_USER['remoteservice']) && (($_USER['remoteservice'] == 'openid') || (substr($_USER['remoteservice'],0,6) == 'oauth.'))) {
         $expirytime = SEC_getTokenExpiryTime($token);
         if ($expirytime > 0) {
-            $exptime = '<span id="token-expirytime">'
-                . strftime($_CONF['timeonly'], $expirytime) . '</span>';
-            $retval .= '<p id="token-expirynotice">'
-                . sprintf($LANG_ADMIN['token_expiry'], $exptime);
-            if (!empty($extra_msg)) {
-                $retval .= ' ' . $extra_msg;
-            }
-
-            $retval .= '</p>' . LB;
+            $tcc = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout'] . 'controls'));
+            $tcc->set_file('expiry_message', 'expiry_message.thtml');
+            
+            $tcc->set_var('lang_token_expiry', sprintf($LANG_ADMIN['token_expiry'], strftime($_CONF['timeonly'], $expirytime)));
+            $tcc->set_var('lang_extra_msg', $extra_msg);
+            
+            $retval = $tcc->finish($tcc->parse('output', 'expiry_message'));        
         }
     }
 
@@ -1651,19 +1745,18 @@ function SEC_getTokenExpiryNotice($token, $extra_msg = '')
  * Browsers that support the HttpOnly flag will not allow JavaScript access
  * to such a cookie.
  *
- * @param    string  $name   cookie name
- * @param    string  $value  cookie value
- * @param    int     $expire expire time
- * @param    string  $path   path on the server or $_CONF['cookie_path']
- * @param    string  $domain domain or $_CONF['cookiedomain']
- * @param    boolean $secure whether to use HTTPS or $_CONF['cookiesecure']
+ * @param  string  $name   cookie name
+ * @param  string  $value  cookie value
+ * @param  int     $expire expire time
+ * @param  string  $path   path on the server or $_CONF['cookie_path']
+ * @param  string  $domain domain or $_CONF['cookiedomain']
+ * @param  bool    $secure whether to use HTTPS or $_CONF['cookiesecure']
+ * @return bool
  * @link http://blog.mattmecham.com/2006/09/12/http-only-cookies-without-php-52/
  */
 function SEC_setCookie($name, $value, $expire = 0, $path = null, $domain = null, $secure = null)
 {
     global $_CONF;
-
-    $retval = false;
 
     if ($path === null) {
         $path = $_CONF['cookie_path'];
@@ -1753,7 +1846,7 @@ function SEC_hasAccess2($A)
  */
 function SEC_loginRequiredForm()
 {
-    global $_CONF, $LANG_LOGIN;
+    global $LANG_LOGIN;
 
     $cfg = array(
         'title'   => $LANG_LOGIN[1],
@@ -1802,7 +1895,7 @@ function SEC_loginForm($use_config = array())
 
     $config = array_merge($default_config, $use_config);
 
-    $loginform = COM_newTemplate($_CONF['path_layout'] . 'users');
+    $loginform = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout'] . 'users'));
     $loginform->set_file('login', 'loginform.thtml');
 
     $loginform->set_var('start_block_loginagain',
@@ -1846,7 +1939,7 @@ function SEC_loginForm($use_config = array())
                     . $modules[0] . '"' . XHTML . '>' . $modules[0];
             } else {
                 // Build select
-                $select = '<select class="uk-select uk-form-width-small" name="service">';
+                $select = '';
                 if ($_CONF['user_login_method']['standard']) {
                     $select .= '<option value="">' . $_CONF['site_name']
                         . '</option>';
@@ -1855,7 +1948,10 @@ function SEC_loginForm($use_config = array())
                     $select .= '<option value="' . $service . '">' . $service
                         . '</option>';
                 }
-                $select .= '</select>';
+                $select = COM_createControl('type-select', array(
+                    'name' => 'service',
+                    'select_items' => $select
+                ));
             }
 
             $loginform->set_file('services', 'services.thtml');
@@ -2008,4 +2104,38 @@ function SEC_getDefaultRootUser()
     $A = DB_fetchArray($result);
 
     return $A['uid'];
+}
+
+/**
+ * Return random bytes
+ *
+ * @param  int $length
+ * @return string
+ */
+function SEC_randomBytes($length)
+{
+    $length = (int) $length;
+    if ($length < 1) {
+        $length = 32;
+    }
+
+    try {
+        $retval = random_bytes($length);
+    } catch (\Exception $e) {
+        $retval = false;
+
+        if (is_callable('openssl_random_pseudo_bytes ')) {
+            $retval = openssl_random_pseudo_bytes($length);
+        }
+
+        if ($retval === false) {
+            $retval = '';
+
+            for ($i = 0; $i < $length; $i++) {
+                $retval .= substr(md5(rand()), 0, 1);
+            }
+        }
+    }
+
+    return $retval;
 }

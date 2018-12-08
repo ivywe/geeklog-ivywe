@@ -2,13 +2,13 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 2.1                                                               |
+// | Geeklog 2.2                                                               |
 // +---------------------------------------------------------------------------+
 // | mysqli.class.php                                                          |
 // |                                                                           |
 // | mysql database class with MySQLi extension                                |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2000-2013 by the following authors:                         |
+// | Copyright (C) 2000-2017 by the following authors:                         |
 // |                                                                           |
 // | Authors: Tony Bibbs, tony AT tonybibbs DOT com                            |
 // |          Kenji Ito, geeklog AT mystral-kk DOT net                         |
@@ -114,34 +114,26 @@ class Database
 
     /**
      * Logs messages
-     * Logs messages by calling the function held in $_errorlog_fn
+     * Logs messages by calling the function held in $_errorLog_fn
      *
      * @param    string $msg Message to log
      * @access   private
      */
-    private function _errorlog($msg)
+    private function _errorLog($msg)
     {
-        $function = $this->_errorlog_fn;
-
-        if (function_exists($function)) {
-            $function($msg);
-        }
+        call_user_func($this->_errorlog_fn, $msg);
     }
 
     /**
      * Connects to the MySQL database server
-     * This function connects to the MySQL server and returns the connection object
-     *
-     * @return   bool Returns connection object
+     * This function connects to the MySQL server
      */
     private function _connect()
     {
         global $_TABLES, $use_innodb;
 
-        $result = true;
-
         if ($this->_verbose) {
-            $this->_errorlog("\n*** Inside database->_connect ***");
+            $this->_errorLog("\n*** Inside database->_connect ***");
         }
 
         // Connect to MySQL server
@@ -160,12 +152,11 @@ class Database
 
         if (!$this->_db) {
             if ($this->_verbose) {
-                $this->_errorlog("\n*** Error in database->_connect ***");
+                $this->_errorLog("\n*** Error in database->_connect ***");
             }
 
             // damn, got an error.
             $this->dbError();
-            $result = false;
         }
 
         // Set the character set
@@ -187,10 +178,8 @@ class Database
         }
 
         if ($this->_verbose) {
-            $this->_errorlog("\n***leaving database->_connect***");
+            $this->_errorLog("\n***leaving database->_connect***");
         }
-
-        return $result;
     }
 
     /**
@@ -333,7 +322,7 @@ class Database
         $this->_pass = $dbpass;
         $this->_tablePrefix = $tablePrefix;
         $this->_verbose = false;
-        $this->_errorlog_fn = $errorlogfn;
+        $this->setErrorFunction($errorlogfn);
         $this->_charset = strtolower($charset);
         $this->_mysql_version = 0;
         $this->_use_innodb = false;
@@ -383,18 +372,39 @@ class Database
             return false;
         }
 
-        return $this->_verbose;
+        return $this->_verbose && COM_isEnableDeveloperModeLog('database');
+    }
+
+    /**
+     * Default logger when COM_errorLog is not available
+     *
+     * @param  string $msg
+     */
+    private function defaultLogger($msg)
+    {
+        if (is_callable('error_log')) {
+            $msg .= PHP_EOL;
+            error_log($msg, 0);
+        } else {
+            if (!headers_sent()) {
+                header('Content-Type: text/html; charset=utf-8');
+            }
+
+            echo nl2br($msg) . '<br>' . PHP_EOL;
+        }
     }
 
     /**
      * Sets the function this class should call to log debug messages
      *
-     * @param        string $functionName Function name
+     * @param  string $functionName Function name
      */
     public function setErrorFunction($functionName)
     {
         if (is_callable($functionName)) {
             $this->_errorlog_fn = $functionName;
+        } else {
+            $this->_errorlog_fn = array($this, 'defaultLogger');
         }
     }
 
@@ -402,16 +412,15 @@ class Database
      * Executes a query on the MySQL server
      * This executes the passed SQL and returns the recordset or errors out
      *
-     * @param    string $sql                 SQL to be executed
-     * @param    int    $ignore_errors       If 1 this function supresses any
-     *                                       error messages
-     * @return   mysqli_result|false      Returns results of query
+     * @param    string $sql              SQL to be executed
+     * @param    int    $ignore_errors    If 1 this function suppresses any error messages
+     * @return   mysqli_result|bool       Returns results of query
      */
     public function dbQuery($sql, $ignore_errors = 0)
     {
         if ($this->_verbose) {
-            $this->_errorlog("\n***inside database->dbQuery***");
-            $this->_errorlog("\n*** sql to execute is $sql ***");
+            $this->_errorLog("\n***inside database->dbQuery***");
+            $this->_errorLog("\n*** sql to execute is $sql ***");
         }
 
         // Modifies "CREATE TABLE" SQL
@@ -463,8 +472,8 @@ class Database
         // If OK, return otherwise echo error
         if ($this->_db->errno == 0 && ($result !== false)) {
             if ($this->_verbose) {
-                $this->_errorlog("\n***sql ran just fine***");
-                $this->_errorlog("\n*** Leaving database->dbQuery ***");
+                $this->_errorLog("\n***sql ran just fine***");
+                $this->_errorLog("\n*** Leaving database->dbQuery ***");
             }
 
             return $result;
@@ -474,9 +483,12 @@ class Database
                 return false;
             }
 
+            // Log errors
+            $this->dbError($sql);
+
             if ($this->_verbose) {
-                $this->_errorlog("\n***sql caused an error***");
-                $this->_errorlog("\n*** Leaving database->dbQuery ***");
+                $this->_errorLog("\n***sql caused an error***");
+                $this->_errorLog("\n*** Leaving database->dbQuery ***");
             }
 
             return false;
@@ -495,14 +507,14 @@ class Database
     public function dbSave($table, $fields, $values)
     {
         if ($this->_verbose) {
-            $this->_errorlog("\n*** Inside database->dbSave ***");
+            $this->_errorLog("\n*** Inside database->dbSave ***");
         }
 
         $sql = "REPLACE INTO $table ($fields) VALUES ($values)";
         $this->dbQuery($sql);
 
         if ($this->_verbose) {
-            $this->_errorlog("\n*** Leaving database->dbSave ***");
+            $this->_errorLog("\n*** Leaving database->dbSave ***");
         }
     }
 
@@ -561,7 +573,7 @@ class Database
     public function dbDelete($table, $id, $value)
     {
         if ($this->_verbose) {
-            $this->_errorlog("\n*** inside database->dbDelete ***");
+            $this->_errorLog("\n*** inside database->dbDelete ***");
         }
 
         $sql = "DELETE FROM $table";
@@ -576,7 +588,7 @@ class Database
         $this->dbQuery($sql);
 
         if ($this->_verbose) {
-            $this->_errorlog("\n*** inside database->dbDelete ***");
+            $this->_errorLog("\n*** inside database->dbDelete ***");
         }
 
         return true;
@@ -599,7 +611,7 @@ class Database
                              $suppress_quotes = false)
     {
         if ($this->_verbose) {
-            $this->_errorlog("\n*** Inside dbChange ***");
+            $this->_errorLog("\n*** Inside dbChange ***");
         }
 
         if ($suppress_quotes) {
@@ -617,13 +629,13 @@ class Database
         }
 
         if ($this->_verbose) {
-            $this->_errorlog("dbChange sql = $sql");
+            $this->_errorLog("dbChange sql = $sql");
         }
 
         $retval = $this->dbQuery($sql);
 
         if ($this->_verbose) {
-            $this->_errorlog("\n*** Leaving database->dbChange ***");
+            $this->_errorLog("\n*** Leaving database->dbChange ***");
         }
 
         return $retval;
@@ -642,7 +654,7 @@ class Database
     public function dbCount($table, $id = '', $value = '')
     {
         if ($this->_verbose) {
-            $this->_errorlog("\n*** Inside database->dbCount ***");
+            $this->_errorLog("\n*** Inside database->dbCount ***");
         }
 
         $sql = "SELECT COUNT(*) FROM $table";
@@ -655,13 +667,13 @@ class Database
         }
 
         if ($this->_verbose) {
-            $this->_errorlog("\n*** sql = $sql ***");
+            $this->_errorLog("\n*** sql = $sql ***");
         }
 
         $result = $this->dbQuery($sql);
 
         if ($this->_verbose) {
-            $this->_errorlog("\n*** Leaving database->dbCount ***");
+            $this->_errorLog("\n*** Leaving database->dbCount ***");
         }
 
         return $this->dbResult($result, 0);
@@ -683,7 +695,7 @@ class Database
     public function dbCopy($table, $fields, $values, $tableFrom, $id, $value)
     {
         if ($this->_verbose) {
-            $this->_errorlog("\n*** Inside database->dbCopy ***");
+            $this->_errorLog("\n*** Inside database->dbCopy ***");
         }
 
         $sql = "REPLACE INTO $table ($fields) SELECT $values FROM $tableFrom";
@@ -699,7 +711,7 @@ class Database
         $retval = $retval && $this->dbDelete($tableFrom, $id, $value);
 
         if ($this->_verbose) {
-            $this->_errorlog("\n*** Leaving database->dbCopy ***");
+            $this->_errorLog("\n*** Leaving database->dbCopy ***");
         }
 
         return $retval;
@@ -710,26 +722,26 @@ class Database
      * This returns the number of rows in a recordset
      *
      * @param    mysqli_result $recordSet The record set to operate one
-     * @return   int         Returns number of rows otherwise FALSE (0)
+     * @return   int           Returns number of rows otherwise FALSE (0)
      */
     public function dbNumRows($recordSet)
     {
         if ($this->_verbose) {
-            $this->_errorlog("\n*** Inside database->dbNumRows ***");
+            $this->_errorLog("\n*** Inside database->dbNumRows ***");
         }
 
         // return only if record set exists, otherwise 0
         if ($recordSet instanceof mysqli_result) {
             if ($this->_verbose) {
-                $this->_errorlog('got ' . $recordSet->num_rows . ' rows');
-                $this->_errorlog("\n*** Inside database->dbNumRows ***");
+                $this->_errorLog('got ' . $recordSet->num_rows . ' rows');
+                $this->_errorLog("\n*** Inside database->dbNumRows ***");
             }
 
             return $recordSet->num_rows;
         } else {
             if ($this->_verbose) {
-                $this->_errorlog("got no rows");
-                $this->_errorlog("\n*** Inside database->dbNumRows ***");
+                $this->_errorLog("got no rows");
+                $this->_errorLog("\n*** Inside database->dbNumRows ***");
             }
 
             return 0;
@@ -747,15 +759,15 @@ class Database
     public function dbResult($recordSet, $row, $field = 0)
     {
         if ($this->_verbose) {
-            $this->_errorlog("\n*** Inside database->dbResult ***");
+            $this->_errorLog("\n*** Inside database->dbResult ***");
 
             if (empty($recordSet)) {
-                $this->_errorlog("\n*** Passed recordset isn't valid ***");
+                $this->_errorLog("\n*** Passed recordset isn't valid ***");
             } else {
-                $this->_errorlog("\n*** Everything looks good ***");
+                $this->_errorLog("\n*** Everything looks good ***");
             }
 
-            $this->_errorlog("\n*** Leaving database->dbResult ***");
+            $this->_errorLog("\n*** Leaving database->dbResult ***");
         }
 
         $retval = '';
@@ -825,10 +837,14 @@ class Database
      */
     public function dbFetchArray($recordSet, $both = false)
     {
-        $result_type = $both ? MYSQLI_BOTH : MYSQLI_ASSOC;
-        $result = $recordSet->fetch_array($result_type);
+        if ($recordSet instanceof mysqli_result) {
+            $result_type = $both ? MYSQLI_BOTH : MYSQLI_ASSOC;
+            $result = $recordSet->fetch_array($result_type);
 
-        return ($result === null) ? false : $result;
+            return ($result === null) ? false : $result;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -875,9 +891,9 @@ class Database
             }
 
             if (empty($fn)) {
-                $this->_errorlog($this->_db->errno . ': ' . $this->_db->error . ". SQL in question: $sql");
+                $this->_errorLog($this->_db->errno . ': ' . $this->_db->error . ". SQL in question: $sql");
             } else {
-                $this->_errorlog($this->_db->errno . ': ' . $this->_db->error . " in $fn. SQL in question: $sql");
+                $this->_errorLog($this->_db->errno . ': ' . $this->_db->error . " in $fn. SQL in question: $sql");
             }
 
             if ($this->_display_error) {
@@ -900,14 +916,14 @@ class Database
     public function dbLockTable($table)
     {
         if ($this->_verbose) {
-            $this->_errorlog("\n*** Inside database->dbLockTable ***");
+            $this->_errorLog("\n*** Inside database->dbLockTable ***");
         }
 
         $sql = "LOCK TABLES $table WRITE";
         $this->dbQuery($sql);
 
         if ($this->_verbose) {
-            $this->_errorlog("\n*** Leaving database->dbLockTable ***");
+            $this->_errorLog("\n*** Leaving database->dbLockTable ***");
         }
     }
 
@@ -921,14 +937,14 @@ class Database
     public function dbUnlockTable($table)
     {
         if ($this->_verbose) {
-            $this->_errorlog("\n*** Inside database->dbUnlockTable ***");
+            $this->_errorLog("\n*** Inside database->dbUnlockTable ***");
         }
 
         $sql = 'UNLOCK TABLES';
         $this->dbQuery($sql);
 
         if ($this->_verbose) {
-            $this->_errorlog("\n*** Leaving database->dbUnlockTable ***");
+            $this->_errorLog("\n*** Leaving database->dbUnlockTable ***");
         }
     }
 
@@ -940,19 +956,46 @@ class Database
         return $this->_db->server_info;
     }
 
+    /**
+     * Start a new transaction
+     *
+     * @return bool true on success, false otherwise
+     */
     public function dbStartTransaction()
     {
-        return $this->_db->autocommit(false);
+        if ($this->_use_innodb) {
+            return $this->_db->autocommit(false);
+        } else {
+            return false;
+        }
     }
 
+    /**
+     * Commit the current transaction
+     *
+     * @return bool true on success, false otherwise
+     */
     public function dbCommit()
     {
-        return $this->_db->commit();
+        if ($this->_use_innodb) {
+            return $this->_db->commit();
+        } else {
+            return false;
+        }
     }
 
-    public function dbRollback()
+    /**
+     * Rollback the current transaction
+     *
+     * @return bool true on success, false otherwise
+     */
+    public function dbRollBack()
     {
-        return $this->_db->rollback();
+        if ($this->_use_innodb) {
+            return $this->_db->rollback();
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -966,5 +1009,15 @@ class Database
         $retval = $this->_db->real_escape_string($str);
 
         return $retval;
+    }
+
+    /**
+     * Return if the database server supports InnoDB engine
+     *
+     * @return bool
+     */
+    public function isInnoDb()
+    {
+        return $this->_use_innodb;
     }
 }

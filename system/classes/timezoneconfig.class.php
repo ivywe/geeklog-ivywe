@@ -33,9 +33,6 @@
 /**
  * Geeklog Time Zone Config class
  * A collection of static (for now) methods dealing with time zone handling.
- * For the original "Timezone Hack" discussion, see
- *
- * @link   https://www.geeklog.net/forum/viewtopic.php?showtopic=21232
  * @author Dirk Haun, dirk AT haun-online DOT de
  */
 class TimeZoneConfig
@@ -58,22 +55,16 @@ class TimeZoneConfig
 
         if (!empty($tz)) {
             if ($tz != $system_timezone) {
-                if (function_exists('date_default_timezone_set')) {
-                    if (!@date_default_timezone_set($tz)) {
-                        date_default_timezone_set('UTC');
-                        COM_errorLog("Timezone '$tz' not valid - using 'UTC' instead", 1);
-                        $system_timezone = 'UTC';
-                    } else {
-                        $system_timezone = $tz;
-                    }
-                } elseif (!ini_get('safe_mode') && function_exists('putenv')) {
-                    // aka "Timezone Hack"
-                    putenv('TZ=' . $tz);
+                if (!@date_default_timezone_set($tz)) {
+                    date_default_timezone_set('UTC');
+                    COM_errorLog("Timezone '$tz' not valid - using 'UTC' instead", 1);
+                    $system_timezone = 'UTC';
+                } else {
                     $system_timezone = $tz;
                 }
             }
-        } elseif (function_exists('date_default_timezone_get')) {
-            // this is not ideal but will stop PHP 5.3.0ff from complaining ...
+        } else {
+            // this is not ideal but will stop PHP 5.3.0 from complaining ...
             $system_timezone = @date_default_timezone_get();
             date_default_timezone_set($system_timezone);
         }
@@ -135,22 +126,19 @@ class TimeZoneConfig
      */
     public static function getTimeZoneDropDown($selected = '', $attributes = array())
     {
+        global $_CONF;
+
         $timezones = self::listAvailableTimeZones();
-
-        $selection = '<select class="uk-select uk-form-width-medium"';
-        foreach ($attributes as $name => $value) {
-            $selection .= sprintf(' %s="%s"', $name, $value);
-        }
-        $selection .= '>' . LB;
-
+        $items = '';
         foreach ($timezones as $tzId => $tzDisplay) {
-            $selection .= '<option value="' . $tzId . '"';
+            $items .= '<option value="' . $tzId . '"';
             if (!empty($selected) && ($selected == $tzId)) {
-                $selection .= ' selected="selected"';
+                $items .= ' selected="selected"';
             }
-            $selection .= ">{$tzDisplay}</option>" . LB;
+            $items .= ">{$tzDisplay}</option>" . LB;
         }
-        $selection .= '</select>';
+        $vars = array_merge($attributes, array('select_items' => $items));
+        $selection = COM_createControl('type-select', $vars);
 
         return $selection;
     }

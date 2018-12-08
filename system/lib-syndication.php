@@ -39,7 +39,7 @@ if ($_CONF['trackback_enabled']) {
     require_once $_CONF['path_system'] . 'lib-trackback.php';
 }
 
-require_once $_CONF['path_system'] . 'lib-story.php';
+require_once $_CONF['path_system'] . 'lib-article.php';
 
 // set to true to enable debug output in error.log
 $_SYND_DEBUG = false;
@@ -262,7 +262,7 @@ function SYND_getFeedContentPerTopic($tid, $limit, &$link, &$update, $contentLen
             $sids[] = $row['sid'];
 
             // Need to load story this way for intro and body text to insure things like [imageX] and autotags are processed properly
-            $story = new Story();
+            $story = new Article();
             $story->loadFromArray($row);
 
             $storytitle = stripslashes($row['title']);
@@ -390,7 +390,7 @@ function SYND_getFeedContentAll($frontpage_only, $limit, &$link, &$update, $cont
         $sids[] = $row['sid'];
 
         // Need to load story this way for intro and body text to insure things like [imageX] and autotags are processed properly
-        $story = new Story();
+        $story = new Article();
         $story->loadFromArray($row);
 
         $storytitle = stripslashes($row['title']);
@@ -497,7 +497,11 @@ function SYND_updateFeed($fid)
                 if ($A['content_length'] != 1) {
                     $count = count($content);
                     for ($i = 0; $i < $count; $i++) {
-                        $content[$i]['summary'] = ($A['content_length'] == 1) ? $content[$i]['text'] : COM_truncateHTML($content[$i]['text'], $A['content_length'], ' ...');
+                        if (isset($content[$i]['text'])) {
+                            $content[$i]['summary'] = ($A['content_length'] == 1) ? $content[$i]['text'] : COM_truncateHTML($content[$i]['text'], $A['content_length'], ' ...');
+                        } else {
+                            $content[$i]['summary'] = '';
+                        }
                     }
                 }
             }
@@ -671,7 +675,7 @@ function SYND_getFeedType($format)
  * Helper function: Get default feed URL
  * This is mostly for backward compatibility: Back in the dark ages, Geeklog
  * only had one RSS feed and its URL was available as a template variable.
- * Moved that code here from COM_siteHeader/Footer for better encapsulation.
+ * Moved that code here from COM_createHTMLDocument for better encapsulation.
  *
  * @return   string      URL of the feed
  */

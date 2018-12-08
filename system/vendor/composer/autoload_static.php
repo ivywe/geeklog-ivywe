@@ -8,6 +8,7 @@ class ComposerStaticInite72621cdbb7ab1eae4754470aabe0609
 {
     public static $files = array (
         'ef836782e1b8d747e78815386b148139' => __DIR__ . '/..' . '/htmlawed/htmlawed/htmLawed.php',
+        '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
     );
 
@@ -16,12 +17,33 @@ class ComposerStaticInite72621cdbb7ab1eae4754470aabe0609
         array (
             'splitbrain\\PHPArchive\\' => 22,
         ),
+        'R' => 
+        array (
+            'RobThree\\Auth\\' => 14,
+        ),
+        'M' => 
+        array (
+            'MatthiasMullie\\PathConverter\\' => 29,
+            'MatthiasMullie\\Minify\\' => 22,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
         'splitbrain\\PHPArchive\\' => 
         array (
             0 => __DIR__ . '/..' . '/splitbrain/php-archive/src',
+        ),
+        'RobThree\\Auth\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/robthree/twofactorauth/lib',
+        ),
+        'MatthiasMullie\\PathConverter\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/matthiasmullie/path-converter/src',
+        ),
+        'MatthiasMullie\\Minify\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/matthiasmullie/minify/src',
         ),
     );
 
@@ -62,6 +84,22 @@ class ComposerStaticInite72621cdbb7ab1eae4754470aabe0609
 
     public static $classMap = array (
         'Net_URL2' => __DIR__ . '/..' . '/pear/net_url2/Net/URL2.php',
+        'basic_sasl_client_class' => __DIR__ . '/..' . '/phpclasses/sasl/basic_sasl_client.php',
+        'cookie_oauth_client_class' => __DIR__ . '/..' . '/phpclasses/oauth-api/cookie_oauth_client.php',
+        'cram_md5_sasl_client_class' => __DIR__ . '/..' . '/phpclasses/sasl/cram_md5_sasl_client.php',
+        'database_oauth_client_class' => __DIR__ . '/..' . '/phpclasses/oauth-api/database_oauth_client.php',
+        'digest_sasl_client_class' => __DIR__ . '/..' . '/phpclasses/sasl/digest_sasl_client.php',
+        'file_oauth_client_class' => __DIR__ . '/..' . '/phpclasses/oauth-api/file_oauth_client.php',
+        'http_class' => __DIR__ . '/..' . '/phpclasses/httpclient/http.php',
+        'login_sasl_client_class' => __DIR__ . '/..' . '/phpclasses/sasl/login_sasl_client.php',
+        'mysqli_oauth_client_class' => __DIR__ . '/..' . '/phpclasses/oauth-api/mysqli_oauth_client.php',
+        'ntlm_sasl_client_class' => __DIR__ . '/..' . '/phpclasses/sasl/ntlm_sasl_client.php',
+        'oauth_client_class' => __DIR__ . '/..' . '/phpclasses/oauth-api/oauth_client.php',
+        'oauth_session_value_class' => __DIR__ . '/..' . '/phpclasses/oauth-api/oauth_client.php',
+        'plain_sasl_client_class' => __DIR__ . '/..' . '/phpclasses/sasl/plain_sasl_client.php',
+        'sasl_client_class' => __DIR__ . '/..' . '/phpclasses/sasl/sasl.php',
+        'sasl_interact_class' => __DIR__ . '/..' . '/phpclasses/sasl/sasl.php',
+        'yahoo_user_class' => __DIR__ . '/..' . '/phpclasses/httpclient/yahoo_user.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

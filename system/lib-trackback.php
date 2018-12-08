@@ -2,13 +2,13 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 2.1                                                               |
+// | Geeklog 2.2                                                               |
 // +---------------------------------------------------------------------------+
 // | lib-trackback.php                                                         |
 // |                                                                           |
 // | Functions needed to handle trackback comments.                            |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2005-2010 by the following authors:                         |
+// | Copyright (C) 2005-2017 by the following authors:                         |
 // |                                                                           |
 // | Author: Dirk Haun - dirk AT haun-online DOT de                            |
 // +---------------------------------------------------------------------------+
@@ -226,10 +226,30 @@ function TRB_allowDelete($sid, $type)
  */
 function TRB_checkForSpam($url, $title = '', $blog = '', $excerpt = '')
 {
-    global $_CONF;
+    global $_CONF, $_USER;
 
+    $permanentlink = COM_getCurrentURL(); // This should be the link to the article that the trackback/pingback is for
+    $authorname = null;
+    $authoremail = null;
+    $authorurl = null; // Before this was set as $url but we have embedded that in the comment itself so including author homepage if exists
+    if (!COM_isAnonUser()) {
+        $authorname = $_USER['username'];
+        if (!empty($_USER['email'])) {
+            $authoremail = $_USER['email'];
+        }
+        if (!empty($_USER['homepage'])) {
+            $authorurl = $_USER['homepage'];
+        }
+    }
     $comment = TRB_formatComment($url, $title, $blog, $excerpt);
-    $result = PLG_checkforSpam($comment, $_CONF['spamx']);
+    
+    $result = PLG_checkForSpam($comment, $_CONF['spamx'], $permanentlink, Geeklog\Akismet::COMMENT_TYPE_TRACKBACK, $authorname, $authoremail, $authorurl);
+    /*
+    $result = PLG_checkForSpam(
+        $comment, $_CONF['spamx'], COM_getCurrentURL(), Geeklog\Akismet::COMMENT_TYPE_TRACKBACK,
+        null, null, $url
+    );
+    */
 
     if ($result > 0) {
         return TRB_SAVE_SPAM;
@@ -345,7 +365,7 @@ function TRB_formatComment($url, $title = '', $blog = '', $excerpt = '', $date =
     }
     $curtime = COM_getUserDateTimeFormat($date);
 
-    $template = COM_newTemplate($_CONF['path_layout'] . 'trackback');
+    $template = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout'] . 'trackback'));
     $template->set_file(array('comment' => 'formattedcomment.thtml'));
     $template->set_var('lang_from', $LANG_TRB['from']);
     $template->set_var('lang_tracked_on', $LANG_TRB['tracked_on']);
@@ -657,7 +677,7 @@ function TRB_renderTrackbackComments($sid, $type, $title, $permalink, $trackback
         $trackbackUrl = TRB_makeTrackbackUrl($sid, $type);
     }
 
-    $template = COM_newTemplate($_CONF['path_layout'] . 'trackback');
+    $template = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout'] . 'trackback'));
     $template->set_file(array('trackback' => 'trackback.thtml',
                               'comment'   => 'trackbackcomment.thtml'));
     $template->set_var('lang_trackback', $LANG_TRB['trackback']);

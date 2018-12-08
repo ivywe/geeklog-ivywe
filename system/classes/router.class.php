@@ -1,5 +1,33 @@
 <?php
 
+// +---------------------------------------------------------------------------+
+// | Geeklog 2.2                                                               |
+// +---------------------------------------------------------------------------+
+// | router.class.php                                                          |
+// |                                                                           |
+// | Geeklog homepage.                                                         |
+// +---------------------------------------------------------------------------+
+// | Copyright (C) 2016-2017 by the following authors:                         |
+// |                                                                           |
+// | Authors: Kenji ITO         - mystralkk AT gmail DOT com                   |
+// +---------------------------------------------------------------------------+
+// |                                                                           |
+// | This program is free software; you can redistribute it and/or             |
+// | modify it under the terms of the GNU General Public License               |
+// | as published by the Free Software Foundation; either version 2            |
+// | of the License, or (at your option) any later version.                    |
+// |                                                                           |
+// | This program is distributed in the hope that it will be useful,           |
+// | but WITHOUT ANY WARRANTY; without even the implied warranty of            |
+// | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the             |
+// | GNU General Public License for more details.                              |
+// |                                                                           |
+// | You should have received a copy of the GNU General Public License         |
+// | along with this program; if not, write to the Free Software Foundation,   |
+// | Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.           |
+// |                                                                           |
+// +---------------------------------------------------------------------------+
+
 /**
  * Class Router
  */
@@ -24,6 +52,9 @@ class Router
     // Values to escape pattern
     const VALUE_MATCH = '|[^0-9a-zA-Z_%.-]|';
 
+    // Default HTTP status code
+    const DEFAULT_STATUS_CODE = 200;
+
     // Default priority
     const DEFAULT_PRIORITY = 100;
 
@@ -40,6 +71,51 @@ class Router
     public static function setDebug($switch)
     {
         self::$debug = (bool) $switch;
+    }
+
+    /**
+     * Act as a proxy
+     *
+     * Fetch the content of the target URL and display it on behalf of the original controller
+     *
+     * @param  string $url
+     */
+    private static function proxy($url)
+    {
+        $request = new HTTP_Request2($url);
+
+        // Add the current cookies.  Otherwise, session will be lost.
+        foreach ($_COOKIE as $key => $value) {
+            try {
+                $request->addCookie(urlencode($key), urlencode($value));
+            } catch (HTTP_Request2_LogicException $e) {
+                COM_errorLog(__METHOD__ . ': invalid cookie detected. name = "' . $key . '" value = "' . $value . '"');
+            }
+        }
+
+        try {
+            $response = $request->send();
+            $statusCode = (int) $response->getStatus();
+
+            if ($statusCode === 200) {
+                if (!headers_sent()) {
+                    header('Content-Type: text/html; charset=' . COM_getCharset(), true, $statusCode);
+                }
+
+                echo $response->getBody();
+            } elseif (($statusCode >= 300) && ($statusCode < 400)) {
+                // e.g. public_html/links/portal.php
+                $newLocation = $response->getHeader('Location');
+                header('Location: ' . $newLocation, true, $statusCode);
+            } else {
+                throw new RuntimeException($response->getBody());
+            }
+        } catch (Exception $e) {
+            COM_handle404();
+        }
+
+        // Never return to callee
+        die();
     }
 
     /**
@@ -108,7 +184,7 @@ class Router
         }
 
         // Get routing rules and routes from database
-        $sql = "SELECT * FROM {$_TABLES['routes']} WHERE method = " . DB_escapeString($method) . " ORDER BY priority ";
+        $sql = "SELECT * FROM {$_TABLES['routes']} WHERE method = " . DB_escapeString($method) . " and enabled = 1 ORDER BY priority ";
         $result = DB_query($sql);
 
         if (DB_error()) {
@@ -121,6 +197,9 @@ class Router
             $rule = $A['rule'];
             $route = $A['route'];
 
+            // HTTP response code since v2.2.0
+            $responseCode = isset($A['response_code']) ? (int) $A['response_code'] : self::DEFAULT_STATUS_CODE;
+
             // Try simple comparison without placeholders
             if (strcasecmp($rule, $pathInfo) === 0) {
                 $route = $_CONF['site_url'] . $route;
@@ -129,7 +208,12 @@ class Router
                     COM_errorLog(__METHOD__ . ': "' . $pathInfo . '"matched with simple comparison rule "' . $A['rule'] . '", converted into "' . $route . '"');
                 }
 
-                header('Location: ' . $route);
+                if ($responseCode === 200) {
+                    self::proxy($route);
+                    die();
+                } else {
+                    header('Location: ' . $route, $responseCode);
+                }
 
                 COM_errorLog(__METHOD__ . ': somehow could not redirect');
 
@@ -181,7 +265,12 @@ class Router
                     COM_errorLog(__METHOD__ . ': "' . $pathInfo . '" matched with regular expression rule "' . $A['rule'] . '", converted into "' . $route . '"');
                 }
 
-                header('Location: ' . $route);
+                if ($responseCode === 200) {
+                    self::proxy($route);
+                    die();
+                } else {
+                    header('Location: ' . $route, $responseCode);
+                }
             }
         }
 
@@ -234,7 +323,7 @@ class Router
         }
 
         // Get routing rules and routes from database
-        $sql = "SELECT * FROM {$_TABLES['routes']} WHERE method = " . DB_escapeString($requestMethod) . " ORDER BY priority ";
+        $sql = "SELECT * FROM {$_TABLES['routes']} WHERE method = " . DB_escapeString($requestMethod) . " AND enabled = 1 ORDER BY priority ";
         $result = DB_query($sql);
 
         if (DB_error()) {

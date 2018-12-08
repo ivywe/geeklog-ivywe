@@ -2,13 +2,13 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 2.1                                                               |
+// | Geeklog 2.2                                                               |
 // +---------------------------------------------------------------------------+
 // | pgsql.class.php                                                           |
 // |                                                                           |
 // | PostgreSQL database class                                                 |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2000-2011 by the following authors:                         |
+// | Copyright (C) 2000-2017 by the following authors:                         |
 // |                                                                           |
 // | Authors: Stanislav Palatnik, spalatnikk AT gmail DoT com                  |
 // +---------------------------------------------------------------------------+
@@ -80,7 +80,7 @@ class Database
     private $_display_error = false;
 
     /**
-     * @var callable
+     * @var string|callable
      */
     private $_errorlog_fn = '';
 
@@ -102,13 +102,9 @@ class Database
      *
      * @param    string $msg Message to log
      */
-    private function _errorlog($msg)
+    private function _errorLog($msg)
     {
-        $function = $this->_errorlog_fn;
-
-        if (function_exists($function)) {
-            $function($msg);
-        }
+        call_user_func($this->_errorlog_fn, $msg);
     }
 
     /**
@@ -147,13 +143,11 @@ class Database
     /**
      * Connects to the pgSQL database server
      * This function connects to the PostgreSQL server and returns the connection object
-     *
-     * @return   object      Returns connection object
      */
     private function _connect()
     {
         if ($this->isVerbose()) {
-            $this->_errorlog("\n*** Inside database->_connect ***");
+            $this->_errorLog("\n*** Inside database->_connect ***");
         }
 
         // Connect to pgSQL server
@@ -167,11 +161,11 @@ class Database
         if (!($this->_db)) {
             if (pg_connection_busy($this->_db)) {
                 if ($this->isVerbose()) {
-                    $this->_errorlog("\n*** The current connection is busy ***");
+                    $this->_errorLog("\n*** The current connection is busy ***");
                 }
             } else {
                 if ($this->isVerbose()) {
-                    $this->_errorlog("\n*** Error in database->_connect ***");
+                    $this->_errorLog("\n*** Error in database->_connect ***");
                 }
             }
         }
@@ -181,12 +175,42 @@ class Database
         }
 
         if ($this->isVerbose()) {
-            $this->_errorlog("\n***leaving database->_connect***");
+            $this->_errorLog("\n***leaving database->_connect***");
         }
     }
 
+    /**
+     * Default logger when COM_errorLog is not available
+     *
+     * @param  string $msg
+     */
+    private function defaultLogger($msg)
+    {
+        if (is_callable('error_log')) {
+            $msg .= PHP_EOL;
+            error_log($msg, 0);
+        } else {
+            if (!headers_sent()) {
+                header('Content-Type: text/html; charset=utf-8');
+            }
 
-    // PUBLIC METHODS
+            echo nl2br($msg) . '<br>' . PHP_EOL;
+        }
+    }
+
+    /**
+     * Sets the function this class should call to log debug messages
+     *
+     * @param  string $functionName Function name
+     */
+    public function setErrorFunction($functionName)
+    {
+        if (is_callable($functionName)) {
+            $this->_errorlog_fn = $functionName;
+        } else {
+            $this->_errorlog_fn = array($this, 'defaultLogger');
+        }
+    }
 
     /**
      * constructor for database
@@ -206,9 +230,8 @@ class Database
         $this->_name = $dbname;
         $this->_user = $dbuser;
         $this->_pass = $dbpass;
-        $this->_tablePrefix = $tablePrefix;
+        $this->setErrorFunction($errorlogfn);
         $this->_verbose = false;
-        $this->_errorlog_fn = $errorlogfn;
         $this->_charset = strtolower($charset);
         $this->_pgsql_version = 0;
 
@@ -219,16 +242,16 @@ class Database
      * Retrieves returns the number of effected rows for last query
      * Retrieves returns the number of effected rows for last query
      *
-     * @param    object $recordset The recordset to operate on
+     * @param    object $recordSet The recordset to operate on
      * @return   int     Number of rows affected by last query
      */
-    public function dbAffectedRows($recordset)
+    public function dbAffectedRows($recordSet)
     {
-        if (!isset($recordset)) {
-            $recordset = pg_get_result($this->_db);
+        if (!isset($recordSet)) {
+            $recordSet = pg_get_result($this->_db);
         }
 
-        return @pg_affected_rows($recordset);
+        return @pg_affected_rows($recordSet);
     }
 
     /**
@@ -242,15 +265,15 @@ class Database
     public function dbResult($recordset, $row, $field = 0)
     {
         if ($this->isVerbose()) {
-            $this->_errorlog("\n*** Inside database->dbResult ***");
+            $this->_errorLog("\n*** Inside database->dbResult ***");
 
             if (empty($recordset)) {
-                $this->_errorlog("\n*** Passed recordset isn't valid ***");
+                $this->_errorLog("\n*** Passed recordset isn't valid ***");
             } else {
-                $this->_errorlog("\n*** Everything looks good ***");
+                $this->_errorLog("\n*** Everything looks good ***");
             }
 
-            $this->_errorlog("\n*** Leaving database->dbResult ***");
+            $this->_errorLog("\n*** Leaving database->dbResult ***");
         }
 
         return @pg_fetch_result($recordset, $row, $field);
@@ -300,7 +323,7 @@ class Database
     public function dbCopy($table, $fields, $values, $tableFrom, $id, $value)
     {
         if ($this->isVerbose()) {
-            $this->_errorlog("\n*** Inside database->dbCopy ***");
+            $this->_errorLog("\n*** Inside database->dbCopy ***");
         }
 
         $sql = "INSERT INTO $table ($fields) SELECT $values FROM $tableFrom";
@@ -335,7 +358,7 @@ class Database
         $this->dbDelete($tableFrom, $id, $value);
 
         if ($this->isVerbose()) {
-            $this->_errorlog("\n*** Leaving database->dbCopy ***");
+            $this->_errorLog("\n*** Leaving database->dbCopy ***");
         }
     }
 
@@ -350,8 +373,8 @@ class Database
     public function dbQuery($sql, $ignore_errors = 0)
     {
         if ($this->isVerbose()) {
-            $this->_errorlog("\n***inside database->dbQuery***");
-            $this->_errorlog("\n*** sql to execute is $sql ***");
+            $this->_errorLog("\n***inside database->dbQuery***");
+            $this->_errorLog("\n*** sql to execute is $sql ***");
         }
 
         // Replace some non ANSI keywords
@@ -373,8 +396,8 @@ class Database
         // If OK, return otherwise echo error
         if (pg_result_error($result) == false && !empty($result)) {
             if ($this->isVerbose()) {
-                $this->_errorlog("\n***sql ran just fine***");
-                $this->_errorlog("\n*** Leaving database->dbQuery ***");
+                $this->_errorLog("\n***sql ran just fine***");
+                $this->_errorLog("\n*** Leaving database->dbQuery ***");
             }
 
             return $result;
@@ -385,8 +408,8 @@ class Database
             }
 
             if ($this->isVerbose()) {
-                $this->_errorlog("\n***sql caused an error***");
-                $this->_errorlog("\n*** Leaving database->dbQuery ***");
+                $this->_errorLog("\n***sql caused an error***");
+                $this->_errorLog("\n*** Leaving database->dbQuery ***");
             }
         }
     }
@@ -403,7 +426,7 @@ class Database
     public function dbSave($table, $fields, $values)
     {
         if ($this->isVerbose()) {
-            $this->_errorlog("\n*** Inside database->dbSave ***");
+            $this->_errorLog("\n*** Inside database->dbSave ***");
         }
 
         $sql = "SELECT COUNT(*) FROM $table";
@@ -521,7 +544,7 @@ class Database
 
                     $sql = "INSERT INTO $table ($fields) VALUES ($values)";
                 } else {
-                    $this->_errorlog("There was a problem saving this DB_save call: $fields, $values");
+                    $this->_errorLog("There was a problem saving this DB_save call: $fields, $values");
                 }
             } else {
                 // no keys to worry about
@@ -531,7 +554,7 @@ class Database
         $this->dbQuery($sql);
 
         if ($this->isVerbose()) {
-            $this->_errorlog("\n*** Leaving database->dbSave ***");
+            $this->_errorLog("\n*** Leaving database->dbSave ***");
         }
     }
 
@@ -549,7 +572,7 @@ class Database
     public function dbDelete($table, $id, $value)
     {
         if ($this->isVerbose()) {
-            $this->_errorlog("\n*** inside database->dbDelete ***");
+            $this->_errorLog("\n*** inside database->dbDelete ***");
         }
 
         $sql = "DELETE FROM $table";
@@ -579,7 +602,7 @@ class Database
                 }
             } else {
                 // error, they both have to be arrays and of the same size
-                $this->_errorlog("The columns ($id) do not match the value count ($value)");
+                $this->_errorLog("The columns ($id) do not match the value count ($value)");
 
                 return false;
             }
@@ -593,7 +616,7 @@ class Database
         $this->dbQuery($sql);
 
         if ($this->isVerbose()) {
-            $this->_errorlog("\n*** Leaving database->dbDelete ***");
+            $this->_errorLog("\n*** Leaving database->dbDelete ***");
         }
 
         return true;
@@ -615,7 +638,7 @@ class Database
     public function dbChange($table, $item_to_set, $value_to_set, $id, $value, $supress_quotes = false)
     {
         if ($this->isVerbose()) {
-            $this->_errorlog("\n*** Inside dbChange ***");
+            $this->_errorLog("\n*** Inside dbChange ***");
         }
 
         if ($supress_quotes) {
@@ -653,13 +676,13 @@ class Database
         }
 
         if ($this->isVerbose()) {
-            $this->_errorlog("dbChange sql = $sql");
+            $this->_errorLog("dbChange sql = $sql");
         }
 
         $this->dbQuery($sql);
 
         if ($this->isVerbose()) {
-            $this->_errorlog("\n*** Leaving database->dbChange ***");
+            $this->_errorLog("\n*** Leaving database->dbChange ***");
         }
     }
 
@@ -673,7 +696,7 @@ class Database
     public function dbNumRows($recordSet)
     {
         if ($this->isVerbose()) {
-            $this->_errorlog("\n*** Inside database->dbNumRows ***");
+            $this->_errorLog("\n*** Inside database->dbNumRows ***");
         }
 
         // return only if recordset exists, otherwise 0
@@ -681,15 +704,15 @@ class Database
             $rows = pg_num_rows($recordSet);
 
             if ($this->isVerbose()) {
-                $this->_errorlog('got ' . $rows . ' rows');
-                $this->_errorlog("\n*** Inside database->dbNumRows ***");
+                $this->_errorLog('got ' . $rows . ' rows');
+                $this->_errorLog("\n*** Inside database->dbNumRows ***");
             }
 
             return $rows;
         } else {
             if ($this->isVerbose()) {
-                $this->_errorlog("got no rows");
-                $this->_errorlog("\n*** Inside database->dbNumRows ***");
+                $this->_errorLog("got no rows");
+                $this->_errorLog("\n*** Inside database->dbNumRows ***");
             }
 
             return 0;
@@ -709,7 +732,7 @@ class Database
     public function dbCount($table, $id = '', $value = '')
     {
         if ($this->isVerbose()) {
-            $this->_errorlog("\n*** Inside database->dbCount ***");
+            $this->_errorLog("\n*** Inside database->dbCount ***");
         }
 
         $sql = "SELECT COUNT(*) FROM $table";
@@ -741,13 +764,13 @@ class Database
         }
 
         if ($this->isVerbose()) {
-            $this->_errorlog("\n*** sql = $sql ***");
+            $this->_errorLog("\n*** sql = $sql ***");
         }
 
         $result = $this->dbQuery($sql);
 
         if ($this->isVerbose()) {
-            $this->_errorlog("\n*** Leaving database->dbCount ***");
+            $this->_errorLog("\n*** Leaving database->dbCount ***");
         }
 
         return ($this->dbResult($result, 0));
@@ -792,7 +815,7 @@ class Database
     public function dbLockTable($table)
     {
         if ($this->isVerbose()) {
-            $this->_errorlog("\n*** Inside database->dbLockTable ***");
+            $this->_errorLog("\n*** Inside database->dbLockTable ***");
         }
 
         $sql = "START Transaction";
@@ -800,7 +823,7 @@ class Database
         $this->dbQuery($sql);
 
         if ($this->isVerbose()) {
-            $this->_errorlog("\n*** Leaving database->dbLockTable ***");
+            $this->_errorLog("\n*** Leaving database->dbLockTable ***");
         }
     }
 
@@ -814,7 +837,7 @@ class Database
     public function dbUnlockTable($table)
     {
         if ($this->isVerbose()) {
-            $this->_errorlog("\n*** Inside database->dbUnlockTable ***");
+            $this->_errorLog("\n*** Inside database->dbUnlockTable ***");
         }
 
         $sql = 'COMMIT Transaction';
@@ -822,7 +845,7 @@ class Database
         $this->dbQuery($sql);
 
         if ($this->isVerbose()) {
-            $this->_errorlog("\n*** Leaving database->dbUnlockTable ***");
+            $this->_errorLog("\n*** Leaving database->dbUnlockTable ***");
         }
     }
 
@@ -888,10 +911,10 @@ class Database
         if ($this->_pgsql_version >= 7.4) {
             // this provides a much more detailed error report
             if (pg_result_error_field($result, PGSQL_DIAG_SOURCE_LINE)) {
-                $this->_errorlog('You have an error in your SQL query on line '
+                $this->_errorLog('You have an error in your SQL query on line '
                     . pg_result_error_field($result, PGSQL_DIAG_SOURCE_LINE)
                     . "$fn\nSQL in question: $sql");
-                $this->_errorlog('Error: '
+                $this->_errorLog('Error: '
                     . pg_result_error_field($result, PGSQL_DIAG_SQLSTATE)
                     . "$fn\nDescription: "
                     . pg_result_error_field($result, PGSQL_DIAG_MESSAGE_DETAIL));
@@ -906,7 +929,7 @@ class Database
             }
         } else {
             if (pg_result_error($result)) {
-                $this->_errorlog(pg_result_error($result)
+                $this->_errorLog(pg_result_error($result)
                     . "$fn. SQL in question: $sql");
 
                 if ($this->_display_error) {
@@ -937,7 +960,7 @@ class Database
             return false;
         }
 
-        return $this->_verbose;
+        return $this->_verbose && COM_isEnableDeveloperModeLog('database');
     }
 
     /**
@@ -948,6 +971,36 @@ class Database
         $v = @pg_version($this->_db);
 
         return $v['server'];
+    }
+
+    /**
+     * Start a new transaction
+     *
+     * @return bool true on success, false otherwise
+     */
+    public function dbStartTransaction()
+    {
+        return $this->dbQuery("BEGIN");
+    }
+
+    /**
+     * Commit the current transaction
+     *
+     * @return bool true on success, false otherwise
+     */
+    public function dbCommit()
+    {
+        return $this->dbQuery("COMMIT");
+    }
+
+    /**
+     * Rollback the current transaction
+     *
+     * @return bool true on success, false otherwise
+     */
+    public function dbRollBack()
+    {
+        return $this->dbQuery("ROLLBACK");
     }
 
     /**

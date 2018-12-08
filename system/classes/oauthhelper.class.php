@@ -2,14 +2,14 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 2.1.0                                                             |
+// | Geeklog 2.2.0                                                             |
 // +---------------------------------------------------------------------------+
 // | oauthhelper.class.php                                                     |
-// | version: 2.1.0                                                            |
+// | version: 2.2.0                                                            |
 // |                                                                           |
 // | Geeklog Distributed Authentication Module.                                |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2010-2011 by the following authors:                         |
+// | Copyright (C) 2010-2017 by the following authors:                         |
 // |                                                                           |
 // | Authors: Hiroron          - hiroron AT hiroron DOT com                    |
 // | Mark Howard               - mark AT usable-web DOT com                    |
@@ -36,19 +36,7 @@ if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     die('This file can not be used on its own.');
 }
 
-// http://www.phpclasses.org/package/3-PHP-HTTP-client-to-access-Web-site-pages.html
-// httpclient 1.0.5 - Updated 2016-05-12
-// httpclient 1.0.2 - Updated 2014-08-14
-// No changes to file required to upgrade
-require_once __DIR__ . '/http/http.php';
-
-// http://www.phpclasses.org/package/7700-PHP-Authorize-and-access-APIs-using-OAuth.html
-// oauth-api 1.1.52 - Updated 2016-10-14
-// oauth-api 1.0.80 - Updated 2016-05-12
-// oauth-api 1.0.39 - Updated 2014-12-22
-// To upgrade need to update Initialize function in oauth_client.php. Replace upper case with lower case letters in case statement
-// facebook, github, google, microsoft, twitter, linkedin, yahoo
-require_once __DIR__ . '/oauth/oauth_client.php';
+// As of Geeklog 2.2.0, both oauth-api and httpclient classes are managed by composer.
 
 // Enable to show debug info for OAuth
 $_SYSTEM['debug_oauth'] = false;
@@ -74,6 +62,34 @@ class OAuthConsumer
         if (strpos($service, 'oauth.') === 0) {
             $service = str_replace('oauth.', '', $service);
         }
+        
+        // Geeklog stores oauth service in all small case
+        // Vendor oauth_client.php capitalizes certain letters so update service variable to make sure will match when the vendor oauth_client_class is created
+        switch ($service) {
+            case "facebook":
+                $service = "Facebook";
+                break;
+            case "github":
+                $service = "github";
+                break;
+            case "google":
+                $service = "Google";
+                break;
+            case "linkedin":
+                $service = "LinkedIn";
+                break;
+            case "microsoft":
+                $service = "Microsoft";
+                break;
+            case "twitter":
+                $service = "Twitter";
+                break;
+            case "yahoo":
+                $service = "Yahoo";
+                break;
+            default:
+                break;
+        }
 
         $this->client = new oauth_client_class;
         $this->client->server = $service;
@@ -82,51 +98,64 @@ class OAuthConsumer
 
         // Set key and secret for OAuth service if found in config
         if ($this->client->client_id == '') {
-            if (isset($_CONF[$service . '_consumer_key'])) {
-                if ($_CONF[$service . '_consumer_key'] != '') {
-                    $this->client->client_id = $_CONF[$service . '_consumer_key'];
+            if (isset($_CONF[strtolower($service) . '_consumer_key'])) {
+                if ($_CONF[strtolower($service) . '_consumer_key'] != '') {
+                    $this->client->client_id = $_CONF[strtolower($service) . '_consumer_key'];
                 }
             }
         }
         if ($this->client->client_secret == '') {
-            if (isset($_CONF[$service . '_consumer_secret'])) {
-                if ($_CONF[$service . '_consumer_secret'] != '') {
-                    $this->client->client_secret = $_CONF[$service . '_consumer_secret'];
+            if (isset($_CONF[strtolower($service) . '_consumer_secret'])) {
+                if ($_CONF[strtolower($service) . '_consumer_secret'] != '') {
+                    $this->client->client_secret = $_CONF[strtolower($service) . '_consumer_secret'];
                 }
             }
         }
 
         switch ($this->client->server) {
-            case 'facebook' :
-                $api_url = 'https://graph.facebook.com/me?fields=name,email,link,id,first_name,last_name,about';
-                $scope   = 'email,public_profile,user_friends';
+            case 'Facebook' :
+                //$api_url = 'https://graph.facebook.com/me?fields=name,email,link,id,first_name,last_name,about';
+                //$scope   = 'email,public_profile,user_friends';
+				// About returns no data as of April 4th, 2018 as new version of API
+				// Don't need to request user_friends scope. Fix for permissions now required by Facebook app when requesting non-default data
+                // 2018-10-19 - A link to the person's Timeline. Removed link since even with user_link permission it is not useful anymore.
+                // The link will only resolve if the person clicking the link is logged into Facebook and is a friend of the person whose profile is being viewed. 
+                // At one point it use to be visible to non friends 
+				$api_url = 'https://graph.facebook.com/me?fields=name,email,id,first_name,last_name,location';
+				$scope   = 'email,public_profile';
                 $q_api   = array();
                 break;
-            case 'google' :
+
+            case 'Google' :
                 $api_url = 'https://www.googleapis.com/oauth2/v1/userinfo';
                 $scope   = 'https://www.googleapis.com/auth/userinfo.email '.'https://www.googleapis.com/auth/userinfo.profile';
                 $q_api   = array();
                 break;
-            case 'microsoft' :
+
+            case 'Microsoft' :
                 $api_url = 'https://apis.live.net/v5.0/me';
                 $scope   = 'wl.basic wl.emails';
                 $q_api   = array();
                 break;
-            case 'twitter' :
+
+            case 'Twitter' :
                 $api_url = 'https://api.twitter.com/1.1/account/verify_credentials.json';
                 $scope   = '';
                 $q_api   = array('include_entities' => "true", 'skip_status' => "true", 'include_email' => "true");
                 break;
-            case 'yahoo' :
+
+            case 'Yahoo' :
                 $api_url = 'http://query.yahooapis.com/v1/yql';
                 $scope   = '';
                 $q_api   = array('q'=>'select * from social.profile where guid=me','format'=>'json');
                 break;
-            case 'linkedin' :
+
+            case 'LinkedIn' :
                 $api_url = 'http://api.linkedin.com/v1/people/~:(id,first-name,last-name,location,summary,email-address,picture-url,public-profile-url)';
                 $scope   = 'r_basicprofile r_emailaddress';
                 $q_api   = array('format'=>'json');
                 break;
+
             case 'github' :
                 $api_url = 'https://api.github.com/user';
                 $scope   = 'user:email';
@@ -307,33 +336,40 @@ class OAuthConsumer
         $userInfo = array();
 
         switch ($this->client->server) {
-            case 'facebook' :
-                if ( isset($info->about) ) {
-                    $userinfo['about'] = $info->about;
-                }
+            case 'Facebook' :
+				// Facebook removed all access to About in April, 2018
+                //if ( isset($info->about) ) {
+                //    $userinfo['about'] = $info->about;
+                //}
                 if ( isset($info->location->name) ) {
                     $userinfo['location'] = $info->location->name;
                 }
                 break;
-            case 'google' :
+
+            case 'Google' :
                 break;
-            case 'microsoft' :
+
+            case 'Microsoft' :
                 break;
-            case 'twitter' :
+
+            case 'Twitter' :
                 if ( isset($info->email ) ) {
                     $userinfo['email'] = $info->email;
                 }
                 break;
-            case 'yahoo' :
+
+            case 'Yahoo' :
                 if (isset($info->query->results->profile->location)) {
                     $userInfo['location'] = $info->query->results->profile->location;
                 }
                 break;
-            case 'linkedin' :
+
+            case 'LinkedIn' :
                 if ( isset($info->location->name) ) {
                     $userinfo['location'] = $info->location->name;
                 }
                 break;
+
             case 'github' :
                 break;
         }
@@ -344,14 +380,14 @@ class OAuthConsumer
     protected function _getCreateUserInfo($info)
     {
         switch ($this->client->server) {
-            case 'facebook' :
+            case 'Facebook' :
                 $users = array(
                     'loginname'      => (isset($info->first_name) ? $info->first_name : $info->id),
                     'email'          => $info->email,
                     'passwd'         => '',
                     'passwd2'        => '',
                     'fullname'       => $info->name,
-                    'homepage'       => $info->link,
+                    'homepage'       => '', // Changed from $info->link, // See above in scope as to why removed (Facebook User must be logged in and a friend to work)
                     'remoteusername' => DB_escapeString($info->id),
                     'remoteservice'  => 'oauth.facebook',
                     'remotephoto'    => 'http://graph.facebook.com/'.$info->id.'/picture',
@@ -372,7 +408,7 @@ class OAuthConsumer
                 );
                 break;                
 
-            case 'google' :
+            case 'Google' :
                 $homepage = $info->link;
 
                 $plusPos = strpos($homepage,"+");
@@ -394,7 +430,7 @@ class OAuthConsumer
                 );
                 break;                
 
-            case 'twitter' :
+            case 'Twitter' :
                 $mail = '';
                 if ( isset($info->email)) {
                     $mail = $info->email;
@@ -412,7 +448,7 @@ class OAuthConsumer
                 );
                 break;                
 
-            case 'microsoft' :
+            case 'Microsoft' :
                 $users = array(
                     'loginname'      => (isset($info->first_name) ? $info->first_name : $info->id),
                     'email'          => $info->emails->preferred,
@@ -426,7 +462,7 @@ class OAuthConsumer
                 );
                 break;
                 
-            case 'yahoo' :
+            case 'Yahoo' :
                 $users = array(
                     'loginname'      => (isset($info->query->results->profile->nickname) ? $info->query->results->profile->nickname : $info->query->results->profile->guid),
                     'email'          => $info->query->results->profile->emails->handle,
@@ -440,7 +476,7 @@ class OAuthConsumer
                 );
                 break;
                 
-            case 'linkedin' :
+            case 'LinkedIn' :
                 $users = array(
                     'loginname'      => (isset($info->{'firstName'}) ? $info->{'firstName'} : $info->id),
                     'email'          => $info->{'emailAddress'},
@@ -465,6 +501,8 @@ class OAuthConsumer
     {
         global $_TABLES;
 
+		// Location field returned by several Oauth Providers
+		// About field was returned by Facebook but not anymore. Left in for now in case in future we can set it again or by another OAuth provider
         if (!empty($userInfo['about']) || !empty($userInfo['location'])) {
             $sql = "UPDATE {$_TABLES['userinfo']} SET";
             $sql .= !empty($userInfo['about']) ? " about = '" . DB_escapeString($userInfo['about']) . "'" : "";

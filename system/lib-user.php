@@ -2,13 +2,13 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 2.1                                                               |
+// | Geeklog 2.2                                                               |
 // +---------------------------------------------------------------------------+
 // | lib-user.php                                                              |
 // |                                                                           |
 // | User-related functions needed in more than one place.                     |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2000-2011 by the following authors:                         |
+// | Copyright (C) 2000-2017 by the following authors:                         |
 // |                                                                           |
 // | Authors: Tony Bibbs        - tony AT tonybibbs DOT com                    |
 // |          Mark Limburg      - mlimburg AT users DOT sourceforge DOT net    |
@@ -98,6 +98,7 @@ function USER_deleteAccount($uid)
     DB_delete($_TABLES['userindex'], 'uid', $uid);
     DB_delete($_TABLES['usercomment'], 'uid', $uid);
     DB_delete($_TABLES['userinfo'], 'uid', $uid);
+    DB_delete($_TABLES['backup_codes'], 'uid', $uid);
 
     // avoid having orphand stories/comments by making them anonymous posts
     DB_query("UPDATE {$_TABLES['comments']} SET uid = 1 WHERE uid = $uid");
@@ -145,7 +146,7 @@ function USER_createAndSendPassword($username, $useremail, $uid)
     SEC_updateUserPassword($passwd, $uid);
 
     if (file_exists($_CONF['path_data'] . 'welcome_email.txt')) {
-        $template = COM_newTemplate($_CONF['path_data']);
+        $template = COM_newTemplate(CTL_core_templatePath($_CONF['path_data']));
         $template->set_file(array('mail' => 'welcome_email.txt'));
         $template->set_var('auth_info',
             "$LANG04[2]: $username\n$LANG04[4]: $passwd");
@@ -191,7 +192,7 @@ function USER_sendActivationEmail($userName, $userEmail)
     global $_CONF, $LANG04;
 
     if (file_exists($_CONF['path_data'] . 'activation_email.txt')) {
-        $template = COM_newTemplate($_CONF['path_data']);
+        $template = COM_newTemplate(CTL_core_templatePath($_CONF['path_data']));
         $template->set_file(array('mail' => 'activation_email.txt'));
         $template->set_var('site_name', $_CONF['site_name']);
         $template->set_var('site_slogan', $_CONF['site_slogan']);
@@ -238,6 +239,7 @@ function USER_createAccount($username, $email, $passwd = '', $fullname = '', $ho
     global $_CONF, $_TABLES;
 
     $queueUser = false;
+    $username = GLText::remove4byteUtf8Chars($username);
     $username = DB_escapeString($username);
     $email = DB_escapeString($email);
 
@@ -363,6 +365,37 @@ function USER_sendNotification($userName, $email, $uid, $mode = 'inactive')
     $mailBody .= "\n------------------------------\n";
 
     $mailSubject = $_CONF['site_name'] . ' ' . $LANG29[40];
+
+    return COM_mail($_CONF['site_mail'], $mailSubject, $mailBody);
+}
+
+/**
+ * Send an email notification when invalid logins max is reached.
+ *
+ * @param  string $userName Username of the new user
+ * @param  string $email    Email address of the new user
+ * @param  int    $uid      User id of the new user
+ * @param  string $mode     Mode user was added at.
+ * @return boolean             true = success, false = an error occurred
+ */
+function USER_sendInvalidLoginAlert($userName, $email, $uid, $mode = 'inactive')
+{
+    global $_CONF, $LANG01, $LANG04, $LANG08, $LANG28, $LANG29;
+    
+    $remoteAddress = $_SERVER['REMOTE_ADDR'];
+
+    $mailBody = "$LANG04[2]: $userName\n"
+        . "$LANG04[5]: $email\n";
+        
+    $mailBody .= sprintf($LANG29['max_invalid_login_msg'] . "\n\n", $remoteAddress);        
+
+    $mailBody .= "{$LANG29[4]} <{$_CONF['site_url']}/users.php?mode=profile&uid={$uid}>\n\n";
+
+    $mailBody .= "\n------------------------------\n";
+    $mailBody .= "\n{$LANG08[34]}\n";
+    $mailBody .= "\n------------------------------\n";
+
+    $mailSubject = $_CONF['site_name'] . ' ' . $LANG29['max_invalid_login'];
 
     return COM_mail($_CONF['site_mail'], $mailSubject, $mailBody);
 }
@@ -810,6 +843,39 @@ function USER_getAllowedTopics()
 }
 
 /**
+ * Return if the current user can send email to the user
+ *
+ * @param  int   $toUid
+ * @return bool  true if the current user can send email to the user
+ */
+function USER_isCanSendMail($toUid = 0)
+{
+    global $_CONF, $_TABLES;
+
+    $retval = false;
+
+    // Anonymous users cannot send email at this site
+    if (($_CONF['loginrequired'] || $_CONF['emailuserloginrequired']) && COM_isAnonUser()) {
+        return $retval;
+    }
+
+    $toUid = (int) $toUid;
+
+    if ($toUid > 1) {
+        $sql = "SELECT emailfromadmin, emailfromuser FROM {$_TABLES['userprefs']} "
+            . "WHERE (uid = {$toUid})";
+        $result = DB_query($sql);
+
+        if (!DB_error()) {
+            $A = DB_fetchArray($result, false);
+            $retval = (bool) $A['emailfromuser'] || ((bool) $A['emailfromadmin'] && SEC_inGroup('Root'));
+        }
+    }
+
+    return $retval;
+}
+
+/**
  * Shows a profile for a user
  * This grabs the user profile for a given user and displays it
  *
@@ -817,7 +883,7 @@ function USER_getAllowedTopics()
  * @param    boolean $preview whether being called as preview from My Account
  * @param    int     $msg     Message to display (if != 0)
  * @param    string  $plugin  optional plugin name for message
- * @return   string              HTML for user profile page
+ * @return   string           HTML for user profile page
  */
 function USER_showProfile($uid, $preview = false, $msg = 0, $plugin = '')
 {
@@ -861,7 +927,7 @@ function USER_showProfile($uid, $preview = false, $msg = 0, $plugin = '')
     $currentTime = COM_getUserDateTimeFormat($A['regdate']);
     $A['regdate'] = $currentTime[0];
 
-    $user_templates = COM_newTemplate($_CONF['path_layout'] . 'users');
+    $user_templates = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout'] . 'users'));
     $user_templates->set_file(array(
         'profile' => 'profile.thtml'
     ));
@@ -933,12 +999,14 @@ function USER_showProfile($uid, $preview = false, $msg = 0, $plugin = '')
     $user_templates->set_var('lang_email', $LANG04[5]);
     $user_templates->set_var('user_id', $uid);
     $user_templates->set_var('uid', $uid);
-    if ($A['email'] != '') {
+
+    if (!empty($A['email']) && USER_isCanSendMail($uid) && ($A['status'] == USER_ACCOUNT_ACTIVE || $A['status'] == USER_ACCOUNT_NEW_PASSWORD)) {
         $user_templates->set_var('lang_sendemail', $LANG04[81]);
-        $user_templates->parse('email_option', 'email', true);
+        $user_templates->set_var('email_option', true);
     } else {
-        $user_templates->set_var('email_option', '');
+        $user_templates->set_var('email_option', false);
     }
+
     $user_templates->set_var('lang_homepage', $LANG04[6]);
     $user_templates->set_var('user_homepage', COM_killJS($A['homepage']));
     $user_templates->set_var('lang_location', $LANG04[106]);
@@ -1009,7 +1077,6 @@ function USER_showProfile($uid, $preview = false, $msg = 0, $plugin = '')
     }
     $user_templates->parse('last10_blocks', 'last10_block', true);
 
-    
     $user_templates->set_var('start_block_last10', COM_startBlock($LANG04[10] . ' ' . $display_name));
     $user_templates->set_var('end_block', COM_endBlock());
     // list of last 10 comments by this user
@@ -1033,11 +1100,13 @@ function USER_showProfile($uid, $preview = false, $msg = 0, $plugin = '')
             $user_templates->set_var('row_number', ($i) . '.');
             $C['title'] = str_replace('$', '&#36;', $C['title']);
             $comment_url = $_CONF['site_url'] . '/comment.php?mode=view&amp;cid=' . $C['cid'];
-            $user_templates->set_var('item_title',
+            $user_templates->set_var(
+                'item_title',
                 COM_createLink(
                     stripslashes($C['title']),
                     $comment_url,
-                    array('class' => 'b'))
+                    array('class' => 'b')
+                )
             );
             $commentTime = COM_getUserDateTimeFormat($C['unixdate']);
             $user_templates->set_var('item_date', $commentTime[0]);
@@ -1077,8 +1146,7 @@ function USER_showProfile($uid, $preview = false, $msg = 0, $plugin = '')
     $user_templates->set_var('number_field', COM_numberFormat($N['count']));
     $user_templates->parse('field_statistics', 'field_statistic', true);
     
-    $user_templates->set_var('lang_all_postings_by',
-        $LANG04[86] . ' ' . $display_name);
+    $user_templates->set_var('lang_all_postings_by', $LANG04[86] . ' ' . $display_name);
 
     // Call custom registration function if enabled and exists
     if ($_CONF['custom_registration'] && function_exists('CUSTOM_userDisplay')) {
@@ -1162,4 +1230,78 @@ function plugin_autotags_user($op, $content = '', $autotag = array())
 
         return $content;
     }
+}
+
+
+/**
+ * User required to confirm new email address - send email with a link and confirm id
+ *
+ * @return string           form or meta redirect for users of status USER_ACCOUNT_NEW_EMAIL
+ */
+function USER_emailConfirmation($email)
+{
+    global $_CONF, $_TABLES, $LANG04, $_USER;
+
+    $retval = '';
+
+    $uid = $_USER['uid'];
+
+    if ($uid > 1) {
+        $result = DB_query("SELECT uid,email,emailconfirmid,status FROM {$_TABLES['users']} WHERE uid = $uid");
+        $numRows = DB_numRows($result);
+        if ($numRows == 1) {
+            $A = DB_fetchArray($result);
+            if ($A['status'] != USER_ACCOUNT_NEW_EMAIL && $A['status'] != USER_ACCOUNT_ACTIVE) {
+                COM_redirect($_CONF['site_url'] . '/index.php?msg=30');
+            }
+            $emailconfirmid = substr(md5(uniqid(rand(), 1)), 1, 16);
+            DB_change($_TABLES['users'], 'emailconfirmid', "$emailconfirmid", 'uid', $uid);
+            DB_change($_TABLES['users'], 'emailtoconfirm', "$email", 'uid', $uid);
+
+            $mailtext = sprintf($LANG04['email_msg_email_status_1'], $_USER['username']);
+            $mailtext .= $_CONF['site_url'] . '/users.php?mode=newemailstatus&uid=' . $uid . '&ecid=' . $emailconfirmid . "\n\n";
+            $mailtext .= $LANG04['email_msg_email_status_2'];
+            $mailtext .= "{$_CONF['site_name']}\n";
+            $mailtext .= "{$_CONF['site_url']}\n";
+
+            $subject = $_CONF['site_name'] . ': ' . $LANG04[16];
+            if ($_CONF['site_mail'] !== $_CONF['noreply_mail']) {
+                $mailfrom = $_CONF['noreply_mail'];
+                $mailtext .= LB . LB . $LANG04[159];
+            } else {
+                $mailfrom = $_CONF['site_mail'];
+            }
+            if (COM_mail($email, $subject, $mailtext, $mailfrom)) {
+                if ($A['status'] == USER_ACCOUNT_ACTIVE) {
+                    // Being called by usersettings.php so just return true on success
+                    return true;
+                } else {
+                    // Being called by users.php
+                    $redirect = $_CONF['site_url'] . "/users.php?mode=logout&msg=501";    
+                }
+            } else {
+                if ($A['status'] == USER_ACCOUNT_ACTIVE) {
+                    // Being called by usersettings.php
+                    return false;
+                } else {
+                    // Being called by users.php                
+                    // problem sending the email
+                    $redirect = $_CONF['site_url'] . "/users.php?mode=newemailstatus&msg=85";    
+                }
+            }
+
+            // Email sent so to confirm new email address so now logoff and tell user go check inbox
+            COM_redirect($redirect);            
+        } else {
+            if ($A['status'] == USER_ACCOUNT_ACTIVE) {
+                // Being called by usersettings.php
+                return false;
+            } else {
+                // Something else is wrong here so bail
+                COM_redirect($_CONF['site_url'] . '/users.php?msg=43');
+            }
+        }
+    }
+
+    return $retval;
 }

@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 1.7                                                               |
+// | Geeklog 2.2                                                               |
 // +---------------------------------------------------------------------------+
 // | lib-sessions.php                                                          |
 // |                                                                           |
@@ -37,7 +37,7 @@
 */
 
 // Turn this on if you want to see various debug messages from this library
-$_SESS_VERBOSE = false;
+$_SESS_VERBOSE = COM_isEnableDeveloperModeLog('session');
 
 if (strpos(strtolower($_SERVER['PHP_SELF']), 'lib-sessions.php') !== false) {
     die('This file can not be used on its own!');
@@ -102,7 +102,10 @@ function SESS_sessionCheck()
             // Check user status
             $status = SEC_checkUserStatus($userid);
             if (($status == USER_ACCOUNT_ACTIVE) ||
-                    ($status == USER_ACCOUNT_AWAITING_ACTIVATION)) {
+                    ($status == USER_ACCOUNT_AWAITING_ACTIVATION ||
+                    $status == USER_ACCOUNT_LOCKED ||
+                    $status == USER_ACCOUNT_NEW_EMAIL ||
+                    $status == USER_ACCOUNT_NEW_PASSWORD)) {
                 SESS_updateSessionTime($sessid, $_CONF['cookie_ip']);
                 $_USER = SESS_getUserDataFromId($userid);
                 if ($_SESS_VERBOSE) {
@@ -208,6 +211,33 @@ function SESS_sessionCheck()
     }
 
     $_USER['session_id'] = $sessid;
+    
+    // Check to see if user status is set to something we have to redirect the user too
+    if (isset($_USER['uid']) && $_USER['uid'] > 1) {
+        // Check if active user has email account and if required
+        // Doesn't matter if remote account or not
+        if ($_CONF['require_user_email'] && empty($_USER['email']) && $_USER['status'] == USER_ACCOUNT_ACTIVE) {
+            $_USER['status'] = USER_ACCOUNT_NEW_EMAIL;
+            DB_change($_TABLES['users'], 'status', USER_ACCOUNT_NEW_EMAIL, 'uid', $_USER['uid']);
+        }
+        
+        if ($_USER['status'] == USER_ACCOUNT_LOCKED) {
+            // Account is locked so user shouldn't be logged in
+            if ($_SERVER['PHP_SELF'] != '/users.php') {
+                COM_redirect($_CONF['site_url'] . '/users.php?mode=logout&msg=17');  
+            }
+        } elseif ($_USER['status']  == USER_ACCOUNT_NEW_EMAIL || $_USER['status'] == USER_ACCOUNT_NEW_PASSWORD) {
+            // Account requires additional info so get it
+            if ($_SERVER['PHP_SELF'] != '/users.php') {
+                if ($_USER['status']  == USER_ACCOUNT_NEW_EMAIL) {
+                    COM_redirect($_CONF['site_url'] . '/users.php?mode=newemailstatus');
+                } elseif ($status == USER_ACCOUNT_NEW_PASSWORD) {
+                    COM_redirect($_CONF['site_url'] . '/users.php?mode=newpwdstatus');
+                }
+            }
+            
+        }      
+    }
 }
 
 /**
@@ -432,7 +462,9 @@ function SESS_endUserSession($userid)
 {
     global $_TABLES;
 
-    DB_delete($_TABLES['sessions'], 'uid', $userid);
+    if (!(isset($_CONF['demo_mode']) && $_CONF['demo_mode'])) {
+        DB_delete($_TABLES['sessions'], 'uid', $userid);
+    }
 
     return 1;
 }

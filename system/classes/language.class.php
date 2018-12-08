@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 2.1                                                               |
+// | Geeklog 2.2                                                               |
 // +---------------------------------------------------------------------------+
 // | language.class.php                                                        |
 // |                                                                           |
@@ -169,8 +169,6 @@ class Language
             $deleteOption = '';
             $allow_delete = false;
         } else {
-            $deleteOption = '<li><input type="submit" value="' . $LANG_ADMIN['delete']
-                . '" name="mode" class="submit" onclick="return confirm(\'' . $MESSAGE[76] . '\');"' . XHTML . '</li>';
             $allow_delete = true;
         }
 
@@ -180,7 +178,7 @@ class Language
         );
         $content .= SEC_getTokenExpiryNotice($token);
 
-        $editor = COM_newTemplate($_CONF['path_layout'] . 'admin/language');
+        $editor = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout'] . 'admin/language'));
         $editor->set_file('language_editor', 'language_editor.thtml');
         $editor->set_var(array(
             'id'                   => $A['id'],
@@ -191,7 +189,6 @@ class Language
             'name'                 => $A['name'],
             'value'                => $A['value'],
             'site_admin_url'       => $_CONF['site_admin_url'],
-            'delete_option'        => $deleteOption,
             'allow_delete'         => $allow_delete,
             'lang_language_editor' => $LANG_LANG['language_editor'],
             'lang_id'              => $LANG_LANG['id'],
@@ -241,7 +238,7 @@ class Language
      */
     public static function adminShowList()
     {
-        global $_CONF, $_IMAGE_TYPE, $LANG_ACCESS, $LANG_ADMIN, $LANG_LANG, $_TABLES;
+        global $_CONF, $_IMAGE_TYPE, $LANG_ADMIN, $LANG_LANG, $_TABLES;
 
         self::checkAccessRights();
 
