@@ -257,7 +257,7 @@ function editfeed($fid = 0, $type = '')
     $retval = '';
     $token = SEC_createToken();
 
-    $feed_template = COM_newTemplate($_CONF['path_layout'] . 'admin/syndication');
+    $feed_template = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout'] . 'admin/syndication'));
     $feed_template->set_file('editor', 'feededitor.thtml');
 
     $start_block = COM_startBlock($LANG33[24], '',
@@ -291,14 +291,6 @@ function editfeed($fid = 0, $type = '')
     $feed_template->set_var('lang_save', $LANG_ADMIN['save']);
     $feed_template->set_var('lang_cancel', $LANG_ADMIN['cancel']);
     if ($A['fid'] > 0) {
-        $delbutton = '<input type="submit" value="' . $LANG_ADMIN['delete']
-            . '" name="mode"%s' . XHTML . '>';
-        $jsconfirm = ' onclick="return confirm(\'' . $MESSAGE[76] . '\');"';
-        $feed_template->set_var('delete_option',
-            sprintf($delbutton, $jsconfirm));
-        $feed_template->set_var('delete_option_no_confirmation',
-            sprintf($delbutton, ''));
-
         $feed_template->set_var('allow_delete', true);
         $feed_template->set_var('lang_delete', $LANG_ADMIN['delete']);
         $feed_template->set_var('confirm_message', $MESSAGE[76]);
@@ -322,19 +314,22 @@ function editfeed($fid = 0, $type = '')
     }
 
     $formats = find_feedFormats();
-    $selection = '<select class="uk-select uk-form-width-medium" name="format">' . LB;
+    $items = '';
     foreach ($formats as $f) {
         // if one changes this format below ('name-version'), also change parsing
         // in COM_createHTMLDocument. It uses explode( "-" , $string )
-        $selection .= '<option value="' . $f['name'] . '-' . $f['version']
+        $items .= '<option value="' . $f['name'] . '-' . $f['version']
             . '"';
         if ($A['format'] == $f['name'] . '-' . $f['version']) {
-            $selection .= ' selected="selected"';
+            $items .= ' selected="selected"';
         }
-        $selection .= '>' . ucwords($f['name'] . ' ' . $f['version'])
+        $items .= '>' . ucwords($f['name'] . ' ' . $f['version'])
             . '</option>' . LB;
     }
-    $selection .= '</select>' . LB;
+    $selection = COM_createControl('type-select', array(
+        'name' => 'format',
+        'select_items' => $items
+    ));
     $feed_template->set_var('feed_format', $selection);
 
     $limits = $A['limits'];
@@ -343,18 +338,22 @@ function editfeed($fid = 0, $type = '')
         $limits = substr($A['limits'], 0, -1);
         $hours = true;
     }
-    $selection = '<select class="uk-select uk-form-width-medium" name="limits_in">' . LB;
-    $selection .= '<option value="0"';
+
+    $items = '';
+    $items .= '<option value="0"';
     if (!$hours) {
-        $selection .= ' selected="selected"';
+        $items .= ' selected="selected"';
     }
-    $selection .= '>' . $LANG33[34] . '</option>' . LB;
-    $selection .= '<option value="1"';
+    $items .= '>' . $LANG33[34] . '</option>' . LB;
+    $items .= '<option value="1"';
     if ($hours) {
-        $selection .= ' selected="selected"';
+        $items .= ' selected="selected"';
     }
-    $selection .= '>' . $LANG33[35] . '</option>' . LB;
-    $selection .= '</select>' . LB;
+    $items .= '>' . $LANG33[35] . '</option>' . LB;
+    $selection = COM_createControl('type-select', array(
+        'name' => 'limits_in',
+        'select_items' => $items
+    ));
     $feed_template->set_var('feed_limits', $limits);
     $feed_template->set_var('feed_limits_what', $selection);
 
@@ -369,16 +368,18 @@ function editfeed($fid = 0, $type = '')
     }
     $options = PLG_getFeedNames($A['type']);
 
-    $selection = '<select class="uk-select uk-form-width-medium" name="topic">' . LB;
+    $items = '';
     foreach ($options as $o) {
-        $selection .= '<option value="' . $o['id'] . '"';
+        $items .= '<option value="' . $o['id'] . '"';
         if ($A['topic'] == $o['id']) {
-            $selection .= ' selected="selected"';
+            $items .= ' selected="selected"';
         }
-        $selection .= '>' . $o['name'] . '</option>' . LB;
+        $items .= '>' . $o['name'] . '</option>' . LB;
     }
-    $selection .= '</select>' . LB;
-
+    $selection = COM_createControl('type-select', array(
+        'name' => 'topic',
+        'select_items' => $items
+    ));
     $feed_template->set_var('feed_topic', $selection);
 
     if ($A['is_enabled'] == 1) {
@@ -409,15 +410,17 @@ function newfeed()
     $retval = '';
 
     $plugins = PLG_supportingFeeds();
-
-    $selection = '<select class="uk-select uk-form-width-medium" name="type">' . LB;
+    $selection = '';
     foreach ($plugins as $p) {
         $selection .= '<option value="' . $p . '">' . ucwords($p)
             . '</option>' . LB;
     }
-    $selection .= '</select>' . LB;
+    $selection = COM_createControl('type-select', array(
+        'name' => 'mode',
+        'select_items' => $selection
+    ));
 
-    $feed_template = COM_newTemplate($_CONF['path_layout'] . 'admin/syndication');
+    $feed_template = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout'] . 'admin/syndication'));
     $feed_template->set_file('type', 'selecttype.thtml');
 
     $feed_template->set_var('type_selection', $selection);

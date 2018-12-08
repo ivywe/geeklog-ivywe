@@ -141,14 +141,6 @@ function editlink($mode, $lid = '')
 
     $link_templates->set_var('link_id', $A['lid']);
     if (!empty($lid) && SEC_hasRights('links.edit')) {
-        $delButton = '<input type="submit" value="' . $LANG_ADMIN['delete']
-            . '" name="mode"%s' . XHTML . '>';
-        $jsConfirm = ' onclick="return confirm(\'' . $MESSAGE[76] . '\');"';
-        $link_templates->set_var('delete_option',
-            sprintf($delButton, $jsConfirm));
-        $link_templates->set_var('delete_option_no_confirmation',
-            sprintf($delButton, ''));
-
         $link_templates->set_var('allow_delete', true);
         $link_templates->set_var('lang_delete', $LANG_ADMIN['delete']);
         $link_templates->set_var('confirm_message', $MESSAGE[76]);
@@ -419,7 +411,9 @@ function listlinks()
         'text' => $LANG_ADMIN['admin_home'],
     );
 
-    $retval .= COM_startBlock($LANG_LINKS_ADMIN[11], '',
+    $help_url = COM_getDocumentUrl('docs', "links.html");
+    
+    $retval .= COM_startBlock($LANG_LINKS_ADMIN[11], $help_url,
         COM_getBlockTemplate('_admin_block', 'header'));
 
     $retval .= ADMIN_createMenu($menu_arr, $LANG_LINKS_ADMIN[12] . $validate_help, plugin_geticon_links());
@@ -522,7 +516,7 @@ if (($mode === $LANG_ADMIN['delete']) && !empty($LANG_ADMIN['delete'])) {
         Geeklog\Input::post('perm_anon')
     );
 } elseif ($mode === 'editsubmission') {
-    $display .= editlink($mode, Geeklog\Input::fGet('lid'));
+    $display .= editlink($mode, Geeklog\Input::fGet('id'));
     $display = COM_createHTMLDocument($display, array('pagetitle' => $LANG_LINKS_ADMIN[1]));
 } elseif ($mode === 'edit') {
     if (empty($_GET['lid'])) {

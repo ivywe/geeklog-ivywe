@@ -2,13 +2,13 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 2.1                                                               |
+// | Geeklog 2.2                                                               |
 // +---------------------------------------------------------------------------+
 // | comment.php                                                               |
 // |                                                                           |
 // | Geeklog block administration.                                             |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2000-2016 by the following authors:                         |
+// | Copyright (C) 2000-2017 by the following authors:                         |
 // |                                                                           |
 // | Authors: Tony Bibbs        - tony AT tonybibbs DOT com                    |
 // |          Mark Limburg      - mlimburg AT users DOT sourceforge DOT net    |
@@ -59,7 +59,7 @@ if (!SEC_hasRights('comment.moderate')) {
 
 // Include system libraries
 require_once $_CONF['path_system'] . 'lib-admin.php';
-require_once $_CONF['path_system'] . 'lib-story.php';
+require_once $_CONF['path_system'] . 'lib-article.php';
 require_once $_CONF['path_system'] . 'lib-comment.php';
 
 /**
@@ -92,7 +92,7 @@ function getCommentIds($suffix)
  */
 function ADMIN_getListField_comments($fieldName, $fieldValue, $A, $iconArray, $suffix)
 {
-    global $_CONF, $LANG01, $LANG_STATIC, $LANG_POLLS;
+    global $_CONF, $LANG01, $LANG_STATIC, $LANG_POLLS, $_PLUGINS, $_TABLES;
     static $encoding = null;
 
     if ($encoding === null) {
@@ -103,7 +103,10 @@ function ADMIN_getListField_comments($fieldName, $fieldValue, $A, $iconArray, $s
 
     switch ($fieldName) {
         case 'selector':
-            $fieldValue = '<input type="checkbox" class="uk-checkbox" name="cids' . $suffix . '[]" value="' . $commentId . '"' . XHTML . '>';
+            $fieldValue = COM_createControl('type-checkbox', array(
+                'name'  => 'cids' . $suffix . '[]',
+                'value' => $commentId
+            ));
             break;
 
         case 'edit':
@@ -162,14 +165,31 @@ function ADMIN_getListField_comments($fieldName, $fieldValue, $A, $iconArray, $s
             $fieldValue = htmlspecialchars($fieldValue, ENT_QUOTES, $encoding);
 
             if ($userId > 1) {
-                $fieldValue = '<a href="' . $_CONF['site_url']
-                    . '/users.php?mode=profile&amp;uid=' . $userId . '">' . $fieldValue . '</a>';
+                // Check if user disabled
+                if (DB_getItem($_TABLES['users'], 'status', "uid = $userId") == USER_ACCOUNT_DISABLED) {
+                    $fieldValue = '<a href="' . $_CONF['site_url']
+                        . '/users.php?mode=profile&amp;uid=' . $userId . '">' . COM_createControl('display-text-warning', array('text' => $fieldValue)) . '</a>';                    
+                } else {
+                    $fieldValue = '<a href="' . $_CONF['site_url']
+                        . '/users.php?mode=profile&amp;uid=' . $userId . '">' . $fieldValue . '</a>';
+                }
             }
 
             break;
 
         case 'ipaddress':
-            $fieldValue = htmlspecialchars($fieldValue, ENT_QUOTES, $encoding);
+            $forDisplay = htmlspecialchars($fieldValue, ENT_QUOTES, $encoding);
+
+            if (in_array('spamx', $_PLUGINS) && SPAMX_isIPBanned($fieldValue)) {
+                $fieldValue = COM_createControl('display-text-warning', array('text' => $forDisplay));
+            } else {
+                if (function_exists('BAN_for_plugins_ban_found') && BAN_for_plugins_ban_found($fieldValue)) {
+                    $fieldValue = COM_createControl('display-text-warning', array('text' => $forDisplay));
+                } else {
+                    $fieldValue = $forDisplay;
+                }
+            }
+
             break;
 
         default:
@@ -187,28 +207,30 @@ function ADMIN_getListField_comments($fieldName, $fieldValue, $A, $iconArray, $s
  */
 function getTypeSelector($itemType)
 {
-    global $_PLUGINS, $LANG_ADMIN, $LANG09, $LANG_STATIC, $LANG_POLLS;
-
-    $retval = $LANG_ADMIN['type']
-        . ': <select class="uk-select uk-form-width-medium" name="item_type" style="width: 125px;" onchange="this.form.submit()">' . LB;
+    global $_CONF, $_PLUGINS, $LANG_ADMIN, $LANG09, $LANG_STATIC, $LANG_POLLS;
 
     $selected = ($itemType === 'all') ? ' selected="selected"' : '';
-    $retval .= '<option value="all"' . $selected . '>' . $LANG09[4] . '</option>' . LB;
+    $retval = '<option value="all"' . $selected . '>' . $LANG09[4] . '</option>' . LB;
 
     $selected = ($itemType === 'article') ? ' selected="selected"' : '';
     $retval .= '<option value="article"' . $selected . '>' . $LANG09[6] . '</option>' . LB;
     
-   // Add enabled plugins that use comments
+    // Add enabled plugins that use comments
     foreach ($_PLUGINS as $pi_name) {
         $function = 'plugin_displaycomment_' . $pi_name;
         if (function_exists($function)) {
             // Since can display comments assume it uses comment system
             $selected = ($itemType === $pi_name) ? ' selected="selected"' : '';
-        $retval .= '<option value="' . $pi_name . '"' . $selected . '>' . ucfirst($pi_name) . '</option>' . LB;
+            $retval .= '<option value="' . $pi_name . '"' . $selected . '>' . ucfirst($pi_name) . '</option>' . LB;
         }
     }    
 
-    $retval .= '</select>' . LB;
+    $selector = COM_createControl('type-select-width-small', array(
+        'name' => 'item_type',
+        'onchange' => 'this.form.submit()',
+        'select_items' => $retval,
+    ));
+    $retval = $LANG_ADMIN['type'] . ': ' . $selector;
 
     return $retval;
 }
@@ -225,9 +247,15 @@ function ADMIN_buildCommentList($suffix, $tableName, $securityToken)
 {
     global $_CONF, $_PLUGINS, $_TABLES, $LANG_ADMIN, $LANG01, $LANG03, $LANG28, $LANG29;
 
+    // For Header checkbox
+    $fieldselector = COM_createControl('type-checkbox', array(
+        'name' => 'select_all' . $suffix,
+        'id'   => 'select_all' . $suffix
+    ));
+
     $headerArray = array(
         array(
-            'text'  => '<input type="checkbox" class="uk-checkbox" name="select_all' . $suffix . '" id="select_all' . $suffix . '"' . XHTML . '>',
+            'text'  => $fieldselector,
             'field' => 'selector',
             'sort'  => false,
         ),
@@ -301,26 +329,41 @@ function ADMIN_buildCommentList($suffix, $tableName, $securityToken)
 
     $filter = getTypeSelector($itemType);
     $options = array();
-    $actionSelector = '<select class="uk-select uk-form-width-medium" name="bulk_action' . $suffix . '" id="bulk_action' . $suffix . '">' . LB
-        . '<option value="do_nothing">' . $LANG03[102] . '</option>' . LB;
 
+    $select_items =  '<option value="do_nothing">' . $LANG03[102] . '</option>' . LB;
     if ($suffix === SUFFIX_COMMENT_SUBMISSIONS) {
-        $actionSelector .= '<option value="bulk_approve">' . $LANG29[1] . '</option>' . LB;
+        $select_items .= '<option value="bulk_approve">' . $LANG29[1] . '</option>' . LB;
     }
-
-    $actionSelector .= '<option value="bulk_delete">' . $LANG29[2] . '</option>' . LB
+    $select_items .= '<option value="bulk_delete">' . $LANG29[2] . '</option>' . LB
         . '<option value="bulk_ban_user">' . $LANG03[103] . '</option>' . LB;
-
     if (in_array('spamx', $_PLUGINS)) {
-        $actionSelector .= '<option value="bulk_ban_ip_address">' . $LANG03[104] . '</option>' . LB;
+        $select_items .= '<option value="bulk_spamx_ban_ip_address">' . $LANG03[104] . '</option>' . LB;
     }
+    if (function_exists('BAN_for_plugins_check_access') AND BAN_for_plugins_check_access()) {
+        $select_items .= '<option value="bulk_ban_ip_address">' . $LANG03['ban_plugin_ban_ip'] . '</option>' . LB;
+    }
+    $actionSelector = COM_createControl('type-select-width-small', array(
+        'name' => 'bulk_action' . $suffix,
+        'id'   => 'bulk_action' . $suffix,
+        'select_items' => $select_items,
+    ));
 
-    $actionSelector .= '</select>' . LB
-        . '<input type="submit" name="submit" id="bulk_action_submit' . $suffix . '" value="'
-        . $LANG_ADMIN['submit'] . '"' . XHTML . '>' . LB
-        . '<input type="hidden" name="list" value="' . $suffix . '"' . XHTML . '>' . LB;
+    $actionSelector .= COM_createControl('type-submit', array(
+        'name'  => 'submit',
+        'id'    => 'bulk_action_submit' . $suffix,
+        'value' => $LANG_ADMIN['submit'],
+        'lang_button' => $LANG_ADMIN['submit'],
+    ));
+
+    $actionSelector .= '<input type="hidden" name="list" value="' . $suffix . '"' . XHTML . '>' . LB;
+
+    $actionSelector = COM_createControl('controls-left', array(
+        'control' => $actionSelector
+    ));
+
     $securityTokenTag = '<input type="hidden" name="' . CSRF_TOKEN . '" value="'
         . $securityToken . '"' . XHTML . '>' . LB;
+        
     $formArray = array(
         'top'    => '',
         'bottom' => $actionSelector . $securityTokenTag,
@@ -483,22 +526,29 @@ function banUsers($suffix)
  *
  * @param  string $suffix
  */
-function banIpAddresses($suffix)
+function banIpAddresses_spamx($suffix)
 {
     global $_CONF, $_PLUGINS, $_TABLES, $_USER;
 
     if (SEC_checkToken()) {
         if (!in_array('spamx', $_PLUGINS)) {
-            COM_errorLog(__FUNCTION__ . ': Spamx plugin is not installed or disabled.');
+            COM_errorLog(__FUNCTION__ . ': Spam-X plugin is not installed or disabled.');
             COM_redirect($_CONF['site_admin_url'] . '/index.php');
         }
-
+        
         $getCommentIds = getCommentIds($suffix);
-
+        
         if (count($getCommentIds) > 0) {
-            $sql = "SELECT DISTINCT ipaddress FROM {$_TABLES['comments']} "
+            if ($suffix === SUFFIX_COMMENTS) {
+                $table = $_TABLES['comments'];
+            } else {
+                $table = $_TABLES['commentsubmissions'];
+            }        
+            
+            $sql = "SELECT DISTINCT ipaddress FROM $table "
                 . "WHERE (ipaddress NOT LIKE '192.168.%') AND (ipaddress <> '::1') AND "
                 . " (cid IN (" . implode(',', $getCommentIds) . "))";
+
             $result = DB_query($sql);
 
             if (!DB_error()) {
@@ -508,11 +558,7 @@ function banIpAddresses($suffix)
                     $ipAddresses[] = $A['ipaddress'];
                 }
 
-                foreach ($ipAddresses as $ipAddress) {
-                    $sql = "INSERT INTO {$_TABLES['spamx']} (name, value) "
-                        . "VALUES ('IP', '" . DB_escapeString($ipAddress) . "')";
-                    DB_query($sql);
-                }
+                SPAMX_registerBannedIPs($ipAddresses);
             }
 
             COM_redirect($_CONF['site_admin_url'] . '/comment.php?msg=144');
@@ -522,6 +568,59 @@ function banIpAddresses($suffix)
         COM_redirect($_CONF['site_admin_url'] . '/index.php');
     }
 }
+
+/**
+ * Ban IP Addresses being selected with the Ban plugin
+ *
+ * @param  string $suffix
+ */
+function banIpAddresses_ban($suffix)
+{
+    global $_CONF, $_PLUGINS, $_TABLES, $_USER;
+
+    if (SEC_checkToken()) {
+        if (!in_array('ban', $_PLUGINS)) {
+            COM_errorLog(__FUNCTION__ . ': Ban plugin is not installed or disabled.');
+            COM_redirect($_CONF['site_admin_url'] . '/index.php');
+        }        
+        
+        if (!(function_exists('BAN_for_plugins_check_access') AND BAN_for_plugins_check_access())) {
+            COM_errorLog(__FUNCTION__ . ': This version of the Ban plugin doesn\'t support this function or the user doesn\'t have Ban Admin access.');
+            COM_redirect($_CONF['site_admin_url'] . '/index.php');
+        }         
+
+        $getCommentIds = getCommentIds($suffix);
+        
+        if (count($getCommentIds) > 0) {
+            if ($suffix === SUFFIX_COMMENTS) {
+                $table = $_TABLES['comments'];
+            } else {
+                $table = $_TABLES['commentsubmissions'];
+            }        
+            
+            $sql = "SELECT DISTINCT ipaddress FROM $table "
+                . "WHERE (ipaddress NOT LIKE '192.168.%') AND (ipaddress <> '::1') AND "
+                . " (cid IN (" . implode(',', $getCommentIds) . "))";
+                
+            $result = DB_query($sql);
+
+            if (!DB_error()) {
+                while (($A = DB_fetchArray($result, false)) !== false) {
+                    if (!BAN_for_plugins_ban_found($A['ipaddress'])) {
+                        BAN_for_plugins_ban_ip($A['ipaddress'], '', true, 'Banned via Comment Manager');
+                    }
+                }
+
+            }
+
+            //COM_redirect($_CONF['site_admin_url'] . '/comment.php?msg=145');
+        }
+    } else {
+        COM_accessLog("User {$_USER['username']} tried to ban IP addresses and failed CSRF checks.");
+        COM_redirect($_CONF['site_admin_url'] . '/index.php');
+    }
+}
+
 
 // MAIN
 $list = \Geeklog\Input::fPost('list', '');
@@ -549,8 +648,12 @@ switch ($action) {
         banUsers($suffix);
         break;
 
+    case 'bulk_spamx_ban_ip_address':
+        banIpAddresses_spamx($suffix);
+        break;
+        
     case 'bulk_ban_ip_address':
-        banIpAddresses($suffix);
+        banIpAddresses_ban($suffix);
         break;
 
     default:

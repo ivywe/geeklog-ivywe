@@ -67,27 +67,24 @@ $display = COM_startBlock($LANG_LOGVIEW['log_viewer'], '', COM_getBlockTemplate(
         $LANG_LOGVIEW['info'],
         $_CONF['layout_url'] . '/images/icons/log_viewer.' . $_IMAGE_TYPE
     );
+    
+    
+$T = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout'] . 'admin'));
+$T->set_file('page','logviewer.thtml');
 
-$display .= '<form method="post" action="' . $_CONF['site_admin_url'] . '/logviewer.php" class="uk-form"><div>'
-    . $LANG_LOGVIEW['logs'] . ':&nbsp;&nbsp;&nbsp;'
-    . '<select class="uk-select" name="log">';
-
+$T->set_var('lang_logs', $LANG_LOGVIEW['logs']);
+    
+$items = '';
 foreach (glob($_CONF['path_log'] . '*.log') as $file) {
     $file = basename($file);
-    $display .= '<option value="' . $file . '"';
-
-    if ($log === $file) {
-        $display .= ' selected="selected"';
-    }
-
-    $display .= '>' . $file . '</option>';
+    $items .= '<option value="' . $file . '"'
+        . ($log === $file ? ' selected="selected"' : '') . '>' . $file . '</option>' . PHP_EOL;
 }
+$T->set_var('log_items', $items);
 
-$display .= '</select>&nbsp;&nbsp;&nbsp;&nbsp;'
-    . '<button type="submit" name="viewlog" value="' . $LANG_LOGVIEW['view'] . '" class="uk-button">' . $LANG_LOGVIEW['view'] . '</button>'
-    . '&nbsp;&nbsp;&nbsp;&nbsp;'
-    . '<button type="submit" name="clearlog" value="' . $LANG_LOGVIEW['clear'] . '" class="uk-button" onclick="return confirm(\'' . $MESSAGE[76] . '\');">' . $LANG_LOGVIEW['clear'] . '</button>'
-    . '</div></form>';
+$T->set_var('lang_log_view', $LANG_LOGVIEW['view']);
+$T->set_var('lang_log_clear', $LANG_LOGVIEW['clear']);
+$T->set_var('lang_confirm_del_message', $MESSAGE[76]);
 
 if (isset($_POST['clearlog'])) {
     if (@unlink($_CONF['path_log'] . $log)) {
@@ -97,14 +94,15 @@ if (isset($_POST['clearlog'])) {
     }
 }
 if (isset($_POST['viewlog'])) {
-    $display .= '<p><strong>' . $LANG_LOGVIEW['log_file'] . ': ' . $log . '</strong></p>'
-        . '<div style="margin:10px 0 5px;border-bottom:1px solid #cccccc;"></div>'
-        . '<pre style="overflow:scroll; height:500px;">'
-        . htmlentities(file_get_contents($_CONF['path_log'] . $log), ENT_NOQUOTES, COM_getEncodingt())
-        . '</pre>';
+    $T->set_var('lang_log_file', $LANG_LOGVIEW['log_file']);
+    $T->set_var('log_filename', $log);
+    $T->set_var('log_contents', htmlentities(file_get_contents($_CONF['path_log'] . $log), ENT_NOQUOTES, COM_getEncodingt()));
 }
 
+$T->parse('output', 'page');
+$display .= $T->finish($T->get_var('output'));
 $display .= COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
+
 $output = COM_createHTMLDocument($display, array('pagetitle' => $LANG_LOGVIEW['log_viewer']));
 header('Content-Type: text/html; charset=' . COM_getEncodingt());
 header('X-XSS-Protection: 1; mode=block');

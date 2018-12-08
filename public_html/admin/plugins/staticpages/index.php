@@ -2,13 +2,13 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Static Pages Geeklog Plugin 1.6                                           |
+// | Static Pages Geeklog Plugin 1.7                                           |
 // +---------------------------------------------------------------------------+
 // | index.php                                                                 |
 // |                                                                           |
 // | Administration page.                                                      |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2000-2010 by the following authors:                         |
+// | Copyright (C) 2000-2017 by the following authors:                         |
 // |                                                                           |
 // | Authors: Tony Bibbs       - tony AT tonybibbs DOT com                     |
 // |          Phill Gillespie  - phill AT mediaaustralia DOT com DOT au        |
@@ -55,6 +55,72 @@ if (!SEC_hasRights('staticpages.edit')) {
     exit;
 }
 
+/**
+ * Return if the given page exists
+ *
+ * @param  string $id
+ * @return bool
+ */
+function staticPageIdExists($id)
+{
+    global $_TABLES;
+
+    $retval = false;
+
+    $id = DB_escapeString(trim($id));
+    $sql = "SELECT COUNT(sp_id) AS cnt FROM {$_TABLES['staticpage']} "
+        . "WHERE (sp_id = '{$id}') AND (template_flag = 0) AND (draft_flag = 0) "
+        . COM_getPermSQL('AND', 0, 3);
+    $result = DB_query($sql);
+
+    if (!DB_error()) {
+        $A = DB_fetchArray($result, false);
+        $retval = ((int) $A['cnt'] === 1);
+    }
+
+    return $retval;
+}
+
+/**
+ * Return <option> tags for page selectors
+ *
+ * @param  string $sp_id
+ * @param  string $selectedId
+ * @return string
+ */
+function staticPageGetIdOptions($sp_id, $selectedId)
+{
+    global $_TABLES;
+
+    $ids = array('-----' => '');
+    $sp_id = DB_escapeString($sp_id);
+    $sql = "SELECT sp_id, sp_title FROM {$_TABLES['staticpage']} "
+        . "WHERE (sp_id <> '{$sp_id}') AND (template_flag = 0) AND (draft_flag = 0) "
+        . COM_getPermSQL('AND', 0, 3)
+        . " ORDER BY sp_title, sp_id";
+    $result = DB_query($sql);
+
+    if (!DB_error()) {
+        while (($A = DB_fetchArray($result, false))) {
+            $id = stripslashes($A['sp_id']);
+            $title = stripslashes($A['sp_title']);
+            $ids[$title] = $id;
+        }
+    }
+
+    $retval = '';
+
+    foreach ($ids as $title => $id) {
+        $retval .= sprintf(
+            '<option value="%s"%s>%s</option>' . PHP_EOL,
+            htmlspecialchars($id, ENT_QUOTES),
+            ($id === $selectedId ? ' selected="selected"' : ''),
+            htmlspecialchars($title, ENT_QUOTES)
+        );
+    }
+
+    return $retval;
+}
 
 /**
  * Displays the static page editor form
@@ -62,7 +128,7 @@ if (!SEC_hasRights('staticpages.edit')) {
  * @param    array $A Data to display
  * @return   string          HTML for the static page editor
  */
-function staticpageeditor_form($A)
+function staticpageeditor_form(array $A)
 {
     global $_CONF, $_TABLES, $_USER, $_GROUPS, $_SP_CONF, $mode, $sp_id,
            $LANG21, $LANG_STATIC, $LANG_ACCESS, $LANG_ADMIN, $LANG01, $LANG24,
@@ -94,7 +160,7 @@ function staticpageeditor_form($A)
 
         // Shouldn't really have to check if anonymous user but who knows...
         if (COM_isAnonUser()) {
-            $link_message = "";
+            $link_message = '';
         } else {
             $link_message = $LANG01[138];
         }
@@ -138,15 +204,16 @@ function staticpageeditor_form($A)
 
     // Add JavaScript
     // Only use title_2_id if enabled, new staticpage or clone (basically any staticpage that does not exist yet)  - $mode = 'edit', 'clone'
-    if ($_CONF['titletoid'] && (empty($sp_id) ||  $mode == 'clone')) {
+    if ($_CONF['titletoid'] && (empty($sp_id) || $mode == 'clone')) {
         $_SCRIPTS->setJavaScriptFile('title_2_id', '/javascript/title_2_id.js');
         $sp_template->set_var('titletoid', true);
     }
 
     $sp_template->set_var('lang_mode', $LANG24[3]);
-    $sp_template->set_var('comment_options',
-        COM_optionList($_TABLES['commentcodes'], 'code,name',
-            $A['commentcode']));
+    $sp_template->set_var(
+        'comment_options',
+        COM_optionList($_TABLES['commentcodes'], 'code,name', $A['commentcode'])
+    );
 
     $sp_template->set_var('lang_accessrights', $LANG_ACCESS['accessrights']);
     $sp_template->set_var('lang_owner', $LANG_ACCESS['owner']);
@@ -160,14 +227,11 @@ function staticpageeditor_form($A)
     $sp_template->set_var('owner_username', $owner_username);
 
     if ($A['owner_id'] > 1) {
-        $profile_link = $_CONF['site_url']
-            . '/users.php?mode=profile&amp;uid=' . $A['owner_id'];
-
+        $profile_link = $_CONF['site_url'] . '/users.php?mode=profile&amp;uid=' . $A['owner_id'];
         $sp_template->set_var('start_owner_anchortag',
             '<a href="' . $profile_link . '">');
         $sp_template->set_var('end_owner_anchortag', '</a>');
-        $sp_template->set_var('owner_link',
-            COM_createLink($owner_name, $profile_link));
+        $sp_template->set_var('owner_link', COM_createLink($owner_name, $profile_link));
 
         $photo = '';
         if ($_CONF['allow_user_photo']) {
@@ -191,11 +255,14 @@ function staticpageeditor_form($A)
     }
 
     $sp_template->set_var('lang_group', $LANG_ACCESS['group']);
-    $sp_template->set_var('group_dropdown',
-        SEC_getGroupDropdown($A['group_id'], $access));
-    $sp_template->set_var('permissions_editor',
-        SEC_getPermissionsHTML($A['perm_owner'], $A['perm_group'],
-            $A['perm_members'], $A['perm_anon']));
+    $sp_template->set_var(
+        'group_dropdown',
+        SEC_getGroupDropdown($A['group_id'], $access)
+    );
+    $sp_template->set_var(
+        'permissions_editor',
+        SEC_getPermissionsHTML($A['perm_owner'], $A['perm_group'], $A['perm_members'], $A['perm_anon'])
+    );
     $sp_template->set_var('lang_permissions', $LANG_ACCESS['permissions']);
     $sp_template->set_var('lang_perm_key', $LANG_ACCESS['permissionskey']);
     $sp_template->set_var('permissions_msg', $LANG_ACCESS['permmsg']);
@@ -203,24 +270,15 @@ function staticpageeditor_form($A)
 
     $token = SEC_createToken();
     $start_block = COM_startBlock($LANG_STATIC['staticpageeditor'], '',
-        COM_getBlockTemplate('_admin_block', 'header'));
+        COM_getBlockTemplate('_admin_block', 'header')
+    );
     $start_block .= SEC_getTokenExpiryNotice($token);
 
     $sp_template->set_var('start_block_editor', $start_block);
     $sp_template->set_var('lang_save', $LANG_ADMIN['save']);
     $sp_template->set_var('lang_cancel', $LANG_ADMIN['cancel']);
     $sp_template->set_var('lang_preview', $LANG_ADMIN['preview']);
-    if (SEC_hasRights('staticpages.delete') && ($mode != 'clone') &&
-        !empty($A['sp_old_id'])
-    ) {
-        $delbutton = '<input type="submit" value="' . $LANG_ADMIN['delete']
-            . '" name="mode"%s' . XHTML . '>';
-        $jsconfirm = ' onclick="return confirm(\'' . $MESSAGE[76] . '\');"';
-        $sp_template->set_var('delete_option',
-            sprintf($delbutton, $jsconfirm));
-        $sp_template->set_var('delete_option_no_confirmation',
-            sprintf($delbutton, ''));
-
+    if (SEC_hasRights('staticpages.delete') && ($mode !== 'clone') && !empty($A['sp_old_id'])) {
         $sp_template->set_var('allow_delete', true);
         $sp_template->set_var('lang_delete', $LANG_ADMIN['delete']);
         $sp_template->set_var('confirm_message', $MESSAGE[76]);
@@ -228,8 +286,10 @@ function staticpageeditor_form($A)
         $sp_template->set_var('delete_option', '');
     }
     $sp_template->set_var('lang_writtenby', $LANG_STATIC['writtenby']);
-    $sp_template->set_var('username', DB_getItem($_TABLES['users'],
-        'username', "uid = {$A['owner_id']}"));
+    $sp_template->set_var(
+        'username',
+        DB_getItem($_TABLES['users'], 'username', "uid = {$A['owner_id']}")
+    );
     $authorname = COM_getDisplayName($A['owner_id']);
     $sp_template->set_var('name', $authorname);
     $sp_template->set_var('author', $authorname);
@@ -238,16 +298,17 @@ function staticpageeditor_form($A)
     $sp_template->set_var('sp_uid', $A['owner_id']);
     $sp_template->set_var('sp_id', $A['sp_id']);
     $sp_template->set_var('sp_old_id', $A['sp_old_id']);
-    $sp_template->set_var('example_url', COM_buildURL($_CONF['site_url']
-        . '/staticpages/index.php?page=' . $A['sp_id']));
+    $sp_template->set_var(
+        'example_url',
+        COM_buildURL($_CONF['site_url'] . '/staticpages/index.php?page=' . $A['sp_id'])
+    );
 
     $sp_template->set_var('lang_centerblock', $LANG_STATIC['centerblock']);
     $sp_template->set_var('lang_centerblock_help', $LANG_ADMIN['help_url']);
     $sp_template->set_var('lang_centerblock_include', $LANG21[51]);
     $sp_template->set_var('lang_centerblock_desc', $LANG21[52]);
     $sp_template->set_var('centerblock_help', $A['sp_help']);
-    $sp_template->set_var('lang_centerblock_msg',
-        $LANG_STATIC['centerblock_msg']);
+    $sp_template->set_var('lang_centerblock_msg', $LANG_STATIC['centerblock_msg']);
     if (isset($A['sp_centerblock']) && ($A['sp_centerblock'] == 1)) {
         $sp_template->set_var('centerblock_checked', 'checked="checked"');
     } else {
@@ -255,8 +316,7 @@ function staticpageeditor_form($A)
     }
 
     $sp_template->set_var('lang_position', $LANG_STATIC['position']);
-    $position = '<select class="uk-select" name="sp_where">';
-    $position .= '<option value="1"';
+    $position = '<option value="1"';
     if ($A['sp_where'] == 1) {
         $position .= ' selected="selected"';
     }
@@ -276,15 +336,16 @@ function staticpageeditor_form($A)
         $position .= ' selected="selected"';
     }
     $position .= '>' . $LANG_STATIC['position_entire'] . '</option>';
-    $position .= '</select>';
+    $position = COM_createControl('type-select', array(
+        'name'         => 'sp_where',
+        'select_items' => $position,
+    ));
     $sp_template->set_var('pos_selection', $position);
-
     if (($_SP_CONF['allow_php'] == 1) && SEC_hasRights('staticpages.PHP')) {
         if (!isset($A['sp_php'])) {
             $A['sp_php'] = 0;
         }
-        $selection = '<select class="uk-select" name="sp_php">' . LB;
-        $selection .= '<option value="0"';
+        $selection = '<option value="0"';
         if (($A['sp_php'] <= 0) || ($A['sp_php'] > 2)) {
             $selection .= ' selected="selected"';
         }
@@ -299,7 +360,10 @@ function staticpageeditor_form($A)
             $selection .= ' selected="selected"';
         }
         $selection .= '>' . $LANG_STATIC['select_php_free'] . '</option>' . LB;
-        $selection .= '</select>';
+        $selection = COM_createControl('type-select', array(
+            'name'         => 'sp_php',
+            'select_items' => $selection,
+        ));
         $sp_template->set_var('php_selector', $selection);
         $sp_template->set_var('php_warn', $LANG_STATIC['php_warn']);
     } else {
@@ -400,8 +464,11 @@ function staticpageeditor_form($A)
         $template_none .= ' selected="selected"';
     }
     $template_none .= '>' . $LANG_STATIC['none'] . '</option>';
-    $sp_template->set_var('use_template_selection', '<select class="uk-select" name="template_id">'
-        . $template_none . $template_list . '</select>');
+    $selection = COM_createControl('type-select', array(
+        'name'         => 'template_id',
+        'select_items' => $template_none . $template_list,
+    ));
+    $sp_template->set_var('use_template_selection', $selection);
     $sp_template->set_var('lang_use_template', $LANG_STATIC['use_template']);
     $sp_template->set_var('lang_use_template_msg', $LANG_STATIC['use_template_msg']);
 
@@ -421,6 +488,9 @@ function staticpageeditor_form($A)
     } else {
         $sp_template->set_var('onlastupdate_checked', '');
     }
+    if ($_SP_CONF['show_date'] != 1) {
+        $sp_template->set_var('lang_show_on_page_date_disabled', $LANG_STATIC['show_on_page_disabled']);
+    }    
 
     $sp_template->set_var('lang_label', $LANG_STATIC['label']);
     if (isset($A['sp_label'])) {
@@ -432,17 +502,16 @@ function staticpageeditor_form($A)
     $sp_template->set_var('lang_blankpage', $LANG_STATIC['blankpage']);
     $sp_template->set_var('lang_noblocks', $LANG_STATIC['noblocks']);
     $sp_template->set_var('lang_leftblocks', $LANG_STATIC['leftblocks']);
-    $sp_template->set_var('lang_leftrightblocks',
-        $LANG_STATIC['leftrightblocks']);
+    $sp_template->set_var('lang_leftrightblocks', $LANG_STATIC['leftrightblocks']);
     if (!isset($A['sp_format'])) {
         $A['sp_format'] = '';
     }
-    if ($A['sp_format'] == 'noblocks') {
+    if ($A['sp_format'] === 'noblocks') {
         $sp_template->set_var('noblock_selected', 'selected="selected"');
     } else {
         $sp_template->set_var('noblock_selected', '');
     }
-    if ($A['sp_format'] == 'leftblocks') {
+    if ($A['sp_format'] === 'leftblocks') {
         $sp_template->set_var('leftblocks_selected', 'selected="selected"');
     } else {
         $sp_template->set_var('leftblocks_selected', '');
@@ -452,7 +521,7 @@ function staticpageeditor_form($A)
     } else {
         $sp_template->set_var('blankpage_selected', '');
     }
-    if (($A['sp_format'] == 'allblocks') OR empty($A['sp_format'])) {
+    if (($A['sp_format'] === 'allblocks') || empty($A['sp_format'])) {
         $sp_template->set_var('allblocks_selected', 'selected="selected"');
     } else {
         $sp_template->set_var('allblocks_selected', '');
@@ -471,14 +540,16 @@ function staticpageeditor_form($A)
     $sp_template->set_var('lang_allowedhtml', $allowed);
     $sp_template->set_var('lang_allowed_html', $allowed);
     $sp_template->set_var('lang_show_on_page', $LANG_STATIC['show_on_page']);
+    if ($_SP_CONF['show_hits'] != 1) {
+        $sp_template->set_var('lang_show_on_page_hits_disabled', $LANG_STATIC['show_on_page_disabled']);
+    }
     $sp_template->set_var('lang_hits', $LANG_STATIC['hits']);
     if (empty($A['sp_hits'])) {
         $sp_template->set_var('sp_hits', '0');
         $sp_template->set_var('sp_hits_formatted', '0');
     } else {
         $sp_template->set_var('sp_hits', $A['sp_hits']);
-        $sp_template->set_var('sp_hits_formatted',
-            COM_numberFormat($A['sp_hits']));
+        $sp_template->set_var('sp_hits_formatted', COM_numberFormat($A['sp_hits']));
     }
     $sp_template->set_var('lang_comments', $LANG_STATIC['comments']);
     if ($A['commentcode'] == -1) {
@@ -488,8 +559,23 @@ function staticpageeditor_form($A)
             array(DB_escapeString($A['sp_id']), 'staticpages'));
         $sp_template->set_var('sp_comments', COM_numberFormat($num_comments));
     }
-    $sp_template->set_var('end_block',
-        COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer')));
+    $sp_template->set_var(
+        'end_block',
+        COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'))
+    );
+
+    // Set previous pages, next pages, and parent pages
+    $sp_template->set_var(array(
+        'lang_prev_page'   => $LANG_STATIC['prev_page'],
+        'lang_next_page'   => $LANG_STATIC['next_page'],
+        'lang_parent_page' => $LANG_STATIC['parent_page'],
+        'lang_page_desc'   => $LANG_STATIC['page_desc'],
+        'sp_prev_pages'    => staticPageGetIdOptions($sp_id, $A['sp_prev']),
+        'sp_next_pages'    => staticPageGetIdOptions($sp_id, $A['sp_next']),
+        'sp_parent_pages'  => staticPageGetIdOptions($sp_id, $A['sp_parent']),
+    ));
+
+    // Security token
     $sp_template->set_var('gltoken_name', CSRF_TOKEN);
     $sp_template->set_var('gltoken', $token);
     $sp_template->parse('output', 'form');
@@ -594,7 +680,9 @@ function liststaticpages()
               'text' => $LANG_ADMIN['admin_home']),
     );
 
-    $retval .= COM_startBlock($LANG_STATIC['staticpagelist'], '',
+    $help_url = COM_getDocumentUrl('docs', "staticpages.html");
+
+    $retval .= COM_startBlock($LANG_STATIC['staticpagelist'], $help_url,
         COM_getBlockTemplate('_admin_block', 'header'));
 
     $retval .= ADMIN_createMenu($menu_arr, $LANG_STATIC['instructions'],
@@ -660,9 +748,14 @@ function staticpageeditor($sp_id, $mode = '', $editor = '')
         $A['cache_time'] = $_SP_CONF['default_cache_time'];
         $A['template_flag'] = ''; // Defaults to not a template
         $A['template_id'] = ''; // Defaults to None
+
         if ($_USER['advanced_editor'] == 1) {
             $A['postmode'] = 'adveditor';
         }
+
+        $A['sp_prev'] = '';
+        $A['sp_next'] = '';
+        $A['sp_parent'] = '';
     } elseif (!empty($sp_id) && $mode == 'clone') {
         $result = DB_query("SELECT *,UNIX_TIMESTAMP(modified) AS unixdate FROM {$_TABLES['staticpage']} WHERE sp_id = '$sp_id'" . COM_getPermSQL('AND', 0, 3));
         if (DB_numRows($result) == 1) {
@@ -673,14 +766,16 @@ function staticpageeditor($sp_id, $mode = '', $editor = '')
             $A['unixdate'] = time();
             $A['sp_hits'] = 0;
             $A['sp_old_id'] = '';
+            $A['sp_prev'] = '';
+            $A['sp_next'] = '';
+            $A['sp_parent'] = '';
         }
     } else {
         $A = $_POST;
         if (empty($A['unixdate'])) {
             $A['unixdate'] = time();
         }
-        $A['sp_content'] = COM_checkHTML(COM_checkWords($A['sp_content']),
-            'staticpages.edit');
+        $A['sp_content'] = COM_checkHTML(COM_checkWords($A['sp_content']), 'staticpages.edit');
     }
 
     if (isset($A)) {
@@ -738,6 +833,9 @@ function staticpageeditor($sp_id, $mode = '', $editor = '')
  * @param  string $meta_keywords
  * @param  string $draft_flag      Flag: save as draft
  * @param  string $cache_time      Cache time of page
+ * @param  string $sp_prev         Previous page ID
+ * @param  string $sp_next         Next page ID
+ * @param  string $sp_parent       Parent page ID
  * @return int
  */
 function submitstaticpage($sp_id, $sp_title, $sp_page_title, $sp_content, $sp_hits,
@@ -746,7 +844,8 @@ function submitstaticpage($sp_id, $sp_title, $sp_page_title, $sp_content, $sp_hi
                           $perm_members, $perm_anon, $sp_php, $sp_nf,
                           $sp_old_id, $sp_centerblock, $sp_help,
                           $sp_where, $sp_inblock, $postMode, $meta_description,
-                          $meta_keywords, $draft_flag, $template_flag, $template_id, $cache_time)
+                          $meta_keywords, $draft_flag, $template_flag, $template_id, $cache_time,
+                          $sp_prev, $sp_next, $sp_parent)
 {
     $retval = '';
 
@@ -782,6 +881,9 @@ function submitstaticpage($sp_id, $sp_title, $sp_page_title, $sp_content, $sp_hi
         'sp_where'         => $sp_where,
         'sp_inblock'       => $sp_inblock,
         'postmode'         => $postMode,
+        'sp_prev'          => $sp_prev,
+        'sp_next'          => $sp_next,
+        'sp_parent'        => $sp_parent,
     );
     PLG_invokeService('staticpages', 'submit', $args, $retval, $svc_msg);
 
@@ -793,17 +895,17 @@ $mode = Geeklog\Input::fRequest('mode', '');
 $sp_id = Geeklog\Input::fRequest('sp_id', '');
 $display = '';
 
-if (($mode == $LANG_ADMIN['delete']) && !empty($LANG_ADMIN['delete']) && SEC_checkToken()) {
+if (!empty($LANG_ADMIN['delete']) && ($mode === $LANG_ADMIN['delete']) && SEC_checkToken()) {
     if (empty($sp_id) || (is_numeric($sp_id) && ($sp_id == 0))) {
         COM_errorLog('Attempted to delete static page sp_id=' . $sp_id);
     } else {
         $args = array(
             'sp_id' => $sp_id,
         );
-        
+
         PLG_invokeService('staticpages', 'delete', $args, $display, $svc_msg);
     }
-} elseif ($mode == 'edit') {
+} elseif ($mode === 'edit') {
     if (isset($_GET['msg'])) {
         $msg = (int) Geeklog\Input::fGet('msg', 0);
         if ($msg > 0) {
@@ -813,14 +915,14 @@ if (($mode == $LANG_ADMIN['delete']) && !empty($LANG_ADMIN['delete']) && SEC_che
     $editor = Geeklog\Input::fGet('editor', '');
     $display .= staticpageeditor($sp_id, $mode, $editor);
     $display = COM_createHTMLDocument($display, array('pagetitle' => $LANG_STATIC['staticpageeditor']));
-} elseif ($mode == 'clone') {
+} elseif ($mode === 'clone') {
     if (!empty($sp_id)) {
         $display .= staticpageeditor($sp_id, $mode);
         $display = COM_createHTMLDocument($display, array('pagetitle' => $LANG_STATIC['staticpageeditor']));
     } else {
         COM_redirect($_CONF['site_admin_url'] . '/index.php');
     }
-} elseif (($mode == $LANG_ADMIN['save']) && !empty($LANG_ADMIN['save']) && SEC_checkToken()) {
+} elseif (!empty($LANG_ADMIN['save']) && ($mode === $LANG_ADMIN['save']) && SEC_checkToken()) {
     if (!empty($sp_id)) {
         if (!isset($_POST['sp_onmenu'])) {
             $_POST['sp_onmenu'] = '';
@@ -839,10 +941,6 @@ if (($mode == $LANG_ADMIN['delete']) && !empty($LANG_ADMIN['delete']) && SEC_che
         }
         if (!isset($_POST['sp_centerblock'])) {
             $_POST['sp_centerblock'] = '';
-        }
-        $help = '';
-        if (isset($_POST['sp_help'])) {
-            $sp_help = COM_sanitizeUrl(Geeklog\Input::post('sp_help'), array('http', 'https'));
         }
         if (!isset($_POST['sp_inblock'])) {
             $_POST['sp_inblock'] = '';
@@ -882,7 +980,7 @@ if (($mode == $LANG_ADMIN['delete']) && !empty($LANG_ADMIN['delete']) && SEC_che
             Geeklog\Input::post('sp_nf'),
             Geeklog\Input::fPost('sp_old_id'),
             Geeklog\Input::post('sp_centerblock'),
-            $sp_help,
+            Geeklog\Input::post('sp_help'),
             (int) Geeklog\Input::fPost('sp_where'),
             Geeklog\Input::post('sp_inblock'),
             Geeklog\Input::fPost('postmode'),
@@ -891,7 +989,10 @@ if (($mode == $LANG_ADMIN['delete']) && !empty($LANG_ADMIN['delete']) && SEC_che
             Geeklog\Input::post('draft_flag'),
             Geeklog\Input::post('template_flag'),
             Geeklog\Input::post('template_id'),
-            (int) Geeklog\Input::fPost('cache_time')
+            (int) Geeklog\Input::fPost('cache_time'),
+            Geeklog\Input::post('sp_prev'),
+            Geeklog\Input::post('sp_next'),
+            Geeklog\Input::post('sp_parent')
         );
     } else {
         COM_redirect($_CONF['site_admin_url'] . '/index.php');

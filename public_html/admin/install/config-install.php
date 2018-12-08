@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 2.1                                                               |
+// | Geeklog 2.2                                                               |
 // +---------------------------------------------------------------------------+
 // | config-install.php                                                        |
 // |                                                                           |
@@ -145,6 +145,7 @@ function install_config()
     $c->add('whats_related_max',0,'text',1,7,NULL,1370,TRUE, $me, 7);
     $c->add('whats_related_trim',26,'text',1,7,NULL,1380,TRUE, $me, 7);
     $c->add('default_cache_time_article',0,'text',1,7,NULL,1390,TRUE, $me, 7);
+    $c->add('blocks_article_topic_list_repeat_after',1,'text',1,7,NULL,1400,TRUE, $me, 7);
 
     $c->add('tab_trackback', NULL, 'tab', 1, 8, NULL, 0, TRUE, $me, 8);
     $c->add('fs_trackback', NULL, 'fieldset', 1, 8, NULL, 0, TRUE, $me, 8);
@@ -166,12 +167,13 @@ function install_config()
 
     $c->add('tab_theme', NULL, 'tab', 2, 10, NULL, 0, TRUE, $me, 10);
     $c->add('fs_theme', NULL, 'fieldset', 2, 10, NULL, 0, TRUE, $me, 10);
-    $c->add('theme','default','select',2,10,NULL,190,TRUE, $me, 10);
+    $c->add('theme','denim','select',2,10,NULL,190,TRUE, $me, 10);
     $c->add('doctype','html401strict','select',2,10,21,195,TRUE, $me, 10);
     $c->add('menu_elements',array('contribute','search','stats','directory','plugins'),'%select',2,10,24,200,TRUE, $me, 10);
     $c->add('path_themes','','text',2,10,NULL,210,TRUE, $me, 10);
     $c->add('cache_templates',TRUE,'select',2,10,1,220,TRUE, $me, 10);
     $c->add('cache_mobile',TRUE,'select',2,10,1,230,TRUE, $me, 10);
+    $c->add('cache_resource',TRUE,'select',2,10,1,240,TRUE, $me, 10);
 
     $c->add('tab_theme_advanced', NULL, 'tab', 2, 11, NULL, 0, TRUE, $me, 11);
     $c->add('fs_theme_advanced', NULL, 'fieldset', 2, 11, NULL, 0, TRUE, $me, 11);
@@ -226,6 +228,7 @@ function install_config()
     $c->add('allow_account_delete',0,'select',4,16,0,270,TRUE, $me, 16);
     $c->add('hide_author_exclusion',0,'select',4,16,0,280,TRUE, $me, 16);
     $c->add('show_fullname',0,'select',4,16,0,290,TRUE, $me, 16);
+    $c->add('require_user_email',1,'select',4,16,0,295,TRUE, $me, 16);
     $c->add('show_servicename',TRUE,'select',4,16,1,300,TRUE, $me, 16);
     $c->add('custom_registration',FALSE,'select',4,16,1,310,TRUE, $me, 16);
     $c->add('user_login_method',array('standard' => true, 'openid' => false, '3rdparty' => false, 'oauth' => false),'@select',4,16,1,320,TRUE, $me, 16);
@@ -272,6 +275,9 @@ function install_config()
     $c->add('passwordspeedlimit',300,'text',4,18,NULL,1680,TRUE, $me, 18);
     $c->add('login_attempts',3,'text',4,18,NULL,1690,TRUE, $me, 18);
     $c->add('login_speedlimit',300,'text',4,18,NULL,1700,TRUE, $me, 18);
+    $c->add('invalidloginattempts',7,'text',4,18,NULL,1710,TRUE, $me, 18);
+    $c->add('invalidloginmaxtime',1200,'text',4,18,NULL,1720,TRUE, $me, 18);
+    $c->add('enable_twofactorauth',0,'select',4,18,0,1730,TRUE, $me, 18);
 
     // password options
     $c->add('fs_pass', NULL, 'fieldset', 4, 42, NULL, 0, TRUE, $me, 18);
@@ -347,7 +353,7 @@ function install_config()
     $c->add('max_photo_height',128,'text',5,26,NULL,1580,TRUE, $me, 26);
     $c->add('max_photo_size',65536,'text',5,26,NULL,1590,TRUE, $me, 26);
     $c->add('force_photo_width',75,'text',5,26,NULL,1620,FALSE, $me, 26);
-    $c->add('default_photo','http://example.com/default.jpg','text',5,26,NULL,1630,FALSE, $me, 26);
+    $c->add('default_photo','http://example.com/images/userphotos/default.png','text',5,26,NULL,1630,FALSE, $me, 26);
 
     $c->add('tab_gravatar', NULL, 'tab', 5, 27, NULL, 0, TRUE, $me, 27);
     $c->add('fs_gravatar', NULL, 'fieldset', 5, 27, NULL, 0, TRUE, $me, 27);
@@ -362,6 +368,7 @@ function install_config()
     $c->add('fs_language', NULL, 'fieldset', 6, 28, NULL, 0, TRUE, $me, 28);
     $c->add('language','english','select',6,28,NULL,350,TRUE, $me, 28);
     $c->add('allow_user_language',1,'select',6,28,0,360,TRUE, $me, 28);
+    $c->add('switchlang_homepage',0,'select',6,28,0,370,TRUE, $me, 28);
     $c->add('fs_multilanguage', NULL, 'fieldset', 6, 29, NULL, 0, TRUE, $me, 28);
     $c->add('language_files',array('en'=>'english_utf-8', 'de'=>'german_formal_utf-8'),'*text',6,29,NULL,470,FALSE, $me, 28);
     $c->add('languages',array('en'=>'English', 'de'=>'Deutsch'),'*text',6,29,NULL,480,FALSE, $me, 28);
@@ -410,8 +417,12 @@ function install_config()
     $c->add('compressed_output',0,'select',7,31,1,1756,TRUE, $me, 31);
     $c->add('frame_options','DENY','select',7,31,22,1758,TRUE, $me, 31);
     $c->add('page_navigation_max_pages',7,'text',7,31,NULL,1800,TRUE, $me, 31);
+    $c->add('page_navigation_mobile_max_pages',7,'text',7,31,NULL,1805,TRUE, $me, 31);
     $c->add('default_cache_time_block',0,'text',7,31,NULL,1810,TRUE, $me, 31);
     $c->add('titletoid',0,'select',7,31,1,1820,TRUE, $me, 31);
+    $c->add('langurl_topic',array('', 'index.php', 'topic'),'@hidden',7,31,1,1830,TRUE, $me, 31); // Hidden config option for Core used to determine language of topic url (see _getLanguageInfoFromURL in lib-common)
+    $c->add('langurl_article',array('', 'article.php', 'story'),'@hidden',7,31,1,1830,TRUE, $me, 31); // Hidden config option for Core used to determine language of article url (see _getLanguageInfoFromURL in lib-common)
+    $c->add('404_log',1,'select',7,31,1,1840,TRUE, $me, 31);
 
     $c->add('tab_debug', NULL, 'tab', 7, 32, NULL, 0, TRUE, $me, 32);
     $c->add('fs_debug', NULL, 'fieldset', 7, 32, NULL, 0, TRUE, $me, 32);

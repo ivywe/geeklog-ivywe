@@ -225,6 +225,7 @@ $_CONF_VALIDATE['Core']['whats_related'] = array(
 $_CONF_VALIDATE['Core']['whats_related_max'] = array('rule' => 'numeric');
 $_CONF_VALIDATE['Core']['whats_related_trim'] = array('rule' => 'numeric');
 $_CONF_VALIDATE['Core']['default_cache_time_article'] = array('rule' => 'numeric');
+$_CONF_VALIDATE['Core']['blocks_article_topic_list_repeat_after'] = array('rule' => 'numeric');
 
 /* Subgroup Stories and Trackback, Tab Trackback */
 $_CONF_VALIDATE['Core']['trackback_enabled'] = array('rule' => 'boolean');
@@ -265,6 +266,7 @@ $_CONF_VALIDATE['Core']['path_themes'] = array(
 );
 $_CONF_VALIDATE['Core']['cache_templates'] = array('rule' => 'boolean');
 $_CONF_VALIDATE['Core']['cache_mobile'] = array('rule' => 'boolean');
+$_CONF_VALIDATE['Core']['cache_resource'] = array('rule' => 'boolean');
 
 /* Subgroup Theme, Tab Advanced Settings */
 $_CONF_VALIDATE['Core']['show_right_blocks'] = array('rule' => 'boolean');
@@ -307,6 +309,7 @@ $_CONF_VALIDATE['Core']['allow_account_delete'] = array('rule' => 'boolean');
 $_CONF_VALIDATE['Core']['hide_author_exclusion'] = array('rule' => 'boolean');
 $_CONF_VALIDATE['Core']['show_fullname'] = array('rule' => 'boolean');
 $_CONF_VALIDATE['Core']['show_servicename'] = array('rule' => 'boolean');
+$_CONF_VALIDATE['Core']['require_user_email'] = array('rule' => 'boolean');
 $_CONF_VALIDATE['Core']['custom_registration'] = array('rule' => 'boolean');
 $_CONF_VALIDATE['Core']['user_login_method[standard]'] = array('rule' => 'boolean');
 $_CONF_VALIDATE['Core']['user_login_method[openid]'] = array('rule' => 'boolean');
@@ -357,6 +360,9 @@ $_CONF_VALIDATE['Core']['directoryloginrequired'] = array('rule' => 'boolean');
 $_CONF_VALIDATE['Core']['passwordspeedlimit'] = array('rule' => 'numeric');
 $_CONF_VALIDATE['Core']['login_attempts'] = array('rule' => 'numeric');
 $_CONF_VALIDATE['Core']['login_speedlimit'] = array('rule' => 'numeric');
+$_CONF_VALIDATE['Core']['invalidloginattempts'] = array('rule' => 'numeric');
+$_CONF_VALIDATE['Core']['invalidloginmaxtime'] = array('rule' => 'numeric');
+$_CONF_VALIDATE['Core']['enable_twofactorauth'] = array('rule' => 'boolean');
 
 /* Subgroup User and Submissions, Tab Login Settings, Fieldset Password */
 $_CONF_VALIDATE['Core']['pass_alg'] = array(
@@ -458,6 +464,7 @@ $_CONF_VALIDATE['Core']['language'] = array(
                  $LANG_VALIDATION['language'] : $LANG_VALIDATION['default']
 );
 $_CONF_VALIDATE['Core']['allow_user_language'] = array('rule' => 'boolean');
+$_CONF_VALIDATE['Core']['switchlang_homepage'] = array('rule' => 'boolean');
 
 /* Subgroup Language, Tab Locale */
 $_CONF_VALIDATE['Core']['locale']     = array('rule' => 'stringOrEmpty');
@@ -518,8 +525,14 @@ $_CONF_VALIDATE['Core']['page_navigation_max_pages'] = array(
     'message' => isset($LANG_VALIDATION['page_navigation_max_pages']) ?
                  $LANG_VALIDATION['page_navigation_max_pages'] : $LANG_VALIDATION['default']
 );
+$_CONF_VALIDATE['Core']['page_navigation_mobile_max_pages'] = array(
+    'rule' => array('range', 2, 21),
+    'message' => isset($LANG_VALIDATION['page_navigation_mobile_max_pages']) ?
+                 $LANG_VALIDATION['page_navigation_mobile_max_pages'] : $LANG_VALIDATION['default']
+);
 $_CONF_VALIDATE['Core']['default_cache_time_block'] = array('rule' => 'numeric');
 $_CONF_VALIDATE['Core']['titletoid'] = array('rule' => 'boolean');
+$_CONF_VALIDATE['Core']['404_log'] = array('rule' => 'boolean');
 
 /* Subgroup Misc, Tab Debug */
 $_CONF_VALIDATE['Core']['rootdebug'] = array('rule' => 'boolean');

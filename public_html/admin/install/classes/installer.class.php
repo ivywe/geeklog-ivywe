@@ -6,7 +6,7 @@
 class Installer
 {
     // Geeklog version
-    const GL_VERSION = '2.1.3';
+    const GL_VERSION = '2.2.1';
 
     // System requirements
     const SUPPORTED_PHP_VER = '5.3.3';
@@ -162,7 +162,7 @@ class Installer
      * @param    string $type    'error', 'warning', 'success', or 'notice'
      * @return   string          HTML formatted dialog message
      */
-    public function getAlertMessage($message, $type = 'notice')
+    public function getAlertMessage($message, $type = 'notice', $title = '')
     {
         switch (strtolower($type)) {
             case 'error':
@@ -186,8 +186,14 @@ class Installer
                 break;
         }
 
-        return '<div class="uk-alert uk-alert-large uk-alert-' . $style . '">'
-            . '<span class="uk-badge uk-badge-' . $style . '">' . $type . '</span> ' . $message . '</div>' . PHP_EOL;
+        $retval = '';
+        if (!empty($title)) {
+            $retval .= '<h3>' . $title . '</h3>';
+        }
+        $retval .= '<div class="uk-alert uk-alert-large uk-alert-' . $style . '">';
+        $retval .= '<span class="uk-badge uk-badge-' . $style . '">' . $type . '</span> ' . $message . '</div>' . PHP_EOL;
+            
+        return $retval;
     }
 
     /**
@@ -231,13 +237,26 @@ class Installer
 
             foreach ($this->upgradeMessages as $version => $message) {
                 $retval .= '<h2>' . $this->LANG['INSTALL'][111] . ' ' . $version . '</h2>' . PHP_EOL;
-                foreach ($message as $type => $message_id) {
-                    $retval .= $this->getAlertMessage($this->LANG['ERROR'][$message_id], $type);
-
-                    // record what type of prompt we need
-                    if ($type === 'information' || $type === 'warning' || $type === 'error') {
-                        if ($prompt !== 'error') {
-                            if ($prompt == 'information') {
+                if (version_compare($version, '2.1.2', '<')) {
+                    foreach ($message as $type => $message_id) {
+                        $retval .= $this->getAlertMessage($this->LANG['ERROR'][$message_id], $type);
+                        // record what type of prompt we need
+                        if ($type === 'information' || $type === 'warning' || $type === 'error') {
+                            if ($prompt !== 'error') {
+                                $prompt = $type;
+                            }
+                        }
+                    }
+                } else {
+                    // Upgrade message array changed in Geeklog v2.2.0 to allow multiple boxes of the same type (warning, information or error) to be displayed in the same Geeklog version
+                    foreach ($message as $id => $info) {
+                        $type = $info[0];
+                        $title_id = $info[1];
+                        $message_id = $info[2];
+                        $retval .= $this->getAlertMessage($this->LANG['ERROR'][$message_id], $type, $this->LANG['ERROR'][$title_id]);
+                        // record what type of prompt we need
+                        if ($type === 'information' || $type === 'warning' || $type === 'error') {
+                            if ($prompt !== 'error') {
                                 $prompt = $type;
                             }
                         }
@@ -627,8 +646,10 @@ class Installer
         $chmodString = 'chmod -R 777 ';
 
         // Files to check if writable
-        $fileList = array($paths['db-config.php'],
+        $fileList = array(
+            $paths['db-config.php'],
             $this->env['gl_path'] . 'data/',
+            $this->env['gl_path'] . 'data/cache/',
             $this->env['gl_path'] . 'data/layout_cache/',
             $this->env['gl_path'] . 'data/layout_css/',
             $this->env['gl_path'] . 'logs/404.log',
@@ -637,22 +658,20 @@ class Installer
             $this->env['gl_path'] . 'logs/spamx.log',
             $paths['public_html/'] . 'siteconfig.php',
             $paths['public_html/'] . 'backend/geeklog.rss',
-            $paths['public_html/'] . 'images/articles/',
-            $paths['public_html/'] . 'images/topics/',
-            $paths['public_html/'] . 'images/userphotos',
             $paths['public_html/'] . 'filemanager/scripts/filemanager.config.json',
-            $paths['public_html/'] . 'images/library/File/',
-            $paths['public_html/'] . 'images/library/Flash/',
-            $paths['public_html/'] . 'images/library/Image/',
-            $paths['public_html/'] . 'images/library/Image/_thumbs/',
-            $paths['public_html/'] . 'images/library/Image/icons/',
-            $paths['public_html/'] . 'images/library/Media/',
-            $paths['public_html/'] . 'images/_thumbs/',
-            $paths['public_html/'] . 'images/_thumbs/articles/',
-            $paths['public_html/'] . 'images/_thumbs/library/Image/',
-            $paths['public_html/'] . 'images/_thumbs/userphotos/',
+            $paths['public_html/'] . 'images/articles/',                // Used by article editor for when image is uploaded (to be included in article)
+            $paths['public_html/'] . 'images/topics/',                  // Used by topic editor for when image is uploaded
+            $paths['public_html/'] . 'images/userphotos',               // Used by user editor for when image is uploaded
+            $paths['public_html/'] . 'images/library/File/',            // Used by CKEditor (launches File Manager to this directory when "image button" button pressed in CKeditor tool bar)
+            $paths['public_html/'] . 'images/library/Flash/',           // Used by CKEditor (launches File Manager to this directory when "flash" button pressed in CKeditor tool bar)
+            $paths['public_html/'] . 'images/library/Image/',           // Used by CKEditor (launches File Manager to this directory when "image" button pressed in CKeditor tool bar)
+            $paths['public_html/'] . 'images/library/Image/_thumbs/',   // Used by CKEditor for thumbnails when File Manager used to pick images
+            $paths['public_html/'] . 'images/library/Media/',           // Used by CKEditor (assumed as not sure how it is accessed)
+            $paths['public_html/'] . 'images/_thumbs/',                 // Used by File Manager when launched from Geeklog Control Panel
+            $paths['public_html/'] . 'images/_thumbs/articles/',        // Used by File Manager when launched from Geeklog Control Panel. Article Editor also stores article thumbnail images here
+            $paths['public_html/'] . 'images/_thumbs/userphotos/',      // Used by File Manager when launched from Geeklog Control Panel
         );
-
+        
         if ($_DB_dbms === 'mysql') {
             array_splice($fileList, 1, 0, $this->env['gl_path'] . 'backups/');
         }
@@ -950,7 +969,7 @@ class Installer
             $retval = $dbs[$remaining[0]]['label']
                 . ' <input type="hidden" name="db_type" value="' . $remaining[0] . '">' . PHP_EOL;
         } else {
-            $retval = '<select class="uk-select" id="db_type" name="db_type">' . PHP_EOL
+            $retval = '<select id="db_type" name="db_type">' . PHP_EOL
                 . $retval
                 . '</select>' . PHP_EOL;
         }
@@ -2884,6 +2903,37 @@ class Installer
                     $currentGlVersion = '2.1.3';
                     break;
                     
+                case '2.1.3':
+                    require_once $_CONF['path'] . 'sql/updates/' . $_DB_dbms . '_2.1.3_to_2.2.0.php';
+                    if ($checkForMessage) {
+                        $retval = upgrade_message213();
+                        if (is_array($retval)) {
+                            $this->upgradeMessages = array_merge($this->upgradeMessages, $retval);
+                        }
+                    } else {
+                        $this->updateDB($_SQL, $progress);
+                        removeCommentSig220();
+                        update_ConfValuesFor220();
+                        addThemeAdminFor220();
+                    }
+                    $currentGlVersion = '2.2.0';
+                    $_SQL = array();
+                    break;                    
+
+                case '2.2.0':
+                    require_once $_CONF['path'] . 'sql/updates/' . $_DB_dbms . '_2.2.0_to_2.2.1.php';
+                    if ($checkForMessage) {
+                        $retval = upgrade_message220();
+                        if (is_array($retval)) {
+                            $this->upgradeMessages = array_merge($this->upgradeMessages, $retval);
+                        }
+                    } else {
+                        $this->updateDB($_SQL, $progress);
+                        update_ConfValuesFor221();
+                    }
+                    $currentGlVersion = '2.2.1';
+                    break;
+                                        
                 default:
                     $done = true;
                     break;
@@ -3310,9 +3360,9 @@ class Installer
         for ($i = 0; $i < $numEngines; $i++) {
             $A = DB_fetchArray($result);
 
-            if (strcasecmp($A['Engine'], 'InnoDB') == 0) {
-                if ((strcasecmp($A['Support'], 'yes') == 0) ||
-                    (strcasecmp($A['Support'], 'default') == 0)
+            if (strcasecmp($A['Engine'], 'InnoDB') === 0) {
+                if ((strcasecmp($A['Support'], 'yes') === 0) ||
+                    (strcasecmp($A['Support'], 'default') === 0)
                 ) {
                     $retval = true;
                 }
@@ -3503,15 +3553,15 @@ class Installer
             . '<input type="hidden" name="language" value="' . $this->env['language'] . '">' . PHP_EOL
             . '<input type="hidden" name="mode" value="migrate">'
             . '<input type="hidden" name="dbconfig_path" value="' . htmlspecialchars($this->env['dbconfig_path']) . '">' . PHP_EOL
-            . '<div class="uk-form-row"><label class="uk-form-label">' . $LANG_INSTALL[34] . ' ' . $this->getHelpLink('db_type') . '</label> <div class="uk-form-controls"><select class="uk-select" name="db[type]">' . PHP_EOL
+            . '<div class="uk-form-row"><label class="uk-form-label">' . $LANG_INSTALL[34] . ' ' . $this->getHelpLink('db_type') . '</label> <div class="uk-form-controls"><select name="db[type]">' . PHP_EOL
             . '<option value="mysql">' . $LANG_INSTALL[35] . '</option>' . PHP_EOL
             . '</select></div></div>' . PHP_EOL
-            . '<div class="uk-form-row"><label class="uk-form-label">' . $LANG_INSTALL[39] . ' ' . $this->getHelpLink('db_host') . '</label> <div class="uk-form-controls"><input type="text" class="uk-input uk-form-width-medium" name="db[host]" value="' . $_FORM['host'] . '" size="20"></div></div>' . PHP_EOL
-            . '<div class="uk-form-row"><label class="uk-form-label">' . $LANG_INSTALL[40] . ' ' . $this->getHelpLink('db_name') . '</label> <div class="uk-form-controls"><input type="text" class="uk-input uk-form-width-medium" name="db[name]" value="' . $_FORM['name'] . '" size="20"></div></div>' . PHP_EOL
-            . '<div class="uk-form-row"><label class="uk-form-label">' . $LANG_INSTALL[41] . ' ' . $this->getHelpLink('db_user') . '</label> <div class="uk-form-controls"><input type="text" class="uk-input uk-form-width-medium" name="db[user]" value="' . $_FORM['user'] . '" size="20"></div></div>' . PHP_EOL
+            . '<div class="uk-form-row"><label class="uk-form-label">' . $LANG_INSTALL[39] . ' ' . $this->getHelpLink('db_host') . '</label> <div class="uk-form-controls"><input type="text" name="db[host]" value="' . $_FORM['host'] . '" size="20"></div></div>' . PHP_EOL
+            . '<div class="uk-form-row"><label class="uk-form-label">' . $LANG_INSTALL[40] . ' ' . $this->getHelpLink('db_name') . '</label> <div class="uk-form-controls"><input type="text" name="db[name]" value="' . $_FORM['name'] . '" size="20"></div></div>' . PHP_EOL
+            . '<div class="uk-form-row"><label class="uk-form-label">' . $LANG_INSTALL[41] . ' ' . $this->getHelpLink('db_user') . '</label> <div class="uk-form-controls"><input type="text" name="db[user]" value="' . $_FORM['user'] . '" size="20"></div></div>' . PHP_EOL
             . '<div class="uk-form-row"><label class="uk-form-label">' . $LANG_INSTALL[42] . ' ' . $this->getHelpLink('db_pass') . '</label> <div class="uk-form-controls"><input type="password" name="db[pass]" value="' . $_FORM['pass'] . '" size="20"></div></div>' . PHP_EOL
-            . '<div class="uk-form-row"><label class="uk-form-label">' . $LANG_INSTALL[45] . ' ' . $this->getHelpLink('site_url') . '</label> <div class="uk-form-controls"><input type="text" class="uk-input uk-form-width-medium" name="site_url" value="' . htmlspecialchars($site_url) . '" size="50">  &nbsp; ' . $LANG_INSTALL[46] . '</div></div>' . PHP_EOL
-            . '<div class="uk-form-row"><label class="uk-form-label">' . $LANG_INSTALL[47] . ' ' . $this->getHelpLink('site_admin_url') . '</label> <div class="uk-form-controls"><input type="text" class="uk-input uk-form-width-medium" name="site_admin_url" value="' . htmlspecialchars($site_admin_url) . '" size="50">  &nbsp; ' . $LANG_INSTALL[46] . '</div></div>' . PHP_EOL;
+            . '<div class="uk-form-row"><label class="uk-form-label">' . $LANG_INSTALL[45] . ' ' . $this->getHelpLink('site_url') . '</label> <div class="uk-form-controls"><input type="text" name="site_url" value="' . htmlspecialchars($site_url) . '" size="50">  &nbsp; ' . $LANG_INSTALL[46] . '</div></div>' . PHP_EOL
+            . '<div class="uk-form-row"><label class="uk-form-label">' . $LANG_INSTALL[47] . ' ' . $this->getHelpLink('site_admin_url') . '</label> <div class="uk-form-controls"><input type="text" name="site_admin_url" value="' . htmlspecialchars($site_admin_url) . '" size="50">  &nbsp; ' . $LANG_INSTALL[46] . '</div></div>' . PHP_EOL;
 
         // Identify the backup files in backups/ and order them newest to oldest
         $gl_path = str_replace(self::DB_CONFIG_FILE, '', $this->env['dbconfig_path']);
@@ -3531,7 +3581,7 @@ class Installer
         $display .= '<div class="uk-form-row"><label class="uk-form-label">'
             . $LANG_MIGRATE[6] . ' ' . $this->getHelpLink('migrate_file')
             . '</label>' . PHP_EOL
-            . '<div class="uk-form-controls"><select class="uk-select" name="migration_type" onchange="INST_selectMigrationType()">' . PHP_EOL
+            . '<div class="uk-form-controls"><select name="migration_type" onchange="INST_selectMigrationType()">' . PHP_EOL
             . '<option value="">' . $LANG_MIGRATE[7] . '</option>' . PHP_EOL
             . '<option value="select">' . $LANG_MIGRATE[8] . '</option>' . PHP_EOL
             . '<option value="upload">' . $LANG_MIGRATE[9] . '</option>' . PHP_EOL
@@ -3541,7 +3591,7 @@ class Installer
 
         // Check if there are any files in the backups directory
         if (count($backupFiles) > 0) {
-            $display .= '<select class="uk-select" name="backup_file">' . PHP_EOL
+            $display .= '<select name="backup_file">' . PHP_EOL
                 . '<option value="">' . $LANG_MIGRATE[10] . '</option>' . PHP_EOL;
 
             // List each of the backup files in the backups directory
@@ -3740,7 +3790,7 @@ class Installer
                     for ($i = 0; $i < $num_tables; $i++) {
                         list($table) = DB_fetchArray($result);
 
-                        if (substr($table, -6) == 'access') {
+                        if (substr($table, -6) === 'access') {
                             $DB['table_prefix'] = substr($table, 0, -6);
                         } elseif (strpos($table, 'conf_values') !== false) {
                             $has_config = true;
@@ -3841,7 +3891,7 @@ class Installer
                             if (count($words) >= 3) {
                                 $table = str_replace('`', '', $words[2]);
 
-                                if (substr($table, -6) == 'access') {
+                                if (substr($table, -6) === 'access') {
                                     $DB['table_prefix'] = substr($table, 0, -6);
                                 }
                             }
@@ -4518,7 +4568,7 @@ HTML;
                                 // then there's no need to update.
                                 $retval .= '<h2>' . $this->LANG['INSTALL'][74] . '</h2>' . PHP_EOL
                                     . '<p>' . $this->LANG['INSTALL'][75] . '</p>';
-                            } elseif ($currentVersion == 'empty') {
+                            } elseif ($currentVersion === 'empty') {
                                 $retval .= '<h2>' . $this->LANG['INSTALL'][90] . '</h2>' . PHP_EOL
                                     . '<p>' . $this->LANG['INSTALL'][91] . '</p>';
                             } else {
@@ -4674,7 +4724,7 @@ HTML;
                                 $config->set('path_editors', $this->env['html_path'] . 'editors/');
                                 $config->set('rdf_file', $this->env['html_path'] . 'backend/geeklog.rss');
                                 $config->set('cookie_path', $this->guessCookiePath(urldecode($site_url)));
-                                $config->set_default('default_photo', urldecode($site_url) . '/default.jpg');
+                                $config->set_default('default_photo', urldecode($site_url) . '/images/userphotos/default.png');
 
                                 $lng = $this->getDefaultLanguage($gl_path . 'language/', $this->env['language'], $utf8);
 
@@ -4758,7 +4808,7 @@ HTML;
                                 $config->set('site_admin_url', urldecode($site_admin_url));
                                 $config->set('site_mail', urldecode($site_mail));
                                 $config->set('noreply_mail', urldecode($noreply_mail));
-                                $config->set_default('default_photo', urldecode($site_url) . '/default.jpg');
+                                $config->set_default('default_photo', urldecode($site_url) . '/images/userphotos/default.png');
                             } else {
                                 $site_url = $this->post('site_url', $this->get('site_url', ''));
                                 $site_admin_url = $this->post('site_admin_url', $this->get('site_admin_url', ''));
@@ -4886,7 +4936,7 @@ HTML;
             case 'install': // Deliberate fall-through, no "break"
             case 'upgrade':
             case 'migrate':
-                if ($this->env['mode'] == 'migrate') {
+                if ($this->env['mode'] === 'migrate') {
                     // Need conf paths etc for migration
                     require_once $this->env['siteconfig_path'];
                 }

@@ -30,22 +30,22 @@
   <td>sitemap.xml</td>
   <td>The file name of a <em>normal</em> XML sitemap file.  This file has to be located in the <strong>public_html</strong> directory (where lib-common.php resides) and be writable from the Web server.</td>
 </tr>
-<tr class="r2">
+<tr>
   <td><a name="desc_mobile_sitemap_file">mobile_sitemap_file</a></td>
-  <td>(empty)</td>
-  <td>The file name of an XML sitemap file for contents optimized for mobile users.  This file has to be located in the <strong>public_html</strong> directory (where lib-common.php resides) and be writable from the Web server.</td>
+  <td>mobile_sitemap.xml</td>
+  <td>When enabled this is the file name of an XML sitemap file for contents optimized for mobile users. This file has to be located in the <strong>public_html</strong> directory (where lib-common.php resides) and be writable from the Web server. Note: This should only be used if you should have a separate mobile site. For example, when you have a feature-phone (WAP/WML, etc) version of your site. For an ordinary mobile-friendly web site a mobile sitemap is not needed and may actually cause confusion for the search engines.</td>
 </tr>
 <tr>
   <td><a name="desc_types">types</a></td>
   <td>article, calendar, polls, staticpages</td>
   <td>Types of contents you would like to set in the XML sitemap file(s).</td>
 </tr>
-<tr class="r2">
+<tr>
   <td><a name="desc_exclude">exclude</a></td>
   <td>links</td>
   <td>Types of contents you would like to <strong>exclude</strong> from the XML sitemap file(s).</td>
 </tr>
-<tr class="r2">
+<tr>
   <td><a name="desc_lastmod">lastmod</a></td>
   <td>article, calendar, polls, staticpages</td>
   <td>Content types to include lastmod element (last modification date) in the XML sitemap file(s).</td>
@@ -90,12 +90,36 @@
 <tr>
   <td><a name="desc_ping_google">ping_google</a></td>
   <td>True</td>
-  <td>If you set this to true, the XMLSitemap plugin will automatically inform Google crawlers when you update contents.</td>
+  <td>If you set this to true, the XMLSitemap plugin will automatically inform Google crawlers when you update contents. For main Sitemap file only.</td>
 </tr>
-<tr class="r2">
+<tr>
   <td><a name="desc_ping_bing">ping_bing</a></td>
   <td>True</td>
-  <td>If you set this to true, the XMLSitemap plugin will automatically inform Bing crawlers when you update contents.</td>
+  <td>If you set this to true, the XMLSitemap plugin will automatically inform Bing crawlers when you update contents. For main Sitemap file only.</td>
+</tr>
+</table>
+
+<h3><a name="ping">News Sitemap</a></h3>
+
+<table>
+<tr><th style="width: 25%;">Variable</th>
+    <th style="width: 25%;">Default Value</th>
+    <th style="width: 50%;">Description</th>
+</tr>
+<tr>
+  <td><a name="desc_news_sitemap_file">news_sitemap_file</a></td>
+  <td>news_sitemap.xml</td>
+  <td>When enabled this is the file name of an XML sitemap file for Google News. A Google News sitemap lets you control which content you submit to Google News. This file has to be located in the <strong>public_html</strong> directory (where lib-common.php resides) and be writable from the Web server.</td>
+</tr>
+<tr>
+  <td><a name="desc_news_sitemap_topics">news_sitemap_topics</a></td>
+  <td>(empty)</td>
+  <td>A list of topic ids. Only articles that belong to 1 or more of these topics (either directly or inherited) will be included in the news sitemap. If no topics ids are included then all topics are included.</td>
+</tr>
+<tr>
+  <td><a name="desc_news_sitemap_age">news_sitemap_age</a></td>
+  <td>172800</td>
+  <td>The maximum age in seconds of the articles to include in the news sitemap. If 0, then age is not a factor. Currently Google News recommends articles with a max age of 2 days (or 172800 seconds).</td>
 </tr>
 </table>
 

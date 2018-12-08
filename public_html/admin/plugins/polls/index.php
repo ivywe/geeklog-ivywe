@@ -77,7 +77,9 @@ function listpolls()
         array('url'  => $_CONF['site_admin_url'],
               'text' => $LANG_ADMIN['admin_home']));
 
-    $retval .= COM_startBlock($LANG25[18], '',
+    $help_url = COM_getDocumentUrl('docs', "polls.html");
+              
+    $retval .= COM_startBlock($LANG25[18], $help_url,
         COM_getBlockTemplate('_admin_block', 'header'));
 
     $retval .= ADMIN_createMenu(
@@ -274,9 +276,12 @@ function savepoll($pid, $old_pid, $Q, $mainPage, $topic, $meta_description, $met
         $Q[$i] = COM_stripslashes($Q[$i]);
         $Q[$i] = COM_checkHTML($Q[$i]);
         $Q[$i] = GLText::remove4byteUtf8Chars($Q[$i]);
-        $allow_multipleanswers[$i] = GLText::remove4byteUtf8Chars(COM_stripslashes($allow_multipleanswers[$i]));
         $description[$i] = GLText::remove4byteUtf8Chars(COM_checkHTML(COM_stripslashes($description[$i])));
-        $allow_multipleanswers[$i] = ($allow_multipleanswers[$i] == 'on') ? 1 : 0;
+        if (isset($allow_multipleanswers[$i])) {
+            $allow_multipleanswers[$i] = ($allow_multipleanswers[$i] == 'on') ? 1 : 0;
+        } else {
+            $allow_multipleanswers[$i] = 0;
+        }
 
         if (strlen($Q[$i]) > 0) { // only insert questions that exist
             $num_questions_exist++;
@@ -440,14 +445,6 @@ function editpoll($pid = '')
     ));
 
     if (!empty($pid) && ($access == 3) && !empty($T['owner_id'])) {
-        $delbutton = '<input type="submit" value="' . $LANG_ADMIN['delete']
-            . '" name="mode"%s' . XHTML . '>';
-        $jsconfirm = ' onclick="return confirm(\'' . $MESSAGE[76] . '\');"';
-        $poll_templates->set_var('delete_option',
-            sprintf($delbutton, $jsconfirm));
-        $poll_templates->set_var('delete_option_no_confirmation',
-            sprintf($delbutton, ''));
-
         $poll_templates->set_var('allow_delete', true);
         $poll_templates->set_var('lang_delete', $LANG_ADMIN['delete']);
         $poll_templates->set_var('confirm_message', $MESSAGE[76]);

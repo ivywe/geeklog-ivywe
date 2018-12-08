@@ -2,13 +2,13 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 2.1                                                               |
+// | Geeklog 2.2                                                               |
 // +---------------------------------------------------------------------------+
 // | block.php                                                                 |
 // |                                                                           |
 // | Geeklog block administration.                                             |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2000-2010 by the following authors:                         |
+// | Copyright (C) 2000-2017 by the following authors:                         |
 // |                                                                           |
 // | Authors: Tony Bibbs        - tony AT tonybibbs DOT com                    |
 // |          Mark Limburg      - mlimburg AT users DOT sourceforge DOT net    |
@@ -81,7 +81,7 @@ function editdefaultblock($A, $access)
     $token = SEC_createToken();
     $retval .= SEC_getTokenExpiryNotice($token);
 
-    $block_templates = COM_newTemplate($_CONF['path_layout'] . 'admin/block');
+    $block_templates = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout'] . 'admin/block'));
     $block_templates->set_file('editor', 'defaultblockeditor.thtml');
     $block_templates->set_var('block_id', $A['bid']);
     // standard Admin strings
@@ -112,14 +112,27 @@ function editdefaultblock($A, $access)
     $block_templates->set_var('lang_left', $LANG21[40]);
     $block_templates->set_var('lang_right', $LANG21[41]);
     $block_templates->set_var('lang_none', $LANG21[47]);
-
-    if ($A['onleft'] == 1) {
+    
+    if ($A['onleft'] == BLOCK_LEFT_POSITION) {
         $block_templates->set_var('left_selected', 'selected="selected"');
-    } elseif ($A['onleft'] == 0) {
+    } elseif ($A['onleft'] == BLOCK_RIGHT_POSITION) {
         $block_templates->set_var('right_selected', 'selected="selected"');
-    } else {
+    } elseif ($A['onleft'] == BLOCK_NONE_POSITION && empty($A['location'])) {
         $block_templates->set_var('none_selected', 'selected="selected"');
     }
+    // Add in rest of block position options if any
+    $block_locations = PLG_getBlockLocations();
+    $position_options = '';
+    foreach ($block_locations as $location) {
+        if ($A['onleft'] == BLOCK_NONE_POSITION && $A['location'] == $location['id'] ) {
+            $selected = ' selected="selected"';
+        } else {
+            $selected = '';
+        }
+        $position_options .= '<option value="' . $location['id'] . '"' . $selected . '>' . $location['name'] . '</option>';        
+    }
+    $block_templates->set_var('position_options', $position_options);
+    
     $block_templates->set_var('lang_blockorder', $LANG21[9]);
     $block_templates->set_var('block_order', $A['blockorder']);
 
@@ -143,6 +156,16 @@ function editdefaultblock($A, $access)
         $block_templates->set_var('for_computer', '');
     }
     $block_templates->set_var('lang_device_desc', $LANG_ADMIN['device_desc']);
+
+    // CSS id and classes (both optional)
+    $block_templates->set_var(array(
+        'css_id'                => $A['css_id'],
+        'css_classes'           => $A['css_classes'],
+        'lang_css_id'           => $LANG21[70],
+        'lang_css_id_desc'      => $LANG21[71],
+        'lang_css_classes'      => $LANG21[72],
+        'lang_css_classes_desc' => $LANG21[73],
+    ));
 
     $block_templates->set_var('lang_accessrights', $LANG_ACCESS['accessrights']);
     $block_templates->set_var('lang_owner', $LANG_ACCESS['owner']);
@@ -191,7 +214,7 @@ function overridePostdata(&$A)
         $A['title'] = GLText::stripTags(Geeklog\Input::post('title'));
     }
     if (isset($_POST['help'])) {
-        $A['help'] = COM_sanitizeUrl(Geeklog\Input::post('help'), array('http', 'https'));
+        $A['help'] = GLText::stripTags(Geeklog\Input::post('help'));
     }
     if (in_array($_POST['type'], array('normal', 'portal', 'phpblock', 'gldefault'))) {
         $A['type'] = Geeklog\Input::post('type');
@@ -229,8 +252,20 @@ function overridePostdata(&$A)
         );
 
     $A['onleft'] = ($_POST['onleft'] == 1) ? 1 : 0;
+    $A['location'] = '';
     $A['is_enabled'] = ($_POST['is_enabled'] == 'on') ? 1 : 0;
-    $A['allow_autotags'] = ($_POST['allow_autotags'] == 'on') ? 1 : 0;
+    
+    if (isset($_POST['allow_autotags'])) {
+        $A['allow_autotags'] = ($_POST['allow_autotags'] == 'on') ? 1 : 0;
+    } else {
+        $A['allow_autotags'] = 0;
+    }
+    
+    if (isset($_POST['convert_newlines'])) {
+        $A['convert_newlines'] = ($_POST['convert_newlines'] == 'on') ? 1 : 0;
+    } else {
+        $A['convert_newlines'] = 0;
+    }    
 
     if (isset($_POST['cache_time'])) {
         $A['cache_time'] = (int) Geeklog\Input::fPost('cache_time', 0);
@@ -253,8 +288,9 @@ function editblock($bid = '')
     $retval = '';
 
     if (!empty($bid)) {
-        $sql['mysql'] = "SELECT * FROM {$_TABLES['blocks']} WHERE bid ='$bid'";
-        $sql['pgsql'] = "SELECT * FROM {$_TABLES['blocks']} WHERE bid ='$bid'";
+        $bid = DB_escapeString($bid);
+        $sql['mysql'] = "SELECT * FROM {$_TABLES['blocks']} WHERE bid ='{$bid}'";
+        $sql['pgsql'] = "SELECT * FROM {$_TABLES['blocks']} WHERE bid ='{$bid}'";
 
         $result = DB_query($sql);
         $A = DB_fetchArray($result);
@@ -269,7 +305,7 @@ function editblock($bid = '')
 
             return $retval;
         }
-        if ($A['type'] == 'gldefault') {
+        if ($A['type'] === 'gldefault') {
             $retval .= editdefaultblock($A, $access);
 
             return $retval;
@@ -286,12 +322,15 @@ function editblock($bid = '')
         $A['cache_time'] = $_CONF['default_cache_time_block'];
         $A['content'] = '';
         $A['allow_autotags'] = 0;
+        $A['convert_newlines'] = 0;
         $A['rdfurl'] = '';
         $A['rdfupdated'] = '';
         $A['rdflimit'] = 0;
         $A['onleft'] = 0;
         $A['phpblockfn'] = '';
         $A['help'] = '';
+        $A['css_id'] = '';
+        $A['css_classes'] = '';
         $A['owner_id'] = $_USER['uid'];
         if (isset($_GROUPS['Block Admin'])) {
             $A['group_id'] = $_GROUPS['Block Admin'];
@@ -300,14 +339,14 @@ function editblock($bid = '')
         }
         SEC_setDefaultPermissions($A, $_CONF['default_permissions_block']);
         $access = 3;
-        if ($_POST['mode'] == $LANG_ADMIN['save'] && !empty($LANG_ADMIN['save'])) {
+        if (!empty($LANG_ADMIN['save']) && (Geeklog\Input::post('mode') === $LANG_ADMIN['save'])) {
             overridePostdata($A);
         }
     }
 
     $token = SEC_createToken();
 
-    $block_templates = COM_newTemplate($_CONF['path_layout'] . 'admin/block');
+    $block_templates = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout'] . 'admin/block'));
     $block_templates->set_file('editor', 'blockeditor.thtml');
     $block_start = COM_startBlock($LANG21[3], '',
         COM_getBlockTemplate('_admin_block', 'header'));
@@ -315,14 +354,6 @@ function editblock($bid = '')
     $block_templates->set_var('start_block_editor', $block_start);
 
     if (!empty($bid) && SEC_hasRights('block.delete')) {
-        $delbutton = '<input type="submit" value="' . $LANG_ADMIN['delete']
-            . '" name="mode"%s' . XHTML . '>';
-        $jsconfirm = ' onclick="return confirm(\'' . $MESSAGE[76] . '\');"';
-        $block_templates->set_var('delete_option',
-            sprintf($delbutton, $jsconfirm));
-        $block_templates->set_var('delete_option_no_confirmation',
-            sprintf($delbutton, ''));
-
         $block_templates->set_var('allow_delete', true);
         $block_templates->set_var('lang_delete', $LANG_ADMIN['delete']);
         $block_templates->set_var('confirm_message', $MESSAGE[76]);
@@ -360,13 +391,31 @@ function editblock($bid = '')
     $block_templates->set_var('lang_left', $LANG21[40]);
     $block_templates->set_var('lang_right', $LANG21[41]);
     $block_templates->set_var('lang_none', $LANG21[47]);
-    if ($A['onleft'] == 1) {
+
+    
+    
+    if ($A['onleft'] == BLOCK_LEFT_POSITION) {
         $block_templates->set_var('left_selected', 'selected="selected"');
-    } elseif ($A['onleft'] == 0) {
+    } elseif ($A['onleft'] == BLOCK_RIGHT_POSITION) {
         $block_templates->set_var('right_selected', 'selected="selected"');
-    } else {
+    } elseif ($A['onleft'] == BLOCK_NONE_POSITION && empty($A['location'])) {
         $block_templates->set_var('none_selected', 'selected="selected"');
     }
+    // Add in rest of block position options if any
+    $block_locations = PLG_getBlockLocations();
+    $position_options = '';
+    foreach ($block_locations as $location) {
+        if ($A['onleft'] == BLOCK_NONE_POSITION && $A['location'] == $location['id'] ) {
+            $selected = ' selected="selected"';
+        } else {
+            $selected = '';
+        }
+        $position_options .= '<option value="' . $location['id'] . '"' . $selected . '>' . $location['name'] . '</option>';        
+    }
+    $block_templates->set_var('position_options', $position_options);    
+    
+    
+    
     $block_templates->set_var('lang_blockorder', $LANG21[9]);
     $block_templates->set_var('block_order', $A['blockorder']);
 
@@ -394,16 +443,26 @@ function editblock($bid = '')
     $block_templates->set_var('lang_normalblock', $LANG21[12]);
     $block_templates->set_var('lang_phpblock', $LANG21[27]);
     $block_templates->set_var('lang_portalblock', $LANG21[11]);
-    if ($A['type'] == 'normal') {
+    if ($A['type'] === 'normal') {
         $block_templates->set_var('normal_selected', 'selected="selected"');
-    } elseif ($A['type'] == 'phpblock') {
+    } elseif ($A['type'] === 'phpblock') {
         $block_templates->set_var('php_selected', 'selected="selected"');
-    } elseif ($A['type'] == 'portal') {
+    } elseif ($A['type'] === 'portal') {
         $block_templates->set_var('portal_selected', 'selected="selected"');
     }
     $block_templates->set_var('lang_cachetime', $LANG21['cache_time']);
     $block_templates->set_var('lang_cachetime_desc', $LANG21['cache_time_desc']);
     $block_templates->set_var('cache_time', $A['cache_time']);
+
+    // CSS id and classes (both optional)
+    $block_templates->set_var(array(
+        'css_id'                => $A['css_id'],
+        'css_classes'           => $A['css_classes'],
+        'lang_css_id'           => $LANG21[70],
+        'lang_css_id_desc'      => $LANG21[71],
+        'lang_css_classes'      => $LANG21[72],
+        'lang_css_classes_desc' => $LANG21[73],
+    ));
 
     $block_templates->set_var('lang_accessrights', $LANG_ACCESS['accessrights']);
     $block_templates->set_var('lang_owner', $LANG_ACCESS['owner']);
@@ -441,7 +500,9 @@ function editblock($bid = '')
     $block_templates->set_var('lang_blockcontent', $LANG21[17]);
     $block_templates->set_var('lang_autotags', $LANG21[66]);
     $block_templates->set_var('lang_use_autotags', $LANG21[67]);
-
+    $block_templates->set_var('lang_newlines', $LANG21['newlines']);
+    $block_templates->set_var('lang_convert_newlines', $LANG21['convert_newlines']);
+    
     $content = htmlspecialchars(stripslashes($A['content']));
     $content = str_replace(array('{', '}'), array('&#123;', '&#125;'),
         $content);
@@ -452,6 +513,11 @@ function editblock($bid = '')
     } else {
         $block_templates->set_var('allow_autotags', '');
     }
+    if ($A['convert_newlines'] == 1) {
+        $block_templates->set_var('convert_newlines', 'checked="checked"');
+    } else {
+        $block_templates->set_var('convert_newlines', '');
+    }    
     $block_templates->set_var('gltoken_name', CSRF_TOKEN);
     $block_templates->set_var('gltoken', $token);
     $block_templates->set_var('end_block',
@@ -551,10 +617,25 @@ function listblocks($position = BLOCK_ALL_POSITIONS)
         $position_filter .= ' selected="selected"';
     }
     $position_filter .= '>' . $LANG21[47] . '</option>';
+    /* // CAN'T DO rest of positions since rely on another field 
+    // Add in rest of block position options if any
+    $block_locations = PLG_getBlockLocations();
+    foreach ($block_locations as $block_location) {
+        if ($position == $block_location['id']) {
+            $selected = ' selected="selected"';
+        } else {
+            $selected = '';
+        }
+        $position_filter .= '<option value="' . $block_location['id'] . '"' . $selected . '>' . $block_location['name'] . '</option>';        
+    }
+    */
 
-    $filter = $LANG21['position']
-        . ': <select class="uk-select" name="position" style="width: 125px" onchange="this.form.submit()">'
-        . $position_filter . '</select>';
+    $position_filter = COM_createControl('type-select', array(
+        'name' => 'position',
+        'onchange' => 'this.form.submit()',
+        'select_items' => $position_filter
+    ));
+    $filter = $LANG21['position'] . ': ' . $position_filter;
 
     $header_arr = array(      # display 'text' and use table field 'field'
         array('text' => $LANG_ADMIN['edit'], 'field' => 'edit', 'sort' => false),
@@ -570,7 +651,7 @@ function listblocks($position = BLOCK_ALL_POSITIONS)
     );
 
     // Sort by position and then order for default
-    $defsort_arr = array('field' => 'onleft DESC, blockorder', 'direction' => 'asc');
+    $defsort_arr = array('field' => 'onleft DESC, location DESC, blockorder', 'direction' => 'asc');
 
     $text_arr = array(
         'has_extras' => true,
@@ -672,9 +753,16 @@ function cmpDynamicBlocks($a, $b)
  * @param    array  $perm_members Permissions the logged in members have
  * @param    array  $perm_anon    Permissions anonymous users have
  * @param    int    $is_enabled   Flag, indicates if block is enabled or not
+ * @param    bool   $allow_autotags
+ * @param    bool   $convert_newlines
+ * @param    int    $cache_time
+ * @param    string $cssId        CSS ID (since GL 2.2.0)
+ * @param    string $cssClasses   CSS class names separated by space (since GL 2.2.0)
  * @return   string               HTML redirect or error message
  */
-function saveblock($bid, $name, $title, $help, $type, $blockOrder, $device, $content, $rdfUrl, $rdfLimit, $phpBlockFn, $onLeft, $owner_id, $group_id, $perm_owner, $perm_group, $perm_members, $perm_anon, $is_enabled, $allow_autotags, $cache_time)
+function saveblock($bid, $name, $title, $help, $type, $blockOrder, $device, $content, $rdfUrl, $rdfLimit,
+                   $phpBlockFn, $onLeft, $owner_id, $group_id, $perm_owner, $perm_group, $perm_members, $perm_anon,
+                   $is_enabled, $allow_autotags, $convert_newlines, $cache_time, $cssId, $cssClasses)
 {
     global $_CONF, $_TABLES, $LANG21, $MESSAGE, $_USER;
 
@@ -712,11 +800,11 @@ function saveblock($bid, $name, $title, $help, $type, $blockOrder, $device, $con
         return $retval;
     } elseif (!empty($name) &&
         (($type == 'normal' && !empty($title) && !empty($content))
-            || ($type == 'portal' && !empty($title) && !empty($rdfUrl))
-            || ($type == 'phpblock' && !empty($phpBlockFn) && !empty($title))
-            || ($type == 'gldefault' && (strlen($blockOrder) > 0)))
+            || ($type === 'portal' && !empty($title) && !empty($rdfUrl))
+            || ($type === 'phpblock' && !empty($phpBlockFn) && !empty($title))
+            || ($type === 'gldefault' && (strlen($blockOrder) > 0)))
     ) {
-        if ($is_enabled == 'on') {
+        if ($is_enabled === 'on') {
             $is_enabled = 1;
         } else {
             $is_enabled = 0;
@@ -725,18 +813,59 @@ function saveblock($bid, $name, $title, $help, $type, $blockOrder, $device, $con
         if ($device != Device::MOBILE && $device != Device::COMPUTER) {
             $device = Device::ALL;
         }
-
+        
+        $location = '';
+        if ($onLeft === (string)BLOCK_LEFT_POSITION || $onLeft === (string)BLOCK_RIGHT_POSITION || $onLeft === (string)BLOCK_LEFT_POSITION) {
+            // value okay
+        } else {
+            $block_locations = PLG_getBlockLocations();
+            $key = array_search($onLeft, array_column($block_locations, 'id'));
+            if (is_numeric($key)) {
+                $onLeft = BLOCK_NONE_POSITION;
+                $location = $block_locations[$key]['id'];
+            } else {
+                // Block Position doesn't exist anymore for some reason so set to none
+                $onLeft = BLOCK_NONE_POSITION;
+            }
+        }
+            
         if ($allow_autotags == 'on') {
             $allow_autotags = 1;
         } else {
             $allow_autotags = 0;
         }
+        
+        if ($convert_newlines == 'on') {
+            $convert_newlines = 1;
+        } else {
+            $convert_newlines = 0;
+        }        
 
         if ($cache_time < -1) {
             $cache_time = $_CONF['default_cache_time_block'];
         }
+
+        // Check for CSS id
+        $cssId = trim($cssId);
+        if (!preg_match('/^[a-zA-Z][0-9a-zA-Z_-]*$/', $cssId)) {
+            $cssId = '';
+        }
+        $cssId = DB_escapeString($cssId);
+
+        // Check for CSS classes
+        $cssClasses = trim($cssClasses);
+        $temp = array();
+
+        foreach (preg_split('/\s+/', $cssClasses) as $item) {
+            if (preg_match('/^[a-zA-Z][0-9a-zA-Z_-]*$/', $item)) {
+                $temp[] = $item;
+            }
+        }
+
+        $cssClasses = implode(' ', $temp);
+        $cssClasses = DB_escapeString($cssClasses);
         
-        if ($type == 'portal') {
+        if ($type === 'portal') {
             $content = '';
             $phpBlockFn = '';
 
@@ -751,13 +880,13 @@ function saveblock($bid, $name, $title, $help, $type, $blockOrder, $device, $con
             }
             $rdfUrl = COM_sanitizeUrl($rdfUrl, array('http', 'https'));
         }
-        if ($type == 'gldefault') {
+        if ($type === 'gldefault') {
             $content = '';
             $rdfUrl = '';
             $rdfLimit = 0;
             $phpBlockFn = '';
         }
-        if ($type == 'phpblock') {
+        if ($type === 'phpblock') {
             // NOTE: PHP Blocks must be within a function and the function
             // must start with phpblock_ as the prefix.  This will prevent
             // the arbitrary execution of code
@@ -772,7 +901,7 @@ function saveblock($bid, $name, $title, $help, $type, $blockOrder, $device, $con
             $rdfUrl = '';
             $rdfLimit = 0;
         }
-        if ($type == 'normal') {
+        if ($type === 'normal') {
             $rdfUrl = '';
             $rdfLimit = 0;
             $phpBlockFn = '';
@@ -789,20 +918,24 @@ function saveblock($bid, $name, $title, $help, $type, $blockOrder, $device, $con
         if (!empty($rdfUrl)) {
             $rdfUrl = DB_escapeString($rdfUrl);
         }
-        
+
         $rdfUpdated = 'CURRENT_TIMESTAMP';
 
         if ($bid > 0) {
-            DB_save($_TABLES['blocks'], 'bid,name,title,help,type,blockorder,device,content,rdfurl,rdfupdated,rdflimit,phpblockfn,onleft,owner_id,group_id,perm_owner,perm_group,perm_members,perm_anon,is_enabled,allow_autotags,cache_time,rdf_last_modified,rdf_etag', "$bid,'$name','$title','$help','$type','$blockOrder','$device','$content','$rdfUrl',$rdfUpdated,'$rdfLimit','$phpBlockFn',$onLeft,$owner_id,$group_id,$perm_owner,$perm_group,$perm_members,$perm_anon,$is_enabled,$allow_autotags,$cache_time,NULL,NULL");
+            DB_save(
+                $_TABLES['blocks'],
+                'bid,name,title,help,type,blockorder,device,content,rdfurl,rdfupdated,rdflimit,phpblockfn,onleft,location,owner_id,group_id,perm_owner,perm_group,perm_members,perm_anon,is_enabled,allow_autotags,convert_newlines,cache_time,css_id,css_classes,rdf_last_modified,rdf_etag',
+                "$bid,'$name','$title','$help','$type','$blockOrder','$device','$content','$rdfUrl',$rdfUpdated,'$rdfLimit','$phpBlockFn',$onLeft,'$location',$owner_id,$group_id,$perm_owner,$perm_group,$perm_members,$perm_anon,$is_enabled,$allow_autotags,$convert_newlines,$cache_time,'{$cssId}','{$cssClasses}',NULL,NULL"
+            );
         } else {
             $sql = array();
             $sql['mysql'] = "INSERT INTO {$_TABLES['blocks']} "
-                . '(name,title,help,type,blockorder,device,content,rdfurl,rdfupdated,rdflimit,phpblockfn,onleft,owner_id,group_id,perm_owner,perm_group,perm_members,perm_anon,is_enabled,allow_autotags,cache_time) '
-                . "VALUES ('$name','$title','$help','$type','$blockOrder','$device','$content','$rdfUrl',$rdfUpdated,'$rdfLimit','$phpBlockFn',$onLeft,$owner_id,$group_id,$perm_owner,$perm_group,$perm_members,$perm_anon,$is_enabled,$allow_autotags,$cache_time)";
+                . '(name,title,help,type,blockorder,device,content,rdfurl,rdfupdated,rdflimit,phpblockfn,onleft,location,owner_id,group_id,perm_owner,perm_group,perm_members,perm_anon,is_enabled,allow_autotags,convert_newlines,cache_time,css_id,css_classes) '
+                . "VALUES ('$name','$title','$help','$type','$blockOrder','$device','$content','$rdfUrl',$rdfUpdated,'$rdfLimit','$phpBlockFn',$onLeft,'$location',$owner_id,$group_id,$perm_owner,$perm_group,$perm_members,$perm_anon,$is_enabled,$allow_autotags,$convert_newlines,$cache_time,'{$cssId}','{$cssClasses}')";
 
             $sql['pgsql'] = "INSERT INTO {$_TABLES['blocks']} "
-                . '(bid,name,title,help,type,blockorder,device,content,rdfurl,rdfupdated,rdflimit,phpblockfn,onleft,owner_id,group_id,perm_owner,perm_group,perm_members,perm_anon,is_enabled,allow_autotags,cache_time) '
-                . "VALUES ((SELECT NEXTVAL('{$_TABLES['blocks']}_bid_seq')),'$name','$title','$help','$type','$blockOrder','$device','$content','$rdfUrl',CURRENT_TIMESTAMP,'$rdfLimit','$phpBlockFn',$onLeft,$owner_id,$group_id,$perm_owner,$perm_group,$perm_members,$perm_anon,$is_enabled,$allow_autotags,$cache_time)";
+                . '(bid,name,title,help,type,blockorder,device,content,rdfurl,rdfupdated,rdflimit,phpblockfn,onleft,location,owner_id,group_id,perm_owner,perm_group,perm_members,perm_anon,is_enabled,allow_autotags,convert_newlines,cache_time,css_id,css_classes) '
+                . "VALUES ((SELECT NEXTVAL('{$_TABLES['blocks']}_bid_seq')),'$name','$title','$help','$type','$blockOrder','$device','$content','$rdfUrl',CURRENT_TIMESTAMP,'$rdfLimit','$phpBlockFn',$onLeft,'$location',$owner_id,$group_id,$perm_owner,$perm_group,$perm_members,$perm_anon,$is_enabled,$allow_autotags,$convert_newlines,$cache_time,'{$cssId}','{$cssClasses}')";
 
             DB_query($sql);
             $bid = DB_insertId();
@@ -848,18 +981,19 @@ function reorderblocks()
 {
     global $_TABLES;
 
-    $sql = "SELECT * FROM {$_TABLES['blocks']} ORDER BY onleft ASC, blockorder ASC;";
+    $sql = "SELECT * FROM {$_TABLES['blocks']} ORDER BY onleft ASC, location ASC, blockorder ASC;";
     $result = DB_query($sql);
     $nrows = DB_numRows($result);
 
     $lastside = 0;
+    $lastlocation = '';
     $blockOrd = 10;
     $stepNumber = 10;
 
     for ($i = 0; $i < $nrows; $i++) {
         $A = DB_fetchArray($result);
 
-        if ($lastside != $A['onleft']) { // we are switching left/right blocks
+        if ($lastside != $A['onleft'] || $lastlocation != $A['location']) { // we are switching left/right blocks or template location
             $blockOrd = 10;              // so start with 10 again
         }
         if ($A['blockorder'] != $blockOrd) {  // only update incorrect ones
@@ -869,6 +1003,7 @@ function reorderblocks()
         }
         $blockOrd += $stepNumber;
         $lastside = $A['onleft'];       // save variable for next round
+        $lastlocation = $A['location'];       // save variable for next round
     }
 }
 
@@ -972,7 +1107,7 @@ function deleteBlock($bid)
 
 // MAIN
 $mode = Geeklog\Input::request('mode', '');
-$position = (int) Geeklog\Input::fRequest('position', BLOCK_ALL_POSITIONS);
+$position = Geeklog\Input::fRequest('position', BLOCK_ALL_POSITIONS);
 $bid = Geeklog\Input::fRequest('bid', '');
 
 if (isset($_POST['blockenabler']) && SEC_checkToken()) {
@@ -991,15 +1126,12 @@ if (($mode == $LANG_ADMIN['delete']) && !empty($LANG_ADMIN['delete'])) {
         COM_accessLog("User {$_USER['username']} tried to illegally delete block $bid and failed CSRF checks.");
         COM_redirect($_CONF['site_admin_url'] . '/index.php');
     }
-} elseif (($mode == $LANG_ADMIN['save']) && !empty($LANG_ADMIN['save']) && SEC_checkToken()) {
+} elseif (!empty($LANG_ADMIN['save']) && ($mode === $LANG_ADMIN['save']) && SEC_checkToken()) {
     $name = Geeklog\Input::post('name', '');
     if (!empty($name)) {
         $name = COM_sanitizeID($name);
     }
     $help = Geeklog\Input::post('help', '');
-    if (!empty($help)) {
-        $help = COM_sanitizeUrl($help, array('http', 'https'));
-    }
     $blockorder = (int) Geeklog\Input::fPost('blockorder', 0);
     $device = Geeklog\Input::fPost('device', Device::ALL);
     $content = Geeklog\Input::post('content', '');
@@ -1008,19 +1140,22 @@ if (($mode == $LANG_ADMIN['delete']) && !empty($LANG_ADMIN['delete'])) {
     $phpblockfn = Geeklog\Input::post('phpblockfn', '');
     $is_enabled = Geeklog\Input::post('is_enabled', '');
     $allow_autotags = Geeklog\Input::post('allow_autotags', '');
+    $convert_newlines = Geeklog\Input::post('convert_newlines', '');
     // $cache_time = (int) Geeklog\Input::fPost('cache_time', $_CONF['default_cache_time_block']); // Doesn't work as cache_time can be zero
     $cache_time = (int) Geeklog\Input::fPost('cache_time');
+    $cssId = Geeklog\Input::post('css_id', '');
+    $cssClasses = Geeklog\Input::post('css_classes', '');
     $display .= saveblock(
         $bid, $name, Geeklog\Input::post('title'), $help, Geeklog\Input::post('type'), $blockorder,
         $device, $content, $rdfurl, $rdflimit, $phpblockfn, Geeklog\Input::post('onleft'),
         (int) Geeklog\Input::fPost('owner_id', 0), (int) Geeklog\Input::fPost('group_id', 0),
         Geeklog\Input::post('perm_owner'), Geeklog\Input::post('perm_group'),
         Geeklog\Input::post('perm_members'), Geeklog\Input::post('perm_anon'),
-        $is_enabled, $allow_autotags, $cache_time);
+        $is_enabled, $allow_autotags, $convert_newlines, $cache_time, $cssId, $cssClasses);
 } elseif ($mode === 'edit') {
     $tmp = editblock($bid);
     $display = COM_createHTMLDocument($tmp, array('pagetitle' => $LANG21[3]));
-} elseif ($mode == 'move') {
+} elseif ($mode === 'move') {
     if (SEC_checkToken()) {
         $display .= moveBlock();
     }

@@ -44,12 +44,12 @@ require_once 'lib-common.php';
 * @param    int     $uid            User ID of person to send email to
 * @param    bool    $cc             Whether to send a copy of the message to the author
 * @param    string  $author         The name of the person sending the email
-* @param    string  $authoremail    Email address of person sending the email
+* @param    string  $authorEmail    Email address of person sending the email
 * @param    string  $subject        Subject of email
 * @param    string  $message        Text of message to send
 * @return   string                  Meta redirect or HTML for the contact form
 */
-function contactemail($uid, $cc, $author, $authoremail, $subject, $message)
+function contactemail($uid, $cc, $author, $authorEmail, $subject, $message)
 {
     global $_CONF, $_TABLES, $_USER, $LANG04, $LANG08, $LANG12;
 
@@ -82,7 +82,7 @@ function contactemail($uid, $cc, $author, $authoremail, $subject, $message)
     }
 
     if (!empty($author) && !empty($subject) && !empty($message)) {
-        if (COM_isemail($authoremail) && (strpos($author, '@') === false)) {
+        if (COM_isemail($authorEmail) && (strpos($author, '@') === false)) {
             $result = DB_query("SELECT username,fullname,email FROM {$_TABLES['users']} WHERE uid = $uid");
             $A = DB_fetchArray($result);
 
@@ -102,8 +102,12 @@ function contactemail($uid, $cc, $author, $authoremail, $subject, $message)
 
             // do a spam check with the unfiltered message text and subject
             $mailtext = $subject . "\n" . $message . $sig;
-            $result = PLG_checkforSpam($mailtext, $_CONF['spamx']);
-            if ($result > 0) {
+            $permanentlink = null; // Setting this to null as this is a stand alone email. There is no permantlink that the email is being added too (like a comment on a blog post)
+            $result = PLG_checkForSpam(
+                $mailtext, $_CONF['spamx'], $permanentlink, Geeklog\Akismet::COMMENT_TYPE_CONTACT_FORM,
+                $author, $authorEmail
+            );
+            if ($result > PLG_SPAM_NOT_FOUND) {
                 COM_updateSpeedlimit('mail');
                 COM_displayMessageAndAbort($result, 'spamx', 403, 'Forbidden');
             }
@@ -125,7 +129,7 @@ function contactemail($uid, $cc, $author, $authoremail, $subject, $message)
             } else {
                 $to = array($A['email'] => $A['username']);
             }
-            $from = array($authoremail => $author);
+            $from = array($authorEmail => $author);
 
             $sent = COM_mail($to, $subject, $message, $from);
 
@@ -187,19 +191,24 @@ function contactform($uid, $cc = false, $subject = '', $message = '')
         $continue = false;
         $msg_no_mail = $LANG08[35];
 
-        $result = DB_query("SELECT email FROM {$_TABLES['users']} WHERE uid = '$uid'");
+        $result = DB_query("SELECT email, status FROM {$_TABLES['users']} WHERE uid = '$uid'");
         $nrows = DB_numRows($result);                                     
         
         if ($nrows == 1) {
             $P = DB_fetchArray($result);
-            if (!empty($P['email'])) {
-                if (COM_isEMail($P['email'])) {
-                    $continue = true;
+            
+            if ($P['status'] == USER_ACCOUNT_ACTIVE || $P['status'] == USER_ACCOUNT_NEW_PASSWORD) {
+                if (!empty($P['email'])) {
+                    if (COM_isEMail($P['email'])) {
+                        $continue = true;
+                    } elseif ($isAdmin) {
+                        $msg_no_mail = $LANG08[43]; // Email invalid
+                    }
                 } elseif ($isAdmin) {
-                    $msg_no_mail = $LANG08[43]; // Email invalid
+                    $msg_no_mail = $LANG08[42]; // Email doesn't exist
                 }
             } elseif ($isAdmin) {
-                $msg_no_mail = $LANG08[42]; // Email doesn't exist
+                $msg_no_mail = $LANG08[44]; // User Status issues, assume bad email
             }
         } elseif ($isAdmin) {
             $msg_no_mail = $LANG08[41]; // User doesn't exist
@@ -225,7 +234,7 @@ function contactform($uid, $cc = false, $subject = '', $message = '')
                 $cc = '';
             }
             $retval = COM_startBlock($LANG08[10] . ' ' . $displayname);
-            $mail_template = COM_newTemplate($_CONF['path_layout'] . 'profiles');
+            $mail_template = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout'] . 'profiles'));
             $mail_template->set_file('form', 'contactuserform.thtml');
             $mail_template->set_var('lang_description', $LANG08[26]);
             $mail_template->set_var('lang_username', $LANG08[11]);
@@ -285,10 +294,10 @@ function contactform($uid, $cc = false, $subject = '', $message = '')
 *
 * @param    string  $sid        id of story to email
 * @param    string  $to         name of person / friend to email
-* @param    string  $toemail    friend's email address
+* @param    string  $toEmail    friend's email address
 * @param    string  $from       name of person sending the email
-* @param    string  $fromemail  sender's email address
-* @param    string  $shortmsg   short intro text to send with the story
+* @param    string  $fromEmail  sender's email address
+* @param    string  $shortMessage   short intro text to send with the story
 * @return   string              Meta refresh
 *
 * Modification History
@@ -301,23 +310,23 @@ function contactform($uid, $cc = false, $subject = '', $message = '')
 *                this code
 *
 */
-function mailstory($sid, $to, $toemail, $from, $fromemail, $shortmsg)
+function mailstory($sid, $to, $toEmail, $from, $fromEmail, $shortMessage)
 {
     global $_CONF, $_TABLES, $LANG01, $LANG08;
 
-    require_once $_CONF['path_system'] . 'lib-story.php';
+    require_once $_CONF['path_system'] . 'lib-article.php';
 
     $storyUrl = COM_buildUrl($_CONF['site_url'] . '/article.php?story=' . $sid);
 
     if ($_CONF['url_rewrite']) {
-        $redirect = $storyUrl . '?msg=85';
+        $redirect = $storyUrl . '?msg=153';
     } else {
-        $redirect = $storyUrl . '&amp;msg=85';
+        $redirect = $storyUrl . '&amp;msg=153';
     }
 
     // check for correct $_CONF permission
-    if (COM_isAnonUser() && (($_CONF['loginrequired'] == 1) ||
-                             ($_CONF['emailstoryloginrequired'] == 1))) {
+    if (COM_isAnonUser() &&
+        (($_CONF['loginrequired'] == 1) || ($_CONF['emailstoryloginrequired'] == 1))) {
         COM_redirect($redirect);
     }
 
@@ -328,38 +337,44 @@ function mailstory($sid, $to, $toemail, $from, $fromemail, $shortmsg)
 
     // check mail speedlimit
     COM_clearSpeedlimit($_CONF['speedlimit'], 'mail');
-    if (COM_checkSpeedlimit('mail') > 0) {
+    $speedLimit = COM_checkSpeedlimit('mail');
+    if ($speedLimit > 0) {
+        $redirect .= '&amp;speedlimit=' . $speedLimit;
         COM_redirect($redirect);
     }
 
-    $story = new Story();
+    $story = new Article();
     $result = $story->loadFromDatabase($sid, 'view');
 
     if ($result != STORY_LOADED_OK) {
         COM_redirect($_CONF['site_url'] . '/index.php');
     }
 
-    $shortmsg = COM_stripslashes($shortmsg);
-    $mailtext = sprintf($LANG08[23], $from, $fromemail) . LB;
-    if (strlen($shortmsg) > 0) {
-        $mailtext .= LB . sprintf($LANG08[28], $from) . $shortmsg . LB;
+    $shortMessage = COM_stripslashes($shortMessage);
+    $mailText = sprintf($LANG08[23], $from, $fromEmail) . LB;
+    if (strlen($shortMessage) > 0) {
+        $mailText .= LB . sprintf($LANG08[28], $from) . $shortMessage . LB;
     }
 
     // just to make sure this isn't an attempt at spamming users ...
-    $result = PLG_checkforSpam($mailtext, $_CONF['spamx']);
-    if ($result > 0) {
+    $permanentlink = null; // Setting this to null as this is a stand alone email. There is no permantlink that the email is being added too (like a comment on a blog post)
+    $result = PLG_checkForSpam(
+        $mailText, $_CONF['spamx'], $permanentlink, Geeklog\Akismet::COMMENT_TYPE_CONTACT_FORM,
+        $from, $fromEmail
+    );
+    if ($result > PLG_SPAM_NOT_FOUND) {
         COM_updateSpeedlimit('mail');
         COM_displayMessageAndAbort($result, 'spamx', 403, 'Forbidden');
     }
 
-    $mailtext .= '------------------------------------------------------------'
+    $mailText .= '------------------------------------------------------------'
               . LB . LB
               . COM_undoSpecialChars($story->displayElements('title')) . LB
               . strftime($_CONF['date'], $story->DisplayElements('unixdate')) . LB;
 
     if ($_CONF['contributedbyline'] == 1) {
         $author = COM_getDisplayName($story->displayElements('uid'));
-        $mailtext .= $LANG01[1] . ' ' . $author . LB;
+        $mailText .= $LANG01[1] . ' ' . $author . LB;
     }
 
     $introtext = $story->DisplayElements('introtext');
@@ -370,32 +385,32 @@ function mailstory($sid, $to, $toemail, $from, $fromemail, $shortmsg)
     $introtext = str_replace(array("\012\015", "\015"), LB, $introtext);
     $bodytext  = str_replace(array("\012\015", "\015"), LB, $bodytext);
 
-    $mailtext .= LB . $introtext;
+    $mailText .= LB . $introtext;
     if (! empty($bodytext)) {
-        $mailtext .= LB . LB . $bodytext;
+        $mailText .= LB . LB . $bodytext;
     }
-    $mailtext .= LB . LB
+    $mailText .= LB . LB
         . '------------------------------------------------------------' . LB;
 
     if ($story->DisplayElements('commentcode') == 0) { // comments allowed
-        $mailtext .= $LANG08[24] . LB
+        $mailText .= $LANG08[24] . LB
                   . COM_buildUrl($_CONF['site_url'] . '/article.php?story='
                                   . $sid . '#comments');
     } else { // comments not allowed - just add the story's URL
-        $mailtext .= $LANG08[33] . LB
+        $mailText .= $LANG08[33] . LB
                   . COM_buildUrl($_CONF['site_url'] . '/article.php?story='
                                   . $sid);
     }
 
-    $mailto = array($toemail => $to);
-    $mailfrom = array($fromemail => $from);
+    $mailto = array($toEmail => $to);
+    $mailfrom = array($fromEmail => $from);
     $subject = 'Re: ' . COM_undoSpecialChars(GLText::stripTags($story->DisplayElements('title')));
 
-    $sent = COM_mail($mailto, $subject, $mailtext, $mailfrom);
+    $sent = COM_mail($mailto, $subject, $mailText, $mailfrom);
 
     if ($sent && $_CONF['mail_cc_enabled'] && (Geeklog\Input::post('cc') === 'on')) {
         $ccmessage = sprintf($LANG08[38], $to);
-        $ccmessage .= "\n------------------------------------------------------------\n\n" . $mailtext;
+        $ccmessage .= "\n------------------------------------------------------------\n\n" . $mailText;
 
         $sent = COM_mail($mailfrom, $subject, $ccmessage, $mailfrom);
     }
@@ -424,7 +439,7 @@ function mailstory($sid, $to, $toemail, $from, $fromemail, $shortmsg)
 * @param    string  $from       name of person sending the email
 * @param    string  $fromemail  sender's email address
 * @param    string  $shortmsg   short intro text to send with the story
-* @param    string  $msg        Error message code
+* @param    int     $msg        Error message code
 * @return   string              HTML for email story form
 *
 */
@@ -433,7 +448,7 @@ function mailstoryform($sid, $cc = false, $to = '', $toemail = '', $from = '',
 {
     global $_CONF, $_TABLES, $_USER, $LANG08;
 
-    require_once $_CONF['path_system'] . 'lib-story.php';
+    require_once $_CONF['path_system'] . 'lib-article.php';
 
     $retval = '';
 
@@ -444,7 +459,7 @@ function mailstoryform($sid, $cc = false, $to = '', $toemail = '', $from = '',
         return $retval;
     }
 
-    $story = new Story();
+    $story = new Article();
     $result = $story->loadFromDatabase($sid, 'view');
 
     if ($result != STORY_LOADED_OK) {
@@ -466,7 +481,7 @@ function mailstoryform($sid, $cc = false, $to = '', $toemail = '', $from = '',
 
     $cc = $cc ? ' checked="checked"' : '';
 
-    $mail_template = COM_newTemplate($_CONF['path_layout'] . 'profiles');
+    $mail_template = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout'] . 'profiles'));
     $mail_template->set_file('form', 'contactauthorform.thtml');
     $mail_template->set_var('start_block_mailstory2friend',
                             COM_startBlock($LANG08[17]));

@@ -118,20 +118,22 @@ geeklog.datepicker = {
         // Fixes language code for jQuery UI
         langCode = this.fixLangCode(langCode);
 
-        // Set default options for datepickers
+        // Set default options for all datepickers
         $.datepicker.setDefaults({
             autoSize: true,
             buttonImage: imgUrl,
             buttonImageOnly: true,
             buttonText: toolTip,
             dateFormat: 'yy-mm-dd',
-            showOn: 'button'
+            showOn: 'button',
+            minDate: '-1y',
+            maxDate: '+5y'
         });
 
         // Creates an invisible input field for a datepicker
         inputId = selectorName + '_value_hidden';
         $("select[name='" + selectorName + "_month']")
-            .before('<span>&nbsp;</span><input type="text" class="uk-input uk-form-width-medium" id="' + inputId + '" style="display: none;" value="' + this.getDateFromSelectors(selectorName) + '" />&nbsp;');
+            .before('<span>&nbsp;</span><input type="text" id="' + inputId + '" style="display: none;" value="' + this.getDateFromSelectors(selectorName) + '" />&nbsp;');
 
         // Attaches a datepicker to the input field
         $('#' + inputId).datepicker();

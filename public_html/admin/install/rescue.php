@@ -42,11 +42,9 @@ $self = basename(__FILE__);
 
 // The conf_values we're making available to edit.
 $configs = array(
-    'site_url', 'site_admin_url', 'site_mail', 'rdf_file', 'language', 'path_html', 'path_themes',
-    'path_editors', 'path_images', 'path_log', 'path_language',
-    'backup_path', 'path_data', 'path_pear', 'theme', 'cookie_path', 'cookiedomain',
-		'shortdate','dateonly','timeonly','language','login_attempts','login_speedlimit',
-		'cookie_session','cookie_session','cookie_name','cookie_password','cookie_theme'
+    'site_url', 'site_admin_url', 'site_mail', 'rdf_file', 'language', 'path_html',
+    'path_themes', 'path_editors', 'path_images', 'path_log', 'path_language',
+    'backup_path', 'path_data', 'theme', 'cookie_path', 'cookiedomain',
 );
 
 // Start it off
@@ -55,7 +53,7 @@ if (get_magic_quotes_gpc()) {
     $_POST = array_map('stripslashes', $_POST);
 }
 
-$lang = 'japanese_utf-8';
+$lang = 'english';
 
 if (isset($_POST['lang'])) {
     $lang = preg_replace('/[^0-9_a-z-]/i', '', $_POST['lang']);
@@ -66,7 +64,7 @@ if (isset($_POST['lang'])) {
 $langfile = dirname(__FILE__) . '/language/' . $lang . '.php';
 
 if (!file_exists($langfile)) {
-    $lang = 'japanese_utf-8';
+    $lang = 'english';
     $langfile = dirname(__FILE__) . '/language/' . $lang . '.php';
 }
 
@@ -116,7 +114,7 @@ function langSelector() {
 
     $retval = '<form action="" method="post">' . LB
             . '<div>' . LB
-            . '<select class="uk-select" name="lang">' . LB;
+            . '<select name="lang">' . LB;
     $files = glob(dirname(__FILE__) . '/language/*.php');
 
     if ($files !== FALSE) {
@@ -253,7 +251,7 @@ function render($renderType, $args = array()) {
             ', $passwd, $username, $site_url);
             $headers  = 'MIME-Version: 1.0' . CRLB;
             $headers .= 'Content-type: text/html; charset=' . $LANG_CHARSET . CRLB;
-            $headers .= 'X-Mailer: PHP/' . phpversion();
+            $headers .= 'X-Mailer: PHP/' . PHP_VERSION;
             if (mail($to, $subject, $message, $headers)) {
                 $url = $self.'?view=options&amp;args=result:success|statusMessage:' . urlencode(s(22)) . '&amp;lang=' . urlencode($lang);
                 echo "<html><head><meta http-equiv=\"refresh\" content=\"0; URL=$url\"></head></html>\n";
@@ -275,10 +273,47 @@ function render($renderType, $args = array()) {
         <h2><?php e(26); ?></h2>
         <div class="info">
             <ul>
-                <li><?php e(27); ?>: <?php echo phpversion(); ?> <a href="<?php echo $self; ?>?view=phpinfo<?php echo '&amp;lang=' . urlencode($lang); ?>"> <small>phpinfo</small></a></li>
+                <li><?php e(27); ?>: <?php echo PHP_VERSION; ?> <a href="<?php echo $self; ?>?view=phpinfo<?php echo '&amp;lang=' . urlencode($lang); ?>"> <small>phpinfo</small></a></li>
                 <li><?php e(28); ?> <?php echo VERSION; ?></li>
             </ul>
         </div>
+
+        <?php
+        // ********************************************************
+        // A few checks to see if Geeklog is installed properly. If not we generate a php error and stop tool
+        function fatal_handler() {
+
+            $error = error_get_last();
+            //check if it's a core/fatal error, otherwise it's a normal shutdown
+            if ($error !== NULL) {            
+            ?>
+            <div class="box error">
+                <p><?php e(45); ?></p>
+            </div>
+        </div>
+    </body>
+</html>
+            <?php
+                die;
+            }
+        }        
+        register_shutdown_function( "fatal_handler" );
+
+        // Check if `conf_values` table exists
+        $count = DB_count($_TABLES['conf_values']);
+        if ($count == 0) {
+            trigger_error("Fatal error", E_USER_ERROR);
+        }
+
+        // Check if `vars` table exists
+        $count = DB_count($_TABLES['vars']);
+        if ($count == 0) {
+            trigger_error("Fatal error", E_USER_ERROR);
+        }
+        // ********************************************************
+        ?>
+        
+        
         <h2><?php e(29); ?></h2>
         <p style="margin-left:5px;"><?php e(30); ?></p>
         <ul class="option">
@@ -290,7 +325,7 @@ function render($renderType, $args = array()) {
         <div id="plugins" name="options" class="box option" style="display: none;">
             <h3><?php e(35); ?></h3>
             <form id="plugin-operator" method="post">
-                <select class="uk-select" name="target" onchange="toggleRadio(this.options[this.selectedIndex].getAttribute('class') == 'disabled', this.form.elements['value']);">
+                <select name="target" onchange="toggleRadio(this.options[this.selectedIndex].getAttribute('class') == 'disabled', this.form.elements['value']);">
                     <option selected="selected" value=""><?php e(36); ?></option>
                     <?php
                     $result = DB_query("SELECT * FROM {$_TABLES['plugins']}");
@@ -300,8 +335,8 @@ function render($renderType, $args = array()) {
                     }
                     ?>
                 </select>
-                <input type="radio" class="uk-radio" name="value" id="enable_plugin" value="1" /><label for="enable_plugin"><?php e(37); ?></label>
-                <input type="radio" class="uk-radio" name="value" id="disable_plugin" value="0" checked="checked" /><label for="disable_plugin"><?php e(38); ?></label><br />
+                <input type="radio" name="value" id="enable_plugin" value="1" /><label for="enable_plugin"><?php e(37); ?></label>
+                <input type="radio" name="value" id="disable_plugin" value="0" checked="checked" /><label for="disable_plugin"><?php e(38); ?></label><br />
                 <input type="hidden" name="view" value="handleRequest" />
                 <input type="hidden" name="args" value="operation:UPDATE|table:plugins|field:pi_enabled|where:pi_name" />
                 <input type="submit" value="<?php e(41); ?>" onclick="this.disabled=true;this.form.submit();" />
@@ -311,7 +346,7 @@ function render($renderType, $args = array()) {
         <div id="blocks" name="options" class="box option" style="display: none;">
             <h3><?php e(39); ?></h3>
             <form id="block-operator" method="post">
-                <select class="uk-select" name="target" onchange="toggleRadio(this.options[this.selectedIndex].getAttribute('class') == 'disabled', this.form.elements['value']);">
+                <select name="target" onchange="toggleRadio(this.options[this.selectedIndex].getAttribute('class') == 'disabled', this.form.elements['value']);">
                     <option selected="selected" value=""><?php e(40); ?></option>
                     <?php
                     $result = DB_query("SELECT * FROM {$_TABLES['blocks']}");
@@ -321,9 +356,8 @@ function render($renderType, $args = array()) {
                     }
                     ?>
                 </select>
-                <input type="radio" class="uk-radio" name="value" id="enable_block" value="1" /><label for="enable_block"><?php e(37); ?></label>
-                <input type="radio" class="uk-radio" name="value" id="disable_block" value="0" checked="checked" /><label for="disable_block"><?php e(38); ?></label><br />
-                <input type="hidden" name="table" value="blocks" />
+                <input type="radio" name="value" id="enable_block" value="1" /><label for="enable_block"><?php e(37); ?></label>
+                <input type="radio" name="value" id="disable_block" value="0" checked="checked" /><label for="disable_block"><?php e(38); ?></label><br />
                 <input type="hidden" name="view" value="handleRequest" />
                 <input type="hidden" name="args" value="operation:UPDATE|table:blocks|field:is_enabled|where:name" />
                 <input type="submit" value="<?php e(41); ?>" onclick="this.disabled=true;this.form.submit();" />
@@ -339,7 +373,7 @@ function render($renderType, $args = array()) {
                         $res = DB_query($sql);
                         $row = DB_fetchArray($res);
                 ?>
-                        <fieldset><legend><?php echo $config; ?>:</legend><input type="text" class="uk-input uk-form-width-medium" size="80" id="<?php echo $config; ?>" name="<?php echo $config; ?>" value="<?php echo unserialize($row['value']); ?>" /></fieldset>
+                        <fieldset><legend><?php echo $config; ?>:</legend><input type="text" size="80" id="<?php echo $config; ?>" name="<?php echo $config; ?>" value="<?php echo unserialize($row['value']); ?>" /></fieldset>
                 <?php
                     }
                 ?>

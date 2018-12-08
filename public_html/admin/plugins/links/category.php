@@ -125,8 +125,10 @@ function links_list_categories($root)
             'text' => $LANG_ADMIN['admin_home'],
         ),
     );
+    
+    $help_url = COM_getDocumentUrl('docs', "links.html");
 
-    $retval .= COM_startBlock($LANG_LINKS_ADMIN[54], '', COM_getBlockTemplate('_admin_block', 'header'));
+    $retval .= COM_startBlock($LANG_LINKS_ADMIN[54], $help_url, COM_getBlockTemplate('_admin_block', 'header'));
     $retval .= ADMIN_createMenu($menu_arr, $LANG_LINKS_ADMIN[12], plugin_geticon_links());
 
     $text_arr = array(
@@ -245,12 +247,6 @@ function links_edit_category($cid, $pid)
     $T->set_var('lang_save', $LANG_ADMIN['save']);
 
     if (!empty($cid)) {
-        $delbutton = '<input type="submit" value="' . $LANG_ADMIN['delete']
-            . '" name="mode"%s' . XHTML . '>';
-        $jsconfirm = ' onclick="return confirm(\'' . $MESSAGE[76] . '\');"';
-        $T->set_var('delete_option', sprintf($delbutton, $jsconfirm));
-        $T->set_var('delete_option_no_confirmation', sprintf($delbutton, ''));
-
         $T->set_var('allow_delete', true);
         $T->set_var('lang_delete', $LANG_ADMIN['delete']);
         $T->set_var('confirm_message', $MESSAGE[76]);
@@ -277,21 +273,13 @@ function links_edit_category($cid, $pid)
     if (!isset($A['tid'])) {
         $A['tid'] = TOPIC_ALL_OPTION;
     }
-    /*
-    $topics = COM_topicList('tid,topic', $A['tid'], 1, true);
-    $T->set_var('topic_list', $topics);
-    $alltopics = '<option value="all"';
-    if ($A['tid'] == 'all') {
-        $alltopics .= ' selected="selected"';
-    }
-    $alltopics .= '>' . $LANG_LINKS_ADMIN[35] . '</option>' . LB;
-    $T->set_var('topic_selection', '<select class="uk-select" name="tid">' . $alltopics
-                                   . $topics . '</select>');
-    */
-    $T->set_var(
-        'topic_selection',
-        '<select class="uk-select" name="tid" id="tid">' . TOPIC_getTopicListSelect($A['tid'], 2, true) . '</select>'
-    );
+    
+    $topic_selection = COM_createControl('type-select', array(
+        'name'         => 'tid',
+        'id'           => 'tid',
+        'select_items' => TOPIC_getTopicListSelect($A['tid'], 2, true)
+    ));     
+    $T->set_var('topic_selection', $topic_selection);
 
     if (empty($cid)) {
         $num_links = $LANG_ADMIN['na'];

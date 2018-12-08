@@ -95,14 +95,14 @@ global $_TABLES, $LANG_SUCCESS, $MESSAGE;
 
 $type = \Geeklog\Input::fGet('type', 'install');
 $submit = \Geeklog\Input::post('submit', '');
-$language = \Geeklog\Input::fGet('language', 'japanese_utf-8');
+$language = \Geeklog\Input::fGet('language', 'english');
 $language = preg_replace('/[^a-z0-9\-_]/', '', $language);
 $languagePath = dirname(__FILE__) . '/language/' . $language . '.php';
 
 if (is_readable($languagePath)) {
     require_once dirname(__FILE__) . '/language/' . $language . '.php';
 } else {
-    require_once dirname(__FILE__) . '/language/japanese_utf-8.php';
+    require_once dirname(__FILE__) . '/language/english.php';
 }
 
 // enable detailed error reporting
@@ -128,7 +128,7 @@ switch ($submit) {
         break;
 }
 
-$T = COM_newTemplate(dirname(__FILE__) . '/layout');
+$T = COM_newTemplate(CTL_core_templatePath(dirname(__FILE__) . '/layout'));
 $T->set_file('success', 'success.thtml');
 
 if ($type === 'install') {

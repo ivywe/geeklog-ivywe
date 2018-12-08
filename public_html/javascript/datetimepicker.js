@@ -161,12 +161,14 @@ geeklog.datetimepicker = {
         this.options.buttonImage = imgUrl;
         this.options.buttonText = toolTip;
         this.options.timeFormat = (geeklog.hour_mode == 12) ? 'hh:mm tt' : 'HH:mm';
+        this.options.minDate = '-1y';
+        this.options.maxDate = '+5y';
 
         // Creates an invisible input field for a datetimepicker
         inputId = selectorName + '_value_hidden';
 
         $("select[name='" + selectorName + "_month']")
-            .before('<input type="text" class="uk-input uk-form-width-medium" id="' + inputId + '" style="display:none;" value=""' + geeklog.xhtml + '>&nbsp;');
+            .before('<input type="text" id="' + inputId + '" style="display:none;" value=""' + geeklog.xhtml + '>&nbsp;');
 
         // Attaches a datetimepicker to the input field
         $('#' + inputId).datetimepicker(this.options);

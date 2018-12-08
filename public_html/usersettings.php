@@ -2,13 +2,13 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 2.1                                                               |
+// | Geeklog 2.2                                                               |
 // +---------------------------------------------------------------------------+
 // | usersettings.php                                                          |
 // |                                                                           |
 // | Geeklog user settings page.                                               |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2000-2010 by the following authors:                         |
+// | Copyright (C) 2000-2017 by the following authors:                         |
 // |                                                                           |
 // | Authors: Tony Bibbs        - tony AT tonybibbs DOT com                    |
 // |          Mark Limburg      - mlimburg AT users DOT sourceforge DOT net    |
@@ -51,12 +51,13 @@ $_US_VERBOSE = false;
  */
 function edituser()
 {
-    global $_CONF, $_TABLES, $_USER, $LANG_MYACCOUNT, $LANG04, $LANG_ADMIN, $_SCRIPTS;
+    global $_CONF, $_TABLES, $_USER, $LANG_MYACCOUNT, $LANG04, $LANG_ADMIN, $LANG_confignames,
+           $LANG_configselects, $_SCRIPTS;
 
-    $result = DB_query("SELECT fullname,cookietimeout,email,homepage,sig,emailstories,about,location,pgpkey,photo,remoteservice FROM {$_TABLES['users']},{$_TABLES['userprefs']},{$_TABLES['userinfo']} WHERE {$_TABLES['users']}.uid = {$_USER['uid']} AND {$_TABLES['userprefs']}.uid = {$_USER['uid']} AND {$_TABLES['userinfo']}.uid = {$_USER['uid']}");
+    $result = DB_query("SELECT fullname,cookietimeout,email,emailtoconfirm,emailconfirmid,homepage,sig,emailstories,about,location,pgpkey,photo,remoteservice FROM {$_TABLES['users']},{$_TABLES['userprefs']},{$_TABLES['userinfo']} WHERE {$_TABLES['users']}.uid = {$_USER['uid']} AND {$_TABLES['userprefs']}.uid = {$_USER['uid']} AND {$_TABLES['userinfo']}.uid = {$_USER['uid']}");
     $A = DB_fetchArray($result);
 
-    $preferences = COM_newTemplate($_CONF['path_layout'] . 'preferences');
+    $preferences = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout'] . 'preferences'));
     $preferences->set_file(array(
         'profile'          => 'profile.thtml',
         'photo'            => 'userphoto.thtml',
@@ -66,11 +67,11 @@ function edituser()
         'resynch'          => 'resynch.thtml',
         'deleteaccount'    => 'deleteaccount.thtml',
     ));
-    
+
     $blocks = array('display_field', 'display_field_text');
     foreach ($blocks as $block) {
         $preferences->set_block('profile', $block);
-    }    
+    }
 
     include $_CONF['path_system'] . 'classes/navbar.class.php';
     $navbar = new navbar;
@@ -93,34 +94,6 @@ function edituser()
 
     // Add JavaScript
     $_SCRIPTS->setJavaScriptFile('profile_editor', '/javascript/profile_editor.js');
-
-    $js = '<!-- JS Functions which will execute only if JS enabled will un-hide the special features that enhance the profile editor -->
-    <script type="text/JavaScript">
-    //<![CDATA[
-        /* Initially the navbar is hidden - in case JS is disabled. Enable it now */
-        document.getElementById("pe_navbar").style.display="";
-
-        /* Now cycle through the profile tabs as the number in the template could have been modified (personalized)
-           If you add custom panels, just ensure you use the class jsenabled_hide or jsenabled_show
-           Build an object that can then be referenced in the functon showhideProfileEditorDiv
-        */
-
-        var profilepanels = new Object;
-        var el;
-        el=document.getElementsByTagName("div");
-        for(i=0;i<el.length;i++) {
-            var divname = el[i].id
-            if(el[i].className == "jsenabled_show"){
-                el[i].style.display = "";
-                profilepanels[divname] = "show";
-            } else if(el[i].className == "jsenabled_hide"){
-                el[i].style.display = "none";
-                profilepanels[divname] = "hidden";
-            }
-        }
-    //]]>
-    </script>';
-    $_SCRIPTS->setJavaScript($js);
 
     // some trickery to ensure alternating colors with the available options ...
     if ($_CONF['allow_username_change'] == 1) {
@@ -159,6 +132,9 @@ function edituser()
     $preferences->set_var('lang_email_text', $LANG04[33]);
     $preferences->set_var('lang_email_conf', $LANG04[124]);
     $preferences->set_var('lang_email_conf_text', $LANG04[126]);
+    $preferences->set_var('lang_email_verify', $LANG04['email_verify']);
+    $preferences->set_var('lang_email_verify_msg', $LANG04['email_verify_msg']);
+    $preferences->set_var('lang_email_verify_delete', $LANG04['email_verify_delete']);
     $preferences->set_var('lang_userinfo_help_title', $LANG04[148]);
     $preferences->set_var('lang_userinfo_help', $LANG04[149]);
     $preferences->set_var('lang_homepage', $LANG04[6]);
@@ -181,6 +157,61 @@ function edituser()
     $preferences->set_var('lang_password_email_legend', $LANG04[129]);
     $preferences->set_var('lang_personal_info_legend', $LANG04[130]);
     $preferences->set_var('lang_resynch', $LANG04[166]);
+
+    // Two Factor Auth
+    if (isset($_CONF['enable_twofactorauth']) && $_CONF['enable_twofactorauth']) {
+        $enableTfaOptions = '';
+        foreach ($LANG_configselects['Core'][0] as $text => $value) {
+            $selected = ($_USER['twofactorauth_enabled'] == $value);
+            $enableTfaOptions .= '<option value="' . $value . '"'
+                . ($selected ? ' selected="selected"' : '') . '>'
+                . $text . '</option>' . PHP_EOL;
+        }
+
+        $tfa = new \Geeklog\TwoFactorAuthentication($_USER['uid']);
+        $secret = $tfa->loadSecretFromDatabase();
+
+        if (empty($secret)) {
+            $secret = $tfa->createSecret();
+            $tfa->saveSecretToDatabase($secret);
+            $backupCodes = $tfa->createBackupCodes();
+        } else {
+            $backupCodes = $tfa->getBackupCodesFromDatabase();
+            if (count($backupCodes) < 1) { // Have we run out of backup codes? generate some more
+                $backupCodes = $tfa->createBackupCodes();
+            }
+        }
+
+        $qrCodeDat = $tfa->getQRCodeImageAsDataURI($secret, $_USER['email']);
+        $backupCodes = '<li class="backupcode">' . PHP_EOL
+            . implode('</li><li class="backupcode">', $backupCodes)
+            . '</li>' . PHP_EOL;
+
+        $preferences->set_var(array(
+            'enable_twofactorauth'      => true,
+            'lang_tfa_two_factor_auth'  => $LANG04['tfa_two_factor_auth'],
+            'lang_tfa_help1'            => $LANG04['tfa_help1'],
+            'lang_tfa_help2'            => $LANG04['tfa_help2'],
+            'lang_tfa_help3'            => $LANG04['tfa_help3'],
+            'lang_tfa_help4'            => $LANG04['tfa_help4'],
+            'lang_tfa_help5'            => $LANG04['tfa_help5'],
+            'lang_enable_twofactorauth' => $LANG_confignames['Core']['enable_twofactorauth'],
+            'lang_tfa_qrcode'           => $LANG04['tfa_qrcode'],
+            'lang_tfa_show_hide'        => $LANG04['tfa_show_hide'],
+            'lang_tfa_backup_code'      => $LANG04['tfa_backup_code'],
+            'lang_tfa_download'         => $LANG04['tfa_download'],
+            'lang_tfa_new_backup_code'  => $LANG04['tfa_new_backup_code'],
+            'tfa_generate_confirm'      => $LANG04['tfa_generate_confirm'],
+            'enable_tfa_options'        => $enableTfaOptions,
+            'qrcode_data'               => $qrCodeDat,
+            'backup_codes'              => $backupCodes,
+            'token_name'                => CSRF_TOKEN,
+            'token_value'               => SEC_createToken(),
+        ));
+        $_SCRIPTS->setJavaScriptFile('two_factor_auth', '/javascript/two_factor_auth.js');
+    } else {
+        $preferences->set_var('enable_twofactorauth', false);
+    }
 
     $display_name = COM_getDisplayName($_USER['uid']);
 
@@ -221,13 +252,20 @@ function edituser()
         $preferences->set_var('username_option', '');
     }
 
-    $selection = '<select class="uk-select uk-form-width-medium" id="cooktime" name="cooktime">' . LB;
-    $selection .= COM_optionList($_TABLES['cookiecodes'], 'cc_value,cc_descr',
-        $A['cookietimeout'], 0);
-    $selection .= '</select>';
+    $items = COM_optionList($_TABLES['cookiecodes'], 'cc_value,cc_descr', $A['cookietimeout'], 0);
+    $selection = COM_createControl('type-select', array(
+        'id' => 'cooktime',
+        'name' => 'cooktime',
+        'select_items' => $items
+    ));
     $preferences->set_var('cooktime_selector', $selection);
 
     $preferences->set_var('email_value', htmlspecialchars($A['email']));
+
+    if (!empty($A['emailtoconfirm']) && !empty($A['emailconfirmid'])) {
+        $preferences->set_var('emailtoconfirm', htmlspecialchars($A['emailtoconfirm']));
+    }
+
     $preferences->set_var('homepage_value',
         htmlspecialchars(COM_killJS($A['homepage'])));
     $preferences->set_var('location_value',
@@ -240,11 +278,10 @@ function edituser()
             $preferences->set_var('display_photo', '');
         } else {
             if (empty($A['photo'])) { // external avatar
-                $photo = '<br' . XHTML . '>' . $photo;
+                // so do nothing
+                $preferences->set_var('lang_deletephoto', '');
             } else { // uploaded photo - add delete option
-                $photo = '<br' . XHTML . '>' . $photo . '<br' . XHTML . '>' . $LANG04[79]
-                    . '&nbsp;<input type="checkbox" class="uk-checkbox" name="delete_photo"' . XHTML . '>'
-                    . LB;
+                $preferences->set_var('lang_deletephoto', $LANG04[79]);
             }
             $preferences->set_var('display_photo', $photo);
         }
@@ -261,21 +298,17 @@ function edituser()
     } else {
         $preferences->set_var('userphoto_option', '');
     }
-
-    $result = DB_query("SELECT about,pgpkey FROM {$_TABLES['userinfo']} WHERE uid = {$_USER['uid']}");
-    $A = DB_fetchArray($result);
-
+    
     $reqid = substr(md5(uniqid(rand(), 1)), 1, 16);
     DB_change($_TABLES['users'], 'pwrequestid', $reqid, 'uid', $_USER['uid']);
-
-    $preferences->set_var('about_value', htmlspecialchars($A['about']));
-    $preferences->set_var('pgpkey_value', htmlspecialchars($A['pgpkey']));
-    $preferences->set_var('uid_value', $reqid);
-    $preferences->set_var('username_value', htmlspecialchars($_USER['username']));
-
+    
     if ($_CONF['allow_account_delete'] == 1) {
         $preferences->set_var('lang_deleteaccount', $LANG04[156]);
-        $preferences->set_var('delete_text', $LANG04[95]);
+        if ($A['remoteservice'] == '') {
+            $preferences->set_var('delete_text', $LANG04['remove_account_msg']);
+        } else {
+            $preferences->set_var('delete_text', $LANG04['remove_remote_account_msg']);
+        }
         $preferences->set_var('lang_button_delete', $LANG04[96]);
         $preferences->set_var('delete_mode', 'confirmdelete');
         $preferences->set_var('account_id', $reqid);
@@ -287,7 +320,15 @@ function edituser()
         $preferences->parse('delete_account_option', 'deleteaccount', false);
     } else {
         $preferences->set_var('delete_account_option', '');
-    }
+    }    
+
+    $result = DB_query("SELECT about,pgpkey FROM {$_TABLES['userinfo']} WHERE uid = {$_USER['uid']}");
+    $A = DB_fetchArray($result);
+
+    $preferences->set_var('about_value', htmlspecialchars($A['about']));
+    $preferences->set_var('pgpkey_value', htmlspecialchars($A['pgpkey']));
+    $preferences->set_var('uid_value', $reqid);
+    $preferences->set_var('username_value', htmlspecialchars($_USER['username']));
 
     // Call custom account form and edit function if enabled and exists
     if ($_CONF['custom_registration'] && (function_exists('CUSTOM_userEdit'))) {
@@ -311,12 +352,12 @@ function edituser()
 function confirmAccountDelete($form_reqid)
 {
     global $_CONF, $_TABLES, $_USER, $LANG04;
-
-    if (DB_count($_TABLES['users'], array('pwrequestid', 'uid'), array($form_reqid, $_USER['uid'])) != 1) {
+    
+    if (!$_CONF['allow_account_delete'] && DB_count($_TABLES['users'], array('pwrequestid', 'uid'), array($form_reqid, $_USER['uid'])) != 1) {
         // not found - abort
         COM_redirect($_CONF['site_url'] . '/index.php');
     }
-
+    
     // Do not check current password for remote users. At some point we should reauthenticate with the service when deleting the account
     if ($_USER['remoteservice'] == '') {
         // verify the password
@@ -328,15 +369,16 @@ function confirmAccountDelete($form_reqid)
     }
 
     $reqid = substr(md5(uniqid(rand(), 1)), 1, 16);
-    DB_change($_TABLES['users'], 'pwrequestid', "$reqid",
-        'uid', $_USER['uid']);
-    $msg = '<p>' . $LANG04[98] . '</p>' . LB . '<form action="' . $_CONF['site_url']
-        . '/usersettings.php" method="post"><div>' . LB
-        . '<p align="center"><input type="submit" name="btnsubmit" value="'
-        . $LANG04[96] . '"' . XHTML . '></p>' . LB
-        . '<input type="hidden" name="mode" value="deleteconfirmed"' . XHTML . '>' . LB
-        . '<input type="hidden" name="account_id" value="' . $reqid . '"' . XHTML . '>' . LB
-        . '</div></form>' . LB;
+    DB_change($_TABLES['users'], 'pwrequestid', "$reqid", 'uid', $_USER['uid']);
+
+    $template = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout'] . 'preferences'));
+    $template->set_file(array('confirm' => 'deleteaccountconfirm.thtml'));
+    $template->set_var('message', $LANG04[98]);
+    $template->set_var('lang_deleteaccount', $LANG04[156]);
+    $template->set_var('value_deleteconfirmed', $LANG04[96]);
+    $template->set_var('reqid', $reqid);
+    $msg = $template->finish($template->parse('output', 'confirm'));
+
     $retval = COM_showMessageText($msg, $LANG04[97]);
     $retval = COM_createHTMLDocument($retval, array('pagetitle' => $LANG04[97]));
 
@@ -353,13 +395,11 @@ function deleteUserAccount($form_reqid)
 {
     global $_CONF, $_TABLES, $_USER;
 
-    if (DB_count($_TABLES['users'], array('pwrequestid', 'uid'),
-            array($form_reqid, $_USER['uid'])) != 1
-    ) {
+    if (DB_count($_TABLES['users'], array('pwrequestid', 'uid'), array($form_reqid, $_USER['uid'])) != 1) {
         // not found - abort
         COM_redirect($_CONF['site_url'] . '/index.php');
     }
-
+    
     if (!USER_deleteAccount($_USER['uid'])) {
         COM_redirect($_CONF['site_url'] . '/index.php');
     }
@@ -390,7 +430,7 @@ function editpreferences()
         }
     }
 
-    $preferences = COM_newTemplate($_CONF['path_layout'] . 'preferences');
+    $preferences = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout'] . 'preferences'));
     $preferences->set_file(array(
         'prefs'    => 'displayprefs.thtml',
         'display'  => 'displayblock.thtml',
@@ -510,22 +550,26 @@ function editpreferences()
             $similarLang = $tmp[0];
         }
 
-        $selection = '<select class="uk-select uk-form-width-medium" id="language" name="language">' . LB;
-
+        $items = '';
         foreach ($language as $langFile => $langName) {
-            $selection .= '<option value="' . $langFile . '"';
+            $items .= '<option value="' . $langFile . '"';
             if (($langFile == $userlang) || (($has_valid_language == 0) &&
                     (strpos($langFile, $similarLang) === 0))
             ) {
-                $selection .= ' selected="selected"';
+                $items .= ' selected="selected"';
                 $has_valid_language = 1;
             } elseif ($userlang == $langFile) {
-                $selection .= ' selected="selected"';
+                $items .= ' selected="selected"';
             }
 
-            $selection .= '>' . $langName . '</option>' . LB;
+            $items .= '>' . $langName . '</option>' . LB;
         }
-        $selection .= '</select>';
+
+        $selection = COM_createControl('type-select', array(
+            'id' => 'language',
+            'name' => 'language',
+            'select_items' => $items
+        ));
         $preferences->set_var('language_selector', $selection);
         $preferences->parse('language_selection', 'language', true);
     } else {
@@ -533,8 +577,6 @@ function editpreferences()
     }
 
     if ($_CONF['allow_user_themes'] == 1) {
-        $selection = '<select class="uk-select uk-form-width-medium" id="theme" name="theme">' . LB;
-
         if (empty($_USER['theme'])) {
             $usertheme = $_CONF['theme'];
         } else {
@@ -544,10 +586,11 @@ function editpreferences()
         $themeFiles = COM_getThemes();
         usort($themeFiles, 'strcasecmp');
 
+        $items = '';
         foreach ($themeFiles as $theme) {
-            $selection .= '<option value="' . $theme . '"';
+            $items .= '<option value="' . $theme . '"';
             if ($usertheme == $theme) {
-                $selection .= ' selected="selected"';
+                $items .= ' selected="selected"';
             }
             $words = explode('_', $theme);
             $bwords = array();
@@ -560,9 +603,14 @@ function editpreferences()
                     $bwords[] = $th;
                 }
             }
-            $selection .= '>' . implode(' ', $bwords) . '</option>' . LB;
+            $items .= '>' . implode(' ', $bwords) . '</option>' . LB;
         }
-        $selection .= '</select>';
+
+        $selection = COM_createControl('type-select', array(
+            'id' => 'theme',
+            'name' => 'theme',
+            'select_items' => $items
+        ));
         $preferences->set_var('theme_selector', $selection);
         $preferences->parse('theme_selection', 'theme', true);
     } else {
@@ -629,9 +677,13 @@ function editpreferences()
     }
 
     $preferences->set_var('maxstories_value', $A['maxstories']);
-    $selection = '<select class="uk-select uk-form-width-medium" id="dfid" name="dfid">' . LB
-        . COM_optionList($_TABLES['dateformats'], 'dfid,description',
-            $A['dfid']) . '</select>';
+
+    $items = COM_optionList($_TABLES['dateformats'], 'dfid,description', $A['dfid']);
+    $selection = COM_createControl('type-select', array(
+        'id' => 'dfid',
+        'name' => 'dfid',
+        'select_items' => $items
+    ));
     $preferences->set_var('dateformat_selector', $selection);
     $preferences->parse('display_block', 'display', true);
 
@@ -688,7 +740,13 @@ function editpreferences()
         } else {
             $Selboxsize = 15;
         }
-        $preferences->set_var('exclude_author_checklist', '<select class="uk-select uk-form-width-medium" name="selauthors[]" multiple="multiple" size="' . $Selboxsize . '">' . $selauthors . '</select>');
+        $exclude_author_checklist = COM_createControl('type-select', array(
+            'name'         => 'selauthors[]',
+            'multiple'     => true,
+            'select_items' => $selauthors,
+            'size'   => $Selboxsize
+        ));        
+        $preferences->set_var('exclude_author_checklist', $exclude_author_checklist);
     } else {
         $preferences->set_var('lang_authors', '');
         $preferences->set_var('exclude_author_checklist', '');
@@ -749,16 +807,20 @@ function editpreferences()
         $A['commentlimit'] = 100;
     }
 
-    $selection = '<select class="uk-select uk-form-width-medium" id="commentmode" name="commentmode">';
-    $selection .= COM_optionList($_TABLES['commentmodes'], 'mode,name',
-        $A['commentmode']);
-    $selection .= '</select>';
+    $items = COM_optionList($_TABLES['commentmodes'], 'mode,name', $A['commentmode']);
+    $selection = COM_createControl('type-select', array(
+        'id' => 'commentmode',
+        'name' => 'commentmode',
+        'select_items' => $items
+    ));
     $preferences->set_var('displaymode_selector', $selection);
 
-    $selection = '<select class="uk-select uk-form-width-medium" id="commentorder" name="commentorder">';
-    $selection .= COM_optionList($_TABLES['sortcodes'], 'code,name',
-        $A['commentorder']);
-    $selection .= '</select>';
+    $items = COM_optionList($_TABLES['sortcodes'], 'code,name', $A['commentorder']);
+    $selection = COM_createControl('type-select', array(
+        'id' => 'commentorder',
+        'name' => 'commentorder',
+        'select_items' => $items
+    ));
     $preferences->set_var('sortorder_selector', $selection);
     $preferences->set_var('commentlimit_value', $A['commentlimit']);
     $preferences->parse('comment_block', 'comment', true);
@@ -951,7 +1013,7 @@ function saveuser(array $A)
 
     $reqId = DB_getItem($_TABLES['users'], 'pwrequestid', "uid = {$_USER['uid']}");
     if ($reqId != $A['uid']) {
-        DB_change($_TABLES['users'], 'pwrequestid', "NULL", 'uid', $_USER['uid']);
+        DB_query("UPDATE {$_TABLES['users']} SET pwrequestid = NULL WHERE uid = {$_USER['uid']}");
         COM_accessLog("An attempt was made to illegally change the account information of user {$_USER['uid']}.");
         COM_redirect($_CONF['site_url'] . '/index.php');
     }
@@ -973,7 +1035,7 @@ function saveuser(array $A)
     // we need the user's current password
     $service = DB_getItem($_TABLES['users'], 'remoteservice', "uid = {$_USER['uid']}");
     if ($service == '') {
-        if (!empty($A['passwd']) || ($A['email'] != $_USER['email']) || ($A['cooktime'] != $_USER['cookietimeout'])) {
+        if (!empty($A['passwd']) || !empty($A['delete_emailtoconfirm']) || ($A['email'] != $_USER['email']) || ($A['cooktime'] != $_USER['cookietimeout'])) {
             // verify password
             if (empty($A['old_passwd']) || (SEC_encryptUserPassword($A['old_passwd'], $_USER['uid']) < 0)) {
                 COM_redirect($_CONF['site_url'] . '/usersettings.php?msg=83');
@@ -1044,8 +1106,13 @@ function saveuser(array $A)
     }
     $profile .= $A['location'] . '<br' . XHTML . '>' . $A['sig'] . '<br' . XHTML . '>'
         . $A['about'] . '<br' . XHTML . '>' . $A['pgpkey'] . '</p>';
-    $result = PLG_checkforSpam($profile, $_CONF['spamx']);
-    if ($result > 0) {
+
+    $url = $_CONF['site_url'] . '/users.php?mode=profile&uid=' . $A['uid'];
+    $result = PLG_checkForSpam(
+        $profile, $_CONF['spamx'], $url, Geeklog\Akismet::COMMENT_TYPE_PROFILE,
+        $A['username'], $A['email'], $A['homepage']
+    );
+    if ($result > PLG_SPAM_NOT_FOUND) {
         COM_displayMessageAndAbort($result, 'spamx', 403, 'Forbidden');
     }
 
@@ -1054,11 +1121,11 @@ function saveuser(array $A)
     $A['homepage'] = COM_applyFilter($A['homepage']);
 
     // basic filtering only
-    $A['fullname'] = GLText::stripTags(COM_stripslashes($A['fullname']));
-    $A['location'] = GLText::stripTags(COM_stripslashes($A['location']));
-    $A['sig'] = GLText::stripTags(COM_stripslashes($A['sig']));
-    $A['about'] = GLText::stripTags(COM_stripslashes($A['about']));
-    $A['pgpkey'] = GLText::stripTags(COM_stripslashes($A['pgpkey']));
+    $A['fullname'] = GLText::stripTags(GLText::remove4byteUtf8Chars(COM_stripslashes($A['fullname'])));
+    $A['location'] = GLText::stripTags(GLText::remove4byteUtf8Chars(COM_stripslashes($A['location'])));
+    $A['sig'] = GLText::stripTags(GLText::remove4byteUtf8Chars(COM_stripslashes($A['sig'])));
+    $A['about'] = GLText::stripTags(GLText::remove4byteUtf8Chars(COM_stripslashes($A['about'])));
+    $A['pgpkey'] = GLText::stripTags(GLText::remove4byteUtf8Chars(COM_stripslashes($A['pgpkey'])));
 
     if (!COM_isEmail($A['email'])) {
         COM_redirect($_CONF['site_url'] . '/usersettings.php?msg=52');
@@ -1071,6 +1138,7 @@ function saveuser(array $A)
         if ($service == '') {
             if (!empty($A['passwd'])) {
                 if (($A['passwd'] == $A['passwd_conf']) &&
+                    SEC_checkPasswordStrength($A['passwd']) &&
                     (SEC_encryptUserPassword($A['old_passwd'], $_USER['uid']) == 0)
                 ) {
                     SEC_updateUserPassword($A['passwd'], $_USER['uid']);
@@ -1084,6 +1152,8 @@ function saveuser(array $A)
                     COM_redirect($_CONF['site_url'] . '/usersettings.php?msg=68');
                 } elseif ($A['passwd'] != $A['passwd_conf']) {
                     COM_redirect($_CONF['site_url'] . '/usersettings.php?msg=67');
+                } elseif (!SEC_checkPasswordStrength($A['passwd'])) {
+                    COM_redirect($_CONF['site_url'] . '/usersettings.php?msg=504');
                 }
             }
         } else {
@@ -1141,7 +1211,18 @@ function saveuser(array $A)
             }
         }
 
-        DB_query("UPDATE {$_TABLES['users']} SET fullname='{$A['fullname']}',email='{$A['email']}',homepage='{$A['homepage']}',sig='{$A['sig']}',cookietimeout={$A['cooktime']},photo='$filename' WHERE uid={$_USER['uid']}");
+        // Confirm if email has changed and needs to be updated
+        $sql_emailconfirm = '';
+        $emailconfirmid = DB_getItem($_TABLES['users'], 'emailconfirmid', "uid = {$_USER['uid']}");
+        if ($A['email'] != DB_getItem($_TABLES['users'], 'email', "uid = '{$_USER['uid']}'")) {
+            // Send out confirmation email of new address and save to user record
+            USER_emailConfirmation($A['email']);
+        } elseif (!empty($emailconfirmid) && !empty($A['delete_emailtoconfirm'])) {
+            // Now check if delete emailtoconfirm
+            $sql_emailconfirm = ",emailtoconfirm=NULL";
+        }
+
+        DB_query("UPDATE {$_TABLES['users']} SET fullname='{$A['fullname']}',homepage='{$A['homepage']}',sig='{$A['sig']}',cookietimeout={$A['cooktime']},photo='$filename'{$sql_emailconfirm} WHERE uid={$_USER['uid']}");
         DB_query("UPDATE {$_TABLES['userinfo']} SET pgpkey='{$A['pgpkey']}',about='{$A['about']}',location='{$A['location']}' WHERE uid={$_USER['uid']}");
 
         // Call custom registration save function if enabled and exists
@@ -1252,10 +1333,26 @@ function savepreferences($A)
         }
     }
 
-    $TIDS = @array_values($A['topics']);       // array of strings
-    $AIDS = @array_values($A['selauthors']);   // array of integers
-    $BOXES = @array_values($A['blocks']);       // array of integers
-    $ETIDS = @array_values($A['etids']);        // array of strings
+    $TIDS = array();
+    if (isset($A['topics']) && is_array($A['topics'])) {
+        $TIDS = array_values($A['topics']);     // array of strings
+    }
+
+    $AIDS = array();
+    if (isset($A['selauthors']) && is_array($A['selauthors'])) {
+        $AIDS = array_values($A['selauthors']); // array of integers
+    }
+
+    $BOXES = array();
+    if (isset($A['blocks']) && is_array($A['blocks'])) {
+        $BOXES = array_values($A['blocks']);    // array of integers
+    }
+
+    $ETIDS = array();
+    if (isset($A['etids']) && is_array($A['etids'])) {
+        $ETIDS = array_values($A['etids']);     // array of strings
+    }
+
     $AETIDS = USER_getAllowedTopics();          // array of strings (fetched, needed to "clean" $TIDS and $ETIDS)
 
     $tids = '';
@@ -1323,11 +1420,21 @@ function savepreferences($A)
         $A['language'] = $_CONF['language'];
     }
 
+    $A['enable_twofactorauth'] = (int) Geeklog\Input::fPost('enable_twofactorauth', 0);
+    if (($A['enable_twofactorauth'] !== 0) && ($A['enable_twofactorauth'] !== 1)) {
+        $A['enable_twofactorauth'] = 0;
+    }
+
     // Save theme, when doing so, put in cookie so we can set the user's theme
     // even when they aren't logged in
     $theme = DB_escapeString($A['theme']);
     $language = DB_escapeString($A['language']);
-    DB_query("UPDATE {$_TABLES['users']} SET theme='$theme',language='$language' WHERE uid = '{$_USER['uid']}'");
+
+    DB_query(
+        "UPDATE {$_TABLES['users']} SET theme = '{$theme}', language = '{$language}', twofactorauth_enabled = {$A['enable_twofactorauth']} "
+        . "WHERE uid = '{$_USER['uid']}'"
+    );
+
     setcookie($_CONF['cookie_theme'], $A['theme'], time() + 31536000,
         $_CONF['cookie_path'], $_CONF['cookiedomain'],
         $_CONF['cookiesecure']);
@@ -1337,6 +1444,16 @@ function savepreferences($A)
     setcookie($_CONF['cookie_tzid'], $A['tzid'], time() + 31536000,
         $_CONF['cookie_path'], $_CONF['cookiedomain'],
         $_CONF['cookiesecure']);
+
+    // When the user has disabled Two Factor Authentication, invalidate secret code and all the backup codes he/she might have
+    if (!$A['enable_twofactorauth']) {
+        DB_query(
+            "UPDATE {$_TABLES['users']} SET twofactorauth_secret = '' "
+            . "WHERE (uid = {$_USER['uid']})"
+        );
+        $tfa = new Geeklog\TwoFactorAuthentication($_USER['uid']);
+        $tfa->invalidateBackupCodes();
+    }
 
     $A['dfid'] = COM_applyFilter($A['dfid'], true);
 
@@ -1397,6 +1514,64 @@ function savepreferences($A)
     PLG_userInfoChanged($_USER['uid']);
 }
 
+/**
+ * Download a file containing backup codes
+ */
+function downloadBackupCodes()
+{
+    global $_CONF, $_USER;
+
+    if (isset($_CONF['enable_twofactorauth']) && $_CONF['enable_twofactorauth'] &&
+        !COM_isAnonUser() && isset($_USER['uid']) && ($_USER['uid'] > 1)) {
+        SEC_checkToken();
+        $tfa = new \Geeklog\TwoFactorAuthentication($_USER['uid']);
+
+        try {
+            $secret = $tfa->loadSecretFromDatabase();
+
+            if (empty($secret)) {
+                $secret = $tfa->createSecret();
+                $tfa->saveSecretToDatabase($secret);
+                $backupCodes = $tfa->createBackupCodes();
+            } else {
+                $backupCodes = $tfa->getBackupCodesFromDatabase();
+            }
+
+            $backupCodes = implode("\r\n", $backupCodes);
+            header('Content-Type: text/plain');
+            header('Content-Length: ' . strlen($backupCodes));
+            header('Content-Disposition: attachment; filename="gl_backup_codes.txt"');
+            echo $backupCodes;
+        } catch (\RobThree\Auth\TwoFactorAuthException $e) {
+            COM_errorLog(__FUNCTION__ . ': ' . $e->getMessage());
+        }
+    }
+
+    die();
+}
+
+/**
+ * Generate a new set of backup codes
+ */
+function generateBackupCodes()
+{
+    global $_CONF, $_USER;
+
+    if (isset($_CONF['enable_twofactorauth']) && $_CONF['enable_twofactorauth'] &&
+        !COM_isAnonUser() && isset($_USER['uid']) && ($_USER['uid'] > 1)) {
+        SEC_checkToken();
+
+        try {
+            $tfa = new Geeklog\TwoFactorAuthentication($_USER['uid']);
+            $tfa->createBackupCodes();
+        } catch (\RobThree\Auth\TwoFactorAuthException $e) {
+            COM_errorLog(__FUNCTION__ . ': ' . $e->getMessage());
+        }
+    }
+
+    COM_redirect($_CONF['site_url'] . '/usersettings.php');
+}
+
 // MAIN
 if (Geeklog\Input::post('btncancel') === $LANG_ADMIN['cancel']) {
     COM_redirect($_CONF['site_url']);
@@ -1404,6 +1579,10 @@ if (Geeklog\Input::post('btncancel') === $LANG_ADMIN['cancel']) {
     $mode = 'confirmdelete';
 } else {
     $mode = Geeklog\Input::fPostOrGet('mode', '');
+}
+
+if (Geeklog\Input::fPost('delete_account') === 'on') {
+    $mode = 'confirmdelete';
 }
 
 $display = '';
@@ -1451,6 +1630,14 @@ if (!COM_isAnonUser()) {
         case 'plugin':
             PLG_profileExtrasSave($_POST['plugin']);
             COM_redirect($_CONF['site_url'] . '/usersettings.php?msg=5');
+            break;
+
+        case 'download_backupcodes':
+            downloadBackupCodes();
+            break;
+
+        case 'generate_backupcodes':
+            generateBackupCodes();
             break;
 
         case 'synch':

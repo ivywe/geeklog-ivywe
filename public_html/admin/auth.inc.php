@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 2.1                                                               |
+// | Geeklog 2.2                                                               |
 // +---------------------------------------------------------------------------+
 // | auth.inc.php                                                              |
 // |                                                                           |
@@ -43,9 +43,17 @@ if (COM_checkSpeedlimit('login', $_CONF['login_attempts']) > 0) {
 }
 
 $uid = '';
+$error_msg = '';
 if (!empty($_POST['loginname']) && !empty($_POST['passwd'])) {
     if ($_CONF['user_login_method']['standard']) {
-        $status = SEC_authenticate(Geeklog\Input::fPost('loginname'), Geeklog\Input::post('passwd'), $uid);
+        // Let plugins like captcha have a chance to decide what to do before creating the user, return errors.
+        $error_msg = PLG_itemPreSave('loginform', Geeklog\Input::fPost('loginname'));
+        if (!empty($error_msg)) {
+            $status = ''; // captcha error but no login error so set as normal
+            unset($_POST['warn']); // To keep incorrect login message from displaying since this is a captcha error
+        } else {
+            $status = SEC_authenticate(Geeklog\Input::fPost('loginname'), Geeklog\Input::post('passwd'), $uid);
+        }
     } else {
         $status = '';
     }
@@ -55,7 +63,7 @@ if (!empty($_POST['loginname']) && !empty($_POST['passwd'])) {
 $display = '';
 
 if ($status == USER_ACCOUNT_ACTIVE) {
-    DB_change($_TABLES['users'], 'pwrequestid', "NULL", 'uid', $uid);
+    DB_query("UPDATE {$_TABLES['users']} SET pwrequestid = NULL WHERE uid = $uid");
     $_USER = SESS_getUserDataFromId($uid);
     $sessid = SESS_newSession($_USER['uid'], $_SERVER['REMOTE_ADDR'],
             $_CONF['session_cookie_timeout'], $_CONF['cookie_ip']);
@@ -65,56 +73,51 @@ if ($status == USER_ACCOUNT_ACTIVE) {
     PLG_loginUser($_USER['uid']);
 
     // Now that we handled session cookies, handle longterm cookie
-
     if (!isset($_COOKIE[$_CONF['cookie_name']])) {
-
         // Either their cookie expired or they are new
-
         $cooktime = COM_getUserCookieTimeout();
 
         if (!empty($cooktime)) {
-
             // They want their cookie to persist for some amount of time so set it now
-
-            SEC_setCookie($_CONF['cookie_name'], $_USER['uid'],
-                          time() + $cooktime);
+            SEC_setCookie($_CONF['cookie_name'], $_USER['uid'], time() + $cooktime);
         }
     }
-    if (!SEC_hasRights('story.edit,block.edit,topic.edit,user.edit,plugin.edit,syndication.edit','OR')) {
+
+    if (!SEC_hasRights('story.edit,block.edit,topic.edit,user.edit,plugin.edit,syndication.edit,theme.edit','OR')) {
         COM_redirect($_CONF['site_admin_url'] . '/index.php');
     } else {
         COM_redirect($_CONF['site_url'] . '/index.php');
     }
-} elseif (!SEC_hasRights('story.edit,block.edit,topic.edit,user.edit,plugin.edit,user.mail,syndication.edit','OR') && (count(PLG_getAdminOptions()) == 0) && !SEC_hasConfigAccess()) {
+} elseif (!SEC_hasRights('story.edit,block.edit,topic.edit,user.edit,plugin.edit,user.mail,syndication.edit,theme.edit','OR') &&
+    (count(PLG_getAdminOptions()) == 0) && !SEC_hasConfigAccess()) {
     COM_updateSpeedlimit('login');
 
-    $display .= COM_startBlock($LANG20[1]);
-
-    if (!$_CONF['user_login_method']['standard']) {
-        $display .= '<p>' . $LANG_LOGIN[2] . '</p>';
-    } else {
-
-        if (isset($_POST['warn'])) {
-            $display .= $LANG20[2]
-                     . '<br' . XHTML . '><br' . XHTML . '>'
-                     . COM_accessLog($LANG20[3] . ' ' . Geeklog\Input::post('loginname'));
-        }
-
-        $display .= '<form action="' . $_CONF['site_admin_url'] . '/index.php" method="post">'
-            .'<table cellspacing="0" cellpadding="3" border="0" width="100%">'.LB
-            .'<tr><td class="alignright"><b><label for="loginname">'.$LANG20[4].'</label></b></td>'.LB
-            .'<td><input type="text" class="uk-input uk-form-width-medium" name="loginname" id="loginname" size="16" maxlength="16"' . XHTML . '></td>'.LB
-            .'</tr>'.LB
-            .'<tr>'.LB
-            .'<td class="uk-text-right"><b><label for="passwd">'.$LANG20[5].'</label></b></td>'.LB
-            .'<td><input type="password" class="uk-input uk-form-width-medium" name="passwd" id="passwd" size="16"' . XHTML . '></td>'
-            .'</tr>'.LB
-            .'<tr>'.LB
-            .'<td colspan="2" align="center" class="warning">'.$LANG20[6].'<input type="hidden" name="warn" value="1"' . XHTML . '>'
-            .'<br' . XHTML . '><input type="submit" name="mode" value="'.$LANG20[7].'"' . XHTML . '></td>'.LB
-            .'</tr>'.LB
-            .'</table></form>';
+    $template = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout'] . 'users'));
+    $template->set_file(array('authenticationrequired' => 'authenticationrequired.thtml'));
+    
+    if (!empty($error_msg)) {
+        $display .= COM_errorLog($error_msg, 2);
     }
+    
+    $display .= COM_startBlock($LANG20[1]);
+    if (!$_CONF['user_login_method']['standard']) {
+        $template->set_var('lang_nonstandardlogin', $LANG_LOGIN[2]);
+    } else {
+        $template->set_var('lang_username', $LANG20[4]);
+        $template->set_var('lang_password', $LANG20[5]);
+        $template->set_var('lang_warning', $LANG20[6]);
+        $template->set_var('lang_login', $LANG20[8]);
+        $template->set_var('value_login', $LANG20[7]);
+        if (isset($_POST['warn'])) {
+            $template->set_var('lang_incorrectlogin', $LANG20[2]);
+            COM_accessLog($LANG20[3] . ' ' . Geeklog\Input::post('loginname'));
+        }        
+    }
+    
+    // For Captcha 
+    PLG_templateSetVars('loginform', $template);
+    
+    $display .= $template->finish($template->parse('output', 'authenticationrequired'));        
 
     $display .= COM_endBlock();
     $display = COM_createHTMLDocument($display);

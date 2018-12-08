@@ -2,13 +2,13 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Geeklog 2.1                                                               |
+// | Geeklog 2.2                                                               |
 // +---------------------------------------------------------------------------+
 // | index.php                                                                 |
 // |                                                                           |
 // | Geeklog homepage.                                                         |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2000-2010 by the following authors:                         |
+// | Copyright (C) 2000-2018 by the following authors:                         |
 // |                                                                           |
 // | Authors: Tony Bibbs        - tony@tonybibbs.com                           |
 // |          Mark Limburg      - mlimburg@users.sourceforge.net               |
@@ -33,7 +33,7 @@
 // +---------------------------------------------------------------------------+
 
 require_once 'lib-common.php';
-require_once $_CONF['path_system'] . 'lib-story.php';
+require_once $_CONF['path_system'] . 'lib-article.php';
 
 /**
  * Update array if need be with correct topic.
@@ -97,7 +97,7 @@ function fixTopic(&$A, $tid_list)
 }
 
 // Main
-// If URL routing is enabled, then let the router handle the request
+// If URL routing is enabled, then all routed requests come through here for all rewrites. Let the router handle the request
 if ($_CONF['url_rewrite'] && isset($_CONF['url_routing']) && !empty($_CONF['url_routing'])) {
     Router::dispatch();
 }
@@ -105,25 +105,33 @@ if ($_CONF['url_rewrite'] && isset($_CONF['url_routing']) && !empty($_CONF['url_
 // See if user has access to view topic else display message.
 // This check has already been done in lib-common so re-check to figure out if
 // 404 message needs to be displayed.
-$topic_check = '';
+$topic = '';
 $page = 0;
-if ($_CONF['url_rewrite']) {
+if ($_CONF['url_rewrite'] && !$_CONF['url_routing']) {
     COM_setArgNames(array(TOPIC_PLACEHOLDER, 'topic', 'page'));
     if (strcasecmp(COM_getArgument(TOPIC_PLACEHOLDER), 'topic') === 0) {
-        $topic_check = COM_getArgument('topic');
+        $topic = COM_getArgument('topic');
         $page = (int) COM_getArgument('page');
     }
+} elseif ($_CONF['url_rewrite'] && $_CONF['url_routing']) {
+    COM_setArgNames(array('topic', 'page'));
+    $topic = COM_getArgument('topic');
+    $page = (int) COM_getArgument('page');
 } else {
-    $topic_check = Geeklog\Input::fGet('topic', Geeklog\Input::fPost('topic', ''));
+    $topic = Geeklog\Input::fGet('topic', Geeklog\Input::fPost('topic', ''));
     $page = (int) Geeklog\Input::get('page', 0);
 }
 
-if ($topic_check === '-') {
-    $topic_check = '';
+if ($topic === '-') {
+    $topic = '';
 }
 
-if ($topic_check != '') {
-    if (strtolower($topic_check) != strtolower(DB_getItem($_TABLES['topics'], 'tid', "tid = '" . DB_escapeString($topic_check) . "' " . COM_getPermSQL('AND')))) {
+if ($topic != '') {
+    if (strtolower($topic) != strtolower(DB_getItem($_TABLES['topics'], 'tid', "tid = '" . DB_escapeString($topic) . "' " . COM_getPermSQL('AND')))) {
+        // Topic doesn't exist (or user doesn't have access) so reset topic variable
+        $topic = '';
+        
+        // Now display 404
         COM_handle404();
     }
 }
@@ -155,31 +163,12 @@ if (isset($_GET['msg'])) {
 
 if (SEC_inGroup('Root') && ($page === 1)) {
     $done = DB_getItem($_TABLES['vars'], 'value', "name = 'security_check'");
-    if ($done != 1) {
-        /**
-         * we don't have the path to the admin directory, so try to figure it
-         * out from $_CONF['site_admin_url']
-         *
-         * @todo FIXME: this duplicates some code from admin/sectest.php
-         */
-        $adminurl = $_CONF['site_admin_url'];
-        if (strrpos($adminurl, '/') == strlen($adminurl)) {
-            $adminurl = substr($adminurl, 0, -1);
-        }
-        $pos = strrpos($adminurl, '/');
-        if ($pos === false) {
-            // only guessing ...
-            $installdir = $_CONF['path_html'] . 'admin/install';
-        } else {
-            $installdir = $_CONF['path_html'] . substr($adminurl, $pos + 1)
-                . '/install';
-        }
 
-        if (is_dir($installdir)) {
-            // deliberatly NOT print the actual path to the install dir
-            $secmsg = sprintf($LANG_SECTEST['remove_inst'], '')
-                . ' ' . $MESSAGE[92];
-            $display .= COM_showMessageText($secmsg);
+    if ($done != 1) {
+        if (COM_getInstallDir() !== '') {
+            // deliberately NOT print the actual path to the install dir
+            $secMsg = sprintf($LANG_SECTEST['remove_inst'], '') . ' ' . $MESSAGE[92];
+            $display .= COM_showMessageText($secMsg);
         }
     }
 }
@@ -192,7 +181,7 @@ if (!empty($displayBlock)) {
     // Check if theme has added the template which allows the centerblock
     // to span the top over the rightblocks
     if (file_exists($_CONF['path_layout'] . 'topcenterblock-span.thtml')) {
-        $topspan = COM_newTemplate($_CONF['path_layout']);
+        $topspan = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout']));
         $topspan->set_file(array('topspan' => 'topcenterblock-span.thtml'));
         $topspan->parse('output', 'topspan');
         $display .= $topspan->finish($topspan->get_var('output'));
@@ -331,7 +320,7 @@ $breadcrumbs = '';
 
 if ($A = DB_fetchArray($result)) {
     fixTopic($A, $tid_list);
-    $story = new Story();
+    $story = new Article();
     $story->loadFromArray($A);
     if ($_CONF['showfirstasfeatured'] == 1) {
         $story->_featured = 1;
@@ -346,7 +335,8 @@ if ($A = DB_fetchArray($result)) {
     }
 
     // display first article
-    $display .= STORY_renderArticle($story, 'y');
+    $articlecount = 1; // Post count of page
+    $display .= STORY_renderArticle($story, 'y', '', '', $articlecount);
 
     // get plugin center blocks after featured article
     if ($story->DisplayElements('featured') == 1) {
@@ -355,10 +345,11 @@ if ($A = DB_fetchArray($result)) {
 
     // get remaining stories
     while ($A = DB_fetcharray($result)) {
+        $articlecount++;
         fixTopic($A, $tid_list);
-        $story = new Story();
+        $story = new Article();
         $story->loadFromArray($A);
-        $display .= STORY_renderArticle($story, 'y');
+        $display .= STORY_renderArticle($story, 'y', '', '' , $articlecount);
     }
 
     // get plugin center blocks that follow articles
@@ -368,6 +359,18 @@ if ($A = DB_fetchArray($result)) {
     if (!isset($_CONF['hide_main_page_navigation']) ||
         ($_CONF['hide_main_page_navigation'] == 'false') ||
         ($_CONF['hide_main_page_navigation'] === 'frontpage' && !empty($topic))) {
+        
+        if ($_CONF['url_rewrite']) {
+            $tempTopic = empty($topic) ? '-' : $topic;
+            $base_url = TOPIC_getUrl($tempTopic);
+        } else {
+            if (!empty($topic)) {
+                $base_url = TOPIC_getUrl($topic);
+            } else {
+                $base_url = $_CONF['site_url'] . '/index.php';
+            }
+        }
+        /*    
         if ($_CONF['url_rewrite']) {
             $tempTopic = empty($topic) ? '-' : $topic;
             $base_url = COM_buildURL(
@@ -389,7 +392,7 @@ if ($A = DB_fetchArray($result)) {
                 $base_url = $_CONF['site_url'] . '/index.php';
             }
         }
-
+        */
         $display .= COM_printPageNavigation($base_url, $page, $num_pages, 'page=', (bool) $_CONF['url_rewrite']);
     }
 } else { // no stories to display
@@ -410,13 +413,37 @@ if ($A = DB_fetchArray($result)) {
     }
 }
 
-$header = '';
 
+// Retrieve info about topic
+$result = DB_query("SELECT * FROM {$_TABLES['topics']} WHERE tid = '" . DB_escapeString($topic) . "'");
+$A = DB_fetcharray($result);
+
+
+$tt = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout']));
+$tt->set_file(array('topic' => 'topic.thtml'));
+$tt->set_var('topic_content', $display);
+if ($topic) {
+    if (empty($A['title'])) {
+        $title = $A['topic'];
+    } else {
+        $title = $A['title'];
+    }
+} else {
+    // Homepage then
+    $title = $_CONF['site_name'];
+}
+$tt->set_var('topic_id', $topic);
+$tt->set_var('topic_title', $title);
+if ($page == 1) {
+    $tt->set_var('first_page', true);
+}
+$tt->parse('output', 'topic');
+$display = $tt->finish($tt->get_var('output'));
+
+$header = '';
 if ($topic) {
     // Meta Tags
     if ($_CONF['meta_tags'] > 0) {
-        $result = DB_query("SELECT meta_description, meta_keywords FROM {$_TABLES['topics']} WHERE tid = '" . DB_escapeString($topic) . "'");
-        $A = DB_fetcharray($result);
         $header .= LB . PLG_getMetaTags(
                 'homepage', '',
                 array(
@@ -431,6 +458,13 @@ if ($topic) {
                 )
             );
     }
+    
+    // Add hreflang link element if Multi Language Content is setup
+    // Only allow hreflang link element to be visible when on canonical url. 
+    // NOTE: Since Topic does not have canonical do it just for first page (as other languages for same topic may not have the same number of articles in each)
+    if ($page == 1) {
+        $header .= COM_createHREFLang('topic', $topic);
+    }    
 }
 
 $display = COM_createHTMLDocument(

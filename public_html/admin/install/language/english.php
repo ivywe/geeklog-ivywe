@@ -57,7 +57,7 @@ $LANG_INSTALL = array(
     5 => 'Sorry, but Geeklog requires at least PHP %s to run (you have version ',
     6 => '). Please <a href="http://www.php.net/downloads.php">upgrade your PHP</a> install or ask your hosting service to do it for you.',
     7 => 'Unable to locate Geeklog files',
-    8 => 'The installer was unable to locate critical Geeklog files. This is probably because you have moved them from their default location. Please specify the paths to the files and directories below:',
+    8 => 'The installer was unable to locate critical Geeklog files. This is probably because you have moved them from their default location. Please specify the paths to the files and directories below (do not include the filename in the path):',
     9 => 'Welcome and thank you for choosing Geeklog!',
     10 => 'File/Directory',
     11 => 'Permissions',
@@ -200,6 +200,9 @@ $LANG_SUCCESS = array(
     25 => 'No, thanks.  I will manually delete them afterwards.',
 );
 
+// +---------------------------------------------------------------------------+
+// migration
+
 $LANG_MIGRATE = array(
     0 => 'The migration process will overwrite any existing database information.',
     1 => 'Before Proceeding',
@@ -316,7 +319,7 @@ $LANG_BIGDUMP = array(
 );
 
 // +---------------------------------------------------------------------------+
-// Error messages
+// Error Messages
 
 $LANG_ERROR = array(
     0 => 'The uploaded file exceeds the upload_max_filesize directive in php.ini.' . ' Please upload your backup file using another method, such as FTP.',
@@ -335,7 +338,16 @@ $LANG_ERROR = array(
     14 => 'Upgrade Notices',
     15 => 'Topic IDs and Names max length have changed from 128 to 75. This may cause issues when topic ids are truncated (if id is larger than 75 characters) during the upgrade. Please double check your topic ids that are larger than 75 characters will be unique when the max length is changed.',
     16 => 'Topic IDs and Names have changed from 128 to 75. It has been detected you need to modify 1 or more topic ids before this upgrade can proceed.',
-    17 => 'Professional Theme support has been dropped from Geeklog. If you are currently using the Professional theme or Professional_css theme from Geeklog 2.1.1 or older your website may not function properly.'
+    17 => 'Professional Theme support has been dropped from Geeklog. If you are currently using the Professional theme or Professional_css theme from Geeklog 2.1.1 or older your website may not function properly.',
+    18 => 'Comment Signatures', 
+    19 => 'Comment Signatures before Geeklog 2.2.0 where stored with the comment. Now they are added when the comment is viewed. For backwards compatibility the upgrade will remove all comment signatures stored directly
+    with the comment  (so comment signatures will not display twice).',
+    20 => 'Plugin Compatibility', 
+    21 => 'Geeklog internally has undergone some changes which may affect compatibility of some older plugins which have not been updated in a while. Please make sure all the plugins you have installed have been updated to the latest version before upgrading Geeklog to v2.2.0.<br><br>If you still wish to upgrade Geeklog to v2.2.0 and you are not sure about a plugin please post a question about it on our <a href="https://www.geeklog.net/forum/index.php?forum=2" target="_blank">Geeklog Forum</a>. Else, you can also disable or uninstall the plugin and then perform the Geeklog upgrade.<br><br>If you do perform the upgrade and run into problems you can then use the <a href="/admin/install/rescue.php">Geeklog Emergency Rescue Tool</a> to disable the plugin with the issue.',
+    22 => 'Default Security Group Assignments',
+    23 => 'User security group assignments for groups "Root" and "All Users" will be fixed along with the security group assignments for the "Admin" (2) user. The "Admin" user had duplicate permissions in some cases and these will be removed  after this upgrade.', 
+    24 => 'FCKEditor Removed',
+    25 => 'The Advanced Editor FCKEditor has been removed from Geeklog since development for it has been stopped. If your Geeklog website is currently set to use the FCKEditor it will be updated to use the editor which currently ships with Geeklog called the CKEditor.'
 );
 
 // +---------------------------------------------------------------------------+

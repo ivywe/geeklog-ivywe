@@ -63,7 +63,7 @@ if (!SEC_hasRights('story.ping')) {
 
 require_once $_CONF['path_system'] . 'lib-trackback.php';
 require_once $_CONF['path_system'] . 'lib-pingback.php';
-require_once $_CONF['path_system'] . 'lib-story.php';
+require_once $_CONF['path_system'] . 'lib-article.php';
 
 /**
  * Display trackback comment submission form.
@@ -95,7 +95,7 @@ function trackback_editor($target = '', $url = '', $title = '', $excerpt = '', $
 
         $retval .= COM_startBlock($LANG_TRB['preview']);
 
-        $preview = COM_newTemplate($_CONF['path_layout'] . 'trackback');
+        $preview = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout'] . 'trackback'));
         $preview->set_file(array('comment' => 'trackbackcomment.thtml'));
         $comment = TRB_formatComment($url, $p_title, $p_blog, $p_excerpt);
         $preview->set_var('formatted_comment', $comment);
@@ -112,10 +112,10 @@ function trackback_editor($target = '', $url = '', $title = '', $excerpt = '', $
     $excerpt = htmlspecialchars($excerpt, ENT_NOQUOTES);
 
     $retval .= COM_startBlock($LANG_TRB['editor_title'],
-        getHelpUrl() . '#trackback',
+        COM_getDocumentUrl('docs', "trackback.html") . '#trackback',
         COM_getBlockTemplate('_admin_block', 'header'));
 
-    $template = COM_newTemplate($_CONF['path_layout'] . 'admin/trackback');
+    $template = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout'] . 'admin/trackback'));
     $template->set_file(array('editor' => 'trackbackeditor.thtml'));
 
     $template->set_var('php_self', $_CONF['site_admin_url']
@@ -227,7 +227,7 @@ function sendPingbacks($type, $id)
                 }
             }
 
-            $template = COM_newTemplate($_CONF['path_layout'] . 'admin/trackback');
+            $template = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout'] . 'admin/trackback'));
             $template->set_file(array('list' => 'pingbacklist.thtml',
                                       'item' => 'pingbackitem.thtml'));
             $template->set_var('lang_resend', $LANG_TRB['resend']);
@@ -240,7 +240,7 @@ function sendPingbacks($type, $id)
                 if (empty($result)) {
                     $result = '<b>' . $LANG_TRB['pingback_success'] . '</b>';
                 } elseif ($result != $LANG_TRB['no_pingback_url']) {
-                    $result = '<span class="warningsmall">' . $result . '</span>';
+                    $result = COM_createControl('display-text-warning-small', array('text' => $result));
                     // TBD: $resend = '...';
                 }
                 $parts = parse_url($URLtoPing);
@@ -275,10 +275,10 @@ function pingbackForm($targetUrl = '')
     global $_CONF, $LANG_TRB;
 
     $retval = '';
-    $retval .= COM_startBlock($LANG_TRB['pingback_button'], getHelpUrl(),
+    $retval .= COM_startBlock($LANG_TRB['pingback_button'], COM_getDocumentUrl('docs', "trackback.html"),
         COM_getBlockTemplate('_admin_block', 'header'));
 
-    $template = COM_newTemplate($_CONF['path_layout'] . 'admin/trackback');
+    $template = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout'] . 'admin/trackback'));
     $template->set_file(array('list' => 'pingbackform.thtml'));
 
     $template->set_var('lang_explain', $LANG_TRB['pingback_explain']);
@@ -316,7 +316,7 @@ function sendPings($type, $id)
   
     // Check if item exist
     if (!empty($itemurl)) {    
-        $template = COM_newTemplate($_CONF['path_layout'] . 'admin/trackback');
+        $template = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout'] . 'admin/trackback'));
         $template->set_file(array('list' => 'pinglist.thtml',
                                   'item' => 'pingitem.thtml'));
         $template->set_var('lang_resend', $LANG_TRB['resend']);
@@ -341,7 +341,7 @@ function sendPings($type, $id)
                 if (empty($pinged)) {
                     $pinged = '<b>' . $LANG_TRB['ping_success'] . '</b>';
                 } else {
-                    $pinged = '<span class="warningsmall">' . $pinged . '</span>';
+                    $pinged = COM_createControl('display-text-warning-small', array('text' => $pinged));
                 }
 
                 $template->set_var('service_name', $A['name']);
@@ -401,7 +401,7 @@ function prepareAutodetect($type, $id, $text)
         $link = $baseurl .= '&amp;url=' . $url;
         COM_redirect($link);
     } elseif ($numlinks > 0) {
-        $template = COM_newTemplate($_CONF['path_layout'] . 'admin/trackback');
+        $template = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout'] . 'admin/trackback'));
         $template->set_file(array(
             'list' => 'autodetectlist.thtml',
             'item' => 'autodetectitem.thtml',
@@ -477,7 +477,7 @@ function listServices()
     $text_arr = array(
         'has_extras' => true,
         'form_url'   => $_CONF['site_admin_url'] . '/trackback.php',
-        'help_url'   => getHelpUrl() . '#ping',
+        'help_url'   => COM_getDocumentUrl('docs', "trackback.html") . '#ping',
     );
 
     $query_arr = array(
@@ -560,11 +560,11 @@ function editServiceForm($pid, $msg = '', $new_name = '', $new_site_url = '', $n
 
     $token = SEC_createToken();
 
-    $retval .= COM_startBlock($LANG_TRB['edit_service'], getHelpUrl() . '#ping',
+    $retval .= COM_startBlock($LANG_TRB['edit_service'], COM_getDocumentUrl('docs', "trackback.html") . '#ping',
         COM_getBlockTemplate('_admin_block', 'header'));
     $retval .= SEC_getTokenExpiryNotice($token);
 
-    $template = COM_newTemplate($_CONF['path_layout'] . 'admin/trackback');
+    $template = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout'] . 'admin/trackback'));
     $template->set_file(array('editor' => 'serviceeditor.thtml'));
     $template->set_var('max_url_length', 255);
     $template->set_var('method_ping', 'weblogUpdates.ping');
@@ -581,19 +581,9 @@ function editServiceForm($pid, $msg = '', $new_name = '', $new_site_url = '', $n
     $template->set_var('lang_cancel', $LANG_ADMIN['cancel']);
 
     if ($pid > 0) {
-        $delbutton = '<input type="submit" value="' . $LANG_ADMIN['delete']
-            . '" name="servicemode[2]"%s' . XHTML . '>';
-        $jsconfirm = ' onclick="return confirm(\'' . $MESSAGE[76] . '\');"';
-        $template->set_var('delete_option',
-            sprintf($delbutton, $jsconfirm));
-        $template->set_var('delete_option_no_confirmation',
-            sprintf($delbutton, ''));
-
         $template->set_var('allow_delete', true);
         $template->set_var('lang_delete', $LANG_ADMIN['delete']);
         $template->set_var('confirm_message', $MESSAGE[76]);
-    } else {
-        $template->set_var('delete_option', '');
     }
 
     if (isset($A['pid'])) {
@@ -743,7 +733,7 @@ function freshTrackback()
 
     $freshurl = $_CONF['site_admin_url'] . '/trackback.php?mode=fresh';
 
-    $retval .= COM_startBlock($LANG_TRB['trackback'], getHelpUrl(),
+    $retval .= COM_startBlock($LANG_TRB['trackback'], COM_getDocumentUrl('docs', "trackback.html"),
         COM_getBlockTemplate('_admin_block', 'header'));
     $retval .= sprintf($LANG_TRB['trackback_note'], $freshurl);
     $retval .= COM_endBlock();
@@ -762,32 +752,10 @@ function freshPingback()
 
     $freshurl = $_CONF['site_admin_url'] . '/trackback.php?mode=freepb';
 
-    $retval .= COM_startBlock($LANG_TRB['pingback'], getHelpUrl(),
+    $retval .= COM_startBlock($LANG_TRB['pingback'], COM_getDocumentUrl('docs', "trackback.html"),
         COM_getBlockTemplate('_admin_block', 'header'));
     $retval .= sprintf($LANG_TRB['pingback_note'], $freshurl);
     $retval .= COM_endBlock();
-
-    return $retval;
-}
-
-/**
- * Get URL of the help file (trackback.html)
- *
- * @return   string  full URL of trackback.html
- */
-function getHelpUrl()
-{
-    global $_CONF;
-
-    $retval = '';
-
-    $doclang = COM_getLanguageName();
-    $docs = 'docs/' . $doclang . '/trackback.html';
-    if (file_exists($_CONF['path_html'] . $docs)) {
-        $retval = $_CONF['site_url'] . '/' . $docs;
-    } else {
-        $retval = $_CONF['site_url'] . '/docs/english/trackback.html';
-    }
 
     return $retval;
 }
@@ -970,7 +938,7 @@ if (($mode === 'delete') && SEC_checkToken()) {
     if (!empty($title)) {
         $display .= COM_startBlock(sprintf($LANG_TRB['send_pings_for'], $title));
 
-        $template = COM_newTemplate($_CONF['path_layout'] . 'admin/trackback');
+        $template = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout'] . 'admin/trackback'));
         $template->set_file(array('form' => 'pingform.thtml'));
         $template->set_var('php_self', $_CONF['site_admin_url'] . '/trackback.php');
         $template->set_var('lang_may_take_a_while', $LANG_TRB['may_take_a_while']);
@@ -1053,7 +1021,7 @@ if (($mode === 'delete') && SEC_checkToken()) {
     // Check if item exist
     if (!empty($fulltext)) {
         $display .= COM_startBlock($LANG_TRB['select_url'],
-                getHelpUrl() . '#trackback')
+                COM_getDocumentUrl('docs', "trackback.html") . '#trackback')
             . prepareAutodetect($type, $id, $fulltext)
             . COM_endBlock();
         $display = COM_createHTMLDocument($display, array('pagetitle' => $LANG_TRB['trackback']));

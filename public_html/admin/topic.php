@@ -43,7 +43,7 @@ require_once '../lib-common.php';
 require_once 'auth.inc.php';
 
 // Geeklog story function library
-require_once $_CONF['path_system'] . 'lib-story.php';
+require_once $_CONF['path_system'] . 'lib-article.php';
 
 $display = '';
 
@@ -78,6 +78,7 @@ function edittopic($tid = '')
         $A = array(
             'tid'          => '',
             'topic'        => '',
+            'title'        => '',
             'sortnum'      => 0,
             'parent_id'    => TOPIC_ROOT,
             'inherit'      => 1,
@@ -116,17 +117,9 @@ function edittopic($tid = '')
         SEC_setDefaultPermissions($A, $_CONF['default_permissions_topic']);
         $access = 3;
     }
-    $topic_templates = COM_newTemplate($_CONF['path_layout'] . 'admin/topic');
+    $topic_templates = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout'] . 'admin/topic'));
     $topic_templates->set_file('editor', 'topiceditor.thtml');
     if (!empty($tid) && SEC_hasRights('topic.edit')) {
-        $delButton = '<input type="submit" value="' . $LANG_ADMIN['delete']
-            . '" name="mode"%s' . XHTML . '>';
-        $jsConfirm = ' onclick="return confirm(\'' . $MESSAGE[76] . '\');"';
-        $topic_templates->set_var('delete_option',
-            sprintf($delButton, $jsConfirm));
-        $topic_templates->set_var('delete_option_no_confirmation',
-            sprintf($delButton, ''));
-
         $topic_templates->set_var('allow_delete', true);
         $topic_templates->set_var('lang_delete', $LANG_ADMIN['delete']);
         $topic_templates->set_var('confirm_message', $MESSAGE[76]);
@@ -140,6 +133,11 @@ function edittopic($tid = '')
     $topic_templates->set_var('lang_topicid', $LANG27[2]);
     $topic_templates->set_var('topic_id', $A['tid']);
 
+    $topic_templates->set_var('lang_topic_title', $LANG27['topic_title']);
+    $topic_templates->set_var('lang_topic_title_description', $LANG27['topic_title_desc']);
+    $topic_templates->set_var('topic_title', $A['title']);
+    
+    
     $topic_templates->set_var('lang_parent_id', $LANG27[32]);
     $topic_templates->set_var('parent_id_options',
         TOPIC_getTopicListSelect($A['parent_id'], 1, false, $A['tid'], true));
@@ -187,10 +185,13 @@ function edittopic($tid = '')
         if ($A['sortnum'] == 0) {
             $A['sortnum'] = '';
         }
-        $topic_templates->set_var('sort_order', '<input type="text" class="uk-input uk-form-width-xsmall" size="5" maxlength="5" name="sortnum" value="' . $A['sortnum'] . '"' . XHTML . '>');
+        $topic_templates->set_var('sort_numeric', true);
+        $topic_templates->set_var('sort_order', $A['sortnum']);
     } else {
+        $topic_templates->clear_var('sort_numeric');
         $topic_templates->set_var('lang_sortorder', $LANG27[14]);
-        $topic_templates->set_var('sort_order', $LANG27[15] . '<input type="hidden" name="sortnum" value="' . $A['sortnum'] . '"' . XHTML . '>');
+        $topic_templates->set_var('lang_alphabetical', $LANG27[15]);
+        $topic_templates->set_var('sort_order', $A['sortnum']);
     }
     $topic_templates->set_var('lang_storiesperpage', $LANG27[11]);
     if ($A['limitnews'] == 0) {
@@ -361,7 +362,7 @@ function changetopicid($tid, $old_tid)
  * @return   string                   HTML redirect or error message
  */
 function savetopic(
-    $tid, $topic, $inherit, $hidden, $parent_id, $imageUrl, $meta_description, $meta_keywords, $sortNum, $limitNews,
+    $tid, $topic, $title, $inherit, $hidden, $parent_id, $imageUrl, $meta_description, $meta_keywords, $sortNum, $limitNews,
     $owner_id, $group_id, $perm_owner, $perm_group, $perm_members, $perm_anon, $is_default, $is_archive)
 {
     global $_CONF, $_TABLES, $_USER, $LANG27, $MESSAGE;
@@ -466,6 +467,8 @@ function savetopic(
 
             $topic = GLText::remove4byteUtf8Chars(GLText::stripTags($topic));
             $topic = DB_escapeString($topic);
+            $title = GLText::remove4byteUtf8Chars(GLText::stripTags($title));
+            $title = DB_escapeString($title);            
             $meta_description = GLText::remove4byteUtf8Chars(GLText::stripTags($meta_description));
             $meta_description = DB_escapeString($meta_description);
             $meta_keywords = GLText::remove4byteUtf8Chars(GLText::stripTags($meta_keywords));
@@ -526,7 +529,7 @@ function savetopic(
                 }
             }
 
-            DB_save($_TABLES['topics'], 'tid, topic, inherit, hidden, parent_id, imageurl, meta_description, meta_keywords, sortnum, limitnews, is_default, archive_flag, owner_id, group_id, perm_owner, perm_group, perm_members, perm_anon', "'$tid', '$topic', $inherit, $hidden, '$parent_id', '$imageUrl', '$meta_description', '$meta_keywords','$sortNum','$limitNews',$is_default,'$is_archive',$owner_id,$group_id,$perm_owner,$perm_group,$perm_members,$perm_anon");
+            DB_save($_TABLES['topics'], 'tid, topic, title, inherit, hidden, parent_id, imageurl, meta_description, meta_keywords, sortnum, limitnews, is_default, archive_flag, owner_id, group_id, perm_owner, perm_group, perm_members, perm_anon', "'$tid', '$topic', '$title', $inherit, $hidden, '$parent_id', '$imageUrl', '$meta_description', '$meta_keywords','$sortNum','$limitNews',$is_default,'$is_archive',$owner_id,$group_id,$perm_owner,$perm_group,$perm_members,$perm_anon");
 
             if ($old_tid != $tid) {
                 PLG_itemSaved($tid, 'topic', $old_tid);
@@ -952,6 +955,7 @@ if (($mode == $LANG_ADMIN['delete']) && !empty($LANG_ADMIN['delete'])) {
     $display .= savetopic(
         Geeklog\Input::fPost('tid'),
         Geeklog\Input::post('topic_name'),
+        Geeklog\Input::post('topic_title'),
         $inherit, $hidden, $parent_id, $imageurl,
         Geeklog\Input::post('meta_description'),
         Geeklog\Input::post('meta_keywords'),

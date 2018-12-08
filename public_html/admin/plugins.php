@@ -107,10 +107,9 @@ function plugin_info_installed($pi_name)
 
     $A = DB_fetchArray($result);
 
-    $plg_templates = COM_newTemplate($_CONF['path_layout'] . 'admin/plugins');
+    $plg_templates = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout'] . 'admin/plugins'));
     $plg_templates->set_file('editor', 'editor.thtml');
-    $plg_templates->set_var('start_block_editor', COM_startBlock('', '', COM_getBlockTemplate('_admin_block', 'header')));
-    $plg_templates->set_var('title', $LANG32[13]);
+    $plg_templates->set_var('start_block_editor', COM_startBlock($LANG32[13], '', COM_getBlockTemplate('_admin_block', 'header')));
     $plg_templates->set_var('pi_icon', PLG_getIcon($pi_name));
     $plugin_code_version = PLG_chkVersion($pi_name);
     if (empty($plugin_code_version)) {
@@ -119,14 +118,6 @@ function plugin_info_installed($pi_name)
         $code_version = $plugin_code_version;
     }
     $pi_installed_version = $A['pi_version'];
-    if (empty ($plugin_code_version) ||
-        ($pi_installed_version == $code_version)
-    ) {
-        $plg_templates->set_var('update_option', '');
-    } else {
-        $plg_templates->set_var('update_option', '<button type="submit" value="'
-            . $LANG32[34] . '" name="mode" class="uk-form">' . $LANG32[34] . '</button>');
-    }
     $plg_templates->set_var('lang_pluginname', $LANG32[26]);
     $plg_templates->set_var('pi_name', $pi_name);
     $plg_templates->set_var('pi_display_name', plugin_get_pluginname($pi_name));
@@ -148,7 +139,8 @@ function plugin_info_installed($pi_name)
             . '/functions.inc')) {
             $plg_templates->set_var('pi_enabled', $LANG32[21]);
         } else {
-            $plg_templates->set_var('pi_enabled', '<div class="status_red">' . $LANG32[54] . '</div>');
+            $plg_templates->set_var('pi_unavailable', true);
+            $plg_templates->set_var('pi_enabled', $LANG32[54]);
         }
     }
     $plg_templates->set_var('back', $LANG32[60]);
@@ -182,7 +174,7 @@ function plugin_info_uninstalled($pi_name)
     $params = PLG_getParams($pi_name);
 
     // Do template stuff
-    $plg_templates = COM_newTemplate($_CONF['path_layout'] . 'admin/plugins');
+    $plg_templates = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout'] . 'admin/plugins'));
     $plg_templates->set_file('editor', 'info.thtml');
     $plg_templates->set_var('start_block_editor', COM_startBlock('',
         '', COM_getBlockTemplate('_admin_block', 'header')));
@@ -481,10 +473,10 @@ function listplugins($token)
     // this is a dummy variable so we know the form has been used if all plugins
     // should be disabled in order to disable the last one.
     $form_arr = array(
-        'top'    => '<div><input type="hidden" name="' . CSRF_TOKEN . '" value="'
-            . $token . '"' . XHTML . '></div>',
-        'bottom' => '<div><input type="hidden" name="pluginenabler" value="true"'
-            . XHTML . '></div>',
+        'top'    => '<input type="hidden" name="' . CSRF_TOKEN . '" value="'
+            . $token . '"' . XHTML . '>',
+        'bottom' => '<input type="hidden" name="pluginenabler" value="true"'
+            . XHTML . '>',
     );
 
     $retval .= ADMIN_list('plugins', 'ADMIN_getListField_plugins', $header_arr,
@@ -606,6 +598,10 @@ function plugin_upload_enabled()
     // If 'file_uploads' is enabled in php.ini
     // and the plugin directories are writable by the web server.
     $errors = array();
+    
+    if (isset($_CONF['demo_mode']) && $_CONF['demo_mode']) {
+        $errors[] = $LANG32[69];
+    }
     if (!ini_get('file_uploads')) {
         $errors[] = $LANG32[66];
     }
@@ -638,34 +634,33 @@ function plugin_show_uploadform($token)
 {
     global $_CONF, $LANG28, $LANG32;
 
-    $retval = '';
-
-    $retval .= COM_startBlock($LANG32[39], '',
-        COM_getBlockTemplate('_admin_block', 'header'));
+    $plg_templates = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout'] . 'admin/plugins'));
+    $plg_templates->set_file('upload', 'upload.thtml');    
+    $plg_templates->set_var('start_block_editor', COM_startBlock('', '', COM_getBlockTemplate('_admin_block', 'header')));    
 
     // Check if all the requirements needed to upload a plugin are met
     $errors = plugin_upload_enabled();
     if (count($errors) == 0) {
         // Show the upload form
-        $retval .= '<p>' . $LANG32[40] . '</p>' . LB
-            . '<form name="plugins_upload" action="' . $_CONF['site_admin_url']
-            . '/plugins.php" method="post" enctype="multipart/form-data">' . LB
-            . '<div>' . $LANG28[29] . ': '
-            . '<input type="file" dir="ltr" name="plugin" size="40"' . XHTML . '> ' . LB
-            . '<button type="submit" name="upload" value="' . $LANG32[41] . '" class="uk-form">' . $LANG32[41] . '</button>' . LB
-            . '<input type="hidden" name="' . CSRF_TOKEN . '" value="' . $token . '"' . XHTML . '>'
-            . '</div>' . LB . '</form>' . LB;
+        $plg_templates->set_var('lang_message', $LANG32[40]);
+        $plg_templates->set_var('lang_file_title', $LANG28[29]);
+        $plg_templates->set_var('lang_upload', $LANG32[41]);
+        $plg_templates->set_var('gltoken', SEC_createToken());
+        $plg_templates->set_var('gltoken_name', CSRF_TOKEN);
+        $plg_templates->set_var('end_block', COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer')));        
     } else {
         // Show the errors
-        $retval .= '<p>' . $LANG32[65] . '</p>' . LB . '<div><ul>' . LB;
+        $plg_templates->set_var('show_errors', true);
+        $plg_templates->set_var('lang_error_message', $LANG32[65]);
+        $plg_templates->set_block('upload', 'error_items'); 
         foreach ($errors as $key => $value) {
-            $retval .= "<li class=\"url\">$value</li>";
+            $plg_templates->set_var('error_item', $value);
+            $plg_templates->parse('error_items', 'error_items', true);
+            
         }
-        $retval .= '</ul></div>' . LB;
     }
-    $retval .= COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
-
-    return $retval;
+    
+    return $plg_templates->finish($plg_templates->parse('output', 'upload'));
 }
 
 /**
@@ -1316,17 +1311,8 @@ if ($mode === 'delete') {
             } else {
                 COM_redirect($_CONF['site_admin_url'] . '/plugins.php?msg=' . $msg);
             }
-        } else { // ask user for confirmation
-            $token = SEC_CreateToken();
-            $message = $LANG32[31];
-            $message .= "<form action='{$_CONF['site_admin_url']}/plugins.php' method='GET'><div>";
-            $message .= "<input type='hidden' name='pi_name' value='" . $pi_name . "'" . XHTML . ">";
-            $message .= "<input type='hidden' name='mode' value='delete'" . XHTML . ">";
-            $message .= "<input type='hidden' name='confirmed' value='1'" . XHTML . ">";
-            $message .= "<input type='hidden' name='" . CSRF_TOKEN . "' value='" . $token . "'" . XHTML . ">";
-            $message .= "<input type='submit' value='{$LANG32[25]}'" . XHTML . ">";
-            $message .= "</div></form><p>";
-            $display = plugin_main($message, $token);
+        } else {
+            COM_redirect($_CONF['site_admin_url'] . '/plugins.php');
         }
     } else {
         COM_redirect($_CONF['site_admin_url'] . '/plugins.php');

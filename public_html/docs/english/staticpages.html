@@ -74,6 +74,8 @@ Again, this option <em>will</em> enable execution of PHP. Only this time, the PH
 
 <p>Please note that you should only use letters and digits for the page ID. Avoid national special characters, most punctuation characters ('-' and '.' should be okay, though) and spaces. The static page editor will catch some illegal characters but not all of them ...</p>
 
+<h2><a name="multi-language">Multi Language Support</a></h2>
+<p>The Staticpage plugin also supports multiple languages (same as articles, blocks and topics). This means you can have a staticpage with the same id but a different language encoded into it. For example when multiple languages is enabled (see the following <a href="https://www.geeklog.net/docs/english/config.html#languages">language config settings</a> for more information) staticpage ids like "exampleid_en" refers to the English version of the staticpage "exampleid". The page "exampleid_ja" refers to the Japanese version. If both pages exist and depending on what language the visitor is using the appropriate page will be displayed. For more information on how this works you can also read <a href="http://wiki.geeklog.net/index.php/Multi-Language_Support">Geeklog's Multi-Lanaguage Wiki support page</a>.</p>
 
 <h2><a name="frontpage">Using Static Pages on the index page</a></h2>
 
@@ -140,7 +142,11 @@ Again, this option <em>will</em> enable execution of PHP. Only this time, the PH
 
 <p>As all objects in Geeklog, static pages have an owner (the user that created the static page). When that user's account is deleted for some reason, any static pages owned by that user can either be deleted as well or they can be assigned to another user in Geeklog's Root group.</p>
 
-<p>In the Configuration admin panel for the static pages plugin, you can set the "<a href="#desc_delete_pages">Delete Pages with Owner?</a>" option to either "False" (which is also the default), meaning that static pages will not be deleted withtheir owner, but assigned to a member of the Root group instead (the user withthe lowest user ID, most likely the Admin). Setting the option to "True" means that static pages will be deleted when their owner's account is deleted.</p>
+<p>In the Configuration admin panel for the static pages plugin, you can set the "<a href="#desc_delete_pages">Delete Pages with Owner?</a>" option to either "False" (which is also the default), meaning that static pages will not be deleted with their owner, but assigned to a member of the Root group instead (the user with the lowest user ID, most likely the Admin). Setting the option to "True" means that static pages will be deleted when their owner's account is deleted.</p>
+
+<h2><a name="template">Template Static Pages</a></h2>
+
+<p>As of Geeklog 1.7.1, you now have the ability for a Static Page to use another Static Page as a template. What this allows you to do is create one template page and then have it be used by one or more other Static Pages as a base. This feature is ideal for people who have a number of similar formatted Static Pages. For example if you have a bunch of product pages that need to look the same but they have different titles, product image, and product description. For more information on how to do this and some examples please read the Geeklog Wiki about <a href="http://wiki.geeklog.net/Static_Pages_Plugin#Template_Static_Pages">Staticpage Templates</a>.</p>
 
 <h2><a name="config.php">Configuration</a></h2>
 
@@ -160,7 +166,7 @@ the Configuration admin panel:</p>
   <td>Allows you to globally allow or disallow the <a href="#php">use of PHP</a>
     in static pages, i.e. it overrides the setting on individual pages.</td>
 </tr>
-<tr class="r2">
+<tr>
   <td><a name="desc_sort_by">sort_by</a></td>
   <td>'id'</td>
   <td>Define sort order when more than one static page is displayed in
@@ -173,7 +179,7 @@ the Configuration admin panel:</p>
   <td>Define sort order for static pages in the site's menu. Allows sorting by
     page label, page ID, page title, and date of last change.</td>
 </tr>
-<tr class="r2">
+<tr>
   <td><a name="desc_sort_list_by">sort_list_by</a></td>
   <td>'title'</td>
   <td>Defines the default sort order for the admin's list of static pages.
@@ -185,9 +191,12 @@ the Configuration admin panel:</p>
   <td>Specify what should happen to a static page when its owner (i.e. the user
     who created the page) is deleted. 'True' would delete the page, 'False'
     will assign it to a user in the "Root" group (usually the user with the
-    lowest user ID).</td>
+    lowest user ID). Note: If set to 'True' some pages may not be deleted. For 
+    example if the page is a template that is currently be used by other pages, 
+    or other security reasons. If this happens then the page will be assigned 
+    to a user in the "Root" group.</td>
 </tr>
-<tr class="r2">
+<tr>
   <td><a name="desc_in_block">in_block</a></td>
   <td>true</td>
   <td>Whether to display the content of static pages inside a block template or
@@ -196,12 +205,12 @@ the Configuration admin panel:</p>
 <tr>
   <td><a name="desc_show_hits">show_hits</a></td>
   <td>true</td>
-  <td>Whether to show the number of hits for a static page. This is also used for the default per page setting and it overrides the per page setting.</td>
+  <td>Whether to show the number of hits for a static page. This is also used for the default when creating a new page. Setting this to false overrides the per page setting.</td>
 </tr>
-<tr class="r2">
+<tr>
   <td><a name="desc_show_date">show_date</a></td>
   <td>true</td>
-  <td>Whether to show the date and time of the last change to a static page. This is also used for the default per page setting and it overrides the per page setting.</td>
+  <td>Whether to show the date and time of the last change to a static page. This is also used for the default when creating a new page. Setting this to false overrides the per page setting.</td>
 </tr>
 <tr>
   <td><a name="desc_filter_html">filter_html</a></td>
@@ -209,7 +218,7 @@ the Configuration admin panel:</p>
   <td>Whether HTML in static pages should be run through Geeklog's HTML filter
     option.</td>
 </tr>
-<tr class="r2">
+<tr>
   <td><a name="desc_censor">censor</a></td>
   <td>false</td>
   <td>Whether the content of the static page should be run through Geeklog's
@@ -226,7 +235,7 @@ the Configuration admin panel:</p>
     <li>'admin': go to the "Admin Home" page, i.e. Command &amp; Control</li>
     </ul></td>
 </tr>
-<tr class="r2">
+<tr>
   <td><a name="desc_atom_max_items">atom_max_items</a></td>
   <td>10</td>
   <td>Max. number of static pages returned when an Atom feed is requested
@@ -237,7 +246,7 @@ the Configuration admin panel:</p>
   <td>false</td>
   <td>Whether to include the meta tags of the staticpage when it is displayed.</td>
 </tr>
-<tr class="r2">
+<tr>
   <td><a name="desc_comment_code">comment_code</a></td>
   <td>-1</td>
   <td>Allows you to define whether new Static Pages will allow comments (0) or
@@ -254,7 +263,7 @@ the Configuration admin panel:</p>
   <td>0</td>
   <td>Whether the page's breadcrumbs should be displayed (0) or not (1).</td>
 </tr>
-<tr class="r2">
+<tr>
   <td><a name="desc_default_cache_time">default_cache_time</a></td>
   <td>0</td>
   <td>The default cache time for a staticpage. Possible values:<br />
@@ -278,7 +287,7 @@ the Configuration admin panel:</p>
   <td valign="top"><a name="desc_newstaticpagesinterval">newstaticpagesinterval</a></td>
   <td valign="top">1209600</td>
   <td valign="top">Static pages are "new" if they are this many seconds old.</td></tr>
-<tr class="r2">
+<tr>
   <td valign="top"><a name="desc_hidenewstaticpages">hidenewstaticpages</a></td>
   <td valign="top">'hide'</td>
   <td valign="top">Set to 'modified' date or 'created' date to display new static pages in the What's New block.</td></tr>
@@ -286,7 +295,7 @@ the Configuration admin panel:</p>
   <td valign="top"><a name="desc_title_trim_length">title_trim_length</a></td>
   <td valign="top">20</td>
   <td valign="top">Max. length of the title of items listed in the What's New block.</td></tr>
-<tr class="r2">
+<tr>
   <td valign="top"><a name="desc_includecenterblocks">includecenterblocks</a></td>
   <td valign="top">false</td>
   <td valign="top">Set to true to include static pages that are displayed as a center block.</td></tr>
@@ -308,7 +317,7 @@ the Configuration admin panel:</p>
   <td valign="top"><a name="desc_includesearch">includesearch</a></td>
   <td valign="top">true</td>
   <td valign="top">Set to true to enable static pages in search results.</td></tr>
-<tr class="r2">
+<tr>
   <td valign="top"><a name="desc_includesearchcenterblocks">includesearchcenterblocks</a></td>
   <td valign="top">false</td>
   <td valign="top">Set to true to include static pages that are displayed as a center block.</td></tr>
@@ -318,6 +327,73 @@ the Configuration admin panel:</p>
   <td valign="top">Set to true to include static pages that execute PHP.</td></tr>
 </table>
 
+<h3><a name="search">Default Permissions</a></h3>
+
+<table>
+<tr><th style="width:25%">Variable</th>
+    <th style="width:25%">Default Value</th>
+    <th style="width:50%">Description</th>
+</tr>
+<tr>
+  <td valign="top"><a name="desc_default_permissions_0">default_permissions[0]</a></td>
+  <td valign="top"><em>Read-Write</em></td>
+  <td valign="top">Default permission for Owner of new page.</td></tr>
+<tr>
+  <td valign="top"><a name="desc_default_permissions_1">default_permissions[1]</a></td>
+  <td valign="top"><em>Read-Only</em></td>
+  <td valign="top">Default permission for Group of new page.</td></tr>
+<tr>
+  <td valign="top"><a name="desc_default_permissions_2">default_permissions[2]</a></td>
+  <td valign="top"><em>Read-Only</em></td>
+  <td valign="top">Default permission for all logged in users of new page.</td></tr>
+<tr>
+  <td valign="top"><a name="desc_default_permissions_3">default_permissions[3]</a></td>
+  <td valign="top"><em>Read-Only</em></td>
+  <td valign="top">Default permission for all anonymous visitors of new page.</td></tr>
+</table>
+
+<h3><a name="search">Autotag Usage Permissions</a></h3>
+
+<table>
+<tr><th style="width:25%">Variable</th>
+    <th style="width:25%">Default Value</th>
+    <th style="width:50%">Description</th>
+</tr>
+<tr>
+  <td valign="top"><a name="desc_autotag_permissions_staticpage_0">autotag_permissions_staticpage[0]</a></td>
+  <td valign="top"><em>Use</em></td>
+  <td valign="top">Usage permission for autotag [staticpage: ] and [page: ] by autotag Owner (Default Root User).</td></tr>
+<tr>
+  <td valign="top"><a name="desc_autotag_permissions_staticpage_1">autotag_permissions_staticpage[1]</a></td>
+  <td valign="top"><em>Use</em></td>
+  <td valign="top">Usage permission for autotag [staticpage: ] and [page: ] by Static Page Admin Group.</td></tr>
+<tr>
+  <td valign="top"><a name="desc_autotag_permissions_staticpage_2">autotag_permissions_staticpage[2]</a></td>
+  <td valign="top"><em>Use</em></td>
+  <td valign="top">Usage permission for autotag [staticpage: ] and [page: ] by all logged in users.</td></tr>
+<tr>
+  <td valign="top"><a name="desc_autotag_permissions_staticpage_3">autotag_permissions_staticpage[3]</a></td>
+  <td valign="top"><em>Use</em></td>
+  <td valign="top">Usage permission for autotag [staticpage: ] and [page: ] by anonymous users.</td></tr>
+
+<tr>
+  <td valign="top"><a name="desc_autotag_permissions_staticpage_content_0">autotag_permissions_staticpage_content[0]</a></td>
+  <td valign="top"><em>Use</em></td>
+  <td valign="top">Usage permission for autotag [staticpage_content: ] and [page_content: ] by autotag Owner (Default Root User).</td></tr>
+<tr>
+  <td valign="top"><a name="desc_autotag_permissions_staticpage_content_1">autotag_permissions_staticpage_content[1]</a></td>
+  <td valign="top"><em>Use</em></td>
+  <td valign="top">Usage permission for autotag [staticpage_content: ] and [page_content: ] by Static Page Admin Group.</td></tr>
+<tr>
+  <td valign="top"><a name="desc_autotag_permissions_staticpage_content_2">autotag_permissions_staticpage_content[2]</a></td>
+  <td valign="top"><em>Use</em></td>
+  <td valign="top">Usage permission for autotag [staticpage_content: ] and [page_content: ] by all logged in users.</td></tr>
+<tr>
+  <td valign="top"><a name="desc_autotag_permissions_staticpage_content_3">autotag_permissions_staticpage_content[3]</a></td>
+  <td valign="top"><em>Use</em></td>
+  <td valign="top">Usage permission for autotag [staticpage_content: ] and [page_content: ] by anonymous users.</td></tr> 
+</table>
+
 
 <h2><a name="autotags">Autotags</a></h2>
 
@@ -325,11 +401,11 @@ the Configuration admin panel:</p>
 <code>[staticpage:]</code> and <code>[staticpage_content:]</code>.</p>
 
 <ul>
-<li>The <code>[staticpage:]</code> autotag will provide a link to a static page.
+<li>The <code>[staticpage:]</code> or <code>[page:]</code> autotag will provide a link to a static page.
     Simply add the page's ID after the colon. By default, the title of the
     static page will be used as the link text. You can provide your own link
     text after the page ID (but before the closing bracket).</li>
-<li>The <code>[staticpage_content:]</code> autotag will be replaced with the
+<li>The <code>[staticpage_content:]</code> or <code>[page_content:]</code> autotag will be replaced with the
     contents of the static page in question. This can be useful when you need
     to use a piece of text in more than one place.</li>
 </ul>

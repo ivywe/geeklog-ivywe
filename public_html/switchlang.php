@@ -42,78 +42,39 @@ require_once 'lib-common.php';
 * @param    string  $oldLang    old, i.e. current language
 * @return   string              new URL after the language switch
 */
-function switch_language($url, $newLang, $oldLang)
+function switch_language($url, $newLang, $oldLang, $itemId, $itemType)
 {
-    global $_CONF;
-
-    if (empty($newLang) || empty($oldLang) || (strlen($newLang) !== strlen($oldLang))) {
+    global $_CONF, $_URL;
+    
+    // See if we need to figure out new URL (ie is url language specific and are any variables missing)
+    if (empty($itemType) || empty($itemId) || empty($newLang) || empty($oldLang) || (strlen($newLang) !== strlen($oldLang))) {
         return $url;
     }
-
-    $lang_len = strlen($oldLang);
-    $url_rewrite = false;
-    $q = false;
-
-    if ($_CONF['url_rewrite']) {
-        // check for "rewritten" URLs with a '?', e.g. search query highlighting
-        $q = strpos($url, '?');
-        if (($q === false) || (substr($url, $q - 4, 4) !== '.php')) {
-            $url_rewrite = true;
+    
+    $retval = "";
+    
+    // Technically we don't care about if normal url, rewrite url, or routed url as id will be the same
+    // Still not 100% perfect search solution as other variables in string may have the exact same id (though highly unlikely)
+    $pos = strrpos($itemId, "_");
+    if ($pos) {
+        $newItemId = substr($itemId, 0, $pos) . '_' . $newLang;
+        
+        if ($_CONF['switchlang_homepage']) {
+            // Figure out if new item exists or user has access
+            $newItemId = PLG_getItemInfo($itemType, $newItemId, 'id'); // if it does the id will be returned
         }
-    }
-
-    if ($url_rewrite) {
-        $the_url = ($q === false) ? $url : substr($url, 0, $q);
-
-        // for "rewritten" URLs we assume that the first parameter after
-        // the script name is the ID, e.g. /article.php/story-id-here_en
-        // Geeklog2.1.3から追加 e.g. /index.php/topic/home_en
-        // hack by hiroron 2017/08/16
-        $changed = false;
-        $p = explode('/', $the_url);
-        $parts = count($p);
-        for ($i = 0; $i < $parts; $i++) {
-            if (substr($p[$i], -4) === '.php') {
-                // (NG)found the script name - assume next parameter is the ID
-                // script名以降のどこかにlangIDがある(nextではなくなった)
-                for ($j = $i; $j < $parts; $j++) {
-                  if (isset($p[$j + 1])) {
-                      if (substr($p[$j + 1], -($lang_len + 1)) === '_' . $oldLang) {
-                          $p[$j + 1] = substr_replace($p[$j + 1], $newLang, -$lang_len);
-                          $changed = true;
-                          break;
-                      }
-                  }
-                }
-                break;
-            }
-        }
-
-        if ($changed) {
-            // merge the pieces back together
-            $url = ($q === false)
-                ? implode('/', $p)
-                : implode('/', $p) . substr($url, $q);
-        }
-
-        $retval = $url;
-    } else { // URL contains '?' or '&'
-        $url = explode('&', $url);
-        $urlPart = $url[0];
-        if (count($url) > 1) {
-            array_shift($url);
-            $extra_vars = '&' . implode('&', $url);
+        
+        if (!(empty($newItemId))) {
+            $retval = str_replace($itemId, $newItemId, $url);
         } else {
-            $extra_vars = '';
+            // Doesn't exist so homepage
+            $retval = $_CONF['site_url'] . '/';
         }
-
-        if (substr($urlPart, -($lang_len + 1)) === '_' . $oldLang) {
-            $urlPart = substr_replace($urlPart, $newLang, -$lang_len);
-        }
-
-        $retval = $urlPart . $extra_vars;
+    } else {
+        // Something went wrong so just return original url
+        $retval = $url;
     }
-
+    
     return $retval;
 }
 
@@ -131,13 +92,9 @@ if ($_CONF['allow_user_language'] == 1) {
     $lang = strtolower(COM_applyFilter(COM_getArgument('lang')));
     $lang = preg_replace('/[^a-z0-9\-_]/', '', $lang);
     $oldLang = COM_getLanguageId();
-
-    // Code provided by hiroron
-    if ($lang === $oldLang) {
-        $langFromUrl = COM_getLanguageFromURL($ret_url);
-        $oldLang = empty($langFromUrl) ? $oldLang : $langFromUrl;
-    }
-
+    $itemId = Geeklog\Input::fRequest('itemid', '');
+    $itemType = Geeklog\Input::fRequest('itemtype', '');
+    
     // do we really have a new language to switch to?
     if (!empty($lang) && array_key_exists($lang, $_CONF['language_files'])) {
         // does such a language file exist?
@@ -161,7 +118,7 @@ if ($_CONF['allow_user_language'] == 1) {
 
     // Change the language ID if needed
     if (!empty($ret_url) && !empty($lang) && !empty($oldLang)) {
-        $ret_url = switch_language($ret_url, $lang, $oldLang);
+        $ret_url = switch_language($ret_url, $lang, $oldLang, $itemId, $itemType);
     }
 }
 

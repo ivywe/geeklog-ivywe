@@ -1,6 +1,7 @@
 <?php
+
 // +--------------------------------------------------------------------------+
-// | Geeklog 2.0                                                               |
+// | Geeklog 2.2                                                              |
 // +---------------------------------------------------------------------------+
 // | clearctl.php                                                             |
 // |                                                                          |
@@ -31,7 +32,7 @@ require_once '../lib-common.php';
 
 $display = '';
 
-if (!SEC_inGroup ('Root')) {
+if (!SEC_inGroup('Root') && !SEC_inGroup('Theme Admin')) {
     $display .= COM_showMessageText($MESSAGE[29], $MESSAGE[30]);
     $display = COM_createHTMLDocument($display, array('pagetitle' => $MESSAGE[30]));
     COM_accessLog("User {$_USER['username']} tried to illegally access the clear cache.");
@@ -42,6 +43,40 @@ if (!SEC_inGroup ('Root')) {
 /*
  * Main processing
  */
+ 
+// Clearing Theme Template Cache
+CTL_clearCache(); 
 
-CTL_clearCache();
+// Clearing Resource Cache (CSS, and Javascript concatenated and minified files)
+Geeklog\Cache::clear(); 
+
+// ********************************
+// Clean out Data directory (includes things like temp uploaded plugin files, user batch files, etc...)
+$leave_dirs = array('cache', 'layout_cache', 'layout_css');
+$leave_files = array('cacert.pem', 'README');
+COM_cleanDirectory($_CONF['path_data'], $leave_dirs, $leave_files);
+
+// ********************************
+// Clean out File Manager Thumbnail Files (article directory is also used by article editor to create thumbs of images)
+// See Geeklog Environment Check or Geeklog Installer Check Permissions for complete list of all image directories and how they are used by Geeklog
+$leave_dirs = array();
+$leave_files = array('index.html');
+COM_cleanDirectory($_CONF['path_images'] . '_thumbs/articles/', $leave_dirs, $leave_files);
+
+$leave_dirs = array();
+$leave_files = array('index.html');
+COM_cleanDirectory($_CONF['path_images'] . '_thumbs/userphotos/', $leave_dirs, $leave_files);
+
+$leave_dirs = array();
+$leave_files = array('index.html');
+COM_cleanDirectory($_CONF['path_images'] . '/library/Image/_thumbs/', $leave_dirs, $leave_files);
+
+$leave_dirs = array('articles', 'userphotos');
+$leave_files = array();
+COM_cleanDirectory($_CONF['path_images'] . '_thumbs/', $leave_dirs, $leave_files);
+
+// ********************************
+// Allow Plugins to clear any cached items
+PLG_clearCache(); 
+
 COM_redirect($_CONF['site_admin_url'] . '/index.php?msg=500');

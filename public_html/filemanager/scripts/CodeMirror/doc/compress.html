@@ -31,7 +31,7 @@
 
     <form id="form" action="http://marijnhaverbeke.nl/uglifyjs" method="post">
       <input type="hidden" id="download" name="download" value="codemirror-compressed.js"/>
-      <p>Version: <select class="uk-select" id="version" onchange="setVersion(this);" style="padding: 1px;">
+      <p>Version: <select id="version" onchange="setVersion(this);" style="padding: 1px;">
         <option value="http://codemirror.net/">HEAD</option>
         <option value="http://marijnhaverbeke.nl/git/codemirror?a=blob_plain;hb=4.0.3;f=">4.0</option>
         <option value="http://marijnhaverbeke.nl/git/codemirror?a=blob_plain;hb=3.23.0;f=">3.23</option>
@@ -79,7 +79,7 @@
         <option value="http://marijnhaverbeke.nl/git/codemirror?a=blob_plain;hb=beta1;f=">beta1</option>
       </select></p>
 
-      <select class="uk-select" multiple="multiple" size="20" name="code_url" style="width: 40em;" class="field" id="files">
+      <select multiple="multiple" size="20" name="code_url" style="width: 40em;" class="field" id="files">
         <optgroup label="CodeMirror Library">
           <option value="http://codemirror.net/lib/codemirror.js" selected>codemirror.js</option>
         </optgroup>
