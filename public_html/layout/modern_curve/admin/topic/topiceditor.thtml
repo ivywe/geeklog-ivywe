@@ -5,33 +5,41 @@
   <div class="admin_basic">
     <dl>
       <dt><label for="admin-topiceditor-topic">{lang_topicname}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" size="48" maxlength="75" {!if titletoid}onkeyup="TitleToId('admin-topiceditor-topic','admin-topiceditor-tid');" {!endif}value="{topic_name}" name="topic_name" id="admin-topiceditor-topic" class="text"{xhtml}></dd>
+      <dd><input type="text" size="48" maxlength="75" {!if titletoid}onkeyup="TitleToId('admin-topiceditor-topic','admin-topiceditor-tid');" {!endif}value="{topic_name}" name="topic_name" id="admin-topiceditor-topic" class="text"{xhtml}></dd>
 
       <dt><label for="admin-topiceditor-tid">{lang_topicid}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" size="48" maxlength="75" value="{topic_id}" name="tid" id="admin-topiceditor-tid" class="text"{xhtml}></dd>
+      <dd><input type="text" size="48" maxlength="75" value="{topic_id}" name="tid" id="admin-topiceditor-tid" class="text"{xhtml}></dd>
       <dd class="description">{lang_donotusespaces}</dd>
+      
+      <dt><label for="admin-topiceditor-title">{lang_topic_title}</label></dt>
+      <dd><input type="text" size="48" maxlength="128" value="{topic_title}" name="topic_title" id="admin-topiceditor-title" aria-describedby="desc-admin-topiceditor-title"{xhtml}></dd>
+      <dd class="description">{lang_topic_title_description}</dd>       
 
       <dt><label for="admin-topiceditor-inherit">{lang_inherit}</label></dt>
-      <dd><input type="checkbox" class="uk-checkbox" {inherit_checked} name="inherit" id="admin-topiceditor-inherit"{xhtml}><span class="fieldhelp">{lang_inherit_info}</span></dd>
+      <dd><input type="checkbox" {inherit_checked} name="inherit" id="admin-topiceditor-inherit"{xhtml}><span class="fieldhelp">{lang_inherit_info}</span></dd>
 
       <dt><label for="admin-topiceditor-hidden">{lang_hidden}</label></dt>
-      <dd><input type="checkbox" class="uk-checkbox" {hidden_checked} name="hidden" id="admin-topiceditor-hidden"{xhtml}><span class="fieldhelp">{lang_hidden_info}</span></dd>
+      <dd><input type="checkbox" {hidden_checked} name="hidden" id="admin-topiceditor-hidden"{xhtml}><span class="fieldhelp">{lang_hidden_info}</span></dd>
 
       <dt><label for="admin-topiceditor-parent_id">{lang_parent_id}</label></dt>
       <dd>
-        <select class="uk-select" name="parent_id" id="admin-topiceditor-parent_id">
+        <select name="parent_id" id="admin-topiceditor-parent_id">
             {parent_id_options}
         </select>
       </dd>
 
-      <dt>{lang_sortorder}</dt>
-      <dd>{sort_order}</dd>
+      <dt><label for="admin-topiceditor-sortnum">{lang_sortorder}</label></dt>
+      {!if sort_numeric}
+      <dd class="controls_text"><input type="text" size="5" maxlength="5" name="sortnum" id="admin-topiceditor-sortnum" value="{sort_order}"{xhtml}></dd>
+      {!else}
+      <dd class="controls_text">{lang_alphabetical}<input type="hidden" name="sortnum"  value="{sort_order}"{xhtml}></dd>
+      {!endif}
 
       <dt><label for="admin-topiceditor-limitnews">{lang_storiesperpage}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-xsmall" size="3" maxlength="3" value="{story_limit}" name="limitnews" id="admin-topiceditor-limitnews" class="text"{xhtml}><span class="fieldhelp">{lang_defaultis} {default_limit}</span></dd>
+      <dd><input type="text" size="3" maxlength="3" value="{story_limit}" name="limitnews" id="admin-topiceditor-limitnews" class="text"{xhtml}><span class="fieldhelp">{lang_defaultis} {default_limit}</span></dd>
 
       <dt><label for="admin-topiceditor-imageurl">{lang_topicimage}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" dir="ltr" size="48" maxlength="{max_url_length}" value="{image_url}" name="imageurl" id="admin-topiceditor-imageurl" class="text"{xhtml}></dd>
+      <dd><input type="text" dir="ltr" size="48" maxlength="{max_url_length}" value="{image_url}" name="imageurl" id="admin-topiceditor-imageurl" class="text"{xhtml}></dd>
 
       <dt><label for="admin-topiceditor-newicon">{lang_uploadimage}</label></dt>
       <dd><input type="file" name="newicon" id="admin-topiceditor-newicon"{xhtml}></dd>
@@ -44,10 +52,10 @@
       <dd{hide_meta}><textarea name="meta_keywords" id="admin-storyeditor-metakeywords" style="width:100%" cols="70" rows="2">{meta_keywords}</textarea></dd>
 
       <dt><label for="admin-topiceditor-is_default">{lang_defaulttopic}</label></dt>
-      <dd><input type="checkbox" class="uk-checkbox" {default_checked} name="is_default" id="admin-topiceditor-is_default"{xhtml}><span class="fieldhelp">{lang_defaulttext}</span></dd>
+      <dd><input type="checkbox" {default_checked} name="is_default" id="admin-topiceditor-is_default"{xhtml}><span class="fieldhelp">{lang_defaulttext}</span></dd>
 
       <dt><label for="admin-topiceditor-is_archive">{lang_archivetopic}</label></dt>
-      <dd><input type="checkbox" class="uk-checkbox" {archive_checked} {archive_disabled} name="is_archive" id="admin-topiceditor-is_archive"{xhtml}><span class="fieldhelp">{lang_archivetext}</span></dd>
+      <dd><input type="checkbox" {archive_checked} {archive_disabled} name="is_archive" id="admin-topiceditor-is_archive"{xhtml}><span class="fieldhelp">{lang_archivetext}</span></dd>
 
       <dt>{lang_num_stories}</dt>
       <dd>{num_stories}</dd>
@@ -77,7 +85,10 @@
   <ul class="submit">
     <li><input type="hidden" name="owner_id" value="{owner_id}"{xhtml}><input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}><input type="submit" value="{lang_save}" name="mode"{xhtml}><input type="hidden" name="old_tid" value="{topic_id}"{xhtml}></li>
     <li><input type="submit" value="{lang_cancel}" name="mode"{xhtml}></li>
-    <li>{delete_option}</li>
+{!if allow_delete}
+    <li><input type="submit" value="{lang_delete}" name="mode" onclick="return confirm('{confirm_message}');"{xhtml}></li>
+{!endif}
+    
   </ul>
 </form>
 

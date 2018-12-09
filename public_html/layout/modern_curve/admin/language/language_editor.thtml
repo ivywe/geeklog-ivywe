@@ -14,7 +14,7 @@
                 <label for="admin-language-editor-language">{lang_language}</label>
             </dt>
             <dd>
-                <select class="uk-select" name="language" id="admin-language-editor-language">
+                <select name="language" id="admin-language-editor-language">
                     {language_options}
                 </select>
             </dd>
@@ -23,7 +23,7 @@
                 <label for="admin-language-editor-var_name">{lang_var_name}</label>
             </dt>
             <dd>
-                <input type="text" class="uk-input uk-form-width-medium" size="30" maxlength="30" value="{var_name}"
+                <input type="text" size="30" maxlength="30" value="{var_name}"
                                          name="var_name" id="admin-language-editor-var_name" class="text"{xhtml}>
             </dd>
 
@@ -31,7 +31,7 @@
                 <label for="admin-language-editor-name">{lang_name}</label>
             </dt>
             <dd>
-                <input type="text" class="uk-input uk-form-width-medium" size="30" maxlength="30" value="{name}"
+                <input type="text" size="30" maxlength="30" value="{name}"
                        name="name" id="admin-language-editor-name" class="text"{xhtml}>
             </dd>
 
@@ -39,7 +39,7 @@
                 <label for="admin-language-editor-value">{lang_value}</label>
             </dt>
             <dd>
-                <input type="text" class="uk-input uk-form-width-medium" size="50" maxlength="255" value="{value}"
+                <input type="text" size="50" maxlength="255" value="{value}"
                        name="value" id="admin-language-editor-value" class="text"{xhtml}>
             </dd>
         </dl>
@@ -47,7 +47,9 @@
 
     <ul class="submit">
         <li><input type="submit" value="{lang_save}" name="mode" class="submit"{xhtml}></li>
-        {delete_option}
+{!if allow_delete}
+        <li><input type="submit" value="{lang_delete}" name="mode" class="submit" onclick="return confirm('{confirm_message}');"{xhtml}></li>
+{!endif} 
         <li>
             <input type="submit" value="{lang_cancel}" name="mode" class="submit"{xhtml}>
             <input type="hidden" name="{token_name}" value="{token_value}"{xhtml}>

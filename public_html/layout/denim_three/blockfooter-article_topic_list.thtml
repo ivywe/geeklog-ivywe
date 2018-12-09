@@ -1,0 +1,7 @@
+{# begin {templatelocation} #}
+
+    <hr{xhtml}>
+  </div>
+</aside>
+
+{# end {templatelocation} #}

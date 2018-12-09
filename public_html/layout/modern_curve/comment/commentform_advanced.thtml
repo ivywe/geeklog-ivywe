@@ -16,11 +16,11 @@
              <input type="hidden" name="{nprefix}pid" value="{pid}"{xhtml}>
              <input type="hidden" name="{nprefix}type" value="{type}"{xhtml}>
              <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
-             <input type="hidden" name="{nprefix}uid" value="{uid}"{xhtml}>{username}
-             <span{hidewhenediting}><a href="{action_url}" rel="nofollow" class="logoutorcreateaccount">{lang_logoutorcreateaccount}</a></span>
+             <input type="hidden" name="{nprefix}uid" value="{uid}"{xhtml}>
+             {username}<span{hidewhenediting}>&nbsp;<a href="{action_url}" rel="nofollow" class="logoutorcreateaccount">{lang_logoutorcreateaccount}</a></span>
           </dd>
           <dt class="title"><label for="commentform-title">{lang_title}</label></dt>
-          <dd class="title"><input type="text" class="uk-input uk-form-width-medium" size="32" value="{title}" maxlength="96" name="title" id="commentform-title" class="text"{xhtml}></dd>
+          <dd class="title"><input type="text" size="32" value="{title}" maxlength="96" name="title" id="commentform-title" class="text"{xhtml}></dd>
 
           <dt><label for="comment_text">{lang_comment}</label></dt>
           <dd>
@@ -32,10 +32,11 @@
             </div>
           </dd>
           <dd class="description">{allowed_html}</dd>
+          {record_edit}
 
           <dt><label for="commentform-postmode">{lang_postmode}</label></dt>
           <dd>
-            <select class="uk-select" id="sel_editmode" name="postmode" onchange="change_editmode(this);">
+            <select id="sel_editmode" name="postmode" onchange="change_editmode(this);">
               {postmode_options}
             </select>
           </dd>
@@ -60,10 +61,16 @@
           <li><input type="submit" name="{nprefix}mode" value="{lang_preview}" class="submit"{xhtml}></li>
           <li>
             <input type="hidden" name="formtype" value="{formtype}"{xhtml}>
-            {save_option}
+{!if allow_save}
+            <button type="submit" name="{nprefix}mode" value="{lang_save}" class="g-recaptcha"{!if invisible_recaptcha}{invisible_recaptcha}{!endif}>{lang_save}</button>
+{!endif}
             <input type="submit" value="{lang_cancel}" name="{nprefix}mode"{xhtml}>
-            {delete_option}
-            {notification}
+{!if allow_delete}
+            <button type="submit" name="mode" value="{lang_delete}" class="uk-button uk-button-danger g-recaptcha" onclick="return confirm('{confirm_message}');"{!if invisible_recaptcha}{invisible_recaptcha}{!endif}>{lang_delete}</button>
+{!endif}
+{!if allow_notify}          
+            <p><input type="checkbox" name="notify"{notify_checked}>{lang_notify}</p>
+{!endif}
           </li>
         </ul>
       </div>
@@ -71,5 +78,13 @@
   </div>
   {end_block}
 </div>
+
+<!-- BEGIN record_edit -->
+<dd><input type="checkbox" name="record_edit" {record_edit_checked} value="1">{lang_record_edit}</dd>
+<!-- END record_edit -->
+
+<!-- BEGIN username_anon -->
+<input type="text" name="username" size="16" value="{username_value}" maxlength="32"{xhtml}> ({lang_anonymous})
+<!-- END username_anon -->
 
 {# end {templatelocation} #}

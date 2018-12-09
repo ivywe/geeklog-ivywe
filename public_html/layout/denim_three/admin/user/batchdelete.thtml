@@ -1,0 +1,31 @@
+{# begin {templatelocation} #}
+
+{lang_instruction}
+
+<div class="uk-card uk-card-default uk-background-muted uk-margin-top">
+    <form class="uk-form-stacked" action="{site_admin_url}/user.php?mode=batchdelete" method="post">
+       {options_list}
+       
+        <div class="submit">
+          <button type="submit" name="submit" value="{lang_updatelist}" class="uk-button uk-button-primary">{lang_updatelist}</button>
+          <input type="hidden" name="mode" value="batchdelete"{xhtml}>
+        </div>
+    </form>
+</div>
+
+<!-- BEGIN batchdelete_options -->
+<div>
+  <label class="uk-form-label"><input type="radio" name="usr_type" class="uk-radio" value="{sel_id}"{selector}{xhtml}> <strong>{lang_description}:</strong></label>
+  <div class="uk-form-controls uk-margin-left">
+  {lang_text_start} <input class="uk-input uk-form-width-xsmall" type="text" name="usr_time[{sel_id}]" value="{id_value}" size="3"{selector}{xhtml}>{lang_text_end}
+  </div>
+</div>
+<!-- END batchdelete_options -->
+
+<!-- BEGIN reminder -->
+<div id="reminder-submit" class="submit">
+  <button type="submit" name="mode" value="{action_reminder}" class="uk-button uk-button-default" aria-describedby="desc-reminder-submit">{action_reminder}</button>&nbsp;<span id="desc-reminder-submit">{lang_reminder}</span>
+</div>
+<!-- END reminder -->
+
+{# end {templatelocation} #}

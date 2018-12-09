@@ -9,7 +9,7 @@
 
         <p class="message">{lang_message}</p>
 
-          <input type="text" class="uk-input uk-form-width-small" size="16" name="loginname" id="loginform-loginname" class="text"{xhtml}>
+          <input type="text" size="16" name="loginname" id="loginform-loginname" class="text"{xhtml}>
           <label for="loginform-loginname">{lang_username}</label>
           <div style="clear:both"></div>
           {services}
@@ -17,7 +17,11 @@
           <input type="password" size="16" name="passwd" id="loginform-passwd" class="text"{xhtml}>
           <label for="loginform-passwd">{lang_password}</label>
           <div style="clear:both"></div>
-          <input type="submit" value="{lang_login}" class="submit"{xhtml}>
+          {!if captcha} 
+          {captcha}
+          <div style="clear:both"></div>
+          {!endif}
+          <button type="submit" value="{lang_login}" class="g-recaptcha"{!if invisible_recaptcha}{invisible_recaptcha}{!endif}>{lang_login}</button>
           <div style="clear:both"></div>
 
         <ul class="navi">

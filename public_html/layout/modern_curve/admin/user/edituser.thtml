@@ -14,25 +14,44 @@
       <dd>{user_lastlogin}</dd>
 
       <dt><label for="admin-edituser-username">{lang_username}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-small" size="16" maxlength="16" value="{username}" name="username" id="admin-edituser-username" class="text"{xhtml}> {remoteservice}<br{xhtml}></dd>
+      <dd><input type="text" size="16" maxlength="16" value="{username}" name="username" id="admin-edituser-username" class="text"{xhtml}> {remoteservice}<br{xhtml}></dd>
+      {!if user_photo}
       <dd class="user_photo">
-        {user_photo}
-        {lang_delete_photo}{delete_photo_option}
+          {!if user_photo}
+          {user_photo}
+          {!endif}
+          {!if show_delete_photo}
+          {lang_delete_photo} <input type="checkbox" name="delete_photo"{xhtml}>
+          {!endif}        
       </dd>
+      {!endif}
 
       <dt><label for="admin-edituser-fullname">{lang_fullname}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" size="48" maxlength="80" value="{user_fullname}" name="fullname" id="admin-edituser-fullname" class="text"{xhtml}></dd>
+      <dd><input type="text" size="48" maxlength="80" value="{user_fullname}" name="fullname" id="admin-edituser-fullname" class="text"{xhtml}></dd>
 
       {password_option}
+      
+      <dt><label for="admin-edituser-email">{lang_emailaddress}</label></dt>
+      <dd><input type="text" maxlength="255" value="{user_email}" name="email" id="admin-edituser-email" class="size5"{xhtml}></dd>
+      
+      {!if enable_twofactorauth}
+        <dt><label for="admin-edituser-enable_tfa">{lang_enable_twofactorauth}</label></dt>
+        <dd>
+          <select name="enable_twofactorauth" id="admin-edituser-enable_tfa">        
+            {enable_tfa_options}
+          </select>
+        </dd>
+        <dd>{lang_tfa_user_edit_desc}</dd>
+      {!endif}      
 
       <dt><label for="admin-edituser-email">{lang_emailaddress}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" size="48" maxlength="255" value="{user_email}" name="email" id="admin-edituser-email" class="text"{xhtml}></dd>
+      <dd><input type="text" size="48" maxlength="255" value="{user_email}" name="email" id="admin-edituser-email" class="text"{xhtml}></dd>
 
       <dt><label for="admin-edituser-homepage">{lang_homepage}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" size="48" maxlength="255" value="{user_homepage}" name="homepage" id="admin-edituser-homepage" class="text"{xhtml}></dd>
+      <dd><input type="text" size="48" maxlength="255" value="{user_homepage}" name="homepage" id="admin-edituser-homepage" class="text"{xhtml}></dd>
       
       <dt><label for="admin-edituser-location">{lang_location}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" size="60" maxlength="96" value="{user_location}" name="location" id="admin-edituser-location" class="text"{xhtml}></dd>
+      <dd><input type="text" size="60" maxlength="96" value="{user_location}" name="location" id="admin-edituser-location" class="text"{xhtml}></dd>
       <dd class="description">{lang_location_text}</dd>
 
       <dt><label for="admin-edituser-sig">{lang_signature}</label></dt>
@@ -67,7 +86,9 @@
       <input type="hidden" name="uid" value="{user_id}"{xhtml}>
       <input type="hidden" name="regdate" value="{regdate_timestamp}"{xhtml}>
       <input type="submit" value="{lang_save}" name="mode" class="submit"{xhtml}>
-      {delete_option}
+{!if allow_delete}
+      <input type="submit" value="{lang_delete}" name="mode" class="submit" onclick="return confirm('{confirm_message}');"{xhtml}>
+{!endif}
       <input type="submit" value="{lang_cancel}" name="mode" class="submit"{xhtml}>
       <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
     </p>
@@ -84,7 +105,7 @@
 
 <!-- BEGIN display_field -->
       <dt><label for="admin-edituser-{fieldname}">{lang_field}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="{fieldmaxlength}" value="{field}" name="{fieldname}" id="admin-edituser-{fieldname}" class="size5"{xhtml}></dd>
+      <dd><input type="text" maxlength="{fieldmaxlength}" value="{field}" name="{fieldname}" id="admin-edituser-{fieldname}" class="size5"{xhtml}></dd>
       {!if lang_field_text}
       <dd class="description" id="desc-admin-edituser-{fieldname}">{lang_field_text}</dd>
       {!endif}
