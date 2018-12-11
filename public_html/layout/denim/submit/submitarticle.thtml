@@ -8,14 +8,20 @@
       <dd>{story_username} [ <a href="{status_url}" rel="nofollow">{lang_loginout}</a>{separator}{create_account} ]</dd>
 
       <dt><label for="submitstory-title">{lang_title}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="96" value="{story_title}" name="title" id="submitstory-title" class="size5"{xhtml}></dd>
+      <dd><input type="text" maxlength="96" value="{story_title}" name="title" id="submitstory-title" class="size5"{xhtml}></dd>
 
       <dt><label>{lang_topic}</label></dt>
       <dd>{topic_selection}</dd>
 
+      <dt{hide_meta}><label for="admin-storyeditor-metadescription">{lang_metadescription}</label></dt>
+      <dd{hide_meta}><textarea cols="70" rows="2" name="meta_description" id="admin-storyeditor-metadescription" class="wide">{meta_description}</textarea></dd>
+
+      <dt{hide_meta}><label for="admin-storyeditor-metakeywords">{lang_metakeywords}</label></dt>
+      <dd{hide_meta}><textarea cols="70" rows="2" name="meta_keywords" id="admin-storyeditor-metakeywords" class="wide">{meta_keywords}</textarea></dd>
+
       <dt><label for="submitstory-postmode">{lang_postmode}</label></dt>
       <dd>
-        <select class="uk-select" name="postmode" id="submitstory-postmode">
+        <select name="postmode" id="submitstory-postmode">
           {story_postmode_options}
         </select>
       </dd>
@@ -31,12 +37,14 @@
     {captcha}
 
     <div class="submit">
-      <input name="mode" type="submit" value="{lang_preview}" class="submit"{xhtml}>
+      <button type="submit" name="mode" value="{lang_preview}" class="uk-button">{lang_preview}</button>
       <input type="hidden" name="type" value="story"{xhtml}>
       <input type="hidden" name="uid" value="{story_uid}"{xhtml}>
       <input type="hidden" name="sid" value="{story_sid}"{xhtml}>
       <input type="hidden" name="date" value="{story_date}"{xhtml}>
-      {save_button}
+      {!if allow_save}
+      <button type="submit" value="{lang_save}" class="uk-button uk-button-primary g-recaptcha"{!if invisible_recaptcha}{invisible_recaptcha}{!endif}>{lang_save}</button>
+      {!endif}
     </div>
   </div>
 </form>

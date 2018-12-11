@@ -32,7 +32,7 @@
 <!-- BEGIN select-element -->
 <tr{hide_row} id="config_{id_name}" class="config_name"><td class="alignright">{display_name} {doc_link} {unset_link}</td>
 <td>
-<select class="uk-select" name="{name}" class="opt{error_class}">
+<select name="{name}" class="opt{error_class}">
   <!-- BEGIN select-options -->
     <option {selected} value="{opt_value}">{opt_name}</option>
   <!-- END select-options -->

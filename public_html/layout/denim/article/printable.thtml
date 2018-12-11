@@ -5,21 +5,20 @@
   <meta name="robots" content="NOINDEX">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta http-equiv="Content-Style-Type" content="text/css">
-  <link rel="stylesheet" type="text/css" href="{layout_url}/css_{direction}/print.css">
-  <link rel="stylesheet" type="text/css" media="print" href="{layout_url}/css_{direction}/print.css">
+  {plg_headercode}
   <link rel="shortcut icon" href="{layout_url}/images/favicon.ico">
   <link rel="canonical" href="{article_url}">
 </head>
 <body id="print" dir="{direction}">
 {# begin {templatelocation} #}
 
-  <div id="wrapper">
-    <div id="header">
+  <div id="print_wrapper">
+    <div id="print_header">
       <h2>{story_title}</h2>
       <p>{lang_contributedby} {story_author} {story_date}</p>
     </div>
     
-    <div id="story">
+    <div id="print_story">
       {story_text_no_br}
     </div>
     
@@ -27,8 +26,9 @@
     
     <hr class="hidden">
     
-    <div id="footer">
+    <div id="print_footer">
       <p>{page_title}<br>{article_url}</p>
+      {external_links}
     </div>
   </div>
 

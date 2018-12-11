@@ -5,7 +5,7 @@
 <div id="advanced_editor" style="display: none;">
 {navbar}
 
-<form  name="frmstory" action="{site_admin_url}/story.php" method="post" enctype="multipart/form-data" onsubmit='set_postcontent();' id="frmstory" class="compact uk-form">
+<form name="frmstory" action="{site_admin_url}/article.php" method="post" enctype="multipart/form-data" onsubmit='set_postcontent();' id="frmstory" class="compact uk-form">
 
   <div class="admin_basic">
     <dl class="form_block">
@@ -13,13 +13,13 @@
       <dd class="controls_text">{story_author}</dd>
 
       <dt><label for="admin-storyeditor_advanced-title">{lang_title}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-large" maxlength="128" {!if titletoid}onkeyup="TitleToId('admin-storyeditor_advanced-title','admin-storyeditor_advanced-sid');" {!endif}value="{story_title}" name="title" id="admin-storyeditor_advanced-title" class="size6"{xhtml}></dd>
+      <dd><input type="text" maxlength="128" {!if titletoid}onkeyup="TitleToId('admin-storyeditor_advanced-title','admin-storyeditor_advanced-sid');" {!endif}value="{story_title}" name="title" id="admin-storyeditor_advanced-title" class="size6"{xhtml}></dd>
 
       <dt><label for="admin-storyeditor-page_title">{lang_page_title}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-large" maxlength="128" value="{page_title}" name="page_title" id="admin-storyeditor-page_title" class="size6"{xhtml}></dd>
+      <dd><input type="text" maxlength="128" value="{page_title}" name="page_title" id="admin-storyeditor-page_title" class="size6"{xhtml}></dd>
 
       <dt><label for="admin-storyeditor_advanced-sid">{lang_sid}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-large" maxlength="128" value="{story_id}" name="sid" id="admin-storyeditor_advanced-sid" class="size6"{xhtml}></dd>
+      <dd><input type="text" maxlength="128" value="{story_id}" name="sid" id="admin-storyeditor_advanced-sid" class="size6"{xhtml}></dd>
 
       <dt{hide_meta}><label for="admin-storyeditor-metadescription">{lang_metadescription}</label></dt>
       <dd{hide_meta}><textarea name="meta_description" id="admin-storyeditor-metadescription" style="width:95%" cols="70" rows="2">{meta_description}</textarea></dd>
@@ -31,14 +31,14 @@
       <dd class="controls_text">{topic_selection}</dd>
 
       <dt><label for="admin-storyeditor_advanced-show_topic_icon">{lang_show_topic_icon}</label></dt>
-      <dd class="controls_text"><input type="checkbox" class="uk-checkbox" {show_topic_icon_checked} name="show_topic_icon" id="admin-storyeditor_advanced-show_topic_icon"{xhtml}></dd>
+      <dd class="controls_text"><input type="checkbox" {show_topic_icon_checked} name="show_topic_icon" id="admin-storyeditor_advanced-show_topic_icon"{xhtml}></dd>
 
       <dt><label for="admin-storyeditor_advanced-cachetime">{lang_cachetime}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-small" size="8" value="{cache_time}" name="cache_time" id="admin-storyeditor_advanced-cachetime" class="text" aria-describedby="desc-admin-storyeditor_advanced-cachetime"{xhtml}></dd>
+      <dd><input type="text" size="8" value="{cache_time}" name="cache_time" id="admin-storyeditor_advanced-cachetime" class="text" aria-describedby="desc-admin-storyeditor_advanced-cachetime"{xhtml}></dd>
       <dd class="description" id="desc-admin-storyeditor_advanced-cachetime">{lang_cachetime_desc}</dd>
 
       <dt><label for="admin-storyeditor_advanced-draft_flag">{lang_draft}</label></dt>
-      <dd class="controls_text"><input type="checkbox" class="uk-checkbox" {is_checked} name="draft_flag" id="admin-storyeditor_advanced-draft_flag"{xhtml}></dd>
+      <dd class="controls_text"><input type="checkbox" {is_checked} name="draft_flag" id="admin-storyeditor_advanced-draft_flag"{xhtml}></dd>
 
       <dt>{lang_story_stats}</dt>
       <dd class="controls_text"><div class="clearfix">
@@ -50,7 +50,7 @@
 
       <dt><label for="sel_editmode">{lang_postmode}</label></dt>
       <dd>
-        <select class="uk-select uk-form-width-small" {change_editormode} name="postmode" id="sel_editmode">
+        <select {change_editormode} name="postmode" id="sel_editmode">
           {post_options}
         </select>
       </dd>
@@ -83,8 +83,8 @@
 
     <div id="html_editor" class="story_editor" style="display: {show_htmleditor};">
       <dl class="form_block">
-        <dt><label for="fckeditor_toolbar_selector">{lang_toolbar}</label></dt>
-        <dd><select class="uk-select uk-form-width-small" id="fckeditor_toolbar_selector" name="fckeditor_toolbar_selector" onchange="changeToolbar(this.value);">
+        <dt><label for="adveditor_toolbar_selector">{lang_toolbar}</label></dt>
+        <dd><select id="adveditor_toolbar_selector" name="adveditor_toolbar_selector" onchange="changeToolbar(this.value);">
               <option value="editor-toolbar1">{toolbar1}</option>
               <option value="editor-toolbar2" selected="selected">{toolbar2}</option>
               <option value="editor-toolbar3">{toolbar3}</option>
@@ -121,23 +121,23 @@
     <dl class="form_block">
       <dt><label for="admin-storyeditor_advanced-publish_month">{lang_date}</label></dt>
       <dd>
-        <select class="uk-select uk-form-width-xsmall" name="publish_month" id="admin-storyeditor_advanced-publish_month" aria-describedby="desc-admin-storyeditor-publish_month">
+        <select name="publish_month" id="admin-storyeditor_advanced-publish_month" aria-describedby="desc-admin-storyeditor-publish_month">
           {publish_month_options}
         </select>
         /
-        <select class="uk-select uk-form-width-xsmall" name="publish_day">
+        <select name="publish_day">
           {publish_day_options}
         </select>
         /
-        <select class="uk-select uk-form-width-xsmall" name="publish_year">
+        <select name="publish_year">
           {publish_year_options}
         </select>&nbsp;&nbsp;
 
-        <select class="uk-select uk-form-width-xsmall" name="publish_hour">
+        <select name="publish_hour">
           {publish_hour_options}
         </select>
         :
-        <select class="uk-select uk-form-width-xsmall" name="publish_minute">
+        <select name="publish_minute">
           {publish_minute_options}
         </select>
 
@@ -154,39 +154,39 @@
       <dt><label for="publish-options">{lang_mode}</label></dt>
       <dd>
         {featured_options}
-        <select class="uk-select uk-form-width-xsmall" name="frontpage" id="publish-options">
+        <select name="frontpage" id="publish-options">
           {frontpage_options}
         </select>
-        <select class="uk-select uk-form-width-xsmall" name="commentcode">
+        <select name="commentcode">
           {comment_options}
         </select>
-        <select class="uk-select uk-form-width-xsmall" name="trackbackcode">
+        <select name="trackbackcode">
           {trackback_options}
         </select>
       </dd>
       <dt><label for="cmt_close_flag">{lang_cmt_disable}</label></dt>
       <dd>
         <label for="cmt_close_flag">{lang_enabled}</label>&nbsp;
-        <input type="checkbox" class="uk-checkbox" name="cmt_close_flag" id="cmt_close_flag" value="1" {is_checked5} onclick="enablecmtclose(this);"{xhtml}>
-        &nbsp;
+        <input type="checkbox" name="cmt_close_flag" id="cmt_close_flag" value="1" {is_checked5} onclick="enablecmtclose(this);"{xhtml}>
+           &nbsp;
            <span dir="ltr">
-               <select class="uk-select uk-form-width-xsmall" name="cmt_close_month">
-                   {cmt_close_month_options}
+           <select name="cmt_close_month">
+              {cmt_close_month_options}
            </select>
            /
-           <select class="uk-select uk-form-width-xsmall" name="cmt_close_day">
+           <select name="cmt_close_day">
               {cmt_close_day_options}
            </select>
            /
-           <select class="uk-select uk-form-width-xsmall" name="cmt_close_year">
+           <select name="cmt_close_year">
               {cmt_close_year_options}
            </select>&nbsp;&nbsp;
 
-           <select class="uk-select uk-form-width-xsmall" name="cmt_close_hour">
+           <select name="cmt_close_hour">
                {cmt_close_hour_options}
            </select>
            :
-           <select class="uk-select uk-form-width-xsmall" name="cmt_close_minute">
+           <select name="cmt_close_minute">
                {cmt_close_minute_options}
            </select>
                {cmt_close_ampm_selection}
@@ -204,8 +204,10 @@
     <dl class="form_block">
       <dt><label>{lang_images}</label></dt>
       <dd>
-        {saved_images}
-        {image_form_elements}
+        {image_form}
+        {image_add_instructions}
+        {allow_user_scaling}
+        {image_preview_instructions}
       </dd>
     </dl>
   </fieldset>
@@ -221,32 +223,32 @@
       <dt><label for="admin-storyeditor_advanced-archiveflag">{lang_archivetitle}</label></dt>
       <dd class="controls_text">
         <label for="admin-storyeditor_advanced-archiveflag">{lang_enabled}</label>&nbsp;
-        <input type="checkbox" class="uk-checkbox" value="1" {is_checked2} onclick="enablearchive(this);" name="archiveflag" id="admin-storyeditor_advanced-archiveflag"{xhtml}>
-        <input type="checkbox" class="uk-checkbox" name="statuscode" id="storycode10" value="10" {is_checked3}{xhtml}><label for="storycode10">{lang_optionarchive}</label>
-        &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="uk-checkbox" name="statuscode" id="storycode11" value="11" {is_checked4}{xhtml}>
+        <input type="checkbox" value="1" {is_checked2} onclick="enablearchive(this);" name="archiveflag" id="admin-storyeditor_advanced-archiveflag"{xhtml}>
+        <input type="checkbox" name="statuscode" id="storycode10" value="10" {is_checked3}{xhtml}><label for="storycode10">{lang_optionarchive}</label>
+        &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="statuscode" id="storycode11" value="11" {is_checked4}{xhtml}>
         &nbsp;<label for="storycode11">{lang_optiondelete}</label>
       </dd>
 
       <dt><label for="admin-storyeditor_advanced-expire_month"></label></dt>
       <dd>
         {lang_date}&nbsp;
-        <select class="uk-select uk-form-width-xsmall" name="expire_month" id="admin-storyeditor_advanced-expire_month">
+        <select name="expire_month" id="admin-storyeditor_advanced-expire_month">
           {expire_month_options}
         </select>
         /
-        <select class="uk-select uk-form-width-xsmall" name="expire_day">
+        <select name="expire_day">
           {expire_day_options}
         </select>
         /
-        <select class="uk-select uk-form-width-xsmall" name="expire_year">
+        <select name="expire_year">
           {expire_year_options}
         </select>&nbsp;&nbsp;
 
-        <select class="uk-select uk-form-width-xsmall" name="expire_hour">
+        <select name="expire_hour">
           {expire_hour_options}
         </select>
         :
-        <select class="uk-select uk-form-width-xsmall" name="expire_minute">
+        <select name="expire_minute">
           {expire_minute_options}
         </select>
         {expireampm_selection}
@@ -284,7 +286,7 @@
 {!if allow_delete}
       <button type="submit" name="mode" value="{lang_delete}" class="uk-button uk-button-danger" onclick="return confirm('{confirm_message}');">{lang_delete}</button>
 {!endif}
-      <button type="submit" value="{lang_cancel}" name="mode" class="uk-button">{lang_cancel}</button>
+      <button type="submit" name="mode" value="{lang_cancel}" class="uk-button">{lang_cancel}</button>
       <input type="hidden" name="uid" value="{story_uid}"{xhtml}>
       <input type="hidden" name="publish_second" value="{publish_second}"{xhtml}>
       <input type="hidden" name="old_sid" value="{old_story_id}"{xhtml}>
@@ -305,5 +307,46 @@
 <div id="preview" class="article" style="display: {show_preview};">
   {preview_content}
 </div>
+
+<!-- BEGIN image-form -->
+<div class="uk-overflow-auto uk-margin-small">
+<table class="admin-list-table uk-table uk-table-hover uk-table-striped">
+<thead>
+<tr>
+  <th class="admin-list-headerfield">{lang_number}</th>
+  <th class="admin-list-headerfield">{lang_resized}</th>
+  <th class="admin-list-headerfield">{lang_original}</th>
+  <th class="admin-list-headerfield">{lang_upload_or_replace}</th>
+  <th class="admin-list-headerfield">{lang_delete}</th>
+</tr>
+</thead>
+<tbody>
+{image_form_elements}
+</tbody>
+</table>
+</div>
+<!-- END image-form -->
+
+<!-- BEGIN image-form-elements -->
+<tr>
+  <td class="admin-list-field">{imagecount}</td>
+  <td class="admin-list-field">
+    <div class="gl-image-form-thumb-frame" uk-tooltip="{imagefilename}" data-uk-tooltip title="{imagefilename}">
+      {!if imagelink}<a href="{imagelink}" title="" data-uk-lightbox target="_blank">{!endif}
+        <img src="{thumblink}" alt="">
+      {!if imagelink}</a>{!endif}
+    </div>
+  </td>
+  <td class="admin-list-field">
+    <div class="gl-image-form-thumb-frame" uk-tooltip="{largefilename}"  data-uk-tooltip title="{largefilename}">
+      {!if largelink}<a href="{largelink}" title="" data-uk-lightbox target="_blank">{!endif}
+      <img src="{largethumblink}" alt="">
+      {!if largelink}</a>{!endif}
+    </div>
+  </td>
+  <td class="admin-list-field"><input type="file" dir="ltr" name="file{imagecount}"{xhtml}></td>
+  <td class="admin-list-field"><input type="checkbox" name="delete[{imagecount}]" class="uk-checkbox"{xhtml}></td>
+</tr>
+<!-- END image-form-elements -->
 
 {# end {templatelocation} #}

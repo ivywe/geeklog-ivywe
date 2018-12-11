@@ -29,16 +29,16 @@
          <input type="hidden" name="{nprefix}pid" value="{pid}"{xhtml}>
          <input type="hidden" name="{nprefix}type" value="{type}"{xhtml}>
          <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
-         <input type="hidden" name="{nprefix}uid" value="{uid}"{xhtml}>{username}&nbsp;
-         <span{hidewhenediting}>[<a href="{action_url}" rel="nofollow" class="logoutorcreateaccount">{lang_logoutorcreateaccount}</a>]</span>
+         <input type="hidden" name="{nprefix}uid" value="{uid}"{xhtml}>
+         {username}<span{hidewhenediting}>&nbsp;[<a href="{action_url}" rel="nofollow" class="logoutorcreateaccount">{lang_logoutorcreateaccount}</a>]</span>
       </dd>
 
       <dt class="title"><label for="commentform-title">{lang_title}</label></dt>
-      <dd class="title"><input type="text" class="uk-input uk-form-width-medium" value="{title}" maxlength="96" name="title" id="commentform-title" class="size6"{xhtml}></dd>
+      <dd class="title"><input type="text" value="{title}" maxlength="96" name="title" id="commentform-title" class="size6"{xhtml}></dd>
 
       <dt><label for="commentform-postmode">{lang_postmode}</label></dt>
       <dd>
-        <select class="uk-select" name="postmode" id="commentform-postmode">
+        <select name="postmode" id="commentform-postmode">
           {postmode_options}
         </select>
       </dd>
@@ -46,21 +46,24 @@
       <dt><label for="comment_text">{lang_comment}</label></dt>
       <dd><div class="text_editor"><textarea rows="10" cols="45" name="comment" id="comment_text" class="wide" aria-describedby="desc-comment_text">{comment}</textarea></div></dd>
       <dd class="description" id="desc-comment_text">{allowed_html}</dd>
+      {record_edit}
     </dl>
 
     {captcha}
 
     <div class="submit">
 {!if allow_save}
-      <button type="submit" name="{nprefix}mode" value="{lang_save}" class="uk-button uk-button-primary">{lang_save}</button>
+      <button type="submit" name="{nprefix}mode" value="{lang_save}" class="uk-button uk-button-primary g-recaptcha"{!if invisible_recaptcha}{invisible_recaptcha}{!endif}>{lang_save}</button>
 {!endif}
       <button type="submit" name="{nprefix}mode" value="{lang_preview}" class="uk-button uk-button-success">{lang_preview}</button>
 {!if allow_delete}
-      <button type="submit" name="mode" value="{lang_delete}" class="uk-button uk-button-danger" onclick="return confirm('{confirm_message}');">{lang_delete}</button>
+      <button type="submit" name="mode" value="{lang_delete}" class="uk-button uk-button-danger g-recaptcha" onclick="return confirm('{confirm_message}');"{!if invisible_recaptcha}{invisible_recaptcha}{!endif}>{lang_delete}</button>
 {!endif}
       <button type="submit" name="{nprefix}mode" value="{lang_cancel}" class="uk-button">{lang_cancel}</button>
       <input type="hidden" name="formtype" value="{formtype}"{xhtml}>
-      {notification}
+{!if allow_notify}          
+      <div class="uk-margin-top"><input type="checkbox" name="notify"{notify_checked}>{lang_notify}</div>
+{!endif}
     </div>
   </div>
 
@@ -68,5 +71,13 @@
 
 </div>
 {end_block}
+
+<!-- BEGIN record_edit -->
+<dd class="description" id="record_edit"><input type="checkbox" name="record_edit" {record_edit_checked} value="1">{lang_record_edit}</dd>
+<!-- END record_edit -->
+
+<!-- BEGIN username_anon -->
+<input type="text" name="username" size="16" value="{username_value}" maxlength="32"{xhtml}> ({lang_anonymous})
+<!-- END username_anon -->
 
 {# end {templatelocation} #}
