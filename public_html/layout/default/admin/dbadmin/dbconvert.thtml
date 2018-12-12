@@ -26,7 +26,7 @@
 {!endif}
 
 <div id="dbconfig">
-	<form id="dbcvtform" class="uk-form" action="{site_admin_url}/database.php" method="post" style="display:inline;">
+	<form id="dbcvtform" action="{site_admin_url}/database.php" method="post" style="display:inline;">
 		<input type="hidden" name="{action}" value="{action}">
 		<input type="hidden" name="toengine" value="{to_engine}">
 		<input type="hidden" name="{security_token_name}" value="{security_token}">

@@ -5,11 +5,11 @@
 </ul>
 
 <!-- BEGIN item -->
-<li><label>{indent}<input type="checkbox"{!if checked} checked="checked"{!endif} name="{name}" value="{value}"{xhtml}><span>{label}</span></label></li>
+<li><label>{indent}<input type="checkbox"{!if checked} checked="checked"{!endif} name="{name}" class="uk-checkbox" value="{value}"{xhtml}><span>{label}</span></label></li>
 <!-- END item -->
 
 <!-- BEGIN item-default -->
-<li><label>{indent}<input type="checkbox"{!if checked} checked="checked"{!endif} name="{name}" value="{value}"{xhtml}><span class="gldefault">{label}</span></label></li>
+<li><label>{indent}<input type="checkbox"{!if checked} checked="checked"{!endif} name="{name}" class="uk-checkbox" value="{value}"{xhtml}><span class="gldefault">{label}</span></label></li>
 <!-- END item-default -->
 
 <!-- BEGIN item-indent -->&nbsp;&nbsp;&nbsp;<!-- END item-indent -->

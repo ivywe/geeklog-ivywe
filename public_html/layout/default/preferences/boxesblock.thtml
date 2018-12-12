@@ -1,12 +1,12 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 <fieldset>
   <legend>{lang_boxes_title}</legend>
 
   <div class="linear">
-    <div class="profile_notes uk-panel uk-panel-box">
+    <div class="profile_notes" uk-alert>
       <div class="uk-panel-title">
-        <i class="uk-icon-info-circle uk-text-primary"></i>
+        <span class="uk-text-primary" uk-icon="info"></span>
         <span>{lang_boxes_help_title}</span>
       </div>
       <div>{lang_boxes}</div>
@@ -16,7 +16,7 @@
   <div class="compact">
     <dl class="form_block">
       <dt><label>{lang_blocks}</label></dt>
-      <dd><div id="exclude_blocks" class="uk-scrollable-box">{boxes_checklist}</div></dd>
+      <dd><div id="exclude_blocks" class="uk-panel uk-panel-scrollable">{boxes_checklist}</div></dd>
     </dl>
   </div>
 </fieldset>

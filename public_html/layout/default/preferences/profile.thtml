@@ -1,4 +1,4 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 {noscript}
 
@@ -6,14 +6,14 @@
 {navbar}
 </div>
 
-<div id="pe_preview" class="jsenabled_hide" style="display:none;">
+<div id="pe_preview" class="jsenabled_hide uk-margin" style="display:none;">
   <fieldset>
     <legend>{lang_preview_title}</legend>
     {preview}
   </fieldset>
 </div>
 
-<form action="{site_url}/usersettings.php" method="post" {enctype} id="profile" class="uk-form">
+<form action="{site_url}/usersettings.php" method="post" {enctype} id="profile">
 
 <div id="pe_namepass" class="jsenabled_show">
   <fieldset>
@@ -22,7 +22,7 @@
       <dl class="form_block">
         {username_option}
         <dt><label for="profile-fullname">{lang_fullname}</label></dt>
-        <dd><input type="text" maxlength="80" value="{fullname_value}" name="fullname" id="profile-fullname" class="size7"{xhtml}></dd>
+        <dd><input type="text" maxlength="80" value="{fullname_value}" name="fullname" id="profile-fullname" class="uk-input size7"{xhtml}></dd>
       </dl>
     </div>
   </fieldset>
@@ -31,9 +31,9 @@
     <legend>{lang_password_email_legend}</legend>
 
     <div class="linear">
-      <div class="profile_notes uk-panel uk-panel-box">
+      <div class="profile_notes" uk-alert>
         <div class="uk-panel-title">
-          <i class="uk-icon-info-circle uk-text-primary"></i>
+          <span class="uk-text-primary" uk-icon="info"></span>
           <span>{lang_password_help_title}</span>
         </div>
         <div>{lang_password_help}</div>
@@ -51,16 +51,16 @@
         <dd>{cooktime_selector}</dd>
 
         <dt><label for="profile-email">{lang_email}</label></dt>
-        <dd><input type="text" maxlength="96" value="{email_value}" name="email" id="profile-email" class="size6" aria-describedby="desc-profile-email"{xhtml}></dd>
+        <dd><input type="text" maxlength="96" value="{email_value}" name="email" id="profile-email" class="uk-input size6" aria-describedby="desc-profile-email"{xhtml}></dd>
         <dd class="description" id="desc-profile-email">{lang_email_text}</dd>
 
         <dt><label for="profile-email_conf">{lang_email_conf}</label></dt>
-        <dd><input type="text" maxlength="96" value="{email_value}" name="email_conf" id="profile-email_conf" class="size6"{xhtml}></dd>
+        <dd><input type="text" maxlength="96" value="{email_value}" name="email_conf" id="profile-email_conf" class="uk-input size6"{xhtml}></dd>
         <dd class="description" id="desc-profile-email_conf">{lang_email_conf_text}</dd>
-        
+
         {!if emailtoconfirm}
         <dt><label for="profile-email-verify">{lang_email_verify}</label></dt>
-        <dd><em>{emailtoconfirm}</em> <input type="checkbox" name="delete_emailtoconfirm" id="delete_emailtoconfirm">{lang_email_verify_delete}</dd>
+        <dd><em>{emailtoconfirm}</em> <input type="checkbox" name="delete_emailtoconfirm" id="delete_emailtoconfirm" class="uk-checkbox">{lang_email_verify_delete}</dd>
         <dd class="description" id="desc-email-verify">{lang_email_verify_msg}</dd>
         {!endif}
 
@@ -75,9 +75,9 @@
     <legend>{lang_tfa_two_factor_auth}</legend>
 
     <div class="compact">
-      <div class="profile_notes uk-panel uk-panel-box">
+      <div class="profile_notes" uk-alert>
         <div class="uk-panel-title">
-          <i class="uk-icon-info-circle uk-text-primary"></i>
+          <span class="uk-text-primary" uk-icon="info"></span>
           <span>{lang_tfa_two_factor_auth}</span>
         </div>
         <ol>
@@ -93,7 +93,7 @@
         <dt><label for="enable_tfa">{lang_enable_twofactorauth}</label></dt>
         <dd>
           {# id required to be enable_tfa for javascript #}
-          <select name="enable_twofactorauth" id="enable_tfa">        
+          <select name="enable_twofactorauth" id="enable_tfa" class="uk-select uk-width-auto">
             {enable_tfa_options}
           </select>
         </dd>
@@ -127,9 +127,9 @@
     <legend>{lang_personal_info_legend}</legend>
 
     <div class="linear">
-      <div class="profile_notes uk-panel uk-panel-box">
+      <div class="profile_notes" uk-alert>
         <div class="uk-panel-title">
-          <i class="uk-icon-info-circle uk-text-primary"></i>
+          <span class="uk-text-primary" uk-icon="info"></span>
           <span>{lang_userinfo_help_title}</span>
         </div>
         <div>{lang_userinfo_help}</div>
@@ -139,25 +139,25 @@
     <div class="compact">
       <dl class="form_block">
         <dt><label for="profile-homepage">{lang_homepage}</label></dt>
-        <dd><input type="text" maxlength="96" value="{homepage_value}" name="homepage" id="profile-homepage" class="size7"  aria-describedby="desc-profile-homepage"{xhtml}></dd>
+        <dd><input type="text" maxlength="96" value="{homepage_value}" name="homepage" id="profile-homepage" class="uk-input size7"  aria-describedby="desc-profile-homepage"{xhtml}></dd>
         <dd class="description" id="desc-profile-homepage">{lang_homepage_text}</dd>
 
         <dt><label for="profile-location">{lang_location}</label></dt>
-        <dd><input type="text" maxlength="96" value="{location_value}" name="location" id="profile-location" class="size7" aria-describedby="desc-profile-location"{xhtml}></dd>
+        <dd><input type="text" maxlength="96" value="{location_value}" name="location" id="profile-location" class="uk-input size7" aria-describedby="desc-profile-location"{xhtml}></dd>
         <dd class="description" id="desc-profile-location">{lang_location_text}</dd>
 
         {userphoto_option}
 
         <dt><label for="profile-sig">{lang_signature}</label></dt>
-        <dd><textarea cols="45" rows="4" name="sig" id="profile-sig" class="wide" aria-describedby="desc-profile-sig">{signature_value}</textarea></dd>
+        <dd><textarea cols="45" rows="4" name="sig" id="profile-sig" class="uk-textarea wide" aria-describedby="desc-profile-sig">{signature_value}</textarea></dd>
         <dd class="description" id="desc-profile-sig">{lang_signature_text}</dd>
 
         <dt><label for="profile-about">{lang_about}</label></dt>
-        <dd><textarea cols="45" rows="6" name="about" id="profile-about" class="wide" aria-describedby="desc-profile-about">{about_value}</textarea></dd>
+        <dd><textarea cols="45" rows="6" name="about" id="profile-about" class="uk-textarea wide" aria-describedby="desc-profile-about">{about_value}</textarea></dd>
         <dd class="description" id="desc-profile-about">{lang_about_text}</dd>
 
         <dt><label for="profile-pgpkey">{lang_pgpkey}</label></dt>
-        <dd><textarea cols="45" rows="6" name="pgpkey" id="profile-pgpkey" class="wide" aria-describedby="desc-profile-pgpkey">{pgpkey_value}</textarea></dd>
+        <dd><textarea cols="45" rows="6" name="pgpkey" id="profile-pgpkey" class="uk-textarea wide" aria-describedby="desc-profile-pgpkey">{pgpkey_value}</textarea></dd>
         <dd class="description" id="desc-profile-pgpkey">{lang_pgpkey_text}</dd>
 
         {display_fields}
@@ -168,19 +168,19 @@
 
 {prefs}
 
-<div id="save_button" class="submit">
+<div id="save_button" class="submit uk-margin">
   <input type="hidden" name="uid" value="{uid_value}"{xhtml}>
   <input type="hidden" name="mode" value="saveuser"{xhtml}>
   <input type="hidden" name="username" value="{username_value}"{xhtml}>
   <button type="submit" name="btnsubmit" value="{lang_submit}" class="uk-button uk-button-primary">{lang_submit}</button>
-  <button type="submit" name="btncancel" value="{lang_cancel}" class="uk-button">{lang_cancel}</button>
+  <button type="submit" name="btncancel" value="{lang_cancel}" class="uk-button uk-button-default">{lang_cancel}</button>
 </div>
 
 </form>
 
 <!-- BEGIN display_field_text -->
         <dt><label for="profile-{fieldname}">{lang_field}</label></dt>
-        <dd><textarea cols="45" rows="4" name="{fieldname}" id="profile-{fieldname}" class="wide" aria-describedby="desc-profile-{fieldname}">{signature_value}</textarea></dd>
+        <dd><textarea cols="45" rows="4" name="{fieldname}" id="profile-{fieldname}" class="uk-textarea wide" aria-describedby="desc-profile-{fieldname}">{signature_value}</textarea></dd>
         {!if lang_field_text}
         <dd class="description" id="desc-profile-{fieldname}">{lang_field_text}</dd>
         {!endif}
@@ -188,7 +188,7 @@
 
 <!-- BEGIN display_field -->
         <dt><label for="profile-{fieldname}">{lang_field}</label></dt>
-        <dd><input type="text" maxlength="{fieldmaxlength}" value="{field}" name="{fieldname}" id="profile-{fieldname}" class="size7" aria-describedby="desc-profile-{fieldname}"{xhtml}></dd>
+        <dd><input type="text" maxlength="{fieldmaxlength}" value="{field}" name="{fieldname}" id="profile-{fieldname}" class="uk-input size7" aria-describedby="desc-profile-{fieldname}"{xhtml}></dd>
         {!if lang_field_text}
         <dd class="description" id="desc-profile-{fieldname}">{lang_field_text}</dd>
         {!endif}

@@ -1,7 +1,7 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 {start_block_loginagain}
-  <form action="{site_url}/users.php" method="post" id="userloginform" class="compact uk-form">
+  <form action="{site_url}/users.php" method="post" id="userloginform" class="compact">
     <fieldset>
       <legend>{lang_login}</legend>
 
@@ -9,12 +9,12 @@
 
       <dl class="form_block">
         <dt><label for="users-loginform-loginname">{lang_username}</label></dt>
-        <dd><input type="text" name="loginname" id="users-loginform-loginname" class="size3"{xhtml}></dd>
+        <dd><input type="text" name="loginname" id="users-loginform-loginname" class="uk-input size3"{xhtml}></dd>
 
         {services}
 
         <dt><label for="users-loginform-passwd">{lang_password}</label></dt>
-        <dd><input type="password" name="passwd" id="users-loginform-passwd" class="size3"{xhtml}></dd>
+        <dd><input type="password" name="passwd" id="users-loginform-passwd" class="uk-input size3"{xhtml}></dd>
       </dl>
 
       {captcha}
@@ -23,7 +23,7 @@
         <button type="submit" value="{lang_login}" class="uk-button uk-button-primary uk-margin-small-bottom g-recaptcha"{!if invisible_recaptcha}{invisible_recaptcha}{!endif}>{lang_login}</button>
         <div class="uk-margin-small-bottom">{lang_newreglink}</div>
         <div class="uk-margin-small-bottom"><a href="{site_url}/users.php?mode=getpassword" rel="nofollow">{lang_forgetpassword}</a></div>
-      </div>      
+      </div>
    </fieldset>
   </form>
   {openid_login}

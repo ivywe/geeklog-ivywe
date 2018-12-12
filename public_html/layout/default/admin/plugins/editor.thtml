@@ -1,7 +1,7 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 {start_block_editor}
-<form action="{site_admin_url}/plugins.php" method="post" class="compact uk-form">
+<form action="{site_admin_url}/plugins.php" method="post" class="compact">
   <div class="admin_basic" id="admin-editor">
     <dl class="uk-description-list-horizontal">
       <dt>{lang_pluginname}</dt>

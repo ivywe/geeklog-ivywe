@@ -34,12 +34,6 @@ function postconfirm() {
 }
 
 (function($) {
-    $('form').addClass('uk-form');
-
-    if (geeklog.theme_options.header_search == 0) {
-        $('#header-search').remove();
-    }
-
     var oheader = $('#header');
     if (geeklog.theme_options.header_brand_type == 1) {
         if (oheader.hasClass("brand-image")) {
@@ -68,10 +62,7 @@ function postconfirm() {
     }
 
     if (geeklog.theme_options.pagenavi_string == 0) {
-        $('.uk-icon-angle-double-left').parent().empty().append('<i class="uk-icon-angle-double-left"></i>');
-        $('.uk-icon-angle-left').parent().empty().append('<i class="uk-icon-angle-left"></i>');
-        $('.uk-icon-angle-right').parent().empty().append('<i class="uk-icon-angle-right"></i>');
-        $('.uk-icon-angle-double-right').parent().empty().append('<i class="uk-icon-angle-double-right"></i>');
+        $('.pagination_text').remove();
     }
 
     var oc_mode;
@@ -89,7 +80,7 @@ function postconfirm() {
             oc_mode = 'push';
             break;
     }
-    $('#header-content > a.tm-toggle').attr('data-uk-offcanvas', "{mode:'" + oc_mode + "'}");
+    $('#offcanvas').attr('uk-offcanvas', "mode:" + oc_mode + "; overlay:true");
 
     var totop = $('#totop-scroller');
     $(window).scroll(function() {

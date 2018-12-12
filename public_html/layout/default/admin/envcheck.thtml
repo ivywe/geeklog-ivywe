@@ -24,7 +24,7 @@
 </section>
 <script>
     $(function() {
-        $("#panel_phpinfo table").addClass("uk-table").wrap("<div class='uk-overflow-container'></div>");
+        $("#panel_phpinfo table").addClass("uk-table").wrap("<div class='uk-overflow-auto'></div>");
     });
 </script>
 {!endif}

@@ -1,9 +1,9 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 {list_top}
-<form name="page_limit" style="display: inline;" class="uk-form">
+<form name="page_limit" style="display: inline;">
   <div class="admin-list-search">
-    <select name="page_limit_links" style="{show_limit}" onchange="window.location=document.page_limit.page_limit_links.options[document.page_limit.page_limit_links.selectedIndex].value">
+    <select name="page_limit_links" class="uk-select uk-width-auto" style="{show_limit}" onchange="window.location=document.page_limit.page_limit_links.options[document.page_limit.page_limit_links.selectedIndex].value">
       {page_limit}
     </select>
   </div>

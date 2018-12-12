@@ -1,17 +1,17 @@
 {# begin {templatelocation} #}
 
-<form action="{site_admin_url}/block.php" method="post" id="admin-blockeditor" class="compact uk-form">
+<form action="{site_admin_url}/block.php" method="post" id="admin-blockeditor" class="compact">
 
   <div class="admin_basic">
     <dl class="form_block">
       <dt><label for="admin-blockeditor-title">{lang_blocktitle}</label></dt>
-      <dd><input type="text" name="title" value="{block_title}" id="admin-blockeditor-title" class="size5"{xhtml}></dd>
+      <dd><input type="text" name="title" value="{block_title}" id="admin-blockeditor-title" class="uk-input size5"{xhtml}></dd>
 
       <dt><label for="admin-blockeditor-is_enabled">{lang_enabled}</label></dt>
-      <dd class="controls_text"><input type="checkbox" name="is_enabled" {is_enabled} id="admin-blockeditor-is_enabled"{xhtml}></dd>
+      <dd class="controls_text"><input type="checkbox" name="is_enabled" {is_enabled} id="admin-blockeditor-is_enabled" class="uk-checkbox"{xhtml}></dd>
 
       <dt><label for="admin-blockeditor-help">{lang_blockhelpurl}</label></dt>
-      <dd><input type="text" name="help" value="{block_help}" maxlength="{max_url_length}" id="admin-blockeditor-help" class="size5" aria-describedby="desc-admin-blockeditor-help"{xhtml}></dd>
+      <dd><input type="text" name="help" value="{block_help}" maxlength="{max_url_length}" id="admin-blockeditor-help" class="uk-input size5" aria-describedby="desc-admin-blockeditor-help"{xhtml}></dd>
       <dd id="desc-admin-blockeditor-help" class="description">{lang_includehttp}<br{xhtml}>
                               {lang_explanation}</dd>
 
@@ -23,7 +23,7 @@
       <dd class="controls_text">{topic_selection}</dd>
 
       <dt><label for="admin-blockeditor-onleft">{lang_position}</label></dt>
-      <dd><select name="onleft" id="admin-blockeditor-onleft">
+      <dd><select name="onleft" id="admin-blockeditor-onleft" class="uk-select uk-width-auto">
           <option value="2" {none_selected}>{lang_none}</option>
           <option value="1" {left_selected}>{lang_left}</option>
           <option value="0" {right_selected}>{lang_right}</option>
@@ -32,16 +32,16 @@
       </dd>
 
       <dt><label for="admin-blockeditor-blockorder">{lang_blockorder}</label></dt>
-      <dd><input type="text" name="blockorder" value="{block_order}" id="admin-blockeditor-blockorder" class="size1" aria-describedby="desc-admin-blockeditor-blockorder"{xhtml}>
+      <dd><input type="text" name="blockorder" value="{block_order}" id="admin-blockeditor-blockorder" class="uk-input size1" aria-describedby="desc-admin-blockeditor-blockorder"{xhtml}>
         <span id="desc-admin-blockeditor-blockorder">0 - 9999</span></dd>
-        
+
       <dt><label>{lang_device}</label></dt>
       <dd class="controls_text">
-        <label><input type="radio" name="device" value="all" id="admin-blockeditor-device-all" {for_all}{xhtml}>{lang_all}</label>
-        <label><input type="radio" name="device" value="computer" id="admin-blockeditor-device-computer"{for_computer}{xhtml}>{lang_for_computer}</label>
-        <label><input type="radio" name="device" value="mobile" id="admin-blockeditor-device-mobile" {for_mobile}{xhtml}>{lang_for_mobile}</label>
+        <label><input type="radio" name="device" value="all" id="admin-blockeditor-device-all" class="uk-radio" {for_all}{xhtml}>{lang_all}</label>
+        <label><input type="radio" name="device" value="computer" id="admin-blockeditor-device-computer" class="uk-radio"{for_computer}{xhtml}>{lang_for_computer}</label>
+        <label><input type="radio" name="device" value="mobile" id="admin-blockeditor-device-mobile" class="uk-radio" {for_mobile}{xhtml}>{lang_for_mobile}</label>
       </dd>
-      <dd id="desc-admin-blockeditor-device" class="description">{lang_device_desc}</dd>        
+      <dd id="desc-admin-blockeditor-device" class="description">{lang_device_desc}</dd>
 
       <dt>{lang_blocktype}</dt>
       <dd class="controls_text">gldefault
@@ -49,11 +49,11 @@
       </dd>
 
       <dt><label for="admin-blockeditor-css-id">{lang_css_id}</label></dt>
-      <dd><input type="text" value="{css_id}" name="css_id" id="admin-blockeditor-css-id" class="size5" aria-describedby="desc-admin-blockeditor-css-id"{xhtml}></dd>
+      <dd><input type="text" value="{css_id}" name="css_id" id="admin-blockeditor-css-id" class="uk-input size5" aria-describedby="desc-admin-blockeditor-css-id"{xhtml}></dd>
       <dd id="desc-admin-blockeditor-css-id" class="description">{lang_css_id_desc}</dd>
 
       <dt><label for="admin-blockeditor-css-classes">{lang_css_classes}</label></dt>
-      <dd><input type="text" value="{css_classes}" name="css_classes" id="admin-blockeditor-css-classes" class="size5" aria-describedby="desc-admin-blockeditor-css-classes"{xhtml}></dd>
+      <dd><input type="text" value="{css_classes}" name="css_classes" id="admin-blockeditor-css-classes" class="uk-input size5" aria-describedby="desc-admin-blockeditor-css-classes"{xhtml}></dd>
       <dd id="desc-admin-blockeditor-css-classes" class="description">{lang_css_classes_desc}</dd>
     </dl>
 
@@ -77,7 +77,7 @@
 
     <div class="submit">
       <button type="submit" name="mode" value="{lang_save}" class="uk-button uk-button-primary">{lang_save}</button>
-      <button type="submit" name="mode" value="{lang_cancel}" class="uk-button">{lang_cancel}</button>
+      <button type="submit" name="mode" value="{lang_cancel}" class="uk-button uk-button-default">{lang_cancel}</button>
       <input type="hidden" name="bid" value="{block_id}"{xhtml}>
       <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
     </div>

@@ -88,7 +88,7 @@ $stage = 'admin'
 .admin-list-table
     margin: 0
     width: 100%
-    @media only screen and (max-width: $breakpoint-large-max)
+    @media only screen and (max-width: $breakpoint-medium-max)
         width: 900px
     .fieldset-table-wrapper > &
         width: 100%
@@ -102,6 +102,9 @@ $stage = 'admin'
         padding: 4px 8px
         border-bottom: 1px solid #e5e5e5
     th
+        font-weight: bold
+        color: #444
+        text-transform: capitalize
         background-color: $admin-list-table-th-background
     img
         vertical-align: middle
@@ -147,6 +150,8 @@ $stage = 'admin'
     // All Mobile Sizes (devices and browser)
     @media only screen and (max-width: $breakpoint-small-max)
         display: block
+        input[type="text"]
+            width: 180px
 
 /*!--------------------------------------
   Permission Style
@@ -161,6 +166,8 @@ $stage = 'admin'
     border-spacing: 0
     border: 1px solid $bordercolor
     th
+        color: #444
+        text-transform: capitalize
         background-color: $admin-list-table-th-background
     th, td
         font-weight: bold

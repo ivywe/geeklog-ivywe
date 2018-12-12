@@ -1,10 +1,10 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 <p class="trackback-message">{lang_ping_explain}</p>
 
 {ping_results}
 
-<form action="{php_self}" method="post" id="pingform" class="compact uk-form">
+<form action="{php_self}" method="post" id="pingform" class="compact">
   <fieldset>
     <dl class="form_block">
       <dt>{pingback_button}</dt>

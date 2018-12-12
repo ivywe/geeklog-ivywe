@@ -2,9 +2,9 @@
 
 {current_month}
 {blockheader}
-<form class="uk-form uk-align-right" action="{url}" method="get">
+<form class="uk-align-right" action="{url}" method="get">
   <div>
-    <select name="topic" onchange="this.form.submit()">
+    <select name="topic" class="uk-select uk-width-auto" onchange="this.form.submit()">
     {topic_list}
     </select>
     <input type="hidden" name="year" value="{val_year}"{xhtml}>

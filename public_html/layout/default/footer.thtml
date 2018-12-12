@@ -1,4 +1,3 @@
-{# begin {templatelocation} #}
 
         </main>
       </div>
@@ -8,127 +7,27 @@
       {right_blocks}
 
     </div>
-    {# end #wrapper #}
-
-    <div class="uk-text-center uk-margin-large-bottom">
-      <a href="#container" class="uk-icon-button" uk-icon="icon: chevron-up" uk-scroll></a>
-    </div>
+    <!-- } #wrapper -->
 
     <hr class="separator"{xhtml}>
 
-    <footer id="footer" role="contentinfo" class="clearfix" itemscope="itemscope" itemtype="//schema.org/WPFooter">
+    <footer id="footer" role="contentinfo" class="clearfix" itemscope="itemscope" itemtype="http://schema.org/WPFooter">
       <div id="footer-content">
-        <div id="copyright" itemprop="copyrightHolder" itemscope="itemscope" itemtype="//schema.org/Organization"><address><span itemprop="name">{copyright_msg}</span></address></div>
+        <div id="copyright" itemprop="copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization"><span itemprop="name">{copyright_msg}</span></div>
+        <div id="trademark">{trademark_msg}</div>
         <div id="powered_by">{powered_by}&nbsp;<a href="https://www.geeklog.net/">Geeklog</a></div>
         <div id="execution_textandtime">{execution_textandtime}</div>
       </div>
     </footer>
 
+    <div id="totop-scroller" style="display: none;" uk-scroll>
+      <span class="uk-icon-button uk-button-secondary" uk-icon="chevron-up"></span>
+    </div>
 
   </div>
   <!-- } #container -->
 
   {plg_footercode}
-
-
-<!-- bxSlider Javascript file -->
-<script src="{layout_url}/vendor/bxslider/jquery.bxslider.js"></script>
-<!-- bxSlider用記述 Start-->
-<script>$(document).ready(function(){
-
-  $('.bxslider11').bxSlider({
-  pagerCustom: '#bx-pager1',
-  controls:false
-  });
-  $('.bxslider21').bxSlider({
-  pagerCustom: '#bx-pager2',
-  controls:false
-  });
-  $('.bxslider31').bxSlider({
-  pagerCustom: '#bx-pager3',
-  controls:false
-  });
-  $('.bxslider41').bxSlider({
-  pagerCustom: '#bx-pager4',
-  controls:false
-  });
-  $('.bxslider51').bxSlider({
-  pagerCustom: '#bx-pager5',
-  controls:false
-  });
-});
-
-{# サムネイルをスライドさせるための記述 #}
-$(document).ready(function(){
-  $('.bxslider12').bxSlider({
-  pager:false,
-  minSlides: 5,
-  maxSlides: 10,
-  slideWidth: 90,
-  slideMargin: 10,
-  nextSelector: '#NextIcon1',
-  prevSelector: '#PrevIcon1'
-      });
-  $('.bxslider22').bxSlider({
-  pager:false,
-  minSlides: 5,
-  maxSlides: 10,
-  slideWidth: 90,
-  slideMargin: 10,
-  nextSelector: '#NextIcon2',
-  prevSelector: '#PrevIcon2'
-      });
-  $('.bxslider32').bxSlider({
-  pager:false,
-  minSlides: 5,
-  maxSlides: 10,
-  slideWidth: 90,
-  slideMargin: 10,
-  nextSelector: '#NextIcon3',
-  prevSelector: '#PrevIcon3'
-      });
-  $('.bxslider42').bxSlider({
-  pager:false,
-  minSlides: 5,
-  maxSlides: 10,
-  slideWidth: 90,
-  slideMargin: 10,
-  nextSelector: '#NextIcon4',
-  prevSelector: '#PrevIcon4'
-      });
-  $('.bxslider52').bxSlider({
-  pager:false,
-  minSlides: 5,
-  maxSlides: 10,
-  slideWidth: 90,
-  slideMargin: 10,
-  nextSelector: '#NextIcon5',
-  prevSelector: '#PrevIcon5'
-      });
-});
-</script> 
-{# //bxSlider用記述 End #}
-
-
-
-<script>window.twttr = (function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0],
-    t = window.twttr || {};
-  if (d.getElementById(id)) return t;
-  js = d.createElement(s);
-  js.id = id;
-  js.src = "https://platform.twitter.com/widgets.js";
-  fjs.parentNode.insertBefore(js, fjs);
- 
-  t._e = [];
-  t.ready = function(f) {
-    t._e.push(f);
-  };
- 
-  return t;
-}(document, "script", "twitter-wjs"));</script>
-
-
 
   <!-- Depending on the situation, HTML body element's class attribute to specify a value by JavaScript
        The argument from the left, the right block container, the middle block left the right block id attribute value -->

@@ -1,6 +1,6 @@
 {noscript}
 <div id="geeklog_config_editor" style="display:none;">
-    <form method="post" action="{site_admin_url}/configuration.php" name="group" class="uk-form">
+    <form method="post" action="{site_admin_url}/configuration.php" name="group">
         <div>
             <input type="hidden" value="{open_group}" name="conf_group"{xhtml}>
             <input type="hidden" value="" name="subgroup"{xhtml}>
@@ -9,9 +9,9 @@
     </form>
 
     <div id="config_menu">
-        <section id="search-configuration-container" class="uk-form" role="search">
+        <section id="search-configuration-container" role="search">
             <h2 class="block-title" id="desc-search-configuration">{search_configuration_label}</h2>
-            <input name="search-configuration" id="search-configuration" type="text" value="{search_configuration_value}" aria-describedby="desc-search-configuration"{xhtml}>
+            <input name="search-configuration" id="search-configuration" type="text" class="uk-input" value="{search_configuration_value}" aria-describedby="desc-search-configuration"{xhtml}>
             <input name="tab-id" id="tab-id" type="hidden" value="{tab_id_value}"{xhtml}>
         </section>
         {config_menu}
@@ -26,7 +26,7 @@
         </div>
 
         <div id="config_main">
-            <form action="{site_admin_url}/configuration.php" method="post" name="subgroup" class="uk-form">
+            <form action="{site_admin_url}/configuration.php" method="post" name="subgroup">
                 <div>
                     <input type="hidden" name="conf_group" value="{open_group}"{xhtml}>
                     <input type="hidden" name="sub_group" value="{open_sg}"{xhtml}>
@@ -54,9 +54,9 @@
                     <!-- END tab -->
 
                 </div>
-                <div id="bottom_buttons" class="aligncenter">
-                    <input type="submit" id="save_changes" value="{lang_save_changes}"{xhtml}>
-                    <input type="submit" id="form_reset" name="form_reset" value="{lang_reset_form}"{xhtml}>
+                <div id="bottom_buttons" class="aligncenter uk-margin">
+                    <button type="submit" id="save_changes" value="{lang_save_changes}" class="uk-button uk-button-primary">{lang_save_changes}</button>
+                    <button type="submit" id="form_reset" name="form_reset" value="{lang_reset_form}" class="uk-button uk-button-default">{lang_reset_form}</button>
                 </div>
             </form>
         </div>

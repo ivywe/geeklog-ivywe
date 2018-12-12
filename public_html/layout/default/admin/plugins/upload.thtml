@@ -11,10 +11,10 @@
 </div>
 {!else}
 <p>{lang_message}</p>
-<form name="plugins_upload" action="{site_admin_url}/plugins.php" method="post" enctype="multipart/form-data" class="uk-form">
-    <div class="uk-form-file">{lang_file_title}:
+<form name="plugins_upload" action="{site_admin_url}/plugins.php" method="post" enctype="multipart/form-data">
+    <div>{lang_file_title}:
         <input type="file" dir="ltr" name="plugin" size="40"{xhtml}>
-        <button type="submit" name="upload" value="{lang_upload}" class="uk-button">{lang_upload}</button>
+        <button type="submit" name="upload" value="{lang_upload}" class="uk-button uk-button-default">{lang_upload}</button>
         <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
     </div>
 </form>

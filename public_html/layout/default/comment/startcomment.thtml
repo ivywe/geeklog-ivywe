@@ -1,10 +1,10 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 <aside id="{area_id}">
   <div id="comments">
     {commentbar}
     {comments}
-    
+
     {!if pagenav}
     <div class="uk-margin-top">{pagenav}</div>
     {!endif}

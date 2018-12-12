@@ -1,19 +1,19 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 {list_top}
-<form name="page_limit" action="{page_url}" method="get" class="uk-form">
+<form name="page_limit" action="{page_url}" method="get">
   <div class="admin-list-search">
     {page_hidden}
     <div class="search-part" style="{show_limit}">
       <label for="search-results-limit">{lang_limit}:</label>
-      <select id="search-results-limit" name="results">
+      <select id="search-results-limit" class="uk-select uk-width-auto" name="results">
         {page_limit}
       </select>
-      <button type="submit" value="{lang_submit}" class="uk-button">{lang_submit}</button>
+      <button type="submit" value="{lang_submit}" class="uk-button uk-button-default">{lang_submit}</button>
     </div>
   </div>
 </form>
-<div class="uk-overflow-container">
+<div class="uk-overflow-auto">
   <table class="admin-list-table uk-table uk-table-hover uk-table-striped" style="{show_sort}">
     <tr>
       {page_sort}

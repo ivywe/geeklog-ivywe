@@ -1,26 +1,26 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 {list_top}
-<form name="page_limit" action="{page_url}" method="get" class="uk-form">
+<form name="page_limit" action="{page_url}" method="get">
   <div class="admin-list-search">
     {page_hidden}
     <div class="search-part" style="{show_sort}">
       <label for="search-results-order">{lang_sort}:</label>
-      <select id="search-results-order" name="order">
+      <select id="search-results-order" name="order" class="uk-select uk-width-auto">
         {page_sort}
       </select>
-      <select name="direction">
+      <select name="direction" class="uk-select uk-width-auto">
         {page_direction}
       </select>
     </div>
     <div class="search-part" style="{show_limit}">
       <label for="search-results-limit">{lang_limit}:</label>
-      <select id="search-results-limit" name="results">
+      <select id="search-results-limit" name="results" class="uk-select uk-width-auto">
         {page_limit}
       </select>
     </div>
     <div class="search-part">
-      <button type="submit" value="{lang_submit}" class="uk-button">{lang_submit}</button>
+      <button type="submit" value="{lang_submit}" class="uk-button uk-button-default">{lang_submit}</button>
     </div>
   </div>
 </form>

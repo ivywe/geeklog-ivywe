@@ -5,9 +5,9 @@
     <h2 class="story_title" itemprop="headline">{story_title_link}</h2>
 
     <div class="story_icon">
-      {!if email_icon}<a title="{lang_email_story}" href="{email_story_url}" class="uk-icon-hover uk-icon-envelope-o"></a>{!endif}
-      {!if print_icon}<a title="{lang_print_story}" href="{print_story_url}" class="uk-icon-hover uk-icon-print" rel="nofollow"></a>{!endif}
-      {!if edit_icon}<a title="{lang_edit_text}" href="{edit_url}" class="uk-icon-hover uk-icon-pencil" rel="nofollow"></a>{!endif}
+      {!if email_icon}<a title="{lang_email_story}" href="{email_story_url}" class="uk-icon-link" uk-tooltip="{lang_email_story}" uk-icon="mail"></a>{!endif}
+      {!if print_icon}<a title="{lang_print_story}" href="{print_story_url}" class="uk-icon-link" rel="nofollow" uk-tooltip="{lang_print_story}" uk-icon="file"></a>{!endif}
+      {!if edit_icon}<a title="{lang_edit_text}" href="{edit_url}" class="uk-icon-link" rel="nofollow" uk-tooltip="{lang_edit_text}" uk-icon="pencil"></a>{!endif}
     </div>
 
     <ul class="story_status">
@@ -51,9 +51,9 @@
 
 <!-- BEGIN image_noalign -->
 {!if link_url}
-<figure class="gl-article-figure">
+<figure class="gl-article-figure" uk-lightbox>
   <div class="gl-align-none">
-    <a class="uk-thumbnail" href="{link_url}" title="{link_title}" data-uk-lightbox>
+    <a class="gl-thumbnail" href="{link_url}" data-caption="{link_title}">
       <img {sizeAttributes} src="{imgSrc}" alt=""{xhtml}>
     </a>
   </div>
@@ -61,7 +61,7 @@
 {!else}
 <figure class="gl-article-figure">
   <div class="gl-align-none">
-    <div class="uk-thumbnail">
+    <div class="gl-thumbnail">
       <img {sizeAttributes} src="{imgSrc}" alt=""{xhtml}>
     </div>
   </div>
@@ -71,9 +71,9 @@
 
 <!-- BEGIN image_leftalign -->
 {!if link_url}
-<figure class="gl-article-figure">
+<figure class="gl-article-figure" uk-lightbox>
   <div class="gl-align-center gl-align-left-s">
-    <a class="uk-thumbnail" href="{link_url}" title="{link_title}" data-uk-lightbox>
+    <a class="gl-thumbnail" href="{link_url}" data-caption="{link_title}">
       <img {sizeAttributes} src="{imgSrc}" alt=""{xhtml}>
     </a>
   </div>
@@ -81,7 +81,7 @@
 {!else}
 <figure class="gl-article-figure">
   <div class="gl-align-center gl-align-left-s">
-    <div class="uk-thumbnail">
+    <div class="gl-thumbnail">
       <img {sizeAttributes} src="{imgSrc}" alt=""{xhtml}>
     </div>
   </div>
@@ -91,9 +91,9 @@
 
 <!-- BEGIN image_rightalign -->
 {!if link_url}
-<figure class="gl-article-figure">
+<figure class="gl-article-figure" uk-lightbox>
   <div class="gl-align-center gl-align-right-s">
-    <a class="uk-thumbnail" href="{link_url}" title="{link_title}" data-uk-lightbox>
+    <a class="gl-thumbnail" href="{link_url}" data-caption="{link_title}">
       <img {sizeAttributes} src="{imgSrc}" alt=""{xhtml}>
     </a>
   </div>
@@ -101,7 +101,7 @@
 {!else}
 <figure class="gl-article-figure">
   <div class="gl-align-center gl-align-right-s">
-    <div class="uk-thumbnail">
+    <div class="gl-thumbnail">
       <img {sizeAttributes} src="{imgSrc}" alt=""{xhtml}>
     </div>
   </div>
@@ -111,9 +111,9 @@
 
 <!-- BEGIN image_centeralign -->
 {!if link_url}
-<figure class="gl-article-figure-center">
+<figure class="gl-article-figure-center" uk-lightbox>
   <div class="gl-align-center">
-    <a class="uk-thumbnail" href="{link_url}" title="{link_title}" data-uk-lightbox>
+    <a class="gl-thumbnail" href="{link_url}" data-caption="{link_title}">
       <img {sizeAttributes} src="{imgSrc}" alt=""{xhtml}>
     </a>
   </div>
@@ -121,7 +121,7 @@
 {!else}
 <figure class="gl-article-figure-center">
   <div class="gl-align-center">
-    <div class="uk-thumbnail">
+    <div class="gl-thumbnail">
       <img {sizeAttributes} src="{imgSrc}" alt=""{xhtml}>
     </div>
   </div>

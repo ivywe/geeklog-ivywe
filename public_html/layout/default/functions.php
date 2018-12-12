@@ -44,13 +44,26 @@ if (strpos(strtolower($_SERVER['PHP_SELF']), 'functions.php') !== false) {
  */
 function theme_config_default()
 {
+    $options = array(
+        'uikit_theme' => 'default',
+        'use_minified_css'  => 1,   // 1:use  or 0:no_use minified css
+        'block_left_search' => 1,   // 1:show or 0:hide left block searchbox
+        'welcome_msg'       => 1,   // 1:show or 0:hide welcome message
+        'trademark_msg'     => 0,   // 1:show or 0:hide trademark message on footer
+        'execution_time'    => 0,   // 1:show or 0:hide execution time on footer
+        'pagenavi_string'   => 1,   // 1:show or 0:hide text string of page navigation
+        'header_brand_type' => 1,   // 1:text or 0:image type of header brand (site name)
+        'off_canvas_mode'   => 2,   // 0:push 1:slide 2:reveal or 3:none mode of UIkit off-canvas animation
+        'enable_etag'       => 0,   // 1:enable or 0:disable ETag (deprecated since version 2.2.0. keep the value to 0)
+    );
+
     return array(
         'image_type' => 'png',
         'doctype'    => 'xhtml5',
         'etag'       => false, // never set this true. instead use $options['enable_etag'] above.
-        'supported_version_theme' => '2.0.0', // support new theme format for the later Geeklog 2.0.0
-        'theme_plugins' => 'default', // Not requred, you can specify compatible theme of template stored with some plugins
-        'options'    => $options // Not requred, some options of this theme
+        'supported_version_theme' => '2.2.0', // support new theme format for the later Geeklog 2.2.0
+        'theme_plugins' => '', // EXPERIMENTAL - Not required - Is used by all plugins - You can specify a COMPATIBLE theme (not a child theme) to use templates stored with some plugins. Can have problems if plugins include css and js files via their own functions.php
+        'options'    => $options // Not required, some options of this theme
     );
 }
 
@@ -61,15 +74,73 @@ function theme_css_default()
 {
     global $_CONF, $LANG_DIRECTION;
 
-    $direction = ($LANG_DIRECTION == 'rtl') ? '_rtl' : '';
+    $theme_var = theme_config_default();
 
-    return array(
-        array('file' => '/layout/' . $_CONF['theme'] . '/vendor/uikit/css' . $direction . '/uikit.min.css', 'attributes' => array('media' => 'all'), 'priority' => 80),
-        array('file' => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/style.css', 'attributes' => array('media' => 'all'), 'priority' => 100),
-        array('file' => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/custom.css', 'attributes' => array('media' => 'all'), 'priority' => 110), 
-        array('file' => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/theme.css', 'attributes' => array('media' => 'all'), 'priority' => 120), 
+    $direction = ($LANG_DIRECTION === 'rtl') ? '-rtl' : '';
+    $ui_theme = '';
+    if (in_array($theme_var['options']['uikit_theme'], array('gradient', 'almost-flat'))) {
+        $ui_theme = '.' . $theme_var['options']['uikit_theme'];
+    }
+    $min = ($theme_var['options']['use_minified_css'] === 1) ? '.min' : '';
 
+    // array of css packages
+    $css_packages = array();
+
+    // main package items
+    $css_items = array();
+
+    // add uikit css
+    $css_items[] = array(
+        'name'       => 'uikit3',
+        'file'       => '/vendor/uikit3/css/uikit' . $direction . $min . '.css',
+        'attributes' => array('media' => 'all'),
+        'priority'   => 80
     );
+
+    // add main css of this theme
+    $css_items[] = array(
+        'name'       => 'main', // don't use the name 'theme' to control the priority
+        'file'       => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/style' . $ui_theme . $min . '.css',
+        'attributes' => array('media' => 'all'),
+        'priority'   => 90
+    );
+
+    // add custom css of this theme
+    $css_items[] = array(
+        'name'       => 'custom',
+        'file'       => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/custom.css',
+        'attributes' => array('media' => 'all'),
+        'priority'   => 91
+    );
+
+    // register main css package
+    $css_packages[] = array(
+        'name'      => 'main_package',
+        'css_items' => $css_items,
+    );
+
+    // never packed css items
+    $never_packed_items = array();
+
+    $result = array();
+    $result = $never_packed_items;
+    if ($theme_var['options']['enable_etag'] === 1) {
+        foreach($css_packages as $package) {
+            $result[] = array(
+                'name'      => $package['name'],
+                'file'      => '/layout/' . $_CONF['theme'] . '/css/style.css.php?theme='
+                                    . $_CONF['theme'] . '&amp;package=' . $package['name'] . '&amp;dir=' . $LANG_DIRECTION,
+                'css_items' => $package['css_items'],
+                'priority'  => 90
+            );
+        }
+    } else {
+        foreach($css_packages as $package) {
+            $result = array_merge($result, $package['css_items']);
+        }
+    }
+
+    return $result;
 }
 
 /**
@@ -77,12 +148,25 @@ function theme_css_default()
  */
 function theme_js_libs_default()
 {
-    return array(
-       array(
-            'library' => 'jquery',
-            'footer'  => false // Not required, default = true
-        )
+    $theme_var = theme_config_default();
+
+    $result = array();
+    $result[] = array(
+        'library' => 'jquery',
+        'footer'  => false // Required, default = true
     );
+
+    $result[] = array(
+        'library' => 'uikit3',
+        'footer'  => false, // Required, default = true
+    );
+/*
+    $result[] = array(
+        'library' => 'uikit_modifier',
+        'footer'  => false, // Required, default = true
+    );
+*/
+    return $result;
 }
 
 /**
@@ -92,30 +176,13 @@ function theme_js_files_default()
 {
     global $_CONF;
 
-    $theme_var = theme_config_default();
-
     $result = array();
 
-
     $result[] = array(
-        'file'     => '/layout/' . $_CONF['theme'] . '/vendor/uikit/js/uikit.min.js',
-        'footer'   => false, // Not required, default = true
-        'priority' => 100 // Not required, default = 100
-    );
-    $result[] = array(
-        'file'     => '/layout/' . $_CONF['theme'] . '/vendor/uikit/js/uikit-icons.min.js',
-        'footer'   => false, // Not required, default = true
-        'priority' => 101 // Not required, default = 100
-    );
-    $result[] = array(
+        'name'     => 'theme.script',
         'file'     => '/layout/' . $_CONF['theme'] . '/javascript/script.js',
         'footer'   => true, // Not required, default = true
-        'priority' => 110 // Not required, default = 100
-    );
-    $result[] = array(
-        'file'     => '/layout/' . $_CONF['theme'] .'/vendor/uikit/js/migrate.min.js',
-        'footer'   => false, // Not required, default = true
-        'priority' => 120 // Not required, default = 100
+        'priority' => 100 // Not required, default = 100
     );
 
     return $result;
@@ -129,7 +196,7 @@ function theme_init_default()
     global $_BLOCK_TEMPLATE, $_CONF;
 
     $_CONF['left_blocks_in_footer'] = 1;
-    
+
     $_CONF['theme_oauth_icons'] = 0; // Default is false (not required). Will use Geeklogs own OAuth icons for login form else use icons in theme images directory
 
     /*
@@ -156,3 +223,36 @@ function theme_init_default()
         $_BLOCK_TEMPLATE['user_block'] = 'blockheader-list.thtml,blockfooter-list.thtml';
     }
 }
+
+
+/**
+ * Return an array of Block Locations for a theme (besides left and right)
+ */
+/* 
+EXAMPLE CODE ONLY. Follow instructions below to implement.
+
+The code below can be added to the footer.html where you want the blocks to appear
+{!if blocks_footer}
+{blocks_footer}
+{!endif}  
+    
+Then uncomment this function below to register the above block location with Geeklog. Any new or updated blocks can then be assigned the following block location in the Block Editor
+    
+function theme_getBlockLocations_default()
+{
+    $block_locations = array();
+
+    // Add any extra block positions in theme. Locations can have one or more variables assigned to them
+    // Remember these locations can only appear in templates that PLG_templateSetVars is used with
+    $block_locations[] = array(
+        'id'                => 'default_footer', // Unique string. No other block location (includes Geeklog itself and any other plugins or themes) can share the same id ("left" and "right" are already taken).
+        'name'              => 'Denim Three Footer', // (should use language variable here)
+        'description'       => 'Blocks will appear at the bottom of all pages.', // (should use language variable here)
+        'template_name'     => 'footer',
+        'template_variable' => 'blocks_footer'
+    );
+
+    return $block_locations;
+}
+*/
+

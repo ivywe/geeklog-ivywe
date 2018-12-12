@@ -9,7 +9,7 @@
 <!-- BEGIN text-element -->
 <tr id="config_{id_name}" class="config_name"><td class="alignright">{display_name} {doc_link} {unset_link}</td>
 <td>
-<input type="text" class="opt{error_class}" name="{name}" style="width:300px" value="{value}"{xhtml}>
+<input type="text" class="uk-input opt{error_class}" name="{name}" style="width:300px" value="{value}"{xhtml}>
 {delete}{error_block}
 </td></tr>
 <!-- END text-element -->
@@ -17,7 +17,7 @@
 <!-- BEGIN text-area -->
 <tr id="config_{id_name}" class="config_name"><td class="alignright">{display_name} {doc_link} {unset_link}</td>
 <td>
-<textarea class="opt{error_class}" name="{name}" style="width:300px" cols="3" rows="3">{value}</textarea>
+<textarea class="uk-textarea opt{error_class}" name="{name}" style="width:300px" cols="3" rows="3">{value}</textarea>
 {delete}{error_block}
 </td></tr>
 <!-- END text-area -->
@@ -32,7 +32,7 @@
 <!-- BEGIN select-element -->
 <tr{hide_row} id="config_{id_name}" class="config_name"><td class="alignright">{display_name} {doc_link} {unset_link}</td>
 <td>
-<select name="{name}" class="opt{error_class}">
+<select name="{name}" class="uk-select opt{error_class}">
   <!-- BEGIN select-options -->
     <option {selected} value="{opt_value}">{opt_name}</option>
   <!-- END select-options -->

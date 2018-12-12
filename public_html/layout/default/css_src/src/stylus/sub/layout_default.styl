@@ -1,14 +1,27 @@
 
 // Variables
-$layout-site-width =            1140px
-$layout-left-block-width =      180px
-$layout-right-block-width =     280px
+$layout-site-width =            1440px
+$layout-left-block-width =      230px
+$layout-right-block-width =     330px
 $layout-side-padding =          10px
+$stage = 'layout_3cols_LRbar_xlarge' // overwrite $stage
 //
 @import "layout/layout_3cols_LRbar";
 
 
 @media only screen and (min-width: $breakpoint-large) and (max-width: $breakpoint-large-max)
+    // Variables
+    $layout-site-width =            1140px
+    $layout-left-block-width =      180px
+    $layout-right-block-width =     280px
+    $layout-side-padding =          10px
+    $stage = 'layout_3cols_LRbar_large' // overwrite $stage
+    //
+    @import "layout/layout_3cols_LRbar";
+
+
+/*! Smaller than standard 1280 (devices and browsers) */
+@media only screen and (min-width: $breakpoint-medium) and (max-width: $breakpoint-medium-max)
     // Variables
     $layout-site-width =            960px
     $layout-left-block-width =      280px
@@ -16,17 +29,6 @@ $layout-side-padding =          10px
     $layout-side-padding =          10px
     //
     @import "layout/layout_2cols_Rbar_fixed";
-
-
-/*! Smaller than standard 1280 (devices and browsers) */
-@media only screen and (min-width: $breakpoint-medium) and (max-width: $breakpoint-medium-max)
-    // Variables
-    $layout-site-width =            auto
-    $layout-left-block-width =      230px
-    $layout-right-block-width =     230px
-    $layout-side-padding =          10px
-    //
-    @import "layout/layout_2cols_Rbar_liquid";
 
 
 /*! All Mobile Sizes (devices and browser) */

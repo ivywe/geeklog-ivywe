@@ -1,4 +1,4 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 {start_block_userprofile}
   <dl id="profile-userprofile">
@@ -25,7 +25,7 @@
 
     <dt>{lang_pgpkey}</dt>
     <dd>{user_pgp}</dd>
-    
+
     {display_fields}
   </dl>
 {end_block}
@@ -39,7 +39,7 @@
 
     <dt>{lang_number_comments}</dt>
     <dd>{number_comments}</dd>
-    
+
     {field_statistics}
   </dl>
 

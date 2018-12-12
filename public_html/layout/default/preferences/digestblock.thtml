@@ -1,12 +1,12 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 <fieldset>
   <legend>{lang_digest_top_header}</legend>
 
   <div class="linear">
-    <div class="profile_notes uk-panel uk-panel-box">
+    <div class="profile_notes" uk-alert>
       <div class="uk-panel-title">
-        <i class="uk-icon-info-circle uk-text-primary"></i>
+        <span class="uk-text-primary" uk-icon="info"></span>
         <span>{lang_digest_help_header}</span>
       </div>
       <div>{lang_emailedtopics}</div>

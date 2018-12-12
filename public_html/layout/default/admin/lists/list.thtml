@@ -1,14 +1,14 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 {search_menu}
 
-<form action="{form_url}" method="post" class="uk-form">
+<form action="{form_url}" method="post">
 
 <div>
 {formfields_top}
 </div>
 
-<div class="uk-overflow-container">
+<div class="uk-overflow-auto uk-margin-small">
 <table class="admin-list-table uk-table uk-table-hover uk-table-striped">
 <tr>
 {header_row}</tr>

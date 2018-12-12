@@ -139,7 +139,7 @@ if 55px > $header-height
 .brand-text .nameplate
     @media only screen and (max-width: $breakpoint-small-max)
         float: none
-        height: 100%  
+        height: 100%
         margin: 0 auto
         max-width: 230px
         text-align: center
@@ -259,7 +259,7 @@ else
 .brand-image .nameplate
     @media only screen and (max-width: $breakpoint-small-max)
         float: none
-        height: 100%  
+        height: 100%
         margin: 0 auto
         max-width: 230px
         text-align: center
@@ -315,10 +315,12 @@ first-child-border-left(mode, bl) // mixin
             border: none
 
         .gl-navbar-small
-            .uk-navbar-nav > li > a // UIkit modifier
-                height: 31px
+            .uk-navbar-nav > li > a, // UIkit modifier
+            .uk-navbar-item,
+            .uk-navbar-toggle
+                height: 41px
                 font-size: 13px
-                line-height: 30px
+                line-height: 40px
                 padding: 0 10px
 
     if $var-global-navigation-style == 'frame'
@@ -357,6 +359,28 @@ first-child-border-left(mode, bl) // mixin
     if $var-global-navigation-style == 'normal'
         > .uk-navbar-toggle
             height: 80px // same height with #header
+        > .header-toggle
+            box-sizing: border-box
+            display: block
+            height: 80px // same height with #header
+            padding: 0 15px
+            float: left
+        > .header-toggle:before
+            content: ''
+            display: inline-block
+            height: 100%
+            vertical-align: middle
+        > .header-toggle-right
+            box-sizing: border-box
+            display: block
+            height: 80px // same height with #header
+            padding: 0 15px
+            float: right
+        > .header-toggle-right:before
+            content: ''
+            display: inline-block
+            height: 100%
+            vertical-align: middle
     hook-selector($stage, "" + selector())
 
 if $var-global-navigation-style == 'normal'
@@ -367,9 +391,8 @@ if $var-global-navigation-style == 'normal'
         padding: 2.5px
 
     .gl-navbar-small #header-search-box
-        font-size: 12px;
-        height: 25px;
-        padding: 3px;
+        height: 30px
+        padding: 3px auto
 
 /*!--------------------------------------
   Center Block Content
@@ -392,6 +415,9 @@ if $var-global-navigation-style == 'normal'
     margin: 0 0 1em 0
     padding: 0 0 2em 0
     border-bottom: 1px solid #CCC
+
+#centerblocks section.block-center:last-child
+    border-bottom: none
 
 /*!--------------------------------------
   Footer Content
@@ -767,10 +793,8 @@ h4 img
     margin-bottom: 0.3em
 
 input[type="text"].search
-    background: url(../images/search.png) left center no-repeat #FFF
-    padding-left: 24px
-    width: 120px
-    color: #999
+    height: 31px
+    padding: 3px auto
 
 /*!--------------------------------------
   Login Form
@@ -820,6 +844,7 @@ login_form(pos) // mixin
 /*! Third party login */
 form.third-party-login
     margin: 0.1em 0
+    width: 38px
     div
         position: relative
         img
@@ -830,8 +855,11 @@ form.third-party-login
             box-sizing: border-box
             &.submit
                 text-indent: 24px
+                text-transform: capitalize
                 font-size: 12px
                 height: 28px
+                line-height: 28px
+                padding: 0 11px
 
 div.third-party-login
     width: 164px

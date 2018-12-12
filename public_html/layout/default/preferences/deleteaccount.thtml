@@ -1,9 +1,9 @@
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
 <div class="linear">
-  <div class="profile_notes uk-panel uk-panel-box">
+  <div class="profile_notes" uk-alert>
     <div class="uk-panel-title">
-      <i class="uk-icon-info-circle uk-text-primary"></i>
+      <span class="uk-text-primary" uk-icon="info"></span>
       <span>{lang_deleteaccount}</span>
     </div>
     <div>{delete_text}</div>
@@ -14,7 +14,7 @@
   <dl class="form_block">
     <dt><label for="delete_account">{lang_deleteoption}</label></dt>
     <dd>
-      <input type="checkbox" name="delete_account" id="delete_account">
+      <input type="checkbox" name="delete_account" id="delete_account" class="uk-checkbox">
       <input type="hidden" name="account_id" value="{account_id}">
     </dd>
   </dl>
