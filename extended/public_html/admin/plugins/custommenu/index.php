@@ -38,6 +38,8 @@
 require_once '../../../lib-common.php';
 require_once '../../auth.inc.php';
 
+global $_CMED_CONF;
+
 if (!defined ('UC_SELECTED')) define('UC_SELECTED', (XHTML == '') ? 'selected' : 'selected="selected"');
 if (!defined ('UC_CHECKED'))  define('UC_CHECKED',  (XHTML == '') ? 'checked'  : 'checked="checked"'  );
 if (!defined ('UC_READONLY')) define('UC_READONLY', (XHTML == '') ? 'readonly' : 'readonly="readonly"');
@@ -62,15 +64,17 @@ if (!SEC_hasRights('custommenu.admin')) {
 }
 
 $pi_version = DB_getItem($_TABLES['plugins'], 'pi_version', "(pi_name = 'custommenu')");
-if (version_compare($pi_version, $_CMED_CONF['version']) < 0) {
-    $display = COM_startBlock($LANG_CMED['warning_updated']);
-    $display .= $LANG_CMED['instructions_update'];
-    $display .= COM_endBlock();
-    $display = COM_createHTMLDocument($display);
-    COM_output($display);
-    exit;
-}
 
+if (isset($_CMED_CONF['version'])){
+	if (version_compare($pi_version, $_CMED_CONF['version']) < 0) {
+	    $display = COM_startBlock($LANG_CMED['warning_updated']);
+	    $display .= $LANG_CMED['instructions_update'];
+	    $display .= COM_endBlock();
+	    $display = COM_createHTMLDocument($display);
+	    COM_output($display);
+	    exit;
+	}
+}
 
 $MI = array(); // Array of values of one menuitem
 
@@ -640,6 +644,7 @@ function CMED_getChildTreeArray($sel_id="", $parray = array(), $orderby = "ASC")
 function CMED_reorderMenuitems()
 {
     global $_TABLES;
+		$order = 0;
 
     $A = CMED_getChildTreeArray();
     foreach ($A as $B) {
