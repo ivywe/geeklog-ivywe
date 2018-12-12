@@ -1,5 +1,1 @@
-{# begin {templatelocation} #}
-
-<li><a href="{link_url}" title="{link_title}">{link_label}</a></li>
-
-{# end {templatelocation} #}
+<li class="li-navbar-breadcrumbs">{link_separator}<a href="{link_url}" title="{link_title}" class="a-navbar-breadcrumbs">{link_label}</a></li>

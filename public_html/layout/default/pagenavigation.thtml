@@ -4,8 +4,8 @@
     <div class="uk-width-1-1">
         {message}
         <ul class="uk-pagination">
-            <li class="{!if start_first_anchortag}{!else}uk-disabled{!endif}">{start_first_anchortag}<span><span uk-icon="icon: chevron-left"></span> {lang_first}</span>{end_first_anchortag}</li>
-            <li class="{!if start_previous_anchortag}{!else}uk-disabled{!endif}">{start_previous_anchortag}<span><span uk-icon="icon: chevron-left"></span> {lang_previous}</span>{end_previous_anchortag}</li>
+            <li class="{!if start_first_anchortag}{!else}uk-disabled{!endif}">{start_first_anchortag}<span><i class="uk-icon-angle-double-left"></i> {lang_first}</span>{end_first_anchortag}</li>
+            <li class="{!if start_previous_anchortag}{!else}uk-disabled{!endif}">{start_previous_anchortag}<span><i class="uk-icon-angle-left"></i> {lang_previous}</span>{end_previous_anchortag}</li>
         {pages}
         </ul>
     </div>
@@ -26,8 +26,8 @@
 <!-- END page-current -->
 
 <!-- BEGIN nav-end -->
-<li class="{!if start_next_anchortag}{!else}uk-disabled{!endif}">{start_next_anchortag}<span>{lang_next} <span uk-icon="icon: chevron-right"></span></span>{end_next_anchortag}</li>
-<li class="{!if start_last_anchortag}{!else}uk-disabled{!endif}">{start_last_anchortag}<span>{lang_last} <span uk-icon="icon: chevron-right"></span></span>{end_last_anchortag}</li>
+<li class="{!if start_next_anchortag}{!else}uk-disabled{!endif}">{start_next_anchortag}<span>{lang_next} <i class="uk-icon-angle-right"></i></span>{end_next_anchortag}</li>
+<li class="{!if start_last_anchortag}{!else}uk-disabled{!endif}">{start_last_anchortag}<span>{lang_last} <i class="uk-icon-angle-double-right"></i></span>{end_last_anchortag}</li>
 <!-- END nav-end -->
 
 <!-- BEGIN nav-open-ended -->

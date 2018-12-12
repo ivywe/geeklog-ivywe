@@ -6,7 +6,7 @@
     {page_hidden}
     <div class="search-part" style="{show_limit}">
       <label for="search-results-limit">{lang_limit}:</label>
-      <select class="uk-select uk-form-width-xsmall" id="search-results-limit" name="results">
+      <select id="search-results-limit" name="results">
         {page_limit}
       </select>
       <button type="submit" value="{lang_submit}" class="uk-button">{lang_submit}</button>
@@ -14,7 +14,7 @@
   </div>
 </form>
 <div class="uk-overflow-container">
-  <table class="admin-list-table uk-table uk-table-hover uk-table-striped gl-search" style="{show_sort}">
+  <table class="admin-list-table uk-table uk-table-hover uk-table-striped" style="{show_sort}">
     <tr>
       {page_sort}
     </tr>
@@ -40,7 +40,7 @@
 <!-- END limit -->
 
 <!-- BEGIN sort -->
-<th class="admin-list-headerfield uk-text-nowrap" onmouseover="this.style.cursor='pointer';" {sort_subtags}>{sort_text}{sort_selected}</th>
+<th class="admin-list-headerfield" onmouseover="this.style.cursor='pointer';" {sort_subtags}>{sort_text}{sort_selected}</th>
 <!-- END sort -->
 
 <!-- BEGIN input_hidden -->

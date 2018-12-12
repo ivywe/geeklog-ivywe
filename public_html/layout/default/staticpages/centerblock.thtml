@@ -1,8 +1,0 @@
-{# begin {templatelocation} #}
-
-{block_start}
-{!if edit_icon}<span class="uk-float-right">{edit_icon}</span>{!endif}
-{content}
-{block_end}
-
-{# end {templatelocation} #}

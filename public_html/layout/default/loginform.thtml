@@ -1,25 +1,25 @@
 {# begin {templatelocation} #}
 
 <form action="{site_url}/users.php" method="post" id="loginform" class="uk-form">
-  <fieldset class="uk-fieldset noborder_fieldset">
-    <legend class="uk-legend hidden_legend">{lang_login}</legend>
+  <fieldset class="noborder_fieldset">
+    <legend class="hidden_legend">{lang_login}</legend>
 
     <div class="loginform">
       <div class="form_part">
         <label for="loginform-loginname" style="display:none">{lang_username}</label>
-        <input type="text" class="uk-input uk-width-1-1" style="width:100%" value="" name="loginname" id="loginform-loginname" placeholder="{lang_username}"{xhtml}>
+        <input type="text" value="" name="loginname" id="loginform-loginname" class="size2" placeholder="{lang_username}"{xhtml}>
       </div>
 
       {services}
 
       <div class="form_part">
         <label for="loginform-passwd" style="display:none">{lang_password}</label>
-        <input type="password" class="uk-input uk-width-1-1" style="width:100%" name="passwd" id="loginform-passwd" placeholder="{lang_password}"{xhtml}>
+        <input type="password" name="passwd" id="loginform-passwd" class="size2" placeholder="{lang_password}"{xhtml}>
       </div>
     </div>
 
     <div class="submit">
-      <button type="submit" value="{lang_login}" class="uk-button uk-button-primary uk-width-1-1">{lang_login}</button>
+      <button type="submit" value="{lang_login}" class="uk-button">{lang_login}</button>
     </div>
 
     <div class="navi">

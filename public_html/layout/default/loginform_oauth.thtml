@@ -22,7 +22,7 @@
 {#
   <form class="third-party-login uk-form" action="{site_url}/users.php?oauth_login={oauth_service}" method="post">
     <div>
-      <span uk-icon="icon: {oauth_icon_font_name}"></span>
+      <span style="position: absolute; top: 5px; left: 5px; text-align: center; width: 18px; font-size: 15px;"><i class="uk-icon-{oauth_icon_font_name}"></i></span>
       <input value="{lang_oauth_service}" type="submit" class="submit" style="min-width: 164px;"{xhtml}>
     </div>
   </form>

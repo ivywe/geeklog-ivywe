@@ -2,8 +2,8 @@
 
 <!-- BEGIN group -->
 </ul>
-<h3 class="uk-heading-line">{group_label}</h3>
-<ul class="uk-list">
+<h3 class="sideoption_group_label">{group_label}</h3>
+<ul class="noliststyle">
 <!-- END group -->
 <!-- BEGIN option -->
 <li class="adminoption sideoption"><a href="{option_url}"{target}>{option_label}{display_count}</a></li>

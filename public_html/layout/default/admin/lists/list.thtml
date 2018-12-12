@@ -8,7 +8,7 @@
 {formfields_top}
 </div>
 
-<div class="uk-overflow-auto">
+<div class="uk-overflow-container">
 <table class="admin-list-table uk-table uk-table-hover uk-table-striped">
 <tr>
 {header_row}</tr>
@@ -16,9 +16,11 @@
 </table>
 </div>
 
-<div class="admin-list-navi" style="{show_deleteimage}">
+{!if show_deleteimage}
+<div class="admin-list-navi">
   <input type="image" name="delbutton" alt="delbutton" src="{layout_url}/images/deleteitem.png" title="{lang_deleteall}" onclick="return confirm('{lang_delconfirm}');"{xhtml}>
 </div>
+{!endif}
 
 <div>
 {formfields_bottom}

@@ -6,16 +6,16 @@
     {page_hidden}
     <div class="search-part" style="{show_sort}">
       <label for="search-results-order">{lang_sort}:</label>
-      <select class="uk-select uk-form-width-small" id="search-results-order" name="order">
+      <select id="search-results-order" name="order">
         {page_sort}
       </select>
-      <select class="uk-select uk-form-width-small" name="direction">
+      <select name="direction">
         {page_direction}
       </select>
     </div>
     <div class="search-part" style="{show_limit}">
       <label for="search-results-limit">{lang_limit}:</label>
-      <select class="uk-select uk-form-width-xsmall" id="search-results-limit" name="results">
+      <select id="search-results-limit" name="results">
         {page_limit}
       </select>
     </div>
@@ -36,7 +36,7 @@
 <!-- END field -->
 
 <!-- BEGIN row -->
-<div class="gl-search" style="margin-bottom:15px">{item_field}</div>
+<div style="margin-bottom:15px">{item_field}</div>
 <!-- END row -->
 
 <!-- BEGIN limit -->

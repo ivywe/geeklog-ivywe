@@ -11,11 +11,11 @@
 
     {!if email_option}
     <dt>{lang_email}</dt>
-    <dd><a href="{site_url}/profiles.php?uid={user_id}">{lang_sendemail}</a></dd>
+    <dd><a href="{site_url}/profiles.php?uid={user_id}" rel="nofollow">{lang_sendemail}</a></dd>
     {!endif}
 
     <dt>{lang_homepage}</dt>
-    <dd>{!if user_homepage}<span class="url"><a href="{user_homepage}">{user_homepage}</a></span>{!endif}</dd>
+    <dd>{!if user_homepage}<span class="url"><a href="{user_homepage}" target="_blank" rel="nofollow noopener">{user_homepage}</a></span>{!endif}</dd>
 
     <dt>{lang_location}</dt>
     <dd>{user_location}</dd>

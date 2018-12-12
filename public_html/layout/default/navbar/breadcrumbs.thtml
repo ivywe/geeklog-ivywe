@@ -1,6 +1,6 @@
-{# begin {templatelocation} #}
+{# start {templatelocation} #}
 
-<ul class="uk-breadcrumb">
+<ul class="navbar-breadcrumbs">
   {breadcrumb_links}{last_label}
 </ul>
 

@@ -1,5 +1,1 @@
-{# begin {templatelocation} #}
-
-<li class="li-navlist"><a {csscurrent} class="a-navlist" href="{link}{parms}"{onclick}><span class="label-navlist">{label}</span></a></li>
-
-{# end {templatelocation} #}
+<li{!if csscurrent} class="uk-active"{!endif}><a {csscurrent} href="{link}{parms}"{onclick}><span>{label}</span></a></li>
