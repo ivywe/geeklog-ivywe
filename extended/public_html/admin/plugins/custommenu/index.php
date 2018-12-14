@@ -376,7 +376,7 @@ function CMED_editMenuitem($mid, $mode='edit', $A=array())
     $T->set_var('permissions_editor', 
         SEC_getPermissionsHTML($A['perm_owner'], $A['perm_group'], $A['perm_members'], $A['perm_anon']));
     $T->set_var('lang_lockmsg', $LANG_ACCESS['permmsg']);
-    if (!defined(CSRF_TOKEN)) define('CSRF_TOKEN', 'token');
+//    if (!defined(CSRF_TOKEN)) define('CSRF_TOKEN', 'token');
     $T->set_var('gltoken_name', CSRF_TOKEN);
     $T->set_var('gltoken', SEC_createToken());
 

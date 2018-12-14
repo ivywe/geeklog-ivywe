@@ -19,6 +19,7 @@ function plugin_autotags_assist (
     global $_TABLES;
     global $_CONF;
     global $_USER;
+		global $_ASSIST_CONF;
 	
 //    global $_PLUGINS;
 

@@ -368,7 +368,7 @@ function plugin_getListField_autotags($fieldname, $fieldvalue, $A, $icon_arr) {
 */
 function plugin_autotags_autotags ($op, $content = '', $autotag = '')
 {
-    global $_CONF, $_TABLES, $_AUTOTAGS;
+    global $_CONF, $_TABLES, $_AUTOTAGS, $autotag_desc;
 
     loadAutotags();
     
