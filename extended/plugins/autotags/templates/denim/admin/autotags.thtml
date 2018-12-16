@@ -5,21 +5,21 @@
     <div class="admin_basic">
         <dl class="form_block">
             <dt><label for="autotags-autotageditor-tag">{lang_tag}</label></dt>
-            <dd><input type="text" name="tag" value="{tag}" maxlength="24" id="autotags-autotageditor-tag" class="size2"{xhtml}></dd>
+            <dd><input type="text" class="uk-input uk-form-width-medium" name="tag" value="{tag}" maxlength="24" id="autotags-autotageditor-tag" class="size2"{xhtml}></dd>
             
             <dt><label for="autotags-autotageditor-tag">{lang_desc}</label></dt>
-            <dd><input type="text" name="description" value="{description}" maxlength="255" id="autotags-autotageditor-tag" class="size10"{xhtml}></dd>            
+            <dd><input type="text" class="uk-input uk-form-width-medium" name="description" value="{description}" maxlength="255" id="autotags-autotageditor-tag" class="size10"{xhtml}></dd>            
 
             <dt><label for="autotags-autotageditor-enabled">{lang_enabled}</label></dt>
-            <dd class="controls_text"><input type="checkbox" name="is_enabled" id="autotags-autotageditor-enabled" {is_enabled_checked}{xhtml}></dd>
+            <dd class="controls_text"><input type="checkbox" class="uk-checkbox" name="is_enabled" id="autotags-autotageditor-enabled" {is_enabled_checked}{xhtml}></dd>
 
             <dt><label for="autotags-autotageditor-close-tag">{lang_close_tag}</label></dt>
-            <dd class="controls_text"><input type="checkbox" name="close_tag" id="autotags-autotageditor-close-tag" {close_tag_checked}{xhtml}></dd>
+            <dd class="controls_text"><input type="checkbox" class="uk-checkbox" name="close_tag" id="autotags-autotageditor-close-tag" {close_tag_checked}{xhtml}></dd>
             
             <dt><label for="autotags-autotageditor-function">{lang_function}</label></dt>
             <dd class="controls_text">
                 {!if is_function_checkbox}
-                <input type="checkbox" name="is_function" id="autotags-autotageditor-function" {is_function_checked}{xhtml}>
+                <input type="checkbox" class="uk-checkbox" name="is_function" id="autotags-autotageditor-function" {is_function_checked}{xhtml}>
                 {!endif}
                 {php_msg}
             </dd>

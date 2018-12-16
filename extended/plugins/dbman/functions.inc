@@ -1231,7 +1231,7 @@ function DBMAN_form() {
 }
 
 function DBMAN_checkbox($name, $id, $value, $label, $checked = true) {
-	$retval = '<input type="checkbox" id="' . $id . '" name="' . $name
+	$retval = '<input type="checkbox" class="uk-checkbox" id="' . $id . '" name="' . $name
 			. '" value="' . $value . '"';
 
 	if ($checked) {
@@ -1243,7 +1243,7 @@ function DBMAN_checkbox($name, $id, $value, $label, $checked = true) {
 }
 
 function DBMAN_radio($name, $id, $value, $label, $checked = true) {
-	$retval = '<input type="radio" id="' . $id . '" name="' . $name
+	$retval = '<input type="radio" class="uk-radio" id="' . $id . '" name="' . $name
 			. '" value="' . $value . '"';
 
 	if ($checked) {

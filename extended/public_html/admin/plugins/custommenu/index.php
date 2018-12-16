@@ -597,7 +597,7 @@ function CMED_makeSelBox($preset_id = "")
 {
     global $_TABLES;
 
-    $retval = '<select name="pmid">' . LB;
+    $retval = '<select class="uk-select" name="pmid">' . LB;
     $retval .= '<option value="">----</option>' . LB;
     $sql = "SELECT mid FROM {$_TABLES['menuitems']} WHERE pmid = '' ORDER BY menuorder";
     $result = DB_query($sql);

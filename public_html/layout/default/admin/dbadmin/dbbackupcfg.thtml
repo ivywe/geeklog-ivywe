@@ -18,7 +18,7 @@
 				<div class="uk-width-expand@l uk-width-1-3@m uk-text-center">
 					<div class="uk-align-center">
 					<h3>{lang_include}</h3>
-					<select multiple="multiple" name="fieldFrom" class="uk-select"
+					<select multiple="multiple" name="fieldFrom" class="uk-select uk-form-width-medium"
 						style="max-width:20em; height: 20em;"
 						ondblclick="moveSelectedOptions(this.form['fieldFrom'],this.form['fieldTo'],false)">
 						{included_tables}
@@ -37,7 +37,7 @@
 				<div class="uk-width-expand@l uk-width-1-3@m uk-text-center">
 					<div class="uk-align-center">
 					<h3>{lang_exclude}</h3>
-					<select multiple="multiple" name="fieldTo" class="uk-select"
+					<select multiple="multiple" name="fieldTo" class="uk-select uk-form-width-medium"
 						style="max-width:20em; height: 20em;"
 						ondblclick="moveSelectedOptions(this.form['fieldTo'],this.form['fieldFrom'],false)">
 						{excluded_tables}

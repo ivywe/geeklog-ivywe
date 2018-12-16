@@ -133,7 +133,7 @@ geeklog.datepicker = {
         // Creates an invisible input field for a datepicker
         inputId = selectorName + '_value_hidden';
         $("select[name='" + selectorName + "_month']")
-            .before('<span>&nbsp;</span><input type="text" id="' + inputId + '" style="display: none;" value="' + this.getDateFromSelectors(selectorName) + '" />&nbsp;');
+            .before('<span>&nbsp;</span><input type="text" class="uk-input uk-form-width-medium" id="' + inputId + '" style="display: none;" value="' + this.getDateFromSelectors(selectorName) + '" />&nbsp;');
 
         // Attaches a datepicker to the input field
         $('#' + inputId).datepicker();

@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
       <dt><label for="downloads-dlfilename">{lang_dlfilename}</label></dt>
-      <dd><input type="text" maxlength="250" name="url" value="{url}" id="downloads-dlfilename" size="48" class="uk-input"{xhtml}>&nbsp;&nbsp;{mod_tempfile}</dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="250" name="url" value="{url}" id="downloads-dlfilename" size="48" class="uk-input"{xhtml}>&nbsp;&nbsp;{mod_tempfile}</dd>
 
 {# end {templatelocation} #}

@@ -60,7 +60,7 @@
     mode: "text/html"
   });
 </script></textarea>
-  <select class="uk-select" id="demolist" onchange="document.location = this.options[this.selectedIndex].value;">
+  <select class="uk-select uk-form-width-medium" id="demolist" onchange="document.location = this.options[this.selectedIndex].value;">
     <option value="#">Other demos...</option>
     <option value="demo/complete.html">Autocompletion</option>
     <option value="demo/folding.html">Code folding</option>

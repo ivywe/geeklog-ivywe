@@ -108,7 +108,7 @@ class MassDelTrackback extends BaseAdmin
                 . $_CONF['site_admin_url']
                 . '/plugins/spamx/index.php?command=MassDelTrackback"><div>';
             $display .= $LANG_SX00['numtocheck'] . '&nbsp;&nbsp;&nbsp;'
-                . ' <select name="limit">' . LB;
+                . ' <select class="uk-select" name="limit">' . LB;
             $display .= '<option value="10">10</option>'
                 . '<option value="50">50</option>'
                 . '<option value="100" selected="selected">100</option>'

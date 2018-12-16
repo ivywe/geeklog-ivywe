@@ -7,7 +7,7 @@
                                 <div class="clear-left"></div>
                                 <div class="form-description">{lang_eventtype}:</div>
                                 <div class="form-field">
-                                    <select name="event_type">
+                                    <select class="uk-select" name="event_type">
                                         <option value="">--</option>
                                         {type_options}
                                     </select>
@@ -16,23 +16,23 @@
                                 <div class="form-description">{lang_startdate}:</div>
                                 <div class="form-field">
                                   <span dir="ltr">
-                                    <select name="start_month">
+                                    <select class="uk-select" name="start_month">
                                         {month_options}
                                     </select>
                                     /
-                                    <select name="start_day">
+                                    <select class="uk-select" name="start_day">
                                         {day_options}
                                     </select>
                                     /
-                                    <select name="start_year">
+                                    <select class="uk-select" name="start_year">
                                         {year_options}
                                     </select>&nbsp;&nbsp;
                                     <b>{lang_starttime}: </b>
-                                    <select name="start_hour">
+                                    <select class="uk-select" name="start_hour">
                                         {hour_options}
                                     </select>
                                     :
-                                    <select name="start_minute">
+                                    <select class="uk-select" name="start_minute">
                                         {minute_options}
                                     </select>
                                     {startampm_selection}
@@ -42,23 +42,23 @@
                                 <div class="form-description">{lang_enddate}:</div>
                                 <div class="form-field">
                                   <span dir="ltr">
-                                    <select name="end_month">
+                                    <select class="uk-select" name="end_month">
                                         {month_options}
                                     </select>
                                     /
-                                    <select name="end_day">
+                                    <select class="uk-select" name="end_day">
                                         {day_options}
                                     </select>
                                     /
-                                    <select name="end_year">
+                                    <select class="uk-select" name="end_year">
                                         {year_options}
                                     </select>&nbsp;&nbsp;
                                     <b>{lang_endtime}: </b>
-                                    <select name="end_hour">
+                                    <select class="uk-select" name="end_hour">
                                         {hour_options}
                                     </select>
                                     :
-                                    <select name="end_minute">
+                                    <select class="uk-select" name="end_minute">
                                         {minute_options}
                                     </select>
                                     {startampm_selection}

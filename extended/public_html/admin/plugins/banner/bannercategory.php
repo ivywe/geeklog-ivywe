@@ -255,7 +255,7 @@ function banner_edit_category($cid, $pid)
         $alltopics .= ' selected="selected"';
     }
     $alltopics .= '>' . $LANG_BANNER_ADMIN[35] . '</option>' . LB;
-    $T->set_var('topic_selection', '<select name="tid">' . $alltopics
+    $T->set_var('topic_selection', '<select class="uk-select" name="tid">' . $alltopics
                                    . $topics . '</select>');
 
     // user access info

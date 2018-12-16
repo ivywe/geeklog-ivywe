@@ -1,7 +1,7 @@
 {# begin {templatelocation} #}
 
       <dt><label for="downloads-logourl">{lang_shotimage}</label></dt>
-      <dd><input type="text" maxlength="250" name="logourl" value="{logourl}" id="downloads-logourl" size="48" class="uk-input"{xhtml}>{mod_tempsnap}
+      <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="250" name="logourl" value="{logourl}" id="downloads-logourl" size="48" class="uk-input"{xhtml}>{mod_tempsnap}
           {preview}</dd>
 
 {# end {templatelocation} #}

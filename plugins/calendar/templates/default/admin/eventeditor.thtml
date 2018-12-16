@@ -4,33 +4,33 @@
   <div class="admin_basic">
     <dl class="form_block">
       <dt><label for="calendar-eventeditor-title">{lang_eventtitle}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-large" maxlength="128" name="title" value="{event_title}" id="calendar-eventeditor-title" required{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-auto" maxlength="128" name="title" value="{event_title}" id="calendar-eventeditor-title" required{xhtml}></dd>
 
       <dt><label for="calendar-eventeditor-event_type">{lang_eventtype}</label></dt>
-      <dd><select name="event_type" class="uk-select uk-form-width-medium" id="calendar-eventeditor-event_type">
+      <dd><select class="uk-select" name="event_type" class="uk-select uk-form-width-medium" id="calendar-eventeditor-event_type">
             <option value="">--</option>
             {type_options}
           </select></dd>
 
       <dt><label>{lang_eventstartdate}</label></dt>
       <dd><span dir="ltr">
-            <select name="start_month" class="uk-select uk-form-width-xsmall">
+            <select class="uk-select" name="start_month" class="uk-select uk-form-width-xsmall">
                 {startmonth_options}
             </select>
             /
-            <select name="start_day" class="uk-select uk-form-width-xsmall">
+            <select class="uk-select" name="start_day" class="uk-select uk-form-width-xsmall">
                 {startday_options}
             </select>
             /
-            <select name="start_year" class="uk-select uk-form-width-xsmall">
+            <select class="uk-select" name="start_year" class="uk-select uk-form-width-xsmall">
                 {startyear_options}
             </select>&nbsp;&nbsp;
             {lang_starttime}:
-            <select name="start_hour" class="uk-select uk-form-width-xsmall">
+            <select class="uk-select" name="start_hour" class="uk-select uk-form-width-xsmall">
                 {starthour_options}
             </select>
             :
-            <select name="start_minute" class="uk-select uk-form-width-xsmall">
+            <select class="uk-select" name="start_minute" class="uk-select uk-form-width-xsmall">
                 {startminute_options}
             </select>
             {startampm_selection}
@@ -38,23 +38,23 @@
 
       <dt><label>{lang_eventenddate}</label></dt>
       <dd><span dir="ltr">
-            <select name="end_month" class="uk-select uk-form-width-xsmall">
+            <select class="uk-select" name="end_month" class="uk-select uk-form-width-xsmall">
                 {endmonth_options}
             </select>
             /
-            <select name="end_day" class="uk-select uk-form-width-xsmall">
+            <select class="uk-select" name="end_day" class="uk-select uk-form-width-xsmall">
                 {endday_options}
             </select>
             /
-            <select name="end_year" class="uk-select uk-form-width-xsmall">
+            <select class="uk-select" name="end_year" class="uk-select uk-form-width-xsmall">
                 {endyear_options}
             </select>&nbsp;&nbsp;
             {lang_endtime}:
-            <select name="end_hour" class="uk-select uk-form-width-xsmall">
+            <select class="uk-select" name="end_hour" class="uk-select uk-form-width-xsmall">
                 {endhour_options}
             </select>
             :
-            <select name="end_minute" class="uk-select uk-form-width-xsmall">
+            <select class="uk-select" name="end_minute" class="uk-select uk-form-width-xsmall">
                 {endminute_options}
             </select>
             {endampm_selection}
@@ -88,7 +88,7 @@
       <dd><textarea class="uk-textarea uk-width-1-1" name="description" cols="45" rows="8" id="calendar-eventeditor-description" required>{event_description}</textarea></dd>
 
       <dt><label for="calendar-eventeditor-postmode">{lang_postmode}</label></dt>
-      <dd><select name="postmode" class="uk-select uk-form-width-small" id="calendar-eventeditor-postmode">
+      <dd><select class="uk-select" name="postmode" class="uk-select uk-form-width-small" id="calendar-eventeditor-postmode">
             {post_options}
           </select><br{xhtml}>{lang_allowed_html}</dd>
 

@@ -6,7 +6,7 @@
     {lang_userphoto_text}<br{xhtml}>
     {display_photo}<br{xhtml}>
     {!if lang_deletephoto}
-        {lang_deletephoto}&nbsp;<input type="checkbox" name="delete_photo"{xhtml}><br{xhtml}>
+        {lang_deletephoto}&nbsp;<input type="checkbox" class="uk-checkbox" name="delete_photo"{xhtml}><br{xhtml}>
     {!endif}
     {photo_max_dimensions}
 </dd>

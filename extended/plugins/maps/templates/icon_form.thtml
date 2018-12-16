@@ -5,7 +5,7 @@
 		<fieldset style="margin-top: 10px;padding:10px;">
 		<legend><b>{informations}</b></legend>
 		<p>{icon_presentation}</p>
-		<p><label>{name_label}</label> <font color="red">*</font> <input type="text" name="icon_name" value="{name}" size="80" maxlength="255"></p>
+		<p><label>{name_label}</label> <font color="red">*</font> <input type="text" class="uk-input uk-form-width-medium" name="icon_name" value="{name}" size="80" maxlength="255"></p>
 	    <p><label>{image}</label> {image_message}</p>	
 	    <p><input type="file" dir="ltr" name="file"{xhtml}></p>
 		{icon_image}

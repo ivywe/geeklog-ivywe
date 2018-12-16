@@ -1541,7 +1541,7 @@
         });
         it("should include hidden files in the form and unchecked checkboxes and radiobuttons should be excluded", function(done) {
           var element, formData, mock1;
-          element = Dropzone.createElement("<form action=\"/the/url\">\n  <input type=\"hidden\" name=\"test\" value=\"hidden\" />\n  <input type=\"checkbox\" name=\"unchecked\" value=\"1\" />\n  <input type=\"checkbox\" name=\"checked\" value=\"value1\" checked=\"checked\" />\n  <input type=\"radio\" value=\"radiovalue1\" name=\"radio1\" />\n  <input type=\"radio\" value=\"radiovalue2\" name=\"radio1\" checked=\"checked\" />\n  <select name=\"select\"><option value=\"1\">1</option><option value=\"2\" selected>2</option></select>\n</form>");
+          element = Dropzone.createElement("<form action=\"/the/url\">\n  <input type=\"hidden\" name=\"test\" value=\"hidden\" />\n  <input type=\"checkbox\" name=\"unchecked\" value=\"1\" />\n  <input type=\"checkbox\" name=\"checked\" value=\"value1\" checked=\"checked\" />\n  <input type=\"radio\" value=\"radiovalue1\" name=\"radio1\" />\n  <input type=\"radio\" value=\"radiovalue2\" name=\"radio1\" checked=\"checked\" />\n  <select class=\"uk-select uk-form-width-xsmall\" name=\"select\"><option value=\"1\">1</option><option value=\"2\" selected>2</option></select>\n</form>");
           dropzone = new Dropzone(element, {
             url: "/the/url"
           });
@@ -1569,7 +1569,7 @@
         });
         it("should all values of a select that has the multiple attribute", function(done) {
           var element, formData, mock1;
-          element = Dropzone.createElement("<form action=\"/the/url\">\n  <select name=\"select\" multiple>\n    <option value=\"value1\">1</option>\n    <option value=\"value2\" selected>2</option>\n    <option value=\"value3\">3</option>\n    <option value=\"value4\" selected>4</option>\n  </select>\n</form>");
+          element = Dropzone.createElement("<form action=\"/the/url\">\n  <select class=\"uk-select uk-form-width-xsmall\" name=\"select\" multiple>\n    <option value=\"value1\">1</option>\n    <option value=\"value2\" selected>2</option>\n    <option value=\"value3\">3</option>\n    <option value=\"value4\" selected>4</option>\n  </select>\n</form>");
           dropzone = new Dropzone(element, {
             url: "/the/url"
           });

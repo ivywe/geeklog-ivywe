@@ -8,8 +8,8 @@
     <dl class="form_block">
       <dt><label for="advsearchform-query">{lang_keywords}</label></dt>
       <dd>
-        <input type="text" maxlength="35" value="{query}" name="query" id="advsearchform-query" class="uk-input size3"{xhtml}>
-        <select name="keyType" title="{lang_keytype}" id="advsearchform-keyType" class="uk-select uk-width-auto">
+        <input type="text" class="uk-input uk-form-width-auto" maxlength="35" value="{query}" name="query" id="advsearchform-query" class="uk-input size3"{xhtml}>
+        <select class="uk-select uk-form-width-medium" name="keyType" title="{lang_keytype}" id="advsearchform-keyType" class="uk-select uk-width-auto">
           <option value="phrase" {key_phrase_selected}>{lang_exact_phrase}</option>
           <option value="all" {key_all_selected}>{lang_all_words}</option>
           <option value="any" {key_any_selected}>{lang_any_word}</option>
@@ -19,20 +19,20 @@
 
       <dt><label for="advsearchform-datestart">{lang_date}</label></dt>
       <dd>
-        <input type="text" maxlength="10" name="datestart" value="{datestart}" id="advsearchform-datestart" class="uk-input size2"{xhtml}> <span class="loose">{lang_to}</span> <input type="text" maxlength="10" name="dateend" value="{dateend}" id="advsearchform-dateend" class="uk-input size2"{xhtml}>
+        <input type="text" class="uk-input uk-form-width-auto" maxlength="10" name="datestart" value="{datestart}" id="advsearchform-datestart" class="uk-input size2"{xhtml}> <span class="loose">{lang_to}</span> <input type="text" class="uk-input uk-form-width-auto" maxlength="10" name="dateend" value="{dateend}" id="advsearchform-dateend" class="uk-input size2"{xhtml}>
       </dd>
       <dd class="description">{date_format}</dd>
 
       <dt><label for="advsearchform-topic">{lang_topic}</label></dt>
       <dd>
-        <select name="topic" id="advsearchform-topic" class="uk-select uk-width-auto">
+        <select class="uk-select uk-form-width-medium" name="topic" id="advsearchform-topic" class="uk-select uk-width-auto">
           {topic_option_list}
         </select>
       </dd>
 
       <dt><label for="advsearchform-type">{lang_type}</label></dt>
       <dd>
-        <select name="type" id="advsearchform-type" class="uk-select uk-width-auto">
+        <select class="uk-select uk-form-width-medium" name="type" id="advsearchform-type" class="uk-select uk-width-auto">
           {plugin_types}
         </select>
       </dd>
@@ -41,7 +41,7 @@
 
       <dt><label for="advsearchform-results">{lang_results}</label></dt>
       <dd>
-        <select name="results" id="advsearchform-results" class="uk-select uk-width-auto">
+        <select class="uk-select uk-form-width-medium" name="results" id="advsearchform-results" class="uk-select uk-width-auto">
           {search_limits}
         </select>
         {lang_per_page}

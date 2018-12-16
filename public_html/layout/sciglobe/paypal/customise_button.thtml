@@ -1,9 +1,0 @@
-{# begin {templatelocation} #}
-
-<div class="button_customise">
- <form style="display: inline" action="{product_page}" method="post">
-  <input type="submit" class="uk-button uk-button-primary" value="{customise}" border="0" name="submit" />
- </form>
-</div>
-
-{# end {templatelocation} #}

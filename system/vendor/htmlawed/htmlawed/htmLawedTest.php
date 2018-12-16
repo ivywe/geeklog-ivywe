@@ -477,7 +477,7 @@ else{
 }
 ?>
 
-<span style="float:right;" class="help" title="IANA-recognized name of the input character-set; can be multiple ;- or space-separated values; may not work in some browsers"><span style="font-size: 85%;">Encoding: </span><input type="text" size="8" id="enc" name="enc" style="vertical-align: middle;" value="<?php echo htmlspecialchars($_POST['enc']); ?>" /></span>
+<span style="float:right;" class="help" title="IANA-recognized name of the input character-set; can be multiple ;- or space-separated values; may not work in some browsers"><span style="font-size: 85%;">Encoding: </span><input type="text" class="uk-input uk-form-width-small" size="8" id="enc" name="enc" style="vertical-align: middle;" value="<?php echo htmlspecialchars($_POST['enc']); ?>" /></span>
 
 </div>
 <br style="clear:both;" />
@@ -536,25 +536,25 @@ foreach($cfg as $k=>$v){
  if(!empty($v[0])){ // input radio
   $j = $v[3];
   for($i = $j-1; ++$i < $v[0]+$v[3];++$j){
-   echo '<input type="radio" name="h', $k, '" value="', $i, '"', (!isset($_POST['h'. $k]) ? ($v[1] == $i ? ' checked="checked"' : '') : ($_POST['h'. $k] == $i ? ' checked="checked"' : '')), (isset($v['d']) ? ' disabled="disabled"' : ''), ' />', $i, ' ';
+   echo '<input type="radio" class="uk-radio" name="h', $k, '" value="', $i, '"', (!isset($_POST['h'. $k]) ? ($v[1] == $i ? ' checked="checked"' : '') : ($_POST['h'. $k] == $i ? ' checked="checked"' : '')), (isset($v['d']) ? ' disabled="disabled"' : ''), ' />', $i, ' ';
   }
   if($v[1] == 'nil'){
-   echo '<input type="radio" name="h', $k, '" value="nil"', ((!isset($_POST['h'. $k]) or $_POST['h'. $k] == 'nil') ? ' checked="checked"' : ''), (isset($v['d']) ? ' disabled="disabled"' : ''), ' />not set ';
+   echo '<input type="radio" class="uk-radio" name="h', $k, '" value="nil"', ((!isset($_POST['h'. $k]) or $_POST['h'. $k] == 'nil') ? ' checked="checked"' : ''), (isset($v['d']) ? ' disabled="disabled"' : ''), ' />not set ';
   }
   if(!empty($v[4])){ // + input text box
-   echo '<input type="radio" name="h', $k, '" value="', $j, '"', (((isset($_POST['h'. $k]) && $_POST['h'. $k] == $j) or (!isset($_POST['h'. $k]) && $j == $v[1])) ? ' checked="checked"' : ''), (isset($v['d']) ? ' disabled="disabled"' : ''), ' />';
+   echo '<input type="radio" class="uk-radio" name="h', $k, '" value="', $j, '"', (((isset($_POST['h'. $k]) && $_POST['h'. $k] == $j) or (!isset($_POST['h'. $k]) && $j == $v[1])) ? ' checked="checked"' : ''), (isset($v['d']) ? ' disabled="disabled"' : ''), ' />';
    if(!is_array($v[4])){
-    echo $v[6], ': <input type="text" size="', $v[4], '" name="h', $k. $j, '" value="', htmlspecialchars(isset($_POST['h'. $k. $j][0]) ? $_POST['h'. $k. $j] : $v[5]), '"', (isset($v['d']) ? ' disabled="disabled"' : ''), ' />';
+    echo $v[6], ': <input type="text" class="uk-input uk-form-width-medium" size="', $v[4], '" name="h', $k. $j, '" value="', htmlspecialchars(isset($_POST['h'. $k. $j][0]) ? $_POST['h'. $k. $j] : $v[5]), '"', (isset($v['d']) ? ' disabled="disabled"' : ''), ' />';
    }
    else{
     foreach($v[4] as $z){
-     echo ' ', $z[3], ': <input type="text" size="', $z[0], '" name="h', $k. $j. $z[1], '" value="', htmlspecialchars(isset($_POST['h'. $k. $j. $z[1]][0]) ? $_POST['h'. $k. $j. $z[1]] : $z[2]), '"', (isset($v['d']) ? ' disabled="disabled"' : ''), ' />';
+     echo ' ', $z[3], ': <input type="text" class="uk-input uk-form-width-medium" size="', $z[0], '" name="h', $k. $j. $z[1], '" value="', htmlspecialchars(isset($_POST['h'. $k. $j. $z[1]][0]) ? $_POST['h'. $k. $j. $z[1]] : $z[2]), '"', (isset($v['d']) ? ' disabled="disabled"' : ''), ' />';
     }    
    }
   }
  }
  elseif(ctype_digit($v[3])){ // input text
-  echo '<input type="text" size="', $v[3], '" name="h', $k, '" value="', htmlspecialchars(isset($_POST['h'. $k][0]) ? $_POST['h'. $k] : $v[1]), '"', (isset($v['d']) ? ' disabled="disabled"' : ''), ' />';  
+  echo '<input type="text" class="uk-input uk-form-width-medium" size="', $v[3], '" name="h', $k, '" value="', htmlspecialchars(isset($_POST['h'. $k][0]) ? $_POST['h'. $k] : $v[1]), '"', (isset($v['d']) ? ' disabled="disabled"' : ''), ' />';  
  }
  else{} // text-area
  echo ' <span class="help">', $v[2], '</span></li>';

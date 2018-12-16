@@ -32,7 +32,7 @@
 
           <dt><label for="submitstory_advanced-postmode">{lang_postmode}</label></dt>
           <dd>
-            <select class="uk-select" name="postmode" id="sel_editmode" {change_editormode}>
+            <select class="uk-select uk-form-width-medium" name="postmode" id="sel_editmode" {change_editormode}>
               {story_postmode_options}
             </select>
           </dd>

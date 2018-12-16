@@ -1,7 +1,7 @@
 {# begin {templatelocation} #}
 
       <dt>{lang_mg_autotag}</dt>
-      <dd><input type="text" name="mg_autotag" value="{mg_autotag}" maxlength="250" size="48" class="uk-input"{xhtml}>&nbsp;{lang_mg_autotag_info}
+      <dd><input type="text" class="uk-input uk-form-width-medium" name="mg_autotag" value="{mg_autotag}" maxlength="250" size="48" class="uk-input"{xhtml}>&nbsp;{lang_mg_autotag_info}
           <div style="margin:5px 0;"><div class="dlm_snap_tn">{shot_autotag}</div></div></dd>
 
 {# end {templatelocation} #}

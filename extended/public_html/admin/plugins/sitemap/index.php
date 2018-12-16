@@ -122,7 +122,7 @@ function SITEMAP_createSPOption($type) {
 function SITEMAP_getFreqOptions($driver) {
 	global $_SMAP_CONF, $LANG_SMAP, $freqs;
 	
-	$retval = '<select name="freq_' . $driver . '">' . LB;
+	$retval = '<select class="uk-select" name="freq_' . $driver . '">' . LB;
 	
 	foreach ($freqs as $freq) {
 		$retval .= '  <option value="' . $freq . '"';

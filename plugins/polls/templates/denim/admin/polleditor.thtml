@@ -18,7 +18,7 @@
         <dd{hide_meta}><textarea class="uk-textarea" name="meta_keywords" cols="45" rows="2" id="polls-polleditor-meta_keywords" class="wide">{meta_keywords}</textarea></dd>
 
         <dt><label for="polls-polleditor-commentcode">{lang_mode}</label></dt>
-        <dd><select name="commentcode" id="polls-polleditor-commentcode">{comment_options}</select></dd>
+        <dd><select class="uk-select" name="commentcode" id="polls-polleditor-commentcode">{comment_options}</select></dd>
 
         <dt><label for="polls-polleditor-mainpage">{lang_appearsonhomepage}</label></dt>
         <dd class="controls_text"><input type="checkbox" class="uk-checkbox" name="mainpage" id="polls-polleditor-mainpage" {poll_display}{xhtml}></dd>

@@ -19,7 +19,7 @@
 
       <dt><label for="admin-feededitor-header_tid">{lang_header_topic}</label></dt>
       <dd>
-        <select name="header_tid" id="admin-feededitor-header_tid" class="uk-select uk-width-auto">
+        <select class="uk-select uk-form-width-medium" name="header_tid" id="admin-feededitor-header_tid" class="uk-select uk-width-auto">
           {header_topic_options}
         </select>
       </dd>
@@ -38,7 +38,7 @@
       <dd><textarea cols="45" rows="8" name="description" id="admin-feededitor-description" class="uk-textarea wide">{feed_description}</textarea></dd>
 
       <dt><label for="admin-feededitor-feedlogo">{lang_feedlogo}</label></dt>
-      <dd><input type="text" maxlength="255" value="{feed_logo}" name="feedlogo" id="admin-feededitor-feedlogo" class="uk-input size5" aria-describedby="desc-admin-feededitor-feedlogo"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="255" value="{feed_logo}" name="feedlogo" id="admin-feededitor-feedlogo" class="uk-input size5" aria-describedby="desc-admin-feededitor-feedlogo"{xhtml}></dd>
       <dd class="description" id="desc-admin-feededitor-feedlogo">{lang_feedlogo_explain}</dd>
 
       <dt><label for="admin-feededitor-filename">{lang_filename}</label></dt>

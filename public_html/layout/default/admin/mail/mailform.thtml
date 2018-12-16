@@ -6,7 +6,7 @@
     <dl class="form_block">
       <dt><label for="admin-mailform-to_group">{lang_to}</label></dt>
       <dd>
-        <select name="to_group" id="admin-mailform-to_group" class="uk-select uk-width-auto">
+        <select class="uk-select uk-form-width-medium" name="to_group" id="admin-mailform-to_group" class="uk-select uk-width-auto">
           <option value="">{lang_selectgroup}</option>
           {group_options}
         </select>
@@ -26,9 +26,9 @@
 
       <dt><label for="admin-mailform-html">{lang_options}</label></dt>
       <dd class="controls_text">
-        <label><input type="checkbox" name="html" id="admin-mailform-html" class="uk-checkbox"{html}{xhtml}>{lang_HTML}</label>
-        <label><input type="checkbox" name="priority" class="uk-checkbox"{priority}{xhtml}>{lang_urgent}</label>
-        <label><input type="checkbox" name="overstyr" class="uk-checkbox"{overstyr}{xhtml}>{lang_ignoreusersettings}</label>
+        <label><input type="checkbox" class="uk-checkbox" name="html" id="admin-mailform-html" class="uk-checkbox"{html}{xhtml}>{lang_HTML}</label>
+        <label><input type="checkbox" class="uk-checkbox" name="priority" class="uk-checkbox"{priority}{xhtml}>{lang_urgent}</label>
+        <label><input type="checkbox" class="uk-checkbox" name="overstyr" class="uk-checkbox"{overstyr}{xhtml}>{lang_ignoreusersettings}</label>
         <p>{lang_mail_templatevars}</p>
       </dd>
     </dl>

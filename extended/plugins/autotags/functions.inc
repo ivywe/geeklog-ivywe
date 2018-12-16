@@ -347,7 +347,7 @@ function plugin_getListField_autotags($fieldname, $fieldvalue, $A, $icon_arr) {
                     ));                    
                     $retval .= '<input type="hidden" name="visibletags[]" value="' . $A['tag'] . '"' . XHTML . '>';
                 } else {
-                    $retval = '<input type="checkbox" name="enabledtags[]" '
+                    $retval = '<input type="checkbox" class="uk-checkbox" name="enabledtags[]" '
                                 . 'onclick="submit()" value="' . $A['tag'] . '"'
                                 . $switch . XHTML . '>'
                                 . '<input type="hidden" name="visibletags[]" value="'

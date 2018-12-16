@@ -267,7 +267,7 @@ Invalid:</strong> <em <!-- check -->>comment in tag content</em>, <!--check-->
 <ul><li id="search" class="widget widget_search">			<form id="searchform" method="get" action="http://kohei.us">
 			<div>
 
-			<input type="text" name="s" id="s" size="15" /><br />
+			<input type="text" class="uk-input uk-form-width-medium" name="s" id="s" size="15" /><br />
 			<input type="submit" value="Search" />
 			</div>
 			</form>

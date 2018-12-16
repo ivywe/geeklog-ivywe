@@ -1214,7 +1214,7 @@ switch ($action) {
             }
             closedir($dir);
         }
-        $content .= '<SELECT name="log">';
+        $content .= '<select class="uk-select" name="log">';
         if (empty($log)) { $log = $files[0]; } // default file to show
         for ($i = 0; $i < count($files); $i++) {
             $content .= '<option value="' . $files[$i] . '"';

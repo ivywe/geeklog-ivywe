@@ -6,11 +6,11 @@
       {filter}
     </div>
     <div class="search-part">
-      {lang_search}: <input type="text" name="q" class="uk-input size3" value="{last_query}"{xhtml}>
+      {lang_search}: <input type="text" class="uk-input uk-form-width-medium" name="q" class="uk-input size3" value="{last_query}"{xhtml}>
     </div>
     <div class="search-part">
       {lang_limit_results}:
-      <select name="query_limit" class="uk-select uk-width-auto">
+      <select class="uk-select uk-form-width-medium" name="query_limit" class="uk-select uk-width-auto">
         <option value="10" {10_selected}>10</option>
         <option value="20" {20_selected}>20</option>
         <option value="50" {50_selected}>50</option>

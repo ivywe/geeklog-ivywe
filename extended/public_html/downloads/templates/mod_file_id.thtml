@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
       <dt><label for="downloads-fileid">{lang_fileid}</label></dt>
-      <dd><input type="text" maxlength="40" name="lid" value="{lid}" id="downloads-fileid" size="48" class="uk-input"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="40" name="lid" value="{lid}" id="downloads-fileid" size="48" class="uk-input"{xhtml}></dd>
 
 {# end {templatelocation} #}

@@ -7,7 +7,7 @@
   <div class="admin_basic clearfix" style="height:300px">
     <div class="listmembers">
       <div class="aligncenter"><label for="admin-groupmembers-fieldFrom">{LANG_sitemembers}</label></div>
-      <select multiple="multiple" ondblclick="moveSelectedOptions(this.form['fieldFrom'],this.form['fieldTo'],false)" name="fieldFrom" id="admin-groupmembers-fieldFrom" class="uk-select" style="height:250px">
+      <select multiple="multiple" ondblclick="moveSelectedOptions(this.form['fieldFrom'],this.form['fieldTo'],false)" name="fieldFrom" id="admin-groupmembers-fieldFrom" class="uk-select uk-form-width-medium" style="height:250px">
         {sitemembers}
       </select>
     </div>
@@ -19,12 +19,12 @@
 
     <div class="listmembers">
       <div class="aligncenter"><label for="admin-groupmembers-fieldTo">{LANG_grpmembers}</label></div>
-      <select multiple="multiple" ondblclick="moveSelectedOptions(this.form['fieldTo'],this.form['fieldFrom'],false)" name="fieldTo" id="admin-groupmembers-fieldTo" class="uk-select" style="height:150px">
+      <select multiple="multiple" ondblclick="moveSelectedOptions(this.form['fieldTo'],this.form['fieldFrom'],false)" name="fieldTo" id="admin-groupmembers-fieldTo" class="uk-select uk-form-width-medium" style="height:150px">
         {group_list}
       </select>
 
       <div class="aligncenter"><label for="admin-groupmembers-fieldInherit">{LANG_inheritmembers}</label></div>
-      <select multiple="multiple" name="fieldInherit" id="admin-groupmembers-fieldInherit" class="uk-select" style="height:75px;">
+      <select multiple="multiple" name="fieldInherit" id="admin-groupmembers-fieldInherit" class="uk-select uk-form-width-medium" style="height:75px;">
         {inherit_list}
       </select>
     </div>

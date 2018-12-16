@@ -6,7 +6,7 @@
 
     <dl class="form_block">
       <dt><label for="pingbackform-target">{lang_pingback_url}</label></dt>
-      <dd><input type="text" maxlength="{max_url_length}" value="{target_url}" name="target" id="pingbackform-target" class="uk-input size6"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="{max_url_length}" value="{target_url}" name="target" id="pingbackform-target" class="uk-input size6"{xhtml}></dd>
 
       <dt>{lang_site_url}</dt>
       <dd class="controls_text"><span class="url">{site_url}</span></dd>

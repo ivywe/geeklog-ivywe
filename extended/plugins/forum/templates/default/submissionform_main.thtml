@@ -144,7 +144,7 @@
 
 <!-- BEGIN submissionform_option -->
 	<label class="uk-form-label" for="form-forum-{option_name}">
-		<input type="checkbox" class="checkbox" name="{option_name}" id="form-forum-{option_name}" {option_checked} value="1"{xhtml}>
+		<input type="checkbox" class="uk-checkbox" name="{option_name}" id="form-forum-{option_name}" {option_checked} value="1"{xhtml}>
 		{option_extra}
 		{LANG_OPTION}
 	</label>

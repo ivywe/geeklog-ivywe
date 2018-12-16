@@ -42,7 +42,7 @@
 				<thead>
 					<tr>
 						<th class="uk-width-1-10@m uk-text-center">
-							<input type="checkbox" class="checkbox" name="chk_record_all" id="chk_record_all" value="y" onclick="if(!allChecked) checkAll(document.report_table.elements['chk_record_delete[]']); else uncheckAll(document.report_table.elements['chk_record_delete[]']);"{xhtml}>
+							<input type="checkbox" class="uk-checkbox" name="chk_record_all" id="chk_record_all" value="y" onclick="if(!allChecked) checkAll(document.report_table.elements['chk_record_delete[]']); else uncheckAll(document.report_table.elements['chk_record_delete[]']);"{xhtml}>
 						</th>
 						<th class="uk-width-large-2-10@m uk-width-medium-3-10 uk-width-3-10@m">{LANG_Heading2}</th>
 						<th class="uk-width-large-2-10@m uk-width-medium-3-10 uk-width-3-10@m">{LANG_Heading3}</th>
@@ -82,7 +82,7 @@
 <!-- BEGIN notification_record -->
 <tr>
 	<td class="uk-text-center">
-		<input type="checkbox" class="checkbox" name="chk_record_delete[]" value="{id}"{xhtml}>
+		<input type="checkbox" class="uk-checkbox" name="chk_record_delete[]" value="{id}"{xhtml}>
 	</td>
 	<td>{forum}</td>
 	<td>{is_forum}&nbsp;{topic_link}</td>

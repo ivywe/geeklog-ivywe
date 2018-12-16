@@ -46,7 +46,7 @@
 <body>
 <form method="GET" action="">
 <h1>Enter the  authorization pin</h1>
-<p><label for="pin" accesskey="P">Pin: <input type="text" id="pin" name="pin"></p>
+<p><label for="pin" accesskey="P">Pin: <input type="text" class="uk-input uk-form-width-medium" id="pin" name="pin"></p>
 <p><select id="script" name="script">
 <?php
 	foreach($authorizations as $script => $name)

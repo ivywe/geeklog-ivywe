@@ -291,7 +291,7 @@ function MAPS_selectGroupOverlays ($selected)
 {
     global $_TABLES, $LANG_MAPS_1;
     
-    $retval = '<b>' . $LANG_MAPS_1['group_label'] . '</b> <select name="o_group">' .
+    $retval = '<b>' . $LANG_MAPS_1['group_label'] . '</b> <select class="uk-select" name="o_group">' .
             '<option value="0">' . $LANG_MAPS_1['choose_group'] . '</option>' .
             COM_optionList( $_TABLES['maps_overlays_groups'], 'o_group_id,o_group_name', $selected) .
             '</select>'; 

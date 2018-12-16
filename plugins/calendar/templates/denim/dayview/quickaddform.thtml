@@ -22,26 +22,26 @@
                                                     <td><input type="text" class="uk-input uk-form-width-medium" size="20" maxlength="96" name="title"{xhtml}></td>
                                                     <td>
                                                       <span dir="ltr">
-                                                        <select name="start_month">
+                                                        <select class="uk-select" name="start_month">
                                                             {month_options}
                                                         </select>
                                                         /
-                                                        <select name="start_day">
+                                                        <select class="uk-select" name="start_day">
                                                             {day_options}
                                                         </select>
                                                         /
-                                                        <select name="start_year">
+                                                        <select class="uk-select" name="start_year">
                                                             {year_options}
                                                         </select>
                                                       </span>
                                                     </td>
                                                     <td>
                                                       <span dir="ltr">
-                                                        <select name="start_hour">
+                                                        <select class="uk-select" name="start_hour">
                                                             {hour_options}
                                                         </select>
                                                         :
-                                                        <select name="start_minute">
+                                                        <select class="uk-select" name="start_minute">
                                                             {minute_options}
                                                         </select>
                                                         {startampm_selection}

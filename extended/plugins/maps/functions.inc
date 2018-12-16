@@ -2173,7 +2173,7 @@ function MAPS_getMarkerDetail($mid = 0, $mkid, $autotag = 0, $mapwidth = '100%',
 
         $T->set_var('directions_input', '<div id="map_directions">
 			<small>&nbsp; ' . $LANG_MAPS_1['need_directions'] . '<br />
-			<input type="text" id="from_address' . $gid . '" value="' . $value . '" onfocus="if (this.value==\'' . $value . '\')this.value=\'\';" onblur="if(this.value==\'\')this.value=\'' . $value . '\';" size="30" style="width:200px;"/>
+			<input type="text" class="uk-input uk-form-width-medium" id="from_address' . $gid . '" value="' . $value . '" onfocus="if (this.value==\'' . $value . '\')this.value=\'\';" onblur="if(this.value==\'\')this.value=\'' . $value . '\';" size="30" style="width:200px;"/>
 			<input type="button" value="' . $LANG_MAPS_1['get_directions'] . '"  onClick="get_directions' . $gid . '();" />
 			</small>
 		  </div>');
@@ -2405,56 +2405,56 @@ function plugin_submit_maps($marker = '')
 
     $template->set_var('street_label', $LANG_MAPS_1['street_label']);
     if ($_MAPS_CONF['street'] == 1) {
-        $template->set_var('street', '<input type="text" name="street" value="' . $marker['street'] . '" size="80" maxlength="255">');
+        $template->set_var('street', '<input type="text" class="uk-input uk-form-width-medium" name="street" value="' . $marker['street'] . '" size="80" maxlength="255">');
     } else {
         $template->set_var('street', $LANG_MAPS_1['not_use_see_config']);
     }
 
     $template->set_var('code_label', $LANG_MAPS_1['code_label']);
     if ($_MAPS_CONF['code'] == 1) {
-        $template->set_var('code', '<input type="text" name="code" value="' . $marker['code'] . '" size="10" maxlength="10">');
+        $template->set_var('code', '<input type="text" class="uk-input uk-form-width-medium" name="code" value="' . $marker['code'] . '" size="10" maxlength="10">');
     } else {
         $template->set_var('code', $LANG_MAPS_1['not_use_see_config']);
     }
 
     $template->set_var('city_label', $LANG_MAPS_1['city_label']);
     if ($_MAPS_CONF['city'] == 1) {
-        $template->set_var('city', '<input type="text" name="city" value="' . $marker['city'] . '" size="80" maxlength="255">');
+        $template->set_var('city', '<input type="text" class="uk-input uk-form-width-medium" name="city" value="' . $marker['city'] . '" size="80" maxlength="255">');
     } else {
         $template->set_var('city', $LANG_MAPS_1['not_use_see_config']);
     }
 
     $template->set_var('state_label', $LANG_MAPS_1['state_label']);
     if ($_MAPS_CONF['state'] == 1) {
-        $template->set_var('state', '<input type="text" name="state" value="' . $marker['state'] . '" size="80" maxlength="255">');
+        $template->set_var('state', '<input type="text" class="uk-input uk-form-width-medium" name="state" value="' . $marker['state'] . '" size="80" maxlength="255">');
     } else {
         $template->set_var('state', $LANG_MAPS_1['not_use_see_config']);
     }
 
     $template->set_var('country_label', $LANG_MAPS_1['country_label']);
     if ($_MAPS_CONF['country'] == 1) {
-        $template->set_var('country', '<input type="text" name="country" value="' . $marker['country'] . '" size="80" maxlength="255">');
+        $template->set_var('country', '<input type="text" class="uk-input uk-form-width-medium" name="country" value="' . $marker['country'] . '" size="80" maxlength="255">');
     } else {
         $template->set_var('country', $LANG_MAPS_1['not_use_see_config']);
     }
 
     $template->set_var('tel_label', $LANG_MAPS_1['tel_label']);
     if ($_MAPS_CONF['tel'] == 1) {
-        $template->set_var('tel', '<input type="text" name="tel" value="' . $marker['tel'] . '" size="20" maxlength="20">');
+        $template->set_var('tel', '<input type="text" class="uk-input uk-form-width-medium" name="tel" value="' . $marker['tel'] . '" size="20" maxlength="20">');
     } else {
         $template->set_var('tel', $LANG_MAPS_1['not_use_see_config']);
     }
 
     $template->set_var('fax_label', $LANG_MAPS_1['fax_label']);
     if ($_MAPS_CONF['fax'] == 1) {
-        $template->set_var('fax', '<input type="text" name="fax" value="' . $marker['fax'] . '" size="20" maxlength="20">');
+        $template->set_var('fax', '<input type="text" class="uk-input uk-form-width-medium" name="fax" value="' . $marker['fax'] . '" size="20" maxlength="20">');
     } else {
         $template->set_var('fax', $LANG_MAPS_1['not_use_see_config']);
     }
 
     $template->set_var('web_label', $LANG_MAPS_1['web_label']);
     if ($_MAPS_CONF['web'] == 1) {
-        $template->set_var('web', '<input type="text" name="web" value="' . $marker['web'] . '" size="80" maxlength="255">');
+        $template->set_var('web', '<input type="text" class="uk-input uk-form-width-medium" name="web" value="' . $marker['web'] . '" size="80" maxlength="255">');
     } else {
         $template->set_var('web', $LANG_MAPS_1['not_use_see_config']);
     }

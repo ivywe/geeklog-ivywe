@@ -1303,11 +1303,11 @@ describe "Dropzone", ->
       it "should include hidden files in the form and unchecked checkboxes and radiobuttons should be excluded", (done) ->
         element = Dropzone.createElement """<form action="/the/url">
                                               <input type="hidden" name="test" value="hidden" />
-                                              <input type="checkbox" name="unchecked" value="1" />
-                                              <input type="checkbox" name="checked" value="value1" checked="checked" />
+                                              <input type="checkbox" class="uk-checkbox" name="unchecked" value="1" />
+                                              <input type="checkbox" class="uk-checkbox" name="checked" value="value1" checked="checked" />
                                               <input type="radio" value="radiovalue1" name="radio1" />
                                               <input type="radio" value="radiovalue2" name="radio1" checked="checked" />
-                                              <select name="select"><option value="1">1</option><option value="2" selected>2</option></select>
+                                              <select class="uk-select uk-form-width-medium" name="select"><option value="1">1</option><option value="2" selected>2</option></select>
                                             </form>"""
         dropzone = new Dropzone element, url: "/the/url"
 
@@ -1346,7 +1346,7 @@ describe "Dropzone", ->
 
       it "should all values of a select that has the multiple attribute", (done) ->
         element = Dropzone.createElement """<form action="/the/url">
-                                              <select name="select" multiple>
+                                              <select class="uk-select uk-form-width-medium" name="select" multiple>
                                                 <option value="value1">1</option>
                                                 <option value="value2" selected>2</option>
                                                 <option value="value3">3</option>

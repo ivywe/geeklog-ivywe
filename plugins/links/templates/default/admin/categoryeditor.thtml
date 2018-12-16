@@ -5,7 +5,7 @@
   <div class="admin_basic">
     <dl class="form_block">
       <dt><label for="links-categoryeditor-pid">{lang_parent}</label></dt>
-      <dd><select name="pid" id="links-categoryeditor-pid">{category_options}</select></dd>
+      <dd><select class="uk-select" name="pid" id="links-categoryeditor-pid">{category_options}</select></dd>
 
       <dt><label for="links-categoryeditor-category">{lang_category}</label></dt>
       <dd><input type="text" class="uk-input uk-form-width-medium" name="category" maxlength="32" id="links-categoryeditor-category" value="{category_value}"{xhtml}></dd>

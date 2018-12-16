@@ -10,7 +10,7 @@
       <dd><input type="text" class="uk-input uk-form-width-medium" dir="ltr" maxlength="{max_url_length}" name="url" value="http://" id="submitlink-url" class="size6"{xhtml}></dd>
 
       <dt><label for="submitlink-categorydd">{lang_category}</label></dt>
-      <dd><select name="categorydd" id="submitlink-categorydd">{link_category_options}</select></dd>
+      <dd><select class="uk-select" name="categorydd" id="submitlink-categorydd">{link_category_options}</select></dd>
 
       <dt><label for="submitlink-description">{lang_description}</label></dt>
       <dd><textarea class="uk-textarea" name="description" rows="8" cols="30" id="submitlink-description" class="wide"></textarea><br{xhtml}>{lang_allowed_html}</dd>

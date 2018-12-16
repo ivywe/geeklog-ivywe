@@ -204,7 +204,7 @@ function migrate_topicsList($selected='')
 {
     global $LANG_GF01;
 
-    $retval = '<select name="seltopic"><option value="all">'
+    $retval = '<select class="uk-select" name="seltopic"><option value="all">'
             . $LANG_GF01['ALL'] . '</option>';
     $retval .= '<option value="submissions"';
     if ($selected == "submissions") {

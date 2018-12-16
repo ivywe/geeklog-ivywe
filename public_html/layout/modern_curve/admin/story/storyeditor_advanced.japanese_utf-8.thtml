@@ -92,7 +92,7 @@
             <li><img src="{layout_url}/images/collapse.png" title="{lang_reducehelp}" onclick="changeHTMLTextAreaSize('introhtml','smaller');" alt="collapse button"{xhtml}></li>
             <li>
               {lang_toolbar}
-              <select class="uk-select" id="fckeditor_toolbar_selector" name="fckeditor_toolbar_selector" onchange="changeToolbar(this.value);">
+              <select class="uk-select uk-form-width-medium" id="fckeditor_toolbar_selector" name="fckeditor_toolbar_selector" onchange="changeToolbar(this.value);">
                 <option value="editor-toolbar1">{toolbar1}</option>
                 <option value="editor-toolbar2" selected="selected">{toolbar2}</option>
                 <option value="editor-toolbar3">{toolbar3}</option>
@@ -125,23 +125,23 @@
     <dl>
       <dt><label for="admin-storyeditor_advanced-publish_month">{lang_date}</label></dt>
       <dd>
-        <select class="uk-select" name="publish_year">
+        <select class="uk-select uk-form-width-xsmall" name="publish_year">
           {publish_year_options}
         </select>
         /
-        <select class="uk-select" name="publish_month" id="admin-storyeditor_advanced-publish_month">
+        <select class="uk-select uk-form-width-xsmall" name="publish_month" id="admin-storyeditor_advanced-publish_month">
           {publish_month_options}
         </select>
         /
-        <select class="uk-select" name="publish_day">
+        <select class="uk-select uk-form-width-xsmall" name="publish_day">
           {publish_day_options}
         </select>&nbsp;&nbsp;
 
-        <select class="uk-select" name="publish_hour">
+        <select class="uk-select uk-form-width-xsmall" name="publish_hour">
           {publish_hour_options}
         </select>
         :
-        <select class="uk-select" name="publish_minute">
+        <select class="uk-select uk-form-width-xsmall" name="publish_minute">
           {publish_minute_options}
         </select>
 
@@ -158,13 +158,13 @@
       <dt>{lang_mode}</dt>
       <dd>
         {featured_options}
-        <select class="uk-select" name="frontpage">
+        <select class="uk-select uk-form-width-medium" name="frontpage">
           {frontpage_options}
         </select>
-        <select class="uk-select" name="commentcode">
+        <select class="uk-select uk-form-width-medium" name="commentcode">
           {comment_options}
         </select>
-        <select class="uk-select" name="trackbackcode">
+        <select class="uk-select uk-form-width-medium" name="trackbackcode">
           {trackback_options}
         </select>
       </dd>
@@ -174,23 +174,23 @@
         <input type="checkbox" class="uk-checkbox" name="cmt_close_flag" id="cmt_close_flag" value="1" {is_checked5} onclick="enablecmtclose(this);"{xhtml}>
         &nbsp;
            <span dir="ltr">
-           <select class="uk-select" name="cmt_close_year">
+           <select class="uk-select uk-form-width-medium" name="cmt_close_year">
               {cmt_close_year_options}
            </select>
            /
-           <select class="uk-select" name="cmt_close_month">
+           <select class="uk-select uk-form-width-medium" name="cmt_close_month">
                    {cmt_close_month_options}
            </select>
            /
-           <select class="uk-select" name="cmt_close_day">
+           <select class="uk-select uk-form-width-medium" name="cmt_close_day">
               {cmt_close_day_options}
            </select>&nbsp;&nbsp;
 
-           <select class="uk-select" name="cmt_close_hour">
+           <select class="uk-select uk-form-width-medium" name="cmt_close_hour">
                {cmt_close_hour_options}
            </select>
            :
-           <select class="uk-select" name="cmt_close_minute">
+           <select class="uk-select uk-form-width-medium" name="cmt_close_minute">
                {cmt_close_minute_options}
            </select>
                {cmt_close_ampm_selection}
@@ -234,23 +234,23 @@
       <dt><label for="admin-storyeditor_advanced-expire_month"></label></dt>
       <dd>
         {lang_date}&nbsp;
-        <select class="uk-select" name="expire_year">
+        <select class="uk-select uk-form-width-medium" name="expire_year">
           {expire_year_options}
         </select>
         /
-        <select class="uk-select" name="expire_month" id="admin-storyeditor_advanced-expire_month">
+        <select class="uk-select uk-form-width-medium" name="expire_month" id="admin-storyeditor_advanced-expire_month">
           {expire_month_options}
         </select>
         /
-        <select class="uk-select" name="expire_day">
+        <select class="uk-select uk-form-width-medium" name="expire_day">
           {expire_day_options}
         </select>&nbsp;&nbsp;
 
-        <select class="uk-select" name="expire_hour">
+        <select class="uk-select uk-form-width-medium" name="expire_hour">
           {expire_hour_options}
         </select>
         :
-        <select class="uk-select" name="expire_minute">
+        <select class="uk-select uk-form-width-medium" name="expire_minute">
           {expire_minute_options}
         </select>
         {expireampm_selection}

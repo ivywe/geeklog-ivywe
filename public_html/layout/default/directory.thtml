@@ -4,7 +4,7 @@
 {blockheader}
 <form class="uk-align-right" action="{url}" method="get">
   <div>
-    <select name="topic" class="uk-select uk-width-auto" onchange="this.form.submit()">
+    <select class="uk-select uk-form-width-medium" name="topic" class="uk-select uk-width-auto" onchange="this.form.submit()">
     {topic_list}
     </select>
     <input type="hidden" name="year" value="{val_year}"{xhtml}>

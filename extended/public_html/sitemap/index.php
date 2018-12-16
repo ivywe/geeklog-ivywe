@@ -74,7 +74,7 @@ function SITEMAP_getSelectForm($selected = 'all') {
 	$this_script = $_CONF['site_url'] . '/sitemap/index.php';
 	
 	$retval = '<form method="post" action="' . $this_script .  '">' . LB
-			. '  <select name="type" class="uk-select uk-form-width-medium" onchange="this.form.submit()">' . LB
+			. '  <select class="uk-select" name="type" class="uk-select uk-form-width-medium" onchange="this.form.submit()">' . LB
 			. '    <option value="all"';
 	
 	if ($selected === 'all') {

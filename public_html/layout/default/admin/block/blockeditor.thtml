@@ -27,7 +27,7 @@
 
       <dt><label for="admin-blockeditor-onleft">{lang_position}</label></dt>
       <dd>
-        <select name="onleft" id="admin-blockeditor-onleft" class="uk-select uk-width-auto">
+        <select class="uk-select uk-form-width-medium" name="onleft" id="admin-blockeditor-onleft" class="uk-select uk-width-auto">
           <option value="2" {none_selected}>{lang_none}</option>
           <option value="1" {left_selected}>{lang_left}</option>
           <option value="0" {right_selected}>{lang_right}</option>
@@ -41,15 +41,15 @@
 
       <dt><label>{lang_device}</label></dt>
       <dd class="controls_text">
-        <label><input type="radio" name="device" value="all" id="admin-blockeditor-device-all" class="uk-radio" {for_all}{xhtml}>{lang_all}</label>
-        <label><input type="radio" name="device" value="computer" id="admin-blockeditor-device-computer"  class="uk-radio"{for_computer}{xhtml}>{lang_for_computer}</label>
-        <label><input type="radio" name="device" value="mobile" id="admin-blockeditor-device-mobile" class="uk-radio" {for_mobile}{xhtml}>{lang_for_mobile}</label>
+        <label><input type="radio" class="uk-radio" name="device" value="all" id="admin-blockeditor-device-all" class="uk-radio" {for_all}{xhtml}>{lang_all}</label>
+        <label><input type="radio" class="uk-radio" name="device" value="computer" id="admin-blockeditor-device-computer"  class="uk-radio"{for_computer}{xhtml}>{lang_for_computer}</label>
+        <label><input type="radio" class="uk-radio" name="device" value="mobile" id="admin-blockeditor-device-mobile" class="uk-radio" {for_mobile}{xhtml}>{lang_for_mobile}</label>
       </dd>
       <dd id="desc-admin-blockeditor-device" class="description">{lang_device_desc}</dd>
 
       <dt><label for="admin-blockeditor-type">{lang_blocktype}</label></dt>
       <dd>
-        <select name="type" id="admin-blockeditor-type" class="uk-select uk-width-auto">
+        <select class="uk-select uk-form-width-medium" name="type" id="admin-blockeditor-type" class="uk-select uk-width-auto">
           <option value="normal" {normal_selected}>{lang_normalblock}</option>
           <option value="phpblock" {php_selected}>{lang_phpblock}</option>
           <option value="portal" {portal_selected}>{lang_portalblock}</option>
@@ -57,7 +57,7 @@
       </dd>
 
       <dt><label for="admin-blockeditor-cachetime">{lang_cachetime}</label></dt>
-      <dd><input type="text" size="8" value="{cache_time}" name="cache_time" id="admin-blockeditor-cachetime" class="uk-input size1" aria-describedby="desc-admin-blockeditor-cachetime"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-small" size="8" value="{cache_time}" name="cache_time" id="admin-blockeditor-cachetime" class="uk-input size1" aria-describedby="desc-admin-blockeditor-cachetime"{xhtml}></dd>
       <dd id="desc-admin-blockeditor-cachetime" class="description">{lang_cachetime_desc}</dd>
 
       <dt><label for="admin-blockeditor-css-id">{lang_css_id}</label></dt>
@@ -74,7 +74,7 @@
 
       <dl class="form_block">
         <dt><label for="admin-blockeditor-phpblockfn">{lang_blockfunction}</label></dt>
-        <dd><input type="text" maxlength="50" value="{block_phpblockfn}" name="phpblockfn" id="admin-blockeditor-phpblockfn" class="uk-input size5" aria-describedby="desc-admin-blockeditor-phpblockfn"{xhtml}></dd>
+        <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="50" value="{block_phpblockfn}" name="phpblockfn" id="admin-blockeditor-phpblockfn" class="uk-input size5" aria-describedby="desc-admin-blockeditor-phpblockfn"{xhtml}></dd>
         <dd id="desc-admin-blockeditor-phpblockfn" class="description">{lang_phpblockwarning}</dd>
       </dl>
     </fieldset>
@@ -84,10 +84,10 @@
 
       <dl class="form_block">
         <dt><label for="admin-blockeditor-rdfurl">{lang_rdfurl}</label></dt>
-        <dd><input type="text" maxlength="{max_url_length}" value="{block_rdfurl}" name="rdfurl" id="admin-blockeditor-rdfurl" class="uk-input size5"{xhtml}></dd>
+        <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="{max_url_length}" value="{block_rdfurl}" name="rdfurl" id="admin-blockeditor-rdfurl" class="uk-input size5"{xhtml}></dd>
 
         <dt><label for="admin-blockeditor-rdflimit">{lang_rdflimit}</label></dt>
-        <dd><input type="text" maxlength="3" value="{block_rdflimit}" name="rdflimit" id="admin-blockeditor-rdflimit" class="uk-input size1"{xhtml}></dd>
+        <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="3" value="{block_rdflimit}" name="rdflimit" id="admin-blockeditor-rdflimit" class="uk-input size1"{xhtml}></dd>
 
         <dt><label for="admin-blockeditor-rdfupdated">{lang_lastrdfupdate}</label></dt>
         <dd>{block_rdfupdated}</dd>
@@ -103,10 +103,10 @@
         <dd class="description"><span id="desc-admin-blockeditor-content" class="warningsmall">{lang_allowed_html}</span></dd>
 
         <dt><label for="admin-blockeditor-allow_autotags">{lang_autotags}</label></dt>
-        <dd class="controls_text"><input type="checkbox" name="allow_autotags" id="admin-blockeditor-allow_autotags" class="uk-checkbox" {allow_autotags}{xhtml}>({lang_use_autotags})</dd>
+        <dd class="controls_text"><input type="checkbox" class="uk-checkbox" name="allow_autotags" id="admin-blockeditor-allow_autotags" class="uk-checkbox" {allow_autotags}{xhtml}>({lang_use_autotags})</dd>
         
         <dt><label for="admin-blockeditor-convert_newlines">{lang_newlines}</label></dt>
-        <dd class="controls_text"><input type="checkbox" name="convert_newlines" id="admin-blockeditor-convert_newlines" class="uk-checkbox" {convert_newlines}{xhtml}>({lang_convert_newlines})</dd>        
+        <dd class="controls_text"><input type="checkbox" class="uk-checkbox" name="convert_newlines" id="admin-blockeditor-convert_newlines" class="uk-checkbox" {convert_newlines}{xhtml}>({lang_convert_newlines})</dd>        
       </dl>
     </fieldset>
 

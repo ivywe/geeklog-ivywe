@@ -40,8 +40,8 @@
 	<div uk-grid>
 		<div class="uk-width-1-1 uk-text-right">	
 			<div class="uk-form-row">		
-				<input type="radio" name="filtermode" id="filtermode_user" value="user" {userfilter}{xhtml}><label for="filtermode_user" accesskey="u">&nbsp;{LANG_userrecords}</label> 
-				<input type="radio" name="filtermode" id="filtermode_group" value="group" {groupfilter}{xhtml}><label for="filtermode_group" accesskey="g">&nbsp;{LANG_grouprecords}</label> 
+				<input type="radio" class="uk-radio" name="filtermode" id="filtermode_user" value="user" {userfilter}{xhtml}><label for="filtermode_user" accesskey="u">&nbsp;{LANG_userrecords}</label> 
+				<input type="radio" class="uk-radio" name="filtermode" id="filtermode_group" value="group" {groupfilter}{xhtml}><label for="filtermode_group" accesskey="g">&nbsp;{LANG_grouprecords}</label> 
 				&nbsp;&nbsp;			
 				<select class="uk-select uk-form-width-small" name="sel_forum">{sel_forums}</select>
 				&nbsp;&nbsp;
@@ -54,7 +54,7 @@
 		<thead>
 			<tr>
 				<th class="uk-width-1-10@m uk-text-center">
-					<input type="checkbox" class="checkbox" name="chk_record_all" id="chk_record_all" value="y" onclick="if(!allChecked) checkAll(document.report_table.elements['chk_record_delete[]']); else uncheckAll(document.report_table.elements['chk_record_delete[]']);"{xhtml}>
+					<input type="checkbox" class="uk-checkbox" name="chk_record_all" id="chk_record_all" value="y" onclick="if(!allChecked) checkAll(document.report_table.elements['chk_record_delete[]']); else uncheckAll(document.report_table.elements['chk_record_delete[]']);"{xhtml}>
 				</th>
 				<th class="uk-width-1-10@m">{LANG_HEADING2}</th>
 				<th class="uk-width-2-10">{LANG_FORUM}</th>
@@ -90,14 +90,14 @@
 
 <!-- BEGIN report_record -->
 <tr>
-	<td class="uk-text-center"><input type="checkbox" class="checkbox" name="chk_record_delete[]" value="{id}"{xhtml}></td>
+	<td class="uk-text-center"><input type="checkbox" class="uk-checkbox" name="chk_record_delete[]" value="{id}"{xhtml}></td>
 	<td>{name}</td>
 	<td>{forum}</td>
-	<td class="uk-text-center"><input type="checkbox" class="checkbox" name="chk_delete{id}" value="1" {delete_yes}{xhtml}></td>
-	<td class="uk-text-center"><input type="checkbox" class="checkbox" name="chk_ban{id}" value="1" {ban_yes}{xhtml}></td>
-	<td class="uk-text-center"><input type="checkbox" class="checkbox" name="chk_edit{id}" value="1" {edit_yes}{xhtml}></td>
-	<td class="uk-text-center"><input type="checkbox" class="checkbox" name="chk_move{id}" value="1" {move_yes}{xhtml}></td>
-	<td class="uk-text-center"><input type="checkbox" class="checkbox" name="chk_stick{id}" value="1" {stick_yes}{xhtml}></td>
+	<td class="uk-text-center"><input type="checkbox" class="uk-checkbox" name="chk_delete{id}" value="1" {delete_yes}{xhtml}></td>
+	<td class="uk-text-center"><input type="checkbox" class="uk-checkbox" name="chk_ban{id}" value="1" {ban_yes}{xhtml}></td>
+	<td class="uk-text-center"><input type="checkbox" class="uk-checkbox" name="chk_edit{id}" value="1" {edit_yes}{xhtml}></td>
+	<td class="uk-text-center"><input type="checkbox" class="uk-checkbox" name="chk_move{id}" value="1" {move_yes}{xhtml}></td>
+	<td class="uk-text-center"><input type="checkbox" class="uk-checkbox" name="chk_stick{id}" value="1" {stick_yes}{xhtml}></td>
 	<td class="uk-text-center uk-text-nowrap">
 		<a class="uk-button uk-button-small" href="#" onclick="document.report_table.recid.value='{id}';document.report_table.op.value='update';document.report_table.submit();return false;">{LANG_UPDATE}</a>
 		<a class="uk-button uk-button-small" href="#" onclick="document.report_table.recid.value='{id}';document.report_table.op.value='delete';document.report_table.submit();return false;">{LANG_DELETE}</a>

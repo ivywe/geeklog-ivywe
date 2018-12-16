@@ -505,7 +505,7 @@ global $_TABLES;
 
         $A = DB_fetchArray( $result, true );
         $retval .= '<span style="white-space:nowrap">';
-        $retval .= '<input type="checkbox" name="' . $fname . '[]" value="' . $A[0] ;
+        $retval .= '<input type="checkbox" class="uk-checkbox" name="' . $fname . '[]" value="' . $A[0] ;
         $retval .= '"';
         for( $x = 0; $x < sizeof( $S ); $x++ )            {
             if( $A[0] == $S[$x] )                {
@@ -2694,9 +2694,9 @@ global $_TABLES;
             $retval .="</div>".LB;
         
             if  ($A['input_type']==1){
-                $retval .='<select name="category[]" multiple style="height:10em" '.$disabled.' >'.LB;
+                $retval .='<select class="uk-select" name="category[]" multiple style="height:10em" '.$disabled.' >'.LB;
             }else if ($A['input_type']==3){
-                $retval .='<select name="category[]" '. $disabled .' >'.LB;
+                $retval .='<select class="uk-select" name="category[]" '. $disabled .' >'.LB;
             }
             
             for( $i2 = 0; $i2 < $nrows2; $i2++ )    {
@@ -2720,7 +2720,7 @@ global $_TABLES;
             
                 if  ($A['input_type']==0){
                     $retval .= '<span style="white-space:nowrap">';
-                    $retval .= '<input type="checkbox" name="category[]" value="' . $A2['category_id'] ;
+                    $retval .= '<input type="checkbox" class="uk-checkbox" name="category[]" value="' . $A2['category_id'] ;
                     $retval .= '"';
                     $retval .= $checked;
                     $retval .= $disabled.' >' . stripslashes( $A2['name'] ) . '</span>' . LB;
@@ -2730,7 +2730,7 @@ global $_TABLES;
                     $retval .= ' >' . stripslashes( $A2['name'] ) ;
                     $retval .= '</option>' . LB;
                 }else  if  ($A['input_type']==2){
-                    $retval .= '<input type="radio" name="category[]" value="' . $A2['category_id'];
+                    $retval .= '<input type="radio" class="uk-radio" name="category[]" value="' . $A2['category_id'];
                     $retval .= '"';
                     $retval .= $checked;
                     $retval .= ' '.$disabled.' >' . stripslashes( $A2['name'] ) . '</span>' . LB;
@@ -5114,19 +5114,19 @@ function DATABOX_datetimeedit(
     $rt="";
     //Year
     $year_options = COM_getYearFormOptions ($datetime_year);
-    $rt.="<select name=\"".$datetime_name."_year\">".LB;
+    $rt.="<select class=\"uk-select\" name=\"".$datetime_name."_year\">".LB;
     $rt.=$year_options.LB;
     $rt.="</select>".$lang_ary['yy'].LB;
 
     //month
     $month_options = COM_getMonthFormOptions ($datetime_month);
-    $rt.="<select name=\"".$datetime_name."_month\">".LB;
+    $rt.="<select class=\"uk-select\" name=\"".$datetime_name."_month\">".LB;
     $rt.=$month_options.LB;
     $rt.="</select>".$lang_ary['mm'].LB;
 
     //day
     $day_options = COM_getDayFormOptions ($datetime_day);
-    $rt.="<select name=\"".$datetime_name."_day\">".LB;
+    $rt.="<select class=\"uk-select\" name=\"".$datetime_name."_day\">".LB;
     $rt.=$day_options.LB;
     $rt.="</select>".$lang_ary['dd'].LB;
 
@@ -5152,14 +5152,14 @@ function DATABOX_datetimeedit(
             $hour_options = COM_getHourFormOptions ($datetime_hour_wk);
         }
 
-        $rt.="<select name=\"".$datetime_name."_hour\">".LB;
+        $rt.="<select class=\"uk-select\" name=\"".$datetime_name."_hour\">".LB;
         $rt.=$hour_options.LB;
         $rt.="</select>:".LB;
 
         //minute
         $minute_options = COM_getMinuteFormOptions ($datetime_minute);
 
-        $rt.="<select name=\"".$datetime_name."_minute\">".LB;
+        $rt.="<select class=\"uk-select\" name=\"".$datetime_name."_minute\">".LB;
         $rt.=$minute_options.LB;
         $rt.="</select>".LB;
 
@@ -5188,19 +5188,19 @@ function DATABOX_datetimeedit_R(
     
     //Year
     $year_options = COM_getYearFormOptions ($datetime_ary['year']);
-    $rt.="<select name=\"".$datetime_name."_year\">".LB;
+    $rt.="<select class=\"uk-select\" name=\"".$datetime_name."_year\">".LB;
     $rt.=$year_options.LB;
     $rt.="</select>".$lang_ary['yy'].LB;
 
     //month
     $month_options = COM_getMonthFormOptions ($datetime_ary['month']);
-    $rt.="<select name=\"".$datetime_name."_month\">".LB;
+    $rt.="<select class=\"uk-select\" name=\"".$datetime_name."_month\">".LB;
     $rt.=$month_options.LB;
     $rt.="</select>".$lang_ary['mm'].LB;
 
     //day
     $day_options = COM_getDayFormOptions ($datetime_ary['day']);
-    $rt.="<select name=\"".$datetime_name."_day\">".LB;
+    $rt.="<select class=\"uk-select\" name=\"".$datetime_name."_day\">".LB;
     $rt.=$day_options.LB;
     $rt.="</select>".$lang_ary['dd'].LB;
 
@@ -5217,14 +5217,14 @@ function DATABOX_datetimeedit_R(
             $hour_options = COM_getHourFormOptions ($datetime_ary['hour']);
         }
 
-        $rt.="<select name=\"".$datetime_name."_hour\">".LB;
+        $rt.="<select class=\"uk-select\" name=\"".$datetime_name."_hour\">".LB;
         $rt.=$hour_options.LB;
         $rt.="</select>:".LB;
 
         //minute
         $minute_options = COM_getMinuteFormOptions ($datetime_ary['minute']);
 
-        $rt.="<select name=\"".$datetime_name."_minute\">".LB;
+        $rt.="<select class=\"uk-select\" name=\"".$datetime_name."_minute\">".LB;
         $rt.=$minute_options.LB;
         $rt.="</select>".LB;
 
@@ -6056,7 +6056,7 @@ function DATABOX_getcheckboxary(
 	
     foreach($ary as $k => $v) {
         $retval .= '<span style="white-space:nowrap">';
-        $retval .= '<input type="checkbox" name="' . $fld . '[]" value="' . $k ;
+        $retval .= '<input type="checkbox" class="uk-checkbox" name="' . $fld . '[]" value="' . $k ;
         $retval .= '"';
 		if  ($selected==""){
 		}else{

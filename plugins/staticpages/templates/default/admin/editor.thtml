@@ -5,7 +5,7 @@
     <div class="admin_basic">
       <dl class="form_block">
         <dt><label for="sp-editor-sp_title">{lang_title}</label></dt>
-        <dd><input type="text" class="uk-input uk-form-width-large" maxlength="128" {!if titletoid}onkeyup="TitleToId('sp-editor-sp_title','sp-editor-sp_id');" {!endif}name="sp_title" value="{sp_title}" id="sp-editor-sp_title" class="size5"{xhtml}></dd>
+        <dd><input type="text" class="uk-input uk-form-width-auto" maxlength="128" {!if titletoid}onkeyup="TitleToId('sp-editor-sp_title','sp-editor-sp_id');" {!endif}name="sp_title" value="{sp_title}" id="sp-editor-sp_title" class="size5"{xhtml}></dd>
 
         <dt><label for="sp-editor-sp_id">{lang_id}</label></dt>
         <dd><input type="text" class="uk-input uk-form-width-medium" dir="ltr" name="sp_id" maxlength="128" value="{sp_id}" id="sp-editor-sp_id" class="size5"{xhtml}></dd>
@@ -14,7 +14,7 @@
         <dd><span class="break-word">{example_url}</span></dd>
 
         <dt><label for="sp-editor-sp_page_title">{lang_page_title}</label></dt>
-        <dd><input type="text" class="uk-input uk-form-width-large" maxlength="128" name="sp_page_title" value="{sp_page_title}" id="sp-editor-sp_page_title" class="size5"{xhtml}></dd>
+        <dd><input type="text" class="uk-input uk-form-width-auto" maxlength="128" name="sp_page_title" value="{sp_page_title}" id="sp-editor-sp_page_title" class="size5"{xhtml}></dd>
 
         <dt><label for="sp-editor-sp_onmenu">{lang_addtomenu}</label></dt>
         <dd><input type="checkbox" class="uk-checkbox" name="sp_onmenu" id="sp-editor-sp_onmenu" {onmenu_checked}{xhtml}></dd>
@@ -26,7 +26,7 @@
         <dd>{topic_selection}</dd>
 
         <dt><label for="sp-editor-sp_format">{lang_pageformat}</label></dt>
-        <dd><select name="sp_format" id="sp-editor-sp_format">
+        <dd><select class="uk-select" name="sp_format" id="sp-editor-sp_format">
               <option value="blankpage" {blankpage_selected}>{lang_blankpage}</option>
               <option value="noblocks" {noblock_selected}>{lang_noblocks}</option>
               <option value="leftblocks" {leftblocks_selected}>{lang_leftblocks}</option>
@@ -34,7 +34,7 @@
             </select></dd>
 
         <dt><label for="sp-editor-commentcode">{lang_mode}</label></dt>
-        <dd><select name="commentcode" id="sp-editor-commentcode">
+        <dd><select class="uk-select" name="commentcode" id="sp-editor-commentcode">
               {comment_options}
             </select></dd>
 

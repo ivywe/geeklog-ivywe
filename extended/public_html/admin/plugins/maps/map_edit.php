@@ -386,7 +386,7 @@ function getMapForm($map = array()) {
 	$result = DB_query("SELECT * FROM {$_TABLES['users']}");
 	$nRows  = DB_numRows($result);
 
-	$owner_select = '<select name="owner_id">';
+	$owner_select = '<select class="uk-select" name="owner_id">';
 	for ($i=0; $i<$nRows;$i++) {
 		$row = DB_fetchArray($result);
 		if ( $row['uid'] == 1 ) {

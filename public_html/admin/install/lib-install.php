@@ -1309,7 +1309,7 @@ function INST_listOfSupportedDBs($gl_path, $selected_dbtype, $list_innodb = fals
                 . ' <input type="hidden" name="db_type" value="'
                 . $remaining[0] . '"' . XHTML . '>' . LB;
     } else {
-        $retval = '<select class="uk-select" name="db_type">' . LB . $retval . '</select>' . LB;
+        $retval = '<select class="uk-select uk-form-width-medium" name="db_type">' . LB . $retval . '</select>' . LB;
     }
 
     return $retval;

@@ -154,7 +154,7 @@ function liststories($current_topic = '')
     }
 
     $filter = $LANG_ADMIN['topic']
-        . ': <select class="uk-select" name="tid" style="width: 125px" onchange="this.form.submit()">'
+        . ': <select class="uk-select uk-form-width-medium" name="tid" style="width: 125px" onchange="this.form.submit()">'
         . $seltopics . '</select>';
 
     $header_arr = array(

@@ -11,10 +11,10 @@
       <dd>{user_name}</dd>
 
       <dt><label for="newemail-email">{lang_newemail}</label></dt>
-      <dd><input type="text" size="32" maxlength="96" name="email" value="{email}" id="newemail-email" class="uk-input text"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" size="32" maxlength="96" name="email" value="{email}" id="newemail-email" class="uk-input text"{xhtml}></dd>
 
       <dt><label for="newemail-email_conf">{lang_newemail_conf}</label></dt>
-      <dd><input type="text" size="32" maxlength="96" name="email_conf" value="{email_conf}" id="newemail-email_conf" class="uk-input text"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" size="32" maxlength="96" name="email_conf" value="{email_conf}" id="newemail-email_conf" class="uk-input text"{xhtml}></dd>
     </dl>
 
     <div class="submit">

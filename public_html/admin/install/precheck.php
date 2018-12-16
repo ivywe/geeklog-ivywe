@@ -796,7 +796,7 @@ class Precheck
 				. '<legend>' . PRECHECK_str('info') . '</legend>' . LB
 				. '<p><label class="lbl right">' . PRECHECK_str('db_type')
 				. ':</label>&nbsp;' . LB
-				. '<select class="uk-select" id="db_type" name="db_type">' . LB
+				. '<select class="uk-select uk-form-width-medium" id="db_type" name="db_type">' . LB
 				. '<option value="mysql" selected="selected"' . $mysql
 				. '>MySQL</option>' . LB
 				. '<option value="mysql-innodb"' . $mysql
@@ -817,7 +817,7 @@ class Precheck
 				. '<p><label class="lbl right">' . PRECHECK_str('db_name')
 				. ':</label>&nbsp;'
 				. '<input type="text" class="uk-input uk-form-width-medium" id="db_name_input" name="db_name" size="30" maxlength="30" />'
-				. '<select class="uk-select" id="db_name" name="db_name" class="none">'
+				. '<select class="uk-select uk-form-width-medium" id="db_name" name="db_name" class="none">'
 				. '<option>--</option>'
 				. '</select></p>'
 				. '<p><span id="e_database_not_empty" class="hidden">'

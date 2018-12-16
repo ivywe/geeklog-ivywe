@@ -82,7 +82,7 @@ function PAYPAL_getSubscriptionForm ($subscription = array())
 	$result = DB_query("SELECT * FROM {$_TABLES['paypal_products']} WHERE type='subscription'");
     $nRows  = DB_numRows($result);
 	if ($nRows == 0) return $LANG_PAYPAL_1['create_membership_first'];
-    $product_id_select = '<select name="product_id">';
+    $product_id_select = '<select class="uk-select" name="product_id">';
     for ($i=0; $i<$nRows;$i++) {
         $row = DB_fetchArray($result);
         $product_id_select .= '<option value="' . $row['id'] . '"' . ($subscription['product_id'] == $row['id'] ? 'selected="selected"' : '') . '>' . $row['id'] . '. ' . $row['name'] . ' | ' . $row['price'] . ' ' . $_PAY_CONF['currency'] . '</option>';
@@ -93,7 +93,7 @@ function PAYPAL_getSubscriptionForm ($subscription = array())
 	$template->set_var('user_id_label', $LANG_PAYPAL_1['user_id']);
 	$result = DB_query("SELECT * FROM {$_TABLES['users']} ORDER BY uid");
     $nRows  = DB_numRows($result);
-    $user_select = '<select name="user_id">';
+    $user_select = '<select class="uk-select" name="user_id">';
     for ($i=0; $i<$nRows;$i++) {
         $row = DB_fetchArray($result);
         if ( $row['uid'] == 1 ) {
@@ -130,7 +130,7 @@ function PAYPAL_getSubscriptionForm ($subscription = array())
 	$template->set_var('add_to_group_options', COM_optionList( $_TABLES['groups'], 'grp_id,grp_name', $subscription['add_to_group'], 1));
 	
 	$template->set_var('notification_label', $LANG_PAYPAL_1['notification']);
-	$notification_select = '<select name="notification">';
+	$notification_select = '<select class="uk-select" name="notification">';
     for ($i=0; $i<4; $i++) {
         $notification_select .= '<option value="' . $i . '"' . ($subscription['notification'] == $i ? 'selected="selected"' : '') . '>' . $i . '</option>';
     }

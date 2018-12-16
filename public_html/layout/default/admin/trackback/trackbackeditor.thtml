@@ -7,16 +7,16 @@
 
     <dl class="form_block">
       <dt><label for="trackbackeditor-target">{lang_trackback_url}</label></dt>
-      <dd><input type="text" maxlength="{max_url_length}" value="{target_url}" name="target" id="trackbackeditor-target" class="uk-input size6"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="{max_url_length}" value="{target_url}" name="target" id="trackbackeditor-target" class="uk-input size6"{xhtml}></dd>
 
       <dt><label for="trackbackeditor-blog_name">{lang_blog_name}</label></dt>
-      <dd><input type="text" maxlength="80" value="{blog_name}" name="blog_name" id="trackbackeditor-blog_name" class="uk-input size6"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="80" value="{blog_name}" name="blog_name" id="trackbackeditor-blog_name" class="uk-input size6"{xhtml}></dd>
 
       <dt><label for="trackbackeditor-url">{lang_entry_url}</label></dt>
-      <dd><input type="text" maxlength="{max_url_length}" value="{url}" name="url" id="trackbackeditor-url" class="uk-input size6"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="{max_url_length}" value="{url}" name="url" id="trackbackeditor-url" class="uk-input size6"{xhtml}></dd>
 
       <dt><label for="trackbackeditor-title">{lang_title}</label></dt>
-      <dd><input type="text" maxlength="255" value="{title}" name="title" id="trackbackeditor-title" class="uk-input size6"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="255" value="{title}" name="title" id="trackbackeditor-title" class="uk-input size6"{xhtml}></dd>
 
       <dt><label for="trackbackeditor-excerpt">{lang_excerpt}</label></dt>
       <dd><textarea cols="45" rows="8" name="excerpt" id="trackbackeditor-excerpt" class="uk-textarea wide" aria-describedby="desc-trackbackeditor-excerpt">{excerpt}</textarea></dd>

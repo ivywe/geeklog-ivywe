@@ -976,7 +976,7 @@ HTML;
             $retval = $dbs[$remaining[0]]['label']
                 . ' <input type="hidden" name="db_type" value="' . $remaining[0] . '">' . PHP_EOL;
         } else {
-            $retval = '<select class="uk-select" id="db_type" name="db_type">' . PHP_EOL
+            $retval = '<select class="uk-select uk-form-width-medium" id="db_type" name="db_type">' . PHP_EOL
                 . $retval
                 . '</select>' . PHP_EOL;
         }
@@ -3459,7 +3459,7 @@ HTML;
             . '<input type="hidden" name="language" value="' . $this->env['language'] . '">' . PHP_EOL
             . '<input type="hidden" name="mode" value="migrate">'
             . '<input type="hidden" name="dbconfig_path" value="' . htmlspecialchars($this->env['dbconfig_path']) . '">' . PHP_EOL
-            . '<p><label class="' . $this->env['form_label_dir'] . '">' . $LANG_INSTALL[34] . ' ' . $this->getHelpLink('db_type') . '</label> <select class="uk-select" name="db[type]">' . PHP_EOL
+            . '<p><label class="' . $this->env['form_label_dir'] . '">' . $LANG_INSTALL[34] . ' ' . $this->getHelpLink('db_type') . '</label> <select class="uk-select uk-form-width-medium" name="db[type]">' . PHP_EOL
             . '<option value="mysql">' . $LANG_INSTALL[35] . '</option>' . PHP_EOL
             . '</select></p>' . PHP_EOL
             . '<p><label class="' . $this->env['form_label_dir'] . '">' . $LANG_INSTALL[39] . ' ' . $this->getHelpLink('db_host') . '</label> <input type="text" class="uk-input uk-form-width-medium" name="db[host]" value="' . $_FORM['host'] . '" size="20"></p>' . PHP_EOL
@@ -3487,7 +3487,7 @@ HTML;
         $display .= '<p><label class="' . $this->env['form_label_dir'] . '">'
             . $LANG_MIGRATE[6] . ' ' . $this->getHelpLink('migrate_file')
             . '</label>' . PHP_EOL
-            . '<select class="uk-select" name="migration_type" onchange="INST_selectMigrationType()">' . PHP_EOL
+            . '<select class="uk-select uk-form-width-medium" name="migration_type" onchange="INST_selectMigrationType()">' . PHP_EOL
             . '<option value="">' . $LANG_MIGRATE[7] . '</option>' . PHP_EOL
             . '<option value="select">' . $LANG_MIGRATE[8] . '</option>' . PHP_EOL
             . '<option value="upload">' . $LANG_MIGRATE[9] . '</option>' . PHP_EOL
@@ -3497,7 +3497,7 @@ HTML;
 
         // Check if there are any files in the backups directory
         if (count($backupFiles) > 0) {
-            $display .= '<select class="uk-select" name="backup_file">' . PHP_EOL
+            $display .= '<select class="uk-select uk-form-width-medium" name="backup_file">' . PHP_EOL
                 . '<option value="">' . $LANG_MIGRATE[10] . '</option>' . PHP_EOL;
 
             // List each of the backup files in the backups directory

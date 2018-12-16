@@ -103,7 +103,7 @@ class MassDelete extends BaseAdmin
                 . $_CONF['site_admin_url']
                 . '/plugins/spamx/index.php?command=MassDelete"><div>';
             $display .= $LANG_SX00['numtocheck'] . '&nbsp;&nbsp;&nbsp;'
-                . ' <select name="limit">' . LB;
+                . ' <select class="uk-select" name="limit">' . LB;
             $display .= '<option value="10">10</option>' . LB
                 . '<option value="50">50</option>' . LB
                 . '<option value="100" selected="selected">100</option>'

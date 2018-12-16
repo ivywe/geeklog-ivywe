@@ -659,7 +659,7 @@ function PAYPAL_review_bar( $rt_id, $title, $order, $url )
 
 
     // Order
-    $selector = '<select name="order">' . LB
+    $selector = '<select class="uk-select" name="order">' . LB
               . COM_optionList( $_TABLES['sortcodes'], 'code,name', $order )
               . LB . '</select>';
     $commentbar->set_var( 'order_selector', $selector);

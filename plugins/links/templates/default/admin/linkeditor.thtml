@@ -14,7 +14,7 @@
       <dd><input type="text" class="uk-input uk-form-width-medium" dir="ltr" maxlength="{max_url_length}" id="links-linkeditor-url" name="url" value="{link_url}"{xhtml}> {lang_includehttp}</dd>
 
       <dt><label for="links-linkeditor-categorydd">{lang_category}</label></dt>
-      <dd><select name="categorydd" class="uk-select uk-form-width-medium" id="links-linkeditor-categorydd">{category_options}</select> &nbsp;
+      <dd><select class="uk-select" name="categorydd" class="uk-select uk-form-width-medium" id="links-linkeditor-categorydd">{category_options}</select> &nbsp;
           <a href="{site_admin_url}/plugins/links/category.php?mode=edit">{lang_new_category}</a></dd>
 
       <dt><label for="links-linkeditor-hits">{lang_linkhits}</label></dt>

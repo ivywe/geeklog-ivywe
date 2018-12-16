@@ -16,7 +16,7 @@
                 {username_option}
                 <tr>
                     <td style="width:150px;"><label for="fullname">{lang_fullname}:</label></td>
-                    <td><input type="text" id="fullname" name="fullname" size="60" maxlength="80" value="{fullname_value}"{xhtml}></td>
+                    <td><input type="text" class="uk-input uk-form-width-medium" id="fullname" name="fullname" size="60" maxlength="80" value="{fullname_value}"{xhtml}></td>
                 </tr>
             </table>
         </fieldset>
@@ -37,11 +37,11 @@
                 </tr>
                 <tr>
                     <td><label for="email">{lang_email}:</label></td>
-                    <td><input type="text" id="email" name="email" size="50" maxlength="96" value="{email_value}"{xhtml}></td>
+                    <td><input type="text" class="uk-input uk-form-width-medium" id="email" name="email" size="50" maxlength="96" value="{email_value}"{xhtml}></td>
                 </tr>
                 <tr>
                     <td><label for="email_conf">{lang_email_conf}:</label></td>
-                    <td><input type="text" id="email_conf" name="email_conf" size="50" maxlength="96" value="{email_value}"{xhtml}></td>
+                    <td><input type="text" class="uk-input uk-form-width-medium" id="email_conf" name="email_conf" size="50" maxlength="96" value="{email_value}"{xhtml}></td>
                 </tr>
                 {current_password_option}
             </table>
@@ -57,11 +57,11 @@
             <table class="inputTable">
                 <tr>
                     <td style="width:100px;"><label for="homepage">{lang_homepage}:</label></td>
-                    <td><input type="text" id="homepage" name="homepage" size="55" maxlength="128" value="{homepage_value}"{xhtml}></td>
+                    <td><input type="text" class="uk-input uk-form-width-medium" id="homepage" name="homepage" size="55" maxlength="128" value="{homepage_value}"{xhtml}></td>
                 </tr>
                 <tr>
                     <td style="width:100px;"><label for="location">{lang_location}:</label></td>
-                    <td><input type="text" id="location" name="location" size="55" maxlength="96" value="{location_value}"{xhtml}></td>
+                    <td><input type="text" class="uk-input uk-form-width-medium" id="location" name="location" size="55" maxlength="96" value="{location_value}"{xhtml}></td>
                 </tr>
                 {userphoto_option}
                 <tr>
@@ -79,27 +79,27 @@
                 <!-- Forum ****************************************** -->
                 <tr>
                     <td style="width:100px;"><label for="forum_location">{lang_aim}:</label></td>                
-                    <td><input type="text" id="forum_aim" name="forum_aim" size="55" maxlength="128" value="{forum_aim}"{xhtml}></td>
+                    <td><input type="text" class="uk-input uk-form-width-medium" id="forum_aim" name="forum_aim" size="55" maxlength="128" value="{forum_aim}"{xhtml}></td>
                 </tr>
                 <tr>
                     <td style="width:100px;"><label for="forum_location">{lang_icq}:</label></td>                
-                    <td><input type="text" id="forum_icq" name="forum_icq" size="55" maxlength="128" value="{forum_icq}"{xhtml}></td>
+                    <td><input type="text" class="uk-input uk-form-width-medium" id="forum_icq" name="forum_icq" size="55" maxlength="128" value="{forum_icq}"{xhtml}></td>
                 </tr>
                 <tr>
                     <td style="width:100px;"><label for="forum_location">{lang_yim}:</label></td>                
-                    <td><input type="text" id="forum_yim" name="forum_yim" size="55" maxlength="128" value="{forum_yim}"{xhtml}></td>
+                    <td><input type="text" class="uk-input uk-form-width-medium" id="forum_yim" name="forum_yim" size="55" maxlength="128" value="{forum_yim}"{xhtml}></td>
                 </tr>
                 <tr>
                     <td style="width:100px;"><label for="forum_location">{lang_msnm}:</label></td>                
-                    <td><input type="text" id="forum_msnm" name="forum_msnm" size="55" maxlength="128" value="{forum_msnm}"{xhtml}></td>
+                    <td><input type="text" class="uk-input uk-form-width-medium" id="forum_msnm" name="forum_msnm" size="55" maxlength="128" value="{forum_msnm}"{xhtml}></td>
                 </tr>
                 <tr>
                     <td style="width:100px;"><label for="forum_location">{lang_interests}:</label></td>                
-                    <td><input type="text" id="forum_interests" name="forum_interests" size="55" maxlength="128" value="{forum_interests}"{xhtml}></td>
+                    <td><input type="text" class="uk-input uk-form-width-medium" id="forum_interests" name="forum_interests" size="55" maxlength="128" value="{forum_interests}"{xhtml}></td>
                 </tr>
                 <tr>
                     <td style="width:100px;"><label for="forum_location">{lang_occupation}:</label></td>                
-                    <td><input type="text" id="forum_occupation" name="forum_occupation" size="55" maxlength="128" value="{forum_occupation}"{xhtml}></td>
+                    <td><input type="text" class="uk-input uk-form-width-medium" id="forum_occupation" name="forum_occupation" size="55" maxlength="128" value="{forum_occupation}"{xhtml}></td>
                 </tr>                
                 <!-- ****************************************** -->
             </table>

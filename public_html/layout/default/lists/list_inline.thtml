@@ -9,7 +9,7 @@
       <select id="search-results-order" name="order" class="uk-select uk-width-auto">
         {page_sort}
       </select>
-      <select name="direction" class="uk-select uk-width-auto">
+      <select class="uk-select uk-form-width-medium" name="direction" class="uk-select uk-width-auto">
         {page_direction}
       </select>
     </div>

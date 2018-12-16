@@ -3,19 +3,19 @@
     <table border="0" cellspacing="0" cellpadding="3" width="100%">
       <tr>
           <td align="right" valign="top" style="white-space:nowrap;">{lang_tag}:</td>
-          <td><input type="text" size="24" maxlength="24" name="tag" value="{tag}"></td>
+          <td><input type="text" class="uk-input uk-form-width-medium" size="24" maxlength="24" name="tag" value="{tag}"></td>
       </tr>
       <tr>
           <td align="right" valign="top" style="white-space:nowrap;">{lang_desc}:</td>
-          <td><input type="text" name="description" size="75" maxlength="255" value="{description}"></td>
+          <td><input type="text" class="uk-input uk-form-width-medium" name="description" size="75" maxlength="255" value="{description}"></td>
       </tr>
       <tr>
           <td align="right" valign="top" style="white-space:nowrap;">{lang_enabled}</td>
-          <td><input type="checkbox" name="is_enabled" {is_enabled_checked}></td>
+          <td><input type="checkbox" class="uk-checkbox" name="is_enabled" {is_enabled_checked}></td>
       </tr>
       <tr>
           <td align="right" valign="top" style="white-space:nowrap;">{lang_close_tag}</td>
-          <td><input type="checkbox" name="close_tag" {close_tag_checked}></td>
+          <td><input type="checkbox" class="uk-checkbox" name="close_tag" {close_tag_checked}></td>
       </tr>
       
       <tr>
@@ -24,7 +24,7 @@
             <table border="0">
                 <tr>
                     {!if is_function_checkbox}
-                    <td valign="top"><input type="checkbox" name="is_function" {is_function_checked}{xhtml}>&nbsp;&nbsp;</td>
+                    <td valign="top"><input type="checkbox" class="uk-checkbox" name="is_function" {is_function_checked}{xhtml}>&nbsp;&nbsp;</td>
                     {!endif}          
                     <td>{php_msg}</td>
                 </tr>

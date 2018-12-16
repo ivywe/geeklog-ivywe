@@ -17,10 +17,10 @@
 		<fieldset style="margin-top: 10px;padding:10px;">
 		<legend>{arrow}<a style="text-decoration: none;" onClick="elementToggle('informations'); return false;" href="#"><b>{informations}</b></a></legend>
 			<div id="informations">
-				<p><b>{name_label}</b><font color="red">*</font> <input type="text" name="name" value="{name}" size="80" maxlength="255"></p>
-				<p><b>{address_label}</b><font color="red">*</font> <input type="text" id="address" name="address" value="{address}" size="80" maxlength="255"></p>
-				<p><b>{lat}</b> <input type="text" id="lat" name="lat" value="{lat_value}" size="14" maxlength="12">&nbsp;&nbsp; 
-				<b>{lng}</b> <input type="text" id="lng" name="lng" value="{lng_value}" size="14" maxlength="12"><br{xhtml}>
+				<p><b>{name_label}</b><font color="red">*</font> <input type="text" class="uk-input uk-form-width-medium" name="name" value="{name}" size="80" maxlength="255"></p>
+				<p><b>{address_label}</b><font color="red">*</font> <input type="text" class="uk-input uk-form-width-medium" id="address" name="address" value="{address}" size="80" maxlength="255"></p>
+				<p><b>{lat}</b> <input type="text" class="uk-input uk-form-width-medium" id="lat" name="lat" value="{lat_value}" size="14" maxlength="12">&nbsp;&nbsp; 
+				<b>{lng}</b> <input type="text" class="uk-input uk-form-width-medium" id="lng" name="lng" value="{lng_value}" size="14" maxlength="12"><br{xhtml}>
 				{empty_for_geo}</p>
 
 				<p><small>{created_label} {created}<br{xhtml}>{modified_label} {modified}</small></p>
