@@ -1,5 +1,4 @@
 <?php
-//last update 20181106 hiroron AT hiroron DOT COM
 
 if (strpos ($_SERVER['PHP_SELF'], 'lib_field.php') !== false) {
     die ('This file can not be used on its own.');
@@ -53,7 +52,7 @@ function LIB_List(
     }
 
     $filter = "{$lang_box_admin['group']}:";
-    $filter .="<select name='filter_val' style='width: 125px' onchange='this.form.submit()'>";
+    $filter .="<select class='uk-select uk-form-width-medium' name='filter_val' style='width: 125px' onchange='this.form.submit()'>";
     $filter .="<option value='{$LANG09[9]}'";
 
     if  ($filter_val==$LANG09[9]){
@@ -419,7 +418,7 @@ function LIB_Edit(
     $retval .= SEC_getTokenExpiryNotice($token);
     $templates->set_var('gltoken_name', CSRF_TOKEN);
     $templates->set_var('gltoken', $token);
-    $templates->set_var ( 'XHTML', XHTML );
+    $templates->set_var ( 'xhtml', XHTML );
 
     $templates->set_var('script', THIS_SCRIPT);
 
@@ -488,7 +487,7 @@ function LIB_Edit(
     $templates->set_var('lang_dfid', $lang_box_admin['dfid']);
     $templates->set_var('help_dfid', $lang_box_admin['help_dfid']);
     //$list_dfid=DATABOX_getoptionlistary ($lang_box_textcheck,"textcheck",$textcheck,$pi_name);
-    $list_dfid = '<select id="dfid" name="dfid">' . LB
+    $list_dfid = '<select class="uk-select uk-form-width-medium" id="dfid" name="dfid">' . LB
                . COM_optionList ($_TABLES['dateformats'], 'dfid,description',
                                  $dfid) . '</select>';
     $templates->set_var( 'list_dfid', $list_dfid);
@@ -543,7 +542,7 @@ function LIB_Edit(
 
     //delete_option
     if ($delflg){
-        $delbutton = '<input type="submit" value="' . $LANG_ADMIN['delete']
+        $delbutton = '<input type="submit" class="uk-button uk-button-danger" value="' . $LANG_ADMIN['delete']
                    . '" name="mode"%s>';
         $jsconfirm = ' onclick="return confirm(\'' . $MESSAGE[76] . '\');"';
         $templates->set_var ('delete_option',
@@ -1006,7 +1005,7 @@ function LIB_import (
 
     $tmpl->set_var('gltoken_name', CSRF_TOKEN);
     $tmpl->set_var('gltoken', SEC_createToken());
-    $tmpl->set_var ( 'XHTML', XHTML );
+    $tmpl->set_var ( 'xhtml', XHTML );
 
     $tmpl->set_var('script', THIS_SCRIPT);
 
@@ -1160,7 +1159,8 @@ function LIB_Menu(
     $icon=$function();
     $retval .= ADMIN_createMenu(
         $menu_arr,
-        $lang_box_admin['instructions']
+        $lang_box_admin['instructions'],
+        $icon
     );
 
     return $retval;
