@@ -22,13 +22,13 @@ function plugin_autotags_databox (
 // +---------------------------------------------------------------------------+
 {
     global $_TABLES;
-    global $_CONF;
+    global $_CONF,$_DATABOX_CONF;
     global $LANG_DATABOX_autotag_desc;
 
+    $tagname = array('databox');
     //Option Display
     if ($op == 'tagname' ) {
-        $tagname[]='databox';
-        return $tagname;
+				return $tagname;
     } elseif ($op == 'permission' || $op == 'nopermission') {
         if ($op == 'permission') {
             $flag = true;
@@ -1904,7 +1904,7 @@ function databox_data(
     if  ($m==="page"  OR  $m==="view"){
         if ($numrows <= 0) {
             COM_handle404();
-            exit;
+						echo "<!-- databox databox_category 404 --> ";
         }
     }
 

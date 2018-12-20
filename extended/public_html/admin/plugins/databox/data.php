@@ -7,7 +7,7 @@
 // $Id: data.php
 // public_html/admin/plugins/databox/data.php
 // 2010818 tsuchitani AT ivywe DOT co DOT jp
-//last update 20181106 hiroron AT hiroron DOT COM
+// last update 20181220 hiroron AT hiroron DOT COM
 
 // @@@@@追加予定：import
 // @@@@@追加予定：export に category
@@ -54,7 +54,7 @@ function fncList()
     }
 
     $filter = "{$LANG_DATABOX_ADMIN['fieldset']}:";
-    $filter .="<select name='filter_val' style='width: 125px' onchange='this.form.submit()'>";
+    $filter .="<select class=\"uk-select uk-form-width-small\" name='filter_val' style='width: 125px' onchange='this.form.submit()'>";
     $filter .="<option value='{$LANG09[9]}'";
 
     if  ($filter_val==$LANG09[9]){
@@ -297,11 +297,12 @@ function fncEdit(
     global $LANG_DATABOX;
 
     $retval = '';
-
+		$expired_flag = '';
     $delflg=false;
 
     $addition_def=DATABOX_getadditiondef();
     //メッセージ表示
+		$page_title = '';
     if (!empty ($msg)) {
         $retval .= COM_showMessage ($msg,'databox');
         $retval .= $errmsg;
@@ -453,8 +454,13 @@ function fncEdit(
             $comment_expire_minute=0;
 
             $commentcode =$_DATABOX_CONF['commentcode'];
-            $trackbackcode =$_CONF[trackback_code];
-            $cache_time =$_DATABOX_CONF[default_cache_time];
+
+						if (isset($_CONF['trackback_code'])) {
+            	$trackbackcode =$_CONF['trackback_code'];
+						} else {
+            	$trackbackcode ='';
+						}
+            $cache_time =$_DATABOX_CONF['default_cache_time'];
 
             $meta_description ="";
             $meta_keywords ="";
@@ -747,7 +753,7 @@ function fncEdit(
     $retval .= SEC_getTokenExpiryNotice($token);
     $templates->set_var('gltoken_name', CSRF_TOKEN);
     $templates->set_var('gltoken', $token);
-    $templates->set_var ( 'XHTML', XHTML );
+    $templates->set_var ( 'xhtml', XHTML );
 
     $templates->set_var('script', THIS_SCRIPT);
 
@@ -757,10 +763,14 @@ function fncEdit(
     $url=$_CONF['site_url'] . "/databox/data.php";
     $url.="?";
     if ($_DATABOX_CONF['datacode']){
+			if(isset($A['code'])){
         $url.="code=".$A['code'];
+			}
         $url.="&amp;m=code";
     }else{
+			if(isset($A['id'])){
         $url.="id=".$A['id'];
+			}
         $url.="&amp;m=id";
     }
     $url = COM_buildUrl( $url );
@@ -981,7 +991,7 @@ function fncEdit(
 
     //delete_option
     if ($delflg){
-        $delbutton = '<input type="submit" value="' . $LANG_ADMIN['delete']
+        $delbutton = '<input type="submit" class="uk-button uk-button-danger" value="' . $LANG_ADMIN['delete']
                    . '" name="mode"%s>';
         $jsconfirm = ' onclick="return confirm(\'' . $MESSAGE[76] . '\');"';
         $templates->set_var ('delete_option',
@@ -1009,7 +1019,7 @@ function fnctemplatesdirectory (
     global $_DATABOX_CONF;
 
     //
-    $selection = '<select id="defaulttemplatesdirectory" name="defaulttemplatesdirectory">' . LB;
+    $selection = '<select class="uk-select uk-form-width-small" id="defaulttemplatesdirectory" name="defaulttemplatesdirectory">' . LB;
 	$selection .= "<option value=\"\">  </option>".LB;
 
 	if ($_DATABOX_CONF['templates']==="theme"){
@@ -1088,9 +1098,17 @@ function fncSave (
     global $_TABLES;
     global $_USER;
     global $_DATABOX_CONF;
-
     global $_FILES;
-
+	$expired_flag = '';
+	$draft_flag = 0;
+	$comment_expire_flag = 0;
+	$category = '';
+	$additionfields = '';
+	$additionfields_old = '';
+	$additionfields_fnm = '';
+	$additionfields_del = '';
+	$additionfields_alt = '';
+	$released_ampm = '';
 
     $addition_def=DATABOX_getadditiondef();
 
@@ -1112,13 +1130,16 @@ function fncSave (
 
     $defaulttemplatesdirectory=COM_applyFilter($_POST['defaulttemplatesdirectory']);
     $defaulttemplatesdirectory=addslashes (COM_checkHTML (COM_checkWords ($defaulttemplatesdirectory)));
-	
-    $draft_flag = COM_applyFilter ($_POST['draft_flag'],true);
-
+		
+	if( isset($_POST['draft_flag']) ){
+	    $draft_flag = COM_applyFilter ($_POST['draft_flag'],true);
+	}
 //            $hits =0;
 //            $comments=0;
 
-    $comment_expire_flag = COM_applyFilter ($_POST['comment_expire_flag'],true);
+		if( isset($_POST['comment_expire_flag']) ){
+	    $comment_expire_flag = COM_applyFilter ($_POST['comment_expire_flag'],true);
+		}
     IF ($comment_expire_flag){
         $comment_expire_month = COM_applyFilter ($_POST['comment_expire_month'],true);
         $comment_expire_day = COM_applyFilter ($_POST['comment_expire_day'],true);
@@ -1155,15 +1176,26 @@ function fncSave (
 	$language_id=COM_applyFilter($_POST['language_id']);
     $language_id=addslashes (COM_checkHTML (COM_checkWords ($language_id)));
 
-    $category = $_POST['category'];
-
+		if( isset($_POST['category']) ){
+	    $category = $_POST['category'];
+		}
     //@@@@@
-	$additionfields=$_POST['afield'];
-	$additionfields_old=$_POST['afield'];
+
+	if( isset($_POST['afield']) ){
+		$additionfields=$_POST['afield'];
+		$additionfields_old=$_POST['afield'];
+	}
 	
+	if( isset($_POST['afield_fnm']) ){
     $additionfields_fnm=$_POST['afield_fnm'];
-	$additionfields_del=$_POST['afield_del'];
+	}
+	if( isset($_POST['afield_del']) ){
+		$additionfields_del=$_POST['afield_del'];
+	}
+	if( isset($_POST['afield_alt']) ){
     $additionfields_alt=$_POST['afield_alt'];
+	}
+	
 	$additionfields_date=array();
 	$dummy=DATABOX_cleanaddtiondatas (
 		$additionfields
@@ -1231,7 +1263,11 @@ function fncSave (
     $released_year = COM_applyFilter ($_POST['released_year'],true);
     $released_hour = COM_applyFilter ($_POST['released_hour'],true);
     $released_minute = COM_applyFilter ($_POST['released_minute'],true);
-	$released_ampm=COM_applyFilter ($_POST['released_ampm']);
+
+	if( isset($_POST['released_ampm']) ){
+		$released_ampm=COM_applyFilter ($_POST['released_ampm']);
+	}
+
 	if ($released_ampm == 'pm') {
 		if ($released_hour < 12) {
 			$released_hour = $released_hour + 12;
@@ -1242,14 +1278,16 @@ function fncSave (
 	}
 
     //公開終了日
+	if( isset($_POST['expired_flag']) ){
     $expired_flag = COM_applyFilter ($_POST['expired_flag'],true);
+	}
     IF ($expired_flag){
         $expired_month = COM_applyFilter ($_POST['expired_month'],true);
         $expired_day = COM_applyFilter ($_POST['expired_day'],true);
         $expired_year = COM_applyFilter ($_POST['expired_year'],true);
         $expired_hour = COM_applyFilter ($_POST['expired_hour'],true);
         $expired_minute = COM_applyFilter ($_POST['expired_minute'],true);
-		$expired_ampm=COM_applyFilter ($_POST['expired_ampm']);
+				$expired_ampm=COM_applyFilter ($_POST['expired_ampm']);
 		if ($expired_ampm == 'pm') {
 			if ($expired_hour < 12) {
 				$expired_hour = $expired_hour + 12;
@@ -1830,7 +1868,7 @@ function fncimport ()
 
     $tmpl->set_var('gltoken_name', CSRF_TOKEN);
     $tmpl->set_var('gltoken', SEC_createToken());
-    $tmpl->set_var ( 'XHTML', XHTML );
+    $tmpl->set_var ( 'xhtml', XHTML );
 
     $tmpl->set_var('script', THIS_SCRIPT);
 
@@ -2026,7 +2064,7 @@ function fncNew (
     $retval .= SEC_getTokenExpiryNotice($token);
     $templates->set_var('gltoken_name', CSRF_TOKEN);
     $templates->set_var('gltoken', $token);
-    $templates->set_var ( 'XHTML', XHTML );
+    $templates->set_var ( 'xhtml', XHTML );
 
     $templates->set_var('script', THIS_SCRIPT);
 
@@ -2060,12 +2098,18 @@ function fncChangeSet (
 	global $LANG_DATABOX_ADMIN;
 	global $LANG_ADMIN;
 	global $_TABLES;
+	global $_REQUEST;
+	$id = '';
 	
 	$pi_name="databox";
 	
     $retval = '';
 	
+if(isset($_REQUEST['id'])) {
 	$id = COM_applyFilter ($_REQUEST['id'], true);
+} else {
+	$id = '';
+}
 	//-----
 	if  ($id==0){
 		$actionname=$LANG_DATABOX_ADMIN['registset'];
@@ -2084,7 +2128,7 @@ function fncChangeSet (
     $retval .= SEC_getTokenExpiryNotice($token);
     $templates->set_var('gltoken_name', CSRF_TOKEN);
     $templates->set_var('gltoken', $token);
-    $templates->set_var ( 'XHTML', XHTML );
+    $templates->set_var ( 'xhtml', XHTML );
 
     $templates->set_var('script', THIS_SCRIPT);
 	
@@ -2182,7 +2226,7 @@ function fncexportform (
     $retval .= SEC_getTokenExpiryNotice($token);
     $tmpl->set_var('gltoken_name', CSRF_TOKEN);
     $tmpl->set_var('gltoken', $token);
-    $tmpl->set_var ( 'XHTML', XHTML );
+    $tmpl->set_var ( 'xhtml', XHTML );
  
     $tmpl->set_var('script', THIS_SCRIPT);
 	
@@ -2303,16 +2347,19 @@ function fncMenu(
 	
     $menu_arr[]=array('url' => $_CONF['site_admin_url'],'text' => $LANG_ADMIN['admin_home']);
 	
-
 if(isset($LANG_DATABOX_ADMIN['instructions'])) {
-
     $retval .= ADMIN_createMenu(
         $menu_arr,
-        $LANG_DATABOX_ADMIN['instructions']
+        $LANG_DATABOX_ADMIN['instructions'],
+        plugin_geticon_databox()
     );
-
+} else {
+    $retval .= ADMIN_createMenu(
+        $menu_arr,
+				'',
+        plugin_geticon_databox()
+    );
 }
-
     return $retval;
 }
 
@@ -2320,6 +2367,7 @@ if(isset($LANG_DATABOX_ADMIN['instructions'])) {
 // | MAIN                                                                      |
 // +---------------------------------------------------------------------------+
 //############################
+$mode = '';
 $pi_name    = 'databox';
 //############################
 
@@ -2347,8 +2395,6 @@ if (isset($_REQUEST['old_mode'])) {
         $mode = $old_mode;
     }
 }
-
-$mode = "";
 
 if (($mode == $LANG_ADMIN['save']) && !empty ($LANG_ADMIN['save'])) { // save
     $mode="save";
@@ -2490,8 +2536,7 @@ switch ($mode) {
 
 $display =COM_startBlock($LANG_DATABOX_ADMIN['piname'],''
             ,COM_getBlockTemplate('_admin_block', 'header'))
-//         .ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno])
-         .$admin_menu_top
+         .ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno])
          .fncMenu($pi_name)
          .$display
          .COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));

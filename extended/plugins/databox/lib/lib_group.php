@@ -1,5 +1,4 @@
 <?php
-//last update 20181106 hiroron AT hiroron DOT COM
 
 if (strpos ($_SERVER['PHP_SELF'], 'lib_group.php') !== false) {
     die ('This file can not be used on its own.');
@@ -57,8 +56,6 @@ function LIB_List(
     $sql .= " group_id<>0";
     //
 
-$exclude = "";
-
     $query_arr = array(
         'table' => $table,
         'sql' => $sql,
@@ -69,7 +66,6 @@ $exclude = "";
     //List 取得
     //ADMIN_list($component, $fieldfunction, $header_arr, $text_arr,
     //       $query_arr, $menu_arr, $defsort_arr, $filter = '', $extra = '', $options = '')
-		$retval = "";
     $retval .= ADMIN_list(
         $pi_name
         , "LIB_GetListField"
@@ -310,7 +306,7 @@ function LIB_Edit(
     $retval .= SEC_getTokenExpiryNotice($token);
     $templates->set_var('gltoken_name', CSRF_TOKEN);
     $templates->set_var('gltoken', $token);
-    $templates->set_var ( 'XHTML', XHTML );
+    $templates->set_var ( 'xhtml', XHTML );
 
     $templates->set_var('script', THIS_SCRIPT);
 
@@ -378,7 +374,7 @@ function LIB_Edit(
         if ($wkcnt>0){
             $templates->set_var('lang_delete_help', $lang_box_admin['delete_help_group']);
         }else{
-            $delbutton = '<input type="submit" value="' . $LANG_ADMIN['delete']
+            $delbutton = '<input type="submit" class="uk-button uk-button-danger" value="' . $LANG_ADMIN['delete']
                    . '" name="mode"%s>';
             $jsconfirm = ' onclick="return confirm(\'' . $MESSAGE[76] . '\');"';
             $templates->set_var ('delete_option',
@@ -629,15 +625,14 @@ function LIB_delete (
     $err="";
     //category addtionfield check!!!
     if ($err<>"") {
-        $page_title = $lang_box_admin['err'];
-//        $retval .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
+        $pagetitle = $lang_box_admin['err'];
+        $retval .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
 
         $retval .= COM_startBlock ($lang_box_admin['err'], '',
                             COM_getBlockTemplate ('_msg_block', 'header'));
         $retval .= $err;
         $retval .= COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
-//        $retval .= DATABOX_siteFooter($pi_name,'_admin');
-        $retval = DATABOX_displaypage($pi_name,'_admin',$retval,array('pagetitle'=>$page_title));
+        $retval .= DATABOX_siteFooter($pi_name,'_admin');
         return $retval;
     }
 
@@ -724,7 +719,7 @@ function LIB_import (
 
     $tmpl->set_var('gltoken_name', CSRF_TOKEN);
     $tmpl->set_var('gltoken', SEC_createToken());
-    $tmpl->set_var ( 'XHTML', XHTML );
+    $tmpl->set_var ( 'xhtml', XHTML );
 
     $tmpl->set_var('script', THIS_SCRIPT);
 
@@ -872,13 +867,12 @@ function LIB_Menu(
 	
     $function="plugin_geticon_".$pi_name;
     $icon=$function();
-		
-		if (isset ($lang_box_admin['instructions'])) {
-	    $retval .= ADMIN_createMenu(
-	        $menu_arr,
-	        $lang_box_admin['instructions']
-	    );
-		}
+    $retval .= ADMIN_createMenu(
+        $menu_arr,
+        $lang_box_admin['instructions'],
+        $icon
+    );
+
     return $retval;
 }
 
@@ -904,7 +898,7 @@ function LIB_templatesdirectory (
     $fld="category";//@@@@@?
 
     //
-    $selection = '<select id="defaulttemplatesdirectory" name="defaulttemplatesdirectory">' . LB;
+    $selection = '<select class="uk-select uk-form-width-large" id="defaulttemplatesdirectory" name="defaulttemplatesdirectory">' . LB;
 	$selection .= "<option value=\"\">  </option>".LB;
 
     //

@@ -1,5 +1,4 @@
 <?php
-//last update 20181106 hiroron AT hiroron DOT COM
 
 if (strpos ($_SERVER['PHP_SELF'], 'lib_fieldset.inc') !== false) {
     die ('This file can not be used on its own.');
@@ -21,6 +20,8 @@ function LIB_List(
     global $_TABLES;
     global $LANG_ADMIN;
     global $LANG09;
+		$exclude = '';
+    $retval = '';
 
     $lang_box_admin="LANG_".strtoupper($pi_name)."_ADMIN";
     global $$lang_box_admin;
@@ -55,8 +56,6 @@ function LIB_List(
     $sql .= " fieldset_id<>0";
     //
 
-		$exclude = "";
-
     $query_arr = array(
         'table' => $table,
         'sql' => $sql,
@@ -67,7 +66,6 @@ function LIB_List(
     //List 取得
     //ADMIN_list($component, $fieldfunction, $header_arr, $text_arr,
     //       $query_arr, $menu_arr, $defsort_arr, $filter = '', $extra = '', $options = '')
-		$retval = "";
     $retval .= ADMIN_list(
         $pi_name
         , "LIB_GetListField"
@@ -175,6 +173,7 @@ function LIB_Edit(
     global $MESSAGE;
     global $LANG_ACCESS;
     global $_USER;
+		$code = '';
 
     $lang_box_admin="LANG_".strtoupper($pi_name)."_ADMIN";
     global $$lang_box_admin;
@@ -280,7 +279,7 @@ function LIB_Edit(
     $retval .= SEC_getTokenExpiryNotice($token);
     $templates->set_var('gltoken_name', CSRF_TOKEN);
     $templates->set_var('gltoken', $token);
-    $templates->set_var ( 'XHTML', XHTML );
+    $templates->set_var ( 'xhtml', XHTML );
 
     $templates->set_var('script', THIS_SCRIPT);
 
@@ -326,7 +325,7 @@ function LIB_Edit(
         if ($wkcnt>0){
             $templates->set_var('lang_delete_help', $lang_box_admin['delete_help_fieldset']);
         }else{
-            $delbutton = '<input type="submit" value="' . $LANG_ADMIN['delete']
+            $delbutton = '<input type="submit" class="uk-button uk-button-danger" value="' . $LANG_ADMIN['delete']
                    . '" name="mode"%s>';
             $jsconfirm = ' onclick="return confirm(\'' . $MESSAGE[76] . '\');"';
             $templates->set_var ('delete_option',
@@ -346,7 +345,7 @@ function LIB_Edit(
 function LIB_Save (
     $pi_name
     ,$edt_flg
-    ,$admin_menu_top
+    ,$navbarMenu
     ,$menuno
 )
 // +---------------------------------------------------------------------------+
@@ -364,6 +363,7 @@ function LIB_Save (
     global $_CONF;
     global $_TABLES;
     global $_USER;
+		$code = '';
 
     $box_conf="_".strtoupper($pi_name)."_CONF";
     global $$box_conf;
@@ -384,7 +384,11 @@ function LIB_Save (
     // clean 'em up
     $id = COM_applyFilter($_POST['id'],true);
 
-    $code=COM_applyFilter($_POST['code']);
+if( isset($_POST['code']) ) {
+    $code = COM_applyFilter($_POST['code']);
+} else {
+    $code = '';
+}
     $code = addslashes (COM_checkHTML (COM_checkWords ($code)));
 
     $name=COM_stripslashes($_POST['name']);
@@ -399,10 +403,17 @@ function LIB_Save (
 	$defaulttemplatesdirectory=COM_applyFilter($_POST['defaulttemplatesdirectory']);
     $defaulttemplatesdirectory = addslashes (COM_checkHTML (COM_checkWords ($defaulttemplatesdirectory)));
 
+if ( isset($_POST['parent_flg']) ) {
     $parent_flg=COM_applyFilter($_POST['parent_flg'],true);
-
+} else {
+    $parent_flg=0;
+}
+if ( isset($_POST['orderno']) ) {
     $orderno = mb_convert_kana($_POST['orderno'],"a");//全角英数字を半角英数字に変換する
     $orderno=COM_applyFilter($orderno,true);
+} else {
+    $orderno = '';
+}
 
     //$name = mb_convert_kana($name,"AKV");
     //A:半角英数字を全角英数字に変換する
@@ -449,13 +460,11 @@ function LIB_Save (
     //errorのあるとき
     if ($err<>"") {
         $page_title=$lang_box_admin['piname'].$lang_box_admin['edit'];
-//        $retval .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
-//        $retval .=ppNavbarjp($navbarMenu,$lang_box_admin_menu[$menuno]);
-        $retval .= $admin_menu_top;
+        $retval .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
+        $retval .=ppNavbarjp($navbarMenu,$lang_box_admin_menu[$menuno]);
 
         $retval .= LIB_Edit($pi_name,$id, $edt_flg,3,$err);
-//        $retval .= DATABOX_siteFooter($pi_name,'_admin');
-        $retval = DATABOX_displaypage($pi_name,'_admin',$retval,array('pagetitle'=>$page_title));
+        $retval .= DATABOX_siteFooter($pi_name,'_admin');
 
         return $retval;
 
@@ -497,7 +506,7 @@ function LIB_Save (
 //    }else{
 //        $return_page=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?msg=1';
 //    }
-
+$return_page = '';
     DB_save($table,$fields,$values,$return_page);
 
 //    $rt=fncsendmail ($id);
@@ -562,14 +571,13 @@ function LIB_delete (
     $err="";
     //category addtionfield check!!!
     if ($err<>"") {
-        $page_title = $lang_box_admin['err'];
-//        $retval .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
+        $pagetitle = $lang_box_admin['err'];
+        $retval .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
         $retval .= COM_startBlock ($lang_box_admin['err'], '',
                             COM_getBlockTemplate ('_msg_block', 'header'));
         $retval .= $err;
         $retval .= COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
-//        $retval .= DATABOX_siteFooter($pi_name,'_admin');
-        $retval = DATABOX_displaypage($pi_name,'_admin',$retval,array('pagetitle'=>$page_title));
+        $retval .= DATABOX_siteFooter($pi_name,'_admin');
         return $retval;
     }
 
@@ -652,7 +660,7 @@ function LIB_import (
 
     $tmpl->set_var('gltoken_name', CSRF_TOKEN);
     $tmpl->set_var('gltoken', SEC_createToken());
-    $tmpl->set_var ( 'XHTML', XHTML );
+    $tmpl->set_var ( 'xhtml', XHTML );
 
     $tmpl->set_var('script', THIS_SCRIPT);
 
@@ -967,7 +975,7 @@ function LIB_editfields(
     $templates->set_var('gltoken_name', CSRF_TOKEN);
     $templates->set_var('gltoken', $token);
 	
-	$templates->set_var ( 'XHTML', XHTML );
+	$templates->set_var ( 'xhtml', XHTML );
 
     $templates->set_var('script', THIS_SCRIPT);
 
@@ -990,7 +998,7 @@ function LIB_editfields(
 	
     $templates->parse('output', 'editor');
     $retval .= $templates->finish($templates->get_var('output'));
-
+	
     return $retval;
 }
 function LIB_selectFields(
@@ -1264,7 +1272,7 @@ function LIB_editgroups(
     $templates->set_var('gltoken_name', CSRF_TOKEN);
     $templates->set_var('gltoken', $token);
 	
-	$templates->set_var ( 'XHTML', XHTML );
+	$templates->set_var ( 'xhtml', XHTML );
 
     $templates->set_var('script', THIS_SCRIPT);
 
@@ -1422,7 +1430,7 @@ function LIB_templatesdirectory (
 	}
 		
     //
-    $selection = '<select id="defaulttemplatesdirectory" name="defaulttemplatesdirectory">' . LB;
+    $selection = '<select class="uk-select uk-form-width-large" id="defaulttemplatesdirectory" name="defaulttemplatesdirectory">' . LB;
 	$selection .= "<option value=\"\">  </option>".LB;
 
     //
@@ -1520,12 +1528,20 @@ function LIB_Menu(
     $function="plugin_geticon_".$pi_name;
     $icon=$function();
 
-		if (isset ($lang_box_admin['instructions'])) {
-	    $retval .= ADMIN_createMenu(
-	        $menu_arr,
-	        $lang_box_admin['instructions']
-	    );
-		}
+if( isset($lang_box_admin['instructions'])) {
+    $retval .= ADMIN_createMenu(
+        $menu_arr,
+        $lang_box_admin['instructions'],
+        $icon
+    );
+} else {
+    $retval .= ADMIN_createMenu(
+        $menu_arr,
+        0,
+        $icon
+    );
+}
+
     return $retval;
 }
 

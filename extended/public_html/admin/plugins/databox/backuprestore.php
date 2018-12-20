@@ -6,7 +6,6 @@
 // $Id: backuprestore.php
 // public_html/admin/plugins/databox/backuprestore.php
 // 20121023 tsuchitani AT ivywe DOT co DOT jp
-//last update 20181106 hiroron AT hiroron DOT COM
 
 // @@@@@追加予定：サンプルデータのインポート
 
@@ -43,10 +42,10 @@ function fncDisply(
     $templates->set_var ('site_admin_url', $_CONF['site_admin_url']);
 
     $token = SEC_createToken();
-    $retval = SEC_getTokenExpiryNotice($token);
+    $retval .= SEC_getTokenExpiryNotice($token);
     $templates->set_var('gltoken_name', CSRF_TOKEN);
     $templates->set_var('gltoken', $token);
-    $templates->set_var ( 'XHTML', XHTML );
+    $templates->set_var ( 'xhtml', XHTML );
     
     $templates->set_var('script', THIS_SCRIPT);
 
@@ -108,12 +107,12 @@ function fncMenu(
     //
     $menu_arr[]=array('url' => $_CONF['site_admin_url'],'text' => $LANG_ADMIN['admin_home']);
 
-		if (isset ($LANG_DATABOX_ADMIN['instructions'])) {
-	    $retval .= ADMIN_createMenu(
-	        $menu_arr,
-	        $LANG_DATABOX_ADMIN['instructions']
-	    );
-		}
+    $retval .= ADMIN_createMenu(
+        $menu_arr,
+        $LANG_DATABOX_ADMIN['instructions'],
+        plugin_geticon_databox()
+    );
+    
     return $retval;
 }
 
@@ -337,7 +336,7 @@ function fncbackuprestore (
 
     $tmpl->set_var('gltoken_name', CSRF_TOKEN);
     $tmpl->set_var('gltoken', SEC_createToken());
-    $tmpl->set_var ( 'XHTML', XHTML );
+    $tmpl->set_var ( 'xhtml', XHTML );
 
     $tmpl->set_var('script', THIS_SCRIPT);
 
@@ -588,7 +587,7 @@ function fncgetselectfilename (
     global $_CONF;
 
     //
-    $selection = '<select id="filename" name="filename">' . LB;
+    $selection = '<select class="uk-select uk-form-width-small" id="filename" name="filename">' . LB;
 
     $fd=$_CONF['backup_path']."databox/";
     $files=DATABOX_getfilelist($fd,"xml");
@@ -619,7 +618,7 @@ $action = '';
 if (isset ($_REQUEST['action'])) {
     $action = COM_applyFilter ($_REQUEST['action'], false);
 }
-$mode="";
+
 if (isset ($_REQUEST['mode'])) {
     $mode = COM_applyFilter ($_REQUEST['mode'], false);
 }
@@ -652,8 +651,7 @@ $menuno=6;
 $information = array();
 
 $information['pagetitle']=$LANG_DATABOX_ADMIN['piname']."backup and restore";
-//$display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
-$display.=$admin_menu_top;
+$display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
 if (isset ($_REQUEST['msg'])) {
     $display .= COM_showMessage (COM_applyFilter ($_REQUEST['msg'],
                                                   true), $pi_name);

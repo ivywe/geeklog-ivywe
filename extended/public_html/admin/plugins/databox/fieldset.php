@@ -5,7 +5,6 @@
 // +---------------------------------------------------------------------------+
 // $Id: fieldset.php
 // 20120509 tsuchitani AT ivywe DOT co DOT jp
-//last update 20181106 hiroron AT hiroron DOT COM
 
 define ('THIS_SCRIPT', 'databox/fieldset.php');
 //define ('THIS_SCRIPT', 'databox/fieldset.php');
@@ -19,6 +18,7 @@ require_once( $_CONF['path_system'] . 'lib-admin.php' );
 // +---------------------------------------------------------------------------+
 //############################
 $pi_name    = 'databox';
+$mode = '';
 //############################
 
 // 引数
@@ -45,8 +45,6 @@ if (isset($_REQUEST['old_mode'])) {
         $mode = $old_mode;
     }
 }
-
-$mode = "";
 
 if (($mode == $LANG_ADMIN['save']) && !empty ($LANG_ADMIN['save'])) { // save
     $mode="save";
@@ -94,7 +92,7 @@ switch ($mode) {
         break;
 
     case 'save':// 保存
-		$retval= LIB_Save ($pi_name,$edt_flg,$admin_menu_top,$menuno);
+		$retval= LIB_Save ($pi_name,$edt_flg,$navbarMenu,$menuno);
         $information['pagetitle']=$retval['title'];
 		$display.=$retval['display'];
 
@@ -146,8 +144,7 @@ switch ($mode) {
 }
 $display =COM_startBlock($LANG_DATABOX_ADMIN['piname'],''
             ,COM_getBlockTemplate('_admin_block', 'header'))
-//         .ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno])
-         .$admin_menu_top
+         .ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno])
          .LIB_Menu($pi_name)
          .$display
          .COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));

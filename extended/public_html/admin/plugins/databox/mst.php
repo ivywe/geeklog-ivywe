@@ -5,7 +5,6 @@
 // +---------------------------------------------------------------------------+
 // $Id: mst.php
 // 20121204 tsuchitani AT ivywe DOT co DOT jp
-//last update 20181106 hiroron AT hiroron DOT COM
 
 define ('THIS_SCRIPT', 'databox/mst.php');
 //define ('THIS_SCRIPT', 'databox/test.php');
@@ -40,7 +39,6 @@ if (isset ($_REQUEST['id'])) {
 }
 
 $old_mode="";
-$mode = "";
 if (isset($_REQUEST['old_mode'])) {
     $old_mode = COM_applyFilter($_REQUEST['old_mode'],false);
     if ($mode==$LANG_ADMIN['cancel']) {
@@ -100,7 +98,7 @@ switch ($mode) {
         break;
 
     case 'save':// 保存
-		$retval= LIB_Save ($pi_name,$edt_flg,$admin_menu_top,$menuno);
+		$retval= LIB_Save ($pi_name,$edt_flg,$navbarMenu,$menuno);
         $information['pagetitle']=$retval['title'];
 		$display.=$retval['display'];
         break;
@@ -125,8 +123,7 @@ switch ($mode) {
 }
 $display =COM_startBlock($LANG_DATABOX_ADMIN['piname'],''
             ,COM_getBlockTemplate('_admin_block', 'header'))
-//         .ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno])
-         .$admin_menu_top
+         .ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno])
          .LIB_Menu($pi_name)
          .$display
          .COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
