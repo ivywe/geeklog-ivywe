@@ -49,6 +49,7 @@ if (file_exists($langfile)) {
     require_once $plugin_path . 'language/english.php';
 }
 
+global $_TABLES;
 //global $_MG_CONF;
 $_MG_CONF = array();
 $_MG_CONF['pi_version'] = '1.7.0';

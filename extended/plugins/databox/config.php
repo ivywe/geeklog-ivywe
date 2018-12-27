@@ -6,6 +6,7 @@
 // $Id: plugins/databox/config.php
 //20100818 tsuchitani AT ivywe DOT co DOT  jp http://www.ivywe.co.jp/
 //20120509
+global $_DATABOX_CONF;
 $_DATABOX_CONF = array();
 
 $databox_config = config::get_instance();
@@ -14,6 +15,7 @@ $_DATABOX_CONF = $databox_config->get_config('databox');
 include_once 'version.php';
 
 // データベーステーブル名 - 原則変更禁止
+global $_TABLES,$_DB_table_prefix;
 $_TABLES['DATABOX_base']    		= $_DB_table_prefix . 'databox_base';
 $_TABLES['DATABOX_category']    	= $_DB_table_prefix . 'databox_category';
 $_TABLES['DATABOX_addition']    	= $_DB_table_prefix . 'databox_addition';
