@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | public_html/admin/plugins/themedit/getimage.php                           |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2006-2013 - geeklog AT mystral-kk DOT net                   |
+// | Copyright (C) 2006-2018 - geeklog AT mystral-kk DOT net                   |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
 // | Copyright (C) 2002 by the following authors:                              |
@@ -32,6 +32,7 @@
 // +---------------------------------------------------------------------------+
 
 require_once '../../../lib-common.php';
+require_once dirname(__FILE__) . '/compat.php';
 
 /**
 * Security check
@@ -39,12 +40,11 @@ require_once '../../../lib-common.php';
 if (!SEC_hasRights('themedit.admin')) {
     // Someone is trying to illegally access this page
     COM_errorLog("Someone has tried to illegally access the themedit uploader.  User id: {$_USER['uid']}, Username: {$_USER['username']}, IP: {$_SERVER['REMOTE_ADDR']}", 1);
-    $display = COM_siteHeader()
-			 . COM_startBlock(THM_str('access_denied'))
+	$content = COM_startBlock(THM_str('access_denied'))
 			 . THM_str('access_denied_msg')
-			 . COM_endBlock()
-			 . COM_siteFooter();
-    echo $display;
+			 . COM_endBlock();
+    $display = COM_createHTMLDocument($content);
+	COM_output($display);
     exit;
 }
 
@@ -71,12 +71,12 @@ switch (strtolower($info['extension'])) {
 	
 	default:
 		$type = 'none';
-		$im   = FALSE;
+		$im   = false;
 		break;
 }
 
 // Displays the image
-if ($im === FALSE) {
+if ($im === false) {
 	COM_errorLog("themedit: invalid path or GD unsupported: {$path}");
 } else {
 	header("Content-Type: image/{$type}");

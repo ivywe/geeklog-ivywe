@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // | geeklog/plugins/themedit/config.php                                       |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2006-2013 - geeklog AT mystral-kk DOT net                   |
+// | Copyright (C) 2006-2018 - geeklog AT mystral-kk DOT net                   |
 // |                                                                           |
 // | Constructed with the Universal Plugin                                     |
 // | Copyright (C) 2002 by the following authors:                              |
@@ -31,30 +31,25 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 
-if (strpos(strtolower($_SERVER['PHP_SELF']), 'config.php') !== FALSE) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     die('This file can not be used on its own.');
 }
 
 global $_DB_table_prefix, $_TABLES;
 
 /**
-* set Plugin Table Prefix the Same as Geeklogs
-*/
-$_THM_table_prefix = $_DB_table_prefix;
-
-/**
 * Add to $_TABLES array the tables your plugin uses
 */
-$_TABLES['thm_contents'] = $_THM_table_prefix . 'thm_contents';
+$_TABLES['thm_contents'] = $_DB_table_prefix . 'thm_contents';
 
 $_THM_CONF = array();
 
 /**
 * Plugin info
 */
-$_THM_CONF['pi_version'] = '1.2.2';						// Plugin Version
+$_THM_CONF['pi_version'] = '1.2.3';						// Plugin Version
 $_THM_CONF['gl_version'] = '1.6.0';						// GL Version plugin for
-$_THM_CONF['pi_url']     = 'http://mystral-kk.net/';	// Plugin Homepage
+$_THM_CONF['pi_url']     = 'https://mystral-kk.net/';	// Plugin Homepage
 $_THM_CONF['GROUPS']     = array(
 		'Theme Editor Admin' => 'Users in this group can administer the Theme Editor plugin',
 );

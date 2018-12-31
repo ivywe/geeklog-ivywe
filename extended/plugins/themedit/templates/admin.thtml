@@ -1,5 +1,3 @@
-{# begin {templatelocation} #}
-
 <img src="{temp_site_url}/admin/plugins/themedit/images/themedit.gif" alt="" border="0">
 &nbsp;&nbsp; <b><font size="4"> {temp_header} </font></b>
 {temp_preview_code}
@@ -10,13 +8,13 @@
 	{temp_sys_message}
 	<p style="border: solid 1px #7F9DB9; padding: 5px;">
 		{temp_lang_theme_edited}:&nbsp;
-		<select class="uk-select" name="thm_theme" onChange="this.form.submit()">{temp_themes}</select>
+		<select name="thm_theme" onChange="this.form.submit()">{temp_themes}</select>
 		<noscript>
 			<input name="dummy" type="submit" value="{temp_lang_select}"{xhtml}>
 		</noscript>
 		&nbsp;&nbsp;
 		{temp_lang_file_edited}:&nbsp;
-		<select class="uk-select" name="thm_file" onChange="this.form.submit()">{temp_files}</select>
+		<select name="thm_file" onChange="this.form.submit()">{temp_files}</select>
 		<noscript>
 			<input name="dummy" type="submit" value="{temp_lang_select}"{xhtml}>
 		</noscript>
@@ -27,12 +25,10 @@
 	<input name="thm_op" type="submit" value="{temp_lang_save}"{xhtml}>&nbsp;&nbsp;&nbsp;&nbsp;
 	<input name="thm_op" type="submit" value="{temp_lang_image}"{xhtml}>&nbsp;&nbsp;&nbsp;&nbsp;
 	<input name="thm_op" type="submit" value="{temp_lang_init}"{xhtml}>
-	<textarea class="uk-textarea" name="theme_contents" id="theme_contents" rows="30" style="width:99%;"{xhtml}>{temp_contents}</textarea><br{xhtml}>
+	<textarea name="theme_contents" id="theme_contents" rows="30" style="width:99%;"{xhtml}>{temp_contents}</textarea><br{xhtml}>
 	<input name="thm_op" type="submit" value="{temp_lang_preview}"{xhtml}>
 	<input name="thm_op" type="submit" value="{temp_lang_save}"{xhtml}>&nbsp;&nbsp;&nbsp;&nbsp;
 	<input name="thm_op" type="submit" value="{temp_lang_image}"{xhtml}>&nbsp;&nbsp;&nbsp;&nbsp;
 	<input name="thm_op" type="submit" value="{temp_lang_init}"{xhtml}>
 	<input name="{temp_token_name}" type="hidden" value="{temp_token_value}"{xhtml}>
 </form>
-
-{# end {templatelocation} #}
