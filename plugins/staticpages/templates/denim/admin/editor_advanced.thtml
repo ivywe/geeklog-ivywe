@@ -73,7 +73,15 @@
           <tr id="html_editarea" style="display:{show_htmleditor};">
             <td colspan="2" style="margin-top:10px;">
               <textarea class="uk-textarea" id="html_content" name="sp_content" cols="45" rows="24" style="width:98%" wrap="virtual">{sp_content}</textarea>
-              <div class="warningsmall" style="padding:10px;">{lang_allowed_html}</div>
+
+
+<ul uk-accordion="" class="uk-accordion">
+<li><a class="uk-accordion-title" href="">MORE</a>
+<div id="menu_detail_01" class="uk-accordion-content" hidden="" aria-hidden="true">
+<ul><li>              <div class="warningsmall" style="padding:10px;">{lang_allowed_html}</div>
+</li></ul></li></ul>
+
+
             </td>
           </tr>
         </table>
@@ -160,7 +168,7 @@
 {!if allow_delete}
         <button type="submit" name="mode" value="{lang_delete}" class="uk-button uk-button-danger" onclick="return confirm('{confirm_message}');">{lang_delete}</button>
 {!endif}
-        <button type="submit" name="mode" value="{lang_cancel}" class="uk-button">{lang_cancel}</button>
+        <button type="submit" name="mode" value="{lang_cancel}" class="uk-button uk-button-default">{lang_cancel}</button>
         <input type="hidden" name="sp_old_id" value="{sp_old_id}"{xhtml}>
         <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
       </div>
