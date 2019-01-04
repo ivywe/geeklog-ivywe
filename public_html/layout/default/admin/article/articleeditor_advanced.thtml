@@ -77,7 +77,15 @@
           </div>
           <textarea cols="45" rows="14" name="bodytext" id="bodytext" class="uk-textarea wide" aria-describedby="desc-admin-storyeditor-text">{story_bodytext}</textarea>
         </dd>
-        <dd class="description" id="desc-admin-storyeditor-text">{lang_allowed_html}</dd>
+        <dd class="description" id="desc-admin-storyeditor-text">
+
+<ul uk-accordion="" class="uk-accordion">
+<li><a class="uk-accordion-title" href="">MORE</a>
+<div class="uk-accordion-content" hidden="" aria-hidden="true">
+<ul><li><div class="warningsmall" style="padding:10px;">{lang_allowed_html}</div>
+</li></ul></li></ul>
+
+				</dd>
       </dl>
     </div>
 

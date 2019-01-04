@@ -1,8 +1,14 @@
 /* Geeklog Denim Theme 1.1.0 | Copyright (C) 2012-2016 by dengen | http://www.trybese.com/~dengen/log/ | License:GPL-2.0+ */
+@charset "utf-8";
+
 html {
   font-size: 14px;
   line-height: 20px;
   color: #444;
+}
+
+body,h1,h2,h3,h4,h5,p,ul,li {
+	font-family: Lusitana, "游明朝体", "YuMincho", "游明朝", "Yu Mincho", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN W3", HiraMinProN-W3, "ヒラギノ明朝 ProN", "Hiragino Mincho ProN", "ヒラギノ明朝 Pro", "Hiragino Mincho Pro", "HGS明朝E", "ＭＳ Ｐ明朝", "MS PMincho", Georgia, serif;
 }
 
 address {
