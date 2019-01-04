@@ -787,7 +787,10 @@ if (($msg >= 1) AND ($msg <= 4)) {
 
 $T->set_var('content', $content);
 $T->parse('output', 'admin');
-$display = COM_siteHeader()
-		 . $T->finish($T->get_var('output'))
-		 . COM_siteFooter();
+
+$content = $T->finish($T->get_var('output'));
+
+$display = COM_createHTMLDocument($content);
+
+
 COM_output($display);
