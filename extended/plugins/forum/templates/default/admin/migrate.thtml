@@ -51,7 +51,7 @@
 	
 	<div uk-grid>
 		<div class="uk-width-1-1 uk-text-right">
-			{filter_topic_selection} <button class="uk-button" type="submit" value="{LANG_filterlist}">{LANG_filterlist}</button>
+			{filter_topic_selection} <button class="uk-button uk-button-default" type="submit" value="{LANG_filterlist}">{LANG_filterlist}</button>
 		</div>
 	</div>
 

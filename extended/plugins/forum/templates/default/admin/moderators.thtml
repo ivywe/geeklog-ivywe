@@ -45,7 +45,7 @@
 				&nbsp;&nbsp;			
 				<select class="uk-select uk-form-width-small" name="sel_forum">{sel_forums}</select>
 				&nbsp;&nbsp;
-				<button class="uk-button" name="filter" type="submit" value="{LANG_filterview}">{LANG_filterview}</button>
+				<button class="uk-button uk-button-default" name="filter" type="submit" value="{LANG_filterview}">{LANG_filterview}</button>
 			</div>
 		</div>
 	</div>

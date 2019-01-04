@@ -25,9 +25,9 @@
 {!endif}  
 <div class="uk-form-row">
 	<div class="uk-form-controls uk-align-right">
-		<button class="uk-button" type="submit" name="preview" value="{LANG_PREVIEW}">{LANG_PREVIEW}</button>
+		<button class="uk-button uk-button-default" type="submit" name="preview" value="{LANG_PREVIEW}">{LANG_PREVIEW}</button>
 		<button class="uk-button uk-button-primary" type="submit" name="submit" value="{LANG_SUBMIT}">{LANG_SUBMIT}</button>
-		<button class="uk-button" type="submit" name="submit" value="{LANG_CANCEL}">{LANG_CANCEL}</button>
+		<button class="uk-button uk-button-default" type="submit" name="submit" value="{LANG_CANCEL}">{LANG_CANCEL}</button>
 	</div>
 </div>
 
@@ -70,18 +70,18 @@
 	<div class="uk-form-controls">
 		<div>
 		<span data-uk-button-checkbox>
-			<button class="uk-button" type="button" accesskey="b" name="addbbcode0" onclick="bbstyle(0)" onmouseover="helpline('b')"><i class="uk-icon-bold"></i></button>
-			<button class="uk-button" type="button" accesskey="i" name="addbbcode2" onclick="bbstyle(2)" onmouseover="helpline('i')"><i class="uk-icon-italic"></i></button>
-			<button class="uk-button" type="button" accesskey="u" name="addbbcode4" onclick="bbstyle(4)" onmouseover="helpline('u')"><i class="uk-icon-underline"></i></button>
-			<button class="uk-button" type="button" accesskey="q" name="addbbcode6" onclick="bbstyle(6)" onmouseover="helpline('q')"><i class="uk-icon-quote-left"></i></button>
-			<button class="uk-button" type="button" accesskey="c" name="addbbcode8" onclick="bbstyle(8)" onmouseover="helpline('c')"><i class="uk-icon-code"></i></button>
-			<button class="uk-button" type="button" accesskey="l" name="addbbcode10" onclick="bbstyle(10)" onmouseover="helpline('l')"><i class="uk-icon-list"></i></button>
+			<button class="uk-button uk-button-default" type="button" accesskey="b" name="addbbcode0" onclick="bbstyle(0)" onmouseover="helpline('b')"><i class="uk-icon-bold"></i></button>
+			<button class="uk-button uk-button-default" type="button" accesskey="i" name="addbbcode2" onclick="bbstyle(2)" onmouseover="helpline('i')"><i class="uk-icon-italic"></i></button>
+			<button class="uk-button uk-button-default" type="button" accesskey="u" name="addbbcode4" onclick="bbstyle(4)" onmouseover="helpline('u')"><i class="uk-icon-underline"></i></button>
+			<button class="uk-button uk-button-default" type="button" accesskey="q" name="addbbcode6" onclick="bbstyle(6)" onmouseover="helpline('q')"><i class="uk-icon-quote-left"></i></button>
+			<button class="uk-button uk-button-default" type="button" accesskey="c" name="addbbcode8" onclick="bbstyle(8)" onmouseover="helpline('c')"><i class="uk-icon-code"></i></button>
+			<button class="uk-button uk-button-default" type="button" accesskey="l" name="addbbcode10" onclick="bbstyle(10)" onmouseover="helpline('l')"><i class="uk-icon-list"></i></button>
 			{hide_imgbutton_begin}
-			<button class="uk-button" type="button" accesskey="p" name="addbbcode14" onclick="bbstyle(14)" onmouseover="helpline('p')"><i class="uk-icon-image"></i></button>
+			<button class="uk-button uk-button-default" type="button" accesskey="p" name="addbbcode14" onclick="bbstyle(14)" onmouseover="helpline('p')"><i class="uk-icon-image"></i></button>
 			{hide_imgbutton_end} 
-			<button class="uk-button" type="button" accesskey="w" name="addbbcode16" onclick="bbstyle(16)" onmouseover="helpline('w')"><i class="uk-icon-link"></i></button>
+			<button class="uk-button uk-button-default" type="button" accesskey="w" name="addbbcode16" onclick="bbstyle(16)" onmouseover="helpline('w')"><i class="uk-icon-link"></i></button>
 		</span>
-		<button class="uk-button" type="button" name="bbcode-help" data-uk-modal="{ target:'#modal-bbcode-help' }" onmouseover="helpline('h')"><i class="uk-icon-question"></i></button>
+		<button class="uk-button uk-button-default" type="button" name="bbcode-help" data-uk-modal="{ target:'#modal-bbcode-help' }" onmouseover="helpline('h')"><i class="uk-icon-question"></i></button>
 		</div>
 		<div>
 			<label class="uk-form-label" for="form-forum-font-color">{LANG_fontcolor}
@@ -113,7 +113,7 @@
 			</select>
 			</label>
 			<label class="uk-form-label" for="form-forum-close-tags">
-				<a id="form-forum-close-tags" class="uk-button" href="javascript:bbstyle(-1)" onmouseover="helpline('a')">{LANG_closetags}</a>
+				<a id="form-forum-close-tags" class="uk-button uk-button-default" href="javascript:bbstyle(-1)" onmouseover="helpline('a')">{LANG_closetags}</a>
 			</label>
 		</div>
 		<div>

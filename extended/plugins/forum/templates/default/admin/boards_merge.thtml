@@ -11,8 +11,8 @@
 		<p>{alert_message} <select class="uk-select uk-form-width-small" name="new_id">{forumlist}</select></p>
 		<div uk-grid>
 			<div class="uk-width-1-1 uk-text-center">
-				<button class="uk-button" type="submit" name="mode" value="{LANG_MERGE}">{LANG_MERGE}</button>
-                <button class="uk-button" type="submit" name="submit" value="{LANG_CANCEL}">{LANG_CANCEL}</button>
+				<button class="uk-button uk-button-default" type="submit" name="mode" value="{LANG_MERGE}">{LANG_MERGE}</button>
+                <button class="uk-button uk-button-default" type="submit" name="submit" value="{LANG_CANCEL}">{LANG_CANCEL}</button>
 			</div>
 		</div>
 	</div>

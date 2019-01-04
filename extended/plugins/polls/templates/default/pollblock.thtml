@@ -24,7 +24,7 @@
 </div>
 
 <ul class="uk-subnav uk-flex-center uk-margin-small-top">
-  <li class="uk-button"><i class="uk-icon-pie-chart"></i> {poll_results}</li>
+  <li class="uk-button uk-button-default"><i class="uk-icon-pie-chart"></i> {poll_results}</li>
   <li><i class="uk-icon-thumbs-o-up"></i> {num_votes} {lang_voters} {poll_comments}</li>
 </ul>
 

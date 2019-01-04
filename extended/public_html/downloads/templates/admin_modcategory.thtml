@@ -30,7 +30,7 @@
 
   <div class="submit">
     <input type="submit" value="{lang_save}" name="mode" class="uk-button uk-button-primary"{xhtml}>
-    <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
+    <input type="submit" value="{lang_cancel}" name="mode" class="uk-button uk-button-default"{xhtml}>
 {admin_submit_delete}
     <input type="hidden" name="imgurlold" value="{imgurlold}"{xhtml}>
     <input type="hidden" name="op" value="{op}"{xhtml}>

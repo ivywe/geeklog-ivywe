@@ -3,11 +3,11 @@
     <table border="0" cellspacing="0" cellpadding="3" width="100%">
       <tr>
           <td align="right" valign="top" style="white-space:nowrap;">{lang_tag}:</td>
-          <td><input type="text" class="uk-input uk-form-width-medium" size="24" maxlength="24" name="tag" value="{tag}"></td>
+          <td><input type="text" class="uk-input uk-form-width-large" size="24" maxlength="24" name="tag" value="{tag}"></td>
       </tr>
       <tr>
           <td align="right" valign="top" style="white-space:nowrap;">{lang_desc}:</td>
-          <td><input type="text" class="uk-input uk-form-width-medium" name="description" size="75" maxlength="255" value="{description}"></td>
+          <td><input type="text" class="uk-input" name="description" size="75" maxlength="255" value="{description}"></td>
       </tr>
       <tr>
           <td align="right" valign="top" style="white-space:nowrap;">{lang_enabled}</td>
@@ -50,8 +50,8 @@
     <div>{permissions_editor}</div>
     <p>{lang_permissions_msg}</p>
     <p>      
-    <input type="submit" value="{lang_save}" name="mode"> 
-    <input type="submit" value="{lang_cancel}" name="mode"> 
+    <input class="uk-button uk-button-primary" type="submit" value="{lang_save}" name="mode"> 
+    <input class="uk-button uk-button-default" type="submit" value="{lang_cancel}" name="mode"> 
     {delete_option}
     <input type="hidden" name="old_tag" value="{old_tag}">      
     </p>

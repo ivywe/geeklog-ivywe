@@ -105,7 +105,7 @@
     <div class="uk-form-controls">
       {# Submit button - Save Cancel Delete #}
       <input type="submit" value="{lang_save}" name="mode" class="uk-button uk-button-primary"{xhtml}>
-      <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
+      <input type="submit" value="{lang_cancel}" name="mode" class="uk-button uk-button-default"{xhtml}>
       <input type="hidden" value="{code}" name="old_code"{xhtml}>
       {delete_option}
       <span class="uk-form-help-inline">{lang_delete_help}</span>

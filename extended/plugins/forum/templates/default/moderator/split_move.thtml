@@ -18,8 +18,8 @@
 	{split_topic}
 	
 	<div class="uk-text-center uk-margin-top">
-		<button class="uk-button" type="submit" name="submit" value="{$LANG_GF03[movetopic]}">{$LANG_GF03[movetopic]}</button>
-		<button class="uk-button" type="submit" name="submit" value="{$LANG_GF01[CANCEL]}">{$LANG_GF01[CANCEL]}</button>			
+		<button class="uk-button uk-button-default" type="submit" name="submit" value="{$LANG_GF03[movetopic]}">{$LANG_GF03[movetopic]}</button>
+		<button class="uk-button uk-button-default" type="submit" name="submit" value="{$LANG_GF01[CANCEL]}">{$LANG_GF01[CANCEL]}</button>			
 	</div>
 </form>
 

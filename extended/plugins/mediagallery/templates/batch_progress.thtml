@@ -76,7 +76,7 @@ function updateButton() {
 
 <div class="mg_submit">
   <input class="uk-button uk-button-primary" type="submit" name="submit_button" value="{L_NEXT}" onclick="javascript:ticker=0"{xhtml}>&nbsp;
-  <input class="uk-button" type="submit" name="cancel_button" value="{L_CANCEL}"{xhtml}>
+  <input class="uk-button uk-button-default" type="submit" name="cancel_button" value="{L_CANCEL}"{xhtml}>
   <script type="text/javascript"><!--
       updateButton();
   //-->

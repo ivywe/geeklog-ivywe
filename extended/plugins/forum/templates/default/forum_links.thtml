@@ -1,6 +1,6 @@
 {# begin {templatelocation} - List of links/buttons used by the forum #}
 
-{# Buttons instead of Menu - Change required links below by removing '<li>', '</li>' tags and adding 'class="uk-button"' to '<a>' tag and change related code in categorylisting.html, topiclisting.html, topic_navbar.html #}
+{# Buttons instead of Menu - Change required links below by removing '<li>', '</li>' tags and adding 'class="uk-button uk-button-default"' to '<a>' tag and change related code in categorylisting.html, topiclisting.html, topic_navbar.html #}
 
 {# Category Listing Buttons #}
 
@@ -67,17 +67,17 @@
 <!-- END quotetopic_link -->
 
 <!-- BEGIN edittopic_link -->
-<a class="uk-button" href="{editlink}"><i class="uk-icon-edit"></i>&nbsp;{editlinktext}</a>
+<a class="uk-button uk-button-default" href="{editlink}"><i class="uk-icon-edit"></i>&nbsp;{editlinktext}</a>
 <!-- END edittopic_link -->
 
 (# Report Links #}
 
 <!-- BEGIN return_link -->
-<a class="uk-button" href="{returnlink}">{LANG_return}</a>
+<a class="uk-button uk-button-default" href="{returnlink}">{LANG_return}</a>
 <!-- END return_link -->
 
 <!-- BEGIN returnmarkread_link -->
-<a class="uk-button" href="{returnmarkreadlink}" onclick="return confirm('{$LANG_GF02[msg302]}');">{LANG_returnmarkread}</a>
+<a class="uk-button uk-button-default" href="{returnmarkreadlink}" onclick="return confirm('{$LANG_GF02[msg302]}');">{LANG_returnmarkread}</a>
 <!-- END returnmarkread_link -->
 
 <!-- BEGIN trash_link -->
@@ -92,7 +92,7 @@
 
 <!-- BEGIN topicmenu_link -->
 <div class="uk-button-dropdown uk-text-left" data-uk-dropdown="{mode:'click'}">
-	<button class="uk-button"><i class="uk-icon-cog"></i> <i class="uk-icon-caret-down"></i></button>
+	<button class="uk-button uk-button-default"><i class="uk-icon-cog"></i> <i class="uk-icon-caret-down"></i></button>
 	<div style="" class="uk-dropdown">
 		<ul class="uk-nav uk-nav-dropdown">
 			{subscribetopic_link}
@@ -106,7 +106,7 @@
 
 <!-- BEGIN forummenu_link -->
 <div class="uk-button-dropdown uk-text-left" data-uk-dropdown="{mode:'click'}">
-	<button class="uk-button"><i class="uk-icon-cog"></i> <i class="uk-icon-caret-down"></i></button>
+	<button class="uk-button uk-button-default"><i class="uk-icon-cog"></i> <i class="uk-icon-caret-down"></i></button>
 	<div style="" class="uk-dropdown">
 		<ul class="uk-nav uk-nav-dropdown">
 			{subscribeforum_link}
@@ -117,7 +117,7 @@
 
 <!-- BEGIN categorymenu_link -->
 <div class="uk-button-dropdown uk-text-left" data-uk-dropdown="{mode:'click'}">
-	<button class="uk-button"><i class="uk-icon-cog"></i> <i class="uk-icon-caret-down"></i></button>
+	<button class="uk-button uk-button-default"><i class="uk-icon-cog"></i> <i class="uk-icon-caret-down"></i></button>
 	<div style="" class="uk-dropdown">
 		<ul class="uk-nav uk-nav-dropdown">
 		  {newposts_link}

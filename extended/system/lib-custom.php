@@ -325,7 +325,7 @@ function CUSTOM_userForm($msg = '')
     $post_url = $_CONF['site_url'] . '/users.php';
     $postmode = 'create';
     $value = 'Register Now!';
-    $submitbutton = '<button type="submit" value=" ' . $value . '" class="uk-button">' . $value . '</button>';
+    $submitbutton = '<button type="submit" value=" ' . $value . '" class="uk-button uk-button-default">' . $value . '</button>';
     $message = "<blockquote style=\"padding-top:10px;\"><b>Please complete the application below. Once you have completed the application, click the Register Now! button and the application will be processed immediately.</b></blockquote>";
 
     $user_templates = COM_newTemplate($_CONF['path_layout'] . 'custom');

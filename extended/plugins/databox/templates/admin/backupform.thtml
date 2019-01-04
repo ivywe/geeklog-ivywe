@@ -5,7 +5,7 @@
 <form class="uk-form uk-form-horizontal" action="{site_admin_url}/plugins/{script}" method="post" enctype="multipart/form-data">
 
   <input type="submit" name="action" class="uk-button uk-button-primary" value="{lang_submit}"{xhtml}>
-  <input type="submit" name="action" class="uk-button" value="{lang_cancel}"{xhtml}>
+  <input type="submit" name="action" class="uk-button uk-button-default" value="{lang_cancel}"{xhtml}>
   <input type="hidden" name="mode" value="{mode}"{xhtml}>
   <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
   <span class="uk-form-help-inline">{help}</span>

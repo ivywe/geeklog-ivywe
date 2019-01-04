@@ -5,7 +5,7 @@
 <a href="{document_url}docs/japanese/input_data.html" class="uk-button uk-button-small">Document</a>
 
 <ul class="uk-subnav uk-flex-center">
-  <li><a href="{site_admin_url}/plugins/databox/view.php?id={id}&template=standard" class="uk-button" data-uk-tooltip title="利用できるテーマ変数の確認に利用してください。">{lang_ref}</a></li>
+  <li><a href="{site_admin_url}/plugins/databox/view.php?id={id}&template=standard" class="uk-button uk-button-default" data-uk-tooltip title="利用できるテーマ変数の確認に利用してください。">{lang_ref}</a></li>
   <li>{view}</li>
   <li>{lang_fieldset}: {fieldset_name}(id: {fieldset_id})</li>
 </ul>
@@ -275,11 +275,11 @@
 
   <div class="uk-form-row uk-margin-large uk-margin-large-bottom">
     <div class="uk-form-controls">
-      {# <a href="{site_admin_url}/plugins/databox/view.php?id={id}" class="uk-button">{lang_view}</a> #}
+      {# <a href="{site_admin_url}/plugins/databox/view.php?id={id}" class="uk-button uk-button-default">{lang_view}</a> #}
 
       {# Submit button - Save Cancel Delete #}
       <input type="submit" value="{lang_save}" name="mode" class="uk-button uk-button-primary"{xhtml}>
-      <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
+      <input type="submit" value="{lang_cancel}" name="mode" class="uk-button uk-button-default"{xhtml}>
       <input type="hidden" value="{code}" name="old_code"{xhtml}>
       <input type="hidden" value="{old_mode}" name="old_mode"{xhtml}>
       {delete_option}

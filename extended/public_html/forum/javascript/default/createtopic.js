@@ -129,7 +129,7 @@ function bbstyle(bbnumber) {
             butnumber = arraypop(bbcode) - 1;
             txtarea.value += bbtags[butnumber + 1];
             buttext = eval('document.forumpost.addbbcode' + butnumber + '.value');
-            // eval('document.forumpost.addbbcode' + butnumber + '.className ="uk-button"'); // Used for uikit themes
+            // eval('document.forumpost.addbbcode' + butnumber + '.className ="uk-button uk-button-default"'); // Used for uikit themes
             eval('document.forumpost.addbbcode' + butnumber + '.value ="' + buttext.substr(0,(buttext.length - 1)) + '"'); // Used by normal theme
         }
         imageTag = false; // All tags are closed including image tags :D

@@ -313,7 +313,7 @@ function change(what) {
       <div class="submit">
         <button type="submit" class="uk-button uk-button-primary" value="{lang_save}" name="mode">{lang_save}</button>
         <button type="submit" class="uk-button uk-button-danger" value="{lang_delete}" name="mode">{lang_delete}</button>
-        <button type="submit" class="uk-button" value="{lang_cancel}" name="mode">{lang_cancel}</button>
+        <button type="submit" class="uk-button uk-button-default" value="{lang_cancel}" name="mode">{lang_cancel}</button>
         <input type="hidden" name="album_id" value="{album_id}"{xhtml}>
         <input type="hidden" name="cover" value="{album_cover}"{xhtml}>
         <input type="hidden" name="owner" value="{album_owner}"{xhtml}>

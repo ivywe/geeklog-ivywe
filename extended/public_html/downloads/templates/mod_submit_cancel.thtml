@@ -1,5 +1,5 @@
 {# begin {templatelocation} #}
 
-    <input type="submit" class="uk-button" name="mode" value="{lang_cancel}"{xhtml}>
+    <input type="submit" class="uk-button uk-button-default" name="mode" value="{lang_cancel}"{xhtml}>
 
 {# end {templatelocation} #}

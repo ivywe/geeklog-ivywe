@@ -82,7 +82,7 @@
 			</div>
 		</div>
 		<div class="uk-width-1-1 uk-text-right">
-			<button class="uk-button" name="submit" value="{LANG_save}">{LANG_save}</button>
+			<button class="uk-button uk-button-default" name="submit" value="{LANG_save}">{LANG_save}</button>
 		</div>
 	</div>	
 </form>

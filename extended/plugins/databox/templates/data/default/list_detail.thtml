@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-{edit} {draft}
+{!if edit}<div class="uk-text-right uk-margin-right">{draft} <a href="{site_url}/admin/plugins/databox/data.php?mode=edit&id={id}" class="uk-icon-button uk-button-danger" uk-icon="file-edit"></a></div>{!endif}
 
   <ul class="uk-breadcrumb">
     <li><a href="{site_url}/">HOME{home}</a></li>
@@ -48,7 +48,6 @@
       </table>
 
   </fieldset>
-{!!if {edit}||{draft} !!}<div class="uk-float-right">{edit} {draft}</div>{!endif}
 </div>
 
 <div id="modal-{code}-close" uk-modal>
@@ -530,6 +529,6 @@
   </div>
 </div>
 
-{edit} {draft}
+{!if edit}<div class="uk-text-right uk-margin-right">{draft} <a href="{site_url}/admin/plugins/databox/data.php?mode=edit&id={id}" class="uk-icon-button uk-button-danger" uk-icon="file-edit"></a></div>{!endif}
 
 {# end {templatelocation} #}

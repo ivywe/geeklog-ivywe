@@ -7,8 +7,8 @@
 	<input type="hidden" name="msgpid" value="{msgpid}"{xhtml}>
 	<input type="hidden" name="top" value="{top}"{xhtml}>
 	<div class="uk-text-center">
-		<button class="uk-button" type="submit" name="submit" value="{$LANG_GF01[CONFIRM]}">{$LANG_GF01[CONFIRM]}</button>
-		<button class="uk-button" type="submit" name="submit" value="{$LANG_GF01[CANCEL]}">{$LANG_GF01[CANCEL]}</button>
+		<button class="uk-button uk-button-default" type="submit" name="submit" value="{$LANG_GF01[CONFIRM]}">{$LANG_GF01[CONFIRM]}</button>
+		<button class="uk-button uk-button-default" type="submit" name="submit" value="{$LANG_GF01[CANCEL]}">{$LANG_GF01[CANCEL]}</button>
 	</div>
 </form>
 
