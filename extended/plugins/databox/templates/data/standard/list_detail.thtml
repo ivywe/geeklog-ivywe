@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-{!if edit}<div class="uk-text-right uk-margin-right">{draft} <a href="{site_url}/admin/plugins/databox/data.php?mode=edit&id={id}" class="uk-icon-button uk-button-danger" uk-icon="file-edit"></a></div>{!endif}
+{!if edit}<div class="uk-text-right uk-margin-right">{draft} <a href="{site_url}/admin/plugins/databox/data.php?mode=edit&id={id}" class="uk-button uk-button-primary"><span uk-icon="icon: file-edit"></span>編集</a></div>{!endif}
 
   <ul class="uk-breadcrumb">
     <li><a href="{site_url}/">HOME{home}</a></li>
@@ -530,6 +530,6 @@
   </div>
 </div>
 
-{!if edit}<div class="uk-text-right uk-margin-right">{draft} <a href="{site_url}/admin/plugins/databox/data.php?mode=edit&id={id}" class="uk-icon-button uk-button-danger" uk-icon="file-edit"></a></div>{!endif}
+{!if edit}<div class="uk-text-right uk-margin-right">{draft} <a href="{site_url}/admin/plugins/databox/data.php?mode=edit&id={id}" class="uk-button uk-button-primary"><span uk-icon="icon: file-edit"></span>編集</a></div>{!endif}
 
 {# end {templatelocation} #}
