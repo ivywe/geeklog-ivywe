@@ -446,7 +446,7 @@ function SP_displayPage($page, $A, $comment_order = 'ASC', $comment_mode = 'nest
             $icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
             $attr = array('title' => $LANG_STATIC['edit']);
             $editiconhtml = '<span uk-icon="icon: file-edit"></span>'.$LANG_STATIC['edit'];
-            $attr = array('class' => 'uk-button uk-button-primary', 'title' => $LANG_STATIC['edit']);
+            $attr = array('class' => '', 'title' => $LANG_STATIC['edit']);
             $url = $_CONF['site_admin_url']
                 . '/plugins/staticpages/index.php?mode=edit&amp;sp_id=' . $page;
             $icon =
