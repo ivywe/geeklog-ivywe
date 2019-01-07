@@ -1,5 +1,6 @@
 User-agent: *
 Disallow: /docs
+Disallow: /admin
 Disallow: /pingback.php
 Disallow: /search.php
 Disallow: /submit.php
