@@ -228,13 +228,14 @@ function DATABOX_siteHeader (
         case 'leftrightblocks':
         //ヘッダ・フッタ・左ブロックあり（右ブロックなし）
         case 'leftblocks':
-            $display=COM_siteHeader ('menu', $page_title,$headercode);
+            $display=COM_createHTMLDocument($retval, array('what' => $what, 'pagetitle' => $page_title, 'breadcrumbs' => $breadcrumbs, 'headercode' => $headercode, 'rightblock' => $rightblock));
+            // $display=COM_siteHeader ('menu', $page_title,$headercode);
             break;
         //ヘッダ・フッタ・右ブロックあり（左ブロックなし）
         case 'rightblocks':
         //ヘッダ・フッタあり（ブロックなし）
         case 'noblocks':
-            $display=COM_siteHeader ('none', $page_title,$headercode);
+            $display=COM_createHTMLDocument($retval, array('what' => $what, 'pagetitle' => $page_title, 'breadcrumbs' => $breadcrumbs, 'headercode' => $headercode));
             break;
 
         //全画面表示（ヘッダ・フッタ・ブロックなし）
@@ -285,13 +286,13 @@ function DATABOX_siteFooter (
     switch ($layout) {
         // ヘッダ・フッタ・左ブロックあり（右ブロックはテーマ設定による）
         case 'standard':
-        $display .= COM_siteFooter(false,$custom);
+        //$display .= COM_siteFooter(false,$custom);
             break;
         //ヘッダ・フッタ・左右ブロックあり
         case 'leftrightblocks':
         //ヘッダ・フッタ・右ブロックあり（左ブロックなし）
         case 'rightblocks':
-            $display .= COM_siteFooter(true,$custom);
+            //$display .= COM_siteFooter(true,$custom);
             break;
         //ヘッダ・フッタ・左ブロックあり（右ブロックなし）
         case 'leftblocks':
@@ -300,7 +301,7 @@ function DATABOX_siteFooter (
         case 'noblocks':
             $_CONF['show_right_blocks']=0;
             $_CONF['left_blocks_in_footer']=0;
-            $display .= COM_siteFooter(false,$custom);
+            //$display .= COM_siteFooter(false,$custom);
             break;
 
         //全画面表示（ヘッダ・フッタ・ブロックなし）
