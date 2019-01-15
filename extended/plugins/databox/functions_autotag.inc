@@ -93,6 +93,9 @@ function plugin_autotags_databox (
         $parm2_ary[]="roundprecision";
         $parm2_ary[]="numberformat";
         $parm2_ary[]="permission";
+        $parm2_ary[]="grids";
+        $parm2_ary[]="gridm";
+
         $p=databox_parm2($p2,$parm2_ary);
         //各処理
         switch( $tag ) {
@@ -154,6 +157,8 @@ function plugin_autotags_databox (
                             ,$p['expired']
                             ,$p['without_code']
                             ,$p['without_id']
+                            ,$p['grids']
+                            ,$p['gridm']
                         );
                         break;
                     case 'attributedatacount':
@@ -344,6 +349,8 @@ function databox_category(
     ,$expired=''
     ,$without_code=''
     ,$without_id=''
+    ,$grids=''
+    ,$gridm=''
 )
 // +---------------------------------------------------------------------------+
 // | 機能  カテゴリ別一覧表示
@@ -670,7 +677,10 @@ function databox_category(
         $templates->set_var('lang_imgfile_thumb_frd', $LANG_confignames['databox']['imgfile_thumb_frd']);
         $templates->set_var ('imgfile_thumb_frd', $_DATABOX_CONF['imgfile_thumb_frd']);
         $templates->set_var ('data_thumb_img_url', $_CONF['site_url']."/".$_DATABOX_CONF['imgfile_thumb_frd']);
-        
+
+        $templates->set_var ('grids', $grids);
+        $templates->set_var ('gridm', $gridm);
+
         for ($i = 0; $i < $numrows; $i++) {
             $A = DB_fetchArray ($result);
             $A = array_map('stripslashes', $A);
