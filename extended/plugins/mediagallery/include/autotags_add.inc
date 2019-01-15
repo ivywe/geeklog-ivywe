@@ -34,9 +34,18 @@ function MG_medialist (
 	$album_id
 	, $class=''
 	, $theme='default'
-    , $limitcnt='0'
-    , $sort='asc'
-    , $src=''
+  , $limitcnt='0'
+  , $sort='asc'
+  , $src=''
+  , $title=''
+  , $desc=''
+  , $media=''
+  , $grids=''
+  , $gridm=''
+  , $gridl=''
+  , $gridr=''
+  , $uks=''
+  , $ukc=''
 )
 {
 	global $MG_albums;
@@ -54,6 +63,7 @@ function MG_medialist (
 	if  (empty($limitcnt)){
 		$limitcnt=0;
 	}
+
 	if  (strtoupper($sort)=="DESC"){
 		$sort="DESC";
 	}else{
@@ -153,6 +163,20 @@ function MG_medialist (
 		$T->set_var('album_id',$album_id);
 		$T->set_var('album_title',$album_title);
 		$T->set_var('album_desc',$album_desc);
+
+		$T->set_var('title',$title);
+		$T->set_var('src',$src);
+		$T->set_var('desc',$desc);
+		$T->set_var('theme',$theme);
+		$T->set_var('limitcnt',$limitcnt);
+		$T->set_var('grids',$grids);
+		$T->set_var('gridm',$gridm);
+		$T->set_var('gridl',$gridl);
+		$T->set_var('gridr',$gridr);
+		$T->set_var('uks',$uks);
+		$T->set_var('ukc',$ukc);
+		$T->set_var('media',$media);
+	
 		if ( SEC_hasRights('mediagallery.admin') ){
 			$icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
             $attr = array('title' => $album_title." ".$LANG_MG01['edit']);
@@ -337,6 +361,17 @@ function MG_parm2 ($p2)
 {
 			
 	$parm2_ary[]="limitcnt";
+
+	$parm2_ary[]="title";
+	$parm2_ary[]="desc";
+	$parm2_ary[]="uks";
+	$parm2_ary[]="ukc";
+	$parm2_ary[]="media";
+	$parm2_ary[]="grids";
+	$parm2_ary[]="gridm";
+	$parm2_ary[]="gridl";
+	$parm2_ary[]="gridr";
+
 	$parm2_ary[]="order";
 	
 	$parm2_ary[]="width";

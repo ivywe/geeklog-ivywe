@@ -25,7 +25,7 @@
 		</ul>
            e.g. [albumlist:3 limitcnt:10 order:RANDOM class1 class2 class3]
 		
-  Format:　[medialist:albumid theme:xx limitcnt:xx sort:asc src:xx {class}]
+  Format:　[medialist:albumid theme:xx limitcnt:xx sort:asc src:xx title:(0/1) media:xx grids:xx gridm:xx gridl:xx gridr:xx {class}]
 		Display Media list by using templates.
 		theme:default:
 			templates/medialist/default/autotag_medialist.thtml
