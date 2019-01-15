@@ -14,7 +14,7 @@
         {services}
 
         <dt><label for="users-loginform-passwd">{lang_password}</label></dt>
-        <dd><input type="password" name="passwd" id="users-loginform-passwd" class="uk-input size3"{xhtml}></dd>
+        <dd><input type="password" name="passwd" id="users-loginform-passwd" class="uk-input uk-form-width-medium"{xhtml}></dd>
       </dl>
 
       {captcha}

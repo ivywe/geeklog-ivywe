@@ -413,7 +413,7 @@ function SP_displayPage($page, $A, $comment_order = 'ASC', $comment_mode = 'nest
                 $photo = USER_getPhoto($A['owner_id'], $photo);
                 if (!empty($photo)) {
                     $spage->set_var('author_photo', $photo);
-                    $camera_icon = '<span uk-icon="icon: file-edit"></span>編集';
+                    $camera_icon = '<span uk-icon="icon: file-edit"></span>静的ページ編集';
                     $spage->set_var('camera_icon',
                         COM_createLink($camera_icon, $profile_link));
                 }
