@@ -15,18 +15,12 @@ require_once('../../../lib-common.php');
 // 権限チェック
 if (SEC_hasRights('databox.admin')) {
 }else{
-    $display="";
-    $display .= COM_siteHeader('menu', $MESSAGE[30]);
-    $display .= COM_startBlock ($MESSAGE[30], '',
-                                COM_getBlockTemplate ('_msg_block', 'header'));
-    $display .= $MESSAGE[35];
-    $display .= COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
-    $display .= COM_siteFooter();
+    // $display="";
 
     // Log attempt to error.log
     COM_accessLog("User {$_USER['username']} tried to illegally access the databox administration screen.");
 
-    echo $display;
+    echo COM_createHTMLDocument($MESSAGE[30], array('what' => $what, 'pagetitle' => $page_title, 'breadcrumbs' => $breadcrumbs, 'headercode' => $headercode, 'rightblock' => $rightblock));
 
     exit;
 }
@@ -94,9 +88,9 @@ $template = COM_applyFilter($_REQUEST['template']);
 $display="";
 
 $page_title=$LANG_DATABOX_ADMIN['piname'];
-$display .= databox_siteHeader($pi_name,'_admin',$page_title);
-$display .= fncview($id,$template);
-$display .= databox_siteFooter($pi_name,'_admin');
+
+$display .= COM_createHTMLDocument(fncview($id,$template), array('what' => $what, 'pagetitle' => $page_title, 'breadcrumbs' => $breadcrumbs, 'headercode' => $headercode, 'rightblock' => $rightblock));
+
 
 echo $display;
 
