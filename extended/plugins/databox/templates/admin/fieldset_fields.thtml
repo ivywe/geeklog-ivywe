@@ -67,7 +67,7 @@ head.appendChild(lnk);
   <div class="uk-form-row uk-margin-large-top">
     <div class="uk-form-controls">
       <input type="submit" value="{lang_save}" class="uk-button uk-button-primary" onclick="return setUsers(this.form)"{xhtml}>
-      <input type="button" value="{lang_cancel}" class="uk-button uk-button-default" onclick="javascript:history.go(-1)"{xhtml}>
+      <input type="button" value="{lang_cancel}" class="uk-button" onclick="javascript:history.go(-1)"{xhtml}>
       <input type="hidden" name="mode" value="savefieldsetfields"{xhtml}>
       <input type="hidden" name="groupmembers"{xhtml}>
       <input type="hidden" name="id" value="{id}"{xhtml}>

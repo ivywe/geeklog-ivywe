@@ -12,7 +12,7 @@
 
     {# data #}
     {# id #}
-    <div class="uk-form-row uk-clearfix">
+    <div class="uk-form-row uk-clearfix uk-margin-small">
       <label class="uk-form-label" >{lang_id}</label>
       <div class="uk-form-controls">
         {id}
@@ -21,7 +21,7 @@
     </div>
 
     {# kind #}
-    <div class="uk-form-row uk-clearfix">
+    <div class="uk-form-row uk-clearfix uk-margin-small">
       <label class="uk-form-label" >{lang_kind} {help_kind}<span class="uk-text-danger">{lang_must}</span></label>
       <div class="uk-form-controls">
         <input type="text" class="uk-input uk-form-width-medium" size="16" maxlength="16" name="kind" value="{kind}" required{xhtml}>
@@ -29,7 +29,7 @@
     </div>
 
     {# no #}
-    <div class="uk-form-row uk-clearfix">
+    <div class="uk-form-row uk-clearfix uk-margin-small">
       <label class="uk-form-label" >{lang_no}<span class="uk-text-danger">{lang_must}</span></label>
       <div class="uk-form-controls">
         <input type="text" class="uk-input uk-form-width-medium" size="16" maxlength="6" name="no" value="{no}" required{xhtml}>
@@ -37,7 +37,7 @@
     </div>
 
     {# value #}
-    <div class="uk-form-row uk-clearfix">
+    <div class="uk-form-row uk-clearfix uk-margin-small">
       <label class="uk-form-label" >{lang_value}</label>
       <div class="uk-form-controls">
         <input type="text" class="uk-input uk-form-width-medium" size="48" maxlength="160" name="value" value="{value}" required{xhtml}>
@@ -45,7 +45,7 @@
     </div>
 
     {# value2 #}
-    <div class="uk-form-row uk-clearfix">
+    <div class="uk-form-row uk-clearfix uk-margin-small">
       <label class="uk-form-label" >{lang_value2}</label>
       <div class="uk-form-controls">
         <input type="text" class="uk-input uk-form-width-medium" size="48" maxlength="160" name="value2" value="{value2}"{xhtml}>
@@ -53,7 +53,7 @@
     </div>
 
     {# disp #}
-    <div class="uk-form-row uk-clearfix">
+    <div class="uk-form-row uk-clearfix uk-margin-small">
       <label class="uk-form-label" >{lang_disp}</label>
       <div class="uk-form-controls">
         <input type="text" class="uk-input uk-form-width-medium" size="48" maxlength="160" name="disp" value="{disp}"{xhtml}>
@@ -61,7 +61,7 @@
     </div>
 
     {# order #}
-    <div class="uk-form-row uk-clearfix">
+    <div class="uk-form-row uk-clearfix uk-margin-small">
       <label class="uk-form-label" >{lang_orderno}</label>
       <div class="uk-form-controls">
         <input type="text" class="uk-input uk-form-width-xsmall" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
@@ -69,7 +69,7 @@
     </div>
 
     {# relno #}
-    <div class="uk-form-row uk-clearfix">
+    <div class="uk-form-row uk-clearfix uk-margin-small">
       <label class="uk-form-label" >{lang_relno}</label>
       <div class="uk-form-controls">
         <input type="text" class="uk-input uk-form-width-xsmall" size="8" maxlength="160" name="relno" value="{relno}"{xhtml}>
@@ -77,7 +77,7 @@
     </div>
 
     {# Update date #}
-    <div class="uk-form-row uk-clearfix">
+    <div class="uk-form-row uk-clearfix uk-margin-small">
       <label class="uk-form-label" >{lang_udatetime}</label>
       <div class="uk-form-controls">
         {udatetime} {lang_uuid}:{uuid}
@@ -89,7 +89,7 @@
     <div class="uk-form-controls">
       {# Submit button - Save Cancel Delete #}
       <input type="submit" value="{lang_save}" name="mode" class="uk-button uk-button-primary"{xhtml}>
-      <input type="submit" value="{lang_cancel}" name="mode" class="uk-button uk-button-default"{xhtml}>
+      <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
       <input type="hidden" value="{code}" name="old_code"{xhtml}>
       {delete_option}
       <span class="uk-form-help-inline uk-text-bold uk-text-danger">{lang_delete_help}</span>

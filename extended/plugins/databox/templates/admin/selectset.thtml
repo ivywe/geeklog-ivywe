@@ -7,7 +7,7 @@
     <div class="uk-form-controls">
       {list_fieldset}
       <input type="submit" value="{lang_new}" name="mode" class="uk-button uk-button-primary"{xhtml}>
-      <input type="submit" value="{lang_cancel}" name="mode" class="uk-button uk-button-default"{xhtml}>
+      <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
       <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
     </div>
   </div>

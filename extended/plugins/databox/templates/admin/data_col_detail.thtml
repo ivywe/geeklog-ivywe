@@ -2,7 +2,7 @@
 
 	{!if additionfield_description2}<h2 class="uk-margin-large-top">{additionfield_description2}</h2>{!endif}
 
-  <div class="uk-form-row uk-clearfix">
+  <div class="uk-form-row uk-clearfix uk-margin-small">
     <label class="uk-form-label" >{!if fieldgroup}{fieldgroup}:{!endif}{# {fieldgroup_name} #} {additionfield_name}<span class="uk-text-danger">{lang_must_additionfield}</span></label>
     <div class="uk-form-controls">
       {additionfield_value}<span class="uk-form-help-inline">{additionfield_description}</span>

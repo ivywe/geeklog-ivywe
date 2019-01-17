@@ -79,7 +79,7 @@
     </div>
 
     {# meta_description #}
-    <div class="uk-form-row uk-clearfix"{hide_meta}>
+    <div class="uk-form-row uk-clearfix uk-margin-small"{hide_meta}>
       <label class="uk-form-label" for="databox_description">{lang_meta_description} {help_meta_description}</label>
       <div class="uk-form-controls">
         <textarea class="uk-textarea uk-width-1-1" name="meta_description" class="uk-width-1-1" rows="2" id="databox_description"
@@ -90,7 +90,7 @@
 
     {# meta_keywords #}
 
-    <div class="uk-form-row uk-clearfix"{hide_meta}>
+    <div class="uk-form-row uk-clearfix uk-margin-small"{hide_meta}>
       <label class="uk-form-label" for="meta_keywords">{lang_meta_keywords} {help_meta_keywords}</label>
       <div class="uk-form-controls">
         <textarea class="uk-textarea uk-width-1-1" name="meta_keywords" class="uk-width-1-1" rows="2" id="meta_keywords" 
@@ -100,12 +100,13 @@
     </div>
 
     {# language_id  #}
-    <div class="uk-form-row uk-clearfix"{hide_language_id}>
+{#    <div class="uk-form-row uk-clearfix uk-margin-small"{hide_language_id}>
       <label class="uk-form-label">{lang_language_id} {help_language_id}</label>
       <div class="uk-form-controls">
         {select_language_id}
       </div>
     </div>
+#}
 
     {# hits #}
     <div class="uk-form-row uk-clearfix uk-margin-small">
