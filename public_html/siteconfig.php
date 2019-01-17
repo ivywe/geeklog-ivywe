@@ -8,7 +8,7 @@
  *
  */
 
-if (strpos(strtolower($_SERVER['PHP_SELF']), 'siteconfig.php') !== false) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     die('This file can not be used on its own!');
 }
 
@@ -25,14 +25,54 @@ $_CONF['site_enabled'] = true;
 // $_CONF['rootdebug'] = true;
 
 /**
+ * Demo mode
+ *
+ * If you uncomment the line below the site will be in a demo mode. This will disable 
+ * certain config options from being changed and from certain features being enabled.
+ * This includes the File Manager, Saving of Static Pages, Uploading Plugins, and
+ * Sending Bulk Emails. Some plugins may support this setting as well.
+ * For more information see: http://wiki.geeklog.net/Setting_up_a_Demo_Site
+ *
+ * @since v2.2.0
+ */
+// $_CONF['demo_mode'] = true;
+
+/**
  * Developer mode
  *
- * If you set this mode to true, detailed information will be displayed and/or logged.
+ * If you set this flag to true, detailed information will be displayed and/or logged.
+ * When this flag is not set or set to false, all the options below DO NOT take effect.
  *
  * @var boolean
- * @since 2.1.2
+ * @since v2.1.2
  */
 // $_CONF['developer_mode'] = true;
+
+/**
+ * This overwrites error_reporting level set in lib-common.php
+ *
+ * @var int
+ * @see http://php.net/manual/en/function.error-reporting.php
+ * @since v2.2.0
+ */
+// $_CONF['developer_mode_php']['error_reporting'] = -1;
+
+/**
+ * When these flags are set to true, detailed information will be logged respectively.
+ *
+ * @var bool
+ * @since v2.2.0
+ */
+// $_CONF['developer_mode_log']['trace'] = true;        // Include call trace in log file
+// $_CONF['developer_mode_log']['common'] = true;       // lib-common.php
+// $_CONF['developer_mode_log']['database'] = true;     // lib-database.php
+// $_CONF['developer_mode_log']['deprecated'] = true;   // deprecated features
+// $_CONF['developer_mode_log']['resource'] = true;     // Resource class
+// $_CONF['developer_mode_log']['security'] = true;     // lib-security.php
+// $_CONF['developer_mode_log']['session'] = true;      // lib-session.php
+// $_CONF['developer_mode_log']['template'] = true;     // Template class
+// $_CONF['developer_mode_log']['topic'] = true;        // lib-topic.php
+// $_CONF['developer_mode_log']['user'] = true;         // lib-user.php
 
 $_CONF['path'] = '/path/to/Geeklog/';
 $_CONF['path_system'] = $_CONF['path'] . 'system/';
@@ -41,14 +81,11 @@ $_CONF['default_charset'] = 'utf-8';
 
 $_CONF_FCK['imagelibrary'] = '/images/library';
 
-
 // Useful Stuff
-
 if (!defined('LB')) {
   define('LB',"\n");
 }
-if (!defined('VERSION')) {
-  define('VERSION', '2.1.3');
-}
 
-?>
+if (!defined('VERSION')) {
+  define('VERSION', '2.2.1');
+}
