@@ -280,13 +280,13 @@ if (empty($sys_message)) {
 } else {
 	$T->set_var(
 		'temp_sys_message',
-		'<p style="border: solid 2px red; padding: 5px;">' . $sys_message . '</p>'
+		'<p class="uk-text-danger uk-text-bold">' . $sys_message . '</p>'
 	);
 }
 
 $T->set_var(
 	'temp_lang_script_disabled',
-	'<p style="color: red; font-weight: bold;">' . THM_str('script_disabled') . '</p>'
+	'<p class="uk-text-danger uk-text-bold">' . THM_str('script_disabled') . '</p>'
 );
 $T->set_var('temp_lang_select', THM_str('select'));
 $T->set_var('temp_lang_theme_edited', THM_str('theme_edited'));
