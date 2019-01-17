@@ -5,9 +5,9 @@
 <form action="{poll_vote_url}" name="Vote" method="post">
     <div>
     <input type="hidden" name="pid" value="{poll_id}"{xhtml}>
-            {poll_questions}
+        {poll_questions}
         <span class="pluginTinyText">{poll_notification}</span><br{xhtml}>
-        <input type="submit" value="{lang_vote}"{xhtml}>
+        <button type="submit" value="{lang_vote}" class="uk-button uk-button-default">{lang_vote}</button>
         {poll_results}
     </div>
 </form>
@@ -34,7 +34,7 @@
 <!-- END poll_questions -->
 
 <!-- BEGIN poll_answer -->
-<li><input type="{input_type}" name="aid[{question_id}][]" value="{answer_id}"{selected}{xhtml}>&nbsp;{answer_text}</li>
+<li><input type="{input_type}" class="uk-{input_type}" name="aid[{question_id}][]" value="{answer_id}"{selected}{xhtml}>&nbsp;{answer_text}</li>
 <!-- END poll_answer -->
 
 {# end {templatelocation} #}

@@ -9,7 +9,7 @@
 <form method="post" action="{site_admin_url}/plugins/spamx/index.php?command=MassDelete">
     <div>
         {lang_num_to_check}&nbsp;&nbsp;&nbsp;
-        <select name="limit">
+        <select name="limit" class="uk-select uk-width-auto">
             {limit_options}
         </select>
         
@@ -20,7 +20,7 @@
         {lang_note5}
         {lang_note6}
 
-        <button type="submit" name="action" value="{lang_delete_spam}">{lang_delete_spam}</button>
+        <button type="submit" name="action" value="{lang_delete_spam}" class="uk-button uk-button-danger">{lang_delete_spam}</button>
         <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
     </div>
 </form>

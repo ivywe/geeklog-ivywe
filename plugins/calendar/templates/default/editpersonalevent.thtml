@@ -8,12 +8,12 @@
                                 <table border="0" cellspacing="0" cellpadding="3">
                                     <tr>
                                         <td align="right"><b>{lang_title}:</b></td>
-                                        <td><input type="text" size="36" maxlength="96" name="title" value="{event_title}"{xhtml}></td>
+                                        <td><input class="uk-input" type="text" size="36" maxlength="96" name="title" value="{event_title}"{xhtml}></td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>{lang_eventtype}:</b></td>
                                         <td>
-                                            <select name="event_type">
+                                            <select class="uk-select" name="event_type">
                                                 <option value="">--</option>
                                                 {type_options}
                                             </select>
@@ -23,23 +23,23 @@
                                         <td align="right"><b>{lang_startdate}:</b></td>
                                         <td>
                                           <span dir="ltr">
-                                            <select name="start_month">
+                                            <select class="uk-select" name="start_month">
                                                 {startmonth_options}
                                             </select>
                                             /
-                                            <select name="start_day">
+                                            <select class="uk-select" name="start_day">
                                                 {startday_options}
                                             </select>
                                             /
-                                            <select name="start_year">
+                                            <select class="uk-select" name="start_year">
                                                 {startyear_options}
                                             </select>&nbsp;&nbsp;
                                             <b>{lang_starttime}: </b>
-                                            <select name="start_hour">
+                                            <select class="uk-select" name="start_hour">
                                                 {starthour_options}
                                             </select>
                                             :
-                                            <select name="start_minute">
+                                            <select class="uk-select" name="start_minute">
                                                 {startminute_options}
                                             </select>
                                             {startampm_selection}
@@ -50,23 +50,23 @@
                                         <td align="right"><b>{lang_enddate}:</b></td>
                                         <td>
                                           <span dir="ltr">
-                                            <select name="end_month">
+                                            <select class="uk-select" name="end_month">
                                                 {endmonth_options}
                                             </select>
                                             /
-                                            <select name="end_day">
+                                            <select class="uk-select" name="end_day">
                                                 {endday_options}
                                             </select>
                                             /
-                                            <select name="end_year">
+                                            <select class="uk-select" name="end_year">
                                                 {endyear_options}
                                             </select>&nbsp;&nbsp;
                                             <b>{lang_endtime}: </b>
-                                            <select name="end_hour">
+                                            <select class="uk-select" name="end_hour">
                                                 {endhour_options}
                                             </select>
                                             :
-                                            <select name="end_minute">
+                                            <select class="uk-select" name="end_minute">
                                                 {endminute_options}
                                             </select>
                                             {endampm_selection}
@@ -80,36 +80,36 @@
                                     <tr>
                                         <td align="right" valign="top"><b>{lang_location}:</b></td>
                                         <td>
-                                            <textarea name="location" cols="45" rows="2">{event_location}</textarea>
+                                            <textarea class="uk-textarea" name="location" cols="45" rows="2">{event_location}</textarea>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>{lang_addressline1}:</b></td>
-                                        <td><input type="text" name="address1" size="36" value="{event_address1}"{xhtml}></td>
+                                        <td><input class="uk-input" type="text" name="address1" size="36" value="{event_address1}"{xhtml}></td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>{lang_addressline2}:</b></td>
-                                        <td><input type="text" name="address2" size="36" value="{event_address2}"{xhtml}></td>
+                                        <td><input class="uk-input" type="text" name="address2" size="36" value="{event_address2}"{xhtml}></td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>{lang_city}:</b></td>
-                                        <td><input type="text" name="city" size="36" value="{event_city}"{xhtml}></td>
+                                        <td><input class="uk-input" type="text" name="city" size="36" value="{event_city}"{xhtml}></td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>{lang_state}:</b></td>
-                                        <td><input type="text" name="state" size="36" value="{event_state}"{xhtml}></td>
+                                        <td><input class="uk-input" type="text" name="state" size="36" value="{event_state}"{xhtml}></td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>{lang_zipcode}:</b></td>
-                                        <td><input type="text" name="zipcode" size="16" maxlength="16" value="{event_zipcode}"{xhtml}></td>
+                                        <td><input class="uk-input" type="text" name="zipcode" size="16" maxlength="16" value="{event_zipcode}"{xhtml}></td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>{lang_link}:</b></td>
-                                        <td><input type="text" size="36" maxlength="128" name="url" value="{event_url}"{xhtml}></td>
+                                        <td><input class="uk-input" type="text" size="36" maxlength="128" name="url" value="{event_url}"{xhtml}></td>
                                     </tr>
                                     <tr>
                                         <td align="right" valign="top"><b>{lang_description}:</b></td>
-                                        <td><textarea name="description" style="width:100%" cols="50" rows="20">{event_description}</textarea></td>
+                                        <td><textarea class="uk-textarea" name="description" style="width:100%" cols="50" rows="20">{event_description}</textarea></td>
                                     </tr>
                                     <tr>
                                         <td align="center" colspan="2">{lang_htmlnotallowed}</td>
@@ -117,8 +117,8 @@
                                     <tr>
                                         <td align="center" colspan="2">
                                             <input type="hidden" name="type" value="event"{xhtml}>
-                                            <input type="submit" name="action" value="{lang_submit}"{xhtml}>
-                                            <input type="submit" name="action" value="{lang_delete}"{xhtml}>
+                                            <button type="submit" name="action" value="{lang_submit}" class="uk-button uk-button-primary">{lang_submit}</button>
+                                            <button type="submit" name="action" value="{lang_delete}" class="uk-button uk-button-danger">{lang_delete}</button>
                                             <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
                                         </td>
                                     </tr>

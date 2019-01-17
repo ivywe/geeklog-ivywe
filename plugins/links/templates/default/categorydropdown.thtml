@@ -1,10 +1,10 @@
 {# begin {templatelocation} #}
 
-<form action="{site_url}/links/index.php" method="post" class="uk-form">
-<div class="links-header clearfix" style="height:3em;line-height:3em;vertical-align:middle;margin-bottom:1em;">
-  <div class="links-breadcrumbs" style="float:left;">{breadcrumbs}</div>
-  <div class="links-dropdown" style="float:right;">
-    <select name="category" onchange="javascript:submit()">{link_dropdown}</select><input type="submit" value="{lang_go}" name="mode"{xhtml}>
+<form action="{site_url}/links/index.php" method="post">
+<div class="clearfix uk-margin">
+  <div class="uk-align-left">{breadcrumbs}</div>
+  <div class="uk-align-right">
+    <select name="category" onchange="javascript:submit()" class="uk-select uk-form-width-medium">{link_dropdown}</select><button type="submit" name="mode" value="{lang_go}" class="uk-button uk-button-default">{lang_go}</button>
   </div>
 </div>
 </form>
