@@ -255,7 +255,8 @@ function THM_esc($str) {
 		$charset = COM_getCharset();
 	}
 	
-	return htmlspecialchars($str, ENT_QUOTES, $charset);
+	return $str;
+	// return htmlspecialchars($str, ENT_QUOTES, $charset);
 }
 
 function THM_str($index) {
@@ -845,7 +846,7 @@ function THM_form() {
 }
 
 function THM_checkbox($name, $id, $value, $label, $checked = true) {
-    $retval = '<input type="checkbox" id="' . $id . '" name="' . $name
+    $retval = '<input class="uk-checkbox" type="checkbox" id="' . $id . '" name="' . $name
             . '" value="' . $value . '"';
     
 	if ($checked) {
@@ -857,7 +858,7 @@ function THM_checkbox($name, $id, $value, $label, $checked = true) {
 }
 
 function THM_radio($name, $id, $value, $label, $checked = true) {
-    $retval = '<input type="radio" id="' . $id . '" name="' . $name
+    $retval = '<input class="uk-radio" type="radio" id="' . $id . '" name="' . $name
             . '" value="' . $value . '"';
     if ($checked) {
         $retval .= ' checked="checked"';
