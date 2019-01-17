@@ -490,7 +490,7 @@ function SP_displayPage($page, $A, $comment_order = 'ASC', $comment_mode = 'nest
         ) {
             $icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
             $attr = array('title' => $LANG_STATIC['edit']);
-            $editiconhtml = COM_createImage($icon_url, $LANG_STATIC['edit'], $attr);
+            $editiconhtml = '<span uk-icon="icon: file-edit"></span>'.$LANG_STATIC['edit'];
             $attr = array(
                 'class' => 'editlink',
                 'title' => $LANG_STATIC['edit'],
@@ -1166,8 +1166,6 @@ function plugin_centerblock_staticpages($where = 1, $page = 1, $topic = '')
                 $icon_url = $_CONF['layout_url'] . '/images/edit.'
                     . $_IMAGE_TYPE;
                 $attr = array('title' => $LANG_STATIC['edit']);
-                $editiconhtml = COM_createImage($icon_url, $LANG_STATIC['edit'],
-                    $attr);
                 $url = $_CONF['site_admin_url']
                     . '/plugins/staticpages/index.php?mode=edit&amp;sp_id=' . $S['sp_id'];
                 $attr = array(

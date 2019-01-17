@@ -66,18 +66,34 @@
           <tr id="advanced_editarea" style="display:{show_adveditor};">
             <td colspan="2" style="margin-top:10px;">
               <textarea class="uk-textarea" id="adv_content" name="sp_content" cols="45" rows="24">{sp_content}</textarea>
-              <br{xhtml}>
-              {lang_allowed_html}
+<ul uk-accordion>
+	<li>
+		<a class="uk-accordion-title" href="#">MORE</a>
+		<div class="uk-accordion-content">
+			<div class="warningsmall uk-margin">{lang_allowed_html}</div>
+    </div>
+	</li>
+</ul>
+
             </td>
           </tr>
           <tr id="html_editarea" style="display:{show_htmleditor};">
             <td colspan="2" style="margin-top:10px;">
               <textarea class="uk-textarea" id="html_content" name="sp_content" cols="45" rows="24" style="width:98%" wrap="virtual">{sp_content}</textarea>
-              <div class="warningsmall" style="padding:10px;">{lang_allowed_html}</div>
+
+<ul uk-accordion>
+	<li>
+		<a class="uk-accordion-title" href="#">MORE</a>
+		<div class="uk-accordion-content">
+			<div class="warningsmall uk-margin">{lang_allowed_html}</div>
+    </div>
+	</li>
+</ul>
             </td>
           </tr>
         </table>
       </div>
+
 
       <dl class="form_block">
         <dt><label for="sp-advanced_editor-draft_flag">{lang_draft}</label></dt>
@@ -179,6 +195,16 @@
       </div>
     </div>
   </form>
+
+<ul uk-accordion>
+	<li>
+		<a class="uk-accordion-title" href="#">MORE</a>
+		<div class="uk-accordion-content">
+			<div class="warningsmall uk-margin">{lang_allowed_html}</div>
+    </div>
+	</li>
+</ul>
+
   {end_block}
 </div>
 

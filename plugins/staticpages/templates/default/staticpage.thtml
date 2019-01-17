@@ -1,6 +1,7 @@
 {# begin {templatelocation} #}
 
 {breadcrumb_trail}
+{!if edit_icon}<div class="uk-text-right">{edit_icon}</div>{!endif}
 {block_start}
 {content}
 {block_end}
