@@ -3,7 +3,7 @@
 /**
  * File: SLV.Action.class.php
  * This is the Spam Link Verification Action class for the Geeklog Spam-X plugin
- * Copyright (C) 2006 by the following authors:
+ * Copyright (C) 2006-2017 by the following authors:
  * Author        Dirk Haun       dirk AT haun-online DOT de
  * Licensed under the GNU General Public License
  *
@@ -41,9 +41,16 @@ class SLVreport extends BaseCommand
      * Here we do the work
      *
      * @param  string $comment
-     * @return int
+     * @param  string $permanentLink (since GL 2.2.0)
+     * @param  string $commentType (since GL 2.2.0)
+     * @param  string $commentAuthor (since GL 2.2.0)
+     * @param  string $commentAuthorEmail (since GL 2.2.0)
+     * @param  string $commentAuthorURL (since GL 2.2.0)
+     * @return int    either PLG_SPAM_NOT_FOUND, PLG_SPAM_FOUND or PLG_SPAM_UNSURE
+     * @note As for valid value for $commentType, see system/classes/Akismet.php
      */
-    public function execute($comment)
+    public function execute($comment, $permanentLink = null, $commentType = Geeklog\Akismet::COMMENT_TYPE_COMMENT,
+                                     $commentAuthor = null, $commentAuthorEmail = null, $commentAuthorURL = null)
     {
         $this->result = PLG_SPAM_ACTION_DELETE;
 

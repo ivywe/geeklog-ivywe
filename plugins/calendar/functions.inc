@@ -10,7 +10,7 @@
 // | API method and 2) implements all the common code needed by the Calendar   |
 // | plugin's PHP files.                                                       |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2000-2011 by the following authors:                         |
+// | Copyright (C) 2000-2017 by the following authors:                         |
 // |                                                                           |
 // | Authors: Tony Bibbs       - tony AT tonybibbs DOT com                     |
 // |          Tom Willett      - twillett AT users DOT sourceforge DOT net     |
@@ -321,7 +321,7 @@ function plugin_itemlist_calendar()
         $plugin->submissionhelpfile = 'cceventsubmission.html';
         $plugin->getsubmissionssql = "SELECT eid AS id,title,datestart as day,url "
             . "FROM {$_TABLES['eventsubmission']} "
-            . "ORDER BY datestart ASC";
+            . "ORDER BY datestart DESC";
         $plugin->addSubmissionHeading($LANG_CAL_1[20]);
         $plugin->addSubmissionHeading($LANG_CAL_1[21]);
         $plugin->addSubmissionHeading($LANG_CAL_1[22]);
@@ -427,6 +427,7 @@ function plugin_savesubmission_calendar($A)
 
         return $retval;
     }
+    
     // check ok, proceed to saving
     if (isset($A['end_year'])) {
         $A['end_year'] = COM_applyFilter($A['end_year'], true);
@@ -484,8 +485,23 @@ function plugin_savesubmission_calendar($A)
         . $A['address1'] . '<br' . XHTML . '>' . $A['address2']
         . '<br' . XHTML . '>' . $A['city'] . ', ' . $A['zipcode']
         . '<br' . XHTML . '>' . $A['description'] . '</p>';
-    $result = PLG_checkforSpam($spamCheck, $_CONF['spamx']);
-    if ($result > 0) {
+
+    $permanentlink = null; // Setting this to null as events can appear on a number of different pages like Day, Week, and Month views (there is no true permanent page that the event is being added too)
+    $authorname = null;
+    $authoremail = null;
+    $authorurl = null;
+    if (!COM_isAnonUser()) {
+        $authorname = $_USER['username'];
+        if (!empty($_USER['email'])) {
+            $authoremail = $_USER['email'];
+        }
+        if (!empty($_USER['homepage'])) {
+            $authorurl = $_USER['homepage'];
+        }
+    }    
+    
+    $result = PLG_checkForSpam($spamCheck, $_CONF['spamx'], $permanentlink, Geeklog\Akismet::COMMENT_TYPE_EVENT, $authorname, $authoremail, $authorurl);
+    if ($result > PLG_SPAM_NOT_FOUND) {
         COM_updateSpeedlimit('submit');
         COM_displayMessageAndAbort($result, 'spamx', 403, 'Forbidden');
     }
@@ -657,10 +673,21 @@ function plugin_getheadercode_calendar()
 
 /**
  * Shows event submission form or diverts to event editor if admin calls in
+ *
+ * @param  string $mode
+ * @return string
  */
 function plugin_submit_calendar($mode = 'master')
 {
-    global $_CONF, $_CA_CONF, $LANG_CAL_1, $LANG12, $MESSAGE, $_SCRIPTS;
+    global $_CONF, $_CA_CONF, $LANG_CAL_1, $LANG12, $MESSAGE, $_SCRIPTS, $LANG_CAL_2;
+
+    // Anonymous user tried to submit an event when login is required
+    if (COM_isAnonUser() && ($_CONF['loginrequired'] || $_CONF['submitloginrequired'] || $_CA_CONF['calendarloginrequired'])) {
+        $display = SEC_loginRequiredForm();
+        $display = COM_createHTMLDocument($display, array('pagetitle' => $LANG_CAL_1[41]));
+        COM_output($display);
+        exit;
+    }
 
     $mode = Geeklog\Input::fPost('calendar_type', null);
 
@@ -673,6 +700,13 @@ function plugin_submit_calendar($mode = 'master')
     }
 
     if (($_CA_CONF['personalcalendars'] == 1) && ($mode === 'quickadd')) {
+        // check for missing event title field
+        $tempTitle = GLText::remove4byteUtf8Chars(GLText::stripTags(COM_checkWords($_POST['title'])));
+        if (empty($tempTitle)) {
+            // If missing must set or process goes into infinite loop
+            $_POST['title'] = $LANG_CAL_2[32]; // Default title will be "Event"
+        }
+        
         // quick add form, just save it.
         $display = plugin_savesubmission_calendar($_POST);
 
@@ -1466,6 +1500,9 @@ function plugin_upgrade_calendar()
     if (!plugin_compatible_with_this_version_calendar('calendar')) {
         return 3002;
     }
+    
+    // Retrieve other plugin info like min geeklog version and homepage 
+    $inst_parms = plugin_autoinstall_calendar('calendar');    
 
     require_once $_CONF['path'] . 'plugins/calendar/sql/'
         . $_DB_dbms . '_updates.php';
@@ -1569,21 +1606,31 @@ function plugin_upgrade_calendar()
                 break;
 
             case '1.1.3':
-
                 $current_version = '1.1.4';
                 break;
 
             case '1.1.4':
-
                 $current_version = '1.1.5';
                 break;
+
+            case '1.1.5':
+                $current_version = '1.1.6';
+                break;
+                
+            case '1.1.6':
+                $current_version = '1.1.7';
+                break;
+                
             default:
                 $done = true;
                 break;
         }
     }
 
-    DB_query("UPDATE {$_TABLES['plugins']} SET pi_version = '$code_version', pi_gl_version = '$installed_version' WHERE pi_name = 'calendar'");
+    // update plugin version number and other info
+    DB_query("UPDATE {$_TABLES['plugins']} SET pi_version = '$code_version', pi_gl_version = '{$inst_parms['info']['pi_gl_version']}', pi_homepage = '{$inst_parms['info']['pi_homepage']}' WHERE pi_name = 'calendar'");
+
+    COM_errorLog( "Updated calendar plugin from v$installed_version to v$code_version", 1 );       
 
     return true;
 }
@@ -1743,7 +1790,7 @@ function plugin_dopluginsearch_calendar($query, $datestart, $dateend, $topic, $t
     list($sql_tmp, $ftsql_tmp) = $search_e->buildSearchSQL($keyType, $query, $columns, $sql_e . $sql);
 
     $search_e->setSQL($sql_tmp);
-    $search_e->setFTSQL($ftsql_tmp);
+    $search_e->setFtSQL($ftsql_tmp);
     $search_e->setRank(2);
 
     if (COM_isAnonUser()) {
@@ -1757,7 +1804,7 @@ function plugin_dopluginsearch_calendar($query, $datestart, $dateend, $topic, $t
     list($sql_tmp, $ftsql_tmp) = $search_p->buildSearchSQL($keyType, $query, $columns, $sql_p . $sql);
 
     $search_p->setSQL($sql_tmp);
-    $search_p->setFTSQL($ftsql_tmp);
+    $search_p->setFtSQL($ftsql_tmp);
     $search_p->setRank(2);
 
     return array($search_e, $search_p);
@@ -1792,12 +1839,7 @@ function plugin_getListField_calendar($fieldname, $fieldvalue, $A, $icon_arr)
 
     $access = SEC_hasAccess($A['owner_id'], $A['group_id'], $A['perm_owner'],
         $A['perm_group'], $A['perm_members'], $A['perm_anon']);
-
     switch ($fieldname) {
-        case 'delete':
-            $retval = "<input type=\"checkbox\" class=\"uk-checkbox\" name=\"delitem[{$A['eid']}]\" checked=\"checked\"" . XHTML . ">";
-            break;
-
         case 'edit':
             if ($access == 3) {
                 $retval = COM_createLink(
@@ -2090,7 +2132,10 @@ function plugin_getBlocks_calendar($side, $topic = '')
                     'blockorder'     => $_CA_CONF['block_order'],
                     'content'        => $display,
                     'allow_autotags' => false,
+                    'convert_newlines' => false,
                     'help'           => '',
+                    'css_id'         => 'event_block',  // since GL 2.2.0
+                    'css_classes'    => '',             // since GL 2.2.0
                 );
             }
         }
@@ -2258,6 +2303,27 @@ function plugin_itemdeleted_calendar($id, $type)
             $c = config::get_instance();
             $c->set('block_topic', $_CA_CONF['block_topic'], 'calendar');
         }
-        // Note: All topics could get deleted from array which would mean the block would not display untill user adds more in config
+        // Note: All topics could get deleted from array which would mean the block would not display until user adds more in config
     }
+}
+
+/**
+ * Did user create any events
+ *
+ * @return   string   number of events user contributed. If nothing leave blank
+ */
+function plugin_usercontributed_calendar($uid)
+{
+    global $_TABLES, $LANG_CAL_ADMIN;
+
+    $retval = '';
+
+    // Include events and event submissions
+    $count = DB_getItem($_TABLES['events'], 'COUNT(owner_id)', "owner_id = {$uid}") + DB_getItem($_TABLES['eventsubmission'], 'COUNT(owner_id)', "owner_id = {$uid}");
+    
+    if ($count > 0) {
+        $retval = str_replace('%s', $count, $LANG_CAL_ADMIN['num_events']);
+    }
+
+    return $retval;
 }

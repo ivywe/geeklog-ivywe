@@ -76,6 +76,9 @@ class SitemapXML
     private $types;
     private $filename;
     private $mobile_filename;
+    private $news_filename;
+    private $news_topics;
+    private $news_age;
 
     // Valid expressions for 'changefreq' field
     private $valid_change_freqs = array('always', 'hourly', 'daily', 'weekly',
@@ -124,8 +127,9 @@ class SitemapXML
      *
      * @param   string   $filename           name of sitemap file
      * @param   string   $mobile_filename    name of mobile sitemap file
+     * @param   string   $news_filename      name of news sitemap file
      */
-    public function setFileNames($filename = '', $mobile_filename = '')
+    public function setFileNames($filename = '', $mobile_filename = '', $news_filename = '')
     {
         global $_CONF;
 
@@ -136,16 +140,20 @@ class SitemapXML
         if ($mobile_filename != '') {
             $this->mobile_filename = $_CONF['path_html'] . basename($mobile_filename);
         }
+        
+        if ($news_filename != '') {
+            $this->news_filename = $_CONF['path_html'] . basename($news_filename);
+        }        
     }
 
     /**
      * Return the names of sitemap files
      *
-     * @return  array    names of the sitemap and mobile sitemap
+     * @return  array    names of the sitemap, mobile sitemap, and news sitemap
      */
     public function getFileNames()
     {
-        return array($this->filename, $this->mobile_filename);
+        return array($this->filename, $this->mobile_filename, $this->news_filename);
     }
 
     /**
@@ -255,6 +263,46 @@ class SitemapXML
     {
         return $this->types;
     }
+    
+    /**
+     * Set the topics for news
+     *
+     * @param   mixed   $topics (string or array of string): 'topicid1', ...
+     */
+    public function setNewsTopics($topics)
+    {
+        $this->_news_topics = array_unique($topics);
+    }
+
+    /**
+     * Get the topics for news
+     *
+     * @return  array    array of strings of topics: 'topicid1', 'topicid2', ...     
+     */
+    public function getNewsTopics()
+    {
+        return $this->_news_topics;
+    }  
+
+    /**
+     * Set the max age for news
+     *
+     * @param   int   max age of news articles in seconds
+     */
+    public function setNewsAge($MaxAge)
+    {
+        $this->_news_age = intval($MaxAge);
+    }
+
+    /**
+     * Get the max age for news
+     *
+     * @return  int    max age of news articles in seconds
+     */
+    public function getNewsAge()
+    {
+        return $this->_news_age;
+    }    
 
     /**
      * Normalize a URL
@@ -417,35 +465,196 @@ class SitemapXML
      */
     public function create()
     {
-        global $_XMLSMAP_CONF;
+        global $_XMLSMAP_CONF, $_CONF, $LANG_ISO639_1;
 
-        $this->num_entries = 0;
-        $sitemap = '';
-        $types   = $this->getTypes();
-        $what    = 'url,date-modified';
-        $uid     = 1;   // anonymous user
-        $limit   = 0;   // the max number of items to be returned (0 = no limit)
-        $options = array();
+        // Get file names
+        list ($filename, $mobile_filename, $news_filename) = $this->getFileNames();
 
-        if (count($types) === 0) {
-            COM_errorLog(__METHOD__ . ': No content type is specified.');
-            return false;
+        if (!empty($filename) || !empty($mobile_filename)) {
+            $this->num_entries = 0;
+            $sitemap = '';
+            $types   = $this->getTypes();
+            $what    = 'url,date-modified';
+            $uid     = 1;   // anonymous user
+            $limit   = 0;   // the max number of items to be returned (0 = no limit)
+            $options = array();
+            
+            if (count($types) === 0) {
+                COM_errorLog(__METHOD__ . ': No content type is specified.');
+                return false;
+            }
+
+            foreach ($types as $type) {
+                $result = array();
+
+                if (is_callable('PLG_collectSitemapItems')) {   // New API since GL-2.1.1
+                    $result = PLG_collectSitemapItems($type, $uid, $limit);
+                }
+
+                if (!is_array($result) || (count($result) === 0)) {
+                    $result = PLG_getItemInfo($type, '*', $what, $uid, $options);
+                }
+
+                if (is_array($result) && (count($result) > 0)) {
+                    foreach ($result as $entry) {
+                        if (isset($entry['url'])) {
+                            $url = $this->normalizeURL($entry['url']);
+                            $sitemap .= '  <url>' . self::LB
+                                     .  '    <loc>' . $url . '</loc>' . self::LB;
+                        } else {
+                            /**
+                            * <loc> element is mandatory for the sitemap.  So,
+                            * when no url is provided, we simply have to skip
+                            * the item silently.
+                            */
+                            continue;
+                        }
+
+                        // The items below are all optional.
+
+                        // Frequency of change
+                        $change_freq = isset($entry['change-freq'])
+                                     ? $entry['change-freq']
+                                     : $this->getChangeFreq($type);
+
+                        if ($change_freq != '') {
+                            $sitemap .= '    <changefreq>' . $change_freq
+                                     .  '</changefreq>' . self::LB;
+                        }
+
+                        // Time stamp
+                        if (isset($entry['date-modified'])) {
+                            $date = date('Y-m-d', $entry['date-modified']);
+
+                            // Add the time part for frequently changed items
+                            if (in_array($change_freq, array('always', 'hourly', 'daily'))) {
+                                $timezone = $this->getTimezoneStr();
+
+                                if ($timezone !== false) {
+                                    $date .= 'T' . date('H:i:s', $entry['date-modified'])
+                                          .  $timezone;
+                                }
+                            }
+
+                            if (in_array($type, $_XMLSMAP_CONF['lastmod'])) {
+                                $sitemap .= '    <lastmod>' . $date . '</lastmod>' . self::LB;
+                            }
+                        }
+
+                        // Priority
+                        $priority = isset($entry['priority'])
+                                  ? $entry['priority']
+                                  : $this->getPriority($type);
+
+                        if ($priority != 0.5) {
+                            $sitemap .= '    <priority>' . (string) $priority
+                                     .  '</priority>' . self::LB;
+                        }
+
+                        $sitemap .= '  </url>' . self::LB;
+                        $this->num_entries++;
+                    }
+                }
+            }
+            
+            // Write the sitemap into file(s)
+
+            // Append the header and footer to the sitemap body
+            if ($sitemap != '') {
+                $sitemap = '<?xml version="1.0" encoding="UTF-8" ?>' . self::LB
+                         .  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . self::LB
+                         . $sitemap
+                         . '</urlset>' . self::LB;
+
+                // Check the number of items and the size of the sitemap file
+                if ($this->num_entries > self::MAX_NUM_ENTRIES) {
+                    COM_errorLog(__METHOD__ . ': The number of items in the sitemap file must be ' . self::MAX_NUM_ENTRIES . ' or smaller.');
+                    return false;
+                } else if (strlen($sitemap) > self::MAX_FILE_SIZE) {
+                    COM_errorLog(__METHOD__ . ': The size of the sitemap file must be ' . self::MAX_FILE_SIZE . ' bytes or smaller.');
+                    return false;
+                }
+
+                if ($filename != '') {
+                    if (!$this->write($filename, $sitemap)) {
+                        return false;
+                    }
+                }
+
+                if ($mobile_filename != '') {
+                    // Modify the sitemap as Google Mobile Sitemap
+                    $sitemap = str_replace(
+                        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+                        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0">',
+                        $sitemap
+                    );
+                    $sitemap = str_replace(
+                        '  </url>',
+                        '    <mobile:mobile />' . self::LB . '  </url>',
+                        $sitemap
+                    );
+
+                    if (!$this->write($mobile_filename, $sitemap)) {
+                        return false;
+                    }
+                }
+            }
         }
+        
+        // Get News Sitemap
+        if ($news_filename != '') {
+            $this->num_entries = 0;
+            $sitemap = '';
+            $what    = 'url,date-created,id,title';
+            $uid     = 1;   // anonymous user
+            $limit   = 0;   // the max number of items to be returned (0 = no limit)
+            $options = array();
 
-        foreach ($types as $type) {
-            $result = array();
+            // Figure out language id
+            $multi_lang = COM_isMultiLanguageEnabled();
+            if ($multi_lang) {
+                // default language for multi language site
+                $site_lang_id = COM_getLanguageId();
+            } else {
+                // Just one default language
+                $site_lang_id = $LANG_ISO639_1;
+            }
+            
+            // See if timezone is set
+            $timezone = $this->getTimezoneStr();
 
-            if (is_callable('PLG_collectSitemapItems')) {   // New API since GL-2.1.1
-                $result = PLG_collectSitemapItems($type, $uid, $limit);
+            // Retrieve complete topic list including inherited ones 
+            $topic_list = '';
+            $newstopics = $this->getNewsTopics();
+            
+            if (!empty($newstopics)) {
+                foreach ($newstopics as $tid) {
+                    $tids = TOPIC_getChildList($tid, $uid);
+                    if (!empty($tids)) {
+                        if (!empty($topic_list)) {
+                            $topic_list = $topic_list . "," . $tids;
+                        } else {
+                            $topic_list = $tids;
+                        }
+                    }
+                }
+            }
+            if (!empty($topic_list)) {
+                $options['filter']['topic-ids'] = $topic_list;
             }
 
-            if (!is_array($result) || (count($result) === 0)) {
-                $result = PLG_getItemInfo($type, '*', $what, $uid, $options);
+            // Figure out max age
+            if ($this->getNewsAge() > 0) {
+                $options['filter']['date-created'] = strtotime("-" . $this->getNewsAge() . " seconds");
             }
+
+            $result = PLG_getItemInfo('article', '*', $what, $uid, $options);
 
             if (is_array($result) && (count($result) > 0)) {
                 foreach ($result as $entry) {
-                    if (isset($entry['url'])) {
+                    // Check URL ,date is under max age, and appropriate topics
+                    if (isset($entry['url']) && (true)) {
+                        
                         $url = $this->normalizeURL($entry['url']);
                         $sitemap .= '  <url>' . self::LB
                                  .  '    <loc>' . $url . '</loc>' . self::LB;
@@ -457,96 +666,61 @@ class SitemapXML
                         */
                         continue;
                     }
-
-                    // The items below are all optional.
-
-                    // Frequency of change
-                    $change_freq = isset($entry['change-freq'])
-                                 ? $entry['change-freq']
-                                 : $this->getChangeFreq($type);
-
-                    if ($change_freq != '') {
-                        $sitemap .= '    <changefreq>' . $change_freq
-                                 .  '</changefreq>' . self::LB;
+                    
+                    // Start News Specific tags
+                    $sitemap .= '    <news:news>' . self::LB;
+                    
+                    // Publication
+                    $sitemap .= '      <news:publication>' . self::LB;
+                    $sitemap .= '        <news:name>' . $_CONF['site_name'] . '</news:name>' . self::LB;
+                    // Language 
+                    if ($multi_lang) {
+                        $lang_id = COM_getLanguageIdForObject($entry['id']);
+                        if (empty($lang_id)) {
+                            // if no lang id then assume site default lang
+                            $lang_id = $site_lang_id;
+                        }
+                    } else {
+                        $lang_id = $site_lang_id;
                     }
-
+                    $sitemap .= '        <news:language>' . $lang_id . '</news:language>' . self::LB;
+                    
+                    $sitemap .= '      </news:publication>' . self::LB;
+                    
                     // Time stamp
-                    if (isset($entry['date-modified'])) {
-                        $date = date('Y-m-d', $entry['date-modified']);
-
-                        // Add the time part for frequently changed items
-                        if (in_array($change_freq, array('always', 'hourly', 'daily'))) {
-                            $timezone = $this->getTimezoneStr();
-
-                            if ($timezone !== false) {
-                                $date .= 'T' . date('H:i:s', $entry['date-modified'])
-                                      .  $timezone;
-                            }
-                        }
-
-                        if (in_array($type, $_XMLSMAP_CONF['lastmod'])) {
-                            $sitemap .= '    <lastmod>' . $date . '</lastmod>' . self::LB;
-                        }
+                    $date = date('Y-m-d', $entry['date-created']);
+                    if ($timezone !== false) {
+                        $date .= 'T' . date('H:i:s', $entry['date-created']) .  $timezone;
                     }
-
-                    // Priority
-                    $priority = isset($entry['priority'])
-                              ? $entry['priority']
-                              : $this->getPriority($type);
-
-                    if ($priority != 0.5) {
-                        $sitemap .= '    <priority>' . (string) $priority
-                                 .  '</priority>' . self::LB;
-                    }
+                    $sitemap .= '      <news:publication_date>' . $date . '</news:publication_date>' . self::LB;
+                    
+                    // Title
+                    $sitemap .= '      <news:title>' . $entry['title'] . '</news:title>' . self::LB;
+                    
+                    $sitemap .= '    </news:news>';
 
                     $sitemap .= '  </url>' . self::LB;
                     $this->num_entries++;
                 }
             }
-        }
+            
+            // Append the header and footer to the sitemap body even if sitemap contains no info
 
-        // Append the header and footer to the sitemap body
-        if ($sitemap != '') {
             $sitemap = '<?xml version="1.0" encoding="UTF-8" ?>' . self::LB
-                     .  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . self::LB
+                     .  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">' . self::LB
                      . $sitemap
-                     . '</urlset>' . self::LB;
-        } else {
-            return true;
-        }
-
-        // Check the number of items and the size of the sitemap file
-        if ($this->num_entries > self::MAX_NUM_ENTRIES) {
-            COM_errorLog(__METHOD__ . ': The number of items in the sitemap file must be ' . self::MAX_NUM_ENTRIES . ' or smaller.');
-            return false;
-        } else if (strlen($sitemap) > self::MAX_FILE_SIZE) {
-            COM_errorLog(__METHOD__ . ': The size of the sitemap file must be ' . self::MAX_FILE_SIZE . ' bytes or smaller.');
-            return false;
-        }
-
-        // Write the sitemap into file(s)
-        list ($filename, $mobile_filename) = $this->getFileNames();
-
-        if ($filename != '') {
-            if (!$this->write($filename, $sitemap)) {
+                     . '</urlset>' . self::LB;            
+            
+            // Check the number of items and the size of the sitemap file
+            if ($this->num_entries > self::MAX_NUM_ENTRIES) {
+                COM_errorLog(__METHOD__ . ': The number of items in the sitemap file must be ' . self::MAX_NUM_ENTRIES . ' or smaller.');
                 return false;
-            }
-        }
-
-        if ($mobile_filename != '') {
-            // Modify the sitemap as Google Mobile Sitemap
-            $sitemap = str_replace(
-                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0">',
-                $sitemap
-            );
-            $sitemap = str_replace(
-                '  </url>',
-                '    <mobile:mobile />' . self::LB . '  </url>',
-                $sitemap
-            );
-
-            if (!$this->write($mobile_filename, $sitemap)) {
+            } else if (strlen($sitemap) > self::MAX_FILE_SIZE) {
+                COM_errorLog(__METHOD__ . ': The size of the sitemap file must be ' . self::MAX_FILE_SIZE . ' bytes or smaller.');
+                return false;
+            }            
+            
+            if (!$this->write($news_filename, $sitemap)) {
                 return false;
             }
         }
@@ -555,7 +729,7 @@ class SitemapXML
     }
 
     /**
-     * Sends a ping to search engines
+     * Sends a ping to search engines for the main sitemap only
      *
      * @param    array    $destinations    an array of search engine types.
      *                                      Currently supported are 'google' and 'bing'.

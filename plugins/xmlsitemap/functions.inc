@@ -86,7 +86,7 @@ function plugin_chkVersion_xmlsitemap()
 */
 function plugin_upgrade_xmlsitemap()
 {
-    global $_CONF, $_TABLES, $_DB_dbms;
+    global $_CONF, $_TABLES, $_DB_dbms, $_XMLSMAP_DEFAULT;
 
     $installed_version = DB_getItem($_TABLES['plugins'], 'pi_version',
                                     "pi_name = 'xmlsitemap'");
@@ -102,6 +102,9 @@ function plugin_upgrade_xmlsitemap()
     if (! plugin_compatible_with_this_version_xmlsitemap('xmlsitemap')) {
         return 3002;
     }
+    
+    // Retrieve other plugin info like min geeklog version and homepage 
+    $inst_parms = plugin_autoinstall_xmlsitemap('xmlsitemap');        
 
     require_once $_CONF['path'] . 'plugins/xmlsitemap/sql/' . $_DB_dbms . '_updates.php';
     require_once $_CONF['path'] . 'plugins/xmlsitemap/install_updates.php';
@@ -137,6 +140,24 @@ function plugin_upgrade_xmlsitemap()
 
             $current_version = '2.0.0';
             break;
+            
+        case '2.0.0':
+            // Only code changes
+
+            $current_version = '2.0.1';
+            break;  
+
+        case '2.0.1':
+            if (isset($_UPDATES[$current_version])) {
+                $_SQL = $_UPDATES[$current_version];
+                foreach ($_SQL as $sql) {
+                    DB_query($sql);
+                }
+            }        
+            xmlsitemap_update_ConfValues_2_0_1();
+
+            $current_version = '2.0.2';
+            break;             
 
         default:
             $done = true;
@@ -144,7 +165,10 @@ function plugin_upgrade_xmlsitemap()
         }
     }
 
-    DB_query("UPDATE {$_TABLES['plugins']} SET pi_version = '$code_version', pi_gl_version = '$installed_version' WHERE pi_name = 'xmlsitemap'");
+    // update plugin version number and other info
+    DB_query("UPDATE {$_TABLES['plugins']} SET pi_version = '$code_version', pi_gl_version = '{$inst_parms['info']['pi_gl_version']}', pi_homepage = '{$inst_parms['info']['pi_homepage']}' WHERE pi_name = 'xmlsitemap'");
+    
+    COM_errorLog( "Updated xmlsitemap plugin from v$installed_version to v$code_version", 1 );    
 
     return true;
 }
@@ -171,7 +195,7 @@ function plugin_autouninstall_xmlsitemap()
         /* give the full name of the block, including 'phpblock_', etc */
         'php_blocks' => array(),
         /* give all vars with their name */
-        'vars' => array('xmlsitemap_filename', 'xmlsitemap_mobile', 'xmlsitemap.pings'),
+        'vars' => array('xmlsitemap_filename', 'xmlsitemap_mobile', 'xmlsitemap_news', 'xmlsitemap.pings'),
     );
 
     XMLSITEMAP_removeSitemapFiles();
@@ -252,14 +276,14 @@ function XMLSMAP_update($type = null, $include = null, $exclude = null)
     $sitemap = new SitemapXML($charset);
 
     // Set sitemap file names
-    if (empty($_XMLSMAP_CONF['mobile_sitemap_file'])) {
-        $sitemap->setFileNames($_XMLSMAP_CONF['sitemap_file']);
-    } else {
-        $sitemap->setFileNames(
-            $_XMLSMAP_CONF['sitemap_file'],
-            $_XMLSMAP_CONF['mobile_sitemap_file']
-        );
-    }
+    $sitemap_file = isset($_XMLSMAP_CONF['sitemap_file']) ? $_XMLSMAP_CONF['sitemap_file']                      : '';
+    $mobile_sitemap_file = isset($_XMLSMAP_CONF['mobile_sitemap_file']) ? $_XMLSMAP_CONF['mobile_sitemap_file'] : '';
+    $news_sitemap_file = isset($_XMLSMAP_CONF['news_sitemap_file']) ? $_XMLSMAP_CONF['news_sitemap_file']       : '';
+    $sitemap->setFileNames(
+        $sitemap_file,
+        $mobile_sitemap_file,
+        $news_sitemap_file
+    );
 
     // Set types
     $types = array_diff($_XMLSMAP_CONF['types'], $_XMLSMAP_CONF['exclude']);
@@ -286,6 +310,18 @@ function XMLSMAP_update($type = null, $include = null, $exclude = null)
         $sitemap->setChangeFreq($type, $freq);
     }
 
+    // News Sitemap settings
+    if (isset($_XMLSMAP_CONF['news_sitemap_file']) && !empty($_XMLSMAP_CONF['news_sitemap_file'])) {
+        // Article topics to include
+        if (isset($_XMLSMAP_CONF['news_sitemap_topics']) && $_XMLSMAP_CONF['news_sitemap_topics']) {
+            $sitemap->setNewsTopics($_XMLSMAP_CONF['news_sitemap_topics']);
+        }
+        // Max article age in seconds
+        if (isset($_XMLSMAP_CONF['news_sitemap_age']) && $_XMLSMAP_CONF['news_sitemap_age']) {
+            $sitemap->setNewsAge($_XMLSMAP_CONF['news_sitemap_age']);
+        }
+    }
+
     $retval = $sitemap->create();
 
     // Send ping to search engines
@@ -299,8 +335,10 @@ function XMLSMAP_update($type = null, $include = null, $exclude = null)
         $pingTargets[] = 'bing';
     }
 
-    if (count($pingTargets) > 0) {
-        $sitemap->sendPing($pingTargets);
+    if ((isset($_CONF['demo_mode']) && !$_CONF['demo_mode']) || !isset($_CONF['demo_mode'])) {
+        if (count($pingTargets) > 0) {
+            $sitemap->sendPing($pingTargets);
+        }
     }
 
     return $retval;
@@ -330,6 +368,23 @@ function plugin_itemsaved_xmlsitemap($id, $type, $old_id)
 */
 function plugin_itemdeleted_xmlsitemap($id, $type)
 {
+    global $_XMLSMAP_CONF;
+
+    // we're really only interested in Topic Deletes because of the News Sitemap
+    if ($type == 'topic') {
+        $key = array_search($id, $_XMLSMAP_CONF['news_sitemap_topics']);
+
+        if ($key > 0) {
+            // delete item from config
+            unset($_XMLSMAP_CONF['news_sitemap_topics'][$key]);
+
+            // Now save it to the configuration
+            $c = config::get_instance();
+            $c->set('news_sitemap_topics', $_XMLSMAP_CONF['news_sitemap_topics'], 'xmlsitemap');
+        }
+    }
+    
+    // Rewrite all sitmap files
     XMLSMAP_update($type);
 }
 
@@ -485,11 +540,13 @@ function XMLSITEMAP_changeFile($key, $varname)
         }
     }
 
-    $_XMLSMAP_CONF[$key] = basename(trim($_XMLSMAP_CONF[$key]));
-    $sql = "UPDATE {$_TABLES['vars']} "
-         . "SET value = '" . DB_escapeString($_XMLSMAP_CONF[$key]) . "' "
-         . "WHERE (name = '{$varname}') ";
-    DB_query($sql);
+    if (isset($_XMLSMAP_CONF[$key])) { // need to check incase enabling or not
+        $_XMLSMAP_CONF[$key] = basename(trim($_XMLSMAP_CONF[$key]));
+        $sql = "UPDATE {$_TABLES['vars']} "
+             . "SET value = '" . DB_escapeString($_XMLSMAP_CONF[$key]) . "' "
+             . "WHERE (name = '{$varname}') ";
+        DB_query($sql);
+    }
 }
 
 /**
@@ -519,6 +576,9 @@ function plugin_configchange_xmlsitemap($group, $changes = array())
                     XMLSITEMAP_changeFile($name, 'xmlsitemap_filename');
                 } elseif ($name == 'mobile_sitemap_file') {
                     XMLSITEMAP_changeFile($name, 'xmlsitemap_mobile');
+                } elseif ($name == 'news_sitemap_file') {
+                    XMLSITEMAP_changeFile($name, 'xmlsitemap_news');
+                    
                 } elseif ($name != 'exclude') {
                     XMLSITEMAP_checkChange($name);
                 }
@@ -676,7 +736,7 @@ function XMLSITEMAP_removeSitemapFiles()
 {
     global $_CONF, $_XMLSMAP_CONF;
 
-    $filenames = array('sitemap_file', 'mobile_sitemap_file');
+    $filenames = array('sitemap_file', 'mobile_sitemap_file', 'news_sitemap_file');
 
     foreach ($filenames as $filename) {
         if (! empty($_XMLSMAP_CONF[$filename])) {

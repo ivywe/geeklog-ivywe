@@ -172,8 +172,10 @@ abstract class BaseAdmin
         $retval = $fieldValue;
 
         if ($fieldName === 'id') {
-            $retval = '<input type="checkbox" class="uk-checkbox" name="delitem[]" value="'
-                . $this->escape($fieldValue) . '"' . XHTML . '>';
+            $retval = COM_createControl('type-checkbox', array(
+                'name' => 'delitem[]',
+                'value' => $this->escape($fieldValue)
+            ));
         } elseif ($fieldName === 'value') {
             $retval = COM_createLink(
                 $this->escape($fieldValue),
@@ -203,9 +205,16 @@ abstract class BaseAdmin
         global $_CONF, $_TABLES, $_IMAGE_TYPE, $LANG01, $LANG33, $LANG_SX00;
 
         $fieldfunction = array($this, 'fieldFunction');
+
+        $select_checkbox = COM_createControl('type-checkbox', array(
+            'name' => 'chk_selectall',
+            'title' => $LANG01[126],
+            'onclick' => 'caItems(this.form);'
+        ));
+
         $header_arr = array(
             array(
-                'text'  => '<input type="checkbox" class="uk-checkbox" name="chk_selectall" title="' . $LANG01[126] . '" onclick="caItems(this.form);"' . XHTML . '>',
+                'text'  => $select_checkbox,
                 'field' => 'id',
                 'sort'  => false,
             ),
@@ -250,11 +259,16 @@ abstract class BaseAdmin
         $extra = '';
         $options = '';
 
+        $del_button = COM_createControl('type-image', array(
+            'name' => 'delbutton',
+            'title' => $LANG01[124],
+            'alt' => 'delbutton',
+            'src' => $_CONF['layout_url'] . '/images/deleteitem.' . $_IMAGE_TYPE,
+            'onclick' => "return confirm('" . $LANG01[125] . "');"
+        ));
+
         $form_arr = array(
-            'bottom' => '<input type="image" name="delbutton" alt="delbutton" src="'
-                . $_CONF['layout_url'] . '/images/deleteitem.' . $_IMAGE_TYPE
-                . '" title="' . $LANG01[124] . '" onclick="return confirm(\''
-                . $LANG01[125] . '\');"' . XHTML . '>',
+            'bottom' => $del_button,
         );
 
         $showsearch = true;
@@ -269,28 +283,27 @@ abstract class BaseAdmin
      * Returns a widget to be displayed for each command
      *
      * @return   string
-     * @note     this method is overriden in EditHeader class, since it requires
+     * @note     this method is overridden in EditHeader class, since it requires
      *           two input fields.
      */
     protected function getWidget()
     {
         global $_CONF, $_TABLES, $LANG_SX00;
-
+        
+        // This has to be done before function getList() is called
         $this->csrfToken = SEC_createToken();
-        $display = '<hr' . XHTML . '>' . LB
-            . '<p>' . $LANG_SX00['e1'] . '</p>' . LB
-            . $this->getList()
-            . '<p>' . $LANG_SX00['e2'] . '</p>' . LB
-            . '<form method="post" class="uk-form" action="' . $_CONF['site_admin_url']
-            . '/plugins/spamx/index.php?command=' . $this->command . '">' . LB
-            . '<div><input type="text" class="uk-input uk-form-width-medium" size="31" name="pentry"' . XHTML
-            . '>&nbsp;&nbsp;&nbsp;'
-            . '<button type="submit" name="paction" value="'
-            . $LANG_SX00['addentry'] . '" class="uk-button">'
-            . $LANG_SX00['addentry'] . '</button>' . LB
-            . '<input type="hidden" name="' . CSRF_TOKEN
-            . '" value="' . $this->csrfToken . '"' . XHTML . '>' . LB
-            . '</div></form>' . LB;
+        
+        $template = COM_newTemplate(CTL_plugin_templatePath('spamx'));
+        $template->set_file('baseadmin_widget', 'baseadmin_widget.thtml');
+        $template->set_var('lang_msg_delete', $LANG_SX00['e1']);
+        $template->set_var('items_list', $this->getList());
+        $template->set_var('lang_msg_add', $LANG_SX00['e2']);
+        $template->set_var('spamx_command', $this->command);
+        $template->set_var('lang_add_entry', $LANG_SX00['addentry']);
+        $template->set_var('gltoken_name', CSRF_TOKEN);
+        $template->set_var('gltoken', $this->csrfToken);
+        
+        $display = $template->finish($template->parse('output', 'baseadmin_widget'));        
 
         return $display;
     }

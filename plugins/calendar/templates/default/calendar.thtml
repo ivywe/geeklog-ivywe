@@ -19,10 +19,10 @@
                                                         <table border="0" cellpadding="5" cellspacing="0">
                                                             <tr>
                                                                 <td colspan="2" align="center">
-                                                                    <form method="post" action="{site_url}/calendar/index.php" class="uk-form">
+                                                                    <form method="post" action="{site_url}/calendar/index.php">
                                                                         <div>
                                                                             <input type="hidden" name="mode" value="{mode}"{xhtml}>
-                                                                            <select class="uk-select" name="month" onchange="this.form.submit()">
+                                                                            <select name="month" onchange="this.form.submit()">
                                                                                 <option value="1" {selected_jan}>{lang_january}</option>
                                                                                 <option value="2" {selected_feb}>{lang_february}</option>
                                                                                 <option value="3" {selected_mar}>{lang_march}</option>
@@ -36,7 +36,7 @@
                                                                                 <option value="11" {selected_nov}>{lang_november}</option>
                                                                                 <option value="12" {selected_dec}>{lang_december}</option>
                                                                             </select>&nbsp;
-                                                                            <select class="uk-select" name="year" onchange="this.form.submit()">
+                                                                            <select name="year" onchange="this.form.submit()">
                                                                                 {year_options}
                                                                             </select>
                                                                         </div>
@@ -76,7 +76,7 @@
                                 <table style="margin-left:auto; margin-right:auto">
                                     <tr>
                                         <td>
-                                            <form method="post" action="{site_url}/calendar/index.php" class="uk-form">
+                                            <form method="post" action="{site_url}/calendar/index.php">
                                                 <div>
                                                     <input type="submit" value="&lt;&lt;"{xhtml}>
                                                     <input type="hidden" name="month" value="{cal_prevmo_num}"{xhtml}>
@@ -93,7 +93,7 @@
                                         {master_calendar_option}
                                         </td>
                                         <td>
-                                            <form method="post" action="{site_url}/calendar/index.php" class="uk-form">
+                                            <form method="post" action="{site_url}/calendar/index.php">
                                                 <div>
                                                     <input type="submit" value="&gt;&gt;"{xhtml}>
                                                     <input type="hidden" name="month" value="{cal_nextmo_num}"{xhtml}>

@@ -3,7 +3,7 @@
 /**
  * File: EditHeader.Admin.class.php
  * This is the Edit HTTP Header Module for the Geeklog Spam-X plugin
- * Copyright (C) 2005-2009 by the following authors:
+ * Copyright (C) 2005-2017 by the following authors:
  * Author    Dirk Haun <dirk AT haun-online DOT de>
  * based on the works of Tom Willett <tomw AT pigstye DOT net>
  * Licensed under GNU General Public License
@@ -44,29 +44,22 @@ class EditHeader extends BaseAdmin
     protected function getWidget()
     {
         global $_CONF, $LANG_SX00;
-
+        
+        // This has to be done before function getList() is called
         $this->csrfToken = SEC_createToken();
-        $display = '<hr' . XHTML . '>' . LB
-            . '<p>' . $LANG_SX00['e1'] . '</p>' . LB
-            . $this->getList()
-            . '<p>' . $LANG_SX00['e2'] . '</p>' . LB
-            . '<form method="post" class="uk-form" action="' . $_CONF['site_admin_url']
-            . '/plugins/spamx/index.php?command=EditHeader">' . LB
-            . '<table border="0" width="100%">' . LB
-            . '<tr><td align="right"><b>Header:</b></td>' . LB
-            . '<td><input type="text" class="uk-input uk-form-width-medium" size="40" name="header-name"'
-            . XHTML . '> e.g. <tt>User-Agent</tt></td></tr>' . LB
-            . '<tr><td align="right"><b>Content:</b></td>' . LB
-            . '<td><input type="text" class="uk-input uk-form-width-medium" size="40" name="header-value"'
-            . XHTML . '> e.g. <tt>Mozilla</tt></td></tr>' . LB
-            . '</table>' . LB
-            . '<p><button type="submit" name="paction" value="'
-            . $LANG_SX00['addentry'] . '" class="uk-button">'
-            . $LANG_SX00['addentry'] . '</button>' . LB
-            . '<input type="hidden" name="' . CSRF_TOKEN
-            . '" value="' . $this->csrfToken . '"' . XHTML . '></p>' . LB
-            . '</form>' . LB;
 
+        $template = COM_newTemplate(CTL_plugin_templatePath('spamx'));
+        $template->set_file('editheader_widget', 'editheader_widget.thtml');
+        $template->set_var('lang_msg_delete', $LANG_SX00['e1']);
+        $template->set_var('items_list', $this->getList());
+        $template->set_var('lang_msg_add', $LANG_SX00['e2']);
+        $template->set_var('spamx_command', $this->command);
+        $template->set_var('lang_add_entry', $LANG_SX00['addentry']);
+        $template->set_var('gltoken_name', CSRF_TOKEN);
+        $template->set_var('gltoken', $this->csrfToken);
+        
+        $display = $template->finish($template->parse('output', 'editheader_widget'));          
+        
         return $display;
     }
 
@@ -82,21 +75,34 @@ class EditHeader extends BaseAdmin
         $action = $this->getAction();
         $entry = $this->getEntry();
 
-        if (($action === 'delete') && SEC_checkToken()) {
-            $this->deleteEntry($entry);
-        } elseif (($action === $LANG_SX00['addentry']) && SEC_checkToken()) {
-            $entry = '';
-            $name = Geeklog\Input::fRequest('header-name');
-            $n = explode(':', $name);
-            $name = $n[0];
-            $value = Geeklog\Input::request('header-value');
+        if (!empty($action) && SEC_checkToken()) {
+            switch ($action) {
+                case 'delete':
+                    $this->deleteEntry($entry);
+                    break;
 
-            if (!empty($name) && !empty($value)) {
-                $entry = $name . ': ' . $value;
+                case $LANG_SX00['addentry']:
+                    $entry = '';
+                    $name = Geeklog\Input::fRequest('header-name');
+                    $n = explode(':', $name);
+                    $name = $n[0];
+                    $value = Geeklog\Input::request('header-value');
+
+                    if (!empty($name) && !empty($value)) {
+                        $entry = $name . ': ' . $value;
+                    }
+
+                    $this->addEntry($entry);
+                    break;
+
+                case 'mass_delete':
+                    if (isset($_POST['delitem'])) {
+                        $this->deleteSelectedEntries(Geeklog\Input::post('delitem'));
+                    }
+
+                    break;
             }
-
-            $this->addEntry($entry);
-        }
+        }        
 
         return $this->getWidget();
     }

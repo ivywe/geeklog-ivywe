@@ -1,20 +1,20 @@
 {# begin {templatelocation} #}
 
 <p>{instructions}</p>
-<form action="{site_admin_url}/plugins/links/category.php" method="post" id="links-categoryeditor" class="compact uk-form">
+<form action="{site_admin_url}/plugins/links/category.php" method="post" id="links-categoryeditor" class="compact">
   <div class="admin_basic">
     <dl class="form_block">
       <dt><label for="links-categoryeditor-pid">{lang_parent}</label></dt>
-      <dd><select class="uk-select" name="pid" id="links-categoryeditor-pid">{category_options}</select></dd>
+      <dd><select name="pid" id="links-categoryeditor-pid">{category_options}</select></dd>
 
       <dt><label for="links-categoryeditor-category">{lang_category}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" name="category" maxlength="32" id="links-categoryeditor-category" value="{category_value}"{xhtml}></dd>
+      <dd><input type="text" name="category" maxlength="32" id="links-categoryeditor-category" value="{category_value}" class="size4"{xhtml}></dd>
 
       <dt><label for="links-categoryeditor-cid">{lang_cid}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" name="cid" maxlength="32" id="links-categoryeditor-cid" value="{cid_value}"{xhtml}></dd>
+      <dd><input type="text" name="cid" maxlength="32" id="links-categoryeditor-cid" value="{cid_value}" class="size4"{xhtml}></dd>
 
       <dt><label for="links-categoryeditor-description">{lang_description}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" name="description" maxlength="255" id="links-categoryeditor-description" value="{description_value}"{xhtml}></dd>
+      <dd><input type="text" name="description" maxlength="255" id="links-categoryeditor-description" value="{description_value}" class="size6"{xhtml}></dd>
 
       <dt><label for="tid">{lang_topic}</label></dt>
       <dd>{topic_selection}</dd>
@@ -46,7 +46,9 @@
     <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
     <input type="submit" value="{lang_save}" name="mode" class="submit"{xhtml}>
     <input type="submit" value="{lang_cancel}" name="mode" class="submit"{xhtml}>
-    {delete_option}
+{!if allow_delete}
+    <input type="submit" value="{lang_delete}" name="mode" class="submit" onclick="return confirm('{confirm_message}');"{xhtml}>
+{!endif}    
   </div>
 </form>
 

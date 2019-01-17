@@ -120,12 +120,20 @@ $LANG_STATIC = array(
     'draft_yes' => 'Yes',
     'draft_no' => 'No',
     'show_on_page' => 'Show on Page',
+    'show_on_page_disabled' => 'Note: This is currently disabled for all pages in the Staticpage Configuration.',
     'cache_time'        => 'Cache Time',
     'cache_time_desc'   => 'This staticpage content will be cached for no longer than this many seconds. If 0 caching is disabled. If -1 cached until page is edited again. Staticpages with PHP enabled or are a template will not be cached. (3600 = 1 hour,  86400 = 1 day)',
     'autotag_desc_staticpage' => '[staticpage: id alternate title] - Displays a link to a static page using the static page title as the title. An alternate title may be specified but is not required.',
     'autotag_desc_staticpage_content' => '[staticpage_content: id] - Displays the contents of a staticpage.',
+    'autotag_desc_page' => '[page: id alternate title] - Displays a link to a page (from the Static Page plugin) using the page title as the title. An alternate title may be specified but is not required.',
+    'autotag_desc_page_content' => '[page_content: id] - Displays the contents of a page. (from Static Page plugin)',
     'yes' => 'Yes', 
-    'used_by' => 'This template is assigned to %s page(s). It is possible this template is used more than specified here if the template is being retrieved via an autotag in another template.'
+    'used_by' => 'This template is assigned to %s page(s). It is possible this template is used more than specified here if the template is being retrieved via an autotag in another template.',
+    'prev_page' => 'Previous page',
+    'next_page' => 'Next page',
+    'parent_page' => 'Parent page',
+    'page_desc' => 'Setting a previous and/or next page will add HTML link elements rel=”next” and rel=”prev” to the header to indicate the relationship between pages in a paginated series. Actual page navigation links are not added to the page. You have to add these yourself. NOTE: Parent page is currently not being used.',
+    'num_pages' => '%s Page(s)'
 );
 
 $PLG_staticpages_MESSAGE15 = 'Your comment has been submitted for review and will be published when approved by a moderator.';
@@ -209,5 +217,3 @@ $LANG_configselects['staticpages'] = array(
     13 => array('No access' => 0, 'Use' => 2),
     17 => array('Comments Enabled' => 0, 'Comments Disabled' => -1)
 );
-
-?>

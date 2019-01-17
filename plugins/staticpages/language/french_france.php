@@ -126,7 +126,11 @@ $LANG_STATIC = array(
     'autotag_desc_staticpage' => '[staticpage: id alternate title] - Displays a link to a static page using the static page title as the title. An alternate title may be specified but is not required.',
     'autotag_desc_staticpage_content' => '[staticpage_content: id alternate title] - Displays the contents of a staticpage.',
     'yes' => 'Yes',
-    'used_by' => 'This template is assigned to %s page(s). It is possible this template is used more than specified here if the template is being retrieved via an autotag in another template.'
+    'used_by' => 'This template is assigned to %s page(s). It is possible this template is used more than specified here if the template is being retrieved via an autotag in another template.',
+    'prev_page' => 'Previous page',
+    'next_page' => 'Next page',
+    'parent_page' => 'Parent page',
+    'page_desc' => 'Setting a previous and/or next page will add HTML link elements rel=â€nextâ€ and rel=â€prevâ€ to the header to indicate the relationship between pages in a paginated series. Actual page navigation links are not added to the page. You have to add these yourself. NOTE: Parent page is currently not being used.'
 );
 
 $PLG_staticpages_MESSAGE15 = 'Votre commentaire à bien été soumis et sera publié après avoir été approuvé par un modérateur.';

@@ -10,7 +10,7 @@
 // | API method and 2) implements all the common code needed by the Links      |
 // | Plugins' PHP files.                                                       |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2000-2010 by the following authors:                         |
+// | Copyright (C) 2000-2017 by the following authors:                         |
 // |                                                                           |
 // | Authors: Tony Bibbs         - tony AT tonybibbs DOT com                   |
 // |          Mark Limburg       - mlimburg AT users.sourceforge DOT net       |
@@ -430,7 +430,7 @@ function plugin_dopluginsearch_links($query, $datestart, $dateend, $topic, $type
     list($sql,$ftsql) = $search->buildSearchSQL($keyType, $query, $columns, $sql);
 
     $search->setSQL($sql);
-    $search->setFTSQL($ftsql);
+    $search->setFtSQL($ftsql);
     $search->setRank(3);
     $search->setAppendQuery(false);
     $search->setURLRewrite(true);
@@ -698,6 +698,9 @@ function plugin_upgrade_links()
     if (! plugin_compatible_with_this_version_links('links')) {
         return 3002;
     }
+    
+    // Retrieve other plugin info like min geeklog version and homepage 
+    $inst_parms = plugin_autoinstall_links('links');      
 
     require_once $_CONF['path'] . 'plugins/links/sql/'
                                 . $_DB_dbms . '_updates.php';
@@ -808,14 +811,25 @@ function plugin_upgrade_links()
             
         case '2.1.4':
             $current_version = '2.1.5'; // Shipped with Geeklog-2.1.3
-            break;            
+            break;    
+
+        case '2.1.5':
+            $current_version = '2.1.6'; // Shipped with Geeklog-2.2.0
+            break;
+
+        case '2.1.6':
+            $current_version = '2.1.7'; // Shipped with Geeklog-2.2.1
+            break;              
 
         default:
             $done = true;
         }
     }
 
-    DB_query("UPDATE {$_TABLES['plugins']} SET pi_version = '$code_version', pi_gl_version = '$installed_version' WHERE pi_name = 'links'");
+    // update plugin version number and other info
+    DB_query("UPDATE {$_TABLES['plugins']} SET pi_version = '$code_version', pi_gl_version = '{$inst_parms['info']['pi_gl_version']}', pi_homepage = '{$inst_parms['info']['pi_homepage']}' WHERE pi_name = 'links'");
+
+    COM_errorLog( "Updated links plugin from v$installed_version to v$code_version", 1 );      
 
     return true;
 }
@@ -909,7 +923,7 @@ function plugin_itemlist_links()
         $plugin = new Plugin();
         $plugin->submissionlabel = $LANG_LINKS_SUBMIT[11];
         $plugin->submissionhelpfile = 'cclinksubmission.html';
-        $plugin->getsubmissionssql = "SELECT lid AS id,title,cid AS category,url FROM {$_TABLES['linksubmission']} ORDER BY title ASC";
+        $plugin->getsubmissionssql = "SELECT lid AS id,title,cid AS category,url FROM {$_TABLES['linksubmission']} ORDER BY date DESC";
         $plugin->addSubmissionHeading($LANG_LINKS_SUBMIT[8]);
         $plugin->addSubmissionHeading($LANG_LINKS_SUBMIT[10]);
         $plugin->addSubmissionHeading($LANG_LINKS_SUBMIT[9]);
@@ -1069,10 +1083,26 @@ function plugin_save_submit_links($A)
     } else {
         $link = COM_createLink($A['title'], $A['url']);
     }
-    $spamcheck = '<p>'. $link .' (' . $A['categorydd'] . ')<br' . XHTML . '>'
+    $spamCheck = '<p>'. $link .' (' . $A['categorydd'] . ')<br' . XHTML . '>'
                . $A['description'] . '</p>';
-    $result = PLG_checkforSpam($spamcheck, $_CONF['spamx']);
-    if ($result > 0) {
+               
+    $permanentlink = null; // Setting this to null as links can appear on a number of different pages like Category view and links homepage in topten list (there is no true permanent page that the link is being added too)
+    $authorname = null;
+    $authoremail = null;
+    $authorurl = null;
+    if (!COM_isAnonUser()) {
+        $authorname = $_USER['username'];
+        if (!empty($_USER['email'])) {
+            $authoremail = $_USER['email'];
+        }
+        if (!empty($_USER['homepage'])) {
+            $authorurl = $_USER['homepage'];
+        }
+    }
+    
+    $result = PLG_checkForSpam($spamCheck, $_CONF['spamx'], $permanentlink, Geeklog\Akismet::COMMENT_TYPE_LINK, $authorname, $authoremail, $authorurl);
+
+    if ($result > PLG_SPAM_NOT_FOUND) {
         COM_updateSpeedlimit('submit');
         COM_displayMessageAndAbort($result, 'spamx', 403, 'Forbidden');
     }
@@ -1882,4 +1912,25 @@ function plugin_group_changed_links($grp_id, $mode)
         $sql = "UPDATE {$_TABLES['linkcategories']} SET group_id = $new_group_id WHERE group_id = $grp_id";
         $result = DB_query($sql);
    }
+}
+
+/**
+ * Did user create any links
+ *
+ * @return   string   number of links user contributed. If nothing leave blank
+ */
+function plugin_usercontributed_links($uid)
+{
+    global $_TABLES, $LANG_LINKS_ADMIN;
+
+    $retval = '';
+
+    // Include links and link submissions
+    $count = DB_getItem($_TABLES['links'], 'COUNT(owner_id)', "owner_id = {$uid}") + DB_getItem($_TABLES['linksubmission'], 'COUNT(owner_id)', "owner_id = {$uid}");
+    
+    if ($count > 0) {
+        $retval = str_replace('%s', $count, $LANG_LINKS_ADMIN['num_links']);
+    }
+
+    return $retval;
 }

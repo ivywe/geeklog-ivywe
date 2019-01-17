@@ -10,7 +10,7 @@
 // | API method and 2) implements all the common code needed by the Polls      |
 // | plugin' PHP files.                                                        |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2000-2011 by the following authors:                         |
+// | Copyright (C) 2000-2017 by the following authors:                         |
 // |                                                                           |
 // | Authors: Tony Bibbs       - tony AT tonybibbs DOT com                     |
 // |          Tom Willett      - twillett AT users DOT sourceforge DOT net     |
@@ -1123,8 +1123,12 @@ function plugin_getheadercode_polls()
 
     // You normally only set the css file when needed but with the possibility of
     // the poll block or autotag being displayed after COM_SiteHeader being called
-    // we need to set it just in case
+    // we need to set it just in case (for Geeklog version older than v2.2.0 - currently polls plugin supports 2.1.1)
     $_SCRIPTS->setCSSFile('polls', CTL_plugin_themeFindFile('polls', 'css', 'style.css'));
+    
+    // Look for poll templates functions.php for current theme. If exist add in its required javascript and css
+    // Currently being used by denim theme to load UIKit progress component
+    CTL_plugin_setTemplatesFunctions("polls");    
 }
 
 /**
@@ -1148,6 +1152,9 @@ function plugin_upgrade_polls()
     if (!plugin_compatible_with_this_version_polls('polls')) {
         return 3002;
     }
+    
+    // Retrieve other plugin info like min geeklog version and homepage 
+    $inst_parms = plugin_autoinstall_polls('polls');     
 
     require_once $_CONF['path'] . 'plugins/polls/sql/' . $_DB_dbms . '_updates.php';
     require_once $_CONF['path'] . 'plugins/polls/install_updates.php';
@@ -1296,17 +1303,25 @@ function plugin_upgrade_polls()
                 
             case '2.1.7':
                 $current_version = '2.1.8';
-                break;                
+                break; 
+                
+            case '2.1.8':
+                $current_version = '2.1.9';
+                break;
+
+            case '2.1.9':
+                $current_version = '2.2.0';
+                break;                 
 
             default:
                 $done = true;
         }
     }
 
-    DB_query(
-        "UPDATE {$_TABLES['plugins']} SET pi_version = '" . DB_escapeString($code_version) . "', pi_gl_version = '" . DB_escapeString($installed_version) . "' "
-        . "WHERE pi_name = 'polls'"
-    );
+    // update plugin version number and other info
+    DB_query("UPDATE {$_TABLES['plugins']} SET pi_version = '$code_version', pi_gl_version = '{$inst_parms['info']['pi_gl_version']}', pi_homepage = '{$inst_parms['info']['pi_homepage']}' WHERE pi_name = 'polls'");
+
+    COM_errorLog( "Updated polls plugin from v$installed_version to v$code_version", 1 );      
 
     return true;
 }
@@ -1607,7 +1622,7 @@ function plugin_autotags_polls($op, $content = '', $autotag = '')
                 switch ($autotag['tag']) {
                     case 'poll':
                         if (!empty($autotag['parm2'])) {
-                            $title = COM_applyFilter($autotag['parm2']);
+                            $title = $autotag['parm2'];
                         } else {
                             $title = DB_getItem($_TABLES['polltopics'], 'topic', "pid = '" . DB_escapeString($pid) . "' ");
                         }
@@ -1826,7 +1841,10 @@ function plugin_getBlocks_polls($side, $topic = '')
                     'blockorder'     => $_PO_CONF['block_order'],
                     'content'        => $display,
                     'allow_autotags' => false,
+                    'convert_newlines' => false,
                     'help'           => '',
+                    'css_id'         => 'polls_block',  // since GL 2.2.0
+                    'css_classes'    => '',             // since GL 2.2.0
                 );
             }
         }
@@ -2039,7 +2057,7 @@ function plugin_dopluginsearch_polls($query, $dateStart, $dateEnd, $topic, $type
     list($sql, $ftsql) = $search->buildSearchSQL($keyType, $query, $columns, $sql);
 
     $search->setSQL($sql);
-    $search->setFTSQL($ftsql);
+    $search->setFtSQL($ftsql);
     $search->setRank(2);
 
     return $search;

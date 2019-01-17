@@ -3,7 +3,7 @@
 /**
  * File: MailAdmin.Action.class.php
  * This is the Mail Admin Action for the Geeklog Spam-X plugin
- * Copyright (C) 2004-2008 by the following authors:
+ * Copyright (C) 2004-2017 by the following authors:
  * Author   Tom Willett     tomw AT pigstye DOT net
  * Licensed under GNU General Public License
  *
@@ -32,12 +32,19 @@ class MailAdmin extends BaseCommand
     }
 
     /**
-     * Execute
+     * Here we do the work
      *
      * @param  string $comment
-     * @return int
+     * @param  string $permanentLink (since GL 2.2.0)
+     * @param  string $commentType (since GL 2.2.0)
+     * @param  string $commentAuthor (since GL 2.2.0)
+     * @param  string $commentAuthorEmail (since GL 2.2.0)
+     * @param  string $commentAuthorURL (since GL 2.2.0)
+     * @return int    either PLG_SPAM_NOT_FOUND, PLG_SPAM_FOUND or PLG_SPAM_UNSURE
+     * @note As for valid value for $commentType, see system/classes/Akismet.php
      */
-    public function execute($comment)
+    public function execute($comment, $permanentLink = null, $commentType = Geeklog\Akismet::COMMENT_TYPE_COMMENT,
+                                     $commentAuthor = null, $commentAuthorEmail = null, $commentAuthorURL = null)
     {
         global $_CONF, $LANG_SX00, $_SPX_CONF;
 

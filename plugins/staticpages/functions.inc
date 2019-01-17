@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Static Pages Plugin 1.6                                                   |
+// | Static Pages Plugin 1.7                                                   |
 // +---------------------------------------------------------------------------+
 // | functions.inc                                                             |
 // |                                                                           |
@@ -10,7 +10,7 @@
 // | API method and 2) implements all the common code needed by the Static     |
 // | Pages' PHP files.                                                         |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2000-2011 by the following authors:                         |
+// | Copyright (C) 2000-2017 by the following authors:                         |
 // |                                                                           |
 // | Authors: Tony Bibbs       - tony AT tonybibbs DOT com                     |
 // |          Tom Willett      - twillett AT users DOT sourceforge DOT net     |
@@ -269,6 +269,26 @@ function plugin_deletecomment_staticpages($cid, $id)
 }
 
 /**
+ * Did user create any pages
+ *
+ * @return   string   number of pages user contributed. If nothing leave blank
+ */
+function plugin_usercontributed_staticpages($uid)
+{
+    global $_TABLES, $LANG_STATIC;
+
+    $retval = '';
+
+    $count = DB_getItem($_TABLES['staticpage'], 'COUNT(owner_id)', "owner_id = {$uid}");
+    
+    if ($count > 0) {
+        $retval = str_replace('%s', $count, $LANG_STATIC['num_pages']);
+    }
+
+    return $retval;
+}
+
+/**
  * Helper function: Count static pages visible to the current user
  *
  * @return   int     number of pages
@@ -305,12 +325,11 @@ function SP_countVisiblePages()
  * @param    int    $comment_page
  * @param    int    $msg           optional message number
  * @param    string $query         optional search query string to highlight
- * @return   string                  HTML for the static page
+ * @return   string                HTML for the static page
  */
 function SP_displayPage($page, $A, $comment_order = 'ASC', $comment_mode = 'nested', $comment_page = 1, $msg = 0, $query = '')
 {
-    global $_CONF, $_TABLES, $_USER,
-           $LANG01, $LANG11, $LANG_STATIC, $_IMAGE_TYPE, $_SP_CONF;
+    global $_CONF, $_TABLES, $_USER, $LANG01, $LANG11, $LANG_STATIC, $_IMAGE_TYPE, $_SP_CONF;
 
     $retval = '';
 
@@ -320,18 +339,17 @@ function SP_displayPage($page, $A, $comment_order = 'ASC', $comment_mode = 'nest
         $content = COM_highlightQuery($content, $query);
     }
 
-    if ($A['sp_format'] == 'blankpage') {
+    if ($A['sp_format'] === 'blankpage') {
         // The format is "blank page", only return the content of the page - nothing else.
         $retval = $content;
     } else {
         // The format is not "blank page", we need to do some more processing
-        $sp_url = COM_buildURL($_CONF['site_url'] . '/staticpages/index.php?page='
-            . $page);
-        $headercode = '<link rel="canonical" href="' . $sp_url . '"' . XHTML . '>';
+        $sp_url = COM_buildURL($_CONF['site_url'] . '/staticpages/index.php?page=' . $page);
+        $headerCode = '<link rel="canonical" href="' . $sp_url . '"' . XHTML . '>';
 
         // Meta Tags
         if ($_SP_CONF['meta_tags'] > 0) {
-            $headercode .= LB . PLG_getMetaTags(
+            $headerCode .= PHP_EOL . PLG_getMetaTags(
                     'staticpages', $page,
                     array(
                         array(
@@ -343,6 +361,31 @@ function SP_displayPage($page, $A, $comment_order = 'ASC', $comment_mode = 'nest
                             'content' => $A['meta_keywords'],
                         ),
                     )
+                );
+        }
+        
+        // Add hreflang link element if Multi Language Content is setup
+        // Only allow hreflang link element to be visible when on canonical url
+        // ie no second pages which can happen with comments or with extra trailing variables like from a search query
+        if (strtolower(COM_getCurrentURL()) == strtolower($sp_url)) {
+            $headerCode .= COM_createHREFLang('staticpages', $page);
+        }
+
+        // Previous and next pages
+        $sp_prev = stripslashes($A['sp_prev']);
+        if ($sp_prev !== '') {
+            $headerCode .= PHP_EOL . sprintf(
+                    '<link rel="prev" href="%s"%s>',
+                    COM_buildURL($_CONF['site_url'] . '/staticpages/index.php?page=' . $sp_prev),
+                    XHTML
+                );
+        }
+        $sp_next = stripslashes($A['sp_next']);
+        if ($sp_next !== '') {
+            $headerCode .= PHP_EOL . sprintf(
+                    '<link rel="next" href="%s"%s>',
+                    COM_buildURL($_CONF['site_url'] . '/staticpages/index.php?page=' . $sp_next),
+                    XHTML
                 );
         }
 
@@ -413,7 +456,9 @@ function SP_displayPage($page, $A, $comment_order = 'ASC', $comment_mode = 'nest
                 $photo = USER_getPhoto($A['owner_id'], $photo);
                 if (!empty($photo)) {
                     $spage->set_var('author_photo', $photo);
-                    $camera_icon = '<span uk-icon="icon: file-edit"></span>静的ページ編集';
+                    $camera_icon = '<img src="' . $_CONF['layout_url']
+                        . '/images/smallcamera.' . $_IMAGE_TYPE
+                        . '" alt=""' . XHTML . '>';
                     $spage->set_var('camera_icon',
                         COM_createLink($camera_icon, $profile_link));
                 }
@@ -435,7 +480,7 @@ function SP_displayPage($page, $A, $comment_order = 'ASC', $comment_mode = 'nest
             $print_url = COM_buildURL($_CONF['site_url']
                 . '/staticpages/index.php?page=' . $page
                 . '&amp;disp_mode=print');
-            $icon = COM_createLink($printicon, $print_url);
+            $icon = COM_createLink($printicon, $print_url, array('rel' => 'nofollow'));
             $spage->set_var('printable_url', $print_url);
             $spage->set_var('print_icon', $icon);
         }
@@ -445,15 +490,19 @@ function SP_displayPage($page, $A, $comment_order = 'ASC', $comment_mode = 'nest
         ) {
             $icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
             $attr = array('title' => $LANG_STATIC['edit']);
-            $editiconhtml = '<span uk-icon="icon: file-edit"></span>'.$LANG_STATIC['edit'];
-            $attr = array('class' => '', 'title' => $LANG_STATIC['edit']);
+            $editiconhtml = COM_createImage($icon_url, $LANG_STATIC['edit'], $attr);
+            $attr = array(
+                'class' => 'editlink',
+                'title' => $LANG_STATIC['edit'],
+                'rel'   => 'nofollow',
+            );
             $url = $_CONF['site_admin_url']
                 . '/plugins/staticpages/index.php?mode=edit&amp;sp_id=' . $page;
-            $icon =
-                '&nbsp;' . COM_createLink(
-                    $editiconhtml, //display
-                    $url,  //target
-                    $attr //other attributes
+            $icon = '&nbsp;'
+                . COM_createLink(
+                    $editiconhtml,  //display
+                    $url,           //target
+                    $attr           //other attributes
                 );
             $spage->set_var('edit_icon', $icon);
         }
@@ -473,7 +522,7 @@ function SP_displayPage($page, $A, $comment_order = 'ASC', $comment_mode = 'nest
         $spage->set_var('content', $content);
 
         $spage->set_var('lastupdate', '');
-        if ($_SP_CONF['show_date'] == 1  && $A['sp_onlastupdate'] == 1) {
+        if ($_SP_CONF['show_date'] == 1 && $A['sp_onlastupdate'] == 1) {
             $curtime = COM_getUserDateTimeFormat($A['modified']);
             $lastupdate = $LANG_STATIC['lastupdated'] . ': ' . $curtime[0];
             $spage->set_var('lang_updated', $LANG_STATIC['lastupdated']);
@@ -525,7 +574,7 @@ function SP_displayPage($page, $A, $comment_order = 'ASC', $comment_mode = 'nest
             $breadcrumbs = TOPIC_breadcrumbs('staticpages', $page);
         }
 
-        $retval = COM_createHTMLDocument($retval, array('what' => $what, 'pagetitle' => $page_title, 'breadcrumbs' => $breadcrumbs, 'headercode' => $headercode, 'rightblock' => $rightblock));
+        $retval = COM_createHTMLDocument($retval, array('what' => $what, 'pagetitle' => $page_title, 'breadcrumbs' => $breadcrumbs, 'headercode' => $headerCode, 'rightblock' => $rightblock));
     }
 
     return $retval;
@@ -552,11 +601,11 @@ function SP_printPage($page, $A)
 
     $page_title = stripslashes($A['sp_page_title']);
     if (empty($page_title)) {
-        $page_title = $_CONF['site_name'] . ' - ' .  stripslashes($A['sp_title']);
+        $page_title = $_CONF['site_name'] . ' - ' . stripslashes($A['sp_title']);
     }
     $print->set_var('page_title', $page_title);
-        
-        
+
+
     $sp_url = COM_buildURL($_CONF['site_url']
         . '/staticpages/index.php?page=' . $page);
     $print->set_var('sp_url', $sp_url);
@@ -639,7 +688,12 @@ function SP_printPage($page, $A)
             '(' . $comments_text . ')');
         $print->set_var('comments_count', $numComments);
         $print->set_var('lang_comments', $LANG01[3]);
-        $comments_with_count = sprintf($LANG01[121], $numComments);
+
+        if ($numComments > 1) {
+            $comments_with_count = sprintf($LANG01[121], $numComments);
+        } else {
+            $comments_with_count = sprintf($LANG01[143], $numComments);
+        }
 
         if ($comments > 0) {
             $comments_with_count = COM_createLink($comments_with_count,
@@ -679,8 +733,7 @@ function SP_returnStaticpage($page = '', $mode = '', $comment_order = 'ASC', $co
         // Grab page id from database since some comparisons are case sensitive
         // and staticpage ids are not.
         $result = DB_query(
-            "SELECT sp_id, owner_id "
-            . "FROM {$_TABLES['staticpage']} "
+            "SELECT sp_id, owner_id FROM {$_TABLES['staticpage']} "
             . "WHERE (sp_id = '" . DB_escapeString($page) . "')"
         );
 
@@ -690,9 +743,9 @@ function SP_returnStaticpage($page = '', $mode = '', $comment_order = 'ASC', $co
             $owner_id = 0;
         }
 
-        if ($mode == 'print') {
+        if ($mode === 'print') {
             $retval = SP_printPage($page, $retval);
-        } elseif ($mode == 'autotag') {
+        } elseif ($mode === 'autotag') {
             $retval = $retval['sp_content'];
         } else {
             $retval = SP_displayPage($page, $retval, $comment_order, $comment_mode, $comment_page, $msg, $query);
@@ -702,8 +755,7 @@ function SP_returnStaticpage($page = '', $mode = '', $comment_order = 'ASC', $co
         // of the page (feature request #0001572)
         if (COM_isAnonUser() || ($_USER['uid'] != $owner_id)) {
             DB_query(
-                "UPDATE {$_TABLES['staticpage']} "
-                . "SET sp_hits = sp_hits + 1 "
+                "UPDATE {$_TABLES['staticpage']} SET sp_hits = sp_hits + 1 "
                 . "WHERE (sp_id = '" . DB_escapeString($page) . "')  "
                 . "  AND (draft_flag = 0) AND (template_flag = 0) "
             );
@@ -718,7 +770,7 @@ function SP_returnStaticpage($page = '', $mode = '', $comment_order = 'ASC', $co
  * If $showsitestats is 1 then we are to only print the overall stats in the
  * 'site statistics box' otherwise we show the detailed stats
  *
- * @param    int     $showsitestats   Flag to let us know which stats to get
+ * @param    int $showsitestats Flag to let us know which stats to get
  * @return   string
  */
 function plugin_showstats_staticpages($showsitestats)
@@ -801,7 +853,7 @@ function plugin_searchtypes_staticpages()
     global $LANG_STATIC, $_SP_CONF;
 
     if ($_SP_CONF['includesearch'] == 1) {
-        $tmp['staticpages'] = $LANG_STATIC['staticpages'];
+        $tmp['staticpages'] = $LANG_STATIC['pages'];
 
         return $tmp;
     } else {
@@ -865,14 +917,14 @@ function plugin_dopluginsearch_staticpages($query, $datestart, $dateend, $topic,
         $sql .= 'AND sp_php = 0 ';
     }
 
-    $search_p = new SearchCriteria('staticpages', $LANG_STATIC['staticpages']);
+    $search_p = new SearchCriteria('staticpages', $LANG_STATIC['pages']);
 
     $columns = array('title' => 'sp_title', 'sp_content');
     $sql .= $search_p->getDateRangeSQL('AND', 'created', $datestart, $dateend);
     list($sql, $ftsql) = $search_p->buildSearchSQL($keyType, $query, $columns, $sql);
 
     $search_p->setSQL($sql);
-    $search_p->setFTSQL($ftsql);
+    $search_p->setFtSQL($ftsql);
     $search_p->setRank(3);
     $search_p->setURLRewrite(true);
 
@@ -898,14 +950,14 @@ function plugin_dopluginsearch_staticpages($query, $datestart, $dateend, $topic,
         }
     }
 
-    $search_c = new SearchCriteria('comments', array($LANG_STATIC['staticpages'], $LANG09[66]));
+    $search_c = new SearchCriteria('comments', array($LANG_STATIC['pages'], $LANG09[66]));
 
     $columns = array('title' => 'c.title', 'comment');
     $sql .= $search_c->getDateRangeSQL('AND', 'c.date', $datestart, $dateend);
     list($sql, $ftsql) = $search_c->buildSearchSQL($keyType, $query, $columns, $sql);
 
     $search_c->setSQL($sql);
-    $search_c->setFTSQL($ftsql);
+    $search_c->setFtSQL($ftsql);
     $search_c->setRank(2);
 
     return array($search_p, $search_c);
@@ -1007,9 +1059,9 @@ function SP_getPerms($table = '', $access = '2', $u_id = '')
 /**
  * Display static pages in the center block.
  *
- * @param   int     $where   where the static page will be displayed (0..3)
- * @param   int     $page    page number
- * @param   string  $topic   topic ID
+ * @param   int    $where where the static page will be displayed (0..3)
+ * @param   int    $page  page number
+ * @param   string $topic topic ID
  * @return          string   HTML for the static page (can be empty)
  */
 function plugin_centerblock_staticpages($where = 1, $page = 1, $topic = '')
@@ -1098,14 +1150,13 @@ function plugin_centerblock_staticpages($where = 1, $page = 1, $topic = '')
             }
 
             if ($_CONF['hideprintericon'] == 0) {
-                $icon_url = $_CONF['layout_url'] . '/images/print.'
-                    . $_IMAGE_TYPE;
+                $icon_url = $_CONF['layout_url'] . '/images/print.' . $_IMAGE_TYPE;
                 $attr = array('title' => $LANG_STATIC['printable_format']);
                 $printicon = COM_createImage($icon_url, $LANG01[65], $attr);
                 $print_url = COM_buildURL($_CONF['site_url']
                     . '/staticpages/index.php?page=' . $S['sp_id']
                     . '&amp;disp_mode=print');
-                $icon = COM_createLink($printicon, $print_url);
+                $icon = COM_createLink($printicon, $print_url, array('rel' => 'nofollow'));
                 $spage->set_var('print_icon', $icon);
             }
             if ((SEC_hasAccess($S['owner_id'], $S['group_id'], $S['perm_owner'],
@@ -1115,28 +1166,32 @@ function plugin_centerblock_staticpages($where = 1, $page = 1, $topic = '')
                 $icon_url = $_CONF['layout_url'] . '/images/edit.'
                     . $_IMAGE_TYPE;
                 $attr = array('title' => $LANG_STATIC['edit']);
-                $editiconhtml = '<span uk-icon="icon: file-edit"></span>'.$LANG_STATIC['edit'];
+                $editiconhtml = COM_createImage($icon_url, $LANG_STATIC['edit'],
+                    $attr);
                 $url = $_CONF['site_admin_url']
                     . '/plugins/staticpages/index.php?mode=edit&amp;sp_id=' . $S['sp_id'];
-                $attr = array('class' => 'editlink',
-                              'title' => $LANG_STATIC['edit']);
-                $icon =
-                    '&nbsp;' . COM_createLink(
-                        $editiconhtml, //display
-                        $url,  //target
-                        $attr //other attributes
+                $attr = array(
+                    'class' => 'editlink',
+                    'title' => $LANG_STATIC['edit'],
+                    'rel'   => 'nofollow',
+                );
+                $icon = '&nbsp;'
+                    . COM_createLink(
+                        $editiconhtml,  //display
+                        $url,           //target
+                        $attr           //other attributes
                     );
                 $spage->set_var('edit_icon', $icon);
             }
 
             $spage->set_var('lastupdate', '');
-            if ($_SP_CONF['show_date'] == 1  && $S['sp_onlastupdate'] == 1) {
+            if ($_SP_CONF['show_date'] == 1 && $S['sp_onlastupdate'] == 1) {
                 $curtime = COM_getUserDateTimeFormat($S['modified']);
                 $lastupdate = $LANG_STATIC['lastupdated'] . ': ' . $curtime[0];
                 $spage->set_var('lang_updated', $LANG_STATIC['lastupdated']);
                 $spage->set_var('updated_date', $curtime[0]);
                 $spage->set_var('lastupdate', $lastupdate);
-                
+
             }
 
             $spage->set_var('hits', '');
@@ -1195,7 +1250,7 @@ function plugin_centerblock_staticpages($where = 1, $page = 1, $topic = '')
  * A user is about to be deleted. Update ownership of any static pages owned
  * by that user or delete them.
  *
- * @param  int  $uid  User id of deleted user
+ * @param  int $uid User id of deleted user
  */
 function plugin_user_delete_staticpages($uid)
 {
@@ -1204,17 +1259,36 @@ function plugin_user_delete_staticpages($uid)
     if (DB_count($_TABLES['staticpage'], 'owner_id', $uid) == 0) {
         return;
     }
+    
+    // Figure out root user 
+    $rootgroup = DB_getItem($_TABLES['groups'], 'grp_id',
+        "grp_name = 'Root'");
+    $result = DB_query("SELECT DISTINCT ug_uid FROM {$_TABLES['group_assignments']} WHERE ug_main_grp_id = $rootgroup ORDER BY ug_uid LIMIT 1");
+    $A = DB_fetchArray($result);
+    $rootuser = $A['ug_uid'];
 
     if ($_SP_CONF['delete_pages'] == 1) {
-        // delete the pages
-        DB_query("DELETE FROM {$_TABLES['staticpage']} WHERE owner_id = $uid");
+        // delete the pages for the user if able
+        
+        $sql = "SELECT sp_id FROM {$_TABLES['staticpage']} WHERE owner_id = $uid";
+
+        $result = DB_query($sql);
+        $nrows = DB_numRows($result);
+
+        for ($i = 0; $i < $nrows; $i++) {
+            $A = DB_fetchArray($result);        
+            
+            $args = array(
+                'sp_id' => $A['sp_id'],
+            );
+            if (PLG_RET_OK != PLG_invokeService('staticpages', 'delete', $args, $display, $svc_msg)) {
+                // Couldn't delete for some reason (security, page is a template being used, etc)
+                // Can't stop user delete so assign new ownership to page
+                DB_query("UPDATE {$_TABLES['staticpage']} SET owner_id = $rootuser WHERE sp_id = '{$A['sp_id']}'");
+            }
+        }
     } else {
         // assign ownership to a user from the Root group
-        $rootgroup = DB_getItem($_TABLES['groups'], 'grp_id',
-            "grp_name = 'Root'");
-        $result = DB_query("SELECT DISTINCT ug_uid FROM {$_TABLES['group_assignments']} WHERE ug_main_grp_id = $rootgroup ORDER BY ug_uid LIMIT 1");
-        $A = DB_fetchArray($result);
-        $rootuser = $A['ug_uid'];
 
         DB_query("UPDATE {$_TABLES['staticpage']} SET owner_id = $rootuser WHERE owner_id = $uid");
     }
@@ -1236,11 +1310,11 @@ function plugin_chkVersion_staticpages()
 }
 
 /**
- * Implements the [staticpage:] autotag.
+ * Implements the [staticpage:] autotag. (and [page:])
  *
  * @param  string $op
  * @param  string $content
- * @param  string
+ * @param         string
  * @return string
  */
 function plugin_autotags_staticpages($op, $content = '', $autotag = '')
@@ -1249,8 +1323,10 @@ function plugin_autotags_staticpages($op, $content = '', $autotag = '')
 
     static $recursive = array();
 
+    // Note as of Geeklog v2.2.1 added short version of staticpage autotags (staticpage = page and staticpage_content = page_content)
+    // At some point we should depreciate staticpage and staticpage_content autotag name or at least hide the descriptions
     if ($op == 'tagname') {
-        return array('staticpage', 'staticpage_content');
+        return array('staticpage', 'staticpage_content', 'page', 'page_content');
     } elseif ($op == 'permission' || $op == 'nopermission') {
         $flag = ($op == 'permission');
         $tagnames = array();
@@ -1268,6 +1344,7 @@ function plugin_autotags_staticpages($op, $content = '', $autotag = '')
                 $_SP_CONF[$p][2], $_SP_CONF[$p][3]) == $flag
         ) {
             $tagnames[] = 'staticpage_content';
+            $tagnames[] = 'page_content';
         }
         $p = 'autotag_permissions_staticpage';
         if (COM_getPermTag($owner_id, $group_id,
@@ -1275,6 +1352,7 @@ function plugin_autotags_staticpages($op, $content = '', $autotag = '')
                 $_SP_CONF[$p][2], $_SP_CONF[$p][3]) == $flag
         ) {
             $tagnames[] = 'staticpage';
+            $tagnames[] = 'page';
         }
 
         if (count($tagnames) > 0) {
@@ -1284,9 +1362,11 @@ function plugin_autotags_staticpages($op, $content = '', $autotag = '')
         return array(
             'staticpage'         => $LANG_STATIC['autotag_desc_staticpage'],
             'staticpage_content' => $LANG_STATIC['autotag_desc_staticpage_content'],
+            'page'         => $LANG_STATIC['autotag_desc_page'],
+            'page_content' => $LANG_STATIC['autotag_desc_page_content'],
         );
     } elseif ($op == 'parse') {
-        if ($autotag['tag'] == 'staticpage') {
+        if ($autotag['tag'] == 'staticpage' || $autotag['tag'] == 'page') {
             $sp_id = COM_applyFilter($autotag['parm1']);
             $sp_id = COM_switchLanguageIdForObject($sp_id);
             if (!empty($sp_id)) {
@@ -1307,7 +1387,7 @@ function plugin_autotags_staticpages($op, $content = '', $autotag = '')
                     $content = str_replace($autotag['tagstr'], $link, $content);
                 }
             }
-        } elseif ($autotag['tag'] == 'staticpage_content') {
+        } elseif ($autotag['tag'] == 'staticpage_content' || $autotag['tag'] == 'page_content') {
             $sp_id = COM_applyFilter($autotag['parm1']);
             $sp_id = COM_switchLanguageIdForObject($sp_id);
             if (!empty($sp_id)) {
@@ -1354,8 +1434,7 @@ function plugin_upgrade_staticpages()
 {
     global $_CONF, $_TABLES, $_DB_dbms;
 
-    $installed_version = DB_getItem($_TABLES['plugins'], 'pi_version',
-        "pi_name = 'staticpages'");
+    $installed_version = DB_getItem($_TABLES['plugins'], 'pi_version', "pi_name = 'staticpages'");
     $code_version = plugin_chkVersion_staticpages();
     if ($installed_version == $code_version) {
         // nothing to do
@@ -1367,6 +1446,9 @@ function plugin_upgrade_staticpages()
     if (!plugin_compatible_with_this_version_staticpages('staticpages')) {
         return 3002;
     }
+    
+    // Retrieve other plugin info like min geeklog version and homepage 
+    $inst_parms = plugin_autoinstall_staticpages('staticpages');    
 
     require_once $_CONF['path'] . 'plugins/staticpages/sql/'
         . $_DB_dbms . '_updates.php';
@@ -1396,7 +1478,7 @@ function plugin_upgrade_staticpages()
                     return false;
                 }
 
-                if (isset($_UPDATES[$current_version])) {
+                if (isset($_UPDATES, $_UPDATES[$current_version])) {
                     $_SQL = $_UPDATES[$current_version];
                     foreach ($_SQL as $sql) {
                         DB_query($sql);
@@ -1520,7 +1602,7 @@ function plugin_upgrade_staticpages()
             case '1.6.6':
                 $current_version = '1.6.7';
                 break;
-                
+
             case '1.6.7':
                 if (isset($_UPDATES[$current_version])) {
                     $_SQL = $_UPDATES[$current_version];
@@ -1528,7 +1610,7 @@ function plugin_upgrade_staticpages()
                         DB_query($sql);
                     }
                 }
-                
+
                 $current_version = '1.6.8';
                 break;
             case '1.6.8':
@@ -1538,16 +1620,36 @@ function plugin_upgrade_staticpages()
                         DB_query($sql);
                     }
                 }
-                
+
                 $current_version = '1.6.9';
-                break;                  
+                break;
+
+            case '1.6.9':
+                if (isset($_UPDATES[$current_version])) {
+                    $_SQL = $_UPDATES[$current_version];
+                    foreach ($_SQL as $sql) {
+                        DB_query($sql);
+                    }
+                }
+                
+                SP_update_ConfValues_1_7_0();
+
+                $current_version = '1.7.0';
+                break;
+                
+            case '1.7.0':
+                $current_version = '1.7.1';
+                break;                
 
             default:
                 $done = true;
         }
     }
 
-    DB_query("UPDATE {$_TABLES['plugins']} SET pi_version = '$code_version', pi_gl_version = '$installed_version' WHERE pi_name = 'staticpages'");
+    // update plugin version number and other info
+    DB_query("UPDATE {$_TABLES['plugins']} SET pi_version = '$code_version', pi_gl_version = '{$inst_parms['info']['pi_gl_version']}', pi_homepage = '{$inst_parms['info']['pi_homepage']}' WHERE pi_name = 'staticpages'");
+    
+    COM_errorLog( "Updated staticpages plugin from v$installed_version to v$code_version", 1 );
 
     return true;
 }
@@ -1555,7 +1657,7 @@ function plugin_upgrade_staticpages()
 /**
  * Called during site migration - handle changed URLs or paths
  *
- * @param    array $old_conf     contents of the $_CONF array on the old site
+ * @param    array $old_conf contents of the $_CONF array on the old site
  * @return   boolean             true on success, otherwise false
  */
 function plugin_migrate_staticpages($old_conf)
@@ -1587,6 +1689,11 @@ function plugin_migrate_staticpages($old_conf)
  */
 function plugin_autouninstall_staticpages()
 {
+    
+    // Delete multi-language support Core Config option for Staticpage Plugin
+    $c = config::get_instance();
+    $c->del('langurl_staticpages', 'Core');
+    
     $out = array(
         /* give the name of the tables, without $_TABLES[] */
         'tables'     => array('staticpage'),
@@ -1616,6 +1723,8 @@ function plugin_getListField_staticpages($fieldname, $fieldvalue, $A, $icon_arr)
 {
     global $_CONF, $LANG_ACCESS, $LANG_STATIC, $_TABLES;
 
+    $retval = '';
+    
     switch ($fieldname) {
         case 'edit':
             $retval = COM_createLink($icon_arr['edit'],
@@ -1691,7 +1800,7 @@ function plugin_getListField_staticpages($fieldname, $fieldvalue, $A, $icon_arr)
                 $retval = $LANG_STATIC['centerblock_no'];
             }
             break;
-            
+
         case 'template_id':
             if ($A['template_id']) {
                 // Find name of template and see if have access to it
@@ -1706,20 +1815,20 @@ function plugin_getListField_staticpages($fieldname, $fieldvalue, $A, $icon_arr)
                         }
                         $sp_title = '(' . $sp_title . ')';
                     }
-                    
-                    $url = COM_buildURL($_CONF['site_url'] .  '/staticpages/index.php?page=' . $B['sp_id']);
+
+                    $url = COM_buildURL($_CONF['site_url'] . '/staticpages/index.php?page=' . $B['sp_id']);
                     $attr = array();
                     if (!empty($B['sp_page_title'])) {
                         $attr['title'] = htmlspecialchars($B['sp_page_title']);
                     }
                     $retval = COM_createLink($sp_title, $url, $attr);
                     $retval .= ' ' . COM_createLink($icon_arr['edit'], "{$_CONF['site_admin_url']}/plugins/staticpages/index.php?mode=edit&amp;sp_id={$B['sp_id']}");
-                    
+
                 } else {
                     // Assume no access, This will create an issue if they edit the staticpage
-                    
+
                 }
-        
+
             } else {
                 // Check to see if actually a template
                 if ($A['template_flag']) {
@@ -1733,7 +1842,7 @@ function plugin_getListField_staticpages($fieldname, $fieldvalue, $A, $icon_arr)
                     $retval = '';
                 }
             }
-            break;            
+            break;
 
         case 'unixdate':
             $retval = strftime($_CONF['daytime'], $A['unixdate']);
@@ -1751,13 +1860,16 @@ function plugin_getListField_staticpages($fieldname, $fieldvalue, $A, $icon_arr)
  * Render the actual content of a static page (without any surrounding blocks)
  *
  * @param    string $sp_id       the id
+ * @param    string $sp_id       the title of the page. Used to set {sp_title} template variable
  * @param    string $sp_content  the content (HTML or PHP source)
  * @param    int    $sp_php      flag: 1 = content is PHP source, 0 = is HTML
  * @param    int    $cache_time  the max cache time of this page
- * @param    string $template_id the max cache time of this page
+ * @param    string $template_id Template used for content
+ * @param    string $created     Created date of page
+ * @param    string $modified    Last modified date of page
  * @return   string                  rendered content (HTML)
  */
-function SP_render_content($sp_id, $sp_content, $sp_php, $cache_time = 0, $template_id = '')
+function SP_render_content($sp_id, $sp_title, $sp_content, $sp_php, $cache_time = 0, $template_id = '', $created = '', $modified = '')
 {
     global $_SP_CONF, $LANG_STATIC;
 
@@ -1810,7 +1922,7 @@ function SP_render_content($sp_id, $sp_content, $sp_php, $cache_time = 0, $templ
         $svc_msg = array();
 
         if (PLG_invokeService('staticpages', 'get', $args, $retval, $svc_msg) == PLG_RET_OK) {
-            
+
             // Need to do below twice for backwards compatibility with pre Staticpage plugin v1.6.8 way of handling templates
             // Reason is in case [staticpage_content: autotag is in staticpage template page variable which is used to load staticpage within staticpage template. 
             // This staticpage may be a template and have may have template variables as well which we need to compile
@@ -1818,17 +1930,24 @@ function SP_render_content($sp_id, $sp_content, $sp_php, $cache_time = 0, $templ
                 // Treat as normal staticpage template but really just want to use a view and load no files
                 $sp_template = COM_newTemplate(CTL_plugin_templatePath('staticpages'));
                 $sp_template->set_view(array(
-                    'page_view'   => $retval['sp_content'],
-                ));            
+                    'page_view' => $retval['sp_content'],
+                ));
                 
+                // Staticpage specfic template variables
+                // Set Staticpage Title
+                $sp_template->set_var('sp_title', stripslashes($sp_title));
+                // ISO 8601 dates for created and modified
+                $sp_template->set_var('sp_created', date('c', strtotime($created)));
+                $sp_template->set_var('sp_updated', date('c', strtotime($modified)));
+
                 // Add all the staticpage variables as template variables now
                 foreach ($tag as $key => $value) {
                     $sp_template->set_var($key, $value);
-                }            
+                }
 
                 $retval['sp_content'] = $sp_template->finish($sp_template->parse('output', 'page_view'));
             }
-            
+
             /* Old way of applying variables left for bug checking (Staticpage plugin v1.6.8, Geeklog v2.1.2)
             $retval['sp_content'] = str_replace(array_keys($tag), array_values($tag), $retval['sp_content']);
             // Remove any unknown staticpage template variables as long as they use the curly brackets ie {templatevariable}
@@ -2043,9 +2162,9 @@ function plugin_getwhatsnew_staticpages()
 /**
  * Return new Static Page comments for the What's New block
  *
- * @param    int    $numreturn   If 0 will return results for What's New Block.
+ * @param    int $numreturn      If 0 will return results for What's New Block.
  *                               If > 0 will return last X new comments for User Profile.
- * @param    int    $uid         ID of the user to return results for. 0 = all users.
+ * @param    int $uid            ID of the user to return results for. 0 = all users.
  * @return   array list of new comments (dups, type, title, sid, lastdate) or (sid, title, cid, unixdate)
  */
 function plugin_getwhatsnewcomment_staticpages($numreturn = 0, $uid = 0)
@@ -2275,7 +2394,6 @@ function plugin_getdocumentationurl_staticpages($file)
  * @param    string $id      Id of config value
  * @return   mixed           Text to use regular tooltip, NULL to use config
  *                           tooltip hack, or empty string when not available
-
  */
 function plugin_getconfigtooltip_staticpages($id)
 {

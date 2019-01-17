@@ -3,7 +3,7 @@
 /**
  * File: BanUser.Action.class.php
  * This is the Ban User Action for the Geeklog Spam-X plugin
- * Copyright (C) 2012 by the following authors:
+ * Copyright (C) 2012-2017 by the following authors:
  * Author   Dirk Haun       dirk AT haun-online DOT net
  * based on earlier works by Tom Willett
  * Licensed under GNU General Public License
@@ -36,12 +36,19 @@ class BanUser extends BaseCommand
     }
 
     /**
-     * Execute
+     * Here we do the work
      *
      * @param  string $comment
-     * @return int
+     * @param  string $permanentLink (since GL 2.2.0)
+     * @param  string $commentType (since GL 2.2.0)
+     * @param  string $commentAuthor (since GL 2.2.0)
+     * @param  string $commentAuthorEmail (since GL 2.2.0)
+     * @param  string $commentAuthorURL (since GL 2.2.0)
+     * @return int    either PLG_SPAM_NOT_FOUND, PLG_SPAM_FOUND or PLG_SPAM_UNSURE
+     * @note As for valid value for $commentType, see system/classes/Akismet.php
      */
-    public function execute($comment)
+    public function execute($comment, $permanentLink = null, $commentType = Geeklog\Akismet::COMMENT_TYPE_COMMENT,
+                                     $commentAuthor = null, $commentAuthorEmail = null, $commentAuthorURL = null)
     {
         global $result, $_CONF, $_TABLES, $LANG_SX00, $_USER;
 
