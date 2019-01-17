@@ -271,13 +271,13 @@ if (!empty($useTheme) && is_dir($_CONF['path_themes'] . $useTheme)) {
 
 // Fix a wrong theme name, since "professional" and "professional_css" themes are deprecated as of Geeklog 2.1.2
 if (($_CONF['theme'] === 'professional') || ($_CONF['theme'] === 'professional_css')) {
-    $_CONF['theme'] = $_USER['theme'] = 'default';
+    $_CONF['theme'] = $_USER['theme'] = 'denim';
     $_CONF['path_layout'] = $_CONF['path_themes'] . $_CONF['theme'] . '/';
     $_CONF['layout_url'] = $_CONF['site_url'] . '/layout/' . $_CONF['theme'];
 
     if (!headers_sent()) {
         @setcookie(
-            $_CONF['cookie_theme'], 'default', time() + 31536000, $_CONF['cookie_path'],
+            $_CONF['cookie_theme'], 'denim', time() + 31536000, $_CONF['cookie_path'],
             $_CONF['cookiedomain'], $_CONF['cookiesecure']
         );
     }
@@ -5455,18 +5455,12 @@ function COM_getDayFormOptions($selected = '')
  * @see    function COM_getMinuteFormOptions
  * @return string  HTML years as option values
  */
-function COM_getYearFormOptions($selected = '', $startOffset = -1, $endOffset = 5)
+function COM_getYearFormOptions($selected = '', $startOffset = -6, $endOffset = 5)
 {
     $year_options = '';
     $start_year = date('Y') + $startOffset;
     $cur_year = date('Y', time());
     $finish_year = $cur_year + $endOffset;
-
-    if (!empty($selected)) {
-        if ($selected < $cur_year) {
-            $start_year = $selected;
-        }
-    }
 
     for ($i = $start_year; $i <= $finish_year; $i++) {
         $year_options .= '<option value="' . $i . '"';
