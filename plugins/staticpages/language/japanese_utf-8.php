@@ -138,7 +138,7 @@ $LANG_STATIC = array(
     'prev_page' => '前のページ',
     'next_page' => '次のページ',
     'parent_page' => '親ページ',
-    'page_desc' => 'Setting a previous and/or next page will add HTML link elements rel=”next” and rel=”prev” to the header to indicate the relationship between pages in a paginated series. Actual page navigation links are not added to the page. You have to add these yourself. NOTE: Parent page is currently not being used.',
+    'page_desc' => '前のページや次のページ、あるいはその両方を設定すると、HTMLリンク要素 rel="next"および rel="prev" がヘッダーに追加され、ページ間の関係を明示します。ただし、ページナビゲーションはページに追加されないので、必要なら別途追加しなければなりません。注：親ページは現在使用していません。',
     'num_pages' => '%s Page(s)'
 );
 
