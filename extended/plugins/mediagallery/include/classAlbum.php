@@ -168,9 +168,15 @@ class mgAlbum {
         $this->albums_first         = $_MG_CONF['ad_albums_first'];
         $this->allow_download       = $_MG_CONF['ad_allow_download'];
         $this->full                 = $_MG_CONF['ad_full_display'];
+
         $this->tn_size              = $_MG_CONF['ad_tn_size'];
         $this->tnHeight             = isset($_MG_CONF['ad_tn_height']) ? $_MG_CONF['ad_tn_height'] : 0;
         $this->tnWidth              = isset($_MG_CONF['ad_tn_width'])  ? $_MG_CONF['ad_tn_width']  : 0;
+// komma debug アルバムのサムネイルサイズのデフォルトが入らない不具合対策
+        $this->tn_size              = $_MG_CONF['gallery_tn_size'];
+        $this->tnHeight             = isset($_MG_CONF['gallery_tn_height']) ? $_MG_CONF['gallery_tn_height'] : 0;
+        $this->tnWidth              = isset($_MG_CONF['gallery_tn_width'])  ? $_MG_CONF['gallery_tn_width']  : 0;
+
         $this->max_image_height     = $_MG_CONF['ad_max_image_height'];
         $this->max_image_width      = $_MG_CONF['ad_max_image_width'];
         $this->max_filesize         = $_MG_CONF['ad_max_filesize'];
