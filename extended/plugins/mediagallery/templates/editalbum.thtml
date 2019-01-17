@@ -16,11 +16,11 @@ function change(what) {
     <div class="admin_basic gl_mg_album">
 	    <fieldset class="uk-margin-large-top">
 	      <dl class="form_block">
-					<dt><label class="uk-form-label">{lang_title}</label></dt>
+					<dt class="uk-margin-small"><label class="uk-form-label">{lang_title}</label></dt>
 					<dd class="uk-clearfix"><input type="text" class="uk-input uk-form-width-large" name="album_name" value="{album_title}" class="uk-form-width-large"{xhtml}></dd>
-					<dt><label class="uk-form-label">{lang_description}</label></dt>
+					<dt class="uk-margin-small"><label class="uk-form-label">{lang_description}</label></dt>
 					<dd class="uk-clearfix"><textarea class="uk-textarea uk-form-width-large" name="album_desc" cols="50" rows="3" class="uk-width-1-1">{album_desc}</textarea></dd>
-					<dt><label class="uk-form-label">{lang_parent_album}</label></dt>
+					<dt class="uk-margin-small"><label class="uk-form-label">{lang_parent_album}</label></dt>
 					<dd class="uk-clearfix">{parent_select}</dd>
 				</dl>
 	    </fieldset>
@@ -28,82 +28,82 @@ function change(what) {
 	      <legend>{lang_album_attributes}</legend>
 				<dl class="form_block">
 
-          <dt><label class="uk-form-label">{lang_theme_select}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_theme_select}</label></dt>
           <dd class="uk-clearfix">{album_theme_select}</dd>
 
-          <dt><label class="uk-form-label">{lang_comments}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_comments}</label></dt>
           <dd class="uk-clearfix">{comment_select}</dd>
 
-          <dt><label class="uk-form-label">{lang_enable_exif}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_enable_exif}</label></dt>
           <dd class="uk-clearfix">{exif_select}</dd>
 
-          <dt><label class="uk-form-label">{lang_enable_ratings}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_enable_ratings}</label></dt>
           <dd class="uk-clearfix">{ranking_select}</dd>
 
-          <dt><label class="uk-form-label">{lang_enable_rss}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_enable_rss}</label></dt>
           <dd class="uk-clearfix">{rss_select}</dd>
 
-          <dt><label class="uk-form-label">{lang_rsschildren}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_rsschildren}</label></dt>
           <dd class="uk-clearfix">{rsschildren_select}</dd>
 
-          <dt><label class="uk-form-label">{lang_podcast}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_podcast}</label></dt>
           <dd class="uk-clearfix">{podcast_select}</dd>
 
-          <dt><label class="uk-form-label">{lang_mp3ribbon}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_mp3ribbon}</label></dt>
           <dd class="uk-clearfix">{mp3ribbon_select}</dd>
 
-          <dt><label class="uk-form-label">{lang_enable_sort}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_enable_sort}</label></dt>
           <dd class="uk-clearfix">{sort_select}</dd>
 
-          <dt><label class="uk-form-label">{lang_album_sort}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_album_sort}</label></dt>
           <dd class="uk-clearfix">{album_sort_select}</dd>
 <!-- 
-          <dt><label class="uk-form-label">{lang_enable_postcard}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_enable_postcard}</label></dt>
           <dd class="uk-clearfix">{postcard_select}</dd>
 -->
-          <dt><label class="uk-form-label">{lang_display_album_desc}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_display_album_desc}</label></dt>
           <dd class="uk-clearfix">{display_album_desc_select}</dd>
 
-          <dt><label class="uk-form-label">{lang_enable_album_views}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_enable_album_views}</label></dt>
           <dd class="uk-clearfix">{album_views_select}</dd>
 
-          <dt><label class="uk-form-label">{lang_enable_views}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_enable_views}</label></dt>
           <dd class="uk-clearfix">{views_select}</dd>
 
-          <dt><label class="uk-form-label">{lang_enable_keywords}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_enable_keywords}</label></dt>
           <dd class="uk-clearfix">{keywords_select}</dd>
 
-          <dt><label class="uk-form-label">{lang_image_skin}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_image_skin}</label></dt>
           <dd class="uk-clearfix">{skin_select}</dd>
 
-          <dt><label class="uk-form-label">{lang_display_skin}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_display_skin}</label></dt>
           <dd class="uk-clearfix">{dskin_select}</dd>
 
-          <dt><label class="uk-form-label">{lang_album_skin}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_album_skin}</label></dt>
           <dd class="uk-clearfix">{askin_select}</dd>
 
-          <dt><label class="uk-form-label">{lang_albums_first}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_albums_first}</label></dt>
           <dd class="uk-clearfix">{afirst_select}</dd>
 
-          <dt><label class="uk-form-label">{lang_tn_size}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_tn_size}</label></dt>
           <dd class="uk-clearfix">{tn_size_select}</dd>
 
-          <dt><label class="uk-form-label">{lang_tnwidth}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_tnwidth}</label></dt>
           <dd class="uk-clearfix">{tnwidth_input}</dd>
 
-          <dt><label class="uk-form-label">{lang_tnheight}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_tnheight}</label></dt>
           <dd class="uk-clearfix">{tnheight_input}</dd>
 
-          <dt><label class="uk-form-label">{lang_av_play_options}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_av_play_options}</label></dt>
           <dd class="uk-clearfix">{playback_type}</dd>
 
-          <dt><label class="uk-form-label">{lang_ss_enable}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_ss_enable}</label></dt>
           <dd class="uk-clearfix">{ss_select}</dd>
 
-          <dt><label class="uk-form-label">{lang_rows}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_rows}</label></dt>
           <dd class="uk-clearfix">{rows_input}</dd>
 
-          <dt><label class="uk-form-label">{lang_columns}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_columns}</label></dt>
           <dd class="uk-clearfix">{columns_input}</dd>
 
 				</dl>
@@ -113,13 +113,13 @@ function change(what) {
 	      <legend>{lang_album_cover}</legend>
 	      <dl class="form_block">
 {!if thumbnail}
-          <dt><label class="uk-form-label">{lang_thumbnail}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_thumbnail}</label></dt>
           <dd class="uk-clearfix">{thumbnail}</dd>
 {!endif}
-          <dt><label class="uk-form-label">{lang_attached_thumbnail}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_attached_thumbnail}</label></dt>
           <dd class="uk-clearfix">{attach_select}</dd>
 
-          <dt><label class="uk-form-label">{lang_thumbnail}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_thumbnail}</label></dt>
           <dd class="uk-clearfix"><input type="file" dir="ltr" name="thumbnail"{xhtml}></dd>
       	</dl>
 			</fieldset>
@@ -127,14 +127,14 @@ function change(what) {
 			<fieldset class="uk-margin-large-top">
 				<legend>{lang_featured_album}</legend>
 				<dl class="form_block">
-          <dt><label class="uk-form-label">{lang_set_featured}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_set_featured}</label></dt>
           <dd class="uk-clearfix">{featured_select}
               <span class="uk-form-help-inline">{lang_featured_help}</span></dd>
 
-          <dt><label class="uk-form-label">{lang_position}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_position}</label></dt>
           <dd class="uk-clearfix">{feature_position}</dd>
 
-          <dt><label class="uk-form-label">{lang_topic}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_topic}</label></dt>
           <dd class="uk-clearfix">{feature_page_select}</dd>
 				</dl>
 			</fieldset>
@@ -142,31 +142,31 @@ function change(what) {
 			<fieldset class="uk-margin-large-top">
     		<legend>{lang_media_attributes}</legend>
  		 		<dl class="form_block">
-          <dt><label class="uk-form-label">{lang_filename_title}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_filename_title}</label></dt>
           <dd class="uk-clearfix">{filename_title_select}</dd>
 
-          <dt><label class="uk-form-label">{lang_allow_download}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_allow_download}</label></dt>
           <dd class="uk-clearfix">{allow_download_select}</dd>
 
-          <dt><label class="uk-form-label">{lang_full_display}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_full_display}</label></dt>
           <dd class="uk-clearfix">{full_select}</dd>
 
-          <dt><label class="uk-form-label">{lang_ri_enable}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_ri_enable}</label></dt>
           <dd class="uk-clearfix">{ri_select}</dd>
 
-          <dt><label class="uk-form-label">{lang_max_image_width}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_max_image_width}</label></dt>
           <dd class="uk-clearfix">{width_input}</dd>
 
-          <dt><label class="uk-form-label">{lang_max_image_height}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_max_image_height}</label></dt>
           <dd class="uk-clearfix">{height_input}</dd>
 
-          <dt><label class="uk-form-label">{lang_max_filesize}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_max_filesize}</label></dt>
           <dd class="uk-clearfix">{max_size_input}&nbsp;Kb {lang_unlimited}</dd>
 
-          <dt><label class="uk-form-label">{lang_display_image_size}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_display_image_size}</label></dt>
           <dd class="uk-clearfix">{display_image_size}</dd>
 
-          <dt><label class="uk-form-label">{lang_usealternate}</label></dt>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_usealternate}</label></dt>
           <dd class="uk-clearfix">{usealternate_select}</dd>
 				</dl>
   		</fieldset>
@@ -175,16 +175,16 @@ function change(what) {
 				<legend>{lang_watermark}</legend>
 				<dl class="form_block">
 
-					<dt><label class="uk-form-label">{lang_wm_auto}</label></dt>
+					<dt class="uk-margin-small"><label class="uk-form-label">{lang_wm_auto}</label></dt>
 					<dd class="uk-clearfix">{wm_auto_select}</dd>
 
-					<dt><label class="uk-form-label">{lang_wm_opacity}</label></dt>
+					<dt class="uk-margin-small"><label class="uk-form-label">{lang_wm_opacity}</label></dt>
 					<dd class="uk-clearfix">{wm_opacity_select}</dd>
 
-					<dt><label class="uk-form-label">{lang_wm_location}</label></dt>
+					<dt class="uk-margin-small"><label class="uk-form-label">{lang_wm_location}</label></dt>
 					<dd class="uk-clearfix">{wm_location_select}</dd>
 
-					<dt><label class="uk-form-label">{lang_wm_id}</label></dt>
+					<dt class="uk-margin-small"><label class="uk-form-label">{lang_wm_id}</label></dt>
 					<dd class="uk-clearfix">{wm_select}
 					<span class="uk-form-help-inline">{wm_current}</span></dd>
 				</dl>
@@ -253,16 +253,16 @@ function change(what) {
 	      <legend>{lang_uploads}</legend>
 				<dl class="form_block">
 
-					<dt><label class="uk-form-label">{lang_member_upload}</label></dt>
+					<dt class="uk-margin-small"><label class="uk-form-label">{lang_member_upload}</label></dt>
 					<dd class="uk-clearfix">{uploads}</dd>
 
-					<dt><label class="uk-form-label">{lang_moderate_album}</label></dt>
+					<dt class="uk-margin-small"><label class="uk-form-label">{lang_moderate_album}</label></dt>
 					<dd class="uk-clearfix">{moderate}</dd>
 
-					<dt><label class="uk-form-label">{lang_mod_group}</label></dt>
+					<dt class="uk-margin-small"><label class="uk-form-label">{lang_mod_group}</label></dt>
 					<dd class="uk-clearfix">{mod_dropdown}</dd>
 
-					<dt><label class="uk-form-label">{lang_email_mods_on_submission}</label></dt>
+					<dt class="uk-margin-small"><label class="uk-form-label">{lang_email_mods_on_submission}</label></dt>
 					<dd class="uk-clearfix">{email_mod_select}</dd>
 
 				</dl>
@@ -272,20 +272,20 @@ function change(what) {
 	      <legend>{lang_accessrights}</legend>
 				<dl class="form_block">
 
-					<dt><label class="uk-form-label">{lang_owner}</label></dt>
+					<dt class="uk-margin-small"><label class="uk-form-label">{lang_owner}</label></dt>
 					<dd class="uk-clearfix">{owner_select}</dd>
 
-					<dt><label class="uk-form-label">{lang_group}</label></dt>
+					<dt class="uk-margin-small"><label class="uk-form-label">{lang_group}</label></dt>
 					<dd class="uk-clearfix">{group_dropdown}</dd>
 
-					<dt><label class="uk-form-label">{lang_permissions}</label></dt>
+					<dt class="uk-margin-small"><label class="uk-form-label">{lang_permissions}</label></dt>
 					<dd class="uk-clearfix">{permissions_editor}
 					<span class="uk-form-help-inline">{lang_perm_key}</span></dd>
 
-					<dt><label class="uk-form-label">{lang_hidden}</label></dt>
+					<dt class="uk-margin-small"><label class="uk-form-label">{lang_hidden}</label></dt>
 					<dd class="uk-clearfix">{hidden}</dd>
 
-					<dt><label class="uk-form-label">{lang_force_child_update}</label></dt>
+					<dt class="uk-margin-small"><label class="uk-form-label">{lang_force_child_update}</label></dt>
 					<dd class="uk-clearfix">{force_child_update}</dd>
 
 				</dl>
@@ -296,15 +296,15 @@ function change(what) {
 	    <fieldset class="uk-margin-large-top">
 	      <legend>{lang_accessrights}</legend>
 	      	<dl class="form_block">
-	            <dt><label class="uk-form-label">{lang_owner}</label></dt>
+	            <dt class="uk-margin-small"><label class="uk-form-label">{lang_owner}</label></dt>
 	            <dd class="uk-clearfix">
 	                {owner_username}<input type="hidden" name="owner_id" value="{owner_id}"{xhtml}></dd>
 
-	            <dt><label class="uk-form-label">{lang_permissions}</label></dt>
+	            <dt class="uk-margin-small"><label class="uk-form-label">{lang_permissions}</label></dt>
 	            <dd class="uk-clearfix">{permissions_editor}
 	              <span class="uk-form-help-inline">{lang_perm_key}</span></dd>
 
-	            <dt><label class="uk-form-label">{lang_force_child_update}</label></dt>
+	            <dt class="uk-margin-small"><label class="uk-form-label">{lang_force_child_update}</label></dt>
 	            <dd class="uk-clearfix">{force_child_update}</dd>
 	        </dl>
 	    </fieldset>

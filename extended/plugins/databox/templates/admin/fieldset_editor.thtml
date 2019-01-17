@@ -9,7 +9,7 @@
     <legend>Data Type (fieldset)</legend>
 
     {# id #}
-    <div class="uk-form-row uk-clearfix">
+    <div class="uk-form-row uk-clearfix uk-margin-small">
       <label class="uk-form-label" >{lang_fieldset_id}</label>
       <div class="uk-form-controls">
         {id}
@@ -18,7 +18,7 @@
     </div>
 
     {# name #}
-    <div class="uk-form-row uk-clearfix">
+    <div class="uk-form-row uk-clearfix uk-margin-small">
       <label class="uk-form-label" >{lang_name}<span class="uk-text-danger">{lang_must}</span></label>
       <div class="uk-form-controls">
         <input type="text" class="uk-input ="uk-width-1-1" size="48" maxlength="160" name="name" value="{name}" required{xhtml}>
@@ -26,7 +26,7 @@
     </div>
   
     {# description #}
-    <div class="uk-form-row uk-clearfix">
+    <div class="uk-form-row uk-clearfix uk-margin-small">
       <label class="uk-form-label" >{lang_description} {help_description}</label>
       <div class="uk-form-controls">
         <textarea class="uk-textarea" name="description" class="uk-width-1-1" rows="2" id="databox_description">{description}</textarea>
@@ -34,7 +34,7 @@
     </div>
   
     {# layout #}
-    <div class="uk-form-row uk-clearfix">
+    <div class="uk-form-row uk-clearfix uk-margin-small">
       <label class="uk-form-label" >{lang_layout} {help_layout}</label>
       <div class="uk-form-controls">
         {list_layout}
@@ -42,7 +42,7 @@
     </div>
   
     {# defaulttemplatesdirectory #}
-    <div class="uk-form-row uk-clearfix">
+    <div class="uk-form-row uk-clearfix uk-margin-small">
       <label class="uk-form-label" >{lang_defaulttemplatesdirectory} {help_defaulttemplatesdirectory}</label>
       <div class="uk-form-controls">
         {select_defaulttemplatesdirectory}
@@ -51,7 +51,7 @@
 
   
     {# Update date #}
-    <div class="uk-form-row uk-clearfix">
+    <div class="uk-form-row uk-clearfix uk-margin-small">
       <label class="uk-form-label" >{lang_udatetime}</label>
       <div class="uk-form-controls">
         {udatetime} {lang_uuid}:{uuid}
@@ -62,7 +62,7 @@
   <div class="uk-form-row uk-margin-large-top">
     <div class="uk-form-controls">
       <input type="submit" value="{lang_save}" name="mode" class="uk-button uk-button-primary"{xhtml}>
-      <input type="submit" value="{lang_cancel}" name="mode" class="uk-button uk-button-default"{xhtml}>
+      <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
       <input type="hidden" value="{code}" name="old_code"{xhtml}>
       {delete_option}
       <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>

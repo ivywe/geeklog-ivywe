@@ -8,27 +8,27 @@
 	{temp_sys_message}
 	<p style="border: solid 1px #7F9DB9; padding: 5px;">
 		{temp_lang_theme_edited}:&nbsp;
-		<select name="thm_theme" onChange="this.form.submit()">{temp_themes}</select>
+		<select class="uk-select uk-form-width-medium" name="thm_theme" onChange="this.form.submit()">{temp_themes}</select>
 		<noscript>
 			<input name="dummy" type="submit" value="{temp_lang_select}"{xhtml}>
 		</noscript>
 		&nbsp;&nbsp;
 		{temp_lang_file_edited}:&nbsp;
-		<select name="thm_file" onChange="this.form.submit()">{temp_files}</select>
+		<select class="uk-select uk-form-width-medium" name="thm_file" onChange="this.form.submit()">{temp_files}</select>
 		<noscript>
 			<input name="dummy" type="submit" value="{temp_lang_select}"{xhtml}>
 		</noscript>
 	</p>
 	{temp_vars}
 	<hr{xhtml}>
-	<input name="thm_op" type="submit" value="{temp_lang_preview}"{xhtml}>
-	<input name="thm_op" type="submit" value="{temp_lang_save}"{xhtml}>&nbsp;&nbsp;&nbsp;&nbsp;
-	<input name="thm_op" type="submit" value="{temp_lang_image}"{xhtml}>&nbsp;&nbsp;&nbsp;&nbsp;
-	<input name="thm_op" type="submit" value="{temp_lang_init}"{xhtml}>
-	<textarea name="theme_contents" id="theme_contents" rows="30" style="width:99%;"{xhtml}>{temp_contents}</textarea><br{xhtml}>
-	<input name="thm_op" type="submit" value="{temp_lang_preview}"{xhtml}>
-	<input name="thm_op" type="submit" value="{temp_lang_save}"{xhtml}>&nbsp;&nbsp;&nbsp;&nbsp;
-	<input name="thm_op" type="submit" value="{temp_lang_image}"{xhtml}>&nbsp;&nbsp;&nbsp;&nbsp;
-	<input name="thm_op" type="submit" value="{temp_lang_init}"{xhtml}>
+	<input class="uk-button uk-button-default" name="thm_op" type="submit" value="{temp_lang_preview}"{xhtml}>
+	<input class="uk-button uk-button-primary" name="thm_op" type="submit" value="{temp_lang_save}"{xhtml}>&nbsp;&nbsp;&nbsp;&nbsp;
+	<input class="uk-button uk-button-default" name="thm_op" type="submit" value="{temp_lang_image}"{xhtml}>&nbsp;&nbsp;&nbsp;&nbsp;
+	<input class="uk-button uk-button-danger" name="thm_op" type="submit" value="{temp_lang_init}"{xhtml}>
+	<textarea class="uk-textarea uk-margin" name="theme_contents" id="theme_contents" rows="30" style="width:99%;"{xhtml}>{temp_contents}</textarea><br{xhtml}>
+	<input class="uk-button uk-button-default" name="thm_op" type="submit" value="{temp_lang_preview}"{xhtml}>
+	<input class="uk-button uk-button-primary" name="thm_op" type="submit" value="{temp_lang_save}"{xhtml}>&nbsp;&nbsp;&nbsp;&nbsp;
+	<input class="uk-button uk-button-default" name="thm_op" type="submit" value="{temp_lang_image}"{xhtml}>&nbsp;&nbsp;&nbsp;&nbsp;
+	<input class="uk-button uk-button-danger" name="thm_op" type="submit" value="{temp_lang_init}"{xhtml}>
 	<input name="{temp_token_name}" type="hidden" value="{temp_token_value}"{xhtml}>
 </form>

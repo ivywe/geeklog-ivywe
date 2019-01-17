@@ -8,7 +8,7 @@
 
     {# data #}
     {# seq #}
-    <div class="uk-form-row uk-clearfix">
+    <div class="uk-form-row uk-clearfix uk-margin-small">
       <label class="uk-form-label">{lang_seq}</label>
       <div class="uk-form-controls">
         {seq}
@@ -19,7 +19,7 @@
     </div>
 
     {# csvheader #}
-    <div class="uk-form-row uk-clearfix">
+    <div class="uk-form-row uk-clearfix uk-margin-small">
       <label class="uk-form-label">{lang_csvheader}</label>
       <div class="uk-form-controls">
         <input type="text" class="uk-input uk-form-width-small" size="48" maxlength="160" name="csvheader" value="{csvheader}"{xhtml}>
@@ -28,7 +28,7 @@
     </div>
 
     {# value #}
-    <div class="uk-form-row uk-clearfix">
+    <div class="uk-form-row uk-clearfix uk-margin-small">
       <label class="uk-form-label">{lang_value}</label>
       <div class="uk-form-controls">
         <input type="text" class="uk-input uk-form-width-small" size="48" maxlength="160" name="value" value="{value}"{xhtml}>
@@ -37,7 +37,7 @@
     </div>
 
     {# Update date #}
-    <div class="uk-form-row uk-clearfix">
+    <div class="uk-form-row uk-clearfix uk-margin-small">
       <label class="uk-form-label">{lang_udatetime}</label>
       <div class="uk-form-controls">
         {udatetime} {lang_uuid}:{uuid}
@@ -50,7 +50,7 @@
       <div class="uk-form-controls">
         {# Submit button - Save Cancel Delete #}
         <input type="submit" value="{lang_save}" name="mode" class="uk-button uk-button-primary"{xhtml}>
-        <input type="submit" value="{lang_cancel}" name="mode" class="uk-button uk-button-default"{xhtml}>
+        <input type="submit" value="{lang_cancel}" name="mode" class="uk-button"{xhtml}>
         <input type="hidden" value="{code}" name="old_code"{xhtml}>
         {delete_option}{lang_delete_help}
         <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
