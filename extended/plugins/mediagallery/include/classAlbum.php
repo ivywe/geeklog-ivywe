@@ -169,10 +169,6 @@ class mgAlbum {
         $this->allow_download       = $_MG_CONF['ad_allow_download'];
         $this->full                 = $_MG_CONF['ad_full_display'];
 
-        $this->tn_size              = $_MG_CONF['ad_tn_size'];
-        $this->tnHeight             = isset($_MG_CONF['ad_tn_height']) ? $_MG_CONF['ad_tn_height'] : 0;
-        $this->tnWidth              = isset($_MG_CONF['ad_tn_width'])  ? $_MG_CONF['ad_tn_width']  : 0;
-// komma debug アルバムのサムネイルサイズのデフォルトが入らない不具合対策
         $this->tn_size              = $_MG_CONF['gallery_tn_size'];
         $this->tnHeight             = isset($_MG_CONF['gallery_tn_height']) ? $_MG_CONF['gallery_tn_height'] : 0;
         $this->tnWidth              = isset($_MG_CONF['gallery_tn_width'])  ? $_MG_CONF['gallery_tn_width']  : 0;
