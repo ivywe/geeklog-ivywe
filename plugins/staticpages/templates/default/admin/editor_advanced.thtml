@@ -195,16 +195,6 @@
       </div>
     </div>
   </form>
-
-<ul uk-accordion>
-	<li>
-		<a class="uk-accordion-title" href="#">MORE</a>
-		<div class="uk-accordion-content">
-			<div class="warningsmall uk-margin">{lang_allowed_html}</div>
-    </div>
-	</li>
-</ul>
-
   {end_block}
 </div>
 
