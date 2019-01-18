@@ -8,7 +8,7 @@
             <dd><input type="text" class="uk-input uk-form-width-medium" name="tag" value="{tag}" maxlength="24" id="autotags-autotageditor-tag" class="size2"{xhtml}></dd>
             
             <dt><label for="autotags-autotageditor-tag">{lang_desc}</label></dt>
-            <dd><input type="text" class="uk-input uk-form-width-medium" name="description" value="{description}" maxlength="255" id="autotags-autotageditor-tag" class="size10"{xhtml}></dd>            
+            <dd><input type="text" class="uk-input" name="description" value="{description}" maxlength="255" id="autotags-autotageditor-tag" class="size10"{xhtml}></dd>            
 
             <dt><label for="autotags-autotageditor-enabled">{lang_enabled}</label></dt>
             <dd class="controls_text"><input type="checkbox" class="uk-checkbox" name="is_enabled" id="autotags-autotageditor-enabled" {is_enabled_checked}{xhtml}></dd>
