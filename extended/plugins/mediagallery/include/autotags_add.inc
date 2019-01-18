@@ -46,6 +46,9 @@ function MG_medialist (
   , $gridr=''
   , $uks=''
   , $ukc=''
+  , $url=''
+  , $reverse=''
+
 )
 {
 	global $MG_albums;
@@ -176,6 +179,8 @@ function MG_medialist (
 		$T->set_var('uks',$uks);
 		$T->set_var('ukc',$ukc);
 		$T->set_var('media',$media);
+		$T->set_var('url',$url);
+		$T->set_var('reverse',$reverse);
 	
 		if ( SEC_hasRights('mediagallery.admin') ){
 			$icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
@@ -371,6 +376,8 @@ function MG_parm2 ($p2)
 	$parm2_ary[]="gridm";
 	$parm2_ary[]="gridl";
 	$parm2_ary[]="gridr";
+	$parm2_ary[]="url";
+	$parm2_ary[]="reverse";
 
 	$parm2_ary[]="order";
 	
