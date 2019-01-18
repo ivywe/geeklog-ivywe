@@ -1,7 +1,0 @@
-{# begin {templatelocation} #}
-
-    <hr{xhtml}>
-  </div>
-</div>
-
-{# end {templatelocation} #}
