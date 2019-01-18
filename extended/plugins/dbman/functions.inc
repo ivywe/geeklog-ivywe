@@ -579,7 +579,7 @@ function DBMAN_listBackups() {
 		foreach ($backups as $backup) {
 			$backupfile = $_CONF['backup_path'] . $backup;
 			$filesize   = COM_numberFormat(filesize($backupfile));
-			$url        = '<input name="deletefiles[]" type="checkbox" '
+			$url        = '<input name="deletefiles[]" type="checkbox" class="uk-checkbox" '
 						. 'value="' . $backup . '"' . XHTML . '>  '
 						. '<a href="' . $_CONF['site_url']
 						. '/admin/plugins/dbman/download.php?filename='

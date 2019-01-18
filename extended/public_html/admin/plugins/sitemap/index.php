@@ -325,8 +325,8 @@ for ($i = 1; $i <= $num_drivers; $i ++) {
 		  . '<a href="' . THIS_SCRIPT . '?driver=' . $supported_driver
 		  . '&amp;op=down">' . SITEMAP_str('down') . '</a>';
 	
-	$drivers .= '<tr><th style="text-align: left;"><input id="' . $id
-			 .  '" name="sitemap_drivers[]" ' . 'type="checkbox" value="'
+	$drivers .= '<tr><th class="uk-text-left"><input id="' . $id
+			 .  '" class="uk-checkbox" name="sitemap_drivers[]" ' . 'type="checkbox" value="'
 			 .  SITEMAP_escape($supported_driver) . '"';
 	
 	if ($_SMAP_CONF['sitemap_' . $supported_driver] === TRUE) {
@@ -345,8 +345,8 @@ $gsmap_drivers = '';
 
 foreach (Dataproxy::getAllSupportedDriverNames() as $supported_driver) {
 	$id = 'gsmap_admin_' . $supported_driver;
-	$gsmap_drivers .= '<tr><th style="text-align: left;"><input id="' . $id
-				   .  '" name="gsmap_drivers[]" type="checkbox" value="'
+	$gsmap_drivers .= '<tr><th class="uk-text-left"><input id="' . $id
+				   .  '" class="uk-checkbox" name="gsmap_drivers[]" type="checkbox" value="'
 				   .  SITEMAP_escape($supported_driver) . '"';
 	
 	if ($_SMAP_CONF['gsmap_' . $supported_driver] === TRUE) {
@@ -363,7 +363,7 @@ foreach (Dataproxy::getAllSupportedDriverNames() as $supported_driver) {
 	// Priority
 	$gsmap_drivers .= '<td><input name="priority_' . $supported_driver
 				   .  '" type="text" value="' . $_SMAP_CONF['priority_'
-				   .  $supported_driver] . '" style="text-align: right;"></td>'
+				   .  $supported_driver] . '" class="uk-input uk-text-right"></td>'
 				   .  LB
 				   .  '</tr>' . LB;
 }

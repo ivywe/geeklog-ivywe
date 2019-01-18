@@ -8,14 +8,14 @@
 	<fieldset style="width: 600px;">
 		<legend>{lang_sp_setting}</legend>
 		{lang_sp_type}: <select class="uk-select" name="sp_type">{sp_options}</select><br{xhtml}>
-		{lang_sp_except}: <input name="sp_except" type="text" value="{sp_except}" size="50" maxlength="255"{xhtml}>
+		{lang_sp_except}: <input class="uk-input" name="sp_except" type="text" value="{sp_except}" size="50" maxlength="255"{xhtml}>
 	</fieldset><br{xhtml}>
 	
 	<h3>{lang_sitemap_setting}</h3>
 	<fieldset style="width: 600px;">
 		<legend>{lang_sitemap_setting_misc}</legend>
 		{sitemap_fields}<br{xhtml}>
-		{lang_date_format}: <input name="date_format" type="text" value="{date_format}" size="20" maxlength="20"{xhtml}>
+		{lang_date_format}: <input class="uk-input" name="date_format" type="text" value="{date_format}" size="20" maxlength="20"{xhtml}>
 		<ul>
 			<li>{lang_desc_date_format}</li>
 		</ul>
@@ -38,14 +38,14 @@
 		<table>
 			<tr>
 				<th>{lang_google_sitemap_name}</th>
-				<td><input name="google_sitemap_name" type="text" value="{google_sitemap_name}" size="50" maxlength="50"{xhtml}></td>
+				<td><input class="uk-input" name="google_sitemap_name" type="text" value="{google_sitemap_name}" size="50" maxlength="50"{xhtml}></td>
 			</tr>
 			<tr>
 				<th>{lang_time_zone}</th>
-				<td><input name="time_zone" type="text" value="{time_zone}" size="50" maxlength="50"{xhtml}></td>
+				<td><input class="uk-input" name="time_zone" type="text" value="{time_zone}" size="50" maxlength="50"{xhtml}></td>
 			</tr>
 			<tr>
-				<th colspan="2"><input id="sitemap_update_now" name="update_now" type="checkbox" value="update_now" checked="checked"{xhtml}><label for="sitemap_update_now">{lang_update_now}({lang_last_updated}{last_updated})</label></th>
+				<th colspan="2"><input class="uk-checkbox" id="sitemap_update_now" name="update_now" type="checkbox" value="update_now" checked="checked"{xhtml}><label for="sitemap_update_now">{lang_update_now}({lang_last_updated}{last_updated})</label></th>
 			</tr>
 		</table>
 		<ul>
@@ -70,7 +70,7 @@
 		</ul>
 	</fieldset><br{xhtml}>
 	
-	<input name="submit" type="submit" value="{lang_submit}"{xhtml}>
+	<input name="submit" type="submit" value="{lang_submit}" class="uk-button uk-button-primary"{xhtml}>
 </form>
 
 {# end {templatelocation} #}
