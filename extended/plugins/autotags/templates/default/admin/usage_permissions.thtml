@@ -1,14 +1,23 @@
-<table cellpadding="0" cellspacing="0" class="admin-list-smalltable">
+{# begin {templatelocation} #}
+
+<table id="admin-permissions" class="uk-table">
+  <thead>
     <tr>
-        <th class="edit-perm-up admin-list-headerfield">{lang_owner}</th>
-        <th class="edit-perm-up admin-list-headerfield">{lang_group}</th>
-        <th class="edit-perm-up admin-list-headerfield">{lang_members}</th>
-        <th class="edit-perm-up admin-list-headerfield">{lang_anonymous}</th>
+      <th>{lang_owner}</th>
+      <th>{lang_group}</th>
+      <th>{lang_members}</th>
+      <th>{lang_anonymous}</th>
     </tr>
-    <tr class="pluginRow1">
-        <td class="edit-perm-down admin-list-field"><b>U</b><br{xhtml}><input type="checkbox" class="uk-checkbox" name="perm_owner[]" value="2"{owner_r_checked}{xhtml}></td>
-        <td class="edit-perm-down admin-list-field"><b>U</b><br{xhtml}><input type="checkbox" class="uk-checkbox" name="perm_group[]" value="2"{group_r_checked}{xhtml}></td>
-        <td class="edit-perm-down admin-list-field"><b>U</b><br{xhtml}><input type="checkbox" class="uk-checkbox" name="perm_members[]" value="2"{members_checked}{xhtml}></td>
-        <td class="edit-perm-down admin-list-field"><b>U</b><br{xhtml}><input type="checkbox" class="uk-checkbox" name="perm_anon[]" value="2"{anon_checked}{xhtml}></td>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td><label for="permissions-or">U</label><br{xhtml}><input type="checkbox" class="uk-checkbox" id="permissions-or" name="perm_owner[]" value="2"{owner_r_checked}{xhtml}></td>
+      <td><label for="permissions-gr">U</label><br{xhtml}><input type="checkbox" class="uk-checkbox" id="permissions-gr" name="perm_group[]" value="2"{group_r_checked}{xhtml}></td>
+      <td><label for="permissions-mr">U</label><br{xhtml}><input type="checkbox" class="uk-checkbox" id="permissions-mr" name="perm_members[]" value="2"{members_checked}{xhtml}></td>
+      <td><label for="permissions-ar">U</label><br{xhtml}><input type="checkbox" class="uk-checkbox" id="permissions-ar" name="perm_anon[]" value="2"{anon_checked}{xhtml}></td>
     </tr>
+  </tbody>
 </table>
+
+{# end {templatelocation} #}
