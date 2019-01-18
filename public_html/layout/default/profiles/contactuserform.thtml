@@ -7,13 +7,13 @@
 
     <dl class="form_block">
       <dt><label for="contactuserform-author">{lang_username}</label></dt>
-      <dd><input type="text" value="{username}" maxlength="32" name="author" id="contactuserform-author" class="uk-input size4"{xhtml}></dd>
+      <dd><input type="text" value="{username}" maxlength="32" name="author" id="contactuserform-author" class="uk-input uk-form-width-medium"{xhtml}></dd>
 
       <dt><label for="contactuserform-authoremail">{lang_useremail}</label></dt>
-      <dd><input type="text" value="{useremail}" maxlength="96" name="authoremail" id="contactuserform-authoremail" class="uk-input size4"{xhtml}></dd>
+      <dd><input type="text" value="{useremail}" maxlength="96" name="authoremail" id="contactuserform-authoremail" class="uk-input uk-form-width-medium"{xhtml}></dd>
 
       <dt><label for="contactuserform-subject">{lang_subject}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="96" value="{subject}" name="subject" id="contactuserform-subject" class="uk-input size4"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="96" value="{subject}" name="subject" id="contactuserform-subject" class="uk-input uk-form-width-medium"{xhtml}></dd>
 
       <dt><label for="contactuserform-message">{lang_message}</label></dt>
       <dd><textarea rows="10" cols="50" name="message" id="contactuserform-message" class="uk-textarea wide" aria-describedby="desc-contactuserform-message">{message}</textarea></dd>

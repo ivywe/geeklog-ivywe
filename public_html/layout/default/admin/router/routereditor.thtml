@@ -23,10 +23,10 @@
       </dd>
 
       <dt><label for="admin-routereditor-rule">{lang_router_rule}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" size="40" value="{rule}" name="rule" id="admin-routereditor-rule" class="uk-input size7"{xhtml}></dd>
+      <dd><input type="text" size="40" value="{rule}" name="rule" id="admin-routereditor-rule" class="uk-input"{xhtml}></dd>
 
       <dt><label for="admin-routereditor-route">{lang_router_route}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" size="40" value="{route}" name="route" id="admin-routereditor-route" class="uk-input size7"{xhtml}></dd>
+      <dd><input type="text" size="40" value="{route}" name="route" id="admin-routereditor-route" class="uk-input"{xhtml}></dd>
 
       <dt><label for="admin-routereditor-status_code">{lang_router_status_code}</label></dt>
       <dd>
@@ -44,7 +44,7 @@
       </dd>
 
       <dt><label for="admin-routereditor-priority">{lang_router_priority}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" size="20" value="{priority}" name="priority" id="admin-routereditor-priority" class="uk-input size1"{xhtml}></dd>
+      <dd><input type="text" size="20" value="{priority}" name="priority" id="admin-routereditor-priority" class="uk-input uk-form-width-small"{xhtml}></dd>
       
       <dt><label for="admin-routereditor-enabled">{lang_enabled}</label></dt>
       <dd><input type="checkbox" {enabled} name="enabled" id="admin-routereditor-enabled" class="uk-checkbox"{xhtml}></dd>

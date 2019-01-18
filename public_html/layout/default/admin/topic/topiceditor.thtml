@@ -5,13 +5,13 @@
   <div class="admin_basic">
     <dl class="form_block">
       <dt><label for="admin-topiceditor-topic">{lang_topicname}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="75" {!if titletoid}onkeyup="TitleToId('admin-topiceditor-topic','admin-topiceditor-tid');" {!endif}value="{topic_name}" name="topic_name" id="admin-topiceditor-topic" class="uk-input size5"{xhtml}></dd>
+      <dd><input type="text" maxlength="75" {!if titletoid}onkeyup="TitleToId('admin-topiceditor-topic','admin-topiceditor-tid');" {!endif}value="{topic_name}" name="topic_name" id="admin-topiceditor-topic" class="uk-input size5"{xhtml}></dd>
 
       <dt><label for="admin-topiceditor-tid">{lang_topicid}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="75" value="{topic_id}" name="tid" id="admin-topiceditor-tid" class="uk-input size5" aria-describedby="desc-admin-topiceditor-tid"{xhtml}> <span id="desc-admin-topiceditor-tid">{lang_donotusespaces}</span></dd>
+      <dd><input type="text" maxlength="75" value="{topic_id}" name="tid" id="admin-topiceditor-tid" class="uk-input size5" aria-describedby="desc-admin-topiceditor-tid"{xhtml}> <span id="desc-admin-topiceditor-tid">{lang_donotusespaces}</span></dd>
       
       <dt><label for="admin-topiceditor-title">{lang_topic_title}</label></dt>
-      <dd><input type="text" class="uk-input" maxlength="128" value="{topic_title}" name="topic_title" id="admin-topiceditor-title" class="uk-input size5" aria-describedby="desc-admin-topiceditor-title"{xhtml}></dd>
+      <dd><input type="text" maxlength="128" value="{topic_title}" name="topic_title" id="admin-topiceditor-title" class="uk-input size5" aria-describedby="desc-admin-topiceditor-title"{xhtml}></dd>
       <dd class="description">{lang_topic_title_description}</dd>      
 
       <dt><label for="admin-topiceditor-inherit">{lang_inherit}</label></dt>
@@ -22,20 +22,20 @@
 
       <dt><label for="admin-topiceditor-parent_id">{lang_parent_id}</label></dt>
       <dd>
-        <select class="uk-select uk-form-width-medium" name="parent_id" id="admin-topiceditor-parent_id" class="uk-select uk-width-auto">
+        <select name="parent_id" id="admin-topiceditor-parent_id" class="uk-select uk-width-auto">
             {parent_id_options}
         </select>
       </dd>
 
       <dt><label for="admin-topiceditor-sortnum">{lang_sortorder}</label></dt>
       {!if sort_numeric}
-      <dd class="controls_text"><input type="text" class="uk-input uk-form-width-medium" maxlength="5" name="sortnum" id="admin-topiceditor-sortnum" class="uk-input uk-form-width-xsmall" value="{sort_order}"{xhtml}></dd>
+      <dd class="controls_text"><input type="text" maxlength="5" name="sortnum" id="admin-topiceditor-sortnum" class="uk-input uk-form-width-xsmall" value="{sort_order}"{xhtml}></dd>
       {!else}
       <dd class="controls_text">{lang_alphabetical}<input type="hidden" name="sortnum"  value="{sort_order}"{xhtml}></dd>
       {!endif}
       
       <dt><label for="admin-topiceditor-limitnews">{lang_storiesperpage}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="3" value="{story_limit}" name="limitnews" id="admin-topiceditor-limitnews" class="uk-input size1" aria-describedby="desc-admin-topiceditor-limitnews"{xhtml}> <span class="fieldhelp" id="desc-admin-topiceditor-limitnews">{lang_defaultis} {default_limit}</span></dd>
+      <dd><input type="text" maxlength="3" value="{story_limit}" name="limitnews" id="admin-topiceditor-limitnews" class="uk-input uk-form-width-small" aria-describedby="desc-admin-topiceditor-limitnews"{xhtml}> <span class="fieldhelp" id="desc-admin-topiceditor-limitnews">{lang_defaultis} {default_limit}</span></dd>
 
       <dt><label for="admin-topiceditor-imageurl">{lang_topicimage}</label></dt>
       <dd><input type="text" dir="ltr" maxlength="{max_url_length}" value="{image_url}" name="imageurl" id="admin-topiceditor-imageurl" class="uk-input size5"{xhtml}></dd>

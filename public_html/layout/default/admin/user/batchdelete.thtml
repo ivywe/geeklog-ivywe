@@ -15,7 +15,7 @@
 
 <!-- BEGIN batchdelete_options -->
 <div>
-  <label class="uk-form-label"><input type="radio" class="uk-radio" name="usr_type" class="uk-radio" value="{sel_id}"{selector}{xhtml}> <strong>{lang_description}:</strong></label>
+  <label class="uk-form-label"><input class="uk-radio" type="radio" name="usr_type" class="uk-radio" value="{sel_id}"{selector}{xhtml}> <strong>{lang_description}:</strong></label>
   <div class="uk-form-controls uk-margin-left">
   {lang_text_start} <input class="uk-input uk-form-width-xsmall" type="text" name="usr_time[{sel_id}]" value="{id_value}" size="3"{selector}{xhtml}>{lang_text_end}
   </div>

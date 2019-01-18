@@ -2,7 +2,7 @@
 
 <dt><label for="advsearchform-author">{lang_authors}</label></dt>
 <dd>
-  <select class="uk-select uk-form-width-medium" name="author" id="advsearchform-author" class="uk-select uk-width-auto">
+  <select name="author" id="advsearchform-author" class="uk-select uk-width-auto">
     <option selected="selected" value="0">{lang_all}</option>
     {author_option_list}
   </select>

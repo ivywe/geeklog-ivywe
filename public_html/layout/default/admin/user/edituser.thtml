@@ -14,7 +14,7 @@
       <dd class="controls_text">{user_lastlogin}</dd>
 
       <dt><label for="admin-edituser-username">{lang_username}</label></dt>
-      <dd><div><input type="text" class="uk-input uk-form-width-medium" maxlength="16" value="{username}" name="username" id="admin-edituser-username" class="uk-input size2"{xhtml}> {remoteservice}</div>
+      <dd><div><input type="text" maxlength="16" value="{username}" name="username" id="admin-edituser-username" class="uk-input uk-form-width-medium"{xhtml}> {remoteservice}</div>
           {!if user_photo}
           {user_photo}
           {!endif}
@@ -24,17 +24,17 @@
       </dd>
 
       <dt><label for="admin-edituser-fullname">{lang_fullname}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="80" value="{user_fullname}" name="fullname" id="admin-edituser-fullname" class="uk-input size5"{xhtml}></dd>
+      <dd><input type="text" maxlength="80" value="{user_fullname}" name="fullname" id="admin-edituser-fullname" class="uk-input size5"{xhtml}></dd>
 
       {password_option}
       
       <dt><label for="admin-edituser-email">{lang_emailaddress}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="255" value="{user_email}" name="email" id="admin-edituser-email" class="size5"{xhtml}></dd>
+      <dd><input type="text" maxlength="255" value="{user_email}" name="email" id="admin-edituser-email" class="size5"{xhtml}></dd>
       
       {!if enable_twofactorauth}
         <dt><label for="admin-edituser-enable_tfa">{lang_enable_twofactorauth}</label></dt>
         <dd>
-          <select class="uk-select uk-form-width-medium" name="enable_twofactorauth" id="admin-edituser-enable_tfa" class="uk-select uk-width-auto">        
+          <select name="enable_twofactorauth" id="admin-edituser-enable_tfa" class="uk-select uk-width-auto">        
             {enable_tfa_options}
           </select>
         </dd>
@@ -42,13 +42,13 @@
       {!endif}      
 
       <dt><label for="admin-edituser-email">{lang_emailaddress}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="255" value="{user_email}" name="email" id="admin-edituser-email" class="uk-input size5"{xhtml}></dd>
+      <dd><input type="text" maxlength="255" value="{user_email}" name="email" id="admin-edituser-email" class="uk-input size5"{xhtml}></dd>
 
       <dt><label for="admin-edituser-homepage">{lang_homepage}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="255" value="{user_homepage}" name="homepage" id="admin-edituser-homepage" class="uk-input size5"{xhtml}></dd>
+      <dd><input type="text" maxlength="255" value="{user_homepage}" name="homepage" id="admin-edituser-homepage" class="uk-input size5"{xhtml}></dd>
 
       <dt><label for="admin-edituser-location">{lang_location}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="96" value="{user_location}" name="location" id="admin-edituser-location" class="uk-input size7" aria-describedby="desc-admin-edituser-location"{xhtml}></dd>
+      <dd><input type="text" maxlength="96" value="{user_location}" name="location" id="admin-edituser-location" class="uk-input" aria-describedby="desc-admin-edituser-location"{xhtml}></dd>
       <dd class="description" id="desc-admin-edituser-location">{lang_location_text}</dd>
 
       <dt><label for="admin-edituser-sig">{lang_signature}</label></dt>
@@ -103,7 +103,7 @@
 
 <!-- BEGIN display_field -->
       <dt><label for="admin-edituser-{fieldname}">{lang_field}</label></dt>
-      <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="{fieldmaxlength}" value="{field}" name="{fieldname}" id="admin-edituser-{fieldname}" class="uk-input size5"{xhtml}></dd>
+      <dd><input type="text" maxlength="{fieldmaxlength}" value="{field}" name="{fieldname}" id="admin-edituser-{fieldname}" class="uk-input size5"{xhtml}></dd>
       {!if lang_field_text}
       <dd class="description" id="desc-admin-edituser-{fieldname}">{lang_field_text}</dd>
       {!endif}
