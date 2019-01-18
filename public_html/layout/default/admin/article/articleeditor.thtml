@@ -34,8 +34,10 @@
       <dd class="description" id="desc-admin-storyeditor-publish_month">{publish_date_explanation}</dd>
 
       <dt><label for="admin-storyeditor-title">{lang_title}</label></dt>
+      <dd><input type="text" maxlength="128" {!if titletoid}onkeyup="TitleToId('admin-storyeditor-title','admin-storyeditor-sid');" {!endif}value="{story_title}" name="title" id="admin-storyeditor-title" class="uk-input"{xhtml}></dd>
 
       <dt><label for="admin-storyeditor-page_title">{lang_page_title}</label></dt>
+      <dd><input type="text" maxlength="128" value="{page_title}" name="page_title" id="admin-storyeditor-page_title" class="uk-input"{xhtml}></dd>
 
       <dt><label for="tid">{lang_topic}</label></dt>
       <dd class="controls_text">{topic_selection}</dd>
