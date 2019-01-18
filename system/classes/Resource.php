@@ -1144,43 +1144,6 @@ class Resource
             }
         }
 
-        // 7. JavaScript variables
-        $iso639Code = COM_getLangIso639Code();
-        $lang = array(
-            'iso639Code'          => $iso639Code,
-            'tooltip_loading'     => $MESSAGE[116],
-            'tooltip_not_found'   => $MESSAGE[117],
-            'tooltip_select_date' => $MESSAGE[118],
-            'tabs_more'           => $MESSAGE[119],
-            'confirm_delete'      => $MESSAGE[76],
-            'confirm_send'        => $MESSAGE[120],
-        );
-        if (!empty($this->lang)) {
-            $lang = array_merge($lang, $this->lang);
-        }
-
-        $detect = new \Mobile_Detect;
-        $device = array(
-            'isMobile' => $detect->isMobile(),
-            'isTablet' => $detect->isTablet(),
-        );
-
-        $src = array(
-            'site_url'       => $this->config['site_url'],
-            'layout_url'     => $this->config['layout_url'],
-            'xhtml'          => XHTML,
-            'lang'           => $lang,
-            'device'         => $device,
-            'theme_options'  => $this->config['theme_options'],
-        );
-        $str = $this->arrayToJavaScriptObject($src);
-
-        // Strip '{' and '}' from both ends of $str
-        $str = substr($str, 1);
-        $str = substr($str, 0, strlen($str) - 1);
-        $str = 'var geeklog={ doc:document,win:window,$:function(id){ return this.doc.getElementById(id); },' . $str . ' };';
-        $retval .= '<script type="text/javascript">' . $str . '</script>' . PHP_EOL;
-
         // 8. Local JavaScript files
         if (count($this->localJsFiles['header']) > 0) {
             $retval .= $this->makeFileServerTag($this->localJsFiles['header'], false) . PHP_EOL;
