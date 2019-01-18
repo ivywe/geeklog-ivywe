@@ -323,11 +323,7 @@ foreach ($_THM_CONF['allowed_files'] as $allowed_file) {
 		$files4html .= "<option value='{$allowed_file}'>";
 	}
 	
-	if (isset($LANG_THM[$allowed_file])) {
-		$text = THM_str($allowed_file);
-	} else {
-		$text = $allowed_file;
-	}
+	$text = $allowed_file;
 	
 	$files4html .= THM_esc($text) . '</option>' . LB;
 }
