@@ -1,7 +1,7 @@
 {# begin {templatelocation} #}
 
 {lbslideshow}
-<script type="text/javascript" src="{site_url}/players/audio-player.js"></script>
+<script src="{site_url}/players/audio-player.js"></script>
 
 <ul class="uk-breadcrumb">
 {birdseed}
@@ -29,8 +29,8 @@
 <div class="uk-text-center">
 
   <!--START SIMPLEVIEWER EMBED.-->
-  <script type="text/javascript" src="{site_url}/simpleviewer/js/simpleviewer.js"></script>
-  <script type="text/javascript">
+  <script src="{site_url}/simpleviewer/js/simpleviewer.js"></script>
+  <script>
   var flashvars = {};
   var params = {};
   var attributes = {};

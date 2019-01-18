@@ -10,7 +10,7 @@
 </div>
 <!-- END noItems -->
 <!-- BEGIN slideItems -->
-<script type="text/javascript">
+<script>
     var flashvars = {};
     var params = {
     wmode: "transparent"

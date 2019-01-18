@@ -166,7 +166,7 @@ function INST_getHeader($mHeading)
 <meta http-equiv="Pragma" content="no-cache"/>
 <meta http-equiv="Expires" content="-1"/>
 <link rel="stylesheet" type="text/css" href="layout/style.css"' . XHTML . '>
-<script language="javascript" type="text/javascript">
+<script language="javascript">
 function INST_selectMigrationType()
 {
     var myType = document.migrate.migration_type.value;

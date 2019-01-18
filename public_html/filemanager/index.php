@@ -402,15 +402,15 @@ header('Content-Type: text/html; charset=utf-8');
         <li class="delete separator"><a href="#delete"></a></li>
     </ul>
 
-    <script type="text/javascript" src="scripts/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="scripts/jquery-browser.js"></script>
-    <script type="text/javascript" src="scripts/jquery.form-3.24.js"></script>
-    <script type="text/javascript" src="scripts/jquery.splitter/jquery.splitter-1.5.1.js"></script>
-    <script type="text/javascript" src="scripts/jquery.filetree/jqueryFileTree.js"></script>
-    <script type="text/javascript" src="scripts/jquery.contextmenu/jquery.contextMenu-1.01.js"></script>
-    <script type="text/javascript" src="scripts/jquery.impromptu-3.2.min.js"></script>
-    <script type="text/javascript" src="scripts/jquery.tablesorter-2.7.2.min.js"></script>
-    <script type="text/javascript" src="scripts/filemanager.min.js"></script>
+    <script src="scripts/jquery-1.11.3.min.js"></script>
+    <script src="scripts/jquery-browser.js"></script>
+    <script src="scripts/jquery.form-3.24.js"></script>
+    <script src="scripts/jquery.splitter/jquery.splitter-1.5.1.js"></script>
+    <script src="scripts/jquery.filetree/jqueryFileTree.js"></script>
+    <script src="scripts/jquery.contextmenu/jquery.contextMenu-1.01.js"></script>
+    <script src="scripts/jquery.impromptu-3.2.min.js"></script>
+    <script src="scripts/jquery.tablesorter-2.7.2.min.js"></script>
+    <script src="scripts/filemanager.min.js"></script>
 </div>
 </body>
 </html>

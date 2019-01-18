@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset={charset}">
-<script type="text/javascript" src="{site_url}/js/swfobject.js"></script>
-<script type="text/javascript">
+<script src="{site_url}/js/swfobject.js"></script>
+<script>
 // <![CDATA[
 function divResize(id, nw, nh) {
     var obj = document.getElementById(id);

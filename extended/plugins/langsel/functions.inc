@@ -102,7 +102,7 @@ function plugin_getBlocks_langsel($side, $topic='')
         if ($_USER['uid'] <= 1) {
             // For anonymous users
             $_SCRIPTS->setJavascript('
-                <script type="text/javascript">
+                <script>
                     $(document).ready(function () {
                         $("#langsel").change(function () {
                             var selection = $("#langsel option:selected").val();
@@ -115,7 +115,7 @@ function plugin_getBlocks_langsel($side, $topic='')
         } else {
             // For logged-in users
             $_SCRIPTS->setJavascript('
-                <script type="text/javascript">
+                <script>
                     $(document).ready(function () {
                         $("#langsel").change(function () {
                             $(this).parent().parent().submit();

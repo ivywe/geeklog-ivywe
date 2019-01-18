@@ -2,7 +2,7 @@
 
 {start_block}
 {navbar}
-<script type="text/javascript">
+<script>
 <!--
 function doCheckAll_ftpinput()
 {

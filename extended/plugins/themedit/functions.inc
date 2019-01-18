@@ -218,7 +218,7 @@ function plugin_getheadercode_themedit() {
 	
 	$header = '<meta http-equiv="Content-Script-Type" content="text/javascript"'
 			. XHTML . '>' . LB
-			. '<script type="text/javascript" src="' . THEMEDIT_BASE_URL
+			. '<script src="' . THEMEDIT_BASE_URL
 			. '/js/selection.js' . '"></script>' . LB;
 	return $header;
 }

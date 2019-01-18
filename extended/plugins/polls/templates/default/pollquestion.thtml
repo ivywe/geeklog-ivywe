@@ -4,7 +4,7 @@
 
 <div class="uk-overflow-container poll-questions">
 
-<script type="text/javascript">
+<script>
       google.load("visualization", "1", { packages:[ "corechart"] });
       google.setOnLoadCallback(drawChart);
       function drawChart() {

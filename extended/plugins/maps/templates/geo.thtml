@@ -16,7 +16,7 @@
 		}
 </style>
 	
-<script type="text/javascript">
+<script>
 		/* Error messages for possible errors */
 		var error_address_empty{gid} 	= '{error_address_empty}';
 		var error_invalid_address{gid} 	= '{error_invalid_address}'; 

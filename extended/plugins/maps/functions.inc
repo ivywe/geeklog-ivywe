@@ -76,7 +76,7 @@ function plugin_getheadercode_maps()
 		if( COM_getLanguageId() == ""){ $mapsapilang="ja"; } else { $mapsapilang=COM_getLanguageId(); }
 
     $_SCRIPTS->setJavaScriptLibrary('jquery');
-    $_SCRIPTS->setJavaScript('<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=' . $_MAPS_CONF['google_api_key'] . '&amp;libraries=adsense&language=' . $mapsapilang . '"></script>', false, false);
+    $_SCRIPTS->setJavaScript('<script src="//maps.googleapis.com/maps/api/js?key=' . $_MAPS_CONF['google_api_key'] . '&amp;libraries=adsense&language=' . $mapsapilang . '"></script>', false, false);
 
     //Maps for calendar plugin
     $str = '';
@@ -473,7 +473,7 @@ function plugin_profileblocksdisplay_maps($uid)
     $lng = 0.0;
 
     $_SCRIPTS->setJavaScriptLibrary('jquery');
-//    $_SCRIPTS->setJavaScript('<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=' . $_MAPS_CONF['google_api_key'] . '&amp;libraries=adsense"></script>');
+//    $_SCRIPTS->setJavaScript('<script src="//maps.googleapis.com/maps/api/js?key=' . $_MAPS_CONF['google_api_key'] . '&amp;libraries=adsense"></script>');
 
     if ($_MAPS_CONF['display_geo_profile'] == 0 || $_MAPS_CONF['google_api_key'] == '' ||
         $_MAPS_CONF['url_geocode'] == ''
@@ -2494,7 +2494,7 @@ function plugin_submit_maps($marker = '')
     $_SCRIPTS->setJavaScriptLibrary('jquery');
 
     $js = LB . '
-    <script type="text/javascript">	
+    <script>	
 		
 		var geocoder = new google.maps.Geocoder();
 		var map;

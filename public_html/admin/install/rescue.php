@@ -189,7 +189,7 @@ function render($renderType, $args = array()) {
                 <span class="message"><?php e(7); ?></span>
                 <form id="loginForm" method="post">
                     <?php e(8); ?>:<input type="password" name="gl_password" />
-                    <script type="text/javascript">
+                    <script>
                         document.getElementById('loginForm')['gl_password'].focus();
                     </script>
                     <input type="submit" value="<?php e(9); ?>" onclick="this.disabled=true;this.form.submit();" />
@@ -513,7 +513,7 @@ function printHtmlStyle() {
 
 function printJs() {
 ?>
-<script type="text/javascript">
+<script>
     function toggle(objId){
         var o = document.getElementById(objId),
             i, others;

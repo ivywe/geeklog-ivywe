@@ -55,7 +55,7 @@ function adveditor_init_fckeditor()
     global $_CONF, $_SCRIPTS;
 
     // Add core JavaScript global variables
-    $script  = '<script type="text/javascript">' . LB
+    $script  = '<script>' . LB
              . 'var geeklogEditorBaseUrl = "' . $_CONF['site_url'] . '/editors";' . LB
                // Setup editor path for advanced editor JS functions
              . 'var geeklogEditorBasePath = "' . $_CONF['site_url'] . '/editors/fckeditor/";' . LB

@@ -73,7 +73,7 @@ If you'd like to use ZeroClipboard hosted via a CDN (content delivery network), 
 To use the library, simply include the following JavaScript file in your page:
 
 ```html
-<script type="text/javascript" src="ZeroClipboard.js"></script>
+<script src="ZeroClipboard.js"></script>
 ```
 
 You also need to have the "`ZeroClipboard.swf`" file available to the browser.  If this file is
@@ -240,8 +240,8 @@ Here is a quick example using as few calls as possible:
   <body>
     <div id="d_clip_button" class="clip_button" data-clipboard-text="Copy Me!" title="Click to copy." style="border:1px solid black; padding:20px;">Copy To Clipboard</div>
 
-    <script type="text/javascript" src="ZeroClipboard.js"></script>
-    <script type="text/javascript">
+    <script src="ZeroClipboard.js"></script>
+    <script>
       var client = new ZeroClipboard( document.getElementById('d_clip_button') );
     </script>
   </body>
@@ -271,13 +271,13 @@ Here is a more complete example which exercises many of the configuration option
     </style>
   </head>
   <body>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script type="text/javascript" src="ZeroClipboard.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="ZeroClipboard.js"></script>
 
     <div class="clip_button">Copy To Clipboard</div>
     <div class="clip_button">Copy This Too!</div>
 
-    <script type="text/javascript">
+    <script>
       var client = new ZeroClipboard( $('.clip_button') );
 
       client.on( 'ready', function(event) {

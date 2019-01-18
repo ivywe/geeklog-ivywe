@@ -233,7 +233,7 @@ function plugin_templatesetvars_recaptcha($type, &$template) {
 		$lang = RECAPTCHA_getLangCode();
 		$captcha = '<div class="g-recaptcha" data-sitekey="'
 				 . RECAPTCHA_esc($_RECAPTCHA_CONF['public_key']) . '"></div>'
-				 . '<script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl='
+				 . '<script src="https://www.google.com/recaptcha/api.js?hl='
 				 . RECAPTCHA_esc($lang) . '" async defer></script>';
 ;
 	} else {

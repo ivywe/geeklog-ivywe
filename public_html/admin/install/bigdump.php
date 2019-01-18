@@ -416,7 +416,7 @@ if (!$error && isset($_REQUEST["start"]) && isset($_REQUEST["foffset"]) && preg_
                 }
 
                 // Go to the next step
-                $content .= '<script language="JavaScript" type="text/javascript">window.setTimeout(\'location.href="'
+                $content .= '<script language="JavaScript">window.setTimeout(\'location.href="'
                     . $_SERVER['PHP_SELF'] . '?start=' . $lineNumber . '&fn='
                     . urlencode($currentFileName) . '&foffset=' . $fOffset . '&totalqueries=' . $totalQueries . '&db_connection_charset=' . $db_connection_charset . '&language=' . $language . '&site_url=' . $site_url . '&site_admin_url=' . $site_admin_url . '";\',500+' . $delayPerSession . ');</script>' . PHP_EOL
                     . '<noscript>' . PHP_EOL

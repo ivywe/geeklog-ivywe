@@ -14,7 +14,7 @@
 
 {markerclusterer}
 
-<script type="text/javascript">
+<script>
 	var map{mid}; /* Instance of Google Maps object */
 	var map_height_m{mid} = '{map_height}';
 

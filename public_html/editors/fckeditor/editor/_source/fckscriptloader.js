@@ -71,7 +71,7 @@ FCKScriptLoader.Load = function( scriptName )
 
 FCKScriptLoader._LoadScript = function( scriptPathFromSource )
 {
-	document.write( '<script type="text/javascript" src="' + this.FCKeditorPath + 'editor/_source/' + scriptPathFromSource + '"><\/script>' ) ;
+	document.write( '<script src="' + this.FCKeditorPath + 'editor/_source/' + scriptPathFromSource + '"><\/script>' ) ;
 }
 
 FCKScriptLoader.AddScript = function( scriptName, scriptBasePath, dependency, compatibility )

@@ -10,7 +10,7 @@
 </div>
 <!-- END noItems -->
 <!-- BEGIN slideItems -->
-<script type="text/javascript">
+<script>
 //<![CDATA[
 function msieversion()
 {
@@ -26,7 +26,7 @@ function msieversion()
 //]]>
 </script>
 
-<script type="text/javascript">
+<script>
 //<![CDATA[
 var timer;
 var current_location = 1;
@@ -247,7 +247,7 @@ function setCaption(text) {
       <option value="45" > 45 {seconds}</option>
       <option value="60" > 60 {seconds}</option>
     </select>
-    <script type="text/javascript">
+    <script>
     //<![CDATA[
     /* show the blend select if appropriate */
     if (browserCanBlend) {
@@ -260,7 +260,7 @@ function setCaption(text) {
 
   <div class="mg_media_detail">
     <div class="mgFrame_default">
-      <script type="text/javascript">
+      <script>
       //<![CDATA[
       document.write('<img src="'+photo_urls[1]+'" name="slide" style="max-width:{max_image_width}px;">');
       //]]>
@@ -269,14 +269,14 @@ function setCaption(text) {
   </div>
 
   <div class="mg_navbar" style="text-align:center">
-    <script type="text/javascript">
+    <script>
     //<![CDATA[
     document.write('<div id="caption">'+photo_captions[1]+'</div>');
     //]]>
     </script>
   </div>
 
-  <script type="text/javascript">
+  <script>
   //<![CDATA[
   /* Load the first picture */
   setCaption(photo_captions[1]);

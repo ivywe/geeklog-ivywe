@@ -15,9 +15,9 @@
 
     <script src="{layout_url}/vendor/datatables/js/jquery.dataTables.js"></script>
 
-    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/plug-ins/1.10.6/sorting/currency.js"></script>
+    <script charset="utf8" src="//cdn.datatables.net/plug-ins/1.10.6/sorting/currency.js"></script>
 
-		<script type="text/javascript" class="init">
+		<script class="init">
 			$(document).ready(function() {
 		    // デフォルトの設定を変更
 		    $.extend( $.fn.dataTable.defaults, { 

@@ -118,10 +118,10 @@ function plugin_getheadercode_paypal()
 	    
 		$_SCRIPTS->setCSSFile('paypal_css_jqplot', '/' . $_PAY_CONF['paypal_folder'] . '/css/jquery.jqplot.css');
 		
-		$js = '<!--[if lt IE 9]><script language="javascript" type="text/javascript" src="' . $_CONF['site_url'] . '/' . $_PAY_CONF['paypal_folder'] . '/js/excanvas.js"></script><![endif]-->
-	<script language="javascript" type="text/javascript" src="' . $_CONF['site_url'] . '/' . $_PAY_CONF['paypal_folder'] . '/js/jquery.jqplot.js">
+		$js = '<!--[if lt IE 9]><script language="javascript" src="' . $_CONF['site_url'] . '/' . $_PAY_CONF['paypal_folder'] . '/js/excanvas.js"></script><![endif]-->
+	<script language="javascript" src="' . $_CONF['site_url'] . '/' . $_PAY_CONF['paypal_folder'] . '/js/jquery.jqplot.js">
 	</script>
-	<script language="javascript" type="text/javascript" src="' . $_CONF['site_url'] . '/' . $_PAY_CONF['paypal_folder'] . '/js/jqplot.dateAxisRenderer.js">
+	<script language="javascript" src="' . $_CONF['site_url'] . '/' . $_PAY_CONF['paypal_folder'] . '/js/jqplot.dateAxisRenderer.js">
 	</script>
 	';
 	

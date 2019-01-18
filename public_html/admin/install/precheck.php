@@ -1221,8 +1221,8 @@ $precheck->setVar('lang_version', PRECHECK_str('lang_version'));
 if ($precheck->step === 4) {
 	$precheck->setVar(
 		'javascript',
-		'<script type="text/javascript" src="core.js"></script>' . LB
-		. '<script type="text/javascript" src="precheck.js"></script>' . LB
+		'<script src="core.js"></script>' . LB
+		. '<script src="precheck.js"></script>' . LB
 	);
 }
 

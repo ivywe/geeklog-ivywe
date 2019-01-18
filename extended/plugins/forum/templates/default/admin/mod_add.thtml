@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<script type="text/javascript">
+<script>
     <!-- Begin
     function toggleModeratorMode(mode) { 
         if (mode == 'user') {

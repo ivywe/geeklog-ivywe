@@ -1,7 +1,7 @@
 {# begin {templatelocation} #}
 
 {lbslideshow}
-<script type="text/javascript" src="{site_url}/players/audio-player.js"></script>
+<script src="{site_url}/players/audio-player.js"></script>
 
 <ul class="uk-breadcrumb">
 {birdseed}
@@ -22,7 +22,7 @@
 </div>
 {!endif}
 
-<script type="text/javascript">
+<script>
 var surl = "{site_url}/album_items.php?aid={album_id}";
 </script>
 <div id="ad-gallery" class="ad-gallery">

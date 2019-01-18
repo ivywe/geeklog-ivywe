@@ -48,7 +48,7 @@
   {!endif}
 </div>
 {!if jumpbox}<div class="mg_jumpbox">{jumpbox}</div>{!endif}
-<script type="text/javascript">
+<script>
 //<![CDATA[
 function popitup(url)
 {

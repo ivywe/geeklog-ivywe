@@ -183,7 +183,7 @@ text <img src="none" alt="none" /> 	<b>t<em> e <strong> x </strong> t</em></b>
 
 (note nesting of 'form', missing required attributes, etc.)<br />
 <form>
-<script type="text/javascript">s</script>
+<script>s</script>
 <fieldset><legend>p</legend>l <input name="personal_lastname" type="text" tabindex="1"></fieldset>
 <input name="h" type="checkbox" value="h" tabindex="20"> h
 <textarea name="t">t</textarea>

@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<script type="text/javascript">
+<script>
 // Setup editor path for FCKeditor JS Functions
 geeklogEditorBasePath = "{site_url}/fckeditor/" ;
 window.onload = function() {

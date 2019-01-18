@@ -93,7 +93,7 @@ function FCKToolbarSet_Create( overhideLocation )
 
 			// Initialize the IFRAME document body.
 			eTargetDocument.open() ;
-			eTargetDocument.write( '<html><head>' + sBase + '<script type="text/javascript"> var adjust = function() { window.frameElement.height = document.body.scrollHeight ; }; '
+			eTargetDocument.write( '<html><head>' + sBase + '<script> var adjust = function() { window.frameElement.height = document.body.scrollHeight ; }; '
 					+ 'window.onresize = window.onload = '
 					+ 'function(){'		// poll scrollHeight until it no longer changes for 1 sec.
 					+ 'var timer = null;'

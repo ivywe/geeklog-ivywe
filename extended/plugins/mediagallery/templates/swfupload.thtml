@@ -50,12 +50,12 @@
 </div>
 <hr{xhtml}>
 <div style="text-align:right;">{jumpbox}</div>
-<script type="text/javascript" src="{site_url}/mediagallery/swfupload/swfupload.js"></script>
-<script type="text/javascript" src="{site_url}/mediagallery/swfupload/swfupload.swfobject.js"></script>
-<script type="text/javascript" src="{site_url}/mediagallery/swfupload/swfupload.queue.js"></script>
-<script type="text/javascript" src="{site_url}/mediagallery/swfupload/fileprogress.js"></script>
-<script type="text/javascript" src="{site_url}/mediagallery/swfupload/handlers.js"></script>
-<script type="text/javascript">
+<script src="{site_url}/mediagallery/swfupload/swfupload.js"></script>
+<script src="{site_url}/mediagallery/swfupload/swfupload.swfobject.js"></script>
+<script src="{site_url}/mediagallery/swfupload/swfupload.queue.js"></script>
+<script src="{site_url}/mediagallery/swfupload/fileprogress.js"></script>
+<script src="{site_url}/mediagallery/swfupload/handlers.js"></script>
+<script>
 /* this is where all of the exciting things happen */
 var swfu;
 SWFUpload.onload = function () {

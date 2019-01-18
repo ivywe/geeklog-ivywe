@@ -145,7 +145,7 @@ function plugin_getheadercode_dbman() {
 	$currentUrl = COM_getCurrentURL();
 
 	if (stripos($currentUrl, DBMAN_BASE_URL) === 0) {
-		return '<script type="text/javascript" src="' . DBMAN_BASE_URL
+		return '<script src="' . DBMAN_BASE_URL
 			. '/js/dbman.js' . '"></script>' . LB;
 	} else {
 		return '';

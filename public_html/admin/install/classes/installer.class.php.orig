@@ -78,7 +78,7 @@ class Installer
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="robots" content="noindex,nofollow">
     <link rel="stylesheet" type="text/css" href="layout/style.css">
-    <script type="text/javascript">
+    <script>
     function INST_selectMigrationType() {
         var myType = document.migrate.migration_type.value;
         var migrationSelect = document.getElementById("migration-select");

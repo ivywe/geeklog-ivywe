@@ -617,7 +617,7 @@ class mgAlbum {
         global $_MG_CONF, $LANG_MG03;
 
         $retval  = '<noscript><div style="border:1px dashed #ccc;margin-top:10px;padding:15px;" class="pluginAlert aligncenter">' . $LANG_MG03['js_warning'] . '</div></noscript>' . LB;
-        $retval .= '<script type="text/javascript">' . LB;
+        $retval .= '<script>' . LB;
         $retval .= 'function openGallery1() {' . LB;
         $retval .= '    return loadXMLDoc("' . $_MG_CONF['site_url'] . '/lightbox.php?aid=' . $album_id . '");';
         $retval .= '}' . LB;

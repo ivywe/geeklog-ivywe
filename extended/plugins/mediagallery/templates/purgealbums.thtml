@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<script type="text/javascript">
+<script>
 //<![CDATA[
 function doCheckAll_purgealbums()
 {

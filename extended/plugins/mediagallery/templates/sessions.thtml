@@ -2,7 +2,7 @@
 
 {!if noitems}
 {!else}
-<script type="text/javascript">
+<script>
 //<![CDATA[
 function doCheckAll_sessions()
 {

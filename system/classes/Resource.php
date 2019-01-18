@@ -39,8 +39,8 @@ class Resource
 {
     const DEFAULT_CACHE_LIFESPAN = 604800; // 1 week
 
-    const JS_TAG_TEMPLATE = '<script type="text/javascript" src="%s"></script>';
-    const EXTERNAL_JS_TAG_TEMPLATE = '<script type="text/javascript" src="%s" async defer></script>';
+    const JS_TAG_TEMPLATE = '<script src="%s"></script>';
+    const EXTERNAL_JS_TAG_TEMPLATE = '<script src="%s" async defer></script>';
 
     // Default theme
     const DEFAULT_THEME = 'denim';
@@ -1155,7 +1155,7 @@ class Resource
             if (!$this->debug) {
                 $code = JSMin::minify($code);
             }
-            $retval .= '<script type="text/javascript">' . $code . '</script>' . PHP_EOL;
+            $retval .= '<script>' . $code . '</script>' . PHP_EOL;
         }
 
         return $retval;
@@ -1195,7 +1195,7 @@ class Resource
                 $code = JSMin::minify($code);
             }
 
-            $retval .= '<script type="text/javascript">' . $code . '</script>' . PHP_EOL;
+            $retval .= '<script>' . $code . '</script>' . PHP_EOL;
         }
 
         return $retval;

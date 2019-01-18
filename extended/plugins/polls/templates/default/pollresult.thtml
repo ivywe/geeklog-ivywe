@@ -18,7 +18,7 @@
     {notification} <a href="{site_url}/polls/index.php">{lang_polltopics}</a> | {num_votes} {lang_voters} {poll_comments}
 </div>
 
-<script type="text/javascript">
+<script>
       google.load("visualization", "1", { packages:["corechart"]});
       google.setOnLoadCallback(drawChart);
       function drawChart() {

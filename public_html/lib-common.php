@@ -8496,7 +8496,7 @@ function COM_setupAdvancedEditor($custom, $permissions = 'story.edit', $myEditor
     // Add core JavaScript global variables
     $html = json_encode($html);
     $script = <<<HTML
-<script type="text/javascript">
+<script>
     var geeklogEditorName = "{$name}";
     var geeklogAllowedHtml = {$html};
     var geeklogFileManager = {$geeklogFileManager};

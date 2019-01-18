@@ -277,7 +277,7 @@ function plugin_getheadercode_gus() {
 				 .  '" title="' . $_CONF['theme'] . '"' . XHTML . '>';
 	
 	if (strpos($_SERVER['SCRIPT_NAME'], 'admin/plugins/gus/index.php') !== FALSE) {
-		$header_text .= '<script type="text/javascript" src="./Tab.js"></script>';
+		$header_text .= '<script src="./Tab.js"></script>';
 	}
 	
 	return $header_text;

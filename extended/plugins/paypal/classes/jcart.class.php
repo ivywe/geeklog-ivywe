@@ -665,7 +665,7 @@ class jcart {
 		// IF UPDATING AN ITEM, FOCUS ON ITS QTY INPUT AFTER THE CART IS LOADED (DOESN'T SEEM TO WORK IN IE7)
 		if ($_POST['jcart_update_item'])
 			{
-			$retval .= "\t" . '<script type="text/javascript">jQuery(function(){jQuery("#jcart-item-id-' . $_POST['item_id'] . '").focus()});</script>' . "";
+			$retval .= "\t" . '<script>jQuery(function(){jQuery("#jcart-item-id-' . $_POST['item_id'] . '").focus()});</script>' . "";
 			}
 		
         $retval .= "\t<div class=\"jcart_footer\">";

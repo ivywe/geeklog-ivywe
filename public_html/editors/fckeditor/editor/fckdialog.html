@@ -26,7 +26,7 @@
 		<title></title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="robots" content="noindex, nofollow" />
-		<script type="text/javascript">
+		<script>
 // <![CDATA[
 
 // Domain relaxation logic.
@@ -90,7 +90,7 @@ var langDir = E.FCKLang.Dir ;
 
 // For IE6-, the fck_dialog_ie6.js is loaded, used to fix limitations in the browser.
 if ( FCKBrowserInfo.IsIE && !FCKBrowserInfo.IsIE7 )
-	document.write( '<' + 'script type="text/javascript" src="' + FCKConfig.SkinPath + 'fck_dialog_ie6.js"><' + '\/script>' ) ;
+	document.write( '<' + 'script src="' + FCKConfig.SkinPath + 'fck_dialog_ie6.js"><' + '\/script>' ) ;
 
 FCKTools.RegisterDollarFunction( window ) ;
 
@@ -765,7 +765,7 @@ var onReadyRegister = function()
 		<div class="contents" id="contents">
 			<div id="header">
 				<div id="TitleArea" class="PopupTitle PopupTitleBorder">
-					<script type="text/javascript">
+					<script>
 // <![CDATA[
 document.write( Args().Title ) ;
 // ]]>
@@ -805,7 +805,7 @@ document.write( Args().Title ) ;
 		<div class="br"></div>
 		<div class="cover" id="cover" style="display:none"></div>
 		<div id="throbberBlock" style="position: absolute; visibility: hidden"></div>
-		<script type="text/javascript">
+		<script>
 // <![CDATA[
 			// Set the class name for language direction.
 			document.body.className += ' ' + langDir ;
