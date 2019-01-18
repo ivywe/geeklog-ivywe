@@ -67,19 +67,19 @@
           {expire_month_options}
         </select>
         /
-        <select class="uk-select uk-form-width-medium" name="expire_day" class="uk-select uk-width-auto">
+        <select class="uk-select uk-form-width-xsmall" name="expire_day" class="uk-select uk-width-auto">
           {expire_day_options}
         </select>
         /
-        <select class="uk-select uk-form-width-medium" name="expire_year" class="uk-select  uk-width-auto">
+        <select class="uk-select uk-form-width-xsmall" name="expire_year" class="uk-select  uk-width-auto">
           {expire_year_options}
         </select>&nbsp;&nbsp;
 
-        <select class="uk-select uk-form-width-medium" name="expire_hour" class="uk-select  uk-width-auto">
+        <select class="uk-select uk-form-width-xsmall" name="expire_hour" class="uk-select  uk-width-auto">
           {expire_hour_options}
         </select>
         :
-        <select class="uk-select uk-form-width-medium" name="expire_minute" class="uk-select  uk-width-auto">
+        <select class="uk-select uk-form-width-xsmall" name="expire_minute" class="uk-select  uk-width-auto">
           {expire_minute_options}
         </select>
         {expireampm_selection}
@@ -106,23 +106,23 @@
         <input type="checkbox" class="uk-checkbox uk-form-width-xsmall" name="cmt_close_flag" id="cmt_close_flag" value="1" {is_checked5} onclick="enablecmtclose(this);"{xhtml}>
            &nbsp;
            <span dir="ltr">
-           <select class="uk-select uk-form-width-medium" name="cmt_close_month" class="uk-select uk-width-auto">
+           <select class="uk-select uk-form-width-xsmall" name="cmt_close_month" class="uk-select uk-width-auto">
               {cmt_close_month_options}
            </select>
            /
-           <select class="uk-select uk-form-width-medium" name="cmt_close_day" class="uk-select uk-width-auto">
+           <select class="uk-select uk-form-width-xsmall" name="cmt_close_day" class="uk-select uk-width-auto">
               {cmt_close_day_options}
            </select>
            /
-           <select class="uk-select uk-form-width-medium" name="cmt_close_year" class="uk-select uk-width-auto">
+           <select class="uk-select uk-form-width-xsmall" name="cmt_close_year" class="uk-select uk-width-auto">
               {cmt_close_year_options}
            </select>&nbsp;&nbsp;
 
-           <select class="uk-select uk-form-width-medium" name="cmt_close_hour" class="uk-select uk-width-auto">
+           <select class="uk-select uk-form-width-xsmall" name="cmt_close_hour" class="uk-select uk-width-auto">
                {cmt_close_hour_options}
            </select>
            :
-           <select class="uk-select uk-form-width-medium" name="cmt_close_minute" class="uk-select uk-width-auto">
+           <select class="uk-select uk-form-width-xsmall" name="cmt_close_minute" class="uk-select uk-width-auto">
                {cmt_close_minute_options}
            </select>
                {cmt_close_ampm_selection}

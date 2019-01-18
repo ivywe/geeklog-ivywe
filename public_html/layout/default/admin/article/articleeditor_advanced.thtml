@@ -19,7 +19,7 @@
       <dd><input type="text" class="uk-input" maxlength="128" value="{page_title}" name="page_title" id="admin-storyeditor-page_title" class="uk-input size6"{xhtml}></dd>
 
       <dt><label for="admin-storyeditor_advanced-sid">{lang_sid}</label></dt>
-      <dd><input type="text" class="uk-input" maxlength="128" value="{story_id}" name="sid" id="admin-storyeditor_advanced-sid" class="uk-input size6"{xhtml}></dd>
+      <dd><input type="text" class="uk-input uk-form-width-medium" maxlength="128" value="{story_id}" name="sid" id="admin-storyeditor_advanced-sid" class="uk-input size6"{xhtml}></dd>
 
       <dt{hide_meta}><label for="admin-storyeditor-metadescription">{lang_metadescription}</label></dt>
       <dd{hide_meta}><textarea name="meta_description" id="admin-storyeditor-metadescription" class="uk-textarea" style="width:95%" cols="70" rows="2">{meta_description}</textarea></dd>
@@ -178,27 +178,27 @@
         <input type="checkbox" class="uk-checkbox uk-form-width-xsmall" name="cmt_close_flag" id="cmt_close_flag" value="1" {is_checked5} onclick="enablecmtclose(this);"{xhtml}>
         &nbsp;
            <span dir="ltr">
-           <select class="uk-select uk-form-width-medium" name="cmt_close_month" class="uk-select uk-width-auto">
+           <select class="uk-select uk-form-width-xsmall" name="cmt_close_month" class="uk-select uk-width-auto">
               {cmt_close_month_options}
            </select>
            /
-           <select class="uk-select uk-form-width-medium" name="cmt_close_day" class="uk-select uk-width-auto">
+           <select class="uk-select uk-form-width-xsmall" name="cmt_close_day" class="uk-select uk-width-auto">
               {cmt_close_day_options}
            </select>
            /
-           <select class="uk-select uk-form-width-medium" name="cmt_close_year" class="uk-select uk-width-auto">
+           <select class="uk-select uk-form-width-xsmall" name="cmt_close_year" class="uk-select uk-width-auto">
               {cmt_close_year_options}
            </select>&nbsp;&nbsp;
 
-           <select class="uk-select uk-form-width-medium" name="cmt_close_hour" class="uk-select uk-width-auto">
+           <select class="uk-select uk-form-width-xsmall" name="cmt_close_hour" class="uk-select uk-width-auto">
                {cmt_close_hour_options}
            </select>
            :
-           <select class="uk-select uk-form-width-medium" name="cmt_close_minute" class="uk-select uk-width-auto">
+           <select class="uk-select uk-form-width-xsmall" name="cmt_close_minute" class="uk-select uk-width-auto">
                {cmt_close_minute_options}
            </select>
                {cmt_close_ampm_selection}
-           <input type="hidden" name="cmt_close_second" value="{cmt_close_second}"{xhtml}>
+           <input type="hidden" name="cmt_close_small" value="{cmt_close_second}"{xhtml}>
            </span>
       </dd>
     </dl>
@@ -240,23 +240,23 @@
       <dt><label for="admin-storyeditor_advanced-expire_month"></label></dt>
       <dd>
         {lang_date}&nbsp;
-        <select class="uk-select uk-form-width-medium" name="expire_month" id="admin-storyeditor_advanced-expire_month" class="uk-select uk-width-auto">
+        <select class="uk-select uk-form-width-xsmall" name="expire_month" id="admin-storyeditor_advanced-expire_month" class="uk-select uk-width-auto">
           {expire_month_options}
         </select>
         /
-        <select class="uk-select uk-form-width-medium" name="expire_day" class="uk-select uk-width-auto">
+        <select class="uk-select uk-form-width-xsmall" name="expire_day" class="uk-select uk-width-auto">
           {expire_day_options}
         </select>
         /
-        <select class="uk-select uk-form-width-medium" name="expire_year" class="uk-select uk-width-auto">
+        <select class="uk-select uk-form-width-xsmall" name="expire_year" class="uk-select uk-width-auto">
           {expire_year_options}
         </select>&nbsp;&nbsp;
 
-        <select class="uk-select uk-form-width-medium" name="expire_hour" class="uk-select uk-width-auto">
+        <select class="uk-select uk-form-width-xsmall" name="expire_hour" class="uk-select uk-width-auto">
           {expire_hour_options}
         </select>
         :
-        <select class="uk-select uk-form-width-medium" name="expire_minute" class="uk-select uk-width-auto">
+        <select class="uk-select uk-form-width-xsmall" name="expire_minute" class="uk-select uk-width-auto">
           {expire_minute_options}
         </select>
         {expireampm_selection}
