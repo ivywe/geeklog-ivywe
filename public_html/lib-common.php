@@ -5455,7 +5455,7 @@ function COM_getDayFormOptions($selected = '')
  * @see    function COM_getMinuteFormOptions
  * @return string  HTML years as option values
  */
-function COM_getYearFormOptions($selected = '', $startOffset = -6, $endOffset = 5)
+function COM_getYearFormOptions($selected = '', $startOffset = -5, $endOffset = 5)
 {
     $year_options = '';
     $start_year = date('Y') + $startOffset;
@@ -8496,7 +8496,7 @@ function COM_setupAdvancedEditor($custom, $permissions = 'story.edit', $myEditor
     // Add core JavaScript global variables
     $html = json_encode($html);
     $script = <<<HTML
-<script>
+<script type="text/javascript">
     var geeklogEditorName = "{$name}";
     var geeklogAllowedHtml = {$html};
     var geeklogFileManager = {$geeklogFileManager};
