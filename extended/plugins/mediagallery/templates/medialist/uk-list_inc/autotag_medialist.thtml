@@ -1,0 +1,6 @@
+{# begin {templatelocation} #}
+
+<?php global $inc; $inc=0; ?>
+{medialist_col}
+
+{# end {templatelocation} #}

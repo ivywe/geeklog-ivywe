@@ -48,6 +48,9 @@ function MG_medialist (
   , $ukc=''
   , $url=''
   , $reverse=''
+  , $text=''
+  , $text2=''
+  , $target=''
 
 )
 {
@@ -181,6 +184,9 @@ function MG_medialist (
 		$T->set_var('media',$media);
 		$T->set_var('url',$url);
 		$T->set_var('reverse',$reverse);
+		$T->set_var('text',$text);
+		$T->set_var('text2',$text2);
+		$T->set_var('target',$target);
 	
 		if ( SEC_hasRights('mediagallery.admin') ){
 			$icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
@@ -378,6 +384,9 @@ function MG_parm2 ($p2)
 	$parm2_ary[]="gridr";
 	$parm2_ary[]="url";
 	$parm2_ary[]="reverse";
+	$parm2_ary[]="text";
+	$parm2_ary[]="text2";
+	$parm2_ary[]="target";
 
 	$parm2_ary[]="order";
 	

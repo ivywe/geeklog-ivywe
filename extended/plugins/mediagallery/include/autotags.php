@@ -747,7 +747,7 @@ function MG_autotags($op, $content = '', $autotag = '')
                 'movie'         => $_MG_CONF['site_url'] . '/xml.php?aid=' . $parm1 . '%26src=' . trim($src),
                 'dropshadow'    => 'true',
                 'delay'         => $delay,
-                'nolink'        => ($album_data['hidden'] || $enable_link == 0) ? 'true' : 'false',
+                'nolink'        => ($album_data['hidden'] || $enable_link != 1) ? 'true' : 'false',
                 'showtitle'     => ($showtitle == 'bottom' || $showtitle == 'top') ? '&showTitle=' . $showtitle : '',
                 'width'         => $width,
                 'height'        => $height,
@@ -874,7 +874,7 @@ function MG_autotags($op, $content = '', $autotag = '')
             if ($delay <= 0) {
                 $delay = 10;
             }
-            if ($album_data['hidden'] == 1 || $enable_link == 0) {
+            if ($album_data['hidden'] == 1 || $enable_link != 1) {
                 $ss_url = '';
             } else {
 //              $ss_url = '<a href="' . $_MG_CONF['site_url'] . '/album.php?aid=' . $aid . '"' . ($target=='' ? '' : ' target="' . $target . '"') . '>';
@@ -1015,7 +1015,7 @@ function MG_autotags($op, $content = '', $autotag = '')
             if ($delay <= 0) {
                 $delay = 10;
             }
-            if ($album_data['hidden'] == 1 || $enable_link == 0) {
+            if ($album_data['hidden'] == 1 || $enable_link != 1) {
                 $ss_url = '';
             } else {
                 $ss_url = $_MG_CONF['site_url'] . '/album.php?aid=' . $aid;
@@ -1057,7 +1057,7 @@ function MG_autotags($op, $content = '', $autotag = '')
         //@@@@@
         case 'medialist' :
             $link=MG_medialist ($p1
-                , $p['lastparm2'], $p['theme'],$p['limitcnt'],$p['sort'],$p['src'],$p['title'],$p['desc'],$p['media'],$p['grids'],$p['gridm'],$p['gridl'],$p['gridr'],$p['uks'],$p['ukc'],$p['url'],$p['reverse']);
+                , $p['lastparm2'], $p['theme'],$p['limitcnt'],$p['sort'],$p['src'],$p['title'],$p['desc'],$p['media'],$p['grids'],$p['gridm'],$p['gridl'],$p['gridr'],$p['uks'],$p['ukc'],$p['url'],$p['reverse'],$p['text'],$p['text1'],$p['text2'],$p['text3'],$p['target'],$p['dotnav']);
             break;
         case 'albumlist' :
             $link=MG_albumlist ($p1, $p['limitcnt']	, $p['order']
@@ -1147,7 +1147,7 @@ function MG_autotags($op, $content = '', $autotag = '')
                     $url = $_MG_CONF['site_url'] . '/media.php?s=' . $linkID;
                 }
             }
-            if ($enable_link == 0) {
+            if ($enable_link != 1) {
                 $link = $tagtext;
             } else {
                 $link = '<a href="' . $url . '"' . ($target=='' ? '' : ' target="' . $target . '"') . '>' . $tagtext . '</a>';
@@ -1333,7 +1333,7 @@ if(strlen($class) != 0){$class =" ".$class;}
             if ($alt == 1 && $row['remote_url'] != '') {
 
                 $url = $row['remote_url'];
-                if ($autotag['tag'] != 'image' && $enable_link != 0) {
+                if ($autotag['tag'] != 'image' && $enable_link == 1) {
                     $link = '<a href="' . $url . '"' . ($target=='' ? '' : ' target="' . $target . '"') . '>' . $tagtext . '</a>';
                 } else {
                     $link = $tagtext;
@@ -1350,7 +1350,7 @@ if(strlen($class) != 0){$class =" ".$class;}
                     $link_album = MG_getAlbumData($linkID, array('album_id', 'hidden'), false);
                     if (!isset($link_album['album_id'])) {
                         $url = $_MG_CONF['site_url'] . '/album.php?aid=' . $linkID;
-                        if ($autotag['tag'] != 'image' && $link_album['hidden'] != 1 && $enable_link != 0) {
+                        if ($autotag['tag'] != 'image' && $link_album['hidden'] != 1 && $enable_link == 1) {
                             $link = '<a href="' . $url . '"' . ($target=='' ? '' : ' target="' . $target . '"') . '>' . $tagtext . '</a>';
                          } else {
                             $link = $tagtext;
@@ -1365,7 +1365,7 @@ if(strlen($class) != 0){$class =" ".$class;}
                     if ($linkAID != 0) {
                         $url = $_MG_CONF['site_url'] . '/media.php?s=' . $linkID;
                         $hidden = DB_getItem($_TABLES['mg_albums'], 'hidden', "album_id=" . intval($linkAID));
-                        if ($autotag['tag'] != 'image' && $hidden != 1 && $enable_link != 0) {
+                        if ($autotag['tag'] != 'image' && $hidden != 1 && $enable_link == 1) {
                             $link = '<a href="' . $url . '"' . ($target=='' ? '' : ' target="' . $target . '"') . '>' . $tagtext . '</a>';
                         } else {
                             $link = $tagtext;
