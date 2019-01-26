@@ -1057,7 +1057,7 @@ function MG_autotags($op, $content = '', $autotag = '')
         //@@@@@
         case 'medialist' :
             $link=MG_medialist ($p1
-                , $p['lastparm2'], $p['theme'],$p['limitcnt'],$p['sort'],$p['src'],$p['title'],$p['desc'],$p['media'],$p['grids'],$p['gridm'],$p['gridl'],$p['gridr'],$p['uks'],$p['ukc'],$p['url'],$p['reverse'],$p['text'],$p['text1'],$p['text2'],$p['text3'],$p['target'],$p['dotnav']);
+                , $p['lastparm2'], $p['theme'],$p['limitcnt'],$p['sort'],$p['src'],$p['title'],$p['desc'],$p['media'],$p['grid'],$p['grids'],$p['gridm'],$p['gridl'],$p['gridr'],$p['uks'],$p['ukc'],$p['url'],$p['reverse'],$p['text'],$p['text1'],$p['text2'],$p['text3'],$p['target'],$p['dotnav'],$p['minheight'],$p['maxheight'] );
             break;
         case 'albumlist' :
             $link=MG_albumlist ($p1, $p['limitcnt']	, $p['order']

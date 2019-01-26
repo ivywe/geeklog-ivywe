@@ -40,6 +40,7 @@ function MG_medialist (
   , $title=''
   , $desc=''
   , $media=''
+  , $grid=''
   , $grids=''
   , $gridm=''
   , $gridl=''
@@ -49,8 +50,13 @@ function MG_medialist (
   , $url=''
   , $reverse=''
   , $text=''
+  , $text1=''
   , $text2=''
+  , $text3=''
   , $target=''
+  , $dotnav=''
+  , $minheight=''
+  , $maxheight=''
 
 )
 {
@@ -175,6 +181,7 @@ function MG_medialist (
 		$T->set_var('desc',$desc);
 		$T->set_var('theme',$theme);
 		$T->set_var('limitcnt',$limitcnt);
+		$T->set_var('grid',$grid);
 		$T->set_var('grids',$grids);
 		$T->set_var('gridm',$gridm);
 		$T->set_var('gridl',$gridl);
@@ -185,8 +192,13 @@ function MG_medialist (
 		$T->set_var('url',$url);
 		$T->set_var('reverse',$reverse);
 		$T->set_var('text',$text);
+		$T->set_var('text1',$text1);
 		$T->set_var('text2',$text2);
+		$T->set_var('text3',$text3);
 		$T->set_var('target',$target);
+		$T->set_var('dotnav',$dotnav);
+		$T->set_var('minheight',$minheight);
+		$T->set_var('maxheight',$maxheight);
 	
 		if ( SEC_hasRights('mediagallery.admin') ){
 			$icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
@@ -378,6 +390,7 @@ function MG_parm2 ($p2)
 	$parm2_ary[]="uks";
 	$parm2_ary[]="ukc";
 	$parm2_ary[]="media";
+	$parm2_ary[]="grid";
 	$parm2_ary[]="grids";
 	$parm2_ary[]="gridm";
 	$parm2_ary[]="gridl";
@@ -385,8 +398,13 @@ function MG_parm2 ($p2)
 	$parm2_ary[]="url";
 	$parm2_ary[]="reverse";
 	$parm2_ary[]="text";
+	$parm2_ary[]="text1";
 	$parm2_ary[]="text2";
+	$parm2_ary[]="text3";
 	$parm2_ary[]="target";
+	$parm2_ary[]="dotnav";
+	$parm2_ary[]="minheight";
+	$parm2_ary[]="maxheight";
 
 	$parm2_ary[]="order";
 	
