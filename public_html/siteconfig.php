@@ -55,7 +55,7 @@ $_CONF['site_enabled'] = true;
  * @see http://php.net/manual/en/function.error-reporting.php
  * @since v2.2.0
  */
-// $_CONF['developer_mode_php']['error_reporting'] = -1;
+// $_CONF['developer_mode_php']['error_reporting'] = 4439;
 
 /**
  * When these flags are set to true, detailed information will be logged respectively.
