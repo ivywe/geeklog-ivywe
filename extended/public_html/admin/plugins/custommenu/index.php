@@ -321,7 +321,7 @@ function CMED_editMenuitem($mid, $mode='edit', $A=array())
                               COM_getBlockTemplate ('_admin_block', 'header'));
 
     $v = (($mode == 'create') || ($mode == 'clone') || 
-          (($A['type'] == 'plugin') && in_array($A['mid'], $_PLUGINS))) ? UC_DISABLED : '';
+          ($A['type'] == 'gldefault') || (($A['type'] == 'plugin') && in_array($A['mid'], $_PLUGINS))) ? UC_DISABLED : '';
     $T->set_var('delete_disabled', $v);
 
     foreach ($LANG_CMED_EDITOR as $key => $val) {
