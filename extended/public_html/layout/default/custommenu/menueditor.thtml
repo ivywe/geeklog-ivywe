@@ -83,9 +83,9 @@
     </fieldset>
 
     <div class="submit">
-      <input type="submit" name="mode" value="{lang_save}" class="submit"{xhtml}>
-      <input type="submit" name="mode" value="{lang_cancel}" class="submit"{xhtml}>
-      <input type="submit" name="mode" value="{lang_delete}" class="submit" onclick="return confirm('{lang_confirm}');" {delete_disabled}{xhtml}>
+      <input type="submit" name="mode" value="{lang_save}" class="uk-button uk-button-primary"{xhtml}>
+      <input type="submit" name="mode" value="{lang_cancel}" class="uk-button uk-button-default"{xhtml}>
+      <input type="submit" name="mode" value="{lang_delete}" class="uk-button uk-button-danger" onclick="return confirm('{lang_confirm}');" {delete_disabled}{xhtml}>
       <input type="hidden" name="type" value="{val_type}"{xhtml}>
       <input type="hidden" name="owner_id" value="{owner_id}"{xhtml}>
       <input type="hidden" name="old_mid" value="{val_old_mid}"{xhtml}>

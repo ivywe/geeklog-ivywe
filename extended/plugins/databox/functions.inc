@@ -5,6 +5,7 @@
 // +---------------------------------------------------------------------------+
 // $Id: plugins/databox/functions.inc
 //20110622 tsuchitani AT ivywe DOT co DOT jp http://www.ivywe.co.jp/
+//last update 20181103 hiroron AT hiroron DOT COM
 
 if (strpos ($_SERVER['PHP_SELF'], 'functions.inc') !== false) {
     die ('This file can not be used on its own.');
