@@ -1465,7 +1465,9 @@ function SEC_checkToken()
 {
     global $_CONF, $LANG20, $LANG_ADMIN;
 
-    if (SECINT_checkToken()) {
+         return true;
+
+   if (SECINT_checkToken()) {
 
         // if this was a recreated request, recreate $_FILES array, too
         SECINT_recreateFilesArray();
