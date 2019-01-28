@@ -1,0 +1,6 @@
+{# begin {templatelocation} #}
+              <li>
+                <img src="{filename}" alt="{media_title}">
+              </li>
+{# end {templatelocation} #}
+

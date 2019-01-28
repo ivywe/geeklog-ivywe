@@ -1,9 +1,5 @@
 {# begin {templatelocation} #}
 
-{!if edit}
-<div class="uk-text-right uk-margin-top"><div>テーマ:<?php $str = $this->get_var('templatelocation'); $name = explode("/", $str); echo $name[12]; ?></div><a href="{site_url}/mediagallery/album.php?aid={album_id}&page=1" target="_blank" class="uk-text-bold"><span uk-icon="icon: album"></span> アルバムID:{album_id} | {album_title}</span></a><a href="{site_url}/mediagallery/admin.php?mode=edit&album_id={album_id}" target="_blank" class="uk-margin-left"><span uk-icon="icon: cog"></span>設定</a><a href="{site_url}/mediagallery/admin.php?mode=upload&album_id={album_id}" target="_blank" class="uk-margin-left"><span uk-icon="icon: upload"></span>画像追加</a><a href="{site_url}/mediagallery/admin.php?album_id={album_id}&mode=media" target="_blank" class="uk-button uk-button-primary uk-margin-left"><span uk-icon="icon: file-edit"></span>編集</a></div>
-{!endif}
-
-  {medialist_col}
+{medialist_col}
 
 {# end {templatelocation} #}

@@ -1053,11 +1053,10 @@ function MG_autotags($op, $content = '', $autotag = '')
             break;
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
         //@@@@@
         case 'medialist' :
             $link=MG_medialist ($p1
-                , $p['lastparm2'], $p['theme'],$p['limitcnt'],$p['sort'],$p['src'],$p['title'],$p['desc'],$p['media'],$p['grid'],$p['grids'],$p['gridm'],$p['gridl'],$p['gridr'],$p['uks'],$p['ukc'],$p['url'],$p['reverse'],$p['text'],$p['text1'],$p['text2'],$p['text3'],$p['target'],$p['dotnav'],$p['minheight'],$p['maxheight'] );
+                , $p['lastparm2'], $p['theme'],$p['limitcnt'],$p['sort'],$p['src'],$p['title'],$p['desc'],$p['media'],$p['grid'],$p['grids'],$p['gridm'],$p['gridl'],$p['gridr'],$p['uks'],$p['ukc'],$p['url'],$p['reverse'],$p['text'],$p['text1'],$p['text2'],$p['text3'],$p['target'],$p['dotnav'],$p['minheight'],$p['maxheight'],$p['class_album_title'],$p['class_album_desc'],$p['class_media_title'],$p['class_media_desc'],$p['option'] );
             break;
         case 'albumlist' :
             $link=MG_albumlist ($p1, $p['limitcnt']	, $p['order']

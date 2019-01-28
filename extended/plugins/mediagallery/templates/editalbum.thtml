@@ -1,7 +1,7 @@
 {# begin {templatelocation} #}
 
 {start_block}
-<script>
+<script type="text/javascript">
 <!--
 function change(what) {
     value = '{path_mg}/watermarks/' + what.options[what.selectedIndex].value;

@@ -1,0 +1,10 @@
+{# begin {templatelocation} #}
+
+<?php 
+$media_desc = strip_tags($this->get_var('media_desc'));
+?>
+
+              <dt>{media_title}</dt>
+              <dd><?php echo $media_desc; ?></dd>
+
+{# end {templatelocation} #}

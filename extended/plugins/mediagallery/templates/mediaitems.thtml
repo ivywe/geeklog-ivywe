@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<script>
+<script type="text/javascript">
 <!--
 function doCheckAll_mediaitems() {
   with (document.media) {

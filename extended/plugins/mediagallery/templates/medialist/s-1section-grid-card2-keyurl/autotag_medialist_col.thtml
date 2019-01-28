@@ -1,0 +1,17 @@
+{# begin {templatelocation} #}
+
+<?php $cl = $this->get_var('uks');if(strlen($cl)){$uks = ' '.str_replace('.', ' ', $cl);}else{$uks = "";}$cl = $this->get_var('ukc');if(strlen($cl)){$ukc = ' '.str_replace('.', ' ', $cl);}else{$ukc = "";}$cl = $this->get_var('class_album_title');if(strlen($cl)){$class_album_title = ' '.str_replace('.', ' ', $cl);}else{$class_album_title = " uk-text-center";}$cl = $this->get_var('class_album_desc');if(strlen($cl)){$class_album_desc = ' '.str_replace('.', ' ', $cl);}else{$class_album_desc = " uk-text-center";}$cl = $this->get_var('class_media_title');if(strlen($cl)){$class_media_title = ' '.str_replace('.', ' ', $cl);}else{$class_media_title = " uk-text-center";}$cl = $this->get_var('class_media_desc');if(strlen($cl)){$class_media_desc = ' '.str_replace('.', ' ', $cl);}else{$class_media_desc = " uk-text-center";} ?>
+
+          <div>
+            <div class="uk-card uk-card-default uk-card-hover uk-inline">
+              <a href="{media_keywords}">
+                 {!if media_keywords}<a href="{media_keywords}">{!endif}<img src="{filename_disp}" alt="{media_title}">{!if media_keywords}</a>{!endif}
+                <div class="uk-position-cover uk-overlay uk-overlay-primary uk-flex uk-flex-center uk-flex-middle uk-light">
+                  <h4 class="<?php echo $class_media_title; ?>">{media_title}</h4>
+                </div>
+              </a>
+
+            </div>
+          </div>
+
+{# end {templatelocation} #}
