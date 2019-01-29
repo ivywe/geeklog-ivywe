@@ -1,3 +1,7 @@
+/* Override theme's userphoto class */
+.forum-userphoto img {
+  margin: 0;	
+}
 
 /* Forum Plugin specific CSS */
 .codeblock  {
@@ -21,87 +25,16 @@
   margin: 5px auto 8px auto;
 }
 
-a.profilebutton {
-  background: #fbfcfd; /* old browsers */
-  background: -moz-linear-gradient(top, #fbfcfd 0%, #cadbfa 75%, #E5E5E5 100%); /* firefox */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fbfcfd), color-stop(75%,#cadbfa), color-stop(100%,#E5E5E5)); /* webkit */
-  border: 0.1em solid #7e9ccb;
-  border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 6px;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 0px;
-  color: #033666;
-  display: block;
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fbfcfd', endColorstr='#E5E5E5',GradientType=0 ); /* ie */
-  font-size: 11px;
-  height: 1.7em;
-  line-height: 1.8em;
-  margin: 0.1em 0.5em 0.3em 0.5em;
-  -moz-border-radius-bottomleft: 0px;
-  -moz-border-radius-bottomright: 6px;
-  -moz-border-radius-topleft: 6px;
-  -moz-border-radius-topright: 0px;
-  padding: 0 1em;
-  text-decoration: none;
-  white-space:nowrap;
-}
-
-a.profilebutton:hover {
-  background: white;
-  box-shadow: 0px 0px 2px #888; 
-  -moz-box-shadow: 0px 0px 2px #888;
-  -webkit-box-shadow: 0px 0px 2px #888;
-}
-
-a.profilebutton img {
-  vertical-align: middle;
-}
-
-a.postbutton {
-  background: #85B8F5;
-  background: -moz-linear-gradient(top, #85B8F5 0%, #5379B8 16%, #77AFF1 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#85B8F5), color-stop(16%,#5379B8), color-stop(100%,#77AFF1));
-  background: -o-linear-gradient(top, #85B8F5 0%,#5379B8 16%,#77AFF1 100%);
-  text-shadow: 1px 1px 1px #333;
-  filter: dropshadow(color=#333, offx=1, offy=1);
-  -moz-border-radius-bottomleft: 4px;
-  border-bottom-left-radius: 4px; 
-  color: #fff;
-  display: table-cell;
-  float: right;
-  border: 0.1em solid #072a66;
-  font-size: 12px;
-  font-weight: bold;
-  height: 1.8em;
-  padding: 0 1em;
-  margin: 1em 0.4em;
-  text-align: left; 
-  text-decoration: none;
-  vertical-align: middle;
-  white-space:nowrap;
-}
-
-a.postbutton img {
-  bottom: 4px;
-  margin-left: 2px;
-  position: relative;
-  right: 6px;
-  vertical-align: middle;
-}
-
-a.postbutton:hover {
-  box-shadow: 0px 0px 2px #888; 
-  -moz-box-shadow: 0px 0px 2px #888;
-  -webkit-box-shadow: 0px 0px 2px #888;
-}
-
 /* CSS Declarations for Code block feature - default will use the .php one */
 div .php { max-height:400px; overflow:auto; height:auto; width:auto; min-height:100px; }
 div .html { height:300px; overflow:auto; width:auto; min-height:100px; }
 div .css { height:300px; overflow:auto; width:auto; min-height:100px; }
 
-/* CSS Declarations for reCAPTCHA Plugin */
-div.gl-recaptcha_forum { float:right; margin-right:10px; }
+/* using same styling as uk-link-muted but with custom class since links do not show up well in uikit panels which is used for forum posts */
+.gl-forum-post-link a {
+    color: #444;
+    font-weight: bold;
+}
 
 /* Remove Topic iframe preview background if one set (which is the background of the main website) */
 .glforum-preview-html, 
