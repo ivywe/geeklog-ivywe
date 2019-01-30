@@ -65,8 +65,8 @@
 	      <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
 
 					<div class="uk-navbar-left">
-						<a class="uk-navbar-item uk-logo" href="{site_url}">
-<span class="uk-text-small uk-text-bold uk-text-nowrap">The Secure CMS</span><span class="uk-text-bold uk-text-large uk-text-nowrap uk-text-danger" style="font-size: 30px">{site_name}</span>
+						<a class="uk-navbar-item uk-logo gl-logo" href="{site_url}">
+							<img src="{layout_url}/images/custom/logo.png" alt="{site_name}"{xhtml}>
 						</a>
 					</div>
 					<div class="uk-navbar-right uk-hidden@m">
@@ -84,9 +84,9 @@
 							</li>
 							<li style="min-width:6em;">
 <?php global $_USER, $_CONF; if (isset($_USER['uid']) && $_USER['uid'] > 1) { ?>
-								<a href="{site_url}/usersettings.php?mode=edit" class="uk-button uk-button-secondary"><img src="{layout_url}/images/custom/config.png" alt="{$LANG29[4]}"style="width:20px; height:20px"></a>
+								<a href="{site_url}/usersettings.php?mode=edit" uk-icon="icon: user"></a>
 <?php } else { ?>
-								<a href="{site_url}/users.php" class="uk-button uk-button-secondary"><img src="{layout_url}/images/custom/login.png" alt="{$LANG01[58]}" style="width:20px; height:20px"></a>
+								<a href="{site_url}/users.php" uk-icon="icon: user"></a>
 <?php } ?>
 								<div class="uk-navbar-dropdown">
 									<ul class="uk-nav uk-navbar-dropdown-nav gl-navbar-nav">
