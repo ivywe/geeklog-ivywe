@@ -17,7 +17,7 @@
       {!if edit_icon}<a title="{lang_edit_text}" href="{edit_url}" class="uk-icon-link" rel="nofollow" uk-tooltip="{lang_edit_text}" uk-icon="pencil"></a>{!endif}
     </ul>
 
-    <ul class="uk-subnav uk-flex-right uk-margin-remove-bottom uk-margin-right">
+    <ul class="uk-subnav uk-flex-right uk-margin-right">
       <li itemprop="datePublished">{story_date}</li>
       <li class="uk-padding-remove-right">{lang_contributed_by} </li>
 			<li class="uk-padding-remove-left">{start_contributedby_anchortag}<span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{contributedby_author}</span></span>{end_contributedby_anchortag}</li>
