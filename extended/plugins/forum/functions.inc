@@ -50,7 +50,7 @@ if (file_exists($langfile)) {
  * This language string is inherited from Geeklog Core, which makes
  * it static, so we define it here instead of in the language files.
  */
-global $LANG32;
+global $LANG32, $_TABLES;
 
 $PLG_forum_MESSAGE3002 = $LANG32[9]; // This plugin requires a newer version of Geeklog
 
@@ -122,6 +122,8 @@ if (!empty($_USER['uid']) AND ($_USER['uid'] > 1) AND DB_getItem($_TABLES['forum
     $CONF_FORUM['show_anonymous_posts'] = $userprefs['viewanonposts'];
     $CONF_FORUM['notify_once']          = $userprefs['notify_once'];
 }
+
+
 
 $CONF_FORUM['installed_version'] = floatval(DB_getItem($_TABLES['plugins'], 'pi_version', "pi_name = 'forum'"));
 
