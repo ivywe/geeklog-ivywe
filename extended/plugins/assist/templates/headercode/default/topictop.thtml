@@ -15,11 +15,7 @@
 {# 
 <?php $url_current = COM_getCurrentURL(); 
 	if( COM_onFrontpage() || strpos( $url_current, '/index.php/topic/home_' ) !== false ) { ?>
-
-<link rel="alternate" href="{site_url}/index.php/topic/home_ja" hreflang="ja" />
-<link rel="alternate" href="{site_url}/index.php/topic/home_en" hreflang="en" />
 <link rel="alternate" href="{site_url}/" hreflang="x-default" />
-
 <?php } ?>
 #}
 
