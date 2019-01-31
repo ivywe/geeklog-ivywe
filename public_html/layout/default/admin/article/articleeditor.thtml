@@ -131,7 +131,7 @@
       </dd>
 
       <dt><label for="admin-storyeditor-sid">{lang_sid}</label></dt>
-      <dd><input type="text" maxlength="128" value="{story_id}" name="sid" id="admin-storyeditor-sid" class="uk-input size5"{xhtml}></dd>
+      <dd><input type="text" maxlength="128" value="{story_id}" name="sid" id="admin-storyeditor-sid" class="uk-input uk-form-width-large"{xhtml}></dd>
 
       <dt{hide_meta}><label for="admin-storyeditor-metadescription">{lang_metadescription}</label></dt>
       <dd{hide_meta}><textarea cols="70" rows="2" name="meta_description" id="admin-storyeditor-metadescription" class="uk-textarea wide">{meta_description}</textarea></dd>
