@@ -4,8 +4,6 @@
 // | category Maintenance
 // +---------------------------------------------------------------------------+
 // $Id: category.php
-// 20111108 tsuchitani AT ivywe DOT co DOT jp
-// @@@@@追加予定：import
 // @@@@@追加予定：更新したらメール送信
 
 define ('THIS_SCRIPT', 'databox/category.php');
@@ -15,6 +13,8 @@ require_once('databox_functions.php');
 require_once ($_CONF['path'] . 'plugins/databox/lib/lib_category.php');
 require_once( $_CONF['path_system'] . 'lib-admin.php' );
 
+// 20111108 tsuchitani AT ivywe DOT co DOT jp
+// @@@@@追加予定：import
 // +---------------------------------------------------------------------------+
 // | MAIN                                                                      |
 // +---------------------------------------------------------------------------+

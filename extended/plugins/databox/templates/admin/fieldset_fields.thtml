@@ -2,7 +2,7 @@
 
 <script type="text/JavaScript" src="{site_url}/javascript/moveusers.js"></script>
 
-<script>
+<script type="text/javascript">
 <!--
 window.onload=function(){
 var lnk=document.createElement("link");
