@@ -46,7 +46,7 @@ function fncDisply(
     $retval = SEC_getTokenExpiryNotice($token);
     $templates->set_var('gltoken_name', CSRF_TOKEN);
     $templates->set_var('gltoken', $token);
-    $templates->set_var ( 'XHTML', XHTML );
+    $templates->set_var ( 'xhtml', XHTML );
     
     $templates->set_var('script', THIS_SCRIPT);
 
@@ -337,7 +337,7 @@ function fncbackuprestore (
 
     $tmpl->set_var('gltoken_name', CSRF_TOKEN);
     $tmpl->set_var('gltoken', SEC_createToken());
-    $tmpl->set_var ( 'XHTML', XHTML );
+    $tmpl->set_var ( 'xhtml', XHTML );
 
     $tmpl->set_var('script', THIS_SCRIPT);
 
@@ -588,7 +588,7 @@ function fncgetselectfilename (
     global $_CONF;
 
     //
-    $selection = '<select id="filename" name="filename">' . LB;
+    $selection = '<select class="uk-select uk-form-width-small" id="filename" name="filename">' . LB;
 
     $fd=$_CONF['backup_path']."databox/";
     $files=DATABOX_getfilelist($fd,"xml");
