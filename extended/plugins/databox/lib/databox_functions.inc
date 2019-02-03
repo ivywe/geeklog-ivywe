@@ -3089,8 +3089,8 @@ function DATABOX_cleanaddtiondatas(
                     $wk=implode ($wk,":");
                     break;
                 case 12:// 画像（ファイル保存）
-                    $fnmary[$field_id]=COM_applyFilter($fnmary[$field_id]);
-                    $delary[$field_id]=COM_applyFilter($delary[$field_id]);
+										if(isset($fnmary[$field_id])){ $fnmary[$field_id]=COM_applyFilter($fnmary[$field_id]); }
+										if(isset($fnmary[$field_id])){ $delary[$field_id]=COM_applyFilter($delary[$field_id]); }
                     $wk=COM_applyFilter($wk);
                     $wk=COM_checkHTML (COM_checkWords ($wk));
                     $wk2=COM_applyFilter($altary[$field_id]);
