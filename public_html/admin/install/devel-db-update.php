@@ -83,11 +83,17 @@ function update_DatabaseFor221()
     
     // Remove unused Vars table record (originally inserted by devel-db-update script on previous version upgrades)
     $_SQL[] = "DELETE FROM {$_TABLES['vars']} WHERE name = 'geeklog'";
+    
+    // Add structured data type to article table and modified date
+    $_SQL[] = "ALTER TABLE {$_TABLES['stories']} ADD `structured_data_type` tinyint(4) NOT NULL DEFAULT 0 AFTER `commentcode`";
+    $_SQL[] = "ALTER TABLE {$_TABLES['stories']} ADD `modified` DATETIME NULL DEFAULT NULL AFTER `date`";    
 
     // ***************************************     
     // Core Plugin Updates Here (including version update)
     
     // Staticpages
+    // Add column for structured data
+    $_SQL[] = "ALTER TABLE {$_TABLES['staticpage']} ADD `structured_data_type` tinyint(4) NOT NULL DEFAULT 0 AFTER `commentcode`";
     $_SQL[] = "UPDATE {$_TABLES['plugins']} SET pi_version='1.7.1', pi_gl_version='". VERSION ."' WHERE pi_name='staticpages'";    
     
     // SpamX
@@ -545,8 +551,8 @@ foreach ($corePlugins AS $pi_name) {
             $plugin_version = '1.1.7';
             break;
         case 'xmlsitemap':
-            $plugin_version = '2.0.2';
             $new_plugin_version = true;
+            $plugin_version = '2.0.2';
             break;
     }
     

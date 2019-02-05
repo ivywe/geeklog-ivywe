@@ -133,6 +133,7 @@ function install_config()
     $c->add('page_break_comments','last','select',1,7,7,1250,TRUE, $me, 7);
     $c->add('article_image_align','right','select',1,7,8,1260,TRUE, $me, 7);
     $c->add('show_topic_icon',1,'select',1,7,0,1270,TRUE, $me, 7);
+    $c->add('structured_data_type_default',2,'select',1,7,39,1275,TRUE, $me, 7); // Setting article as the default
     $c->add('draft_flag',0,'select',1,7,0,1280,TRUE, $me, 7);
     $c->add('frontpage',1,'select',1,7,0,1290,TRUE, $me, 7);
     $c->add('hide_no_news_msg',0,'select',1,7,0,1300,TRUE, $me, 7);
@@ -167,7 +168,7 @@ function install_config()
 
     $c->add('tab_theme', NULL, 'tab', 2, 10, NULL, 0, TRUE, $me, 10);
     $c->add('fs_theme', NULL, 'fieldset', 2, 10, NULL, 0, TRUE, $me, 10);
-    $c->add('theme','default','select',2,10,NULL,190,TRUE, $me, 10);
+    $c->add('theme','denim','select',2,10,NULL,190,TRUE, $me, 10);
     $c->add('doctype','html401strict','select',2,10,21,195,TRUE, $me, 10);
     $c->add('menu_elements',array('contribute','search','stats','directory','plugins'),'%select',2,10,24,200,TRUE, $me, 10);
     $c->add('path_themes','','text',2,10,NULL,210,TRUE, $me, 10);
