@@ -1580,6 +1580,7 @@ function PLG_collectTags($type = 'tagname')
     require_once $_CONF['path_system'] . 'lib-user.php';
     require_once $_CONF['path_system'] . 'lib-topic.php';
     require_once $_CONF['path_system'] . 'lib-block.php';
+    require_once $_CONF['path_system'] . 'lib-structureddata.php';
 
 
     if (!is_array($_PLUGINS)) {
@@ -1589,7 +1590,7 @@ function PLG_collectTags($type = 'tagname')
          */
         $_PLUGINS = array();
     }
-    $all_plugins = array_merge($_PLUGINS, array('story', 'user', 'topic', 'block'));
+    $all_plugins = array_merge($_PLUGINS, array('story', 'user', 'topic', 'block', 'structureddata'));
 
     $autolinkModules = array();
 
@@ -1627,22 +1628,27 @@ function PLG_collectTags($type = 'tagname')
 }
 
 /**
- * This function will allow plugins to support the use of custom autolinks
+ * This function will allow plugins to support the use of custom autotags (use to be called autolinks)
  * in other site content. Plugins can now use this API when saving content
- * and have the content checked for any autolinks before saving.
- * The autolink would be like:  [story:20040101093000103 here]
+ * and have the content checked for any autotags before saving.
+ * The autotag would be like:  [story:20040101093000103 here]
  *
- * @param   string $content Content that should be parsed for autolinks
- * @param   string $plugin  Optional if you only want to parse using a specific plugin
- * @param   bool   $remove  Optional if you want to remove the autotag from the content
+ * @param   string $content Content that should be parsed for autotags
+ * @param   string $parse_plugin    Optional if you only want to parse using a specific plugin
+ * @param   bool   $remove          Optional if you want to remove the autotag from the content
+ * @param   string $plugin          Optional plugin of content - requires id - New as of Geeklog 2.2.1 
+ *                                      Allows autotag to know what has called it (what content it is embedded in) 
+ *                                      so it can use functions like PLG_getItemInfo.
+ *                                      Note: not supported for things like autotags in templates or blocks
+ * @param   string $id              Optional id of content - requires plugin - New as of Geeklog 2.2.1
  * @return  string
  */
-function PLG_replaceTags($content, $plugin = '', $remove = false)
+function PLG_replaceTags($content, $parse_plugin = '', $remove = false, $plugin = '', $id = '')
 {
     global $_CONF, $LANG32;
 
     if (isset($_CONF['disable_autolinks']) && ($_CONF['disable_autolinks'] == 1)) {
-        // autolinks are disabled - return $content unchanged
+        // autotags are disabled - return $content unchanged
         return $content;
     }
 
@@ -1661,7 +1667,7 @@ function PLG_replaceTags($content, $plugin = '', $remove = false)
     for ($i = 1; $i <= 5; $i++) {
         // list($content, $markers) = GLText::protectJavascript($content);
 
-        // For each supported module, scan the content looking for any AutoLink tags
+        // For each supported module, scan the content looking for any autotags
         $tags = array();
         $contentLength = MBYTE_strlen($content);
         $content_lower = MBYTE_strtolower($content);
@@ -1752,10 +1758,16 @@ function PLG_replaceTags($content, $plugin = '', $remove = false)
                     $content = str_replace($autotag['tagstr'], '', $content);
                 } else {
                     $function = 'plugin_autotags_' . $autotag['module'];
-                    if (function_exists($function) &&
-                        (empty($plugin) || ($plugin == $autotag['module']))
-                    ) {
-                        $content = $function('parse', $content, $autotag);
+                    if (function_exists($function) && (empty($parse_plugin) || ($parse_plugin == $autotag['module']))) {
+                        $info = new ReflectionFunction($function);
+                        if ($info->getNumberOfParameters() == 4) {
+                            $parameters['type'] = $plugin;
+                            $parameters['id'] = $id;
+                            
+                            $content = $function('parse', $content, $autotag, $parameters);
+                        } else {                     
+                            $content = $function('parse', $content, $autotag);
+                        }
                     }
                 }
             }
@@ -2634,6 +2646,61 @@ function PLG_itemDisplay($id, $type)
     }
 
     return $result_arr;
+}
+
+/**
+ * Get list of CSS classes for different items
+ * Introduced in Geeklog v2.2.1
+ *
+ * @param    string $id   unique ID of the item (either defined by core or a plugin)
+ * @param    string $type type of the item or plugin, e.g. 'article'
+ *
+ * @return   string One or more CSS classes to be used in HTML
+  */
+function PLG_getCSSClasses($id, $type)
+{
+    global $_CONF;
+    
+    $retval = '';
+    
+    switch($type)
+    {
+        case 'core';
+        case 'article';
+        case 'story';
+        case 'comment';
+        case 'topic';
+            // Check theme for these types
+            $function = 'theme_getCSSClasses_' . $_CONF['theme'];
+            if (function_exists($function)) {
+                $retval = $function($id);
+            } elseif (!empty($_CONF['theme_default'])) {
+                // See if default theme if so check for it
+                $function = 'theme_getCSSClasses_' . $_CONF['theme_default'];
+                if (function_exists($function)) {
+                    $retval = $function($id);
+                }
+            }
+        
+            break;
+            
+        default;
+            // Assume type is plugin so check plugin specific theme templates 
+            $function = $type . '_getCSSClasses_' . $_CONF['theme'];
+            if (function_exists($function)) {
+                $retval = $function($id);
+            } elseif (!empty($_CONF['theme_default'])) {
+                // See if default theme if so check if plugin templates exist
+                $function = $type . '_getCSSClasses_' . $_CONF['theme_default'];
+                if (function_exists($function)) {
+                    $retval = $function($id);
+                }
+            }        
+            
+            break;
+    }
+
+    return $retval;
 }
 
 /**

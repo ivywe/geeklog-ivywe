@@ -6,9 +6,9 @@
 // +---------------------------------------------------------------------------+
 // | lib-topic.php                                                             |
 // |                                                                           |
-// | Geeklog syndication library.                                              |
+// | Geeklog Topic library.                                                    |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2003-2011 by the following authors:                         |
+// | Copyright (C) 2003-2019 by the following authors:                         |
 // |                                                                           |
 // | Authors: Tom Homer        - tomhomer AT gmail DOT com                     |
 // +---------------------------------------------------------------------------+
@@ -1265,7 +1265,7 @@ function TOPIC_getTopic($type = '', $id = '')
  */
 function TOPIC_breadcrumbs($type, $id)
 {
-    global $_CONF, $_TABLES, $LANG27, $_TOPICS, $topic;
+    global $_CONF, $_TABLES, $LANG27, $_TOPICS, $topic, $_STRUCT_DATA;
 
     $breadcrumbs_output = '';
 
@@ -1306,8 +1306,11 @@ function TOPIC_breadcrumbs($type, $id)
         $rootname = $_CONF['breadcrumb_root_site_name'] ?
             $_CONF['site_name'] : $LANG27['breadcrumb_root'];
         $separator = htmlspecialchars($LANG27['breadcrumb_separator']);
-
+        
         while ($A = DB_fetchArray($result)) {
+            // Setup structured data for breadcrumb list
+            $_STRUCT_DATA->add_BreadcrumbList('breadcrumb', $A['tid']);
+            
             $breadcrumb_a = array();
             $breadcrumb_a[] = $A;
             $parent_id = $A['parent_id'];
@@ -1356,6 +1359,9 @@ function TOPIC_breadcrumbs($type, $id)
                 $breadcrumb_t->set_var('count', $count);
                 $breadcrumb_t->set_var('separator', ($count == 1) ? '' : $separator);
                 $breadcrumb_t->parse('breadcrumb_items', $use_block, ($count == 1) ? false : true);
+                
+                // Add Structured Data for breadcrumb
+                $_STRUCT_DATA->set_breadcrumb_item('breadcrumb', $A['tid'], $count, $url, $value['topic']);
             }
             $breadcrumb_t->parse('breadcrumbs', 'breadcrumb', true);
         }
@@ -1568,7 +1574,7 @@ function TOPIC_relatedItems($type, $id, $include_types = array(), $max = 10, $tr
     }
 
     // Make html list
-    $retval = COM_makeList($related_items, 'list-new-plugins');
+    $retval = COM_makeList($related_items, PLG_getCSSClasses('topic-list-related', 'core'));
 
     return $retval;
 }
