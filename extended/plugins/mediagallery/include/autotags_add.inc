@@ -61,7 +61,9 @@ function MG_medialist (
   , $class_album_desc=''
   , $class_media_title=''
   , $class_media_desc=''
-  , $option=''
+  , $type=''
+  , $bxslider=''
+  , $animation=''
 )
 {
 	global $MG_albums;
@@ -207,7 +209,9 @@ function MG_medialist (
 		$T->set_var('class_album_desc',$class_album_desc);
 		$T->set_var('class_media_title',$class_media_title);
 		$T->set_var('class_media_desc',$class_media_desc);
-		$T->set_var('option',$option);
+		$T->set_var('type',$type);
+		$T->set_var('bxslider',$bxslider);
+		$T->set_var('animation',$animation);
 
 		if ( SEC_hasRights('mediagallery.admin') ){
 			$icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
@@ -418,7 +422,9 @@ function MG_parm2 ($p2)
 	$parm2_ary[]="class_album_desc";
 	$parm2_ary[]="class_media_title";
 	$parm2_ary[]="class_media_desc";
-	$parm2_ary[]="option";
+	$parm2_ary[]="type";
+	$parm2_ary[]="bxslider";
+	$parm2_ary[]="animation";
 
 	$parm2_ary[]="order";
 	

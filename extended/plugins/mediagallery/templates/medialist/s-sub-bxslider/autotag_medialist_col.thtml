@@ -1,0 +1,4 @@
+<li>
+<div class="uk-inline"><img src="{filename}" title="{media_title}" title="<?php echo $media_desc; ?>" alt=""></div>
+<div class="uk-overlay uk-position-bottom-center bx-caption_image_bottom" alt="" >{media_desc}</div>
+</li>
