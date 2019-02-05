@@ -97,6 +97,9 @@ COM_checkInstalled();
 require_once $_CONF['path_system'] . 'classes/Autoload.php';
 Geeklog\Autoload::initialize();
 
+// Initialize system classes
+Geeklog\Input::init();
+
 // Load configuration
 $config = config::get_instance();
 $config->set_configfile($_CONF['path'] . 'db-config.php');
@@ -109,7 +112,7 @@ $_CONF = $config->get_config('Core');
 $_CONF_FT = $config->_get_config_features();
 
 // Load Cache class
-Geeklog\Cache::init();
+Geeklog\Cache::init(new Geeklog\Cache\FileSystem($_CONF['path'] . 'data/cache/'));
 
 // Load in Geeklog Variables Table
 
@@ -583,6 +586,12 @@ if ($_VARS['last_article_publish'] != $A['date']) {
     }    
 }
 
+/**
+ * This provides the ability to generate structure data based on types from schema.org to
+ */
+\Geeklog\Autoload::load('structureddata');
+$_STRUCT_DATA = new StructuredData();
+
 // +---------------------------------------------------------------------------+
 // | HTML WIDGETS                                                              |
 // +---------------------------------------------------------------------------+
@@ -913,7 +922,7 @@ function COM_renderMenu($header, $plugin_menu)
 function COM_createHTMLDocument(&$content = '', $information = array())
 {
     global $_CONF, $_VARS, $_TABLES, $_USER, $LANG01, $LANG_BUTTONS, $LANG_DIRECTION,
-           $_IMAGE_TYPE, $topic, $_COM_VERBOSE, $_SCRIPTS, $_PAGE_TIMER, $relLinks;
+           $_IMAGE_TYPE, $topic, $_COM_VERBOSE, $_SCRIPTS, $_STRUCT_DATA, $_PAGE_TIMER, $relLinks;
 
     // Retrieve required variables from information array
     $what = isset($information['what']) ? $information['what'] : 'menu';
@@ -1421,6 +1430,7 @@ function COM_createHTMLDocument(&$content = '', $information = array())
     $header->set_var('layout_columns', $layout_columns);
 
     // All blocks, autotags, template files, etc, now have been rendered (since can be done in footer) so all scripts and css should be set now
+    $headerCode = $_STRUCT_DATA->toScript() . $headerCode;
     $headerCode = $_SCRIPTS->getHeader() . $headerCode;
     $header->set_var('plg_headercode', $headerCode);
 
@@ -1602,7 +1612,7 @@ function COM_optionListFromLangVariables($langVariableName, $selected = '')
 {
     static $langVariableNames = array(
         'LANG_commentcodes', 'LANG_commentmodes', 'LANG_featurecodes', 'LANG_frontpagecodes',
-        'LANG_postmodes', 'LANG_sortcodes', 'LANG_statuscodes', 'LANG_trackbackcodes',
+        'LANG_postmodes', 'LANG_sortcodes', 'LANG_statuscodes', 'LANG_trackbackcodes', 'LANG_structureddatatypes'
     );
     static $charset = null;
 
@@ -3684,7 +3694,7 @@ function COM_olderStoriesBlock($help = '', $title = '', $position = '', $cssId =
 
             if ($day != $dayCheck) {
                 if ($day !== 'noday') {
-                    $dayList = COM_makeList($oldNews, 'list-older-stories');
+                    $dayList = COM_makeList($oldNews, PLG_getCSSClasses('article-list-older', 'article'));
                     $oldNews = array(); // Reset old news array
                     $dayList = preg_replace("/(\015\012)|(\015)|(\012)/", '', $dayList);
                     
@@ -3706,7 +3716,7 @@ function COM_olderStoriesBlock($help = '', $title = '', $position = '', $cssId =
         }
 
         if (!empty($oldNews)) {
-            $dayList = COM_makeList($oldNews, 'list-older-stories');
+            $dayList = COM_makeList($oldNews, 'article-list-older');
             $dayList = preg_replace("/(\015\012)|(\015)|(\012)/", '', $dayList);
             
             $t->set_var('older-articles-list', $dayList);
@@ -4167,7 +4177,7 @@ function COM_rdfImport($bid, $rdfUrl, $maxHeadlines = 0)
         }
 
         // build a list
-        $content = COM_makeList($articles, 'list-feed');
+        $content = COM_makeList($articles, PLG_getCSSClasses('core-list-feed', 'core'));
         $content = str_replace(array("\015", "\012"), '', $content);
 
         if (strlen($content) > 65000) {
@@ -4531,7 +4541,7 @@ function COM_emailUserTopics()
 
             if ($_CONF['emailstorieslength'] > 0) {
                 if ($S['postmode'] === 'wikitext') {
-                    $articleText = COM_undoSpecialChars(GLText::stripTags(COM_renderWikiText(stripslashes($S['introtext']))));
+                    $articleText = COM_undoSpecialChars(GLText::stripTags(PLG_replaceTags(COM_renderWikiText(stripslashes($S['introtext'])))));
                 } else {
                     $articleText = COM_undoSpecialChars(GLText::stripTags(PLG_replaceTags(stripslashes($S['introtext']))));
                 }
@@ -4659,7 +4669,7 @@ function COM_whatsNewBlock($help = '', $title = '', $position = '', $cssId = '',
                 $newArticles[] = COM_createLink($anchorText, $url, $attr);
             }
 
-            $t->set_var('new-item-list', COM_makeList($newArticles, 'list-new-plugins'));
+            $t->set_var('new-item-list', COM_makeList($newArticles, PLG_getCSSClasses('core-list-new', 'core')));
         } else {
             $t->set_var('no-items', $LANG01[100]);
         }
@@ -4733,7 +4743,7 @@ function COM_whatsNewBlock($help = '', $title = '', $position = '', $cssId = '',
 
             }
 
-            $t->set_var('new-item-list', COM_makeList($newComments, 'list-new-comments'));
+            $t->set_var('new-item-list', COM_makeList($newComments, PLG_getCSSClasses('core-list-new', 'core')));
         } else {
             $t->set_var('no-items', $LANG01[86]);
         }
@@ -4793,7 +4803,7 @@ function COM_whatsNewBlock($help = '', $title = '', $position = '', $cssId = '',
                 $newComments[] = COM_createLink($anchorComment, $url, $attr);
             }
 
-            $t->set_var('new-item-list', COM_makeList($newComments, 'list-new-trackbacks'));
+            $t->set_var('new-item-list', COM_makeList($newComments, PLG_getCSSClasses('core-list-new', 'core')));
         } else {
             $t->set_var('no-items', $LANG01[115]);
         }
@@ -4814,7 +4824,7 @@ function COM_whatsNewBlock($help = '', $title = '', $position = '', $cssId = '',
                 $t->set_var('time-span', $smallHeadlines[$i]);              
                 
                 if (is_array($content[$i])) {
-                    $t->set_var('new-item-list', COM_makeList($content[$i], 'list-new-plugins'));
+                    $t->set_var('new-item-list', COM_makeList($content[$i], PLG_getCSSClasses('core-list-new', 'core')));
                 } else {
                     // plugins already used COM_makeList on content plus add <br> on no-items text so just use new-item-list
                     $t->set_var('new-item-list', $content[$i]);
@@ -5053,6 +5063,7 @@ function COM_printPageNavigation($base_url, $currentPage, $num_pages,
         $page_navigation->set_block('page_navigation', $block);
     }
 
+    $page_navigation->set_var('lang_page_navigation', $LANG05[9]);
     $page_navigation->set_var('lang_first', $LANG05[7]);
     $page_navigation->set_var('lang_previous', $LANG05[6]);
     $page_navigation->set_var('lang_next', $LANG05[5]);
@@ -5455,12 +5466,18 @@ function COM_getDayFormOptions($selected = '')
  * @see    function COM_getMinuteFormOptions
  * @return string  HTML years as option values
  */
-function COM_getYearFormOptions($selected = '', $startOffset = -5, $endOffset = 5)
+function COM_getYearFormOptions($selected = '', $startOffset = -1, $endOffset = 5)
 {
     $year_options = '';
     $start_year = date('Y') + $startOffset;
     $cur_year = date('Y', time());
     $finish_year = $cur_year + $endOffset;
+
+    if (!empty($selected)) {
+        if ($selected < $cur_year) {
+            $start_year = $selected;
+        }
+    }
 
     for ($i = $start_year; $i <= $finish_year; $i++) {
         $year_options .= '<option value="' . $i . '"';
@@ -5638,6 +5655,7 @@ function COM_getAmPmFormSelection($name, $selected = '')
  * @param    array  $listOfItems Items to list out
  * @param    string $className   optional CSS class name for the list
  * @return   string              HTML unordered list of array items
+ * @see      PLG_getCSSClasses   Use this function to pass in $className set by the theme or plugin theme
  */
 function COM_makeList($listOfItems, $className = '')
 {
