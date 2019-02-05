@@ -1,0 +1,12 @@
+{# begin {templatelocation} #}
+
+<form action="{site_url}/links/index.php" method="post" class="uk-form">
+<div class="clearfix uk-margin">
+  <div class="uk-align-left">{breadcrumbs}</div>
+  <div class="uk-align-right">
+    <select name="category" onchange="javascript:submit()">{link_dropdown}</select><button type="submit" name="mode" value="{lang_go}" class="uk-button">{lang_go}</button>
+  </div>
+</div>
+</form>
+
+{# end {templatelocation} #}

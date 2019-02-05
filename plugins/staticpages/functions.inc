@@ -329,7 +329,7 @@ function SP_countVisiblePages()
  */
 function SP_displayPage($page, $A, $comment_order = 'ASC', $comment_mode = 'nested', $comment_page = 1, $msg = 0, $query = '')
 {
-    global $_CONF, $_TABLES, $_USER, $LANG01, $LANG11, $LANG_STATIC, $_IMAGE_TYPE, $_SP_CONF;
+    global $_CONF, $_TABLES, $_USER, $LANG01, $LANG11, $LANG_STATIC, $_IMAGE_TYPE, $_SP_CONF, $_STRUCT_DATA;
 
     $retval = '';
 
@@ -426,8 +426,8 @@ function SP_displayPage($page, $A, $comment_order = 'ASC', $comment_mode = 'nest
                 $breadcrumb_trail = TOPIC_breadcrumbs('staticpages', $page);
             }
         }
-        $spage->set_var('breadcrumb_trail', $breadcrumb_trail); // Still need to keep this template variable incase main theme does not support 2.0.0 theme engine. Once we drop support of theme engine 1.9.1 then remove
-
+        $spage->set_var('breadcrumb_trail', $breadcrumb_trail); // Still need to keep this template variable in case main theme does not support 2.0.0 theme engine. Once we drop support of theme engine 1.9.1 then remove
+        
         $author_name = COM_getDisplayName($A['owner_id']);
         $author_username = DB_getItem($_TABLES['users'], 'username',
             "uid = {$A['owner_id']}");
@@ -490,7 +490,7 @@ function SP_displayPage($page, $A, $comment_order = 'ASC', $comment_mode = 'nest
         ) {
             $icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
             $attr = array('title' => $LANG_STATIC['edit']);
-            $editiconhtml = '<span uk-icon="icon: file-edit"></span>'.$LANG_STATIC['edit'];
+            $editiconhtml = COM_createImage($icon_url, $LANG_STATIC['edit'], $attr);
             $attr = array(
                 'class' => 'editlink',
                 'title' => $LANG_STATIC['edit'],
@@ -573,6 +573,15 @@ function SP_displayPage($page, $A, $comment_order = 'ASC', $comment_mode = 'nest
         if (!$_SP_CONF['disable_breadcrumbs_staticpages']) {
             $breadcrumbs = TOPIC_breadcrumbs('staticpages', $page);
         }
+        
+        $parameters['headline'] = $A['sp_title'];
+        $parameters['url'] = $sp_url;
+        $parameters['datePublished'] = $A['created'];
+        $parameters['dateModified'] = $A['modified'];
+        $parameters['description'] = $A['meta_description'];
+        $parameters['commentCount'] = CMT_commentCount($page, 'staticpages');
+        $_STRUCT_DATA->add_type('staticpages', $page, $A['structured_data_type'], $parameters);
+        $_STRUCT_DATA->set_author_item('staticpages', $page, $author_name);
 
         $retval = COM_createHTMLDocument($retval, array('what' => $what, 'pagetitle' => $page_title, 'breadcrumbs' => $breadcrumbs, 'headercode' => $headerCode, 'rightblock' => $rightblock));
     }
@@ -606,6 +615,7 @@ function SP_printPage($page, $A)
     $print->set_var('page_title', $page_title);
 
 
+    $print->set_var('sp_id', $page);
     $sp_url = COM_buildURL($_CONF['site_url']
         . '/staticpages/index.php?page=' . $page);
     $print->set_var('sp_url', $sp_url);
@@ -1166,6 +1176,8 @@ function plugin_centerblock_staticpages($where = 1, $page = 1, $topic = '')
                 $icon_url = $_CONF['layout_url'] . '/images/edit.'
                     . $_IMAGE_TYPE;
                 $attr = array('title' => $LANG_STATIC['edit']);
+                $editiconhtml = COM_createImage($icon_url, $LANG_STATIC['edit'],
+                    $attr);
                 $url = $_CONF['site_admin_url']
                     . '/plugins/staticpages/index.php?mode=edit&amp;sp_id=' . $S['sp_id'];
                 $attr = array(
@@ -1636,6 +1648,15 @@ function plugin_upgrade_staticpages()
                 break;
                 
             case '1.7.0':
+                if (isset($_UPDATES[$current_version])) {
+                    $_SQL = $_UPDATES[$current_version];
+                    foreach ($_SQL as $sql) {
+                        DB_query($sql);
+                    }
+                }
+                
+                staticpages_update_ConfValues_1_7_1();
+                
                 $current_version = '1.7.1';
                 break;                
 
@@ -1907,7 +1928,7 @@ function SP_render_content($sp_id, $sp_title, $sp_content, $sp_php, $cache_time 
 
         // Loop through variables to replace any autotags first
         foreach ($tag as &$value) {
-            $value = PLG_replaceTags($value);
+            $value = PLG_replaceTags($value, '', false, 'staticpages', $sp_id);
         }
         unset($value);
 
@@ -1967,13 +1988,13 @@ function SP_render_content($sp_id, $sp_title, $sp_content, $sp_php, $cache_time 
             ob_end_clean();
         }
 
-        $sp_content = PLG_replaceTags($sp_content);
+        $sp_content = PLG_replaceTags($sp_content, '', false, 'staticpages', $sp_id);
     } else {
         if ($sp_php != 0) {
             COM_errorLog("PHP in static pages is disabled. Can not display page.", 1);
             $sp_content .= $LANG_STATIC['deny_msg'];
         } else {
-            $sp_content .= PLG_replaceTags($sp_content);
+            $sp_content .= PLG_replaceTags($sp_content, '', false, 'staticpages', $sp_id);
         }
     }
 
@@ -2149,7 +2170,7 @@ function plugin_getwhatsnew_staticpages()
             $newstaticpages[] = COM_createLink($astaticpage, $url, $attr);
         }
 
-        $retval .= COM_makeList($newstaticpages, 'list-new-plugins');
+        $retval .= COM_makeList($newstaticpages, PLG_getCSSClasses('core-list-new', 'core'));
     } else {
         $retval .= $LANG_STATIC['no_new_pages'] . '<br' . XHTML . '>' . LB;
     }
