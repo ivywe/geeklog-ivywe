@@ -5650,7 +5650,7 @@ April 24, 2002 (1.3.5)
   valid HTML. Nearly all those change fall into one of the following categories:
   + changed '&' in URLs to '&amp;'
   + added alt="" to <img> tags
-  + changed the script tags to <script>
+  + changed the script tags to <script type="text/javascript">
   + changed the DOCTYPE to HTML 4.01 (there is a bug in the HTML 4.0
     specification which prevents the use of 'name' attributes in forms).
   + added '#' signs in front of colour values (mostly in the Classic theme)
