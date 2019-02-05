@@ -498,7 +498,8 @@ $LANG05 = array(
     5 => '次へ',
     6 => '前へ',
     7 => '最初',
-    8 => '最後'
+    8 => '最後',
+    9 => 'ページナビゲーション'
 );
 
 ###############################################################################
@@ -2102,6 +2103,19 @@ $LANG_trackbackcodes = array(
     -1 => 'トラックバックを受け付けない'
 );
 
+$LANG_structureddatatypes = array(
+    0 => 'None',
+    1 => 'WebPage',
+    2 => 'Article',
+    3 => 'NewsArticle',
+    4 => 'BlogPosting'
+);
+
+$LANG_STRUCT_DATA = array(
+    'lang_structured_data_type'     => 'Structured Data Type', 
+    'autotag_desc_structureddata'   => '[structureddata:schema_property]Property Value[/structureddata] - Adds a property to the structured data of the content that the autotag is embedded in.'
+);
+
 ###############################################################################
 # Localization of the Admin Configuration UI
 
@@ -2290,6 +2304,7 @@ $LANG_confignames['Core'] = array(
     'page_break_comments' => '改ページ時のコメント表示位置',
     'article_image_align' => '話題アイコンの表示位置',
     'show_topic_icon' => '話題アイコン表示のデフォルト',
+    'structured_data_type_default' => 'Structured Data Type Default',
     'draft_flag' => 'ドラフトモードをデフォルトにする',
     'frontpage' => 'トップページ配置をデフォルトにする',
     'hide_no_news_msg' => '記事がない場合のメッセージを表示しない',
@@ -2592,7 +2607,8 @@ $LANG_configselects['Core'] = array(
     35 => array('デフォルト' => 'default', '名前(昇順)' => 'NAME_ASC', '名前(降順)' => 'NAME_DESC', '種類(昇順)' => 'TYPE_ASC', '種類(降順)' => 'TYPE_DESC', '変更日時(昇順)' => 'MODIFIED_ASC', '変更日時(降順)' => 'MODIFIED_DESC'),
     36 => array('いいえ' => 'false', 'トップページのみ' => 'frontpage', 'トップページと話題ページ' => 'frontpage_topics'),
     37 => array('無効' => 0, '有効(index.phpあり)' => 1, '有効(index.phpなし)' => 2),
-    38 => array('Mystery Man' => 'mm', 'Identicon' => 'identicon', 'MonsterId' => 'monsterid', 'WAvatar' => 'wavatar', 'Retro' => 'retro')
+    38 => array('Mystery Man' => 'mm', 'Identicon' => 'identicon', 'MonsterId' => 'monsterid', 'WAvatar' => 'wavatar', 'Retro' => 'retro'),
+    39 => array('None' => 0, 'WebPage' => 1, 'Article' => 2, 'NewsArticle' => 3, 'BlogPosting' => 4)
 );
 
 ###############################################################################

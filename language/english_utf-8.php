@@ -490,7 +490,8 @@ $LANG05 = array(
     5 => 'Next',
     6 => 'Previous',
     7 => 'First',
-    8 => 'Last'
+    8 => 'Last',
+    9 => 'Page navigation'
 );
 
 ###############################################################################
@@ -2103,6 +2104,19 @@ $LANG_trackbackcodes = array(
     -1  => 'Trackback Disabled'
 );
 
+$LANG_structureddatatypes = array(
+    0 => 'None',
+    1 => 'WebPage',
+    2 => 'Article',
+    3 => 'NewsArticle',
+    4 => 'BlogPosting'
+);
+
+$LANG_STRUCT_DATA = array(
+    'lang_structured_data_type'     => 'Structured Data Type', 
+    'autotag_desc_structureddata'   => '[structureddata:schema_property]Property Value[/structureddata] - Adds a property to the structured data of the content that the autotag is embedded in.'
+);
+
 ###############################################################################
 # Localization of the Admin Configuration UI
 
@@ -2292,6 +2306,7 @@ $LANG_confignames['Core'] = array(
     'page_break_comments' => 'Comments on Multi-Page Articles',
     'article_image_align' => 'Topic Icon Alignment',
     'show_topic_icon' => 'Show Topic Icon?',
+    'structured_data_type_default' => 'Structured Data Type Default',
     'draft_flag' => 'Draft Flag Default',
     'frontpage' => 'Frontpage Default',
     'hide_no_news_msg' => 'Hide "No News" Message?',
@@ -2601,7 +2616,8 @@ $LANG_configselects['Core'] = array(
     35 => array('default' => 'default', 'Name (asc)' => 'NAME_ASC', 'Name (desc)' => 'NAME_DESC', 'Type (asc)' => 'TYPE_ASC', 'Type (desc)' => 'TYPE_DESC', 'Modified (asc)' => 'MODIFIED_ASC', 'Modified (desc)' => 'MODIFIED_DESC'),
     36 => array('False' => 'false', 'Frontpage only' => 'frontpage', 'Frontpage and Topics' => 'frontpage_topics'),
     37 => array('Disabled' => 0, 'Enabled (with "index.php")' => 1, 'Enabled (without "index.php")' => 2),
-    38 => array('Mystery Man' => 'mm', 'Identicon' => 'identicon', 'MonsterId' => 'monsterid', 'WAvatar' => 'wavatar', 'Retro' => 'retro')
+    38 => array('Mystery Man' => 'mm', 'Identicon' => 'identicon', 'MonsterId' => 'monsterid', 'WAvatar' => 'wavatar', 'Retro' => 'retro'),
+    39 => array('None' => 0, 'WebPage' => 1, 'Article' => 2, 'NewsArticle' => 3, 'BlogPosting' => 4)
 );
 
 ###############################################################################
