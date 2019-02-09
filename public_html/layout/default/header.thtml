@@ -8,161 +8,111 @@
 <!-- Mobile Specific Metas -->
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"{xhtml}>
 
-<!-- Favicons Generated with favicon.il.ly -->
-<link rel="icon" sizes="16x16 32x32 48x48 64x64" href="{site_url}/favicon.ico?v=2"{xhtml}>
-<!--[if IE]>
-<link rel="shortcut icon" href="{site_url}/favicon.ico?v=2"{xhtml}>
-<![endif]-->
-<!-- Optional: Android & iPhone-->
-<link rel="apple-touch-icon-precomposed" href="{site_url}/favicon-152.png"{xhtml}>
-<!-- Optional: IE10 Tile.-->
-<meta name="msapplication-TileColor" content="#FFFFFF"{xhtml}>
-<meta name="msapplication-TileImage" content="{site_url}/favicon-144.png"{xhtml}>
-<!-- Optional: ipads, androids, iphones, ...-->
-<link rel="apple-touch-icon-precomposed" sizes="152x152" href="{site_url}/favicon-152.png"{xhtml}>
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{site_url}/favicon-144.png"{xhtml}>
-<link rel="apple-touch-icon-precomposed" sizes="120x120" href="{site_url}/favicon-120.png"{xhtml}>
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{site_url}/favicon-114.png"{xhtml}>
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{site_url}/favicon-72.png"{xhtml}>
-<link rel="apple-touch-icon-precomposed" href="{site_url}/favicon-57.png"{xhtml}>
+<!-- Favicons -->
+<link rel="shortcut icon" href="{layout_url}/images/favicon.ico"{xhtml}>
 
+<!-- <meta http-equiv="Pragma" content="no-cache"{xhtml}> -->
 <link rel="start contents" href="{site_url}"{xhtml}>
-
 {feed_url}
 {rel_links}
 {plg_headercode}
 
-<meta name="twitter:image:height" content="400"{xhtml}>
-<meta name="twitter:image:width" content="500"{xhtml}>
-<meta name="twitter:url" content="<?php echo htmlspecialchars(htmlspecialchars(COM_getCurrentURL(), ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'utf-8'); ?>"{xhtml}>
-
-<!--[if lt IE 8]><link rel="stylesheet" type="text/css" href="{layout_url}/css_{direction}/ie8.css"{xhtml}><![endif]-->
-<!--[if lt IE 9]><script src="{layout_url}/javascript/respond.min.js"></script><![endif]-->
+<!--[if lt IE 9]><script type="text/javascript" src="{layout_url}/javascript/respond.min.js"></script><![endif]-->
 <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
 
 <body dir="{direction}" class="{layout_columns}" itemscope="itemscope" itemtype="http://schema.org/WebPage">
-{# start {templatelocation} #}
+{# begin {templatelocation} #}
 
-	<!-- #container { -->
-	<div id="container" class="container">
+<?php 
 
-		<div class="uk-position-relative">
-			<?php if( COM_onFrontpage() ) { ?>
+$url_current = COM_getCurrentURL(); 
 
-			<div class="uk-inline">
-			    <img src="{layout_url}/images/custom/top.jpg" alt="{site_name}">
-			    <div class="uk-overlay uk-position-center uk-visible@m">
-			       <h1 class="uk-text-nowrap uk-text-center" style="color:#fff">{site_slogan}</h1>
-			    </div>
+if( COM_onFrontpage() ){  ?>
+
+		<div class="uk-inline gl-frontpage">
+		  <img src="{layout_url}/images/custom/top-rainbow.jpg" alt="" {xhtml}>
+	    <div class="uk-overlay uk-position-top gl-overlay">
+
+<?php } ?>
+
+				<div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+					<nav class="uk-navbar uk-navbar-container uk-navbar-transparent gl-navbar-for-ie gl-toppage">						
+						<div class="uk-navbar-left">
+							<h1 class="uk-navbar-item uk-margin-left gl-sitename">
+							  <a href="{site_url}">{site_name}</a>
+							</h1>				
+						</div>	
+						<div class="uk-navbar-right uk-margin-right" style="z-index:3000">
+							<ul class="uk-navbar-nav uk-visible@m">
+								{menu_elements}
+							</ul>
+							<a class="uk-navbar-toggle uk-hidden@m" uk-navbar-toggle-icon href="#nav_offcanvas" uk-toggle></a>
+						</div>
+					</nav>
+				</div>
+
+
+<?php if( COM_onFrontpage() ){  ?>
 			</div>
+				<div class="uk-position-center">
+					<h2>{site_slogan}</h2>
+				</div>
 
-			<?php } else { ?>
-				<div style="min-height:60px"></div>
-			<?php } ?>
-			
-	    <div class="uk-position-top">
-	      <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+		</div>
+<?php }   ?>
 
-					<div class="uk-navbar-left">
-						<a class="uk-navbar-item uk-logo gl-logo" href="{site_url}">
-							<img src="{layout_url}/images/custom/logo.png" alt="{site_name}"{xhtml}>
-						</a>
-					</div>
-					<div class="uk-navbar-right uk-hidden@m">
-						<a uk-navbar-toggle-icon="" href="#offcanvas" uk-toggle="" class="uk-navbar-toggle uk-navbar-toggle-icon uk-icon uk-button uk-button-secondary"></a>
-					</div>
-					<div class="uk-navbar-right uk-visible@m">
-
-						<ul class="uk-navbar-nav gl-navbar-nav">
-
-							<li style="min-width:6em;">
-								<a href="{site_url}/index.php/topic/General"  class="uk-button uk-button-secondary uk-text-nowrap">NEWS</a>
-							</li>
-							<li style="min-width:6em;">
-								<a href="{site_url}/staticpages/index.php/contact" class="uk-button uk-button-secondary uk-text-nowrap">CONTACT</a>
-							</li>
-							<li style="min-width:6em;">
-<?php global $_USER, $_CONF; if (isset($_USER['uid']) && $_USER['uid'] > 1) { ?>
-								<a href="{site_url}/usersettings.php?mode=edit" uk-icon="icon: user"></a>
-<?php } else { ?>
-								<a href="{site_url}/users.php" uk-icon="icon: user"></a>
-<?php } ?>
-								<div class="uk-navbar-dropdown">
-									<ul class="uk-nav uk-navbar-dropdown-nav gl-navbar-nav">
-<?php global $_USER, $_CONF; if (isset($_USER['uid']) && $_USER['uid'] > 1) { ?>
-<?php } else { if ($_CONF['disable_new_user_registration']==0) { ?>
-
-	        					<li class="uk-active uk-text-bold">メンバーの方</li>
-	        					<li class="uk-active gl-active"><a href="{site_url}/users.php" class="uk-button uk-button-primary">{$LANG01[58]}</a></li>
-	        					<li class="uk-active gl-active"></li>
-	        					<li class="uk-active uk-text-bold uk-margin-top">初めてご利用ですか?</li>
-
-	        					<li class="uk-active gl-active"><a href="{site_url}/users.php?mode=new" class="uk-button uk-button-primary"><i class="uk-icon-user"></i> {$LANG04[27]}</a></li>
-<?php } ?>
-										<li class="uk-active gl-active"><a href="{site_url}/users.php" class="uk-button uk-button-primary">{$LANG01[58]}</a></li>
-<?php } ?>
-<?php global $_USER, $_CONF; if (isset($_USER['uid']) && $_USER['uid'] > 1) { ?>
-	        					<li class="uk-active uk-text-bold uk-margin-top" class="uk-button">{$LANG01[20]}</li>
-										<li class="uk-active gl-active"><a href="{site_url}/usersettings.php?mode=edit" class="uk-button uk-button-primary">{$LANG01[48]}</a></li>
-	        					<li class="uk-active gl-active"><a href="{site_url}/users.php?mode=logout" class="uk-button uk-button-primary"><i class="uk-icon-sign-out"></i> {$LANG01[35]}</a></li>
-<?php } ?>
-
-									</ul>
-								</div>
-							</li>
-						</ul>
-					</div>
-
-	      </nav>
-    	</div>
+		<div id="nav_offcanvas" uk-offcanvas="overlay: true" style="z-index:3000">
+	     <div class="uk-offcanvas-bar uk-flex uk-flex-column">
+				<a class="uk-offcanvas-close" uk-close></a>
+				<div class="uk-text-left"><a class="uk-navbar-item uk-logo uk-margin-left uk-margin-top" href="/"><img src="/images/library/Image/logo-black.png"  style="width:100px; height:47px" alt="花の雲"></a></div>
+				<ul class="uk-nav  uk-nav-center">
+					<li class="uk-margin-top"><a href="/">HOME</a></li>
+					{menu_elements}
+				</ul>
+			</div>
 		</div>
 
-    <div class="uk-hidden@m uk-text-small">
-        <p class="uk-article-meta uk-margin-left">{site_slogan}</p>
-    </div>
 
-		<div id="offcanvas" uk-offcanvas="mode: push; overlay: true" class="uk-offcanvas uk-offcanvas-overlay">
-			<div class="uk-offcanvas-bar uk-offcanvas-bar-animation uk-offcanvas-push">
-				<div class="uk-panel">
-					<ul class="uk-nav uk-nav-default tm-nav uk-margin-top">
-						<li><a href="{site_url}">HOME</a></li>
-						<li><a href="{site_url}/index.php/topic/General">NEWS</a></li>
-						<li><a href="{site_url}/staticpages/index.php/contact">CONTACT</a></li>
-						<li class="uk-nav-header">{$LANG01[45]}</li>
+<?php	if( SEC_inGroup('Root')){ ?>
+<nav class="uk-navbar-container uk-navbar" uk-navbar>
+			<div class="uk-navbar-left">
+				<ul class="uk-navbar-nav">
+					
+						<li id="cmitem-home"><a href="{site_url}/">ホーム</a></li>
+
 						<li>
-<?php global $_USER, $_CONF; if (isset($_USER['uid']) && $_USER['uid'] > 1) { ?>
-						<li><a href="{site_url}/usersettings.php?mode=edit"><i class="uk-icon-cog"></i> {$LANG01[48]}</a></li>
-						<li><a href="{site_url}/users.php?mode=logout"><i class="uk-icon-sign-out"></i> {$LANG01[35]}</a></li>
-<?php } else { if ($_CONF['disable_new_user_registration']==0) { ?>
-						<li><a href="{site_url}/users.php"><i class="uk-icon-sign-in"></i> {$LANG01[58]}</a></li>
-<?php } ?>
-						<li><a href="{site_url}/users.php?mode=new"><i class="uk-icon-user"></i> {$LANG04[27]}</a></li>
-<?php } ?>
-					</ul>
-				</div>
+                <a href="#" class="" aria-expanded="false">管理メニュー</a>
+                <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-left" style="min-width: 300px; left: 70.1847px; top: 40px;">
+                    <ul class="uk-nav uk-navbar-dropdown-nav">
+											<li><a href="{site_url}/admin/index.php">管理メニューTOP</a></li>
+											<li><a href="{site_url}/admin/plugins/databox/data.php">DataBox</a></li>
+											<li><a href="{site_url}/admin/plugins/staticpages/index.php">静的ページ</a></li>
+											<li><a href="{site_url}/mediagallery/index.php">メディアギャラリー</a></li>
+											<li><a href="{site_url}/admin/plugins/themedit/index.php">テーマエディタ</a></li>
+											<li><a href="{site_url}/admin/plugins/autotags/index.php">自動タグ</a></li>
+											<li><a href="{site_url}/filemanager/index.php?Type=Root">ファイルアップロード</a></li>
+											<li><a href="{site_url}/admin/configuration.php" class="last">コンフィギュレーション</a></li>
+											<li><a href="{site_url}/stats.php">サイト情報</a></li>
+											<li><a href="{site_url}/usersettings.php?mode=edit">マイアカウント</a></li>
+                    </ul>
+                </div>
+            </li>
+
+
+						<li id="cmitem-clearctl"><a href="{site_url}/admin/clearctl.php">キャッシュクリア（変更反映）</a></li>
+						<li id="cmitem-login" class="uk-active uk-text-nowrap last"><a href="{site_url}/users.php?mode=logout" class="last">ログアウト</a></li>
+
+				</ul>
 			</div>
-		</div>
+		</nav>
+<?php } ?>
 
-
-
-    <hr class="separator"{xhtml}>
-
-    <!-- #wrapper { -->
+    {# #wrapper { #}
     <div id="wrapper">
-			<nav class="uk-navbar-container" uk-navbar>
-				<div class="uk-navbar-left">
-					<ul class="uk-navbar-nav">
-						{menu_elements}
-					</ul>
-				</div>
-			</nav>
-
-      <!-- Center Block Container -->
+      {# Center Block Container #}
       <div id="centerblocks">
         <main id="main-content" role="main" itemscope="itemscope" itemprop="mainContentOfPage" itemtype="http://schema.org/WebPageElement">
-
-		      <p class="welcome_msg">{welcome_msg}&nbsp;{datetime}</p>
 		      {breadcrumb_trail}
 
 {# end {templatelocation} #}

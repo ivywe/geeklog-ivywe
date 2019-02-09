@@ -8,7 +8,7 @@
     <dl class="form_block">
       <dt><label for="advsearchform-query">{lang_keywords}</label></dt>
       <dd>
-        <input type="text" maxlength="35" value="{query}" name="query" id="advsearchform-query" class="uk-input uk-form-width-medium"{xhtml}>
+        <input type="text" maxlength="35" value="{query}" name="query" id="advsearchform-query" class="uk-input size3"{xhtml}>
         <select name="keyType" title="{lang_keytype}" id="advsearchform-keyType" class="uk-select uk-width-auto">
           <option value="phrase" {key_phrase_selected}>{lang_exact_phrase}</option>
           <option value="all" {key_all_selected}>{lang_all_words}</option>
@@ -19,7 +19,7 @@
 
       <dt><label for="advsearchform-datestart">{lang_date}</label></dt>
       <dd>
-        <input type="text" maxlength="10" name="datestart" value="{datestart}" id="advsearchform-datestart" class="uk-input uk-form-width-medium"{xhtml}> <span class="loose">{lang_to}</span> <input type="text" maxlength="10" name="dateend" value="{dateend}" id="advsearchform-dateend" class="uk-input uk-form-width-medium"{xhtml}>
+        <input type="text" maxlength="10" name="datestart" value="{datestart}" id="advsearchform-datestart" class="uk-input size2"{xhtml}> <span class="loose">{lang_to}</span> <input type="text" maxlength="10" name="dateend" value="{dateend}" id="advsearchform-dateend" class="uk-input size2"{xhtml}>
       </dd>
       <dd class="description">{date_format}</dd>
 

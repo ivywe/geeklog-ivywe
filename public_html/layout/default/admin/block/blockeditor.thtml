@@ -36,7 +36,7 @@
       </dd>
 
       <dt><label for="admin-blockeditor-blockorder">{lang_blockorder}</label></dt>
-      <dd><input type="text" value="{block_order}" name="blockorder" id="admin-blockeditor-blockorder" class="uk-input uk-form-width-small" aria-describedby="desc-admin-blockeditor-blockorder"{xhtml}></dd>
+      <dd><input type="text" value="{block_order}" name="blockorder" id="admin-blockeditor-blockorder" class="uk-input size1" aria-describedby="desc-admin-blockeditor-blockorder"{xhtml}></dd>
       <dd id="desc-admin-blockeditor-blockorder" class="description">0-9999</dd>
 
       <dt><label>{lang_device}</label></dt>
@@ -57,7 +57,7 @@
       </dd>
 
       <dt><label for="admin-blockeditor-cachetime">{lang_cachetime}</label></dt>
-      <dd><input type="text" size="8" value="{cache_time}" name="cache_time" id="admin-blockeditor-cachetime" class="uk-input uk-form-width-small" aria-describedby="desc-admin-blockeditor-cachetime"{xhtml}></dd>
+      <dd><input type="text" size="8" value="{cache_time}" name="cache_time" id="admin-blockeditor-cachetime" class="uk-input size1" aria-describedby="desc-admin-blockeditor-cachetime"{xhtml}></dd>
       <dd id="desc-admin-blockeditor-cachetime" class="description">{lang_cachetime_desc}</dd>
 
       <dt><label for="admin-blockeditor-css-id">{lang_css_id}</label></dt>
@@ -87,7 +87,7 @@
         <dd><input type="text" maxlength="{max_url_length}" value="{block_rdfurl}" name="rdfurl" id="admin-blockeditor-rdfurl" class="uk-input size5"{xhtml}></dd>
 
         <dt><label for="admin-blockeditor-rdflimit">{lang_rdflimit}</label></dt>
-        <dd><input type="text" maxlength="3" value="{block_rdflimit}" name="rdflimit" id="admin-blockeditor-rdflimit" class="uk-input uk-form-width-small"{xhtml}></dd>
+        <dd><input type="text" maxlength="3" value="{block_rdflimit}" name="rdflimit" id="admin-blockeditor-rdflimit" class="uk-input size1"{xhtml}></dd>
 
         <dt><label for="admin-blockeditor-rdfupdated">{lang_lastrdfupdate}</label></dt>
         <dd>{block_rdfupdated}</dd>

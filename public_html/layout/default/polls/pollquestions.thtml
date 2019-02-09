@@ -1,0 +1,16 @@
+{# begin {templatelocation} #}
+
+<div class="uk-form-row uk-margin-large-top">
+    <div class="uk-form-label uk-text-bold uk-margin-small-bottom uk-margin-small-right uk-text-break">
+      {lang_question_number} {poll_question}
+    </div>
+    <div class="uk-form-controls uk-margin-large-left">
+    {!if poll_description}<div class="uk-text-success">{poll_description}</div>{!endif}
+
+      <div class="uk-margin">{poll_answers}</div>
+    </div>
+</div>
+
+
+
+{# end {templatelocation} #}

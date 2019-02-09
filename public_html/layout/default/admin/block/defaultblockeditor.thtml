@@ -32,7 +32,7 @@
       </dd>
 
       <dt><label for="admin-blockeditor-blockorder">{lang_blockorder}</label></dt>
-      <dd><input type="text" name="blockorder" value="{block_order}" id="admin-blockeditor-blockorder" class="uk-input uk-form-width-small" aria-describedby="desc-admin-blockeditor-blockorder"{xhtml}>
+      <dd><input type="text" name="blockorder" value="{block_order}" id="admin-blockeditor-blockorder" class="uk-input size1" aria-describedby="desc-admin-blockeditor-blockorder"{xhtml}>
         <span id="desc-admin-blockeditor-blockorder">0 - 9999</span></dd>
 
       <dt><label>{lang_device}</label></dt>

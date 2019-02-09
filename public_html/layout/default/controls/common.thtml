@@ -16,7 +16,7 @@
 {!if lang_label}
 <label{!if id} for="{id}"{!endif}>
 {!endif}
-<input type="checkbox" class="uk-checkbox" name="{name}"{!if id} id="{id}"{!endif}{!if value} value="{value}"{!endif}{!if title} title="{title}"{!endif}{!if style} style="{style}"{!endif} class="uk-checkbox {class}"{!if checked} checked="checked"{!endif}{!if disabled} disabled="disabled"{!endif}{!if onchange} onchange="{onchange}"{!endif}{!if onclick} onclick="{onclick}"{!endif}{xhtml}>
+<input type="checkbox" name="{name}"{!if id} id="{id}"{!endif}{!if value} value="{value}"{!endif}{!if title} title="{title}"{!endif}{!if style} style="{style}"{!endif} class="uk-checkbox {class}"{!if checked} checked="checked"{!endif}{!if disabled} disabled="disabled"{!endif}{!if onchange} onchange="{onchange}"{!endif}{!if onclick} onclick="{onclick}"{!endif}{xhtml}>
 {!if lang_label}
 {lang_label}
 </label>
@@ -27,7 +27,7 @@
 {!if lang_label}
 <label{!if id} for="{id}"{!endif}>
 {!endif}
-<input type="radio" class="uk-radio" name="{name}"{!if id} id="{id}"{!endif}{!if value} value="{value}"{!endif}{!if title} title="{title}"{!endif}{!if style} style="{style}"{!endif} class="uk-radio {class}"{!if checked} checked="checked"{!endif}{!if disabled} disabled="disabled"{!endif}{!if onchange} onchange="{onchange}"{!endif}{!if onclick} onclick="{onclick}"{!endif}{xhtml}>
+<input type="radio" name="{name}"{!if id} id="{id}"{!endif}{!if value} value="{value}"{!endif}{!if title} title="{title}"{!endif}{!if style} style="{style}"{!endif} class="uk-radio {class}"{!if checked} checked="checked"{!endif}{!if disabled} disabled="disabled"{!endif}{!if onchange} onchange="{onchange}"{!endif}{!if onclick} onclick="{onclick}"{!endif}{xhtml}>
 {!if lang_label}
 {lang_label}
 </label>
@@ -39,7 +39,7 @@
 <label{!if id} for="{id}"{!endif}>
 {lang_label}
 {!endif}
-<select class="uk-select uk-form-width-medium" name="{name}"{!if id} id="{id}"{!endif}{!if style} style="{style}"{!endif} class="uk-select uk-width-auto {class}"{!if multiple} multiple="multiple"{!endif}{!if size} size="{size}"{!endif}{!if onchange} onchange="{onchange}"{!endif}{!if onclick} onclick="{onclick}"{!endif}>{select_items}</select>
+<select name="{name}"{!if id} id="{id}"{!endif}{!if style} style="{style}"{!endif} class="uk-select uk-width-auto {class}"{!if multiple} multiple="multiple"{!endif}{!if size} size="{size}"{!endif}{!if onchange} onchange="{onchange}"{!endif}{!if onclick} onclick="{onclick}"{!endif}>{select_items}</select>
 {!if lang_label}
 </label>
 {!endif}
@@ -56,7 +56,7 @@
 <label{!if id} for="{id}"{!endif}>
 {lang_label}
 {!endif}
-<select class="uk-select uk-form-width-medium" name="{name}"{!if style} style="{style}"{!endif} class="uk-select uk-form-width-small {class}"{!if multiple} multiple="multiple"{!endif}{!if size} size="{size}"{!endif}{!if onchange} onchange="{onchange}"{!endif}{!if onclick} onclick="{onclick}"{!endif}>{select_items}</select>
+<select name="{name}"{!if style} style="{style}"{!endif} class="uk-select uk-form-width-small {class}"{!if multiple} multiple="multiple"{!endif}{!if size} size="{size}"{!endif}{!if onchange} onchange="{onchange}"{!endif}{!if onclick} onclick="{onclick}"{!endif}>{select_items}</select>
 {!if lang_label}
 </label>
 {!endif}

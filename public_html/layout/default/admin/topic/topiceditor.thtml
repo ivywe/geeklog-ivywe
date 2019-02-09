@@ -35,7 +35,7 @@
       {!endif}
       
       <dt><label for="admin-topiceditor-limitnews">{lang_storiesperpage}</label></dt>
-      <dd><input type="text" maxlength="3" value="{story_limit}" name="limitnews" id="admin-topiceditor-limitnews" class="uk-input uk-form-width-small" aria-describedby="desc-admin-topiceditor-limitnews"{xhtml}> <span class="fieldhelp" id="desc-admin-topiceditor-limitnews">{lang_defaultis} {default_limit}</span></dd>
+      <dd><input type="text" maxlength="3" value="{story_limit}" name="limitnews" id="admin-topiceditor-limitnews" class="uk-input size1" aria-describedby="desc-admin-topiceditor-limitnews"{xhtml}> <span class="fieldhelp" id="desc-admin-topiceditor-limitnews">{lang_defaultis} {default_limit}</span></dd>
 
       <dt><label for="admin-topiceditor-imageurl">{lang_topicimage}</label></dt>
       <dd><input type="text" dir="ltr" maxlength="{max_url_length}" value="{image_url}" name="imageurl" id="admin-topiceditor-imageurl" class="uk-input size5"{xhtml}></dd>

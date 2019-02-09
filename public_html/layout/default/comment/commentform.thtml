@@ -34,11 +34,11 @@
       </dd>
 
       <dt class="title"><label for="commentform-title">{lang_title}</label></dt>
-      <dd class="title"><input type="text" value="{title}" maxlength="96" name="title" id="commentform-title" class="uk-input"{xhtml}></dd>
+      <dd class="title"><input type="text" value="{title}" maxlength="96" name="title" id="commentform-title" class="uk-input size6"{xhtml}></dd>
 
       <dt><label for="commentform-postmode">{lang_postmode}</label></dt>
       <dd>
-        <select class="uk-select uk-form-width-medium" name="postmode" id="commentform-postmode" class="uk-select uk-width-auto">
+        <select name="postmode" id="commentform-postmode" class="uk-select uk-width-auto">
           {postmode_options}
         </select>
       </dd>
@@ -62,7 +62,7 @@
       <button type="submit" name="{nprefix}mode" value="{lang_cancel}" class="uk-button uk-button-default">{lang_cancel}</button>
       <input type="hidden" name="formtype" value="{formtype}"{xhtml}>
 {!if allow_notify}          
-      <div class="uk-margin-top"><input type="checkbox" class="uk-checkbox" name="notify"{notify_checked}>{lang_notify}</div>
+      <div class="uk-margin-top"><input type="checkbox" name="notify"{notify_checked}>{lang_notify}</div>
 {!endif}
     </div>
   </div>
@@ -73,11 +73,11 @@
 {end_block}
 
 <!-- BEGIN record_edit -->
-<dd class="description" id="record_edit"><input type="checkbox" class="uk-checkbox" name="record_edit" class="uk-checkbox" {record_edit_checked} value="1">{lang_record_edit}</dd>
+<dd class="description" id="record_edit"><input type="checkbox" name="record_edit" class="uk-checkbox" {record_edit_checked} value="1">{lang_record_edit}</dd>
 <!-- END record_edit -->
 
 <!-- BEGIN username_anon -->
-<input type="text" class="uk-input uk-form-width-medium" name="username" size="16" value="{username_value}" maxlength="32" class="uk-input"{xhtml}> ({lang_anonymous})
+<input type="text" name="username" size="16" value="{username_value}" maxlength="32" class="uk-input"{xhtml}> ({lang_anonymous})
 <!-- END username_anon -->
 
 {# end {templatelocation} #}

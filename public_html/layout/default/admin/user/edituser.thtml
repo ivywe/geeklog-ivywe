@@ -14,7 +14,7 @@
       <dd class="controls_text">{user_lastlogin}</dd>
 
       <dt><label for="admin-edituser-username">{lang_username}</label></dt>
-      <dd><div><input type="text" maxlength="16" value="{username}" name="username" id="admin-edituser-username" class="uk-input uk-form-width-medium"{xhtml}> {remoteservice}</div>
+      <dd><div><input type="text" maxlength="16" value="{username}" name="username" id="admin-edituser-username" class="uk-input size2"{xhtml}> {remoteservice}</div>
           {!if user_photo}
           {user_photo}
           {!endif}
@@ -48,7 +48,7 @@
       <dd><input type="text" maxlength="255" value="{user_homepage}" name="homepage" id="admin-edituser-homepage" class="uk-input size5"{xhtml}></dd>
 
       <dt><label for="admin-edituser-location">{lang_location}</label></dt>
-      <dd><input type="text" maxlength="96" value="{user_location}" name="location" id="admin-edituser-location" class="uk-input" aria-describedby="desc-admin-edituser-location"{xhtml}></dd>
+      <dd><input type="text" maxlength="96" value="{user_location}" name="location" id="admin-edituser-location" class="uk-input size7" aria-describedby="desc-admin-edituser-location"{xhtml}></dd>
       <dd class="description" id="desc-admin-edituser-location">{lang_location_text}</dd>
 
       <dt><label for="admin-edituser-sig">{lang_signature}</label></dt>

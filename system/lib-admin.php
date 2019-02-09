@@ -330,7 +330,7 @@ function ADMIN_list($component, $fieldFunction, $header_arr, $text_arr,
     $icon_arr = array();
     foreach ($icons_type_arr as $icon_type) {
         $icon_url = "{$_CONF['layout_url']}/images/$icon_type.$_IMAGE_TYPE";
-        $icon_arr[$icon_type] = COM_createImage($icon_url, $LANG_ADMIN[$icon_type], array('style' => 'vertical-align: middle; min-width:32px'));
+        $icon_arr[$icon_type] = COM_createImage($icon_url, $LANG_ADMIN[$icon_type], array('style' => 'vertical-align: middle;'));
     }
 
     $has_extras = '';

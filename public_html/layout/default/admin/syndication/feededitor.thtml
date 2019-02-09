@@ -28,10 +28,10 @@
       <dd>{feed_format}</dd>
 
       <dt><label for="admin-feededitor-limits">{lang_limits}</label></dt>
-      <dd><input type="text" value="{feed_limits}" name="limits" id="admin-feededitor-limits" class="uk-input uk-form-width-small"{xhtml}> {feed_limits_what}</dd>
+      <dd><input type="text" value="{feed_limits}" name="limits" id="admin-feededitor-limits" class="uk-input size1"{xhtml}> {feed_limits_what}</dd>
 
       <dt><label for="admin-feededitor-content_length">{lang_content_length}</label></dt>
-      <dd><input type="text" value="{feed_content_length}" name="content_length" id="admin-feededitor-content_length" class="uk-input uk-form-width-small" aria-describedby="desc-admin-feededitor-content_length"{xhtml}></dd>
+      <dd><input type="text" value="{feed_content_length}" name="content_length" id="admin-feededitor-content_length" class="uk-input size1" aria-describedby="desc-admin-feededitor-content_length"{xhtml}></dd>
       <dd class="description" id="desc-admin-feededitor-content_length">{lang_clen_explain}</dd>
 
       <dt><label for="admin-feededitor-description">{lang_description}</label></dt>
@@ -45,10 +45,10 @@
       <dd><input type="text" value="{feed_filename}" name="filename" id="admin-feededitor-filename" class="uk-input size5"{xhtml}></dd>
 
       <dt><label for="admin-feededitor-charset">{lang_charset}</label></dt>
-      <dd><input type="text" value="{feed_charset}" name="charset" id="admin-feededitor-charset" class="uk-input uk-form-width-medium"{xhtml}></dd>
+      <dd><input type="text" value="{feed_charset}" name="charset" id="admin-feededitor-charset" class="uk-input size3"{xhtml}></dd>
 
       <dt><label for="admin-feededitor-language">{lang_language}</label></dt>
-      <dd><input type="text" value="{feed_language}" name="language" id="admin-feededitor-language" class="uk-input uk-form-width-medium"{xhtml}></dd>
+      <dd><input type="text" value="{feed_language}" name="language" id="admin-feededitor-language" class="uk-input size3"{xhtml}></dd>
 
       <dt>{lang_updated}</dt>
       <dd class="controls_text">{feed_updated}</dd>

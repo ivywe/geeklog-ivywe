@@ -6,7 +6,7 @@
       {filter}
     </div>
     <div class="search-part">
-      {lang_search}: <input type="text" name="q" class="uk-input uk-form-width-medium" value="{last_query}"{xhtml}>
+      {lang_search}: <input type="text" name="q" class="uk-input size3" value="{last_query}"{xhtml}>
     </div>
     <div class="search-part">
       {lang_limit_results}:
