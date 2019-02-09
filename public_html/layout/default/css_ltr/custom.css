@@ -8,7 +8,7 @@ h1.gl-sitename {
 		padding:0;
     width: 134px;
     height: 50px;
-    background: url(../images/custom/logo.png) no-repeat;
+    background: url(../images/logo.png) no-repeat;
     overflow: hidden;
     text-indent: 220%;
     white-space: nowrap;
@@ -19,7 +19,7 @@ h1.gl-sitename {
 		padding:0;
     width: 134px;
     height: 50px;
-    background: url(../images/custom/logo-white.png) no-repeat;
+    background: url(../images/logo-white.png) no-repeat;
     overflow: hidden;
     text-indent: 220%;
     white-space: nowrap;
@@ -40,7 +40,7 @@ div.uk-sticky.uk-sticky-fixed.uk-sticky-below {
 }
 
 .gl-frontpage div.uk-sticky.uk-sticky-fixed.uk-sticky-below  h1.gl-sitename {
-    background: url(../images/custom/logo.png) no-repeat;
+    background: url(../images/logo.png) no-repeat;
 }
 
 .gl-frontpage div.uk-sticky.uk-sticky-fixed.uk-sticky-below .uk-navbar-nav>li.uk-active>a {

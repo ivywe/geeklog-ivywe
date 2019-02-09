@@ -8,23 +8,8 @@
 <!-- Mobile Specific Metas -->
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"{xhtml}>
 
-<!-- Favicons Generated with favicon.il.ly -->
-<link rel="icon" sizes="16x16 32x32 48x48 64x64" href="{site_url}/favicon.ico"{xhtml}>
-<!--[if IE]>
-<link rel="shortcut icon" href="{site_url}/favicon.ico"{xhtml}>
-<![endif]-->
-<!-- Optional: Android & iPhone-->
-<link rel="apple-touch-icon-precomposed" href="{site_url}/favicon-152.png"{xhtml}>
-<!-- Optional: IE10 Tile.-->
-<meta name="msapplication-TileColor" content="#FFFFFF"{xhtml}>
-<meta name="msapplication-TileImage" content="{site_url}/favicon-144.png"{xhtml}>
-<!-- Optional: ipads, androids, iphones, ...-->
-<link rel="apple-touch-icon-precomposed" sizes="152x152" href="{site_url}/favicon-152.png"{xhtml}>
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{site_url}/favicon-144.png"{xhtml}>
-<link rel="apple-touch-icon-precomposed" sizes="120x120" href="{site_url}/favicon-120.png"{xhtml}>
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{site_url}/favicon-114.png"{xhtml}>
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{site_url}/favicon-72.png"{xhtml}>
-<link rel="apple-touch-icon-precomposed" href="{site_url}/favicon-57.png"{xhtml}>
+<!-- Favicons -->
+<link rel="shortcut icon" href="{layout_url}/images/favicon.ico"{xhtml}>
 
 <!-- <meta http-equiv="Pragma" content="no-cache"{xhtml}> -->
 <link rel="start contents" href="{site_url}"{xhtml}>
@@ -46,7 +31,7 @@ $url_current = COM_getCurrentURL();
 if( COM_onFrontpage() ){  ?>
 
 		<div class="uk-inline gl-frontpage">
-		  <img src="{layout_url}/images/custom/top-rainbow.jpg" alt="" {xhtml}>
+		  <img src="{layout_url}/images/top-rainbow.jpg" alt="" {xhtml}>
 	    <div class="uk-overlay uk-position-top gl-overlay">
 
 <?php } ?>
@@ -77,10 +62,10 @@ if( COM_onFrontpage() ){  ?>
 		</div>
 <?php }   ?>
 
-		<div id="nav_offcanvas" uk-offcanvas="overlay: true" style="z-index:3000">
+		<div id="nav_offcanvas" uk-offcanvas="overlay: true">
 	     <div class="uk-offcanvas-bar uk-flex uk-flex-column">
 				<a class="uk-offcanvas-close" uk-close></a>
-				<div class="uk-text-left"><a class="uk-navbar-item uk-logo uk-margin-left uk-margin-top" href="/"><img src="/images/library/Image/logo-black.png"  style="width:100px; height:47px" alt="花の雲"></a></div>
+				<div class="uk-text-left"><a class="uk-navbar-item uk-logo uk-margin-left uk-margin-top" href="{site_url}"><img src="{layout_url}/images/logo.png"  style="width:100px; height:47px" alt="{site_name}"></a></div>
 				<ul class="uk-nav  uk-nav-center">
 					<li class="uk-margin-top"><a href="/">HOME</a></li>
 					{menu_elements}
