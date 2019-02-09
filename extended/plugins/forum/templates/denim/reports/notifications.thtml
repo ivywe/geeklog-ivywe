@@ -25,8 +25,8 @@
 
 <h2>{lang_subscriptions}</h2>
 
-<div class="uk-grid">
-  	<div class="uk-width-7-10">
+<div uk-grid>
+  <div class="uk-width-7-10">
 		<form class="uk-form" action="{phpself}" method="post">
 			<div class="uk-form-controls">
 				<select name="filter" onchange="this.form.submit();">{filter_options}</select>

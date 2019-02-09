@@ -15,7 +15,7 @@
 {# Forum Topic Listing Buttons #}
 
 <!-- BEGIN newtopic_link -->
-<a class="uk-button uk-button-primary uk-text-nowrap" href="{newtopiclink}" rel="nofollow"><i class="uk-icon-file-o"></i>&nbsp;{newtopiclinktext}</a>
+<a class="uk-button uk-button-primary uk-text-nowrap" href="{newtopiclink}" rel="nofollow"><span uk-icon="icon: file-o"></span>&nbsp;{newtopiclinktext}</a>
 <!-- END newtopic_link -->
 
 <!-- BEGIN subscribeforum_link -->
@@ -25,11 +25,11 @@
 {# Topic Listing Buttons #}
 
 <!-- BEGIN replytopic_link -->
-<a class="uk-button uk-button-primary uk-text-nowrap" href="{replytopiclink}" rel="nofollow"><i class="uk-icon-mail-reply"></i>&nbsp;{replytopiclinktext}</a>
+<a class="uk-button uk-button-primary uk-text-nowrap" href="{replytopiclink}" rel="nofollow"><span uk-icon="icon: mail-reply"></span>&nbsp;{replytopiclinktext}</a>
 <!-- END replytopic_link -->
 
 <!-- BEGIN print_link -->
-<li><a href="{printlink}" rel="nofollow"><i class="uk-icon-print"></i>&nbsp;{printlinktext}</a></li>
+<li><a href="{printlink}" rel="nofollow"><span uk-icon="icon: print"></span>&nbsp;{printlinktext}</a></li>
 <li class="uk-nav-divider"></li>
 <!-- END print_link -->
 
@@ -39,15 +39,15 @@
 <!-- END subscribetopic_link -->
 
 <!-- BEGIN prevtopic_link -->
-<li><a href="{prevlink}"><i class="uk-icon-arrow-left"></i>&nbsp;{LANG_prevlink}</a></li>  
+<li><a href="{prevlink}"><span uk-icon="icon: arrow-left"></span>&nbsp;{LANG_prevlink}</a></li>  
 <!-- END prevtopic_link -->
 
 <!-- BEGIN nexttopic_link -->
-<li><a href="{nextlink}"><i class="uk-icon-arrow-right"></i>&nbsp;{LANG_nextlink}</a></li>
+<li><a href="{nextlink}"><span uk-icon="icon: arrow-right"></span>&nbsp;{LANG_nextlink}</a></li>
 <!-- END nexttopic_link -->
 
 <!-- BEGIN website_link -->
-<a href="{websitelink}" target="_blank" rel="nofollow noopener"><i class="uk-icon-home"></i></a>
+<a href="{websitelink}" target="_blank" rel="nofollow noopener"><span uk-icon="icon: home"></span></a>
 <!-- END website_link -->
 
 <!-- BEGIN pm_link -->
@@ -55,19 +55,19 @@
 <!-- END pm_link -->
 
 <!-- BEGIN profile_link -->
-<a href="{profilelink}"><i class="uk-icon-user"></i></a>
+<a href="{profilelink}"><span uk-icon="icon: user"></span></a>
 <!-- END profile_link -->
 
 <!-- BEGIN email_link -->
-<a href="{emaillink}"><i class="uk-icon-envelope"></i></a>
+<a href="{emaillink}"><span uk-icon="icon: envelope"></span></a>
 <!-- END email_link -->
 
 <!-- BEGIN quotetopic_link -->
-<a class="uk-button uk-button-primary" href="{quotelink}" rel="nofollow"><i class="uk-icon-quote-left"></i>&nbsp;{quotelinktext}</a>
+<a class="uk-button uk-button-primary" href="{quotelink}" rel="nofollow"><span uk-icon="icon: quote-left"></span>&nbsp;{quotelinktext}</a>
 <!-- END quotetopic_link -->
 
 <!-- BEGIN edittopic_link -->
-<a class="uk-button" href="{editlink}"><i class="uk-icon-edit"></i>&nbsp;{editlinktext}</a>
+<a class="uk-button" href="{editlink}"><span uk-icon="icon: edit"></span>&nbsp;{editlinktext}</a>
 <!-- END edittopic_link -->
 
 (# Report Links #}
@@ -81,7 +81,7 @@
 <!-- END returnmarkread_link -->
 
 <!-- BEGIN trash_link -->
-<a class="uk-button uk-button-mini" title="{LANG_deleteall}" onclick=' if(confirm("{LANG_DELALLCONFIRM}")) {document.report_table.op.value="delchecked"; document.report_table.submit();}'><i class="uk-icon-trash"></i></a>
+<a class="uk-button uk-button-mini" title="{LANG_deleteall}" onclick=' if(confirm("{LANG_DELALLCONFIRM}")) {document.report_table.op.value="delchecked"; document.report_table.submit();}'><span uk-icon="icon: trash"></span></a>
 <!-- END trash_link -->
 
 <!-- BEGIN memberoption_link -->
@@ -92,7 +92,7 @@
 
 <!-- BEGIN topicmenu_link -->
 <div class="uk-button-dropdown uk-text-left" data-uk-dropdown="{mode:'click'}">
-	<button class="uk-button"><i class="uk-icon-cog"></i> <i class="uk-icon-caret-down"></i></button>
+	<button class="uk-button"><span uk-icon="icon: cog"></span> <span uk-icon="icon: caret-down"></span></button>
 	<div style="" class="uk-dropdown">
 		<ul class="uk-nav uk-nav-dropdown">
 			{subscribetopic_link}
@@ -106,7 +106,7 @@
 
 <!-- BEGIN forummenu_link -->
 <div class="uk-button-dropdown uk-text-left" data-uk-dropdown="{mode:'click'}">
-	<button class="uk-button"><i class="uk-icon-cog"></i> <i class="uk-icon-caret-down"></i></button>
+	<button class="uk-button"><span uk-icon="icon: cog"></span> <span uk-icon="icon: caret-down"></span></button>
 	<div style="" class="uk-dropdown">
 		<ul class="uk-nav uk-nav-dropdown">
 			{subscribeforum_link}
@@ -117,7 +117,7 @@
 
 <!-- BEGIN categorymenu_link -->
 <div class="uk-button-dropdown uk-text-left" data-uk-dropdown="{mode:'click'}">
-	<button class="uk-button"><i class="uk-icon-cog"></i> <i class="uk-icon-caret-down"></i></button>
+	<button class="uk-button"><span uk-icon="icon: cog"></span> <span uk-icon="icon: caret-down"></span></button>
 	<div style="" class="uk-dropdown">
 		<ul class="uk-nav uk-nav-dropdown">
 		  {newposts_link}

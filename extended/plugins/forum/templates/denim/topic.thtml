@@ -2,25 +2,23 @@
 
 <hr class="glforum-hr-none"{xhtml}>
 
-<div class="uk-panel uk-panel-box uk-margin-bottom glforum-panel-topic-container{csscode}">
+<div class="uk-card uk-card-default uk-card-body glforum-panel-topic-container{csscode}">
 	<div class="uk-panel">
 		<div class="uk-float-right uk-margin-right">
 			{mod_functions}
 		</div>
 		<div class="uk-float-left uk-margin-left">
 			<div class="uk-panel glforum-panel-link">
-				<i class="uk-icon-comment-o"></i>&nbsp;{posted_date}{preview_topic_subject}&nbsp;{read_msg}&nbsp;{topiclocked_icon}
+				<span uk-icon="icon: comment-o"></span>&nbsp;{posted_date}{preview_topic_subject}&nbsp;{read_msg}&nbsp;{topiclocked_icon}
 				<a id="{topic_post_id}"></a> {# topic post link jump point #}
 			</div>
 		</div>
 	</div>
-	<div class="uk-grid uk-margin-small-top uk-grid-collapse glforum-grid-divider" data-uk-grid-match>
-		<div class="uk-width-medium-2-10">
+	<div class="uk-margin-small-top uk-grid-collapse glforum-grid-divider" uk-grid>
+		<div class="uk-width-1-5@m uk-card uk-card-body" style="background:#eee;">
 			{user_information}
 		</div>
-		<div class="uk-width-medium-8-10">
-			{# <div class="uk-panel uk-panel-box uk-width-medium-1-1 uk-panel-box-primary uk-text-break uk-margin topic-panel glforum-post-link" style="{comment_minheight};"> #}
-			{# <div class="uk-panel uk-panel-box uk-width-medium-1-1 uk-panel-box-primary uk-text-break uk-margin glforum-post-link"> #}
+		<div class="uk-width-4-5@m uk-card uk-card-body" style="background:#f8f8f8;">			
 			<div class="uk-panel uk-width-medium-1-1 uk-text-break uk-margin glforum-post-link glforum-panel-topic">
 				{topic_comment}
 				{user_signature}
@@ -48,8 +46,8 @@
 					<div class="uk-thumbnail uk-overlay-toggle uk-border-square">
 						<div class="uk-overlay uk-overlay-hover">
 							<figure class="uk-align-center forum-userphoto">
-		                    	{!if avatar}{avatar}{!else}<img src="{site_url}/forum/image_set/avatar.png" alt="" class="userphoto"{xhtml}>{!endif}
-		                    </figure>
+		                    	{!if avatar}{avatar}{!else}<img src="{site_url}/forum/image_set/avatar.png" alt="" class="uk-border-circle"{xhtml}>{!endif}
+		          </figure>
 							<div class="uk-overlay-area uk-border-square">
 								<div class="uk-overlay-area-content">
 									{profile_link}
@@ -64,14 +62,14 @@
 				</div>
 				<div class="glforum-userinfo-name">
 					{user_name}
-					<div class="uk-text-muted uk-text-small">
+					<div>
 						{!if member_badge}<div class="glforum-userinfo-badge">{member_badge}</div>{!endif}
 						{!if user_level}<div class="glforum-userinfo-level">{user_level}</div>{!endif}
 						{!if user_levelname}<div class="glforum-userinfo-levelname">{user_levelname}</div>{!endif}
 						{!if regdate}<div class="glforum-userinfo-regdate glforum-br">{regdate}</div>{!endif}
 						{!if numposts}<div class="glforum-userinfo-numposts">{numposts}</div>{!endif}
 						{!if location}<div class="glforum-userinfo-location">{location}</div>{!endif}
-						{!if ip_address}<div class="glforum-userinfo-ip glforum-br">{ip_address}</div>{!endif}
+						{!if ip_address}<div class="glforum-userinfo-ip glforum-br">IP: {ip_address}</div>{!endif}
 					</div>
 				</div>
                 {!if mood_icon}
@@ -93,7 +91,7 @@
 				<div class="glforum-userinfo-thumbnail">
 					<div class="uk-thumbnail uk-border-square">
 						<figure class="forum-userphoto">
-	                    	<img src="{site_url}/forum/image_set/avatar.png" alt="" class="userphoto"{xhtml}>
+	                    	<img src="{site_url}/forum/image_set/avatar.png" alt="" class="uk-border-circle"{xhtml}>
 	                    </figure>
 					</div>
 				</div>

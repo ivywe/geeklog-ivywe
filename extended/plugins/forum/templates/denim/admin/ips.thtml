@@ -5,7 +5,7 @@
 <form class="uk-form uk-form-horizontal" id="banform" name="frm_messages" action="{phpself}" method="post">
 	<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
 
-	<div class="uk-panel uk-panel-box uk-width-medium-1-1 uk-margin">
+	<div class="uk-panel uk-panel-box uk-width-1-1 uk-margin">
 		<fieldset>
 			<legend>{legend}</legend>
 			<div class="uk-form-row">
@@ -21,7 +21,7 @@
 
 	<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
 		<thead>
-			<tr>
+			<tr uk-grid>
 				<th class="uk-width-9-10">				
 					{LANG_IP}
 				</th>

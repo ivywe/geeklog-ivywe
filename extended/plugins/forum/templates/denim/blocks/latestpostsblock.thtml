@@ -24,7 +24,7 @@
 <!-- BEGIN block_record -->
 <tr>
 	<td>
-		<i class="uk-icon-file-text-o"></i> <a href="{site_url}/forum/viewtopic.php?showtopic={topic_id}" title="{fullsubject}" class="uk-text-bold">{topic_subject}</a><br{xhtml}>
+		<span uk-icon="icon: file-text-o"></span> <a href="{site_url}/forum/viewtopic.php?showtopic={topic_id}" title="{fullsubject}" class="uk-text-bold">{topic_subject}</a><br{xhtml}>
 		&nbsp;<small><b>{LANG_BY}</b>&nbsp;{user_name}</small><br{xhtml}>&nbsp;<small><b>{LANG_ON}</b>{date}&nbsp;</small><br{xhtml}>
 		&nbsp;<small><b>{LANG_VIEWS}</b>&nbsp;{views}&nbsp;<b>{LANG_REPLIES}</b>&nbsp;{replies}</small><br{xhtml}>
 	</td>

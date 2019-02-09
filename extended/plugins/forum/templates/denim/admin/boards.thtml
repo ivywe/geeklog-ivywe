@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<div class="uk-grid">
+<div uk-grid>
 	<div class="uk-width-1-1 uk-text-right">		
 		<a class="uk-button uk-button-primary" href="{phpself}?mode=add&amp;type=category">{addcat}</a>
 	</div>
@@ -10,7 +10,7 @@
 
 <!-- BEGIN category_record -->
 <div class="uk-panel uk-panel-box uk-width-medium-1-1 uk-margin uk-form">
-	<div class="uk-grid">
+	<div uk-grid>
 		<div class="uk-width-1-1 uk-text-right">		
 			<b>{LANG_order}:</b> {catorder}		
 		</div>
@@ -19,7 +19,7 @@
 	<fieldset>
 		<legend>{LANG_category}: {catname}</legend>
 		
-		<div class="uk-grid">
+		<div uk-grid>
 			<div class="uk-width-3-5">
 				{catdesc}&nbsp; {# Need space incase description is blank #}
 			</div>
@@ -37,7 +37,7 @@
 			</div>
 		</div>
 		
-		<div class="uk-grid">
+		<div uk-grid>
 			<div class="uk-width-1-1 uk-text-right">		
 				<a class="uk-button uk-button-primary" href="{phpself}?mode=add&amp;type=forum&amp;category={catid}&amp;catname={catname}">{addforum}</a>
 			</div>

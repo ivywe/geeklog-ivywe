@@ -25,7 +25,7 @@
     <input type="hidden" name="op" value=""{xhtml}>
     <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
     
-	<div class="uk-grid uk-margin">
+	<div class=" uk-margin" uk-grid>
 		<div class="uk-width-1-3">
 			<label for="selectmember">{LANG_selectmember}:</label>
 			<select id="selectmember" name="member" onchange="document.report_table.submit();">{select_member}</select>
@@ -40,7 +40,7 @@
 	
 	<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
 		<thead>
-			<tr>
+			<tr uk-grid>
 				<th class="uk-width-1-10 uk-text-center">			
 					<input type="checkbox" name="chk_record_all" id="chk_record_all" value="y" onclick="if(!allChecked) checkAll(document.report_table.elements['chk_record_delete[]']); else uncheckAll(document.report_table.elements['chk_record_delete[]']);"{xhtml}>
 				</th>

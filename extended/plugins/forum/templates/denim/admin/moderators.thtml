@@ -37,7 +37,7 @@
 		</fieldset>
 	</div>
 
-	<div class="uk-grid">
+	<div uk-grid>
 		<div class="uk-width-1-1 uk-text-right">	
 			<div class="uk-form-row">		
 				<input type="radio" name="filtermode" id="filtermode_user" value="user" {userfilter}{xhtml}><label for="filtermode_user" accesskey="u">&nbsp;{LANG_userrecords}</label> 

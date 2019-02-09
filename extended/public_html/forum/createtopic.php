@@ -291,8 +291,8 @@ if (($submit == $LANG_GF01['SUBMIT']) && (($uid == 1) || SEC_checkToken())) {
                     $postmode = gf_chkpostmode($postmode,$mode_switch);
                     $subject = gf_preparefordb(strip_tags($_POST['subject']),'text');
 
-                    if ( strlen ( $subject ) > 100 ) {
-                        $subject = COM_truncate($subject, 99, '...');
+                    if ( mbstrlen ( $subject ) > 300 ) {
+                        $subject = COM_truncate($subject, 299, '...');
                     }
                     $comment = gf_preparefordb($_POST['comment'],$postmode);
                     $locked = 0;

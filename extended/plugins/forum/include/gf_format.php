@@ -488,7 +488,7 @@ function gf_formatTextBlock($str,$postmode='html',$mode='') {
     $bbcode->addParser ('list', 'bbcode_stripcontents');
     $bbcode->addCode ('b', 'simple_replace', null, array ('start_tag' => '<b>', 'end_tag' => '</b>'),
                       'inline', array ('listitem', 'block', 'inline', 'link'), array ());
-    $bbcode->addCode ('i', 'simple_replace', null, array ('start_tag' => '<i>', 'end_tag' => '</i>'),
+    $bbcode->addCode ('i', 'simple_replace', null, array ('start_tag' => '<i>', 'end_tag' => '</span>'),
                       'inline', array ('listitem', 'block', 'inline', 'link'), array ());
     $bbcode->addCode ('u', 'simple_replace', null, array ('start_tag' => '<span style="text-decoration: underline;">', 'end_tag' => '</span>'),
                       'inline', array ('listitem', 'block', 'inline', 'link'), array ());
@@ -552,7 +552,7 @@ function bbcode_oldpost($text) {
         $comment = str_replace ( '<b>', '[b]', $comment );
         $comment = str_replace ( '</b>', '[/b]', $comment );
         $comment = str_replace ( '<i>', '[i]', $comment );
-        $comment = str_replace ( '</i>', '[/i]', $comment );
+        $comment = str_replace ( '</span>', '[/i]', $comment );
         $comment = str_replace ( '<p>', '[p]', $comment );
         $comment = str_replace ( '</p>', '[/p]', $comment );
     } else {

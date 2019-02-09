@@ -49,7 +49,7 @@
 	
 	{message}
 	
-	<div class="uk-grid">
+	<div uk-grid>
 		<div class="uk-width-1-1 uk-text-right">
 			{filter_topic_selection} <button class="uk-button" type="submit" value="{LANG_filterlist}">{LANG_filterlist}</button>
 		</div>

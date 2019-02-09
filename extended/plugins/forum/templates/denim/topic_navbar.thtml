@@ -3,7 +3,6 @@
 <div class="uk-margin-large-top">
 	<div itemscope itemtype="http://schema.org/BreadcrumbList">
 		<ul class="uk-breadcrumb">
-			<li><i class="uk-icon-folder-o"></i></li>
 			<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 				<a itemprop="item" href="{site_url}/forum/index.php">
 					<span itemprop="name">{forum_home}</span>
@@ -28,14 +27,14 @@
 
 {#
 <div class="uk-margin-bottom uk-text-large">
-	<i class="uk-icon-comments-o"></i> <a href="viewtopic.php?showtopic={topic_id}">
+	<span uk-icon="icon: comments-o"></span> <a href="viewtopic.php?showtopic={topic_id}">
 		<span>{subject}</span>
 	</a>
 </div>
 #}
 
 <h2>
-	<i class="uk-icon-comments-o"></i> <a href="viewtopic.php?showtopic={topic_id}">
+	<span uk-icon="icon: comments-o"></span> <a href="viewtopic.php?showtopic={topic_id}">
 		<span>{subject}</span>
 	</a>
 </h2>

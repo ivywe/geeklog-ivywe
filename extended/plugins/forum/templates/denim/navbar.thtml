@@ -1,5 +1,8 @@
 {# begin {templatelocation} #}
 
+<section>
+<div class="uk-container">
+
 {block_start}
 
 {navmenu}
@@ -8,5 +11,8 @@
     <div class="uk-float-left">{search_forum}</div>
     <div class="uk-float-right uk-text-right">{select_forum}</div>
 </div>
+
+</div>
+</section>
 
 {# end {templatelocation} #}

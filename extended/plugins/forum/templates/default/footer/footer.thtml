@@ -1,18 +1,15 @@
-<!-- start footer.thtml -->
-{forum_time}
-<div style="background:transparent; border: 1px solid #C8DAF7; margin-bottom:10px">
-<table width="100%" border="0" cellspacing="1" cellpadding="2" class="pluginFooter">
-    <tr>
-        <td style="width:50%">
-            {forum_legend}
-        </td>
-        <td class="alignright" style="width:50%">
-            {forum_rules}
-        </td>
-    </tr>
-</table>
-{forum_whosonline}
+{# begin {templatelocation} #}
+
+<div class="uk-panel uk-panel-box uk-margin uk-margin-large-top">
+	{forum_time}
+	<hr{xhtml}>
+	<div class="uk-grid uk-grid-collapse">
+		{forum_legend}
+		{forum_rules}
+	</div>
+	{forum_whosonline}
 </div>
 
 {block_end}
-<!-- end footer.thtml -->
+
+{# end {templatelocation} #}
