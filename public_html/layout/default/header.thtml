@@ -30,20 +30,31 @@ $url_current = COM_getCurrentURL();
 
 if( COM_onFrontpage() ){  ?>
 
-		<div class="uk-inline gl-frontpage">
-		  <img src="{layout_url}/images/top-rainbow.jpg" alt="" class="uk-animation-fade"{xhtml}>
+		<div class="uk-inline gl-frontpage uk-width-1-1">
+			<div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow="animation:fade; autoplay: true">
+			    <ul class="uk-slideshow-items">
+			        <li><img src="/layout/default/images/top-rainbow.jpg" alt="" uk-cover></li>
+			        <li><img src="/layout/default/images/top-lake.jpg" alt="" uk-cover></li>
+			        <li><img src="/layout/default/images/top-sea.jpg" alt="" uk-cover></li>
+			        <li><img src="/layout/default/images/top-night.jpg" alt="" uk-cover></li>
+			        <li><img src="/layout/default/images/top-lakenight.jpg" alt="" uk-cover></li>
+			    </ul>
+			    <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+			    <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+			</div>
+
 	    <div class="uk-overlay uk-position-top gl-overlay">
 
 <?php } ?>
 
 				<div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
-					<nav class="uk-navbar uk-navbar-container uk-navbar-transparent gl-navbar-for-ie gl-toppage">						
+					<nav class="uk-navbar-container gl-navbar-for-ie gl-toppage" uk-navbar>						
 						<div class="uk-navbar-left">
 							<h1 class="uk-navbar-item uk-margin-left gl-sitename">
 							  <a href="{site_url}">{site_name}</a>
 							</h1>				
 						</div>	
-						<div class="uk-navbar-right uk-margin-right">
+						<div class="uk-navbar-right">
 							<ul class="uk-navbar-nav uk-visible@m">
 								{menu_elements}
 							</ul>
@@ -56,7 +67,7 @@ if( COM_onFrontpage() ){  ?>
 <?php if( COM_onFrontpage() ){  ?>
 			</div>
 				<div class="uk-position-center">
-					<h2 class="uk-h2">{site_slogan}</h2>
+					<h2 class="uk-h2 gl-site_slogan">Geeklog 2.2</h2>
 				</div>
 
 		</div>
