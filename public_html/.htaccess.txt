@@ -25,6 +25,7 @@
     # RewriteRule ^(.*)$ /index.php/$1 [L]
 
 ## ファイルがみつからない場合のページを指定する。
+ErrorDocument 404 /404.html
 
 ## wwwありに統一
 # RewriteEngine on
