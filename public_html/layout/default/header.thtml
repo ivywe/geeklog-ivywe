@@ -43,7 +43,7 @@ if( COM_onFrontpage() ){  ?>
 							  <a href="{site_url}">{site_name}</a>
 							</h1>				
 						</div>	
-						<div class="uk-navbar-right uk-margin-right" style="z-index:3000">
+						<div class="uk-navbar-right uk-margin-right">
 							<ul class="uk-navbar-nav uk-visible@m">
 								{menu_elements}
 							</ul>
@@ -56,7 +56,7 @@ if( COM_onFrontpage() ){  ?>
 <?php if( COM_onFrontpage() ){  ?>
 			</div>
 				<div class="uk-position-center">
-					<h2>{site_slogan}</h2>
+					<h2 class="uk-h2">{site_slogan}</h2>
 				</div>
 
 		</div>
