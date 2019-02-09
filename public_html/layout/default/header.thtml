@@ -31,7 +31,7 @@ $url_current = COM_getCurrentURL();
 if( COM_onFrontpage() ){  ?>
 
 		<div class="uk-inline gl-frontpage">
-		  <img src="{layout_url}/images/top-rainbow.jpg" alt="" {xhtml}>
+		  <img src="{layout_url}/images/top-rainbow.jpg" alt="" class="uk-animation-fade"{xhtml}>
 	    <div class="uk-overlay uk-position-top gl-overlay">
 
 <?php } ?>
@@ -65,7 +65,7 @@ if( COM_onFrontpage() ){  ?>
 		<div id="nav_offcanvas" uk-offcanvas="overlay: true">
 	     <div class="uk-offcanvas-bar uk-flex uk-flex-column">
 				<a class="uk-offcanvas-close" uk-close></a>
-				<div class="uk-text-left"><a class="uk-navbar-item uk-logo uk-margin-left uk-margin-top" href="{site_url}"><img src="{layout_url}/images/logo.png"  style="width:100px; height:47px" alt="{site_name}"></a></div>
+				<div class="uk-text-left"><a class="uk-navbar-item uk-logo uk-margin-left uk-margin-top" href="{site_url}"><img src="{layout_url}/images/logo-white.png" alt="{site_name}"></a></div>
 				<ul class="uk-nav  uk-nav-center">
 					<li class="uk-margin-top"><a href="/">HOME</a></li>
 					{menu_elements}
@@ -83,7 +83,7 @@ if( COM_onFrontpage() ){  ?>
 
 						<li>
                 <a href="#" class="" aria-expanded="false">管理メニュー</a>
-                <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-left" style="min-width: 300px; left: 70.1847px; top: 40px;">
+                <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-left">
                     <ul class="uk-nav uk-navbar-dropdown-nav">
 											<li><a href="{site_url}/admin/index.php">管理メニューTOP</a></li>
 											<li><a href="{site_url}/admin/plugins/databox/data.php">DataBox</a></li>

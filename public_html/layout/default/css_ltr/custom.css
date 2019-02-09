@@ -1,5 +1,15 @@
 @charset "utf-8";
 
+/* ゴシック */
+body,h1,h2,h3,h4,h5,p,ul,li,p,div,table {
+font-family: helvetica, arial, 'hiragino kaku gothic pro', meiryo, 'ms pgothic', sans-serif;
+}
+
+/* 明朝
+body,h1,h2,h3,h4,h5,p,ul,li,p,div,table {
+	font-family: "游明朝体", "YuMincho", "游明朝", "Yu Mincho", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN W3", HiraMinProN-W3, "ヒラギノ明朝 ProN", "Hiragino Mincho ProN", "ヒラギノ明朝 Pro", "Hiragino Mincho Pro",  "HGS明朝E", "ＭＳ Ｐ明朝", "MS PMincho", Georgia, serif;
+} */
+
 .uk-navbar-nav > li.li-navlist.uk-active > a {
   background-color: #f8f8f8;
 }
@@ -39,7 +49,7 @@ div.uk-sticky.uk-sticky-fixed.uk-sticky-below {
   background-color: rgba(255,255,255,0.5);
 }
 
-.gl-frontpage div.uk-sticky.uk-sticky-fixed.uk-sticky-below  h1.gl-sitename {
+.gl-frontpage div.uk-sticky.uk-sticky-fixed.uk-sticky-below h1.gl-sitename {
     background: url(../images/logo.png) no-repeat;
 }
 
@@ -51,3 +61,6 @@ div.uk-sticky.uk-sticky-fixed.uk-sticky-below {
    margin-top: -10px;
 }
 
+.uk-offcanvas-bar {
+  width: 100%;
+}
