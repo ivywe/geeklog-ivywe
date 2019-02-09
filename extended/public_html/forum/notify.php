@@ -169,6 +169,8 @@ $report->set_block('forum_links', 'return_link');
 $report->set_var ('imgset', $CONF_FORUM['imgset']);
 $report->set_var ('layout_url', $CONF_FORUM['layout_url']);
 $report->set_var ('LANG_TITLE', $LANG_GF02['msg89']);
+$report->set_var ('lang_subscriptions', $LANG_GF01['SUBSCRIPTIONS']);
+
 $report->set_var ('select_forum', f_forumjump($_CONF['site_url'].'/forum/notify.php',$forum));
 
 $filteroptions = '';
@@ -285,6 +287,10 @@ if ($nrows == 0) {
     $report->parse ('return_link', 'return_link');
     $report->parse ('links', 'links');
 }
+
+$report->set_var('block_start', COM_startBlock($CONF_FORUM['forums_name']));
+$report->set_var('block_end', COM_endBlock()); 
+
 $report->parse ('output', 'report');
 $display .= $report->finish ($report->get_var('output'));
 $display = gf_createHTMLDocument($display);

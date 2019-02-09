@@ -1,15 +1,18 @@
-{# begin {templatelocation} #}
 
-<form class="uk-form" action="{site_url}/forum/index.php" method="post" name="searchbox" onsubmit="return (this.query.value != '');">
-
-	<div class="uk-inline">
-		<span class="uk-form-icon" uk-icon="icon: search"></span>
-		<input type="text" class="uk-input uk-form-width-small" name="query" placeholder="{search}" value=""{xhtml}>
-		<button class="uk-button uk-button-primary" type="submit" name="btnsubmit">{search}</button>
-		<input type="hidden" name="op" value="search"{xhtml}>
-		<input type="hidden" name="forum" value="{forum}"{xhtml}>
-	</div>
-
-</form>
-
-{# end {templatelocation} #}
+<!-- start forum_search.thtml -->
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td class="alignleft" style="width:50%">
+                        <form action="{site_url}/forum/index.php" method="post" name="searchbox" onsubmit="return (this.query.value != '');" style="margin:0px;padding:2px;">
+                            <table border="0" cellspacing="2" cellpadding="0">
+                                <tr>
+                                    <td><input type="hidden" name="op" value="search"{xhtml}><input type="hidden" name="forum" value="{forum}"{xhtml}></td>
+                                    <td><input type="text" name="query" value="" style="width:165px"{xhtml}></td>
+                                    <td><input type="submit" name="btnsubmit" value="{search}"{xhtml}></td>
+                                </tr>
+                            </table>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+<!-- end forum_search.thtml -->

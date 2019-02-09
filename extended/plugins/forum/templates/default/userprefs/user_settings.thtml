@@ -1,90 +1,151 @@
 {# begin {templatelocation} #}
 
+{block_start}
+
 {navmenu}
 
-<h3>{$LANG_GF92[userpreferences]}</h3>
+<h2>{lang_user_preferences}</h2>
 
-<form class="uk-form uk-form-horizontal" action="{PHP_SELF}" method="post">
-	<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
-	<div uk-grid>
-		<div class="uk-width-1-2@m">	
-			<div class="uk-form-row">
-				<label class="uk-form-label" for="form-up-tpp" data-uk-tooltip title="{$LANG_GF92[topicsppdscp]}">{$LANG_GF92[topicspp]}</label>
-				<div class="uk-form-controls">
-					<input id="form-up-tpp" type="text" name="xtopicsperpage" size="2" maxlength="2" value="{topicsperpage}"{xhtml}>
-				</div>
-			</div>		
-			<div class="uk-form-row">
-				<label class="uk-form-label" for="form-up-ppp" data-uk-tooltip title="{$LANG_GF92[postsppdscp]}">{$LANG_GF92[postspp]}</label>
-				<div class="uk-form-controls">
-					<input id="form-up-ppp" type="text" name="xpostsperpage" size="2" maxlength="2" value="{postsperpage}"{xhtml}>
-				</div>
-			</div>
-			<div class="uk-form-row">
-				<label class="uk-form-label" for="form-up-npp" data-uk-tooltip title="{$LANG_GF92[newppdscp]}">{$LANG_GF92[newpp]}</label>
-				<div class="uk-form-controls">
-					<input id="form-up-npp" type="text" name="xnewperpage" size="2" maxlength="2" value="{newperpage}"{xhtml}>
-				</div>
-			</div>			
-			<div class="uk-form-row">
-				<label class="uk-form-label" for="form-up-ppp" data-uk-tooltip title="{$LANG_GF92[popularppdscp]}">{$LANG_GF92[popularpp]}</label>
-				<div class="uk-form-controls">
-					<input id="form-up-ppp" type="text" name="xpopularperpage" size="2" maxlength="2" value="{popularperpage}"{xhtml}>
-				</div>
-			</div>		
-			<div class="uk-form-row">
-				<label class="uk-form-label" for="form-up-pl" data-uk-tooltip title="{$LANG_GF92[popularldscp]}">{$LANG_GF92[popularl]}</label>
-				<div class="uk-form-controls">
-					<input id="form-up-pl" type="text" name="xpopularlimit" size="2" maxlength="2" value="{popularlimit}"{xhtml}>
-				</div>
-			</div>		
-			<div class="uk-form-row">
-				<label class="uk-form-label" for="form-up-spp" data-uk-tooltip title="{$LANG_GF92[searchppdscp]}">{$LANG_GF92[searchpp]}</label>
-				<div class="uk-form-controls">
-					<input id="form-up-spp" type="text" name="xsearchperpage" size="2" maxlength="2" value="{searchperpage}"{xhtml}>
-				</div>
-			</div>		
-			<div class="uk-form-row">
-				<label class="uk-form-label" for="form-up-mpp" data-uk-tooltip title="{$LANG_GF92[membersppdscp]}">{$LANG_GF92[memberspp]}</label>
-				<div class="uk-form-controls">
-					<input id="form-up-mpp" type="text" name="xmembersperpage" size="2" maxlength="2" value="{membersperpage}"{xhtml}>
-				</div>
-			</div>			
-		</div>
-		<div class="uk-width-1-2@m">	
-			<div class="uk-form-row">
-				<label class="uk-form-label" for="form-up-vp" data-uk-tooltip title="{$LANG_GF92[viewapdscp]}">{$LANG_GF92[viewap]}</label>
-				<div class="uk-form-controls">
-					<input type="radio" class="uk-radio" name="xviewanonposts" id="xviewanonposts_yes" value="1" {viewanonposts_yes}{xhtml}><label for="xviewanonposts_yes">{$LANG_GF01[YES]}</label>&nbsp;
-					<input type="radio" class="uk-radio" name="xviewanonposts" id="xviewanonposts_no" value="0" {viewanonposts_no}{xhtml}><label for="xviewanonposts_no">{$LANG_GF01[NO]}</label>
-				</div>
-			</div>			
-			<div class="uk-form-row">
-				<label class="uk-form-label" for="form-up-an" data-uk-tooltip title="{$LANG_GF92[alwaysndscp]}">{$LANG_GF92[alwaysn]}</label>
-				<div class="uk-form-controls">
-					<input type="radio" class="uk-radio" name="xalwaysnotify" id="xalwaysnotify_yes" value="1" {alwaysnotify_yes}{xhtml}><label for="xalwaysnotify_yes">{$LANG_GF01[YES]}</label>&nbsp;
-					<input type="radio" class="uk-radio" name="xalwaysnotify" id="xalwaysnotify_no" value="0" {alwaysnotify_no}{xhtml}><label for="xalwaysnotify_no">{$LANG_GF01[NO]}</label>
-				</div>
-			</div>	
-			<div class="uk-form-row">
-				<label class="uk-form-label" for="form-up-noo" data-uk-tooltip title="{$LANG_GF92[notifyoodscp]}">{$LANG_GF92[notifyoo]}</label>
-				<div class="uk-form-controls">
-					<input type="radio" class="uk-radio" name="xnotifyonce" id="xnotifyonce_yes" value="1" {notifyonce_yes}{xhtml}><label for="xnotifyonce_yes">{$LANG_GF01[YES]}</label>&nbsp;
-					<input type="radio" class="uk-radio" name="xnotifyonce" id="xnotifyonce_no" value="0" {notifyonce_no}{xhtml}><label for="xnotifyonce_no">{$LANG_GF01[NO]}</label>
-				</div>
-			</div>	
-			<div class="uk-form-row">
-				<label class="uk-form-label" for="form-up-sif" data-uk-tooltip title="{$LANG_GF92[showiframedscp]}">{$LANG_GF92[showiframe]}</label>
-				<div class="uk-form-controls">
-					<input type="radio" class="uk-radio" name="xshowiframe" id="xshowiframe_yes" value="1" {showiframe_yes}{xhtml}><label for="xshowiframe_yes">{$LANG_GF01[YES]}</label>&nbsp;
-					<input type="radio" class="uk-radio" name="xshowiframe" id="xshowiframe_no" value="0" {showiframe_no}{xhtml}><label for="xshowiframe_no">{$LANG_GF01[NO]}</label>
-				</div>
-			</div>
-		</div>
-		<div class="uk-width-1-1 uk-text-right">
-			<button class="uk-button uk-button-default" name="submit" value="{LANG_save}">{LANG_save}</button>
-		</div>
-	</div>	
+<form action="{PHP_SELF}" method="post">
+<div><input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}></div>
+<table width="100%" border="0" cellspacing="1" cellpadding="0" class="pluginSolidOutline" style="margin-top:20px;">
+    <tr>
+    <td class="pluginCellTitle" style="width:20%;">{LANG_feature}</td>
+    <td class="pluginCellTitle">{LANG_setting}</td>
+    </tr>
+    <tr>
+    <td class="pluginCellSubTitle" style="width:20%; white-space:nowrap;">{$LANG_GF92[topicspp]}</td>
+    <td class="pluginCellText pluginCellFill">
+        <table width="100%" border="0" cellspacing="0" cellpadding="3" class="pluginSolidOutline">
+        <tr>
+            <td class="pluginCellText pluginCellFill" style="padding-left:6px;">{$LANG_GF92[topicsppdscp]}</td>
+            <td class="pluginCellText pluginCellFill" style="width:25px; white-space:nowrap;"><input type="text" name="xtopicsperpage" size="4" maxlength="2" value="{topicsperpage}"{xhtml}></td>
+        </tr>
+        </table>
+    </td>
+    </tr>
+    <tr>
+    <td class="pluginCellSubTitle">{$LANG_GF92[postspp]}</td>
+    <td class="pluginCellText pluginCellFill">
+        <table width="100%" border="0" cellspacing="0" cellpadding="3" class="pluginSolidOutline">
+        <tr>
+            <td class="pluginCellText pluginCellFill" style="padding-left:6px;">{$LANG_GF92[postsppdscp]}</td>
+            <td class="pluginCellText pluginCellFill" style="width:25px; white-space:nowrap;"><input type="text" name="xpostsperpage" size="4" maxlength="2" value="{postsperpage}"{xhtml}></td>
+        </tr>
+        </table>
+    </td>
+    </tr>
+    <tr>
+    <td class="pluginCellSubTitle">{$LANG_GF92[newpp]}</td>
+    <td class="pluginCellText pluginCellFill">
+        <table width="100%" border="0" cellspacing="0" cellpadding="3" class="pluginSolidOutline">
+        <tr>
+            <td class="pluginCellText pluginCellFill" style="padding-left:6px;">{$LANG_GF92[newppdscp]}</td>
+            <td class="pluginCellText pluginCellFill" style="width:25px; white-space:nowrap;"><input type="text" name="xnewperpage" size="4" maxlength="2" value="{newperpage}"{xhtml}></td>
+        </tr>
+        </table>
+    </td>
+    </tr>    
+    <tr>
+    <td class="pluginCellSubTitle">{$LANG_GF92[popularpp]}</td>
+    <td class="pluginCellText pluginCellFill">
+        <table width="100%" border="0" cellspacing="0" cellpadding="3" class="pluginSolidOutline">
+        <tr>
+            <td class="pluginCellText pluginCellFill" style="padding-left:6px;">{$LANG_GF92[popularppdscp]}</td>
+            <td class="pluginCellText pluginCellFill" style="width:25px; white-space:nowrap;"><input type="text" name="xpopularperpage" size="4" maxlength="2" value="{popularperpage}"{xhtml}></td>
+        </tr>
+        </table>
+    </td>
+    </tr>    
+    <tr>
+    <td class="pluginCellSubTitle">{$LANG_GF92[popularl]}</td>
+    <td class="pluginCellText pluginCellFill">
+        <table width="100%" border="0" cellspacing="0" cellpadding="3" class="pluginSolidOutline">
+        <tr>
+            <td class="pluginCellText pluginCellFill" style="padding-left:6px;">{$LANG_GF92[popularldscp]}</td>
+            <td class="pluginCellText pluginCellFill" style="width:25px; white-space:nowrap;"><input type="text" name="xpopularlimit" size="4" maxlength="2" value="{popularlimit}"{xhtml}></td>
+        </tr>
+        </table>
+    </td>
+    </tr>
+    <tr>
+    <td class="pluginCellSubTitle">{$LANG_GF92[searchpp]}</td>
+    <td class="pluginCellText pluginCellFill">
+        <table width="100%" border="0" cellspacing="0" cellpadding="3" class="pluginSolidOutline">
+        <tr>
+            <td class="pluginCellText pluginCellFill" style="padding-left:6px;">{$LANG_GF92[searchppdscp]}</td>
+            <td class="pluginCellText pluginCellFill" style="width:25px; white-space:nowrap;"><input type="text" name="xsearchperpage" size="4" maxlength="2" value="{searchperpage}"{xhtml}></td>
+        </tr>
+        </table>
+    </td>
+    </tr>
+    <tr>
+    <td class="pluginCellSubTitle">{$LANG_GF92[memberspp]}</td>
+    <td class="pluginCellText pluginCellFill">
+        <table width="100%" border="0" cellspacing="0" cellpadding="3" class="pluginSolidOutline">
+        <tr>
+            <td class="pluginCellText pluginCellFill" style="padding-left:6px;">{$LANG_GF92[membersppdscp]}</td>
+            <td class="pluginCellText pluginCellFill" style="width:25px; white-space:nowrap;"><input type="text" name="xmembersperpage" size="4" maxlength="2" value="{membersperpage}"{xhtml}></td>
+        </tr>
+        </table>
+    </td>
+    </tr>
+    <tr>
+    <td class="pluginCellSubTitle">{$LANG_GF92[viewap]}</td>
+    <td class="pluginCellText pluginCellFill">
+        <table width="100%" border="0" cellspacing="0" cellpadding="3" class="pluginSolidOutline">
+        <tr>
+            <td class="pluginCellText pluginCellFill" style="padding-left:6px;">{$LANG_GF92[viewapdscp]}</td>
+            <td class="pluginCellText pluginCellFill" style="width:3%; white-space:nowrap;"><input type="radio" name="xviewanonposts" id="xviewanonposts_yes" value="1" {viewanonposts_yes}{xhtml}><label for="xviewanonposts_yes">{$LANG_GF01[YES]}</label>&nbsp;</td>
+            <td class="pluginCellText pluginCellFill" style="padding-right:6px; width:3%; white-space:nowrap;"><input type="radio" name="xviewanonposts" id="xviewanonposts_no" value="0" {viewanonposts_no}{xhtml}><label for="xviewanonposts_no">{$LANG_GF01[NO]}</label></td>
+        </tr>
+        </table>
+    </td>
+    </tr>
+    <tr>
+    <td class="pluginCellSubTitle">{$LANG_GF92[alwaysn]}</td>
+    <td class="pluginCellText pluginCellFill">
+        <table width="100%" border="0" cellspacing="0" cellpadding="3" class="pluginSolidOutline">
+        <tr>
+            <td class="pluginCellText pluginCellFill" style="padding-left:6px;">{$LANG_GF92[alwaysndscp]}</td>
+            <td class="pluginCellText pluginCellFill" style="width:3%; white-space:nowrap;"><input type="radio" name="xalwaysnotify" id="xalwaysnotify_yes" value="1" {alwaysnotify_yes}{xhtml}><label for="xalwaysnotify_yes">{$LANG_GF01[YES]}</label>&nbsp;</td>
+            <td class="pluginCellText pluginCellFill" style="padding-right:6px; width:3%; white-space:nowrap;"><input type="radio" name="xalwaysnotify" id="xalwaysnotify_no" value="0" {alwaysnotify_no}{xhtml}><label for="xalwaysnotify_no">{$LANG_GF01[NO]}</label></td>
+        </tr>
+        </table>
+    </td>
+    </tr>
+    <tr>
+    <td class="pluginCellSubTitle">{$LANG_GF92[notifyoo]}</td>
+    <td class="pluginCellText pluginCellFill">
+        <table width="100%" border="0" cellspacing="0" cellpadding="3" class="notifyoodscp">
+        <tr>
+            <td class="pluginCellText pluginCellFill" style="padding-left:6px;">{$LANG_GF92[msg185]}</td>
+            <td class="pluginCellText pluginCellFill" style="width:3%; white-space:nowrap;"><input type="radio" name="xnotifyonce" id="xnotifyonce_yes" value="1" {notifyonce_yes}{xhtml}><label for="xnotifyonce_yes">{$LANG_GF01[YES]}</label>&nbsp;</td>
+            <td class="pluginCellText pluginCellFill" style="padding-right:6px; width:3%; white-space:nowrap;"><input type="radio" name="xnotifyonce" id="xnotifyonce_no" value="0" {notifyonce_no}{xhtml}><label for="xnotifyonce_no">{$LANG_GF01[NO]}</label></td>
+        </tr>
+        </table>
+    </td>
+    </tr>
+    <tr>
+    <td class="pluginCellSubTitle">{$LANG_GF92[showiframe]}</td>
+    <td class="pluginCellText pluginCellFill">
+        <table width="100%" border="0" cellspacing="0" cellpadding="3" class="pluginSolidOutline">
+        <tr>
+            <td class="pluginCellText pluginCellFill" style="padding-left:6px;">{$LANG_GF92[showiframedscp]}</td>
+            <td class="pluginCellText pluginCellFill" style="width:3%; white-space:nowrap;"><input type="radio" name="xshowiframe" id="xshowiframe_yes" value="1" {showiframe_yes}{xhtml}><label for="xshowiframe_yes">{$LANG_GF01[YES]}</label>&nbsp;</td>
+            <td class="pluginCellText pluginCellFill" style="padding-right:6px; width:3%; white-space:nowrap;"><input type="radio" name="xshowiframe" id="xshowiframe_no" value="0" {showiframe_no}{xhtml}><label for="xshowiframe_no">{$LANG_GF01[NO]}</label></td>
+        </tr>
+        </table>
+    </td>
+    </tr>
+</table>
+<table width="100%" border="0" cellspacing="1" cellpadding="3" style="padding-top:1em;">
+    <tr>
+    <td class="alignright"><input type="submit" name="submit" value="{LANG_save}" style="text-align:center; padding:3px;"{xhtml}></td>
+    </tr>
+</table>
 </form>
+
+{block_end}
 
 {# end {templatelocation} #}

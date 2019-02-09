@@ -110,7 +110,7 @@ class ForumSmilies {
                 if (isset($LANG_GF_SMILIES[$key])) {
                     $alt = htmlentities($LANG_GF_SMILIES[$key], ENT_QUOTES);
                 }
-                $retval .= "    <a href=\"javascript:emoticon('$symbol')\">\n";
+                $retval .= "    <a href=\"#\" onclick=\"emoticon('$symbol');return false;\">\n";
                 $retval .= "        <img class='frm_sml $class'\n";
                 $retval .= "             src='$image'\n";
                 $retval .= "             alt='$alt'\n";
@@ -156,40 +156,6 @@ class ForumSmilies {
         }
 
         return $message;
-    }
-
-    /**
-     * Generates the CSS code necessary for displaying
-     * the smilies from a sprite image.
-     */
-    public function css()
-    {
-        global $CONF_FORUM;
-
-        // Sprite image
-        $bg = $CONF_FORUM['imgset'] . '/smilies.png';
-        // Common CSS code for all smilies
-        $retval  = "";
-        $retval .= "div#forum_smilies a {\n";
-        $retval .= "	float: left;\n";
-        $retval .= "	padding: 0;\n";
-        $retval .= "	margin: 3px;\n";
-        $retval .= "}\n";
-        $retval .= ".frm_sml {\n";
-        $retval .= "	border: 0;\n";
-        $retval .= "    width: 16px;\n";
-        $retval .= "	height: 16px;\n";
-        $retval .= "	background: transparent url('$bg') "
-                                 . "no-repeat scroll left top;\n";
-        $retval .= "}\n";
-        // Dynamic CSS code for each individual smilie
-        foreach ($this->data as $key => $value) {
-            $retval .= ".frm_sml_$key {\n";
-            $retval .= "    background-position: 0 -{$value['offset']}px;\n";
-            $retval .= "}\n";
-        }
-
-        return $retval;
     }
 }
 

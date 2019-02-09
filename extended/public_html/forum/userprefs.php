@@ -143,6 +143,7 @@ if (!isset($_POST['$submit'])) {
     $usersettings = COM_newTemplate(CTL_plugin_templatePath('forum', 'userprefs'));
     $usersettings->set_file (array ('usersettings'=>'user_settings.thtml'));
     $usersettings->set_var ('phpself', $_CONF['site_url'] .'/forum/userprefs.php');
+    $usersettings->set_var ('lang_user_preferences', $LANG_GF92['userpreferences']);
     $usersettings->set_var ('LANG_feature', $LANG_GF01['FEATURE']);  
     $usersettings->set_var ('LANG_setting', $LANG_GF01['SETTING']);  
     $usersettings->set_var ('LANG_save', $LANG_GF01['SAVE']);
@@ -174,6 +175,9 @@ if (!isset($_POST['$submit'])) {
     }
     $usersettings->set_var('gltoken_name', CSRF_TOKEN);
     $usersettings->set_var('gltoken', SEC_createToken());
+    
+    $usersettings->set_var('block_start', COM_startBlock($CONF_FORUM['forums_name']));
+    $usersettings->set_var('block_end', COM_endBlock());      
 
     $usersettings->parse ('output', 'usersettings');
     $display .= $usersettings->finish($usersettings->get_var('output'));

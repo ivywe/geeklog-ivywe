@@ -218,4 +218,14 @@ function upgrade_290() {
     COM_errorLog("Success - Completed Forum plugin version 2.9.1 update",1);
     return 0;
 }
+
+function upgrade_293() {
+    global $_CONF, $_TABLES;
+
+    // Geeklog Forum Homepage
+    DB_query("UPDATE {$_TABLES['plugins']} SET pi_homepage = 'https://github.com/Geeklog-Plugins/forum' WHERE pi_name = 'forum'");
+
+    COM_errorLog("Success - Completed Forum plugin version 2.9.3 update",1);
+    return 0;
+}
 ?>

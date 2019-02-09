@@ -51,6 +51,9 @@ $LANG_GF00 = array (
 
 
 $LANG_GF01['FORUM']          = '掲示板';
+$LANG_GF01['FORUMS']         = 'Forums';
+$LANG_GF01['FORUMCATEGORYNAME']  = '%s 掲示板 Category';
+$LANG_GF01['FORUMNAME']      = '%s 掲示板';
 $LANG_GF01['ALL']            = 'すべて';
 $LANG_GF01['YES']            = 'はい';
 $LANG_GF01['NO']             = 'いいえ';
@@ -88,7 +91,7 @@ $LANG_GF01['ORDERBY']        = '並び換え:';
 $LANG_GF01['ORDER']          = '順番:';
 $LANG_GF01['USER']           = 'ユーザ';
 $LANG_GF01['GROUP']          = 'グループ';
-$LANG_GF01['ANON']           = 'ゲストユーザ: ';
+$LANG_GF01['ANON']           = 'ゲストユーザ';
 $LANG_GF01['ADMIN']          = '管理者';
 $LANG_GF01['AUTHOR']         = '投稿者';
 $LANG_GF01['NOMOOD']         = '-気分アイコン-';
@@ -183,6 +186,7 @@ $LANG_GF01['MSG_NO_CAT']     = 'カテゴリーまたは掲示板が定義され
 $LANG_GF01['FORUMPOSTS']     = '掲示板投稿';
 $LANG_GF01['FORUMPOST']      = '掲示板投稿';
 $LANG_GF01['MESSAGE']        = 'メッセージ';
+$LANG_GF01['HERE']     	     = 'ここへ';
 
 // Language for bbcode toolbar
 $LANG_GF01['CODE']           = 'コード';
@@ -293,11 +297,11 @@ $LANG_GF02['msg136']   = '投稿先の掲示板を選んでください。';
 $LANG_GF02['msg137']   = '書き込みがあればメールで通知されます。';
 $LANG_GF02['msg138']   = '<b>掲示板全体</b>';
 $LANG_GF02['msg142']   = 'メール通知を開始しました。';
-$LANG_GF02['msg143']   = 'Notification saved but, no email is associated with your user account (or it is invalid). Please add one to your <a href="/usersettings.php">account</a> or you will not receive any notifications.';
+$LANG_GF02['msg143']   = 'メール通知を開始しましたが、あなたのユーザーアカウントにはメールが設定されていません。(またはその設定が無効です) メール通知を受け取るために、あなたの<a href="/usersettings.php">アカウント</a>にメールを設定してください。';
 $LANG_GF02['msg144']   = 'トピックへ';
-$LANG_GF02['msg145']   = 'No email is associated with your user account (or it is invalid). Please add one to your <a href="/usersettings.php">account</a> or you will not receive any notifications.';
+$LANG_GF02['msg145']   = 'あなたのユーザーアカウントにはメールが設定されていません。(またはその設定が無効です) メール通知を受け取るために、あなたの<a href="/usersettings.php">アカウント</a>にメールを設定してください。';
 $LANG_GF02['msg146']   = 'メール通知を解除しました。';
-$LANG_GF02['msg147']   = 'Forum [printable version of topic %s]';
+$LANG_GF02['msg147']   = '掲示板 [トピック %s の印刷用ページ]';
 $LANG_GF02['msg148']   = '<a href="javascript:history.back()">戻る</a>';
 $LANG_GF02['msg149']   = '掲示板への投稿は中止されました。';
 $LANG_GF02['msg155']   = '投稿なし';
@@ -359,6 +363,7 @@ $LANG_GF02['PostTopic']   = '新規投稿';
 $LANG_GF02['EditTopic']   = '投稿編集';
 $LANG_GF02['quietforum']  = '掲示板に新規投稿がありません。';
 $LANG_GF02['adminconfirmation']   = '管理者への確認';
+$LANG_GF02['num_forumposts']   = '%s Forum Post(s)';
 
 $LANG_GF03 = array (
     'delete'            => '削除',
@@ -450,6 +455,12 @@ $LANG_GF09 = array (
     'website'  => 'Webサイト',
     'newtopic' => '新規トピック',
     'replytopic' => '返信'
+);
+
+/* Block Locations */
+$LANG_GF20 = array (
+    'blocks_showtopic_name'     => 'Forum Show Topic',
+    'blocks_showtopic_desc'     => 'Displays blocks right after every X number of topic posts.'
 );
 
 // Admin Stats page

@@ -264,6 +264,22 @@
   <td valign="top"><a name="desc_sideblock_group_id">sideblock_group_id</a></td>
   <td valign="top">Forum Admin</td>
   <td valign="top">The group used by permissions.</td></tr>
+<tr>
+  <td valign="top"><a name="desc_sideblock_permissions_0">sideblock_permissions[0]</a></td>
+  <td valign="top"><em>Read-Only</em></td>
+  <td valign="top">View permission for dynamic block by block Owner (Default Root User).</td></tr>
+<tr>
+  <td valign="top"><a name="desc_sideblock_permissions_1">sideblock_permissions[1]</a></td>
+  <td valign="top"><em>Read-Only</em></td>
+  <td valign="top">View permission for dynamic block by assigned Admin Group (see config option sideblock_group_id).</td></tr>
+<tr>
+  <td valign="top"><a name="desc_sideblock_permissions_2">sideblock_permissions[2]</a></td>
+  <td valign="top"><em>Read-Only</em></td>
+  <td valign="top">View permission for dynamic block by all logged in users.</td></tr>
+<tr>
+  <td valign="top"><a name="desc_sideblock_permissions_3">sideblock_permissions[3]</a></td>
+  <td valign="top"><em>Read-Only</em></td>
+  <td valign="top">View permission for dynamic block by anonymous users.</td></tr>    
 </table>
 
 <h3><a name="config_rank">Rank</a></h3>
@@ -425,9 +441,11 @@ forum config.php file (found in /path/to/geeklog/plugins/forum/) in your favorit
 
 <h2><a name="templates">Template Files</a></h2>
 
-<p>To update the layout of your Forum section, you can change the template files. Please note that they are now located in the plugin's directory under public_html, i.e. in</p>
+<p>To update the layout of your Forum section, you can change the template files. Please note that they are now located by default in the forum plugin's directory under templates, i.e. in</p>
 
-<p style="margin-left:4em;"><tt>/path/to/geeklog/public_html/forum/layout/</tt></p>
+<p style="margin-left:4em;"><tt>/path/to/geeklog/plugins/forum/templates</tt></p>
+
+<p>The forum template files are further divided by a theme folder. The "default" folder contains template files used by any theme that does not contain a folder in the template folder. The "denim" folder contains template files used by the denim theme and any child themes of the denim theme (including the denim_curve theme included now with Geeklog as of v2.1.2). If you want you can also include the forum templates in your own Geeklog themes folder (under /public_html/layout). They must be in a folder called "forum".</p>
 
 <p>The template files are organized by folders:</p>
 <ul>
@@ -440,7 +458,7 @@ forum config.php file (found in /path/to/geeklog/plugins/forum/) in your favorit
 
 <h2><a name="autotags">Autotags</a></h2>
 
-<p>The Forum Plugin provides one <a href="http://www.geeklog.net/article.php/autolinks" title="geeklog.net: About Autolinks and Autotags">autotag</a>,
+<p>The Forum Plugin provides one <a href="https://www.geeklog.net/article.php/autolinks" title="geeklog.net: About Autolinks and Autotags">autotag</a>,
 <code>[forum:]</code>. You can use this autotag to display a link to a forum topic using the text 'here' as the title. 
 An alternate title may be specified but is not required.</p>
 

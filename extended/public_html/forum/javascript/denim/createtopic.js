@@ -83,7 +83,7 @@ function emoticon(text) {
         caretPos.text = caretPos.text.charAt(caretPos.text.length - 1) == ' ' ? caretPos.text + text + ' ' : caretPos.text + text;
         txtarea.focus();
     } else {
-        txtarea.value  += text;
+        mozInsertCaret(txtarea, text);
         txtarea.focus();
     }
 }
@@ -109,7 +109,7 @@ function bbfontstyle(bbopen, bbclose) {
     }
     else
     {
-        txtarea.value += bbopen + bbclose;
+        mozInsertCaret(txtarea, bbopen + bbclose);
         txtarea.focus();
     }
     storeCaret(txtarea);
@@ -118,6 +118,7 @@ function bbfontstyle(bbopen, bbclose) {
 
 function bbstyle(bbnumber) {
     var txtarea = document.forumpost.comment;
+    var button;
 
     txtarea.focus();
     donotinsert = false;
@@ -127,10 +128,9 @@ function bbstyle(bbnumber) {
     if (bbnumber == -1) { // Close all open tags & default button names
         while (bbcode[0]) {
             butnumber = arraypop(bbcode) - 1;
-            txtarea.value += bbtags[butnumber + 1];
-            buttext = eval('document.forumpost.addbbcode' + butnumber + '.value');
-            eval('document.forumpost.addbbcode' + butnumber + '.className ="uk-button uk-button-default"'); // Used for uikit themes
-            eval('document.forumpost.addbbcode' + butnumber + '.value ="' + buttext.substr(0,(buttext.length - 1)) + '"');
+            mozInsertCaret(txtarea, bbtags[butnumber + 1]);
+            button = eval('document.forumpost.addbbcode' + butnumber);
+            button.classList.remove('uk-active');
         }
         imageTag = false; // All tags are closed including image tags :D
         txtarea.focus();
@@ -164,14 +164,14 @@ function bbstyle(bbnumber) {
 
     if (donotinsert) {        // Close all open tags up to the one just clicked & default button names
         while (bbcode[bblast]) {
-                butnumber = arraypop(bbcode) - 1;
-                txtarea.value += bbtags[butnumber + 1];
-                buttext = eval('document.forumpost.addbbcode' + butnumber + '.value');
-                eval('document.forumpost.addbbcode' + butnumber + '.value ="' + buttext.substr(0,(buttext.length - 1)) + '"');
-                imageTag = false;
-            }
-            txtarea.focus();
-            return;
+            butnumber = arraypop(bbcode) - 1;
+            mozInsertCaret(txtarea, bbtags[butnumber + 1]);
+            button = eval('document.forumpost.addbbcode' + butnumber);
+            button.classList.remove('uk-active');
+            imageTag = false;
+        }
+        txtarea.focus();
+        return;
     } else { // Open tags
 
         if (imageTag && (bbnumber != 14)) {        // Close image tag before adding another
@@ -182,10 +182,11 @@ function bbstyle(bbnumber) {
         }
 
         // Open tag
-        txtarea.value += bbtags[bbnumber];
+        mozInsertCaret(txtarea, bbtags[bbnumber]);
         if ((bbnumber == 14) && (imageTag == false)) imageTag = 1; // Check to stop additional tags after an unclosed image tag
         arraypush(bbcode,bbnumber+1);
-        eval('document.forumpost.addbbcode'+bbnumber+'.value += "*"');
+        button = eval('document.forumpost.addbbcode' + bbnumber);
+        button.classList.add('uk-active');
         txtarea.focus();
         return;
     }
@@ -201,10 +202,29 @@ function mozWrap(txtarea, open, close)
     if (selEnd == 1 || selEnd == 2)
         selEnd = selLength;
 
-    var s1 = (txtarea.value).substring(0,selStart);
+    var s1 = (txtarea.value).substring(0, selStart);
     var s2 = (txtarea.value).substring(selStart, selEnd)
     var s3 = (txtarea.value).substring(selEnd, selLength);
     txtarea.value = s1 + open + s2 + close + s3;
+
+    txtarea.selectionStart = selEnd + open.length + close.length;
+    txtarea.selectionEnd = txtarea.selectionStart;
+
+    return;
+}
+
+function mozInsertCaret(txtarea, caret)
+{
+    var selLength = txtarea.textLength;
+    var selStart = txtarea.selectionStart;
+
+    var s1 = (txtarea.value).substring(0, selStart);
+    var s2 = (txtarea.value).substring(selStart, selLength);
+    txtarea.value = s1 + caret + s2;
+
+    txtarea.selectionStart = selStart + caret.length;
+    txtarea.selectionEnd = txtarea.selectionStart;
+
     return;
 }
 

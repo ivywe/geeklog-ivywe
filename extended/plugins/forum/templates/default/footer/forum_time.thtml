@@ -1,5 +1,7 @@
-{# begin {templatelocation} #}
-
-<div class="uk-text-small uk-text-center uk-text-muted">{message}</div>
-
-{# end {templatelocation} #}
+<!-- start forum_time.thtml -->
+<table width="100%" border="0" cellspacing="0" cellpadding="5" class="pluginFooter">
+    <tr>
+        <td class="pluginSmallText aligncenter">&nbsp;{message}</td>
+    </tr>
+</table>
+<!-- end forum_time.thtml -->

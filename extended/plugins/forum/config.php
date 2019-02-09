@@ -33,6 +33,9 @@ if (strpos(strtolower($_SERVER['PHP_SELF']), 'config.php') !== false) {
     die('This file can not be used on its own.');
 }
 
+// Name of Forums used in Header. Used in headings etc...
+$CONF_FORUM['forums_name'] = $_CONF['site_name'] . ' ' . $LANG_GF01['FORUMS'];
+
 // Set to true if you need to handle previous version 2.5 quotes and new line formatting - setting to false should be faster
 $CONF_FORUM['pre2.5_mode'] = true;
 
@@ -93,8 +96,12 @@ $CONF_FORUM['show_members_perpage'] = 20;
 // Show the members list page to anonymous users
 $CONF_FORUM['show_memberslist_anonymous'] = false;
 
-// View Anonymous Posts - registed users can set this false
+// View Anonymous Posts - register users can set this false
 $CONF_FORUM['show_anonymous_posts'] = 1;
+
+// Tells Forum to show blocks after every x number of forum topic posts displayed
+// Does not display in preview
+$CONF_FORUM['blocks_showtopic_repeat_after_num_posts'] = 3; // Needs to be greater than 1
 
 // Only send Notification once - even if more posts are created since your last visit
 $CONF_FORUM['notify_once'] = 1;
@@ -133,5 +140,14 @@ if (function_exists('CUSTOM_MOBILE_is_cellular') && CUSTOM_MOBILE_is_cellular())
     $CONF_FORUM['show_messages_perpage'] = 5;
     $CONF_FORUM['sideblock_numposts']    = 5;
 }
+
+// What Forum User Profile Fields to Use and display
+$CONF_FORUM['profile']['interests'] = true;
+$CONF_FORUM['profile']['occupation'] = true;
+$CONF_FORUM['profile']['aim'] = false;
+$CONF_FORUM['profile']['yim'] = false;
+$CONF_FORUM['profile']['msnm'] = false;
+$CONF_FORUM['profile']['icq'] = false;
+$CONF_FORUM['profile']['yim'] = false;
 
 ?>

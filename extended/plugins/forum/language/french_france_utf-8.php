@@ -50,6 +50,9 @@ $LANG_GF00 = array (
 
 
 $LANG_GF01['FORUM']          = 'Forum';
+$LANG_GF01['FORUMS']         = 'Forums';
+$LANG_GF01['FORUMCATEGORYNAME']  = '%s Forum Category';
+$LANG_GF01['FORUMNAME']      = '%s Forum';
 $LANG_GF01['ALL']            = 'Tous'; 
 $LANG_GF01['YES']            = 'Oui';
 $LANG_GF01['NO']             = 'Non';
@@ -87,7 +90,7 @@ $LANG_GF01['ORDERBY']        = 'Ordre';
 $LANG_GF01['ORDER']          = 'Ordre';
 $LANG_GF01['USER']           = 'Utilisateur';
 $LANG_GF01['GROUP']          = 'Groupe';
-$LANG_GF01['ANON']           = 'Anonyme: ';
+$LANG_GF01['ANON']           = 'Anonyme';
 $LANG_GF01['ADMIN']          = 'Admin';
 $LANG_GF01['AUTHOR']         = 'Auteur';
 $LANG_GF01['NOMOOD']         = 'Aucune humeur';
@@ -447,6 +450,12 @@ $LANG_GF09 = array (
     'website'  => 'Website',
     'newtopic' => 'Nouveau',
     'replytopic' => 'Répondre'
+);
+
+/* Block Locations */
+$LANG_GF20 = array (
+    'blocks_showtopic_name'     => 'Forum Show Topic',
+    'blocks_showtopic_desc'     => 'Displays blocks right after every X number of topic posts.'
 );
 
 // Admin Stats page

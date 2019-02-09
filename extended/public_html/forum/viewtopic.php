@@ -431,6 +431,7 @@ $result  = DB_query($sql);
 
 // Display each post in this topic
 $onetwo = 1;
+$postcount = 1; // Post count of page
 while ($topicRec = DB_fetchArray($result)) {
     //$intervalTime = $mytimer->stopTimer();
     //COM_errorLog("Topic Display Time: $intervalTime");
@@ -439,9 +440,10 @@ while ($topicRec = DB_fetchArray($result)) {
         break;
         //Do nothing - but this way I don't always have to do this check
     } else {
-        $display .= showtopic($topicRec,$mode,$onetwo,$page);
+        $display .= showtopic($topicRec,$mode,$postcount,$onetwo,$page);
         $onetwo = ($onetwo == 1) ? 2 : 1;
     }
+    $postcount++;
 }
 
 if ($mode != 'preview') {

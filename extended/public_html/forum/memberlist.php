@@ -108,6 +108,7 @@ if ($op == "lastposts") {
 
 
     $report->set_var ('LANG_TITLE', $LANG_GF02['msg86'] . DB_getItem($_TABLES['users'],"username", "uid=$showuser"));
+    
     $report->set_var ('spacerwidth', '50%');
     $report->set_var ('returnlink', "{$_CONF['site_url']}/forum/memberlist.php");
     $report->set_var ('LANG_return', $LANG_GF02['msg169']);
@@ -120,6 +121,7 @@ if ($op == "lastposts") {
     $report->set_var ('LANG_Heading2', $LANG_GF01['REPLIES']);
     $report->set_var ('LANG_Heading3', $LANG_GF01['VIEWS']);
     $report->set_var ('LANG_Heading4', $LANG_GF01['DATE']);
+    
     if ($CONF_FORUM['usermenu'] == 'navbar') {
         $report->set_var('navmenu', forumNavbarMenu($LANG_GF02['msg200']));
     } else {
@@ -153,6 +155,9 @@ if ($op == "lastposts") {
             $report->parse ('report_record', 'report_record',true);
         }
     }
+    
+    $report->set_var('block_start', COM_startBlock($CONF_FORUM['forums_name']));
+    $report->set_var('block_end', COM_endBlock());     
     
     $report->parse ('output', 'report');
     $display .= $report->finish($report->get_var('output'));
@@ -283,6 +288,8 @@ if ($op == "lastposts") {
     $report->set_var ('LANG_lastposts',sprintf($LANG_GF02['msg86'],$CONF_FORUM['show_last_post_count']));
     $report->set_var ('LANG_website',$LANG_GF01['WebsiteLink']);
     $report->set_var ('LANG_ACTIVITY',$LANG_GF02['msg88b']);
+    $report->set_var ('lang_members_report', $LANG_GF02['msg200']);
+    
     if ($CONF_FORUM['usermenu'] == 'navbar') {
         $report->set_var('navmenu', forumNavbarMenu($LANG_GF02['msg200']));
     } else {
@@ -353,6 +360,10 @@ if ($op == "lastposts") {
     }
 
     $report->set_var ('pagenavigation', COM_printPageNavigation($base_url,$page, $numpages));
+
+    $report->set_var('block_start', COM_startBlock($CONF_FORUM['forums_name']));
+    $report->set_var('block_end', COM_endBlock());     
+    
     $report->parse ('output', 'report');
     $display .= $report->finish($report->get_var('output'));
 

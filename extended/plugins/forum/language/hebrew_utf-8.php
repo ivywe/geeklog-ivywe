@@ -56,6 +56,9 @@ $LANG_GF00 = array(
 
 $LANG_GF01 = array(
     'FORUM' => 'פורום',
+    'FORUMS' => 'Forums',
+    'FORUMCATEGORYNAME' => '%s פורום Category',
+    'FORUMNAME' => '%s פורום',    
     'ALL' => 'All',
     'YES' => 'כן',
     'NO' => 'לא',

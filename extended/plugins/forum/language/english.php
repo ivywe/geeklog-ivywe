@@ -51,6 +51,9 @@ $LANG_GF00 = array (
 
 
 $LANG_GF01['FORUM']          = 'Forum';
+$LANG_GF01['FORUMS']         = 'Forums';
+$LANG_GF01['FORUMCATEGORYNAME']  = '%s Forum Category';
+$LANG_GF01['FORUMNAME']      = '%s Forum';
 $LANG_GF01['ALL']            = 'All'; 
 $LANG_GF01['YES']            = 'Yes';
 $LANG_GF01['NO']             = 'No';
@@ -88,7 +91,7 @@ $LANG_GF01['ORDERBY']        = 'Order:&nbsp;';
 $LANG_GF01['ORDER']          = 'Order:';
 $LANG_GF01['USER']           = 'User';
 $LANG_GF01['GROUP']          = 'Group';
-$LANG_GF01['ANON']           = 'Anonymous: ';
+$LANG_GF01['ANON']           = 'Anonymous';
 $LANG_GF01['ADMIN']          = 'Admin';
 $LANG_GF01['AUTHOR']         = 'Author';
 $LANG_GF01['NOMOOD']         = 'No Mood';
@@ -181,6 +184,7 @@ $LANG_GF01['MSG_NO_CAT']     = 'No Categories or Forums Defined';
 $LANG_GF01['FORUMPOSTS']     = 'Forum Posts';
 $LANG_GF01['FORUMPOST']      = 'Forum Post';
 $LANG_GF01['MESSAGE']     	 = 'Message';
+$LANG_GF01['HERE']     	     = 'here';
 
 // Language for bbcode toolbar
 $LANG_GF01['CODE']           = 'Code';
@@ -299,7 +303,7 @@ $LANG_GF02['msg147']   = 'Forum [printable version of topic %s]';
 $LANG_GF02['msg148']   = 'Click <a href="javascript:history.back()">HERE</a> to return';
 $LANG_GF02['msg149']   = 'Forum post canceled.';
 $LANG_GF02['msg155']   = 'No user posts.';
-$LANG_GF02['msg156']   = 'Total number of forum posts';
+$LANG_GF02['msg156']   = 'Total number of forum posts:';
 $LANG_GF02['msg157']   = 'Last %s Forum Posts';
 $LANG_GF02['msg158']   = 'Last %s Forum Posts by %s';
 $LANG_GF02['msg159']   = 'Are you sure you want to DELETE these selected Moderator records?';
@@ -357,6 +361,7 @@ $LANG_GF02['PostTopic']   = 'Post New Topic';
 $LANG_GF02['EditTopic']   = 'Edit Topic';
 $LANG_GF02['quietforum']  = 'Forum has no new topics';
 $LANG_GF02['adminconfirmation']   = 'Administrator Confirmation';
+$LANG_GF02['num_forumposts']   = '%s Forum Post(s)';
 
 $LANG_GF03 = array (
     'delete'            => 'Delete Post',
@@ -448,6 +453,12 @@ $LANG_GF09 = array (
     'website'  => 'Website',
     'newtopic' => 'New Topic',
     'replytopic' => 'Post Reply'
+);
+
+/* Block Locations */
+$LANG_GF20 = array (
+    'blocks_showtopic_name'     => 'Forum Show Topic',
+    'blocks_showtopic_desc'     => 'Displays blocks right after every X number of topic posts.'
 );
 
 // Admin Stats page

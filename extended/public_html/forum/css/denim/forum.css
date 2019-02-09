@@ -1,10 +1,15 @@
+.forum-userphoto {
+  margin: 0;
+  max-width: 120px;
+}
+
 /* Override theme's userphoto class */
 .forum-userphoto img {
-  margin: 0;	
+  margin: 0;
 }
 
 /* Forum Plugin specific CSS */
-.codeblock  {
+.codeblock {
   background-color:#ECE9D8;
   color:#000;
   width: 550px;
@@ -16,31 +21,304 @@
   padding:5px;
   border: 1px dashed black;
 }
+
 .quotemain {
   background:#FAFCFE url('../../image_set/img_quote.png') no-repeat top right;
-  border: 1px dotted #000;
-  border-left: 4px solid #8394B2;
+  border: 1px dotted #8394b2;
+  border-left: 5px solid #8394B2;
   color:#465584;
-  padding: 4px;
+  padding: 15px;
   margin: 5px auto 8px auto;
 }
 
-/* CSS Declarations for Code block feature - default will use the .php one */
-div .php { max-height:400px; overflow:auto; height:auto; width:auto; min-height:100px; }
-div .html { height:300px; overflow:auto; width:auto; min-height:100px; }
-div .css { height:300px; overflow:auto; width:auto; min-height:100px; }
+/* CSS Declarations for Code block feature */
+.glforum-code {
+  overflow: auto;
+  height: auto;
+  width: auto;
+  max-height: 600px;
+  min-height: 100px;
+  font-size: 13px;
+  color: #000066;
+  border: 1px solid #d0d0d0;
+  background-color: #FAFAFA;
+  padding: 10px;
+}
+
+.glforum-code > div:first-child {
+  font-family: Verdana, Arial, sans-serif; color: #808080;
+  font-size: 90%;
+  font-weight: bold;
+  background-color: #f0f0ff;
+  border-bottom: 1px solid #d0d0d0;
+  padding: 2px 10px;
+  margin: -10px -10px 10px;
+}
 
 /* using same styling as uk-link-muted but with custom class since links do not show up well in uikit panels which is used for forum posts */
-.gl-forum-post-link a {
-    color: #444;
-    font-weight: bold;
+.glforum-post-link a {
+  color: #444;
+  font-weight: bold;
 }
 
 /* Remove Topic iframe preview background if one set (which is the background of the main website) */
-.glforum-preview-html, 
+.glforum-preview-html,
 .glforum-preview-body {
-    background-image: none;
-    background: none;
+  background-image: none;
+  background: none;
+}
+
+.glforum-record {
+  position: relative;
+  min-height: 60px;
+  width: 100%;
+}
+
+.glforum-folderimg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.glforum-category-name {
+  float: left;
+  padding-left: 28px;
+}
+
+.glforum-category-desc {
+  color: #444;
+}
+
+.glforum-lastpost {
+  font-size: 12px;
+}
+
+.glforum-topic-record {
+  position: relative;
+  min-height: 40px;
+  width: 100%;
+}
+
+.glforum-topic-name {
+  float: left;
+  padding-left: 28px;
+}
+
+.glforum-topic-lastpost {
+  font-size: 12px;
+}
+
+.glforum-panel-topic-container1 {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  background-color: #F5F5F5 !important;
+}
+
+.glforum-panel-topic-container2 {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  background-color: #FFF !important;
+}
+
+.glforum-panel-topic {
+  padding: 15px;
+  background-color: #FFF !important;
+}
+
+.glforum-panel-topic-container1 .glforum-panel-topic {
+  background-color: #F5F5F5 !important;
+}
+
+.glforum-panel-topic-container2 .glforum-panel-topic {
+  background-color: #FFF !important;
+}
+
+.glforum-panel-userinfo {
+  padding: 15px;
+}
+
+.glforum-panel-link {
+  padding-top: 5px;
+}
+
+/* Horizontal divider */
+.glforum-grid-divider > [class*='uk-width-1-']:not(.uk-width-1-1):nth-child(n+2),
+.glforum-grid-divider > [class*='uk-width-2-']:nth-child(n+2),
+.glforum-grid-divider > [class*='uk-width-3-']:nth-child(n+2),
+.glforum-grid-divider > [class*='uk-width-4-']:nth-child(n+2),
+.glforum-grid-divider > [class*='uk-width-5-']:nth-child(n+2),
+.glforum-grid-divider > [class*='uk-width-6-']:nth-child(n+2),
+.glforum-grid-divider > [class*='uk-width-7-']:nth-child(n+2),
+.glforum-grid-divider > [class*='uk-width-8-']:nth-child(n+2),
+.glforum-grid-divider > [class*='uk-width-9-']:nth-child(n+2) {
+  border-left: 1px solid #ddd;
+}
+
+/* Tablet and bigger */
+@media (min-width: 768px) {
+  .glforum-grid-divider > [class*='uk-width-medium-']:not(.uk-width-medium-1-1):nth-child(n+2) {
+    border-left: 1px solid #ddd;
+  }
+}
+
+/* Desktop and bigger */
+@media (min-width: 960px) {
+  .glforum-grid-divider > [class*='uk-width-large-']:not(.uk-width-large-1-1):nth-child(n+2) {
+    border-left: 1px solid #ddd;
+  }
+}
+
+.glforum-table th,
+.glforum-table td {
+  border-bottom: 1px solid #ddd;
+}
+
+.glforum-icon {
+  box-sizing: border-box;
+  padding: 0 !important;
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.glforum-hr-none {
+  margin: 0 auto;
+  border: none;
+  display: hidden;
+}
+
+.glforum-userinfo-mood {
+  margin-top: 5px;
+}
+
+/* Phone landscape and smaller */
+@media (max-width: 767px) {
+  .glforum-userinfo-thumbnail {
+    float: left;
+    width: 80px;
+    margin-right: 10px;
+  }
+
+  .glforum-userinfo-name {
+    text-align: left !important;
+    float: left;
+    margin-left: 5px;
+  }
+
+  .glforum-panel-userinfo {
+  }
+
+  .glforum-userinfo-badge,
+  .glforum-userinfo-level,
+  .glforum-userinfo-levelname,
+  .glforum-userinfo-regdate,
+  .glforum-userinfo-numposts,
+  .glforum-userinfo-location,
+  .glforum-userinfo-ip {
+    display: inline;
+    margin-right: 5px;
+  }
+
+  .glforum-userinfo-mood {
+    float: left;
+    margin-left: 5px;
+    text-align: left;
+  }
+
+  .glforum-br:before {
+    content: "\A";
+    white-space: pre;
+  }
+}
+
+/* Forum Smilies */
+div#forum_smilies a {
+	float: left;
+	padding: 0;
+	margin: 3px;
+}
+.frm_sml {
+	border: 0;
+    width: 16px;
+	height: 16px;
+	background: transparent url('/forum/image_set/smilies.png') no-repeat scroll left top;
+}
+.frm_sml_biggrin {
+    background-position: 0 -208px;
+}
+.frm_sml_smile {
+    background-position: 0 -192px;
+}
+.frm_sml_frown {
+    background-position: 0 -112px;
+}
+.frm_sml_eek {
+    background-position: 0 -272px;
+}
+.frm_sml_confused {
+    background-position: 0 -224px;
+}
+.frm_sml_cool {
+    background-position: 0 -48px;
+}
+.frm_sml_lol {
+    background-position: 0 -352px;
+}
+.frm_sml_angry {
+    background-position: 0 -384px;
+}
+.frm_sml_razz {
+    background-position: 0 -320px;
+}
+.frm_sml_oops {
+    background-position: 0 -144px;
+}
+.frm_sml_surprise {
+    background-position: 0 -176px;
+}
+.frm_sml_cry {
+    background-position: 0 -288px;
+}
+.frm_sml_evil {
+    background-position: 0 -368px;
+}
+.frm_sml_twisted {
+    background-position: 0 -400px;
+}
+.frm_sml_rolleye {
+    background-position: 0 -240px;
+}
+.frm_sml_wink {
+    background-position: 0 -160px;
+}
+.frm_sml_exclaim {
+    background-position: 0 -64px;
+}
+.frm_sml_question {
+    background-position: 0 -96px;
+}
+.frm_sml_idea {
+    background-position: 0 -256px;
+}
+.frm_sml_arrow {
+    background-position: 0 -80px;
+}
+.frm_sml_neutral {
+    background-position: 0 -128px;
+}
+.frm_sml_green {
+    background-position: 0 -0px;
+}
+.frm_sml_sick {
+    background-position: 0 -16px;
+}
+.frm_sml_tired {
+    background-position: 0 -304px;
+}
+.frm_sml_monkey {
+    background-position: 0 -32px;
 }
 
 /* END of Forum Plugin CSS */

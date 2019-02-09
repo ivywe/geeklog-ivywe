@@ -1,7 +1,3 @@
-/* Override theme's userphoto class */
-.forum-userphoto img {
-  margin: 0;	
-}
 
 /* Forum Plugin specific CSS */
 .codeblock  {
@@ -25,22 +21,198 @@
   margin: 5px auto 8px auto;
 }
 
-/* CSS Declarations for Code block feature - default will use the .php one */
-div .php { max-height:400px; overflow:auto; height:auto; width:auto; min-height:100px; }
-div .html { height:300px; overflow:auto; width:auto; min-height:100px; }
-div .css { height:300px; overflow:auto; width:auto; min-height:100px; }
-
-/* using same styling as uk-link-muted but with custom class since links do not show up well in uikit panels which is used for forum posts */
-.gl-forum-post-link a {
-    color: #444;
-    font-weight: bold;
+a.profilebutton {
+  background: #fbfcfd; /* old browsers */
+  background: -moz-linear-gradient(top, #fbfcfd 0%, #cadbfa 75%, #E5E5E5 100%); /* firefox */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fbfcfd), color-stop(75%,#cadbfa), color-stop(100%,#E5E5E5)); /* webkit */
+  border: 0.1em solid #7e9ccb;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 6px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 0px;
+  color: #033666;
+  display: block;
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fbfcfd', endColorstr='#E5E5E5',GradientType=0 ); /* ie */
+  font-size: 11px;
+  height: 1.7em;
+  line-height: 1.8em;
+  margin: 0.1em 0.5em 0.3em 0.5em;
+  -moz-border-radius-bottomleft: 0px;
+  -moz-border-radius-bottomright: 6px;
+  -moz-border-radius-topleft: 6px;
+  -moz-border-radius-topright: 0px;
+  padding: 0 1em;
+  text-decoration: none;
+  white-space:nowrap;
 }
+
+a.profilebutton:hover {
+  background: white;
+  box-shadow: 0px 0px 2px #888; 
+  -moz-box-shadow: 0px 0px 2px #888;
+  -webkit-box-shadow: 0px 0px 2px #888;
+}
+
+a.profilebutton img {
+  vertical-align: middle;
+}
+
+a.postbutton {
+  background: #85B8F5;
+  background: -moz-linear-gradient(top, #85B8F5 0%, #5379B8 16%, #77AFF1 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#85B8F5), color-stop(16%,#5379B8), color-stop(100%,#77AFF1));
+  background: -o-linear-gradient(top, #85B8F5 0%,#5379B8 16%,#77AFF1 100%);
+  text-shadow: 1px 1px 1px #333;
+  filter: dropshadow(color=#333, offx=1, offy=1);
+  -moz-border-radius-bottomleft: 4px;
+  border-bottom-left-radius: 4px; 
+  color: #fff;
+  display: table-cell;
+  float: right;
+  border: 0.1em solid #072a66;
+  font-size: 12px;
+  font-weight: bold;
+  height: 1.8em;
+  padding: 0 1em;
+  margin: 1em 0.4em;
+  text-align: left; 
+  text-decoration: none;
+  vertical-align: middle;
+  white-space:nowrap;
+}
+
+a.postbutton img {
+  bottom: 4px;
+  margin-left: 2px;
+  position: relative;
+  right: 6px;
+  vertical-align: middle;
+}
+
+a.postbutton:hover {
+  box-shadow: 0px 0px 2px #888; 
+  -moz-box-shadow: 0px 0px 2px #888;
+  -webkit-box-shadow: 0px 0px 2px #888;
+}
+
+/* CSS Declarations for Code block feature */
+.glforum-code {
+  overflow: auto;
+  height: auto;
+  width: auto;
+  max-height: 600px;
+  min-height: 100px;
+  font-size: 12px;
+  color: #000066;
+  border: 1px solid #d0d0d0;
+  background-color: #FAFAFA;
+}
+
+.glforum-code > div:first-child {
+  font-family: Verdana, Arial, sans-serif; color: #808080;
+  font-size: 90%;
+  font-weight: bold;
+  background-color: #f0f0ff;
+  border-bottom: 1px solid #d0d0d0;
+  padding: 2px;
+}
+
+/* CSS Declarations for reCAPTCHA Plugin */
+div.gl-recaptcha_forum { float:right; margin-right:10px; }
 
 /* Remove Topic iframe preview background if one set (which is the background of the main website) */
 .glforum-preview-html, 
 .glforum-preview-body {
     background-image: none;
     background: none;
+}
+
+/* Forum Smilies */
+div#forum_smilies a {
+	float: left;
+	padding: 0;
+	margin: 3px;
+}
+.frm_sml {
+	border: 0;
+    width: 16px;
+	height: 16px;
+	background: transparent url('/forum/image_set/smilies.png') no-repeat scroll left top;
+}
+.frm_sml_biggrin {
+    background-position: 0 -208px;
+}
+.frm_sml_smile {
+    background-position: 0 -192px;
+}
+.frm_sml_frown {
+    background-position: 0 -112px;
+}
+.frm_sml_eek {
+    background-position: 0 -272px;
+}
+.frm_sml_confused {
+    background-position: 0 -224px;
+}
+.frm_sml_cool {
+    background-position: 0 -48px;
+}
+.frm_sml_lol {
+    background-position: 0 -352px;
+}
+.frm_sml_angry {
+    background-position: 0 -384px;
+}
+.frm_sml_razz {
+    background-position: 0 -320px;
+}
+.frm_sml_oops {
+    background-position: 0 -144px;
+}
+.frm_sml_surprise {
+    background-position: 0 -176px;
+}
+.frm_sml_cry {
+    background-position: 0 -288px;
+}
+.frm_sml_evil {
+    background-position: 0 -368px;
+}
+.frm_sml_twisted {
+    background-position: 0 -400px;
+}
+.frm_sml_rolleye {
+    background-position: 0 -240px;
+}
+.frm_sml_wink {
+    background-position: 0 -160px;
+}
+.frm_sml_exclaim {
+    background-position: 0 -64px;
+}
+.frm_sml_question {
+    background-position: 0 -96px;
+}
+.frm_sml_idea {
+    background-position: 0 -256px;
+}
+.frm_sml_arrow {
+    background-position: 0 -80px;
+}
+.frm_sml_neutral {
+    background-position: 0 -128px;
+}
+.frm_sml_green {
+    background-position: 0 -0px;
+}
+.frm_sml_sick {
+    background-position: 0 -16px;
+}
+.frm_sml_tired {
+    background-position: 0 -304px;
+}
+.frm_sml_monkey {
+    background-position: 0 -32px;
 }
 
 /* END of Forum Plugin CSS */

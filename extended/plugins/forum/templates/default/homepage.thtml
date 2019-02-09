@@ -1,5 +1,5 @@
-{# begin {templatelocation} #}
-
-{category_records}
-
-{# end {templatelocation} #}
+<!-- start homepage.thtml -->
+    
+    {category_records}
+    
+<!-- end homepage.thtml -->

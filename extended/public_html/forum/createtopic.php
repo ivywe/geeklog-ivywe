@@ -80,7 +80,7 @@ $quoteid     = isset($_REQUEST['quoteid'])         ? COM_applyFilter($_REQUEST['
 $showtopic   = isset($_REQUEST['showtopic'])       ? COM_applyFilter($_REQUEST['showtopic'],true)       : '';
 $silentedit  = isset($_POST['silentedit'])         ? COM_applyFilter($_POST['silentedit'],true)         : '';
 $subject     = isset($_POST['subject'])            ? COM_applyFilter($_POST['subject'])                 : '';
-$submit      = isset($_POST['submit'])             ? COM_applyFilter($_POST['submit'])                  : '';
+$submit      = isset($_POST['submitmode'])         ? COM_applyFilter($_POST['submitmode'])              : '';
 $postmode    = isset($_POST['postmode'])           ? COM_applyFilter($_POST['postmode'])                : '';
 
 if ($preview == $LANG_GF01['PREVIEW']) {
@@ -120,8 +120,12 @@ if (($submit == $LANG_GF01['SUBMIT']) && ($editpost == 'yes') && SEC_checkToken(
     $date = time();
 
     $editAllowed = false;
+    $moderator_anon_post = false;
     if (forum_modPermission($forum,$_USER['uid'],'mod_edit')) {
         $editAllowed = true;
+        if (DB_getItem($_TABLES['forum_topic'],'uid',"id='$id'") == 1) {
+            $moderator_anon_post = true;
+        }
     } else {
         if ($CONF_FORUM['allowed_editwindow'] > 0) {
             $t1 = DB_getItem($_TABLES['forum_topic'],'date',"id='$id'");
@@ -141,11 +145,20 @@ if (($submit == $LANG_GF01['SUBMIT']) && ($editpost == 'yes') && SEC_checkToken(
         $link = "{$_CONF['site_url']}/forum/viewtopic.php?showtopic={$id}";
         $display .= alertMessage('',$LANG_GF02['msg189'], sprintf($LANG_GF02['msg187'],$link));
     } else {
-        if (strlen(trim($_POST['name'])) > $CONF_FORUM['min_username_length'] && strlen(trim($_POST['comment'])) > $CONF_FORUM['min_comment_length']) {
+        if ($moderator_anon_post) {
+            $name = gf_preparefordb($aname,'text'); // This happens if mod is editing an anonymous post since anonymous nick name can be changed
+        } else {
+            $name = gf_preparefordb($_POST['name'],'text');
+        }        
+        if (strlen(trim($name)) > $CONF_FORUM['min_username_length'] && strlen(trim($_POST['comment'])) > $CONF_FORUM['min_comment_length']) {
             if ($CONF_FORUM['use_spamx_filter'] == 1) {
                 // Check for SPAM
                 $spamcheck = '<h1>' . $_POST['subject'] . '</h1><p>' . $_POST['comment'] . '</p>';
-                $result = PLG_checkforSpam($spamcheck, $_CONF['spamx']);
+                $permanentlink = null; // Really difficult to determine, need to make sure viewed anonymously and what page on. There is no permantlink for the forum post as it could appear on different pages depending on settings
+                $result = PLG_checkForSpam(
+                    $spamcheck, $_CONF['spamx'], $permanentlink, Geeklog\Akismet::COMMENT_TYPE_FORUM_POST,
+                    $name
+                );                
                 // Now check the result and redirect to index.php if spam action was taken
                 if ($result > 0) {
                     // then tell them to get lost ...
@@ -155,7 +168,6 @@ if (($submit == $LANG_GF01['SUBMIT']) && ($editpost == 'yes') && SEC_checkToken(
                     exit;
                 }
             }
-
             $postmode = gf_chkpostmode($postmode,$mode_switch);
             $subject  = gf_preparefordb(strip_tags($_POST['subject']),'text');
             $comment  = gf_preparefordb($_POST['comment'],$postmode);
@@ -168,9 +180,11 @@ if (($submit == $LANG_GF01['SUBMIT']) && ($editpost == 'yes') && SEC_checkToken(
                 if (isset($_POST['sticky_switch']) AND $_POST['sticky_switch'] == 1)  $sticky = 1;
             }
             $sql = "UPDATE {$_TABLES['forum_topic']} SET subject='$subject',comment='$comment',postmode='$postmode', ";
+            if ($moderator_anon_post) {
+                $sql .= "name='$name', ";
+            }
             $sql .= "mood='$mood', sticky='$sticky', locked='$locked' WHERE (id='$editid')";
             DB_query($sql);
-            // PLG_itemSaved($editid, 'forum'); // done below so commented out
 
             $topicparent = DB_getItem($_TABLES['forum_topic'],"pid","id='$editid'");
             if ($topicparent == 0) {
@@ -196,6 +210,11 @@ if (($submit == $LANG_GF01['SUBMIT']) && ($editpost == 'yes') && SEC_checkToken(
 
             PLG_itemSaved($editid, 'forum');
             COM_rdfUpToDateCheck('forum'); // forum rss feeds update
+            // Remove new block and centerblock cached items
+            $cacheInstance = 'forum__newpostsblock_';
+            CACHE_remove_instance($cacheInstance);
+            $cacheInstance = 'forum__centerblock_';
+            CACHE_remove_instance($cacheInstance);
 
             $link = $_CONF['site_url'] . "/forum/viewtopic.php?msg=1&amp;showtopic=$topicparent&amp;page=$page#$editid";
             $display = COM_refresh($link);
@@ -203,7 +222,7 @@ if (($submit == $LANG_GF01['SUBMIT']) && ($editpost == 'yes') && SEC_checkToken(
             exit;
 
         } else {
-            $display .= alertMessage($LANG_GF01['msg18'], $LANG_GF02['msg180']);
+            $display .= alertMessage($LANG_GF02['msg18'], $LANG_GF02['msg180']);
         }
     }
 
@@ -255,7 +274,11 @@ if (($submit == $LANG_GF01['SUBMIT']) && (($uid == 1) || SEC_checkToken())) {
                     if ( $CONF_FORUM['use_spamx_filter'] == 1 ) {
                         // Check for SPAM
                         $spamcheck = '<h1>' . $_POST['subject'] . '</h1><p>' . $_POST['comment'] . '</p>';
-                        $result = PLG_checkforSpam($spamcheck, $_CONF['spamx']);
+                        $permanentlink = null; // Really difficult to determine, need to make sure viewed anonymously and what page on. There is no permantlink for the forum post as it could appear on different pages depending on settings
+                        $result = PLG_checkForSpam(
+                            $spamcheck, $_CONF['spamx'], $permanentlink, Geeklog\Akismet::COMMENT_TYPE_FORUM_POST,
+                            $name
+                        );                
                         // Now check the result and redirect to index.php if spam action was taken
                         if ($result > 0) {
                             // then tell them to get lost ...
@@ -290,7 +313,12 @@ if (($submit == $LANG_GF01['SUBMIT']) && (($uid == 1) || SEC_checkToken())) {
 
                     PLG_itemSaved($lastid, 'forum');
                     COM_rdfUpToDateCheck('forum'); // forum rss feeds update
-
+                    // Remove new block and centerblock cached items
+                    $cacheInstance = 'forum__newpostsblock_';
+                    CACHE_remove_instance($cacheInstance);
+                    $cacheInstance = 'forum__centerblock_';
+                    CACHE_remove_instance($cacheInstance);
+ 
                     // Update forums record
                     DB_query("UPDATE {$_TABLES['forum_forums']} SET post_count=post_count+1, topic_count=topic_count+1, last_post_rec=$lastid WHERE forum_id=$forum");
 
@@ -359,7 +387,11 @@ if (($submit == $LANG_GF01['SUBMIT']) && (($uid == 1) || SEC_checkToken())) {
                     if ( $CONF_FORUM['use_spamx_filter'] == 1 ) {
                         // Check for SPAM
                         $spamcheck = '<h1>' . $_POST['subject'] . '</h1><p>' . $_POST['comment'] . '</p>';
-                        $result = PLG_checkforSpam($spamcheck, $_CONF['spamx']);
+                        $permanentlink = null; // Really difficult to determine, need to make sure viewed anonymously and what page on. There is no permantlink for the forum post as it could appear on different pages depending on settings
+                        $result = PLG_checkForSpam(
+                            $spamcheck, $_CONF['spamx'], $permanentlink, Geeklog\Akismet::COMMENT_TYPE_FORUM_POST,
+                            $name
+                        );                
                         // Now check the result and redirect to index.php if spam action was taken
                         if ($result > 0) {
                             // then tell them to get lost ...
@@ -388,7 +420,12 @@ if (($submit == $LANG_GF01['SUBMIT']) && (($uid == 1) || SEC_checkToken())) {
 
                     PLG_itemSaved($lastid, 'forum');
                     COM_rdfUpToDateCheck('forum'); // forum rss feeds update
-
+                    // Remove new block and centerblock cached items
+                    $cacheInstance = 'forum__newpostsblock_';
+                    CACHE_remove_instance($cacheInstance);
+                    $cacheInstance = 'forum__centerblock_';
+                    CACHE_remove_instance($cacheInstance);
+                    
                     DB_query("UPDATE {$_TABLES['forum_topic']} SET replies=replies + 1, lastupdated = $date,last_reply_rec=$lastid WHERE id=$id");
                     DB_query("UPDATE {$_TABLES['forum_forums']} SET post_count=post_count+1, last_post_rec=$lastid WHERE forum_id=$forum");
 
@@ -500,7 +537,12 @@ if ($preview == 'Preview') {
     $previewitem = array();
     if ($method == 'edit') {
         $previewitem['uid']  = $edittopic['uid'];
-        $previewitem['name'] = $edittopic['name'];
+        if ($edittopic['uid'] == 1 AND $aname != '') { // Means mod is editing an anonymous post so update anonymous name if not blank
+            // reflect updated anonymous user name
+            $previewitem['name'] = stripslashes($aname);
+        } else {
+            $previewitem['name'] = $edittopic['name'];
+        }
     } else {
         if ($uid > 1) {
             $previewitem['name'] = stripslashes($aname);
@@ -707,8 +749,10 @@ if (($method == 'newtopic' || $method == 'postreply' || $method == 'edit') || ($
     }
 
     if ($uid >= 2) {
+        $token = SEC_createToken();
         $topicnavbar->set_var('gltoken_name', CSRF_TOKEN);
-        $topicnavbar->set_var('gltoken', SEC_createToken());
+        $topicnavbar->set_var('gltoken', $token);
+        $topicnavbar->set_var('gltoken_msg', SEC_getTokenExpiryNotice($token, $LANG24[91]));
     } else {
         $topicnavbar->set_var('gltoken_name', 'token');
         $topicnavbar->set_var('gltoken', '1');
@@ -747,10 +791,20 @@ if (($method == 'newtopic' || $method == 'postreply' || $method == 'edit') || ($
             } else {
                 $username = COM_getDisplayName($_USER['uid']);
             }
+        } else {
+            if ($editmoderator AND $edittopic['uid'] == 1) {
+                //$aname = COM_stripslashes($edittopic['name']);
+                if ($method == 'edit' AND $aname == '') {
+                    $aname = COM_stripslashes($edittopic['name']);
+                } else {
+                    $aname = COM_stripslashes($aname);
+                }
+            }
         }
 
         $submissionform_main->set_var ('username', $username);
         $submissionform_main->set_var ('xusername', $username);
+        $submissionform_main->set_var ('aname', $aname);
         $submissionform_main->parse ('user_name', 'submissionform_membertop');
     }
 
@@ -781,6 +835,8 @@ if (($method == 'newtopic' || $method == 'postreply' || $method == 'edit') || ($
         $submissionform_main->set_var ('LANG_MOOD', $LANG_GF02['msg36']);
         $submissionform_main->set_var ('moodoptions', $moodoptions);
         $submissionform_main->parse ('moods', 'submissionform_moods');
+    } else {
+        $submissionform_main->set_var('moods', '');
     }
 
     $sub_dot = '...';
@@ -939,7 +995,7 @@ if (($method == 'newtopic' || $method == 'postreply' || $method == 'edit') || ($
             } else {
                 $notify_val = '';
             }
-            //$notify_prompt = '<label for="notify">' . $LANG_GF02['msg38']. '</label><br' . XHTML . '><input type="checkbox" class="uk-checkbox"  name="notify" id="notify" value="on" ' . $notify_val. XHTML . '>';
+            //$notify_prompt = '<label for="notify">' . $LANG_GF02['msg38']. '</label><br' . XHTML . '><input type="checkbox" name="notify" id="notify" value="on" ' . $notify_val. XHTML . '>';
             // Notify Option
 			$submissionform_main->set_var ('LANG_OPTION', $LANG_GF02['msg38']);
 			$submissionform_main->set_var ('option_name', 'notify');
@@ -1146,7 +1202,7 @@ function gf_chknotifications($forumid,$topicid,$userid,$type='topic') {
                         $subjectline = "{$_CONF['site_name']} {$LANG_GF02['msg22']}";
                         $message  = "{$LANG_GF01['HELLO']} {$B['username']},\n\n";
                         if ($type=='forum') {
-                            $forum_name = DB_getItem($_TABLES['forum_forums'],forum_name, "forum_id='$forumid'");
+                            $forum_name = DB_getItem($_TABLES['forum_forums'], "forum_name", "forum_id='$forumid'");
                             $message .= sprintf($LANG_GF02['msg23b'],$A['subject'],$A['name'],$forum_name, $_CONF['site_name'],$_CONF['site_url'],$pid);
                         } else {
                             $message .= sprintf($LANG_GF02['msg23a'],$A['subject'],$postername, $A['name'],$_CONF['site_name']);

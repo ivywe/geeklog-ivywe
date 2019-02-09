@@ -1,94 +1,94 @@
-{# begin {templatelocation} - List of icons used by the forum #}
+{# begin {templatelocation} #}
 
 <!-- BEGIN new_icon -->
-<span uk-icon="icon: star" class="uk-text-secondary"></span>
+<img src="{site_url}/forum/image_set/status/viewnew.png" alt="{$LANG_GF02[msg112]}" title="{$LANG_GF02[msg112]}" {xhtml}>
 <!-- END new_icon -->
 
 <!-- BEGIN quiet_icon -->
-<span uk-icon="icon: comment" class="uk-text-secondary"></span>
+<img src="{site_url}/forum/image_set/status/quietforum.png" alt="{$LANG_GF02[msg194]}" title="{$LANG_GF02[msg194]}" {xhtml}>
 <!-- END quiet_icon -->
 
 <!-- BEGIN active_icon -->
-<span uk-icon="icon: comment" class="uk-text-danger"></span>
+<img src="{site_url}/forum/image_set/status/busyforum.png" alt="{$LANG_GF02[msg111]}" title="($LANG_GF02[msg111])" {xhtml}>
 <!-- END active_icon -->
 
 <!-- BEGIN normal_icon -->
-<span uk-icon="icon: comment"></span>
+<img src="{site_url}/forum/image_set/status/noposts.png" alt="{$LANG_GF02[msg59]}" title="{$LANG_GF02[msg59]}" {xhtml}>
 <!-- END normal_icon -->
 
 <!-- BEGIN normalnew_icon -->
-<span uk-icon="icon: comment" class="uk-text-danger"></span>
+<img src="{site_url}/forum/image_set/status/newposts.png" alt="{$LANG_GF02[msg60]}" title="{$LANG_GF02[msg60]}" {xhtml}>
 <!-- END normalnew_icon -->
 
 <!-- BEGIN sticky_icon -->
-<span uk-icon="icon: check"></span>
+<img src="{site_url}/forum/image_set/status/sticky.png" alt="{$LANG_GF02[msg61]}" title="{$LANG_GF02[msg61]}" {xhtml}>
 <!-- END sticky_icon -->
 
 <!-- BEGIN stickynew_icon -->
-<span uk-icon="icon: star" class="uk-text-danger"></span>
+<img src="{site_url}/forum/image_set/status/sticky_new.png" alt="{$LANG_GF02[msg115]}" title="{$LANG_GF02[msg115]}" {xhtml}>
 <!-- END stickynew_icon -->
 
 <!-- BEGIN locked_icon -->
-<span uk-icon="icon: lock" class="uk-text-primary"></span>
+<img src="{site_url}/forum/image_set/status/locked.png" alt="{$LANG_GF02[msg114]}" title="{$LANG_GF02[msg114]}" {xhtml}>
 <!-- END locked_icon -->
 
 <!-- BEGIN lockednew_icon -->
-<span uk-icon="icon: lock" class="uk-text-danger"></span>
+<img src="{site_url}/forum/image_set/status/locked_new.png" alt="{$LANG_GF02[msg116]}" title="{$LANG_GF02[msg116]}" {xhtml}>
 <!-- END lockednew_icon -->
 
 <!-- BEGIN status_yes -->
-<span uk-icon="icon: plus-circle" class="uk-text-primary"></span>
+<img style="padding: 0.2em; vertical-align: middle;" alt="" src="{site_url}/forum/image_set/status_yes.png" {xhtml}>
 <!-- END status_yes -->
 
 <!-- BEGIN status_no -->
-<span uk-icon="icon: minus-circle" ></span>
+<img style="padding: 0.2em; vertical-align: middle;" alt="" src="{site_url}/forum/image_set/status_no.png" {xhtml}>
 <!-- END status_no -->
 
 <!-- BEGIN sort_desc -->
-<span uk-icon="icon:  triangle-down"></span>
+<img alt="" src="{site_url}/forum/image_set/sort_desc.gif" style="border:none;" {xhtml}>
 <!-- END sort_desc -->
 
 <!-- BEGIN sort_desc_on -->
-<span uk-icon="icon:  triangle-down" class="uk-text-danger" ></span>
+<img alt="" src="{site_url}/forum/image_set/sort_desc_on.gif" style="border:none;" {xhtml}>
 <!-- END sort_desc_on -->
 
 <!-- BEGIN sort_asc -->
-<span uk-icon="icon:  triangle-up" ></span>
+<img alt="" src="{site_url}/forum/image_set/sort_asc.gif" style="border:none;" {xhtml}>
 <!-- END sort_asc -->
 
 <!-- BEGIN sort_asc_on -->
-<span uk-icon="icon:  triangle-up" class="uk-text-danger"></span>
+<img alt="" src="{site_url}/forum/image_set/sort_asc_on.gif" style="border:none;" {xhtml}>
 <!-- END sort_asc_on -->
 
 <!-- BEGIN topiclocked_icon -->
-<span uk-icon="icon:  lock"></span>
+<img src="{site_url}/forum/image_set/padlock.png" alt="{$LANG_GF02[msg114]}" title="{$LANG_GF02[msg114]}" {xhtml}>
 <!-- END topiclocked_icon -->
 
 <!-- BEGIN mood_icon -->
-	<div><img src="{moodicon}" title="{moodicontitle}" alt="{moodtitle}"{xhtml}></div>
+<img style="vertical-align:middle;" src="{moodicon}" title="{moodicontitle}" alt="{moodtitle}"{xhtml}><br{xhtml}>
 <!-- END mood_icon -->
 
 <!-- BEGIN memberbadge_icon -->
-<div class="uk-badge">{memberbadgetitle}</div>
+<img alt="{memberbadgetitle}" title="{memberbadgetitle}" src="{imgset}/badges/{buttonimg}"{xhtml}><br{xhtml}>
 <!-- END memberbadge_icon -->
 
 <!-- BEGIN user_icon -->
-<span uk-icon="icon:  user"></span>
+<img alt="" src="{site_url}/forum/image_set/smallcamera.png"{xhtml}> 
 <!-- END user_icon -->
 
 {# User Forum Rank #}
 <!-- BEGIN rankon_icon -->
-	<i class="uk-icon-square uk-text-success" title="{ranktitle}"></i>
+	<img src="{rankonicon}" title="{ranktitle}" alt=""{xhtml}>
 <!-- END rankon_icon -->
 
 <!-- BEGIN rankoff_icon -->
-	<i class="uk-icon-square" title="{ranktitle}"></i>
+	<img src="{rankofficon}" title="{ranktitle}" alt=""{xhtml}>
 <!-- END rankoff_icon -->
 
 <!-- BEGIN rankmod_icon -->
-	<i class="uk-icon-square uk-text-warning" title="{ranktitle}"></i>
+	<img src="{rankmodicon}" title="{ranktitle}" alt=""{xhtml}>
 <!-- END rankmod_icon -->
 
 <!-- BEGIN rankadmin_icon -->
-	<i class="uk-icon-square uk-text-danger" title="{ranktitle}"></i>
+	<img src="{rankadminicon}" title="{ranktitle}" alt=""{xhtml}>
 <!-- END rankadmin_icon -->

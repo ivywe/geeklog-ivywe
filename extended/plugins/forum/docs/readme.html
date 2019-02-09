@@ -126,7 +126,7 @@ li {
 </style>
 <title>Geeklog Forum Plugin Documentation</title>
 <!--[if IE]>
-<script>
+<script type="text/javascript">
 document.getElementsByClassName = function(class_name) {
     var docList = this.all || this.getElementsByTagName('*');
     var arr = new Array();
@@ -140,7 +140,7 @@ document.getElementsByClassName = function(class_name) {
 }
 </script>
 <![endif]-->
-<script>
+<script type="text/javascript">
 /* The menu object */
 var MENU = {
     hideAll: function (c) {
@@ -182,11 +182,11 @@ onload = function() {
 </head>
 <body>
 <!-- Body start -->
-<h1>Geeklog Forum plugin - version 2.9.1</h1>
-<h3>Current Maintainers: <span class="email"><a href="http://code.google.com/p/geeklog/">Geeklog Community Members</a></span></h3>
+<h1>Geeklog Forum plugin - version 2.9.3</h1>
+<h3>Current Maintainers: <span class="email"><a href="https://github.com/orgs/Geeklog-Plugins/people">Geeklog Community Members</a></span></h3>
 <h3>Original Author: Blaine Lang</h3>
-<h3>Release Date: November 2, 2015</h3>
-<h4>Requires minimum Geeklog version 2.1.1 and MySQL 4.1+</h4>
+<h3>Release Date: June 22, 2018</h3>
+<h4>Requires minimum Geeklog version 2.1.3 and MySQL 4.1+</h4>
 
 <!-- Main menu -->
 <div class='menuwrap'>
@@ -204,7 +204,6 @@ onload = function() {
         </ul>
     </li>
     <li><a href='#config' class='config_link'>Configuration</a></li>
-    <li><a href='#profile' class='profile_link'>Profile Integration</a></li>
     </ul>
 </div>
 <div style="clear: both;"></div>
@@ -229,7 +228,9 @@ onload = function() {
     <li>Support for autotags in topic content and can reference other forum topics using an autotag [forum: topicid]</li>
     <li>Integrated SPAMX and content filtering</li>
     <li>Integrated support for Captcha 2.0 and reCAPTCHA 1.0 and higher versions</li>
-    <li>Integration opion with glMessenger for member private messaging and online smilie admin</li>
+    <li>Integration option with glMessenger for member private messaging and online smilie admin</li>
+    <li>Automatic integration of additional profile fields with Geeklog (configurable)</li>
+    <li>In a forum topic, 1 or more Geeklog Blocks can be displayed every X number of forum posts</li>
     <li>Easy online administration and member control</li>
     <li>Supports MySql 5</li>
     </ul>
@@ -498,27 +499,6 @@ onload = function() {
     <div style="margin:10px 0px 20px 10px;" class="gototop"><a href="#top">Goto Top</a></div>
 </div>
 
-<!-- section -->
-<div id='profile_div' class='page'>
-    <p class="sectionheading" style="margin-bottom:0px;"><a id="profile">Profile Integration</a></p>
-    <p>
-        The forum plugin is capable of integrating some additional profile fields with Geeklog, but due to a bug in Geeklog core
-        this is not automatic and you must add these fields manually to some template files in Geeklog.
-        <br><br>There is a sample implementation available in
-        <a href="./example/layout/professional/preferences/profile.thtml">./example/layout/professional/preferences/profile.thtml</a>
-        and <a href="./example/layout/professional/users/profile.thtml">./example/layout/professional/users/profile.thtml</a>.
-        <br><br>
-        In the example files linked above, the parts that must be added to the templates of your theme are enclosed by the following HTML comments:<br>
-        <code style='display: block; margin: 1em; border: 1px dotted gray; background: #eec; padding: 0.5em;'>
-            &lt;!-- Forum ****************************************** --&gt;
-        </code>
-        and
-        <code style='display: block; margin: 1em; border: 1px dotted gray; background: #eec; padding: 0.5em;'>
-            &lt;!-- ****************************************** --&gt;
-        </code>
-    </p>
-    <div style="margin:10px 0px 20px 10px;" class="gototop"><a href="#top">Goto Top</a></div>
-</div>
 
 </body>
 </html>

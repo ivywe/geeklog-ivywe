@@ -1,15 +1,13 @@
 {# begin {templatelocation} #}
 
+	</div>
 </form>
 
 {topic_review}
 
 <!-- BEGIN topic_review -->
-<div class="uk-margin-large-top">
-	<div class="uk-width-1-1">
-		<iframe class="uk-align-center" src="{site_url}/forum/viewtopic.php?mode=preview&amp;showtopic={topic_id}&amp;onlytopic=1&amp;lastpost=true" height="300" width="98%"></iframe>
-	</div>
-</div>
+
+<iframe src="{site_url}/forum/viewtopic.php?mode=preview&amp;showtopic={topic_id}&amp;onlytopic=1&amp;lastpost=true" height="300" width="100%"></iframe>
 
 <!-- END topic_review -->
 

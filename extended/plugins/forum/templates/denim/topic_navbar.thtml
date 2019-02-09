@@ -1,0 +1,58 @@
+{# begin {templatelocation} #}
+
+<div class="uk-margin-large-top">
+	<div itemscope itemtype="http://schema.org/BreadcrumbList">
+		<ul class="uk-breadcrumb">
+			<li><i class="uk-icon-folder-o"></i></li>
+			<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+				<a itemprop="item" href="{site_url}/forum/index.php">
+					<span itemprop="name">{forum_home}</span>
+				</a>
+				<meta itemprop="position" content="1" />
+			</li>
+			<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+				<a itemprop="item" href="{site_url}/forum/index.php?category={category_id}">
+					<span itemprop="name">{cat_name}</span>
+				</a>
+				<meta itemprop="position" content="2" />
+			</li>
+			<li class="uk-active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+				<a itemprop="item" href="{site_url}/forum/index.php?forum={forum_id}">
+					<span itemprop="name">{forum_name}</span>
+				</a>
+				<meta itemprop="position" content="3" />
+			</li>
+		</ul>
+	</div>	
+</div>	
+
+{#
+<div class="uk-margin-bottom uk-text-large">
+	<i class="uk-icon-comments-o"></i> <a href="viewtopic.php?showtopic={topic_id}">
+		<span>{subject}</span>
+	</a>
+</div>
+#}
+
+<h2>
+	<i class="uk-icon-comments-o"></i> <a href="viewtopic.php?showtopic={topic_id}">
+		<span>{subject}</span>
+	</a>
+</h2>
+
+<div class="uk-margin-bottom uk-text-right">
+	{topicmenu_link}
+	{newtopic_link}
+	{replytopic_link}
+	{# Buttons instead of Menu - Remove comments to enable (plus remove topicmenu_link template variable) and change related links in forum_links.html #}
+	{# 	
+	{subscribe_link}
+	{print_link}
+	{prevtopic_link}
+	{nexttopic_link}
+	#}
+</div> 
+
+{pagenavigation}
+
+{# end {templatelocation} #}

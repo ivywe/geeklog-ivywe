@@ -50,7 +50,7 @@ if (file_exists($langfile)) {
  * This language string is inherited from Geeklog Core, which makes
  * it static, so we define it here instead of in the language files.
  */
-global $LANG32, $_TABLES;
+global $LANG32;
 
 $PLG_forum_MESSAGE3002 = $LANG32[9]; // This plugin requires a newer version of Geeklog
 
@@ -102,7 +102,6 @@ require_once $_CONF['path'] . 'plugins/forum/config.php';
 $CONF_FORUM['debug'] = false;
 
 $CONF_FORUM['layout_url']  = $_CONF['site_url'] . '/forum';
-$CONF_FORUM['css_smilies_url'] = "{$_CONF['site_url']}/forum/css/smilies.css.php";
 $CONF_FORUM['imgset']       = CTL_plugin_dirLocation('forum', 'image_set', true);
 $CONF_FORUM['imgset_path']  = CTL_plugin_dirLocation('forum', 'image_set', false);
 $CONF_FORUM['path_include'] = $_CONF['path'] . 'plugins/forum/include/';
@@ -122,8 +121,6 @@ if (!empty($_USER['uid']) AND ($_USER['uid'] > 1) AND DB_getItem($_TABLES['forum
     $CONF_FORUM['show_anonymous_posts'] = $userprefs['viewanonposts'];
     $CONF_FORUM['notify_once']          = $userprefs['notify_once'];
 }
-
-
 
 $CONF_FORUM['installed_version'] = floatval(DB_getItem($_TABLES['plugins'], 'pi_version', "pi_name = 'forum'"));
 
@@ -147,7 +144,7 @@ function plugin_getmenuitems_forum()
 
 
 function plugin_autotags_forum($op,$content='',$autotag='') {
-    global $_CONF, $LANG_GF00;
+    global $_CONF, $LANG_GF00, $LANG_GF01;
 
     if ($op == 'tagname') {
         return 'forum';
@@ -156,7 +153,7 @@ function plugin_autotags_forum($op,$content='',$autotag='') {
     } elseif ($op == 'parse') {
         $id = COM_applyFilter($autotag['parm1']);
         if (!empty($id)) {
-            $linktext = 'here';
+            $linktext = $LANG_GF01['HERE'];
             if (!empty($autotag['parm2'])) $linktext = $autotag['parm2'];
             $url = $_CONF['site_url'] . '/forum/viewtopic.php?showtopic=' . $id;
             $filelink = COM_createLink($linktext, $url);
@@ -229,12 +226,16 @@ function plugin_user_delete_forum ($uid)
     DB_query("UPDATE {$_TABLES['forum_topic']} SET uid = 1 WHERE uid = '$uid'");
 }
 
-function plugin_profileextrassave_forum()
+function plugin_profileextrassave_forum($uid = '')
 {
     global $_CONF,$_USER, $HTTP_POST_VARS, $_TABLES, $CONF_FORUM;
 
     require_once $CONF_FORUM['path_include'] . 'gf_format.php';
-    $uid = $_USER['uid'];
+    
+    if (empty($uid)) {
+        $uid = $_USER['uid'];
+    }
+
     if ($uid > 1) {
         $aim        = gf_preparefordb($_POST['forum_aim'],'html');
         $icq        = gf_preparefordb($_POST['forum_icq'],'html');
@@ -250,32 +251,87 @@ function plugin_profileextrassave_forum()
 
 function plugin_profilevariablesedit_forum($uid, &$template)
 {
-    global $_TABLES, $LANG_GF04;
+    global $_TABLES, $LANG_GF04, $CONF_FORUM;
 
-    $result = DB_query ("SELECT uid,aim,yim,icq,yim,msnm,interests,occupation FROM {$_TABLES['forum_userinfo']} WHERE uid = $uid");
-    $A = DB_fetchArray ($result);
-    $template->set_var('forum_aim', $A['aim']);
-    $template->set_var('forum_icq', $A['icq']);
-    $template->set_var('forum_yim', $A['yim']);
-    $template->set_var('forum_msnm', $A['msnm']);
-    $template->set_var('forum_interests', $A['interests']);
-    $template->set_var('forum_occupation', $A['occupation']);
-
-    $template->set_var ('lang_forum', $LANG_GF04['label_forum']);
-    $template->set_var ('lang_aim', $LANG_GF04['label_aim']);
-    $template->set_var ('lang_icq', $LANG_GF04['label_icq']);
-    $template->set_var ('lang_yim', $LANG_GF04['label_yim']);
-    $template->set_var ('lang_msnm', $LANG_GF04['label_msnm']);
-    $template->set_var ('lang_interests', $LANG_GF04['label_interests']);
-    $template->set_var ('lang_occupation', $LANG_GF04['label_occupation']);
+    // Need to handle new users as well
+    if ($uid > 1) {
+        $result = DB_query ("SELECT uid,aim,icq,yim,msnm,interests,occupation FROM {$_TABLES['forum_userinfo']} WHERE uid = $uid");
+        $A = DB_fetchArray ($result);
+    } else {
+        $A['aim'] = '';
+        $A['icq'] = '';
+        $A['yim'] = '';
+        $A['msnm'] = '';
+        $A['interests'] = '';
+        $A['occupation'] = '';
+    }
+    
+    if ($CONF_FORUM['profile']['aim']) {
+        $template->set_var ('lang_field', $LANG_GF04['label_aim']);
+        $template->set_var ('lang_field_text', '');
+        $template->set_var('field', $A['aim']);
+        $template->set_var('fieldname', 'forum_aim');
+        $template->set_var('fieldmaxlength', '128');
+        $template->parse('display_fields', 'display_field', true);
+    }
+    
+    if ($CONF_FORUM['profile']['icq']) {
+        $template->set_var ('lang_field', $LANG_GF04['label_icq']);
+        $template->set_var ('lang_field_text', '');
+        $template->set_var('field', $A['icq']);
+        $template->set_var('fieldname', 'forum_icq');
+        $template->set_var('fieldmaxlength', '128');
+        $template->parse('display_fields', 'display_field', true);
+    }
+    
+    if ($CONF_FORUM['profile']['yim']) {
+        $template->set_var ('lang_field', $LANG_GF04['label_yim']);
+        $template->set_var ('lang_field_text', '');
+        $template->set_var('field', $A['yim']);
+        $template->set_var('fieldname', 'forum_yim');
+        $template->set_var('fieldmaxlength', '128');
+        $template->parse('display_fields', 'display_field', true);
+    }
+    
+    if ($CONF_FORUM['profile']['msnm']) {
+        $template->set_var ('lang_field', $LANG_GF04['label_msnm']);
+        $template->set_var ('lang_field_text', '');
+        $template->set_var('field', $A['msnm']);
+        $template->set_var('fieldname', 'forum_msnm');
+        $template->set_var('fieldmaxlength', '128');
+        $template->parse('display_fields', 'display_field', true);
+    }
+    
+    if ($CONF_FORUM['profile']['interests']) {    
+        $template->set_var ('lang_field', $LANG_GF04['label_interests']);
+        $template->set_var ('lang_field_text', '');
+        $template->set_var('field', $A['interests']);
+        $template->set_var('fieldname', 'forum_interests');
+        $template->set_var('fieldmaxlength', '255');
+        $template->parse('display_fields', 'display_field', true);
+    }
+    
+    if ($CONF_FORUM['profile']['occupation']) {
+        $template->set_var ('lang_field', $LANG_GF04['label_occupation']);
+        $template->set_var ('lang_field_text', '');
+        $template->set_var('field', $A['occupation']);
+        $template->set_var('fieldname', 'forum_occupation');
+        $template->set_var('fieldmaxlength', '255');
+        $template->parse('display_fields', 'display_field', true);
+    }
 }
 
 function plugin_profilevariablesdisplay_forum ($uid, &$template)
 {
-
-    global $_TABLES, $_CONF, $LANG_GF02, $LANG_GF04;
+    global $_TABLES, $_CONF, $LANG_GF02, $LANG_GF04, $CONF_FORUM;
+    
     $postlimit = "10";        // How many posts you want displayed
-
+    
+    $username = DB_getItem ($_TABLES['users'], 'username', "uid = $uid");
+    $title = sprintf($LANG_GF02['msg158'], $postlimit, $username);
+    $template->set_var ('start_block_last10', COM_startBlock($title));
+    $template->set_var('end_block', COM_endBlock());
+    
     $query = DB_query ("SELECT id,date,forum,subject FROM {$_TABLES['forum_topic']} WHERE uid = {$uid} ORDER BY date DESC LIMIT 100");
     $numposts = 0;
 
@@ -287,14 +343,20 @@ function plugin_profilevariablesdisplay_forum ($uid, &$template)
             $postdate = COM_getUserDateTimeFormat ($date);
             $template->set_var ('row_number', $numposts . '.');
             $articleUrl = $_CONF['site_url'] . '/forum/viewtopic.php?showtopic=' . $postid;
-            $template->set_var('story_title',
+            $template->set_var('item_title',
                 COM_createLink(
                     stripslashes($subject),
                     $articleUrl,
                     array('class'=>'b'))
             );
-            $template->set_var ('story_date', $postdate[0]);
-            $template->parse ('forum_post_row', 'strow', true);
+            $template->set_var ('item_date', $postdate[0]);
+            
+            if ($numposts == 1) {
+                $template->parse('last10_rows', 'last10_row');
+            } else {
+                $template->parse('last10_rows', 'last10_row', true);
+            }            
+            
             if ($numposts >= $postlimit) {
                 break;
             }
@@ -302,36 +364,68 @@ function plugin_profilevariablesdisplay_forum ($uid, &$template)
     }
 
     if ($numposts == 0) {
-        $template->set_var ('forum_post_row', '<tr><td>' .$LANG_GF02['msg155']. '</td></tr>');
+        $template->set_var('last10_rows', $LANG_GF02['msg155']);
     }
+    $template->parse('last10_blocks', 'last10_block', true);
 
-    $count = DB_count ($_TABLES['forum_topic'], 'uid', $uid);
-    $template->set_var ('forum_lang_number_posts', $LANG_GF02['msg156']);
-    $template->set_var ('forum_number_posts', $count);
+    // Cannot take just this as may include posts the user viewing does not have access too see new solution below
+    //$count = DB_count ($_TABLES['forum_topic'], 'uid', $uid);
     
-    $username = DB_getItem ($_TABLES['users'], 'username', "uid = $uid");
-    $title = sprintf($LANG_GF02['msg158'], $postlimit, $username);
-    $template->set_var ('forum_start_block_last10posts', COM_startBlock
-        ($title));    
-    $template->set_var ('forum_headline_last10posts', $LANG_GF02['msg157']);
+    // Taken in part from COM_getPermSQL
+    // Cannot use COM_getPermSQL as it includes other security table columns like owner_id which the forum does not use
+    // Grab current user group access as they can only know of forum posts they have access to about the user they are viewing
+    $UserGroups = SEC_getUserGroups();
+    $sql = "SELECT COUNT(uid) count_uid FROM {$_TABLES['forum_topic']} ft, {$_TABLES['forum_forums']} ff, {$_TABLES['groups']} g 
+            WHERE ft.forum = ff.forum_id AND ff.grp_id = g.grp_id 
+            AND ft.uid = {$uid} ";
+    $sql .= "AND (g.grp_id = 2 OR (ff.grp_id IN (" . implode(',', $UserGroups) . ")))";
+    $result = DB_query($sql);
+    $A = DB_fetchArray($result);
+    $count = $A['count_uid'];
+    
+    $template->set_var ('lang_number_field', $LANG_GF02['msg156']);
+    $template->set_var ('number_field', $count);
+    $template->parse('field_statistics', 'field_statistic', true);   
 
     /* Display Instant Messaging Handles */
-    $result = DB_query ("SELECT uid,aim,yim,icq,yim,msnm,interests,occupation FROM {$_TABLES['forum_userinfo']} WHERE uid = $uid");
+    $result = DB_query ("SELECT uid,aim,icq,yim,msnm,interests,occupation FROM {$_TABLES['forum_userinfo']} WHERE uid = $uid");
     $A = DB_fetchArray ($result);
-    $template->set_var('forum_aim', $A['aim']);
-    $template->set_var('forum_icq', $A['icq']);
-    $template->set_var('forum_yim', $A['yim']);
-    $template->set_var('forum_msnm', $A['msnm']);
-    $template->set_var('forum_interests', $A['interests']);
-    $template->set_var('forum_occupation', $A['occupation']);
-
-    $template->set_var ('lang_forum', $LANG_GF04['label_forum']);
-    $template->set_var ('lang_aim', $LANG_GF04['label_aim']);
-    $template->set_var ('lang_icq', $LANG_GF04['label_icq']);
-    $template->set_var ('lang_yim', $LANG_GF04['label_yim']);
-    $template->set_var ('lang_msnm', $LANG_GF04['label_msnm']);
-    $template->set_var ('lang_interests', $LANG_GF04['label_interests']);
-    $template->set_var ('lang_occupation', $LANG_GF04['label_occupation']);
+    
+    if ($CONF_FORUM['profile']['aim']) {
+        $template->set_var ('lang_field', $LANG_GF04['label_aim']);
+        $template->set_var('field', $A['aim']);
+        $template->parse('display_fields', 'display_field', true);
+    }
+    
+    if ($CONF_FORUM['profile']['icq']) {
+        $template->set_var ('lang_field', $LANG_GF04['label_icq']);
+        $template->set_var('field', $A['icq']);
+        $template->parse('display_fields', 'display_field', true);
+    }
+    
+    if ($CONF_FORUM['profile']['yim']) {
+        $template->set_var ('lang_field', $LANG_GF04['label_yim']);
+        $template->set_var('field', $A['yim']);
+        $template->parse('display_fields', 'display_field', true);
+    }
+    
+    if ($CONF_FORUM['profile']['msnm']) {
+        $template->set_var ('lang_field', $LANG_GF04['label_msnm']);
+        $template->set_var('field', $A['msnm']);
+        $template->parse('display_fields', 'display_field', true);
+    }
+    
+    if ($CONF_FORUM['profile']['interests']) {
+        $template->set_var ('lang_field', $LANG_GF04['label_interests']);
+        $template->set_var('field', $A['interests']);
+        $template->parse('display_fields', 'display_field', true);
+    }
+    
+    if ($CONF_FORUM['profile']['occupation']) {
+        $template->set_var ('lang_field', $LANG_GF04['label_occupation']);
+        $template->set_var('field', $A['occupation']);
+        $template->parse('display_fields', 'display_field', true);
+    }
 }
 
 function plugin_statssummary_forum() {
@@ -357,7 +451,11 @@ function plugin_showstats_forum($showsitestats)
     global $_CONF, $_TABLES, $LANG_GF00,$LANG_GF01, $CONF_FORUM;
 
     // Use themes stats template files
-    $stat_templates = COM_newTemplate($_CONF['path_layout'] . '/stats');
+    if (COM_versionCompare(VERSION, '2.2.0', '>=')) {
+        $stat_templates = COM_newTemplate(CTL_core_templatePath($_CONF['path_layout'] . 'stats'));
+    } else { // For Geeklog 2.1.3 support
+        $stat_templates = COM_newTemplate($_CONF['path_layout'] . '/stats');
+    }
     $stat_templates->set_file(array('itemstats'=>'itemstatistics.thtml',
                             'statrow'=>'singlestat.thtml'));
     
@@ -617,7 +715,11 @@ function plugin_getfeedcontent_forum ($feed, &$link, &$update)
         if ($F['content_length'] == 0) {
             $comment = '';
         } elseif ($F['content_length'] > 1) {
-            $comment = COM_truncate($A['comment'], $F['content_length'], '...');
+            if ($A['postmode'] == 'html' || $A['postmode'] == 'HTML') {
+                $comment = COM_truncateHTML($A['comment'], $F['content_length'], '...');
+            } else {
+                $comment = COM_truncate($A['comment'], $F['content_length'], '...');
+            }
         } else {
             $comment = $A['comment'];
             $preface = $LANG_GF01['BY'] . ' ';
@@ -734,6 +836,9 @@ function plugin_upgrade_forum() {
     require_once $_CONF['path'] . 'plugins/forum/autoinstall.php';
     if (!plugin_compatible_with_this_version_forum('forum')) return 3002;
     
+    // Retrieve other plugin info like min geeklog version and homepage 
+    $inst_parms = plugin_autoinstall_forum('forum');        
+    
     $current_version = $installed_version;
 
     // Include the upgrade functions
@@ -792,15 +897,31 @@ function plugin_upgrade_forum() {
 
                 $current_version = "2.9.2";
                 
+                break;
+                
+            case "2.9.2" :
+                if (upgrade_293() != 0) break 2;
+
+                $current_version = "2.9.3";
+                
                 break;                
 
+            case "2.9.3" :
+
+                $current_version = "2.9.4";
+                
+                break;
+                
             default:
                 $done = true;
                 break;
         }
     }
 
-    DB_query("UPDATE {$_TABLES['plugins']} SET pi_version = '$code_version', pi_gl_version = '$installed_version' WHERE pi_name = 'forum'");
+    // update plugin version number and other info
+    DB_query("UPDATE {$_TABLES['plugins']} SET pi_version = '$code_version', pi_gl_version = '{$inst_parms['info']['pi_gl_version']}', pi_homepage = '{$inst_parms['info']['pi_homepage']}' WHERE pi_name = 'forum'");
+
+    COM_errorLog( "Updated forum plugin from v$installed_version to v$code_version", 1 );  
     
     // Check if update completed and return a message number to be shown
     if (DB_getItem($_TABLES['plugins'],'pi_version',"pi_name = 'forum'") == $code_version) {
@@ -828,8 +949,10 @@ function plugin_migrate_forum($old_conf)
     );
 
     if ($old_conf['site_url'] != $_CONF['site_url']) {
-        INST_updateSiteUrl($old_conf['site_url'], $_CONF['site_url'], $tables);
+        Installer::updateSiteUrl($old_conf['site_url'], $_CONF['site_url'], $tables);
     }
+    
+    COM_errorLog('Successfully migrated the "forum" plugin');
 
     return true;
 }
@@ -995,7 +1118,7 @@ function plugin_getiteminfo_forum($id, $what, $uid = 0, $options = array())
 }
 
 function phpblock_forum_newposts() {
-    global $_CONF, $_USER, $_TABLES, $LANG_GF01, $LANG_GF02, $CONF_FORUM;
+    global $_CONF, $_USER, $_TABLES, $LANG_GF01, $LANG_GF02, $CONF_FORUM, $_USER;
 
     $post_limit = $CONF_FORUM['sideblock_numposts'];
     if ($CONF_FORUM['installed_version'] < 2.6) {
@@ -1021,6 +1144,8 @@ function phpblock_forum_newposts() {
             } elseif ($order == 'posts') {
                 $view_modemsg = sprintf($LANG_GF02['msg76'],$post_limit);
                 $orderby = 'replies';
+            } else { // garbage orderby so just default
+                $orderby = 'date';
             }
         } else {
             $view_modemsg = sprintf($LANG_GF02['msg74'],$post_limit);
@@ -1030,6 +1155,12 @@ function phpblock_forum_newposts() {
                     $orderby = 'date';
                 }
         }
+        
+        $cacheInstance = 'forum__newpostsblock_' . $orderby  . '_' . CACHE_security_hash() . '_' . $_CONF['theme'];
+        $retval = CACHE_check_instance($cacheInstance);
+        if ($retval) {
+            return $retval;
+        }          
 
         $block = COM_newTemplate(CTL_plugin_templatePath('forum', 'blocks'));
         $block->set_file (array ('block'=>'latestpostsblock.thtml'));
@@ -1144,6 +1275,9 @@ function phpblock_forum_newposts() {
 
         $block->parse ('output', 'block');
         $retval = $block->finish($block->get_var('output'));
+        
+        CACHE_create_instance($cacheInstance, $retval);    
+        
         return $retval;
     } else {
         return;
@@ -1162,7 +1296,7 @@ function phpblock_forum_newposts() {
 function plugin_centerblock_forum ($where = 1, $page = 1, $topic = '')
 {
     global $_CONF, $_USER, $_TABLES, $LANG_GF01, $CONF_FORUM;
-    global $LANG_GF02, $mode, $order;
+    global $LANG_GF02, $mode, $order, $_USER;
 
     //$TIMER = new timerobject();
     //$TIMER->startTimer();
@@ -1178,9 +1312,14 @@ function plugin_centerblock_forum ($where = 1, $page = 1, $topic = '')
 
     $retval = '';
 
+    if (!$CONF_FORUM['show_centerblock']) {
+        return;
+    }    
+    
     $cb_enable = $CONF_FORUM['show_centerblock'];
     $cb_where  = $CONF_FORUM['centerblock_where'];
-
+    
+   
     // If enabled only for homepage and this is not page 1 or a topic page,
     // then set disable flag
     if ($CONF_FORUM['centerblock_homepage'] == 1 AND ($page > 1 OR !empty ($topic))) {
@@ -1208,10 +1347,16 @@ function plugin_centerblock_forum ($where = 1, $page = 1, $topic = '')
         return;
     }
 
+    $cacheInstance = 'forum__centerblock' . '_' . CACHE_security_hash() . '_' . $_CONF['theme'];
+    $retval = CACHE_check_instance($cacheInstance);
+    if ($retval) {
+        return $retval;
+    }    
+    
     $block = COM_newTemplate(CTL_plugin_templatePath('forum', 'blocks'));
     $block->set_file (array ('block' => 'centerblock.thtml'));
             
-	$block->set_block('block', 'block_record');
+    $block->set_block('block', 'block_record');
         
     $block->set_var ('phpself', $_CONF['site_url'] .'/index.php');
     $block->set_var ('startblock', COM_startBlock($LANG_GF02['msg170']));
@@ -1263,10 +1408,10 @@ function plugin_centerblock_forum ($where = 1, $page = 1, $topic = '')
             $lastdate = strftime($CONF_FORUM['default_Datetime_format'], $A['lastupdated']);
         }
         if ($A['uid'] > 1) {
-            $topicinfo = "{$A['subject']}<br" . XHTML . ">{$LANG_GF01['STARTEDBY']} " . COM_getDisplayName($A['uid']) . ', ';
+            $topicinfo = htmlspecialchars($A['subject']) . "<br" . XHTML . ">{$LANG_GF01['STARTEDBY']} " . COM_getDisplayName($A['uid']) . ', ';
             $topicinfo_short = "{$LANG_GF01['STARTEDBY']} " . COM_getDisplayName($A['uid']) . ', ';
         } else {
-            $topicinfo = "{$A['subject']}<br" . XHTML . ">{$LANG_GF01['STARTEDBY']} {$A['name']},";
+            $topicinfo = htmlspecialchars($A['subject']) . "<br" . XHTML . ">{$LANG_GF01['STARTEDBY']} {$A['name']},";
             $topicinfo_short = "{$LANG_GF01['STARTEDBY']} {$A['name']}";
         }
 
@@ -1290,6 +1435,7 @@ function plugin_centerblock_forum ($where = 1, $page = 1, $topic = '')
                 $repliesinfo = sprintf($LANG_GF01['LASTREPLYBY'],$B['name']) . " &raquo; $lastdate $repliesinfo";
             }
         }
+        
         $lastpostinfo = strip_tags(COM_truncate($lastcomment, $CONF_FORUM['contentinfo_numchars'], '...'));
         $lastpostinfo = stripBBCode($lastpostinfo); // Simple function to strip out bbcode so tooltips display better
         $lastpostinfo = forum_mb_wordwrap($lastpostinfo, $CONF_FORUM['linkinfo_width'], LB);
@@ -1299,7 +1445,7 @@ function plugin_centerblock_forum ($where = 1, $page = 1, $topic = '')
         $cssid = ($cssid == 1) ? 2 : 1;
 
         if ($f_tooltip) {
-        	$block->set_var('gl-tooltip', true); // Used to verify gl tooltip is being set
+            $block->set_var('gl-tooltip', true); // Used to verify gl tooltip is being set
             $lastpostlink = "{$_CONF['site_url']}/forum/viewtopic.php?showtopic={$A['id']}&amp;lastpost=true#{$lastid}";
             $block->set_var ('tooltip_date', COM_getTooltip($lastdate, $lastpostinfo, $lastpostlink));
             $topiclink = "{$_CONF['site_url']}/forum/viewtopic.php?showtopic={$A['id']}";
@@ -1331,6 +1477,8 @@ function plugin_centerblock_forum ($where = 1, $page = 1, $topic = '')
 
     //$exectime = $TIMER->stopTimer();
     //COM_errorLog("Centerblock Execution Time: $exectime seconds");
+    
+    CACHE_create_instance($cacheInstance, $retval);
 
     return $retval;
 }
@@ -1360,17 +1508,12 @@ function stripBBCode($text_to_search) {
 */
 function plugin_getheadercode_forum()
 {
-    global $_SCRIPTS, $CONF_FORUM;
+    global $_SCRIPTS;
 
     $_SCRIPTS->setCSSFile('forum', CTL_plugin_themeFindFile('forum', 'css', 'forum.css'));
     
     // Look for forum templates functions.php for current theme. If exist add in its required javascript and css
     CTL_plugin_setTemplatesFunctions("forum");
-
-    // Left this as is since it is a php file that returns css
-	$retval = '<link rel="stylesheet" type="text/css" href="' . $CONF_FORUM['css_smilies_url'] . '"' . XHTML . '>';
-    
-    return $retval;
 }
 
 /**
@@ -1433,7 +1576,11 @@ function forum_modPermission($forum,$uid='',$permission='') {
     global $_USER,$_TABLES;
 
     if ($uid == '') {
-        $uid = $_USER['uid'];
+        if (isset($_USER['uid'])) {
+            $uid = $_USER['uid'];
+        } else {
+            return FALSE;  // Invalid ID or anonymous user
+        }
     }
 
     if ($uid <=1) {
@@ -1508,6 +1655,7 @@ function plugin_getBlocks_forum($side, $topic='')
                                   'blockorder'     => $CONF_FORUM['sideblock_order'],
                                   'content'        => $display,
                                   'allow_autotags' => false,
+                                  'convert_newlines' => false,
                                   'help'           => '');
 
             }
@@ -1527,6 +1675,7 @@ function plugin_getBlocks_forum($side, $topic='')
                               'blockorder'     => $CONF_FORUM['menublock_order'],
                               'content'        => $display,
                               'allow_autotags' => false,
+                              'convert_newlines' => false,
                               'help'           => '');
 
         }
@@ -1566,6 +1715,7 @@ function plugin_getBlocksConfig_forum($side, $topic='')
                               'onleft'         => $CONF_FORUM['sideblock_isleft'],
                               'blockorder'     => $CONF_FORUM['sideblock_order'],
                               'allow_autotags' => false,
+                              'convert_newlines' => false,
                               'help'           => '',
                               'enable'         => $CONF_FORUM['sideblock_enable'],
                               'topic_option'   => $CONF_FORUM['sideblock_topic_option'],
@@ -1591,6 +1741,7 @@ function plugin_getBlocksConfig_forum($side, $topic='')
                           'onleft'         => $CONF_FORUM['menublock_isleft'],
                           'blockorder'     => $CONF_FORUM['menublock_order'],
                           'allow_autotags' => false,
+                          'convert_newlines' => false,
                           'help'           => '',
                           'enable'         => $menublock_enable,
                           'topic_option'   => '',
@@ -1809,7 +1960,7 @@ function phpblock_forum_menu() {
         	$items[] = COM_createLink($LANG_GF02['msg88'], $base.'memberlist.php', array('title' => $LANG_GF02['msg200']));
 		}
         $items[] = COM_createLink($LANG_GF07['3'], $base.'index.php?op=popular', array('title' => $LANG_GF02['msg201']));
-        $retval .= COM_makeList($items, 'forum_menu');
+        $retval .= COM_makeList($items, PLG_getCSSClasses('forum-list-menu', 'forum'));
     }
 
     return $retval;
@@ -1953,6 +2104,50 @@ function plugin_itemdeleted_forum($id, $type)
         }
         // Note: All topics could get deleted from array which would mean the block would not display untill user adds more in config
     }
+    
+}
+
+/**
+ * Return an array of Block Locations in plugin templates
+ */
+function plugin_getBlockLocations_forum()
+{
+    global $LANG_GF20;
+    
+    $block_locations = array();
+
+    // Add any extra block locations for plugin
+    // Remember these locations can only appear in templates that PLG_templateSetVars is used with
+    $block_locations[] = array(
+        'id'                => 'forum_showtopic', // Unique string. No other block location (includes Geeklog itself and any other plugins or themes) can share the same id ("left" and "right" are already taken).
+        'name'              => $LANG_GF20['blocks_showtopic_name'],
+        'description'       => $LANG_GF20['blocks_showtopic_desc'],
+        'template_name'     => 'forum_showtopic',
+        'template_variable' => 'blocks_showtopic'
+    );
+
+    return $block_locations;
+}
+
+
+/**
+ * Did user create any forum posts
+ *
+ * @return   string   number of posts user contributed. If nothing leave blank
+ */
+function plugin_usercontributed_forum($uid)
+{
+    global $_TABLES, $LANG_GF02;
+
+    $retval = '';
+
+    $count = DB_getItem($_TABLES['forum_topic'], 'COUNT(uid)', "uid = {$uid}");
+    
+    if ($count > 0) {
+        $retval = str_replace('%s', $count, $LANG_GF02['num_forumposts']);
+    }
+
+    return $retval;
 }
 
 ?>

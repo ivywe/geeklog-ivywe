@@ -35,7 +35,11 @@
 
 
 require_once 'gf_functions.php';
-require_once $_CONF['path_system'] . 'lib-story.php';
+if (COM_versionCompare(VERSION, '2.2.0', '>=')) {
+    require_once $_CONF['path_system'] . 'lib-article.php';
+} else { // For Geeklog 2.1.3 support
+    require_once $_CONF['path_system'] . 'lib-story.php'; 
+}
 
 $page     = isset($_GET['page'])            ? COM_applyFilter($_GET['page'],true)            : '';
 $show     = isset($_GET['show'])            ? COM_applyFilter($_GET['show'],true)            : '';
@@ -77,6 +81,12 @@ if ($migrate == $LANG_GF01['MIGRATE_NOW'] && $selforum != "select"
     gf_resyncforum($selforum);
     
     COM_rdfUpToDateCheck('forum'); // forum rss feeds update
+    
+    // Remove new block and centerblock cached items
+    $cacheInstance = 'forum__newpostsblock_';
+    CACHE_remove_instance($cacheInstance);
+    $cacheInstance = 'forum__centerblock_';
+    CACHE_remove_instance($cacheInstance);
     
     echo COM_refresh($_CONF['site_admin_url']
                      . "/plugins/forum/migrate.php?num_stories="
@@ -204,7 +214,7 @@ function migrate_topicsList($selected='')
 {
     global $LANG_GF01;
 
-    $retval = '<select class="uk-select" name="seltopic"><option value="all">'
+    $retval = '<select name="seltopic"><option value="all">'
             . $LANG_GF01['ALL'] . '</option>';
     $retval .= '<option value="submissions"';
     if ($selected == "submissions") {

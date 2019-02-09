@@ -1,17 +1,14 @@
 {# begin {templatelocation} #}
 
-<ul class="uk-breadcrumb">
-	<li><i class="uk-icon-folder-open-o"></i></li>
-	<li><a href="{site_url}/forum/index.php">{forum_home}</a></li>
-	<li><a href="{site_url}/forum/index.php?category={category_id}">{cat_name}</a></li>
-	<li class="uk-active"><span><a href="{site_url}/forum/index.php?forum={forum_id}">{forum_name}</a></span></li>
-</ul>
-
-<div class="uk-grid-small uk-margin-small-left" uk-grid>
-	<div class="uk-width-1-1">
-  		<i class="uk-icon-file-text-o"></i> <b><a href="viewtopic.php?showtopic={topic_id}">{subject}</a></b>
-  	</div>
-</div>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td>{navbreadcrumbsimg}</td>
+        <td class="alignleft" style="width:100%; white-space:nowrap;">&nbsp;<a href="{site_url}/forum/index.php">{forum_home}</a>&nbsp;&#62;&nbsp;<a href="{site_url}/forum/index.php?category={category_id}">{cat_name}</a>&nbsp;&#62;&nbsp;<a href="{site_url}/forum/index.php?forum={forum_id}">{forum_name}</a></td>
+    </tr>
+    <tr>
+        <td colspan="2" style="padding-bottom:5px;">{navtopicimg}{!if topic_id}&nbsp;<b><a href="viewtopic.php?showtopic={topic_id}">{subject}</a></b>{!endif}</td>
+    </tr>
+</table>
 
 <script type="text/Javascript">
 <!-- Begin
@@ -32,15 +29,17 @@ h_help = "{LANG_hhelp}";
 //  End -->
 </script>
 
-<form class="uk-form uk-form-horizontal" action="{phpself}" method="post" name="forumpost">
-	<input type="hidden" name="forum" value="{forum_id}"{xhtml}>
-	<input type="hidden" name="id" value="{hidden_id}"{xhtml}>
-	<input type="hidden" name="modedit" value="{hidden_modedit}"{xhtml}>
-	<input type="hidden" name="method" value="{hidden_method}"{xhtml}>
-	<input type="hidden" name="editpost" value="{hidden_editpost}"{xhtml}>
-	<input type="hidden" name="editpid" value="{hidden_editpid}"{xhtml}>
-	<input type="hidden" name="editid" value="{hidden_editid}"{xhtml}>
-	<input type="hidden" name="page" value="{page}"{xhtml}>
-	<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+<form id="forumform" action="{phpself}" method="post" name="forumpost" style="margin:0px;">
+<div>
+    <input type="hidden" name="forum" value="{forum_id}"{xhtml}>
+    <input type="hidden" name="id" value="{hidden_id}"{xhtml}>
+    <input type="hidden" name="modedit" value="{hidden_modedit}"{xhtml}>
+    <input type="hidden" name="method" value="{hidden_method}"{xhtml}>
+    <input type="hidden" name="editpost" value="{hidden_editpost}"{xhtml}>
+    <input type="hidden" name="editpid" value="{hidden_editpid}"{xhtml}>
+    <input type="hidden" name="editid" value="{hidden_editid}"{xhtml}>
+    <input type="hidden" name="page" value="{page}"{xhtml}>
+    <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+    {gltoken_msg}
 
 {# end {templatelocation} #}
