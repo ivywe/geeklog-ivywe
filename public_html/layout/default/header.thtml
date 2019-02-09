@@ -66,9 +66,9 @@ if( COM_onFrontpage() ){  ?>
 
 <?php if( COM_onFrontpage() ){  ?>
 			</div>
-				<div class="uk-position-center">
-					<h2 class="uk-h2 gl-site_slogan">Geeklog 2.2</h2>
-				</div>
+			<div class="uk-position-top">
+				<h2 class="uk-h2 gl-site_slogan">Geeklog 2.2</h2>
+			</div>
 
 		</div>
 <?php }   ?>

@@ -34,26 +34,67 @@ h1.gl-sitename {
 		cursor: pointer;
 }
 
+.gl-frontpage div.uk-sticky.uk-sticky-fixed.uk-sticky-below h1.gl-sitename {
+    background: url(../images/logo.png) no-repeat;
+}
+
 .uk-overlay.gl-overlay {
 	  padding: 0!important;
 }
 
 .gl-frontpage .uk-navbar-nav>li.uk-active>a {
 		color: #eee;
+}
+.gl-frontpage .uk-navbar-nav>li.uk-active>a.uk-open,
+.gl-frontpage .uk-navbar-nav>li.uk-active>a.uk-focus {
+		color: #fff;
+}
 
+.uk-navbar-nav>li>a {
+    color: #ccc;
 }
 
 div.uk-sticky.uk-sticky-fixed.uk-sticky-below {
   background-color: rgba(255,255,255,0.5);
 }
 
-.gl-frontpage div.uk-sticky.uk-sticky-fixed.uk-sticky-below h1.gl-sitename {
-    background: url(../images/logo.png) no-repeat;
+.gl-frontpage div.uk-sticky.uk-sticky-fixed .uk-navbar-nav>li>a {
+	color: #ddd;
+}
+.gl-frontpage div.uk-sticky.uk-sticky-fixed .uk-navbar-nav>li.uk-active>a {
+	color: #fff;
 }
 
-.gl-frontpage div.uk-sticky.uk-sticky-fixed.uk-sticky-below .uk-navbar-nav>li.uk-active>a {
+div.uk-sticky.uk-sticky-fixed.uk-sticky-below .uk-navbar-nav>li>a ,
+.gl-frontpage div.uk-sticky.uk-sticky-fixed.uk-sticky-below .uk-navbar-nav>li>a {
 	color: #444;
 }
+
+.uk-navbar-dropdown-nav>li.uk-active>a:hover ,
+.gl-frontpage div.uk-sticky.uk-sticky-fixed .uk-navbar-nav>li>a.uk-open,
+.gl-frontpage div.uk-sticky.uk-sticky-fixed .uk-navbar-nav>li>a.uk-focus,
+.gl-frontpage div.uk-sticky.uk-sticky-fixed .uk-navbar-nav>li.uk-active>a.uk-open ,
+.gl-frontpage div.uk-sticky.uk-sticky-fixed .uk-navbar-nav>li.uk-active>a.uk-focus ,
+.gl-frontpage div.uk-sticky.uk-sticky-fixed .uk-navbar-nav>li.uk-active>a:hover ,
+.gl-frontpage div.uk-sticky.uk-sticky-fixed.uk-sticky-below .uk-navbar-nav>li.uk-active>a:hover ,
+.gl-frontpage div.uk-sticky.uk-sticky-fixed.uk-sticky-below .uk-navbar-nav>li.uk-active>a.uk-open,
+.gl-frontpage div.uk-sticky.uk-sticky-fixed.uk-sticky-below .uk-navbar-nav>li.uk-active>a.uk-focus ,
+.gl-frontpage div.uk-sticky.uk-sticky-fixed.uk-sticky-below .uk-navbar-nav>li>a.hover ,
+.gl-frontpage div.uk-sticky.uk-sticky-fixed.uk-sticky-below .uk-navbar-nav>li>a.uk-open ,
+.gl-frontpage div.uk-sticky.uk-sticky-fixed.uk-sticky-below .uk-navbar-nav>li>a.uk-focus ,
+div.uk-sticky.uk-sticky-fixed .uk-navbar-nav>li>a.uk-open,
+div.uk-sticky.uk-sticky-fixed .uk-navbar-nav>li>a.uk-focus,
+div.uk-sticky.uk-sticky-fixed .uk-navbar-nav>li.uk-active>a.uk-open ,
+div.uk-sticky.uk-sticky-fixed .uk-navbar-nav>li.uk-active>a.uk-focus ,
+div.uk-sticky.uk-sticky-fixed .uk-navbar-nav>li.uk-active>a:hover ,
+div.uk-sticky.uk-sticky-fixed.uk-sticky-below .uk-navbar-nav>li.uk-active>a:hover {
+	color: #ff0;
+}
+
+.uk-navbar-dropdown-nav>li.uk-active>a {
+	color: #333;
+}
+
 
 .uk-navbar-container:not(.uk-navbar-transparent) {
     background: none;
@@ -78,3 +119,4 @@ div.uk-sticky.uk-sticky-fixed.uk-sticky-below {
 		font-size: 30px;
 	}
 }
+
