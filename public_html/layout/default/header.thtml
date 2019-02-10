@@ -31,13 +31,38 @@ $url_current = COM_getCurrentURL();
 if( COM_onFrontpage() ){  ?>
 
 		<div class="uk-inline gl-frontpage uk-width-1-1">
-			<div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow="animation:fade; autoplay: true">
+			<div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow="animation:fade; autoplay: true; max-height:500">
 			    <ul class="uk-slideshow-items">
-			        <li><img src="/layout/default/images/top-rainbow.jpg" alt="" uk-cover></li>
-			        <li><img src="/layout/default/images/top-lake.jpg" alt="" uk-cover></li>
-			        <li><img src="/layout/default/images/top-sea.jpg" alt="" uk-cover></li>
-			        <li><img src="/layout/default/images/top-night.jpg" alt="" uk-cover></li>
-			        <li><img src="/layout/default/images/top-lakenight.jpg" alt="" uk-cover></li>
+			        <li><img src="{layout_url}/images/top-sea.jpg" alt="" uk-cover>
+								<div class="uk-position-bottom-center uk-overlay uk-light uk-text-center">
+	                <h2 class="gl-site_slogan">多言語サイト対応</h2>
+	                <p class="uk-text-large uk-margin-top">hreflangタグを自動生成。言語ページを自動リンク</p>
+            		</div>
+							</li>
+			        <li><img src="{layout_url}/images/top-lake.jpg" alt="" uk-cover>
+								<div class="uk-position-bottom-center uk-overlay uk-light uk-text-center">
+	                <h2 class="gl-site_slogan">2段階認証</h2>
+	                <p class="uk-text-large uk-margin-top">2段階認証でログインがセキュアに。</p>
+            		</div>
+							</li>
+			        <li><img src="{layout_url}/images/top-rainbow.jpg" alt="" uk-cover>
+								<div class="uk-position-bottom-center uk-overlay uk-light uk-text-center">
+	                <h2 class="gl-site_slogan">UIkit v3</h2>
+	                <p class="uk-text-large uk-margin-top">v3完全対応テーマDenim_threeと Default(ivywe版)</p>
+            		</div>
+							</li>
+			        <li><img src="{layout_url}/images/top-night.jpg" alt="" uk-cover>
+								<div class="uk-position-bottom-center uk-overlay uk-light uk-text-center">
+	                <h2 class="gl-site_slogan">CSSとJSのミニファイや圧縮</h2>
+	                <p class="uk-text-large uk-margin-top">CSS と JS のミニファイや圧縮の処理機能が追加</p>
+            		</div>
+							</li>
+			        <li><img src="{layout_url}/images/top-lakenight.jpg" alt="" uk-cover>
+								<div class="uk-position-bottom-center uk-overlay uk-light uk-text-center">
+	                <br><h2 class="gl-site_slogan">ReCaptcha Pluginが標準機能に</h2>
+	                <p class="uk-text-large uk-margin-top">ReCaptcha Plugin が初期インストールで選べるように</p>
+            		</div>
+							</li>
 			    </ul>
 			    <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
 			    <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
@@ -45,6 +70,16 @@ if( COM_onFrontpage() ){  ?>
 
 	    <div class="uk-overlay uk-position-top gl-overlay">
 
+<?php } else { ?>
+
+		<div class="uk-inline gl-frontpage uk-width-1-1">
+
+		<div class="uk-cover-container">
+	    <canvas width="100%" height="100"></canvas>
+	    <img src="{layout_url}/images/top-sea.jpg" alt="" uk-cover>
+		</div>
+
+	    <div class="uk-overlay uk-position-top gl-overlay">
 <?php } ?>
 
 				<div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
@@ -63,13 +98,14 @@ if( COM_onFrontpage() ){  ?>
 					</nav>
 				</div>
 
-
 <?php if( COM_onFrontpage() ){  ?>
 			</div>
-			<div class="uk-position-top">
-				<h2 class="uk-h2 gl-site_slogan">Geeklog 2.2</h2>
+			<div class="uk-position-center uk-overlay">
+				<h2 class="uk-h2 gl-site_slogan_en">{site_slogan}</h2>
 			</div>
-
+		</div>
+<?php } else { ?>
+			</div>
 		</div>
 <?php }   ?>
 
@@ -119,11 +155,14 @@ if( COM_onFrontpage() ){  ?>
 		</nav>
 <?php } ?>
 
+{!!if {layout_columns} !== "center" !!}
     {# #wrapper { #}
     <div id="wrapper">
       {# Center Block Container #}
       <div id="centerblocks">
         <main id="main-content" role="main" itemscope="itemscope" itemprop="mainContentOfPage" itemtype="http://schema.org/WebPageElement">
+{!endif}
+
 		      {breadcrumb_trail}
 
 {# end {templatelocation} #}

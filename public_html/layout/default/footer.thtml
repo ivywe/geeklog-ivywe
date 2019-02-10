@@ -1,13 +1,14 @@
 
+{!!if {layout_columns} !== "center" !!}
         </main>
       </div>
 
       {left_blocks}
-
       {right_blocks}
 
     </div>
     <!-- } #wrapper -->
+{!endif}
 
     <hr class="separator"{xhtml}>
 

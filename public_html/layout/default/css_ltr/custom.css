@@ -55,7 +55,7 @@ h1.gl-sitename {
 }
 
 div.uk-sticky.uk-sticky-fixed.uk-sticky-below {
-  background-color: rgba(255,255,255,0.5);
+  background-color: rgba(200,200,200,0.5);
 }
 
 .gl-frontpage div.uk-sticky.uk-sticky-fixed .uk-navbar-nav>li>a {
@@ -108,15 +108,32 @@ div.uk-sticky.uk-sticky-fixed.uk-sticky-below .uk-navbar-nav>li.uk-active>a:hove
   width: 100%;
 }
 
+
 .gl-site_slogan {
-	font-family: 'Dancing Script', cursive;
-	font-size:60px; 
+	font-size:40px; 
 	color:white;
-	font-size: 60px;
+}
+
+.gl-site_slogan_en {
+	font-family: 'Dancing Script', cursive;
+	font-size:70px; 
+	color:white;
+}
+
+@media (max-width:959px) {
+	.gl-site_slogan {
+		font-size: 30px;
+	}
+.gl-site_slogan_en {
+		font-size:50px; 
+	}
 }
 @media (max-width:767px) {
 	.gl-site_slogan {
-		font-size: 30px;
+		font-size: 25px;
+	}
+.gl-site_slogan_en {
+		font-size:40px; 
 	}
 }
 
