@@ -47,10 +47,10 @@
 	<table class="uk-table uk-table-hover uk-table-striped glforum-table">
 		<thead>
 			<tr>
-				<th style="width:70%">{LANG_TOPIC}<br{xhtml}><a href="index.php?forum={forum_id}&amp;order=0&amp;sort=1">{img_asc1}</a>&nbsp;<a href="index.php?forum={forum_id}&amp;order=1&amp;sort=1">{img_desc1}</a></th>
-				<th style="width:5%">{LANG_VIEWS}<br{xhtml}><a href="index.php?forum={forum_id}&amp;order=0&amp;sort=2">{img_asc2}</a>&nbsp;<a href="index.php?forum={forum_id}&amp;order=1&amp;sort=2">{img_desc2}</a></th>
-				<th style="width:5%">{LANG_REPLIES}<br{xhtml}><a href="index.php?forum={forum_id}&amp;order=0&amp;sort=3">{img_asc3}</a>&nbsp;<a href="index.php?forum={forum_id}&amp;order=1&amp;sort=3">{img_desc3}</a></th>
-	      <th style="width:20%">{LANG_LASTPOST}<br{xhtml}><a href="index.php?forum={forum_id}&amp;order=0&amp;sort=5">{img_asc5}</a>&nbsp;<a href="index.php?forum={forum_id}&amp;order=1&amp;sort=5">{img_desc5}</a></th>
+				<th style="width:60%">{LANG_TOPIC}<br{xhtml}><a href="index.php?forum={forum_id}&amp;order=0&amp;sort=1">{img_asc1}</a>&nbsp;<a href="index.php?forum={forum_id}&amp;order=1&amp;sort=1">{img_desc1}</a></th>
+				<th style="width:8%">{LANG_VIEWS}<br{xhtml}><a href="index.php?forum={forum_id}&amp;order=0&amp;sort=2">{img_asc2}</a>&nbsp;<a href="index.php?forum={forum_id}&amp;order=1&amp;sort=2">{img_desc2}</a></th>
+				<th style="width:8%">{LANG_REPLIES}<br{xhtml}><a href="index.php?forum={forum_id}&amp;order=0&amp;sort=3">{img_asc3}</a>&nbsp;<a href="index.php?forum={forum_id}&amp;order=1&amp;sort=3">{img_desc3}</a></th>
+	      <th style="width:24%">{LANG_LASTPOST}<br{xhtml}><a href="index.php?forum={forum_id}&amp;order=0&amp;sort=5">{img_asc5}</a>&nbsp;<a href="index.php?forum={forum_id}&amp;order=1&amp;sort=5">{img_desc5}</a></th>
 			</tr>
 		</thead>
 		<tbody>

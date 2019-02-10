@@ -64,7 +64,7 @@
 					{user_name}
 					<div>
 						{!if member_badge}<div class="glforum-userinfo-badge">{member_badge}</div>{!endif}
-						{!if user_level}<div class="glforum-userinfo-level">{user_level}</div>{!endif}
+						{!if user_level}<!-- <div class="glforum-userinfo-level">{user_level}</div> -->{!endif}
 						{!if user_levelname}<div class="glforum-userinfo-levelname">{user_levelname}</div>{!endif}
 						{!if regdate}<div class="glforum-userinfo-regdate glforum-br">{regdate}</div>{!endif}
 						{!if numposts}<div class="glforum-userinfo-numposts">{numposts}</div>{!endif}
