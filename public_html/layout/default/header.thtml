@@ -74,15 +74,17 @@ if( COM_onFrontpage() ){  ?>
 
 		<div class="uk-inline gl-frontpage uk-width-1-1">
 
-		<div class="uk-cover-container">
-	    <canvas width="100%" height="100"></canvas>
-	    <img src="{layout_url}/images/top-sea.jpg" alt="" uk-cover>
-		</div>
+
+<div class="uk-cover-container">
+    <canvas width="100%" height="100"></canvas>
+    <img src="{layout_url}/images/top-sea.jpg" alt="" uk-cover uk-parallax="bgy: -200">
+</div>
 
 	    <div class="uk-overlay uk-position-top gl-overlay">
 <?php } ?>
 
-				<div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; animation: uk-animation-slide-top;">
+
+				<div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky;   animation: uk-animation-slide-top; ">
 					<nav class="uk-navbar-container gl-navbar-for-ie gl-toppage" uk-navbar>						
 						<div class="uk-navbar-left">
 							<h1 class="uk-navbar-item uk-margin-left gl-sitename">
@@ -130,7 +132,12 @@ if( COM_onFrontpage() ){  ?>
 
 						<li>
                 <a href="#" class="" aria-expanded="false">管理メニュー</a>
+<?php if( COM_onFrontpage() ){  ?>
+								<div class="uk-navbar-dropdown" uk-drop="boundary: !nav; boundary-align: true;">
+<?php } else {  ?>
                 <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-left">
+<?php }  ?>
+
                     <ul class="uk-nav uk-navbar-dropdown-nav">
 											<li><a href="{site_url}/admin/index.php">管理メニューTOP</a></li>
 											<li><a href="{site_url}/admin/plugins/databox/data.php">DataBox</a></li>
