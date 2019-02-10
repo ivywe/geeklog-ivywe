@@ -2988,10 +2988,6 @@ body.center-right #config_content {
   }
 }
 
-#loginform-loginname,
-#loginform-passwd {
-  width: 75%;
-}
 
 /* Help Icon */
 h1 img,

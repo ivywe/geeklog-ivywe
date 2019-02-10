@@ -108,25 +108,26 @@ div.uk-sticky.uk-sticky-fixed.uk-sticky-below .uk-navbar-nav>li.uk-active>a:hove
   width: 100%;
 }
 
-.gl-site_slogan {
-	font-size:40px; 
+.gl-site_slogan ,
+.gl-site_slogan2 ,
+.gl-site_slogan3 {
+	font-size:60px; 
 	color:white;
+	font-family: "游明朝体", "YuMincho", "游明朝", "Yu Mincho", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN W3", HiraMinProN-W3, "ヒラギノ明朝 ProN", "Hiragino Mincho ProN", "ヒラギノ明朝 Pro", "Hiragino Mincho Pro",  "HGS明朝E", "ＭＳ Ｐ明朝", "MS PMincho", Georgia, serif;
 }
 .gl-site_slogan2 {
-	font-size:30px; 
-	color:white;
+	font-size:26px; 
 }
 .gl-site_slogan3 {
-	font-size:20px; 
-	color:white;
+	font-size:22px; 
 }
 .gl-site_slogan_en {
-	font-family: 'Dancing Script', cursive;
+/*	font-family: 'Dancing Script', cursive; */
 }
 
 @media (max-width:959px) {
 	.gl-site_slogan {
-		font-size: 24px;
+		font-size: 34px;
 	}
 	.gl-site_slogan2 {
 		font-size:18px; 
@@ -137,11 +138,11 @@ div.uk-sticky.uk-sticky-fixed.uk-sticky-below .uk-navbar-nav>li.uk-active>a:hove
 }
 @media (max-width:767px) {
 	.gl-site_slogan {
-		font-size: 28px;
+		font-size: 24px;
 		margin: 5px;
 	}
 	.gl-site_slogan2 {
-		font-size:18px; 
+		font-size:14px; 
 		margin: 5px 0 0 0;
 	}
 	.gl-site_slogan3 {
