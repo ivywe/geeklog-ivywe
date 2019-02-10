@@ -1,3 +1,6 @@
+<section>
+<div class="uk-container">
+
 {noscript}
 <div id="geeklog_config_editor" style="display:none;">
     <form method="post" action="{site_admin_url}/configuration.php" name="group">
@@ -62,3 +65,6 @@
         </div>
     </div>
 </div>
+
+</div>
+</section>

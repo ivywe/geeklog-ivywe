@@ -82,7 +82,7 @@ if( COM_onFrontpage() ){  ?>
 	    <div class="uk-overlay uk-position-top gl-overlay">
 <?php } ?>
 
-				<div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+				<div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; animation: uk-animation-slide-top;">
 					<nav class="uk-navbar-container gl-navbar-for-ie gl-toppage" uk-navbar>						
 						<div class="uk-navbar-left">
 							<h1 class="uk-navbar-item uk-margin-left gl-sitename">
