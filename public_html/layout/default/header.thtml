@@ -31,36 +31,36 @@ $url_current = COM_getCurrentURL();
 if( COM_onFrontpage() ){  ?>
 
 		<div class="uk-inline gl-frontpage uk-width-1-1">
-			<div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow="animation:fade; autoplay: true; max-height:500">
+			<div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow="animation:fade; autoplay: true; max-height:500; pause-on-hover: false; autoplay-interval: 7000;">
 			    <ul class="uk-slideshow-items">
 			        <li><img src="{layout_url}/images/top-sea.jpg" alt="" uk-cover>
-								<div class="uk-position-bottom-center uk-overlay uk-light uk-text-center">
-	                <h2 class="gl-site_slogan">多言語サイト対応</h2>
-	                <p class="uk-text-large uk-margin-top">hreflangタグを自動生成。言語ページを自動リンク</p>
+								<div class="uk-position-bottom uk-overlay uk-light uk-text-center">
+	                <h2 class="gl-site_slogan uk-text-nowrap">多言語サイト対応</h2>
+	                <p class="uk-text-large uk-margin-top uk-text-nowrap">hreflangタグを自動生成。言語ページを自動リンク</p>
             		</div>
 							</li>
 			        <li><img src="{layout_url}/images/top-lake.jpg" alt="" uk-cover>
-								<div class="uk-position-bottom-center uk-overlay uk-light uk-text-center">
-	                <h2 class="gl-site_slogan">2段階認証</h2>
-	                <p class="uk-text-large uk-margin-top">2段階認証でログインがセキュアに。</p>
+								<div class="uk-position-bottom uk-overlay uk-light uk-text-center">
+	                <h2 class="gl-site_slogan uk-text-nowrap">2段階認証</h2>
+	                <p class="uk-text-large uk-margin-top uk-text-nowrap">2段階認証でログインがセキュアに。</p>
             		</div>
 							</li>
 			        <li><img src="{layout_url}/images/top-rainbow.jpg" alt="" uk-cover>
-								<div class="uk-position-bottom-center uk-overlay uk-light uk-text-center">
-	                <h2 class="gl-site_slogan">UIkit v3</h2>
-	                <p class="uk-text-large uk-margin-top">v3完全対応テーマDenim_threeと Default(ivywe版)</p>
+								<div class="uk-position-bottom uk-overlay uk-light uk-text-center">
+	                <h2 class="gl-site_slogan uk-text-nowrap">UIkit v3</h2>
+	                <p class="uk-text-large uk-margin-top uk-text-nowrap">v3完全対応テーマDenim_threeと Default(ivywe版)</p>
             		</div>
 							</li>
 			        <li><img src="{layout_url}/images/top-night.jpg" alt="" uk-cover>
-								<div class="uk-position-bottom-center uk-overlay uk-light uk-text-center">
-	                <h2 class="gl-site_slogan">CSSとJSのミニファイや圧縮</h2>
-	                <p class="uk-text-large uk-margin-top">CSS と JS のミニファイや圧縮の処理機能が追加</p>
+								<div class="uk-position-bottom uk-overlay uk-light uk-text-center">
+	                <h2 class="gl-site_slogan uk-text-nowrap">CSSとJSのミニファイや圧縮</h2>
+	                <p class="uk-text-large uk-margin-top uk-text-nowrap">CSS と JS のミニファイや圧縮の処理機能が追加</p>
             		</div>
 							</li>
 			        <li><img src="{layout_url}/images/top-lakenight.jpg" alt="" uk-cover>
-								<div class="uk-position-bottom-center uk-overlay uk-light uk-text-center">
-	                <br><h2 class="gl-site_slogan">ReCaptcha Pluginが標準機能に</h2>
-	                <p class="uk-text-large uk-margin-top">ReCaptcha Plugin が初期インストールで選べるように</p>
+								<div class="uk-position-bottom uk-overlay uk-light uk-text-center">
+	                <br><h2 class="gl-site_slogan uk-text-nowrap">ReCaptcha Pluginが標準機能に</h2>
+	                <p class="uk-text-large uk-margin-top uk-text-nowrap">ReCaptcha Plugin が初期インストールで選べるように</p>
             		</div>
 							</li>
 			    </ul>
@@ -99,6 +99,7 @@ if( COM_onFrontpage() ){  ?>
 						</div>
 					</nav>
 				</div>
+
 
 <?php if( COM_onFrontpage() ){  ?>
 			</div>

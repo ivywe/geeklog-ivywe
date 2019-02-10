@@ -108,32 +108,45 @@ div.uk-sticky.uk-sticky-fixed.uk-sticky-below .uk-navbar-nav>li.uk-active>a:hove
   width: 100%;
 }
 
-
 .gl-site_slogan {
 	font-size:40px; 
 	color:white;
 }
-
+.gl-site_slogan2 {
+	font-size:30px; 
+	color:white;
+}
+.gl-site_slogan3 {
+	font-size:20px; 
+	color:white;
+}
 .gl-site_slogan_en {
 	font-family: 'Dancing Script', cursive;
-	font-size:70px; 
-	color:white;
 }
 
 @media (max-width:959px) {
 	.gl-site_slogan {
-		font-size: 30px;
+		font-size: 24px;
 	}
-.gl-site_slogan_en {
-		font-size:50px; 
+	.gl-site_slogan2 {
+		font-size:18px; 
+	}
+	.gl-site_slogan3 {
+		font-size:14px; 
 	}
 }
 @media (max-width:767px) {
 	.gl-site_slogan {
-		font-size: 25px;
+		font-size: 28px;
+		margin: 5px;
 	}
-.gl-site_slogan_en {
-		font-size:40px; 
+	.gl-site_slogan2 {
+		font-size:18px; 
+		margin: 5px 0 0 0;
+	}
+	.gl-site_slogan3 {
+		font-size:13px; 
+		margin: 5px;
 	}
 }
 
