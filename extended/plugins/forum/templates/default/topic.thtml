@@ -124,7 +124,7 @@
 <!-- END anon_ip_address -->
 
 <!-- BEGIN mod_functions -->
-<form class="uk-form" action="{site_url}/forum/moderation.php" method="post">
+<form action="{site_url}/forum/moderation.php" method="post">
 	{mod_functions}
 </form>
 <!-- END mod_functions -->

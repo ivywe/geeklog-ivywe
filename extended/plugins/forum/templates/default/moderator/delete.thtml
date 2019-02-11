@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<form class="uk-form" action="{site_url}/forum/moderation.php" method="post">
+<form action="{site_url}/forum/moderation.php" method="post">
 	<input type="hidden" name="modconfirmdelete" value="1"{xhtml}>
 	<input type="hidden" name="msgid" value="{fortopicid}"{xhtml}>
 	<input type="hidden" name="forum" value="{forum}"{xhtml}>

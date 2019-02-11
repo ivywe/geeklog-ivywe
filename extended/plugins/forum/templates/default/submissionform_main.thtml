@@ -57,7 +57,7 @@
 <div class="uk-form-row">
 	<label class="uk-form-label" for="form-forum-mood">{LANG_MOOD}</label>
 	<div class="uk-form-controls">
-		<select id="form-forum-mood" name="mood" class="uk-form-width-medium">
+		<select class="uk-select uk-width-auto" id="form-forum-mood" name="mood">
 			{moodoptions}
 		</select>
 	</div>	
@@ -83,7 +83,7 @@
 		</div>
 		<div class="uk-width-1-1">
 			<label class="uk-form-label" for="form-forum-font-color">{LANG_fontcolor}
-			<select id="form-forum-font-color" name="addbbcode18" onchange="bbfontstyle('[color=' + this.form.addbbcode18.options[this.form.addbbcode18.selectedIndex].value + ']', '[/color]')" onmouseover="helpline('s')">
+			<select class="uk-select uk-width-auto" id="form-forum-font-color" name="addbbcode18" onchange="bbfontstyle('[color=' + this.form.addbbcode18.options[this.form.addbbcode18.selectedIndex].value + ']', '[/color]')" onmouseover="helpline('s')">
 				<option style="color:black;" value="#">{LANG_default}</option>
 				<option style="color:darkred;" value="darkred">{LANG_dkred}</option>
 				<option style="color:red;" value="red">{LANG_red}</option>
@@ -102,7 +102,7 @@
 			</select>
 			</label>
 			<label class="uk-form-label" for="form-forum-font-size">{LANG_fontsize}
-			<select id="form-forum-font-size" name="addbbcode20" onchange="bbfontstyle('[size=' + this.form.addbbcode20.options[this.form.addbbcode20.selectedIndex].value + ']', '[/size]')" onmouseover="helpline('f')">
+			<select class="uk-select uk-width-auto" id="form-forum-font-size" name="addbbcode20" onchange="bbfontstyle('[size=' + this.form.addbbcode20.options[this.form.addbbcode20.selectedIndex].value + ']', '[/size]')" onmouseover="helpline('f')">
 				<option value="7">{LANG_tiny}</option>
 				<option value="9">{LANG_small}</option>
 				<option value="12" selected="selected">{LANG_normal}</option>

@@ -27,9 +27,9 @@
 
 <div uk-grid>
   	<div class="uk-width-7-10">
-		<form class="uk-form" action="{phpself}" method="post">
+		<form action="{phpself}" method="post">
 			<div class="uk-form-controls">
-				<select name="filter" onchange="this.form.submit();">{filter_options}</select>
+				<select class="uk-select uk-width-auto" name="filter" onchange="this.form.submit();">{filter_options}</select>
 			</div>
 		</form>
 	</div>
@@ -39,7 +39,7 @@
 </div>
 
 <div class="uk-overflow-container uk-margin">
-	<form class="uk-form" action="{phpself}" method="post" name="report_table">
+	<form action="{phpself}" method="post" name="report_table">
 		<div class="uk-form-controls">
 			<input type="hidden" name="op" value=""{xhtml}>
 			<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-text-nowrap">

@@ -24,14 +24,14 @@
     //  End -->
 </script>
 
-<form class="uk-form" name="report_table" action="{action_url}" method="post">
+<form name="report_table" action="{action_url}" method="post">
 	<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
 
 	<div class="uk-panel uk-panel-box uk-width-medium-1-1 uk-margin">
 		<div class="uk-form-row">
 			<label class="uk-form-label" for="selectforum">
 				{LANG_migratearticles}
-				<select name="selforum" id="selectforum">
+				<select class="uk-select uk-width-auto" name="selforum" id="selectforum">
 					<option value="0">{LANG_selectforum}</option>
 					{select_filter_options}
 				</select>     

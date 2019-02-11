@@ -31,7 +31,7 @@ h_help = "{LANG_hhelp}";
 //  End -->
 </script>
 
-<form id="forumform" class="uk-form uk-form-horizontal" action="{phpself}" method="post" name="forumpost">
+<form id="forumform" action="{phpself}" method="post" name="forumpost">
 	<input type="hidden" name="forum" value="{forum_id}"{xhtml}>
 	<input type="hidden" name="id" value="{hidden_id}"{xhtml}>
 	<input type="hidden" name="modedit" value="{hidden_modedit}"{xhtml}>

@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<form class="uk-form" action="{phpself}" method="post">
+<form action="{phpself}" method="post">
 	<div class="uk-alert uk-alert-warning">
 		<input type="hidden" name="op" value="banip"{xhtml}>
 		<input type="hidden" name="sure" value="yes"{xhtml}>
