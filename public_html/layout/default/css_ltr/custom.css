@@ -2,14 +2,91 @@
 
 /* ゴシック */
 body,h1,h2,h3,h4,h5,p,ul,li,p,div,table {
-font-family: helvetica, arial, 'hiragino kaku gothic pro', meiryo, 'ms pgothic', sans-serif;
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji",helvetica, arial, 'hiragino kaku gothic pro', meiryo, 'ms pgothic', sans-serif;
 }
 
 /* 明朝
 body,h1,h2,h3,h4,h5,p,ul,li,p,div,table {
-	font-family: "游明朝体", "YuMincho", "游明朝", "Yu Mincho", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN W3", HiraMinProN-W3, "ヒラギノ明朝 ProN", "Hiragino Mincho ProN", "ヒラギノ明朝 Pro", "Hiragino Mincho Pro",  "HGS明朝E", "ＭＳ Ｐ明朝", "MS PMincho", Georgia, serif;
+	font-family: "游明朝体", "YuMincho", "游明朝", "Yu Mincho", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN W3", HiraMinProN-W3, "ヒラギノ明朝 ProN", "Hiragino Mincho ProN", "ヒラギノ明朝 Pro", "Hiragino Mincho Pro",  "HGS明朝E", "ＭＳ Ｐ明朝", "MS PMincho", Georgia, serif,-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 } */
 
+/* Headings
+ ========================================================================== */
+h1,
+.uk-h1,
+h2,
+.uk-h2,
+h3,
+.uk-h3,
+h4,
+.uk-h4,
+h5,
+.uk-h5,
+h6,
+.uk-h6 {
+  margin: 0 0 20px 0;
+}
+/* Add margin if adjacent element */
+* + h1,
+* + .uk-h1,
+* + h2,
+* + .uk-h2,
+* + h3,
+* + .uk-h3,
+* + h4,
+* + .uk-h4,
+* + h5,
+* + .uk-h5,
+* + h6,
+* + .uk-h6 {
+  margin-top: 30px;
+}
+/*
+ * Sizes
+ */
+h1,
+.uk-h1 {
+  font-size: 1.6rem;
+  line-height: 1.2;
+}
+h2,
+.uk-h2 {
+  font-size: 1.3rem;
+  line-height: 1.3;
+}
+h3,
+.uk-h3 {
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
+h4,
+.uk-h4 {
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+h5,
+.uk-h5 {
+  font-size: 16px;
+  line-height: 1.4;
+}
+h6,
+.uk-h6 {
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+/* Tablet landscape and bigger */
+@media (min-width: 960px) {
+  h1,
+  .uk-h1 {
+    font-size: 1.4rem;
+  }
+  h2,
+  .uk-h2 {
+    font-size: 1.3rem;
+  }
+}
+
+/* logo */
 
 h1.gl-sitename {
 		padding:0;
