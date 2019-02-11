@@ -72,7 +72,7 @@ $_THM_DEFAULT['enable_all_files'] = false;
 */
 if (version_compare(VERSION, '2.1.2') >= 0) {
 	$_THM_DEFAULT['allowed_themes'] = array(
-		'denim', 'denim_curve', 'modern_curve',
+		'default', 'denim_three',
 	);
 } else {
 	$_THM_DEFAULT['allowed_themes'] = array(
@@ -86,8 +86,8 @@ if (version_compare(VERSION, '2.1.2') >= 0) {
 */
 $_THM_DEFAULT['allowed_files'] = array(
 	// CSS
-	'style.css', 'custom.css', 'custom.sample.css', 'style_forum.css',
-	
+	'css_ltr/custom.css', 'css_ltr/style.css', 'css_ltr/style.min.css', 'css_ltr/custom.sample.css', 'css_ltr/style_forum.css',	
+
 	// Site header and footer
 	'header.thtml', 'footer.thtml',
 	
@@ -96,9 +96,14 @@ $_THM_DEFAULT['allowed_files'] = array(
 	'rightblocks.thtml', 'blockheader-right.thtml', 'blockfooter-right.thtml',
 	
 	// Story
-	'storytext.thtml', 'featuredstorytext.thtml', 'archivestorytext.thtml',
+	'articletext.thtml', 'articlebodytext.thtml', 
+  'featuredarticlebodytext.thtml', 'featuredarticlebodytext.thtml',
+  'archivestorytext.thtml', 'archivearticlebodytext.thtml',
 	'article/article.thtml', 'article/printable.thtml',
 	
+	// Topic
+	'topic.thtml', 'topicnavigation.thtml', 'topicrelated.thtml',
+
 	// Menu
 	'menuitem.thtml', 'menuitem_last.thtml', 'menuitem_none.thtml',
 	
