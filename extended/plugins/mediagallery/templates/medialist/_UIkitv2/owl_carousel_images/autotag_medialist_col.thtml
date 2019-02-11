@@ -1,7 +1,0 @@
-{# begin {templatelocation} #}
-
-  <div class="item">
-    <img data-src="{filename_tn}" class="lazyOwl" alt="{mediatitle}" title="{mediatitle}" style="margin:3px" alt="{media_title}">
-  </div>
-
-{# end {templatelocation} #}

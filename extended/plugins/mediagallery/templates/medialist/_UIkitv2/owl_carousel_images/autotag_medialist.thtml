@@ -1,8 +1,0 @@
-{# begin {templatelocation} #}
-
-<div id="owl-images" class="owl-carousel">
-{medialist_col}
-</div>
-{edit}
-
-{# end {templatelocation} #}

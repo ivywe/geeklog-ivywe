@@ -10,7 +10,7 @@
               <div class="uk-card-body">
                 <h3 class="uk-card-title<?php echo $class_media_title; ?>">{media_title}</h3>
                 {!if media_desc}<div class="<?php echo $class_media_desc; ?>">{media_desc}</div>{!endif}
-                {!if media_keywords}<p class="uk-text-center@m"><a href="{media_keywords}" class="uk-button uk-button-primary uk-button-small">{!if text}{text}{!else}プランを見る(この文言の引数はtextで){!endif}</a></p>{!endif}
+                {!if media_keywords}<p class="uk-text-center"><a href="{media_keywords}" class="uk-button uk-button-primary uk-button-small">{!if text}{text}{!else}プランを見る(この文言の引数はtextで){!endif}</a></p>{!endif}
               </div>
             </div>
           </div>

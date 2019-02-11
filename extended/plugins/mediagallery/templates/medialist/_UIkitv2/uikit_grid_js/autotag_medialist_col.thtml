@@ -1,7 +1,0 @@
-{# begin {templatelocation} #}
-
-    <div class="uk-width-small-1-2 uk-width-medium-1-4">
-      <img src="{filename_disp}" alt="{media_title}" alt="{media_title}"{xhtml}>
-    </div>
-
-{# end {templatelocation} #}

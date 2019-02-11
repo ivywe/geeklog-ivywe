@@ -1,7 +1,0 @@
-{# begin {templatelocation} #}
-
-  <div class="item">
-    <img src="{filename_disp}" alt="{mediatitle}" title="{mediatitle}" alt="{media_title}"{xhtml}>
-  </div>
-
-{# end {templatelocation} #}

@@ -25,7 +25,7 @@ $url1 = $media_keywords[1];
                     </div>
                   </li>
                 </ul>
-                {!if media_keywords}<p class="uk-text-center@m"><a href="<?php echo $url1; ?>" class="uk-button uk-button-primary uk-button-small">{!if text2}{text2}{!else}プランを見る(この文言の引数はtext2で){!endif}</a></p>{!endif}
+                {!if media_keywords}<p class="uk-text-center"><a href="<?php echo $url1; ?>" class="uk-button uk-button-primary uk-button-small">{!if text2}{text2}{!else}プランを見る(この文言の引数はtext2で){!endif}</a></p>{!endif}
               </div>
             </div>
           </div>

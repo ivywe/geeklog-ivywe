@@ -95,9 +95,8 @@ div.uk-sticky.uk-sticky-fixed.uk-sticky-below .uk-navbar-nav>li.uk-active>a:hove
 	color: #333;
 }
 
-
-.uk-navbar-container:not(.uk-navbar-transparent) {
-    background: none;
+.uk-navbar-container.gl-toppage:not(.uk-navbar-transparent) {
+    background: none; 
 }
 
 [class*='uk-navbar-dropdown-bottom'] {
