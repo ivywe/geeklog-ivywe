@@ -419,11 +419,6 @@ function plugin_getheadercode_databox()
 // +---------------------------------------------------------------------------+
 //
 {
-	global $_SCRIPTS;
-	
-	$css = '/databox/css/style.css';
-	$_SCRIPTS->setCSSFile('databox_style_css', $css, true);
-
 	return;
 }
 

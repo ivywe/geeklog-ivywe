@@ -23,145 +23,169 @@
 
 <body dir="{direction}" class="{layout_columns}" itemscope="itemscope" itemtype="http://schema.org/WebPage">
 {# begin {templatelocation} #}
+{# コメントは、公開時は、コンフィギュレーションのテーマでコメントを表示しないモードにしてください。 #}
 
 <?php 
-
 $url_current = COM_getCurrentURL(); 
 
 if( COM_onFrontpage() ){  ?>
+{# トップページなら・・・ #}
 
-			<div class="uk-inline gl-frontpage uk-width-1-1">
-				<div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow="animation:fade; autoplay: true; max-height:600; autoplay-interval: 7000; pause-on-hover: false; ">
-			    <ul class="uk-slideshow-items">
-			        <li>
-								<div class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center"><img src="{layout_url}/images/top-sea.jpg" alt="" uk-cover></div>
-								<div class="uk-position-bottom uk-overlay uk-light uk-text-center">
-	                <h2 class="gl-site_slogan2">多言語サイト対応　hreflangタグを自動生成。</h2>
-            		</div>
-							</li>
-			        <li>
-								<div class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center"><img src="{layout_url}/images/top-lake.jpg" alt="" uk-cover></div>
-								<div class="uk-position-bottom uk-overlay uk-light uk-text-center">
-	                <h2 class="gl-site_slogan2">2段階認証　ログインがセキュアに。</h2>
-            		</div>
-							</li>
-			        <li>
-								<div class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center"><img src="{layout_url}/images/top-rainbow.jpg" alt="" uk-cover></div>
-								<div class="uk-position-bottom uk-overlay uk-light uk-text-center">
-	                <h2 class="gl-site_slogan2">UIkit v3完全対応テーマDefault(ivywe版)</h2>
-            		</div>
-							</li>
-			        <li>
-								<div class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center"><img src="{layout_url}/images/top-night.jpg" alt="" uk-cover></div>
-								<div class="uk-position-bottom uk-overlay uk-light uk-text-center">
-	                <h2 class="gl-site_slogan2">CSSとJS のミニファイ機能</h2>
-            		</div>
-							</li>
-			        <li>
-								<div class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center"><img src="{layout_url}/images/top-lakenight.jpg" alt="" uk-cover></div>
-								<div class="uk-position-bottom uk-overlay uk-light uk-text-center">
-	                <h2 class="gl-site_slogan2">ReCaptcha Pluginが標準機能に</h2>
-            		</div>
-							</li>
-			    </ul>
-			    <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
-			    <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
-			</div>
+<div class="uk-inline gl-frontpage uk-width-1-1">
 
-	    <div class="uk-overlay uk-position-top gl-overlay">
+{# トップページのナビゲーション背景 #}
+{# スライダーや画像をここに設置 MediaGalleryプラグインの自動タグmedialistを活用してスライダーを設置してください。 #}
+{# 詳しくは https://getuikit.com/docs/slideshow #}
+{# slideshowのアニメーション: Ken Burns | 高さ: テーマ変数device_mobileによってモバイル表示時は縦方向を大きく表示 | 自動
+{# bxsliderを活用する場合は /vendor/jwuery/のバージョン1.9.1をjquery.min.jsとして活用してください。 #}
+{# CSS JSの追加は、functions.phpに追加してください。コンフィギュレーションの設定で自動的にミニファイできます。デバッグ時はモードをOFFにします。 #}
+{# begin スライダー #}
+  <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow="animation: fade; autoplay: true; {!!if {device_mobile}=="true" !!}min-height: 410; {!else}max-height: 600; {!endif}autoplay-interval: 7000; pause-on-hover: false; ">
+    <ul class="uk-slideshow-items">
+      <li>
+        <div class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center">
+					<img src="{layout_url}/images/top-sea.jpg" alt="" uk-cover>
+				</div>
+        <div class="uk-position-bottom uk-overlay uk-light uk-text-center">
+          <h2 class="gl-site_slogan2 uk-animation-slide-left">多言語サイト対応　hreflangタグを自動生成。</h2>
+        </div>
+      </li>
+      <li>
+        <div class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center">
+					<img src="{layout_url}/images/top-lake.jpg" alt="" uk-cover>
+				</div>
+        <div class="uk-position-bottom uk-overlay uk-light uk-text-center">
+          <h2 class="gl-site_slogan2 uk-animation-slide-left">2段階認証　ログインがセキュアに。</h2>
+        </div>
+      </li>
+      <li>
+        <div class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center">
+					<img src="{layout_url}/images/top-rainbow.jpg" alt="" uk-cover>
+				</div>
+        <div class="uk-position-bottom uk-overlay uk-light uk-text-center">
+          <h2 class="gl-site_slogan2 uk-animation-slide-left">UIkit v3完全対応テーマDefault(ivywe版)</h2>
+        </div>
+      </li>
+      <li>
+        <div class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center">
+				<img src="{layout_url}/images/top-night.jpg" alt="" uk-cover>
+				</div>
+        <div class="uk-position-bottom uk-overlay uk-light uk-text-center">
+          <h2 class="gl-site_slogan2 uk-animation-slide-left">CSSとJS のミニファイ機能</h2>
+        </div>
+      </li>
+      <li>
+        <div class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center"><img src="{layout_url}/images/top-lakenight.jpg" alt="" uk-cover></div>
+        <div class="uk-position-bottom uk-overlay uk-light uk-text-center">
+          <h2 class="gl-site_slogan2 uk-animation-slide-left">ReCaptcha Pluginが標準機能に</h2>
+        </div>
+      </li>
+  	</ul>
+  	<a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+  	<a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+	</div>
+{# end スライダー #}
 
 <?php } else { ?>
+{# サブページなら・・・ #}
 
-				<div class="uk-inline gl-frontpage uk-width-1-1">
+	<div class="uk-inline  gl-subpage uk-width-1-1">
 
-					<div class="uk-cover-container">
-				    <canvas width="100%" height="100"></canvas>
-				    <img src="{layout_url}/images/top-sea.jpg" alt="" uk-cover>
-					</div>
+{# サブページのナビゲーション背景 #}
+		<div class="uk-cover-container gl-subpageheader">
+			<canvas width="100%" height="100px"></canvas>
+			<img src="{layout_url}/images/top-rainbow.jpg" alt="" uk-cover>
+		</div>
 
-	    		<div class="uk-overlay uk-position-top gl-overlay">
 <?php } ?>
-					<div uk-sticky="animation: uk-animation-slide-top; ">
-						<nav class="uk-navbar-container gl-navbar-for-ie gl-toppage" uk-navbar>						
-							<div class="uk-navbar-left">
-								<h1 class="uk-navbar-item uk-margin-left gl-sitename">
-									<a href="{site_url}">{site_name}</a>
-								</h1>				
-							</div>	
-							<div class="uk-navbar-right">
-								<ul class="uk-navbar-nav uk-visible@m">
-									{menu_elements}
-								</ul>
-								<a class="uk-navbar-toggle uk-hidden@m" uk-navbar-toggle-icon href="#nav_offcanvas" uk-toggle></a>
-							</div>
-						</nav>
-					</div>
+
+{# begin ヘッダーナビゲーション(全ページ共通)・・・スライダーや画像の上に乗せるメニュー #}
+		<div class="uk-overlay uk-position-top gl-overlay">
+      <div uk-sticky="animation: uk-animation-slide-top; ">
+        <nav class="uk-navbar-container gl-navbar-for-ie gl-navbar-container" uk-navbar>            
+          <div class="uk-navbar-left">
+            <h1 class="uk-navbar-item uk-margin-left gl-sitename">
+              <a href="{site_url}">{site_name}</a>
+            </h1>        
+          </div>  
+          <div class="uk-navbar-right">
+            <ul class="uk-navbar-nav uk-visible@m">
+              {menu_elements}
+            </ul>
+            <a class="uk-navbar-toggle uk-hidden@m" uk-navbar-toggle-icon href="#nav_offcanvas" uk-toggle></a>
+          </div>
+        </nav>
+      </div>
+  	</div>
+{# end ヘッダーナビゲーション(全ページ共通)・・・スライダーや画像の上に乗せるメニュー #}
 
 <?php if( COM_onFrontpage() ){  ?>
-				</div>
-				<div class="uk-position-center uk-overlay">
-					<h2 class="uk-h2 gl-site_slogan_en gl-site_slogan">{site_slogan}</h2>
-				</div>
-			</div>
-<?php } else { ?>
-				</div>
-			</div>
-<?php }   ?>
+{# トップページスライダーの上に固定で表示されるスローガン #}
+    <div class="uk-position-center uk-overlay">
+      <h2 class="uk-h2 gl-site_slogan_en gl-site_slogan">{site_slogan}</h2>
+    </div>
+<?php } ?>
+  </div>
 
-			<div id="nav_offcanvas" uk-offcanvas="overlay: true">
-				<div class="uk-offcanvas-bar uk-flex uk-flex-column">
-					<a class="uk-offcanvas-close" uk-close></a>
-					<div class="uk-text-left">
-						<a class="uk-navbar-item uk-logo uk-margin-left uk-margin-top" href="{site_url}">
-							<img src="{layout_url}/images/logo-white.png" alt="{site_name}">
-						</a>
-					</div>
-					<ul class="uk-nav  uk-nav-center">
-						<li class="uk-margin-top"><a href="/">HOME</a></li>
-						{menu_elements}
-					</ul>
-				</div>
-			</div>
+{# モバイル用メニュー #}
+  <div id="nav_offcanvas" uk-offcanvas="overlay: true">
+    <div class="uk-offcanvas-bar uk-flex uk-flex-column">
+      <a class="uk-offcanvas-close" uk-close></a>
+      <div class="uk-text-left">
+        <a class="uk-navbar-item uk-logo uk-margin-left uk-margin-top" href="{site_url}">
+          <img src="{layout_url}/images/logo-white.png" alt="{site_name}">
+        </a>
+      </div>
+      <ul class="uk-nav  uk-nav-center">
+        <li class="uk-margin-top"><a href="{site_slogan}">HOME</a></li>
+        {menu_elements}
+      </ul>
+    </div>
+  </div>
 
-<?php	if( SEC_inGroup('Root')){ ?>
-			<nav class="uk-navbar-container uk-navbar" uk-navbar>
-				<div class="uk-navbar-left">
-					<ul class="uk-navbar-nav">
-						<li id="cmitem-home"><a href="{site_url}/">ホーム</a></li>
-						<li>
-	            <a href="#" class="" aria-expanded="false">管理メニュー</a>
-							<div class="uk-navbar-dropdown" uk-drop="boundary: !nav; boundary-align: true;">
-              	<ul class="uk-nav uk-navbar-dropdown-nav">
-									<li><a href="{site_url}/admin/index.php">管理メニューTOP</a></li>
-									<li><a href="{site_url}/admin/plugins/databox/data.php">DataBox</a></li>
-									<li><a href="{site_url}/admin/plugins/staticpages/index.php">静的ページ</a></li>
-									<li><a href="{site_url}/mediagallery/index.php">メディアギャラリー</a></li>
-									<li><a href="{site_url}/admin/plugins/themedit/index.php">テーマエディタ</a></li>
-									<li><a href="{site_url}/admin/plugins/autotags/index.php">自動タグ</a></li>
-									<li><a href="{site_url}/filemanager/index.php?Type=Root">ファイルアップロード</a></li>
-									<li><a href="{site_url}/admin/configuration.php" class="last">コンフィギュレーション</a></li>
-									<li><a href="{site_url}/stats.php">サイト情報</a></li>
-									<li><a href="{site_url}/usersettings.php?mode=edit">マイアカウント</a></li>
-								</ul>
-							</div>
-	          </li>
+{# 管理者用ヘッダーメニュー 静的ページに以下コンテンツを記述して、｛！！autotag staticpage_content:*** ！！｝で呼び出すと便利です。  #}
+<?php  if( SEC_inGroup('Root')){ ?>
+  <nav class="uk-navbar-container uk-navbar" uk-navbar>
+    <div class="uk-navbar-left">
+      <ul class="uk-navbar-nav">
+        <li id="cmitem-home"><a href="{site_url}/">ホーム</a></li>
+        <li>
+          <a href="#" class="" aria-expanded="false">管理メニュー</a>
+          <div class="uk-navbar-dropdown" uk-drop="boundary: !nav; boundary-align: true;">
+            <ul class="uk-nav uk-navbar-dropdown-nav">
+              <li><a href="{site_url}/admin/index.php">管理メニューTOP</a></li>
+              <li><a href="{site_url}/admin/plugins/databox/data.php">DataBox</a></li>
+              <li><a href="{site_url}/admin/plugins/staticpages/index.php">静的ページ</a></li>
+              <li><a href="{site_url}/mediagallery/index.php">メディアギャラリー</a></li>
+              <li><a href="{site_url}/admin/plugins/themedit/index.php">テーマエディタ</a></li>
+              <li><a href="{site_url}/admin/plugins/autotags/index.php">自動タグ</a></li>
+              <li><a href="{site_url}/filemanager/index.php?Type=Root">ファイルアップロード</a></li>
+              <li><a href="{site_url}/admin/configuration.php" class="last">コンフィギュレーション</a></li>
+              <li><a href="{site_url}/stats.php">サイト情報</a></li>
+              <li><a href="{site_url}/usersettings.php?mode=edit">マイアカウント</a></li>
+            </ul>
+          </div>
+        </li>
 
-						<li id="cmitem-clearctl"><a href="{site_url}/admin/clearctl.php">キャッシュクリア（変更反映）</a></li>
-						<li id="cmitem-login" class="uk-active uk-text-nowrap last"><a href="{site_url}/users.php?mode=logout" class="last">ログアウト</a></li>
+        <li id="cmitem-clearctl"><a href="{site_url}/admin/clearctl.php">キャッシュクリア（変更反映）</a></li>
+        <li id="cmitem-login" class="uk-active uk-text-nowrap last"><a href="{site_url}/users.php?mode=logout" class="last">ログアウト</a></li>
 
-					</ul>
-				</div>
-			</nav>
+      </ul>
+    </div>
+  </nav>
 <?php } ?>
 
 {!!if {layout_columns} !== "center" !!}
-	    {# #wrapper { #}
-	    <div id="wrapper">
-	      {# Center Block Container #}
-	      <div id="centerblocks">
-	        <main id="main-content" role="main" itemscope="itemscope" itemprop="mainContentOfPage" itemtype="http://schema.org/WebPageElement">
+  {# #wrapper { #}
+  <div id="wrapper">
+    {# Center Block Container #}
+    <div id="centerblocks">
+      <main id="main-content" role="main" itemscope="itemscope" itemprop="mainContentOfPage" itemtype="http://schema.org/WebPageElement">
 {!endif}
 
-		      {breadcrumb_trail}
+{# ウェルカムメッセージ Japanizeプラグイン活用時は{welcome_msg_jp}を使えます。 #}
+          <p class="welcome_msg">{welcome_msg}&nbsp;{datetime}</p>
+{# パンくずリスト #}
+        {breadcrumb_trail}
 
 {# end {templatelocation} #}

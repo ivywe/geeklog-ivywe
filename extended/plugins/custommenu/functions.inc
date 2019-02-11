@@ -322,9 +322,7 @@ function plugin_getconfigtooltip_custommenu($id)
 
 function plugin_getheadercode_custommenu()
 {
-    global $_SCRIPTS, $_CMED_CONF;
-
-    $_SCRIPTS->setCSSFile('custommenu', $_CMED_CONF['css_file'], false);
+	return;
 }
 
 function CMED_replaceLabel($label)
