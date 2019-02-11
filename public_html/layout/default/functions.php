@@ -46,7 +46,7 @@ function theme_config_default()
 {
     $options = array(
         'uikit_theme' => 'default',
-        'use_minified_css'  => 1,   // 1:use  or 0:no_use minified css
+        'use_minified_css'  => 0,   // 1:use  or 0:no_use minified css
         'block_left_search' => 1,   // 1:show or 0:hide left block searchbox
         'welcome_msg'       => 1,   // 1:show or 0:hide welcome message
         'trademark_msg'     => 0,   // 1:show or 0:hide trademark message on footer
