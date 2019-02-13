@@ -44,32 +44,32 @@ if( COM_onFrontpage() ){  ?>
     <ul class="uk-slideshow-items">
       <li>
         <div class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center">
-					<img src="{layout_url}/images/top-sea.jpg" alt="" uk-cover>
-				</div>
+          <img src="{layout_url}/images/top-sea.jpg" alt="" uk-cover>
+        </div>
         <div class="uk-position-bottom uk-overlay uk-light uk-text-center">
           <h2 class="gl-site_slogan2 uk-animation-slide-left">多言語サイト対応　hreflangタグを自動生成。</h2>
         </div>
       </li>
       <li>
         <div class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center">
-					<img src="{layout_url}/images/top-lake.jpg" alt="" uk-cover>
-				</div>
+          <img src="{layout_url}/images/top-lake.jpg" alt="" uk-cover>
+        </div>
         <div class="uk-position-bottom uk-overlay uk-light uk-text-center">
           <h2 class="gl-site_slogan2 uk-animation-slide-left">2段階認証　ログインがセキュアに。</h2>
         </div>
       </li>
       <li>
         <div class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center">
-					<img src="{layout_url}/images/top-rainbow.jpg" alt="" uk-cover>
-				</div>
+          <img src="{layout_url}/images/top-rainbow.jpg" alt="" uk-cover>
+        </div>
         <div class="uk-position-bottom uk-overlay uk-light uk-text-center">
           <h2 class="gl-site_slogan2 uk-animation-slide-left">UIkit v3完全対応テーマDefault(ivywe版)</h2>
         </div>
       </li>
       <li>
         <div class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center">
-				<img src="{layout_url}/images/top-night.jpg" alt="" uk-cover>
-				</div>
+        <img src="{layout_url}/images/top-night.jpg" alt="" uk-cover>
+        </div>
         <div class="uk-position-bottom uk-overlay uk-light uk-text-center">
           <h2 class="gl-site_slogan2 uk-animation-slide-left">CSSとJS のミニファイ機能</h2>
         </div>
@@ -80,27 +80,27 @@ if( COM_onFrontpage() ){  ?>
           <h2 class="gl-site_slogan2 uk-animation-slide-left">ReCaptcha Pluginが標準機能に</h2>
         </div>
       </li>
-  	</ul>
-  	<a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
-  	<a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
-	</div>
+    </ul>
+    <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+    <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+  </div>
 {# end スライダー #}
 
 <?php } else { ?>
 {# サブページなら・・・ #}
 
-	<div class="uk-inline  gl-subpage uk-width-1-1">
+  <div class="uk-inline  gl-subpage uk-width-1-1">
 
 {# サブページのナビゲーション背景 #}
-		<div class="uk-cover-container gl-subpageheader">
-			<canvas width="100%" height="100px"></canvas>
-			<img src="{layout_url}/images/top-rainbow.jpg" alt="" uk-cover>
-		</div>
+    <div class="uk-cover-container gl-subpageheader">
+      <canvas width="100%" height="100px"></canvas>
+      <img src="{layout_url}/images/top-rainbow.jpg" alt="" uk-cover>
+    </div>
 
 <?php } ?>
 
 {# begin ヘッダーナビゲーション(全ページ共通)・・・スライダーや画像の上に乗せるメニュー #}
-		<div class="uk-overlay uk-position-top gl-overlay">
+    <div class="uk-overlay uk-position-top gl-overlay">
       <div uk-sticky="animation: uk-animation-slide-top; ">
         <nav class="uk-navbar-container gl-navbar-for-ie gl-navbar-container" uk-navbar>            
           <div class="uk-navbar-left">
@@ -116,7 +116,7 @@ if( COM_onFrontpage() ){  ?>
           </div>
         </nav>
       </div>
-  	</div>
+    </div>
 {# end ヘッダーナビゲーション(全ページ共通)・・・スライダーや画像の上に乗せるメニュー #}
 
 <?php if( COM_onFrontpage() ){  ?>
