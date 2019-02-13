@@ -158,6 +158,10 @@ div.uk-sticky.uk-sticky-fixed.uk-sticky-below .uk-navbar-nav>li>a ,
     background: none; 
 }
 
+.gl-subpageheader {
+	height:90px;
+}
+
 [class*='uk-navbar-dropdown-bottom'] {
    margin-top: -10px;
 }
