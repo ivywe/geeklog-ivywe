@@ -3,6 +3,12 @@
 {start_block_loginagain}
 		<div id="modal-users" uk-modal="" class="uk-modal uk-open" style="display: block;">
 			<div class="uk-modal-dialog uk-modal-body gl-loginform">
+
+<ul class="uk-subnav uk-flex-center uk-margin-remove-bottom">
+<li class="gl-selected">ログイン</li>
+<li><a href="{site_url}/users.php?mode=new">新規登録</a></li>
+</ul>
+
 				<button class="uk-modal-close-default" type="button" uk-close></button>
 				<h1 class="uk-h1 uk-modal-title uk-text-center">{lang_login}</h1>
 				<div class="uk-text-center uk-margin"><img src="{layout_url}/images/gmark.png"alt="" class="gl-loginlogo"></div>
@@ -22,19 +28,17 @@
 			      </div>
 			    </div>
 
-			    <div class="submit">
-			      <button type="submit" value="{lang_login}" class="uk-button uk-button-primary uk-width-1-1">{lang_login}</button>
-			    </div>
+      {captcha}
 
-			    <ul class="uk-subnav uk-subnav-line uk-flex-center">
-			      <li>{lang_signup}</li>
-			      <li class="uk-margin-left">{lang_forgetpassword}</li>
-			    </ul>
+        <button type="submit" value="{lang_login}" class="uk-button uk-button-primary g-recaptcha uk-width-1-1"{!if invisible_recaptcha}{invisible_recaptcha}{!endif}>{lang_login}</button>
+
+				<ul class="uk-subnav uk-subnav-line uk-flex-center">
+	        <li><a href="{site_url}/users.php?mode=getpassword" rel="nofollow">{lang_forgetpassword}</a></li>
+				</ul>
+
 				</form>
 {oauth_login}
 {openid_login}
-
-
 
     </div>
 	</div>
