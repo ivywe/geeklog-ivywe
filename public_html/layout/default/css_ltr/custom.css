@@ -212,3 +212,11 @@ div.uk-sticky.uk-sticky-fixed.uk-sticky-below .uk-navbar-nav>li>a ,
 	}
 }
 
+.gl-loginform {
+	width: 320px;
+	max-width:90%;
+}
+.gl-loginlogo {
+	width: 120px;
+	height:auto;
+}

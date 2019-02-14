@@ -1,33 +1,44 @@
 {# begin {templatelocation} #}
 
 {start_block_loginagain}
-  <form action="{site_url}/users.php" method="post" id="userloginform" class="compact">
-    <fieldset>
-      <legend>{lang_login}</legend>
+		<div id="modal-users" uk-modal="" class="uk-modal uk-open" style="display: block;">
+			<div class="uk-modal-dialog uk-modal-body gl-loginform">
+				<button class="uk-modal-close-default" type="button" uk-close></button>
+				<h1 class="uk-h1 uk-modal-title uk-text-center">{lang_login}</h1>
+				<div class="uk-text-center uk-margin"><img src="{layout_url}/images/gmark.png"alt="" class="gl-loginlogo"></div>
 
-      <p class="form_message">{lang_message}</p>
+				<form action="{site_url}/users.php" method="post" id="loginform">
+			    <div class="loginform">
+			      <div class="form_part">
+			        <label for="loginform-loginname" style="display:none">{lang_username}</label>
+			        <input type="text" value="" name="loginname" id="loginform-loginname" class="uk-input uk-width-1-1" placeholder="{lang_username}"{xhtml}>
+			      </div>
 
-      <dl class="form_block">
-        <dt><label for="users-loginform-loginname">{lang_username}</label></dt>
-        <dd><input type="text" name="loginname" id="users-loginform-loginname" class="uk-input size3"{xhtml}></dd>
+			      {services}
 
-        {services}
+			      <div class="form_part">
+			        <label for="loginform-passwd" style="display:none">{lang_password}</label>
+			        <input type="password" name="passwd" id="loginform-passwd" class="uk-input uk-width-1-1" placeholder="{lang_password}"{xhtml}>
+			      </div>
+			    </div>
 
-        <dt><label for="users-loginform-passwd">{lang_password}</label></dt>
-        <dd><input type="password" name="passwd" id="users-loginform-passwd" class="uk-input size3"{xhtml}></dd>
-      </dl>
+			    <div class="submit">
+			      <button type="submit" value="{lang_login}" class="uk-button uk-button-primary uk-width-1-1">{lang_login}</button>
+			    </div>
 
-      {captcha}
+			    <ul class="uk-subnav uk-subnav-line uk-flex-center">
+			      <li>{lang_signup}</li>
+			      <li class="uk-margin-left">{lang_forgetpassword}</li>
+			    </ul>
+				</form>
+{oauth_login}
+{openid_login}
 
-      <div class="submit">
-        <button type="submit" value="{lang_login}" class="uk-button uk-button-primary uk-margin-small-bottom g-recaptcha"{!if invisible_recaptcha}{invisible_recaptcha}{!endif}>{lang_login}</button>
-        <div class="uk-margin-small-bottom">{lang_newreglink}</div>
-        <div class="uk-margin-small-bottom"><a href="{site_url}/users.php?mode=getpassword" rel="nofollow">{lang_forgetpassword}</a></div>
-      </div>
-   </fieldset>
-  </form>
-  {openid_login}
-  {oauth_login}
+
+
+    </div>
+	</div>
+
 {end_block}
 
 {# end {templatelocation} #}
