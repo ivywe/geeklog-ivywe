@@ -1,32 +1,38 @@
 {# begin {templatelocation} #}
 
+		<div id="modal-users" uk-modal="" class="uk-modal uk-open" style="display: block;">
+			<div class="uk-modal-dialog uk-modal-body gl-loginform">
+
+				<button class="uk-modal-close-default" type="button" uk-close></button>
+        <div class="uk-text-center gl-sitename-modal">{site_name}</div>
+				<h1 class="uk-h1 uk-modal-title uk-text-center">{lang_login}</h1>
+
 {!if lang_nonstandardlogin}
-    <p>{lang_nonstandardlogin}</p>
+    <p class="uk-text-danger">{lang_nonstandardlogin}</p>
 {!else}
     {!if lang_incorrectlogin}
         <p class="form_message">{lang_incorrectlogin}</p>
     {!endif}
   <form action="{site_admin_url}/index.php" method="post" id="userloginform" class="compact">
-    <fieldset>
-      <legend>{lang_login}</legend>
 
-      <p class="form_message">{lang_warning}</p>
+      <p class="uk-text-danger">{lang_warning}</p>
 
-      <dl class="form_block">
-        <dt><label for="users-loginform-loginname">{lang_username}</label></dt>
-        <dd><input type="text" name="loginname" id="users-loginform-loginname" class="uk-input size3"{xhtml}></dd>
-        <dt><label for="users-loginform-passwd">{lang_password}</label></dt>
-        <dd><input type="password" name="passwd" id="users-loginform-passwd" class="uk-input size3"{xhtml}></dd>
-      </dl>
+        <label for="users-loginform-loginname" style="display:none">{lang_username}</label>
+        <input type="text" name="loginname" id="users-loginform-loginname" class="uk-input uk-width-1-1"{xhtml}>
+        <label for="users-loginform-passwd" style="display:none">{lang_password}</label>
+        <input type="password" name="passwd" id="users-loginform-passwd" class="uk-input uk-width-1-1"{xhtml}>
 
       {captcha}
 
       <div class="submit">
-        <button type="submit" name="mode" value="{value_login}" class="uk-button uk-button-primary uk-margin-small-bottom g-recaptcha"{!if invisible_recaptcha}{invisible_recaptcha}{!endif}>{lang_login}</button>
+        <button type="submit" name="mode" value="{value_login}" class="uk-button uk-button-primary uk-margin-small-bottom g-recaptcha  uk-width-1-1"{!if invisible_recaptcha}{invisible_recaptcha}{!endif}>{lang_login}</button>
         <input type="hidden" name="warn" value="1"{xhtml}>
       </div>
-   </fieldset>
   </form>
 {!endif}
+
+    </div>
+	</div>
+
 
 {# end {templatelocation} #}

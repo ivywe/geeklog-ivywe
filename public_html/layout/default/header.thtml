@@ -130,49 +130,130 @@ if( COM_onFrontpage() ){  ?>
 {# モバイル用メニュー #}
   <div id="nav_offcanvas" uk-offcanvas="overlay: true">
     <div class="uk-offcanvas-bar uk-flex uk-flex-column">
-      <a class="uk-offcanvas-close" uk-close></a>
-      <div class="uk-text-left">
-        <a class="uk-navbar-item uk-logo uk-margin-left uk-margin-top" href="{site_url}">
-          <img src="{layout_url}/images/logo-white.png" alt="{site_name}">
-        </a>
+      <div class="uk-text-center">
+        <h1 class="uk-navbar-item">
+          <a href="{site_url}" class="gl-sitename-mobile">{site_name}</a>
+        </h1>        
       </div>
-      <ul class="uk-nav  uk-nav-center">
-        <li class="uk-margin-top"><a href="{site_slogan}">HOME</a></li>
+      <a class="uk-offcanvas-close" uk-close></a>
+      <ul class="uk-nav uk-nav-center">
+        <li><a href="{site_slogan}">HOME</a></li>
         {menu_elements}
       </ul>
     </div>
   </div>
 
-{# 管理者用ヘッダーメニュー 静的ページに以下コンテンツを記述して、｛！！autotag staticpage_content:*** ！！｝で呼び出すと便利です。  #}
+{# 管理者用ヘッダーメニュー 静的ページに以下コンテンツを記述して、&#123;&#33;&#33;autotag staticpage_content:*** &#33;&#33;&#125;で呼び出すと便利です。  #}
 <?php  if( SEC_inGroup('Root')){ ?>
-  <nav class="uk-navbar-container uk-navbar" uk-navbar>
-    <div class="uk-navbar-left">
-      <ul class="uk-navbar-nav">
-        <li id="cmitem-home"><a href="{site_url}/">ホーム</a></li>
-        <li>
-          <a href="#" class="" aria-expanded="false">管理メニュー</a>
-          <div class="uk-navbar-dropdown" uk-drop="boundary: !nav; boundary-align: true;">
-            <ul class="uk-nav uk-navbar-dropdown-nav">
-              <li><a href="{site_url}/admin/index.php">管理メニューTOP</a></li>
-              <li><a href="{site_url}/admin/plugins/databox/data.php">DataBox</a></li>
-              <li><a href="{site_url}/admin/plugins/staticpages/index.php">静的ページ</a></li>
-              <li><a href="{site_url}/mediagallery/index.php">メディアギャラリー</a></li>
-              <li><a href="{site_url}/admin/plugins/themedit/index.php">テーマエディタ</a></li>
-              <li><a href="{site_url}/admin/plugins/autotags/index.php">自動タグ</a></li>
-              <li><a href="{site_url}/filemanager/index.php?Type=Root">ファイルアップロード</a></li>
-              <li><a href="{site_url}/admin/configuration.php" class="last">コンフィギュレーション</a></li>
-              <li><a href="{site_url}/stats.php">サイト情報</a></li>
-              <li><a href="{site_url}/usersettings.php?mode=edit">マイアカウント</a></li>
-            </ul>
+<nav class="uk-navbar-container uk-margin uk-navbar" uk-navbar>
+  <div class="uk-navbar-left">
+    <ul class="uk-navbar-nav">
+      <li id="cmitem-home">
+        <a href="/"><span uk-icon="home"></span></a>
+      </li>
+      <li>
+        <a href="#" class="" aria-expanded="false">管理メニュー</a>
+        <div class="uk-navbar-dropdown uk-navbar-dropdown-width-4">
+          <div class="uk-navbar-dropdown-grid" uk-grid>
+            <div class="uk-width-1-4@m">
+              <ul class="uk-nav uk-navbar-dropdown-nav">
+                <li><a href="/admin/index.php"><span uk-icon="home"></span>TOP</a></li>
+                <li><a href="/admin/plugins/databox/data.php"><span uk-icon="file-edit"></span>DataBox</a></li>
+                <li><a href="/admin/plugins/staticpages/index.php"><span uk-icon="icon: file-edit"></span>静的ページ</a></li>
+                <li><a href="/mediagallery/index.php"><span uk-icon="icon: photo"></span><span uk-icon="icon: camera"></span>メディアギャラリー</a></li>
+                <li><a href="/admin/plugins/autotags/index.php"><span uk-icon="icon: tag"></span>自動タグ</a></li>
+                <li><a href="/admin/plugins/custommenu/index.php"><span uk-icon="icon: more"></span>メニュー</a></li>
+                <li><a href="/filemanager/index.php?Type=Root"><span uk-icon="icon: cloud-upload"></span>ファイルアップロード</a>
+                <li><a href="/admin/plugins/themedit/index.php"><span uk-icon="icon: code"></span>テーマエディタ</a></li></li>
+                <li><a href="/admin/configuration.php" ><span uk-icon="icon: cog"></span>Configuration</a></li>
+                <li><a href="/admin/plugins/staticpages/index.php?mode=edit&sp_id=_admin_nav"><span uk-icon="icon: settings"></span>管理者用メニュー編集</a></li>
+              </ul>
+            </div>
+            <div class="uk-width-3-4@m">
+              <p>メディアギャラリー</p>
+              <ul class="uk-nav uk-navbar-dropdown-nav">
+                <li><a href="/mediagallery/index.php"><span uk-icon="icon: photo"></span><span uk-icon="icon: camera"></span>メディアギャラリー</a></li>
+              </ul>
+              <h4>自動タグmedialist一覧</h4>
+              <ul class="uk-nav uk-navbar-dropdown-nav uk-card uk-card-secondary" style="padding-left:10px">
+                <li>&#91;medialist:(albumid) theme:default&#93;</li>
+                <li>&#91;medialist:(albumid) theme:sample&#93;</li>
+                <li>&#91;medialist:(albumid) theme:list&#93;</li>
+                <li>&#91;medialist:(albumid) theme:list_inc&#93;</li>
+                <li class="uk-text-primary">1 Section内に複数mediaを配置</li>
+                <li>&#91;medialist:(albumid) theme:s-1section-card-left-right_keyurl&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-1section-col2_reverce&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-1section-filter_search&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-1section-grid_keyurl&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-1section-grid-card1_keyurl&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-1section-grid-card2-keyurl&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-1section-menu_keyurl1&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-1section-menu_keyurl2&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-1section-plans_keyurl&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-1section-qa&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-1section-slider&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-1section-slider1&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-1section-slider2&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-1section-slideshow-fade&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-1section-slideshow-kenburns-col2_reverce&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-1section-slideshow-kenburns&#93;</li>
+                <li class="uk-text-primary">複数Sectionタイプ</li>
+                <li>&#91;medialist:(albumid) theme:s-sections-bg_keyurl&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-sections-bg-overlay-black_keyurl&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-sections-bg-overlay-white_keyurl&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-sections-bg-panel-black_keyurl&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-sections-bg-panel-white_keyurl&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-sections-left-right_keyurl&#93;</li>
+                <li class="uk-text-primary">部品タイプ</li>
+                <li>&#91;medialist:(albumid) theme:s-sub-accordion&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-sub-filter_search&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-sub-grid_keyurl&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-sub-slideshow&#93;</li>
+              </ul>
+            </div>
           </div>
-        </li>
-
-        <li id="cmitem-clearctl"><a href="{site_url}/admin/clearctl.php">キャッシュクリア（変更反映）</a></li>
-        <li id="cmitem-login" class="uk-active uk-text-nowrap last"><a href="{site_url}/users.php?mode=logout" class="last">ログアウト</a></li>
-
-      </ul>
-    </div>
-  </nav>
+        </div>
+      </li>
+      <li>
+        <a href="#" class="" aria-expanded="false">サイト情報</a>
+        <div class="uk-navbar-dropdown uk-navbar-dropdown-width-2">
+          <div class="uk-navbar-dropdown-grid uk-child-width-1-2" uk-grid>
+            <div>
+              <ul class="uk-nav uk-navbar-dropdown-nav">
+                <li><a href="/sitemap.xml"><span uk-icon="icon: table"></span>Sitemap(dataBox)</a></li>
+                <li><a href="/sitemap_pages.xml"><span uk-icon="icon: table"></span>Sitemap(StaticPages)</a></li>
+                <li><a href="/backend/geeklog.rss"><span uk-icon="icon: rss"></span>geeklog.rss</a></li>
+              </ul>
+            </div>
+            <div>
+              <ul class="uk-nav uk-navbar-dropdown-nav">
+                <li><a href="https://developers.facebook.com/tools/debug/sharing/?q=hananokumo.com"><span uk-icon="icon: facebook"></span>OGP Debugger</a></li>
+                <li><a href="https://validator.w3.org"><span uk-icon="icon: cog"></span>HTML checker</a></li>
+                <li><img src="/favicon.ico" alt="" title=""><caption>Favicon</caption></li></li>
+                <li><img src="/images/library/Image/ogpimage.jpg" alt="" title="" style="height:80px"><caption><a href="/filemanager/index.php?Type=Root"><span uk-icon="icon: cloud-upload"></span>ファイルアップロード</a>ogpimage.png</caption</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li id="cmitem-clearctl">
+        <a href="{site_url}/admin/clearctl.php">キャッシュ削除</a>
+          <div class="uk-navbar-dropdown uk-navbar-dropdown-width-3">
+            <p>高速化のため、サーバーにサイトの表示データが保存されています。<br>
+            編集を反映させるためには、キャッシュを削除してください。</p>
+            <ul class="uk-nav uk-navbar-dropdown-nav">
+              <li><a href="{site_url}/admin/clearctl.php">・キャッシュを削除する</a></li>
+              <li><a href="{layout_url}/css_ltr/custom.css" target="_blank">・css_ltr/custom.cssを表示してリロード</a></li>
+            </ul>
+        </div>
+      </li>
+      <li>
+        <a href="/users.php?mode=logout" uk-icon="icon: sign-out">
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
 <?php } ?>
 
 {!!if {layout_columns} !== "center" !!}

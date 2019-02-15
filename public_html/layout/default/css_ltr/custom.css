@@ -112,12 +112,34 @@ h1.gl-sitename {
 		cursor: pointer;
 }
 
-.gl-subpage .uk-navbar-right {
-  display: block; 
+h1.gl-sitename-mobile {
+		padding:0;
+		margin-top:4px;
+    width: 134px;
+    height: 60px;
+    background: url(../images/logo-white.png) no-repeat;
+    overflow: hidden;
+    text-indent: 220%;
+    white-space: nowrap;
+		cursor: pointer;
+}
+.gl-sitename-modal {
+		padding:0;
+		margin-top:4px;
+    width: 400px;
+    height: 60px;
+    background: url(../images/gmark-modal.png) no-repeat;
+    overflow: hidden;
+    text-indent: 220%;
+    white-space: nowrap;
 }
 
 .gl-frontpage div.uk-sticky.uk-sticky-fixed.uk-sticky-below h1.gl-sitename {
     background: url(../images/logo.png) no-repeat;
+}
+
+.gl-subpage .uk-navbar-right {
+  display: block; 
 }
 
 div.uk-sticky.uk-sticky-fixed.uk-sticky-below {
@@ -232,8 +254,3 @@ div.uk-sticky.uk-sticky-fixed.uk-sticky-below .uk-navbar-nav>li>a ,
 	width: 460px;
 	max-width:90%;
 }
-.gl-loginlogo {
-	width: auto;
-	height:100px;
-}
-

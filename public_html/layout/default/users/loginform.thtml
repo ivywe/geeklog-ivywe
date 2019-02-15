@@ -4,15 +4,21 @@
 		<div id="modal-users" uk-modal="" class="uk-modal uk-open" style="display: block;">
 			<div class="uk-modal-dialog uk-modal-body gl-loginform">
 
+<?php global $_CONF; if ($_CONF['disable_new_user_registration'] != 0) { ?>
+
 <ul class="uk-subnav uk-flex-center uk-margin-remove-bottom">
 <li class="gl-selected">ログイン</li>
 <li><a href="{site_url}/users.php?mode=new">新規登録</a></li>
 </ul>
 
-				<button class="uk-modal-close-default" type="button" uk-close></button>
-				<h1 class="uk-h1 uk-modal-title uk-text-center">{lang_login}</h1>
-				<div class="uk-text-center uk-margin"><img src="{layout_url}/images/gmark.png"alt="" class="gl-loginlogo"></div>
+<?php } ?>
 
+
+
+
+				<button class="uk-modal-close-default" type="button" uk-close></button>
+        <div class="uk-text-center gl-sitename-modal">{site_name}</div>
+				<h1 class="uk-h1 uk-modal-title uk-text-center">{lang_login}</h1>
 				<form action="{site_url}/users.php" method="post" id="loginform">
 			    <div class="loginform">
 			      <div class="form_part">
