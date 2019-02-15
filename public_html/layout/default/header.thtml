@@ -143,7 +143,7 @@ if( COM_onFrontpage() ){  ?>
     </div>
   </div>
 
-{# 管理者用ヘッダーメニュー 静的ページに以下コンテンツを記述して、&#123;&#33;&#33;autotag staticpage_content:*** &#33;&#33;&#125;で呼び出すと便利です。 #}
+{# 管理者用ヘッダーメニュー 静的ページに以下コンテンツをID _admin_navに記述して、&#123;&#33;&#33;autotag staticpage_content:_admin_nav &#33;&#33;&#125;で呼び出すと便利です。 #}
 <?php  if( SEC_inGroup('Root')){ ?>
 <nav class="uk-navbar-container uk-margin uk-navbar" uk-navbar>
   <div class="uk-navbar-left">
