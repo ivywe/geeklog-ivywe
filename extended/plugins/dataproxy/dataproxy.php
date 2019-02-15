@@ -229,7 +229,7 @@ abstract class dpxyDriver
 		$retval = $this->getItems(FALSE, $all_langs);
 		$cats   = $this->getAllCategories($all_langs);
 		
-		if (is_array($cats) AND (count($cats > 0))) {
+		if (is_array($cats) AND (count($cats) > 0)) {
 			foreach ($cats as $cat) {
 				$retval = array_merge($retval, $this->getItems($cat['id'], $all_langs));
 			}
