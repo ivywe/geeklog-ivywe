@@ -2,12 +2,11 @@
 
 <div class="uk-width-1-1" uk-lightbox>
 	<a href="{filename_orig}" uk-toggle>
-		<img src="{filename}" alt="{media_title}" class="uk-container-center uk-overlay-scale uk-border-rounded  {class}" alt="{media_title}"{xhtml}>
+		<img src="{filename}" alt="{media_title}" class="uk-container-center uk-overlay-scale {class}" alt="{media_title}"{xhtml}>
 	</a>
 	<div>
 		<p class="uk-text-bold">{media_title}</p>
 		<p class="uk-margin-remove">{media_desc}</p>
-		<p class="uk-margin-remove">{media_keywords}</p>
 	</div>
 </div>
 

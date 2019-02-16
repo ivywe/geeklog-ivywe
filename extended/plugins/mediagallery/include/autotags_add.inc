@@ -64,6 +64,8 @@ function MG_medialist (
   , $type=''
   , $bxslider=''
   , $animation=''
+  , $section=''
+
 )
 {
 	global $MG_albums;
@@ -212,6 +214,7 @@ function MG_medialist (
 		$T->set_var('type',$type);
 		$T->set_var('bxslider',$bxslider);
 		$T->set_var('animation',$animation);
+		$T->set_var('section',$section);
 
 		if ( SEC_hasRights('mediagallery.admin') ){
 			$icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
@@ -425,6 +428,7 @@ function MG_parm2 ($p2)
 	$parm2_ary[]="type";
 	$parm2_ary[]="bxslider";
 	$parm2_ary[]="animation";
+	$parm2_ary[]="section";
 
 	$parm2_ary[]="order";
 	

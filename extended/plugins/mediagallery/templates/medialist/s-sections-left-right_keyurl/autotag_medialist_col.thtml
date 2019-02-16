@@ -2,7 +2,7 @@
 
 <?php $cl = $this->get_var('uks');if(strlen($cl)){$uks = ' '.str_replace('.', ' ', $cl);}else{$uks = "";}$cl = $this->get_var('ukc');if(strlen($cl)){$ukc = ' '.str_replace('.', ' ', $cl);}else{$ukc = "";}$cl = $this->get_var('class_album_title');if(strlen($cl)){$class_album_title = ' '.str_replace('.', ' ', $cl);}else{$class_album_title = " uk-text-center@m";}$cl = $this->get_var('class_album_desc');if(strlen($cl)){$class_album_desc = ' '.str_replace('.', ' ', $cl);}else{$class_album_desc = " uk-text-center@m";}$cl = $this->get_var('class_media_title');if(strlen($cl)){$class_media_title = ' '.str_replace('.', ' ', $cl);}else{$class_media_title = " uk-text-center@m";}$cl = $this->get_var('class_media_desc');if(strlen($cl)){$class_media_desc = ' '.str_replace('.', ' ', $cl);}else{$class_media_desc = " uk-text-center@m";} $alt = strip_tags($this->get_var('media_title')); ?>
 
-    <section id="album{album_id}-section<?php global $sectionid; $sectionid++; echo $sectionid; ?>" class="uk-section<?php echo $uks; ?>">
+    {!!if {section} == '1' || {section} == '' !!}<section id="album{album_id}-section<?php global $sectionid; $sectionid++; echo $sectionid; ?>" class="uk-section<?php echo $uks; ?>">{!endif}
 
 <?php global $mgorderbg12; $mgorderbg12=$mgorderbg12+1; if($mgorderbg12%2!=0) { ?>
 
@@ -43,6 +43,6 @@
         </div>
       </div>  
 
-    </section><div id="album{album_id}-section<?php echo $sectionid; ?>-end"></div>
+    {!!if {section} == '1' || {section} == '' !!}</section>{!endif}<div id="album{album_id}-section<?php echo $sectionid; ?>-end"></div>
 
 {# end {templatelocation} #}
