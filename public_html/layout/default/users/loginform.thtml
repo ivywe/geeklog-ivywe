@@ -4,7 +4,7 @@
 		<div id="modal-users" uk-modal="" class="uk-modal uk-open" style="display: block;">
 			<div class="uk-modal-dialog uk-modal-body gl-loginform">
 
-<?php global $_CONF; if ($_CONF['disable_new_user_registration'] != 0) { ?>
+<?php global $_CONF; if ($_CONF['disable_new_user_registration'] == 0) { ?>
 
 <ul class="uk-subnav uk-flex-center uk-margin-remove-bottom">
 <li class="gl-selected">ログイン</li>

@@ -174,39 +174,39 @@ if( COM_onFrontpage() ){  ?>
               </ul>
               <h4>自動タグmedialist一覧</h4>
               <ul class="uk-nav uk-navbar-dropdown-nav uk-card uk-card-secondary" style="padding-left:10px">
-                <li>&#91;medialist:(albumid) theme:default&#93;</li>
-                <li>&#91;medialist:(albumid) theme:sample&#93;</li>
-                <li>&#91;medialist:(albumid) theme:list&#93;</li>
-                <li>&#91;medialist:(albumid) theme:list_inc&#93;</li>
+                <li>&#91;medialist:(albumid) theme:default src:(tn|disp|orig)&#93;</li>
+                <li>&#91;medialist:(albumid) theme:sample src:(tn|disp|orig)&#93;</li>
+                <li>&#91;medialist:(albumid) theme:list src:(tn|disp|orig)&#93;</li>
+                <li>&#91;medialist:(albumid) theme:list_inc src:(tn|disp|orig)&#93;</li>
                 <li class="uk-text-primary">1 Section内に複数mediaを配置</li>
-                <li>&#91;medialist:(albumid) theme:s-1section-card-left-right_keyurl&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-1section-col2_reverce&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-1section-filter_search&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-1section-grid_keyurl&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-1section-grid-card1_keyurl&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-1section-grid-card2-keyurl&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-1section-menu_keyurl1&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-1section-menu_keyurl2&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-1section-plans_keyurl&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-1section-qa&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-1section-slider&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-1section-slider1&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-1section-slider2&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-1section-slideshow-fade&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-1section-slideshow-kenburns-col2_reverce&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-1section-slideshow-kenburns&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-1section-card-left-right_keyurl src:(tn|disp|orig)&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-1section-col2_reverce src:(tn|disp|orig)&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-1section-filter_search src:(tn|disp|orig)&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-1section-grid_keyurl src:(tn|disp|orig)&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-1section-grid-card1_keyurl src:(tn|disp|orig)&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-1section-grid-card2-keyurl src:(tn|disp|orig)&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-1section-menu_keyurl1 src:(tn|disp|orig)&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-1section-menu_keyurl2 src:(tn|disp|orig)&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-1section-plans_keyurl src:(tn|disp|orig)&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-1section-qa src:(tn|disp|orig)&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-1section-slider src:(tn|disp|orig)&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-1section-slider1 src:(tn|disp|orig)&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-1section-slider2 src:(tn|disp|orig)&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-1section-slideshow-fade src:(tn|disp|orig)&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-1section-slideshow-kenburns-col2_reverce src:(tn|disp|orig)&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-1section-slideshow-kenburns src:(tn|disp|orig)&#93;</li>
                 <li class="uk-text-primary">複数Sectionタイプ</li>
-                <li>&#91;medialist:(albumid) theme:s-sections-bg_keyurl&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-sections-bg-overlay-black_keyurl&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-sections-bg-overlay-white_keyurl&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-sections-bg-panel-black_keyurl&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-sections-bg-panel-white_keyurl&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-sections-left-right_keyurl&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-sections-bg_keyurl src:(tn|disp|orig)&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-sections-bg-overlay-black_keyurl src:(tn|disp|orig)&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-sections-bg-overlay-white_keyurl src:(tn|disp|orig)&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-sections-bg-panel-black_keyurl src:(tn|disp|orig)&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-sections-bg-panel-white_keyurl src:(tn|disp|orig)&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-sections-left-right_keyurl src:(tn|disp|orig)&#93;</li>
                 <li class="uk-text-primary">部品タイプ</li>
-                <li>&#91;medialist:(albumid) theme:s-sub-accordion&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-sub-filter_search&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-sub-grid_keyurl&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-sub-slideshow&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-sub-accordion src:(tn|disp|orig)&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-sub-filter_search src:(tn|disp|orig)&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-sub-grid_keyurl src:(tn|disp|orig)&#93;</li>
+                <li>&#91;medialist:(albumid) theme:s-sub-slideshow src:(tn|disp|orig)&#93;</li>
               </ul>
             </div>
           </div>
