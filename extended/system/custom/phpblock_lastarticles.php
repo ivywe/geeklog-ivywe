@@ -311,11 +311,11 @@ function phpblock_lastarticles_common(
 		
 		$retval .= str_replace(
 						array(
-							'{article}', '{date}', '{img}', '{link}', '{title}',
+							'{article}', '{date}', '{img}', '{image_url}', '{link}', '{title}',
 							'{topic}', '{xhtml}',
 						),
 						array(
-							$article, $date, $img, $link, $title, $topic, XHTML,
+							$article, $date, $img, $image_url, $link, $title, $topic, XHTML,
 						),
 						$template
 		);
