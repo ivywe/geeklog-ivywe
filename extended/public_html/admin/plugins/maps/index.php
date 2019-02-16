@@ -44,9 +44,7 @@ $display = '';
 
 // Ensure user even has the rights to access this page
 if (! SEC_hasRights('maps.admin')) {
-    $display .= COM_siteHeader('menu', $MESSAGE[30])
-             . COM_showMessageText($MESSAGE[29], $MESSAGE[30])
-             . COM_siteFooter();
+    $display .= COM_createHTMLDocument(COM_showMessageText($MESSAGE[29], $MESSAGE[30]), array('pagetitle' => $MESSAGE[30])); 
 
     // Log attempt to access.log
     COM_accessLog("User {$_USER['username']} tried to illegally access the Maps plugin administration screen.");
@@ -172,14 +170,17 @@ function plugin_getListField_maps($fieldname, $fieldvalue, $A, $icon_arr)
 // MAIN
 
 if ($_MAPS_CONF['google_api_key'] == '') {
-	$display = COM_siteHeader('menu', $LANG_MAPS_1['plugin_name']);
-	$display .= '<p><img src="' . $_CONF['site_admin_url'] . '/plugins/maps/images/maps.png" alt="" align="left" hspace="5">' 
+
+
+
+	$display_content = '<p><img src="' . $_CONF['site_admin_url'] . '/plugins/maps/images/maps.png" alt="" align="left" hspace="5">' 
 		 . $LANG_MAPS_1['plugin_doc'] . ' <a href="http://geeklog.fr/wiki/plugins:maps" target="_blank">'. $LANG_MAPS_1['online']
 		 . '</a>.</p>'
 		 . '<p> ' . $LANG_MAPS_1['plugin_conf'] . ' <a href="' . $_CONF['site_admin_url'] . '/configuration.php">'. $LANG_MAPS_1['online']
-		 . '</a>.</p>';
-	$display .= $LANG_MAPS_1['need_google_api'];
-	$display .= COM_siteFooter(0);
+		 . '</a>.</p>'.$LANG_MAPS_1['need_google_api'];
+
+  $display = COM_createHTMLDocument($display_content, array('pagetitle' => $LANG_MAPS_1['plugin_name'])); 
+
 	COM_output($display);
 	exit ();
 }
@@ -208,8 +209,8 @@ switch ($mode) {
         break;
 
     default :	
-        $display = COM_siteHeader('menu', $LANG_MAPS_1['plugin_name']);
-        $display .= MAPS_admin_menu();
+
+    $display = MAPS_admin_menu();
 
     if (!empty($_REQUEST['msg'])) {
         $display .= COM_startBlock($LANG_MAPS_1['message'],'','blockheader-message.thtml');
@@ -224,9 +225,10 @@ switch ($mode) {
     $display .= '<br /><h1>' . $LANG_MAPS_1['maps_list'] . '</h1>';
     $display .= '<p>' . $LANG_MAPS_1['you_can'] . '<a href="' . $_CONF['site_url'] . '/admin/plugins/maps/map_edit.php">' . $LANG_MAPS_1['create_map'] . '</a>.</p><p>&nbsp;</p>';
 
-   $display .= MAPS_listmaps();
+		$display .= MAPS_listmaps();
 
-   $display .= COM_siteFooter(0);
+		COM_createHTMLDocument($display, array('pagetitle' => $LANG_MAPS_1['plugin_name'])); 
+
 }
 
 COM_output($display);

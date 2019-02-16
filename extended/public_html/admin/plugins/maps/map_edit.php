@@ -47,9 +47,7 @@ $display = '';
 
 // Ensure user even has the rights to access this page
 if (! SEC_hasRights('maps.admin')) {
-    $display .= COM_siteHeader('menu', $MESSAGE[30])
-             . COM_showMessageText($MESSAGE[29], $MESSAGE[30])
-             . COM_siteFooter();
+    $display .= COM_createHTMLDocument(COM_showMessageText($MESSAGE[29], $MESSAGE[30]), array('pagetitle' => $MESSAGE[30]));
 
     // Log attempt to access.log
     COM_accessLog("User {$_USER['username']} tried to illegally access the Maps plugin administration screen.");
@@ -445,8 +443,7 @@ function getMapForm($map = array()) {
 
 
 // MAIN
-$display .= COM_siteHeader('menu', $LANG_MAPS_1['plugin_name']);
-$display .= MAPS_admin_menu();
+$display = MAPS_admin_menu();
 
 switch ($_REQUEST['mode']) {
     case 'delete':
@@ -583,7 +580,7 @@ switch ($_REQUEST['mode']) {
         break;
 }
 
-$display .= COM_siteFooter(0);
+    $display = COM_createHTMLDocument($display, array('pagetitle' => $LANG_MAPS_1['plugin_name']));
 
 
 echo $display;
