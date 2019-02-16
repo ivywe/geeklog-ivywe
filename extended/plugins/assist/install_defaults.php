@@ -60,8 +60,8 @@ $_ASSIST_DEFAULT['intervalday']=90;
 $_ASSIST_DEFAULT['limitcnt']=10;
 $_ASSIST_DEFAULT['newmarkday']=3;
 $_ASSIST_DEFAULT['topics']="";
-$_ASSIST_DEFAULT['new_img']='<span class="assist_new">new!</span>';
-$_ASSIST_DEFAULT['rss_img']='<span class="assist_new">RSS</span>';
+$_ASSIST_DEFAULT['new_img']='<span class="uk-label uk-label-danger">new!</span>';
+$_ASSIST_DEFAULT['rss_img']='<span class="uk-label uk-label-success">RSS</span>';
 
 $_ASSIST_DEFAULT['newsletter_tid']='newsletter';
 
@@ -91,7 +91,7 @@ $_ASSIST_DEFAULT['xmlns'] = '';
 
 
 //デフォルト画像URL
-$_ASSIST_DEFAULT['default_img_url'] = "";
+$_ASSIST_DEFAULT['default_img_url'] = $_CONF['site_url']."/images/ogpimage.png";
 
 //キャッシュファイルパス
 $_ASSIST_DEFAULT['path_cache'] = $_CONF['path']."data/cache/";

@@ -520,16 +520,6 @@ function plugin_templatesetvars_assist(
 
     switch ($templatename) {
 		case 'header':
-			if ($_ASSIST_CONF['xmlns']<>""){
-				$xmlins="";
-				if (XHTML == '') {
-				} else {
-					$xmlins.=' xmlns="http://www.w3.org/1999/xhtml"'.LB;
-				}
-				$xmlins.=$_ASSIST_CONF['xmlns'];
-
-				$template->set_var('xmlns', $xmlins);
-			}
             $template->set_var('uid', $login_uid);
             $template->set_var('username', $login_username);
             $template->set_var('fullname', $login_fullname);
