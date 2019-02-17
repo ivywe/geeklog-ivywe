@@ -153,9 +153,9 @@ if( COM_onFrontpage() ){  ?>
       </li>
       <li>
         <a href="#" class="" aria-expanded="false">管理メニュー</a>
-        <div class="uk-navbar-dropdown uk-navbar-dropdown-width-4">
+        <div class="uk-navbar-dropdown uk-navbar-dropdown-width-5">
           <div class="uk-navbar-dropdown-grid" uk-grid>
-            <div class="uk-width-1-4@m">
+            <div class="uk-width-1-5@m">
               <ul class="uk-nav uk-navbar-dropdown-nav">
                 <li><a href="/admin/index.php"><span uk-icon="home"></span>TOP</a></li>
                 <li><a href="/admin/plugins/databox/data.php"><span uk-icon="file-edit"></span>DataBox</a></li>
@@ -168,45 +168,51 @@ if( COM_onFrontpage() ){  ?>
                 <li><a href="/admin/plugins/staticpages/index.php?mode=edit&sp_id=_admin_nav"><span uk-icon="icon: settings"></span>管理者用メニュー編集</a></li>
               </ul>
             </div>
-            <div class="uk-width-3-4@m">
+            <div class="uk-width-4-5@m">
               <ul class="uk-nav uk-navbar-dropdown-nav">
                 <li><a href="/mediagallery/index.php"><span uk-icon="icon: photo"></span><span uk-icon="icon: camera"></span>メディアギャラリー</a></li>
-              </ul>
-              <h4>自動タグmedialist一覧</h4>
-              <ul class="uk-nav uk-navbar-dropdown-nav uk-card uk-card-secondary" style="padding-left:10px">
-                <li>&#91;medialist:(albumid) theme:default src:(tn|disp|orig)&#93;</li>
-                <li>&#91;medialist:(albumid) theme:sample src:(tn|disp|orig)&#93;</li>
-                <li>&#91;medialist:(albumid) theme:list src:(tn|disp|orig)&#93;</li>
-                <li>&#91;medialist:(albumid) theme:list_inc src:(tn|disp|orig)&#93;</li>
-                <li class="uk-text-primary">1 Section内に複数mediaを配置</li>
-                <li>&#91;medialist:(albumid) theme:s-1section-card-left-right_keyurl src:(tn|disp|orig)&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-1section-col2_reverce src:(tn|disp|orig)&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-1section-filter_search src:(tn|disp|orig)&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-1section-grid_keyurl src:(tn|disp|orig)&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-1section-grid-card1_keyurl src:(tn|disp|orig)&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-1section-grid-card2-keyurl src:(tn|disp|orig)&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-1section-menu_keyurl1 src:(tn|disp|orig)&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-1section-menu_keyurl2 src:(tn|disp|orig)&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-1section-plans_keyurl src:(tn|disp|orig)&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-1section-qa src:(tn|disp|orig)&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-1section-slider src:(tn|disp|orig)&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-1section-slider1 src:(tn|disp|orig)&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-1section-slider2 src:(tn|disp|orig)&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-1section-slideshow-fade src:(tn|disp|orig)&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-1section-slideshow-kenburns-col2_reverce src:(tn|disp|orig)&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-1section-slideshow-kenburns src:(tn|disp|orig)&#93;</li>
-                <li class="uk-text-primary">複数Sectionタイプ</li>
-                <li>&#91;medialist:(albumid) theme:s-sections-bg_keyurl src:(tn|disp|orig)&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-sections-bg-overlay-black_keyurl src:(tn|disp|orig)&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-sections-bg-overlay-white_keyurl src:(tn|disp|orig)&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-sections-bg-panel-black_keyurl src:(tn|disp|orig)&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-sections-bg-panel-white_keyurl src:(tn|disp|orig)&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-sections-left-right_keyurl src:(tn|disp|orig)&#93;</li>
-                <li class="uk-text-primary">部品タイプ</li>
-                <li>&#91;medialist:(albumid) theme:s-sub-accordion src:(tn|disp|orig)&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-sub-filter_search src:(tn|disp|orig)&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-sub-grid_keyurl src:(tn|disp|orig)&#93;</li>
-                <li>&#91;medialist:(albumid) theme:s-sub-slideshow src:(tn|disp|orig)&#93;</li>
+                </ul>
+
+                <ul uk-accordion>
+                  <li><a class="uk-accordion-title" href="#">自動タグmedialist一覧</a>
+                  <div class="uk-accordion-content">
+                    <ul class="uk-nav uk-navbar-dropdown-nav uk-card uk-card-secondary" style="padding-left:10px">
+                      <li>&#91;medialist:(albumid) theme:default src:(tn|disp|orig)&#93;</li>
+                      <li>&#91;medialist:(albumid) theme:sample src:(tn|disp|orig)&#93;</li>
+                      <li>&#91;medialist:(albumid) theme:list src:(tn|disp|orig)&#93;</li>
+                      <li>&#91;medialist:(albumid) theme:list_inc src:(tn|disp|orig)&#93;</li>
+                      <li class="uk-text-primary">1 Section内に複数mediaを配置</li>
+                      <li>&#91;medialist:(albumid) theme:s-1section-card-left-right_keyurl src:(tn|disp|orig)&#93;</li>
+                      <li>&#91;medialist:(albumid) theme:s-1section-col2_reverce src:(tn|disp|orig)&#93;</li>
+                      <li>&#91;medialist:(albumid) theme:s-1section-filter_search src:(tn|disp|orig)&#93;</li>
+                      <li>&#91;medialist:(albumid) theme:s-1section-grid_keyurl src:(tn|disp|orig)&#93;</li>
+                      <li>&#91;medialist:(albumid) theme:s-1section-grid-card1_keyurl src:(tn|disp|orig)&#93;</li>
+                      <li>&#91;medialist:(albumid) theme:s-1section-grid-card2-keyurl src:(tn|disp|orig)&#93;</li>
+                      <li>&#91;medialist:(albumid) theme:s-1section-menu_keyurl1 src:(tn|disp|orig)&#93;</li>
+                      <li>&#91;medialist:(albumid) theme:s-1section-menu_keyurl2 src:(tn|disp|orig)&#93;</li>
+                      <li>&#91;medialist:(albumid) theme:s-1section-plans_keyurl src:(tn|disp|orig)&#93;</li>
+                      <li>&#91;medialist:(albumid) theme:s-1section-qa src:(tn|disp|orig)&#93;</li>
+                      <li>&#91;medialist:(albumid) theme:s-1section-slider src:(tn|disp|orig)&#93;</li>
+                      <li>&#91;medialist:(albumid) theme:s-1section-slider1 src:(tn|disp|orig)&#93;</li>
+                      <li>&#91;medialist:(albumid) theme:s-1section-slider2 src:(tn|disp|orig)&#93;</li>
+                      <li>&#91;medialist:(albumid) theme:s-1section-slideshow-fade src:(tn|disp|orig)&#93;</li>
+                      <li>&#91;medialist:(albumid) theme:s-1section-slideshow-kenburns-col2_reverce src:(tn|disp|orig)&#93;</li>
+                      <li>&#91;medialist:(albumid) theme:s-1section-slideshow-kenburns src:(tn|disp|orig)&#93;</li>
+                      <li class="uk-text-primary">複数Sectionタイプ</li>
+                      <li>&#91;medialist:(albumid) theme:s-sections-bg_keyurl src:(tn|disp|orig)&#93;</li>
+                      <li>&#91;medialist:(albumid) theme:s-sections-bg-overlay-black_keyurl src:(tn|disp|orig)&#93;</li>
+                      <li>&#91;medialist:(albumid) theme:s-sections-bg-overlay-white_keyurl src:(tn|disp|orig)&#93;</li>
+                      <li>&#91;medialist:(albumid) theme:s-sections-bg-panel-black_keyurl src:(tn|disp|orig)&#93;</li>
+                      <li>&#91;medialist:(albumid) theme:s-sections-bg-panel-white_keyurl src:(tn|disp|orig)&#93;</li>
+                      <li>&#91;medialist:(albumid) theme:s-sections-left-right_keyurl src:(tn|disp|orig)&#93;</li>
+                      <li class="uk-text-primary">部品タイプ</li>
+                      <li>&#91;medialist:(albumid) theme:s-sub-accordion src:(tn|disp|orig)&#93;</li>
+                      <li>&#91;medialist:(albumid) theme:s-sub-filter_search src:(tn|disp|orig)&#93;</li>
+                      <li>&#91;medialist:(albumid) theme:s-sub-grid_keyurl src:(tn|disp|orig)&#93;</li>
+                      <li>&#91;medialist:(albumid) theme:s-sub-slideshow src:(tn|disp|orig)&#93;</li>
+                    </ul>
+                  </div>
+                </li>
               </ul>
             </div>
           </div>
