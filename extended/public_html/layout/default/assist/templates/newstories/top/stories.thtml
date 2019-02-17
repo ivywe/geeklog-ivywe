@@ -1,0 +1,12 @@
+{# begin {templatelocation} #}
+
+<div>
+	<div>
+		{stories_col}
+	</div>
+</div>
+
+{!if rss_title}<p class="uk-float-left"><a href="{rss_url}">{rss_title}</a></p>{!endif}
+<p class="uk-float-right"><a href="{more_url}">{more_title}</a></p>
+
+{# end {templatelocation} #}

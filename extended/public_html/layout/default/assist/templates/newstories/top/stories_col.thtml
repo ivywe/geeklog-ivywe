@@ -1,0 +1,29 @@
+{# begin {templatelocation} #}
+
+<?php
+$img     = LASTARTICLES_renderImageTag($this->get_var('introtext'));
+?>
+
+<div class="uk-card uk-card-default uk-margin-small">
+<div class="uk-grid-small" uk-grid>
+	<div class="uk-grid-1-3@m">
+		<img src="<?php echo $img; ?>" alt="" style="max-width:150px; margin-left:-12px">
+	</div>
+	<div class="uk-grid-2-3@m">
+		<dl class="uk-margin-top">
+			<dt><div  class="uk-text-small>{day}</div><h5 class="uk-text-bold"><a href="{url}">{title}</a>{new_img}</h5></dt>
+			<dd>
+				<div class="uk-text-small">
+					<?php
+					$var = $this->get_var('introtext'); 
+					$length = 420; $encoding = 'utf-8'; echo mb_strimwidth( strip_tags( $var ), 0, $length, '...', $encoding);
+					?>
+				</div>
+			</dd>
+		<dl>
+	</div>
+
+</div>
+</div>
+
+{# end {templatelocation} #}
