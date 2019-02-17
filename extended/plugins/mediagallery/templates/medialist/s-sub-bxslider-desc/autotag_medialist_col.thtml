@@ -1,7 +1,0 @@
-
-<li>
-<div class="uk-inline">
-<img src="{filename}" title="{media_title}" class="{animation}" alt="">
-</div>
-{media_desc}
-</li>

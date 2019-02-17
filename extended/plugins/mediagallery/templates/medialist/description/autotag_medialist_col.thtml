@@ -6,6 +6,39 @@
       {!if media_title}<div class="uk-text-bold uk-margin-min">{media_title}</div>{!endif}
     </a>
     <div class="uk-text-left uk-margin">{media_desc}</div>
+
+		<dl>
+
+<dt>theme</dt><dd>{theme}</dd>
+<dt>src</dt><dd>{src}</dd>
+<dt>limitcnt</dt><dd>{limitcnt}</dd>
+<dt>title</dt><dd>{title}</dd>
+<dt>uks</dt><dd>{uks}</dd>
+<dt>ukc</dt><dd>{ukc}</dd>
+<dt>media</dt><dd>{media}</dd>
+<dt>grids</dt><dd>{grids}</dd>
+<dt>gridm</dt><dd>{gridm}</dd>
+<dt>gridl</dt><dd>{gridl}</dd>
+<dt>gridr</dt><dd>{gridr}</dd>
+<dt>url</dt><dd>{url}</dd>
+<dt>reverse</dt><dd>{reverse}</dd>
+<dt>text</dt><dd>{text}</dd>
+<dt>text1</dt><dd>{text1}</dd>
+<dt>text2</dt><dd>{tex2}</dd>
+<dt>text3</dt><dd>{text3}</dd>
+<dt>dotnav</dt><dd>{dotnav}</dd>
+<dt>minheight</dt><dd>{minheight}</dd>
+<dt>maxheight</dt><dd>{maxheight}</dd>
+<dt>class_album_title</dt><dd>{class_album_title}</dd>
+<dt>class_album_desc</dt><dd>{class_album_desc}</dd>
+<dt>class_media_title</dt><dd>{class_media_title}</dd>
+<dt>class_media_desc</dt><dd>{class_media_desc}</dd>
+<dt>type</dt><dd>{type}</dd>
+<dt>bxslider</dt><dd>{bxslider}</dd>
+<dt>animation</dt><dd>{animation}</dd>
+<dt>section</dt><dd>{section}</dd>
+</dl>
+<p>Å¶optionÇÕÅAè»ó™Ç≈Ç´Ç‹Ç∑ÅB</p>
   </div>
 
 {# end {templatelocation} #}

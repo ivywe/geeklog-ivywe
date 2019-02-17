@@ -7,6 +7,7 @@
 {!endif}
 
 {!!if {section} == '1' || {section} == '' !!}<section id="album{album_id}-section<?php global $sectionid; $sectionid++; echo $sectionid; ?>" class="uk-section<?php echo $uks; ?>">{!endif}
+{!!if {container} == '1' || {container} == '' !!}<div class="uk-container <?php echo $ukc; ?>">{!endif}
 
       <div class="uk-position-relative uk-visible-toggle uk-light<?php echo $ukc; ?>" uk-slideshow="pause-on-hover: false; autoplay: true; animation: fade; autoplay-interval : 10000; ratio: 16:9; {class}">
 
@@ -21,11 +22,7 @@
         {!!if {dotnav} == '0' !!}{!else}<ul class="uk-slideshow-nav uk-dotnav uk-flex-center uk-margin"></ul>{!endif}
       </div>
 
-<?php PLG_replaceTags('[staticpage_content:_medialist_'.$this->get_var('theme').'_'.$this->get_var('album_id').'_'.$sectionid.']'); ?>
-{!if edit}
-<div class="uk-text-right uk-margin-right" ><a href="#modal2-{theme}-{album_id}" uk-toggle><span uk-icon="icon: plus"></span></a></div><div id="modal2-{theme}-{album_id}" uk-modal><div class="uk-modal-dialog uk-modal-body"><div class="uk-text-right uk-margin-top"><div><div class="uk-text-right uk-margin-top"><span uk-icon="icon: file-edit"></span>静的ページ<a href="{site_url}/staticpages/index.php/_medialist_{theme}_{album_id}_<?php echo $sectionid; ?>">_medialist_{theme}_{album_id}</a>をここに表示しますす。</div></div></div></div></div>
-{!endif}
-
+{!!if {container} == '1' || {container} == '' !!}</div>{!endif}
 {!!if {section} == '1' || {section} == '' !!}</section>{!endif}<div id="album{album_id}-section<?php echo $sectionid; ?>-end"></div>
 
 {# end {templatelocation} #}
