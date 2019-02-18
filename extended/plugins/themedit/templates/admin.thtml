@@ -8,13 +8,13 @@
 	{temp_sys_message}
 	<p style="border: solid 1px #7F9DB9; padding: 5px;">
 		{temp_lang_theme_edited}:&nbsp;
-		<select class="uk-select uk-form-width-medium" name="thm_theme" onChange="this.form.submit()">{temp_themes}</select>
+		<select class="uk-select uk-form-width-small" name="thm_theme" onChange="this.form.submit()">{temp_themes}</select>
 		<noscript>
 			<input name="dummy" type="submit" value="{temp_lang_select}"{xhtml}>
 		</noscript>
 		&nbsp;&nbsp;
 		{temp_lang_file_edited}:&nbsp;
-		<select class="uk-select uk-form-width-medium" name="thm_file" onChange="this.form.submit()">{temp_files}</select>
+		<select class="uk-select uk-form-width-large" name="thm_file" onChange="this.form.submit()">{temp_files}</select>
 		<noscript>
 			<input name="dummy" type="submit" value="{temp_lang_select}"{xhtml}>
 		</noscript>
