@@ -178,6 +178,7 @@ if( COM_onFrontpage() ){  ?>
                   <div class="uk-accordion-content">
                     <ul class="uk-nav uk-navbar-dropdown-nav uk-card uk-card-secondary" style="padding-left:10px">
                       <li>&#91;medialist:(albumid) theme:default src:(tn|disp|orig)&#93;</li>
+                      <li>&#91;medialist:(albumid) theme:admin src:(tn|disp|orig)&#93;</li>
                       <li>&#91;medialist:(albumid) theme:sample src:(tn|disp|orig)&#93;</li>
                       <li>&#91;medialist:(albumid) theme:list src:(tn|disp|orig)&#93;</li>
                       <li>&#91;medialist:(albumid) theme:list_inc src:(tn|disp|orig)&#93;</li>
@@ -207,9 +208,7 @@ if( COM_onFrontpage() ){  ?>
                       <li>&#91;medialist:(albumid) theme:s-sections-left-right_keyurl src:(tn|disp|orig)&#93;</li>
                       <li class="uk-text-primary">部品タイプ</li>
                       <li>&#91;medialist:(albumid) theme:s-sub-accordion src:(tn|disp|orig)&#93;</li>
-                      <li>&#91;medialist:(albumid) theme:s-sub-filter_search src:(tn|disp|orig)&#93;</li>
                       <li>&#91;medialist:(albumid) theme:s-sub-grid_keyurl src:(tn|disp|orig)&#93;</li>
-                      <li>&#91;medialist:(albumid) theme:s-sub-slideshow src:(tn|disp|orig)&#93;</li>
                     </ul>
                   </div>
                 </li>

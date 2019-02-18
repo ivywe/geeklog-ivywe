@@ -1,5 +1,69 @@
 @charset "utf-8";
 
+
+/* ============================ LOGO ============================= */
+
+/* -------------------------- 共通LOGO --------------------------- */
+
+h1.gl-sitename {
+		padding:0;
+		margin-top:4px;
+    width: 134px;
+    height: 50px;
+    background: url('../images/logo.png') no-repeat;
+    overflow: hidden;
+    text-indent: 220%;
+    white-space: nowrap;
+		cursor: pointer;
+}
+
+/* ----------------------- TOPページLOGO ----------------------- */
+
+.gl-frontpage h1.gl-sitename {
+		padding:0;
+		margin-top:4px;
+    width: 134px;
+    height: 50px;
+    background: url('../images/logo-white.png') no-repeat;
+    overflow: hidden;
+    text-indent: 220%;
+    white-space: nowrap;
+		cursor: pointer;
+}
+
+/* -------------- TOPページスクロール時のロゴ ------------- */
+.gl-frontpage div.uk-sticky.uk-sticky-fixed.uk-sticky-below h1.gl-sitename {
+    background: url(../images/logo.png) no-repeat;
+}
+
+/* -------------- モバイルページOffcanvas用LOGO --------------- */
+h1.gl-sitename-mobile {
+		padding:0;
+		margin-top:4px;
+    width: 134px;
+    height: 60px;
+    background: url('../images/logo-white.png') no-repeat;
+    overflow: hidden;
+    text-indent: 220%;
+    white-space: nowrap;
+		cursor: pointer;
+}
+/* ----------------------- ログインModal用LOGO --------------- */
+.gl-sitename-modal {
+		padding:0;
+		margin-top:4px;
+    width: 400px;
+    height: 100px;
+    background: url('../images/logo-modal.png') no-repeat;
+    overflow: hidden;
+    text-indent: 220%;
+    white-space: nowrap;
+}
+
+
+/* =========================================================== */
+
+
 /* ゴシック */
 body,h1,h2,h3,h4,h5,p,ul,li,p,div,table {
 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji",helvetica, arial, 'hiragino kaku gothic pro', meiryo, 'ms pgothic', sans-serif;
@@ -84,58 +148,6 @@ h6,
   .uk-h2 {
     font-size: 1.3rem;
   }
-}
-
-/* logo */
-
-h1.gl-sitename {
-		padding:0;
-		margin-top:4px;
-    width: 134px;
-    height: 50px;
-    background: url('../images/logo.png') no-repeat;
-    overflow: hidden;
-    text-indent: 220%;
-    white-space: nowrap;
-		cursor: pointer;
-}
-
-.gl-frontpage h1.gl-sitename {
-		padding:0;
-		margin-top:4px;
-    width: 134px;
-    height: 50px;
-    background: url('../images/logo-white.png') no-repeat;
-    overflow: hidden;
-    text-indent: 220%;
-    white-space: nowrap;
-		cursor: pointer;
-}
-
-h1.gl-sitename-mobile {
-		padding:0;
-		margin-top:4px;
-    width: 134px;
-    height: 60px;
-    background: url('../images/logo-white.png') no-repeat;
-    overflow: hidden;
-    text-indent: 220%;
-    white-space: nowrap;
-		cursor: pointer;
-}
-.gl-sitename-modal {
-		padding:0;
-		margin-top:4px;
-    width: 400px;
-    height: 100px;
-    background: url('../images/logo-modal.png') no-repeat;
-    overflow: hidden;
-    text-indent: 220%;
-    white-space: nowrap;
-}
-
-.gl-frontpage div.uk-sticky.uk-sticky-fixed.uk-sticky-below h1.gl-sitename {
-    background: url(../images/logo.png) no-repeat;
 }
 
 .gl-subpage .uk-navbar-right {
