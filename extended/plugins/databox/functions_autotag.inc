@@ -23,7 +23,7 @@ function plugin_autotags_databox (
 // +---------------------------------------------------------------------------+
 {
     global $_TABLES;
-    global $_CONF;
+    global $_CONF,$_DATABOX_CONF;
     global $LANG_DATABOX_autotag_desc;
 
     //Option Display
@@ -94,6 +94,9 @@ function plugin_autotags_databox (
         $parm2_ary[]="roundprecision";
         $parm2_ary[]="numberformat";
         $parm2_ary[]="permission";
+        $parm2_ary[]="grids";
+        $parm2_ary[]="gridm";
+
         $p=databox_parm2($p2,$parm2_ary);
         //各処理
         switch( $tag ) {
@@ -155,6 +158,8 @@ function plugin_autotags_databox (
                             ,$p['expired']
                             ,$p['without_code']
                             ,$p['without_id']
+                            ,$p['grids']
+                            ,$p['gridm']
                         );
                         break;
                     case 'attributedatacount':
@@ -345,6 +350,8 @@ function databox_category(
     ,$expired=''
     ,$without_code=''
     ,$without_id=''
+    ,$grids=''
+    ,$gridm=''
 )
 // +---------------------------------------------------------------------------+
 // | 機能  カテゴリ別一覧表示
@@ -649,7 +656,10 @@ function databox_category(
         $templates->set_var('lang_imgfile_thumb_frd', $LANG_confignames['databox']['imgfile_thumb_frd']);
         $templates->set_var ('imgfile_thumb_frd', $_DATABOX_CONF['imgfile_thumb_frd']);
         $templates->set_var ('data_thumb_img_url', $_CONF['site_url']."/".$_DATABOX_CONF['imgfile_thumb_frd']);
-        
+
+        $templates->set_var ('grids', $grids);
+        $templates->set_var ('gridm', $gridm);
+
         for ($i = 0; $i < $numrows; $i++) {
             $A = DB_fetchArray ($result);
             $A = array_map('stripslashes', $A);
@@ -866,7 +876,7 @@ function databox_category(
             $templates->set_var ('category_description',$category_description);
             
                         
-            $templates->set_var('XHTML', XHTML);
+            $templates->set_var('xhtml', XHTML);
             $templates->set_var('site_url', $_CONF['site_url']);
             $templates->set_var('site_admin_url', $_CONF['site_admin_url']);
             $templates->set_var('layout_url', $_CONF['layout_url']);
@@ -1539,7 +1549,7 @@ function databox_field(
             
             $templates->set_var ('fieldvalue',$fieldvalue);
                         
-            $templates->set_var('XHTML', XHTML);
+            $templates->set_var('xhtml', XHTML);
             $templates->set_var('site_url', $_CONF['site_url']);
             $templates->set_var('site_admin_url', $_CONF['site_admin_url']);
             $templates->set_var('layout_url', $_CONF['layout_url']);
@@ -1899,7 +1909,7 @@ function databox_data(
     
     if  ($m==="page"  OR  $m==="view"){
         if ($numrows <= 0) {
-            COM_handle404();
+            echo "<!-- databox databox_category 404 --> ";
             exit;
         }
     }
@@ -2011,7 +2021,7 @@ function databox_data(
             $templates->set_var ('site_admin_url', $_CONF['site_admin_url']);
             $templates->set_var ('site_url',$_CONF['site_url']);
             //
-            $templates->set_var('XHTML', XHTML);
+            $templates->set_var('xhtml', XHTML);
             $templates->set_var('layout_url', $_CONF['layout_url']);
         
             $templates->set_var ('site_name', $_CONF['site_name']);
@@ -2251,7 +2261,7 @@ function databox_data(
                 'list' => 'nohit.thtml',
             ));
             $templates->set_var ('lang_nohit', $LANG_DATABOX['nohit']);
-            $templates->set_var('XHTML', XHTML);
+            $templates->set_var('xhtml', XHTML);
             $templates->set_var('site_url', $_CONF['site_url']);
             $templates->set_var('site_admin_url', $_CONF['site_admin_url']);
             $templates->set_var('layout_url', $_CONF['layout_url']);
@@ -3670,7 +3680,7 @@ function databox_search(
             $templates->set_var ('lang_referer',$LANG_DATABOX['return']);
             $templates->set_var ('fieldset_name',$fieldset_name);
                         
-            $templates->set_var('XHTML', XHTML);
+            $templates->set_var('xhtml', XHTML);
             $templates->set_var('site_url', $_CONF['site_url']);
             $templates->set_var('site_admin_url', $_CONF['site_admin_url']);
             $templates->set_var('layout_url', $_CONF['layout_url']);
