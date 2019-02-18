@@ -69,7 +69,7 @@ $LANG_CMED = array(
     'move'                => '移動',
     'order'               => '順番',
     'id'                  => 'ID',
-    'classname'           => 'target名',
+    'classname'           => 'target',
     'instructions'        => 'データを修正、削除する場合は各データの「編集」アイコンをクリックしてください。新規作成は「新規作成」をクリックしてください。',
 
     'warning_updated'     => 'カスタムメニュー編集プラグインは最新です。',
@@ -141,8 +141,8 @@ $LANG_CMED_EDITOR = array(
     'is_preg'             => '正規表現',
     'parentitemid'        => '親アイテムID',
 
-    'class_name'          => 'クラス名',
-    'class_name_info'     => 'メニューアイテムごとにクラス名を指定できます。',
+    'class_name'          => 'Target',
+    'class_name_info'     => 'メニューアイテムごとにリンクTargetを指定できます。',
 );
 
 // 可変モード用のオリジナルタイトルを定義しましょう!

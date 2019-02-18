@@ -139,8 +139,8 @@ $LANG_CMED_EDITOR = array(
     'is_preg'             => 'Regular Expression',
     'parentitemid'        => 'Parent Item ID',
 
-    'class_name'          => 'Class Name',
-    'class_name_info'     => 'You can set class names every Menuitem.',
+    'class_name'          => 'Target Name',
+    'class_name_info'     => 'You can set target names every Menuitem. e.o. _target',
 );
 
 // Let's define original titles for Variable Modes!
