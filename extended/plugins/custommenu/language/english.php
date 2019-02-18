@@ -67,7 +67,7 @@ $LANG_CMED = array(
     'move'                => 'Move',
     'order'               => 'Order',
     'id'                  => 'ID',
-    'classname'           => 'Class',
+    'classname'           => 'Target',
     'instructions'        => 'To modify or delete a data, click on that data\'s edit icon below.  To create a new data, click on "Create New" above.',
 
     'warning_updated'     => 'CustomMenu Editor Plugin is updated.',

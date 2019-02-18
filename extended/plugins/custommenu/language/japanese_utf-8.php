@@ -69,7 +69,7 @@ $LANG_CMED = array(
     'move'                => '移動',
     'order'               => '順番',
     'id'                  => 'ID',
-    'classname'           => 'クラス名',
+    'classname'           => 'target名',
     'instructions'        => 'データを修正、削除する場合は各データの「編集」アイコンをクリックしてください。新規作成は「新規作成」をクリックしてください。',
 
     'warning_updated'     => 'カスタムメニュー編集プラグインは最新です。',
