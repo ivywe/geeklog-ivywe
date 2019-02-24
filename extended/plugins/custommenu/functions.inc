@@ -385,6 +385,7 @@ if (!function_exists('CUSTOM_menuEntries')) {
             $result = DB_query($sql);
 
 		$class_name = "";
+		$target_name = "";
 
             while ($A = DB_fetchArray($result)) {
 
@@ -410,6 +411,7 @@ if (!function_exists('CUSTOM_menuEntries')) {
                     $pattern     = stripslashes($A['pattern']);
                     $selected    = '';
                     $class_name  = stripslashes($A['class_name']);
+                    $target_name = stripslashes($A['class_name']);
                     $id_name     = stripslashes($A['mid']);
                     
                     switch ($A['mode']) {
@@ -458,6 +460,7 @@ if (!function_exists('CUSTOM_menuEntries')) {
                                          'selected'        => $selected,
                                          'id_name'         => $id_name,
                                          'class_name'      => $class_name,
+                                         'target_name'     => $target_name,
                                          'submenu_entries' => $submenu_entries);
                 }
             }
@@ -498,27 +501,32 @@ if (!function_exists('CUSTOM_menuEntries')) {
     {
         global $_CONF, $_TABLES, $topic, $_CMED_CONF;
 
-				$class_name = "";
         $custom_count = 0;
         $custom_size = sizeof($custom_entries);
         foreach ($custom_entries as $entry) {
+						$class_name = '';
+						$target_name = '';
             $custom_count++;
           	if (empty($entry['url']) || empty($entry['label'])){ continue; }
 
 						if ( isset($entry['menuitem_class']) ){
 	            $class_name = $entry['menuitem_class'];
+	            $target_name = $entry['menuitem_class'];
 						}
 	          $class_name = trim($class_name) . ' ' . $entry['class_name'];
             $class_name = trim($class_name) . ' ' . $entry['selected'];
-            $class_name = trim($class_name) . (($custom_count == $custom_size) ? ' last' : '');
+           // $class_name = trim($class_name) . (($custom_count == $custom_size) ? ' last' : '');
             $class_name = trim($class_name);
             $class_property = (empty($class_name)) ? '' : (' class="' . $class_name . '"');
+            $target_property = (empty($target_name)) ? '' : (' target="' . $target_name . '"');
             if (empty($entry['submenu_entries'])) {
                 $T->set_var('menuitem_url',   $entry['url']);
                 $T->set_var('menuitem_text',  $entry['label']);
                 $T->set_var('menuitem_id',    $_CMED_CONF['prefix_id'] . $entry['id_name']);
                 $T->set_var('menuitem_class', $class_name);
+                $T->set_var('menuitem_target',$target_name);
                 $T->set_var('class_property', $class_property);
+                $T->set_var('target_property',$target_property);
                 $T->set_var('menuitem_icon_url', $entry['icon_url']);
                 $T->parse('menu_elements', 'menuitem_custom', true);
             } else {
@@ -532,7 +540,9 @@ if (!function_exists('CUSTOM_menuEntries')) {
                 $T2->set_var('menuitem_text',  $entry['label']);
                 $T2->set_var('menuitem_id',    $_CMED_CONF['prefix_id'] . $entry['id_name']);
                 $T2->set_var('menuitem_class', $class_name);
+                $T2->set_var('menuitem_target',$target_name);
                 $T2->set_var('class_property', $class_property);
+                $T2->set_var('target_property',$target_property);
                 $T2->set_var('menuitem_icon_url', $entry['icon_url']);
                 $T2->parse('submenu', 'menuitem_drop');
                 $submenu = $T2->finish($T2->get_var('submenu'));
