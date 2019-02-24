@@ -1,0 +1,25 @@
+{# start {templatelocation} #}
+
+<section class="uk-section-xsmall">
+	<div class="uk-container">
+		<div uk-grid>
+			<div class="uk-visible@m uk-width-1-4@m uk-margin-top">
+
+				<?php 
+
+$include = array('blog_'.COM_getLanguageId());
+$display = phpblock_lastarticles2(10,120,$include);
+echo $display;
+
+				?>
+			</div>
+			<div class=" uk-width-3-4@m">
+				<div class="article uk-margin-left">
+					{formatted_article}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+{# end {templatelocation} #}
