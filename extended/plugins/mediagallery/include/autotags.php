@@ -1149,7 +1149,8 @@ function MG_autotags($op, $content = '', $autotag = '')
             if ($enable_link != 1) {
                 $link = $tagtext;
             } else {
-                $link = '<a href="' . $url . '"' . ($target=='' ? '' : ' target="' . $target . '"') . '>' . $tagtext . '</a>';
+                $link = $tagtext;
+//                $link = '<a href="' . $url . '"' . ($target=='' ? '' : ' target="' . $target . '"') . '>' . $tagtext . '</a>';
             }
 
             $T = COM_newTemplate($_MG_CONF['template_path']);
