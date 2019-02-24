@@ -10,6 +10,6 @@
 
 
 <div uk-grid>
-<div class="uk-width-1-4@m">{img}</div>
+<div class="uk-width-1-4@m"><a href="{link}"><img src="{img}" alt="" style="max-width:100%;"></a></div>
 <div class="uk-width-3-4@m"><dl><dt>{date}</dt><dd><a href="{link}">{title}</a></dd></dl></div>
 </div>
