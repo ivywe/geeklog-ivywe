@@ -530,7 +530,7 @@ function forum_getmodFunctions($showtopic) {
     }
 
     if ($options != '') {
-        $retval .= '<select name="modfunction">';
+        $retval .= '<select class="uk-select uk-width-auto" name="modfunction">';
         $retval .= $options;
 
         if ($showtopic['pid'] == 0) {
@@ -541,7 +541,7 @@ function forum_getmodFunctions($showtopic) {
             $top = "no";
         }
         $retval .= '</select>&nbsp;&nbsp;';
-        $retval .= '<input type="submit" name="submit" value="' .$LANG_GF01['GO'].'!"' . XHTML . '>';
+        $retval .= '<input type="submit" name="submit" class="uk-button uk-button-primary" value="' .$LANG_GF01['GO'].'!"' . XHTML . '>';
         $retval .= '<input type="hidden" name="fortopicid" value="' .$showtopic['id']. '"' . XHTML . '>';
         $retval .= '<input type="hidden" name="forum" value="' .$showtopic['forum']. '"' . XHTML . '>';
         $retval .= '<input type="hidden" name="msgpid" value="' .$msgpid. '"' . XHTML . '>';
