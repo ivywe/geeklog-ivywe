@@ -178,8 +178,8 @@ $_DATABOX_DEFAULT['intervalday'] = 90;
 $_DATABOX_DEFAULT['limitcnt'] = 10;
 $_DATABOX_DEFAULT['newmarkday']=3;
 $_DATABOX_DEFAULT['categories']="";
-$_DATABOX_DEFAULT['new_img']='<span class="databox_new">new!</span>';
-$_DATABOX_DEFAULT['rss_img']='<span class="databox_rss">RSS</span>';
+$_DATABOX_DEFAULT['new_img']='<span class="uk-label uk-label-danger">new!</span>';
+$_DATABOX_DEFAULT['rss_img']='<span class="uk-label uk-label-success">RSS</span>';
 
 //（5）file
 $_DATABOX_DEFAULT['imgfile_size'] = "1048576";
