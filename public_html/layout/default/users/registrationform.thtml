@@ -1,22 +1,22 @@
 {# begin {templatelocation} #}
 
 {start_block}
-		<div id="modal-users" uk-modal="" class="uk-modal uk-open" style="display: block;">
-			<div class="uk-modal-dialog uk-modal-body gl-loginform">
+    <div id="modal-users" uk-modal="" class="uk-modal uk-open" style="display: block;">
+      <div class="uk-modal-dialog uk-modal-body gl-loginform">
 
-				<ul class="uk-subnav uk-flex-center uk-margin-remove-bottom">
-				<li><a href="{site_url}/users.php?mode=login">ログイン</a></li>
-				<li class="gl-selected">新規登録</li>
-				</ul>
+        <ul class="uk-subnav uk-flex-center uk-margin-remove-bottom">
+        <li><a href="{site_url}/users.php?mode=login">ログイン</a></li>
+        <li class="gl-selected">新規登録</li>
+        </ul>
 
-				<button class="uk-modal-close-default" type="button" uk-close></button>
+        <button class="uk-modal-close-default" type="button" uk-close></button>
         <div class="uk-text-center gl-sitename-modal">{site_name}</div>
-				<h1 class="uk-h1 uk-modal-title uk-text-center">{lang_register}</h1>
+        <h1 class="uk-h1 uk-modal-title uk-text-center">{lang_register}</h1>
 
   <form action="{site_url}/users.php" method="post" id="registrationform" class="compact">
       <p class="form_message uk-text-small">{lang_instructions}</p>
 
-			<ul class="uk-list">
+      <ul class="uk-list">
         <li><input type="text" maxlength="16" name="username" value="{username}" id="registrationform-username" class="uk-input" placeholder="{lang_username}"{xhtml}></li>
         <li><input type="text" maxlength="96" name="email" value="{email}" id="registrationform-email" class="uk-input " placeholder="{lang_email}"{xhtml}></li>
 
@@ -25,9 +25,9 @@
       </ul>
         <p class="uk-text-small">{lang_warning}</p>
 
-			<div class="uk-margin">
+      <div class="uk-margin">
       {captcha}
-			</div>
+      </div>
 
       <div class="submit">
         <input type="hidden" name="mode" value="create"{xhtml}>
@@ -36,7 +36,7 @@
   </form>
 
     </div>
-	</div>
+  </div>
 
 {end_block}
 

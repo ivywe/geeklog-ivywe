@@ -1,11 +1,11 @@
 {# begin {templatelocation} #}
 
-		<div id="modal-users" uk-modal="" class="uk-modal uk-open" style="display: block;">
-			<div class="uk-modal-dialog uk-modal-body gl-loginform">
+    <div id="modal-users" uk-modal="" class="uk-modal uk-open" style="display: block;">
+      <div class="uk-modal-dialog uk-modal-body gl-loginform">
 
-				<button class="uk-modal-close-default" type="button" uk-close></button>
+        <button class="uk-modal-close-default" type="button" uk-close></button>
         <div class="uk-text-center gl-sitename-modal">{site_name}</div>
-				<h1 class="uk-h1 uk-modal-title uk-text-center">{lang_login}</h1>
+        <h1 class="uk-h1 uk-modal-title uk-text-center">{lang_login}</h1>
 
 {!if lang_nonstandardlogin}
     <p class="uk-text-danger">{lang_nonstandardlogin}</p>
@@ -32,7 +32,7 @@
 {!endif}
 
     </div>
-	</div>
+  </div>
 
 
 {# end {templatelocation} #}
