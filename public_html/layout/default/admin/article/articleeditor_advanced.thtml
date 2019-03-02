@@ -83,7 +83,16 @@
           </div>
           <textarea cols="45" rows="14" name="bodytext" id="bodytext" class="uk-textarea wide" aria-describedby="desc-admin-storyeditor-text">{story_bodytext}</textarea>
         </dd>
-        <dd class="description" id="desc-admin-storyeditor-text">{lang_allowed_html}</dd>
+        <dd class="description" id="desc-admin-storyeditor-text">
+          <ul uk-accordion>
+            <li>
+              <a class="uk-accordion-title" href="#">MORE</a>
+              <div class="uk-accordion-content">
+                <div class="warningsmall uk-margin">{lang_allowed_html}</div>
+              </div>
+            </li>
+          </ul>
+        </dd>
       </dl>
     </div>
 
@@ -113,7 +122,16 @@
             <button class="uk-button uk-button-default uk-button-small" type="button" title="{lang_reducehelp}" uk-tooltip="{lang_reducehelp}" onclick="changeHTMLTextAreaSize('bodyhtml','smaller');" alt="collapse button"><span uk-icon="minus"></span></button>
           </div>
           <textarea cols="45" rows="20" name="bodyhtml" id="bodyhtml" class="uk-textarea wide">{story_bodytext}</textarea>
-          <div id="editor_mode">{lang_allowed_html}</div>
+          <div id="editor_mode">
+            <ul uk-accordion>
+              <li>
+                <a class="uk-accordion-title" href="#">MORE</a>
+                <div class="uk-accordion-content">
+                  <div class="warningsmall uk-margin">{lang_allowed_html}</div>
+                </div>
+              </li>
+            </ul>
+          </div>
         </dd>
       </dl>
     </div>
