@@ -28,6 +28,9 @@ if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
 	die('This file can not be used on its own.');
 }
 
+    global $_CONF;
+
+
 /**
 * Theme Editor default settings
 *
@@ -70,15 +73,9 @@ $_THM_DEFAULT['enable_all_files'] = false;
 * Themes to be edited with this plugin
 * @NOTE: theme names are case-sensitive
 */
-if (version_compare(VERSION, '2.1.2') >= 0) {
-	$_THM_DEFAULT['allowed_themes'] = array(
-		'default', 'denim_three',
-	);
-} else {
-	$_THM_DEFAULT['allowed_themes'] = array(
-		'professional',
-	);
-}
+$_THM_DEFAULT['allowed_themes'] = array(
+	$_CONF['theme'], 
+);
 
 /**
 * Template files and CSS files to be edited with this plugin
@@ -86,8 +83,8 @@ if (version_compare(VERSION, '2.1.2') >= 0) {
 */
 $_THM_DEFAULT['allowed_files'] = array(
 	// CSS
-	'css_ltr/custom.css', 'css_ltr/style.css', 'css_ltr/style.min.css', 'css_ltr/custom.sample.css', 'css_ltr/style_forum.css',	
-
+	'css_ltr/custom.css', 'css_ltr/style.css', 
+	
 	// Site header and footer
 	'header.thtml', 'footer.thtml',
 	
@@ -96,14 +93,9 @@ $_THM_DEFAULT['allowed_files'] = array(
 	'rightblocks.thtml', 'blockheader-right.thtml', 'blockfooter-right.thtml',
 	
 	// Story
-	'articletext.thtml', 'articlebodytext.thtml', 
-  'featuredarticlebodytext.thtml', 'featuredarticlebodytext.thtml',
-  'archivestorytext.thtml', 'archivearticlebodytext.thtml',
+	'articletext.thtml', 'featuredarticletext.thtml', 'archivearticletext.thtml',
 	'article/article.thtml', 'article/printable.thtml',
 	
-	// Topic
-	'topic.thtml', 'topicnavigation.thtml', 'topicrelated.thtml',
-
 	// Menu
 	'menuitem.thtml', 'menuitem_last.thtml', 'menuitem_none.thtml',
 	
