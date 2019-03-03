@@ -2104,16 +2104,16 @@ $LANG_trackbackcodes = array(
 );
 
 $LANG_structureddatatypes = array(
-    0 => 'None',
-    1 => 'WebPage',
-    2 => 'Article',
-    3 => 'NewsArticle',
-    4 => 'BlogPosting'
+    0 => 'なし',
+    1 => 'Webページ',
+    2 => '記事',
+    3 => '新記事',
+    4 => 'ブログ投稿'
 );
 
 $LANG_STRUCT_DATA = array(
-    'lang_structured_data_type'     => 'Structured Data Type', 
-    'autotag_desc_structureddata'   => '[structureddata:schema_property]Property Value[/structureddata] - Adds a property to the structured data of the content that the autotag is embedded in.'
+    'lang_structured_data_type'     => '構造化データ', 
+    'autotag_desc_structureddata'   => '[structureddata:schema_property]Property Value[/structureddata] - コンテンツの構造化自動タグを埋め込んでプロパティを追加します。'
 );
 
 ###############################################################################
