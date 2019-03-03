@@ -439,7 +439,7 @@ function listplugins($token)
     );
 
     // JS required by the delete feature
-    $retval .= '<script>/* quick Javascript confirmation function */';
+    $retval .= '<script type="text/javascript">/* quick Javascript confirmation function */';
     $retval .= 'function confirm_action(msg,url){if(confirm(msg)){location.href=url;}}';
     $retval .= '</script>';
 
