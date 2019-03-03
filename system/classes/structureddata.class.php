@@ -33,8 +33,8 @@
  */
 class StructuredData
 {
-    
     private $items = array();
+    private $attributes = array();
 
     /**
      * Constructor
@@ -42,16 +42,34 @@ class StructuredData
     public function __construct()
     {
         $this->items = array();
+        $this->attributes = array();
     }
 
     /**
      * Create Structured Data Type name
      *
-     * @param   string  $type   Plugin of the content used to create the structured data
+     * @param   string  $type   Usually the plugin of the content used to create the structured data
      * @param   string  $id     Id of content 
      */
-    public function create_name($type, $id) 
+    private function create_name($type, $id) 
     {
+    
+        // Make sure core components are called the same thing
+        // If type not recognized then assume plugin
+        switch ($type) {
+            case "comment":
+                break;
+            
+            case "stories":
+            case "story":
+                $type = "article";
+                break;
+                
+            case "staticpages":
+            case "staticpage":
+                $type = "page";
+                break;                
+        }
     
         $sd_name = $type . '-' . $id;
         
@@ -65,16 +83,25 @@ class StructuredData
      * @param   string  $type       Plugin of the content used to create the structured data
      * @param   string  $id         Id of content 
      * @param   numeric $sd_type    Id of Structured Data Type. See $LANG_structureddatatypes language variable for full list
-     * @param   string  $properties Properties for structured data type
+     * @param   string  $properties Properties for structured data type (type, headline, url, datePublished, dateModified, commentCount, keywords, description)
+     * @param   string  $attributes Attributes for structured data item (cache,)
      */
-     
-    public function add_type($type, $id, $sd_type, $properties = array()) 
+    public function add_type($type, $id, $sd_type, $properties = array(), $attributes = array()) 
     {
-        
         global $_CONF;
         
         // Create structured data name
         $sd_name = $this->create_name($type, $id);
+        
+        if (isset($attributes['cache']) && $attributes['cache']) {
+            $this->attributes[$sd_name]['cache'] = true;
+        }
+        
+        // Remove any empty properties
+        foreach($properties as $key => $value) {
+            if(empty($value)) 
+                unset($properties[$key]);         
+        }
         
         // 0 = None
         if ($sd_type > 0 AND $sd_type < 5) {
@@ -103,35 +130,60 @@ class StructuredData
                 $this->items[$sd_name]['commentCount'] = $properties['commentCount'];
             }
             
-            // inLanguage
-            // keywords // Meta Keywords or Topic List
+            $lang_id = '';
+            // See if item supports Geeklog Multi Language support (ie id of item ends in language type  _en) and site Multi Lanugage is enabled
+            if (isset($attributes['multi_language']) && $attributes['multi_language'] && COM_isMultiLanguageEnabled()) {
+                $lang_id = COM_getLanguageIdForObject($id);
+            }
+            if (empty($lang_id)) {
+                // Assume default language of site
+                $lang_id = COM_getLanguageId($_CONF['language_site_default']);
+            }
+            $this->items[$sd_name]['inLanguage'] = $lang_id;
             
-            // image
-            // thumbnailUrl
-            
-            // video
+            // keywords // Meta Keywords or Topic List (needs to be a comma delimited list)
+            if (isset($properties['keywords'])) {
+                $this->items[$sd_name]['keywords'] = $properties['keywords'];
+            }            
             
             // Can be set by autotag which can be executed first so do not overwrite if set
-            if (!isset($this->items[$sd_name]['description'])) {
+            if (isset($properties['description']) && !isset($this->items[$sd_name]['description'])) {
                 $this->items[$sd_name]['description'] = $properties['description'];
             }
             
-            if (!empty($_CONF['owner_name'])) {
-                $org_name = $_CONF['owner_name'];
-            } else {
-                $org_name = $_CONF['site_name'];
-            }
             $this->items[$sd_name]['publisher'] = array(
                 "@type"     => "Organization",
-                "name" 	    => $org_name,
+                "name" 	    => $_CONF['site_name'],
+                "url" 	    => $_CONF['site_url']
+            );
+            
+            if (isset($_CONF['path_site_logo']) && !empty($_CONF['path_site_logo'])) {
+                $logo_path = rtrim($_CONF['path_html'], '/') . '/' . ltrim($_CONF['path_site_logo'], '/');
+                $sizeAttributes = COM_getImgSizeAttributes($logo_path, false);
+                if (is_array($sizeAttributes)) {
+                    $logo_url = rtrim($_CONF['site_url'], '/') . '/' . ltrim($_CONF['path_site_logo'], '/');
+                    $this->items[$sd_name]['publisher']['logo'] = array(
+                        "@type"   => "ImageObject",
+                        "url"  => $logo_url,
+                        "width"  => $sizeAttributes['width'],
+                        "height"  => $sizeAttributes['height']
+                    );
+                }
+            }
+            
+            /*
+            $this->items[$sd_name]['publisher'] = array(
+                "@type"     => "Organization",
+                "name" 	    => $_CONF['site_name'],
+                "url" 	    => $_CONF['site_url'],
                 "logo" 		=>         
                     array(
                         "@type"   => "ImageObject",
-                        "url"  => "",
-                        "width"  => 240,
-                        "height"  => 60,
+                        "url"  => $_CONF['site_logo_url'],
+                        "width"  => $sizeAttributes['width'],
+                        "height"  => $sizeAttributes['height'],
                     ) 
-            );
+            ); */
             
             $this->items[$sd_name]['mainEntityOfPage'] = array(
                 "@type"     => "WebPage",
@@ -151,11 +203,8 @@ class StructuredData
 	 */
 	public function set_param_item($type, $id, $name, $value) 
     {
-        
         $sd_name = $this->create_name($type, $id);        
         $this->items[$sd_name][$name] = $value;
-        //debug_print_backtrace();
-//throw new Exception('Autotag check');
 	}     
     
     /**
@@ -167,13 +216,11 @@ class StructuredData
 	 */
 	public function set_author_item($type, $id, $name) 
     {
-        
         $sd_name = $this->create_name($type, $id);        
         $this->items[$sd_name]['author'] = array(
             "@type"   => "Person",
             "name"  => $name
         );
-        
 	}    
     
     /**
@@ -182,9 +229,8 @@ class StructuredData
      * @param   string  $type   Plugin of the content used to create the structured data
      * @param   string  $id     Id of content 
 	 */
-	public function set_image_item($type, $id, $url, $width, $height) 
+	public function set_image_item($type, $id, $url, $width = '', $height = '') 
     {
-        
         $sd_name = $this->create_name($type, $id);        
         $image_item = array(
                 "@type"   => "ImageObject",
@@ -199,7 +245,6 @@ class StructuredData
         }
         
         $this->items[$sd_name]['image'][] = $image_item;
-       
 	}
     
     /**
@@ -210,38 +255,11 @@ class StructuredData
      */
     public function add_BreadcrumbList($type, $id)
     {
-        
         $sd_name = $this->create_name($type, $id);        
         $this->items[$sd_name]['@context'] = "https://schema.org";
         $this->items[$sd_name]['@type'] = "BreadcrumbList";
         $this->items[$sd_name]['itemListElement'] = array();
-        
-    
-    /*
-    $schema['@context'] = "https://schema.org";
-    $schema['@type'] = "BreadcrumbList";
-    $schema['itemListElement'] = array(
-            array(
-                "@type"     => "ListItem",
-                "position" 	=> 1,
-                "item" 		=>         
-                    array(
-                        "@id"   => "https://example.com/dresses",
-                        "name"  => "Dresses",
-                    ) 
-            ),
-            array(
-                "@type"     => "ListItem",
-                "position" 	=> 2,
-                "item" 		=>         
-                    array(
-                        "@id"   => "https://example.com/dresses/real",
-                        "name"  => "Real Dresses",
-                    ) 
-            )                
-        );
-    echo '<script type="application/ld+json">' . json_encode($schema) . '</script>';
-    */        
+      
         
     }
 
@@ -256,7 +274,6 @@ class StructuredData
 	 */
 	public function set_breadcrumb_item($type, $id, $position, $item_id, $name) 
     {
-        
         $sd_name = $this->create_name($type, $id);        
         $this->items[$sd_name]['itemListElement'][] = array(
             array(
@@ -269,10 +286,68 @@ class StructuredData
                     ) 
             )
         );
-        
 	}
     
+    /**
+     * Get Structured Data Cache Instance ID
+     *
+     * @param   string  $sd_name Name of Structured Data item
+     */
+    private function get_cacheInstanceID($sd_name) 
+    {
+        return 'structureddata__' . $sd_name . '__' . CACHE_security_hash();
+    }
     
+    /**
+	 * Retrieve a Cached Structured Data item if it exists 
+	 *
+     * @param   string  $type       Plugin of the content used to create the structured data
+     * @param   string  $id         Id of content 
+	 * @param   integer $cache_time Cache time of plugin item in seconds. 0 = disabled, -1 is always
+	 */
+	public function get_cachedScript($type, $id, $cache_time) 
+    {
+        $retval = false;
+        $sd_name = $this->create_name($type, $id);  
+        $cacheInstance = $this->get_cacheInstanceID($sd_name);
+        $sd_cache = CACHE_check_instance($cacheInstance, true, true); // Not language or mobile cache specific (as this is ALL topic information)
+        if ($sd_cache && $cache_time == -1) {
+            $item = unserialize($sd_cache);
+            $this->items[$sd_name] = $item;
+            
+            $retval = true;
+        } elseif ($sd_cache && $cache_time > 0) {
+            $lu = CACHE_get_instance_update($cacheInstance, true, true);
+            $now = time();
+            if (($now - $lu) < $cache_time) {
+                $item = unserialize($sd_cache);
+                $this->items[$sd_name] = $item;
+                
+                $retval = true;
+            }
+        }
+        
+        return $retval;
+    }
+    
+    /**
+	 * Delete Structured Data item cache
+	 *
+     * @param   string  $type       Plugin of the content used to create the structured data
+     * @param   string  $id         Id of content 
+	 */
+	public function clear_cachedScript($type, $id = '') 
+    {
+        if (!empty($id)){
+            $sd_name = $this->create_name($type, $id);
+            $cacheInstance = $this->get_cacheInstanceID($sd_name);
+        } else {
+            // clear all Structured Data cache for a specific type
+            $cacheInstance = 'structureddata__'  . $type;
+        }
+        
+        CACHE_remove_instance($cacheInstance);    
+    }
     
     /**
      * Returns JSON-LD script of either 1 or all structured data types. Can be included in head or body of webpage
@@ -292,14 +367,23 @@ class StructuredData
         if (!empty($sd_name)) {
             // Autotags can insert some structured data variables and may not be setup correctly. Make sure an actual type is set before including
             if (isset($this->items[$sd_name]['@type'])) { 
-                $script = '<script type="application/ld+json">' . json_encode($this->items[$sd_name]) . '</script>' . PHP_EOL; 
+                $script = '<script type="application/ld+json">' . json_encode($this->items[$sd_name]) . '</script>' . PHP_EOL;
+                if (isset($this->attributes[$sd_name]['cache']) && $this->attributes[$sd_name]['cache']) {
+                    $cacheInstance = $this->get_cacheInstanceID($sd_name);
+                    CACHE_create_instance($cacheInstance, serialize($this->items[$sd_name]), true, true); // Not language or mobile cache specific
+                }
+                
                 // Since requested then remove from array so not added again later to the head
                 unset($this->items[$sd_name]);
             }
-        } else {
-            foreach ($this->items as $item) {
+        } else {  
+            foreach ($this->items as $sd_name => $item) {
                 if (isset($item['@type'])) {
                     $script .= '<script type="application/ld+json">' . json_encode($item) . '</script>' . PHP_EOL;
+                    if (isset($this->attributes[$sd_name]['cache']) && $this->attributes[$sd_name]['cache']) {
+                        $cacheInstance = $this->get_cacheInstanceID($sd_name);
+                        CACHE_create_instance($cacheInstance, serialize($this->items[$sd_name]), true, true); // Not language or mobile cache specific
+                    }
                 }
             }        
         }

@@ -396,6 +396,7 @@ $TEMPLATE_OPTIONS = array(
 require_once $_CONF['path_system'] . 'lib-template.php';
 
 // Set language
+$_CONF['language_site_default'] = $_CONF['language']; // Store original site default language before it may get changed depending on other settings
 if (isset($_COOKIE[$_CONF['cookie_language']]) && empty($_USER['language'])) {
     $language = COM_sanitizeFilename($_COOKIE[$_CONF['cookie_language']]);
     if (is_file($_CONF['path_language'] . $language . '.php') &&
@@ -2528,6 +2529,9 @@ function COM_userMenu($help = '', $title = '', $position = '', $cssId = '', $css
         $login->set_var('lang_password', $LANG01[57]);
         $login->set_var('lang_forgetpassword', $LANG01[119]);
         $login->set_var('lang_login', $LANG01[58]);
+        $login->set_var('lang_loginform', $LANG01['loginform']);
+        $login->set_var('lang_remoteloginoptions', $LANG01['remoteloginoptions']);
+        
         if ($_CONF['disable_new_user_registration']) {
             $login->set_var('lang_signup', '');
         } else {
@@ -2630,7 +2634,8 @@ function COM_userMenu($help = '', $title = '', $position = '', $cssId = '', $css
             $login->set_var('oauth_login', '');
         }
 
-        PLG_templateSetVars('loginblock', $login);
+        PLG_templateSetVars('loginblock', $login); 
+        PLG_templateSetVars('loginform', $login); // Need to set loginform as well since this is what Geeklog checks when logging in users. This will allow things like recaptcha work
         $retval .= $login->finish($login->parse('output', 'form'));
         $retval .= COM_endBlock(COM_getBlockTemplate('user_block', 'footer', $position));
     }
@@ -3261,8 +3266,7 @@ function COM_redirect($url)
         header('Location: ' . $url);
     }
 
-    if (isset($_CONF['rootdebug']) && $_CONF['rootdebug']) {
-        // for debugging
+    if (COM_isEnableDeveloperModeLog('redirect')) {
         COM_errorLog(
             sprintf(
                 '%1$s failed to redirect to "%2$s".  Headers were already sent at line %3$d of "%4$s".',
@@ -4541,9 +4545,9 @@ function COM_emailUserTopics()
 
             if ($_CONF['emailstorieslength'] > 0) {
                 if ($S['postmode'] === 'wikitext') {
-                    $articleText = COM_undoSpecialChars(GLText::stripTags(PLG_replaceTags(COM_renderWikiText(stripslashes($S['introtext'])))));
+                    $articleText = COM_undoSpecialChars(GLText::stripTags(PLG_replaceTags(COM_renderWikiText(stripslashes($S['introtext'])), '', false, 'article', $S['sid'])));
                 } else {
-                    $articleText = COM_undoSpecialChars(GLText::stripTags(PLG_replaceTags(stripslashes($S['introtext']))));
+                    $articleText = COM_undoSpecialChars(GLText::stripTags(PLG_replaceTags(stripslashes($S['introtext']), '', false, 'article', $S['sid'])));
                 }
 
                 if ($_CONF['emailstorieslength'] > 1) {
@@ -6470,15 +6474,19 @@ function COM_dateDiff($interval, $date1, $date2)
  * @param  array    $leave_dirs     Array of directory names to not delete
  * @param  array    $leave_files    Array of file names to not delete
  */
-function COM_cleanDirectory($dir, $leave_dirs = array(), $leave_files = array()) { 
-
-    foreach (glob("$dir/*") as $file) {
+function COM_cleanDirectory($dir, $leave_dirs = array(), $leave_files = array()) 
+{ 
+    // Need to array merge glob to include regular file list AND hidden file lists (that ignore '.' and '..')
+    $merged = array_merge(glob(rtrim($dir, '/') . '/*'), glob(rtrim($dir, '/') . '/{*,.[!.]*,..?*}', GLOB_BRACE));
+    foreach ($merged as $file) {
         if (is_dir($file)) {
             if (!in_array(basename($file), $leave_dirs)) {
                 COM_deleteFiles($file); // delete all sub directories and files in those directories
             }
         } elseif (!in_array(basename($file), $leave_files) ) {
-            unlink($file);
+            if (is_file($file)) {
+                unlink($file);
+            }
         }
     }
 }
@@ -6489,15 +6497,18 @@ function COM_cleanDirectory($dir, $leave_dirs = array(), $leave_files = array())
  * @since  Geeklog-2.2.0
  * @param  string   $dir            Directory to clean of files and folders
  */
-function COM_deleteFiles($dir) { 
-  
-    foreach(glob($dir . '/*') as $file) { 
+function COM_deleteFiles($dir)
+{ 
+    $merged = array_merge(glob(rtrim($dir, '/') . '/*'), glob(rtrim($dir, '/') . '/{*,.[!.]*,..?*}', GLOB_BRACE));
+    foreach ($merged as $file) {  
         if (is_dir($file)) {
             COM_deleteFiles($file); 
         } else {
-            unlink($file); 
+            if (is_file($file)) {
+                unlink($file);
+            }
         }
-    } 
+    }
     rmdir($dir); 
 }
 
@@ -6708,10 +6719,11 @@ function COM_convertDate2Timestamp($date, $time = '')
 /**
  * Get the HTML for an image with height & width
  *
- * @param    string $file full path to the file
- * @return   string          html that will be included in the img-tag
+ * @param    string  $file  full path to the file
+ * @param    boolean $html  flag to return html source or array
+ * @return   string         if $html true then html that will be included in the img-tag. Else an array will be returned with the information
  */
-function COM_getImgSizeAttributes($file)
+function COM_getImgSizeAttributes($file, $html = true)
 {
     $sizeAttributes = '';
 
@@ -6736,15 +6748,24 @@ function COM_getImgSizeAttributes($file)
                 }
 
                 if (($width !== '?') && ($height !== '?')) {
-                    $sizeAttributes = 'width="' . $width . '" height="' . $height . '" ';
+                    if ($html) {
+                        $sizeAttributes = 'width="' . $width . '" height="' . $height . '" ';
+                    } else {
+                        $sizeAttributes['width'] = $width;
+                        $sizeAttributes['height'] = $height;
+                    }
                 }
             }
         } else {
             // Other file type
             $dimensions = getimagesize($file);
             if (!empty($dimensions[0]) && !empty($dimensions[1])) {
-                $sizeAttributes = 'width="' . $dimensions[0]
-                    . '" height="' . $dimensions[1] . '" ';
+                if ($html) {
+                    $sizeAttributes = 'width="' . $dimensions[0] . '" height="' . $dimensions[1] . '" ';
+                } else {
+                    $sizeAttributes['width'] = $dimensions[0];
+                    $sizeAttributes['height'] = $dimensions[1];
+                }
             }
         }
     }
@@ -8271,7 +8292,7 @@ function COM_checkInstalled()
 </head>
 
 <body>
-<img src="{$rel}docs/images/newlogo.gif" alt="" />
+<img src="{$rel}docs/images/logo.gif" alt="" />
 
 <h1>Geeklog {$version}</h1>
   <p>Please run the <a href="{$rel}admin/install/index.php" rel="nofollow">install script</a> first.</p>

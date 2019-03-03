@@ -1216,7 +1216,7 @@ function ADMIN_getListField_plugins($fieldName, $fieldValue, $A, $icon_arr, $tok
                                'id'      => $id);
             $retval .= COM_createLink($icon_arr['deleteitem'], $url, $link_args);
             // If javascript is available, we will be using it to get a confirmation from the user. So we need to hide the default link.
-            $retval .= '<script>document.getElementById("' . $id . '").href = "javascript:void(0);";</script>';
+            $retval .= '<script type="text/javascript">document.getElementById("' . $id . '").href = "javascript:void(0);";</script>';
             break;
 
         default:
