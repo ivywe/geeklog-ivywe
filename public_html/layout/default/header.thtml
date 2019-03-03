@@ -20,7 +20,7 @@
 <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
 
-<body dir="{direction}" class="{layout_columns}" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+<body dir="{direction}" class="{layout_columns}">
 {# begin {templatelocation} #}
 {# コメントは、公開時は、コンフィギュレーションのテーマでコメントを表示しないモードにしてください。 #}
 
@@ -268,7 +268,7 @@ if( COM_onFrontpage() ){  ?>
   <div id="wrapper">
     {# Center Block Container #}
     <div id="centerblocks">
-      <main id="main-content" role="main" itemscope="itemscope" itemprop="mainContentOfPage" itemtype="http://schema.org/WebPageElement">
+      <main id="main-content">
 {!endif}
 
 {# ウェルカムメッセージ Japanizeプラグイン活用時は{welcome_msg_jp}を使えます。 #}
