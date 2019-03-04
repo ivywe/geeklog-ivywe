@@ -1,15 +1,20 @@
 {# begin {templatelocation} #}
 
 <form action="{form_url}" method="post">
-  <div class="admin-list-search">
-    <div class="search-part">
+  <ul class="uk-subnav uk-flex-center">
+    <li class="uk-margin-small-top">
       {filter}
-    </div>
-    <div class="search-part">
-      {lang_search}: <input type="text" name="q" class="uk-input size3" value="{last_query}"{xhtml}>
-    </div>
-    <div class="search-part">
+    </li>
+    <li class="uk-margin-small-top">
+      {lang_search}:
+    </li>
+    <li>
+      <input type="text" name="q" class="uk-input size3" value="{last_query}"{xhtml}>
+    </li>
+    <li class="uk-margin-small-top">
       {lang_limit_results}:
+    </li>
+    <li>
       <select name="query_limit" class="uk-select uk-width-auto">
         <option value="10" {10_selected}>10</option>
         <option value="20" {20_selected}>20</option>
@@ -19,12 +24,14 @@
         <option value="200" {200_selected}>200</option>
         <option value="500" {500_selected}>500</option>
       </select>
+    </li>
+    <li>
       <button type="submit" value="{lang_submit}" class="uk-button uk-button-default">{lang_submit}</button>
-    </div>
-    <div class="search-part">
-      {lang_records_found}:&nbsp;{records_found}
-    </div>
-  </div>
+    </li>
+    <li class="uk-margin-small-top">
+	    {lang_records_found}:&nbsp;{records_found}
+    <li>
+  </ul>
 </form>
 
 {# end {templatelocation} #}
