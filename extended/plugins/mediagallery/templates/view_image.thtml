@@ -5,7 +5,7 @@
 <div uk-grid>
   <div class="uk-width-1-2@s"><strong>{album_title}</strong>{!if rsslink}&nbsp;{rsslink}{!endif}</div>
   <div class="uk-width-1-2@s">
-    <form name="mgsearch" method="post" action="{site_url}/search.php" class="uk-form"><div>
+    <form name="mgsearch" method="post" action="{site_url}/search.php"><div>
       <input type="text" class="uk-input uk-form-width-small" name="keywords" value="{keywords}"{xhtml}>
       <input type="hidden" name="mode" value="search"{xhtml}>
       <input type="hidden" name="swhere" value="0"{xhtml}>

@@ -21,11 +21,7 @@ function doUnCheckAll_mediaitems() {
 }
 // End script --></script>
 
-<div>
-	<div class="uk-text-success uk-text-small">&#91;medialist:<span style="color:#ffffff">{album_id}</span> theme:xx limitcnt:xx order:(RANDOM|order) &#123;class&#125; &#93; &#91;media:<span style="color:#ffffff">media_id</span> src:(tn|disp|org)&#93; 
-	&#91;media_url:<span style="color:#ffffff">media_id</span> &#93;
-	</div>
-</div>
+	<div class="uk-text-success uk-text-small uk-margin-small">自動タグの例) &#91;medialist:(album_id) theme:(name) src:(tn|disp|org) limitcnt:xx order:(RANDOM|order) &#93; &#91;media:media_id src:(tn|disp|org)&#93; &#91;media_url:(media_id) src:(tn|disp|org) &#93;</div>
 
 <table class="uk-table uk-table-condensed uk-table-striped uk-width-1-1" style="background:#ffffff;">
   <tr>
@@ -69,8 +65,8 @@ function doUnCheckAll_mediaitems() {
     </td>
     <td>
       <div class="uk-margin-small"><input type="text" class="uk-input uk-width-1-1" name="mtitle[]" value="{media_title}" placeholder="タイトル" size="255"{xhtml}></div>
-      <div class="uk-margin-small-bottom"><textarea class="uk-textarea uk-width-1-1 tinymce_enabled" name="mdesc[]" cols="50" rows="4" placeholder="説明">{media_desc}</textarea></div>
-      <div><input type="text" class="uk-input uk-width-1-1" name="mkeywords[]" value="{media_keywords}" size="255" placeholder="キーワード"{xhtml}></div>
+      <div class="uk-margin-small-bottom"><textarea class="uk-textarea uk-width-1-1 tinymce_enabled1" name="mdesc[]" cols="50" rows="4" placeholder="説明">{media_desc}</textarea></div>
+      <div><textarea class="uk-textarea uk-width-1-1" name="mkeywords[]" cols="50" rows="3" placeholder="キーワード">{media_keywords}</textarea></div>
       <div class="uk-margin-small">{lang_category}:&nbsp;{cat_select}</div>
     </td>
   </tr>

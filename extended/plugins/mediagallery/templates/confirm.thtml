@@ -1,7 +1,7 @@
 {# begin {templatelocation} #}
 
 <h2>{lang_title}</h2>
-<form name="confirm" method="post" action="{s_form_action}" class="uk-form">
+<form name="confirm" method="post" action="{s_form_action}">
 <div>
 {message}
 </div>

@@ -1,8 +1,18 @@
 {# begin {templatelocation} #}
 
+<section>
+<div class="uk-container">
+
+<ul class="uk-breadcrumb">
+<li><a href="{site_url}/index.php">ホーム</a></li>
+<li><a href="{site_url}/mediagallery/index.php"><?php global $_MG_DEFAULT; echo $_MG_DEFAULT['root_album_name']; ?></a></li>
+<li><a href="{site_url}/mediagallery/album.php?aid={album_id}&page=1">{album_title}アルバム</a></li>
+<li>{album_title} メディア管理</li></ul>
+</ul>
+
 <h2>{lang_media_manage_title}</h2>
 <p>{lang_media_manage_help}</p>
-<form id="MG_mediamanage" name="media" method="post" action="{s_form_action}" class="uk-form">
+<form id="MG_mediamanage" name="media" method="post" action="{s_form_action}">
   <div>
     {!if lang_no_image}<div class="noitems">{lang_no_image}</div>{!endif}
     {mediaitems}
@@ -16,5 +26,8 @@
     <input type="submit" class="uk-button uk-button-danger" name="mode" value="{lang_delete}" onclick="return confirm('{lang_delete_confirm}');"{xhtml}>
   </div>
 </form>
+
+</div>
+</section>
 
 {# end {templatelocation} #}

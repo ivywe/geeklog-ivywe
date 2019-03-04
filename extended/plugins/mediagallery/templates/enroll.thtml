@@ -7,7 +7,7 @@
   </tr>
 </table>
 <br{xhtml}>
-<form name="enroll" method="post" action="{s_form_action}" class="uk-form">
+<form name="enroll" method="post" action="{s_form_action}">
 <br{xhtml}>
 <span style="font-weight:bold;">{lang_overview}</span><br{xhtml}>
 {lang_member_album_overview}

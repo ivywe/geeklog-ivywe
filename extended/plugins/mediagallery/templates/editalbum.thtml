@@ -1,6 +1,16 @@
 {# begin {templatelocation} #}
 
 {start_block}
+
+<section>
+<div class="uk-container">
+
+<ul class="uk-breadcrumb">
+<li><a href="{site_url}/index.php">ホーム</a></li>
+<li><a href="{site_url}/mediagallery/index.php"><?php global $_MG_DEFAULT; echo $_MG_DEFAULT['root_album_name']; ?></a></li>
+<li>{album_title} アルバム編集</li></ul>
+</ul>
+
 <script type="text/javascript">
 <!--
 function change(what) {
@@ -326,6 +336,10 @@ function change(what) {
 			</div>
 		</div>
 	</form>
+
+</div>
+</section>
+
 {end_block}
 
 {# end {templatelocation} #}

@@ -1,6 +1,16 @@
 {# begin {templatelocation} #}
 
 {start_block}
+
+<section>
+<div class="uk-container">
+
+<ul class="uk-breadcrumb">
+<li><a href="{site_url}/index.php">ホーム</a></li>
+<li><a href="{site_url}/mediagallery/index.php"><?php global $_MG_DEFAULT; echo $_MG_DEFAULT['root_album_name']; ?></a></li>
+<li>{album_title} FLASHアップロード</li></ul>
+</ul>
+
 {navbar}
 <div id="divSWFUploadMessage">
   {swfupload_usage}
@@ -39,7 +49,7 @@
   </form>
 
   <div id="divSWFThumbnails">
-    <form name="captions" method="post" action="{site_url}/mediagallery/admin.php?album_id=0" class="uk-form">
+    <form name="captions" method="post" action="{site_url}/mediagallery/admin.php?album_id=0">
       <div id="thumbnails" style="vertical-align:middle;"></div>
       <div style="clear:both;">
       <input type="hidden" name="action" value="batchcaptionsave"{xhtml}>
@@ -50,6 +60,10 @@
 </div>
 <hr{xhtml}>
 <div style="text-align:right;">{jumpbox}</div>
+
+</div>
+</section>
+
 <script src="{site_url}/mediagallery/swfupload/swfupload.js"></script>
 <script src="{site_url}/mediagallery/swfupload/swfupload.swfobject.js"></script>
 <script src="{site_url}/mediagallery/swfupload/swfupload.queue.js"></script>

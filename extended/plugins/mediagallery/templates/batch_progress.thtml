@@ -26,7 +26,7 @@ function updateButton() {
 
 <h2>{L_BATCH_PROCESS}</h2>
 <div class="pluginRow1" style="padding:10px;">
-<form name="form_batch_progress" method="post" action="{S_BATCH_ACTION}" class="uk-form">
+<form name="form_batch_progress" method="post" action="{S_BATCH_ACTION}">
 <div style="margin-left:20px">
 <p>{PROCESSING_MESSAGES}</p>
 

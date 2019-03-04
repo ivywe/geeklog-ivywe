@@ -59,8 +59,18 @@ jkpopwin.focus()
 </script>
 
 {start_block}
+
+<section>
+<div class="uk-container">
+
+<ul class="uk-breadcrumb">
+<li><a href="{site_url}/index.php">ホーム</a></li>
+<li><a href="{site_url}/mediagallery/index.php"><?php global $_MG_DEFAULT; echo $_MG_DEFAULT['root_album_name']; ?></a></li>
+<li>{album_title} ウォーターマーク管理</li></ul>
+</ul>
+
 <p>{lang_watermark_manage_help}</p>
-<form name="watermark" method="post" action="{s_form_action}" class="uk-form">
+<form name="watermark" method="post" action="{s_form_action}">
   <div>
     <input type="hidden" name="album_id" value="0"{xhtml}>
     {!if lang_no_image}<div class="noitems">{lang_no_image}</div>{!endif}
@@ -74,6 +84,10 @@ jkpopwin.focus()
     <input type="submit" class="uk-button uk-button-primary" name="mode"   value="{lang_upload}"{xhtml}>
   </div>
 </form>
+
+</div>
+</section>
+
 {end_block}
 
 {# end {templatelocation} #}

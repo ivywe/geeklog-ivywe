@@ -1,6 +1,15 @@
 {# begin {templatelocation} #}
 
-<form name="globalperm" enctype="multipart/form-data" method="post" action="{s_form_action}" class="uk-form">
+<section>
+<div class="uk-container">
+
+<ul class="uk-breadcrumb">
+<li><a href="{site_url}/index.php">ホーム</a></li>
+<li><a href="{site_url}/mediagallery/index.php"><?php global $_MG_DEFAULT; echo $_MG_DEFAULT['root_album_name']; ?></a></li>
+<li>アルバム権限の編集（全体）</li></ul>
+</ul>
+
+<form name="globalperm" enctype="multipart/form-data" method="post" action="{s_form_action}">
 <div>
 <input type="hidden" name="action" value="{action}"{xhtml}>
 <input type="hidden" name="album_id" value="0"{xhtml}>
@@ -54,5 +63,8 @@
   <input type="submit" class="uk-button uk-button-primary" value="{lang_cancel}" name="mode"{xhtml}>
 </div>
 </form>
+
+</div>
+</section>
 
 {# end {templatelocation} #}

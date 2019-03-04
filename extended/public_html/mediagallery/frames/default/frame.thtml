@@ -1,8 +1,8 @@
 {# begin {templatelocation} #}
 
-<div class="mgFrame_default">
+<div class="uk-border">
   {media_link_start}
-    <img src="{media_thumbnail}" alt="{media_tag}" title="{media_tag}" class="image"{xhtml}>
+    <img src="{media_thumbnail}" alt="{media_tag}" title="{media_tag}" class="uk-border"{xhtml}>
   {media_link_end}
 </div>
 

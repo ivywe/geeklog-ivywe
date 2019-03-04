@@ -1,6 +1,16 @@
 {# begin {templatelocation} #}
 
 {start_block}
+
+<section>
+<div class="uk-container">
+
+<ul class="uk-breadcrumb">
+<li><a href="{site_url}/index.php">ホーム</a></li>
+<li><a href="{site_url}/mediagallery/index.php"><?php global $_MG_DEFAULT; echo $_MG_DEFAULT['root_album_name']; ?></a></li>
+<li><a href="{site_url}/mediagallery/">ユーザー情報</a></li>
+</ul>
+
 <form action="{s_form_action}" method="post" id="mg-userprefs" class="compact uk-form">
   <div class="admin_basic">
     <dl class="form_block">
@@ -16,6 +26,10 @@
     </div>
   </div>
 </form>
+
+</div>
+</section>
+
 {end_block}
 
 {# end {templatelocation} #}

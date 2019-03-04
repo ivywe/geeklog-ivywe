@@ -1,6 +1,17 @@
 {# begin {templatelocation} #}
 
 {start_block}
+
+<section>
+<div class="uk-container">
+
+<ul class="uk-breadcrumb">
+<li><a href="{site_url}/index.php">ホーム</a></li>
+<li><a href="{site_url}/mediagallery/index.php"><?php global $_MG_DEFAULT; echo $_MG_DEFAULT['root_album_name']; ?></a></li>
+<li><a href="{site_url}/mediagallery/album.php?aid={album_id}&page=1">{album_title}</a></li>
+<li>リモートアップロード</li></ul>
+</ul>
+
 {navbar}
 <script>
 function formControl(){
@@ -204,6 +215,9 @@ function formControl(){
     </div>
   </div>
 </form>
+
+</div>
+</section>
 
 <script>
 formControl();

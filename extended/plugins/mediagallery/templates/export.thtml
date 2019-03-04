@@ -22,7 +22,7 @@ You will also need to tell the export routine if your system is a Unix/Linux sys
 <br{xhtml}><br{xhtml}>
 For more detailed directions, see the <a href="http://www.gllabs.org/wiki/doku.php?id=mediagallery:export">Online Documentation Wiki</a>
 <br{xhtml}><br{xhtml}>
-<form method="post" action="{s_form_action}" name="mgexport" enctype="multipart/form-data" id="mgexport" class="uk-form">
+<form method="post" action="{s_form_action}" name="mgexport" enctype="multipart/form-data" id="mgexport">
   <table class="uk-table uk-table-condensed uk-table-striped uk-width-1-1" style="background:#ffffff;">
     <tr>
       <td class="mg_alignright" width="35%">
