@@ -3,7 +3,7 @@
   <div>
     <div class="uk-card uk-card-default" style="background:#eee">
       <div class="uk-card-media-top">
-        <div class="uk-text-center">{media_item_thumbnail}</div>
+        <div class="uk-text-center" style="min-height:200px">{media_item_thumbnail}</div>
       </div>
       <div class="uk-card-small uk-card-body">
 
