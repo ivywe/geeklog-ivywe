@@ -13,14 +13,17 @@
     {!if lang_incorrectlogin}
         <p class="form_message">{lang_incorrectlogin}</p>
     {!endif}
-  <form action="{site_admin_url}/index.php" method="post" id="userloginform" class="compact">
+  	<form action="{site_admin_url}/index.php" method="post" id="userloginform" class="compact">
 
       <p class="uk-text-danger">{lang_warning}</p>
-
+      <div class="form_part">
         <label for="users-loginform-loginname" style="display:none">{lang_username}</label>
         <input type="text" name="loginname" id="users-loginform-loginname" class="uk-input uk-width-1-1"{xhtml}>
+      </div>
+      <div class="form_part">
         <label for="users-loginform-passwd" style="display:none">{lang_password}</label>
         <input type="password" name="passwd" id="users-loginform-passwd" class="uk-input uk-width-1-1"{xhtml}>
+      </div>
 
       {captcha}
 

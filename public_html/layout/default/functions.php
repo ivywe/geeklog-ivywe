@@ -89,6 +89,14 @@ function theme_css_default()
     // main package items
     $css_items = array();
 
+    // add fontawesome css
+    $css_items[] = array(
+        'name'       => 'fontawesome',
+        'file'       => '/vendor/fontawesome/css/all.css',
+        'attributes' => array('media' => 'all'),
+        'priority'   => 70
+    );
+
     // add uikit css
     $css_items[] = array(
         'name'       => 'uikit3',
