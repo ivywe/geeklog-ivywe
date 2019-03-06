@@ -216,6 +216,10 @@ div.uk-sticky.uk-sticky-fixed.uk-sticky-below .uk-navbar-nav>li>a ,
    margin-top: -10px;
 }
 
+.uk-subnav > * > :first-child .uk-button {
+	color: white;
+}
+
 .uk-offcanvas-bar {
   width: 100%;
 }

@@ -2,7 +2,7 @@
 
 <form action="{form_url}" method="post">
   <ul class="uk-subnav uk-flex-center">
-    <li class="uk-margin-small-top">
+    <li>
       {filter}
     </li>
     <li class="uk-margin-small-top">
@@ -26,7 +26,7 @@
       </select>
     </li>
     <li>
-      <button type="submit" value="{lang_submit}" class="uk-button uk-button-default">{lang_submit}</button>
+      <button type="submit" value="{lang_submit}" class="uk-button uk-button-primary">{lang_submit}</button>
     </li>
     <li class="uk-margin-small-top">
 	    {lang_records_found}:&nbsp;{records_found}

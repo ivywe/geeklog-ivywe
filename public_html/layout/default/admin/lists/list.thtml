@@ -9,9 +9,8 @@
 </div>
 
 <div class="uk-overflow-auto uk-margin-small">
-<table class="admin-list-table uk-table uk-table-hover uk-table-striped">
-<tr>
-{header_row}</tr>
+<table class="admin-list-table uk-table uk-table-small uk-table-hover uk-table-striped">
+<tr class="uk-text-nowrap">{header_row}</tr>
 {item_row}
 </table>
 </div>
