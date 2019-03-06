@@ -1,27 +1,29 @@
 {# begin {templatelocation} #}
 
-<div>
-	<div class="uk-card uk-card-default uk-card-body" style="background:#eee">
+  <div>
+    <div class="uk-card uk-card-default" style="background:#eee">
+      <div class="uk-card-media-top">
+        <div class="uk-text-center">{media_item_thumbnail}</div>
+      </div>
+      <div class="uk-card-small uk-card-body">
 
-		<div>{media_item_thumbnail}</div>
+        <h3 class="uk-card-title"><span uk-icon="icon: folder"></span>{album_title}<span class="uk-text-small uk-text-primary"> ({subalbum_media_count})</span></h3>
+        <div class="uk-text-small uk-text-center">
+          <p>{album_desc}</p>
+          {!if updated}
+          <div class="uk-text-small"><span class="uk-text-bold">{updated}</span> {album_last_update}</div>
+          {!endif}
 
-		<h3 class="uk-h4">{lang_album} {album_title}</span> ({subalbum_media_count})</h3>
+          {!if lang_views}
+          <div class="uk-text-small"><span class="uk-text-bold">{lang_views}</span> {views}</div>
+          {!endif}
 
-		<div class="uk-text-small">{album_desc}</div>
-
-		{!if updated}
-		<div class="uk-text-small"><span class="uk-text-bold">{updated}</span> {album_last_update}</div>
-		{!endif}
-
-		{!if lang_views}
-		<div class="uk-text-small"><span class="uk-text-bold">{lang_views}</span> {views}</div>
-		{!endif}
-
-		{!if lang_subalbums}
-		<div class="uk-text-small"><span class="uk-text-bold">{lang_subalbums}</span> {subalbumcount}</div>
-		{!endif}
-
-	</div>
-</div>
+          {!if lang_subalbums}
+          <div class="uk-text-small"><span class="uk-text-bold">{lang_subalbums}</span> {subalbumcount}</div>
+          {!endif}
+        </div>
+      </div>
+    </div>
+  </div>
 
 {# end {templatelocation} #}

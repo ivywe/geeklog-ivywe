@@ -747,7 +747,7 @@ function MG_getFramedImage($skin, $title, $u_pic, $u_image, $imageWidth, $imageH
         'url_media_item'   => $u_pic,
         'url_display_item' => $u_pic,
         'media_thumbnail'  => $u_image,
-        'media_size'       => 'width="' . '100%' . '" height="' . '100%' . '"',
+        'media_size'       => 'width="' . '100%' . '" height="' . '100%' . '"'. ' uk-cover',
         'media_height'     => $imageHeight,
         'media_width'      => $imageWidth,
         'media_title'      => (isset($title) && $title != ' ') ? PLG_replaceTags($title) : '',

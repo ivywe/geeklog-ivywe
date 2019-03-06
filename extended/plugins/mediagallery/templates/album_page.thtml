@@ -1,54 +1,54 @@
 {# begin {templatelocation} #}
 
 <section>
-	<div class="uk-container">
+  <div class="uk-container">
 
-		<ul class="uk-breadcrumb">
-		{birdseed}
-		</ul>
+    <ul class="uk-breadcrumb">
+    {birdseed}
+    </ul>
 
-		<div class="uk-card uk-card-default uk-grid-match" uk-grid>
-			<div class="uk-width-2-3@m">
-				<h1 class="uk-text-truncate uk-h3">{album_title}{!if rsslink}&nbsp;&nbsp;{rsslink}{!endif}</h1>
-			</div>
-			{!if select_adminbox}
-			<div class="uk-width-1-3@m">
-			{select_adminbox}
-			</div>
-			{!endif}
-			<div class="uk-text-success uk-text-small uk-margin-small">自動タグの例) &#91;medialist:(album_id) theme:(name) src:(tn|disp|org) limitcnt:xx order:(RANDOM|order) &#93; &#91;media:media_id src:(tn|disp|org)&#93; &#91;media_url:(media_id) src:(tn|disp|org) &#93;</div>
-		</div>
+    <div class="uk-card uk-card-default uk-grid-match" uk-grid>
+      <div class="uk-width-2-3@m">
+        <h1 class="uk-text-truncate uk-h3">{album_title}{!if rsslink}&nbsp;&nbsp;{rsslink}{!endif}</h1>
+      </div>
+      {!if select_adminbox}
+      <div class="uk-width-1-3@m">
+        {select_adminbox}
+      </div>
+      {!endif}
+      <div class="uk-text-success uk-text-small uk-margin-small">自動タグの例) &#91;medialist:(album_id) theme:(name) src:(tn|disp|org) limitcnt:xx order:(RANDOM|order) &#93; &#91;media:media_id src:(tn|disp|org)&#93; &#91;media_url:(media_id) src:(tn|disp|org) &#93;</div>
+    </div>
 
-		{!if album_description}
-		<div class="uk-clearfix mg_album_description">
-		   {album_description}
-		</div>
-		{!endif}
+    {!if album_description}
+    <div class="uk-clearfix">
+       {album_description}
+    </div>
+    {!endif}
 
-		{!if album_body}
-		<div class="uk-child-width-1-3@m" uk-grid="masonry: true">
-			<!-- BEGIN ImageRow -->
-			<!-- BEGIN ImageColumn -->
-			<div>
-			{CELL_DISPLAY_IMAGE}
-			</div>
-			<!-- END ImageColumn -->
-			<!-- END ImageRow -->
-		</div>
-		{!endif}
+    {!if album_body}
+    <div class="uk-child-width-1-4@m" uk-grid uk-height-match="target: > div > div > .uk-card">
+      <!-- BEGIN ImageRow -->
+      <!-- BEGIN ImageColumn -->
+      <div>
+      {CELL_DISPLAY_IMAGE}
+      </div>
+      <!-- END ImageColumn -->
+      <!-- END ImageRow -->
+    </div>
+    {!endif}
 
-		{!if lang_no_image}<div class="noitems">{lang_no_image}</div>{!endif}
+    {!if lang_no_image}<div class="noitems">{lang_no_image}</div>{!endif}
 
-		<div class="uk-card uk-card-default uk-card-body">
-		  <ul class="uk-subnav uk-subnav-line uk-flex-center"><li>{album_id_display}</li><li>{page_number}</li></ul>
-			<div class="uk-margin-remove-left" uk-grid>
-				<div>{jumpbox}</div>
-				<div>{bottom_pagination}</div>
-				<div>{select_sortbox}</div>
-			</div>
-		</div>
+    <div class="uk-card uk-card-default uk-card-body">
+      <ul class="uk-subnav uk-subnav-line uk-flex-center"><li>{album_id_display}</li><li>{page_number}</li></ul>
+      <div class="uk-margin-remove-left" uk-grid>
+        <div>{jumpbox}</div>
+        <div>{bottom_pagination}</div>
+        <div>{select_sortbox}</div>
+      </div>
+    </div>
 
-	</div>
+  </div>
 </section>
 
 {# end {templatelocation} #}

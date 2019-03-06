@@ -24,7 +24,14 @@ function updateButton() {
 //]]>
 </script>
 
+<ul class="uk-breadcrumb">
+<li><a href="{site_url}/index.php">ホーム</a></li>
+<li><a href="{site_url}/mediagallery/index.php"><?php global $_MG_DEFAULT; echo $_MG_DEFAULT['root_album_name']; ?></a></li>
+<li>バッチ処理</li></ul>
+</ul>
+
 <h2>{L_BATCH_PROCESS}</h2>
+
 <div class="pluginRow1" style="padding:10px;">
 <form name="form_batch_progress" method="post" action="{S_BATCH_ACTION}">
 <div style="margin-left:20px">

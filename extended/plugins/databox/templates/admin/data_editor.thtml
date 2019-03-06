@@ -4,10 +4,10 @@
 
 <a href="{document_url}docs/japanese/input_data.html" class="uk-button uk-button-small">Document</a>
 
-<ul class="uk-subnav uk-flex-center">
+<ul class="uk-subnav uk-flex-center uk-margin-remove-bottom">
   <li><a href="{site_admin_url}/plugins/databox/view.php?id={id}&template=standard" class="uk-button" data-uk-tooltip title="利用できるテーマ変数の確認に利用してください。">{lang_ref}</a></li>
-  <li>{view}</li>
-  <li>{lang_fieldset}: {fieldset_name}(id: {fieldset_id})</li>
+  <li class="uk-margin-small-top">{view}</li>
+  <li class="uk-margin-small-top">{lang_fieldset}: {fieldset_name}(id: {fieldset_id})</li>
 </ul>
 
 <form class="uk-form uk-form-horizontal" enctype="multipart/form-data" name="frmdatabox" action="{site_admin_url}/plugins/{script}" method="post">
@@ -17,7 +17,7 @@
 
   {# data #}
 
-  <fieldset class="uk-margin-large-top">
+  <fieldset>
     <legend>{lang_basicfields}</legend>
 
     {# id #}

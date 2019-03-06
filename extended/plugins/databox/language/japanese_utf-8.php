@@ -250,7 +250,7 @@ $LANG_DATABOX_ADMIN['modified'] = '編集日付';
 $LANG_DATABOX_ADMIN['created'] = '作成日付';
 $LANG_DATABOX_ADMIN['released'] = '公開日';
 $LANG_DATABOX_ADMIN['expired'] = '公開終了日';
-$LANG_DATABOX_ADMIN['remaingdays'] = '残日数';
+$LANG_DATABOX_ADMIN['remaingdays'] = '残';
 
 $LANG_DATABOX_ADMIN['udatetime'] = 'タイムスタンプ';
 $LANG_DATABOX_ADMIN['uuid'] = '更新ユーザー';
@@ -419,7 +419,7 @@ $LANG_DATABOX_ADMIN['parent_id'] = '親ID';
 $LANG_DATABOX_ADMIN['parent_flg'] = '親グループ？';
 $LANG_DATABOX_ADMIN['input_type'] = '入力タイプ';
 
-$LANG_DATABOX_ADMIN['orderno'] = '表示位置';
+$LANG_DATABOX_ADMIN['orderno'] = '順';
 
 $LANG_DATABOX_ADMIN['field'] = 'フィールド';
 $LANG_DATABOX_ADMIN['fields'] = 'フィールド';
@@ -1021,13 +1021,13 @@ $LANG_configselects['databox'][24] =array();
 $LANG_configselects['databox'][26] =array( 'コメント有効' => 0, 'コメント無効' => -1);
 
 $LANG_configselects['databox'][27] =array(
-    '表示位置' => 'orderno'
+    '順' => 'orderno'
     ,'ID' => 'id'
     , 'コード' => 'code'
     , 'タイトル' => 'title'
     , 'タイプ' => 'fieldset_name'
-    , '残日数' => 'remaingdays'
-    , '閲覧数' => 'hits'
+    , '残' => 'remaingdays'
+    , 'hits' => 'hits'
     , 'タイムスタンプ降順' => 'udatetime'
     , 'ドラフト' => 'draft_flag'
         );
@@ -1080,7 +1080,7 @@ $LANG_configselects['databox'][30] =array(
     , 'コード' => 'code'
     , 'タイトル' => 'title'
     , 'タイプ' => 'fieldset_name'
-    , '残日数' => 'remaingdays'
+    , '残' => 'remaingdays'
     , 'タイムスタンプ降順' => 'udatetime'
     , 'ドラフト' => 'draft_flag'
         );
