@@ -33,10 +33,29 @@
  * +--------------------------------------------------------------------------+
  */
 
+div.uk-card.uk-card-default.gl-album-cell { background:#eee; }
+div.uk-card.uk-card-default.gl-album-cell div.uk-card-media-top { height:200px; overflow: hidden}
+div.uk-card.uk-card-default.gl-album-cell div.uk-card-media-top div.uk-text-center div a img.gl-cellimage {
+	width:100%; 
+	height:auto; 
+	background:url('images/bg.png') repeat;
+}
+div.uk-card.uk-card-default.gl-media-cell { background:#fff; }
+div.uk-card.uk-card-default.gl-media-cell div.uk-card-media-top { height:200px; overflow: hidden }
+div.uk-card.uk-card-default.gl-media-cell div.uk-card-media-top div.uk-text-center div a img.gl-cellimage {
+	width:100%; 
+	height:auto; 
+	background:url('images/bg.png') repeat;
+}
+
 /* Do not change the MI classes, they are used to help
  * control the frames on images
  */
 
+table.gl-table-condensed th,
+table.gl-table-condensed td {
+	padding:3px;
+}
 .mgPluginMI {
   padding: 0 !important;
 }

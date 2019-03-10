@@ -16,7 +16,7 @@
 <span style="font-weight:bold;">{lang_terms}</span><br{xhtml}>
 {lang_member_album_terms}
 <br{xhtml}><br{xhtml}>
-<div class="mg_submit_center">
+<div class="uk-text-center">
   <input type="submit" class="uk-button uk-button-primary" value="{lang_agree}"  name="mode"{xhtml}>
   <input type="submit" class="uk-button uk-button-primary" value="{lang_cancel}" name="mode"{xhtml}>
 </div>

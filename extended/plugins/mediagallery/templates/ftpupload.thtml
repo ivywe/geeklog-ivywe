@@ -1,16 +1,16 @@
 {# begin {templatelocation} #}
 
-{start_block}
-
 <section>
 <div class="uk-container">
 
 <ul class="uk-breadcrumb">
 <li><a href="{site_url}/index.php">ホーム</a></li>
-<li><a href="{site_url}/mediagallery/index.php"><?php global $_MG_DEFAULT; echo $_MG_DEFAULT['root_album_name']; ?></a></li>
-<li><a href="{site_url}/mediagallery/album.php?aid={aid}&page=1">{album_title}</a></li>
+<li><a href="{site_url}/mediagallery/index.php"><?php global $_MG_DEFAULT; if( $_MG_DEFAULT['root_album_name']) echo $_MG_DEFAULT['root_album_name']; else echo "TOPアルバム"; ?></a></li>
+<li><a href="{site_url}/mediagallery/album.php?aid={album_id}&page=1">アルバム{album_title}</a></li>
 <li>{album_title} FTPアップロード</li></ul>
 </ul>
+
+{start_block}
 
 {navbar}
 <p>{lang_ftp_help}</p>
@@ -38,9 +38,9 @@
 </div>
 </form>
 
+{end_block}
+
 </div>
 </section>
-
-{end_block}
 
 {# end {templatelocation} #}

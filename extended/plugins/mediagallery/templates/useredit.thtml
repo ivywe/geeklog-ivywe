@@ -20,7 +20,7 @@
       </td>
     </tr>
   </table>
-<div class="mg_submit_center">
+<div class="uk-text-center">
   <input type="submit" class="uk-button uk-button-primary" value="{lang_save}"   name="mode"{xhtml}>
   <input type="submit" class="uk-button uk-button-primary" value="{lang_cancel}" name="mode"{xhtml}>
   <input type="reset"  value="{lang_reset}"  name="mode"{xhtml}>

@@ -284,7 +284,7 @@
     <td><input type="checkbox" class="uk-checkbox" name="formats_active" value="1"{xhtml}></td>
   </tr>
 </table>
-<div class="mg_submit_center">
+<div class="uk-text-center">
   <input type="submit" class="uk-button uk-button-primary" value="{lang_save}" name="mode"{xhtml}>
   <input type="submit" class="uk-button uk-button-primary" value="{lang_cancel}" name="mode"{xhtml}>
 </div>

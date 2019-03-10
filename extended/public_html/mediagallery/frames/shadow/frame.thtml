@@ -1,8 +1,8 @@
 {# begin {templatelocation} #}
 
-<div class="mgframe_shadow">
+<div>
   {media_link_start}
-    <img src="{media_thumbnail}" alt="{media_tag}" title="{media_tag}" class="image" {xhtml}>
+    <img src="{media_thumbnail}" class="gl-cellimage" alt="{media_tag}" title="{media_tag}"{xhtml}>
   {media_link_end}
 </div>
 

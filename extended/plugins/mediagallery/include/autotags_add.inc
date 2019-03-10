@@ -43,11 +43,10 @@ function MG_medialist (
   , $grid=''
   , $grids=''
   , $gridm=''
-  , $gridl=''
-  , $gridr=''
+  , $gridl='3-5'
+  , $gridr='2-5'
   , $uks=''
   , $ukc=''
-  , $url=''
   , $reverse=''
   , $text=''
   , $text1=''
@@ -57,16 +56,16 @@ function MG_medialist (
   , $dotnav=''
   , $minheight=''
   , $maxheight=''
-  , $class_album_title=''
-  , $class_album_desc=''
-  , $class_media_title=''
-  , $class_media_desc=''
+  , $class_album_title='uk-text-center@m'
+  , $class_album_desc='uk-text-center@m'
+  , $class_media_title='uk-text-center@m'
+  , $class_media_desc='uk-text-center@m'
   , $type=''
   , $bxslider=''
   , $animation=''
   , $section=''
   , $container=''
-
+  , $masonry=''
 )
 {
 	global $MG_albums;
@@ -198,7 +197,6 @@ function MG_medialist (
 		$T->set_var('uks',$uks);
 		$T->set_var('ukc',$ukc);
 		$T->set_var('media',$media);
-		$T->set_var('url',$url);
 		$T->set_var('reverse',$reverse);
 		$T->set_var('text',$text);
 		$T->set_var('text1',$text1);
@@ -217,6 +215,7 @@ function MG_medialist (
 		$T->set_var('animation',$animation);
 		$T->set_var('section',$section);
 		$T->set_var('container',$container);
+		$T->set_var('container',$masonry);
 
 		if ( SEC_hasRights('mediagallery.admin') ){
 			$icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
@@ -413,7 +412,6 @@ function MG_parm2 ($p2)
 	$parm2_ary[]="gridm";
 	$parm2_ary[]="gridl";
 	$parm2_ary[]="gridr";
-	$parm2_ary[]="url";
 	$parm2_ary[]="reverse";
 	$parm2_ary[]="text";
 	$parm2_ary[]="text1";
@@ -432,6 +430,7 @@ function MG_parm2 ($p2)
 	$parm2_ary[]="animation";
 	$parm2_ary[]="section";
 	$parm2_ary[]="container";
+	$parm2_ary[]="masonry";
 
 	$parm2_ary[]="order";
 	

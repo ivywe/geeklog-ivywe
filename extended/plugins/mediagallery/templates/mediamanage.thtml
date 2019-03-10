@@ -5,8 +5,8 @@
 
 <ul class="uk-breadcrumb">
 <li><a href="{site_url}/index.php">ホーム</a></li>
-<li><a href="{site_url}/mediagallery/index.php"><?php global $_MG_DEFAULT; echo $_MG_DEFAULT['root_album_name']; ?></a></li>
-<li><a href="{site_url}/mediagallery/album.php?aid={album_id}&page=1">{album_title}アルバム</a></li>
+<li><a href="{site_url}/mediagallery/index.php"><?php global $_MG_DEFAULT; if( $_MG_DEFAULT['root_album_name']) echo $_MG_DEFAULT['root_album_name']; else echo "TOPアルバム"; ?></a></li>
+<li><a href="{site_url}/mediagallery/album.php?aid={album_id}&page=1">{title}{album_title}アルバム</a></li>
 <li>{album_title} メディア管理</li></ul>
 </ul>
 
@@ -18,7 +18,7 @@
     {mediaitems}
     <span style="text-align:center;margin-top:10px">{bottom_pagination}</span>
   </div>
-  <div class="mg_submit_center">
+  <div class="uk-text-center uk-margin">
     <input type="hidden" name="album_id" value="{album_id}"{xhtml}>
     <input type="hidden" name="action" value="media"{xhtml}>
     <input type="submit" class="uk-button uk-button-primary" name="mode" value="{lang_save}"{xhtml}>

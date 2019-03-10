@@ -58,7 +58,7 @@
     </tr>
   </table>
 </div>
-<div class="mg_submit_center">
+<div class="uk-text-center">
   <input type="hidden" name="action" value="staticsort"{xhtml}>
   <input type="hidden" name="album_id" value="{album_id}"{xhtml}>
   <input type="submit" class="uk-button uk-button-primary" name="mode" value="{lang_save}"{xhtml}>

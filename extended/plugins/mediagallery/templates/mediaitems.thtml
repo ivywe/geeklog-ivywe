@@ -46,7 +46,7 @@ function doUnCheckAll_mediaitems() {
       <input type="hidden" name="mid[]" value="{mid}"{xhtml}>
     </td>
     <td>
-      <a href="/mediagallery/media.php?f=0&sort=0&s={mid}"><img src="{u_thumbnail}" height="{height}" width="{width}" alt=""{xhtml}></a>
+      <a href="/mediagallery/media.php?f=0&sort=0&s={mid}"><img src="{u_thumbnail}" height="{height}" width="{width}" alt="" style="background:url('{site_url}/mediagallery/images/bg.png') repeat"{xhtml}></a>
       <div class="uk-text-success"><input class="uk-input uk-form-width-medium" value="{media_id}"></div>
       <a href="{media_edit}">{lang_edit}</a>
     </td>
@@ -83,33 +83,5 @@ function doUnCheckAll_mediaitems() {
   <div class="uk-width-1-2@m uk-text-right">{lang_albumsel}{albumselect}<input type="submit" class="uk-button uk-button-primary uk-form-width-medium" name="mode" value="{lang_move}"{xhtml}></div>
   <div class="uk-width-1-2@m uk-text-right">{lang_batch_options}{batchoptionselect}<input type="submit" class="uk-button uk-button-primary uk-form-width-medium" name="mode" value="{lang_batch}"{xhtml}></div>
 </div>
-
-<ul class="uk-nav uk-nav-parent-icon uk-margin-top" data-uk-nav>
-	<li class="uk-parent">
-		<a href="#" class="uk-button uk-button-default">Normal layout autotag: &#91;medialist:{album_id}&#93;</a>
-		<ul class="uk-nav-sub">
-			<li>
-				<div class="uk-panel">
-					<div>html</div>
-					{!!autotag medialist:'.{album_id}.' theme:admin !!}
-				</div>
-			</li>
-		</ul>
-	</li>
-</ul>
-
-<ul class="uk-nav uk-nav-parent-icon" data-uk-nav>
-	<li class="uk-parent">
-		<a href="#" class="uk-button uk-button-default">Thumnail layout autotag: &#91;medialist:{album_id} theme:uikit_grid_js&#93;</a>
-		<ul class="uk-nav-sub">
-			<li>
-				<div class="uk-panel">
-					<div>html</div>
-					{!!autotag medialist:'.{album_id}.' theme:admin_uikit_grid_js !!}
-				</div>
-			</li>
-		</ul>
-	</li>
-</ul>
 
 {# end {templatelocation} #}

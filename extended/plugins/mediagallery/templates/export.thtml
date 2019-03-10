@@ -59,7 +59,7 @@ For more detailed directions, see the <a href="http://www.gllabs.org/wiki/doku.p
       </td>
     </tr>
   </table>
-  <div class="mg_submit_center">
+  <div class="uk-text-center">
     <input type="submit" class="uk-button uk-button-primary" name="mode" value="process">
   </div>
 </form>

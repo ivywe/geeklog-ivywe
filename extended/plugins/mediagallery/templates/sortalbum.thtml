@@ -19,7 +19,7 @@
     </tr>
     <!-- END AlbumRow -->
   </table>
-  <div class="mg_submit_center">
+  <div class="uk-text-center">
     <input type="hidden" name="parent_id" value="{parent_id}"{xhtml}>
     <input type="hidden" name="action" value="albumsort"{xhtml}>
     <input type="hidden" name="album_id" value="0"{xhtml}>

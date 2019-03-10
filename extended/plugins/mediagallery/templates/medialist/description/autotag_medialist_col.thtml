@@ -20,7 +20,6 @@
 <dt>gridm</dt><dd>{gridm}</dd>
 <dt>gridl</dt><dd>{gridl}</dd>
 <dt>gridr</dt><dd>{gridr}</dd>
-<dt>url</dt><dd>{url}</dd>
 <dt>reverse</dt><dd>{reverse}</dd>
 <dt>text</dt><dd>{text}</dd>
 <dt>text1</dt><dd>{text1}</dd>
@@ -33,10 +32,10 @@
 <dt>class_album_desc</dt><dd>{class_album_desc}</dd>
 <dt>class_media_title</dt><dd>{class_media_title}</dd>
 <dt>class_media_desc</dt><dd>{class_media_desc}</dd>
-<dt>type</dt><dd>{type}</dd>
 <dt>bxslider</dt><dd>{bxslider}</dd>
 <dt>animation</dt><dd>{animation}</dd>
 <dt>section</dt><dd>{section}</dd>
+<dt>container</dt><dd>{section}</dd>
 </dl>
 <p>¦option‚ÍAÈ—ª‚Å‚«‚Ü‚·B</p>
   </div>

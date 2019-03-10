@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-  <li class="uk-inline">
+  <li class="uk-inline" style="margin-top:0">
     <a href="{media_keywords}"><img src="{filename}" alt="{media_title}"></a>
     <div class="uk-overlay uk-overlay-primary uk-position-bottom">
       {!if media_title}<h4><a href="{media_keywords}">{media_title}</a></h4>{!endif}

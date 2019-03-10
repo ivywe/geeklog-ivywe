@@ -2,16 +2,8 @@
 
 {lbslideshow}
 <ul class="uk-breadcrumb">{birdseed}</ul>
-<div uk-grid>
-  <div class="uk-width-1-2@s"><strong>{album_title}</strong>{!if rsslink}&nbsp;{rsslink}{!endif}</div>
-  <div class="uk-width-1-2@s">
-    <form name="mgsearch" method="post" action="{site_url}/search.php"><div>
-      <input type="text" class="uk-input uk-form-width-small" name="keywords" value="{keywords}"{xhtml}>
-      <input type="hidden" name="mode" value="search"{xhtml}>
-      <input type="hidden" name="swhere" value="0"{xhtml}>
-      <input type="submit" class="uk-button uk-button-primary" value="{lang_search}"{xhtml}>
-    </div></form>
-  </div>
+<div>
+<h2>{album_title}</h2>{!if rsslink}&nbsp;{rsslink}{!endif}
 </div>
 <div class="mg_navbar">
 {!if prev_link}<a class="button left" href="{prev_link}">{lang_prev}</a>{!endif}
@@ -32,10 +24,10 @@
     <p><strong>ID:</strong>&nbsp;{media_id}</p>
     {!if media_properties}<p>{getid3}{media_properties}{getid3end}</p>{!endif}
   </div>
-  <div class="mg_info_right">
+  <div class="uk-text-right">
     <p><strong>{lang_uploaded_by}:</strong>&nbsp;{owner_username}</p>
   </div>
-  <div class="mg_info_center">
+  <div class="uk-text-center">
     <p>{media_time}</p>
     <p>{lang_views} {media_views}</p>
     <div>{rating_box}</div>

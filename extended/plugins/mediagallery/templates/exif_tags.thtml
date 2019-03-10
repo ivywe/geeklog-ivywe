@@ -45,7 +45,7 @@ function doUnCheckAll_exif()
     <input onclick="javascript:doCheckAll_exif()" type="button" value="{lang_check_all}"{xhtml}>
     <input onclick="javascript:doUnCheckAll_exif()" type="button" value="{lang_uncheck_all}"{xhtml}>
   </div>
-  <div class="mg_submit_center">
+  <div class="uk-text-center">
     <input type="submit" class="uk-button uk-button-primary" name="mode" value="{lang_save}"{xhtml}>
     <input type="submit" class="uk-button uk-button-primary" name="mode" value="{lang_cancel}"{xhtml}>
   </div>

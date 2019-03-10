@@ -53,7 +53,7 @@ function doUnCheckAll_cat()
     <input onclick="javascript:doUnCheckAll_cat()" type="button" value="{lang_uncheckall}"{xhtml}>
   </div>
 {!endif}
-  <div class="mg_submit_center">
+  <div class="uk-text-center">
     <input type="submit" class="uk-button uk-button-primary" name="mode"   value="{lang_create}"{xhtml}>
 {!if noitems}{!else}
     <input type="submit" class="uk-button uk-button-danger" name="mode"   value="{lang_delete}" onclick="javascript:return confirm('{lang_delete_confirm}');"{xhtml}>

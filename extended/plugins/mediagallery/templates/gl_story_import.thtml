@@ -46,7 +46,7 @@ and replace the image with a Media Gallery auto tag.</p>
 <p>The albums will be created immediately and all the media items will be placed into
 the batch import queue to be processed.</p>
 </div>
-<div class="mg_submit_center">
+<div class="uk-text-center">
   <input type="submit" class="uk-button uk-button-primary" name="mode" value="convert"{xhtml}>
   <input type="submit" class="uk-button uk-button-primary" name="mode" value="cancel"{xhtml}>
 </div>

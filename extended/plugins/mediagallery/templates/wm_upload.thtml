@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-{start_block}
-
 <section>
 <div class="uk-container">
 
@@ -10,6 +8,8 @@
 <li><a href="{site_url}/mediagallery/index.php"><?php global $_MG_DEFAULT; echo $_MG_DEFAULT['root_album_name']; ?></a></li>
 <li>ウォーターマークアップロード</li></ul>
 </ul>
+
+{start_block}
 
 <form action="{s_form_action}" method="post" enctype="multipart/form-data" id="watermarkupload" class="compact uk-form">
   <div class="admin_basic">
@@ -34,9 +34,9 @@
   </div>
 </form>
 
+{end_block}
+
 </div>
 </section>
-
-{end_block}
 
 {# end {templatelocation} #}

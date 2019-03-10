@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<section>
+<section id="top">
   <div class="uk-container">
 
     <ul class="uk-breadcrumb">
@@ -9,15 +9,22 @@
 
     <div class="uk-card uk-card-default uk-grid-match" uk-grid>
       <div class="uk-width-2-3@m">
-        <h1 class="uk-text-truncate uk-h3">{album_title}{!if rsslink}&nbsp;&nbsp;{rsslink}{!endif}</h1>
+        <h1 class="uk-text-truncate uk-h3">{!!if {album_id}=="0" !!}{!else}<button class="uk-button-primary uk-margin-small-right" style="line-height:30px">{album_id}</button>{!endif}<span style="margin-bottom:0">{album_title}</span>{!if rsslink}&nbsp;&nbsp;{rsslink}{!endif}</h1>
       </div>
       {!if select_adminbox}
       <div class="uk-width-1-3@m">
         {select_adminbox}
       </div>
       {!endif}
-      <div class="uk-text-success uk-text-small uk-margin-small">自動タグの例) &#91;medialist:(album_id) theme:(name) src:(tn|disp|org) limitcnt:xx order:(RANDOM|order) &#93; &#91;media:media_id src:(tn|disp|org)&#93; &#91;media_url:(media_id) src:(tn|disp|org) &#93;</div>
     </div>
+
+    <div class="uk-margin-small">自動タグ &#91;medialist:{!!if {album_id}=="0" !!}アルバムID{!else}{album_id}{!endif} theme:(テーマ名) src:(tn|disp|orig) limitcnt:(最大枚数) &#93; &#91;media:media_id src:(tn|disp|orig)&#93; &#91;media_url:(media_id) src:(tn|disp|orig) &#93;</div>
+
+    <ul class="uk-subnav uk-flex-center">
+      <li><a href="#top" uk-scroll="offset:100">TOP</a></li>
+      <li><a href="#medialist" uk-scroll="offset:100">Medialist活用方法</a></li>
+    </ul>
+
 
     {!if album_description}
     <div class="uk-clearfix">
@@ -26,7 +33,7 @@
     {!endif}
 
     {!if album_body}
-    <div class="uk-child-width-1-4@m" uk-grid uk-height-match="target: > div > div > .uk-card">
+    <div class="uk-child-width-1-2@s uk-child-width-1-4@m" uk-grid uk-height-match="target: > div > div > .uk-card">
       <!-- BEGIN ImageRow -->
       <!-- BEGIN ImageColumn -->
       <div>
@@ -47,6 +54,283 @@
         <div>{select_sortbox}</div>
       </div>
     </div>
+
+  </div>
+</section>
+
+<section id="medialist" class="uk-section">
+  <div class="uk-container">
+
+    <ul class="uk-subnav uk-flex-center">
+      <li><a href="#top" uk-scroll="offset:100">TOP</a></li>
+      <li><a href="#medialist" uk-scroll="offset:100">Medialist活用方法</a></li>
+    </ul>
+    <div class="uk-card uk-card-secondary uk-card-body">
+
+
+      <h1 class="uk-text-center">Medialist活用方法</h1>
+      <h2>1. 自動タグ Medialist</h2>
+      <div class="uk-margin-large-left">
+
+
+        <ul uk-accordion>
+          <li>
+              <a class="uk-accordion-title" href="#" style="background:#888">書式とOption</a>
+              <div class="uk-accordion-content">
+
+
+                [ medialist:アルバムID option列挙]
+                例) [ medialist:3 theme:default ]
+
+                <style tyle="text/css">
+                table.gl-table-condensed th,
+                table.gl-table-condensed td {
+                  font-size: 12px;
+                  padding:3px 12px;
+                   background:#444;
+                }
+                table.gl-table-condensed th {
+                   font-weight: bold;
+                   background:#555;
+                   text-transform: none;
+                }
+                </style>
+
+                <h3>option</h3>
+                <table rules="all" class="uk-table uk-table-condensed uk-table-divider gl-table-condensed" bgcolor="#666" style="width:800px; border:2px #000000 solid" cellpadding="2">                
+                <tr>  <th>option名</th>  <th>初期値</th>  <th>値</th>  <th>機能</th>  </tr>      
+                <tr>  <th>class</th><td>  </td><td>class名</td><td>class</td>  </tr>    
+                <tr>  <th>theme</th><td>default</td><td>  </td><td>テーマ名</td>  </tr>    
+                <tr>  <th>limitcnt</th><td>0</td><td>  </td><td>画像枚数の制限</td>  </tr>    
+                <tr>  <th>sort</th><td>asc</td><td>asc/desc</td><td>ソート順</td>  </tr>      
+                <tr>  <th>src</th><td>  </td><td>tn/disp/orig</td><td>ソースの種類</td>  </tr>    
+                <tr>  <th>title</th><td>  </td><td>0:非表示/1:表示</td><td>タイトル表示フラグ</td>  </tr>    
+                <tr>  <th>desc</th><td>  </td><td>0:非表示/1:表示</td><td>説明表示フラグ</td>  </tr>    
+                <tr>  <th>media</th><td>  </td><td>  </td><td>背景に表示するMedia ID</td>  </tr>  
+                <tr>  <th>grid</th><td>  </td><td>n</td><td>grid数 uk-child-width-1-X</td>  </tr>    
+                <tr>  <th>grids</th><td>  </td><td>n</td><td>grid数 uk-child-width-1-X@ms</td>  </tr>    
+                <tr>  <th>gridm</th><td>  </td><td>n</td><td>grid数 uk-child-width-1-X@s</td>  </tr>    
+                <tr>  <th>gridl</th><td>  </td><td>n-n</td><td>左側の幅 3-5など uk-width-X-X@m</td>  </tr>    
+                <tr>  <th>gridr</th><td>  </td><td>n-n</td><td>右側の幅 2-5など  uk-width-X-X@m</td>  </tr>    
+                <tr>  <th>uks</th><td>  </td><td>class名</td><td>  < section class名　.つなぎで複数可</td>  </tr>  
+                <tr>  <th>ukc</th><td>  </td><td>class名</td><td>  < div class=”uk-container追加class名　.つなぎで複数可</td>  </tr>  
+                <tr>  <th>reverse</th><td>0</td><td>0:順/1:逆</td><td>左右逆転フラグ</td>  </tr>      
+                <tr>  <th>text</th><td>  </td><td>  </td><td>ボタン文字列</td>  </tr>  
+                <tr>  <th>text1</th><td>  </td><td>  </td><td>ボタン文字列</td>  </tr>  
+                <tr>  <th>text2</th><td>  </td><td>  </td><td>ボタン文字列</td>  </tr>  
+                <tr>  <th>text3</th><td>  </td><td>  </td><td>ボタン文字列</td>  </tr>  
+                <tr>  <th>target</th><td>  </td><td>  </td><td>target引数 _blankなど</td>  </tr>  
+                <tr>  <th>dotnav</th><td>  </td><td>  </td><td>pager表示フラグ</td>  </tr>  
+                <tr>  <th>minheight</th><td>  </td><td>  </td><td>スライダーmin-height</td>  </tr>  
+                <tr>  <th>maxheight</th><td>  </td><td>  </td><td>スライダーmax-height</td>  </tr>  
+                <tr>  <th>class_album_title</th><td>uk-text-center@m</td><td>  </td><td>アルバムタイトルのclass</td>  </tr>    
+                <tr>  <th>class_album_desc</th><td>uk-text-center@m</td><td>  </td><td>アルバム説明のclass</td>  </tr>    
+                <tr>  <th>class_media_title</th><td>uk-text-center@m</td><td>  </td><td>メディアタイトルのclass</td>  </tr>    
+                <tr>  <th>class_media_desc</th><td>uk-text-center@m</td><td>  </td><td>メディア説明のclass</td>  </tr>    
+<?php global $bxslider; if($bxslider){ ?>
+                <tr>  <th>bxslider</th><td>  </td><td>  </td><td>bxsliderの定義</td>  </tr>  
+<?php } ?>
+                <tr>  <th>animation</th><td>  </td><td>  </td><td>アニメーションclassまたはoption</td>  </tr>  
+                <tr>  <th>section</th><td>1</td><td>0:非表示/1:表示</td><td>  <section>表示フラグ</td>  </tr>    
+                <tr>  <th>container</th><td>1</td><td>0:非表示/1:表示</td><td>  < div class=”container”>表示フラグ</td>  </tr>    
+                <tr>  <th>masonry</th><td>0</td><td>0:無効 1:有効</td><td>uk-grid masonry option</td>  </tr>    
+                </table>                
+
+
+              </div>
+          </li>
+        </ul>
+      </div>
+
+      <h2 class="uk-margin-large-top">2. アルバムを表示する多様なMedialistテーマ</h2>
+
+      <div class="uk-margin-large-left">
+
+        <h3>1) 基本テーマ</h3>
+        <ul>
+        <li><a href="#default" uk-scroll="offset:100">default</a></li>
+        <li><a href="#a2column" uk-scroll="offset:100">2column</a></li>
+        <li><a href="#a3column" uk-scroll="offset:100">3column</a></li>
+        <li><a href="#a4column" uk-scroll="offset:100">4column</a></li>
+        <li><a href="#a5column" uk-scroll="offset:100">5column</a></li>
+        </ul>
+
+        <h3>2) 1セクションに複数配置するタイプ</h3>
+        <p>section:0 container:0 を指定するとsection,containerを外せます。</p>
+        <ul>
+        <li><a href="#s-1section-card-left-right_keyurl" uk-scroll="offset:100">s-1section-card-left-right_keyurl</a></li>
+        <li><a href="#s-1section-col2_reverse" uk-scroll="offset:100">s-1section-col2_reverse</a></li>
+        <li><a href="#s-1section-filter_search" uk-scroll="offset:100">s-1section-filter_search</a></li>
+        <li><a href="#s-1section-grid_keyurl" uk-scroll="offset:100">s-1section-grid_keyurl</a></li>
+        <li><a href="#s-1section-grid-card1_keyurl" uk-scroll="offset:100">s-1section-grid-card1_keyurl</a></li>
+        <li><a href="#s-1section-grid-card2-keyurl" uk-scroll="offset:100">s-1section-grid-card2-keyurl</a></li>
+        <li><a href="#s-1section-menu_keyurl1" uk-scroll="offset:100">s-1section-menu_keyurl1</a></li>
+        <li><a href="#s-1section-menu_keyurl2" uk-scroll="offset:100">s-1section-menu_keyurl2</a></li>
+        <li><a href="#s-1section-plans_keyurl" uk-scroll="offset:100">s-1section-plans_keyurl</a></li>
+        <li><a href="#s-1section-qa" uk-scroll="offset:100">s-1section-qa</a></li>
+        <li><a href="#s-1section-slider" uk-scroll="offset:100">s-1section-slider</a></li>
+        <li><a href="#s-1section-slider1" uk-scroll="offset:100">s-1section-slider1</a></li>
+        <li><a href="#s-1section-slider2" uk-scroll="offset:100">s-1section-slider2</a></li>
+        <li><a href="#s-1section-slideshow-fade" uk-scroll="offset:100">s-1section-slideshow-fade</a></li>
+        <li><a href="#s-1section-slideshow-kenburns-col2_reverse" uk-scroll="offset:100">s-1section-slideshow-kenburns-col2_reverse</a></li>
+        <li><a href="#s-1section-slideshow-kenburns" uk-scroll="offset:100">s-1section-slideshow-kenburns</a></li>
+        </ul>
+        <h3>3) 1画像1セクションで設置するタイプ</h3>
+        <ul>
+        <li><a href="#s-sections-bg_keyurl" uk-scroll="offset:100">s-sections-bg_keyurl</a></li>
+        <li><a href="#s-sections-bg-overlay-black_keyurl" uk-scroll="offset:100">s-sections-bg-overlay-black_keyurl</a></li>
+        <li><a href="#s-sections-bg-overlay-white_keyurl" uk-scroll="offset:100">s-sections-bg-overlay-white_keyurl</a></li>
+        <li><a href="#s-sections-bg-panel-black_keyurl" uk-scroll="offset:100">s-sections-bg-panel-black_keyurl</a></li>
+        <li><a href="#s-sections-bg-panel-white_keyurl" uk-scroll="offset:100">s-sections-bg-panel-white_keyurl</a></li>
+        <li><a href="#s-sections-left-right_keyurl" uk-scroll="offset:100">s-sections-left-right_keyurl</a></li>
+        </ul>
+        <h3>4) セクションで囲まれない部品タイプ</h3>
+        <ul>
+        <li><a href="#s-sub-accordion" uk-scroll="offset:100">s-sub-accordion</a></li>
+        <li><a href="#s-sub-grid_keyurl" uk-scroll="offset:100">s-sub-grid_keyurl</a></li>
+        <li><a href="#s-sub-slideshow-body" uk-scroll="offset:100">s-sub-slideshow</a></li>
+<?php global $bxslider; if($bxslider){ ?>
+        <li><a href="#s-sub-bxslider-animation-desc-top" uk-scroll="offset:100">s-sub-bxslider-animation-desc-top</a></li>
+<?php } ?>
+        </ul>
+        <h3>5) listタイプ</h3>
+        <ul>
+        <li><a href="#list" uk-scroll="offset:100">list</a></li>
+        <li><a href="#list_inc" uk-scroll="offset:100">list_inc</a></li>
+        <li><a href="#list_link" uk-scroll="offset:100">list_link</a></li>
+        </ul>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+<section class="uk-section uk-section-primary uk-preserve-color">
+  <div class="uk-container">
+		<h3 style="color:white">1) 基本テーマ</h3>
+  </div>
+</section>
+
+
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="default">  &#91;medialist:{album_id} src:disp theme:default limitcnt:1 animation:slide&#93;  </h4>
+<section class="uk-section uk-section-small">
+  <div class="uk-container">
+{!!autotag medialist:'.{album_id}.' src:disp theme:default limitcnt:1  animation:slide !!}
+  </div>
+</section>
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="a2column">  &#91;medialist:{album_id} src:disp theme:2column limitcnt:2 masonry:1 animation:fade&#93;  </h4>
+<section class="uk-section uk-section-small">
+  <div class="uk-container">
+{!!autotag medialist:'.{album_id}.' src:disp theme:2column limitcnt:2 masonry:1 animation:fade !!}  </div>
+</section>
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="a3column">  &#91;medialist:{album_id} src:disp theme:3column limitcnt:6 animation:scale&#93;  </h4>
+<section class="uk-section uk-section-small">
+  <div class="uk-container">
+{!!autotag medialist:'.{album_id}.' src:disp theme:3column limitcnt:6 masonry:1 animation:scale !!}
+  </div>
+</section>
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="a4column">  &#91;medialist:{album_id} src:disp theme:4column limitcnt:8 animation:slide&#93;  </h4>
+<section class="uk-section uk-section-small">
+  <div class="uk-container">
+{!!autotag medialist:'.{album_id}.' src:disp theme:4column limitcnt:8 masonry:1 animation:slide !!}
+  </div>
+</section>
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="a5column">  &#91;medialist:{album_id} src:tn theme:5column limitcnt:10 animation:fade&#93;  </h4>
+<section class="uk-section uk-section-small">
+  <div class="uk-container">
+{!!autotag medialist:'.{album_id}.' src:tn theme:5column limitcnt:10 masonry:1 animation:fade !!}
+  </div>
+</section>
+
+<section class="uk-section uk-section-primary uk-preserve-color">
+  <div class="uk-container">
+		<h3 style="color:white">2) 1セクションに複数配置するタイプ</h3>
+  </div>
+</section>
+
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="s-1section-card-left-right_keyurl">  &#91;medialist:{album_id} src:disp theme:s-1section-card-left-right_keyurl limitcnt:3 text:詳細を見る&#93;  </h4>  {!!autotag medialist:'.{album_id}.' src:disp theme:s-1section-card-left-right_keyurl limitcnt:3 text:詳細を見る !!}
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="s-1section-col2_reverse">  &#91;medialist:{album_id} src:disp theme:s-1section-col2_reverse limitcnt:3 title:1 uks:uk-section-small ukc:uk-container-small.uk-comment-primary gridl:1-3 gridr:2-3 reverse:&#93;  </h4>  {!!autotag medialist:'.{album_id}.' src:disp theme:s-1section-col2_reverse limitcnt:3 title:1 uks:uk-section-small ukc:uk-container-small.uk-comment-primary gridl:1-3 gridr:2-3 reverse: !!}
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="s-1section-col2_reverse">  &#91;medialist:{album_id} src:disp theme:s-1section-col2_reverse limitcnt:3 title:1 uks:uk-section-small ukc:uk-container-small.uk-comment-primary gridl:1-3 gridr:2-3 reverse:1 &#93;  </h4>  {!!autotag medialist:'.{album_id}.' src:disp theme:s-1section-col2_reverse limitcnt:3 title:1 uks:uk-section-small ukc:uk-container-small.uk-comment-primary gridl:1-3 gridr:2-3 reverse:1 !!}
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="s-1section-filter_search">  &#91;medialist:{album_id} src:tn theme:s-1section-filter_search limitcnt:10 grids:1 gridm:5 masonry:1 &#93;  </h4>  {!!autotag medialist:'.{album_id}.' src:tn theme:s-1section-filter_search limitcnt:10 grids:1 gridm:5 masonry:1 !!}
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="s-1section-grid_keyurl">  &#91;medialist:{album_id} src:disp theme:s-1section-grid_keyurl limitcnt:3 grids:1 gridm:3 text:プランを見る&#93;  </h4>  {!!autotag medialist:'.{album_id}.' src:disp theme:s-1section-grid_keyurl limitcnt:3 grids:1 gridm:3 text:プランを見る !!}
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="s-1section-grid-card1_keyurl">  &#91;medialist:{album_id} src:disp theme:s-1section-grid-card1_keyurl limitcnt:3 title:1 uks:uk-section-muted ukc: grids:1 gridm:3 text:詳細を見る&#93;  </h4>  {!!autotag medialist:'.{album_id}.' src:disp theme:s-1section-grid-card1_keyurl limitcnt:3 title:1 uks:uk-section-muted ukc: grids:1 gridm:3 text:詳細を見る !!}
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="s-1section-grid-card2-keyurl">  &#91;medialist:{album_id} src:disp theme:s-1section-grid-card2-keyurl limitcnt:3 title:1 uks:uk-section-muted ukc:uk-text-center ukc: grids:1 gridm:3 text:プランを見る limitcnt:2&#93;  </h4>  {!!autotag medialist:'.{album_id}.' src:disp theme:s-1section-grid-card2-keyurl limitcnt:3 title:1 uks:uk-section-muted ukc:uk-text-center ukc: grids:1 gridm:3 text:プランを見る limitcnt:3 !!}
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="s-1section-menu_keyurl1">  &#91;medialist:{album_id} src:disp theme:s-1section-menu_keyurl1 limitcnt:3 title:1 uks:uk-section-large.uk-section-muted ukc: grids:1 gridm:3 text1:お品書き text2:プランを見る&#93;  </h4>  {!!autotag medialist:'.{album_id}.' src:disp theme:s-1section-menu_keyurl1 limitcnt:3 title:1 uks:uk-section-large.uk-section-muted ukc: grids:1 gridm:3 text1:お品書き text2:プランを見る !!}
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="s-1section-menu_keyurl2">  &#91;medialist:{album_id} src:disp theme:s-1section-menu_keyurl2 limitcnt:3 title:1 uks:uk-section-small.uk-section-muted ukc: media:20190218164650444 grids:1 gridm:3 text1:お品書きを見る text2:詳細を見る text3:ギャラリー&#93;  </h4>  {!!autotag medialist:'.{album_id}.' src:disp theme:s-1section-menu_keyurl2 limitcnt:3 title:1 uks:uk-section-small.uk-section-muted ukc: media:20190218164650444 grids:1 gridm:3 text1:お品書きを見る text2:詳細を見る text3:ギャラリー !!}
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="s-1section-plans_keyurl">  &#91;medialist:{album_id} src:disp theme:s-1section-plans_keyurl limitcnt:3 title:1 uks:uk-section-muted ukc: grids:1 gridm:3 text:プランを見る&#93;  </h4>  {!!autotag medialist:'.{album_id}.' src:disp theme:s-1section-plans_keyurl limitcnt:3 title:1 uks:uk-section-muted ukc: grids:1 gridm:3 text:プランを見る !!}
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="s-1section-qa">  &#91;medialist:{album_id} src:disp theme:s-1section-qa limitcnt:3 title:0 uks:uk-section-large media:20190218164650444&#93;  </h4>  {!!autotag medialist:'.{album_id}.' src:disp theme:s-1section-qa limitcnt:3 title:0 uks:uk-section-large media:20190218164650444 !!}
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="s-1section-slider">  &#91;medialist:{album_id} src:disp theme:s-1section-slider limitcnt:10 title: grid:4 grids:4 gridm:10&#93;  </h4>  {!!autotag medialist:'.{album_id}.' src:disp theme:s-1section-slider limitcnt:10 title: grid:4 grids:4 gridm:10 !!}
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="s-1section-slider1">  &#91;medialist:{album_id} src:disp theme:s-1section-slider1 limitcnt:10 title: grid:1 grids:1 gridm:3&#93;  </h4>  {!!autotag medialist:'.{album_id}.' src:disp theme:s-1section-slider1 limitcnt:6 title: grid:1 grids:1 gridm:3 !!}
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="s-1section-slider2">  &#91;medialist:{album_id} src:disp theme:s-1section-slider2 limitcnt:5 title: dotnav:1 grid:2 grids:2 gridm:3&#93;  </h4>  {!!autotag medialist:'.{album_id}.' src:disp theme:s-1section-slider2 limitcnt:5 title: dotnav:1 grid:2 grids:2 gridm:3 !!}
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="s-1section-slideshow-fade">  &#91;medialist:{album_id} src:disp theme:s-1section-slideshow-fade limitcnt:3 src:orig dotnav:1&#93;  </h4>  {!!autotag medialist:'.{album_id}.' src:disp theme:s-1section-slideshow-fade limitcnt:3 src:orig dotnav:1 !!}
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="s-1section-slideshow-kenburns-col2_reverse">  &#91;medialist:{album_id} src:disp theme:s-1section-slideshow-kenburns-col2_reverse limitcnt:3 title: uks:uk-section-muted ukc: gridl:3-5 gridr:2-5 text:詳細を見る reverse: dotnav:1 text:詳細を見る&#93;  </h4>  {!!autotag medialist:'.{album_id}.' src:disp theme:s-1section-slideshow-kenburns-col2_reverse limitcnt:3 title: uks:uk-section-muted ukc: gridl:3-5 gridr:2-5 text:詳細を見る reverse: dotnav:1 text:詳細を見る !!}
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="s-1section-slideshow-kenburns-col2_reverse">  &#91;medialist:{album_id} src:disp theme:s-1section-slideshow-kenburns-col2_reverse limitcnt:3 title: uks:uk-section-muted ukc: gridl:3-5 gridr:2-5 text:詳細を見る reverse:1 dotnav:1 text:詳細を見る&#93;  </h4>  {!!autotag medialist:'.{album_id}.' src:disp theme:s-1section-slideshow-kenburns-col2_reverse limitcnt:3 title: uks:uk-section-muted ukc: gridl:3-5 gridr:2-5 text:詳細を見る reverse:1 dotnav:1 text:詳細を見る !!}
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="s-1section-slideshow-kenburns">  &#91;medialist:{album_id} src:disp theme:s-1section-slideshow-kenburns limitcnt:3 title:1 uks:uk-padding-remove-vertical ukc:unzoomin text:詳細を見る&#93;  </h4>  {!!autotag medialist:'.{album_id}.' src:disp theme:s-1section-slideshow-kenburns limitcnt:3 title:1 uks:uk-padding-remove-vertical ukc:unzoomin text:詳細を見る !!}
+
+<section class="uk-section uk-section-primary uk-preserve-color">
+  <div class="uk-container">
+		<h3 style="color:white">3) 1画像1セクションで設置するタイプ</h3>
+  </div>
+</section>
+
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="s-sections-bg_keyurl">  &#91;medialist:{album_id} src:disp theme:s-sections-bg_keyurl limitcnt:3 text:詳細を見る&#93;  </h4>  {!!autotag medialist:'.{album_id}.' src:disp theme:s-sections-bg_keyurl limitcnt:3 text:詳細を見る !!}
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="s-sections-bg-overlay-black_keyurl">  &#91;medialist:{album_id} src:orig theme:s-sections-bg-overlay-black_keyurl limitcnt:3 text:詳細を見る&#93;  </h4>  {!!autotag medialist:'.{album_id}.' src:orig theme:s-sections-bg-overlay-black_keyurl limitcnt:3 text:詳細を見る !!}
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="s-sections-bg-overlay-white_keyurl">  &#91;medialist:{album_id} src:orig theme:s-sections-bg-overlay-white_keyurl limitcnt:3 text:詳細を見る&#93;  </h4>  {!!autotag medialist:'.{album_id}.' src:orig theme:s-sections-bg-overlay-white_keyurl limitcnt:3 text:詳細を見る !!}
+
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="s-sections-bg-panel-black_keyurl">  &#91;medialist:{album_id} src:orig theme:s-sections-bg-panel-black_keyurl limitcnt:3 text:詳細を見る&#93;  </h4>  {!!autotag medialist:'.{album_id}.' src:orig theme:s-sections-bg-panel-black_keyurl limitcnt:3 text:詳細を見る !!}
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="s-sections-bg-panel-white_keyurl">  &#91;medialist:{album_id} src:orig theme:s-sections-bg-panel-white_keyurl limitcnt:3 text:詳細を見る&#93;  </h4>  {!!autotag medialist:'.{album_id}.' src:orig theme:s-sections-bg-panel-white_keyurl limitcnt:3 text:詳細を見る !!}
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="s-sections-left-right_keyurl">  &#91;medialist:{album_id} src:orig theme:s-sections-left-right_keyurl limitcnt:3 gridl:3-5 gridr:2-5 text:詳細を見る&#93;  </h4>  {!!autotag medialist:'.{album_id}.' src:orig theme:s-sections-left-right_keyurl limitcnt:3 gridl:3-5 gridr:2-5 text:詳細を見る !!}
+
+<section class="uk-section uk-section-primary uk-preserve-color">
+  <div class="uk-container">
+		<h3 style="color:white">4) セクションで囲まれない部品タイプ</h3>
+  </div>
+</section>
+<section class="uk-section">
+    <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="s-sub-accordion">  &#91;medialist:{album_id} src:disp theme:s-sub-accordion limitcnt:3 text:プランを見る&#93;  </h4>  {!!autotag medialist:'.{album_id}.' src:disp theme:s-sub-accordion limitcnt:3 text:プランを見る !!}
+    <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="s-sub-grid_keyurl">  &#91;medialist:{album_id} src:disp theme:s-sub-grid_keyurl limitcnt:5 grids:2 gridm:5 text:詳細を見る&#93;  </h4>  {!!autotag medialist:'.{album_id}.' src:disp theme:s-sub-grid_keyurl limitcnt:5 grids:2 gridm:5 text:詳細を見る !!}
+    <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="s-sub-slideshow-body">  &#91;medialist:{album_id} src:orig theme:s-sub-slideshow-body limitcnt:3&#93;  </h4>  {!!autotag medialist:'.{album_id}.' src:orig theme:s-sub-slideshow-body limitcnt:3 !!}
+</section>
+
+<?php global $bxslider; if($bxslider){ ?>
+<section>
+    <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="s-sub-bxslider-animation-desc-top">  &#91;medialist:{album_id} src:orig theme:s-sub-bxslider-animation-desc-top bxslider:bxslider_pager animation:uk-animation-kenburns limitcnt:3&#93;  </h4>
+<p>全幅のTOPスライダーとしてのみ活用します。</p>
+  {!!autotag medialist:'.{album_id}.' src:orig theme:s-sub-bxslider-animation-desc-top bxslider:bxslider_pager animation:uk-animation-kenburns limitcnt:3 !!}
+</section>
+<?php } ?>
+
+<section class="uk-section uk-section-primary uk-preserve-color">
+  <div class="uk-container">
+		<h3 style="color:white">5) listタイプ</h3>
+  </div>
+</section>
+
+    <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="list">  &#91;medialist:{album_id} src:tn theme:list limitcnt:3&#93;  </h4>
+    <p>ulタグ無し。</p>
+    <ul class="uk-subnav uk-flex-inline uk-flex-center uk-margin-remove-bottom">
+      {!!autotag medialist:'.{album_id}.' src:orig theme:list src:tn limitcnt:3 !!}
+    </ul>
+    <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="list_inc">  &#91;medialist:{album_id} src:tn theme:list_inc limitcnt:3&#93;  </h4>
+    <p>data-slide-index="0","1","2"と画像ごとに数値が加算していきます。ulタグ無し。</p>
+    <ul class="uk-subnav uk-flex-inline uk-flex-center uk-margin-remove-bottom">
+      {!!autotag medialist:'.{album_id}.' src:orig theme:list_inc src:tn limitcnt:3 !!}
+    </ul>
+    <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="list_link">  &#91;medialist:{album_id} src:tn theme:list_link limitcnt:3&#93;  </h4>
+      {!!autotag medialist:'.{album_id}.' src:orig theme:list_link src:tn limitcnt:3 !!}
+
+<section class="uk-section">
+  <div class="uk-container">
+
+    <ul class="uk-subnav uk-flex-center">
+    <li class="uk-text-center"><a href="https://github.com/ivywe/geeklog-ivywe/tree/Geeklog2.2/extended/plugins/mediagallery/templates/medialist"><div><span uk-icon="icon: github; ratio: 3.5"></span></div><div>GitHub</a></li>
+    <li class="uk-text-center"><a href="https://getuikit.com"><div><span uk-icon="icon: uikit; ratio: 3.5"></span></div><div>UIkit</a></li>
+    </ul>
+
+    <ul class="uk-subnav uk-flex-center">
+      <li><a href="#top" uk-scroll="offset:100">TOP</a></li>
+      <li><a href="#medialist" uk-scroll="offset:100">medialist活用方法</a></li>
+    </ul>
 
   </div>
 </section>

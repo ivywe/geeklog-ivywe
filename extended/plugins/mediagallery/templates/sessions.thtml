@@ -70,7 +70,7 @@ function doUnCheckAll_sessions()
   <input onclick="javascript:doUnCheckAll_sessions()" type="button" value="{lang_uncheckall}"{xhtml}>
 </div>
 <!-- END sessItems -->
-<div class="mg_submit_center">
+<div class="uk-text-center">
   <input type="hidden" name="action" value="sessions"{xhtml}>
   <input type="submit" class="uk-button uk-button-primary" name="mode"   value="{lang_save}"{xhtml}>
   <input type="submit" class="uk-button uk-button-primary" name="mode"   value="{lang_cancel}"{xhtml}>

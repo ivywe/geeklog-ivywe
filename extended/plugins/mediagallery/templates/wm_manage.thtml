@@ -58,8 +58,6 @@ jkpopwin.focus()
 //]]>
 </script>
 
-{start_block}
-
 <section>
 <div class="uk-container">
 
@@ -68,6 +66,8 @@ jkpopwin.focus()
 <li><a href="{site_url}/mediagallery/index.php"><?php global $_MG_DEFAULT; echo $_MG_DEFAULT['root_album_name']; ?></a></li>
 <li>{album_title} ウォーターマーク管理</li></ul>
 </ul>
+
+{start_block}
 
 <p>{lang_watermark_manage_help}</p>
 <form name="watermark" method="post" action="{s_form_action}">
@@ -85,9 +85,9 @@ jkpopwin.focus()
   </div>
 </form>
 
+{end_block}
+
 </div>
 </section>
-
-{end_block}
 
 {# end {templatelocation} #}
