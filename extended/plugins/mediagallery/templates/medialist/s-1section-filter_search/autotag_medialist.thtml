@@ -18,18 +18,18 @@
             </div>
             <div>
               <ul class="uk-subnav uk-subnav-pill" uk-margin>
-                <li uk-filter-control="[group-01=\'お部屋\']"><a href="#">お部屋</a></li>
-                <li uk-filter-control="[group-01=\'お料理\']"><a href="#">お料理</a></li>
-                <li uk-filter-control="[group-01=\'温泉\']"><a href="#">温泉</a></li>
-                <li uk-filter-control="[group-01=\'館内施設\']"><a href="#">館内施設</a></li>
+                <li uk-filter-control="[group-01='お部屋']"><a href="#">お部屋</a></li>
+                <li uk-filter-control="[group-01='お料理']"><a href="#">お料理</a></li>
+                <li uk-filter-control="[group-01='温泉']"><a href="#">温泉</a></li>
+                <li uk-filter-control="[group-01='館内施設']"><a href="#">館内施設</a></li>
               </ul>
             </div>
             <div>
               <ul class="uk-subnav uk-subnav-pill" uk-margin>
-                <li uk-filter-control="[group-02=\'春\']"><a href="#">春</a></li>
-                <li uk-filter-control="[group-02=\'夏\']"><a href="#">夏</a></li>
-                <li uk-filter-control="[group-02=\'秋\']"><a href="#">秋</a></li>
-                <li uk-filter-control="[group-02=\'冬\']"><a href="#">冬</a></li>
+                <li uk-filter-control="[group-02='春']"><a href="#">春</a></li>
+                <li uk-filter-control="[group-02='夏']"><a href="#">夏</a></li>
+                <li uk-filter-control="[group-02='秋']"><a href="#">秋</a></li>
+                <li uk-filter-control="[group-02='冬']"><a href="#">冬</a></li>
               </ul>
             </div>
           
