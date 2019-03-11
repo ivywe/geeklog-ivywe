@@ -1,4 +1,4 @@
-{# begin {templatelocation} s-bg-slideshow_atbtn #}
+{# begin {templatelocation} s-slideshow #}
 
 <?php $cl = $this->get_var('uks');if(strlen($cl)){$uks = ' '.str_replace('.', ' ', $cl);}else{$uks = "";}$cl = $this->get_var('ukc');if(strlen($cl)){$ukc = ' '.str_replace('.', ' ', $cl);}else{$ukc = "";}$cl = $this->get_var('class_album_title');if(strlen($cl)){$class_album_title = ' '.str_replace('.', ' ', $cl);}else{$class_album_title = " uk-text-center@m";}$cl = $this->get_var('class_album_desc');if(strlen($cl)){$class_album_desc = ' '.str_replace('.', ' ', $cl);}else{$class_album_desc = " uk-text-center@m";}$cl = $this->get_var('class_media_title');if(strlen($cl)){$class_media_title = ' '.str_replace('.', ' ', $cl);}else{$class_media_title = " uk-text-center@m";}$cl = $this->get_var('class_media_desc');if(strlen($cl)){$class_media_desc = ' '.str_replace('.', ' ', $cl);}else{$class_media_desc = " uk-text-center@m";} ?>
 
@@ -7,14 +7,16 @@
 {!endif}
 
 {!!if {section} == '1' || {section} == '' !!}<section id="album{album_id}-section<?php global $sectionid; $sectionid++; echo $sectionid; ?>" class="uk-section<?php echo $uks; ?>">{!endif}
+
 {!!if {container} == '1' || {container} == '' !!}<div class="uk-container <?php echo $ukc; ?>">{!endif}
 
-      <div class="uk-position-relative uk-visible-toggle uk-light<?php echo $ukc; ?>" uk-slideshow="pause-on-hover: false; autoplay: true; animation: fade; autoplay-interval : 10000; ratio: 16:9; {class}">
+      {!if title}<h2 class="<?php echo $class_album_title; ?>">{album_title}</h2>{!endif}
+			{!if album_desc}<div class="uk-margin<?php echo $class_album_desc; ?>">{album_desc}</div>{!endif}
 
-        <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
-
+      <div uk-slideshow="pause-on-hover: false; autoplay: true; animation: {!if animation}{animation}{!else}fade{!endif}; autoplay-interval: 7000; velocity: 0.2; ratio: 16:9; {class}">
+        <div class="uk-position-relative uk-visible-toggle uk-light">
           <ul class="uk-slideshow-items">
-{medialist_col}
+{medialist_col}  
           </ul>
           <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
           <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>

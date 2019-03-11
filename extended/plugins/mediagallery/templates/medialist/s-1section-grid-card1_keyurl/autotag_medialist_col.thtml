@@ -5,7 +5,7 @@
           <div>
             <div class="uk-card uk-card-default uk-card-hover">
               <div class="uk-card-media-top">
-                {!if media_keywords}<a href="{media_keywords}">{!endif}<img src="{filename_disp}" alt="{media_title}">{!if media_keywords}</a>{!endif}
+								{!if media_keywords}<a href="{media_keywords}">{!endif}<img src="{filename}" alt="{media_title}">{!if media_keywords}</a>{!endif}
               </div>
               <div class="uk-card-body uk-card-small">
                 <h3 class="uk-card-title<?php echo $class_media_title; ?>">{media_title}</h3>

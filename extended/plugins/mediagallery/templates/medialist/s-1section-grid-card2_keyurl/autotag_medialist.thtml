@@ -11,7 +11,7 @@
 {!!if {container} == '1' || {container} == '' !!}<div class="uk-container <?php echo $ukc; ?>">{!endif}
         {!if title}<h2 class="uk-margin-large-bottom<?php echo $class_album_title; ?>">{album_title}</h2>{!endif}
         {!if album_desc}<div class="uk-margin-large-bottom<?php echo $class_album_desc; ?>">{album_desc}</div>{!endif}
-        <div class="uk-child-width-1-{grids} uk-child-width-1-{gridm}@m" uk-grid uk-height-match="target: .uk-card-body"
+        <div class="uk-child-width-1-{grids} uk-child-width-1-{gridm}@m" uk-grid uk-height-match="target: .uk-card-body">
 {medialist_col}
         </div>
 {!!if {container} == '1' || {container} == '' !!}</div>{!endif}

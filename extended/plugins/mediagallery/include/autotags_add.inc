@@ -215,7 +215,7 @@ function MG_medialist (
 		$T->set_var('animation',$animation);
 		$T->set_var('section',$section);
 		$T->set_var('container',$container);
-		$T->set_var('container',$masonry);
+		$T->set_var('masonry',$masonry);
 
 		if ( SEC_hasRights('mediagallery.admin') ){
 			$icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;

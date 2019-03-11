@@ -1,5 +1,5 @@
 {# begin {templatelocation} #}
 
-<li id="{menuitem_id}" class="uk-active {menuitem_class}"><a href="{menuitem_url}"{class_property}{target_property}>{menuitem_text}</a></li>
+<li id="{menuitem_id}" class="uk-active {menuitem_class}"><a href="{menuitem_url}"{!if menuitem_class} target={menuitem_class}"{!endif}">{menuitem_text}</a></li>
 
 {# end {templatelocation} #}
