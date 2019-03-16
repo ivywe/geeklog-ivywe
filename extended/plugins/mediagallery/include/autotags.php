@@ -1326,18 +1326,14 @@ function MG_autotags($op, $content = '', $autotag = '')
                 }
             }
 
-if(strlen($class) != 0){$class =" ".$class;}
+						if(strlen($class) != 0){	$class =" ".$class;	}
             $tagtext = '<img src="' . $media_thumbnail . '" ' . $alttag . ' class="img-responsive-center uk-overlay-scale ' . $class . '"' . XHTML . '>';
 
             $link = '';
             if ($alt == 1 && $row['remote_url'] != '') {
 
                 $url = $row['remote_url'];
-                if ($autotag['tag'] != 'image' && $enable_link == 1) {
-                    $link = '<a href="' . $url . '"' . ($target=='' ? '' : ' target="' . $target . '"') . '>' . $tagtext . '</a>';
-                } else {
-                    $link = $tagtext;
-                }
+                $link = $tagtext;
 
             } else if ($linkID == 0) {
 
@@ -1350,11 +1346,7 @@ if(strlen($class) != 0){$class =" ".$class;}
                     $link_album = MG_getAlbumData($linkID, array('album_id', 'hidden'), false);
                     if (!isset($link_album['album_id'])) {
                         $url = $_MG_CONF['site_url'] . '/album.php?aid=' . $linkID;
-                        if ($autotag['tag'] != 'image' && $link_album['hidden'] != 1 && $enable_link == 1) {
-                            $link = '<a href="' . $url . '"' . ($target=='' ? '' : ' target="' . $target . '"') . '>' . $tagtext . '</a>';
-                         } else {
-                            $link = $tagtext;
-                        }
+                        $link = $tagtext;
                     } else {
                         $url = $_MG_CONF['site_url'] . '/media.php?s=' . $parm1;
                     }
@@ -1365,11 +1357,7 @@ if(strlen($class) != 0){$class =" ".$class;}
                     if ($linkAID != 0) {
                         $url = $_MG_CONF['site_url'] . '/media.php?s=' . $linkID;
                         $hidden = DB_getItem($_TABLES['mg_albums'], 'hidden', "album_id=" . intval($linkAID));
-                        if ($autotag['tag'] != 'image' && $hidden != 1 && $enable_link == 1) {
-                            $link = '<a href="' . $url . '"' . ($target=='' ? '' : ' target="' . $target . '"') . '>' . $tagtext . '</a>';
-                        } else {
-                            $link = $tagtext;
-                        }
+                        $link = $tagtext;
                     } else {
                         $url = $_MG_CONF['site_url'] . '/media.php?s=' . $parm1;
                     }
@@ -1383,10 +1371,10 @@ if(strlen($class) != 0){$class =" ".$class;}
                         if ($_MG_CONF['disable_lightbox'] == true) {
                             $link = $tagtext;
                         } else {
-                            $link = '<a href="' . $direct_link . '" rel="lightbox" title="' . strip_tags(str_replace('$','&#36;',$caption)) . '">' . $tagtext . '</a>';
+                            $link = $tagtext;
                         }
                     } else {
-                        $link = '<a href="' . $url . '"' . ($target=='' ? '' : ' target="' . $target . '"') . '>' . $tagtext . '</a>';
+                        $link = $tagtext;
                     }
                 } else {
                     $link = $tagtext;
