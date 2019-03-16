@@ -18,13 +18,7 @@ $edt_flg=FALSE;
 // 権限チェック
 if (SEC_hasRights('assist.admin')) {
 }else{
-    $display="";
-    $display .= COM_siteHeader('menu', $MESSAGE[30]);
-    $display .= COM_startBlock ($MESSAGE[30], '',
-                                COM_getBlockTemplate ('_msg_block', 'header'));
-    $display .= $MESSAGE[35];
-    $display .= COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
-    $display .= COM_siteFooter();
+    $display = COM_createHTMLDocument($MESSAGE[35], array('what' => $what, 'pagetitle' => $page_title, 'breadcrumbs' => $breadcrumbs, 'headercode' => $headercode, 'rightblock' => $rightblock));
 
     // Log attempt to error.log
     COM_accessLog("User {$_USER['username']} tried to illegally access the assist administration screen.");
