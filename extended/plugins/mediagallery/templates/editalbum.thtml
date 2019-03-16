@@ -30,7 +30,7 @@ function change(what) {
 					<dt class="uk-margin-small"><label class="uk-form-label">{lang_title}</label></dt>
 					<dd class="uk-clearfix"><input type="text" class="uk-input uk-form-width-large" name="album_name" value="{album_title}" class="uk-form-width-large"{xhtml}></dd>
 					<dt class="uk-margin-small"><label class="uk-form-label">{lang_description}</label></dt>
-					<dd class="uk-clearfix"><textarea class="uk-textarea uk-form-width-large" name="album_desc" cols="50" rows="3" class="uk-width-1-1">{album_desc}</textarea></dd>
+					<dd class="uk-clearfix"><textarea class="uk-textarea uk-form-width-large" name="album_desc" cols="50" rows="{!if album_desc}10{!else}3{!endif}" class="uk-width-1-1">{album_desc}</textarea></dd>
 					<dt class="uk-margin-small"><label class="uk-form-label">{lang_parent_album}</label></dt>
 					<dd class="uk-clearfix">{parent_select}</dd>
 				</dl>
