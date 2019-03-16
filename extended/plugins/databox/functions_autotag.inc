@@ -610,7 +610,11 @@ function databox_category(
             $templates->set_var ('_languageid', "");
         }
 
-        //
+				if(!defined('THIS_SCRIPT'))
+				{
+					define('THIS_SCRIPT', '');
+				}
+
         $templates->set_var ('site_url',$_CONF['site_url']);
         $templates->set_var ('this_script',THIS_SCRIPT);
 
@@ -910,7 +914,6 @@ function databox_category(
             ,$category_description
             ,$category_name
             ,$category_description);
-//        $retval .= DATABOX_siteHeader($pi_name,'',$page_title,$headercode) ;
         $retval = DATABOX_displaypage($pi_name,'',$retval,array('pagetitle'=>$page_title,'headercode'=>$headercode));
     }
 
@@ -1990,6 +1993,7 @@ function databox_data(
                     ,$fieldset_id 
                     ,""
                     ,$code
+										,strftime( $_CONF['shortdate'], $A['expired_un'] )
                     );
             
                 if  ($A['page_title']<>""){
