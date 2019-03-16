@@ -4714,11 +4714,13 @@ function DATABOX_getheadercode(
     ,$fieldset_id=""
     ,$fieldset_name=""
     ,$code=""
+    ,$expired_shortdate=""
+
 )
 // +---------------------------------------------------------------------------+
 // | 機能 HEADERCODE 編集
 // | 書式 DATABOX_getheadercode("data",$template,$pi_name,$A['id'],$A['title']
-// |         ,$A['meta_description'],$A['meta_keyword'],$A['description']);
+// |         ,$A['meta_description'],$A['meta_keyword'],$A['description'],$A['expired_shortdate']);
 // +---------------------------------------------------------------------------+
 // | 引数  $kind        "data","category"
 // | 引数  $template
@@ -4734,6 +4736,7 @@ function DATABOX_getheadercode(
 // | 引数  $fieldset_id
 // | 引数  $fieldset_name
 // | 引数  $code
+// | 引数  $expired_shortdate
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:HEADERCODE
 // +---------------------------------------------------------------------------+
@@ -4786,17 +4789,20 @@ function DATABOX_getheadercode(
             'tpl' => 'headercode.thtml',
             ));
     
+
         $tpl->set_var('xhtml', XHTML);
         $tpl->set_var('site_url', $_CONF['site_url']);
         $tpl->set_var('site_admin_url', $_CONF['site_admin_url']);
         $tpl->set_var('layout_url', $_CONF['layout_url']);
-        
+        $tpl->set_var('expired_shortdate', $expired_shortdate);
+       
         $tpl->set_var ('currenturl', htmlspecialchars($currenturl, ENT_QUOTES, 'UTF-8'));
         
         $tpl->set_var ('site_name', $_CONF['site_name']);
         $tpl->set_var ('site_mail', $_CONF['site_mail']);
         
         $tpl->set_var ('og_title', $og_title);
+        $tpl->set_var ('title', $og_title);
         $tpl->set_var ('og_image', $og_image);
         $tpl->set_var ('og_description', $og_description);
         $tpl->set_var ('og_type', $og_type);
