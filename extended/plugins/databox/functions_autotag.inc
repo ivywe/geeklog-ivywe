@@ -1978,6 +1978,7 @@ function databox_data(
                     $layout=$A['set_layout'];
                 }
                 // Meta Tags
+
                 $headercode=DATABOX_getheadercode(    
                     "data"
                     ,$template
@@ -1993,7 +1994,7 @@ function databox_data(
                     ,$fieldset_id 
                     ,""
                     ,$code
-										,strftime( $_CONF['shortdate'], $A['expired_un'] )
+										,strftime( $_CONF['shortdate'], strtotime( $A['expired_un'] ) )
                     );
             
                 if  ($A['page_title']<>""){

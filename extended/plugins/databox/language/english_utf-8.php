@@ -103,7 +103,7 @@ $LANG_DATABOX_ADMIN['importfile'] = 'Path';
 $LANG_DATABOX_ADMIN['importurl'] = 'URL';
 
 $LANG_DATABOX_ADMIN['delete'] = 'Delete';
-$LANG_DATABOX_ADMIN['deletemsg_user'] = "Delete all.<br ".xhtml.">";
+$LANG_DATABOX_ADMIN['deletemsg_user'] = "Delete all.<br ".XHTML.">";
 
 $LANG_DATABOX_ADMIN['idfrom'] = "From ID";
 $LANG_DATABOX_ADMIN['idto'] = "To ID";
@@ -727,7 +727,7 @@ $PLG_databox_MESSAGE3002 = $LANG32[9];
 ###############################################################################
 #
 $LANG_DATABOX_autotag_desc['databox']="
-[databox:count] <br".xhtml.">	
+[databox:count] <br".XHTML.">	
 More, see Databox Plugin documents.
 <a href=\"{$_CONF['site_admin_url']}/plugins/databox/docs/japanese/autotags.html\">*</a>
 ";
@@ -742,8 +742,8 @@ $LANG_configsections['databox']['title'] = 'DataBox Setting';
 $LANG_configsubgroups['databox']['sg_main'] = 'Main';
 //--(0)
 
-$LANG_tab['databox'][tab_main] = 'MainSetting';
-$LANG_fs['databox'][fs_main] = 'DataBox MainSetting';
+// $LANG_tab['databox'][tab_main] = 'MainSetting';
+// $LANG_fs['databox'][fs_main] = 'DataBox MainSetting';
 $LANG_confignames['databox']['perpage'] = 'Date Number by Page';
 $LANG_confignames['databox']['loginrequired'] = 'Login Required';
 $LANG_confignames['databox']['hidemenu'] = 'Hide Menu';
@@ -798,8 +798,8 @@ $LANG_confignames['databox']['disable_permission_ignore'] = 'disable permission 
 $LANG_confignames['databox']['sitemap_excepts'] = 'XMLSitemap excepted codes';
 
 //--(1)
-$LANG_tab['databox'][tab_whatsnew] = 'Whats new Block';
-$LANG_fs['databox'][fs_whatsnew] = 'Whats new Block';
+// $LANG_tab['databox'][tab_whatsnew] = 'Whats new Block';
+// $LANG_fs['databox'][fs_whatsnew] = 'Whats new Block';
 $LANG_confignames['databox']['whatsnew_interval'] = 'New Period';
 $LANG_confignames['databox']['hide_whatsnew'] = 'Hide Whats New';
 $LANG_confignames['databox']['title_trim_length'] = 'Title of Max Length';
@@ -808,19 +808,19 @@ $LANG_confignames['databox']['title_trim_length'] = 'Title of Max Length';
 
 
 //---(2)
-$LANG_tab['databox'][tab_search] = 'Search';
-$LANG_fs['databox'][fs_search] = 'Search Results';
+// $LANG_tab['databox'][tab_search] = 'Search';
+// $LANG_fs['databox'][fs_search] = 'Search Results';
 $LANG_confignames['databox']['include_search'] = 'Data Search';
 $LANG_confignames['databox']['additionsearch'] = 'Attributes number for Search';
 
 //---(3)
-$LANG_tab['databox'][tab_permissions] = 'Permission';
-$LANG_fs['databox'][fs_permissions] = 'Data Permission Default([0]Owner [1]Group [2]Member [3]Anonimous)';
+// $LANG_tab['databox'][tab_permissions] = 'Permission';
+// $LANG_fs['databox'][fs_permissions] = 'Data Permission Default([0]Owner [1]Group [2]Member [3]Anonimous)';
 $LANG_confignames['databox']['default_permissions'] = 'Permissions';
 
 //---(4)
-$LANG_tab['databox'][tab_autotag] = 'Autotags';
-$LANG_fs['databox'][fs_autotag] = 'Autotags';
+// $LANG_tab['databox'][tab_autotag] = 'Autotags';
+// $LANG_fs['databox'][fs_autotag] = 'Autotags';
 $LANG_confignames['databox']['intervalday']="Display Period(Day)";
 $LANG_confignames['databox']['limitcnt']="Display Number";//@@@@@
 $LANG_confignames['databox']['newmarkday']="New Mark Display Period(Day)";//@@@@@

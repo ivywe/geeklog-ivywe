@@ -3090,7 +3090,7 @@ function DATABOX_cleanaddtiondatas(
                     break;
                 case 12:// 画像（ファイル保存）
 										if(isset($fnmary[$field_id])){ $fnmary[$field_id]=COM_applyFilter($fnmary[$field_id]); }
-										if(isset($fnmary[$field_id])){ $delary[$field_id]=COM_applyFilter($delary[$field_id]); }
+										if(isset($delary[$field_id])){ $delary[$field_id]=COM_applyFilter($delary[$field_id]); }
                     $wk=COM_applyFilter($wk);
                     $wk=COM_checkHTML (COM_checkWords ($wk));
                     $wk2=COM_applyFilter($altary[$field_id]);
@@ -3100,12 +3100,12 @@ function DATABOX_cleanaddtiondatas(
                     $wk=$a[0]."|".$wk2;
                     break;
                 case 13:// 添付ファイル
-                    $fnmary[$field_id]=COM_applyFilter($fnmary[$field_id]);
-                    $delary[$field_id]=COM_applyFilter($delary[$field_id]);
+                    if(isset($fnmary[$field_id])){ $fnmary[$field_id]=COM_applyFilter($fnmary[$field_id]); }
+                    if(isset($delary[$field_id])){ $delary[$field_id]=COM_applyFilter($delary[$field_id]); }
                     $wk=COM_applyFilter($wk);
                     $wk=COM_checkHTML (COM_checkWords ($wk));
                     $wk2=COM_applyFilter($delary[$field_id]);
-                    $delary[$field_id]=COM_checkHTML (COM_checkWords ($wk2));
+                    if(isset($delary[$field_id])){ $delary[$field_id]=COM_checkHTML (COM_checkWords ($wk2)); }
                     break;
                 case 7://オプションリスト（選択肢）
                 case 8://ラジオボタンリスト（選択肢）
