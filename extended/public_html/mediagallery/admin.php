@@ -296,7 +296,10 @@ if ($mode == 'edit') {
         case 'media' :
             require_once $include . 'batch.php';
             $media_id_array = array();
-            $numItems = count($_POST['sel']);
+            $numItems=0;
+            if(isset($_POST['sel'])){
+              $numItems = count($_POST['sel']);
+            }
             for ($i=0; $i < $numItems; $i++) {
                 $media_id_array[] = COM_applyFilter($_POST['sel'][$i]);
             }
@@ -518,7 +521,7 @@ if ($mode == 'edit') {
     $display = MG_createHTMLDocument($display);
     COM_output($display);
 
-} else if (mode == 'cancel') {
+} else if ($mode == 'cancel') {
     if (isset($_POST['admin_menu']) && $_POST['admin_menu'] == 1) {
         echo COM_refresh($_MG_CONF['admin_url'] . 'index.php');
         exit;
