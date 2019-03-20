@@ -1429,6 +1429,7 @@ function COM_createHTMLDocument(&$content = '', $information = array())
         $layout_columns = 'center';
     }
     $header->set_var('layout_columns', $layout_columns);
+    $footer->set_var('layout_columns', $layout_columns);
 
     // All blocks, autotags, template files, etc, now have been rendered (since can be done in footer) so all scripts and css should be set now
     $headerCode = $_STRUCT_DATA->toScript() . $headerCode;
