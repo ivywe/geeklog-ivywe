@@ -1,0 +1,11 @@
+
+<li>
+	<div class="uk-inline">
+			<img src="{filename}" class="{animation}" title="{media_title}" alt="">
+	</div>
+	{!if media_title}<div class="uk-position-center uk-overlay gl-text-overlay">
+		<h2>{media_title}<h2>
+		<p class="uk-text-lead">{media_desc}</p>
+	</div>{!endif}
+</li>
+

@@ -3,7 +3,7 @@
   <div class="uk-margin-large uk-text-center@m {class}" uk-lightbox="animation: {!if animation}{animation}{!else}slide{!endif}">
     <a href="{filename_orig}" class="uk-inline uk-thumbnail" uk-lightbox="animation: {animation}" title="{media_title}" caption="{media_title}">
       <img src="{filename}" alt="{media_title}" class="uk-container-center uk-overlay-scale {class}" alt="{media_title}"{xhtml}>
-			<div class="uk-thumbnail-caption">{media_title}</div>
+      <div class="uk-thumbnail-caption">{media_title}</div>
     </a>
     <div class="uk-text-left uk-margin">{media_desc}</div>
   </div>

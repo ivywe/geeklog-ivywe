@@ -21,7 +21,7 @@ function doUnCheckAll_mediaitems() {
 }
 // End script --></script>
 
-	<div class="uk-text-success uk-text-small uk-margin-small">自動タグの例) &#91;medialist:(album_id) theme:(name) src:(tn|disp|org) limitcnt:xx order:(RANDOM|order) &#93; &#91;media:media_id src:(tn|disp|org)&#93; &#91;media_url:(media_id) src:(tn|disp|org) &#93;</div>
+  <div class="uk-text-success uk-text-small uk-margin-small">自動タグの例) &#91;medialist:(album_id) theme:(name) src:(tn|disp|org) limitcnt:xx order:(RANDOM|order) &#93; &#91;media:media_id src:(tn|disp|org)&#93; &#91;media_url:(media_id) src:(tn|disp|org) &#93;</div>
 
 <table class="uk-table uk-table-condensed uk-table-striped uk-width-1-1" style="background:#ffffff;">
   <tr>

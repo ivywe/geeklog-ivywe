@@ -23,21 +23,21 @@ function change(what) {
 //-->
 </script>
 
-	<form enctype="multipart/form-data" method="post" action="{s_form_action}" class="uk-form uk-form-horizontal">
+  <form enctype="multipart/form-data" method="post" action="{s_form_action}" class="uk-form uk-form-horizontal">
     <div class="admin_basic gl_mg_album">
-	    <fieldset class="uk-margin-large-top">
-	      <dl class="form_block">
-					<dt class="uk-margin-small"><label class="uk-form-label">{lang_title}</label></dt>
-					<dd class="uk-clearfix"><input type="text" class="uk-input uk-form-width-large" name="album_name" value="{album_title}" class="uk-form-width-large"{xhtml}></dd>
-					<dt class="uk-margin-small"><label class="uk-form-label">{lang_description}</label></dt>
-					<dd class="uk-clearfix"><textarea class="uk-textarea uk-form-width-large" name="album_desc" cols="50" rows="{!if album_desc}10{!else}3{!endif}" class="uk-width-1-1">{album_desc}</textarea></dd>
-					<dt class="uk-margin-small"><label class="uk-form-label">{lang_parent_album}</label></dt>
-					<dd class="uk-clearfix">{parent_select}</dd>
-				</dl>
-	    </fieldset>
-	    <fieldset class="uk-margin-large-top">
-	      <legend>{lang_album_attributes}</legend>
-				<dl class="form_block">
+      <fieldset class="uk-margin-large-top">
+        <dl class="form_block">
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_title}</label></dt>
+          <dd class="uk-clearfix"><input type="text" class="uk-input uk-form-width-large" name="album_name" value="{album_title}" class="uk-form-width-large"{xhtml}></dd>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_description}</label></dt>
+          <dd class="uk-clearfix"><textarea class="uk-textarea uk-form-width-large" name="album_desc" cols="50" rows="{!if album_desc}10{!else}3{!endif}" class="uk-width-1-1">{album_desc}</textarea></dd>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_parent_album}</label></dt>
+          <dd class="uk-clearfix">{parent_select}</dd>
+        </dl>
+      </fieldset>
+      <fieldset class="uk-margin-large-top">
+        <legend>{lang_album_attributes}</legend>
+        <dl class="form_block">
 
           <dt class="uk-margin-small"><label class="uk-form-label">{lang_theme_select}</label></dt>
           <dd class="uk-clearfix">{album_theme_select}</dd>
@@ -117,12 +117,12 @@ function change(what) {
           <dt class="uk-margin-small"><label class="uk-form-label">{lang_columns}</label></dt>
           <dd class="uk-clearfix">{columns_input}</dd>
 
-				</dl>
-			</fieldset>
+        </dl>
+      </fieldset>
 
-	    <fieldset class="uk-margin-large-top">
-	      <legend>{lang_album_cover}</legend>
-	      <dl class="form_block">
+      <fieldset class="uk-margin-large-top">
+        <legend>{lang_album_cover}</legend>
+        <dl class="form_block">
 {!if thumbnail}
           <dt class="uk-margin-small"><label class="uk-form-label">{lang_thumbnail}</label></dt>
           <dd class="uk-clearfix">{thumbnail}</dd>
@@ -132,12 +132,12 @@ function change(what) {
 
           <dt class="uk-margin-small"><label class="uk-form-label">{lang_thumbnail}</label></dt>
           <dd class="uk-clearfix"><input type="file" dir="ltr" name="thumbnail"{xhtml}></dd>
-      	</dl>
-			</fieldset>
+        </dl>
+      </fieldset>
 
-			<fieldset class="uk-margin-large-top">
-				<legend>{lang_featured_album}</legend>
-				<dl class="form_block">
+      <fieldset class="uk-margin-large-top">
+        <legend>{lang_featured_album}</legend>
+        <dl class="form_block">
           <dt class="uk-margin-small"><label class="uk-form-label">{lang_set_featured}</label></dt>
           <dd class="uk-clearfix">{featured_select}
               <span class="uk-form-help-inline">{lang_featured_help}</span></dd>
@@ -147,12 +147,12 @@ function change(what) {
 
           <dt class="uk-margin-small"><label class="uk-form-label">{lang_topic}</label></dt>
           <dd class="uk-clearfix">{feature_page_select}</dd>
-				</dl>
-			</fieldset>
+        </dl>
+      </fieldset>
 
-			<fieldset class="uk-margin-large-top">
-    		<legend>{lang_media_attributes}</legend>
- 		 		<dl class="form_block">
+      <fieldset class="uk-margin-large-top">
+        <legend>{lang_media_attributes}</legend>
+          <dl class="form_block">
           <dt class="uk-margin-small"><label class="uk-form-label">{lang_filename_title}</label></dt>
           <dd class="uk-clearfix">{filename_title_select}</dd>
 
@@ -179,147 +179,147 @@ function change(what) {
 
           <dt class="uk-margin-small"><label class="uk-form-label">{lang_usealternate}</label></dt>
           <dd class="uk-clearfix">{usealternate_select}</dd>
-				</dl>
-  		</fieldset>
+        </dl>
+      </fieldset>
 
-			<fieldset class="uk-margin-large-top">
-				<legend>{lang_watermark}</legend>
-				<dl class="form_block">
+      <fieldset class="uk-margin-large-top">
+        <legend>{lang_watermark}</legend>
+        <dl class="form_block">
 
-					<dt class="uk-margin-small"><label class="uk-form-label">{lang_wm_auto}</label></dt>
-					<dd class="uk-clearfix">{wm_auto_select}</dd>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_wm_auto}</label></dt>
+          <dd class="uk-clearfix">{wm_auto_select}</dd>
 
-					<dt class="uk-margin-small"><label class="uk-form-label">{lang_wm_opacity}</label></dt>
-					<dd class="uk-clearfix">{wm_opacity_select}</dd>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_wm_opacity}</label></dt>
+          <dd class="uk-clearfix">{wm_opacity_select}</dd>
 
-					<dt class="uk-margin-small"><label class="uk-form-label">{lang_wm_location}</label></dt>
-					<dd class="uk-clearfix">{wm_location_select}</dd>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_wm_location}</label></dt>
+          <dd class="uk-clearfix">{wm_location_select}</dd>
 
-					<dt class="uk-margin-small"><label class="uk-form-label">{lang_wm_id}</label></dt>
-					<dd class="uk-clearfix">{wm_select}
-					<span class="uk-form-help-inline">{wm_current}</span></dd>
-				</dl>
-			</fieldset>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_wm_id}</label></dt>
+          <dd class="uk-clearfix">{wm_select}
+          <span class="uk-form-help-inline">{wm_current}</span></dd>
+        </dl>
+      </fieldset>
 
-			<fieldset class="uk-margin-large-top">
+      <fieldset class="uk-margin-large-top">
 
-  			<legend>{lang_allowed_formats}</legend>
+        <legend>{lang_allowed_formats}</legend>
 
-	      <table class="uk-table uk-table-condensed uk-table-striped uk-width-1-1" style="background:#ffffff;">
-	        <tr>
-	          <th>{lang_image}</th>
-	          <th>{lang_audio} / {lang_video}</th>
-	          <th>{lang_other}</th>
-	        </tr>
-	        <tr>
-	          <td valign="top" align="center">
-	            <table>
-	              <tr>
-	                <td align="left">
-	                  <input type="checkbox" class="uk-checkbox" name="format_jpg" value="1" {jpg_checked}{xhtml}> <span class="uk-form-help-inline">{lang_jpg}</span><br{xhtml}>
-	                  <input type="checkbox" class="uk-checkbox" name="format_png" value="2" {png_checked}{xhtml}> <span class="uk-form-help-inline">{lang_png}</span><br{xhtml}>
-	                  <input type="checkbox" class="uk-checkbox" name="format_tif" value="4" {tif_checked}{xhtml}> <span class="uk-form-help-inline">{lang_tif}</span><br{xhtml}>
-	                  <input type="checkbox" class="uk-checkbox" name="format_gif" value="8" {gif_checked}{xhtml}> <span class="uk-form-help-inline">{lang_gif}</span><br{xhtml}>
-	                  <input type="checkbox" class="uk-checkbox" name="format_bmp" value="16" {bmp_checked}{xhtml}> <span class="uk-form-help-inline">{lang_bmp}</span><br{xhtml}>
-	                  <input type="checkbox" class="uk-checkbox" name="format_tga" value="32" {tga_checked}{xhtml}> <span class="uk-form-help-inline">{lang_tga}</span><br{xhtml}>
-	                  <input type="checkbox" class="uk-checkbox" name="format_psd" value="64" {psd_checked}{xhtml}> <span class="uk-form-help-inline">{lang_psd}</span><br{xhtml}>
-	                </td>
-	              </tr>
-	            </table>
-	          </td>
-	          <td valign="top" align="center">
-	            <table>
-	              <tr>
-	                <td align="left">
-	                  <input type="checkbox" class="uk-checkbox" name="format_mp3" value="128" {mp3_checked}{xhtml}> <span class="uk-form-help-inline">{lang_mp3}</span><br{xhtml}>
-	                  <input type="checkbox" class="uk-checkbox" name="format_ogg" value="256" {ogg_checked}{xhtml}> <span class="uk-form-help-inline">{lang_ogg}</span><br{xhtml}>
-	                  <input type="checkbox" class="uk-checkbox" name="format_asf" value="512" {asf_checked}{xhtml}> <span class="uk-form-help-inline">{lang_asf}</span><br{xhtml}>
-	                  <input type="checkbox" class="uk-checkbox" name="format_swf" value="1024" {swf_checked}{xhtml}> <span class="uk-form-help-inline">{lang_swf}</span><br{xhtml}>
-	                  <input type="checkbox" class="uk-checkbox" name="format_mov" value="2048" {mov_checked}{xhtml}> <span class="uk-form-help-inline">{lang_mov}</span><br{xhtml}>
-	                  <input type="checkbox" class="uk-checkbox" name="format_mp4" value="4096" {mp4_checked}{xhtml}> <span class="uk-form-help-inline">{lang_mp4}</span><br{xhtml}>
-	                  <input type="checkbox" class="uk-checkbox" name="format_mpg" value="8192" {mpg_checked}{xhtml}> <span class="uk-form-help-inline">{lang_mpg}</span><br{xhtml}>
-	                  <input type="checkbox" class="uk-checkbox" name="format_flv" value="131072" {flv_checked}{xhtml}> <span class="uk-form-help-inline">{lang_flv}</span><br{xhtml}>
-	                  <input type="checkbox" class="uk-checkbox" name="format_rflv" value="262144" {rflv_checked}{xhtml}> <span class="uk-form-help-inline">{lang_rflv}</span><br{xhtml}>
-	                  <input type="checkbox" class="uk-checkbox" name="format_emb" value="524288" {emb_checked}{xhtml}> <span class="uk-form-help-inline">{lang_emb}</span><br{xhtml}>
-	                </td>
-	              </tr>
-	            </table>
-	          </td>
-	          <td valign="top" align="center">
-	            <table>
-	              <tr>
-	                <td align="left">
-	                  <input type="checkbox" class="uk-checkbox" name="format_zip" value="16384" {zip_checked}{xhtml}> <span class="uk-form-help-inline">{lang_zip}</span><br{xhtml}>
-	                  <input type="checkbox" class="uk-checkbox" name="format_other" value="32768" {other_checked}{xhtml}> <span class="uk-form-help-inline">{lang_other}</span><br{xhtml}>
-	                </td>
-	              </tr>
-	            </table>
-	          </td>
-	        </tr>
-	      </table>
-  		</fieldset>
+        <table class="uk-table uk-table-condensed uk-table-striped uk-width-1-1" style="background:#ffffff;">
+          <tr>
+            <th>{lang_image}</th>
+            <th>{lang_audio} / {lang_video}</th>
+            <th>{lang_other}</th>
+          </tr>
+          <tr>
+            <td valign="top" align="center">
+              <table>
+                <tr>
+                  <td align="left">
+                    <input type="checkbox" class="uk-checkbox" name="format_jpg" value="1" {jpg_checked}{xhtml}> <span class="uk-form-help-inline">{lang_jpg}</span><br{xhtml}>
+                    <input type="checkbox" class="uk-checkbox" name="format_png" value="2" {png_checked}{xhtml}> <span class="uk-form-help-inline">{lang_png}</span><br{xhtml}>
+                    <input type="checkbox" class="uk-checkbox" name="format_tif" value="4" {tif_checked}{xhtml}> <span class="uk-form-help-inline">{lang_tif}</span><br{xhtml}>
+                    <input type="checkbox" class="uk-checkbox" name="format_gif" value="8" {gif_checked}{xhtml}> <span class="uk-form-help-inline">{lang_gif}</span><br{xhtml}>
+                    <input type="checkbox" class="uk-checkbox" name="format_bmp" value="16" {bmp_checked}{xhtml}> <span class="uk-form-help-inline">{lang_bmp}</span><br{xhtml}>
+                    <input type="checkbox" class="uk-checkbox" name="format_tga" value="32" {tga_checked}{xhtml}> <span class="uk-form-help-inline">{lang_tga}</span><br{xhtml}>
+                    <input type="checkbox" class="uk-checkbox" name="format_psd" value="64" {psd_checked}{xhtml}> <span class="uk-form-help-inline">{lang_psd}</span><br{xhtml}>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td valign="top" align="center">
+              <table>
+                <tr>
+                  <td align="left">
+                    <input type="checkbox" class="uk-checkbox" name="format_mp3" value="128" {mp3_checked}{xhtml}> <span class="uk-form-help-inline">{lang_mp3}</span><br{xhtml}>
+                    <input type="checkbox" class="uk-checkbox" name="format_ogg" value="256" {ogg_checked}{xhtml}> <span class="uk-form-help-inline">{lang_ogg}</span><br{xhtml}>
+                    <input type="checkbox" class="uk-checkbox" name="format_asf" value="512" {asf_checked}{xhtml}> <span class="uk-form-help-inline">{lang_asf}</span><br{xhtml}>
+                    <input type="checkbox" class="uk-checkbox" name="format_swf" value="1024" {swf_checked}{xhtml}> <span class="uk-form-help-inline">{lang_swf}</span><br{xhtml}>
+                    <input type="checkbox" class="uk-checkbox" name="format_mov" value="2048" {mov_checked}{xhtml}> <span class="uk-form-help-inline">{lang_mov}</span><br{xhtml}>
+                    <input type="checkbox" class="uk-checkbox" name="format_mp4" value="4096" {mp4_checked}{xhtml}> <span class="uk-form-help-inline">{lang_mp4}</span><br{xhtml}>
+                    <input type="checkbox" class="uk-checkbox" name="format_mpg" value="8192" {mpg_checked}{xhtml}> <span class="uk-form-help-inline">{lang_mpg}</span><br{xhtml}>
+                    <input type="checkbox" class="uk-checkbox" name="format_flv" value="131072" {flv_checked}{xhtml}> <span class="uk-form-help-inline">{lang_flv}</span><br{xhtml}>
+                    <input type="checkbox" class="uk-checkbox" name="format_rflv" value="262144" {rflv_checked}{xhtml}> <span class="uk-form-help-inline">{lang_rflv}</span><br{xhtml}>
+                    <input type="checkbox" class="uk-checkbox" name="format_emb" value="524288" {emb_checked}{xhtml}> <span class="uk-form-help-inline">{lang_emb}</span><br{xhtml}>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td valign="top" align="center">
+              <table>
+                <tr>
+                  <td align="left">
+                    <input type="checkbox" class="uk-checkbox" name="format_zip" value="16384" {zip_checked}{xhtml}> <span class="uk-form-help-inline">{lang_zip}</span><br{xhtml}>
+                    <input type="checkbox" class="uk-checkbox" name="format_other" value="32768" {other_checked}{xhtml}> <span class="uk-form-help-inline">{lang_other}</span><br{xhtml}>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </fieldset>
 
-	{!if perms_editor_admin}
-	    <fieldset class="uk-margin-large-top">
-	      <legend>{lang_uploads}</legend>
-				<dl class="form_block">
+  {!if perms_editor_admin}
+      <fieldset class="uk-margin-large-top">
+        <legend>{lang_uploads}</legend>
+        <dl class="form_block">
 
-					<dt class="uk-margin-small"><label class="uk-form-label">{lang_member_upload}</label></dt>
-					<dd class="uk-clearfix">{uploads}</dd>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_member_upload}</label></dt>
+          <dd class="uk-clearfix">{uploads}</dd>
 
-					<dt class="uk-margin-small"><label class="uk-form-label">{lang_moderate_album}</label></dt>
-					<dd class="uk-clearfix">{moderate}</dd>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_moderate_album}</label></dt>
+          <dd class="uk-clearfix">{moderate}</dd>
 
-					<dt class="uk-margin-small"><label class="uk-form-label">{lang_mod_group}</label></dt>
-					<dd class="uk-clearfix">{mod_dropdown}</dd>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_mod_group}</label></dt>
+          <dd class="uk-clearfix">{mod_dropdown}</dd>
 
-					<dt class="uk-margin-small"><label class="uk-form-label">{lang_email_mods_on_submission}</label></dt>
-					<dd class="uk-clearfix">{email_mod_select}</dd>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_email_mods_on_submission}</label></dt>
+          <dd class="uk-clearfix">{email_mod_select}</dd>
 
-				</dl>
-	    </fieldset>
+        </dl>
+      </fieldset>
 
-	    <fieldset class="uk-margin-large-top">
-	      <legend>{lang_accessrights}</legend>
-				<dl class="form_block">
+      <fieldset class="uk-margin-large-top">
+        <legend>{lang_accessrights}</legend>
+        <dl class="form_block">
 
-					<dt class="uk-margin-small"><label class="uk-form-label">{lang_owner}</label></dt>
-					<dd class="uk-clearfix">{owner_select}</dd>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_owner}</label></dt>
+          <dd class="uk-clearfix">{owner_select}</dd>
 
-					<dt class="uk-margin-small"><label class="uk-form-label">{lang_group}</label></dt>
-					<dd class="uk-clearfix">{group_dropdown}</dd>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_group}</label></dt>
+          <dd class="uk-clearfix">{group_dropdown}</dd>
 
-					<dt class="uk-margin-small"><label class="uk-form-label">{lang_permissions}</label></dt>
-					<dd class="uk-clearfix">{permissions_editor}
-					<span class="uk-form-help-inline">{lang_perm_key}</span></dd>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_permissions}</label></dt>
+          <dd class="uk-clearfix">{permissions_editor}
+          <span class="uk-form-help-inline">{lang_perm_key}</span></dd>
 
-					<dt class="uk-margin-small"><label class="uk-form-label">{lang_hidden}</label></dt>
-					<dd class="uk-clearfix">{hidden}</dd>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_hidden}</label></dt>
+          <dd class="uk-clearfix">{hidden}</dd>
 
-					<dt class="uk-margin-small"><label class="uk-form-label">{lang_force_child_update}</label></dt>
-					<dd class="uk-clearfix">{force_child_update}</dd>
+          <dt class="uk-margin-small"><label class="uk-form-label">{lang_force_child_update}</label></dt>
+          <dd class="uk-clearfix">{force_child_update}</dd>
 
-				</dl>
-	    </fieldset>
-	{!endif}
+        </dl>
+      </fieldset>
+  {!endif}
 
-	{!if perms_editor_member}
-	    <fieldset class="uk-margin-large-top">
-	      <legend>{lang_accessrights}</legend>
-	      	<dl class="form_block">
-	            <dt class="uk-margin-small"><label class="uk-form-label">{lang_owner}</label></dt>
-	            <dd class="uk-clearfix">
-	                {owner_username}<input type="hidden" name="owner_id" value="{owner_id}"{xhtml}></dd>
+  {!if perms_editor_member}
+      <fieldset class="uk-margin-large-top">
+        <legend>{lang_accessrights}</legend>
+          <dl class="form_block">
+              <dt class="uk-margin-small"><label class="uk-form-label">{lang_owner}</label></dt>
+              <dd class="uk-clearfix">
+                  {owner_username}<input type="hidden" name="owner_id" value="{owner_id}"{xhtml}></dd>
 
-	            <dt class="uk-margin-small"><label class="uk-form-label">{lang_permissions}</label></dt>
-	            <dd class="uk-clearfix">{permissions_editor}
-	              <span class="uk-form-help-inline">{lang_perm_key}</span></dd>
+              <dt class="uk-margin-small"><label class="uk-form-label">{lang_permissions}</label></dt>
+              <dd class="uk-clearfix">{permissions_editor}
+                <span class="uk-form-help-inline">{lang_perm_key}</span></dd>
 
-	            <dt class="uk-margin-small"><label class="uk-form-label">{lang_force_child_update}</label></dt>
-	            <dd class="uk-clearfix">{force_child_update}</dd>
-	        </dl>
-	    </fieldset>
-	{!endif}
+              <dt class="uk-margin-small"><label class="uk-form-label">{lang_force_child_update}</label></dt>
+              <dd class="uk-clearfix">{force_child_update}</dd>
+          </dl>
+      </fieldset>
+  {!endif}
 
       <div class="submit">
         <button type="submit" class="uk-button uk-button-primary" value="{lang_save}" name="mode">{lang_save}</button>
@@ -334,9 +334,9 @@ function change(what) {
         <input type="hidden" name="media_count" value="{media_count}"{xhtml}>
         <input type="hidden" name="action" value="{action}"{xhtml}>
         <input type="hidden" name="origaid" value="{old_album_id}"{xhtml}>
-			</div>
-		</div>
-	</form>
+      </div>
+    </div>
+  </form>
 
 {end_block}
 

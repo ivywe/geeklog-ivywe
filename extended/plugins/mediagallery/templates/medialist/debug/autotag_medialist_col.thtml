@@ -1,0 +1,44 @@
+{# begin {templatelocation} #}
+
+<dl class="uk-description-list gl-medialist-debug">
+	<dt style="text-transform: uppercase;none">albumid</dt><dd>{albumid}</dd>
+	<dt style="text-transform: uppercase;none">album_title</dt><dd>{album_title}</dd>
+	<dt style="text-transform: uppercase;none">filename</dt><dd>{filename}</dd>
+	<dt style="text-transform: uppercase;none">filename_tn</dt><dd>{filename_tn}</dd>
+	<dt style="text-transform: uppercase;none">filename_disp</dt><dd>{filename_disp}</dd>
+	<dt style="text-transform: uppercase;none">filename_orig</dt><dd>{filename_orig}</dd>
+	<dt style="text-transform: uppercase;none">media_title</dt><dd>{media_title}</dd>
+	<dt style="text-transform: uppercase;none">media_desc</dt><dd>{media_desc}</dd>
+	<dt style="text-transform: uppercase;none">theme</dt><dd>{theme}</dd>
+	<dt style="text-transform: uppercase;none">src</dt><dd>{src}</dd>
+	<dt style="text-transform: uppercase;none">limitcnt</dt><dd>{limitcnt}</dd>
+	<dt style="text-transform: uppercase;none">title</dt><dd>{title}</dd>
+	<dt style="text-transform: uppercase;none">uks</dt><dd>{uks}</dd>
+	<dt style="text-transform: uppercase;none">ukc</dt><dd>{ukc}</dd>
+	<dt style="text-transform: uppercase;none">media</dt><dd>{media}</dd>
+	<dt style="text-transform: uppercase;none">grids</dt><dd>{grids}</dd>
+	<dt style="text-transform: uppercase;none">gridm</dt><dd>{gridm}</dd>
+	<dt style="text-transform: uppercase;none">gridl</dt><dd>{gridl}</dd>
+	<dt style="text-transform: uppercase;none">gridr</dt><dd>{gridr}</dd>
+	<dt style="text-transform: uppercase;none">reverse</dt><dd>{reverse}</dd>
+	<dt style="text-transform: uppercase;none">text</dt><dd>{text}</dd>
+	<dt style="text-transform: uppercase;none">text1</dt><dd>{text1}</dd>
+	<dt style="text-transform: uppercase;none">text2</dt><dd>{tex2}</dd>
+	<dt style="text-transform: uppercase;none">text3</dt><dd>{text3}</dd>
+	<dt style="text-transform: uppercase;none">dotnav</dt><dd>{dotnav}</dd>
+	<dt style="text-transform: uppercase;none">minheight</dt><dd>{minheight}</dd>
+	<dt style="text-transform: uppercase;none">maxheight</dt><dd>{maxheight}</dd>
+	<dt style="text-transform: uppercase;none">class_album_title</dt><dd>{class_album_title}</dd>
+	<dt style="text-transform: uppercase;none">class_album_desc</dt><dd>{class_album_desc}</dd>
+	<dt style="text-transform: uppercase;none">class_media_title</dt><dd>{class_media_title}</dd>
+	<dt style="text-transform: uppercase;none">class_media_desc</dt><dd>{class_media_desc}</dd>
+	<dt style="text-transform: uppercase;none">bxslider</dt><dd>{bxslider}</dd>
+	<dt style="text-transform: uppercase;none">animation</dt><dd>{animation}</dd>
+	<dt style="text-transform: uppercase;none">section</dt><dd>{section}</dd>
+	<dt style="text-transform: uppercase;none">container</dt><dd>{section}</dd>
+	<dt style="text-transform: uppercase;none">masonry</dt><dd>{masonry}</dd>
+	<dt style="text-transform: uppercase;none">class</dt><dd>{class}</dd>
+</dl>
+<p>※optionは、省略できます。</p>
+
+{# end {templatelocation} #}
