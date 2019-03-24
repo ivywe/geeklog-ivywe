@@ -35,7 +35,7 @@ if( COM_onFrontpage() ){  ?>
 {# トップページのナビゲーション背景 #}
 {# スライダーや画像をここに設置 MediaGalleryプラグインの自動タグmedialistを活用してスライダーを設置してください。 #}
 {# 詳しくは https://getuikit.com/docs/slideshow #}
-{# slideshowのアニメーション: Ken Burns | 高さ: テーマ変数device_mobileによってモバイル表示時は縦方向を大きく表示 | 自動
+{# slideshowのアニメーション: Ken Burns | 高さ: テーマ変数device_mobileによってモバイル表示時は縦方向を大きく表示 | 自動 #}
 {# bxsliderを活用する場合は /vendor/jwuery/のバージョン1.9.1をjquery.min.jsとして活用してください。 #}
 {# CSS JSの追加は、functions.phpに追加してください。コンフィギュレーションの設定で自動的にミニファイできます。デバッグ時はモードをOFFにします。 #}
 {# begin スライダー #}
