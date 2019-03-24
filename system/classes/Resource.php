@@ -39,11 +39,11 @@ class Resource
 {
     const DEFAULT_CACHE_LIFESPAN = 604800; // 1 week
 
-    const JS_TAG_TEMPLATE = '<script type="text/javascript" src="%s"></script>';
-    const EXTERNAL_JS_TAG_TEMPLATE = '<script type="text/javascript" src="%s" async defer></script>';
+    const JS_TAG_TEMPLATE = '<script src="%s"></script>';
+    const EXTERNAL_JS_TAG_TEMPLATE = '<script src="%s" async defer></script>';
 
     // Default theme
-    const DEFAULT_THEME = 'denim';
+    const DEFAULT_THEME = 'default';
 
     // Local library versions
     const JQUERY_VERSION = '3.3.1';
@@ -1179,7 +1179,7 @@ class Resource
         $str = substr($str, 1);
         $str = substr($str, 0, strlen($str) - 1);
         $str = 'var geeklog={ doc:document,win:window,$:function(id){ return this.doc.getElementById(id); },' . $str . ' };';
-        $retval .= '<script type="text/javascript">' . $str . '</script>' . PHP_EOL;
+        $retval .= '<script>' . $str . '</script>' . PHP_EOL;
 
         // 8. Local JavaScript files
         if (count($this->localJsFiles['header']) > 0) {
@@ -1192,7 +1192,7 @@ class Resource
             if (!$this->debug) {
                 $code = JSMin::minify($code);
             }
-            $retval .= '<script type="text/javascript">' . $code . '</script>' . PHP_EOL;
+            $retval .= '<script>' . $code . '</script>' . PHP_EOL;
         }
 
         return $retval;
@@ -1232,7 +1232,7 @@ class Resource
                 $code = JSMin::minify($code);
             }
 
-            $retval .= '<script type="text/javascript">' . $code . '</script>' . PHP_EOL;
+            $retval .= '<script>' . $code . '</script>' . PHP_EOL;
         }
 
         return $retval;

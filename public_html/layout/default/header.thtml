@@ -1,5 +1,5 @@
 {doctype}
-<html{lang_attribute}>
+<html{lang_attribute}{xlms}>
 <head>
 <meta charset="{charset}"{xhtml}>
 <title>{page_title_and_site_name}</title>
