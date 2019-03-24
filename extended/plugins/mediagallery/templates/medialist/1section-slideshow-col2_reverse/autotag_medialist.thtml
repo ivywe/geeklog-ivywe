@@ -17,9 +17,9 @@
       <div uk-grid>
 
         <div class="uk-width-{gridl}@m">
-          <div class="uk-padding uk-text-center@m">
+          <div class="uk-text-center@m uk-margin-large-top uk-margin-left">
             {!if title}<h2 class="<?php echo $class_album_title; ?>">{album_title}</h2>{!endif}
-            {!if album_desc}<div class="uk-margin-large-bottom<?php echo $class_album_desc; ?>">{album_desc}</div>{!endif}
+            {!if album_desc}<div class="uk-padding<?php echo $class_album_desc; ?>">{album_desc}</div>{!endif}
           </div>
         </div>
         <div class="uk-width-{gridr}@m uk-flex-middle uk-grid-collapse">
@@ -51,9 +51,9 @@
             {!!if {dotnav} == '0' !!}{!else}<ul class="uk-slideshow-nav uk-dotnav uk-flex-center uk-margin"></ul>{!endif}          </div>
         </div>
         <div class="uk-width-{gridr}@m">
-          <div class="uk-padding uk-text-center@m">
+          <div class="uk-text-center@m uk-margin-large-top uk-margin-right">
             {!if title}<h2 class="<?php echo $class_album_title; ?>">{album_title}</h2>{!endif}
-            {!if album_desc}<div class="uk-margin-large-bottom<?php echo $class_album_desc; ?>">{album_desc}</div>{!endif}
+            {!if album_desc}<div class="uk-padding<?php echo $class_album_desc; ?>">{album_desc}</div>{!endif}
           </div>
         </div>
       </div>
@@ -83,7 +83,7 @@
             {!!if {dotnav} == '0' !!}{!else}<ul class="uk-slideshow-nav uk-dotnav uk-flex-center uk-margin"></ul>{!endif}          </div>
           </div>
           <div class="uk-padding uk-text-center@m">
-            {!if album_desc}<div class="uk-margin-large-bottom<?php echo $class_album_desc; ?>">{album_desc}</div>{!endif}
+            {!if album_desc}<div class="uk-margin-bottom<?php echo $class_album_desc; ?>">{album_desc}</div>{!endif}
           </div>
 
       </div>
@@ -91,6 +91,6 @@
 
 </div>
 
-{!!if {section} == '1' || {section} == '' !!}</section>{!endif}<div id="album{album_id}-section<?php echo $sectionid; ?>-end"></div>
+{!!if {section} == '1' || {section} == '' !!}</section>{!endif}
 
 {# end {templatelocation} #}

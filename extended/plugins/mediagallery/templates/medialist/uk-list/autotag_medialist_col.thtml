@@ -1,5 +1,0 @@
-{# begin {templatelocation} #}
-
-      <li><img src="{filename}" alt="{media_title}" title="{media_title}" uk-cover{xhtml}></li>
-
-{# end {templatelocation} #}

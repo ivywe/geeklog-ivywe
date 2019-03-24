@@ -15,6 +15,6 @@
 {medialist_col}
     </ul>
 {!!if {container} == '1' || {container} == '' !!}</div>{!endif}
-{!!if {section} == '1' || {section} == '' !!}</section>{!endif}<div id="album{album_id}-section<?php echo $sectionid; ?>-end"></div>
+{!!if {section} == '1' || {section} == '' !!}</section>{!endif}
 
 {# end {templatelocation} #}

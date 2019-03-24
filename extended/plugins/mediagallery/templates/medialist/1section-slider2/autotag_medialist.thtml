@@ -23,6 +23,6 @@
     {!!if {dotnav} == '0' !!}{!else}<ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>{!endif}
   </div>
 
-{!!if {section} == '1' || {section} == '' !!}</section>{!endif}<div id="album{album_id}-section<?php echo $sectionid; ?>-end"></div>
+{!!if {section} == '1' || {section} == '' !!}</section>{!endif}
 
 {# end {templatelocation} #}

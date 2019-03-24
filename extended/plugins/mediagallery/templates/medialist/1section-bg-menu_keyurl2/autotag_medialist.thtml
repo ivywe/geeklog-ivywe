@@ -21,10 +21,10 @@
       </div>
     </div>
   
-    <div class="uk-child-width-1-{grids} uk-child-width-1-{gridm}@m" uk-grid uk-height-match="target: .uk-card-body">
+    <div class="uk-child-width-1-{grids} uk-child-width-1-{gridm}@m" uk-grid>
 {medialist_col}
     </div>
 {!!if {container} == '1' || {container} == '' !!}</div>{!endif}
-{!!if {section} == '1' || {section} == '' !!}</section>{!endif}<div id="album{album_id}-section<?php echo $sectionid; ?>-end"></div>
+{!!if {section} == '1' || {section} == '' !!}</section>{!endif}
 
 {# end {templatelocation} #}

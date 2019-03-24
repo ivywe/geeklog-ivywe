@@ -12,7 +12,7 @@
     </div>
 {!!if {container} == '1' || {container} == '' !!}</div>{!endif}
 </section>
-<div id="album{album_id}-section<?php echo $sectionid; ?>-end"></div>
+
 
 {# end {templatelocation} #}
 
