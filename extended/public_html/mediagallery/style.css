@@ -1123,3 +1123,6 @@ a.SWFUProgressCancel:hover {
   font-size: 16px;
   padding: 10px 15px;
 }
+.mg-overlay-small {
+  padding: 10px;
+}

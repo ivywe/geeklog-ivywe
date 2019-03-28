@@ -1,7 +1,5 @@
 {# begin {templatelocation} #}
 
-<ul class="uk-list">
 {medialist_col}
-</ul>
 
 {# end {templatelocation} #}

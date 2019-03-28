@@ -232,11 +232,14 @@
   </div>
 </section>
 
-<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-grid">&#91;medialist:{album_id} src:disp theme:1section-grid limitcnt:12 grids:1 gridm:6 masonry:1 animation:slide title:0 class_album_title:uk-hidden class_album_desc:uk-hidden sort:asc&#93;</h4>
-  {!!autotag medialist:'.{album_id}.' src:disp theme:1section-grid limitcnt:12 grids:1 gridm:6 masonry:1 animation:slide title:0 class_album_title:uk-hidden class_album_desc:uk-hidden sort:asc !!}
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-grid">&#91;medialist:{album_id} src:disp theme:1section-grid limitcnt:12 grids:3 gridm:4 masonry:1 animation:slide title:1 class_album_title:uk-hidden class_album_desc:uk-hidden class_media_title:uk-overlay-default.uk-position-bottom.uk-text-center.mg-overlay-small sort:asc&#93;</h4>
+  {!!autotag medialist:'.{album_id}.' src:disp theme:1section-grid limitcnt:12 grids:3 gridm:4 masonry:1 animation:slide title:1 class_album_title:uk-hidden class_album_desc:uk-hidden class_media_title:uk-overlay-default.uk-position-bottom.uk-text-center.mg-overlay-small sort:asc !!}
 
-<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-grid">&#91;medialist:{album_id} src:disp theme:1section-grid limitcnt:12 grids:2 gridm:3 masonry:1 animation:slide title:0 class_album_title:uk-hidden class_album_desc:uk-hidden sort:desc&#93;</h4>
-  {!!autotag medialist:'.{album_id}.' src:disp theme:1section-grid limitcnt:12 grids:2 gridm:3 masonry:1 animation:slide title:0 class_album_title:uk-hidden class_album_desc:uk-hidden sort:desc !!}
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-grid">&#91;medialist:{album_id} src:disp theme:1section-grid limitcnt:12 grids:2 gridm:3 masonry:1 animation:slide title:1 class_album_title:uk-hidden class_album_desc:uk-hidden class_media_title:uk-overlay-primary.uk-position-bottom.uk-text-center.mg-overlay-small sort:desc&#93;</h4>
+  {!!autotag medialist:'.{album_id}.' src:disp theme:1section-grid limitcnt:12 grids:2 gridm:3 masonry:1 animation:slide title:1 class_album_title:uk-hidden class_album_desc:uk-hidden class_media_title:uk-overlay-primary.uk-position-bottom.uk-text-center.mg-overlay-small sort:desc !!}
+
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-grid">&#91;medialist:{album_id} src:disp theme:1section-grid limitcnt:12 grids:2 gridm:3 masonry:1 animation:slide title:1 class_album_title:uk-hidden class_album_desc:uk-hidden class_media_title:mg-overlay-small.uk-text-center sort:desc&#93;</h4>
+  {!!autotag medialist:'.{album_id}.' src:disp theme:1section-grid limitcnt:12 grids:2 gridm:3 masonry:1 animation:slide title:1 class_album_title:uk-hidden class_album_desc:uk-hidden class_media_title:mg-overlay-small.uk-text-center sort:desc !!}
 
 <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-grid_keyurl">&#91;medialist:{album_id} src:disp theme:1section-grid_keyurl limitcnt:3 grids:1 gridm:3 text:プランを見る&#93;</h4>
   {!!autotag medialist:'.{album_id}.' src:disp theme:1section-grid_keyurl limitcnt:3 grids:1 gridm:3 text:プランを見る !!}
@@ -356,32 +359,34 @@
       {!!autotag medialist:'.{album_id}.' src:tn theme:list_inc limitcnt:3 !!}
     </ul>
     
-<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_uk-list">&#91;medialist:{album_id} src:tn theme:list_link limitcnt:3&#93;</h4>
-      {!!autotag medialist:'.{album_id}.' src:tn theme:list_link limitcnt:3 !!}
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_list_link">&#91;medialist:{album_id} src:tn theme:list_link limitcnt:5&#93;</h4>
+      <div class="uk-childwidth-1-2@s uk-childwidth-1-5@m" uk-grid>
+      {!!autotag medialist:'.{album_id}.' src:tn theme:list_link limitcnt:5 !!}
+      </div>
 
-<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_list_link">uk-list, uk-list_incでサムネイル付きスライドショー</h4>
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_uk-list">uk-list, uk-list_incでサムネイル付きスライドショー</h4>
 
 <textarea class="uk-textarea" style="height:100px"><div uk-slideshow='animation: fade; autoplay: true '>
     <ul class="uk-slideshow-items">
-        &#91;medialist:{album_id} src:disp theme:uk-list limitcnt:8&#93;
+        &#91;medialist:{album_id} src:disp theme:uk-list limitcnt:10&#93;
     </ul>
     <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#"></a>
     <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#"></a>
-    <div class="uk-margin-top uk-grid-small" uk-grid>
-        &#91;medialist:{album_id} src:tn theme:uk-list_inc limitcnt:8&#93;
+    <div class="uk-grid-small uk-child-width-1-5" style="margin-top:15px" uk-grid>
+        &#91;medialist:{album_id} src:tn theme:uk-list_inc limitcnt:10&#93;
     </div>
 </div></textarea>
 
 <section class="uk-section uk-preserve-color uk-margin-large-top">
-  <div class="uk-container" style="max-width:500px">
+  <div class="uk-container" style="max-width:585px">
 		<div uk-slideshow='animation: fade; autoplay: true '>
 	    <ul class="uk-slideshow-items">
 	            {!!autotag medialist:'.{album_id}.' src:disp theme:uk-list limitcnt:8 !!}
 	    </ul>
 	    <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#"></a>
 	    <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#"></a>
-	    <div class="uk-margin-top uk-grid-small" uk-grid>
-	        {!!autotag medialist:'.{album_id}.' src:tn theme:uk-list_inc limitcnt:8 !!}
+	    <div class="uk-grid-small uk-child-width-1-5" style="margin-top:15px" uk-grid>
+	        {!!autotag medialist:'.{album_id}.' src:tn theme:uk-list_inc limitcnt:10 !!}
 	    </div>
 		</div>
 	</div>
@@ -400,10 +405,10 @@
   </div>
 </section>
 
-<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_media_url">&#91;medialist:{album_id} src:disp theme:media_url limitcnt:1&#93;</h4>
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_media_url">&#91;medialist:{album_id} src:disp theme:media_url &#93;</h4>
 <section class="uk-section uk-preserve-color">
   <div class="uk-container">
-      {!!autotag medialist:'.{album_id}.' src:disp theme:media_url limitcnt:1 !!}
+      {!!autotag medialist:'.{album_id}.' src:disp theme:media_url !!}
   </div>
 </section>
 
