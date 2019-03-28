@@ -48,6 +48,10 @@ div.uk-card.uk-card-default.gl-media-cell div.uk-card-media-top div.uk-text-cent
 	background:url('images/bg.png') repeat;
 }
 
+.mg_media_detail div a img {
+	background:url('images/bg.png') repeat;
+}
+
 /* Do not change the MI classes, they are used to help
  * control the frames on images
  */
