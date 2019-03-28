@@ -198,6 +198,7 @@
         <li><a href="#_list" uk-scroll="offset:100">list</a></li>
         <li><a href="#_list_inc" uk-scroll="offset:100">list_inc</a></li>
         <li><a href="#_list_link" uk-scroll="offset:100">list_link</a></li>
+        <li><a href="#_uk-list" uk-scroll="offset:100">uk-list, uk-list_incでサムネイル付きスライドショー</a></li>
         </ul>
         <h3>6) デバッグ用他</h3>
         <ul>
@@ -355,9 +356,36 @@
       {!!autotag medialist:'.{album_id}.' src:tn theme:list_inc limitcnt:3 !!}
     </ul>
     
-<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_list_link">&#91;medialist:{album_id} src:tn theme:list_link limitcnt:3&#93;</h4>
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_uk-list">&#91;medialist:{album_id} src:tn theme:list_link limitcnt:3&#93;</h4>
       {!!autotag medialist:'.{album_id}.' src:tn theme:list_link limitcnt:3 !!}
 
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_list_link">uk-list, uk-list_incでサムネイル付きスライドショー</h4>
+
+<textarea class="uk-textarea" style="height:100px"><div uk-slideshow='animation: fade; autoplay: true '>
+    <ul class="uk-slideshow-items">
+        &#91;medialist:{album_id} src:disp theme:uk-list limitcnt:8&#93;
+    </ul>
+    <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#"></a>
+    <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#"></a>
+    <div class="uk-margin-top uk-grid-small" uk-grid>
+        &#91;medialist:{album_id} src:tn theme:uk-list_inc limitcnt:8&#93;
+    </div>
+</div></textarea>
+
+<section class="uk-section uk-preserve-color uk-margin-large-top">
+  <div class="uk-container" style="max-width:500px">
+		<div uk-slideshow='animation: fade; autoplay: true '>
+	    <ul class="uk-slideshow-items">
+	            {!!autotag medialist:'.{album_id}.' src:disp theme:uk-list limitcnt:8 !!}
+	    </ul>
+	    <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#"></a>
+	    <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#"></a>
+	    <div class="uk-margin-top uk-grid-small" uk-grid>
+	        {!!autotag medialist:'.{album_id}.' src:tn theme:uk-list_inc limitcnt:8 !!}
+	    </div>
+		</div>
+	</div>
+</section>
 
 <section class="uk-section uk-section-primary uk-preserve-color">
   <div class="uk-container">
