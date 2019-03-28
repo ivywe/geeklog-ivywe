@@ -3,9 +3,11 @@
   <div class="uk-inline">
       <img src="{filename}" class="{animation}" title="" alt="">
   </div>
-  {!if media_title}<div class="uk-position-center uk-overlay uk-text-center gl-text-shadow">
-    <h2>{media_title}</h2>
-    <p class="uk-text-lead">{media_desc}</p>
+  {!!if {media_title} || {media_desc} !!}<div class="uk-position-center uk-overlay gl-text-shadow uk-text-center@m uk-text-truncate">
+		<div style="min-width:20em">
+			{!if media_title}<h2>{media_title}</h2>{!endif}
+    	{media_desc}
+		</div>
   </div>{!endif}
 </li>
 
