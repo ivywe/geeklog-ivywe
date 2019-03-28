@@ -33,6 +33,20 @@
  * +--------------------------------------------------------------------------+
  */
 
+
+.uk-child-width-1-7 > * {
+  width: calc(100% * 1 / 7.001);
+}
+.uk-child-width-1-8 > * {
+  width: calc(100% * 1 / 8.001);
+}
+.uk-child-width-1-9 > * {
+  width: calc(100% * 1 / 9.001);
+}
+.uk-child-width-1-10 > * {
+  width: 10%;
+}
+
 div.uk-card.uk-card-default.gl-album-cell { background:#eee; }
 div.uk-card.uk-card-default.gl-album-cell div.uk-card-media-top { height:200px; overflow: hidden}
 div.uk-card.uk-card-default.gl-album-cell div.uk-card-media-top div.uk-text-center div a img.gl-cellimage {
