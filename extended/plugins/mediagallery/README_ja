@@ -250,3 +250,6 @@ Feature of Version1.6.16.ivywe01
       src:orig　オリジナルの画像
       src:disp　ギャラリー表示画像
       src:tn　サムネイル画像 (添付サムネイル画像またはcropcustom)
+---------------------
+ 2019/03/28 
+  1)自動タグ [medialist: 引数 追加
