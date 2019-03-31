@@ -270,3 +270,17 @@ div.uk-sticky.uk-sticky-fixed.uk-sticky-below .uk-navbar-nav>li>a ,
   width: 460px;
   max-width:90%;
 }
+.uk-subnav > li > input ,
+.uk-subnav > li > select {
+    color: #555!important;
+    text-transform: none!important;
+}
+
+.uk-navbar-dropdown-small:not(.uk-navbar-dropdown-stack) {
+  width: 90px;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.uk-subnav > * > .uk-button-primary {
+  color: #fff;
+}
