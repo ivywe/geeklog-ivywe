@@ -93,10 +93,10 @@ function MG_buildAdminbox(&$album, &$root_album, &$T)
         $admin_box_option .= MG_options(array(
             'current' => '',
             'values'  => array(
-                'edit'       => $LANG_MG01['edit_album'],
                 'create'     => $LANG_MG01['create_album'],
-                'staticsort' => $LANG_MG01['static_sort_media'],
+                'edit'       => $LANG_MG01['edit_album'],
                 'media'      => $LANG_MG01['manage_media'],
+                'staticsort' => $LANG_MG01['static_sort_media'],
                 'resize'     => $LANG_MG01['resize_display'],
                 'rebuild'    => $LANG_MG01['rebuild_thumb'],
             )

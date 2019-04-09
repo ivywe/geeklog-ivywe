@@ -56,15 +56,17 @@ function MG_buildAdminbox(&$root_album)
     global $_TABLES, $_MG_CONF, $_USER, $LANG_MG01, $LANG_MG03;
 
     $options = '';
+    if ($root_album->owner_id) {
+        $options .= '<option value="create">' . $LANG_MG01['create_album'] . '</option>' . LB;
+		}
     if ($root_album->member_uploads || $root_album->access == 3) {
         $options .= '<option value="upload">' . $LANG_MG01['add_media'] . '</option>' . LB;
     }
     if ($root_album->owner_id) {
-        $options .= '<option value="albumsort">'  . $LANG_MG01['sort_albums'] . '</option>' . LB;
         $options .= '<option value="globalattr">' . $LANG_MG01['globalattr'] . '</option>' . LB;
         $options .= '<option value="globalperm">' . $LANG_MG01['globalperm'] . '</option>' . LB;
         $options .= '<option value="wmmanage">' . $LANG_MG01['wm_management'] . '</option>' . LB;
-        $options .= '<option value="create">' . $LANG_MG01['create_album'] . '</option>' . LB;
+        $options .= '<option value="albumsort">'  . $LANG_MG01['sort_albums'] . '</option>' . LB;
     } elseif ($root_album->access == 3) {
         $options .= '<option value="create">' . $LANG_MG01['create_album'] . '</option>' . LB;
     } elseif ($_MG_CONF['member_albums'] == 1 && $_MG_CONF['member_album_root'] == 0 && $_MG_CONF['member_create_new']) {
