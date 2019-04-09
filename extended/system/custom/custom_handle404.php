@@ -45,7 +45,7 @@ function CUSTOM_handle404($alternate_url = '')
     $logEntry = @strftime('%c') . ' - ' . $logEntry . PHP_EOL;
     @file_put_contents($_CONF['path_log'] . '404.log', $logEntry, FILE_APPEND | LOCK_EX);
 
-    $display = SP_returnStaticpage('-404');
+    $display = SP_returnStaticpage('_404');
     COM_output($display);
     exit; // Do not want to go any further
 }
