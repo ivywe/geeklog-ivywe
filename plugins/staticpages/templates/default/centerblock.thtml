@@ -1,9 +1,9 @@
 {# begin {templatelocation} #}
 
-{!if edit_icon}<div class="uk-text-right"><a href="/admin/plugins/staticpages/index.php?mode=edit&sp_id={sp_id}"><span uk-icon="file-edit"></span> 静的ページ編集</a></div>{!endif}
+{!if edit_icon}<div class="uk-text-right">{edit_icon} 静的ページ編集</div>{!endif}
 {block_start}
 {content}
 {block_end}
-{!if edit_icon}<div class="uk-text-right"><a href="/admin/plugins/staticpages/index.php?mode=edit&sp_id={sp_id}"><span uk-icon="file-edit"></span> 静的ページ編集</a></div>{!endif}
+{!if edit_icon}<div class="uk-text-right">{edit_icon} 静的ページ編集</div>{!endif}
 
 {# end {templatelocation} #}
