@@ -4,7 +4,7 @@
 
        <li>
             <img src="{filename}" alt="{media_title}" uk-cover>
-            <div class="uk-position-bottom uk-position-small">
+            <div class="uk-position-center uk-position-small">
 
                 <div class="uk-transition-slide-bottom">
 

@@ -31,7 +31,7 @@
 
       </div>
 
-      <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
+      {!!if {dotnav} == '0' !!}{!else}<ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>{!endif}
     </div>
     {!!if {dotnav} == '0' !!}{!else}<ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>{!endif}
 {!!if {container} == '1' || {container} == '' !!}</div>{!endif}

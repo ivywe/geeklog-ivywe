@@ -9,31 +9,22 @@
 
 <p>グループは、3個まで指定できます。メディア管理のキーワード欄に、改行区切りでカテゴリを入力してください。</p>
 <h3>説明欄の検索メニュー例</h3>
-        <textarea class="uk-textarea" rows="20">
-           <div class="uk-grid-small uk-grid-divider uk-child-width-auto" uk-grid="masonry:true">
+<textarea class="uk-textarea" rows="20">
             <div>
-              <ul class="uk-subnav uk-subnav-pill" uk-margin>
-                <li class="uk-active" uk-filter-control><a href="#">すべて見る</a></li>
+              <ul class="uk-subnav uk-subnav-pill uk-flex-center">
+                <li uk-filter-control class="uk-padding-remove">
+<a href="#" class="uk-button uk-button-secondary">すべて</a></li>
+             
+                <li uk-filter-control="[group-01='staff']" class="uk-padding-remove">
+<a href="#" class="uk-button uk-button-secondary">スタッフ</a></li>
+                <li uk-filter-control="[group-01='food']" class="uk-padding-remove">
+<a href="#" class="uk-button uk-button-secondary">料理</a></li>
+                <li uk-filter-control="[group-01='facility']" class="uk-padding-remove">
+<a href="#" class="uk-button uk-button-secondary">施設</a></li>
+                <li uk-filter-control="[group-01='room']" class="uk-padding-remove">
+<a href="#" class="uk-button uk-button-secondary">お部屋</a></li>
               </ul>
             </div>
-            <div>
-              <ul class="uk-subnav uk-subnav-pill" uk-margin>
-                <li uk-filter-control="[group-01='お部屋']"><a href="#">お部屋</a></li>
-                <li uk-filter-control="[group-01='お料理']"><a href="#">お料理</a></li>
-                <li uk-filter-control="[group-01='温泉']"><a href="#">温泉</a></li>
-                <li uk-filter-control="[group-01='館内施設']"><a href="#">館内施設</a></li>
-              </ul>
-            </div>
-            <div>
-              <ul class="uk-subnav uk-subnav-pill" uk-margin>
-                <li uk-filter-control="[group-02='春']"><a href="#">春</a></li>
-                <li uk-filter-control="[group-02='夏']"><a href="#">夏</a></li>
-                <li uk-filter-control="[group-02='秋']"><a href="#">秋</a></li>
-                <li uk-filter-control="[group-02='冬']"><a href="#">冬</a></li>
-              </ul>
-            </div>
-          
-          </div>
 </textarea>
 </div></div>
 {!endif}
@@ -44,7 +35,7 @@
         {!if title}<h2 class="uk-margin-large-bottom<?php echo $class_album_title; ?>">{album_title}</h2>{!endif}
         <div uk-filter="target: .js-filter">
           {album_desc}
-          <ul class="js-filter uk-child-width-1-{grids} uk-child-width-1-{gridm}@m" uk-grid{!!if {masonry} == "1" !!}="masonry:true"{!endif} uk-lightbox="animation: slide">
+          <ul class="js-filter uk-child-width-1-{grids} uk-child-width-1-{gridm}@m uk-grid-small" uk-grid{!!if {masonry} == "1" !!}="masonry:true"{!endif} uk-lightbox="animation: slide">
 {medialist_col}  
           </ul>
         </div>

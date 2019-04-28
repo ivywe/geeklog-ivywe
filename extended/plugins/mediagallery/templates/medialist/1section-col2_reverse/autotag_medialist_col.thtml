@@ -7,18 +7,18 @@
 
 {!if reverse}
             <div class="uk-width-1-1 uk-width-{gridl}@m uk-first-column">
-              {!if media_title}<h3 class="<?php echo $class_media_title; ?>">{media_title}</h3>{!endif}
               {media_desc}
             </div>
             <div class="uk-width-1-1 uk-width-{gridr}@m">
-              <img class="uk-comment-avatar" src="{filename}" alt="">
+              <img class="{imgclass}" src="{filename}" alt="">
+              {!if media_title}<div class="uk-margin-small-top <?php echo $class_media_title; ?>">{media_title}</div>{!endif}
             </div>
 {!else}
             <div class="uk-width-1-1 uk-width-{gridl}@m uk-first-column">
-              <img class="uk-comment-avatar" src="{filename}" alt="">
+              <img class="{imgclass}" src="{filename}" alt="">
+              {!if media_title}<div class="uk-margin-small-top <?php echo $class_media_title; ?>">{media_title}</div>{!endif}
             </div>
             <div class="uk-width-1-1 uk-width-{gridr}@m">
-              {!if media_title}<h3 class="<?php echo $class_media_title; ?>">{media_title}</h3>{!endif}
               {media_desc}
             </div>
 {!endif}

@@ -17,7 +17,7 @@
       <div uk-grid>
 
         <div class="uk-width-{gridl}@m">
-          <div class="uk-text-center@m uk-margin-large-top uk-margin-left">
+          <div class="uk-text-center@m uk-margin-left">
             {!if title}<h2 class="<?php echo $class_album_title; ?>">{album_title}</h2>{!endif}
             {!if album_desc}<div class="uk-padding<?php echo $class_album_desc; ?>">{album_desc}</div>{!endif}
           </div>
@@ -51,7 +51,7 @@
             {!!if {dotnav} == '0' !!}{!else}<ul class="uk-slideshow-nav uk-dotnav uk-flex-center uk-margin"></ul>{!endif}          </div>
         </div>
         <div class="uk-width-{gridr}@m">
-          <div class="uk-text-center@m uk-margin-large-top uk-margin-right">
+          <div class="uk-text-center@m uk-margin-right">
             {!if title}<h2 class="<?php echo $class_album_title; ?>">{album_title}</h2>{!endif}
             {!if album_desc}<div class="uk-padding<?php echo $class_album_desc; ?>">{album_desc}</div>{!endif}
           </div>

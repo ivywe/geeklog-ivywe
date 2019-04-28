@@ -66,6 +66,7 @@ function MG_medialist (
   , $section=''
   , $container=''
   , $masonry=''
+  , $imgclass=''
 )
 {
 	global $MG_albums;
@@ -216,6 +217,7 @@ function MG_medialist (
 		$T->set_var('section',$section);
 		$T->set_var('container',$container);
 		$T->set_var('masonry',$masonry);
+		$T->set_var('imgclass',$imgclass);
 
 		if ( SEC_hasRights('mediagallery.admin') ){
 			$icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
@@ -431,6 +433,7 @@ function MG_parm2 ($p2)
 	$parm2_ary[]="section";
 	$parm2_ary[]="container";
 	$parm2_ary[]="masonry";
+	$parm2_ary[]="imgclass";
 
 	$parm2_ary[]="order";
 	
