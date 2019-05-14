@@ -1,9 +1,7 @@
 {# begin {templatelocation} #}
 
-{!if edit_icon}<div class="uk-text-right">{edit_icon} 静的ページ編集</div>{!endif}
 {block_start}
 {content}
 {block_end}
-{!if edit_icon}<div class="uk-text-right">{edit_icon} 静的ページ編集</div>{!endif}
 
 {# end {templatelocation} #}
