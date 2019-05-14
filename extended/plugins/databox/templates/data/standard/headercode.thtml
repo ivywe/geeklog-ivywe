@@ -10,10 +10,24 @@
 <meta property="fb:app_id" content="{facebook_consumer_key}"{xhtml}>
 <meta name="twitter:card" content="summary">
 
-{# 
-<link rel="alternate" href="{site_url}/databox/data.php/{code}/code" hreflang="{code_language}" />
-{code_withoutlanguage}
+{#
+<?php
+global $_TABLES;
+?>
+
+<?php if(!empty(DB_getItem($_TABLES['DATABOX_base'],'id',"code='".$this->get_var('code_withoutlanguage')."_ja'")){ ?> <link rel="alternate" href="{site_url}/databox/data.php/{code_withoutlanguage}_ja/code" hreflang="ja" /> <?php } ?>
+
+<?php if(!empty(DB_getItem($_TABLES['DATABOX_base'],'id',"code='".$this->get_var('code_withoutlanguage')."_en'")){ ?> <link rel="alternate" href="{site_url}/databox/data.php/{code_withoutlanguage}_en/code" hreflang="ja" /> <?php } ?>
+
+<?php if(!empty(DB_getItem($_TABLES['DATABOX_base'],'id',"code='".$this->get_var('code_withoutlanguage')."_zh'")){ ?> <link rel="alternate" href="{site_url}/databox/data.php/{code_withoutlanguage}_zh/code" hreflang="ja" /> <?php } ?>
+
+<?php if(!empty(DB_getItem($_TABLES['DATABOX_base'],'id',"code='".$this->get_var('code_withoutlanguage')."_tw'")){ ?> <link rel="alternate" href="{site_url}/databox/data.php/{code_withoutlanguage}_tw/code" hreflang="ja" /> <?php } ?>
+
+<?php if(!empty(DB_getItem($_TABLES['DATABOX_base'],'id',"code='".$this->get_var('code_withoutlanguage')."_ko'")){ ?> <link rel="alternate" href="{site_url}/databox/data.php/{code_withoutlanguage}_ko/code" hreflang="ja" /> <?php } ?>
+
 #}
+
+
 
 {# Additional Items
 {# 以下は参考例です 登録されていない場合表示されません #}
