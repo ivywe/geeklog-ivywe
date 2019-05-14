@@ -637,3 +637,7 @@ if (file_exists($_CONF['path'] . 'system/custom/phpautotags_l.php')) {
 if (file_exists($_CONF['path'] . 'system/custom/phpautotags_currenturl.php')) {
   require_once $_CONF['path'] . 'system/custom/phpautotags_currenturl.php';
 }
+/* 404 */
+//if (file_exists($_CONF['path'] . 'system/custom/custom_handle404.php')) {
+//  require_once $_CONF['path'] . 'system/custom/custom_handle404.php';
+//}
