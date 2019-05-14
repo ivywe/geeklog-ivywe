@@ -6,17 +6,22 @@
 // $Id: data.php
 // public_html/databox/data.php
 // 2010/07/30 tsuchitani AT ivywe DOT co DOT jp
-
 define ('THIS_SCRIPT', 'databox/data.php');
 //define ('THIS_SCRIPT', 'databox/test.php');
 //debug 時 true
+
+global $_TABLES, $_CONF;
+
 $_DATABOX_VERBOSE = false;
 
 require_once('../lib-common.php');
 if (!in_array('databox', $_PLUGINS)) {
-    COM_handle404();
-    exit;
+		http_response_code( 404 ) ;
+		header( "Location: ".$_CONF['site_url']."/404.html" ) ;
+		exit;
 }
+
+
 
 // +---------------------------------------------------------------------------+
 // | MAIN                                                                      |
@@ -64,6 +69,7 @@ if ($url_rewrite){
     $template = COM_applyFilter($_GET['template']);
 }
 
+
 //ログイン要否チェック
 if (COM_isAnonUser()){
     if  ($_CONF['loginrequired']
@@ -80,6 +86,13 @@ if (COM_isAnonUser()){
     }
 
 }
+
+ $chkval = DB_getItem($_TABLES['DATABOX_base'],'id',"code='{$code}'");
+ if( empty($chkval) ) {
+		http_response_code( 404 ) ;
+		header( "Location: ".$_CONF['site_url']."/404.html" ) ;
+		exit ;
+ }
 
 $msg = '';
 if (isset ($_GET['msg'])) {
