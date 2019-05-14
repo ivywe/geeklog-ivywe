@@ -283,13 +283,17 @@ function phpblock_lastarticles_common(
 		);
 		$topic   = LASTARTICLES_esc($A['topic']);
 		
+$img_tn = str_replace ( "/disp/" , "/tn/" , $img );
+$img_tn = str_replace ( ".jpg" , "_cropcustom.jpg" , $img_tn );
+
+
 		$retval .= str_replace(
 						array(
 							'{article}', '{date}', '{img}', '{image_url}', '{link}', '{title}',
-							'{topic}', '{xhtml}',
+							'{topic}', '{xhtml}','{img_tn}',
 						),
 						array(
-							$article, $date, $img, $image_url, $link, $title, $topic, XHTML,
+							$article, $date, $img, $image_url, $link, $title, $topic, XHTML,$img_tn
 						),
 						$template
 		);

@@ -1,15 +1,11 @@
-<!-- 使用可能なタグ:
-{date} = 日付、{topic} = 話題、{link} = 記事のURL、
-{title} = 記事のタイトル、{img} = 1番目の画像タグ、{article} = 記事の冒頭部分、
-{xhtml} = XHTML定数
-<div style="width: 100%; margin: 5px 0; padding: 3px 0; border-bottom: dotted 1px gray;" class="new-story">
-  <span class="new-story-date">{date}</span>&nbsp;<span class="uk-text-bold uk-text-warning">{topic}</span> <a href="{link}">{title}</a><br{xhtml}>
-</div>
--->
-
-
-
-<div uk-grid>
-<div class="uk-width-1-4@m"><a href="{link}"><img src="{img}" alt="" style="max-width:100%;"></a></div>
-<div class="uk-width-3-4@m"><dl><dt>{date}</dt><dd><a href="{link}">{title}</a></dd></dl></div>
+<div class="uk-grid-small" uk-grid>
+	<div class="uk-width-2-5@m">
+		<a href="{link}"><img src="{img_tn}" style="width:80px; height:auto "></a>
+	</div>
+	<div class="uk-width-3-5@m">
+		<dl>
+			<dt class="uk-text-small">{date}</dt>
+			<dd><a href="{link}">{title}</a></dd>
+		</dl>
+	</div>
 </div>
