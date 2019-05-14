@@ -108,6 +108,19 @@ $config->initConfig();
 
 $_CONF = $config->get_config('Core');
 
+// サーバープロトコルを自動判断 <--
+/*
+$request_type = (strtolower($_SERVER['HTTPS']) == 'on' || $_SERVER['HTTPS'] == '1' || strstr(strtoupper($_SERVER['HTTP_X_FORWARDED_BY']),'SSL') || strstr(strtoupper($_SERVER['HTTP_X_FORWARDED_HOST']),'SSL')) ? 'SSL' : 'NONSSL';
+$_CONF['site_url_nonssl'] = 'http://yourdmain';
+$_CONF['site_url_ssl'] = 'https://yourdmain';
+if( $request_type == 'SSL'){
+  $_CONF['site_url'] = $_CONF['site_url_ssl'];
+  $_CONF['layout_url']     = $_CONF['site_url'] . '/layout/' . $_CONF['theme'];
+  $_CONF['site_admin_url'] = $_CONF['site_url'] . '/admin';
+}
+*/
+// サーバープロトコルを自動判断 -->
+
 // Get features that has ft_name like 'config%'
 $_CONF_FT = $config->_get_config_features();
 
