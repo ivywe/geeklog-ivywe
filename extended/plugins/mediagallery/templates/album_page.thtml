@@ -190,6 +190,7 @@
         <h3>4) セクションで囲まれない部品タイプ</h3>
         <ul>
         <li><a href="#_sub-accordion" uk-scroll="offset:100">sub-accordion</a></li>
+        <li><a href="#_sub-accordion-access" uk-scroll="offset:100">sub-accordion-access</a></li>
         <li><a href="#_sub-grid_keyurl" uk-scroll="offset:100">sub-grid_keyurl</a></li>
         <li><a href="#_sub-slideshow-body" uk-scroll="offset:100">sub-slideshow-body</a></li>
         <li><a href="#_sub-slideshow-fade" uk-scroll="offset:100">sub-slideshow-fade</a></li>
@@ -335,12 +336,27 @@
 </section>
 <section class="uk-section">
     
-<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_sub-accordion">&#91;medialist:{album_id} src:disp theme:sub-accordion limitcnt:3 text:プランを見る&#93;</h4>
-  {!!autotag medialist:'.{album_id}.' src:disp theme:sub-accordion limitcnt:3 text:プランを見る !!}
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_sub-accordion">&#91;medialist:{album_id} src:disp theme:sub-accordion limitcnt:3&#93;</h4>
+<section class="uk-section">
+  <div class="uk-container">
+  {!!autotag medialist:'.{album_id}.' src:disp theme:sub-accordion limitcnt:3 !!}
+  </div>
+</section>
     
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_sub-accordion-access">&#91;medialist:{album_id} src:disp theme:sub-accordion-access limitcnt:3 grid:1 grids:2 gridm:3 &#93;</h4>
+<section class="uk-section">
+  <div class="uk-container">
+  {!!autotag medialist:'.{album_id}.' src:disp theme:sub-accordion-access limitcnt:3 grid:1 grids:2 gridm:3  !!}
+  </div>
+</section>
+
 <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_sub-grid_keyurl">&#91;medialist:{album_id} src:disp theme:sub-grid_keyurl limitcnt:5 grids:2 gridm:5 text:詳細を見る&#93;</h4>
+<section class="uk-section">
+  <div class="uk-container">
   {!!autotag medialist:'.{album_id}.' src:disp theme:sub-grid_keyurl limitcnt:5 grids:2 gridm:5 text:詳細を見る !!}
-    
+   </div>
+</section>
+   
 <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_sub-slideshow-body">&#91;medialist:{album_id} src:orig theme:sub-slideshow-body limitcnt:3&#93;</h4>
   {!!autotag medialist:'.{album_id}.' src:orig theme:sub-slideshow-body limitcnt:3 !!}
 

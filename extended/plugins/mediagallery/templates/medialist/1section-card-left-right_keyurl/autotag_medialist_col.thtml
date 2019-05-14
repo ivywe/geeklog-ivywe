@@ -2,7 +2,9 @@
 
 <?php $cl = $this->get_var('uks');if(strlen($cl)){$uks = ' '.str_replace('.', ' ', $cl);}else{$uks = "";}$cl = $this->get_var('ukc');if(strlen($cl)){$ukc = ' '.str_replace('.', ' ', $cl);}else{$ukc = "";}$cl = $this->get_var('class_album_title');if(strlen($cl)){$class_album_title = ' '.str_replace('.', ' ', $cl);}else{$class_album_title = " uk-text-center@m";}$cl = $this->get_var('class_album_desc');if(strlen($cl)){$class_album_desc = ' '.str_replace('.', ' ', $cl);}else{$class_album_desc = " uk-text-center@m";}$cl = $this->get_var('class_media_title');if(strlen($cl)){$class_media_title = ' '.str_replace('.', ' ', $cl);}else{$class_media_title = " uk-text-center@m";}$cl = $this->get_var('class_media_desc');if(strlen($cl)){$class_media_desc = ' '.str_replace('.', ' ', $cl);}else{$class_media_desc = " uk-text-center@m";} ?>
 
-<?php global $mgorder; $mgorder++; if($mgorder%2!=0) { ?>
+<?php global $mgorderslrk; $mgorderslrk=$mgorderslrk+1; ?>
+
+<?php if(($this->get_var('reverse')+$mgorderslrk)%2!=0) { ?>
 
 <div class="uk-visible@m uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin uk-card-hover" uk-grid>
   <div class="uk-card-media-left uk-cover-container uk-first-column">

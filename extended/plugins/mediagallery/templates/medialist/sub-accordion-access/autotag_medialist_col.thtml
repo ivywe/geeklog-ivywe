@@ -1,0 +1,24 @@
+{# begin {templatelocation} #}
+
+<?php 
+$media_desc = strip_tags($this->get_var('media_desc'));
+?>
+
+			<ul class="uk-visible@m" uk-accordion>
+          <li class="uk-open">
+            <a class="uk-accordion-title uk-text-center" href="#" style="margin: 0px 30px; border-color:#00c; border-radius: 20px; color: #00c; ">{media_title}<div class="uk-navbar-subtitle">{media_desc}</div></a>
+            <div class="uk-accordion-content uk-margin-remove-top">
+							<img src="{filename_disp}" alt="">
+            </div>
+          </li>
+			</ul>
+			<ul class="uk-hidden@m" uk-accordion>
+          <li>
+            <a class="uk-accordion-title uk-text-center" href="#" style="margin: 0px 30px; border-color:#00c; border-radius: 20px; color: #00c; ">{media_title}<div class="uk-navbar-subtitle">{media_desc}</div></a>
+            <div class="uk-accordion-content uk-margin-remove-top">
+							<img src="{filename_disp}" alt="">
+            </div>
+          </li>
+			</ul>
+
+{# end {templatelocation} #}
