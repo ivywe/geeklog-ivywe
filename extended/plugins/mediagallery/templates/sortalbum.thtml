@@ -11,7 +11,7 @@
     <!-- BEGIN AlbumRow -->
     <tr>
       <td>
-        <input type="text" class="uk-input" name="seq[]" value="{album_order}" size="4"{xhtml}>
+        <input type="text" class="uk-input uk-form-width-small" name="seq[]" value="{album_order}" size="8"{xhtml}>
         <input type="hidden" name="aid[]" value="{album_id}"{xhtml}>
       </td>
       <td style="height:25px;">{album_title}</td>
