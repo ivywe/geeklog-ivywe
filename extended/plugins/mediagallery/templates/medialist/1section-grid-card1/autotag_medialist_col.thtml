@@ -5,7 +5,7 @@
           <div>
             <div class="uk-card uk-card-default uk-card-hover">
               <div class="uk-card-media-top">
-                 <a class="uk-inline" href="{filename_disp}" data-caption="{media_title}">
+                 <a class="uk-inline" href="{filename_orig}" data-caption="{media_title}">
                    <img src="{filename}" alt="{media_title}">
                  </a>
               </div>

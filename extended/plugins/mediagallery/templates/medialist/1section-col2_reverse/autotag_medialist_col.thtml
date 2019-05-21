@@ -7,7 +7,8 @@
 
 {!if reverse}
             <div class="uk-width-1-1 uk-width-{gridl}@m uk-first-column">
-              {media_desc}
+              <div class="uk-text-left uk-margin<?php echo $class_media_desc; ?>">{media_desc}</div>
+  </div>
             </div>
             <div class="uk-width-1-1 uk-width-{gridr}@m">
               <img class="{imgclass}" src="{filename}" alt="">
@@ -19,7 +20,8 @@
               {!if media_title}<div class="uk-margin-small-top <?php echo $class_media_title; ?>">{media_title}</div>{!endif}
             </div>
             <div class="uk-width-1-1 uk-width-{gridr}@m">
-              {media_desc}
+              <div class="uk-text-left uk-margin<?php echo $class_media_desc; ?>">{media_desc}</div>
+  </div>
             </div>
 {!endif}
 

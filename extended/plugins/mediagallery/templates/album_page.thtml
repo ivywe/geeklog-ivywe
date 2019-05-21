@@ -255,6 +255,8 @@
 <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-grid-card1">&#91;medialist:{album_id} src:disp theme:1section-grid-card1 limitcnt:3 title:1 uks:uk-section-muted ukc: grids:1 gridm:3 text:詳細を見る&#93;</h4>
   {!!autotag medialist:'.{album_id}.' src:disp theme:1section-grid-card1 limitcnt:3 title:1 uks:uk-section-muted ukc: grids:1 gridm:3 masonry:1 animation:slide !!}
 
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-grid-card1_keyurl">&#91;medialist:{album_id} src:disp theme:1section-grid-card1_keyurl limitcnt:3 title:1 uks:uk-section-muted ukc:uk-text-center ukc: grids:1 gridm:3 text:プランを見る limitcnt:2&#93;</h4>
+
 <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-grid-card2_keyurl">&#91;medialist:{album_id} src:disp theme:1section-grid-card2_keyurl limitcnt:3 title:1 uks:uk-section-muted ukc:uk-text-center ukc: grids:1 gridm:3 text:プランを見る limitcnt:2&#93;</h4>
   {!!autotag medialist:'.{album_id}.' src:disp theme:1section-grid-card2_keyurl limitcnt:3 title:1 uks:uk-section-muted ukc:uk-text-center ukc: grids:1 gridm:3 text:プランを見る limitcnt:3 !!}
 

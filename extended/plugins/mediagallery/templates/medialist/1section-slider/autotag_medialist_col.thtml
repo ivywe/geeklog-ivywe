@@ -1,5 +1,5 @@
 {# begin {templatelocation} #}
-              <li>
+              <li class="uk-margin-left">
                 <img src="{filename}" alt="{media_title}">
               </li>
 {# end {templatelocation} #}
