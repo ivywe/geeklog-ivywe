@@ -1,0 +1,57 @@
+{# begin {templatelocation} #}
+
+<?php $cl = $this->get_var('uks');if(strlen($cl)){$uks = ' '.str_replace('.', ' ', $cl);}else{$uks = "";}$cl = $this->get_var('ukc');if(strlen($cl)){$ukc = ' '.str_replace('.', ' ', $cl);}else{$ukc = "";}$cl = $this->get_var('class_album_title');if(strlen($cl)){$class_album_title = ' '.str_replace('.', ' ', $cl);}else{$class_album_title = " uk-text-center@m";}$cl = $this->get_var('class_album_desc');if(strlen($cl)){$class_album_desc = ' '.str_replace('.', ' ', $cl);}else{$class_album_desc = " uk-text-center@m";}$cl = $this->get_var('class_media_title');if(strlen($cl)){$class_media_title = ' '.str_replace('.', ' ', $cl);}else{$class_media_title = " uk-text-center@m";}$cl = $this->get_var('class_media_desc');if(strlen($cl)){$class_media_desc = ' '.str_replace('.', ' ', $cl);}else{$class_media_desc = " uk-text-left";} ?>
+
+
+
+
+<div>
+	<div 
+
+<?php 
+
+$media_keywords = $this->get_var('media_keywords');
+
+if( strpos( $media_keywords, 'media_url') || strpos( $media_keywords, '.jpg')  || strpos( $media_keywords, '.png')  ){ ?>
+uk-lightbox
+<?php } ?>
+
+>
+
+
+              <a 
+
+<?php if( strpos( $media_keywords, '.pdf') ){ ?>
+  target="_blank"
+<?php } ?>
+
+<?php if( strpos( $media_keywords, '.jpg') || strpos( $media_keywords, '.png')  ){ ?>
+class="uk-inline-clip uk-transition-toggle"
+<?php } else { ?>
+class="uk-inline-clip uk-transition-toggle"
+<?php } ?>
+
+href="{media_keywords}">
+                <img src="{filename}" alt="{media_title}">
+                <div class="uk-position-center">
+                  <span class="uk-transition-fade uk-light" 
+
+<?php if( strpos( $media_keywords, '.pdf') ){ ?>
+uk-icon="icon:file-pdf; ratio: 2"
+<?php } elseif( strpos( $media_keywords, 'databox') ){ ?>
+uk-icon="icon:file-text; ratio: 2"
+<?php } elseif( strpos( $media_keywords, 'static pages') ){ ?>
+uk-icon="icon:file-text; ratio: 2"
+<?php } else { ?> 
+uk-icon="icon:plus; ratio:2"
+<?php } ?> 
+
+></span>
+                </div>
+              </a>
+	{!if title}<div class="uk-caption uk-text-center uk-text-large uk-text-bold uk-margin-small-top">{media_title}</div>{!endif}
+
+	</div>
+</div>
+
+{# end {templatelocation} #}

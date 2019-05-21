@@ -156,7 +156,7 @@
         <h3>2) 1セクションに複数配置するタイプ</h3>
         <ul>
         <li><a href="#_1section-grid" uk-scroll="offset:100">1section-grid</a></li>
-        <li><a href="#_1section-grid-inline-clip" uk-scroll="offset:100">1section-grid-inline-clip</a></li>
+        <li><a href="#_1section-grid-inline-clip_keyurl" uk-scroll="offset:100">1section-grid-inline-clip_keyurl</a></li>
         <li><a href="#_1section-grid_keyurl" uk-scroll="offset:100">1section-grid_keyurl</a></li>
         <li><a href="#_1section-grid-card1" uk-scroll="offset:100">1section-grid-card1</a></li>
         <li><a href="#_1section-grid-card1_keyurl" uk-scroll="offset:100">1section-grid-card1_keyurl</a></li>
@@ -246,8 +246,8 @@
 <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-grid">&#91;medialist:{album_id} src:disp theme:1section-grid limitcnt:12 grids:2 gridm:3 masonry:1 animation:slide title:1 class_album_title:uk-hidden class_album_desc:uk-hidden class_media_title:mg-overlay-small.uk-text-center sort:desc&#93;</h4>
   {!!autotag medialist:'.{album_id}.' src:disp theme:1section-grid limitcnt:12 grids:2 gridm:3 masonry:1 animation:slide title:1 class_album_title:uk-hidden class_album_desc:uk-hidden class_media_title:mg-overlay-small.uk-text-center sort:desc !!}
 
-<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-grid-inline-clip">&#91;medialist:{album_id} src:disp theme:1section-grid-inline-clip src:disp limitcnt:12 grids:3 gridm:4 masonry:1 animation:slide title:0 class_album_title:uk-hidden class_album_desc:uk-hidden class_media_title:uk-overlay-default.uk-position-bottom.uk-text-center.mg-overlay-small sort:asc&#93;</h4>
-  {!!autotag medialist:'.{album_id}.' src:disp theme:1section-grid-inline-clip limitcnt:12 grids:3 gridm:4 masonry:1 animation:slide title:0 class_album_title:uk-hidden class_album_desc:uk-hidden class_media_title:uk-overlay-default.uk-position-bottom.uk-text-center.mg-overlay-small sort:asc !!}
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-grid-inline-clip_keyurl">&#91;medialist:{album_id} src:disp theme:1section-grid-inline-clip_keyurl src:disp limitcnt:12 grids:3 gridm:4 masonry:1 animation:slide title:0 class_album_title:uk-hidden class_album_desc:uk-hidden class_media_title:uk-overlay-default.uk-position-bottom.uk-text-center.mg-overlay-small sort:asc&#93;</h4>
+  {!!autotag medialist:'.{album_id}.' src:disp theme:1section-grid-inline-clip_keyurl limitcnt:12 grids:3 gridm:4 masonry:1 animation:slide title:0 class_album_title:uk-hidden class_album_desc:uk-hidden class_media_title:uk-overlay-default.uk-position-bottom.uk-text-center.mg-overlay-small sort:asc !!}
 
 <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-grid_keyurl">&#91;medialist:{album_id} src:disp theme:1section-grid_keyurl limitcnt:3 grids:1 gridm:3 text:プランを見る&#93;</h4>
   {!!autotag medialist:'.{album_id}.' src:disp theme:1section-grid_keyurl limitcnt:3 grids:1 gridm:3 text:プランを見る !!}
