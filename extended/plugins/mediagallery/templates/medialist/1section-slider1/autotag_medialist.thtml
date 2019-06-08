@@ -14,7 +14,7 @@
 <div>
   <div class="uk-position-relative uk-visible-toggle uk-light" uk-slider="pause-on-hover: false; autoplay: true; autoplay-interval: 5000; velocity: 0.2; center: true; {class}">
 
-    <ul class="uk-slider-items uk-grid">
+    <ul class="uk-slider-items uk-child-width-1-{grid} uk-child-width-1-{grids}@s uk-child-width-1-{gridm}@m">
 {medialist_col}  
     </ul>
 

@@ -4,7 +4,7 @@
 
 <?php global $mgorderslrk; $mgorderslrk=$mgorderslrk+1; ?>
 
-<?php if(($this->get_var('reverse')+$mgorderslrk)%2!=0) { ?>
+<?php if(((int)$this->get_var('reverse')+$mgorderslrk)%2!=0) { ?>
 
 <div class="uk-visible@m uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin uk-card-hover" uk-grid>
   <div class="uk-card-media-left uk-cover-container uk-first-column">

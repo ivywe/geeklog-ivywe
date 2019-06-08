@@ -1,5 +1,5 @@
 {# begin {templatelocation} #}
 
-          <li class="uk-child-width-1-{grid} uk-child-width-1-{grids}@s uk-child-width-1-{gridm}@m"><img src="{filename}" alt="{media_title}"></li>
+          <li><img src="{filename}" alt="{media_title}"></li>
 
 {# end {templatelocation} #}
