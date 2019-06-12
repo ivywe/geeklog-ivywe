@@ -4,10 +4,9 @@
       <img src="{filename}" class="{animation}" title="" alt="">
   </div>
   {!!if {media_title} || {media_desc} !!}<div class="uk-position-center uk-overlay gl-text-shadow uk-text-center@m uk-text-truncate">
-		<div style="min-width:20em">
+		<div class="gl-slider">
 			{!if media_title}<h2>{media_title}</h2>{!endif}
     	{media_desc}
 		</div>
   </div>{!endif}
 </li>
-

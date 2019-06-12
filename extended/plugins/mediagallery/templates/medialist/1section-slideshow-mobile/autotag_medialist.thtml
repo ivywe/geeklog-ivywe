@@ -1,5 +1,4 @@
-{# begin {templatelocation} #}
-
+{# begin {templatelocation} s-slideshow #}
 <?php $cl = $this->get_var('uks');if(strlen($cl)){$uks = ' '.str_replace('.', ' ', $cl);}else{$uks = "";}$cl = $this->get_var('ukc');if(strlen($cl)){$ukc = ' '.str_replace('.', ' ', $cl);}else{$ukc = "";}$cl = $this->get_var('class_album_title');if(strlen($cl)){$class_album_title = ' '.str_replace('.', ' ', $cl);}else{$class_album_title = " uk-text-center@m";}$cl = $this->get_var('class_album_desc');if(strlen($cl)){$class_album_desc = ' '.str_replace('.', ' ', $cl);}else{$class_album_desc = " uk-text-center@m";}$cl = $this->get_var('class_media_title');if(strlen($cl)){$class_media_title = ' '.str_replace('.', ' ', $cl);}else{$class_media_title = " uk-text-center@m";}$cl = $this->get_var('class_media_desc');if(strlen($cl)){$class_media_desc = ' '.str_replace('.', ' ', $cl);}else{$class_media_desc = " uk-text-center@m";} ?>
 
 {!if edit}
@@ -9,11 +8,21 @@
 {!!if {section} == '1' || {section} == '' !!}<section id="album{album_id}-section<?php global $sectionid; $sectionid++; echo $sectionid; ?>" class="uk-section<?php echo $uks; ?>">{!endif}
 
 {!!if {container} == '1' || {container} == '' !!}<div class="uk-container <?php echo $ukc; ?>">{!endif}
-        {!if title}<h2 class="uk-margin-bottom<?php echo $class_album_title; ?>">{album_title}</h2>{!endif}
-          {!if album_desc}<div class="uk-margin-bottom<?php echo $class_album_desc; ?>">{album_desc}</div>{!endif}
-        <div class="uk-child-width-1-{grids}@s uk-child-width-1-{gridm}@m uk-grid-small" uk-grid{!!if {masonry} == '1' !!}="masonry:true"{!endif} uk-lightbox="animation: {!if animation}{animation}{!else}slide{!endif}">
-{medialist_col}
+
+      {!if title}<h2 class="<?php echo $class_album_title; ?>">{album_title}</h2>{!endif}
+      {!if album_desc}<div class="uk-margin<?php echo $class_album_desc; ?>">{album_desc}</div>{!endif}
+
+      <div uk-slideshow="pause-on-hover: false; autoplay: true; animation: {!if animation}{animation}{!else}fade{!endif}; autoplay-interval: 7000; velocity: 0.2; min-height: 500;; {class}">
+        <div class="uk-position-relative uk-visible-toggle uk-light">
+          <ul class="uk-slideshow-items">
+{medialist_col}  
+          </ul>
+          <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+          <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
         </div>
+        {!!if {dotnav} == '0' !!}{!else}<ul class="uk-slideshow-nav uk-dotnav uk-flex-center uk-margin"></ul>{!endif}
+      </div>
+
 {!!if {container} == '1' || {container} == '' !!}</div>{!endif}
 {!!if {section} == '1' || {section} == '' !!}</section>{!endif}
 

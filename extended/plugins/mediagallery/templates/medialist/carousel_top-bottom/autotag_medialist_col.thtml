@@ -1,0 +1,12 @@
+{# begin {templatelocation} #}
+
+      <div class="item">
+	<img src="{filename_orig}" alt="" class="img-responsive">
+        <div class="carousel-caption wow fadeInUp2" data-wow-duration="3s">
+          {!if media_title}<h2>{media_title}</h2>{!endif}
+          {!if media_desc}<h3>{media_desc}</h3>{!endif}
+          {!if media_keywords}<p><a href="{media_keywords}" class="btn-u btn-brd btn-brd-hover btn-u-light">詳細を見る{!!autotag fa_link: !!}</a></p>{!endif}
+        </div>
+      </div>
+
+{# end {templatelocation} #}
