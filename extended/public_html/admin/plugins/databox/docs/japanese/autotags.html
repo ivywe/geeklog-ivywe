@@ -74,6 +74,7 @@ nohitmsg:<br />
 データ<br />
 例１：[databox:data] <br />
 例２：[databox:data id:1 templatedir:XXX nohitmsg:yes]<br />
+例３：[databox:data code:xxx templatedir:XXX nohitmsg:yes]<br />
 </td>
 </tr>
 
@@ -157,7 +158,7 @@ nohitmsg:<br />
 perpage:<br />
 page:<br />
 order:<br />
-	
+
 </td>
 <td>アトリビュート別一覧<br /> 指定アトリビュートが指定値のデータ一覧<br />
 例１：[databox:attribute field_id:99 value:xx ]<br />
@@ -173,7 +174,7 @@ perpage:(Number) 1ページあたりの表示件数。0のときは改ページ�
 id: code: <br />
  linktext<a class="note_super" href="#notetext_2">*2</a>
 </td>
-<td>データ個別表示リンク<br /> 
+<td>データ個別表示リンク<br />
 例１：[databox:datalink id:1 ]<br />
 例２：[databox:datalink code:data1]<br />
 例３：[databox:datalink code:data1 データ]<br />
@@ -189,7 +190,7 @@ templatedir<a title="テンプレートディレクトリ"class="note_super" hre
  linktext<a title=""class="note_super" href="#notetext_2">*2</a><br />
 
 </td>
-<td>マイデータ新規登録リンク<br /> 
+<td>マイデータ新規登録リンク<br />
 例１：[databox:mydataentrylink ]<br />
 例２：[databox:mydataentrylink linktext]<br />
 例３：[databox:mydataentrylink type_id:1]<br />
@@ -210,7 +211,7 @@ templatedir:<a title="テンプレートディレクトリ"class="note_super" hr
 linktext<a title=""class="note_super" href="#notetext_2">*2</a>
 
 </td>
-<td>マイデータリンク<br /> 
+<td>マイデータリンク<br />
 例１：[databox:mydata ]<br />
 例２：[databox:mydata マイデータリンク]<br />
 例３：[databox:mydata ]<br />
@@ -226,7 +227,7 @@ linktext<a title=""class="note_super" href="#notetext_2">*2</a>
 <br />numberformat:yes 千単位に区切ります（カンマ編集）。省略時は区切りません。
 </td>
 
-<td>指定カテゴリグループのカテゴリ件数<br /> 
+<td>指定カテゴリグループのカテゴリ件数<br />
 例１：[databox:categorycount ] 親グループなしカテゴリの件数<br />
 例２：[databox:categorycount group_id:3]<br />
 例３：[databox:categorycount group_code:pref]<br />
@@ -238,7 +239,7 @@ linktext<a title=""class="note_super" href="#notetext_2">*2</a>
 <td>[databox:categorycheck　カテゴリグループid チェックボックスの input name]
 </td>
 
-<td>指定カテゴリグループのチェックボックス<br /> 
+<td>指定カテゴリグループのチェックボックス<br />
 例１：[databox:categorycheck group_id:3 iname:gor_1] <br />
 <a title="使用例：BONUS/search/staticpage_search_sample.txt"class="note_super" href="#notetext_3">*3</a>
 </tr>
@@ -246,7 +247,7 @@ linktext<a title=""class="note_super" href="#notetext_2">*2</a>
 <td>[databox:mastercheck　アトリビュートid チェックボックスの input name]
 </td>
 
-<td>指定アトリビュートのマスターのチェックボックス<br /> 
+<td>指定アトリビュートのマスターのチェックボックス<br />
 例１：[databox:mastercheck field_id:3 iname:gor_1] <br />
 <a title="使用例：BONUS/search/staticpage_search_sample.txt"class="note_super" href="#notetext_3">*3</a>
 </td>
@@ -255,7 +256,7 @@ linktext<a title=""class="note_super" href="#notetext_2">*2</a>
 <td>[databox:search　検索リスト引数]
 </td>
 
-<td> 検索リスト<br /> 
+<td> 検索リスト<br />
 例１：[databox:search templatedir=abc&fieldset=10&gor_3=6&gor_3=&gand_8=7&gand_8=&aeq_4=10000&ato_5=&afr_6=&ato_6=&aeq_75=&afr_75=&ato_75=&gor_1=&gand_2=&perpage=4&page=1&nohitmsg=yes]<br />
 <a title="検索リスト引数[]は省いてください"class="note_super" href="#notetext_4">*4</a>
 </tr>
@@ -263,7 +264,7 @@ linktext<a title=""class="note_super" href="#notetext_2">*2</a>
 <td>[databox:attributevalue　アトリビュートテーマ変数またはアトリビュートid データidまたはcode option]
 </td>
 
-<td>指定アトリビュートの表示用値等を返す<br /> 
+<td>指定アトリビュートの表示用値等を返す<br />
 例１：[databox:attributevalue field_code:pref code:xxx ] <br />
 例２：[databox:attributevalue field_code:pref code:xxx option:value2] <br />
 例３：[databox:attributevalue field_id:1 id:2 option:value2] <br />
@@ -339,7 +340,7 @@ default<br/>
 linktext は、必ず最後に記述してください。半角スペースを含む内容も記述可能です。引数名は不要です
 
 <br/><br/><a class="note_super" href="#notetext_3" id="notetext_3">*3</a>
-使用例：BONUS/search/staticpage_search_sample.txt 
+使用例：BONUS/search/staticpage_search_sample.txt
 <br/>2015/01/14 引数fname をiname に変更しました。
 
 <br/><br/><a class="note_super" href="#notetext_4" id="notetext_4">*4</a>
