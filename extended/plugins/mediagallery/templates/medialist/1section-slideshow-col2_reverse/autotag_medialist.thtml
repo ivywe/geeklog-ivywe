@@ -14,7 +14,7 @@
 
 {!if reverse}
 
-      <div uk-grid>
+      <div uk-grid class="uk-flex uk-flex-middle">
 
         <div class="uk-width-{gridl}@m">
           <div class="uk-text-center@m uk-margin-left">
@@ -23,10 +23,10 @@
           </div>
         </div>
         <div class="uk-width-{gridr}@m uk-flex-middle uk-grid-collapse">
-          <div uk-slideshow="pause-on-hover: false; autoplay: true; animation: fade; autoplay-interval: 10000; ratio: 16:9;">
+          <div uk-slideshow="pause-on-hover: false; autoplay: true; animation: fade; autoplay-interval: 10000; {!if minheight}min-height:{minheight}; {!endif}{!if maxheight}max-height:{maxheight}; {!endif}">
             <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
               <ul class="uk-slideshow-items">
-{medialist_col}  
+{medialist_col}
               </ul>
               <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
               <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
@@ -37,13 +37,13 @@
 
 {!else}
 
-      <div uk-grid>
+      <div uk-grid class="uk-flex uk-flex-middle">
 
         <div class="uk-width-{gridl}@m uk-flex-middle uk-grid-collapse">
-          <div uk-slideshow="pause-on-hover: false; autoplay: true; animation: fade; autoplay-interval : 10000; ratio: 16:9;">
+      <div uk-slideshow="pause-on-hover: false; autoplay: true; animation: fade; autoplay-interval : 10000; {!if minheight}min-height:{minheight}{!endif}{!if maxheight}max-height:{maxheight}; {!endif}">
             <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
               <ul class="uk-slideshow-items">
-{medialist_col}  
+{medialist_col}
               </ul>
               <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
               <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
@@ -75,7 +75,7 @@
           <div uk-slideshow="pause-on-hover: false; autoplay: true; animation: fade; autoplay-interval: 10000; ratio: 16:9;">
             <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
               <ul class="uk-slideshow-items">
-{medialist_col}  
+{medialist_col}
               </ul>
               <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
               <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
