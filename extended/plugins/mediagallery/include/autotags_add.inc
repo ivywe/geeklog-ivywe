@@ -54,15 +54,39 @@ function MG_medialist (
   , $text3=''
   , $target=''
   , $dotnav=''
-  , $minheight=''
-  , $maxheight=''
   , $class_album_title='uk-text-center@m'
   , $class_album_desc='uk-text-center@m'
   , $class_media_title='uk-text-center@m'
   , $class_media_desc='uk-text-center@m'
   , $type=''
   , $bxslider=''
+
+// uk-slideshow
   , $animation=''
+  , $autoplay=''
+  , $autoplayinterval=''
+  , $draggable=''
+  , $easing=''
+  , $finite=''
+  , $pauseonhover=''
+  , $index=''
+  , $velocity=''
+  , $rate=''
+  , $minheight=''
+  , $maxheight=''
+  , $animationduration=''
+
+// uk-slider
+  , $center=''
+  , $sets=''
+
+// uk-scrollspy
+  , $cls=''
+  , $closest=''
+  , $scroll=''
+  , $overflow=''
+  , $offset=''
+
   , $section=''
   , $container=''
   , $masonry=''
@@ -75,7 +99,7 @@ function MG_medialist (
     global $_IMAGE_TYPE;
     global $LANG_MG01;
 	global $_CONF;
-	
+
 	$rt="";
     if (empty($album_id)) return $rt;
 	if  (empty($theme)){
@@ -90,12 +114,12 @@ function MG_medialist (
 	}else{
 		$sort="ASC";
 	}
-	
+
 	$tmplfld=$_MG_CONF['template_path']."/medialist/".$theme;
     if (is_dir($tmplfld)) {
     }else{
         $tmplfld=$_MG_CONF['template_path']."/medialist/default";
-	} 
+	}
 	$src=trim($src);
 	if  ($src=='orig' OR $src=='disp' OR $src=='tn'){
 	}else{
@@ -106,7 +130,7 @@ function MG_medialist (
         'tag' => 'autotag_medialist.thtml',
         'col' => 'autotag_medialist_col.thtml',
         ));
-	
+
 	$sql = "SELECT ";
 	$sql .= " m.media_filename".LB;
 	$sql .= " ,m.media_id".LB;
@@ -145,7 +169,7 @@ function MG_medialist (
 		$wk=$_MG_CONF['path_mediaobjects']."disp".$fn;
 		$tnext = MG_getMediaExt($wk);
         $media_size = @getimagesize($wk . $tnext);
-        $ext = substr($tnext,1,3); 
+        $ext = substr($tnext,1,3);
         if ($media_size == false) {
 			$filename_disp="";
 		}else{
@@ -155,7 +179,7 @@ function MG_medialist (
 		$wk=$_MG_CONF['path_mediaobjects']."tn".$fn.'_cropcustom';
 		$tnext = MG_getMediaExt($wk);
     $media_size = @getimagesize($wk . $tnext);
-    $ext = substr($tnext,1,3); 
+    $ext = substr($tnext,1,3);
     if ($media_size == false) {
 			$filename_tn="";
 		}else{
@@ -205,15 +229,39 @@ function MG_medialist (
 		$T->set_var('text3',$text3);
 		$T->set_var('target',$target);
 		$T->set_var('dotnav',$dotnav);
-		$T->set_var('minheight',$minheight);
-		$T->set_var('maxheight',$maxheight);
 		$T->set_var('class_album_title',$class_album_title);
 		$T->set_var('class_album_desc',$class_album_desc);
 		$T->set_var('class_media_title',$class_media_title);
 		$T->set_var('class_media_desc',$class_media_desc);
 		$T->set_var('type',$type);
 		$T->set_var('bxslider',$bxslider);
-		$T->set_var('animation',$animation);
+
+    // uk-slideshow
+    $T->set_var('animation',$animation);
+    $T->set_var('autoplay',$autoplay);
+    $T->set_var('autoplayinterval',$autoplayinterval);
+    $T->set_var('draggable',$draggable);
+    $T->set_var('easing',$easing);
+    $T->set_var('finite',$finite);
+    $T->set_var('pauseonhover',$pauseonhover);
+    $T->set_var('index',$index);
+    $T->set_var('velocity',$velocity);
+    $T->set_var('rate',$rate);
+    $T->set_var('minheight',$minheight);
+    $T->set_var('maxheight',$maxheight);
+    $T->set_var('animationduration',$animationduration);
+
+    // uk-slider
+    $T->set_var('center',$center);
+    $T->set_var('sets',$sets);
+
+    // uk-scrollspy
+    $T->set_var('cls',$cls);
+    $T->set_var('closest',$closest);
+    $T->set_var('scroll',$scroll);
+    $T->set_var('overflow',$overflow);
+    $T->set_var('offset',$offset);
+
 		$T->set_var('section',$section);
 		$T->set_var('container',$container);
 		$T->set_var('masonry',$masonry);
@@ -236,7 +284,7 @@ function MG_medialist (
 		}
 		$T->set_var('edit',$edit);
 		$T->set_var('edit_album',$edit_album);
-		
+
 		$T->set_var('filename',$filename);
 		$T->set_var('filename_tn',$filename_tn);
 		$T->set_var('filename_disp',$filename_disp);
@@ -251,7 +299,7 @@ function MG_medialist (
 		$T->set_var('media_category_name',$media_category_name);
 		$T->set_var('media_category_description',$media_category_description);
 		$T->set_var('released',$media_time[0]);
-		
+
 		//=====
         $T->parse ('medialist_col', 'col', true);
 
@@ -274,11 +322,11 @@ function MG_albumlist (
 	global $LANG_MG01;
 	global $_MG_CONF;
     global $_IMAGE_TYPE;
-	
+
 	//global $MG_albums;
-	
+
 	$rt="";
-	
+
 	if  ($album_id==0 OR $album_id=="") {
 		return $rt;
 	}
@@ -290,7 +338,7 @@ function MG_albumlist (
 	}else{
 		$orderby="album_id";
 	}
-	
+
 	if  (empty($theme)){
 		$theme='default';
 	}
@@ -305,7 +353,7 @@ function MG_albumlist (
         'tag' => 'autotag_albumlist.thtml',
         'col' => 'autotag_albumlist_col.thtml',
         ));
-	
+
 	$sql = "SELECT ".LB;
 	$sql .= " album_id ".LB;
 	$sql .= " ,album_title ".LB;
@@ -313,7 +361,7 @@ function MG_albumlist (
 	$sql .= " ,album_cover ".LB;
 	$sql .= " ,album_cover_filename ".LB;
 	$sql .= " ,last_update ".LB;
-	
+
 	$sql .= " FROM {$_TABLES['mg_albums']} ".LB;
 	$sql .= " WHERE album_parent=" . $album_id .LB;
 	$sql .= " AND hidden=0".LB;
@@ -331,12 +379,12 @@ function MG_albumlist (
 			$A = array_map('stripslashes', $A);
 			$img=MG_albumlastimage($A['album_cover_filename']);
 			$album_last_update = MG_getUserDateTimeFormat($A['last_update']);
-			
+
 	        $url=$_CONF['site_url'] . "/mediagallery/album.php";
 			$url.="?";
             $url.="aid=".$A['album_id'];
             $url.="&amp;page=1";
-			
+
 			$T->set_var('class',$class);
 			$T->set_var('album_url',$url);
 			$T->set_var('album_img',$img);
@@ -361,7 +409,7 @@ function MG_albumlist (
 			}
 			$T->set_var('edit',$edit);
 		}
-		
+
 		//=====
         $T->parse ('albumlist_col', 'col', true);
 
@@ -369,14 +417,14 @@ function MG_albumlist (
 	$T->parse ('output', 'tag');
     $rt= $T->finish ($T->get_var ('output'));
 	return $rt;
-	
+
 }
 function MG_albumlastimage(
 	$filename
 )
 {
 	global $_MG_CONF;
-	
+
     if ( $filename == '' ) {
 		$album_last_image = $_MG_CONF['mediaobjects_url'] . '/empty.svg';
         //$mediasize = @getimagesize($_MG_CONF['path_mediaobjects'] . 'empty.svg');
@@ -401,7 +449,7 @@ function MG_albumlastimage(
 //Split second argument
 function MG_parm2 ($p2)
 {
-			
+
 	$parm2_ary[]="limitcnt";
 
 	$parm2_ary[]="title";
@@ -421,22 +469,46 @@ function MG_parm2 ($p2)
 	$parm2_ary[]="text3";
 	$parm2_ary[]="target";
 	$parm2_ary[]="dotnav";
-	$parm2_ary[]="minheight";
-	$parm2_ary[]="maxheight";
 	$parm2_ary[]="class_album_title";
 	$parm2_ary[]="class_album_desc";
 	$parm2_ary[]="class_media_title";
 	$parm2_ary[]="class_media_desc";
 	$parm2_ary[]="type";
 	$parm2_ary[]="bxslider";
-	$parm2_ary[]="animation";
+
+  // uk-slideshow
+  $parm2_ary[]="animation";
+  $parm2_ary[]="autoplay";
+  $parm2_ary[]="autoplayinterval";
+  $parm2_ary[]="draggable";
+  $parm2_ary[]="easing";
+  $parm2_ary[]="finite";
+  $parm2_ary[]="pauseonhover";
+  $parm2_ary[]="index";
+  $parm2_ary[]="velocity";
+  $parm2_ary[]="rate";
+  $parm2_ary[]="minheight";
+  $parm2_ary[]="maxheight";
+  $parm2_ary[]="animationduration";
+
+  // uk-slider
+  $parm2_ary[]="center";
+  $parm2_ary[]="sets";
+
+  // uk-scrollspy
+  $parm2_ary[]="cls";
+  $parm2_ary[]="closest";
+  $parm2_ary[]="scroll";
+  $parm2_ary[]="overflow";
+  $parm2_ary[]="offset";
+
 	$parm2_ary[]="section";
 	$parm2_ary[]="container";
 	$parm2_ary[]="masonry";
 	$parm2_ary[]="imgclass";
 
 	$parm2_ary[]="order";
-	
+
 	$parm2_ary[]="width";
 	$parm2_ary[]="height";
 	$parm2_ary[]="border";
@@ -453,9 +525,9 @@ function MG_parm2 ($p2)
 	$parm2_ary[]="type";
 	$parm2_ary[]="linksrc";
 	$parm2_ary[]="theme";
-	
+
 	$parm2_ary[]="sort";
-	 
+
     $ary=array();
     $px = explode (' ', trim ($p2));
     if (is_array ($px)) {
@@ -463,10 +535,10 @@ function MG_parm2 ($p2)
 			$a = explode (':', $part);
 			if (in_array($a[0],$parm2_ary)){
 				$ary["{$a[0]}"]=$a[1];
-				$skip++;			
+				$skip++;
 			}
 		}
-		
+
         if (count ($px) > $skip) {
             for ($i = 0; $i < $skip; $i++) {
                 array_shift ($px);

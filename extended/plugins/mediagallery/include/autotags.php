@@ -62,7 +62,7 @@ function MG_autotags($op, $content = '', $autotag = '')
     $p2 = COM_applyFilter ($autotag['parm2']);
     $p=MG_parm2($p2);
     //@@@@@20120730add<----
-	
+
     static $ss_count = 0;
 
     /*
@@ -1057,7 +1057,35 @@ $enable_link=0;
         //@@@@@
         case 'medialist' :
             $link=MG_medialist ($p1
-                , $p['lastparm2'], $p['theme'],$p['limitcnt'],$p['sort'],$p['src'],$p['title'],$p['desc'],$p['media'],$p['grid'],$p['grids'],$p['gridm'],$p['gridl'],$p['gridr'],$p['uks'],$p['ukc'],$p['reverse'],$p['text'],$p['text1'],$p['text2'],$p['text3'],$p['target'],$p['dotnav'],$p['minheight'],$p['maxheight'],$p['class_album_title'],$p['class_album_desc'],$p['class_media_title'],$p['class_media_desc'],$p['type'],$p['bxslider'],$p['animation'],$p['section'],$p['container'] ,$p['masonry'], $p['imgclass']);
+                , $p['lastparm2'], $p['theme'],$p['limitcnt'],$p['sort'],$p['src'],$p['title'],$p['desc'],$p['media'],$p['grid'],$p['grids'],$p['gridm'],$p['gridl'],$p['gridr'],$p['uks'],$p['ukc'],$p['reverse'],$p['text'],$p['text1'],$p['text2'],$p['text3'],$p['target'],$p['dotnav'],$p['class_album_title'],$p['class_album_desc'],$p['class_media_title'],$p['class_media_desc'],$p['type'],$p['bxslider']
+
+                // uk-slideshow
+                ,$p['animation']
+                ,$p['autoplay']
+                ,$p['autoplayinterval']
+                ,$p['draggable']
+                ,$p['easing']
+                ,$p['finite']
+                ,$p['pauseonhover']
+                ,$p['index']
+                ,$p['velocity']
+                ,$p['rate']
+                ,$p['minheight']
+                ,$p['maxheight']
+                ,$p['animationduration']
+
+                // uk-slider
+                ,$p['center']
+                ,$p['sets']
+
+                // uk-scrollspy
+                ,$p['cls']
+                ,$p['closest']
+                ,$p['scroll']
+                ,$p['overflow']
+                ,$p['offset']
+
+                ,$p['section'],$p['container'] ,$p['masonry'], $p['imgclass']);
             break;
         case 'albumlist' :
             $link=MG_albumlist ($p1, $p['limitcnt']	, $p['order']
