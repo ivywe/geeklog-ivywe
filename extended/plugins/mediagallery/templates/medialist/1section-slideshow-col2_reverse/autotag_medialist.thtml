@@ -1,4 +1,4 @@
-{# begin {templatelocation} s-bg-slideshow-col2 #}
+{# begin {templatelocation}  #}
 
 <?php global $mgorderbg12; $mgorderbg12=0; ?>
 

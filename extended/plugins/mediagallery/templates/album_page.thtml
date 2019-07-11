@@ -150,7 +150,7 @@
                 <tr>  <th>scroll</th><td>  </td><td>  </td><td>uk-scrollspy option</td>  </tr>
                 <tr>  <th>overflow</th><td>  </td><td>  </td><td>uk-scrollspy option</td>  </tr>
                 <tr>  <th>offset</th><td>  </td><td>  </td><td>uk-scrollspy option</td>  </tr>
-              
+
                 <tr>  <th>section</th><td>1</td><td>0:非表示/1:表示</td><td>  <section>表示フラグ</td>  </tr>
                 <tr>  <th>container</th><td>1</td><td>0:非表示/1:表示</td><td>  < div class=”container”>表示フラグ</td>  </tr>
                 <tr>  <th>masonry</th><td>0</td><td>0:無効 1:有効</td><td>uk-grid masonry option</td>  </tr>
@@ -212,8 +212,8 @@
         <li><a href="#_sub-accordion" uk-scroll="offset:100">sub-accordion</a></li>
         <li><a href="#_sub-accordion-access" uk-scroll="offset:100">sub-accordion-access</a></li>
         <li><a href="#_sub-grid_keyurl" uk-scroll="offset:100">sub-grid_keyurl</a></li>
-        <li><a href="#_sub-slideshow-body" uk-scroll="offset:100">sub-slideshow-body</a></li>
-        <li><a href="#_sub-slideshow-fade" uk-scroll="offset:100">sub-slideshow-fade</a></li>
+        <li><a href="#_sub-slideshow" uk-scroll="offset:100">sub-slideshow</a></li>
+        <li><a href="#_sub-slideshow-kenburns" uk-scroll="offset:100">sub-slideshow-kenburns</a></li>
 <?php global $bxslider; if($bxslider){ ?>
         <li><a href="#_sub-bxslider-animation-desc-top" uk-scroll="offset:100">sub-bxslider-animation-desc-top</a></li>
 <?php } ?>
@@ -383,14 +383,11 @@
    </div>
 </section>
 
-<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_sub-slideshow-body">&#91;medialist:{album_id} src:orig theme:sub-slideshow-body limitcnt:3 animation:fade autoplay:true autoplayinterval:7000 draggable:true easing:ease finite:false pause-on-hover:true index:0 velocity:1 rate:16_9 minheight:400 maxheight:500 animationduration:0.1s&#93;</h4>
-  {!!autotag medialist:'.{album_id}.' src:orig theme:sub-slideshow-body limitcnt:3 animation:fade autoplay:true autoplayinterval:7000 draggable:true easing:ease finite:false pause-on-hover:true index:0 velocity:1 rate:16_9 minheight:400 maxheight:500 animationduration:0.1s !!}
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_sub-slideshow">&#91;medialist:{album_id} src:orig theme:sub-slideshow limitcnt:3 animation:fade autoplay:true autoplayinterval:7000 draggable:true easing:ease finite:false pause-on-hover:true index:0 velocity:1 rate:16_9 minheight:400 maxheight:500 animationduration:0.1s&#93;</h4>
+  {!!autotag medialist:'.{album_id}.' src:orig theme:sub-slideshow limitcnt:3 animation:fade autoplay:true autoplayinterval:7000 draggable:true easing:ease finite:false pause-on-hover:true index:0 velocity:1 rate:16_9 minheight:400 maxheight:500 animationduration:0.1s !!}
 
-<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_sub-slideshow-fade">&#91;medialist:{album_id} src:orig theme:sub-slideshow-fade limitcnt:3 animation:fade autoplay:true autoplayinterval:7000 draggable:true easing:ease finite:false pause-on-hover:true index:0 velocity:1 rate:16_9 minheight:400 maxheight:500 animationduration:0.1s&#93;</h4>
-  {!!autotag medialist:'.{album_id}.' src:orig theme:sub-slideshow-fade limitcnt:3 animation:fade autoplay:true autoplayinterval:7000 draggable:true easing:ease finite:false pause-on-hover:true index:0 velocity:1 rate:16_9 minheight:400 maxheight:500 animationduration:0.1s !!}
-
-<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_sub-slideshow-fade">&#91;medialist:{album_id} src:orig theme:sub-slideshow-fade animation:scale limitcnt:3 animation:fade autoplay:true autoplayinterval:7000 draggable:true easing:ease finite:false pause-on-hover:true index:0 velocity:1 rate:16_9 minheight:400 maxheight:500 animationduration:0.1s&#93;</h4>
-  {!!autotag medialist:'.{album_id}.' src:orig theme:sub-slideshow-fade animation:scale limitcnt:3 animation:fade autoplay:true autoplayinterval:7000 draggable:true easing:ease finite:false pause-on-hover:true index:0 velocity:1 rate:16_9 minheight:400 maxheight:500 animationduration:0.1s !!}
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_sub-slideshow-kenburns">&#91;medialist:{album_id} src:orig theme:sub-slideshow-kenburns animation:scale limitcnt:3 animation:fade autoplay:true autoplayinterval:7000 draggable:true easing:ease finite:false pause-on-hover:true index:0 velocity:1 rate:16_9 minheight:400 maxheight:500 animationduration:0.1s&#93;</h4>
+  {!!autotag medialist:'.{album_id}.' src:orig theme:sub-slideshow-kenburns animation:scale limitcnt:3 animation:fade autoplay:true autoplayinterval:7000 draggable:true easing:ease finite:false pause-on-hover:true index:0 velocity:1 rate:16_9 minheight:400 maxheight:500 animationduration:0.1s !!}
 
 </section>
 
