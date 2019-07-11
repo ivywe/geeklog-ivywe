@@ -62,7 +62,7 @@ function plugin_autotags_databox (
         $p2 = COM_applyFilter ($autotag['parm2']);
         $tag = COM_applyFilter ($autotag['tag']);
         $tagstr = COM_applyFilter ($autotag['tagstr']);
-        
+
         $parm2_ary[]="category_id";
         $parm2_ary[]="category_code";
         $parm2_ary[]="mode";
@@ -94,8 +94,15 @@ function plugin_autotags_databox (
         $parm2_ary[]="roundprecision";
         $parm2_ary[]="numberformat";
         $parm2_ary[]="permission";
+
         $parm2_ary[]="grids";
         $parm2_ary[]="gridm";
+        $parm2_ary[]="cls";
+        $parm2_ary[]="hidden";
+        $parm2_ary[]="offsettop";
+        $parm2_ary[]="offsetleft";
+        $parm2_ary[]="repeat";
+        $parm2_ary[]="delay";
 
         $p=databox_parm2($p2,$parm2_ary);
         //各処理
@@ -160,6 +167,12 @@ function plugin_autotags_databox (
                             ,$p['without_id']
                             ,$p['grids']
                             ,$p['gridm']
+                            ,$p['cls']
+                            ,$p['hidden']
+                            ,$p['offsettop']
+                            ,$p['offsetleft']
+                            ,$p['repeat']
+                            ,$p['delay']
                         );
                         break;
                     case 'attributedatacount':
@@ -246,7 +259,7 @@ function plugin_autotags_databox (
                     case 'mastercheck':
                         if  ($p['field_id']<>""){
                             $kind=COM_applyFilter(
-                                DB_getItem($_TABLES['DATABOX_def_field'] 
+                                DB_getItem($_TABLES['DATABOX_def_field']
                                     ,"selectlist","field_id={$p['field_id']}"));
                             if  ($kind<>""){
                                   $rt= DATABOX_getcheckList(
@@ -307,10 +320,10 @@ function databox_parm2 ($p2,$parm2_ary)
             $a = explode (':', $part);
             if (in_array($a[0],$parm2_ary)){
                 $ary["{$a[0]}"]=$a[1];
-                $skip++;            
+                $skip++;
             }
         }
-        
+
         if (count ($px) > $skip) {
             for ($i = 0; $i < $skip; $i++) {
                 array_shift ($px);
@@ -321,7 +334,7 @@ function databox_parm2 ($p2,$parm2_ary)
     }else{
         $ary["lastparm2"]=trim($p2);
     }
-    
+
     return $ary;
 
 }
@@ -352,6 +365,13 @@ function databox_category(
     ,$without_id=''
     ,$grids=''
     ,$gridm=''
+    ,$cls=''
+    ,$hidden=''
+    ,$offsettop=''
+    ,$offsetleft=''
+    ,$repeat=''
+    ,$delay=''
+
 )
 // +---------------------------------------------------------------------------+
 // | 機能  カテゴリ別一覧表示
@@ -377,10 +397,10 @@ function databox_category(
 // +---------------------------------------------------------------------------+
 {
     $pi_name="databox";
-    
+
     global $_CONF;
     global $_TABLES;
-    
+
     global $_DATABOX_CONF;
     global $LANG_DATABOX;
     global $LANG_DATABOX_ADMIN;
@@ -401,7 +421,7 @@ function databox_category(
     $tbl3=$_TABLES['DATABOX_addition'] ;
     //
     $tbl5=$_TABLES['DATABOX_def_category'] ;
-    
+
     $tbl6=$_TABLES['DATABOX_stats'];
 
     //
@@ -436,12 +456,12 @@ function databox_category(
         $ids=$category_id;
         $idsary[]=$category_id;
     }
-    
+
     //--CATEGORY
     $category_name="";
     $defaulttemplatesdirectory = "";
     if (count($idsary)<>0){
-        
+
         for ($i = 0; $i < count($idsary); $i++) {
             $sql = "SELECT ";
             $sql .= " name ".LB;
@@ -452,7 +472,7 @@ function databox_category(
             $sql .= " {$tbl5} AS t5 ".LB;
             $sql .= " WHERE ".LB;
             $sql .= " t5.category_id =".$idsary[$i].LB;
-        
+
             $result = DB_query ($sql);
             $numrows = DB_numRows ($result);
             if ($numrows > 0) {
@@ -473,7 +493,7 @@ function databox_category(
             $template=$defaulttemplatesdirectory;
         }
     }
-    
+
     //
     if (is_null($page) OR !isset($page) OR $page == 0) {
         $page = 1;
@@ -508,7 +528,7 @@ function databox_category(
     if ($addfieldorder){
         $sql .= " ,t3.value ".LB;
     }
-    
+
     //--FROM
     $sql .= " FROM ".LB;
     $sql .= " {$tbl2} AS t2 ".LB;
@@ -519,10 +539,10 @@ function databox_category(
     if ($addfieldorder){
         $sql .= " ,{$tbl3} AS t3 ".LB;
     }
-    
+
     //--WHERE
     $sql .= " WHERE ".LB;
-    
+
     if (count($idsary)<>0){
         if (strtoupper($mode)=="AND"){
             $w="";
@@ -542,9 +562,9 @@ function databox_category(
     }else{
         $sql.=" 1=1".LB;
     }
-    
+
     if ($addfieldorder){
-    
+
         $sql .= " AND t3.field_id=".$field_id.LB;
         $sql .= " AND t3.id=t2.id".LB;
     }
@@ -571,11 +591,11 @@ function databox_category(
     if  ($without_id<>""){
         $sql .= " AND (t2.id<>$without_id)";
     }
-    
+
     //--ORDER
     $sql .= " ORDER BY ".LB;
     $sql .= $orderby.LB;
-    
+
     $result = DB_query ($sql);
     $cnt = DB_numRows ($result);
 
@@ -590,7 +610,7 @@ function databox_category(
     $numrows = DB_numRows ($result);
 
     if ($numrows > 0) {
-        
+
         $tmplfld=DATABOX_templatePath('category',$template,$pi_name);
         $templates = new Template($tmplfld);
         $templates->set_file (array (
@@ -620,7 +640,7 @@ function databox_category(
 
         //bread
         $templates->set_var ('home',$LANG_DATABOX['home']);
-        
+
         $templates->set_var ('lang_category_list_h2',$LANG_DATABOX['category_list_h2']);
 
         $templates->set_var ('category_name',$category_name);
@@ -652,7 +672,7 @@ function databox_category(
         $templates->set_var ('lang_addfield', $addfield_name);
         // 追加項目のヘッダ
         $addition_def=DATABOX_getadditiondef($pi_name);
-        
+
         //
         $templates->set_var('lang_imgfile_frd', $LANG_confignames['databox']['imgfile_frd']);
         $templates->set_var ('imgfile_frd', $_DATABOX_CONF['imgfile_frd']);
@@ -663,6 +683,13 @@ function databox_category(
 
         $templates->set_var ('grids', $grids);
         $templates->set_var ('gridm', $gridm);
+
+        $templates->set_var ('cls', $cls);
+        $templates->set_var ('hidden', $hidden);
+        $templates->set_var ('offsettop', $offsettop);
+        $templates->set_var ('offsetleft', $offsetleft);
+        $templates->set_var ('repeat', $repeat);
+        $templates->set_var ('delay', $delay);
 
         for ($i = 0; $i < $numrows; $i++) {
             $A = DB_fetchArray ($result);
@@ -685,7 +712,7 @@ function databox_category(
             }
             $curdate_ary =  COM_getUserDateTimeFormat();
 
-            
+
             $value=COM_applyFilter($A['value']);
             $group_id = $A['group_id'];
             $owner_id = $A['owner_id'];
@@ -710,7 +737,7 @@ function databox_category(
             $templates->set_var ('data_datefield_B', strftime( "%B" , $A['datefield_un']));
             $templates->set_var ('data_datefield_d', strftime( "%d" , $A['datefield_un']));
             $templates->set_var ('data_datefield_e', strftime( "%e" , $A['datefield_un']));
-            
+
             $templates->set_var ('data_released', $released_ary[0]);
             $templates->set_var ('data_released_shortdate', strftime( $_CONF['shortdate'], $A['released_un'] ));
             $templates->set_var ('data_released_date', strftime( $_CONF['date'], $A['released_un'] ));
@@ -761,7 +788,7 @@ function databox_category(
             $hits=COM_applyFilter(DB_getItem( $tbl6 ,"hits","id={$id}"),true);
             $templates->set_var('lang_hits', $LANG_DATABOX_ADMIN['hits']);
             $templates->set_var('data_hits', $hits);
-            
+
             //カテゴリ@@@@@
             $templates->set_var('lang_category', $LANG_DATABOX_ADMIN['category']);
             DATABOX_getcategoriesDisp($A['id'],$templates,$chk_user,0,$pi_name);
@@ -770,13 +797,13 @@ function databox_category(
             $chk_user=DATABOX_chkuser($group_id,$owner_id,"databox.admin");
             $additionfields = DATABOX_getadditiondatas($id,$pi_name);
             DATABOX_getaddtionfieldsDisp($additionfields,$addition_def,$templates,$chk_user,$pi_name,$fieldset_id);
-            
+
             //管理者の時「編集」
             if ( SEC_hasRights('databox.admin')) {
                 $icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
                 $attr = array('title' => $title." ".$LANG_DATABOX_ADMIN['edit']);
                 $editiconhtml = COM_createImage($icon_url, $LANG_DATABOX_ADMIN['edit'], $attr);
-                
+
                 $attr = array('class' => 'editlink', 'title' => $title." ".$LANG_DATABOX_ADMIN['edit']);
                 $url = $_CONF['site_admin_url'];
                 $url .= '/plugins/databox/data.php';
@@ -807,10 +834,10 @@ function databox_category(
                 }else{
                     $templates->set_var ('data_edit', "");
                 }
-                
+
             }
 
-            
+
             //=====
             $templates->parse ('col_var', 'col', true);
             $templates->parse ('row_var', 'row', true);
@@ -836,10 +863,10 @@ function databox_category(
         }else{
             $url .= "id=".$category_id;
             $url .= "&amp;m=id";
-        }    
+        }
         $url .= "&amp;template=".$template;
         $url .= "&amp;order=";
-        
+
         //-----order navigation
         databox_order ($url, $templates, $order) ;
         //-----page navigation
@@ -868,9 +895,9 @@ function databox_category(
             $templates->set_file (array (
                 'list' => 'nohit.thtml',
             ));
-            
+
             $templates->set_var ('home',$LANG_DATABOX['home']);
-            
+
             $url=$_CONF['site_url']."/databox/category.php";
             $category_top="<a href='".$url."'>".$LANG_DATABOX['category_top']."</a>";
             $templates->set_var ('category_top',$category_top);
@@ -878,13 +905,13 @@ function databox_category(
             $templates->set_var ('category_name',$category_name);
             $templates->set_var ('category_code',$category_code);
             $templates->set_var ('category_description',$category_description);
-            
-                        
+
+
             $templates->set_var('xhtml', XHTML);
             $templates->set_var('site_url', $_CONF['site_url']);
             $templates->set_var('site_admin_url', $_CONF['site_admin_url']);
             $templates->set_var('layout_url', $_CONF['layout_url']);
-            
+
             $templates->set_var ('lang_nohit', $LANG_DATABOX['nohit']);
 
             $templates->parse ('output', 'list');
@@ -892,7 +919,7 @@ function databox_category(
             $retval .=$content;
 
         }
-        
+
     }
 
     $retval =PLG_replacetags ($retval);
@@ -944,7 +971,7 @@ function databox_count(
 // +---------------------------------------------------------------------------+
 {
     global $_TABLES;
-    
+
     //-----
     $tbl1=$_TABLES['DATABOX_base'] ;
     $tbl2=$_TABLES['DATABOX_category'] ;
@@ -988,7 +1015,7 @@ function databox_count(
         }
         $exp=$w.LB;
     }
-    
+
     //-----
     $sql = "SELECT ".LB;
 
@@ -999,7 +1026,7 @@ function databox_count(
     $sql .= " {$tbl1} AS t1 ".LB;
 
     $sql .= " WHERE ".LB;
-    
+
     if ($exp<>""){
         $sql .= $exp. " AND ";
     }
@@ -1020,13 +1047,13 @@ function databox_count(
 
     $result = DB_query ($sql);
     $cnt = DB_numRows ($result);
-    
+
     if  (strtoupper($numberformat)=="YES"){
         $rt=COM_NumberFormat($cnt);
     }else{
         $rt=$cnt;
     }
-    
+
     return $rt;
 
 }
@@ -1122,7 +1149,7 @@ function databox_field(
         $field_code=DB_getItem( $_TABLES['DATABOX_def_field']
                  ,"templatesetvar","field_id={$field_id}");
     }
-    
+
     $field_def=DATABOX_getadditiondef($pi_name);
     $type=$field_def[$field_id]['type'];
     $w = array(0,2,3,4,7,8,9,16);
@@ -1142,9 +1169,9 @@ function databox_field(
     if ($perpage===0 OR is_null($perpage)){
         $perpage=$_DATABOX_CONF['perpage'];
     }
-    
+
     $w=databox_orderby($datefield,$order,$orderby,$addfieldorder,$orderfield_id);
-    
+
     $field_def[$field_id]['name'];
     $field_name=$field_def[$field_id]['name'];
     $field_templatesetvar=$field_def[$field_id]['templatesetvar'];
@@ -1179,9 +1206,9 @@ function databox_field(
 
     $sql .= " ,t2.group_id";
     $sql .= " ,t2.owner_id";
-    
+
     $sql .= " ,t2.fieldset_id ".LB;
-    
+
     if ($addfieldorder){
         $sql .= " ,t3.value ".LB;
     }
@@ -1208,7 +1235,7 @@ function databox_field(
     //}else{
        $sql .= " AND t2.draft_flag=0".LB;
     //}
-    
+
     //アクセス権のないデータ はのぞく
     $sql .= COM_getPermSql('AND',0,2,"t2");
     //公開日以前のデータはのぞく
@@ -1218,7 +1245,7 @@ function databox_field(
 
     $sql .= " ORDER BY ".LB;
     $sql .= $orderby.LB;
-    
+
     $result = DB_query ($sql);
     $cnt = DB_numRows ($result);
 
@@ -1249,7 +1276,7 @@ function databox_field(
             'row'   => 'row.thtml',
             'col'   => "col_detail.thtml",
             ));
-        
+
         $languageid=COM_getLanguageId();
         $language= COM_getLanguage();
         $templates->set_var ('languageid', $languageid);
@@ -1268,11 +1295,11 @@ function databox_field(
         $templates->set_var ('home',$LANG_DATABOX['home']);
         $templates->set_var ('attribute_top',$attribute_top);
         $templates->set_var ('field_top',$field_top);
-        
+
         $templates->set_var ('field_name',$field_name);
         $templates->set_var ('field_templatesetvar',$field_templatesetvar);
         $templates->set_var ('field_description',$field_description);
-        
+
         $templates->set_var ('fieldvalue',$fieldvalue);
 
         $templates->set_var ('addition_name',$additon_name);
@@ -1302,7 +1329,7 @@ function databox_field(
         $templates->set_var ('lang_expired', $LANG_DATABOX_ADMIN['expired']);
         $templates->set_var ('lang_remaingdays', $LANG_DATABOX_ADMIN['remaingdays']);
         $templates->set_var ('lang_addfield', $addfield_name);
-        
+
         //$_DATABOX_CONF
         $templates->set_var('lang_imgfile_frd', $LANG_confignames['databox']['imgfile_frd']);
         $templates->set_var ('imgfile_frd', $_DATABOX_CONF['imgfile_frd']);
@@ -1310,7 +1337,7 @@ function databox_field(
         $templates->set_var('lang_imgfile_thumb_frd', $LANG_confignames['databox']['imgfile_thumb_frd']);
         $templates->set_var ('imgfile_thumb_frd', $_DATABOX_CONF['imgfile_thumb_frd']);
         $templates->set_var ('data_thumb_img_url', $_CONF['site_url']."/".$_DATABOX_CONF['imgfile_thumb_frd']);
-        
+
         $mkids="";
         for ($i = 0; $i < $numrows; $i++) {
             $A = DB_fetchArray ($result);
@@ -1327,26 +1354,26 @@ function databox_field(
             $released_ary = COM_getUserDateTimeFormat($A['released_un']);
             if ($expired==="0000-00-00 00:00:00"){
                 $expired_ary=array();
-            }else{    
+            }else{
                 $expired_ary = COM_getUserDateTimeFormat($A['expired_un']);
             }
             $curdate_ary =  COM_getUserDateTimeFormat();
-            
+
             $sortvalue=COM_applyFilter($A['value']);
             $group_id = $A['group_id'];
             $owner_id = $A['owner_id'];
-            
+
             $fieldset_id=COM_applyFilter($A['fieldset_id']);
 
             $rt=databox_detail_link($id,$code,$title);
-            
+
             $templates->set_var ('data_link', $rt['link']);
             $templates->set_var ('data_title', $title);
             $templates->set_var ('data_code', $code);
             $templates->set_var ('data_description', $description);
             $templates->set_var ('data_id', $id);
             $templates->set_var ('data_url', $rt['url']);
-            
+
             $templates->set_var ('data_datefield', $datefield_ary[0]);
             $templates->set_var ('data_value', $sortvalue);
             $templates->set_var ('data_datefield_shortdate', strftime( $_CONF['shortdate'], $A['datefield_un'] ));
@@ -1359,7 +1386,7 @@ function databox_field(
             $templates->set_var ('data_datefield_B', strftime( "%B" , $A['datefield_un']));
             $templates->set_var ('data_datefield_d', strftime( "%d" , $A['datefield_un']));
             $templates->set_var ('data_datefield_e', strftime( "%e" , $A['datefield_un']));
-            
+
             $templates->set_var ('data_released', $released_ary[0]);//@@@@@@
             $templates->set_var ('data_released_shortdate', strftime( $_CONF['shortdate'], $A['released_un'] ));
             $templates->set_var ('data_released_date', strftime( $_CONF['date'], $A['released_un'] ));
@@ -1370,7 +1397,7 @@ function databox_field(
             $templates->set_var ('data_released_B', strftime( "%B" , $A['released_un']));
             $templates->set_var ('data_released_d', strftime( "%d" , $A['released_un']));
             $templates->set_var ('data_released_e', strftime( "%e" , $A['released_un']));
-            
+
             //公開終了日 Expired to publish
             if ($A['expired'] ==="0000-00-00 00:00:00"){
                 $templates->set_var ('data_expired', "");
@@ -1396,7 +1423,7 @@ function databox_field(
                 $templates->set_var ('data_expired_d', strftime( "%d" , $A['expired_un']));
                 $templates->set_var ('data_expired_e', strftime( "%e" , $A['expired_un']));
             }
-            
+
             $remaingdays="";
             if ($expired<>"0000-00-00 00:00:00") {
                 if  ($expired_ary[1]>=$curdate_ary[1]){
@@ -1409,7 +1436,7 @@ function databox_field(
             }else{
                 $templates->set_var ('new_img', '');
             }
-            
+
             $hits=COM_applyFilter(DB_getItem( $tbl5 ,"hits","id={$id}"),true);
             $templates->set_var('lang_hits', $LANG_DATABOX_ADMIN['hits']);
             $templates->set_var('data_hits', $hits);
@@ -1424,13 +1451,13 @@ function databox_field(
             $chk_user=DATABOX_chkuser($group_id,$owner_id,"databox.admin");
             $additionfields = DATABOX_getadditiondatas($id,$pi_name);
             DATABOX_getaddtionfieldsDisp($additionfields,$addition_def,$templates,$chk_user,$pi_name,$fieldset_id);
-            
+
             //管理者の時「編集」
             if ( SEC_hasRights('databox.admin')) {
                 $icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
                 $attr = array('title' => $title." ".$LANG_DATABOX_ADMIN['edit']);
                 $editiconhtml = COM_createImage($icon_url, $LANG_DATABOX_ADMIN['edit'], $attr);
-                
+
                 $attr = array('class' => 'editlink', 'title' => $title." ".$LANG_DATABOX_ADMIN['edit']);
                 $url = $_CONF['site_admin_url'];
                 $url .= '/plugins/databox/data.php';
@@ -1461,7 +1488,7 @@ function databox_field(
                 }else{
                     $templates->set_var ('data_edit', "");
                 }
-                
+
             }
             //maps plugin link
             $mkid="";
@@ -1540,23 +1567,23 @@ function databox_field(
             $templates->set_file (array (
                 'list' => 'nohit.thtml',
             ));
-            
+
             //bread
             $templates->set_var ('home',$LANG_DATABOX['home']);
             $templates->set_var ('attribute_top',$attribute_top);
             $templates->set_var ('field_top',$field_top);
-            
+
             $templates->set_var ('field_name',$field_name);
             $templates->set_var ('field_templatesetvar',$templatesetvar);
             $templates->set_var ('field_description',$field_description);
-            
+
             $templates->set_var ('fieldvalue',$fieldvalue);
-                        
+
             $templates->set_var('xhtml', XHTML);
             $templates->set_var('site_url', $_CONF['site_url']);
             $templates->set_var('site_admin_url', $_CONF['site_admin_url']);
             $templates->set_var('layout_url', $_CONF['layout_url']);
-            
+
             $templates->set_var ('lang_nohit', $LANG_DATABOX['nohit']);
 
             $templates->parse ('output', 'list');
@@ -1575,7 +1602,7 @@ function databox_field(
         } else {
             $page_title = sprintf ('%s ', $field_name);
         }
-        $headercode=DATABOX_getheadercode(    
+        $headercode=DATABOX_getheadercode(
             "attribute"
             ,$template
             ,$pi_name
@@ -1811,9 +1838,9 @@ function databox_data(
     global $LANG_ACCESS;
     global $LANG_confignames;
     global $_PLUGINS;
-    
+
     $layout=$_DATABOX_CONF['layout'];
-    
+
     //ログイン要否チェック
     if (COM_isAnonUser()){
         if  ($_CONF['loginrequired']
@@ -1831,13 +1858,13 @@ function databox_data(
                 if (function_exists('assistfb_getNestAutotag')) {
                     $code=assistfb_getNestAutotag(substr($code,4));
                 }
-            }    
+            }
         }
         if ($code<>""){
             $id=DATABOX_codetoid($code,'DATABOX_base',"id");
         }
     }
-	
+
     //-----
     $display = '';
 
@@ -1845,32 +1872,32 @@ function databox_data(
     $tbl2=$_TABLES['users'] ;
     $tbl4=$_TABLES['DATABOX_def_fieldset'];
     $tbl5=$_TABLES['DATABOX_stats'];
-    
+
     $addition_def=DATABOX_getadditiondef($pi_name);
 
     //-----
     $sql = "SELECT t.* ";
-    
+
     $sql .= " ,UNIX_TIMESTAMP(t.modified) AS modified_un";
     $sql .= " ,UNIX_TIMESTAMP(t.released) AS released_un";
     $sql .= " ,UNIX_TIMESTAMP(t.comment_expire) AS comment_expire_un";
     $sql .= " ,UNIX_TIMESTAMP(t.expired) AS expired_un";
     $sql .= " ,UNIX_TIMESTAMP(t.created) AS created_un";
     $sql .= " ,UNIX_TIMESTAMP(t.udatetime) AS udatetime_un";
-    
+
     $sql .= " ,t.fieldset_id";
-    
+
     $sql .= " ,t2.username AS owner_name";
     $sql .= " ,t3.username AS last_modify_name";
     $sql .= " ,t3.fullname AS last_modify_fullname";
-    
+
     $sql .= " ,t4.name AS set_name";
     $sql .= " ,t4.description AS set_description";
     $sql .= " ,t4.defaulttemplatesdirectory AS set_defaulttemplatesdirectory";
     $sql .= " ,t4.layout AS set_layout";
-    
+
     $sql .= " ,t5.hits";
-    
+
     $sql .= " FROM ";
     $sql .= " {$tbl} AS t ";//base
     $sql .= " JOIN {$tbl4} AS t4       ON t.fieldset_id=t4.fieldset_id";
@@ -1896,20 +1923,20 @@ function databox_data(
         //公開終了日を過ぎたデータはのぞく
         $sql .= " AND (expired=0 OR expired > NOW())";
     }
-    
+
     //アクセス権のないデータ はのぞく
     $sql .= COM_getPermSql('AND');
-    
+
 
     if (is_null($id)){
         $sql .= " ORDER BY ".$_DATABOX_CONF['datefield'] . " DESC ";
         $sql .= " LIMIT 0 , 1";
     }
-    
-    
+
+
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
-    
+
     if  ($m==="page"  OR  $m==="view"){
         if ($numrows <= 0) {
             echo "<!-- databox databox_category 404 --> ";
@@ -1930,7 +1957,7 @@ function databox_data(
                 $rt = CACHE_check_instance($cacheInstance."_title");
                 if ($rt  AND $cache_time == -1) {
                     $cache=true;
-                } elseif ($cache AND $cache_time > 0) {        
+                } elseif ($cache AND $cache_time > 0) {
                     $lu = CACHE_get_instance_update($cacheInstance."_title");
                     $now = time();
                     if (($now - $lu) < $cache_time ){
@@ -1939,8 +1966,8 @@ function databox_data(
                 }
             }
         }
-        
-        
+
+
         if  ($cache){
             $display = CACHE_check_instance($cacheInstance."_display",$display);
             $layout = CACHE_check_instance($cacheInstance."_layout",$layout);
@@ -1960,10 +1987,10 @@ function databox_data(
             $code=$A['code'];
             $group_id = $A['group_id'];
             $owner_id = $A['owner_id'];
-        
+
             $fieldset_id= $A['fieldset_id'];
             //
-            if ($m==="view"){    
+            if ($m==="view"){
                 $chk_user=1000;//ログインユーザ
             }else{
                 $chk_user=DATABOX_chkuser($group_id,$owner_id,"databox.admin");
@@ -1979,7 +2006,7 @@ function databox_data(
                 }
                 // Meta Tags
 
-                $headercode=DATABOX_getheadercode(    
+                $headercode=DATABOX_getheadercode(
                     "data"
                     ,$template
                     ,$pi_name
@@ -1988,18 +2015,18 @@ function databox_data(
                     ,$A['meta_description']
                     ,$A['meta_keywords']
                     ,$A['description']
-                    ,$additionfields 
-                    ,$addition_def 
-                    ,$chk_user 
-                    ,$fieldset_id 
+                    ,$additionfields
+                    ,$addition_def
+                    ,$chk_user
+                    ,$fieldset_id
                     ,""
                     ,$code
 										,strftime( $_CONF['shortdate'], strtotime( $A['expired_un'] ) )
                     );
-            
+
                 if  ($A['page_title']<>""){
                     $title = $A['page_title'] ;
-                }else{    
+                }else{
                     $title = $A['title'] ;
                 }
             }
@@ -2012,7 +2039,7 @@ function databox_data(
                     'row'   => 'row.thtml',
                     'col'   => "col_detail.thtml",
                     ));
-        
+
             $languageid=COM_getLanguageId();
             $language= COM_getLanguage();
             $templates->set_var ('languageid', $languageid);
@@ -2022,23 +2049,23 @@ function databox_data(
             }else{
                 $templates->set_var ('_languageid', "");
             }
-        
+
             $templates->set_var ('site_admin_url', $_CONF['site_admin_url']);
             $templates->set_var ('site_url',$_CONF['site_url']);
             //
             $templates->set_var('xhtml', XHTML);
             $templates->set_var('layout_url', $_CONF['layout_url']);
-        
+
             $templates->set_var ('site_name', $_CONF['site_name']);
             $templates->set_var ('site_mail', $_CONF['site_mail']);
-        
+
             $currenturl= COM_getCurrentURL();
             $templates->set_var ('currenturl', htmlspecialchars($currenturl, ENT_QUOTES, 'UTF-8'));
             //facebook
             $facebook_consumer_key = trim($_CONF['facebook_consumer_key']);
             $templates->set_var ('facebook_consumer_key', $facebook_consumer_key);
             //
-        
+
             //daft_flag管理者の時
             if ($A['draft_flag']==1){
                 $templates->set_var ('draft', "draft!");
@@ -2062,7 +2089,7 @@ function databox_data(
             $templates->set_var('lang_group', $LANG_DATABOX_ADMIN['group']);
             $templates->set_var('lang_withlink', $LANG_DATABOX_ADMIN['withlink']);
             $templates->set_var('lang_groupbygroup', $LANG_DATABOX_ADMIN['groupbygroup']);
-        
+
             //$_DATABOX_CONF
             $templates->set_var('lang_imgfile_frd', $LANG_confignames['databox']['imgfile_frd']);
             $templates->set_var ('imgfile_frd', $_DATABOX_CONF['imgfile_frd']);
@@ -2070,7 +2097,7 @@ function databox_data(
             $templates->set_var('lang_imgfile_thumb_frd', $LANG_confignames['databox']['imgfile_thumb_frd']);
             $templates->set_var ('imgfile_thumb_frd', $_DATABOX_CONF['imgfile_thumb_frd']);
             $templates->set_var ('data_thumb_img_url', $_CONF['site_url']."/".$_DATABOX_CONF['imgfile_thumb_frd']);
-        
+
             //基本項目
             $templates->set_var('lang_basicfields', $LANG_DATABOX_ADMIN['basicfields']);
             //コード＆タイトル＆説明
@@ -2162,18 +2189,18 @@ function databox_data(
                 $templates->set_var ('expired_d', strftime( "%d" , $A['expired_un']));
                 $templates->set_var ('expired_e', strftime( "%e" , $A['expired_un']));
              }
-        
+
             $templates->set_var ('lang_uuid', $LANG_DATABOX_ADMIN['uuid']);
             $templates->set_var ('uuid', $uuid);
-        
+
             $templates->set_var ('lang_udatetime', $LANG_DATABOX_ADMIN['udatetime']);
             $wary = COM_getUserDateTimeFormat($A['udatetime_un']);
             $templates->set_var ('udatetime', $wary[0]);
             $templates->set_var ('last_modify_uid', $A['uuid']);
-        
+
             $templates->set_var ('last_modify_name', $A['last_modify_name']);
             $templates->set_var ('last_modify_fullname', $A['last_modify_fullname']);
-        
+
             //maps plugin link
             $mkid="";
             $marker="";
@@ -2191,14 +2218,14 @@ function databox_data(
             }
             $templates->set_var ('mkid', $mkid);
             $templates->set_var ('marker', $marker);
-        
+
             //管理者の時「編集」
             if ($m<>"view"){
                 if ( SEC_hasRights('databox.admin')) {
                     $icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
                     $attr = array('title' => $A['title']." ".$LANG_DATABOX_ADMIN['edit']);
                     $editiconhtml = COM_createImage($icon_url, $LANG_DATABOX_ADMIN['edit'], $attr);
-                
+
                     $attr = array('class' => 'editlink', 'title' => $A['title']." ".$LANG_DATABOX_ADMIN['edit']);
                     $url = $_CONF['site_admin_url'];
                     $url .= '/plugins/databox/data.php';
@@ -2230,14 +2257,14 @@ function databox_data(
                         $templates->set_var ('edit', "");
                     }
                 }
-            } 
+            }
             // Call to plugins to set template variables in the databox
             PLG_templateSetVars( 'databox', $templates );
 
             if (function_exists('databox_custom_templateSetVars')) {
                 databox_custom_templateSetVars("data", $templates);
             }
-        
+
             //------------
             $templates->parse ('output', 'list');
 
@@ -2256,7 +2283,7 @@ function databox_data(
                     DB_save($_TABLES['DATABOX_stats'],$fields,$values);
                 }
             }
-        } 
+        }
     }else{
         $cache_time=0;
         if ($nohitmsg==="yes"){
@@ -2277,19 +2304,19 @@ function databox_data(
         }
     }
     $display =PLG_replacetags ($display);
-    
+
     if  (($cache_time > 0 OR $cache_time == -1)  AND  $m==="page" ){
-        CACHE_create_instance($cacheInstance."_display", $display); 
-        CACHE_create_instance($cacheInstance."_layout", $layout); 
-        CACHE_create_instance($cacheInstance."_headercode", $headercode); 
-        CACHE_create_instance($cacheInstance."_title", $title); 
+        CACHE_create_instance($cacheInstance."_display", $display);
+        CACHE_create_instance($cacheInstance."_layout", $layout);
+        CACHE_create_instance($cacheInstance."_headercode", $headercode);
+        CACHE_create_instance($cacheInstance."_title", $title);
     }
-    
+
     $retval['display']=$display;
     $retval['layout']=$layout;
     $retval['headercode']=$headercode;
     $retval['title']=$title;
-    
+
     return $retval;
 }
 
@@ -2351,7 +2378,7 @@ function databox_chk_loaddata(
 
 
     return $rt;
-}    
+}
 //$rt=databox_createdatabycode("aaa");
 function databox_createdatabycode(
     $code
@@ -2363,11 +2390,11 @@ function databox_createdatabycode(
     global $LANG_DATABOX_ADMIN;
     global $_DATABOX_CONF;
     global $_USER;
-    
+
     $rt=array();
     $rt['st']="";
     $rt['id']=0;
-    
+
     $id=DB_getItem($_TABLES['DATABOX_base'],"id","code='{$code}'");
     if ($id<>""){
         $rt['st']="ok";
@@ -2375,14 +2402,14 @@ function databox_createdatabycode(
         return $rt;
     };
 
-    if ($_DATABOX_CONF['allow_data_insert'] 
+    if ($_DATABOX_CONF['allow_data_insert']
             OR SEC_hasRights('databox.submit')){
     }else{
          $rt['st']=$LANG_DATABOX_ADMIN['err_permission_denied'];
          return $rt;
     }
 
-    $uuid=$_USER['uid'];    
+    $uuid=$_USER['uid'];
     if ($uuid===""){
         $uuid=0;
     }
@@ -2423,7 +2450,7 @@ function databox_createdatabycode(
     $sql.=" ,".$perm_anon.LB ;
     $sql.=" ,".$perm_members.LB ;
     $sql.=" ,'{$code}','{$title}'".LB ;
-    
+
     $sql .= ")";
     DB_query ($sql);
 
@@ -2470,7 +2497,7 @@ function databox_createdatabycode(
 
     $rt['st']="created";
     $rt['id']=$id;
-        
+
     return $rt;
 }
 
@@ -2847,7 +2874,7 @@ function databox_datalink(
 {
     global $_CONF;
     global $_TABLES;
-    
+
     $url="";
     if ($id<>"") {
         $url=$_CONF['site_url']."/databox/data.php?";
@@ -2881,7 +2908,7 @@ function databox_mydataentrylink(
     global $_TABLES;
     global $LANG_DATABOX_ADMIN;
     global $_DATABOX_CONF;
-    
+
     $url="";
     //ユーザに更新と新規登録を許可するかまたは、新規登録権を持ったユーザの場合
     if ($_DATABOX_CONF['allow_data_update'] AND $_DATABOX_CONF['allow_data_insert'] OR
@@ -2947,7 +2974,7 @@ function databox_Comment(
 {
     global $_CONF;
     global $_TABLES;
-    //    
+    //
     $order = '';
     if (isset ($_REQUEST['order'])) {
         $order = COM_applyFilter ($_REQUEST['order']);
@@ -2956,19 +2983,19 @@ function databox_Comment(
     if (isset ($_REQUEST['mode'])) {
         $mode = COM_applyFilter ($_POST['mode']);
     }
-    
+
     $page = 1;
     if (isset ($_REQUEST['cpage'])) {
         $page = COM_applyFilter ($_REQUEST['cpage']);
     }
     //
-    
+
     $tbl=$_TABLES['DATABOX_base'] ;
 
     //-----
     $sql = "SELECT ";
-    
-    $sql .= "commentcode "; 
+
+    $sql .= "commentcode ";
     $sql .= ",owner_id";
     $sql .= ",group_id";
     $sql .= ",perm_owner";
@@ -2987,7 +3014,7 @@ function databox_Comment(
         $sql .= " code='".$code."'";
     }
     $sql .= " AND t.draft_flag=0".LB;
-    
+
     //アクセス権のないデータ はのぞく
     $sql .= COM_getPermSql('AND');
     //公開日以前のデータはのぞく
@@ -2996,10 +3023,10 @@ function databox_Comment(
     //公開終了日を過ぎたデータはのぞく
     $sql .= " AND (expired=0 OR expired > NOW())";
     //
-    
+
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
-    
+
     if ($numrows > 0) {
 
         $A = DB_fetchArray ($result);
@@ -3009,7 +3036,7 @@ function databox_Comment(
                     SEC_hasAccess($A['owner_id'], $A['group_id'],
                     $A['perm_owner'], $A['perm_group'], $A['perm_members'],
                     $A['perm_anon']) == 3 ? true : false);
-    
+
             require_once $_CONF['path_system'] . 'lib-comment.php';
             $retval .= CMT_userComments(
                             $A['id']
@@ -3025,7 +3052,7 @@ function databox_Comment(
                             );
         }
     }
-    
+
 
     return $retval;
 }
@@ -3048,10 +3075,10 @@ function databox_detail_link(
 {
     global $_CONF;
     global $_DATABOX_CONF;
-    
+
     $return['link']="" ;
     $return['url']="" ;
-    
+
     if  ($id==0  AND $code==""){
         return $return;
     }
@@ -3060,16 +3087,16 @@ function databox_detail_link(
     }else{
         $prg=$_DATABOX_CONF['detail'];
     }
-    
+
     $url=$_CONF['site_url'] . "/databox/".$_DATABOX_CONF['detail'];
     $url.="?";
-    
+
     if  ($prg=="data.php"){
         if ($_DATABOX_CONF['datacode'] OR $id==0){
             $url.="code=".$code;
             $url.="&amp;m=code";
         }else{
-            $url.="id=".$id; 
+            $url.="id=".$id;
             $url.="&amp;m=id";
         }
     }else{
@@ -3098,10 +3125,10 @@ function databox_search(
 {
 
     $pi_name="databox";
-    
+
     global $_CONF;
     global $_TABLES;
-    
+
     global $_DATABOX_CONF;
     global $LANG_DATABOX;
     global $LANG_DATABOX_ADMIN;
@@ -3117,18 +3144,18 @@ function databox_search(
             return $LANG_DATABOX['loginrequired'];
         }
     }
-          
+
     if (! defined('THIS_SCRIPT')) {
         define ('THIS_SCRIPT', 'databox/search.php');
     }
-          
+
     //-----テーブル
     $tbl1=$_TABLES['DATABOX_category'] ;
     $tbl2=$_TABLES['DATABOX_base'] ;
     $tbl3=$_TABLES['DATABOX_addition'] ;
     //
     $tbl5=$_TABLES['DATABOX_def_category'] ;
-    
+
     $tbl6=$_TABLES['DATABOX_stats'];
     $tbl7=$_TABLES['DATABOX_def_fieldset'];
 
@@ -3143,7 +3170,7 @@ function databox_search(
         $newmarkday=3;
     }
     $chkday=strtotime("- $newmarkday days",time());
-    
+
     //-----Argument checking　引数チェック
     $arg_sv="";//---Argument save 引数退避　order page を除く
     foreach((array)$argary as $key => $value) {
@@ -3193,7 +3220,7 @@ function databox_search(
     $afield=array();
     $afile=array();
     $awhere=array();
-          
+
     foreach((array)$argary as $key => $value) {
         if (is_array($value)){
             $k = explode ('_', $key);
@@ -3243,7 +3270,7 @@ function databox_search(
                     $dummy= databox_searchfield($k[0],COM_applyFilter($k[1]),$ids,$acnt,$afield,$afile,$awhere);
                 }
             }
-        }else if  ( substr($key,0,3)=="aeq" OR substr($key,0,3)=="afr" 
+        }else if  ( substr($key,0,3)=="aeq" OR substr($key,0,3)=="afr"
                               OR substr($key,0,3)=="ato" OR substr($key,0,1)=="a") {
             $k = explode ('_', $key);
 
@@ -3272,33 +3299,33 @@ function databox_search(
 
     $sql .= " ,t2.group_id".LB;
     $sql .= " ,t2.owner_id".LB;
-          
+
     if  ($acnt>0){
         for ($i = 1; $i <= $acnt; $i++) {
              $sql .= $afield[$i].LB;
         }
     }
-          
+
     if ($addfieldorder){
         $sql .= " ,t3.value ".LB;
     }
-    
+
     //--FROM
     $sql .= " FROM ".LB;
     $sql .= " {$tbl2} AS t2 ".LB;
     if ($addfieldorder){
         $sql .= " ,{$tbl3} AS t3 ".LB;
     }
-          
+
     if  ($acnt>0){
         for ($i = 1; $i <= $acnt; $i++) {
              $sql .= $afile[$i].LB;
         }
     }
-    
+
     //--WHERE
     $sql .= " WHERE ".LB;
-                
+
     //タイプ
     $sql .= " t2.fieldset_id=".$argary['fieldset_id'].LB;
           //additionfield 追加項目でsort する時
@@ -3338,7 +3365,7 @@ function databox_search(
     $sql .= " ORDER BY ".LB;
     $sql .= $orderby.LB;
 
-//echo "sql=".$sql."<br>";    
+//echo "sql=".$sql."<br>";
     $result = DB_query ($sql);
     $cnt = DB_numRows ($result);
 
@@ -3348,9 +3375,9 @@ function databox_search(
     }
     $offset = ($argary['page'] - 1) * $argary['perpage'];
     $sql .= " LIMIT $offset, ".$argary['perpage'];
-          
-          
-          
+
+
+
     //自動タグでない時　ヘッダ、左ブロック
     if ($autotag==="notautotag"){
 
@@ -3363,8 +3390,8 @@ function databox_search(
         $title=$_CONF['site_name'] ."-". $fieldset_name;//og_title
         $description=$_CONF['meta_description'];//og_description
         $keywords=$_CONF['meta_keywords'];//og_description
-        //meta 
-        $headercode=DATABOX_getheadercode(          
+        //meta
+        $headercode=DATABOX_getheadercode(
            "search"
             ,$argary['templatedir']
             ,$pi_name
@@ -3380,7 +3407,7 @@ function databox_search(
             ,$fieldset_name
                     );
           }
-          
+
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
 
@@ -3395,9 +3422,9 @@ function databox_search(
             'row'   => 'row.thtml',
             'col'   => "col_detail.thtml",
             ));
-        
+
         $dummy=databox_searchargedit($argary,$templates);
-        
+
         $languageid=COM_getLanguageId();
         $language= COM_getLanguage();
         $templates->set_var ('languageid', $languageid);
@@ -3414,7 +3441,7 @@ function databox_search(
 
         //bread
         $templates->set_var ('home',$LANG_DATABOX['home']);
-        
+
         //page
         $templates->set_var ('cnt', $cnt);
         $lin1=$offset+1;
@@ -3440,7 +3467,7 @@ function databox_search(
         $templates->set_var ('lang_addfield', $addfield_name);
         // 追加項目のヘッダ
         $addition_def=DATABOX_getadditiondef($pi_name);
-        
+
         //
         $templates->set_var('lang_imgfile_frd', $LANG_confignames['databox']['imgfile_frd']);
         $templates->set_var ('imgfile_frd', $_DATABOX_CONF['imgfile_frd']);
@@ -3448,7 +3475,7 @@ function databox_search(
         $templates->set_var('lang_imgfile_thumb_frd', $LANG_confignames['databox']['imgfile_thumb_frd']);
         $templates->set_var ('imgfile_thumb_frd', $_DATABOX_CONF['imgfile_thumb_frd']);
         $templates->set_var ('data_thumb_img_url', $_CONF['site_url']."/".$_DATABOX_CONF['imgfile_thumb_frd']);
-        
+
         $referer =$_SERVER['HTTP_REFERER'];
         $templates->set_var ('referer', $referer);
         $templates->set_var ('lang_referer',$LANG_DATABOX['return']);
@@ -3470,12 +3497,12 @@ function databox_search(
             $released_ary = COM_getUserDateTimeFormat($A['released_un']);
             if ($expired==="0000-00-00 00:00:00"){
                 $expired_ary=array();
-            }else{    
+            }else{
                 $expired_ary = COM_getUserDateTimeFormat($A['expired_un']);
             }
             $curdate_ary =  COM_getUserDateTimeFormat();
 
-            
+
             $value=COM_applyFilter($A['value']);
             $group_id = $A['group_id'];
             $owner_id = $A['owner_id'];
@@ -3511,7 +3538,7 @@ function databox_search(
             $templates->set_var ('data_datefield_B', strftime( "%B" , $A['datefield_un']));
             $templates->set_var ('data_datefield_d', strftime( "%d" , $A['datefield_un']));
             $templates->set_var ('data_datefield_e', strftime( "%e" , $A['datefield_un']));
-            
+
             $templates->set_var ('data_released', $released_ary[0]);
             $templates->set_var ('data_released_shortdate', strftime( $_CONF['shortdate'], $A['released_un'] ));
             $templates->set_var ('data_released_date', strftime( $_CONF['date'], $A['released_un'] ));
@@ -3562,7 +3589,7 @@ function databox_search(
             $hits=COM_applyFilter(DB_getItem( $tbl6 ,"hits","id={$id}"),true);
             $templates->set_var('lang_hits', $LANG_DATABOX_ADMIN['hits']);
             $templates->set_var('data_hits', $hits);
-            
+
             //カテゴリ@@@@@
             $templates->set_var('lang_category', $LANG_DATABOX_ADMIN['category']);
             DATABOX_getcategoriesDisp($A['id'],$templates,$chk_user,0,$pi_name);
@@ -3571,13 +3598,13 @@ function databox_search(
             $chk_user=DATABOX_chkuser($group_id,$owner_id,"databox.admin");
             $additionfields = DATABOX_getadditiondatas($id,$pi_name);
             DATABOX_getaddtionfieldsDisp($additionfields,$addition_def,$templates,$chk_user,$pi_name,$fieldset_id);
-            
+
             //管理者の時「編集」
             if ( SEC_hasRights('databox.admin')) {
                 $icon_url = $_CONF['layout_url'] . '/images/edit.' . $_IMAGE_TYPE;
                 $attr = array('title' => $title." ".$LANG_DATABOX_ADMIN['edit']);
                 $editiconhtml = COM_createImage($icon_url, $LANG_DATABOX_ADMIN['edit'], $attr);
-                
+
                 $attr = array('class' => 'editlink', 'title' => $title." ".$LANG_DATABOX_ADMIN['edit']);
                 $url = $_CONF['site_admin_url'];
                 $url .= '/plugins/databox/data.php';
@@ -3678,22 +3705,22 @@ function databox_search(
             ));
 
             $dummy=databox_searchargedit($argary,$templates);
-            
+
             $templates->set_var ('home',$LANG_DATABOX['home']);
             $referer =$_SERVER['HTTP_REFERER'];
             $templates->set_var ('referer', $referer);
             $templates->set_var ('lang_referer',$LANG_DATABOX['return']);
             $templates->set_var ('fieldset_name',$fieldset_name);
-                        
+
             $templates->set_var('xhtml', XHTML);
             $templates->set_var('site_url', $_CONF['site_url']);
             $templates->set_var('site_admin_url', $_CONF['site_admin_url']);
             $templates->set_var('layout_url', $_CONF['layout_url']);
-            
+
             $templates->set_var ('lang_nohit', $LANG_DATABOX['nohit']);
 
             $templates->parse ('arg_var', 'arg', true);
-            
+
             $templates->parse ('output', 'list');
             $content = $templates->finish ($templates->get_var ('output'));
         }
@@ -3708,7 +3735,7 @@ function databox_search(
         $retval=PLG_replacetags ($content);
     }
     return $retval;
-} 
+}
 
 
 function databox_searcharg(
@@ -3719,7 +3746,7 @@ function databox_searcharg(
 // | 機能  検索リスト
 // | 書式  databox_searcharg($autotag,$arg);
 // +---------------------------------------------------------------------------+
-// | 引数 $autotag :notautotag 自動タグでない 
+// | 引数 $autotag :notautotag 自動タグでない
 // | 引数 $arg  :
 // +---------------------------------------------------------------------------+
 // | 戻値 $argary:検索引数配列
@@ -3795,9 +3822,9 @@ function databox_searchfield(
 
 {
     global $_TABLES;
-          
+
     $return=false;
-          
+
     $sql="SELECT ";
     $sql.= " field_id ";
     $sql.= ",name ";
@@ -3819,7 +3846,7 @@ function databox_searchfield(
         //15:数値  21:通貨
         $sql.=" AND type IN (0,1,10,19,20,15,21)";
     }
-          
+
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
     if ($numrows>0){
@@ -3863,7 +3890,7 @@ function databox_searchargedit(
     global $LANG_DATABOX;
     global $_CONF;
     global $_TABLES;
-    
+
     $rt="";
     $templates->set_var ('site_url',$_CONF['site_url']);
     $templates->set_var ('this_script',THIS_SCRIPT);
@@ -3881,7 +3908,7 @@ function databox_searchargedit(
                     $templates->set_var ($key."_".$key2p1."_id",$w);
                     if  ($w<>""){
                         $wname=COM_applyFilter(
-                        DB_getItem($_TABLES['DATABOX_def_category'] 
+                        DB_getItem($_TABLES['DATABOX_def_category']
                             ,"name","category_id={$w}"));
                             $wnames.=$wname." ";
                     }else{
@@ -3894,7 +3921,7 @@ function databox_searchargedit(
                 $templates->set_var ($key."_names",$wnames);
             }else if  ($k[0]=="ams" ){
                 $kind=COM_applyFilter(
-                DB_getItem($_TABLES['DATABOX_def_field'] 
+                DB_getItem($_TABLES['DATABOX_def_field']
                      ,"selectlist","field_id={$k[1]}"));
                 $wnames="";
                 foreach($ary as $key2 => $value2){
@@ -3904,7 +3931,7 @@ function databox_searchargedit(
                     $templates->set_var ($key."_".$key2p1."_no",$w);
                     if  ($w<>""){
                          $wname=COM_applyFilter(
-                         DB_getItem($_TABLES['DATABOX_mst'] 
+                         DB_getItem($_TABLES['DATABOX_mst']
                              ,"value","kind='{$kind}' AND no={$w}"));
                                                             $wnames.=$wname." ";
                      }else{
