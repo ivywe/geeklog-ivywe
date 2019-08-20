@@ -1937,12 +1937,14 @@ function databox_data(
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
 
-    if  ($m==="page"  OR  $m==="view"){
+/*
+  if  ($m==="page"  OR  $m==="view"){
         if ($numrows <= 0) {
             echo "<!-- databox databox_category 404 --> ";
             exit;
         }
     }
+*/
 
     if ($numrows > 0) {
         $A = DB_fetchArray ($result);
