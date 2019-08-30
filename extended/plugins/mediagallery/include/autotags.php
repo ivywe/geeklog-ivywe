@@ -1077,6 +1077,7 @@ $enable_link=0;
                 // uk-slider
                 ,$p['center']
                 ,$p['sets']
+                ,$p['clsactivated']
 
                 // uk-scrollspy
                 ,$p['cls']

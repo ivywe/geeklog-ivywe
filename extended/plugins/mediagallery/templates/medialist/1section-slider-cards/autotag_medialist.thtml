@@ -11,8 +11,9 @@
   {!if title}<h2 class="<?php echo $class_album_title; ?>">{album_title}</h2>{!endif}
   {!if album_desc}<div class="uk-margin-large-bottom<?php echo $class_album_desc; ?>">{album_desc}</div>{!endif}
 
-  <div>
-    <div class="uk-position-relative uk-visible-toggle uk-light" uk-slider="
+  {!!if {container} == '1' || {container} == '' !!}<div class="uk-container <?php echo $ukc; ?>">{!endif}
+
+    <div uk-slider="
     {!if autoplay}autoplay:{autoplay};{!endif}
     {!if autoplayinterval}autoplay-interval:{autoplayinterval};{!endif}
     {!if center}center:{center};{!endif}
@@ -23,17 +24,21 @@
     {!if pauseonhover}pause-on-hover:{pauseonhover};{!endif}
     {!if sets}sets:{sets};{!endif}
     {!if velocity}velocity:{velocity};{!endif}
+    {!if clsactivated}clsActivated:{clsactivated};{!endif}
     ">
-      <ul class="uk-slider-items uk-child-width-1-{!if grid}{grid}{!else}2{!endif} uk-child-width-1-{!if grids}{grids}{!else}2{!endif}@s uk-child-width-1-{!if gridm}{gridm}{!else}3{!endif}@m uk-grid">
-{medialist_col}
-      </ul>
-      <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
-      <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
 
-    </div>
+      <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
+        <ul class="uk-slider-items uk-child-width-1-{grid}@m uk-grid-match" uk-grid>
+  {medialist_col}
+        </ul>
+        <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+        <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+      </div>
     {!!if {dotnav} == '0' !!}{!else}<ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>{!endif}
+    </div>
   </div>
 
-{!!if {section} == '1' || {section} == '' !!}</section>{!endif}
+  {!!if {container} == '1' || {container} == '' !!}</div>{!endif}
+  {!!if {section} == '1' || {section} == '' !!}</section>{!endif}
 
 {# end {templatelocation} #}

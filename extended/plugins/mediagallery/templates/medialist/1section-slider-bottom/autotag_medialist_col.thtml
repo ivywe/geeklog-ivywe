@@ -1,0 +1,13 @@
+{# begin {templatelocation} #}
+
+<li class="uk-width-3-4">
+  <div class="uk-panel">
+    <img src="{filename}" alt="{media_title}"{xhtml}>
+    <div class="uk-overlay uk-overlay-primary uk-position-bottom uk-text-center uk-transition-slide-bottom-small">
+      <h3 class="uk-margin-remove">{media_title}</h3>
+      <div class="uk-margin-remove">{media_desc}</div>
+    </div>
+  </div>
+</li>
+
+{# end {templatelocation} #}

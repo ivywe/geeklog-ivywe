@@ -79,6 +79,7 @@ function MG_medialist (
 // uk-slider
   , $center=''
   , $sets=''
+  , $clsactivated=''
 
 // uk-scrollspy
   , $cls=''
@@ -94,14 +95,15 @@ function MG_medialist (
 )
 {
 	global $MG_albums;
-    global $_TABLES;
+  global $_TABLES;
 	global $_MG_CONF;
-    global $_IMAGE_TYPE;
-    global $LANG_MG01;
+  global $_IMAGE_TYPE;
+  global $LANG_MG01;
 	global $_CONF;
 
 	$rt="";
-    if (empty($album_id)) return $rt;
+
+  if (empty($album_id)) return $rt;
 	if  (empty($theme)){
 		$theme='default';
 	}
@@ -144,10 +146,10 @@ function MG_medialist (
 	$sql .= " ,a.album_desc ".LB;
 	$sql .= " ,c.cat_name ".LB;
 	$sql .= " ,c.cat_description ".LB;
-    $sql .= " FROM {$_TABLES['mg_media_albums']} as ma ".LB;
-    $sql .= " INNER JOIN " . $_TABLES['mg_media'] . " as m ON ma.media_id=m.media_id ".LB;
-    $sql .= " INNER JOIN " . $_TABLES['mg_albums'] . " as a ON ma.album_id=a.album_id ".LB;
-    $sql .= " LEFT JOIN " . $_TABLES['mg_category'] . " as c ON m.media_category=c.cat_id ".LB;
+  $sql .= " FROM {$_TABLES['mg_media_albums']} as ma ".LB;
+  $sql .= " INNER JOIN " . $_TABLES['mg_media'] . " as m ON ma.media_id=m.media_id ".LB;
+  $sql .= " INNER JOIN " . $_TABLES['mg_albums'] . " as a ON ma.album_id=a.album_id ".LB;
+  $sql .= " LEFT JOIN " . $_TABLES['mg_category'] . " as c ON m.media_category=c.cat_id ".LB;
 	$sql .= " WHERE ".LB;
 	$sql .= " ma.album_id='" . addslashes($album_id) . "' ".LB;
 	$sql .= " AND m.media_type=0 ".LB;
@@ -254,6 +256,7 @@ function MG_medialist (
     // uk-slider
     $T->set_var('center',$center);
     $T->set_var('sets',$sets);
+    $T->set_var('clsactivated',$clsactivated);
 
     // uk-scrollspy
     $T->set_var('cls',$cls);
@@ -494,6 +497,7 @@ function MG_parm2 ($p2)
   // uk-slider
   $parm2_ary[]="center";
   $parm2_ary[]="sets";
+  $parm2_ary[]="clsactivated";
 
   // uk-scrollspy
   $parm2_ary[]="cls";

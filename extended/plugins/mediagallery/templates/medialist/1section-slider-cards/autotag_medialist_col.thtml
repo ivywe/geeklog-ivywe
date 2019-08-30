@@ -1,0 +1,15 @@
+{# begin {templatelocation} #}
+
+<li>
+  <div class="uk-card uk-card-default uk-card-small">
+    <div class="uk-card-media-top">
+      <img src="{filename}" alt="{media_title}">
+    </div>
+    <div class="uk-card-body">
+      <h3 class="uk-card-title">{media_title}</h3>
+      <div>{media_desc}</div>
+    </div>
+  </div>
+</li>
+
+{# end {templatelocation} #}

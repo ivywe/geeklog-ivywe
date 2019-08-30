@@ -1,0 +1,17 @@
+{# begin {templatelocation} #}
+
+<li class="uk-width-3-5@m">
+  <div class="uk-card uk-card-default uk-card-small">
+    <div uk-grid>
+      <div class="uk-card-media-top uk-width-2-5">
+        <img src="{filename}" alt="{media_title}">
+      </div>
+      <div class="uk-card-body uk-width-3-5">
+        <h3 class="uk-card-title">{media_title}</h3>
+        <div>{media_desc}</div>
+      </div>
+    </div>
+  </div>
+</li>
+
+{# end {templatelocation} #}
