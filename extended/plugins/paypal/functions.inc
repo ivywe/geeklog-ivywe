@@ -18,7 +18,7 @@
 // | Based on the original paypal Plugin                                       |
 // | Copyright (C) 2005 - 2006 by the following authors:                       |
 // |                                                                           |
-// | Vincent Furia <vinny01 AT users DOT sourceforge DOT net>                  |   
+// | Vincent Furia <vinny01 AT users DOT sourceforge DOT net>                  |
 // +---------------------------------------------------------------------------+
 // |                                                                           |
 // | This program is free software; you can redistribute it and/or             |
@@ -103,31 +103,31 @@ if (file_exists($pluginfile)) {
 function plugin_getheadercode_paypal()
 {
 	global $_CONF, $_PAY_CONF, $_PLUGINS, $_SCRIPTS;
-	
+
 	$_SCRIPTS->setJavaScriptLibrary('jquery');
-	
+
 	$pos = strpos($_SERVER['PHP_SELF'],'/informations.php');
-	
+
     if($pos === false) {
 	    $_SCRIPTS->setJavaScriptFile('paypal_cart', '/' . $_PAY_CONF['paypal_folder'] . '/js/jcart-javascript.php');
 	}
-	
+
 	$_SCRIPTS->setCSSFile('paypal_css', '/' . $_PAY_CONF['paypal_folder'] . '/css/paypal_140.css');
-	
+
 	if (SEC_hasRights('paypal.admin') && function_exists('PAYPAL_plot')) {
-	    
+
 		$_SCRIPTS->setCSSFile('paypal_css_jqplot', '/' . $_PAY_CONF['paypal_folder'] . '/css/jquery.jqplot.css');
-		
+
 		$js = '<!--[if lt IE 9]><script language="javascript" src="' . $_CONF['site_url'] . '/' . $_PAY_CONF['paypal_folder'] . '/js/excanvas.js"></script><![endif]-->
 	<script language="javascript" src="' . $_CONF['site_url'] . '/' . $_PAY_CONF['paypal_folder'] . '/js/jquery.jqplot.js">
 	</script>
 	<script language="javascript" src="' . $_CONF['site_url'] . '/' . $_PAY_CONF['paypal_folder'] . '/js/jqplot.dateAxisRenderer.js">
 	</script>
 	';
-	
+
 	$_SCRIPTS->setJavaScript($js, false, true);
 	}
-	
+
 	return $retval;
 }
 
@@ -159,7 +159,7 @@ function plugin_getmenuitems_paypal()
 * Returns doc uri for Geeklog-1.6.0 or later
 */
 function plugin_getdocumentationurl_paypal() {
-	
+
 	return 'http://geeklog.fr/wiki/plugins:paypal#configuration';
 }
 
@@ -358,7 +358,7 @@ function plugin_pluginstatechange_paypal($type, $status)
 function plugin_autouninstall_paypal()
 {
     global $_PAY_CONF;
-	
+
     $out = array (
         /* give the name of the tables, without $_TABLES[] */
         'tables' => array('paypal_ipnlog',
@@ -378,7 +378,7 @@ function plugin_autouninstall_paypal()
 		'paypal_providers',
 		'paypal_shipper_service',
 		'paypal_shipping_to',
-		'paypal_shipping_cost'), 
+		'paypal_shipping_cost'),
         /* give the full name of the group, as in the db */
         'groups' => array('Paypal Admin', 'Paypal User', 'Paypal Viewer'),
         /* give the full name of the feature, as in the db */
@@ -388,7 +388,7 @@ function plugin_autouninstall_paypal()
         /* give all vars with their name */
         'vars' => array()
     );
-	
+
 	if (file_exists($_PAY_CONF['logfile'])) {
         @unlink($_PAY_CONF['logfile']);
 	}
@@ -404,10 +404,10 @@ function plugin_autouninstall_paypal()
  *
  * @param $rights string comma seperated list of allowable rights
  */
-function paypal_access_check ($rights = 'paypal.viewer') 
+function paypal_access_check ($rights = 'paypal.viewer')
 {
     global $_USER, $_SERVER, $LANG_PAYPAL_1, $_PAY_CONF;
-	
+
 	if ($_USER['uid'] < 2) $_USER['uid'] = 1;
 
     // Confirm that the user has sufficient rights to access this page
@@ -425,7 +425,7 @@ function paypal_access_check ($rights = 'paypal.viewer')
         COM_output($display);
         exit;
     }
-	
+
 	// Confirm that the user has sufficient rights to access this page
 	$features = explode(",",(SEC_getUserPermissions()));
     if ( !in_array($rights, $features) ) {
@@ -516,7 +516,7 @@ function paypal_viewer_menu() {
     $menu->set_file(array('menu' => 'viewer_menu.thtml'));
     $menu->set_var('site_url', $_PAY_CONF['site_url']);
     $menu->set_var('view_cart', $LANG_PAYPAL_1['view_cart']);
-    
+
 	// Display types
     $types = 0;
     $nb_products = DB_count($_TABLES['paypal_products'],'type','product');
@@ -538,15 +538,15 @@ function paypal_viewer_menu() {
 		$type->set_var('memberships', '');
 		if ($types == 0) $type->set_var('products', '<a href="' . $_PAY_CONF['site_url'] . '/index.php">' . $LANG_PAYPAL_1['product_list_label'] . '</a>');
 	}
-	$type_layout = $type->parse('', 'table');		
+	$type_layout = $type->parse('', 'table');
     $menu->set_var('product_list_label', $type_layout);
-	
+
 	if ($_PAY_CONF['view_membership'] == '1') {
     	$menu->set_var('memberships', '<li><a href="' . $_PAY_CONF['site_url'] . '/memberships_history.php">' . $LANG_PAYPAL_1['members_list'] . '</a></li>');
 	} else {
 	    $menu->set_var('memberships', '');
 	}
-	
+
     $display .= $menu->parse('output', 'menu');
 
     // return results
@@ -567,7 +567,7 @@ function paypal_user_menu() {
     $menu = COM_newTemplate($_CONF['path'] . 'plugins/paypal/templates/menus');
     $menu->set_file(array('menu' => 'user_menu.thtml'));
     $menu->set_var('site_url', $_PAY_CONF['site_url']);
-	
+
 	// Display types
     $types = 0;
     $nb_products = DB_count($_TABLES['paypal_products'],'type','product');
@@ -589,9 +589,9 @@ function paypal_user_menu() {
 		$type->set_var('memberships', '');
 		if ($types == 0) $type->set_var('products', '<a href="' . $_PAY_CONF['site_url'] . '/index.php">' . $LANG_PAYPAL_1['product_list_label'] . '</a>');
 	}
-	$type_layout = $type->parse('', 'table');		
+	$type_layout = $type->parse('', 'table');
     $menu->set_var('product_list_label', $type_layout);
-	
+
     $menu->set_var('my_purchases', $LANG_PAYPAL_1['my_purchases']);
     $menu->set_var('my_details', $LANG_PAYPAL_1['my_details']);
 	$menu->set_var('view_cart', $LANG_PAYPAL_1['view_cart']);
@@ -890,15 +890,15 @@ function PAYPAL_displayCart ($block = 0)
     global $_CONF, $_PAY_CONF, $jcart;
 
 	include_once ($_CONF['path'] . 'plugins/paypal/paypal.php');
-	
+
     // Start session
     session_start();
-	
+
     // Initialize jcart after session start
     $cart =& $_SESSION["jcart"];
     if(!is_object($cart)) $cart = new jcart();
 	$retval = $cart->display_cart($jcart,$block);
-	
+
     return $retval;
 }
 
@@ -960,22 +960,22 @@ function plugin_enablestatechange_paypal ($enable)
 function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column = '')
 {
     global $_CONF, $_PAY_CONF, $LANG_PAYPAL_1, $LANG_PAYPAL_CART, $_TABLES, $_USER;
-	
+
     // Get products from database
     $sql = "SELECT p.id,p.type,p.item_id,p.name,p.short_description,p.price,p.product_type, p.logged, p.hidden,
             i.pi_filename,  p.owner_id, p.group_id, p.perm_owner, p.perm_group, p.perm_members, p.perm_anon,
 			p.customisable, p.discount_p, p.discount_a, p.price_ref, p.weight, p.shipping_type
             FROM {$_TABLES['paypal_products']} AS p
             LEFT JOIN {$_TABLES['paypal_images']} AS i
-            ON i.pi_pid = p.id AND i.pi_img_num IN (SELECT MIN(pi_img_num) FROM {$_TABLES['paypal_images']} WHERE pi_img_num >= 1 AND pi_pid = p.id)  
+            ON i.pi_pid = p.id AND i.pi_img_num IN (SELECT MIN(pi_img_num) FROM {$_TABLES['paypal_images']} WHERE pi_img_num >= 1 AND pi_pid = p.id)
             ";
-            
+
     $sql_index = $sql  . ' WHERE p.active=1 ';
-    
+
 	//Clean input
 	(is_numeric($_REQUEST['page'])) ? $page = $_REQUEST['page'] : $page = 1;
 	(in_array($_REQUEST['type'],$_PAY_CONF['types'])) ? $type = $_REQUEST['type'] : $type = '';
-	
+
     // If applicable, limit by category
     if ( $category > 0 ) {
         $sql_index .= " AND p.cat_id = '{$category}'";
@@ -983,7 +983,7 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 
     // If applicable, limit by type
     if (!empty($type) ) {
-	    
+
         $sql_index .= " AND p.type = '{$type}' ";
     }
 
@@ -994,23 +994,23 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 
     // If applicable, order by
     if (!empty($_PAY_CONF['order'])) {
-	    // 03.27.13 ORDER BY type = error in your SQL syntax 
+	    // 03.27.13 ORDER BY type = error in your SQL syntax
         $sql_index .= " ORDER BY {$_PAY_CONF['order']}";
     }
-	
+
 	if($category != '') {
 		$field = 'cat_id';
 	} else {
 		$category = 0;
 	}
-	
+
 	$sql_total = $sql_index;
 
     // If applicable, handle pagination of query
     if (isset($_PAY_CONF['maxPerPage']) && $_PAY_CONF['maxPerPage'] > 0) {
         // Count products from database
         $count = DB_count($_TABLES['paypal_products'], $field, $category);
-		
+
         // Make sure page count is reasonable, if not, fix it
         if ($page <= 0) {
             $page = 1;
@@ -1025,23 +1025,23 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
     }
 
     // Display categories
-	
+
     if ($pid == '' && $autotag != 2) {
         if (isset( $_PAY_CONF['categoryColumns']) && $_PAY_CONF['categoryColumns'] > 0) {
-            $sql = "SELECT p.cat_id, c.cat_id, p.type, c.cat_name, c.description, c.image 
+            $sql = "SELECT p.cat_id, c.cat_id, p.type, c.cat_name, c.description, c.image
 			    FROM {$_TABLES['paypal_categories']} AS c
 				LEFT JOIN {$_TABLES['paypal_products']} AS p
-				ON p.cat_id = c.cat_id 
+				ON p.cat_id = c.cat_id
 				WHERE c.enabled = '1' AND c.parent_id = '{$category}'" .
                 COM_getPermSQL('AND', 0, 2, 'c');
-            
+
             $sql .= " GROUP BY c.cat_id ORDER BY c.cat_name";
-			
+
             $cat_res = DB_query($sql);
             $nrows = DB_numRows($cat_res);
-			
+
 			$breadcrumbs = PAYPAL_Breadcrumbs($category);
-			
+
 
 
 
@@ -1058,10 +1058,10 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 				$cat = COM_newTemplate($_CONF['path'] . 'plugins/paypal/templates');
 				$cat->set_file(array('table'    => 'category_table.thtml','product_list_start'    => 'product_list_start.thtml'));// ivy
 				$cat->set_var('width', floor (100 / $_PAY_CONF['categoryColumns']));
-				
+
 
 				$cat->set_file(array('row'      => 'category_row.thtml',
-								 'category' => 'category.thtml')); 
+								 'category' => 'category.thtml'));
 
 				for ($i = 1; $i <= $nrows; $i++) {
 						$C = DB_fetchArray ($cat_res);
@@ -1070,14 +1070,14 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 							$cat_image = $_PAY_CONF['path_cat_images'] . $C['image'];
 						   (is_numeric($_PAY_CONF['catImageWidth'])) ? $imgwidth = $_PAY_CONF['catImageWidth'] : $imgwidth = 100;
 							if (file_exists($cat_image) && $C['image'] != '') {
-								$cat->set_var('cat_image','<p><a href="' . $_PAY_CONF['site_url'] . '/index.php?n=' 
-								. urlencode($C['cat_name']) . '&amp;category='. $C['cat_id'] 
-								. '"><img src="' . $_PAY_CONF['images_cat_url'] . $C['image'] . '" class="cat_image" title="' . $C['cat_name'] . '" alt="' 
+								$cat->set_var('cat_image','<p><a href="' . $_PAY_CONF['site_url'] . '/index.php?n='
+								. urlencode($C['cat_name']) . '&amp;category='. $C['cat_id']
+								. '"><img src="' . $_PAY_CONF['images_cat_url'] . $C['image'] . '" class="cat_image" title="' . $C['cat_name'] . '" alt="'
 								. $C['cat_name'] . '" style="max-height:140px" /></a></p>');
 
 
 								$cat->set_var('cat_image_url',$_PAY_CONF['images_cat_url'] . $C['image'] );
-								$cat->set_var('cat_url',$_PAY_CONF['site_url'] . '/index.php?n=' 
+								$cat->set_var('cat_url',$_PAY_CONF['site_url'] . '/index.php?n='
 								. urlencode($C['cat_name']) . '&amp;category='. $C['cat_id']  );
 							} else {
 								$cat->set_var('cat_image', '');
@@ -1104,8 +1104,8 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 						$cat->set_var('cat_id', $C['cat_id']  );
 
 						$cat->set_var('category_name', $C['cat_name']);
-						$cat->set_var('category_link', $_PAY_CONF['site_url'] . '/index.php?n=' 
-								. urlencode($C['cat_name']) . '&amp;category='. $C['cat_id'] 
+						$cat->set_var('category_link', $_PAY_CONF['site_url'] . '/index.php?n='
+								. urlencode($C['cat_name']) . '&amp;category='. $C['cat_id']
 								);
 
 						$cat->parse('list_start', 'category', true); // ivy
@@ -1118,7 +1118,7 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 				if ($nrows % $_PAY_CONF['categoryColumns'] != 0) {
 						$cat->parse('categories', 'row', true);
 				}
-				
+
 				$retval .= $cat->parse('', 'table');
             }
         }
@@ -1200,21 +1200,21 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
     $prod_res = DB_query($sql_index);
 	$prod_total_res = DB_query($sql_total);
 	$nb_prod_total = DB_numRows($prod_total_res);
-	
+
 	$nb_prod = 0;
-	
+
     // Display each product
     $col_number = 1;
 
 	//Overide column setting for block if user want to
     if ($column >0 && $column <5 ) $_PAY_CONF['products_col'] = $column;
-	
+
     if ($_PAY_CONF['products_col'] == 1) {$product->set_var('width', '100');}
     if ($_PAY_CONF['products_col'] == 2) {$product->set_var('width', '50');}
     if ($_PAY_CONF['products_col'] == 3) {$product->set_var('width', '33');}
     if ($_PAY_CONF['products_col'] == 4) {$product->set_var('width', '25');}
-	
-	
+
+
 	while ($A = DB_fetchArray($prod_res)) {
 		if (SEC_hasAccess2($A)) {
 		    $nb_prod++;
@@ -1238,7 +1238,7 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 			}
 			$product->set_var('short_description', PLG_replacetags($A['short_description']));
 			if ($A['item_id'] != '' && $_PAY_CONF['display_item_id'] == 1) {
-				$product->set_var('item_id', $A['item_id'] ); 
+				$product->set_var('item_id', $A['item_id'] );
 			} else {
 				$product->set_var('item_id', '');
 			}
@@ -1252,11 +1252,11 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 			} else if ($A['discount_p'] != '' && ($A['price'] > $product_price)) {
 				 $product->set_var('price_ref', '<span class="price_deleted">' . number_format($A['price'], $_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']) . '</span>');
 		    }
-			
+
 			$product->set_var('price2', $product_price);
 			$product->set_var('details', '<a class="product-details" href="' . $_PAY_CONF['site_url'] . '/product_detail.php?product='. $A['id'] . '">' . $LANG_PAYPAL_1['details'] . '</a>');
 
-			//First product image	
+			//First product image
 			if ($A['pi_filename'] == '') {
 				$product->set_var('small_pic', '');
 				$product->set_var('small_pic_url', '');
@@ -1276,7 +1276,7 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 					$height = '100%';
 				}
 				$product->set_var('small_pic', '<a class="product-details" href="' . $_PAY_CONF['site_url'] . '/product_detail.php?n=' . urlencode($A['name']) . '&amp;product='. $A['id'] . '"><img class="" src="' . $_PAY_CONF['images_url'] . $A['pi_filename'] . '" style="max-width:100px; height:auto" alt="' . $A['name'] . '" /></a>');
-				
+
 				$product->set_var('small_pic_url', $_PAY_CONF['images_url'] . $A['pi_filename']);
 
 			}
@@ -1289,7 +1289,7 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 			// For anymous users, login
 			$product->set_var('customisable', '');
 			$product->set_var('login', '');
-			
+
 			//Weight
             if ($A['shipping_type'] == 0) {
 			    $product->set_var('item_weight', '0.00');
@@ -1302,7 +1302,7 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
     			$product->set_var('item_weight', $A['weight']);
 				$product->set_var('free_shipping', '');
 			}
-			
+
 			$product->set_var('item_ref', $A['item_id']);
 
 			if (( $A['price'] > 0 && ($_USER['uid'] < 2 && $_PAY_CONF['anonymous_buy'] == 0)) || ($A['logged'] == 1 && $_USER['uid'] < 2)) {
@@ -1335,7 +1335,7 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 				$product->set_var('add_to_cart', $LANG_PAYPAL_1['add_to_cart']);
 				$product->set_var('add2cart', $product->parse('', 'cart'));
 			}
-			
+
 			//rating
 			if (function_exists('RATING_display_rating') && $pid == '' && $_PAY_CONF['view_review'] == 1) {
 				$product->set_var('rating',  RATING_display_rating('paypal_' . $A['id'], 'paypal', $A['id'], 1, 5, 64) );
@@ -1367,7 +1367,7 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 		}
 	}
 	$retval .= $p_retval;
-	
+
 	//Products total
 	if ($nb_prod_total == 0) {
 	    $product->set_var('products_total', $LANG_PAYPAL_1['no_product_to_display']);
@@ -1453,11 +1453,11 @@ function plugin_dopluginsearch_paypal($query, $datestart, $dateend, $topic, $typ
     $sql .= "FROM {$_TABLES['paypal_products']} AS p ";
 	$sql .= "LEFT JOIN {$_TABLES['paypal_images']} AS i
             ON i.pi_pid = p.id AND i.pi_img_num IN (SELECT MIN(pi_img_num) FROM {$_TABLES['paypal_images']} WHERE pi_img_num = 1 AND pi_pid = p.id) ";
-	$sql .= "WHERE p.active = '1' 
+	$sql .= "WHERE p.active = '1'
             AND p.hidden = '0' ";
-			
+
 	$sql .= COM_getPermSQL('AND', 0, 2, 'p') . ' ';
-	
+
 	if (!empty($datestart) && !empty($dateend)) {
         $delim = substr($datestart, 4, 1);
         if (!empty($delim)) {
@@ -1485,7 +1485,7 @@ function plugin_dopluginsearch_paypal($query, $datestart, $dateend, $topic, $typ
 			return '';
 		}
 		while ($row = DB_fetchArray($result)) {
-		    //First product image	
+		    //First product image
             if ($row['pi_filename'] == '') {
                 $image = '';
             } else {
@@ -1499,12 +1499,12 @@ function plugin_dopluginsearch_paypal($query, $datestart, $dateend, $topic, $typ
                                 'url'=>$row['url'],
                                 'hits'=>$row['hits'],
                                 'uid'=> COM_createLink(htmlspecialchars(COM_getDisplayName( $row['uid'] )),
-                                    $_CONF['site_url'] . '/users.php?mode=profile&amp;uid=' . $row['uid']) . $image 
+                                    $_CONF['site_url'] . '/users.php?mode=profile&amp;uid=' . $row['uid']) . $image
                                  );
 		}
 	}
-	
-	$search->setResults($formattedResults);								
+
+	$search->setResults($formattedResults);
 
     return $search;
 }
@@ -1514,7 +1514,7 @@ function plugin_dopluginsearch_paypal($query, $datestart, $dateend, $topic, $typ
 function phpblock_paypal_searchBlock()
 {
 	global $_CONF, $_PAY_CONF, $_TABLES, $LANG_PAYPAL_1;
-	
+
 	$T = COM_newTemplate($_CONF['path'] . 'plugins/paypal/templates/blocks');
 	$T->set_file('search_block', 'search_block.thtml');
 	$options = '';
@@ -1531,7 +1531,7 @@ function phpblock_paypal_searchBlock()
 	$T->set_var('search_button', $LANG_PAYPAL_1['search_button']);
 	$T->parse('output', 'search_block');
     $retval = $T->finish ($T->get_var('output'));
-	
+
 	return $retval;
 }
 */
@@ -1545,7 +1545,7 @@ function phpblock_paypal_searchBlock()
 function phpblock_paypal_randomBlock()
 {
 	global $_CONF, $_TABLES, $_PAY_CONF;
-	
+
 	$retval = '';
 	$T = COM_newTemplate($_CONF['path'] . 'plugins/paypal/templates/blocks');
 	$T->set_file('random_block', 'random_block.thtml');
@@ -1553,16 +1553,16 @@ function phpblock_paypal_randomBlock()
     $sql = "SELECT p.*, i.pi_filename
             FROM {$_TABLES['paypal_products']} AS p
             LEFT JOIN {$_TABLES['paypal_images']} AS i
-            ON i.pi_pid = p.id AND i.pi_img_num IN (SELECT MIN(pi_img_num) FROM {$_TABLES['paypal_images']} WHERE pi_img_num >= 1 AND pi_pid = p.id) 
-            WHERE p.active = 1 AND p.show_in_blocks = 1	
-			ORDER BY RAND() LIMIT 1 	
+            ON i.pi_pid = p.id AND i.pi_img_num IN (SELECT MIN(pi_img_num) FROM {$_TABLES['paypal_images']} WHERE pi_img_num >= 1 AND pi_pid = p.id)
+            WHERE p.active = 1 AND p.show_in_blocks = 1
+			ORDER BY RAND() LIMIT 1
 		    ";
 	$res = DB_query($sql);
-	
+
 	$A = DB_fetchArray($res);
-	
+
 	if (!isset($A['name'])) return;
-	
+
 	if ($A['pi_filename'] == '') {
 		$T->set_var('small_pic', '');
 	} else {
@@ -1592,9 +1592,9 @@ function PAYPAL_listPurchases($list='one')
     require_once $_CONF['path_system'] . 'lib-admin.php';
 
     $retval = '';
-	
+
 	$defsort_arr = array('field' => 'purchase_date', 'direction' => 'desc');
-	
+
 	if ($list == 'all') {
 	    if (DB_count($_TABLES['paypal_purchases']) == 0){
 	        $retval .= '<p>' . $LANG_PAYPAL_1['purchases_history_empty'] . '</p>';
@@ -1665,14 +1665,14 @@ function PAYPAL_listPurchases($list='one')
         $text_arr = array(
         );
 	}
-	
+
 	$sql = "SELECT
 	            p.*, u.username, prod.name, prod.product_type
-            FROM 
+            FROM
 				{$_TABLES['paypal_purchases']} AS p
 
 			LEFT JOIN
-				{$_TABLES['users']} AS u 
+				{$_TABLES['users']} AS u
 			ON
 				p.user_id = u.uid
 			LEFT JOIN
@@ -1681,7 +1681,7 @@ function PAYPAL_listPurchases($list='one')
 				p.product_id = prod.id
 			WHERE 1=1
 			";
-	
+
     if ($list == 'one' || $list == 'downloadable') $sql .= " AND u.uid = {$_USER['uid']}";
     if ($list == 'downloadable') $sql .= " AND TO_DAYS(NOW()) <= TO_DAYS(p.expiration)";
 
@@ -1745,7 +1745,7 @@ function PAYPAL_getListField_paypal_purchases($fieldname, $fieldvalue, $A, $icon
         case "product_type" :
             if ($A['product_type'] == '1') {
      			$retval = '<a  class="uk-button uk-button-primary uk-button-large"  href="' . $_PAY_CONF['site_url'] . '/download.php' . '?id=' . $A['product_id'] . '">' . $LANG_PAYPAL_1['Download'] . '</a>';
-			} else { 
+			} else {
 			    $retval = '';
 			}
             break;
@@ -1770,11 +1770,11 @@ function PAYPAL_listSubscriptions($list, $active = 0)
     require_once $_CONF['path_system'] . 'lib-admin.php';
 
     $retval = '';
-	
+
 	if (DB_count($_TABLES['paypal_subscriptions']) == 0){
 	    $retval .= '<p>' . $LANG_PAYPAL_1['subscriptions_empty'] . '</p>';
 	}
-	
+
 	$defsort_arr = array('field' => 'purchase_date', 'direction' => 'desc');
 
     if ($list == 'all') {
@@ -1811,7 +1811,7 @@ function PAYPAL_listSubscriptions($list, $active = 0)
             'form_url' => $_CONF['site_admin_url'] . '/plugins/paypal/subscriptions.php'
         );
 	}
-	
+
 	$sql = "SELECT
 	            s.*,
 				u.username,
@@ -1822,29 +1822,29 @@ function PAYPAL_listSubscriptions($list, $active = 0)
 				g.grp_name,
 				us.user_name,
 				i.pi_filename
-            FROM 
-			    {$_TABLES['paypal_subscriptions']} AS s 
+            FROM
+			    {$_TABLES['paypal_subscriptions']} AS s
 			LEFT JOIN
-                {$_TABLES['users']} AS u 
+                {$_TABLES['users']} AS u
             ON
-                s.user_id = u.uid 
+                s.user_id = u.uid
 			LEFT JOIN
-                {$_TABLES['paypal_products']} AS p 
-            ON 
-			    p.id = s.product_id 
+                {$_TABLES['paypal_products']} AS p
+            ON
+			    p.id = s.product_id
 			LEFT JOIN
-                {$_TABLES['groups']} AS g 
-            ON 
-			    s.add_to_group = g.grp_id 
+                {$_TABLES['groups']} AS g
+            ON
+			    s.add_to_group = g.grp_id
 			LEFT JOIN
-                {$_TABLES['paypal_users']} AS us 
-            ON 
+                {$_TABLES['paypal_users']} AS us
+            ON
 			    s.user_id = us.user_id
             LEFT JOIN {$_TABLES['paypal_images']} AS i
-            ON i.pi_pid = p.id AND i.pi_img_num IN (SELECT MIN(pi_img_num) FROM {$_TABLES['paypal_images']} WHERE pi_img_num >= 1 AND pi_pid = p.id)				
+            ON i.pi_pid = p.id AND i.pi_img_num IN (SELECT MIN(pi_img_num) FROM {$_TABLES['paypal_images']} WHERE pi_img_num >= 1 AND pi_pid = p.id)
 			";
 	if ($list == 'one') $sql .= " WHERE u.uid ={$_USER['uid']}";
-	
+
 	if ( ($_PAY_CONF['display_complete_memberships'] == 0 || $active == 1 ) && ($list == 'public' || $list == 'logo') ) {
 	    $sql .= " WHERE TO_DAYS(NOW()) <= TO_DAYS(s.expiration)";
 	}
@@ -1857,12 +1857,12 @@ function PAYPAL_listSubscriptions($list, $active = 0)
     );
 
     $logo_list = '';
-	
+
 	$retval .= ADMIN_list('paypal', 'PAYPAL_getListField_paypal_subscriptions',
                           $header_arr, $text_arr, $query_arr, $defsort_arr);
-	
+
 	//Logo
-    ($list == 'logo') ? $retval =  $_SESSION['logo_list'] : $_SESSION['logo_list']  = ''; 	
+    ($list == 'logo') ? $retval =  $_SESSION['logo_list'] : $_SESSION['logo_list']  = '';
 
     return $retval;
 }
@@ -1882,18 +1882,18 @@ function PAYPAL_getListField_paypal_subscriptions($fieldname, $fieldvalue, $A, $
     global $_CONF, $LANG_ADMIN, $LANG_STATIC, $_TABLES, $_PAY_CONF, $LANG_PAYPAL_1;
 
     require_once $_CONF['path_system'] . 'lib-user.php';
-	
+
 	switch($fieldname) {
-	
+
         case "edit":
 		    $edit_url = $_CONF['site_admin_url'] . '/plugins/paypal/subscriptions.php?mode=edit&amp;id=' . $A['id'];
             $retval = COM_createLink($icon_arr['edit'], $edit_url);
             break;
-			
+
         case "id":
 			$retval = '<a href="' . $_PAY_CONF['site_url'] . '/transaction.php?type=subscription&amp;id=' . $A['id'] . '">' . $LANG_PAYPAL_1['see_subscription'] . ' ' . $A['id'] .'</a>';
             break;
-			
+
 		case "product_id":
 		    if ($A['pi_filename'] != '') {
                 $retval = '<img align="absmiddle" src="'. $A['pi_filename'] . '" alt="' . $A['name'] . '" /> <a href="' . $_PAY_CONF['site_url'] . '/product_detail.php?product='. $A['product_id'] . '">' . COM_truncate( $A['name'], 60, '...' ) .'</a>';
@@ -1901,13 +1901,13 @@ function PAYPAL_getListField_paypal_subscriptions($fieldname, $fieldvalue, $A, $
 			    $retval = '<a href="' . $_PAY_CONF['site_url'] . '/product_detail.php?product='. $A['product_id'] . '">' . COM_truncate( $A['name'], 60, '...' ) .'</a>';
 			}
             break;
-			
+
 		case "user_id":
 			if ( SEC_hasRights('paypal.admin') ) {
     			//$retval .= ' <a href="' . $_PAY_CONF['site_url'] . '/details.php?mode=edit&uid=' . $A['user_id'] . '">(' . $LANG_PAYPAL_1['edit_user_details'] . ')</a>';
 				$edit_url = $_PAY_CONF['site_url'] . '/details.php?mode=edit&uid=' . $A['user_id'];
 				$retval = COM_createLink($icon_arr['edit'], $edit_url) . ' ';
-			} 
+			}
 			if ($A['user_name'] != '') {
 			    $retval .= '<a href="' . $_CONF['site_url'] . '/users.php?mode=profile&uid=' . $A['user_id'] . '">' . $A['user_name'] . '</a>';
 			} else if ($A['fullname'] != '') {
@@ -1915,31 +1915,31 @@ function PAYPAL_getListField_paypal_subscriptions($fieldname, $fieldvalue, $A, $
 			} else {
 			    $retval .= '<a href="' . $_CONF['site_url'] . '/users.php?mode=profile&uid=' . $A['user_id'] . '">' . $A['username'] . '</a>';
 			}
-			
+
 			//Logo list
 			$_SESSION['logo_list'] .= USER_getPhoto ($A['user_id'], $A['photo'], $A['email'], 75) . '&nbsp;&nbsp;&nbsp;';
-			
+
             break;
-			
+
 		case "purchase_date":
             $date = COM_getUserDateTimeFormat($A['purchase_date']);
 			$retval = strftime( $_CONF['dateonly'], $date[1] );
 			//$retval = $date[0];
             break;
-			
+
 		case "expiration":
 			$date = COM_getUserDateTimeFormat($A['expiration']);
 			$retval = strftime( $_CONF['dateonly'], $date[1] );
             break;
-			
+
 		case "add_to_group":
 			$retval = $A['grp_name'] . ' (' . $A['add_to_group'] . ')';
             break;
-			
+
         case "price":
             $retval = number_format($A['price'], $_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']);
             break;
-			
+
         default:
             $retval = stripslashes($fieldvalue);
             break;
@@ -1950,21 +1950,21 @@ function PAYPAL_getListField_paypal_subscriptions($fieldname, $fieldvalue, $A, $
 function plugin_runScheduledTask_paypal ()
 {
 	global $_TABLES, $_PAY_CONF, $_CONF;
-	
+
     // Update subscriptions
 	$case[0] = "TO_DAYS(s.expiration) - TO_DAYS(NOW()) <= {$_PAY_CONF['days_before_expiration']} AND s.notification < 1";
 	$case[1] = 'TO_DAYS(NOW()) = TO_DAYS(s.expiration) AND s.notification < 2';
 	$case[2] = 'TO_DAYS(NOW()) > TO_DAYS(s.expiration) AND s.notification < 3';
-	
-    for ($i=0; $i<3;$i++) {	
+
+    for ($i=0; $i<3;$i++) {
         $sql = "SELECT s.*, p.name, u.username, u.email
                     FROM {$_TABLES['paypal_subscriptions']} AS s
 		    		LEFT JOIN {$_TABLES['paypal_products']} p
 		    		    ON p.id = s.product_id
                     LEFT JOIN {$_TABLES['users']} u
                         ON u.uid = s.user_id
-                    WHERE 
-		    		    $case[$i] 			 
+                    WHERE
+		    		    $case[$i]
                     ";
 
         $res = DB_query($sql);
@@ -1976,43 +1976,43 @@ function plugin_runScheduledTask_paypal ()
 				if (function_exists('PAYPALPRO_notifyExpiration')) PAYPALPRO_notifyExpiration($A);
 		    	//Remove user from group if needed
 	    		if ($A['notification'] == 2) PAYPAL_removeFromGroup ($A['add_to_group'], $A['user_id']);
-				DB_query("UPDATE {$_TABLES['paypal_subscriptions']} 
-                SET notification=$level 
+				DB_query("UPDATE {$_TABLES['paypal_subscriptions']}
+                SET notification=$level
                 WHERE id='{$A['id']}'");
             }
         }
     }
 }
-	
-function PAYPAL_addsubscription ($membership, $data) 
+
+function PAYPAL_addsubscription ($membership, $data)
 {
     global $_TABLES, $_PAY_CONF;
-	
+
 	$purchase_date = date("Y/m/d");
     $expiration = 'NOW() + INTERVAL ' . $membership['duration'] . " " . $membership['duration_type'];
 	if (DEBUG) COM_errorLog('PAYPAL: Expiration ' . $expiration);
-	
+
 	$sql = "
-	INSERT INTO 
+	INSERT INTO
 	    {$_TABLES['paypal_subscriptions']}
-	SET 
-	    product_id = '{$membership['id']}', 
-		user_id = '{$data['custom']}', 
-        txn_id = '{$data['txn_id']}', 
-        purchase_date = '{$purchase_date}', 
-        expiration = {$expiration}, 
-        price = '{$membership['price']}', 
-		status = '{$data['status']}', 
+	SET
+	    product_id = '{$membership['id']}',
+		user_id = '{$data['custom']}',
+        txn_id = '{$data['txn_id']}',
+        purchase_date = '{$purchase_date}',
+        expiration = {$expiration},
+        price = '{$membership['price']}',
+		status = '{$data['status']}',
 		add_to_group = '{$membership['add_to_group']}'
 	";
-    
+
 	DB_query($sql);
 }
 
-function PAYPAL_addToGroup ($groupid, $uid) 
+function PAYPAL_addToGroup ($groupid, $uid)
 {
 	global $_CONF;
-	
+
 	require_once $_CONF['path_system'] . 'lib-user.php';
 	if (USER_addGroup($groupid, $uid)) COM_errorLog('Subscription >> User: ' .  $uid . ' added to group: ' . $groupid);
 }
@@ -2020,7 +2020,7 @@ function PAYPAL_addToGroup ($groupid, $uid)
 function PAYPAL_removeFromGroup ($groupid, $uid)
 {
 	global $_CONF;
-	
+
 	require_once $_CONF['path_system'] . 'lib-user.php';
 	if (USER_delGroup($groupid, $uid)) COM_errorLog('Subscription >> User: ' .  $uid . ' remove from group: ' . $groupid);
 }
@@ -2189,7 +2189,7 @@ function PAYPAL_utf8ToUnicodeEntities ($source) {
     $decrement[3] = 224;
     $decrement[2] = 192;
     $decrement[1] = 0;
-   
+
     // the number of bits to shift each charNum by
     $shift[1][0] = 0;
     $shift[2][0] = 6;
@@ -2201,7 +2201,7 @@ function PAYPAL_utf8ToUnicodeEntities ($source) {
     $shift[4][1] = 12;
     $shift[4][2] = 6;
     $shift[4][3] = 0;
-   
+
     $pos = 0;
     $len = strlen ($source);
     $encodedString = '';
@@ -2255,25 +2255,25 @@ function PAYPAL_utf8ToUnicodeEntities ($source) {
     }
 
     return $encodedString;
-} 
+}
 
-function PAYPAL_displayPurchaseHistory () 
+function PAYPAL_displayPurchaseHistory ()
 {
     global $LANG_PAYPAL_1, $_SCRIPTS;
-    
+
     $js = 'jQuery(function () {
         var tabContainers = jQuery(\'div.tabs > div\');
-        
+
         jQuery(\'div.tabs ul.tabNavigation a\').click(function () {
             tabContainers.hide().filter(this.hash).show();
-            
+
             jQuery(\'div.tabs ul.tabNavigation a\').removeClass(\'selected\');
             jQuery(this).addClass(\'selected\');
-            
+
             return false;
         }).filter(\':first\').click();
     });';
-	
+
 	$_SCRIPTS->setJavaScriptLibrary('jquery');
 	$_SCRIPTS->setJavaScript($js, true);
 
@@ -2303,22 +2303,22 @@ function PAYPAL_displayPurchaseHistory ()
 function plugin_profileblocksdisplay_paypal ($uid)
 {
     global $_USER, $LANG_PAYPAL_1;
-    
+
     $retval = '';
-    
+
     if ($_USER['uid'] == $uid) $retval = '<h2>'. $LANG_PAYPAL_1['purchase_history'] . '</h2>'. PAYPAL_displayPurchaseHistory();
- 
+
     return $retval;
 }
 
 function PAYPAL_getDetailsForm ($details, $url, $button, $shipping = 0)
 {
     global $_CONF, $_PAY_CONF, $LANG_PAYPAL_1, $_TABLES;
-	
+
 	//Display form
 	$retval = '';
 	if ($url == '') return $retval;
-		
+
 	$template = COM_newTemplate($_CONF['path'] . 'plugins/paypal/templates');
     $template->set_file(array('details' => 'details_form.thtml'));
     $template->set_var('validation_url', $url);
@@ -2364,11 +2364,11 @@ function PAYPAL_getDetailsForm ($details, $url, $button, $shipping = 0)
 
 	//validation button
 	$template->set_var('save_button', $button);
-	
+
 	$template->set_var('required_field', $LANG_PAYPAL_1['required_field']);
-	
+
 	$retval .= $template->parse('', 'details');
-	
+
 	return $retval;
 }
 
@@ -2384,7 +2384,7 @@ function PAYPAL_adOptionList( $table, $selection, $selected='', $sortcol='', $wh
 
     $retval = '';
 
-    $sql = "SELECT $selection  
+    $sql = "SELECT $selection
 	        FROM $table
 			";
 
@@ -2457,20 +2457,20 @@ function PAYPAL_Breadcrumbs($id)
             WHERE cat_id='$parent' " .
             COM_getPermSQL('AND');
         $result = DB_query($sql);
-        if (!$result) 
+        if (!$result)
             break;
 
         $row = DB_fetchArray($result, false);
-        $url = '<li><a href="' . $_PAY_CONF['site_url'] . '/index.php?n=' 
-				. urlencode($row['cat_name']) . '&amp;category=' . 
+        $url = '<li><a href="' . $_PAY_CONF['site_url'] . '/index.php?n='
+				. urlencode($row['cat_name']) . '&amp;category=' .
                 (int)$row['cat_id'] . '">' . $row['cat_name'] . '</a></li>';
 
         $A[] = $url;
 
         $parent = (int)$row['parent_id'];
         if ($parent == 0) {
-            $url = '<li><a href="' . 
-                    COM_buildURL($_PAY_CONF['site_url'] . '/index.php') . 
+            $url = '<li><a href="' .
+                    COM_buildURL($_PAY_CONF['site_url'] . '/index.php') .
                     '">' . $LANG_PAYPAL_1['home'] . '</a></li>';
             $A[] = $url;
             break;
@@ -2514,24 +2514,24 @@ function PAYPAL_realId ($ids)
 function PAYPAL_productPrice ($product)
 {
     global $_CONF;
-	
+
 	$price = $product['price'];
-	
+
 	if ($product['discount_a'] != '' && $product['discount_a'] != 0) {
     	$price = $product['price'] - $product['discount_a'];
 	    return number_format($price, $_CONF['decimal_count'], '.', '');
 	}
 	if ($product['discount_p'] != '' && $product['discount_p'] != 0) $price = $product['price'] - ($product['price'] * ($product['discount_p']/100));
-	
+
 	return number_format($price, $_CONF['decimal_count'], '.', '');
 }
 
 function PAYPAL_getStockId($item_number)
 {
     global $_TABLES;
-	
+
 	$stock_id = '';
-	
+
 	if(is_array($item_number)) {
 	    foreach ($item_number as $item) {
 			$realid = explode("|", $item);
@@ -2572,7 +2572,7 @@ function PAYPAL_getStockId($item_number)
 function PAYPAL_stockMovement ($stock_id, $prod_id, $qty=0, $delivery=0, $date='')
 {
 	global $_TABLES, $LANG_PAYPAL_1;
-	
+
 	if ($stock_id == '' || $prod_id == '') {
 	    if(DEBUG) COM_errorLog('PAYPAL: The product ID do not exists in our DB');
 		return;
@@ -2580,7 +2580,7 @@ function PAYPAL_stockMovement ($stock_id, $prod_id, $qty=0, $delivery=0, $date='
 	$pid = PAYPAL_realId($prod_id);
 	$qty = intval($qty);
 	($date == '') ? $date_sql = 'NOW()' : $date_sql = $date;
-	
+
 	$sql = "move_date = {$date_sql}, "
 		 . "stock_id = '{$stock_id}', "
 		 . "deli_id = '{$delivery}', "
@@ -2589,14 +2589,14 @@ function PAYPAL_stockMovement ($stock_id, $prod_id, $qty=0, $delivery=0, $date='
 		 ";
 	$sql = "INSERT INTO {$_TABLES['paypal_stock_movements']} SET $sql ";
 	DB_query($sql);
-	
+
 	if (DEBUG) COM_errorLog('PAYPAL: stock movement - ' . $sql);
-	
+
 	if (DB_error()) {
 		$msg = $LANG_PAYPAL_1['save_fail'] . ' | SQL: ' . $sql;
 		COM_errorLog($msg);
 	}
-	
+
 	//update paypal_stock
 	$sql = "st_qty = st_qty + $qty";
 	$stid_exists = DB_getItem($_TABLES['paypal_stock'], 'st_id', "st_id='{$stock_id}'");
@@ -2620,14 +2620,14 @@ function PAYPAL_stockMovement ($stock_id, $prod_id, $qty=0, $delivery=0, $date='
 		}
 	}
 	if (DEBUG) COM_errorLog('PAYPAL: stock update - ' . $sql);
-	
+
 	return true;
 }
 
 function PAYPAL_message ($message, $title = '')
 {
     global $LANG_PAYPAL_MESSAGE;
-    
+
     $retval = '';
 	if ($title == '') $title = $LANG_PAYPAL_MESSAGE['message'];
     if (!empty($message)) {
@@ -2662,32 +2662,32 @@ function PAYPAL_handlePurchase( $products, $quantity, $data, $names, $prices, $r
 	// initialize file and names arrays
 	$files = array();
 	if ($user_id == 0) $user_id = $_USER['uid'];
-	
+
 	//get information for user table
 	$sql = "SELECT * FROM {$_TABLES['paypal_users']} WHERE user_id = {$user_id}";
 
 	$res = DB_query($sql);
 	$informations = DB_fetchArray($res);
-	
+
 	//txn_id must unique
 	$ipn['txn_id'] = COM_makesid();
-	//but 
+	//but
 	if($ipn_id != '') $ipn['txn_id'] = $ipn_id;
-	
+
 	// for each item purchased, record purchase in purchase table
 	for ($i = 1; $i < count($products) +1; $i++) {
-		
+
 		if (DEBUG) COM_errorLog('PAYPAL: Product ID ' . $products[$i]);
 		// grab relevant product data from product table to insert into purchase table.
 		$realid = COM_sanitizeID(explode("|", $products[$i]));
-		
+
 		$sql = "SELECT * FROM {$_TABLES['paypal_products']} "
 			 . "WHERE id = {$realid[0]}";
 		$res = DB_query($sql);
 		$A = DB_fetchArray($res);
-		
+
 		if (DEBUG) COM_errorLog('PAYPAL: Type ' . $A['type']);
-		
+
 		if ($A['product_type'] == 1) {
 			$files[] = $_PAY_CONF['download_path'] . $A['file'];
 		}
@@ -2703,9 +2703,9 @@ function PAYPAL_handlePurchase( $products, $quantity, $data, $names, $prices, $r
 		if ( $user_id > 0 ) {
 			// Add the purchase to the paypal purchase table
 			//TODO add product name
-			
+
 			($date == '') ? $date_sql = 'NOW()' : $date_sql = '\'' . $date . '\'';
-			
+
 			$sql = "INSERT INTO {$_TABLES['paypal_purchases']} SET product_id = {$realid[0]}, "
 				 . "quantity = {$quantity[$i]}, user_id = {$user_id}, "
 				 . "txn_id = '{$ipn['txn_id']}', "
@@ -2725,15 +2725,15 @@ function PAYPAL_handlePurchase( $products, $quantity, $data, $names, $prices, $r
 		}
 
 		$namelist[] =  $ipn['item_name'.$i] . ' : ' . number_format($prices[$i], $_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']) . ' ' . $_PAY_CONF['currency'] .' x ' .$ipn['quantity'.$i] . ' = '  . number_format(($ipn['mc_gross_'.$i]), $_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']) . ' ' . $_PAY_CONF['currency'] . '<br>';
-		
+
 		// stock movement
 		$stock_id = PAYPAL_getStockId($ipn['item_number'.$i]);
 		$qty = $ipn['quantity'.$i];
 		PAYPAL_stockMovement ($stock_id, $ipn['item_number'.$i], -$qty, 0, $date_sql);
 	}
-	
+
 	if ($ipn_id == '') {
-		//continue to build our ipn data  
+		//continue to build our ipn data
 		$ipn['txn_type'] = 'check';
 		$ipn['order_date'] = date('H:i:s M d, Y T'); //13:49:40 Jul 06, 2011 PDT
 		$ipn['mc_gross'] = number_format($ipn['mc_gross'] + $_REQUEST['shipping'], $_CONF['decimal_count'], '.', '');
@@ -2775,32 +2775,32 @@ function PAYPAL_handlePurchase( $products, $quantity, $data, $names, $prices, $r
 		$ipn['payment_gross'] = '';
 		$ipn['shipping'] = '';
 		$ipn['ipn_track_id'] = '';
-		
+
 		//Log our IPN
 		PAYPAL_Log(str_replace("'", '&rsquo;', $ipn));
-		
+
 		// Send the purchaser a confirmation email (if set to do so in config.php)
-		
+
 		if ($_PAY_CONF['purchase_email_user'] ) {
-			
+
 			// setup templates
 			$message = COM_newTemplate($_CONF['path'] . 'plugins/paypal/templates/email');
-			
+
 			$message->set_file(array('subject' => 'purchase_by_check_' . $status . '_subject.thtml',
 									 'message' => 'purchase_by_check_' . $status . '_message.thtml' ));
 
-			
+
 			// site variables
 			$message->set_var('site_name', $_CONF['site_name']);
-			
+
 			//Email subject
 			$message->set_var('order_confirmation', $LANG_PAYPAL_EMAIL['order_confirmation']);
 			$message->set_var('purchase_receipt', $LANG_PAYPAL_EMAIL['purchase_receipt']);
-			
+
 			//Date of payment
 			$payment_date = COM_getUserDateTimeFormat($ipn['payment_date']);
 			$message->set_var('payment_date', $payment_date[0]);
-			
+
 			$message->set_var('attached_files', '');
 			$message->set_var('address_name', $ipn['address_name']);
 
@@ -2817,15 +2817,15 @@ $products_list .= '<dl>';
 			}
 			$products_list .= '<dt>' . $LANG_PAYPAL_1['total_row_label'] . '<dt><dd>' . number_format($ipn['mc_gross'], $_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']) . ' ' . $_PAY_CONF['currency'] . '</dd>';
 
-			$products_list .= '<dt>' . '消費税' . '<dt><dd>' . number_format($ipn['mc_gross']*0.08, $_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']) . ' ' . $_PAY_CONF['currency'] . '</dd>';
+			$products_list .= '<dt>' . '消費税' . '<dt><dd>' . number_format($ipn['mc_gross']*0.10, $_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']) . ' ' . $_PAY_CONF['currency'] . '</dd>';
 
-			$products_list .= '<dt>' . '合計' . '<dt><dd>' . number_format($ipn['mc_gross']*1.08, $_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']) . ' ' . $_PAY_CONF['currency'] . '</dd></dl>';
+			$products_list .= '<dt>' . '合計' . '<dt><dd>' . number_format($ipn['mc_gross']*1.10, $_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']) . ' ' . $_PAY_CONF['currency'] . '</dd></dl>';
 
 
 
 
 			$message->set_var('products', $products_list);
-			
+
 			//Email messages
 			$message->set_var('thank_you', $LANG_PAYPAL_EMAIL['thank_you_order']);
 			$message->set_var('thanks', $LANG_PAYPAL_EMAIL['thanks']);
@@ -2834,7 +2834,7 @@ $products_list .= '<dl>';
 			$shop_informations = '<dl class="uk-description-list-line"><dt>SHOP名</dt><dd>' . $_PAY_CONF['shop_name'] . '</dd>
 									<dt>住所</dt><dd>' .
 									$_PAY_CONF['shop_postal'] . ' ' . $_PAY_CONF['shop_city'] . $_PAY_CONF['shop_street1'] .	$_PAY_CONF['shop_street2'] ;
-									
+
 			$shop_informations_bottom = '</dd>';
 			if ($_PAY_CONF['shop_phone1'] != '') $shop_informations_bottom .= '<dt>' . $LANG_confignames['paypal']['shop_phone1'] . '</dt><dd>' . ' ' . $_PAY_CONF['shop_phone1'] . '</dd>';
 			if ($_PAY_CONF['shop_phone2'] != '') $shop_informations_bottom .= '<dt>' . $LANG_confignames['paypal']['shop_phone2'] . '</dt>' . $_PAY_CONF['shop_phone2'] . '<br' . XHTML . '>';
@@ -2844,13 +2844,13 @@ $products_list .= '<dl>';
 			$shop_informations_bottom .= '<dt>振込先</dt><dd>' . PLG_replaceTags('[staticpage_content:_bank]') . '</dd>';
 
 			$shop_informations_bottom .= '</dl>';
-									
+
 			$order_date = COM_getUserDateTimeFormat($ipn['order_date']);
 			$message->set_var('order_date', $order_date[0]);
 			$message->set_var('payer_email', $ipn['payer_email']);
 			$message->set_var('address_name', $ipn['address_name']);
 			$message->set_var('shop_informations', $shop_informations . $shop_informations_bottom);
-			
+
 			$subject = trim($message->parse('output', 'subject'));
 
 			// if specified to mail attachment, do so, otherwise skip attachment
@@ -2862,7 +2862,7 @@ $products_list .= '<dl>';
 
 			if (DEBUG) COM_errorLog('PAYPAL: Email was sent to ' . $ipn['payer_email'] . ' | Subject: ' .  $subject . ' | Message: ' . $text);
 		}
-		
+
 		//Send email to receiver
 		COM_mail($_PAY_CONF['receiverEmailAddr'], $subject, $subject . ' >> ' . $text, '', true);
 
@@ -2873,7 +2873,7 @@ $products_list .= '<dl>';
 			$retval .= '<p>' . $LANG_PAYPAL_EMAIL['send_check'] . '</p>';
 			$retval .= '<div class="uk-margin-left shop_informations">' . $shop_informations . $shop_informations_bottom . '</div>';
 			$retval .= '<p>' . $LANG_PAYPAL_1['confirm_by_email'] . '</p>';
-			
+
 			return $retval;
 		} else {
 			return $ipn['txn_id'];
@@ -2891,18 +2891,18 @@ $products_list .= '<dl>';
  * @param array $transaction of transaction
  */
 function PAYPAL_Log($transaction) {
-	
+
 	global $_SERVER, $_TABLES;
 
 	// Log to database
 	$sql = "INSERT INTO {$_TABLES['paypal_ipnlog']} SET ip_addr = '{$_SERVER['REMOTE_ADDR']}', "
 		 . "time = NOW(), verified = 1, txn_id = '{$transaction['txn_id']}', "
 		 . "ipn_data = '" . serialize($transaction) . "'";
-	
+
 	DB_query($sql);
-	
+
 	if (DEBUG) COM_errorLog('PAYPAL: IPN recorded');
-	
+
 	return DB_insertId();
 }
 
@@ -2911,7 +2911,7 @@ function PAYPAL_setAllKeys(&$product, $keys)
    foreach ($keys as $key) {
         if (!isset($product[$key])) $product[$key] = null;
    }
-   
+
    return;
 }
 ?>
