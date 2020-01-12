@@ -1,10 +1,10 @@
 {# begin {templatelocation} #}
 
 <ul class="uk-breadcrumb">
-<li><a href="{site_url}/index.php">ƒz[ƒ€</a></li>
-<li><a href="{site_url}/mediagallery/index.php"><?php global $_MG_DEFAULT; if( $_MG_DEFAULT['root_album_name']) echo $_MG_DEFAULT['root_album_name']; else echo "TOPƒAƒ‹ƒoƒ€"; ?></a></li>
-<li><a href="{site_url}/mediagallery/album.php?aid={album_id}&page=1">ƒAƒ‹ƒoƒ€{album_title}</a></li>
-<li>FTPƒCƒ“ƒ|[ƒg</li></ul>
+<li><a href="{site_url}/index.php">ãƒ›ãƒ¼ãƒ </a></li>
+<li><a href="{site_url}/mediagallery/index.php"><?php global $_MG_DEFAULT; if( $_MG_DEFAULT['root_album_name']) echo $_MG_DEFAULT['root_album_name']; else echo "TOPã‚¢ãƒ«ãƒãƒ "; ?></a></li>
+<li><a href="{site_url}/mediagallery/album.php?aid={album_id}&page=1">ã‚¤ãƒ³ãƒãƒ¼ãƒˆ{album_title}</a></li>
+<li>FTPã‚¤ãƒ³ãƒãƒ¼ãƒˆ</li></ul>
 </ul>
 
 {start_block}

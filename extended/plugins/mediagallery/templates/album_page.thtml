@@ -279,8 +279,6 @@
 <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-grid-card1">&#91;medialist:{album_id} src:disp theme:1section-grid-card1 limitcnt:3 title:1 uks:uk-section-muted ukc: grids:1 gridm:3 masonry:1 animation:slide text:詳細を見る&#93;</h4>
   {!!autotag medialist:'.{album_id}.' src:disp theme:1section-grid-card1 limitcnt:3 title:1 uks:uk-section-muted ukc: grids:1 gridm:3 masonry:1 animation:slide text:詳細を見る !!}
 
-<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-grid-card1_keyurl">&#91;medialist:{album_id} src:disp theme:1section-grid-card1_keyurl limitcnt:3 title:1 uks:uk-section-muted ukc:uk-text-center ukc: grids:1 gridm:3 text:プランを見る limitcnt:2&#93;</h4>
-
 <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-grid-card2_keyurl">&#91;medialist:{album_id} src:disp theme:1section-grid-card2_keyurl limitcnt:3 title:1 uks:uk-section-muted ukc:uk-text-center ukc: grids:1 gridm:3 text:プランを見る limitcnt:2&#93;</h4>
   {!!autotag medialist:'.{album_id}.' src:disp theme:1section-grid-card2_keyurl limitcnt:3 title:1 uks:uk-section-muted ukc:uk-text-center ukc: grids:1 gridm:3 text:プランを見る limitcnt:3 !!}
 
@@ -320,9 +318,9 @@
 <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-slider-bottom">&#91;medialist:{album_id} src:disp theme:1section-slider-bottom limitcnt:10 title: dotnav:1 autoplay:true center:true clsactivated:uk-transition-active&#93;</h4>
   {!!autotag medialist:'.{album_id}.' src:disp theme:1section-slider-bottom limitcnt:10 title: dotnav:1 autoplay:true center:true clsactivated:uk-transition-active !!}
 
-<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-slider-cards">&#91;medialist:{album_id} src:disp theme:1section-slider-cards limitcnt:10 title: dotnav:1 grid:3 autoplay:true autoplayinterval:5000 velocity:0.2 center:true&#93;</h4>
+<!-- <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-slider-cards">&#91;medialist:{album_id} src:disp theme:1section-slider-cards limitcnt:10 title: dotnav:1 grid:3 autoplay:true autoplayinterval:5000 velocity:0.2 center:true&#93;</h4>
   {!!autotag medialist:'.{album_id}.' src:disp theme:1section-slider-cards limitcnt:10 title: dotnav:1 grid:3 autoplay:true autoplayinterval:5000 velocity:0.2 center:true !!}
-
+-->
 <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-slider-cards-grid">&#91;medialist:{album_id} src:disp theme:1section-slider-cards-grid limitcnt:10 title: dotnav:1 autoplay:true center:true clsactivated:uk-transition-active&#93;</h4>
   {!!autotag medialist:'.{album_id}.' src:disp theme:1section-slider-cards-grid limitcnt:10 title: dotnav:1 autoplay:true center:true clsactivated:uk-transition-active !!}
 
