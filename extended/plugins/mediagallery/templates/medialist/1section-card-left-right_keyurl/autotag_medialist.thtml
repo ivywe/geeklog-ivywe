@@ -13,7 +13,7 @@
 {!!if {container} == '1' || {container} == '' !!}<div class="uk-container <?php echo $ukc; ?>">{!endif}
 
         {!if title}<h2 class="<?php echo $class_album_title; ?>">{album_title}</h2>{!endif}
-        {!if album_desc}<div class="uk-margin-large-bottom<?php echo $class_album_desc; ?>">{album_desc}</div>{!endif}
+        {!if album_desc}<div class="<?php echo $class_album_desc; ?>">{album_desc}</div>{!endif}
 {medialist_col}
 
 {!!if {container} == '1' || {container} == '' !!}</div>{!endif}

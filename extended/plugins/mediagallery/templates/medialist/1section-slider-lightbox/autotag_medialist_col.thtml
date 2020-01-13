@@ -1,0 +1,7 @@
+{# begin {templatelocation} #}
+              <li>
+                <a class="uk-inline" href="{filename_disp}" data-caption="{media_title} {media_desc}">
+                  <img src="{filename}" alt="{media_title}">
+                </a>
+              </li>
+{# end {templatelocation} #}

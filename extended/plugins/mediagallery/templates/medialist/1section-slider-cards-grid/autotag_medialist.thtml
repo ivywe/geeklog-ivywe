@@ -10,12 +10,11 @@
 
   {!!if {container} == '1' || {container} == '' !!}<div class="uk-container <?php echo $ukc; ?>">{!endif}
 
-  {!if title}<h2 class="<?php echo $class_album_title; ?>">{album_title}</h2>{!endif}
-  {!if album_desc}<div class="uk-margin-large-bottom<?php echo $class_album_desc; ?>">{album_desc}</div>{!endif}
+   {!if title}<h2 class="<?php echo $class_album_title; ?>">{album_title}</h2>{!endif}
+   {!if album_desc}<p class="<?php echo $class_album_desc; ?>">{album_desc}</p>{!endif}
 
 
-    <div uk-slider="
-    {!if autoplay}autoplay:{autoplay};{!endif}
+    <div uk-slider="{!if autoplay}autoplay:{autoplay};{!endif}
     {!if autoplayinterval}autoplay-interval:{autoplayinterval};{!endif}
     {!if center}center:{center};{!endif}
     {!if draggable}draggable:{draggable};{!endif}

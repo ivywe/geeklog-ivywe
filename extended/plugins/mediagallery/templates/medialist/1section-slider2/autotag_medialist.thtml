@@ -9,11 +9,10 @@
 {!!if {section} == '1' || {section} == '' !!}<section id="album{album_id}-section<?php global $sectionid; $sectionid++; echo $sectionid; ?>" class="uk-section<?php echo $uks; ?>">{!endif}
 
   {!if title}<h2 class="<?php echo $class_album_title; ?>">{album_title}</h2>{!endif}
-  {!if album_desc}<div class="uk-margin-large-bottom<?php echo $class_album_desc; ?>">{album_desc}</div>{!endif}
+  {!if album_desc}<div class="<?php echo $class_album_desc; ?>">{album_desc}</div>{!endif}
 
   <div>
-    <div class="uk-position-relative uk-visible-toggle uk-light" uk-slider="
-    {!if autoplay}autoplay:{autoplay};{!endif}
+    <div class="uk-position-relative uk-visible-toggle uk-light" uk-slider="{!if autoplay}autoplay:{autoplay};{!endif}
     {!if autoplayinterval}autoplay-interval:{autoplayinterval};{!endif}
     {!if center}center:{center};{!endif}
     {!if draggable}draggable:{draggable};{!endif}

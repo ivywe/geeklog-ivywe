@@ -9,11 +9,10 @@
 {!!if {section} == '1' || {section} == '' !!}<section id="album{album_id}-section<?php global $sectionid; $sectionid++; echo $sectionid; ?>" class="uk-section<?php echo $uks; ?>">{!endif}
 {!!if {container} == '1' || {container} == '' !!}<div class="uk-container <?php echo $ukc; ?>">{!endif}
 
-    <?php if(!strcmp($title,"1")) { ?><h2 class="uk-heading-line uk-margin-remove-top">{album_title}</h2><?php } ?>
-    {!if album_desc}<div class="uk-margin-large-bottom<?php echo $class_album_desc; ?>">{album_desc}</div>{!endif}
+  {!if title}<h2 class="<?php echo $class_album_title; ?>">{album_title}</h2>{!endif}
+  {!if album_desc}<p class="<?php echo $class_album_desc; ?>">{album_desc}</p>{!endif}
 
-    <div uk-slider="
-    {!if autoplay}autoplay:{autoplay};{!endif}
+    <div uk-slider="{!if autoplay}autoplay:{autoplay};{!endif}
     {!if autoplayinterval}autoplay-interval:{autoplayinterval};{!endif}
     {!if center}center:{center};{!endif}
     {!if draggable}draggable:{draggable};{!endif}
@@ -26,7 +25,7 @@
     ">
       <div class="uk-position-relative">
         <div class="uk-slider-container">
-          <ul class="uk-slider-items uk-child-width-1-{grid} uk-child-width-1-{grids}@s uk-child-width-1-{gridm}@m">
+          <ul class="uk-slider-items uk-child-width-1-{grid} uk-child-width-1-{grids}@s uk-child-width-1-{gridm}@m" uk-grid>
             {medialist_col}
           </ul>
         </div>
