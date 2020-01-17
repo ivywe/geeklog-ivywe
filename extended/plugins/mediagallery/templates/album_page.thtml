@@ -196,6 +196,7 @@
         <li><a href="#_1section-slider-bottom" uk-scroll="offset:100">1section-slider-bottom</a></li>
         <li><a href="#_1section-slider-cards" uk-scroll="offset:100">1section-slider-cards</a></li>
         <li><a href="#_1section-slider-cards-grid" uk-scroll="offset:100">1section-slider-cards-grid</a></li>
+        <li><a href="#_1section-slider-cards-grid-large" uk-scroll="offset:100">1section-slider-cards-grid-large</a></li>
         <li><a href="#_1section-slider1" uk-scroll="offset:100">1section-slider1</a></li>
         <li><a href="#_1section-slider2" uk-scroll="offset:100">1section-slider2</a></li>
         <li><a href="#_1section-slideshow" uk-scroll="offset:100">1section-slideshow</a></li>
@@ -228,7 +229,6 @@
         <ul>
         <li><a href="#_list" uk-scroll="offset:100">list</a></li>
         <li><a href="#_list_inc" uk-scroll="offset:100">list_inc</a></li>
-        <li><a href="#_list_link" uk-scroll="offset:100">list_link</a></li>
         <li><a href="#_uk-list" uk-scroll="offset:100">uk-list, uk-list_incでサムネイル付きスライドショー</a></li>
         </ul>
         <h3>6) デバッグ用他</h3>
@@ -326,8 +326,11 @@
 <!-- <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-slider-cards">&#91;medialist:{album_id} src:disp theme:1section-slider-cards limitcnt:10 title: dotnav:1 grid:3 autoplay:true autoplayinterval:5000 velocity:0.2 center:true&#93;</h4>
   {!!autotag medialist:'.{album_id}.' src:disp theme:1section-slider-cards limitcnt:10 title: dotnav:1 grid:3 autoplay:true autoplayinterval:5000 velocity:0.2 center:true !!}
 -->
-<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-slider-cards-grid">&#91;medialist:{album_id} src:disp theme:1section-slider-cards-grid limitcnt:10 title: dotnav:1 autoplay:true center:true clsactivated:uk-transition-active&#93;</h4>
-  {!!autotag medialist:'.{album_id}.' src:disp theme:1section-slider-cards-grid limitcnt:10 title: dotnav:1 autoplay:true center:true clsactivated:uk-transition-active !!}
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-slider-cards-grid">&#91;medialist:{album_id} src:tn theme:1section-slider-cards-grid limitcnt:10 title: dotnav:1 autoplay:true center:true clsactivated:uk-transition-active&#93;</h4>
+  {!!autotag medialist:'.{album_id}.' src:tn theme:1section-slider-cards-grid limitcnt:10 title: dotnav:1 autoplay:true center:true clsactivated:uk-transition-active !!}
+
+  <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-slider-cards-grid-large">&#91;medialist:{album_id} src:tn theme:1section-slider-cards-grid-large limitcnt:10 title: dotnav:1 autoplay:true center:true clsactivated:uk-transition-active&#93;</h4>
+    {!!autotag medialist:'.{album_id}.' src:tn theme:1section-slider-cards-grid-large limitcnt:10 title: dotnav:1 autoplay:true center:true clsactivated:uk-transition-active !!}
 
 <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-slider1">&#91;medialist:{album_id} src:tn theme:1section-slider1 limitcnt:10 title: grid:2 grids:2 gridm:4 autoplay:true autoplayinterval:7000 center:false draggable:true easing:ease finite:false index:0 pause-on-hover:true sets:false velocity:1&#93;</h4>
   {!!autotag medialist:'.{album_id}.' src:tn theme:1section-slider1 limitcnt:10 title: grid:2 grids:2 gridm:4 autoplay:true autoplayinterval:7000 center:false draggable:true easing:ease finite:false index:0 pause-on-hover:true sets:false velocity:1 !!}
@@ -436,11 +439,6 @@
     <ul class="uk-subnav uk-flex-inline uk-flex-center uk-margin-remove-bottom">
       {!!autotag medialist:'.{album_id}.' src:tn theme:list_inc limitcnt:3 !!}
     </ul>
-
-<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_list_link">&#91;medialist:{album_id} src:tn theme:list_link limitcnt:5&#93;</h4>
-      <div class="uk-childwidth-1-2@s uk-childwidth-1-5@m" uk-grid>
-      {!!autotag medialist:'.{album_id}.' src:tn theme:list_link limitcnt:5 !!}
-      </div>
 
 <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_uk-list">uk-list, uk-list_incでサムネイル付きスライドショー</h4>
 
