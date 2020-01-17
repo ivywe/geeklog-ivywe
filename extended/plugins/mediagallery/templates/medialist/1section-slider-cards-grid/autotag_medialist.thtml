@@ -27,7 +27,7 @@
     {!if clsactivated}clsActivated:{clsactivated};{!endif}
     ">
 
-      <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
+      <div class="uk-position-relative uk-visible-toggle" tabindex="-1">
         <ul class="uk-slider-items uk-grid-match" uk-grid>
     {medialist_col}
         </ul>
