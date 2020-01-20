@@ -280,10 +280,10 @@ function MG_editAlbum($mode ='', $actionURL='', $oldaid = 0)
             '2' => $LANG_MG01['size_620x465'],
             '3' => $LANG_MG01['size_720x540'],
             '4' => $LANG_MG01['size_800x600'],
-            '5' => $LANG_MG01['size_912x684'],
+            '5' => $LANG_MG01['size_900x600'],
             '6' => $LANG_MG01['size_1024x768'],
             '7' => $LANG_MG01['size_1152x864'],
-            '8' => $LANG_MG01['size_1280x1024'],
+            '8' => $LANG_MG01['size_2400x1600'],
             '9' => $LANG_MG01['size_custom']
                  . $_MG_CONF['custom_image_width'] . 'x'
                  . $_MG_CONF['custom_image_height'],
@@ -808,7 +808,7 @@ function MG_editAlbum($mode ='', $actionURL='', $oldaid = 0)
     }
 
     $retval .= $T->finish($T->parse('output', 'admin'));
-    
+
     return $retval;
 }
 

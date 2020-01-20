@@ -292,10 +292,10 @@ function MG_globalAlbumAttributeEditor($adminMenu=0)
     $display_image_size_select .= '<option value="2">' . $LANG_MG01['size_620x465'] . '</option>';
     $display_image_size_select .= '<option value="3">' . $LANG_MG01['size_720x540'] . '</option>';
     $display_image_size_select .= '<option value="4">' . $LANG_MG01['size_800x600'] . '</option>';
-    $display_image_size_select .= '<option value="5">' . $LANG_MG01['size_912x684'] . '</option>';
+    $display_image_size_select .= '<option value="5">' . $LANG_MG01['size_900x600'] . '</option>';
     $display_image_size_select .= '<option value="6">' . $LANG_MG01['size_1024x768'] . '</option>';
     $display_image_size_select .= '<option value="7">' . $LANG_MG01['size_1152x864'] . '</option>';
-    $display_image_size_select .= '<option value="8">' . $LANG_MG01['size_1280x1024'] . '</option>';
+    $display_image_size_select .= '<option value="8">' . $LANG_MG01['size_2400x1600'] . '</option>';
     $display_image_size_select .= '<option value="9">' . $LANG_MG01['size_custom'] . $_MG_CONF['custom_image_width'] . 'x' . $_MG_CONF['custom_image_height'] . '</option>';
     $display_image_size_select .= '</select>';
 

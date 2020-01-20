@@ -1081,7 +1081,7 @@ function MG_albumThumbnail($album_id)
 
     list($newwidth, $newheight) = MG_getImageWH_3($mediasize[0], $mediasize[1], $tn_width, $tn_height);
 
-    $media_item_thumbnail = MG_getFramedImage($parent_album->album_skin, $album_data['album_title'], 
+    $media_item_thumbnail = MG_getFramedImage($parent_album->album_skin, $album_data['album_title'],
                                               $_MG_CONF['site_url'] . '/album.php?aid=' . $album_id .'&amp;page=1',
                                               $album_last_image, $newwidth, $newheight);
 
@@ -1265,8 +1265,8 @@ function MG_getImageSize($val)
             $height = 600;
             break;
         case 5 :
-            $width  = 912;
-            $height = 684;
+            $width  = 900;
+            $height = 600;
             break;
         case 6 :
             $width  = 1024;
@@ -1277,8 +1277,8 @@ function MG_getImageSize($val)
             $height = 804;
             break;
         case 8 :
-            $width  = 1280;
-            $height = 1024;
+            $width  = 2400;
+            $height = 1600;
             break;
         case 9 :
             $width  = $_MG_CONF['custom_image_width'];
@@ -1320,7 +1320,7 @@ function MG_getImageWH_3($imgwidth, $imgheight, $maxwidth, $maxheight, $stretch=
     global $_CONF;
 
     require_once $_CONF['path'] . 'plugins/mediagallery/include/classMedia.php';
-    
+
     return Media::getImageWH($imgwidth, $imgheight, $maxwidth, $maxheight, $stretch);
 }
 
