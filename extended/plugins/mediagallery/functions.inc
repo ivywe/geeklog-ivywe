@@ -778,7 +778,7 @@ function plugin_autotags_mediagallery ($op, $content = '', $autotag = '')
         return $content;
     }
     if ($op == 'tagname') {
-        return array('album','media','img','slideshow','fslideshow','video','audio',
+        return array('album','media','media_url','img','slideshow','fslideshow','video','audio',
                      'download','image','oimage','mlink','alink','playall',
                      'gallery'
 					 ,'medialist','albumlist', 'media_url');//@@@@@
