@@ -411,6 +411,10 @@ function MG_batchMoveMedia($album_id, $destination, $media_id_array, $actionURL 
     MG_updateAlbumLastUpdate($album_id);
     MG_updateAlbumLastUpdate($destination);
 
+    // update the disk usage after move...
+    MG_updateQuotaUsage($album_id);
+    MG_updateQuotaUsage($destination);
+
     MG_SortMedia($album_id);
     MG_SortMedia($destination);
 
