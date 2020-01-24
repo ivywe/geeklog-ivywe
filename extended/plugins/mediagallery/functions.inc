@@ -269,7 +269,7 @@ if (!defined ('UC_READONLY')) define('UC_READONLY', (XHTML == '') ? 'readonly' :
 if (!defined ('UC_DISABLED')) define('UC_DISABLED', (XHTML == '') ? 'disabled' : 'disabled="disabled"');
 
 // This is a list of valid extensions for image media thumbnails / display images
-$_MG_CONF['validExtensions'] = array('.jpg','.png','.gif','.bmp');
+$_MG_CONF['validExtensions'] = array('.jpg','.jpeg','.png','.gif','.bmp');
 
 // placeholder until implemented
 $_MG_CONF['ad_shopping_cart'] = 0;

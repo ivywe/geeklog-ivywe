@@ -209,6 +209,7 @@ class Media {
                     }
 
                     $ext = self::getMediaExt($_MG_CONF['path_mediaobjects'] . $fname);
+            $ext2 = MG_getMediaExt($_MG_CONF['path_mediaobjects'] . $fname);
                     if (!empty($ext)) {
                         $retval = $fname . $ext;
                     }

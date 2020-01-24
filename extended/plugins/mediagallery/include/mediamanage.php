@@ -115,13 +115,15 @@ function MG_imageAdmin($album_id, $page, $actionURL = '')
     $batchOptionSelect .= '</select>&nbsp;';
 
     $T->set_var(array(
-        'album_id'               => $album_id,
+        'album_id'                => $album_id,
         'lang_albumsel'           => $LANG_MG01['destination_album'],
+        'lang_albumsel_copy'      => $LANG_MG01['copy_destination_album'],
         'albumselect'             => $album_selectbox,
         'lang_save'               => $LANG_MG01['save'],
         'lang_cancel'             => $LANG_MG01['cancel'],
         'lang_delete'             => $LANG_MG01['delete'],
         'lang_move'               => $LANG_MG01['move'],
+        'lang_copy'               => $LANG_MG01['copy'],
         'lang_select'             => $LANG_MG01['select'],
         'lang_item'               => $LANG_MG01['item'],
         'lang_order'              => $LANG_MG01['order'],
@@ -210,7 +212,10 @@ function MG_imageAdmin($album_id, $page, $actionURL = '')
 
                 $cat_select = '<select class="uk-select uk-form-width-medium" name="cat_id[]">';
                 $cat_select .= '<option value="0">' . $LANG_MG01['no_category'] . '</option>';
-                $cRows = count($catRow);
+                $cRows = 0;
+                if (!empty($catRow)) {
+                  $cRows = count($catRow);
+                }
                 for ($i=0; $i < $cRows; $i++) {
                     $cat_select .= '<option value="' . $catRow[$i]['cat_id'] . '" '
                                  . ($catRow[$i]['cat_id'] == $row['media_category'] ? ' selected="selected"' : '') . '>'
@@ -526,7 +531,7 @@ function MG_mediaEdit($album_id, $media_id, $actionURL='', $mqueue=0, $view=0, $
         $attached_thumbnail = '<img src="' . $thumbnail . '" alt="" ' . $atnsize . XHTML . '>';
         $tmpthumb = Media::getDefaultThumbnail($row, $tn_size);
         $thumbnail = $_MG_CONF['mediaobjects_url'] . '/' . $tmpthumb;
-        $size = getimagesize($_MG_CONF['path_mediaobjects'] . $tmpthumb);
+        $size = @getimagesize($_MG_CONF['path_mediaobjects'] . $tmpthumb);
     }
 
     $preview = '';

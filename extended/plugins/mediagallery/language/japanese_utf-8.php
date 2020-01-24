@@ -209,6 +209,8 @@ $LANG_MG01 = array (
     'subalbums'                 => 'サブアルバム',
     'destination_album'         => '転送先アルバム',
     'move'                      => '移動',
+    'copy_destination_album'    => 'コピー先アルバム',
+    'copy'                      => 'コピー',
     'date'                      => '日付',
     'album'                     => 'アルバム',
     'mod_delete'                => '削除',
@@ -863,6 +865,9 @@ $LANG_MG03 = array (
     'list_user'             => '投稿者',
     'list_updated'          => '更新日時',
     'js_warning'            => '警告: 操作性向上のために、Javascriptをオンにすることをお勧めします。',
+    'copy_results'          => 'コピー結果',
+    'album_redirect_from' => 'コピー元アルバムへ戻るには<a href="%s">ここをクリックしてください。</a>',
+    'album_redirect_destination' => 'コピー先アルバムへ戻るには<a href="%s">ここをクリックしてください。</a>',
 );
 
 // EXIF labels
