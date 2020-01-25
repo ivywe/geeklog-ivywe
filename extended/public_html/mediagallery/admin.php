@@ -490,6 +490,26 @@ if ($mode == 'edit') {
     $display = MG_createHTMLDocument($display);
     COM_output($display);
 
+} else if ($mode == $LANG_MG01['copy'] && !empty($LANG_MG01['copy'])) {
+    if (!isset($_POST['album_id'])) MG_invalidRequest();
+    require_once $include . 'batch.php';
+    $album_id = COM_applyFilter($_POST['album_id'], true);
+    $destination = COM_applyFilter($_POST['album'], true);
+    $actionURL = $_MG_CONF['site_url'] . '/album.php?aid=' . $album_id;
+    if ($destination == 0) { // deny move to the root album
+        echo COM_refresh($actionURL);
+        exit;
+    }
+    $actionURL = $_MG_CONF['site_url'] . '/album.php?aid=' . $destination;
+    $media_id_array = array();
+    $numItems = count($_POST['sel']);
+    for ($i=0; $i < $numItems; $i++) {
+        $media_id_array[] = COM_applyFilter($_POST['sel'][$i]);
+    }
+    $display = MG_batchCopyMedia($album_id, $destination, $media_id_array, $actionURL);
+    $display = MG_createHTMLDocument($display);
+    COM_output($display);
+
 } else if ($mode == 'albumsort') {
     if (!isset($_GET['album_id'])) MG_invalidRequest();
     require_once $include . 'sort.php';

@@ -259,7 +259,7 @@ $enable_link=0;
         $align = '';
     }
     // sanity check incase the album has been deleted or something...
-    if (!in_array($autotag['tag'], array('media','image','video','audio','download','oimage','img','mlink','alink','playall','media_url'))) {
+    if (!in_array($autotag['tag'], array('media','media_url','image','video','audio','download','oimage','img','mlink','alink','playall'))) {
         if (DB_count($_TABLES['mg_albums'], 'album_id', intval($parm1)) == 0)
             return str_replace($autotag['tagstr'], '', $content);
     }
