@@ -269,7 +269,7 @@ if (!defined ('UC_READONLY')) define('UC_READONLY', (XHTML == '') ? 'readonly' :
 if (!defined ('UC_DISABLED')) define('UC_DISABLED', (XHTML == '') ? 'disabled' : 'disabled="disabled"');
 
 // This is a list of valid extensions for image media thumbnails / display images
-$_MG_CONF['validExtensions'] = array('.jpg','.png','.gif','.bmp');
+$_MG_CONF['validExtensions'] = array('.jpg','.jpeg','.png','.gif','.bmp');
 
 // placeholder until implemented
 $_MG_CONF['ad_shopping_cart'] = 0;
@@ -778,7 +778,7 @@ function plugin_autotags_mediagallery ($op, $content = '', $autotag = '')
         return $content;
     }
     if ($op == 'tagname') {
-        return array('album','media','img','slideshow','fslideshow','video','audio',
+        return array('album','media','media_url','img','slideshow','fslideshow','video','audio',
                      'download','image','oimage','mlink','alink','playall',
                      'gallery'
 					 ,'medialist','albumlist', 'media_url');//@@@@@

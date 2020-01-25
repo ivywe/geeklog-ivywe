@@ -38,6 +38,7 @@ if (strpos(strtolower($_SERVER['PHP_SELF']), strtolower(basename(__FILE__))) !==
 
 require_once $_CONF['path'] . 'plugins/mediagallery/include/lib-media.php';
 require_once $_CONF['path'] . 'plugins/mediagallery/include/lib-batch.php';
+require_once $_CONF['path'] . 'plugins/mediagallery/include/lib-upload.php';
 require_once $_CONF['path'] . 'plugins/mediagallery/include/sort.php';
 
 function MG_batchProcess($album_id, $media_id_array, $action, $actionURL = '')
@@ -347,7 +348,7 @@ function MG_batchMoveMedia($album_id, $destination, $media_id_array, $actionURL 
 {
     global $_USER, $_CONF, $_TABLES, $LANG_MG00;
 
-    // check permissions...
+    // check permissions for from album...
 
     $sql = "SELECT * FROM {$_TABLES['mg_albums']} WHERE album_id=" . intval($album_id);
     $result = DB_query($sql);
@@ -368,7 +369,7 @@ function MG_batchMoveMedia($album_id, $destination, $media_id_array, $actionURL 
         exit;
     }
 
-    // check permissions...
+    // check permissions for destination album...
 
     $sql = "SELECT * FROM {$_TABLES['mg_albums']} WHERE album_id=" . intval($destination);
     $result = DB_query($sql);
@@ -426,6 +427,10 @@ function MG_batchMoveMedia($album_id, $destination, $media_id_array, $actionURL 
     MG_updateAlbumLastUpdate($album_id);
     MG_updateAlbumLastUpdate($destination);
 
+    // update the disk usage after move...
+    MG_updateQuotaUsage($album_id);
+    MG_updateQuotaUsage($destination);
+
     MG_SortMedia($album_id);
     MG_SortMedia($destination);
 
@@ -436,6 +441,148 @@ function MG_batchMoveMedia($album_id, $destination, $media_id_array, $actionURL 
 
     echo COM_refresh($actionURL);
     exit;
+}
+
+function MG_batchCopyMedia($album_id, $destination, $media_id_array, $actionURL = '')
+{
+    global $_USER, $_CONF, $_TABLES, $_MG_CONF, $LANG_MG00, $LANG_MG02, $LANG_MG03;
+
+    // make sure they are not the same...
+    if ($album_id == $destination) {
+        echo COM_refresh($actionURL);
+        exit;
+    }
+
+    // check permissions for destination album...
+
+    $sql = "SELECT * FROM {$_TABLES['mg_albums']} WHERE album_id=" . intval($destination);
+    $result = DB_query($sql);
+    $D = DB_fetchArray($result);
+
+    $access = SEC_hasAccess($D['owner_id'], $D['group_id'], $D['perm_owner'],
+                            $D['perm_group'], $D['perm_members'], $D['perm_anon']);
+
+    if ($access != 3 && !SEC_hasRights('mediagallery.admin')) {
+        COM_errorLog("Someone has tried to illegally copy items from album in Media Gallery. "
+                   . "User id: {$_USER['uid']}, Username: {$_USER['username']}, IP: $REMOTE_ADDR",1);
+        return COM_showMessageText($LANG_MG00['access_denied_msg']);
+    }
+
+    require_once $_CONF['path'] . 'plugins/mediagallery/include/classMedia.php';
+
+    // get max order for destination album....
+
+    $sql = "SELECT MAX(media_order) + 10 AS media_seq "
+         . "FROM {$_TABLES['mg_media_albums']} WHERE album_id = " . intval($destination);
+    $result = DB_query($sql);
+    $row = DB_fetchArray($result);
+    $media_seq = $row['media_seq'];
+    if ($media_seq < 10) {
+        $media_seq = 10;
+    }
+
+    // ok to move media objects, we will need a destination album.
+    // we will also need to get the max order value so we can put all of these at the top
+    // of the new album.
+
+    $dMediaCount = $D['media_count'];
+
+    $numItems = count($media_id_array);
+    $statusMsg = '';
+    $max_filesize = DB_getItem($_TABLES['mg_albums'], 'max_filesize', 'album_id=' . intval($destination));
+    $successfull_upload = 0;
+    $br = '<br' . XHTML . '>';
+
+    for ($i=0; $i < $numItems; $i++) {
+        $media_id = $media_id_array[$i];
+        $sql = "SELECT * FROM {$_TABLES['mg_media']} WHERE media_id='" . addslashes($media_id) . "'";
+//        $sql = "UPDATE {$_TABLES['mg_media_albums']} "
+//             . "SET album_id=" . intval($destination) . ", media_order=" . intval($media_seq)
+//             . " WHERE album_id=" . intval($album_id) . " AND media_id='" . addslashes($media_id) . "'";
+        $result = DB_query($sql);
+        $M = DB_fetchArray($result);
+
+        // process the copy files
+        $filename = $M['media_original_filename'];
+        $filetmp  = MG_getFilePath('orig', $M['media_filename'], $M['media_mime_ext']);
+        list($thumbnail, $pThumbnail, $size) = Media::getThumbInfo($M, 13);
+
+        if ($max_filesize != 0 && filesize($filetmp) > $max_filesize) {
+            COM_errorLog("MG Copy: File " . $filename . " exceeds maximum allowed filesize for this album ({$filesize} > {$max_filesize})");
+            $tmpmsg = sprintf($LANG_MG02['upload_exceeds_max_filesize'], $filename."({$filesize} > {$max_filesize})");
+            $statusMsg .= $tmpmsg . $br;
+            continue;
+        }
+
+        // check user quota -- do we have one????
+        $user_quota = DB_getItem($_TABLES['mg_userprefs'], 'quota', "uid=" . intval($_USER['uid']));
+        if ($user_quota > 0) {
+            $disk_used = MG_quotaUsage($_USER['uid']);
+            if ($disk_used+filesize($filetmp) > $user_quota) {
+                COM_errorLog("MG Copy: File " . $filename . " would exceeds the users quota(".$disk_used+filesize($filetmp)." > {$user_quota})");
+                $tmpmsg = sprintf($LANG_MG02['upload_exceeds_quota'], $filename."(".$disk_used+filesize($filetmp)." > {$user_quota})");
+                $statusMsg .= $tmpmsg . $br;
+                continue;
+            }
+        }
+
+        $opt = array(
+            'caption'     => $M['media_title'],
+            'description' => $M['media_desc'],
+            'filetype'    => $M['mime_type'],
+            'atttn'       => $M['media_tn_attached'],
+            'thumbnail'   => $pThumbnail,
+            'keywords'    => $M['media_keywords'],
+            'category'    => $M['media_category'],
+            'dnc'         => 0,
+            'upload'      => 0,
+        );
+        list($rc, $msg) = MG_getFile($filetmp, $filename, intval($destination), $opt);
+        $statusMsg .= $filename . " " . $msg . $br;
+        if ($rc == true) {
+            $successfull_upload++;
+            // update the media count in both albums...
+            $dMediaCount++;
+        }
+    }
+
+    DB_change($_TABLES['mg_albums'], 'media_count', $dMediaCount, 'album_id', intval($destination));
+
+    MG_resetAlbumCover($destination);
+
+    // reset the last_update field...
+    MG_updateAlbumLastUpdate($destination);
+
+    // update the disk usage after move...
+    MG_updateQuotaUsage($destination);
+
+    MG_SortMedia($destination);
+
+    require_once $_CONF['path'] . 'plugins/mediagallery/include/rssfeed.php';
+    MG_buildFullRSS();
+    MG_buildAlbumRSS($destination);
+
+    $retval .= COM_startBlock($LANG_MG03['copy_results'], '',
+                              COM_getBlockTemplate('_admin_block', 'header'));
+
+    $T = COM_newTemplate(MG_getTemplatePath(intval($album_id)));
+    $T->set_file('mcopy', 'copystatus.thtml');
+
+    $T->set_var('status_message', $statusMsg);
+
+    $tmp = $_MG_CONF['site_url'] . '/album.php?aid=' . intval($album_id) . '&amp;page=1';
+    $redirect = sprintf($LANG_MG03['album_redirect_from'], $tmp);
+    $T->set_var('redirect', $redirect);
+
+    $tmp = $_MG_CONF['site_url'] . '/album.php?aid=' . intval($destination) . '&amp;page=1';
+    $redirect_destination = sprintf($LANG_MG03['album_redirect_destination'], $tmp);
+    $T->set_var('redirect_destination', $redirect_destination);
+
+    $T->parse('output', 'mcopy');
+    $retval .= $T->finish($T->get_var('output'));
+    $retval .= COM_endBlock(COM_getBlockTemplate('_admin_block', 'footer'));
+
+    return $retval;
 }
 
 

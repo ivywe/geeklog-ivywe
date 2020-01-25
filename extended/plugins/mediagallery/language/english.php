@@ -204,6 +204,8 @@ $LANG_MG01 = array (
     'subalbums'                 => 'Sub Albums',
     'destination_album'         => 'Destination Album',
     'move'                      => 'move',
+    'copy_destination_album'    => 'Copy Destination Album',
+    'copy'                      => 'copy',
     'date'                      => 'Date',
     'album'                     => 'Album',
     'mod_delete'                => 'Delete',
@@ -852,6 +854,9 @@ $LANG_MG03 = array (
     'list_user'             => 'User',
     'list_updated'          => 'Updated',
     'js_warning'            => 'Warning: Javascript recommended for enhanced functionality.',
+    'copy_results'          => 'Media Gallery Copy Results',
+    'album_redirect_from' => 'Click <a href="%s">Here</a> to return to from album.',
+    'album_redirect_destination' => 'Click <a href="%s">Here</a> to return to destination album.',
 );
 
 // EXIF labels

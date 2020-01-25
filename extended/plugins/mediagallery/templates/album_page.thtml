@@ -33,14 +33,16 @@
     {!endif}
 
     {!if album_body}
-    <div class="uk-child-width-1-2@s uk-child-width-1-4@m" uk-grid uk-height-match="target: > div > div > .uk-card">
-      <!-- BEGIN ImageRow -->
-      <!-- BEGIN ImageColumn -->
-      <div>
-      {CELL_DISPLAY_IMAGE}
+    <div uk-card>
+      <div class="uk-child-width-1-2@s uk-child-width-1-4@m" uk-grid uk-height-match="target: > div > div > .uk-card">
+        <!-- BEGIN ImageRow -->
+        <!-- BEGIN ImageColumn -->
+        <div>
+        {CELL_DISPLAY_IMAGE}
+        </div>
+        <!-- END ImageColumn -->
+        <!-- END ImageRow -->
       </div>
-      <!-- END ImageColumn -->
-      <!-- END ImageRow -->
     </div>
     {!endif}
 
