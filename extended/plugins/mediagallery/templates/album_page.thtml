@@ -237,6 +237,7 @@
         <ul>
         <li><a href="#_debug" uk-scroll="offset:100">debug</a></li>
         <li><a href="#_media_url" uk-scroll="offset:100">media_url</a></li>
+        <li><a href="#_media_id" uk-scroll="offset:100">media_id</a></li>
         </ul>
 
       </div>
@@ -489,6 +490,14 @@
       {!!autotag medialist:'.{album_id}.' src:disp theme:media_url !!}
   </div>
 </section>
+
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_media_id">&#91;medialist:{album_id} theme:media_id &#93;</h4>
+<section class="uk-section uk-preserve-color">
+  <div class="uk-container">
+      {!!autotag medialist:'.{album_id}.' theme:media_id !!}
+  </div>
+</section>
+
 
 <section class="uk-section">
   <div class="uk-container">

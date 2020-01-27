@@ -24,7 +24,7 @@
   {!if velocity}velocity:{velocity};{!endif}
   ">
 
-    <ul class="uk-slider-items uk-child-width-1-{grid} uk-child-width-1-{grids}@s uk-child-width-1-{gridm}@m">
+    <ul class="uk-slider-items uk-grid">
 {medialist_col}
     </ul>
 

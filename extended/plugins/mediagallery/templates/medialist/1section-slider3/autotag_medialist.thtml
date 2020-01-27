@@ -1,0 +1,38 @@
+{# begin {templatelocation} s-item-slider2 #}
+
+<?php $rate = $this->get_var('rate'); $rate=str_replace("_",":",$rate); $cl = $this->get_var('uks');if(strlen($cl)){$uks = ' '.str_replace('.', ' ', $cl);}else{$uks = "";}$cl = $this->get_var('ukc');if(strlen($cl)){$ukc = ' '.str_replace('.', ' ', $cl);}else{$ukc = "";}$cl = $this->get_var('class_album_title');if(strlen($cl)){$class_album_title = ' '.str_replace('.', ' ', $cl);}else{$class_album_title = " uk-text-center@m";}$cl = $this->get_var('class_album_desc');if(strlen($cl)){$class_album_desc = ' '.str_replace('.', ' ', $cl);}else{$class_album_desc = " uk-text-center@m";}$cl = $this->get_var('class_media_title');if(strlen($cl)){$class_media_title = ' '.str_replace('.', ' ', $cl);}else{$class_media_title = " uk-text-center@m";}$cl = $this->get_var('class_media_desc');if(strlen($cl)){$class_media_desc = ' '.str_replace('.', ' ', $cl);}else{$class_media_desc = " uk-text-center@m";} ?>
+
+{!if edit}
+<div class="uk-text-right uk-margin-right" style="margin-top:30px" ><a href="#modal-<?php global $medialist_no; $medialist_no++; echo $medialist_no; ?>" uk-toggle><span uk-icon="icon: more">medialist</span></a></div><div id="modal-<?php echo $medialist_no; ?>" uk-modal><div class="uk-modal-dialog uk-modal-body" style="width:90%;"><div class="uk-margin-top"><div><a target="_blank" href="{site_url}/mediagallery/album.php?aid={album_id}&page=1" class="uk-text-bold"><span uk-icon="icon: album"></span> Album ID:{album_id} | Display</a><a target="_blank" href="{site_url}/mediagallery/admin.php?mode=edit&album_id={album_id}" class="uk-margin-left"><span uk-icon="icon: cog"></span>Setting</a><a target="_blank" href="{site_url}/mediagallery/admin.php?mode=upload&album_id={album_id}" class="uk-margin-left"><span uk-icon="icon: upload"></span>Add media</a><a target="_blank" href="{site_url}/mediagallery/admin.php?album_id={album_id}&mode=media" class="uk-margin-left"><span uk-icon="icon: file-edit"></span>Manage Media</a></div><div class="uk-margin uk-text-bold">Album: {album_title}</div><div><?php if(strpos($this->get_var('theme'),'_keyurl')!== false ){ echo "※Keyword: URL<br>"; } if(strpos($this->get_var('theme'),'_search')!== false ){ echo "※Description: Search menu, Keyword: Category<br>"; } if(strpos($this->get_var('theme'),'keyurl2')!== false ){ echo "※Media-Keyword line1 desc, line2 URL<br>"; } if(strpos($this->get_var('theme'),'keyurl1')!== false ){ echo "※Media-Keyword line1 description, line2 URL<br>"; } if(strpos($this->get_var('theme'),'_reverse')!== false ){ echo "※If you want to revers, please add reverse:1 to Autotag.<br>"; } if(strpos($this->get_var('theme'),'_page')!== false ){ echo "<br>"; } ?>&#91;medialist:{album_id} theme:{theme} src:{src} limitcnt:{limitcnt} sort:{sort} title:{title} uks:<?php echo str_replace(' ', '.', $this->get_var('uks')); ?> ukc:<?php echo str_replace(' ', '.', $this->get_var('ukc')); ?> media:{media} grids:{grids} gridm:{gridm} gridl:{gridl} gridr:{gridr} reverse:{reverse} {!if text}text:{text} {!endif}{!if text1}text1:{text1} {!endif}{!if text2}text2:{tex2} {!endif}{!if text3}text3:{text3} {!endif}<?php if(strpos($this->get_var('theme'),'slide')!== false ){ ?> dotnav:{dotnav}<?php } ?> class_album_title:{class_album_title} class_album_desc:{class_album_desc} class_media_title:{class_media_title} class_media_desc:{class_media_desc} bxslider:{bxslider} animation:{animation} autoplay:{autoplay} autoplayinterval:{autoplayinterval} draggable:{draggable} easing:{easing} finite:{finite} pauseonhover:{pauseonhover} index:{index} velocity:{velocity} rate:{rate} minheight:{minheight} maxheight:{maxheight} animationduration:{animationduration} center:{center} sets:{sets} clsactivated:{clsactivated} cls:{cls} closest:{closest} scroll:{scroll} overflow:{overflow} offset:{offset} section:{section} container:{container} masonry:{masonry}&#93;</div></div></div></div>
+{!endif}
+
+
+{!!if {section} == '1' || {section} == '' !!}<section id="album{album_id}-section<?php global $sectionid; $sectionid++; echo $sectionid; ?>" class="uk-section<?php echo $uks; ?>">{!endif}
+
+  {!if title}<h2 class="<?php echo $class_album_title; ?>">{album_title}</h2>{!endif}
+  {!if album_desc}<div class="<?php echo $class_album_desc; ?>">{album_desc}</div>{!endif}
+
+  <div>
+    <div class="uk-position-relative uk-visible-toggle uk-light uk-margin-bottom" uk-slider="{!if autoplay}autoplay:{autoplay};{!endif}
+    {!if autoplayinterval}autoplay-interval:{autoplayinterval};{!endif}
+    {!if center}center:{center};{!endif}
+    {!if draggable}draggable:{draggable};{!endif}
+    {!if easing}easing:{easing};{!endif}
+    {!if finite}finite:{finite};{!endif}
+    {!if index}index:{index};{!endif}
+    {!if pauseonhover}pause-on-hover:{pauseonhover};{!endif}
+    {!if sets}sets:{sets};{!endif}
+    {!if velocity}velocity:{velocity};{!endif}">
+      <ul class="uk-slider-items uk-child-width-1-{!if grid}{grid}{!else}2{!endif} uk-child-width-1-{!if grids}{grids}{!else}2{!endif}@s uk-child-width-1-{!if gridm}{gridm}{!else}3{!endif}@m uk-grid">
+{medialist_col}
+      </ul>
+      <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+      <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+
+    </div>
+    {!!if {dotnav} == '0' !!}{!else}<ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>{!endif}
+  </div>
+
+{!!if {section} == '1' || {section} == '' !!}</section>{!endif}
+
+{# end {templatelocation} #}

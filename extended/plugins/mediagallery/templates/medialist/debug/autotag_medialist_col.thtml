@@ -23,7 +23,7 @@
   <dt style="text-transform: none">reverse</dt><dd>{reverse}</dd>
   <dt style="text-transform: none">text</dt><dd>{text}</dd>
   <dt style="text-transform: none">text1</dt><dd>{text1}</dd>
-  <dt style="text-transform: none">text2</dt><dd>{tex2}</dd>
+  <dt style="text-transform: none">text2</dt><dd>{text2}</dd>
   <dt style="text-transform: none">text3</dt><dd>{text3}</dd>
   <dt style="text-transform: none">dotnav</dt><dd>{dotnav}</dd>
   <dt style="text-transform: none">minheight</dt><dd>{minheight}</dd>
@@ -35,7 +35,7 @@
   <dt style="text-transform: none">bxslider</dt><dd>{bxslider}</dd>
   <dt style="text-transform: none">animation</dt><dd>{animation}</dd>
   <dt style="text-transform: none">section</dt><dd>{section}</dd>
-  <dt style="text-transform: none">container</dt><dd>{section}</dd>
+  <dt style="text-transform: none">container</dt><dd>{container}</dd>
   <dt style="text-transform: none">masonry</dt><dd>{masonry}</dd>
   <dt style="text-transform: none">class</dt><dd>{class}</dd>
 </dl>
