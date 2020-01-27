@@ -7,6 +7,7 @@
 {!endif}
 
 {!!if {section} == '1' || {section} == '' !!}<section id="album{album_id}-section<?php global $sectionid; $sectionid++; echo $sectionid; ?>" class="uk-section<?php echo $uks; ?>">{!endif}
+{!!if {container} == '1' || {container} == '' !!}<div class="uk-container <?php echo $ukc; ?>">{!endif}
 
   {!if title}<h2 class="<?php echo $class_album_title; ?>">{album_title}</h2>{!endif}
   {!if album_desc}<p class="<?php echo $class_album_desc; ?>">{album_desc}</p>{!endif}
@@ -32,6 +33,7 @@
       <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
       <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
 
+    </div>
     {!!if {dotnav} == '0' !!}{!else}<ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>{!endif}
   </div>
 
