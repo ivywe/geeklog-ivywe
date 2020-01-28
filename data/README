@@ -1,4 +1,0 @@
-This is Geeklog's general data directory, used for e.g. the batch user import.
-
-- Remember that this file must be writable!
-- Please DO NOT remove the file named "cacert.pem"

@@ -1,9 +1,0 @@
-{# begin {templatelocation} #}
-
-                                            <form method="post" action="{site_url}/calendar/index.php?mode=personal">
-                                                <div>
-                                                    <button type="submit" name="action" value="{lang_mycalendar}" class="uk-button uk-button-default">{lang_mycalendar}</button>
-                                                </div>
-                                            </form>
-
-{# end {templatelocation} #}
