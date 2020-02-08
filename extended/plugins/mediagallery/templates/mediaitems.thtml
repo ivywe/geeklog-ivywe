@@ -82,7 +82,7 @@ function doUnCheckAll_mediaitems() {
 
 <div class="uk-margin-top" uk-grid>
   <div class="uk-width-1-2@m uk-text-right">{lang_albumsel}{albumselect}<input type="submit" class="uk-button uk-button-primary uk-form-width-medium" name="mode" value="{lang_move}"{xhtml}></div>
-  <div class="uk-width-1-2@m uk-text-right">{lang_albumsel_copy}{albumselect}<input type="submit" class="uk-button uk-button-primary uk-form-width-medium" name="mode" value="{lang_copy}"{xhtml}></div>
+  <div class="uk-width-1-2@m uk-text-right">{lang_albumsel_copy}{album_cp_select}<input type="submit" class="uk-button uk-button-primary uk-form-width-medium" name="mode" value="{lang_copy}"{xhtml}></div>
   <div class="uk-width-1-2@m uk-text-right">{lang_batch_options}{batchoptionselect}<input type="submit" class="uk-button uk-button-primary uk-form-width-medium" name="mode" value="{lang_batch}"{xhtml}></div>
 </div>
 

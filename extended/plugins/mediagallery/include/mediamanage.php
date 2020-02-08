@@ -80,6 +80,10 @@ function MG_imageAdmin($album_id, $page, $actionURL = '')
     $root_album->buildAlbumBox($album_selectbox, $album_id, 3, $album_id, 'manage');
     $album_selectbox .= '</select>';
 
+    $album_cp_selectbox = '<select class="uk-select uk-form-width-medium" name="album_cp">';
+    $root_album->buildAlbumBox($album_cp_selectbox, $album_id, 3, $album_id, 'manage');
+    $album_cp_selectbox .= '</select>';
+
     $sql = "SELECT * FROM {$_TABLES['mg_category']} ORDER BY cat_id ASC";
     $result = DB_query($sql);
     $nrows = DB_numRows($result);
@@ -144,7 +148,7 @@ function MG_imageAdmin($album_id, $page, $actionURL = '')
         'batchoptionselect'       => $batchOptionSelect,
         'lang_batch_options'      => $LANG_MG01['batch_options'],
         'lang_keywords'           => $LANG_MG01['keywords'],
-        'albumselect'             => $album_selectbox,
+        'album_cp_select'         => $album_cp_selectbox,
         'lang_batch'              => $LANG_MG01['batch_process'],
         'batchoptionselect'       => $batchOptionSelect,
         'val_reset_cover'         => (($album_cover == '-1') ? ' checked="checked"' : ''),
