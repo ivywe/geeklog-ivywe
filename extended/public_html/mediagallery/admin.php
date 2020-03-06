@@ -494,7 +494,7 @@ if ($mode == 'edit') {
     if (!isset($_POST['album_id'])) MG_invalidRequest();
     require_once $include . 'batch.php';
     $album_id = COM_applyFilter($_POST['album_id'], true);
-    $destination = COM_applyFilter($_POST['album'], true);
+    $destination = COM_applyFilter($_POST['album_cp'], true);
     $actionURL = $_MG_CONF['site_url'] . '/album.php?aid=' . $album_id;
     if ($destination == 0) { // deny move to the root album
         echo COM_refresh($actionURL);
