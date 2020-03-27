@@ -63,10 +63,10 @@ $langfile = $_CONF['path'] . 'plugins/autotags/language/'
 
 /**
 * Check and see if we need to load the plugin configuration
-*/ 
+*/
 if (!isset($_AUTO_CONF['link_in_menu'])) {
     require_once $_CONF['path_system'] . 'classes/config.class.php';
-    
+
     $auto_config = config::get_instance();
     $_AUTO_CONF = $auto_config->get_config('autotags');
 
@@ -75,7 +75,8 @@ if (!isset($_AUTO_CONF['link_in_menu'])) {
 /**
  * Autotags plugin table(s)
  */
-$_TABLES['autotags']  = $_DB_table_prefix . 'autotags';	
+global $_DB_table_prefix;
+$_TABLES['autotags']  = $_DB_table_prefix . 'autotags';
 
 
 $_AUTOTAGS = Array();
@@ -90,27 +91,27 @@ $_AUTOTAGS = Array();
 function loadAutotags()
 {
     global $_TABLES, $_AUTOTAGS, $_AUTO_CONF;
-    
+
     if (isset($_AUTO_CONF['loaded']) && $_AUTO_CONF['loaded'] == 1)
         return;
 
     $pi_enabled = DB_getItem($_TABLES['plugins'], 'pi_enabled', "pi_name = 'autotags'");
     $installed_version = DB_getItem($_TABLES['plugins'], 'pi_version', "pi_name = 'autotags'");
-    $code_version = plugin_chkVersion_autotags();    
-    if ($pi_enabled && ($installed_version == $code_version)) { // Needed to double check incase of uninstall   
+    $code_version = plugin_chkVersion_autotags();
+    if ($pi_enabled && ($installed_version == $code_version)) { // Needed to double check incase of uninstall
         $sql = "SELECT * FROM {$_TABLES['autotags']} WHERE is_enabled = 1";
         $result = DB_query($sql);
         $num = DB_numrows($result);
         for ($i = 0; $i < $num; ++$i)
         {
             $A = DB_fetchArray($result);
-            // Only include tag if not a function or if a function and php is allowed 
+            // Only include tag if not a function or if a function and php is allowed
             if ($A['is_function'] == 0 || ($_AUTO_CONF['allow_php'] == 1 && $A['is_function'] == 1)) {
                 $_AUTOTAGS[$A['tag']] = $A;
             }
         }
         $_AUTO_CONF['loaded'] = 1;
-        
+
     }
 }
 
@@ -126,9 +127,9 @@ function plugin_chkVersion_autotags()
 {
     global $_CONF;
 
-    require_once $_CONF['path'] . 'plugins/autotags/autoinstall.php';          
+    require_once $_CONF['path'] . 'plugins/autotags/autoinstall.php';
 
-    $inst_parms = plugin_autoinstall_autotags('autotags'); 
+    $inst_parms = plugin_autoinstall_autotags('autotags');
 
     return $inst_parms['info']['pi_version'];
 }
@@ -157,13 +158,13 @@ function plugin_upgrade_autotags()
         return 3002;
     }
 
-    // Retrieve other plugin info like min geeklog version and homepage 
+    // Retrieve other plugin info like min geeklog version and homepage
     $inst_parms = plugin_autoinstall_autotags('autotags');
 
     require_once $_CONF['path'] . 'plugins/autotags/sql/'
                                 . $_DB_dbms . '_updates.php';
-                                
-    require_once $_CONF['path'] . 'plugins/autotags/install_updates.php';                                
+
+    require_once $_CONF['path'] . 'plugins/autotags/install_updates.php';
 
     $current_version = $installed_version;
     $done = false;
@@ -174,11 +175,11 @@ function plugin_upgrade_autotags()
             break;
 
         case '1.01':
-            
+
             if (!DB_getItem($_TABLES['autotags'], '1', "tag = 'lang'")) {
                 DB_query("INSERT INTO {$_TABLES['autotags']} (tag, is_enabled, is_function, description, replacement) VALUES ('lang', 0, 1, 'Provides access to the $LANG family of variables', NULL)");
             }
-            
+
             $current_version = '1.02';
             break;
 
@@ -189,13 +190,13 @@ function plugin_upgrade_autotags()
                     DB_query($sql);
                 }
             }
-            
+
             autotags_update_ConfValues_1_0_2();
             autotags_update_ConfigSecurity_1_0_2();
-            
+
             $current_version = '1.1.0';
             break;
-            
+
         case '1.1.0':
             if (isset($_UPDATES[$current_version])) {
                 $_SQL = $_UPDATES[$current_version];
@@ -203,20 +204,20 @@ function plugin_upgrade_autotags()
                     DB_query($sql);
                 }
             }
-            
+
             $current_version = '1.1.1';
-            break;            
-            
+            break;
+
         case '1.1.1':
 
             $current_version = '1.1.2';
-            break;      
+            break;
 
         case '1.1.2':
 
             $current_version = '1.1.3';
-            break;              
-        
+            break;
+
         default:
             $done = true;
         }
@@ -226,7 +227,7 @@ function plugin_upgrade_autotags()
     DB_query("UPDATE {$_TABLES['plugins']} SET pi_version = '$code_version', pi_gl_version = '{$inst_parms['info']['pi_gl_version']}', pi_homepage = '{$inst_parms['info']['pi_homepage']}' WHERE pi_name = 'autotags'");
 
     COM_errorLog( "Updated autotags plugin from v$installed_version to v$code_version", 1 );
-    
+
     return true;
 }
 
@@ -250,10 +251,10 @@ function plugin_autouninstall_autotags ()
         /* give the full name of the group, as in the db */
         'groups' => array('Autotags Admin'),
         /* give the full name of the feature, as in the db */
-        'features' => array('autotags.edit', 
+        'features' => array('autotags.edit',
                             'autotags.PHP',
                             'config.autotags.tab_main',
-                            'config.autotags.tab_autotag_permissions'),            
+                            'config.autotags.tab_autotag_permissions'),
         /* give all vars with their name */
         'vars'=> array()
     );
@@ -295,7 +296,7 @@ function plugin_getmenuitems_autotags()
     global $_CONF, $_AUTO_CONF, $LANG_AUTO;
 
     $menuitems = array();
-    
+
     if ($_AUTO_CONF['link_in_menu'] == 1)
     {
         $menulabel = $LANG_AUTO['main_menulabel'];
@@ -320,7 +321,7 @@ function plugin_getListField_autotags($fieldname, $fieldvalue, $A, $icon_arr) {
         case "edit":
             if ($A['is_function'] && (!SEC_hasRights('autotags.PHP') || $_AUTO_CONF['allow_php'] == 0))
                 $retval = '';
-            else 
+            else
                 $retval = "<a href=\"{$_CONF['site_admin_url']}/plugins/autotags/index.php?mode=edit&amp;tag={$A['tag']}\">{$icon_arr['edit']}</a>";
             break;
         case "tag":
@@ -344,10 +345,10 @@ function plugin_getListField_autotags($fieldname, $fieldvalue, $A, $icon_arr) {
                         'onclick' => 'this.form.submit()',
                         'value' => $A['tag'],
                         'checked' => $switch
-                    ));                    
+                    ));
                     $retval .= '<input type="hidden" name="visibletags[]" value="' . $A['tag'] . '"' . XHTML . '>';
                 } else {
-                    $retval = '<input type="checkbox" class="uk-checkbox" name="enabledtags[]" '
+                    $retval = '<input type="checkbox" name="enabledtags[]" '
                                 . 'onclick="submit()" value="' . $A['tag'] . '"'
                                 . $switch . XHTML . '>'
                                 . '<input type="hidden" name="visibletags[]" value="'
@@ -366,12 +367,12 @@ function plugin_getListField_autotags($fieldname, $fieldvalue, $A, $icon_arr) {
 * Why we are here.
 *
 */
-function plugin_autotags_autotags ($op, $content = '', $autotag = '')
+function plugin_autotags_autotags($op, $content = '', $autotag = '', $parameters = array())
 {
-    global $_CONF, $_TABLES, $_AUTOTAGS, $autotag_desc;
+    global $_CONF, $_TABLES, $_AUTOTAGS, $LANG01;
 
     loadAutotags();
-    
+
     if ($op == 'tagname' ) {
         return array_keys($_AUTOTAGS);
     } elseif ($op == 'permission' || $op == 'nopermission') {
@@ -380,34 +381,36 @@ function plugin_autotags_autotags ($op, $content = '', $autotag = '')
         } else {
             $flag = false;
         }
-        
+
         foreach ($_AUTOTAGS as $tag) {
             if (COM_getPermTag($tag['owner_id'], $tag['group_id'], $tag['perm_owner'], $tag['perm_group'], $tag['perm_members'], $tag['perm_anon']) == $flag) {
                 $tagname[] = $tag['tag'];
             }
-        }        
-        
+        }
+
         if (isset($tagname) && is_array($tagname)) {
             return $tagname;
         }
     } elseif ($op == 'closetag') {
         foreach ($_AUTOTAGS as $tag) {
             if (isset($tag['close_tag']) && $tag['close_tag']) {
-                $closetag[] = $tag['tag']; 
+                $closetag[] = $tag['tag'];
             }
         }
-        
+
         if (isset($closetag) && is_array($closetag)) {
             return $closetag;
-        }          
+        }
     } elseif ($op == 'description') {
+		$autotag_desc = array();
+
         foreach ($_AUTOTAGS as $tag) {
             $autotag_desc[$tag['tag']] = $tag['description'];
         }
-        
-        if (is_array($autotag_desc)) {
+
+        if (count($autotag_desc) > 0) {
             return $autotag_desc;
-        }        
+        }
     } else if ($op == 'parse') {
         // [tag:parameter1 And the rest here is parameter2]This is parameter3 if exist.[/tag]
         $p1 = $autotag['parm1'];
@@ -415,9 +418,19 @@ function plugin_autotags_autotags ($op, $content = '', $autotag = '')
         if (isset($autotag['parm3'])) {
             $p3 = $autotag['parm3'];
         }
-        
+
+        // See if calling plugin info exists
+        // Lets use it in just php stuff
+        if (isset($parameters['type']) && isset($parameters['id'])) {
+            $type = $parameters['type'];
+            $id = $parameters['id'];
+        }  else {
+            $type = '';
+            $id = '';
+        }
+
         if (empty($p2)) $p2 = $p1;
-        
+
         if (isset($_AUTOTAGS[$autotag['tag']]))
         {
             $record = $_AUTOTAGS[$autotag['tag']];
@@ -427,12 +440,12 @@ function plugin_autotags_autotags ($op, $content = '', $autotag = '')
                     $function = 'phpautotags_'.$autotag['tag'];
                     if (function_exists($function))
                     {
-                        $reffunc = new ReflectionFunction($function); 
-                        if (isset($p3) && $reffunc->getNumberOfParameters() >= 4) { 
-                            $replace = $function($p1, $p2, $autotag['tagstr'], $p3); 
-                        } else { 
-                            $replace = $function($p1, $p2, $autotag['tagstr']); 
-                        } 
+                        $reffunc = new ReflectionFunction($function);
+                        if (isset($p3) && $reffunc->getNumberOfParameters() >= 6) {
+                            $replace = $function($p1, $p2, $autotag['tagstr'], $p3, $type, $id);
+                        } else {
+                            $replace = $function($p1, $p2, $autotag['tagstr'], $type, $id);
+                        }
 
                         $content = str_replace($autotag['tagstr'], $replace, $content);
                     }
@@ -448,14 +461,35 @@ function plugin_autotags_autotags ($op, $content = '', $autotag = '')
                     }
                     $evalstring .= '$tagstr = "' . addslashes($autotag['tagstr']) . '";';
                     $evalstring .= '$tagstr = stripslashes($tagstr);';
+                    $evalstring .= '$type = "' . $type . '";';
+                    $evalstring .= '$id = "' . $id . '";';
                     $evalstring .= $record['replacement'];
-                    $replace = eval($evalstring);
+                    //$replace = eval($evalstring);
+
+                    // Lets try to error gracefully if we need too when evaluating PHP
+                    // Cannot use COM_handleEval as that is an outside function as the code we need to evaluate contains references to variables here
+                    if (version_compare(PHP_VERSION, '7.0.0', '<')) {
+                        $str = eval($evalstring);
+
+                        if ($str === false) {
+                            $errorMessage = $LANG01[144];
+                        }
+                    } else {
+                        try {
+                            $str = eval($evalstring);
+                        } catch (ParseError $e) {
+                            COM_errorLog(__FUNCTION__ . ': ' . $e->getMessage());
+                            $errorMessage = $LANG01[144];
+                        }
+                    }
+                    $replace = empty($errorMessage) ? $str : $errorMessage;
+
                     $content = str_replace($autotag['tagstr'], $replace, $content);
                 }
             } else {
                 $p0 = substr($autotag['tagstr'], strlen($autotag['tag']) + 2);
                 $p0 = substr($p0, 0, strlen($p0)-1);
-                
+
                 if (isset($p3)) {
                     $replace = Array('#U', '#1', '#2', '#0', '#3');
                     $with = Array($_CONF['site_url'], $p1, $p2, $p0, $p3);
@@ -463,8 +497,8 @@ function plugin_autotags_autotags ($op, $content = '', $autotag = '')
                     $replace = Array('#U', '#1', '#2', '#0');
                     $with = Array($_CONF['site_url'], $p1, $p2, $p0);
                 }
-                
-                $subject = $record['replacement']; 
+
+                $subject = $record['replacement'];
                 $subject = str_replace($replace, $with, $subject);
                 $content = str_replace($autotag['tagstr'], $subject, $content, $count);
             }
@@ -484,13 +518,13 @@ function plugin_autotags_autotags ($op, $content = '', $autotag = '')
 function phpautotags_topic($p1, $p2, $fulltag)
 {
     global $_TABLES, $_CONF;
-    
+
     $topic = DB_getItem($_TABLES['topics'], 'topic', "tid = '$p1'" . COM_getTopicSQL('AND'));
-    // Comment out the line above and uncomment the line below if you 
+    // Comment out the line above and uncomment the line below if you
     // don't care whether or not users can see the names of topic they
     // cannot access.
 //    $topic = DB_getItem($_TABLES['topics'], 'topic', "tid = '$p1'");
-    
+
     if (empty($topic))
         return "<B>Unknown Topic</B>";
     $topic = stripslashes($topic);
@@ -527,7 +561,7 @@ function phpautotags_lang($p1, $p2, $fulltag)
     if (empty($p1) || empty($p2)) {
         return '';
     }
-    
+
     $lang = "LANG$p1";
     if (!is_array($GLOBALS[$lang])) {
         $lang = "LANG_$p1";
