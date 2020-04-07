@@ -731,33 +731,33 @@ function DATABOX_getadditiondef(
 	$fieldgroupno_old="";
 
     $sql="SELECT ";
-    $sql.= " field_id ";
-    $sql.= ",name ";
-    $sql.= ",description";
-    $sql.= ",type";
+    $sql.= " `field_id` ";
+    $sql.= ",`name` ";
+    $sql.= ",`description`";
+    $sql.= ",`type`";
     //$sql.= ",fieldgroup_id AS group_id";
-    $sql.= ",selection";
-    $sql.= ",selectlist";
-    $sql.= ",checkrequried";
-    $sql.= ",size";
-    $sql.= ",maxlength";
-    $sql.= ",rows";
-    $sql.= ",br";
-    $sql.= ",templatesetvar";
+    $sql.= ",`selection`";
+    $sql.= ",`selectlist`";
+    $sql.= ",`checkrequried`";
+    $sql.= ",`size`";
+    $sql.= ",`maxlength`";
+    $sql.= ",`rows`";
+    $sql.= ",`br`";
+    $sql.= ",`templatesetvar`";
 
-    $sql.= ",allow_display";
-    $sql.= ",allow_edit";
+    $sql.= ",`allow_display`";
+    $sql.= ",`allow_edit`";
 
-    $sql.= ",textcheck";
-    $sql.= ",textconv";
-    $sql.= ",searchtarget";
+    $sql.= ",`textcheck`";
+    $sql.= ",`textconv`";
+    $sql.= ",`searchtarget`";
 
-    $sql.= ",initial_value";
-    $sql.= ",range_start";
-    $sql.= ",range_end";
-    $sql.= ",dfid";
-    $sql.= ",description2";
-    $sql.= ",fieldgroupno";
+    $sql.= ",`initial_value`";
+    $sql.= ",`range_start`";
+    $sql.= ",`range_end`";
+    $sql.= ",`dfid`";
+    $sql.= ",`description2`";
+    $sql.= ",`fieldgroupno`";
 
     $sql.=" FROM";
     $sql.=" {$table}  AS m";

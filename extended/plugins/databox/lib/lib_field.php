@@ -734,74 +734,74 @@ function LIB_Save (
         $id=$w+1;
     }
 
-    $fields="field_id";
+    $fields="`field_id`";
     $values="$id";
 
-    $fields.=",name";
+    $fields.=",`name`";
     $values.=",'$name'";
 
-    $fields.=",templatesetvar";
+    $fields.=",`templatesetvar`";
     $values.=",'$templatesetvar'";
 
-    $fields.=",description";
+    $fields.=",`description`";
     $values.=",'$description'";
 
-    $fields.=",type";
+    $fields.=",`type`";
     $values.=",$type";
 
-    $fields.=",selection";
+    $fields.=",`selection`";
     $values.=",'$selection'";
 
-    $fields.=",selectlist";
+    $fields.=",`selectlist`";
     $values.=",'$selectlist'";
 
-    $fields.=",checkrequried";
+    $fields.=",`checkrequried`";
     $values.=",$checkrequried";
 
 
-    $fields.=",size";
+    $fields.=",`size`";
     $values.=",$size";
 
-    $fields.=",maxlength";
+    $fields.=",`maxlength`";
     $values.=",$maxlength";
 
-    $fields.=",rows";
+    $fields.=",`rows`";
     $values.=",$rows";
 
-    $fields.=",br";
+    $fields.=",`br`";
     $values.=",$br";
 
-    $fields.=",orderno";//
+    $fields.=",`orderno`";//
     $values.=",'$orderno'";
 
-    $fields.=",allow_display";
+    $fields.=",`allow_display`";
     $values.=",$allow_display";
 
-    $fields.=",allow_edit";
+    $fields.=",`allow_edit`";
     $values.=",$allow_edit";
 	
 	
-    $fields.=",textcheck";
+    $fields.=",`textcheck`";
     $values.=",$textcheck";
-    $fields.=",textconv";
+    $fields.=",`textconv`";
     $values.=",$textconv";
-    $fields.=",searchtarget";
+    $fields.=",`searchtarget`";
     $values.=",$searchtarget";
 	
-    $fields.=",initial_value";
+    $fields.=",`initial_value`";
     $values.=",'$initial_value'";
-    $fields.=",range_start";
+    $fields.=",`range_start`";
     $values.=",'$range_start'";
-    $fields.=",range_end";
+    $fields.=",`range_end`";
     $values.=",'$range_end'";
-    $fields.=",dfid";
+    $fields.=",`dfid`";
     $values.=",$dfid";
-    $fields.=",description2";//@@@@@
+    $fields.=",`description2`";//@@@@@
     $values.=",'$description2'";
-    $fields.=",fieldgroupno";
+    $fields.=",`fieldgroupno`";
     $values.=",$fieldgroupno";
 
-    $fields.=",uuid";
+    $fields.=",`uuid`";
     $values.=",$uuid";
 
     DB_save($table,$fields,$values);
