@@ -527,12 +527,12 @@ function MG_batchCopyMedia($album_id, $destination, $media_id_array, $actionURL 
         }
 
         $opt = array(
-            'caption'     => $M['media_title'],
-            'description' => $M['media_desc'],
+            'caption'     => COM_stripslashes($M['media_title']),
+            'description' => COM_stripslashes($M['media_desc']),
             'filetype'    => $M['mime_type'],
             'atttn'       => $M['media_tn_attached'],
             'thumbnail'   => $pThumbnail,
-            'keywords'    => $M['media_keywords'],
+            'keywords'    => COM_stripslashes($M['media_keywords']),
             'category'    => $M['media_category'],
             'dnc'         => 0,
             'upload'      => 0,

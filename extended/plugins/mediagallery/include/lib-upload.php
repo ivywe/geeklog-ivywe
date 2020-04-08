@@ -1065,9 +1065,9 @@ function MG_getFile($filename, $file, $album_id, $opt = array())
             $media_caption  = addslashes(htmlspecialchars(strip_tags(COM_checkWords(COM_killJS($caption)))));
             $media_keywords = addslashes(htmlspecialchars(strip_tags(COM_checkWords(COM_killJS($keywords)))));
         } else {
-            $media_desc     = addslashes(COM_checkHTML(COM_killJS($description)));
-            $media_caption  = addslashes(COM_checkHTML(COM_killJS($caption)));
-            $media_keywords = addslashes(COM_checkHTML(COM_killJS($keywords)));
+            $media_desc     = COM_checkHTML(COM_killJS($description));
+            $media_caption  = COM_checkHTML(COM_killJS($caption));
+            $media_keywords = COM_checkHTML(COM_killJS($keywords));
         }
 
         // Check and see if moderation is on.  If yes, place in mediasubmission
@@ -1182,9 +1182,9 @@ function MG_getFile($filename, $file, $album_id, $opt = array())
                                . $original_filename               . "','"
                                . addslashes($mimeExt)             . "','1','"
                                . addslashes($mimeType)            . "','"
-                               . addslashes($media_caption)       . "','"
-                               . addslashes($media_desc)          . "','"
-                               . addslashes($media_keywords)      . "','"
+                               . $media_caption                   . "','"
+                               . $media_desc                      . "','"
+                               . $media_keywords                  . "','"
                                . addslashes($media_time)          . "','0','0','0','0.00','"
                                . addslashes($atttn)               . "','','1','"
                                . addslashes($media_user_id)       . "','','0','"
