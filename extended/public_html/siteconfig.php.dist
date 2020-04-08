@@ -1,0 +1,3 @@
+<?php
+
+$_CONF['default_charset'] = 'utf-8';
