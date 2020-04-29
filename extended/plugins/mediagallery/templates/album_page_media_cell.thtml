@@ -1,7 +1,7 @@
 {# begin {templatelocation} #}
 
   <div>
-    <div class="uk-card uk-card-default gl-media-cell">
+    <div class="uk-card uk-card-default gl-media-cell" style="padding-top:10px">
       <div class="uk-card-media-top">
         <div class="uk-text-center" style="min-height:200px">{media_item_thumbnail}{mp3_podcast}</div>
       </div>

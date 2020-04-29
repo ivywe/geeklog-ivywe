@@ -1,7 +1,7 @@
 {# begin {templatelocation} #}
 
   <div>
-    <div class="uk-card uk-card-default gl-album-cell">
+    <div class="uk-card uk-card-default gl-album-cell" style="padding-top:10px; background:#eee">
       <div class="uk-card-media-top">
         <div class="uk-text-center">{media_item_thumbnail}</div>
       </div>

@@ -15,13 +15,13 @@
                 <li uk-filter-control class="uk-padding-remove">
 <a href="#" class="uk-button uk-button-secondary">すべて</a></li>
 
-                <li uk-filter-control="[group-01='staff']" class="uk-padding-remove">
+                <li uk-filter-control="[ group-01='staff']" class="uk-padding-remove">
 <a href="#" class="uk-button uk-button-secondary">スタッフ</a></li>
-                <li uk-filter-control="[group-01='food']" class="uk-padding-remove">
+                <li uk-filter-control="[ group-01='food']" class="uk-padding-remove">
 <a href="#" class="uk-button uk-button-secondary">料理</a></li>
-                <li uk-filter-control="[group-01='facility']" class="uk-padding-remove">
+                <li uk-filter-control="[ group-01='facility']" class="uk-padding-remove">
 <a href="#" class="uk-button uk-button-secondary">施設</a></li>
-                <li uk-filter-control="[group-01='room']" class="uk-padding-remove">
+                <li uk-filter-control="[ group-01='room']" class="uk-padding-remove">
 <a href="#" class="uk-button uk-button-secondary">お部屋</a></li>
               </ul>
             </div>
