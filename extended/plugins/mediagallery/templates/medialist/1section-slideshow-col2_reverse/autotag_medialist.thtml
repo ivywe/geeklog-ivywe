@@ -11,9 +11,6 @@
 {!!if {section} == '1' || {section} == '' !!}<section id="album{album_id}-section<?php global $sectionid; $sectionid++; echo $sectionid; ?>" class="uk-section<?php echo $uks; ?>">{!endif}
 {!!if {container} == '1' || {container} == '' !!}<div class="uk-container <?php echo $ukc; ?>">{!endif}
 
-  {!if title}<h2 class="<?php echo $class_album_title; ?>">{album_title}</h2>{!endif}
-  {!if album_desc}<div class="<?php echo $class_album_desc; ?>">{album_desc}</div>{!endif}
-
 <div class="uk-visible@m">
 
 {!if reverse}
