@@ -578,8 +578,8 @@ $LANG_configsections['userbox']['title'] = 'UserBox Setting';
 //----------
 $LANG_configsubgroups['userbox']['sg_main'] = 'Main';
 //--(0)
-$LANG_tab['userbox'][tab_main] = 'MainSetting';
-$LANG_fs['userbox'][fs_main] = 'UserBox MainSetting';
+$LANG_tab['userbox']['tab_main'] = 'MainSetting';
+$LANG_fs['userbox']['fs_main'] = 'UserBox MainSetting';
 $LANG_confignames['userbox']['perpage'] = 'Date Number by Page';
 $LANG_confignames['userbox']['loginrequired'] = 'Login Required';
 $LANG_confignames['userbox']['hidemenu'] = 'Hide Menu';
@@ -625,27 +625,27 @@ $LANG_confignames['userbox']['hideuseroption'] = 'ユーザー情報に表示し
 $LANG_confignames['userbox']['commentcode'] = 'Comment Default';
 
 //--(1)
-$LANG_tab['userbox'][tab_whatsnew] = 'Whats new Block';
-$LANG_fs['userbox'][fs_whatsnew] = 'Whats new Block';
+$LANG_tab['userbox']['tab_whatsnew'] = 'Whats new Block';
+$LANG_fs['userbox']['fs_whatsnew'] = 'Whats new Block';
 $LANG_confignames['userbox']['whatsnew_interval'] = 'New Period';
 $LANG_confignames['userbox']['hide_whatsnew'] = 'Hide Whats New';
 $LANG_confignames['userbox']['title_trim_length'] = 'Title of Max Length';
 
 //---(2)
-$LANG_tab['userbox'][tab_search] = 'Search';
+$LANG_tab['userbox']['tab_search'] = 'Search';
 
-$LANG_fs['userbox'][fs_search] = 'Search Results';
+$LANG_fs['userbox']['fs_search'] = 'Search Results';
 $LANG_confignames['userbox']['include_search'] = 'Data Search';
 $LANG_confignames['userbox']['additionsearch'] = 'Attributes number for Search';
 
 //---(3)
-$LANG_tab['userbox'][tab_permissions] = 'Permission';
-$LANG_fs['userbox'][fs_permissions] = 'Data Permission Default([0]Owner [1]Group [2]Member [3]Anonimous)';
+$LANG_tab['userbox']['tab_permissions'] = 'Permission';
+$LANG_fs['userbox']['fs_permissions'] = 'Data Permission Default([0]Owner [1]Group [2]Member [3]Anonimous)';
 $LANG_confignames['userbox']['default_permissions'] = 'Permissions';
 
 //---(4)
-$LANG_tab['userbox'][tab_autotag] = 'Autotags';
-$LANG_fs['userbox'][fs_autotag] = 'Autotags';
+$LANG_tab['userbox']['tab_autotag'] = 'Autotags';
+$LANG_fs['userbox']['fs_autotag'] = 'Autotags';
 $LANG_confignames['userbox']['intervalday']="Display Period(Day)";
 $LANG_confignames['userbox']['limitcnt']="Display Number";//@@@@@
 $LANG_confignames['userbox']['newmarkday']="New Mark Display Period(Day)";//@@@@@
