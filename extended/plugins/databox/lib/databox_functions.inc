@@ -3044,10 +3044,10 @@ function DATABOX_cleanaddtiondatas(
                 case 22://日付
                 case 23://日付
                     $ary_wk=date_parse( $wk);
-                    if  ($ary_wk[error_count]==0){
-                        $dateary[$field_id]['month']= $ary_wk[month];
-                        $dateary[$field_id]['day']= $ary_wk[day];
-                        $dateary[$field_id]['year']= $ary_wk[year];
+                    if  ($ary_wk['error_count']==0){
+                        $dateary[$field_id]['month']= $ary_wk['month'];
+                        $dateary[$field_id]['day']= $ary_wk['day'];
+                        $dateary[$field_id]['year']= $ary_wk['year'];
                     }else{
                         $wk="";
                         $dateary[$field_id]['month']= "";
