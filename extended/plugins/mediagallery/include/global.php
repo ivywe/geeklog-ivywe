@@ -216,6 +216,7 @@ function MG_globalAlbumAttributeEditor($adminMenu=0)
     $A['enable_rating']      = 0;
     $A['albums_first']       = 0;
     $A['tn_size']            = 13;
+    $A['display_image_size'] = 9;
     $A['display_rows']       = 3;
     $A['display_columns']    = 3;
     $A['full_display']       = 0;

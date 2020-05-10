@@ -1,14 +1,11 @@
 {# begin {templatelocation} #}
 
-<?php $rate = $this->get_var('rate'); $rate=str_replace("_",":",$rate); $cl = $this->get_var('uks');if(strlen($cl)){$uks = ' '.str_replace('.', ' ', $cl);}else{$uks = "";}$cl = $this->get_var('ukc');if(strlen($cl)){$ukc = ' '.str_replace('.', ' ', $cl);}else{$ukc = "";}$cl = $this->get_var('class_album_title');if(strlen($cl)){$class_album_title = ' '.str_replace('.', ' ', $cl);}else{$class_album_title = " uk-text-center@m";}$cl = $this->get_var('class_album_desc');if(strlen($cl)){$class_album_desc = ' '.str_replace('.', ' ', $cl);}else{$class_album_desc = " uk-text-center@m";}$cl = $this->get_var('class_media_title');if(strlen($cl)){$class_media_title = ' '.str_replace('.', ' ', $cl);}else{$class_media_title = " uk-text-center@m";}$cl = $this->get_var('class_media_desc');if(strlen($cl)){$class_media_desc = ' '.str_replace('.', ' ', $cl);}else{$class_media_desc = " uk-text-left";} ?>
-
-
-
+<?php $rate = $this->get_var('rate'); $rate=str_replace("_",":",$rate); $cl = $this->get_var('uks');if(strlen($cl)){$uks = ' '.str_replace('.', ' ', $cl);}else{$uks = "";}$cl = $this->get_var('ukc');if(strlen($cl)){$ukc = ' '.str_replace('.', ' ', $cl);}else{$ukc = "";}$cl = $this->get_var('class_album_title');if(strlen($cl)){$class_album_title = ' '.str_replace('.', ' ', $cl);}else{$class_album_title = " uk-text-center";}$cl = $this->get_var('class_album_desc');if(strlen($cl)){$class_album_desc = ' '.str_replace('.', ' ', $cl);}else{$class_album_desc = " uk-text-center@s";}$cl = $this->get_var('class_media_title');if(strlen($cl)){$class_media_title = ' '.str_replace('.', ' ', $cl);}else{$class_media_title = " uk-text-left";}$cl = $this->get_var('class_media_desc');if(strlen($cl)){$class_media_desc = ' '.str_replace('.', ' ', $cl);}else{$class_media_desc = " uk-text-left";} ?>
 
 <div>
-	<div 
+	<div
 
-<?php 
+<?php
 
 $media_keywords = $this->get_var('media_keywords');
 
@@ -19,7 +16,7 @@ uk-lightbox
 >
 
 
-              <a 
+              <a
 
 <?php if( strpos( $media_keywords, '.pdf') ){ ?>
   target="_blank"
@@ -34,7 +31,7 @@ class="uk-inline-clip uk-transition-toggle"
 href="{media_keywords}">
                 <img src="{filename}" alt="{media_title}">
                 <div class="uk-position-center">
-                  <span class="uk-transition-fade uk-light" 
+                  <span class="uk-transition-fade uk-light"
 
 <?php if( strpos( $media_keywords, '.pdf') ){ ?>
 uk-icon="icon:file-pdf; ratio: 2"
@@ -42,9 +39,9 @@ uk-icon="icon:file-pdf; ratio: 2"
 uk-icon="icon:file-text; ratio: 2"
 <?php } elseif( strpos( $media_keywords, 'static pages') ){ ?>
 uk-icon="icon:file-text; ratio: 2"
-<?php } else { ?> 
+<?php } else { ?>
 uk-icon="icon:plus; ratio:2"
-<?php } ?> 
+<?php } ?>
 
 ></span>
                 </div>

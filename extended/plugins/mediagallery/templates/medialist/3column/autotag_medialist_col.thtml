@@ -1,9 +1,0 @@
-{# begin {templatelocation} #}
-
-    <div>
-        <a class="uk-inline" href="{filename_disp}" data-caption="{media_title}">
-            <img src="{filename}" alt="{media_title}">
-        </a>
-    </div>
-
-{# end {templatelocation} #}

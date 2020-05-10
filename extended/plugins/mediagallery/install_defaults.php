@@ -169,7 +169,7 @@ $_MG_DEFAULT = array(
     'ad_max_image_width'         => '0',
     'ad_max_image_height'        => '0',
     'ad_max_filesize'            => '0',
-    'ad_display_image_size'      => '2',
+    'ad_display_image_size'      => '9',
     'ad_display_rows'            => '40',
     'ad_display_columns'         => '3',
     'ad_image_skin'              => 'default', // changed
@@ -980,4 +980,3 @@ function mediagallery_update_ConfValues_1_7_0()
 
     return true;
 }
-?>
