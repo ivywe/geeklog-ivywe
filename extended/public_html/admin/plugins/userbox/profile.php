@@ -54,10 +54,10 @@ function fncList()
     global $LANG_USERBOX;
     global $_USERBOX_CONF;
 	
-    $table  = $_TABLES['USERBOX_base'];
+    $table  = $_TABLES['userbox_base'];
     $table1 = $_TABLES['users'];
-	$table2 = $_TABLES['USERBOX_def_fieldset'];
-	$table5 = $_TABLES['USERBOX_stats'];
+	$table2 = $_TABLES['userbox_def_fieldset'];
+	$table5 = $_TABLES['userbox_stats'];
 
     $retval = '';
 	//フィルタ filter
@@ -82,7 +82,7 @@ function fncList()
         $filter .=" selected='selected'";
     }
     $filter .=" >{$LANG09[9]}</option>";
-    $filter .= COM_optionList ($_TABLES['USERBOX_def_fieldset']
+    $filter .= COM_optionList ($_TABLES['userbox_def_fieldset']
                 , 'fieldset_id,name', $filter_val,0,"fieldset_id<>0");
 
     $filter .="</select>";
@@ -455,9 +455,9 @@ function fncEdit(
 		$sql .= " ,UNIX_TIMESTAMP(t.created) AS created_un".LB;
 		
         $sql .= " FROM ";
-        $sql .= $_TABLES['USERBOX_base'] ." AS t";
+        $sql .= $_TABLES['userbox_base'] ." AS t";
         $sql .= ",".$_TABLES['users'] ." AS t1";
-		$sql .= ",".$_TABLES['USERBOX_def_fieldset'] ." AS t2 ".LB;
+		$sql .= ",".$_TABLES['userbox_def_fieldset'] ." AS t2 ".LB;
 
         $sql .= " WHERE ";
         $sql .= " t.id = $id";
@@ -521,7 +521,7 @@ function fncEdit(
         $perm_members = COM_stripslashes($A['perm_members']);
         $perm_anon = COM_stripslashes($A['perm_anon']);
 
-        $category = DATABOX_getdatas("category_id",$_TABLES['USERBOX_category'],"id = $id");
+        $category = DATABOX_getdatas("category_id",$_TABLES['userbox_category'],"id = $id");
 
         $additionfields = DATABOX_getadditiondatas($id,$pi_name);
         $additionfields_fnm=array();//@@@@@
@@ -1297,7 +1297,7 @@ function fncSave (
     // CHECK　おわり
 
     if ($id==0){
-        $w=DB_getItem($_TABLES['USERBOX_base'],"max(id)","1=1");
+        $w=DB_getItem($_TABLES['userbox_base'],"max(id)","1=1");
         if ($w=="") {
             $w=0;
         }
@@ -1407,7 +1407,7 @@ function fncSave (
     $fields.=",draft_flag";
     $values.=",$draft_flag";
 
-    DB_save($_TABLES['USERBOX_base'],$fields,$values);
+    DB_save($_TABLES['userbox_base'],$fields,$values);
 
     //カテゴリ
     $rt=DATABOX_savecategorydatas($id,$category,$pi_name);
@@ -1560,8 +1560,8 @@ function fncchangeDraft ($id)
     $id = COM_applyFilter($id,true);
     $uuid=$_USER['uid'];
 
-    $sql="UPDATE {$_TABLES['USERBOX_base']} set ";
-    if (DB_getItem($_TABLES['USERBOX_base'],"draft_flag", "id=$id")) {
+    $sql="UPDATE {$_TABLES['userbox_base']} set ";
+    if (DB_getItem($_TABLES['userbox_base'],"draft_flag", "id=$id")) {
         $sql.=" draft_flag = '0'";
     } else {
         $sql.=" draft_flag = '1'";
@@ -1599,7 +1599,7 @@ function fncchangeDraftAll ($flg)
     }
     $uuid=$_USER['uid'];
 
-    $sql="UPDATE {$_TABLES['USERBOX_base']} set ";
+    $sql="UPDATE {$_TABLES['userbox_base']} set ";
     $sql.="draft_flag = '$flg'";
     $sql.=",uuid='$uuid' WHERE draft_flag='$nflg'";
     DB_query($sql);
@@ -1618,7 +1618,7 @@ function fnchitsclear ()
 
     $uuid=$_USER['uid'];
 
-    $sql="UPDATE {$_TABLES['USERBOX_stats']} set ";
+    $sql="UPDATE {$_TABLES['userbox_stats']} set ";
     $sql.="hits = 0";
     $sql.=" WHERE hits<>0";
     DB_query($sql);
@@ -1678,7 +1678,7 @@ $fld['uuid']['name'] = $LANG_USERBOX_ADMIN['uuid'];
 
 //----------------------
 $filenm=$pi_name."_data";
-$tbl ="{$_TABLES['USERBOX_base']}";
+$tbl ="{$_TABLES['userbox_base']}";
 $fieldset_id = COM_applyFilter ($_REQUEST['fieldset']);
 if  ($fieldset_id=="all") {
 	$where = "";
@@ -1777,7 +1777,7 @@ function fncsendmail (
         $sql .= " ,t2.email";
 
         $sql .= " FROM ";
-        $sql .= $_TABLES['USERBOX_base']." AS t1";
+        $sql .= $_TABLES['userbox_base']." AS t1";
         $sql .= ",".$_TABLES['users']." AS t2";
 
         $sql .= " WHERE ";
@@ -1962,7 +1962,7 @@ function fncChangeSetExec (
 	$id = COM_applyFilter ($_REQUEST['id'], true);
     $uuid=$_USER['uid'];
 	
-	$sql="SELECT id FROM {$_TABLES['USERBOX_base']}  ";
+	$sql="SELECT id FROM {$_TABLES['userbox_base']}  ";
 	$sql .=" WHERE ";
 	if  ($id==0){
 		$sql .="  fieldset_id=0";
@@ -1976,7 +1976,7 @@ function fncChangeSetExec (
     while( $A = DB_fetchArray( $result ) )    {
 		$A = array_map('stripslashes', $A);
 		
-		$sql="UPDATE {$_TABLES['USERBOX_base']} set ";
+		$sql="UPDATE {$_TABLES['userbox_base']} set ";
 		$sql.="fieldset_id = '$fieldset_id'";
 		$sql.=",uuid='$uuid' WHERE id =".$A['id'] ;
 		

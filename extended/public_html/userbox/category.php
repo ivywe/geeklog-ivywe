@@ -63,10 +63,10 @@ function fnclist(
     }
 
     //-----
-    $tbl1=$_TABLES['USERBOX_category'] ;
-    $tbl2=$_TABLES['USERBOX_base'] ;
-    $tbl3=$_TABLES['USERBOX_def_category'] ;
-    $tbl4=$_TABLES['USERBOX_def_group'] ;//@@@@@
+    $tbl1=$_TABLES['userbox_category'] ;
+    $tbl2=$_TABLES['userbox_base'] ;
+    $tbl3=$_TABLES['userbox_def_category'] ;
+    $tbl4=$_TABLES['userbox_def_group'] ;//@@@@@
 	$tbl5=$_TABLES['users'] ;
 
     //-----

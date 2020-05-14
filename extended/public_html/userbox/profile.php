@@ -49,7 +49,7 @@ function fncComment(
 	}
 	//
 	
-    $tbl=$_TABLES['USERBOX_base'] ;
+    $tbl=$_TABLES['userbox_base'] ;
 
     //-----
     $sql = "SELECT ";

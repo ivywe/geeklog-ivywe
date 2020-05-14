@@ -11,18 +11,18 @@ define ('THIS_SCRIPT', 'updatetable.php');
 require_once ('../../../../lib-common.php');
 
 // データベーステーブル名 - 原則変更禁止
-$_TABLES['USERBOX_base']    = $_DB_table_prefix . 'userbox_base';
-$_TABLES['USERBOX_category']    = $_DB_table_prefix . 'userbox_category';
-$_TABLES['USERBOX_addition']    = $_DB_table_prefix . 'userbox_addition';
+$_TABLES['userbox_base']    = $_DB_table_prefix . 'userbox_base';
+$_TABLES['userbox_category']    = $_DB_table_prefix . 'userbox_category';
+$_TABLES['userbox_addition']    = $_DB_table_prefix . 'userbox_addition';
 //
-$_TABLES['USERBOX_def_category']    = $_DB_table_prefix . 'userbox_def_category';
-$_TABLES['USERBOX_def_field']    = $_DB_table_prefix . 'userbox_def_field';
-$_TABLES['USERBOX_def_group']    = $_DB_table_prefix . 'userbox_def_group';
+$_TABLES['userbox_def_category']    = $_DB_table_prefix . 'userbox_def_category';
+$_TABLES['userbox_def_field']    = $_DB_table_prefix . 'userbox_def_field';
+$_TABLES['userbox_def_group']    = $_DB_table_prefix . 'userbox_def_group';
 
 //
-$_TABLES['USERBOX_mst']    = $_DB_table_prefix . 'userbox_mst';
+$_TABLES['userbox_mst']    = $_DB_table_prefix . 'userbox_mst';
 //
-$_TABLES['USERBOX_stats']    = $_DB_table_prefix . 'userbox_stats';
+$_TABLES['userbox_stats']    = $_DB_table_prefix . 'userbox_stats';
 
 
 function update_tables()
@@ -40,12 +40,12 @@ function update_tables()
     if (1===0){
 
         $_SQL[] = "
-        ALTER TABLE {$_TABLES['USERBOX_base']}
+        ALTER TABLE {$_TABLES['userbox_base']}
         CHANGE `orderno` `orderno` INT( 2 ) NOT NULL DEFAULT '0'
         ";
 
         $_SQL[] = "
-        ALTER TABLE {$_TABLES['USERBOX_base']}
+        ALTER TABLE {$_TABLES['userbox_base']}
         CHANGE `expired` `expired` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00'
         ";
 
@@ -80,7 +80,7 @@ function update_tables()
     if (1===0){
 
 		$_SQL[] = "
-		INSERT INTO {$_TABLES['USERBOX_def_group']} (
+		INSERT INTO {$_TABLES['userbox_def_group']} (
 		`group_id` 
 		)
 		VALUES (
@@ -95,7 +95,7 @@ function update_tables()
     if (1===0){
 
 		$_SQL[] = "
-		ALTER TABLE {$_TABLES['USERBOX_base']}
+		ALTER TABLE {$_TABLES['userbox_base']}
 		ADD `eyechatchingimage` MEDIUMTEXT NULL AFTER `defaulttemplatesdirectory` 
 		";
 

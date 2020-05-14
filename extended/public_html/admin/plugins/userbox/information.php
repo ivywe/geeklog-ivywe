@@ -56,7 +56,7 @@ function fncDisplay()
 
     $T->set_file ('admin','information.thtml');
 	$T->set_var ('pi_name',$pi_name);
-	$T->set_var('version',$_USERBOX_CONF['version']);
+	$T->set_var('version',$_USERBOX_CONF['pi_version']);
 
 	$T->set_var('piname', $LANG_USERBOX_ADMIN['piname']);
 

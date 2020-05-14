@@ -56,7 +56,7 @@ function fncList()
 
     global $_USERBOX_CONF;
 
-    $table = $_TABLES['USERBOX_base'];
+    $table = $_TABLES['userbox_base'];
     $table1 = $_TABLES['users'];
 
     require_once( $_CONF['path_system'] . 'lib-admin.php' );

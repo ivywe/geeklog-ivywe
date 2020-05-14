@@ -160,9 +160,9 @@ function fncEdit(
 
         $sql .= " ,unix_timestamp(modified) AS modified_u ";
         $sql .= " FROM ";
-        $sql .= $_TABLES['USERBOX_base'] ." AS t";
+        $sql .= $_TABLES['userbox_base'] ." AS t";
         $sql .= ",".$_TABLES['users'] ." AS t1";
-		$sql .= ",".$_TABLES['USERBOX_def_fieldset'] ." AS t2 ".LB;
+		$sql .= ",".$_TABLES['userbox_def_fieldset'] ." AS t2 ".LB;
 
         $sql .= " WHERE ";
         $sql .= " t.id = $id";
@@ -194,7 +194,7 @@ function fncEdit(
         $perm_members = COM_stripslashes($A['perm_members']);
         $perm_anon = COM_stripslashes($A['perm_anon']);
 
-        $category = DATABOX_getdatas("category_id",$_TABLES['USERBOX_category'],"id = $id");
+        $category = DATABOX_getdatas("category_id",$_TABLES['userbox_category'],"id = $id");
 
         //追加項目
         $additionfields = DATABOX_getadditiondatas($id,$pi_name);
@@ -271,7 +271,7 @@ function fncEdit(
 
     //template フォルダ
     if (is_null($template) or ($template==="")){
-		$set_defaulttemplatesdirectory=DB_getItem($_TABLES['USERBOX_def_fieldset']
+		$set_defaulttemplatesdirectory=DB_getItem($_TABLES['userbox_def_fieldset']
 			,"defaulttemplatesdirectory","fieldset_id=".$fieldset_id);
 		if ($defaulttemplatesdirectory<>""){
             $template=$defaulttemplatesdirectory;
@@ -589,7 +589,7 @@ function fncSave (
     //-----
     // 新規登録時
     if ($new_flg){
-       $w=DB_getItem($_TABLES['USERBOX_base'],"max(id)","1=1");
+       $w=DB_getItem($_TABLES['userbox_base'],"max(id)","1=1");
         if ($w=="") {
             $w=0;
         }
@@ -721,10 +721,10 @@ function fncSave (
 //            $return_page=$_CONF['site_url'] . '/'.THIS_SCRIPT.'?msg=1';
 //        }
 
-        DB_save($_TABLES['USERBOX_base'],$fields,$values);
+        DB_save($_TABLES['userbox_base'],$fields,$values);
     }else{
 
-        $sql="UPDATE {$_TABLES['USERBOX_base']} set ";
+        $sql="UPDATE {$_TABLES['userbox_base']} set ";
         $sql.=" page_title = '$page_title'";
         $sql.=" ,description = '$description'";
         $sql.=" ,language_id = '$language_id'";
@@ -925,7 +925,7 @@ function fncsendmail (
         $sql .= " ,t2.email";
 
         $sql .= " FROM ";
-        $sql .= $_TABLES['USERBOX_base']." AS t1";
+        $sql .= $_TABLES['userbox_base']." AS t1";
         $sql .= ",".$_TABLES['users']." AS t2";
 
         $sql .= " WHERE ";

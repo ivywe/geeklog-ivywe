@@ -50,9 +50,9 @@ function fnclist(
     $field_def=DATABOX_getadditiondef($pi_name);
 
     //-----
-    $tbl1=$_TABLES['USERBOX_addition'] ;
-    $tbl2=$_TABLES['USERBOX_base'] ;
-    $tbl3=$_TABLES['USERBOX_def_field'] ;
+    $tbl1=$_TABLES['userbox_addition'] ;
+    $tbl2=$_TABLES['userbox_base'] ;
+    $tbl3=$_TABLES['userbox_def_field'] ;
 	$tbl5=$_TABLES['users'] ;
     //-----
     $sql = "SELECT ".LB;
@@ -345,7 +345,7 @@ $order = COM_applyFilter($_GET['order']);
 if ($id===0){
     if ($code<>""){
         $id=DATABOX_codetoid(
-            $code,'USERBOX_def_field',"field_id","templatesetvar");
+            $code,'userbox_def_field',"field_id","templatesetvar");
     }
 }
 if ($perpage===0){

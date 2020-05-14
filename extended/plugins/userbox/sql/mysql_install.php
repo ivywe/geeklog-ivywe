@@ -4,7 +4,7 @@
 
 //ADDTION DATA
 $_SQL[] = "
-CREATE TABLE {$_TABLES['USERBOX_addition']} (
+CREATE TABLE {$_TABLES['userbox_addition']} (
   `seq` int(11) NOT NULL AUTO_INCREMENT,
   `id` int(11) NOT NULL,
   `field_id` int(11) NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE {$_TABLES['USERBOX_addition']} (
 
 //BASE DATA
 $_SQL[] = "
-CREATE TABLE {$_TABLES['USERBOX_base']} (
+CREATE TABLE {$_TABLES['userbox_base']} (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `page_title` varchar(128) DEFAULT NULL,
   `description` mediumtext,
@@ -56,7 +56,7 @@ CREATE TABLE {$_TABLES['USERBOX_base']} (
 
 //カテゴリ
 $_SQL[] = "
-CREATE TABLE {$_TABLES['USERBOX_category']} (
+CREATE TABLE {$_TABLES['userbox_category']} (
   `seq` int(11) NOT NULL AUTO_INCREMENT,
   `id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
@@ -67,7 +67,7 @@ CREATE TABLE {$_TABLES['USERBOX_category']} (
 
 //カテゴリ 定義
 $_SQL[] = "
-CREATE TABLE {$_TABLES['USERBOX_def_category']} (
+CREATE TABLE {$_TABLES['userbox_def_category']} (
   `category_id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(40) DEFAULT NULL,
   `name` varchar(64) NOT NULL,
@@ -85,7 +85,7 @@ CREATE TABLE {$_TABLES['USERBOX_def_category']} (
 
 //アトリビュート定義
 $_SQL[] = "
-CREATE TABLE {$_TABLES['USERBOX_def_field']} (
+CREATE TABLE {$_TABLES['userbox_def_field']} (
   `field_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
   `templatesetvar` varchar(64) NOT NULL,
@@ -118,7 +118,7 @@ CREATE TABLE {$_TABLES['USERBOX_def_field']} (
 
 //グループ 定義
 $_SQL[] = "
-CREATE TABLE {$_TABLES['USERBOX_def_group']} (
+CREATE TABLE {$_TABLES['userbox_def_group']} (
   `group_id` int(11) NOT NULL,
   `code` varchar(40) DEFAULT NULL,
   `name` varchar(64) NOT NULL,
@@ -136,7 +136,7 @@ CREATE TABLE {$_TABLES['USERBOX_def_group']} (
 ";
 
 $_SQL[] = "
-INSERT INTO {$_TABLES['USERBOX_def_group']} (
+INSERT INTO {$_TABLES['userbox_def_group']} (
 `group_id` 
 )
 VALUES (
@@ -147,7 +147,7 @@ VALUES (
 
 //マスタ
 $_SQL[] = "
-CREATE TABLE {$_TABLES['USERBOX_mst']} (
+CREATE TABLE {$_TABLES['userbox_mst']} (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `kind` varchar(16) NOT NULL,
   `no` int(2) NOT NULL,
@@ -166,7 +166,7 @@ CREATE TABLE {$_TABLES['USERBOX_mst']} (
 
 //アクセス数テーブル
 $_SQL[] = "
-CREATE TABLE {$_TABLES['USERBOX_stats']} (
+CREATE TABLE {$_TABLES['userbox_stats']} (
   `id` int(11) NOT NULL,
   `hits` int(11) NOT NULL DEFAULT '0',
   `udatetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -175,7 +175,7 @@ CREATE TABLE {$_TABLES['USERBOX_stats']} (
 ";
 //属性セットテーブル
 $_SQL[] = "
-CREATE TABLE {$_TABLES['USERBOX_def_fieldset']} (
+CREATE TABLE {$_TABLES['userbox_def_fieldset']} (
   `fieldset_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
   `description` mediumtext,
@@ -187,7 +187,7 @@ CREATE TABLE {$_TABLES['USERBOX_def_fieldset']} (
 ) ENGINE=MyISAM
 ";
 $_SQL[] = "
-INSERT INTO {$_TABLES['USERBOX_def_fieldset']} (
+INSERT INTO {$_TABLES['userbox_def_fieldset']} (
 `fieldset_id` 
 )
 VALUES (
@@ -196,7 +196,7 @@ VALUES (
 
 //属性セット 属性関連
 $_SQL[] = "
-CREATE TABLE {$_TABLES['USERBOX_def_fieldset_assignments']} (
+CREATE TABLE {$_TABLES['userbox_def_fieldset_assignments']} (
   `seq` int(11) NOT NULL AUTO_INCREMENT,
   `fieldset_id` int(11) NOT NULL,
   `field_id` int(11) NOT NULL,
@@ -207,7 +207,7 @@ CREATE TABLE {$_TABLES['USERBOX_def_fieldset_assignments']} (
 
 //属性セット グループ関連
 $_SQL[] = "
-CREATE TABLE {$_TABLES['USERBOX_def_fieldset_group']} (
+CREATE TABLE {$_TABLES['userbox_def_fieldset_group']} (
   `seq` int(11) NOT NULL AUTO_INCREMENT,
   `fieldset_id` int(11) NOT NULL,
   `group_id` int(11) NOT NULL,

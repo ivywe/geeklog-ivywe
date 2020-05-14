@@ -5,7 +5,7 @@
 // +---------------------------------------------------------------------------+
 // $Id: plugins/userbox/functions.inc
 //20110622 tsuchitani AT ivywe DOT co DOT jp http://www.ivywe.co.jp/
-//20120406
+//2020/05/14 Update - hiroron
 
 if (strpos ($_SERVER['PHP_SELF'], 'functions.inc') !== false) {
     die ('This file can not be used on its own.');
@@ -37,9 +37,6 @@ if (file_exists ($langfile_custom)) {
     require_once ($langfile_custom);
 }
 
-//設定ファイル
-require_once ($_CONF['path'] . "plugins/{$pi_name}/config.php");
-
 $_USERBOX_VERBOSE = false;
 //$_USERBOX_VERBOSE = true;//FOR  TEST
 
@@ -63,18 +60,42 @@ require_once ($_CONF['path'] . "plugins/{$pi_name}/functions_stats.inc");
 //comment機能
 require_once ($_CONF['path'] . "plugins/{$pi_name}/functions_comment.inc");
 
+// Load the plugin configuration
+$_USERBOX_CONF = userbox_loadConfig();
+
+/**
+ * UserBox plugin table(s)
+ */
+global $_DB_table_prefix;
+$_TABLES['userbox_addition']  = $_DB_table_prefix . 'userbox_addition';
+$_TABLES['userbox_base']  = $_DB_table_prefix . 'userbox_base';
+$_TABLES['userbox_category']  = $_DB_table_prefix . 'userbox_category';
+$_TABLES['userbox_def_category']  = $_DB_table_prefix . 'userbox_def_category';
+$_TABLES['userbox_def_field']  = $_DB_table_prefix . 'userbox_def_field';
+$_TABLES['userbox_def_group']  = $_DB_table_prefix . 'userbox_def_group';
+$_TABLES['userbox_def_xml']  = $_DB_table_prefix . 'userbox_def_xml';
+$_TABLES['userbox_mst']  = $_DB_table_prefix . 'userbox_mst';
+$_TABLES['userbox_stats']  = $_DB_table_prefix . 'userbox_stats';
+$_TABLES['userbox_def_fieldset']  = $_DB_table_prefix . 'userbox_def_fieldset';
+$_TABLES['userbox_def_fieldset_assignments']  = $_DB_table_prefix . 'userbox_def_fieldset_assignments';
+$_TABLES['userbox_def_fieldset_group']  = $_DB_table_prefix . 'userbox_def_fieldset_group';
+
 // +---------------------------------------------------------------------------+
 // | Geeklog Plugin API Implementation
 // +---------------------------------------------------------------------------+
 
-function plugin_chkVersion_userbox ()
 // +---------------------------------------------------------------------------+
 // | 現在インストールされているバージョン取得
 // +---------------------------------------------------------------------------+
+function plugin_chkVersion_userbox ()
 {
-    global $_USERBOX_CONF;
+    global $_CONF;
 
-    return $_USERBOX_CONF['version'];
+    require_once $_CONF['path'] . 'plugins/links/autoinstall.php';
+
+    $inst_parms = plugin_autoinstall_userbox('userbox');
+
+    return $inst_parms['info']['pi_version'];
 }
 
 function plugin_upgrade_userbox ()
@@ -97,7 +118,7 @@ function plugin_upgrade_userbox ()
 
 	$installed_version = DB_getItem($_TABLES['plugins'], 'pi_version',
                                     "pi_name = '{$pi_name}'");
-	$newversion=$_USERBOX_CONF['version'];
+	$newversion=$_USERBOX_CONF['pi_version'];
 	
 	//update the configuration
 		require_once ($_CONF['path'] . 'plugins/userbox/lib/lib_configuration.php');
@@ -118,32 +139,33 @@ function plugin_upgrade_userbox ()
 }
 
 
-function plugin_autouninstall_userbox ()
 // +---------------------------------------------------------------------------+
 // | 機能  プラグインアンインストール
 // +---------------------------------------------------------------------------+
+function plugin_autouninstall_userbox ()
 {
+    global $_USERBOX_CONF;
     // (1) 削除するテーブル
-    $out['tables'][]='USERBOX_addition';
-    $out['tables'][]='USERBOX_base';
-    $out['tables'][]='USERBOX_category';
-    $out['tables'][]='USERBOX_def_category';
-    $out['tables'][]='USERBOX_def_field';
-    $out['tables'][]='USERBOX_def_group';
-    $out['tables'][]='USERBOX_def_xml';
+    $out['tables'][]='userbox_addition';
+    $out['tables'][]='userbox_base';
+    $out['tables'][]='userbox_category';
+    $out['tables'][]='userbox_def_category';
+    $out['tables'][]='userbox_def_field';
+    $out['tables'][]='userbox_def_group';
+    $out['tables'][]='userbox_def_xml';
 
-    $out['tables'][]='USERBOX_stats';
-    $out['tables'][]='USERBOX_mst';
+    $out['tables'][]='userbox_stats';
+    $out['tables'][]='userbox_mst';
 	//
-    $out['tables'][]='USERBOX_def_fieldset';
-    $out['tables'][]='USERBOX_def_fieldset_assignments';
-    $out['tables'][]='USERBOX_def_fieldset_group';
+    $out['tables'][]='userbox_def_fieldset';
+    $out['tables'][]='userbox_def_fieldset_assignments';
+    $out['tables'][]='userbox_def_fieldset_group';
 
     // (2) 削除するグループ名
 	$out['groups'][]='UserBox Admin';
 	$out['groups'][]='UserBox Editor';
-	$out['groups'][]='UserBox manager';
-	$out['groups'][]='UserBox user';
+	$out['groups'][]='UserBox Manager';
+	$out['groups'][]='UserBox User';
 	
     // (3) 削除するfeatures
     $out['features'][]='userbox.admin';
@@ -199,21 +221,19 @@ function plugin_cclabel_userbox()
 
 }
 
-function plugin_getadminoption_userbox()
 // +---------------------------------------------------------------------------+
 // | 機能  管理者メニュ表示(管理者ブロック)
 // +---------------------------------------------------------------------------+
+function plugin_getadminoption_userbox()
 {
-    global $_CONF;
-    global $_TABLES;
-	global $LANG_USERBOX_ADMIN;
+    global $_CONF, $_TABLES, $LANG_USERBOX_ADMIN;
+
     if (SEC_hasRights ('userbox.admin') ){
         //下書他も含む全件数
-        $cnt = DB_getItem ($_TABLES['USERBOX_base'], 'COUNT(*)');
+        $cnt = DB_getItem ($_TABLES['userbox_base'], 'COUNT(*)');
         return array ($LANG_USERBOX_ADMIN['piname'],
                       $_CONF['site_admin_url'] . '/plugins/userbox/index.php'
                       ,$cnt);
-
     }
     return "";
 
@@ -314,7 +334,7 @@ function plugin_getwhatsnew_userbox()
     $sql .= "t1.id";
     $sql .= ",t2.username ";
     $sql .= " FROM ";
-    $sql .= " {$_TABLES['USERBOX_base']} AS t1";
+    $sql .= " {$_TABLES['userbox_base']} AS t1";
     $sql .= " ,{$_TABLES['users']} AS t2";
 
     $sql .= " WHERE ";
@@ -374,28 +394,26 @@ function plugin_user_delete_userbox ($uid)
     $additionfields = DATABOX_getadditiondatas($uid,$pi_name);
 
 	
-    DB_delete ($_TABLES['USERBOX_base'], 'id', $uid);
+    DB_delete ($_TABLES['userbox_base'], 'id', $uid);
     //カテゴリ
-    $rt=DATABOX_savedatas("category_id",$_TABLES['USERBOX_category'],$uid);
+    $rt=DATABOX_savedatas("category_id",$_TABLES['userbox_category'],$uid);
 	//追加項目
 	DATABOX_deleteaddtionfiles($additionfields,$addition_def,$pi_name);
     $rt=DATABOX_saveaddtiondatas($uid,"","",$pi_name);
 
     //hits
-    DB_delete ($_TABLES['USERBOX_stats'], 'id', $uid);
+    DB_delete ($_TABLES['userbox_stats'], 'id', $uid);
 	
 	$cacheInstance = 'userbox__' .$uid . '__';
     CACHE_remove_instance($cacheInstance); 
 	
 }
 
-function plugin_user_create_userbox (
-	$uid
-)
 // +---------------------------------------------------------------------------+
 // | 機能  ユーザ新規登録                                                      |
 // +---------------------------------------------------------------------------+
 // update20120406
+function plugin_user_create_userbox ($uid)
 {
 	if  (userbox_isuser($uid)===FALSE){
 		return;
@@ -406,9 +424,9 @@ function plugin_user_create_userbox (
     global $_USER;
 	global $_CONF;
 	
-	$table=$_TABLES['USERBOX_def_field'];
-	$table1=$_TABLES['USERBOX_base'];
-    $table2=$_TABLES['USERBOX_addition'];
+	$table=$_TABLES['userbox_def_field'];
+	$table1=$_TABLES['userbox_base'];
+    $table2=$_TABLES['userbox_addition'];
 
     $uuid=$_USER['uid'];
     if ($uuid==="" OR $uuid===NULL){
@@ -426,7 +444,7 @@ function plugin_user_create_userbox (
 	$perm_members = $array['perm_members'];
 
     $sql=LB;
-    $sql.="INSERT INTO {$_TABLES['USERBOX_base']} (".LB;
+    $sql.="INSERT INTO {$_TABLES['userbox_base']} (".LB;
     $sql.=" `id`,`owner_id`,`modified`,`created`,`released`".LB;
     $sql.=" ,`uuid`".LB;
 	$sql.=" ,`group_id`,`perm_owner`,`perm_group`,`perm_anon`,`perm_members`".LB;
@@ -569,7 +587,7 @@ function plugin_user_changed_userbox (
 	global $_TABLES;
 
 	$userboxuser=userbox_isuser($uid);
-	$userboxdata = DB_getItem ($_TABLES['USERBOX_base'], 'COUNT(*)',"id=".$uid);
+	$userboxdata = DB_getItem ($_TABLES['userbox_base'], 'COUNT(*)',"id=".$uid);
 	
 	//userboxuserなのに データがない時　追加
 	if  ($userboxuser){
@@ -741,7 +759,7 @@ function userbox_update(
     global $_CONF;
 	global $_TABLES;
 	
-	$tbl1=$_TABLES['USERBOX_base'];
+	$tbl1=$_TABLES['userbox_base'];
 	$tbl2=$_TABLES['users'];
 		
 	//=====
@@ -855,7 +873,7 @@ function userbox_descriptionemptycheck(
 	$sql = "SELECT ";
 	$sql .= " description ".LB;
 	$sql .= " FROM ".LB;
-	$sql .= " {$_TABLES['USERBOX_base']} ".LB;
+	$sql .= " {$_TABLES['userbox_base']} ".LB;
 	$sql .= " WHERE ".LB;
 	$sql .= " id =".$uid.LB;
 	$result = DB_query ($sql);
@@ -946,7 +964,7 @@ function plugin_getiteminfo_userbox(
 	//-----
 	
 	$sql = "SELECT " . implode(',', $fields).LB
-            . " FROM {$_TABLES['USERBOX_base']} AS t1,{$_TABLES['users']} AS t2" . $where . $permSql;
+            . " FROM {$_TABLES['userbox_base']} AS t1,{$_TABLES['users']} AS t2" . $where . $permSql;
 	if ($id != '*') {
         $sql .= ' LIMIT 1';
     }

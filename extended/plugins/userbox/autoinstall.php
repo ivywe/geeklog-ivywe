@@ -27,13 +27,7 @@
 // | Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.           |
 // |                                                                           |
 // +---------------------------------------------------------------------------+
-// 20110622 20110912
-
-/**
-* Autoinstall API functions for the UserBox plugin
-*
-* @package userbox
-*/
+// Updte 2020/05/14 hiroron
 
 /**
 * Plugin autoinstall function
@@ -54,27 +48,22 @@ function plugin_autoinstall_userbox($pi_name)
 	$pi_user     	 = $pi_display_name . ' User';
 
     //設定ファイル
-    global $_CONF;
-    global $_TABLES;
-    global $_DB_table_prefix;
-    include_once ($_CONF['path'] . "plugins/{$pi_name}/config.php");
-    include 'version.php';
     $info = array(
         'pi_name'         => $pi_name,
         'pi_display_name' => $pi_display_name,
-        'pi_version'      => $_USERBOX_CONF['version'],
-        'pi_gl_version'   => '2.1.1',
-        'pi_homepage'     => 'http://www.ivywe.co.jp',
+        'pi_version'      => '0.0.20200514a',
+        'pi_gl_version'   => '2.1.2',
+        'pi_homepage'     => 'http://www.ivywe.co.jp/',
     );
 
     //----------------------------------------------------------------
     // the plugin's groups - assumes first group to be the Admin group
     //----------------------------------------------------------------
     $groups = array(
-        $pi_admin => 'Has full access to ' . $pi_display_name . ' features'
-        ,$pi_editors => 'Can edit profile to ' . $pi_display_name. ' plugin'
-        ,$pi_managers => 'Can edit join group to ' . $pi_display_name. ' plugin'
-        ,$pi_user => 'Can register to UserBox' . $pi_display_name. ' plugin'
+        $pi_admin   => 'Has full access to ' . $pi_display_name . ' features'
+       ,$pi_editors => 'Can edit profile to ' . $pi_display_name. ' plugin'
+       ,$pi_managers=> 'Can edit join group to ' . $pi_display_name. ' plugin'
+       ,$pi_user    => 'Can register to UserBox' . $pi_display_name. ' plugin'
    );
     //----------------------------------------------------------------
     // the plugin's feature -
@@ -83,24 +72,19 @@ function plugin_autoinstall_userbox($pi_name)
     //               一覧表示では下書も表示
 
     $features = array(
-        $pi_name . '.admin'    => 'Full access to ' . $pi_display_name
-                                  . ' plugin'
-        ,$pi_name . '.edit'    => 'Can edit profile to ' . $pi_display_name
-                                  . ' plugin'
-       ,$pi_name . '.joingroup'    => 'Can edit join group to ' . $pi_display_name
-                                  . ' plugin'
-      ,$pi_name . '.user'    => 'Can register to UserBox' . $pi_display_name
-                                  . ' plugin'
-
+        $pi_name . '.admin'    => 'Full access to ' . $pi_display_name . ' plugin'
+       ,$pi_name . '.edit'     => 'Can edit profile to ' . $pi_display_name . ' plugin'
+       ,$pi_name . '.joingroup'=> 'Can edit join group to ' . $pi_display_name . ' plugin'
+       ,$pi_name . '.user'     => 'Can register to UserBox' . $pi_display_name . ' plugin'
     );
     //----------------------------------------------------------------
     // the plugin's mappings -
     //----------------------------------------------------------------
     $mappings = array(
         $pi_name . '.admin'    => array($pi_admin)
-        ,$pi_name . '.edit'    => array($pi_admin,$pi_editors,$pi_managers)
-        ,$pi_name . '.joingroup'    => array($pi_admin,$pi_managers)
-        ,$pi_name . '.user'    => array($pi_admin,$pi_managers,$pi_editors,$pi_user)
+       ,$pi_name . '.edit'     => array($pi_admin,$pi_editors,$pi_managers)
+       ,$pi_name . '.joingroup'=> array($pi_admin,$pi_managers)
+       ,$pi_name . '.user'     => array($pi_admin,$pi_managers,$pi_editors,$pi_user)
     );
 
 
@@ -108,12 +92,18 @@ function plugin_autoinstall_userbox($pi_name)
     // the plugin's tables -
     //----------------------------------------------------------------
     $tables = array(
-    );
-	$requires = array(
-	    array(
-               'db' => 'mysql',
-               'version' => '5.0'
-             )
+        'userbox_base'
+       ,'userbox_category'
+       ,'userbox_addition'
+       ,'userbox_def_category'
+       ,'userbox_def_field'
+       ,'userbox_def_group'
+       ,'userbox_def_xml'
+       ,'userbox_mst'
+       ,'userbox_stats'
+       ,'userbox_def_fieldset'
+       ,'userbox_def_fieldset_assignments'
+       ,'userbox_def_fieldset_group'
     );
 
     $inst_parms = array(
@@ -121,27 +111,26 @@ function plugin_autoinstall_userbox($pi_name)
         'groups'    => $groups,
         'features'  => $features,
         'mappings'  => $mappings,
-		'tables'    => $tables,
-	    'requires'  => $requires
+		'tables'    => $tables
 	);
 
     return $inst_parms;
 }
+
 // ----------------------------------------------------------------
 // config情報ロード：Return OK:true NG:false
 // ----------------------------------------------------------------
-
 function plugin_load_configuration_userbox($pi_name)
 {
     global $_CONF;
 
     $base_path = $_CONF['path'] . 'plugins/' . $pi_name . '/';
 
-    require_once $_CONF['path_system'] . 'classes/config.class.php';
     require_once $base_path . 'install_defaults.php';
 
     return plugin_initconfig_userbox();
 }
+
 // ----------------------------------------------------------------
 // コアパッケージのチェック：Return OK:true NG:false
 // ----------------------------------------------------------------
@@ -156,10 +145,18 @@ function plugin_compatible_with_this_version_userbox($pi_name)
         return false;
     }
 
-    // xxxx があるかどうかチェック！
-    //if( function_exists( 'xxxx' )){
-    //    return false;
-    //}
+    // 2020/05/14 Add - hiroron
+    if (!function_exists('COM_showMessageText')) {
+        return false;
+    }
+
+    if (!function_exists('SEC_getTokenExpiryNotice')) {
+        return false;
+    }
+
+    if (!function_exists('SEC_loginRequiredForm')) {
+        return false;
+    }
 
     return true;
 }
@@ -168,41 +165,20 @@ function plugin_compatible_with_this_version_userbox($pi_name)
 // ----------------------------------------------------------------
 // インストール時準備Return OK:true NG:false
 // ----------------------------------------------------------------
-function plugin_postinstall_userbox(
-    $pi_name
-)
+function plugin_postinstall_userbox($pi_name)
 {
+    global $_CONF, $_TABLES, $_USERBOX_CONF;
 
-    global $_TABLES;
-    global $_CONF;
-    global $_USER;
-    global $_USERBOX_CONF;
-	
-	//  ログファイル作成
-	//  サーバによっては、パーミッション変更できないのでその場合は
-	//  手動で変更してください
+    //  ログファイル作成
+    //  サーバによっては、パーミッション変更できないのでその場合は
+    //  手動で変更してください
     $logfile = $_CONF['path_log'] . 'userbox_xmlimport.log';
     $file = @fopen( $logfile, 'w' );
     @fclose($file);
     @chmod($file, 0666);
-	
 
-
-    //マスタのデータ
-    $_SQL =array();
-    //@@@@@@@@ require_once ($_CONF['path']."plugins/userbox/sql/sql_mst_prefect.php");
-    for ($i = 1; $i <= count($_SQL); $i++) {
-        $w=current($_SQL);
-        DB_query(current($_SQL));
-        next($_SQL);
-    }
-    if (DB_error()) {
-        return false;
-    }
-
-	//UserBox データの作成
-	require_once ($_CONF['path'] . 'plugins/userbox/functions.inc');
-    $_USERBOX_CONF = userbox_loadConfig();
+    //UserBox データの作成
+    require_once ($_CONF['path'] . 'plugins/userbox/functions.inc');
 	//-----テーブル	
 	$sql = "SELECT uid ";
 	$sql .= " FROM {$_TABLES['users']} ";
