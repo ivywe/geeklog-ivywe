@@ -12,6 +12,8 @@
 # plugins/userbox/language/english.php
 
 ###############################################################################
+global $_CONF, $_USER, $_TABLES, $LANG04;
+
 ## Admin menu
 $LANG_USERBOX_admin_menu = array();
 $LANG_USERBOX_admin_menu['1']= 'Information';

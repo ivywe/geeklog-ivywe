@@ -14,7 +14,7 @@
 # Last Update 20161206
 
 ###############################################################################
-global $LANG04;
+global $_CONF, $_USER, $_TABLES, $LANG04;
 
 ## 管理画面 menu
 $LANG_USERBOX_admin_menu = array();
