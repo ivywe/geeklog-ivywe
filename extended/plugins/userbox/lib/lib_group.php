@@ -29,7 +29,7 @@ function LIB_List(
     global $$lang_box;
     $lang_box=$$lang_box;
 
-    $table=$_TABLES[strtoupper($pi_name).'_def_group'];
+    $table=$_TABLES[$pi_name.'_def_group'];
 
     //ヘッダ：編集～
     $header_arr[]=array('text' => $lang_box_admin['orderno'], 'field' => 'orderno', 'sort' => true);
@@ -190,9 +190,9 @@ function LIB_Edit(
     global $$lang_box_allow_edit;
     $lang_box_allow_edit=$$lang_box_allow_edit;
 
-    $table=$_TABLES[strtoupper($pi_name).'_def_group'];
-    $table1=$_TABLES[strtoupper($pi_name).'_def_category'];
-    $table2=$_TABLES[strtoupper($pi_name).'_def_field'];
+    $table=$_TABLES[$pi_name.'_def_group'];
+    $table1=$_TABLES[$pi_name.'_def_category'];
+    $table2=$_TABLES[$pi_name.'_def_field'];
 
 //        $cur_year = date( 'Y' );
 //        $year_startoffset=1990 - $cur_year +1;
@@ -429,7 +429,7 @@ function LIB_Save (
     global $$lang_box_inputtype;
     $lang_box_inputtype=$$lang_box_inputtype;
 
-    $table=$_TABLES[strtoupper($pi_name).'_def_group'];
+    $table=$_TABLES[$pi_name.'_def_group'];
 
     $retval = '';
 
@@ -617,7 +617,7 @@ function LIB_delete (
     global $$lang_box_admin;
     $lang_box_admin=$$lang_box_admin;
 
-    $table=$_TABLES[strtoupper($pi_name).'_def_group'];
+    $table=$_TABLES[$pi_name.'_def_group'];
 
     $id = COM_applyFilter($_POST['id'],true);
 
@@ -662,7 +662,7 @@ function LIB_export (
     global $$lang_box_admin;
     $lang_box_admin=$$lang_box_admin;
 
-    $table=$_TABLES[strtoupper($pi_name).'_def_group'];
+    $table=$_TABLES[$pi_name.'_def_group'];
 
     require_once ($_CONF['path'].'plugins/'.$pi_name.'/lib/comj_dltbldt.php');
 
@@ -764,7 +764,7 @@ function LIB_sendmail (
     $lang_box=$$lang_box_mail;
 
 
-    $table=$_TABLES[strtoupper($pi_name).'_def_group'];
+    $table=$_TABLES[$pi_name.'_def_group'];
 
 
 
@@ -776,7 +776,7 @@ function LIB_sendmail (
     $sql .= " *";
 
     $sql .= " FROM ";
-    $sql .= $_TABLES[strtoupper($pi_name).'_def_group'];
+    $sql .= $_TABLES[$pi_name.'_def_group'];
     $sql .= " WHERE ";
     $sql .= " group_id = $id";
 

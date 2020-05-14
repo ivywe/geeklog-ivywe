@@ -30,8 +30,8 @@ function LIB_List(
     global $$lang_box;
     $lang_box=$$lang_box;
 
-    $table=$_TABLES[strtoupper($pi_name).'_def_field'];
-    $table2=$_TABLES[strtoupper($pi_name).'_mst'];
+    $table=$_TABLES[$pi_name.'_def_field'];
+    $table2=$_TABLES[$pi_name.'_mst'];
 
     require_once( $_CONF['path_system'] . 'lib-admin.php' );
 
@@ -256,7 +256,7 @@ function LIB_Edit(
     global $$lang_box_textconv;
     $lang_box_textconv=$$lang_box_textconv;
 	
-    $table=$_TABLES[strtoupper($pi_name).'_def_field'];
+    $table=$_TABLES[$pi_name.'_def_field'];
 
 //        $cur_year = date( 'Y' );
 //        $year_startoffset=1990 - $cur_year +1;
@@ -593,9 +593,9 @@ function LIB_Save (
     global $$lang_box_admin_menu;
     $lang_box_admin_menu=$$lang_box_admin_menu;
 
-    $table=$_TABLES[strtoupper($pi_name).'_def_field'];
-    $table1=$_TABLES[strtoupper($pi_name).'_base'];
-    $table2=$_TABLES[strtoupper($pi_name).'_addition'];
+    $table=$_TABLES[$pi_name.'_def_field'];
+    $table1=$_TABLES[$pi_name.'_base'];
+    $table2=$_TABLES[$pi_name.'_addition'];
 
     $retval = '';
 
@@ -899,8 +899,8 @@ function LIB_delete (
     global $$lang_box_admin;
     $lang_box_admin=$$lang_box_admin;
 
-    $table=$_TABLES[strtoupper($pi_name).'_def_field'];
-    $table2=$_TABLES[strtoupper($pi_name).'_addition'];
+    $table=$_TABLES[$pi_name.'_def_field'];
+    $table2=$_TABLES[$pi_name.'_addition'];
 
     $id = COM_applyFilter($_POST['id'],true);
     $type=COM_applyFilter($_POST['type']);
@@ -935,7 +935,7 @@ function LIB_export (
     global $$lang_box_admin;
     $lang_box_admin=$$lang_box_admin;
 
-    $table=$_TABLES[strtoupper($pi_name).'_def_field'];
+    $table=$_TABLES[$pi_name.'_def_field'];
 
     require_once ($_CONF['path'].'plugins/'.$pi_name.'/lib/comj_dltbldt.php');
 
@@ -1049,7 +1049,7 @@ function LIB_sendmail (
     global $$lang_box_mail;
     $lang_box=$$lang_box_mail;
 
-    $table=$_TABLES[strtoupper($pi_name).'_def_field'];
+    $table=$_TABLES[$pi_name.'_def_field'];
 
     $retval = '';
 
