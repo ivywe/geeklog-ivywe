@@ -31,7 +31,7 @@ function LIB_List(
     global $$lang_box;
     $lang_box=$$lang_box;
 
-    $table=$_TABLES[strtoupper($pi_name).'_def_fieldset'];
+    $table=$_TABLES[$pi_name.'_def_fieldset'];
 	
 	//ヘッダ：編集～
     $header_arr[]=array('text' => $LANG_ADMIN['edit'], 'field' => 'editid', 'sort' => false);
@@ -187,8 +187,8 @@ function LIB_Edit(
     global $$lang_box_noyes;
     $lang_box_noyes=$$lang_box_noyes;
 
-    $table=$_TABLES[strtoupper($pi_name).'_def_fieldset'];
-    $table2=$_TABLES[strtoupper($pi_name).'_base'];
+    $table=$_TABLES[$pi_name.'_def_fieldset'];
+    $table2=$_TABLES[$pi_name.'_base'];
 
     $retval = '';
     $delflg=false;
@@ -377,7 +377,7 @@ function LIB_Save (
     global $$lang_box_admin_menu;
     $lang_box_admin_menu=$$lang_box_admin_menu;
 
-    $table=$_TABLES[strtoupper($pi_name).'_def_fieldset'];
+    $table=$_TABLES[$pi_name.'_def_fieldset'];
 
     $retval = '';
 
@@ -561,9 +561,9 @@ function LIB_delete (
     global $$lang_box_admin;
     $lang_box_admin=$$lang_box_admin;
 
-    $table1=$_TABLES[strtoupper($pi_name).'_def_fieldset'];
-    $table2=$_TABLES[strtoupper($pi_name).'_def_fieldset_assignments'];
-    $table3=$_TABLES[strtoupper($pi_name).'_def_fieldset_group'];
+    $table1=$_TABLES[$pi_name.'_def_fieldset'];
+    $table2=$_TABLES[$pi_name.'_def_fieldset_assignments'];
+    $table3=$_TABLES[$pi_name.'_def_fieldset_group'];
 
     $id = COM_applyFilter($_POST['id'],true);
 
@@ -609,7 +609,7 @@ function LIB_export (
     global $$lang_box_admin;
     $lang_box_admin=$$lang_box_admin;
 
-    $table=$_TABLES[strtoupper($pi_name).'_def_fieldset'];
+    $table=$_TABLES[$pi_name.'_def_fieldset'];
 
     require_once ($_CONF['path'].'plugins/'.$pi_name.'/lib/comj_dltbldt.php');
 
@@ -707,7 +707,7 @@ function LIB_sendmail (
     $lang_box=$$lang_box_mail;
 
 
-    $table=$_TABLES[strtoupper($pi_name).'_def_fieldset'];
+    $table=$_TABLES[$pi_name.'_def_fieldset'];
 
     $retval = '';
 
@@ -716,7 +716,7 @@ function LIB_sendmail (
     $sql .= " *";
 
     $sql .= " FROM ";
-    $sql .= $_TABLES[strtoupper($pi_name).'_def_fieldset'];
+    $sql .= $_TABLES[$pi_name.'_def_fieldset'];
     $sql .= " WHERE ";
     $sql .= " fieldset_id = $id";
 
@@ -794,8 +794,8 @@ function LIB_ListFields(
     global $$lang_box;
     $lang_box=$$lang_box;
 
-    $table=$_TABLES[strtoupper($pi_name).'_def_fieldset_assignments'];
-    $table2=$_TABLES[strtoupper($pi_name).'_def_field'];
+    $table=$_TABLES[$pi_name.'_def_fieldset_assignments'];
+    $table2=$_TABLES[$pi_name.'_def_field'];
 	$tables = " {$table} AS t ,{$table2} AS t2";
 
     require_once( $_CONF['path_system'] . 'lib-admin.php' );
@@ -952,7 +952,7 @@ function LIB_editfields(
 
     $retval = '';
 	
-	$table=$_TABLES[strtoupper($pi_name).'_def_fieldset'];
+	$table=$_TABLES[$pi_name.'_def_fieldset'];
     $fieldset_name = DB_getItem($table, 'name', "fieldset_id = $id");
 
     $fieldset_listing_url=$_CONF['site_admin_url'] . "/plugins/".THIS_SCRIPT;
@@ -1008,8 +1008,8 @@ function LIB_selectFields(
 {
 	global $_TABLES;
 	
-	$table1=$_TABLES[strtoupper($pi_name).'_def_field'];
-	$table2=$_TABLES[strtoupper($pi_name).'_def_fieldset_assignments'];
+	$table1=$_TABLES[$pi_name.'_def_field'];
+	$table2=$_TABLES[$pi_name.'_def_fieldset_assignments'];
 
     $retval = '';
 
@@ -1067,9 +1067,9 @@ function LIB_savefields(
 	global $_TABLES;
 	
 	$fieldsetfields=$_POST['groupmembers'];
-	$table=$_TABLES[strtoupper($pi_name).'_def_fieldset_assignments'];
-	$table2=$_TABLES[strtoupper($pi_name).'_addition'];
-	$table3=$_TABLES[strtoupper($pi_name).'_base'];
+	$table=$_TABLES[$pi_name.'_def_fieldset_assignments'];
+	$table2=$_TABLES[$pi_name.'_addition'];
+	$table3=$_TABLES[$pi_name.'_base'];
 
     $retval = '';
 
@@ -1130,8 +1130,8 @@ function LIB_ListGroups(
     global $$lang_box;
     $lang_box=$$lang_box;
 
-    $table=$_TABLES[strtoupper($pi_name).'_def_fieldset_group'];
-    $table2=$_TABLES[strtoupper($pi_name).'_def_group'];
+    $table=$_TABLES[$pi_name.'_def_fieldset_group'];
+    $table2=$_TABLES[$pi_name.'_def_group'];
 	$tables = " {$table} AS t ,{$table2} AS t2";
 
     require_once( $_CONF['path_system'] . 'lib-admin.php' );
@@ -1250,7 +1250,7 @@ function LIB_editgroups(
 
     $retval = '';
 	
-	$table=$_TABLES[strtoupper($pi_name).'_def_fieldset'];
+	$table=$_TABLES[$pi_name.'_def_fieldset'];
     $fieldset_name = DB_getItem($table, 'name', "fieldset_id = $id");
 
     $fieldset_listing_url=$_CONF['site_admin_url'] . "/plugins/".THIS_SCRIPT;
@@ -1305,8 +1305,8 @@ function LIB_selectGroups(
 {
 	global $_TABLES;
 	
-	$table1=$_TABLES[strtoupper($pi_name).'_def_group'];
-	$table2=$_TABLES[strtoupper($pi_name).'_def_fieldset_group'];
+	$table1=$_TABLES[$pi_name.'_def_group'];
+	$table2=$_TABLES[$pi_name.'_def_fieldset_group'];
 
     $retval = '';
 
@@ -1365,10 +1365,10 @@ function LIB_savegroups(
 	global $_TABLES;
 	
 	$fieldsetgroups=$_POST['groupmembers'];
-	$table=$_TABLES[strtoupper($pi_name).'_def_fieldset_group'];
-	$table2=$_TABLES[strtoupper($pi_name).'_category'];
-	$table3=$_TABLES[strtoupper($pi_name).'_base'];
-	$table4=$_TABLES[strtoupper($pi_name).'_def_category'];
+	$table=$_TABLES[$pi_name.'_def_fieldset_group'];
+	$table2=$_TABLES[$pi_name.'_category'];
+	$table3=$_TABLES[$pi_name.'_base'];
+	$table4=$_TABLES[$pi_name.'_def_category'];
 
     $retval = '';
 

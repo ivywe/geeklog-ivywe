@@ -56,7 +56,7 @@ function fncList()
 
     global $_USERBOX_CONF;
 
-    $table = $_TABLES['USERBOX_base'];
+    $table = $_TABLES['userbox_base'];
     $table1 = $_TABLES['users'];
 
     require_once( $_CONF['path_system'] . 'lib-admin.php' );
@@ -75,10 +75,10 @@ function fncList()
 
     //ヘッダ：編集～
     $header_arr[]=array('text' => $LANG28['2'], 'field' => 'id', 'sort' => true);
-    $header_arr[]=array('text' => $LANG28['3'], 'field' => 'username', 'sort' => username);
+    $header_arr[]=array('text' => $LANG28['3'], 'field' => 'username', 'sort' => true);
     $header_arr[]=array('text' => $LANG_USERBOX_ADMIN[$datecolumn], 'field' => $datecolumn, 'sort' => true);
 
-    $header_arr[]=array('text' => $LANG28['4'], 'field' => 'fullname', 'sort' => fullname);
+    $header_arr[]=array('text' => $LANG28['4'], 'field' => 'fullname', 'sort' => true);
 
     //
     $text_arr = array('has_menu' =>  true,

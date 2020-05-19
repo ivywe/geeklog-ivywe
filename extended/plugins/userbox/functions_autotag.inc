@@ -23,14 +23,11 @@ function plugin_autotags_userbox (
 // +---------------------------------------------------------------------------+
 // 20101229
 {
-    global $_TABLES;
-    global $_CONF;
-    global $LANG_USERBOX_autotag_desc;
-         
+    global $_CONF, $_TABLES, $LANG_USERBOX_autotag_desc, $_USERBOX_CONF, $_GROUPS;
+
     //Option Display
     if ($op == 'tagname' ) {
-        $tagname[]='userbox';
-        return $tagname;
+        return 'userbox';
     } elseif ($op == 'permission' || $op == 'nopermission') {
         if ($op == 'permission') {
             $flag = true;
@@ -343,14 +340,14 @@ function userbox_category(
     }
 
     //-----テーブル
-    $tbl1=$_TABLES['USERBOX_category'] ;
-    $tbl2=$_TABLES['USERBOX_base'] ;
-    $tbl3=$_TABLES['USERBOX_addition'] ;
+    $tbl1=$_TABLES['userbox_category'] ;
+    $tbl2=$_TABLES['userbox_base'] ;
+    $tbl3=$_TABLES['userbox_addition'] ;
     $tbl4=$_TABLES['users'] ;
     //
-    $tbl5=$_TABLES['USERBOX_def_category'] ;
+    $tbl5=$_TABLES['userbox_def_category'] ;
     
-    $tbl6=$_TABLES['USERBOX_stats'];
+    $tbl6=$_TABLES['userbox_stats'];
     
     $datefield=$_USERBOX_CONF['datefield'];//使用する日付（編集日付、作成日付）
     $new_img=$_USERBOX_CONF['new_img'];
@@ -374,7 +371,7 @@ function userbox_category(
                 if ($ids<>""){
                     $ids.=",";
                 }
-                $w_id=DATABOX_codetoid($val,'USERBOX_def_category',"category_id");
+                $w_id=DATABOX_codetoid($val,'userbox_def_category',"category_id");
                 $idsary[]=$w_id;
                 $ids.=$w_id;
             }
@@ -887,8 +884,8 @@ function userbox_count(
     global $_TABLES;
 
     //-----
-    $tbl1=$_TABLES['USERBOX_base'] ;
-    $tbl2=$_TABLES['USERBOX_category'] ;
+    $tbl1=$_TABLES['userbox_base'] ;
+    $tbl2=$_TABLES['userbox_category'] ;
     
     //カテゴリの指定がなければ全件、あればカテゴリ毎
     $exp="";
@@ -904,7 +901,7 @@ function userbox_count(
                     if ($ids<>""){
                         $ids.=",";
                     }
-                    $w_id=DATABOX_codetoid($val,'USERBOX_def_category',"category_id");
+                    $w_id=DATABOX_codetoid($val,'userbox_def_category',"category_id");
                     $idsary[]=$w_id;
                     $ids.=$w_id;
                 }
@@ -1012,13 +1009,13 @@ function userbox_grp(
         $m="ALL";
     }else{
         if (is_null($category_id) ){
-            $category_id=DATABOX_codetoid($category_code,'USERBOX_def_category',"category_id");
+            $category_id=DATABOX_codetoid($category_code,'userbox_def_category',"category_id");
         }
         $m="CATEGORY";
     }
     //-----
-    $tbl1=$_TABLES['USERBOX_base'] ;
-    $tbl2=$_TABLES['USERBOX_category'] ;
+    $tbl1=$_TABLES['userbox_base'] ;
+    $tbl2=$_TABLES['userbox_category'] ;
 
     //-----
     $sql=LB;
@@ -1139,10 +1136,10 @@ function userbox_profile(
     $display = '';
 
 
-    $tbl=$_TABLES['USERBOX_base'] ;
+    $tbl=$_TABLES['userbox_base'] ;
     $tbl1=$_TABLES['users'] ;
-    $tbl4=$_TABLES['USERBOX_def_fieldset'];
-    $tbl5=$_TABLES['USERBOX_stats'];
+    $tbl4=$_TABLES['userbox_def_fieldset'];
+    $tbl5=$_TABLES['userbox_stats'];
 
     $addition_def=DATABOX_getadditiondef($pi_name);
 
@@ -1534,13 +1531,13 @@ function userbox_profile(
             if ($A['draft_flag']!==1){
                 if (!SEC_hasRights('userbox.admin')) {
                     $id=$A['id'];
-                    $hits=DB_getItem($_TABLES['USERBOX_stats'],"hits","id={$id}");
+                    $hits=DB_getItem($_TABLES['userbox_stats'],"hits","id={$id}");
                     if (empty($hits)) {
                         $hits=0;
                     }
                     $fields.="id,hits ";
                     $values.="$id,$hits + 1";
-                    DB_save($_TABLES['USERBOX_stats'],$fields,$values);
+                    DB_save($_TABLES['userbox_stats'],$fields,$values);
                 }
             }
         }
@@ -1636,11 +1633,11 @@ function userbox_field(
 
     }
     //-----table assign
-    $tbl1=$_TABLES['USERBOX_addition'] ;
-    $tbl2=$_TABLES['USERBOX_base'] ;
-    $tbl3=$_TABLES['USERBOX_addition'] ;
+    $tbl1=$_TABLES['userbox_addition'] ;
+    $tbl2=$_TABLES['userbox_base'] ;
+    $tbl3=$_TABLES['userbox_addition'] ;
     $tbl4=$_TABLES['users'] ;
-    $tbl5=$_TABLES['USERBOX_stats'];
+    $tbl5=$_TABLES['userbox_stats'];
     
     //日付関連
     $datefield=$_USERBOX_CONF['datefield'];//使用する日付（編集日付、作成日付）
@@ -1662,7 +1659,7 @@ function userbox_field(
         if ($field_code===""){
             $field_id=0;
         }else{
-            $field_id=DATABOX_codetoid($field_code,'USERBOX_def_field',"field_id","templatesetvar");
+            $field_id=DATABOX_codetoid($field_code,'userbox_def_field',"field_id","templatesetvar");
 
         }
     }
@@ -1671,7 +1668,7 @@ function userbox_field(
     }
     
     if ($field_code===""){
-        $field_code=DB_getItem( $_TABLES['USERBOX_def_field']
+        $field_code=DB_getItem( $_TABLES['userbox_def_field']
                  ,"templatesetvar","field_id={$field_id}");
     }
     $field_def=DATABOX_getadditiondef($pi_name);
@@ -2195,7 +2192,7 @@ function userbox_orderby(
             $sql.= " field_id ";
             $sql.= ",name ";
             $sql.=" FROM";
-            $sql.=" {$_TABLES['USERBOX_def_field']} ";
+            $sql.=" {$_TABLES['userbox_def_field']} ";
             $sql.=" WHERE templatesetvar='".$order."'";
 
             $result = DB_query ($sql);
@@ -2339,9 +2336,9 @@ function userbox_newlist(
     $datefield=$_USERBOX_CONF['datefield'];//使用する日付（編集日付、作成日付）
 
     //-----
-    $tbl1=$_TABLES['USERBOX_base'] ;
-    $tbl2=$_TABLES['USERBOX_category'] ;
-    $tbl3=$_TABLES['USERBOX_def_category'] ;
+    $tbl1=$_TABLES['userbox_base'] ;
+    $tbl2=$_TABLES['userbox_category'] ;
+    $tbl3=$_TABLES['userbox_def_category'] ;
     $tbl4=$_TABLES['users'] ;
 
 
@@ -2537,7 +2534,7 @@ global $_TABLES;
     $sql.= ",name ";
     $sql.= ",templatesetvar";
     $sql.=" FROM";
-    $sql.=" {$_TABLES['USERBOX_def_field']} ";
+    $sql.=" {$_TABLES['userbox_def_field']} ";
     $sql.=" where allow_display=0";
 
     $result = DB_query ($sql);
@@ -2610,7 +2607,7 @@ global $_TABLES;
             $rt=$LANG_USERBOX_MSG['alluser'];
             break;
         case 'draftuser':
-            $draft_flag=DB_getItem($_TABLES['USERBOX_base'], 'draft_flag',
+            $draft_flag=DB_getItem($_TABLES['userbox_base'], 'draft_flag',
                         "id = '{$uid}'");
             if ($draft_flag==1){
                 $rt=$LANG_USERBOX_MSG['draftuser'];

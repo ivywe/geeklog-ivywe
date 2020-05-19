@@ -79,9 +79,9 @@ function plugin_dopluginsearch_userbox_data(
 
     $sql .= " FROM ";
 
-    $sql .= " {$_TABLES['USERBOX_base']} AS t1";
+    $sql .= " {$_TABLES['userbox_base']} AS t1";
 	$sql .= " LEFT JOIN {$_TABLES['users']} AS t2  ON t1.id=t2.uid";
-	$sql .= " LEFT JOIN {$_TABLES['USERBOX_stats']} AS t3  ON t1.id=t3.id";
+	$sql .= " LEFT JOIN {$_TABLES['userbox_stats']} AS t3  ON t1.id=t3.id";
 
     $sql .=$rt["sql3"];
 
@@ -125,7 +125,7 @@ function plugin_dopluginsearch_userbox_data(
         next($ary);
     }
 
-//    , "((SELECT value FROM {$_TABLES['USERBOX_addition']} WHERE field_id=1 AND id=t1.id) AS fld1)"
+//    , "((SELECT value FROM {$_TABLES['userbox_addition']} WHERE field_id=1 AND id=t1.id) AS fld1)"
 
 
     list($sql,$ftsql) = $search->buildSearchSQL($keyType, $query, $columns, $sql);

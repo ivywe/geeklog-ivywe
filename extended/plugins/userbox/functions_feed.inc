@@ -23,7 +23,7 @@ function plugin_getfeednames_userbox()
     $feeds = array ();
     $feeds[] = array ('id' => '0', 'name' => 'all categories');
 
-    $sql = "SELECT category_id,name FROM {$_TABLES['USERBOX_def_category']}  ORDER BY orderno";
+    $sql = "SELECT category_id,name FROM {$_TABLES['userbox_def_category']}  ORDER BY orderno";
     $result = DB_query ($sql);
     $num = DB_numRows ($result);
 
@@ -70,11 +70,11 @@ function plugin_feedupdatecheck_userbox (
     $is_current = true;
 
 
-	$sql = "SELECT t1.id FROM {$_TABLES['USERBOX_base']} AS t1".LB ;
+	$sql = "SELECT t1.id FROM {$_TABLES['userbox_base']} AS t1".LB ;
     $sql .= " ,{$_TABLES['users']} AS t4 ".LB;
 
     if ($category_id<>0 ){
-        $sql .= " ,{$_TABLES['USERBOX_category']} AS t2 ".LB;
+        $sql .= " ,{$_TABLES['userbox_category']} AS t2 ".LB;
     }
 
 
@@ -198,8 +198,8 @@ function plugin_getfeedcontent_userbox(
     //使用する日付（編集日付or作成日付
     $datefield=$_USERBOX_CONF['datefield'];
     //-----
-    $tbl1=$_TABLES['USERBOX_base'] ;
-    $tbl2=$_TABLES['USERBOX_category'] ;
+    $tbl1=$_TABLES['userbox_base'] ;
+    $tbl2=$_TABLES['userbox_category'] ;
     $tbl4=$_TABLES['users'] ;
 
     //feed 定義情報取得　$S

@@ -25,8 +25,8 @@ function plugin_showstats_userbox (
 	
     require_once $_CONF['path_system'] . 'lib-admin.php';
 	
-    $tbl1=$_TABLES['USERBOX_base'] ;
-    $tbl2=$_TABLES['USERBOX_stats'] ;
+    $tbl1=$_TABLES['userbox_base'] ;
+    $tbl2=$_TABLES['userbox_stats'] ;
     $tbl3=$_TABLES['users'] ;
 
     $retval = '';
@@ -134,8 +134,8 @@ function userbox_countAndClicks()
 {
     global $_TABLES;
 	
-    $tbl1=$_TABLES['USERBOX_base'] ;
-    $tbl2=$_TABLES['USERBOX_stats'] ;
+    $tbl1=$_TABLES['userbox_base'] ;
+    $tbl2=$_TABLES['userbox_stats'] ;
 
     $retval = '';
 	

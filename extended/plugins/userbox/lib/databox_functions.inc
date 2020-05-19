@@ -437,10 +437,10 @@ global $_TABLES;
         $fname=$kind;
     }
 
-    $table_def_category=$_TABLES[strtoupper($pi_name).'_def_category'];
-    $table_def_group=$_TABLES[strtoupper($pi_name).'_def_group'];
-    $table_mst=$_TABLES[strtoupper($pi_name).'_mst'];
-    $table_def_fieldset=$_TABLES[strtoupper($pi_name).'_def_fieldset'];
+    $table_def_category=$_TABLES[$pi_name.'_def_category'];
+    $table_def_group=$_TABLES[$pi_name.'_def_group'];
+    $table_mst=$_TABLES[$pi_name.'_mst'];
+    $table_def_fieldset=$_TABLES[$pi_name.'_def_fieldset'];
     $retval = '';
     if ($kind=="categorygroup"){
         $sql = "SELECT ";
@@ -602,8 +602,8 @@ function DATABOX_savecategorydatas(
         $table_def_category=$_TABLES['DATABOX_def_category'];
         $table_category=$_TABLES['DATABOX_category'];
     }else{
-        $table_def_category=$_TABLES[strtoupper($pi_name).'_def_category'];
-        $table_category=$_TABLES[strtoupper($pi_name).'_category'];
+        $table_def_category=$_TABLES[$pi_name.'_def_category'];
+        $table_category=$_TABLES[$pi_name.'_category'];
     }
 	
 	if  ($mydata==""){
@@ -723,8 +723,8 @@ function DATABOX_getadditiondef(
         $table=$_TABLES['DATABOX_def_field'];
         $table2=$_TABLES['DATABOX_mst'];
     }else{
-        $table=$_TABLES[strtoupper($pi_name).'_def_field'];
-        $table2=$_TABLES[strtoupper($pi_name).'_mst'];
+        $table=$_TABLES[$pi_name.'_def_field'];
+        $table2=$_TABLES[$pi_name.'_mst'];
     }
 
     $rt=array();
@@ -867,8 +867,8 @@ function DATABOX_getadditionsearchdef(
     global $$box_conf;
     $box_conf=$$box_conf;
 
-    $table_def_field=$_TABLES[strtoupper($pi_name).'_def_field'];
-    $table_addition=$_TABLES[strtoupper($pi_name).'_addition'];
+    $table_def_field=$_TABLES[$pi_name.'_def_field'];
+    $table_addition=$_TABLES[$pi_name.'_addition'];
     
     if ($box_conf['additionsearch']==0){
         return;
@@ -951,8 +951,8 @@ function DATABOX_getadditiondatas(
         $table_addition=$_TABLES['DATABOX_addition'];
         $table_def_field=$_TABLES['DATABOX_def_field'];
     }else{
-        $table_addition=$_TABLES[strtoupper($pi_name).'_addition'];
-        $table_def_field=$_TABLES[strtoupper($pi_name).'_def_field'];
+        $table_addition=$_TABLES[$pi_name.'_addition'];
+        $table_def_field=$_TABLES[$pi_name.'_def_field'];
     }
 
     $rt=array();
@@ -1029,7 +1029,7 @@ function DATABOX_getaddtionfieldsEdit(
     $lang_admin_x="LANG_".strtoupper($pi_name)."_ADMIN";
     $lang_admin="LANG_".strtoupper($pi_name)."_ADMIN";
     $lang_noyes="LANG_".strtoupper($pi_name)."_NOYES";
-    $table_def_field=$_TABLES[strtoupper($pi_name).'_def_field'];
+    $table_def_field=$_TABLES[$pi_name.'_def_field'];
 
     $box_conf="_".strtoupper($pi_name)."_CONF";
     global $$box_conf;
@@ -2177,7 +2177,7 @@ function DATABOX_getMstItems(
     }
     global $_TABLES;
     
-    $table_mst=$_TABLES[strtoupper($pi_name).'_mst'];
+    $table_mst=$_TABLES[$pi_name.'_mst'];
 
     $sql="SELECT * FROM  {$table_mst} WHERE kind='{$selectlist}' AND no={$id}";
     
@@ -2227,9 +2227,9 @@ function DATABOX_getcategoriesText(
         $lang_box="LANG_".strtoupper($pi_name);
         $lang_box_admin="LANG_".strtoupper($pi_name)."_ADMIN";
 
-        $table_def_category=$_TABLES[strtoupper($pi_name).'_def_category'];
-        $table_def_group=$_TABLES[strtoupper($pi_name).'_def_group'];
-        $table_category=$_TABLES[strtoupper($pi_name).'_category'];
+        $table_def_category=$_TABLES[$pi_name.'_def_category'];
+        $table_def_group=$_TABLES[$pi_name.'_def_group'];
+        $table_category=$_TABLES[$pi_name.'_category'];
     }
 
     global $$lang_box_admin;
@@ -2335,9 +2335,9 @@ function DATABOX_getcategoriesDisp(
     }else{
         $lang_box="LANG_".strtoupper($pi_name);
         $box_conf="_".strtoupper($pi_name)."_CONF";
-        $table_def_category=$_TABLES[strtoupper($pi_name).'_def_category'];
-        $table_def_group=$_TABLES[strtoupper($pi_name).'_def_group'];
-        $table_category=$_TABLES[strtoupper($pi_name).'_category'];
+        $table_def_category=$_TABLES[$pi_name.'_def_category'];
+        $table_def_group=$_TABLES[$pi_name.'_def_group'];
+        $table_category=$_TABLES[$pi_name.'_category'];
     }
 
     global $$box_conf;
@@ -2586,10 +2586,10 @@ global $_TABLES;
         $table_def_fieldset_group=$_TABLES['DATABOX_def_fieldset_group'];
         $table_mst=$_TABLES['DATABOX_mst'];
     }else{
-        $table_def_category=$_TABLES[strtoupper($pi_name).'_def_category'];
-        $table_def_group=$_TABLES[strtoupper($pi_name).'_def_group'];
-        $table_def_fieldset_group=$_TABLES[strtoupper($pi_name).'_def_fieldset_group'];
-        $table_mst=$_TABLES[strtoupper($pi_name).'_mst'];
+        $table_def_category=$_TABLES[$pi_name.'_def_category'];
+        $table_def_group=$_TABLES[$pi_name.'_def_group'];
+        $table_def_fieldset_group=$_TABLES[$pi_name.'_def_fieldset_group'];
+        $table_mst=$_TABLES[$pi_name.'_mst'];
     }
     
     //
@@ -2763,8 +2763,8 @@ function DATABOX_getaddtionfields(
 
     global $_TABLES;
 
-    $table_def_field=$_TABLES[strtoupper($pi_name).'_def_field'];
-    $table_addition=$_TABLES[strtoupper($pi_name).'_addition'];
+    $table_def_field=$_TABLES[$pi_name.'_def_field'];
+    $table_addition=$_TABLES[$pi_name.'_addition'];
 
     $lang_noyes="LANG_".strtoupper($pi_name)."_NOYES";
     global $$lang_noyes;
@@ -2849,7 +2849,7 @@ function DATABOX_getfieldvalue(
             if  ($value==""){
                 $fieldvalue="";
             }else{
-                $fieldvalue=DB_getItem($_TABLES[strtoupper($pi_name).'_mst'] 
+                $fieldvalue=DB_getItem($_TABLES[$pi_name.'_mst'] 
                     ,"value"
                     ,"kind='{$selectlist}' AND no={$value}");
             }
@@ -2900,7 +2900,7 @@ function DATABOX_saveaddtiondatas(
     if ($pi_name==""){
         $table=$_TABLES['DATABOX_addition'];
     }else{
-        $table=$_TABLES[strtoupper($pi_name).'_addition'];
+        $table=$_TABLES[$pi_name.'_addition'];
     }
     
     $rt=DB_delete($table,"id",$id);
@@ -2949,7 +2949,7 @@ function DATABOX_saveaddtiondatas_update(
     if ($pi_name==""){
         $table=$_TABLES['DATABOX_addition'];
     }else{
-        $table=$_TABLES[strtoupper($pi_name).'_addition'];
+        $table=$_TABLES[$pi_name.'_addition'];
     }
 
     if (is_array($fldary)){
@@ -3928,7 +3928,7 @@ function DATABOX_deleteaddtionfiles_def(
 
     $rt="";
     
-    $table_addition=$_TABLES[strtoupper($pi_name).'_addition'];
+    $table_addition=$_TABLES[$pi_name.'_addition'];
     //
     $sql="SELECT value  ";
     $sql.=" FROM";
@@ -4445,35 +4445,35 @@ global $LANG_configselects;
     }else{
         if ($kind=="group"){
             $where="";
-            $table=$_TABLES[strtoupper($pi_name).'_def_group'];
+            $table=$_TABLES[$pi_name.'_def_group'];
             $fields= 'group_id,name,orderno';
         }else if ($kind=="parent"){
             $where="";
-            $table=$_TABLES[strtoupper($pi_name).'_def_category'];
+            $table=$_TABLES[$pi_name.'_def_category'];
             $fields= 'category_id,name,orderno';
         }else if ($kind=="fieldset"){
             $where="";
-            $table=$_TABLES[strtoupper($pi_name).'_def_fieldset'];
+            $table=$_TABLES[$pi_name.'_def_fieldset'];
             $fields= 'fieldset_id,name,fieldset_id';
         }else if ($kind=="selectlist"){
             $where="";
-            $table=$_TABLES[strtoupper($pi_name).'_mst'];
+            $table=$_TABLES[$pi_name.'_mst'];
             $fields= 'DISTINCT kind,kind,kind';
         }else if ($kind=="selectlist_mst"){
-            $table=$_TABLES[strtoupper($pi_name).'_mst'];
+            $table=$_TABLES[$pi_name.'_mst'];
             $where="kind='{$selectlist}'";
             if ($relno<>0) $where.=" AND relno='{$relno}'";
             $fields= 'no,value,orderno';
         }else if ($kind=="fieldgroupno"){
             $where="kind='fieldgroup'";
-            $table=$_TABLES[strtoupper($pi_name).'_mst'];
+            $table=$_TABLES[$pi_name.'_mst'];
             $fields= 'DISTINCT no,value,no';
         }else if ($kind=="csvsel"){
             $where="";
-            $table=$_TABLES[strtoupper($pi_name).'_def_csv_sel'];
+            $table=$_TABLES[$pi_name.'_def_csv_sel'];
             $fields= 'csv_sel_id,name,csv_sel_id*-1';
         }else{
-            $table=$_TABLES[strtoupper($pi_name).'_mst'];
+            $table=$_TABLES[$pi_name.'_mst'];
             $where="kind='{$kind}'";
         if ($relno<>0) $where.=" AND relno='{$relno}'";
             $fields= 'no,value,orderno';
@@ -4664,8 +4664,8 @@ function DATABOX_getfeaturedimage(
     global $$box_conf;
     $box_conf=$$box_conf;
 
-    $tbl1=$_TABLES[strtoupper($pi_name).'_addition'];
-    $tbl2=$_TABLES[strtoupper($pi_name).'_def_field'];
+    $tbl1=$_TABLES[$pi_name.'_addition'];
+    $tbl2=$_TABLES[$pi_name.'_def_field'];
 
     $rt="";
 
@@ -4843,9 +4843,9 @@ function DATABOX_getfields(
     global $_TABLES;
     
     if ($fieldset_id==0){
-        $table=$_TABLES[strtoupper($pi_name).'_def_field'];
+        $table=$_TABLES[$pi_name.'_def_field'];
     }else{
-        $table=$_TABLES[strtoupper($pi_name).'_def_fieldset_assignments'];
+        $table=$_TABLES[$pi_name.'_def_fieldset_assignments'];
     }
     $fields = array();
 
@@ -4881,7 +4881,7 @@ function DATABOX_getAry(
     global $_TABLES;
 
 //    if ($kind=="selectlist_mst"){
-        $table=$_TABLES[strtoupper($pi_name).'_mst'];
+        $table=$_TABLES[$pi_name.'_mst'];
         $where=" WHERE kind='{$selectlist}'";
         if ($relno<>0) $where.=" AND relno='{$relno}'";
         $fields= 'no,value';
@@ -4933,10 +4933,10 @@ function DATABOX_categorycount(
 {
     global $_TABLES;
     //-----
-    $tbl3=$_TABLES[strtoupper($pi_name).'_def_category'] ;
-    $tbl1=$_TABLES[strtoupper($pi_name).'_category'] ;
-    $tbl4=$_TABLES[strtoupper($pi_name).'_def_group'] ;
-    $tbl2=$_TABLES[strtoupper($pi_name).'_base'] ;
+    $tbl3=$_TABLES[$pi_name.'_def_category'] ;
+    $tbl1=$_TABLES[$pi_name.'_category'] ;
+    $tbl4=$_TABLES[$pi_name.'_def_group'] ;
+    $tbl2=$_TABLES[$pi_name.'_base'] ;
     if ($categorygroup_id =="" AND $categorygroup_code=="") {
         $categorygroup_id=0;
     }else{
@@ -5361,11 +5361,11 @@ function DATABOX_fieldvalue(
     $lang_box=$$lang_box;
     $separater=$lang_box['field_separater'];
 
-    $table_base=$_TABLES[strtoupper($pi_name).'_base'];
-    $table_def_field=$_TABLES[strtoupper($pi_name).'_def_field'];
-    $table_addition=$_TABLES[strtoupper($pi_name).'_addition'];
+    $table_base=$_TABLES[$pi_name.'_base'];
+    $table_def_field=$_TABLES[$pi_name.'_def_field'];
+    $table_addition=$_TABLES[$pi_name.'_addition'];
     $table_def_fieldset_assignments
-        =$_TABLES[strtoupper($pi_name).'_def_fieldset_assignments'];
+        =$_TABLES[$pi_name.'_def_fieldset_assignments'];
     //-----引数チェック
     if (is_null($id)){
         if (is_null($code) OR $code===""){
@@ -5592,11 +5592,11 @@ function DATABOX_fieldownload(
     $lang_box=$$lang_box;
     $separater=$lang_box['field_separater'];
 
-    $table_base=$_TABLES[strtoupper($pi_name).'_base'];
-    $table_def_field=$_TABLES[strtoupper($pi_name).'_def_field'];
-    $table_addition=$_TABLES[strtoupper($pi_name).'_addition'];
+    $table_base=$_TABLES[$pi_name.'_base'];
+    $table_def_field=$_TABLES[$pi_name.'_def_field'];
+    $table_addition=$_TABLES[$pi_name.'_addition'];
     $table_def_fieldset_assignments
-        =$_TABLES[strtoupper($pi_name).'_def_fieldset_assignments'];
+        =$_TABLES[$pi_name.'_def_fieldset_assignments'];
     //-----引数チェック
     if (is_null($id)  OR $id===""){
         if (is_null($code) OR $code===""){
@@ -5798,9 +5798,9 @@ function DATABOX_count_each_afield(
     }
     
     //-----
-    $tbl1=$_TABLES[strtoupper($pi_name).'_base'] ;
-    $tbl2=$_TABLES[strtoupper($pi_name).'_addition'] ;
-    $tbl3=$_TABLES[strtoupper($pi_name).'_def_field'];
+    $tbl1=$_TABLES[$pi_name.'_base'] ;
+    $tbl2=$_TABLES[$pi_name.'_addition'] ;
+    $tbl3=$_TABLES[$pi_name.'_def_field'];
 
     //-----
     $sql = "SELECT ".LB;
@@ -5917,11 +5917,11 @@ function DATABOX_math(
         $idsary[]=$category_id;
     }
     //-----
-    $tbl1=$_TABLES[strtoupper($pi_name).'_base'] ;
-    $tbl2=$_TABLES[strtoupper($pi_name).'_addition'] ;
-    $tbl3=$_TABLES[strtoupper($pi_name).'_def_field'];
-    $tbl4=$_TABLES[strtoupper($pi_name).'_category'] ;
-	$tbl5=$_TABLES[strtoupper($pi_name).'_def_category'] ;
+    $tbl1=$_TABLES[$pi_name.'_base'] ;
+    $tbl2=$_TABLES[$pi_name.'_addition'] ;
+    $tbl3=$_TABLES[$pi_name.'_def_field'];
+    $tbl4=$_TABLES[$pi_name.'_category'] ;
+	$tbl5=$_TABLES[$pi_name.'_def_category'] ;
 	
     $type=DB_getItem( $tbl3   ,"type","templatesetvar='{$templatesetvar}'");
 	

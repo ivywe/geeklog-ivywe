@@ -263,10 +263,9 @@ $_USERBOX_DEFAULT['path_xml_out']=$_CONF['path']."data/userbox_data";
 * @return   boolean     true: success; false: an error occurred
 *
 */
-function plugin_initconfig_userbox($initialize="")
+function plugin_initconfig_userbox()
 {
-    global $_USERBOX_CONF;
-    global $_USERBOX_DEFAULT;
+    global $_USERBOX_CONF, $_USERBOX_DEFAULT;
 
     if (is_array($_USERBOX_CONF) && (count($_USERBOX_CONF) > 1)) {
         $_USERBOX_DEFAULT = array_merge($_USERBOX_DEFAULT, $_USERBOX_CONF);
@@ -276,44 +275,7 @@ function plugin_initconfig_userbox($initialize="")
 
     $c = config::get_instance();
 
-    if (!$c->group_exists($pi_name) OR $initialize ) {
-    /**
-     * Adds a configuration variable to the config object
-     *
-     * @param string $param_name        name of the parameter to add
-     * @param mixed  $default_value     the default value of the parameter
-     *                                  (also will be the initial value)
-     * @param string $display_name      name that will be displayed on the
-     *                                  user interface
-     * @param string $type              the type of the configuration variable
-     *
-     *    If the configuration variable is an array, prefix this string with
-     *    '@' if the administrator should NOT be able to add or remove keys
-     *    '*' if the administrator should be able to add named keys
-     *    '%' if the administrator should be able to add numbered keys
-     *    These symbols can be repeated like such: @@text if the configuration
-     *    variable is an array of arrays of text.
-     *    The base variable types are:
-     *    'text'    textbox displayed     string  value stored
-     *    'select'  selectbox displayed   string  value stored
-     *    'hidden'  no display            string  value stored
-     *
-     * @param string $subgroup          subgroup of the variable
-     *                                  (the second row of tabs on the user interface)
-     * @param string $fieldset          the fieldset to display the variable under
-     * @param array  $selection_array   possible selections for the 'select' type
-     *                                  this MUST be passed if you use the 'select'
-     *                                  type
-     * @param int    $sort              sort rank on the user interface (ascending)
-     *
-     * @param boolean $set              whether or not this parameter is set
-     */
-        //function add(
-        // $param_name
-        //  , $default_value
-        //  , $type,$subgroup,$fieldset,$selection_array, $sort, $set
-            //  , $group=$pi_name)
-
+    if (!$c->group_exists($pi_name)) {
         //メイン
         $c->add(
             'sg_main'

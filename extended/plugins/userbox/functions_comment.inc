@@ -43,7 +43,7 @@ function plugin_savecomment_userbox(
 
     $retval = '';
 
-    $commentcode = DB_getItem ($_TABLES['USERBOX_base'], 'commentcode',
+    $commentcode = DB_getItem ($_TABLES['userbox_base'], 'commentcode',
                                "id = '$id'");
     if ($commentcode != 0) {
         return COM_refresh ($_CONF['site_url'] . '/index.php');
@@ -83,7 +83,7 @@ function plugin_deletecomment_userbox(
     $has_editPermissions = SEC_hasRights ('userbox.edit');
 	
 	$sql = "SELECT owner_id,group_id,perm_owner,perm_group,perm_members,perm_anon ";
-	$sql .= " FROM {$_TABLES['USERBOX_base']} WHERE id = '{$id}'";
+	$sql .= " FROM {$_TABLES['userbox_base']} WHERE id = '{$id}'";
 	
 	$result = DB_query ($sql);
     $A = DB_fetchArray ($result);
@@ -133,7 +133,7 @@ function plugin_displaycomment_userbox (
 
     $sql = "SELECT COUNT(*) AS count, commentcode, owner_id, group_id, perm_owner, "
         . "perm_group, perm_members, perm_anon "
-        . "FROM {$_TABLES['USERBOX_base']} "
+        . "FROM {$_TABLES['userbox_base']} "
 		. "WHERE (id = '$id')" 
 		. COM_getPermSQL('AND')
         . ' GROUP BY id';
