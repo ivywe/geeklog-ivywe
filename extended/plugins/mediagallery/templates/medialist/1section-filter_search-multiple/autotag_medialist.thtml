@@ -29,19 +29,23 @@
 </div></div>
 {!endif}
 
-{!!if {section} == '1' || {section} == '' !!}<section id="album{album_id}-section<?php global $sectionid; $sectionid++; echo $sectionid; ?>" class="uk-section<?php echo $uks; ?>">{!endif}
+{!!if {section} !== '0' && {media} !== '' !!}<section id="album{album_id}-section<?php global $sectionid; $sectionid++; echo $sectionid; ?>"<?php if($this->get_var('uks')){ echo '" class="'.$uks.'"';} ?>" data-src="{!!autotag media_url:'.{media}.' src:orig !!}" uk-img>{!endif}
+{!!if {section} !== '0' && {media} == '' !!}<section id="album{album_id}-section<?php global $sectionid; $sectionid++; echo $sectionid; ?>" class="uk-section<?php echo $uks; ?>">{!endif}
 
 {!!if {container} == '1' || {container} == '' !!}<div class="uk-container <?php echo $ukc; ?>">{!endif}
         {!if title}<h2 class="uk-margin-large-bottom<?php echo $class_album_title; ?>">{album_title}</h2>{!endif}
         <div uk-filter="target: .js-filter">
+          <div class="<?php echo $class_album_desc; ?>">
           {album_desc}
+          </div>
           <ul class="js-filter uk-child-width-1-{grids} uk-child-width-1-{gridm}@m uk-grid-small" uk-grid{!!if {masonry} == "1" !!}="masonry:true"{!endif} uk-lightbox="animation: slide">
 {medialist_col}
           </ul>
         </div>
 
 {!!if {container} == '1' || {container} == '' !!}</div>{!endif}
-{!!if {section} == '1' || {section} == '' !!}</section>{!endif}
+{!!if {section} !== '0' !!}</section>{!endif}
+
 
 
 {# end {templatelocation} #}

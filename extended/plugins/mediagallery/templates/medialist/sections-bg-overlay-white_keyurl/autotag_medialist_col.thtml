@@ -17,6 +17,7 @@
           {!if media_keywords}<div class="uk-margin-medium-top uk-text-center"><a href="{media_keywords}" class="uk-button uk-button-default uk-button-small gl-button">{!if text}{text}{!else}詳細を見る(この文言の引数はtextで){!endif}</a></div>{!endif}
         </div>
       </div>
-    {!!if {section} == '1' || {section} == '' !!}</section>{!endif}
+    {!!if {section} !== '0' !!}</section>{!endif}
+
 
 {# end {templatelocation} #}

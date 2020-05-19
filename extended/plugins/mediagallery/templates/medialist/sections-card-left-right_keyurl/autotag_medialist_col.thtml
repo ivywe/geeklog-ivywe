@@ -59,6 +59,7 @@
 
 {!!if {container} == '1' || {container} == '' !!}</div>{!endif}
 
-{!!if {section} == '1' || {section} == '' !!}</section>{!endif}
+{!!if {section} !== '0' !!}</section>{!endif}
+
 
 {# end {templatelocation} #}
