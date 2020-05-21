@@ -2,7 +2,7 @@
 
 <?php $rate = $this->get_var('rate'); $rate=str_replace("_",":",$rate); $cl = $this->get_var('uks');if(strlen($cl)){$uks = ' '.str_replace('.', ' ', $cl);}else{$uks = "";}$cl = $this->get_var('ukc');if(strlen($cl)){$ukc = ' '.str_replace('.', ' ', $cl);}else{$ukc = "";}$cl = $this->get_var('class_album_title');if(strlen($cl)){$class_album_title = ' '.str_replace('.', ' ', $cl);}else{$class_album_title = " uk-text-center";}$cl = $this->get_var('class_album_desc');if(strlen($cl)){$class_album_desc = ' '.str_replace('.', ' ', $cl);}else{$class_album_desc = " uk-text-center@s";}$cl = $this->get_var('class_media_title');if(strlen($cl)){$class_media_title = ' '.str_replace('.', ' ', $cl);}else{$class_media_title = " uk-text-left";}$cl = $this->get_var('class_media_desc');if(strlen($cl)){$class_media_desc = ' '.str_replace('.', ' ', $cl);}else{$class_media_desc = " uk-text-left";} ?>
 
-    {!!if {section} == '1' || {section} == '' !!}<section id="album{album_id}-section<?php global $sectionid; $sectionid++; echo $sectionid; ?>"<?php if($this->get_var('uks')){ echo '" class="'.$uks.'"';} ?>>{!endif}
+    {!!if {section} !== '0' !!}<section id="album{album_id}-section<?php global $sectionid; $sectionid++; echo $sectionid; ?>"<?php if($this->get_var('uks')){ echo '" class="'.$uks.'"';} ?>>{!endif}
 
       <div class="uk-inline">
         <img src="{filename}" alt="{media_title}">
@@ -17,6 +17,7 @@
           {!if media_keywords}<div class="uk-margin-medium-top uk-text-center"><a href="{media_keywords}" class="uk-button uk-button-default uk-button-small gl-button">{!if text}{text}{!else}詳細を見る(この文言の引数はtextで){!endif}</a></div>{!endif}
         </div>
       </div>
-    {!!if {section} == '1' || {section} == '' !!}</section>{!endif}
+    {!!if {section} !== '0' !!}</section>{!endif}
+
 
 {# end {templatelocation} #}

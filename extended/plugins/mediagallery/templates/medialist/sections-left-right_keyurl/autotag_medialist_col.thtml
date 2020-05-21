@@ -4,7 +4,7 @@
 
 <?php global $mgorderslrk; $mgorderslrk=$mgorderslrk+1; ?>
 
-{!!if {section} == '1' || {section} == '' !!}<section id="album{album_id}-section<?php global $sectionid; $sectionid++; echo $sectionid; ?>" class="uk-section<?php echo $uks; ?>">{!endif}
+{!!if {section} !== '0' !!}<section id="album{album_id}-section<?php global $sectionid; $sectionid++; echo $sectionid; ?>" class="uk-section<?php echo $uks; ?>">{!endif}
 
 {!!if {container} == '1' || {container} == '' !!}<div class="uk-container <?php echo $ukc; ?>">{!endif}
 
@@ -62,6 +62,7 @@
 
 {!!if {container} == '1' || {container} == '' !!}</div>{!endif}
 
-{!!if {section} == '1' || {section} == '' !!}</section>{!endif}
+{!!if {section} !== '0' !!}</section>{!endif}
+
 
 {# end {templatelocation} #}
