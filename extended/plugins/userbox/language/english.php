@@ -1,11 +1,12 @@
 <?php
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | UserBox Plugin 0.0.0 for Geeklog 1.8 and later                            |
+// | UserBox Plugin 0.0.20200521a for Geeklog 2.2.1
 // +---------------------------------------------------------------------------+
 // | Copyright (C) 2010 by the following authors:                              |
 // | Authors    : Tsuchi            - tsuchi AT geeklog DOT jp                 |
 // | Authors    : Tetsuko Komma/Ivy - komma AT ivywe DOT co DOT jp             |
+// | Authors    : hiroron           - hiroron AT hiroron DOT com 
 // +---------------------------------------------------------------------------+
 
 ###############################################################################

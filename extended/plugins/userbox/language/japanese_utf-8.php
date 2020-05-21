@@ -1,17 +1,18 @@
 <?php
 //* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | UserBox Plugin 0.0.0 for Geeklog 1.7.0                                    |
+// | UserBox Plugin 0.0.20200521a for Geeklog 2.2.1
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2010 by the following authors:                              |
+// | Copyright (C) 2020 by the following authors:                              |
 // | Authors    : Tsuchi            - tsuchi AT geeklog DOT jp                 |
 // | Authors    : Tetsuko Komma/Ivy - komma AT ivywe DOT co DOT jp             |
+// | Authors    : hiroron           - hiroron AT hiroron DOT com 
 // +---------------------------------------------------------------------------+
 
 ###############################################################################
 # plugins/USERBOX/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20161206
+# Last Update 20200521
 
 ###############################################################################
 global $_CONF, $_USER, $_TABLES, $LANG04;
@@ -625,8 +626,8 @@ $LANG_configsections['userbox']['title'] = 'UserBoxの設定';
 //----------
 $LANG_configsubgroups['userbox']['sg_main'] = 'メイン';
 //--(0)
-// $LANG_tab['userbox']['tab_main'] = 'メイン設定';
-// $LANG_fs['userbox']['fs_main'] = 'UserBoxのメイン設定';
+$LANG_tab['userbox']['tab_main'] = 'UserBoxのメイン設定';
+$LANG_fs['userbox']['fs_main'] = 'UserBoxのメイン設定';
 $LANG_confignames['userbox']['perpage'] = 'ページあたりのデータ数';
 $LANG_confignames['userbox']['loginrequired'] = 'ログイン要求する';
 $LANG_confignames['userbox']['hidemenu'] = 'メニューに表示しない';
@@ -679,27 +680,26 @@ $LANG_confignames['userbox']['disable_permission_ignore'] = '新着データの�
 $LANG_confignames['userbox']['sitemap_excepts'] = 'サイトマップ XMLSitemap から除外するユーザ名';
 
 //--(1)
-// $LANG_tab['userbox']['tab_whatsnew'] = '新着情報ブロック';
-// $LANG_fs['userbox']['fs_whatsnew'] = '新着情報ブロック';
+$LANG_tab['userbox']['tab_whatsnew'] = '新着情報ブロック';
+$LANG_fs['userbox']['fs_whatsnew'] = '新着情報ブロック';
 $LANG_confignames['userbox']['whatsnew_interval'] = '新着の期間';
 $LANG_confignames['userbox']['hide_whatsnew'] = '新着ページを表示しない';
 $LANG_confignames['userbox']['title_trim_length'] = 'タイトル最大長';
 
 //---(2)
-// $LANG_tab['userbox']['tab_search'] = '検索';
-
-// $LANG_fs['userbox']['fs_search'] = '検索結果';
+$LANG_tab['userbox']['tab_search'] = '検索';
+$LANG_fs['userbox']['fs_search'] = '検索結果';
 $LANG_confignames['userbox']['include_search'] = 'データを検索する';
 $LANG_confignames['userbox']['additionsearch'] = '検索対象にする追加属性の数';
 
 //---(3)
-// $LANG_tab['userbox']['tab_permissions'] = 'パーミッション';
-// $LANG_fs['userbox']['fs_permissions'] = 'データのパーミッションのデフォルト（[0]所有者 [1]グループ [2]メンバー [3]ゲスト）';
-// $LANG_confignames['userbox']['default_permissions'] = 'パーミッション';
+$LANG_tab['userbox']['tab_permissions'] = 'パーミッション';
+$LANG_fs['userbox']['fs_permissions'] = 'データのパーミッションのデフォルト（[0]所有者 [1]グループ [2]メンバー [3]ゲスト）';
+$LANG_confignames['userbox']['default_permissions'] = 'パーミッション';
 
 //---(4)
-// $LANG_tab['userbox']['tab_autotag'] = '自動タグ';
-// $LANG_fs['userbox']['fs_autotag'] = '自動タグ';
+$LANG_tab['userbox']['tab_autotag'] = '自動タグ';
+$LANG_fs['userbox']['fs_autotag'] = '自動タグ';
 $LANG_confignames['userbox']['intervalday']="表示期間（日）";
 $LANG_confignames['userbox']['limitcnt']="表示件数";//@@@@@
 $LANG_confignames['userbox']['newmarkday']="新着マーク表示期間（日）";//@@@@@
