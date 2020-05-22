@@ -71,7 +71,7 @@ function MG_medialist (
   , $pauseonhover=''
   , $index=''
   , $velocity=''
-  , $rate=''
+  , $ratio=''
   , $minheight=''
   , $maxheight=''
   , $animationduration=''
@@ -248,7 +248,7 @@ function MG_medialist (
     $T->set_var('pauseonhover',$pauseonhover);
     $T->set_var('index',$index);
     $T->set_var('velocity',$velocity);
-    $T->set_var('rate',$rate);
+    $T->set_var('ratio',$ratio);
     $T->set_var('minheight',$minheight);
     $T->set_var('maxheight',$maxheight);
     $T->set_var('animationduration',$animationduration);
@@ -489,7 +489,7 @@ function MG_parm2 ($p2)
   $parm2_ary[]="pauseonhover";
   $parm2_ary[]="index";
   $parm2_ary[]="velocity";
-  $parm2_ary[]="rate";
+  $parm2_ary[]="ratio";
   $parm2_ary[]="minheight";
   $parm2_ary[]="maxheight";
   $parm2_ary[]="animationduration";

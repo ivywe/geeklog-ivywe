@@ -1069,7 +1069,7 @@ $enable_link=0;
                 ,$p['pauseonhover']
                 ,$p['index']
                 ,$p['velocity']
-                ,$p['rate']
+                ,$p['ratio']
                 ,$p['minheight']
                 ,$p['maxheight']
                 ,$p['animationduration']
