@@ -36,8 +36,7 @@ require_once '../lib-common.php';
 
 if (!in_array('mediagallery', $_PLUGINS) ||
   $_MG_CONF['var_current_code'] !== true) {
-    echo COM_refresh($_CONF['site_url'] . '/index.php');
-    exit;
+    COM_redirect($_CONF['site_url'] . '/index.php');
 }
 
 if (COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1) {
@@ -56,17 +55,15 @@ function MG_buildAdminbox(&$root_album)
     global $_TABLES, $_MG_CONF, $_USER, $LANG_MG01, $LANG_MG03;
 
     $options = '';
-    if ($root_album->owner_id) {
-        $options .= '<option value="create">' . $LANG_MG01['create_album'] . '</option>' . LB;
-		}
     if ($root_album->member_uploads || $root_album->access == 3) {
         $options .= '<option value="upload">' . $LANG_MG01['add_media'] . '</option>' . LB;
     }
     if ($root_album->owner_id) {
+        $options .= '<option value="albumsort">'  . $LANG_MG01['sort_albums'] . '</option>' . LB;
         $options .= '<option value="globalattr">' . $LANG_MG01['globalattr'] . '</option>' . LB;
         $options .= '<option value="globalperm">' . $LANG_MG01['globalperm'] . '</option>' . LB;
         $options .= '<option value="wmmanage">' . $LANG_MG01['wm_management'] . '</option>' . LB;
-        $options .= '<option value="albumsort">'  . $LANG_MG01['sort_albums'] . '</option>' . LB;
+        $options .= '<option value="create">' . $LANG_MG01['create_album'] . '</option>' . LB;
     } elseif ($root_album->access == 3) {
         $options .= '<option value="create">' . $LANG_MG01['create_album'] . '</option>' . LB;
     } elseif ($_MG_CONF['member_albums'] == 1 && $_MG_CONF['member_album_root'] == 0 && $_MG_CONF['member_create_new']) {
@@ -75,9 +72,9 @@ function MG_buildAdminbox(&$root_album)
     if ($options == '') return '';
 
     $retval = '';
-    $retval .= '<form name="adminbox" id="adminbox" action="' . $_MG_CONF['site_url'] . '/admin.php" method="get"><div>' . LB;
+    $retval .= '<form name="adminbox" id="adminbox" action="' . $_MG_CONF['site_url'] . '/admin.php" method="get" class="uk-form"><div>' . LB;
     $retval .= '<select class="uk-select uk-form-width-medium" onchange="javascript:forms[\'adminbox\'].submit();" name="mode">' . LB;
-    $retval .= '<option label="' . $LANG_MG01['options'] . '" value="">Options</option>' . LB;
+    $retval .= '<option label="Options" value="">' . $LANG_MG01['options'] . '</option>' . LB;
     $retval .= $options;
     $retval .= '</select>' . LB;
     $retval .= '<input type="hidden" name="album_id" value="0"' . XHTML . '>' . LB;
