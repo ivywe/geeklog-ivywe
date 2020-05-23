@@ -12,7 +12,7 @@
 
 <h2>{lang_media_manage_title}</h2>
 <p>{lang_media_manage_help}</p>
-<form id="MG_mediamanage" name="media" method="post" action="{s_form_action}">
+<form id="MG_mediamanage" name="media" method="post" action="{s_form_action}" class="uk-form">
   <div>
     {!if lang_no_image}<div class="noitems">{lang_no_image}</div>{!endif}
     {mediaitems}

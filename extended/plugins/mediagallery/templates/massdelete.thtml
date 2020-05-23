@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<form name="galselect" method="post" action="{s_form_action}">
+<form name="galselect" method="post" action="{s_form_action}" class="uk-form">
 <div class="pluginRow1" style="padding:10px;line-height:2em">
 {album_list}
 </div>

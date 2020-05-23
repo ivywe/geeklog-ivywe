@@ -69,7 +69,7 @@ class Media {
     var $media_thumbnail_file;
     var $media_size;
 
-    function Media(&$M, &$aid) {
+    public function __construct(&$M, &$aid) {
         $this->id   = $M['media_id'];
         $this->type = $M['media_type'];
         if ($this->type != -1) {
@@ -181,7 +181,7 @@ class Media {
         }
         $size = @getimagesize($pimage);
         if ($size == false) {
-            $fname = 'missing.svg';
+            $fname = 'missing.png';
             $pimage = $_MG_CONF['path_mediaobjects']      . $fname;
             $image  = $_MG_CONF['mediaobjects_url'] . '/' . $fname;
             $size = @getimagesize($pimage);
@@ -312,7 +312,7 @@ class Media {
                 break;
 
             default:
-                $retval = 'missing.svg';
+                $retval = 'missing.png';
                 break;
         }
 
@@ -459,7 +459,7 @@ class Media {
                     $playback_options['height'] = $_MG_CONF['swf_height'];
                     $playback_options['width']  = $_MG_CONF['swf_width'];
                     $poResult = DB_query("SELECT * FROM {$_TABLES['mg_playback_options']} "
-                                       . "WHERE media_id='" . addslashes($this->id) . "'");
+                                       . "WHERE media_id='" . DB_escapeString($this->id) . "'");
                     while ($poRow = DB_fetchArray($poResult)) {
                         $playback_options[$poRow['option_name']] = $poRow['option_value'];
                     }
@@ -647,7 +647,7 @@ class Media {
             $media_time = MG_getUserDateTimeFormat($this->time);
         }
 
-        $media_title = (!empty($this->title)) ? PLG_replaceTags($this->title) : '';
+        $media_title = (!empty($this->title)) ? PLG_replaceTags($this->title) : 'No Name';
 
         $T = COM_newTemplate($templatePath);
         $T->set_file(array(
@@ -897,11 +897,10 @@ class Media {
             $sql = "UPDATE " . $_TABLES['mg_media']
                  . " SET media_resolution_x=" . intval($resolution_x)
                      . ",media_resolution_y=" . intval($resolution_y)
-                 . " WHERE media_id='" . addslashes($I['media_id']) . "'";
+                 . " WHERE media_id='" . DB_escapeString($I['media_id']) . "'";
             DB_query($sql);
         }
 
         return array($resolution_x, $resolution_y);
     }
 }
-?>

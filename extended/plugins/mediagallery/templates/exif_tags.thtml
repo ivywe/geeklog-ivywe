@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<script>
+<script type="text/javascript">
 //<![CDATA[
 function doCheckAll_exif()
 {
@@ -23,7 +23,7 @@ function doUnCheckAll_exif()
 }
 //]]>
 </script>
-<form name="exif" method="post" action="{s_form_action}">
+<form name="exif" method="post" action="{s_form_action}" class="uk-form">
   <table class="uk-table uk-table-condensed uk-table-striped uk-width-1-1" style="background:#ffffff;">
     <tr>
       <th style="width:50px;">{lang_select}</th>

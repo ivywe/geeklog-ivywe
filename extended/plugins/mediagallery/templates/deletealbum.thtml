@@ -1,7 +1,7 @@
 {# begin {templatelocation} #}
 
 <span style="font-weight:bold;">{lang_edit_title}</span>
-<form method="post" action="{s_form_action}">
+<form method="post" action="{s_form_action}" class="uk-form">
 <div>
 <input type="hidden" name="album_id" value="{album_id}">
 <input type="hidden" name="action" value="confalbum">

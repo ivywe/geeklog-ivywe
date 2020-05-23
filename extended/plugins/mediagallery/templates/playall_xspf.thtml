@@ -13,7 +13,7 @@
 <div style="text-align:center;">
     <br{xhtml}><br{xhtml}>
     <h2>{album_desc}</h2>
-    <script>
+    <script type="text/javascript">
         var flashvars = {};
         var params = {
         wmode: "transparent"

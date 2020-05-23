@@ -13,7 +13,7 @@
 {start_block}
 
 {navbar}
-<script>
+<script type="text/javascript">
 function formControl(){
     var remoteType = '';
     var width      = '';
@@ -216,8 +216,7 @@ function formControl(){
   </div>
 </form>
 
-
-<script>
+<script type="text/javascript">
 formControl();
 </script>
 

@@ -270,7 +270,7 @@ $enable_link=0;
             $sql = "SELECT ma.album_id "
                  . "FROM {$_TABLES['mg_media']} AS m "
                  . "LEFT JOIN {$_TABLES['mg_media_albums']} AS ma ON m.media_id=ma.media_id "
-                 . "WHERE m.media_id='" . addslashes($parm1) . "'";
+                 . "WHERE m.media_id='" . DB_escapeString($parm1) . "'";
             $result = DB_query($sql);
             if (DB_numRows($result) <= 0) return str_replace($autotag['tagstr'], '', $content);
             $row = DB_fetchArray($result);
@@ -287,7 +287,7 @@ $enable_link=0;
             $sql = "SELECT m.remote_url,ma.album_id "
                  . "FROM {$_TABLES['mg_media']} AS m "
                  . "LEFT JOIN {$_TABLES['mg_media_albums']} AS ma ON m.media_id=ma.media_id "
-                 . "WHERE m.media_id='" . addslashes($parm1) . "'";
+                 . "WHERE m.media_id='" . DB_escapeString($parm1) . "'";
             $result = DB_query($sql);
             if (DB_numRows($result) <= 0) return str_replace($autotag['tagstr'], '', $content);
             $row = DB_fetchArray($result);
@@ -330,7 +330,7 @@ $enable_link=0;
                         . "m.media_resolution_x,m.media_resolution_y,m.remote_media "
                  . "FROM {$_TABLES['mg_media']} AS m "
                  . "LEFT JOIN {$_TABLES['mg_media_albums']} AS ma ON m.media_id=ma.media_id "
-                 . "WHERE m.media_id='" . addslashes($parm1) . "'";
+                 . "WHERE m.media_id='" . DB_escapeString($parm1) . "'";
             $result = DB_query($sql);
             if (DB_numRows($result) <= 0) return str_replace($autotag['tagstr'], '', $content);
             $row = DB_fetchArray($result);
@@ -633,7 +633,7 @@ $enable_link=0;
             $sql = "SELECT ma.album_id,m.media_title,m.mime_type,m.media_tn_attached,m.media_filename,m.media_mime_ext "
                  . "FROM {$_TABLES['mg_media']} AS m "
                  . "LEFT JOIN {$_TABLES['mg_media_albums']} AS ma ON m.media_id=ma.media_id "
-                 . "WHERE m.media_id='" . addslashes($parm1) . "'";
+                 . "WHERE m.media_id='" . DB_escapeString($parm1) . "'";
             $result = DB_query($sql);
             if (DB_numRows($result) <= 0) return str_replace($autotag['tagstr'], '', $content);
             $row = DB_fetchArray($result);
@@ -748,7 +748,7 @@ $enable_link=0;
                 'movie'         => $_MG_CONF['site_url'] . '/xml.php?aid=' . $parm1 . '%26src=' . trim($src),
                 'dropshadow'    => 'true',
                 'delay'         => $delay,
-                'nolink'        => ($album_data['hidden'] || $enable_link != 1) ? 'true' : 'false',
+                'nolink'        => ($album_data['hidden'] || $enable_link == 0) ? 'true' : 'false',
                 'showtitle'     => ($showtitle == 'bottom' || $showtitle == 'top') ? '&showTitle=' . $showtitle : '',
                 'width'         => $width,
                 'height'        => $height,
@@ -875,7 +875,7 @@ $enable_link=0;
             if ($delay <= 0) {
                 $delay = 10;
             }
-            if ($album_data['hidden'] == 1 || $enable_link != 1) {
+            if ($album_data['hidden'] == 1 || $enable_link == 0) {
                 $ss_url = '';
             } else {
 //              $ss_url = '<a href="' . $_MG_CONF['site_url'] . '/album.php?aid=' . $aid . '"' . ($target=='' ? '' : ' target="' . $target . '"') . '>';
@@ -1016,7 +1016,7 @@ $enable_link=0;
             if ($delay <= 0) {
                 $delay = 10;
             }
-            if ($album_data['hidden'] == 1 || $enable_link != 1) {
+            if ($album_data['hidden'] == 1 || $enable_link == 0) {
                 $ss_url = '';
             } else {
                 $ss_url = $_MG_CONF['site_url'] . '/album.php?aid=' . $aid;
@@ -1131,14 +1131,14 @@ $enable_link=0;
                     $tnImage = $_MG_CONF['mediaobjects_url'] . '/' . $tfn . $ext;
                     $tnFileName = $_MG_CONF['path_mediaobjects'] . $tfn . $ext;
                 } else {
-                    $tnImage = $_MG_CONF['mediaobjects_url'] . '/empty.svg';
-                    $tnFileName = $_MG_CONF['path_mediaobjects'] . 'empty.svg';
+                    $tnImage = $_MG_CONF['mediaobjects_url'] . '/empty.png';
+                    $tnFileName = $_MG_CONF['path_mediaobjects'] . 'empty.png';
                 }
             }
             $media_size = @getimagesize($tnFileName);
             if ($media_size == false) {
-                $tnImage = $_MG_CONF['mediaobjects_url'] . '/missing.svg';
-                $tnFileName = $_MG_CONF['path_mediaobjects'] . 'missing.svg';
+                $tnImage = $_MG_CONF['mediaobjects_url'] . '/missing.png';
+                $tnFileName = $_MG_CONF['path_mediaobjects'] . 'missing.png';
                 $media_size = @getimagesize($tnFileName);
             }
             if ($width > 0 && $height == 0) {
@@ -1176,7 +1176,7 @@ $enable_link=0;
                     $url = $_MG_CONF['site_url'] . '/media.php?s=' . $linkID;
                 }
             }
-            if ($enable_link != 1) {
+            if ($enable_link == 0) {
                 $link = $tagtext;
             } else {
                 $link = $tagtext;
@@ -1242,7 +1242,7 @@ $enable_link=0;
                         . "m.media_mime_ext,m.mime_type,m.media_tn_attached,m.remote_url "
                  . "FROM {$_TABLES['mg_media']} AS m "
                  . "LEFT JOIN {$_TABLES['mg_media_albums']} AS ma ON m.media_id=ma.media_id "
-                 . "WHERE m.media_id='" . addslashes($parm1) . "'";
+                 . "WHERE m.media_id='" . DB_escapeString($parm1) . "'";
             $result = DB_query($sql);
             if (DB_numRows($result) <= 0) return $content; // no image found
             $row = DB_fetchArray($result);
@@ -1382,7 +1382,7 @@ if(strlen($class) != 0){$class =" ".$class;}
                     $link_album = MG_getAlbumData($linkID, array('album_id', 'hidden'), false);
                     if (!isset($link_album['album_id'])) {
                         $url = $_MG_CONF['site_url'] . '/album.php?aid=' . $linkID;
-                        if ($autotag['tag'] != 'image' && $link_album['hidden'] != 1 && $enable_link == 1) {
+                        if ($autotag['tag'] != 'image' && $link_album['hidden'] != 1 && $enable_link != 0) {
 //                            $link = '<a href="' . $url . '"' . ($target=='' ? '' : ' target="' . $target . '"') . '>' . $tagtext . '</a>';
                             $link = $tagtext;
                          } else {
@@ -1394,11 +1394,11 @@ if(strlen($class) != 0){$class =" ".$class;}
 
                 } else {
 
-                    $linkAID = intval(DB_getItem($_TABLES['mg_media_albums'], 'album_id', 'media_id="' . addslashes($linkID) . '"'));
+                    $linkAID = intval(DB_getItem($_TABLES['mg_media_albums'], 'album_id', 'media_id="' . DB_escapeString($linkID) . '"'));
                     if ($linkAID != 0) {
                         $url = $_MG_CONF['site_url'] . '/media.php?s=' . $linkID;
                         $hidden = DB_getItem($_TABLES['mg_albums'], 'hidden', "album_id=" . intval($linkAID));
-                        if ($autotag['tag'] != 'image' && $hidden != 1 && $enable_link == 1) {
+                        if ($autotag['tag'] != 'image' && $hidden != 1 && $enable_link != 0) {
                           //  $link = '<a href="' . $url . '"' . ($target=='' ? '' : ' target="' . $target . '"') . '>' . $tagtext . '</a>';
                             $link = $tagtext;
                         } else {

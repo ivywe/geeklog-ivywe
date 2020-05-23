@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<script>
+<script type="text/javascript">
 //<![CDATA[
 function doCheckAll_watermark()
 {
@@ -70,7 +70,7 @@ jkpopwin.focus()
 {start_block}
 
 <p>{lang_watermark_manage_help}</p>
-<form name="watermark" method="post" action="{s_form_action}">
+<form name="watermark" method="post" action="{s_form_action}" class="uk-form">
   <div>
     <input type="hidden" name="album_id" value="0"{xhtml}>
     {!if lang_no_image}<div class="noitems">{lang_no_image}</div>{!endif}
