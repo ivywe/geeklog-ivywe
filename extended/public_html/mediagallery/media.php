@@ -40,7 +40,7 @@ if (!in_array('mediagallery', $_PLUGINS)) {
 
 if (COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1) {
     $display = SEC_loginRequiredForm();
-    $display .= MG_createHTMLDocument($display);
+    $display = MG_createHTMLDocument($display);
     COM_output($display);
     exit;
 }
