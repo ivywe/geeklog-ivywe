@@ -90,7 +90,7 @@ $_SQL[] = "CREATE TABLE {$_TABLES['mg_albums']} (
   `rsschildren` TINYINT( 4 ) NOT NULL DEFAULT '0',
   `wm_auto` tinyint(4) NOT NULL default '0',
   `wm_id` int(11) NOT NULL default '0',
-  `opacity` int(11) NOT NULL default '0',
+  `wm_opacity` int(11) NOT NULL default '0',
   `wm_location` tinyint(4) NOT NULL default '0',
   `album_sort_order` tinyint(4) NOT NULL default '0',
   `member_uploads` tinyint(4) NOT NULL default '0',
@@ -109,7 +109,7 @@ $_SQL[] = "CREATE TABLE {$_TABLES['mg_albums']} (
   PRIMARY KEY  (`album_id`),
   KEY `album_parent` (`album_parent`),
   KEY `last_update` (`last_update`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM
 ";
 
 $_SQL[]="CREATE TABLE {$_TABLES['mg_media']} (
@@ -148,7 +148,7 @@ $_SQL[]="CREATE TABLE {$_TABLES['mg_media']} (
   `maint` tinyint(4) NOT NULL default '0',
   PRIMARY KEY  (`media_id`),
   KEY `media_upload_time` (`media_upload_time`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM
 ";
 
 $_SQL[]="CREATE TABLE {$_TABLES['mg_mediaqueue']} (
@@ -187,7 +187,7 @@ $_SQL[]="CREATE TABLE {$_TABLES['mg_mediaqueue']} (
   `maint` tinyint(4) NOT NULL default '0',
   PRIMARY KEY  (`media_id`),
   KEY `media_upload_time` (`media_upload_time`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM
 ";
 
 $_SQL[]="CREATE TABLE {$_TABLES['mg_media_albums']} (
@@ -196,7 +196,7 @@ $_SQL[]="CREATE TABLE {$_TABLES['mg_media_albums']} (
   `media_order` int(11) NOT NULL default '0',
   KEY `media_id` (`media_id`),
   KEY `album_id` (`album_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM
 ";
 
 $_SQL[]="CREATE TABLE {$_TABLES['mg_media_album_queue']} (
@@ -205,16 +205,16 @@ $_SQL[]="CREATE TABLE {$_TABLES['mg_media_album_queue']} (
   `media_order` int(11) NOT NULL default '0',
   KEY `media_id` (`media_id`),
   KEY `album_id` (`album_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM
 ";
 
 $_SQL[]="CREATE TABLE {$_TABLES['mg_playback_options']} (
   `media_id` varchar(40) NOT NULL default '',
-  `option_name` varchar(127) NOT NULL default '',
-  `option_value` varchar(127) NOT NULL default '',
+  `option_name` varchar(210) NOT NULL default '',
+  `option_value` varchar(255) NOT NULL default '',
   UNIQUE KEY `media_id_2` (`media_id`,`option_name`),
   KEY `media_id` (`media_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM
 ";
 
 $_SQL[]="CREATE TABLE {$_TABLES['mg_usage_tracking']} (
@@ -227,7 +227,7 @@ $_SQL[]="CREATE TABLE {$_TABLES['mg_usage_tracking']} (
   `media_title` varchar(127) NOT NULL default '',
   `media_id` varchar(40) NOT NULL default '0',
   KEY `time` (`time`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM
 ";
 
 $_SQL[]="CREATE TABLE {$_TABLES['mg_userprefs']} (
@@ -241,7 +241,7 @@ $_SQL[]="CREATE TABLE {$_TABLES['mg_userprefs']} (
   `quota` bigint(20) unsigned NOT NULL default '0',
   `member_gallery` mediumint(8) NOT NULL default '0',
   PRIMARY KEY  (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM
 ";
 
 $_SQL[]="CREATE TABLE {$_TABLES['mg_watermarks']} (
@@ -250,7 +250,7 @@ $_SQL[]="CREATE TABLE {$_TABLES['mg_watermarks']} (
   `filename` varchar(255) NOT NULL default '',
   `description` varchar(255) NOT NULL default '',
   PRIMARY KEY  (`wm_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM
 ";
 
 $_SQL[] = "CREATE TABLE {$_TABLES['mg_session_items']} (
@@ -264,14 +264,14 @@ $_SQL[] = "CREATE TABLE {$_TABLES['mg_session_items']} (
   `status` tinyint(4) NOT NULL default '0',
   PRIMARY KEY  (`id`),
   KEY `session_id` (`session_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM
 ";
 
 $_SQL[] = "CREATE TABLE {$_TABLES['mg_session_log']} (
   `session_id` varchar(40) NOT NULL default '',
   `session_log` varchar(255) NOT NULL default '',
   KEY `session_id` (`session_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM
 ";
 
 $_SQL[] = "CREATE TABLE {$_TABLES['mg_sessions']} (
@@ -290,7 +290,7 @@ $_SQL[] = "CREATE TABLE {$_TABLES['mg_sessions']} (
   `session_var3` varchar(255) default NULL,
   `session_var4` varchar(255) default NULL,
   PRIMARY KEY  (`session_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM
 ";
 
 $_SQL[] = "CREATE TABLE {$_TABLES['mg_category']} (
@@ -299,7 +299,7 @@ $_SQL[] = "CREATE TABLE {$_TABLES['mg_category']} (
   `cat_description` varchar(255) NOT NULL default '',
   `cat_order` mediumint(11) NOT NULL default '0',
   PRIMARY KEY  (`cat_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM
 ";
 
 $_SQL[] = "CREATE TABLE {$_TABLES['mg_sort']} (
@@ -310,7 +310,7 @@ $_SQL[] = "CREATE TABLE {$_TABLES['mg_sort']} (
   `sort_datetime` int(11) NOT NULL default '0',
   `referer` varchar(255) NOT NULL default '',
   `keywords` varchar(255) NOT NULL default ''
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM
 ";
 
 $_SQL[] = "CREATE TABLE {$_TABLES['mg_rating']} (
@@ -322,14 +322,14 @@ $_SQL[] = "CREATE TABLE {$_TABLES['mg_rating']} (
   `owner_id` mediumint(8) NOT NULL default '2',
   PRIMARY KEY  (`id`),
   KEY `owner_id` (`owner_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM
 ";
 
 $_SQL[]="CREATE TABLE {$_TABLES['mg_exif_tags']} (
-  `name` varchar(128) NOT NULL default '',
+  `name` varchar(250) NOT NULL default '',
   `selected` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM
 ";
 
 $_SQL[]="INSERT INTO {$_TABLES['mg_watermarks']} VALUES (0, 0, 'blank.png', '---');";

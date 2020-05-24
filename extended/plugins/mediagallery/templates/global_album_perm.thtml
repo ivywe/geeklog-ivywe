@@ -9,7 +9,7 @@
 <li>アルバム権限の編集（全体）</li></ul>
 </ul>
 
-<form name="globalperm" enctype="multipart/form-data" method="post" action="{s_form_action}">
+<form name="globalperm" enctype="multipart/form-data" method="post" action="{s_form_action}" class="uk-form">
 <div>
 <input type="hidden" name="action" value="{action}"{xhtml}>
 <input type="hidden" name="album_id" value="0"{xhtml}>

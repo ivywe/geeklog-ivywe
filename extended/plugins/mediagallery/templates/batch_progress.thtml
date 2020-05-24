@@ -1,7 +1,7 @@
 {# begin {templatelocation} #}
 
 {META}
-<script>
+<script type="text/javascript">
 //<![CDATA[
 var refresh;
 var ticker = {REFRESH_RATE};
@@ -33,7 +33,7 @@ function updateButton() {
 <h2>{L_BATCH_PROCESS}</h2>
 
 <div class="pluginRow1" style="padding:10px;">
-<form name="form_batch_progress" method="post" action="{S_BATCH_ACTION}">
+<form name="form_batch_progress" method="post" action="{S_BATCH_ACTION}" class="uk-form">
 <div style="margin-left:20px">
 <p>{PROCESSING_MESSAGES}</p>
 
@@ -84,7 +84,7 @@ function updateButton() {
 <div class="mg_submit">
   <input class="uk-button uk-button-primary" type="submit" name="submit_button" value="{L_NEXT}" onclick="javascript:ticker=0"{xhtml}>&nbsp;
   <input class="uk-button uk-button-default" type="submit" name="cancel_button" value="{L_CANCEL}"{xhtml}>
-  <script><!--
+  <script type="text/javascript"><!--
       updateButton();
   //-->
   </script>

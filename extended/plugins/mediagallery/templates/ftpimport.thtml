@@ -9,7 +9,7 @@
 
 {start_block}
 {navbar}
-<script>
+<script type="text/javascript">
 <!--
 function doCheckAll_ftpinput()
 {
@@ -32,7 +32,7 @@ function doUnCheckAll_ftpinput()
 }
 // End script --></script>
 <p>{lang_ftp_help}</p>
-<form method="post" enctype="multipart/form-data" name="mediaupload" action="{s_form_action}">
+<form method="post" enctype="multipart/form-data" name="mediaupload" action="{s_form_action}" class="uk-form">
   <div>
     <input type="hidden" name="action" value="{action}"{xhtml}>
     <input type="hidden" name="album_id" value="{album_id}"{xhtml}>

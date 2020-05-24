@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<form method="post" action="{s_form_action}">
+<form method="post" action="{s_form_action}" class="uk-form">
 <div>
   <div style="height:20px;">{report_date}</div>
 </div>

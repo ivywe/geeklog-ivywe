@@ -7,7 +7,7 @@
 </ul>
 
 <h2>{lang_title}</h2>
-<form name="confirm" method="post" action="{s_form_action}">
+<form name="confirm" method="post" action="{s_form_action}" class="uk-form">
 <div>
 {message}
 </div>

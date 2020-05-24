@@ -46,7 +46,7 @@ function doUnCheckAll_mediaitems() {
       <input type="hidden" name="mid[]" value="{mid}"{xhtml}>
     </td>
     <td>
-      <a href="{site_url}/mediagallery/media.php?f=0&sort=0&s={mid}"><img src="{u_thumbnail}" height="{height}" width="{width}" alt="" style="background:url('{site_url}/mediagallery/images/bg.png') repeat"{xhtml}></a>
+      <a href="/mediagallery/media.php?f=0&sort=0&s={mid}"><img src="{u_thumbnail}" height="{height}" width="{width}" alt="" style="background:url('{site_url}/mediagallery/images/bg.png') repeat"{xhtml}></a>
       <div class="uk-text-success"><input class="uk-input uk-form-width-medium" value="{media_id}"></div>
       <a href="{media_edit}">{lang_edit}</a>
     </td>

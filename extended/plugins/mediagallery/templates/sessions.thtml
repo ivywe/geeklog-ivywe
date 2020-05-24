@@ -2,7 +2,7 @@
 
 {!if noitems}
 {!else}
-<script>
+<script type="text/javascript">
 //<![CDATA[
 function doCheckAll_sessions()
 {
@@ -26,7 +26,7 @@ function doUnCheckAll_sessions()
 //]]>
 </script>
 {!endif}
-<form name="sessions" method="post" action="{s_form_action}">
+<form name="sessions" method="post" action="{s_form_action}" class="uk-form">
 {!if noitems}
 <table class="uk-table uk-table-condensed uk-table-striped uk-width-1-1" style="background:#ffffff;">
   <tr>

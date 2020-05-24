@@ -2,7 +2,7 @@
 
 {u_pic}
 <br{xhtml}>
-<script>
+<script type="text/javascript">
     var flashvars = {};
     var params = {
     wmode: "transparent"

@@ -35,13 +35,12 @@
 require_once '../lib-common.php';
 
 if (!in_array('mediagallery', $_PLUGINS)) {
-    echo COM_refresh($_CONF['site_url'] . '/index.php');
-    exit;
+    COM_redirect($_CONF['site_url'] . '/index.php');
 }
 
 if (COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1) {
     $display = SEC_loginRequiredForm();
-    $display .= MG_createHTMLDocument($display);
+    $display = MG_createHTMLDocument($display);
     COM_output($display);
     exit;
 }
