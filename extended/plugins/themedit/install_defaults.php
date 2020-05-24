@@ -46,7 +46,7 @@ global $_DB_table_prefix, $_THM_DEFAULT;
 
 /**
 * the Theme Editor plugin's config array
-* 
+*
 * @global array $_THM_DEFAULT
 */
 $_THM_DEFAULT = array();
@@ -74,7 +74,7 @@ $_THM_DEFAULT['enable_all_files'] = false;
 * @NOTE: theme names are case-sensitive
 */
 $_THM_DEFAULT['allowed_themes'] = array(
-	$_CONF['theme'], 
+	$_CONF['theme'],
 );
 
 /**
@@ -82,43 +82,46 @@ $_THM_DEFAULT['allowed_themes'] = array(
 * @NOTE: file names are case-sensitive
 */
 $_THM_DEFAULT['allowed_files'] = array(
-	// CSS
-	'css_ltr/custom.css', 'css_ltr/style.css', 
-	
 	// Site header and footer
-	'header.thtml', 'footer.thtml',
-	
+	'index.thtml',
+
+	// CSS
+	'assets/css/custom.css',
+	'css_ltr/custom.css',
+	'css_ltr/style.css',
+
+
 	// Blocks
 	'leftblocks.thtml', 'blockheader-left.thtml', 'blockfooter-left.thtml',
 	'rightblocks.thtml', 'blockheader-right.thtml', 'blockfooter-right.thtml',
-	
+
 	// Story
 	'articletext.thtml', 'featuredarticletext.thtml', 'archivearticletext.thtml',
 	'article/article.thtml', 'article/printable.thtml',
-	
+
 	// Menu
 	'menuitem.thtml', 'menuitem_last.thtml', 'menuitem_none.thtml',
-	
+
 	// List
 	'list.thtml', 'listitem.thtml',
-	
+
 	// Login
 	'loginform.thtml',
-	
+
 	// Profile
 	'profiles/contactuserform.thtml', 'profiles/contactauthorform.thtml',
 	'preferences/profile.thtml', 'users/profile.thtml',
-	
+
 	// Search
 	'search/searchform.thtml', 'search/searchresults.thtml',
-	
+
 	// User submission
 	'submit/submitevent.thtml', 'submit/submitloginrequired.thtml',
-	
+
 	// User
 	'users/newpassword.thtml', 'users/getpasswordform.thtml',
 	'users/loginform.thtml', 'users/registrationform.thtml',
-	'users/storyrow.thtml', 'users/commentrow.thtml', 
+	'users/storyrow.thtml', 'users/commentrow.thtml',
 );
 
 /**
@@ -176,14 +179,14 @@ $_THM_DEFAULT['upload_max_size'] = 1048576;
 */
 function plugin_initconfig_themedit() {
 	global $_THM_CONF, $_THM_DEFAULT;
-	
+
 	$me = 'themedit';
 	$c = config::get_instance();
-	
+
 	if (!$c->group_exists($me)) {
 		$c->add('sg_main', null, 'subgroup', 0, 0, null, 0, true, $me);
 		$c->add('fs_main', null, 'fieldset', 0, 0, null, 0, true, $me);
-		
+
 		// Main
 		$c->add('enable_all_themes', $_THM_DEFAULT['enable_all_themes'], 'select', 0, 0, 0, 10, true, $me);
 		$c->add('enable_all_files', $_THM_DEFAULT['enable_all_files'], 'select', 0, 0, 0, 20, true, $me);
@@ -196,6 +199,6 @@ function plugin_initconfig_themedit() {
 		$c->add('image_max_col', $_THM_DEFAULT['image_max_col'], 'text', 0, 0, null, 90, true, $me);
 		$c->add('upload_max_size', $_THM_DEFAULT['upload_max_size'], 'text', 0, 0, null, 100, true, $me);
 	}
-	
+
 	return true;
 }
