@@ -20,13 +20,13 @@ $url2 = $media_keywords[2];
                 <p><?php echo $msg; ?></p>
                 <ul uk-accordion>
                   <li>
-                    <a class="uk-accordion-title" href="#">{!if text1}{text1}{!else}お品書きを見る(この文言の引数はtext1で){!endif}</a>
+                    <a class="uk-accordion-title" href="#"{!if taget} target="{target}"{!endif}>{!if text1}{text1}{!else}お品書きを見る(この文言の引数はtext1で){!endif}</a>
                     <div class="uk-accordion-content uk-margin">
 {media_desc}
                       <div class="uk-text-center@m uk-margin-top">
                         <div class="uk-button-group">
-                          <div><a class="uk-button uk-button-primary" href="<?php echo $url1; ?>">{!if text2}{text2}{!else}プランを見る(この文言の引数はtext2で){!endif}</a></div>
-                          <div><a class="uk-button uk-button-default" href="<?php echo $url2; ?>">{!if text3}{text3}{!else}ギャラリーを見る(この文言の引数はtext3で){!endif}</a></div>
+                          <div><a class="uk-button uk-button-primary" href="<?php echo $url1; ?>"{!if taget} target="{target}"{!endif}>{!if text2}{text2}{!else}プランを見る(この文言の引数はtext2で){!endif}</a></div>
+                          <div><a class="uk-button uk-button-default" href="<?php echo $url2; ?>"{!if taget} target="{target}"{!endif}>{!if text3}{text3}{!else}ギャラリーを見る(この文言の引数はtext3で){!endif}</a></div>
                         </div>
                       </div>
                     </div>
