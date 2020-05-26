@@ -7,6 +7,7 @@
 // $Id: securitygroup.php
 // public_html/userbox/myprofile/securitygroup.php
 // 20101129 tsuchitani AT ivywe DOT co DOT jp
+// 20200526 hiroron AT hiroron DOT com
 
 
 define ('THIS_SCRIPT', 'userbox/myprofile/securitygroup.php');
@@ -17,24 +18,19 @@ include_once('userbox_functions.php');
 require_once $_CONF['path_system'] . 'lib-user.php';
 
 //ログイン要チェック
-
-if (empty ($_USER['username'])) {
-    $page_title= $LANG_PROFILE[4];
-    $display .= DATABOX_siteHeader('USERBOX','',$page_title);
-    $display .= SEC_loginRequiredForm();
-    $display .= COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
-    echo $display;
+if (COM_isAnonUser()) {
+    $display = DATABOX_displaypage('userbox', '', SEC_loginRequiredForm(), array('pagetitle' => $LANG_PROFILE[4]));
+    COM_output($display);
     exit;
 }
 
 if ($_USERBOX_CONF['allow_profile_update']==1 AND  $_USERBOX_CONF['allow_group_update']==1){
 }else{
     if (SEC_hasRights ('userbox.joingroup')){
-	}else{
-	COM_accessLog("User {$_USER['username']} tried to securitygroup and failed ");
-		echo COM_refresh($_CONF['site_url'] . '/index.php');
-		exit;
-	}
+    }else{
+        COM_accessLog("User {$_USER['username']} tried to securitygroup and failed ");
+        COM_redirect($_CONF['site_url'] . '/index.php');
+    }
 }
 
 
@@ -415,23 +411,18 @@ function fncSave (
 // | MAIN                                                                      |
 // +---------------------------------------------------------------------------+
 //############################
-$pi_name    = 'userbox';
+$pi_name = 'userbox';
 //############################
-$id=$_USER['uid'];
+$id = $_USER['uid'];
 
 
 // 引数
-if (isset ($_REQUEST['mode'])) {
-    $mode = COM_applyFilter ($_REQUEST['mode'], false);
-}
-$msg = '';
-if (isset ($_REQUEST['msg'])) {
-    $msg = COM_applyFilter ($_REQUEST['msg'], true);
-}
+$mode = Geeklog\Input::fRequest('mode');
+$msg = (int) Geeklog\Input::fGet('msg');
 
 $old_mode="";
 if (isset($_REQUEST['old_mode'])) {
-    $old_mode = COM_applyFilter($_REQUEST['old_mode'],false);
+    $old_mode = Geeklog\Input::fRequest('old_mode');
     if ($mode==$LANG_ADMIN['cancel']) {
         $mode = $old_mode;
     }
@@ -451,13 +442,12 @@ if ($mode=="" OR $mode=="edit" OR $mode=="new" OR $mode=="drafton" OR $mode=="dr
     if (!SEC_checkToken()){
  //    if (SEC_checkToken()){//テスト用
         COM_accessLog("User {$_USER['username']} tried to illegally and failed CSRF checks.");
-        echo COM_refresh($_CONF['site_admin_url'] . '/index.php');
-        exit;
+        COM_redirect($_CONF['site_admin_url'] . '/index.php');
     }
 }
 //
-$menuno=7;
-$display="";
+$menuno = 7;
+$display = '';
 
 switch ($mode) {
 
@@ -467,20 +457,15 @@ switch ($mode) {
 
     default:// 初期表示、一覧表示
         if (!empty ($id) ) {
-            $page_title=$LANG_USERBOX_ADMIN['piname'].$LANG_USERBOX_ADMIN['edit'];
-            $display .= DATABOX_siteHeader($pi_name,'_admin',$page_title);
+            $information = array();
+            $information['pagetitle'] = $LANG_USERBOX_ADMIN['piname'].$LANG_USERBOX_ADMIN['edit'];
             if ($edt_flg==FALSE){
                 $display.=ppNavbarjp($navbarMenu,$LANG_USERBOX_user_menu[$menuno]);
             }
             $display .= fncEdit();
-            $display .= DATABOX_siteFooter($pi_name,'_admin');
-
+            $display = DATABOX_displaypage($pi_name, '_admin', $display, $information);
         }
 
 }
 
-
-
-echo $display;
-
-?>
+COM_output($display);
