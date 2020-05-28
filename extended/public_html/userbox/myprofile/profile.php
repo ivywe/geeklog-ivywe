@@ -272,7 +272,7 @@ function fncEdit(
             $template="default";
         }
     }
-    $tmplfld=DATABOX_templatePath('myprofile','default',$pi_name);
+    $tmplfld=DATABOX_templatePath('myprofile',$template,$pi_name);
     $templates = new Template($tmplfld);
 
     $templates->set_file (array (
