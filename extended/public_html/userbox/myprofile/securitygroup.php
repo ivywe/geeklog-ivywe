@@ -15,8 +15,6 @@ define ('THIS_SCRIPT', 'userbox/myprofile/securitygroup.php');
 
 include_once('userbox_functions.php');
 
-require_once $_CONF['path_system'] . 'lib-user.php';
-
 //ログイン要チェック
 if (COM_isAnonUser()) {
     $display = DATABOX_displaypage('userbox', '', SEC_loginRequiredForm(), array('pagetitle' => $LANG_PROFILE[4]));
