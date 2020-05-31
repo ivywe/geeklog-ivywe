@@ -5,7 +5,7 @@
           <div>
             <div class="uk-card uk-card-default uk-card-hover uk-inline">
               <a href="{media_keywords}">
-                 {!if media_keywords}<a href="{media_keywords}"{!if taget} target="{target}"{!endif}>{!endif}<img src="{filename}" alt="{media_title}">{!if media_keywords}</a>{!endif}
+                 {!if media_keywords}<a href="{media_keywords}"{!if target} target="{target}"{!endif}>{!endif}<img src="{filename}" alt="{media_title}">{!if media_keywords}</a>{!endif}
                 <div class="uk-position-cover uk-overlay uk-overlay-primary uk-flex uk-flex-center uk-flex-middle uk-light">
                   <h4 class="<?php echo $class_media_title; ?>">{media_title}</h4>
                 </div>

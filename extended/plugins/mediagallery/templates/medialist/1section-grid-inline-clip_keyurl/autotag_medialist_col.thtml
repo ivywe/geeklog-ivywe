@@ -23,9 +23,9 @@ uk-lightbox
 <?php } ?>
 
 <?php if( strpos( $media_keywords, '.jpg') || strpos( $media_keywords, '.png')  ){ ?>
-class="uk-inline-clip uk-transition-toggle"{!if taget} target="{target}"{!endif}
+class="uk-inline-clip uk-transition-toggle"{!if target} target="{target}"{!endif}
 <?php } else { ?>
-class="uk-inline-clip uk-transition-toggle"{!if taget} target="{target}"{!endif}
+class="uk-inline-clip uk-transition-toggle"{!if target} target="{target}"{!endif}
 <?php } ?>
 
 href="{media_keywords}">
