@@ -72,7 +72,7 @@ $_DATABOX_DEFAULT['top']="/databox/list.php";
 $_DATABOX_DEFAULT['detail']="data.php";
 
 //テンプレート 一般画面
-$_DATABOX_DEFAULT['templates']="standard";
+$_DATABOX_DEFAULT['templates']="theme";
 //テンプレート 管理画面
 $_DATABOX_DEFAULT['templates_admin']="standard";
 
@@ -86,7 +86,7 @@ $_DATABOX_DEFAULT['datefield'] = "modified";
 // Display Meta Tags for databox pages (1 = show, 0 = don't)
 $_DATABOX_DEFAULT['meta_tags'] = 0;
 
-$_DATABOX_DEFAULT['layout'] = 'standard';
+$_DATABOX_DEFAULT['layout'] = 'noblocks';
 $_DATABOX_DEFAULT['layout_admin'] = 'standard';
 
 // メールの送信先
@@ -147,7 +147,7 @@ $_DATABOX_DEFAULT['sort_list_by'] = "orderno";
 $_DATABOX_DEFAULT['sort_list_by_my'] = "orderno";
 
 //デフォルトキャッシュタイム
-$_DATABOX_DEFAULT['default_cache_time'] = "0";
+$_DATABOX_DEFAULT['default_cache_time'] = "86400";
 
 //permission ignoreを無効にする　default いいえ
 $_DATABOX_DEFAULT['disable_permission_ignore'] = 0;
@@ -210,7 +210,7 @@ $_DATABOX_DEFAULT['imgfile_thumb_h2'] = 640;
 $_DATABOX_DEFAULT['imgfile_smallw'] = 160;
 
 //画像保存URLにサブディレクトリを使用する
-//はい、いいえ　デフォルト＝いいえ 
+//はい、いいえ　デフォルト＝いいえ
 $_DATABOX_DEFAULT['imgfile_subdir'] = 0;
 
 
@@ -465,26 +465,26 @@ function plugin_initconfig_databox($initialize="")
             ,'%text', 0, 0, 0, 170, TRUE
             , $pi_name
             ,0);
-        
+
         $c->add(
             'mail_to_owner'
             ,$_DATABOX_DEFAULT['mail_to_owner']
             ,'select', 0, 0, 0, 180, true
             , $pi_name
             ,0);
-        
+
         $c->add(
             'mail_to_draft'
             ,$_DATABOX_DEFAULT['mail_to_draft']
             ,'select', 0, 0, 0, 190, true
             , $pi_name
             ,0);
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
         $c->add(
             'allow_data_update'
             ,$_DATABOX_DEFAULT['allow_data_update']
@@ -507,14 +507,14 @@ function plugin_initconfig_databox($initialize="")
             ,'select', 0, 0, 0, 220, true
             , $pi_name
             ,0);
-        
+
         $c->add(
             'admin_draft_default'
             ,$_DATABOX_DEFAULT['admin_draft_default']
             ,'select', 0, 0, 0, 230, true
             , $pi_name
             ,0);
-        
+
         $c->add(
             'user_draft_default'
             ,$_DATABOX_DEFAULT['user_draft_default']
@@ -557,7 +557,7 @@ function plugin_initconfig_databox($initialize="")
             ,'text', 0, 0, NULL, 290, TRUE
             , $pi_name
             ,0);
-        
+
         $c->add(
             'maxlength_description'
             ,$_DATABOX_DEFAULT['maxlength_description']
@@ -576,21 +576,21 @@ function plugin_initconfig_databox($initialize="")
             ,'text', 0, 0, NULL, 320, TRUE
             , $pi_name
             ,0);
-        
+
         $c->add(
             'hideuseroption'
             ,$_DATABOX_DEFAULT['hideuseroption']
             ,'select', 0, 0, 0, 330, true
             , $pi_name
             ,0);
-        
+
         $c->add(
             'commentcode'
             ,$_DATABOX_DEFAULT['commentcode']
             ,'select', 0, 0, 26, 340, true
             , $pi_name
             ,0);
-        
+
         $c->add(
             'sort_list_by'
             ,$_DATABOX_DEFAULT['sort_list_by']
@@ -603,21 +603,21 @@ function plugin_initconfig_databox($initialize="")
             ,'select', 0, 0, 30, 360, true
             , $pi_name
             ,0);
-			
+
         $c->add(
             'default_cache_time'
             ,$_DATABOX_DEFAULT['default_cache_time']
             ,'text', 0, 0, NULL, 370, TRUE
             , $pi_name
             ,0);
-        
+
         $c->add(
             'disable_permission_ignore'
             ,$_DATABOX_DEFAULT['disable_permission_ignore']
             ,'select', 0, 0, 0, 380, true
             , $pi_name
             ,0);
-		
+
         $c->add(
             'sitemap_excepts'
             ,$_DATABOX_DEFAULT['sitemap_excepts']
@@ -662,14 +662,14 @@ function plugin_initconfig_databox($initialize="")
             , 0, 2, NULL, 0, true
             , $pi_name
             ,2);
-        
+
         $c->add(
             'include_search'
             , $_DATABOX_DEFAULT['include_search']
             , 'select',  0, 2, 0, 10, true
             , $pi_name
             ,2);
-        
+
         $c->add(
             'additionsearch'
             , $_DATABOX_DEFAULT['additionsearch']
@@ -687,7 +687,7 @@ function plugin_initconfig_databox($initialize="")
             , NULL, 0, true
             , $pi_name
             ,3);
-        
+
         $c->add(
             'default_permissions'
             , $_DATABOX_DEFAULT['default_permissions']
@@ -710,35 +710,35 @@ function plugin_initconfig_databox($initialize="")
             ,'text', 0, 4, NULL, 10, TRUE
             , $pi_name
             ,4);
-        
+
         $c->add(
             'limitcnt'
             ,$_DATABOX_DEFAULT['limitcnt']
             ,'text', 0, 4, NULL, 20, TRUE
             , $pi_name
             ,4);
-        
+
         $c->add(
             'newmarkday'
             ,$_DATABOX_DEFAULT['newmarkday']
             ,'text', 0, 4, NULL, 30, TRUE
             , $pi_name
             ,4);
-        
+
         $c->add(
             'categories'
             ,$_DATABOX_DEFAULT['categories']
             ,'text', 0, 4, NULL, 40, TRUE
             , $pi_name
             ,4);
-        
+
         $c->add(
             'new_img'
             ,$_DATABOX_DEFAULT['new_img']
             ,'textarea', 0, 4, NULL, 50, TRUE
             , $pi_name
             ,4);
-        
+
         $c->add(
             'rss_img'
             ,$_DATABOX_DEFAULT['rss_img']
@@ -761,15 +761,15 @@ function plugin_initconfig_databox($initialize="")
             ,'text', 0, 5, NULL, 10, TRUE
             , $pi_name
             ,5);
-        
+
         $c->add(
             'imgfile_type'
             ,$_DATABOX_DEFAULT['imgfile_type']
             ,'%text', 0, 5, 0, 20, TRUE
             , $pi_name
             ,5);
-        
-        
+
+
         $c->add(
             'imgfile_size2'
             ,$_DATABOX_DEFAULT['imgfile_size2']
@@ -782,56 +782,56 @@ function plugin_initconfig_databox($initialize="")
             ,'%text', 0, 5, 0, 40, TRUE
             , $pi_name
             ,5);
-        
+
         $c->add(
             'imgfile_frd'
             ,$_DATABOX_DEFAULT['imgfile_frd']
             ,'text', 0, 5, NULL, 50, TRUE
             , $pi_name
             ,5);
-        
+
         $c->add(
             'imgfile_thumb_frd'
             ,$_DATABOX_DEFAULT['imgfile_thumb_frd']
             ,'text', 0, 5, NULL, 60, TRUE
             , $pi_name
             ,5);
-        
+
         $c->add(
             'imgfile_thumb_ok'
             ,$_DATABOX_DEFAULT['imgfile_thumb_ok']
             ,'select', 0, 5, 0, 70, TRUE
             , $pi_name
             ,5);
-        
+
         $c->add(
             'imgfile_thumb_w'
             ,$_DATABOX_DEFAULT['imgfile_thumb_w']
             ,'text', 0, 5, NULL, 80, TRUE
             , $pi_name
             ,5);
-        
+
         $c->add(
             'imgfile_thumb_h'
             ,$_DATABOX_DEFAULT['imgfile_thumb_h']
             ,'text', 0, 5, NULL, 90, TRUE
             , $pi_name
             ,5);
-        
+
         $c->add(
             'imgfile_thumb_w2'
             ,$_DATABOX_DEFAULT['imgfile_thumb_w2']
             ,'text', 0, 5, NULL,100, TRUE
             , $pi_name
             ,5);
-        
+
         $c->add(
             'imgfile_thumb_h2'
             ,$_DATABOX_DEFAULT['imgfile_thumb_h2']
             ,'text', 0, 5, NULL, 110, TRUE
             , $pi_name
             ,5);
-        
+
         $c->add(
             'imgfile_smallw'
             ,$_DATABOX_DEFAULT['imgfile_smallw']
@@ -852,15 +852,15 @@ function plugin_initconfig_databox($initialize="")
             ,'text', 0, 5, NULL, 140, TRUE
             , $pi_name
             ,5);
-        
-        
+
+
         $c->add(
             'file_size'
             ,$_DATABOX_DEFAULT['file_size']
             ,'text', 0, 5, NULL, 150, TRUE
             , $pi_name
             ,5);
-        
+
         $c->add(
             'file_type'
             ,$_DATABOX_DEFAULT['file_type']
@@ -874,7 +874,7 @@ function plugin_initconfig_databox($initialize="")
             , $pi_name
             ,5);
 
-        
+
         //(6)autotag_permissions
         $c->add('tab_autotag_permissions', NULL, 'tab', 0, 6, NULL, 0, true, $pi_name, 6);
         $c->add(
@@ -890,8 +890,8 @@ function plugin_initconfig_databox($initialize="")
             ,'@select', 0, 6, 13, 10, TRUE
             , $pi_name
             ,6);
-        
-        
+
+
         //(9)XML
         $c->add('tab_xml', NULL, 'tab', 0, 9, NULL, 0, true, $pi_name,9);
         $c->add(
@@ -907,7 +907,7 @@ function plugin_initconfig_databox($initialize="")
             ,'text', 0, 9, NULL, 10, TRUE
             , $pi_name
             ,9);
-        
+
         $c->add(
             'path_xml_out'
             ,$_DATABOX_DEFAULT['path_xml_out']
@@ -920,7 +920,7 @@ function plugin_initconfig_databox($initialize="")
             ,'select', 0, 9, 28, 30, true
             , $pi_name
             ,9);
-        
+
         //(10)CSV
         $c->add('tab_csv', NULL, 'tab', 0, 10, NULL, 0, true, $pi_name,10);
         $c->add(
@@ -936,7 +936,7 @@ function plugin_initconfig_databox($initialize="")
             ,'text', 0, 10, NULL, 10, TRUE
             , $pi_name
             ,10);
-        
+
         $c->add(
             'path_csv_out'
             ,$_DATABOX_DEFAULT['path_csv_out']
@@ -980,7 +980,7 @@ function plugin_initconfig_databox($initialize="")
             ,'select', 0, 10, 29, 80, true
             , $pi_name
             ,10);
-        
+
 
         //(11)MAPS
         $c->add('tab_maps', NULL, 'tab', 0, 11, NULL, 0, true, $pi_name,11);

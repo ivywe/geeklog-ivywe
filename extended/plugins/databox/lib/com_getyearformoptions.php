@@ -19,7 +19,7 @@
 * @return string  HTML years as option values
 */
 
-function LIBCOM_getYearFormOptions($selected = '', $startoffset = -1, $endoffset = 5)
+function LIBCOM_getYearFormOptions($selected = '', $startoffset = -5, $endoffset = 5)
 {
     $year_options = '';
     $start_year  = date('Y') + $startoffset;

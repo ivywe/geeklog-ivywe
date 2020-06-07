@@ -68,11 +68,11 @@ $_DBMAN_DEFAULT['backup_except']   = array();
 $_DBMAN_DEFAULT['backup_except'][] = "/^{$_DB_table_prefix}gus_/";
 
 // The flag to decide whether to backup with psedo-cron
-$_DBMAN_DEFAULT['cron_backup'] = false;
+$_DBMAN_DEFAULT['cron_backup'] = true;
 
 // Maximum number of backup files to be kept.  When set to 0, no backup file
 // will be deleted.
-$_DBMAN_DEFAULT['max_backup'] = 0;
+$_DBMAN_DEFAULT['max_backup'] = 10;
 
 //===============================================
 // Default settings for backup
