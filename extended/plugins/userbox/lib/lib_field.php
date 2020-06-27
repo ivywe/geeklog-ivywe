@@ -765,7 +765,7 @@ function LIB_Save (
     $fields.=",maxlength";
     $values.=",$maxlength";
 
-    $fields.=",rows";
+    $fields.=",`rows`";
     $values.=",$rows";
 
     $fields.=",br";

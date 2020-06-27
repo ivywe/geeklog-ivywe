@@ -741,7 +741,7 @@ function DATABOX_getadditiondef(
     $sql.= ",checkrequried";
     $sql.= ",size";
     $sql.= ",maxlength";
-    $sql.= ",rows";
+    $sql.= ",`rows`";
     $sql.= ",br";
     $sql.= ",templatesetvar";
 
