@@ -91,7 +91,7 @@ function plugin_chkVersion_userbox ()
 {
     global $_CONF;
 
-    require_once $_CONF['path'] . 'plugins/links/autoinstall.php';
+    require_once $_CONF['path'] . 'plugins/userbox/autoinstall.php';
 
     $inst_parms = plugin_autoinstall_userbox('userbox');
 

@@ -7,20 +7,16 @@
 // $Id: view.php
 // public_html/userbox/myprofile/view.php
 // 20110627 tsuchitani AT ivywe DOT co DOT jp
+// 20200526 hiroron AT hiroron DOT com
 
 define ('THIS_SCRIPT', 'userbox/myprofile/view.php');
-//define ('THIS_SCRIPT', 'userbox/myprofile/test.php');
 
 include_once('userbox_functions.php');
 
 //ログイン要チェック
-
-if (empty ($_USER['username'])) {
-    $page_title= $LANG_PROFILE[4];
-    $display .= DATABOX_siteHeader('USERBOX','',$page_title);
-    $display .= SEC_loginRequiredForm();
-    $display .= COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
-    echo $display;
+if (COM_isAnonUser()) {
+    $display = DATABOX_displaypage('userbox', '', SEC_loginRequiredForm(), array('pagetitle' => $LANG_PROFILE[4]));
+    COM_output($display);
     exit;
 }
 
@@ -29,8 +25,7 @@ if ($_USERBOX_CONF['allow_profile_update']==1 ){
     if (SEC_hasRights ('userbox.edit') ){
 	}else{
 		COM_accessLog("User {$_USER['username']} tried to profile and failed ");
-		echo COM_refresh($_CONF['site_url'] . '/index.php');
-		exit;
+		COM_redirect($_CONF['site_url'] . '/index.php');
 	}
 }
 
@@ -77,17 +72,12 @@ function fncview ()
 // | MAIN                                                                      |
 // +---------------------------------------------------------------------------+
 //############################
-$pi_name    = 'userbox';
+$pi_name = 'userbox';
 //############################
-$menuno=1;
-$display="";
+$menuno = 1;
 
-$page_title=$LANG_USERBOX_ADMIN['piname'];
-$display .= DATABOX_siteHeader($pi_name,'',$page_title);
-$display.=ppNavbarjp($navbarMenu,$LANG_USERBOX_user_menu[$menuno]);
+$display = ppNavbarjp($navbarMenu,$LANG_USERBOX_user_menu[$menuno]);
 $display .= fncview();
-$display .= DATABOX_siteFooter($pi_name);
+$display = DATABOX_displaypage($pi_name, '', $display, array('pagetitle'=>$LANG_USERBOX_ADMIN['piname']));
 
-echo $display;
-
-?>
+COM_output($display);
