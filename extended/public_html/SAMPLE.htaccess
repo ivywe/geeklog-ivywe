@@ -1,5 +1,5 @@
 #ファイルがみつからない場合のページを指定する。
-ErrorDocument 404 /404.php
+ErrorDocument 404 /404.html
 
 # wwwありに統一
 # RewriteEngine on
@@ -10,3 +10,12 @@ ErrorDocument 404 /404.php
 # RewriteEngine on
 # RewriteCond %{HTTP_HOST} ^www\.○○○\.com$
 # RewriteRule ^(.*)$ http://○○○.com/$1 [R=301,L]
+
+# 多言語サイト用 / をブラウザが日本語なら /index.php/topic/home_ja へそれ以外ならhome_enへ飛ばす
+# RewriteCond %{REQUEST_URI} ^/$
+# RewriteCond %{REQUEST_URI} !(index\.php)
+# RewriteCond %{HTTP:Accept-Language} ^ja [NC]
+# RewriteRule .* /index.php/topic/home_ja [R=301,L]
+# RewriteCond %{REQUEST_URI} ^/$
+# RewriteCond %{REQUEST_URI} !(index\.php)
+# RewriteRule .* /index.php/topic/home_en [R=301,L]
