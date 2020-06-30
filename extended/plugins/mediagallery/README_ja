@@ -92,7 +92,7 @@ Version1.6.10から本格的にglFusion版に対する機能拡張を行って�
     public_html/framesフォルダ内のnew_borderフォルダとnew_shadowフォルダを
     どうぞご参照ください。
 
-(5) 正方形(150x150)にトリミングしたサムネイルを同時に生成するようにした。
+(5) 正方形(360x360)にトリミングしたサムネイルを同時に生成するようにした。
 
     既存の画像のサムネイルを更新するために、メディアギャラリー管理 の サムネイル
     再作成を実行してください。
@@ -174,7 +174,7 @@ Feature of Version1.6.15.ivywe01
   Format:　[albumlist:albumid limitcnt:xx order:xx XXXX]
 		Display sub album of album:albumid.
 		limitcnt: number. default:10
-		order:RANDOM ... random. 
+		order:RANDOM ... random.
 		      or Album id order.
 		<ul>
 		<li>Sub albun 1 thumbnail of album<br />Description</li>
@@ -183,7 +183,7 @@ Feature of Version1.6.15.ivywe01
 		...
 		</ul>
            e.g. [albumlist:3 limitcnt:10 order:RANDOM class1 class2 class3]
-		
+
   Format:　[medialist:albumid limitcnt:xx order:xx {class}]
 		Display Media list by using templates.
 		limitcnt: number. default:10
@@ -233,7 +233,7 @@ Feature of Version1.6.16.ivywe01
 				edit
 
 ---------------------
- 2015/04/07 
+ 2015/04/07
   1)自動タグ [medialist: 引数 sort 追加
       sort:desc 逆順
       sort:asc 昇順default
@@ -245,11 +245,11 @@ Feature of Version1.6.16.ivywe01
   2)自動タグ 変更 medialist/default
 
 ---------------------
- 2016/04/12 
+ 2016/04/12
   1)自動タグ [medialist: 引数 src 追加
       src:orig　オリジナルの画像
       src:disp　ギャラリー表示画像
       src:tn　サムネイル画像 (添付サムネイル画像またはcropcustom)
 ---------------------
- 2019/03/28 
+ 2019/03/28
   1)自動タグ [medialist: 引数 追加

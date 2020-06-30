@@ -841,7 +841,7 @@ function MG_displayJPG($I, $opt=array())
     $media_link_start = '';
     $media_link_end   = '';
     $media_size_orig = @getimagesize(Media::getFilePath('orig', $I['media_filename'], $I['media_mime_ext']));
-    
+
     if ($media_size_orig == false ||
             $opt['full_display'] == 2 ||
             $_MG_CONF['discard_original'] == 1 ||
@@ -849,8 +849,8 @@ function MG_displayJPG($I, $opt=array())
         $u_pic = '#';
         $raw_link_url = '';
         if ($media_size_orig == false) {
-            $media_size_orig[0] = 200;
-            $media_size_orig[1] = 150;
+            $media_size_orig[0] = 360;
+            $media_size_orig[1] = 360;
         }
     } else {
         if ($full == 0 && $_MG_CONF['full_in_popup']) {
@@ -1354,7 +1354,7 @@ function MG_displayMedia($id, $full=0, $sortOrder=0, $comments=0, $spage=0)
         } elseif (isset($_GET['mode'])) {
             $commode = COM_applyFilter($_GET['mode']);
         }
-        $commentcode = 0; // ¡‚Ì‚Æ‚±‚ë–³ğŒ‚ÉƒRƒƒ“ƒg“Še‚ğ‹–‰ÂB
+        $commentcode = 0; // ï¿½ï¿½ï¿½Ì‚Æ‚ï¿½ï¿½ë–³ï¿½ï¿½ï¿½ï¿½ï¿½ÉƒRï¿½ï¿½ï¿½ï¿½ï¿½gï¿½ï¿½ï¿½eï¿½ï¿½ï¿½ï¿½ï¿½ÂB
         $retval .= CMT_userComments($sid, PLG_replaceTags($media['media_title']), 'mediagallery',
                        $comorder, $commode, 0, $page, false, $delete_option, $commentcode);
     }

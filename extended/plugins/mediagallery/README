@@ -77,9 +77,9 @@ From Version1.6.10 I extend the functionality of glFusion version in earnest.
     Added the following three templates.
     * css_layout :        As its name suggests,avoid table layout,this is the CSS
                           layout. Finished my taste.
-    * jquery_ad-gallery : This template is built in AD-Gallery. AD-Gallery is a 
+    * jquery_ad-gallery : This template is built in AD-Gallery. AD-Gallery is a
                           well-known software created by jQuery.
-    * jquery_colorbox :   This template is built in Colorbox. Colorbox is a 
+    * jquery_colorbox :   This template is built in Colorbox. Colorbox is a
                           well-known software created by jQuery.
     NOTE: jquery_ad-gallery and jquery_colorbox works on jQuery mode only.
 
@@ -87,12 +87,12 @@ From Version1.6.10 I extend the functionality of glFusion version in earnest.
 
     * new_border
     * new_shadow
-    These frame templates, abolishing the table layout, and using the normal 
+    These frame templates, abolishing the table layout, and using the normal
     thtml and CSS files. Probably everyone has more easy to handle.
     In a 'public_html/frames' folder, Please check the 'new_border' folder
     and the 'new_shadow' folder.
 
-(5) Support square (150x150) cropped thumbnails.
+(5) Support square (360x360) cropped thumbnails.
 
     It generates with the normal thumbnails simultaneously.
     To create the square thumbnail of existing images, run 'Rebuild Thumb'.
@@ -176,7 +176,7 @@ Feature of Version1.6.15.ivywe01
   Format:　[albumlist:albumid limitcnt:xx order:xx XXXX]
 		Display sub album of album:albumid.
 		limitcnt: number. default:10
-		order:RANDOM ... random. 
+		order:RANDOM ... random.
 		      or Album id order.
 		<ul>
 		<li>Sub albun 1 thumbnail of album<br />Description</li>
@@ -185,7 +185,7 @@ Feature of Version1.6.15.ivywe01
 		...
 		</ul>
            e.g. [albumlist:3 limitcnt:10 order:RANDOM class1 class2 class3]
-		
+
   Format:　[medialist:albumid limitcnt:xx order:xx {class}]
 		Display Media list by using templates.
 		limitcnt: number. default:10
@@ -235,8 +235,8 @@ Feature of Version1.6.16.ivywe01
 				edit
 
 ---------------------
- 2015/04/07 
-  1)Auto tag [medialist:  add sort 
+ 2015/04/07
+  1)Auto tag [medialist:  add sort
       sort:desc
       sort:asc (default)
   2)Auto tag[albumlist:[medialist: limitcnt default=0 ... no limit

@@ -269,6 +269,6 @@ Post Upgrade Checks
 
     * If you are upgrading from a v0.8x or v0.9x of Media Gallery, you should
       rebuild all thumbnails.  Media Gallery has the ability to display larger
-      (200x200 pixel) thumbnails, v0.8x and v0.9x created all thumbnails at
-      150x150 px size.  See the Media Gallery Administration Screen for the
+      (400x400 pixel) thumbnails, v0.8x and v0.9x created all thumbnails at
+      360x360 px size.  See the Media Gallery Administration Screen for the
       Rebuild All Thumbnail option.

@@ -324,25 +324,25 @@ class Media {
     {
         switch ($tn_size) {
             case '0':
-                $postfix = '_100.';
+                $postfix = '_200.';
                 break;
             case '1':
-                $postfix = '_150.';
+                $postfix = '_360.';
                 break;
             case '2':
-                $postfix = '_200.';
+                $postfix = '_400.';
                 break;
             case '3':
                 $postfix = '_custom.';
                 break;
             case '10':
-                $postfix = '_100x100.';
+                $postfix = '_200x200.';
                 break;
             case '11':
-                $postfix = '_150x150.';
+                $postfix = '_360x360.';
                 break;
             case '12':
-                $postfix = '_200x200.';
+                $postfix = '_400x400.';
                 break;
             case '13':
                 $postfix = '_cropcustom.';
@@ -471,7 +471,7 @@ class Media {
                         if ($this->resolution_x == 0 && $this->remote_media != 1) {
                             $filepath = self::getFilePath('orig', $this->filename, $this->mime_ext);
                             $size = @filesize($filepath);
-                            
+
                             // skip files over 8M in size..
                             if ($size < 8388608) {
                                 list($resolution_x, $resolution_y) = self::getResolutionID3($filepath);
@@ -775,27 +775,27 @@ class Media {
         switch ($val) {
             case '0' :      // include small
             case '10' :     // crop small
-                $tn_width  = 100;
-                $tn_height = 100;
-                break;
-            case '1' :      // include medium
-            case '11' :     // crop medium
-                $tn_width  = 150;
-                $tn_height = 150;
-                break;
-            case '2' :      // include large
-            case '12' :     // crop large
                 $tn_width  = 200;
                 $tn_height = 200;
                 break;
+            case '1' :      // include medium
+            case '11' :     // crop medium
+                $tn_width  = 360;
+                $tn_height = 360;
+                break;
+            case '2' :      // include large
+            case '12' :     // crop large
+                $tn_width  = 400;
+                $tn_height = 400;
+                break;
             case '3' :      // include custom
             case '13' :     // crop custom
-                $tn_width  = ($custom_width  == 0) ? 250 : $custom_width;
-                $tn_height = ($custom_height == 0) ? 250 : $custom_height;
+                $tn_width  = ($custom_width  == 0) ? 360 : $custom_width;
+                $tn_height = ($custom_height == 0) ? 360 : $custom_height;
                 break;
             default :
-                $tn_width  = 150;
-                $tn_height = 150;
+                $tn_width  = 360;
+                $tn_height = 360;
                 break;
         }
 
@@ -808,7 +808,7 @@ class Media {
 
             $ratio_width  = $imgwidth / $maxwidth;
             $ratio_height = $imgheight / $maxheight;
-						if($ratio_height==0){$ratio_height=1.0;} 
+						if($ratio_height==0){$ratio_height=1.0;}
             if ($ratio_width > $ratio_height) {
                 $newwidth = $maxwidth;
                 $newheight = round($imgheight / $ratio_width);
@@ -826,7 +826,7 @@ class Media {
                     $newheight = round($imgheight / $ratio_width);
                 } else {
                     $ratio_height = $imgheight / $maxheight;
-										if($ratio_height==0){$ratio_height=1.0;} 
+										if($ratio_height==0){$ratio_height=1.0;}
                     $newheight = $maxheight;
                     $newwidth = round($imgwidth / $ratio_height);
                 }

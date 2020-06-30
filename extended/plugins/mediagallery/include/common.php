@@ -453,26 +453,26 @@ function MG_return_bytes($val)
    $val  = trim($val);
    $last = strtolower(substr($val, -1));
    $num = (int) substr($val, 1);
-   
+
    switch($last) {
        // The 'G' modifier is available since PHP 5.1.0
        case 'g':
            $retval = $num * 1024 * 1024 * 1024;
            break;
-           
+
        case 'm':
            $retval = $num * 1024 * 1024;
            break;
-           
+
        case 'k':
            $retval = $num * 1024;
            break;
-           
+
        default:
            $retval = $num;
            break;
    }
-   
+
    return $retval;
 }
 
@@ -522,7 +522,7 @@ function MG_getValidFileTypes($album_id)
         $valid_formats = MG_JPG || MG_PNG || MG_GIF || MG_MP3 || MG_OGG || MG_MOV ||
             MG_MP4 || MG_MPG || MG_FLV || MG_ZIP || MG_PDF;
     }
-    
+
     if ($valid_formats & MG_OTHER) {
         $valid_types = '*.*';
     } else {
@@ -569,25 +569,25 @@ function MG_getThumbPath($path, $type)
     $postfix = '';
     switch ($type) {
         case '0':
-            $postfix = '_100.';
+            $postfix = '_200.';
             break;
         case '1':
-            $postfix = '_150.';
+            $postfix = '_360.';
             break;
         case '2':
-            $postfix = '_200.';
+            $postfix = '_400.';
             break;
         case '3':
             $postfix = '_custom.';
             break;
         case '10':
-            $postfix = '_100x100.';
+            $postfix = '_200x200.';
             break;
         case '11':
-            $postfix = '_150x150.';
+            $postfix = '_360x360.';
             break;
         case '12':
-            $postfix = '_200x200.';
+            $postfix = '_400x400.';
             break;
         case '13':
             $postfix = '_cropcustom.';
@@ -607,27 +607,27 @@ function MG_getTNSize($val, $custom_height=0, $custom_width=0)
     switch ($val) {
         case '0' :      // include small
         case '10' :     // crop small
-            $tn_width  = 100;
-            $tn_height = 100;
-            break;
-        case '1' :      // include medium
-        case '11' :     // crop medium
-            $tn_width  = 150;
-            $tn_height = 150;
-            break;
-        case '2' :      // include large
-        case '12' :     // crop large
             $tn_width  = 200;
             $tn_height = 200;
             break;
+        case '1' :      // include medium
+        case '11' :     // crop medium
+            $tn_width  = 360;
+            $tn_height = 360;
+            break;
+        case '2' :      // include large
+        case '12' :     // crop large
+            $tn_width  = 400;
+            $tn_height = 400;
+            break;
         case '3' :      // include custom
         case '13' :     // crop custom
-            $tn_width  = ($custom_width  == 0) ? 200 : $custom_width;
-            $tn_height = ($custom_height == 0) ? 200 : $custom_height;
+            $tn_width  = ($custom_width  == 0) ? 360 : $custom_width;
+            $tn_height = ($custom_height == 0) ? 360 : $custom_height;
             break;
         default :
-            $tn_width  = 150;
-            $tn_height = 150;
+            $tn_width  = 360;
+            $tn_height = 360;
             break;
     }
 
@@ -731,7 +731,7 @@ function MG_getFrames()
 function MG_sortFrames($array, $key)
 {
     $sort_values = array();
-    
+
     for ($i = 0; $i < count($array); $i++) {
         $sort_values[$i] = $array[$i][$key];
     }

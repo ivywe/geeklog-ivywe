@@ -101,7 +101,7 @@ function MG_getItems(&$album_data)
         $RelativeTNPath = $_MG_CONF['mediaobjects_url'] . '/tn/';
 
         $RelativePath   .= $A['media_filename'][0] . '/' . $A['media_filename'] . '.' . $ext;
-        $RelativeTNPath .= $A['media_filename'][0] . '/' . $A['media_filename'] . '_150x150.' . $ext;
+        $RelativeTNPath .= $A['media_filename'][0] . '/' . $A['media_filename'] . '_360x360.' . $ext;
 
         $imgsize = @getimagesize($PhotoPath);
         if ($imgsize == false) continue;

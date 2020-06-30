@@ -805,7 +805,7 @@ v1.4.0RC1 - July 15, 2006
 [fix] Fixed issue where MP4 files would not play in popup window
 [chg] Changed out all the video/audio icons, just something I like to do
       between releases.
-[chg] Changed default thumbnail size for albums to 150x150
+[chg] Changed default thumbnail size for albums to 360x360
 [enh] Tweaked Inmemoriam Import to map features a little better.
 [enh] Geekary import now operational
 [fix] Cleaned up many of the 'require_once' calls in admin.php

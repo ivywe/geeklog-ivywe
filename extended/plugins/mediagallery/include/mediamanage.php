@@ -87,7 +87,7 @@ function MG_imageAdmin($album_id, $page, $actionURL = '')
     $album_cp_selectbox .= '</select>';
 
     $catRow = array();
-    
+
     $sql = "SELECT * FROM {$_TABLES['mg_category']} ORDER BY cat_id ASC";
     $result = DB_query($sql);
     $nrows = DB_numRows($result);
@@ -158,7 +158,7 @@ function MG_imageAdmin($album_id, $page, $actionURL = '')
         'val_reset_cover'         => (($album_cover == '-1') ? ' checked="checked"' : ''),
     ));
 
-    $tn_size = 13; // crop_custom:200x200
+    $tn_size = 3; // include_custom:400x400
     $rowclass = 0;
     $counter = 0;
     if ($nrows == 0) {
@@ -209,12 +209,12 @@ function MG_imageAdmin($album_id, $page, $actionURL = '')
                 $media_time = MG_getUserDateTimeFormat($row['media_time']);
 
                 if ($img_size != false) {
-                    list($width, $height) = Media::getImageWH($img_size[0], $img_size[1], 200, 200);
+                    list($width, $height) = Media::getImageWH($img_size[0], $img_size[1], 400, 400);
                 } else {
                     //$width = 100;
                     //$height = 75;
-                    $width = 200;
-                    $height = 200;
+                    $width = 400;
+                    $height = 400;
                     $thumbnail = $_MG_CONF['mediaobjects_url'] . '/missing.png';
                 }
 

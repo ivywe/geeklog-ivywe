@@ -119,7 +119,7 @@ function MG_deleteSubmission($media_id)
     foreach ($_MG_CONF['validExtensions'] as $ext) {
         if (file_exists($_MG_CONF['path_mediaobjects'] . 'tn/' . $row['media_filename'][0] . '/' . $row['media_filename'] . $ext)) {
             @unlink($_MG_CONF['path_mediaobjects'] . 'tn/'   . $row['media_filename'][0] . '/' . $row['media_filename'] . $ext);
-            @unlink($_MG_CONF['path_mediaobjects'] . 'tn/'   . $row['media_filename'][0] . '/' . $row['media_filename'] . '_150x150' . $ext);
+            @unlink($_MG_CONF['path_mediaobjects'] . 'tn/'   . $row['media_filename'][0] . '/' . $row['media_filename'] . '_360x360' . $ext);
             @unlink($_MG_CONF['path_mediaobjects'] . 'disp/' . $row['media_filename'][0] . '/' . $row['media_filename'] . $ext);
             break;
         }

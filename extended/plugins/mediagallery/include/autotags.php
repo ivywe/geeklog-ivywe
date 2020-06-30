@@ -1126,7 +1126,7 @@ $enable_link=0;
             } else {
                 $filename = MG_getAlbumCover($parm1);
                 if ($filename != '') {
-                    $tfn = 'tn/' . $filename[0] . '/' . $filename.'_cropcustom';
+                    $tfn = 'tn/' . $filename[0] . '/' . $filename.'_custom';
                     $ext = MG_getMediaExt($_MG_CONF['path_mediaobjects'] . $tfn);
                     $tnImage = $_MG_CONF['mediaobjects_url'] . '/' . $tfn . $ext;
                     $tnFileName = $_MG_CONF['path_mediaobjects'] . $tfn . $ext;
@@ -1315,7 +1315,7 @@ $enable_link=0;
                 $media_thumbnail_file = $_MG_CONF['path_mediaobjects'] . $tfn . $ext;
             } else {
                 if  ($src == 'tn' AND $row['media_type']==0) {
-                    $tfn = 'tn/' . $row['media_filename'][0] . '/' . $row['media_filename'].'_cropcustom';
+                    $tfn = 'tn/' . $row['media_filename'][0] . '/' . $row['media_filename'].'_custom';
                     $ext = MG_getMediaExt($_MG_CONF['path_mediaobjects'] . $tfn);
                     $media_thumbnail      = $_MG_CONF['mediaobjects_url'] . '/' . $tfn . $ext;
                     $media_thumbnail_file = $_MG_CONF['path_mediaobjects'] . $tfn . $ext;

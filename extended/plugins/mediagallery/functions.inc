@@ -417,12 +417,12 @@ function plugin_savecomment_mediagallery($title, $comment, $id, $pid, $postmode)
         COM_redirect($_CONF['site_url'] . '/index.php');
     }
 	*/
-    
+
 	// Use plugin_commentenabled_foo permission check to determine if user has permissions to save a comment for this item
     // CommentCode: COMMENT_CODE_ENABLED (0), COMMENT_CODE_DISABLED (-1), COMMENT_CODE_CLOSED (1)
     if (plugin_commentenabled_mediagallery($id) != COMMENT_CODE_ENABLED) {
         COM_handle404($_CONF['site_url'] . '/index.php');
-    }	
+    }
 
     $ret = CMT_saveComment($title, $comment, $id, $pid, 'mediagallery', $postmode);
 
@@ -451,7 +451,7 @@ function plugin_savecomment_mediagallery($title, $comment, $id, $pid, $postmode)
 function plugin_moderationcommentapprove_mediagallery($id, $cid)
 {
     // Nothing needed to do on approval of comment to plugin item
-    
+
     return true;
 }
 
@@ -461,12 +461,12 @@ function plugin_moderationcommentapprove_mediagallery($id, $cid)
  * @param   int    	$cid 			Comment to be deleted
  * @param   string 	$id  			Item id to which $cid belongs
  * @param   boolean $returnOption  	Either return a boolean on success or not, or redirect
- * @return  mixed        			Based on $returnOption. False for failure or true for success, else a redirect for success or failure 
+ * @return  mixed        			Based on $returnOption. False for failure or true for success, else a redirect for success or failure
  */
 function plugin_deletecomment_mediagallery($cid, $id, $returnBoolean)
 {
     global $_CONF, $_MG_CONF, $_TABLES;
-	
+
 	$retval = false;
 
     // find the album that holds this peice of media
@@ -489,19 +489,19 @@ function plugin_deletecomment_mediagallery($cid, $id, $returnBoolean)
         if (CMT_deleteComment($cid, $id, 'mediagallery') == 0) {
             $comments = DB_count($_TABLES['comments'], array('sid', 'type'), array(DB_escapeString($id), 'mediagallery'));
             DB_change($_TABLES['mg_media'], 'media_comments', $comments, 'media_id', DB_escapeString($id));
-			
+
 			if ($returnBoolean) {
 				$retval = true;
-			} else {		
+			} else {
 				COM_redirect($_MG_CONF['site_url'] . "/media.php?s=$id");
-			}			
+			}
         }
     }
-	
+
 	// So failed to delete for some reason and if not returnBoolean then...
 	if (!$returnBoolean && !$retval) {
 		COM_redirect($_CONF['site_url'] . '/index.php');
-	}	
+	}
 
     return $retval;
 }
@@ -509,7 +509,7 @@ function plugin_deletecomment_mediagallery($cid, $id, $returnBoolean)
 function plugin_getcommenturlid_mediagallery($id)
 {
     global $_CONF, $_MG_CONF;
-	
+
 	return $_MG_CONF['site_url'] . "/media.php?s=$id";
 }
 
@@ -526,22 +526,22 @@ function plugin_commentenabled_mediagallery($id)
 
     // CommentCode: COMMENT_CODE_ENABLED (0), COMMENT_CODE_DISABLED (-1), COMMENT_CODE_CLOSED (1)
     $commentCode = COMMENT_CODE_DISABLED;
-	
+
     $sql = "SELECT a.enable_comments, a.owner_id, group_id, perm_owner, perm_group, perm_members, perm_anon "
          . "FROM {$_TABLES['mg_albums']} AS a "
          . "LEFT JOIN {$_TABLES['mg_media_albums']} AS ma ON a.album_id = ma.album_id "
          . "WHERE ma.media_id = '$id'";
-    $result = DB_query($sql);	
+    $result = DB_query($sql);
     $A = DB_fetchArray($result);
     if (DB_numRows($result) == 1) {
-		
+
 		// Media Gallery uses only comment enabled or disabled so update to use correct code
 		if ($A['enable_comments'] == 1) {
 			$A['commentcode'] = COMMENT_CODE_ENABLED;
 		} else {
 			$A['commentcode'] = COMMENT_CODE_DISABLED;
 		}
-		
+
         if ($A['commentcode'] == COMMENT_CODE_ENABLED) {
             $commentCode = COMMENT_CODE_ENABLED;
         } elseif ($A['commentcode'] == COMMENT_CODE_CLOSED) { // Closed but still visible so give admins access
@@ -759,7 +759,7 @@ function plugin_getwhatsnew_mediagallery()
 /**
 * Return new Media comments for the What's New block
 *
-* @param    string  $numreturn  If 0 will return results for What's New Block. 
+* @param    string  $numreturn  If 0 will return results for What's New Block.
 *                               If > 0 will return last X new comments for User Profile.
 * @param    string  $uid        ID of the user to return results for. 0 = all users.
 * @return   array list of new comments (dups, type, title, sid, lastdate) or (sid, title, cid, unixdate)
@@ -792,7 +792,7 @@ function plugin_getwhatsnewcomment_mediagallery($numreturn = 0, $uid = 0)
         for ($x = 0; $x < $nrows; $x++) {
             $A[] = DB_fetchArray($result);
         }
-        
+
         return $A;
     }
 }
@@ -1224,9 +1224,9 @@ function phpblock_mg_randommedia($parm1=array(), $parm2='')
             $tn_size = intval($args[1]);
         }
     }
-    if ($tn_size < 10)  $tn_size = 100;
-    if ($tn_size > 250) $tn_size = 250;
-    $tn_fname_add = ($tn_mode == 1) ? '_150x150' : '';
+    if ($tn_size < 10)  $tn_size = 200;
+    if ($tn_size > 400) $tn_size = 400;
+    $tn_fname_add = ($tn_mode == 1) ? '_200x200' : '';
 
     $randomSelect = ($_DB_dbms == 'mssql') ? "NewID()" : "RAND(NOW())";
     $sql = "SELECT ma.album_id,m.media_id,m.media_filename,m.media_title "
@@ -1447,7 +1447,7 @@ function plugin_user_create_mediagallery($uid, $force = 0)
         if (!empty($fullname) && $_MG_CONF['member_use_fullname'] == 1) {
             $title = $fullname . $LANG_MG01['member_album_postfix'];
         }
-        
+
         $album->title           = htmlspecialchars(strip_tags(COM_checkWords($title)));
         $album->parent          = $_MG_CONF['member_album_root'];
         $album->group_id        = $grp_id;
@@ -1490,7 +1490,7 @@ function plugin_user_delete_mediagallery($uid)
     }
 }
 
-function MG_deleteMemberAlbums($album_id) 
+function MG_deleteMemberAlbums($album_id)
 {
     global $_CONF, $_MG_CONF, $_TABLES, $_USER;
 
@@ -1746,12 +1746,12 @@ function plugin_getdocumentationurl_mediagallery($file)
 * Provides text for a Configuration tooltip
 *
 * @param    string  $id     Id of config value
-* @return   mixed           Text to use regular tooltip, NULL to use config 
+* @return   mixed           Text to use regular tooltip, NULL to use config
 *                           tooltip hack, or empty string when not available
 *
 */
 function plugin_getconfigtooltip_mediagallery($id)
-{   
+{
     // Use config tooltip hack where tooltip is read from the config documentation
     return;
 }
