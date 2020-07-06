@@ -1,0 +1,12 @@
+{# begin {templatelocation} #}
+
+						 <li>
+                <a href="#">{menuitem_text}</a>
+                <div class="uk-navbar-dropdown">
+                    <ul class="uk-nav uk-navbar-dropdown-nav">
+                        {menu_elements}
+                    </ul>
+                </div>
+            </li>
+
+{# end {templatelocation} #}
