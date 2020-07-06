@@ -203,6 +203,9 @@
         <li><a href="#_1section-slideshow" uk-scroll="offset:100">1section-slideshow</a></li>
         <li><a href="#_1section-slideshow-mobile" uk-scroll="offset:100">1section-slideshow-mobile</a></li>
         <li><a href="#_1section-slideshow-col2_reverse" uk-scroll="offset:100">1section-slideshow-col2_reverse</a></li>
+        <li><a href="#_1section-slideshow-textimage" uk-scroll="offset:100">1section-slideshow-textimage</a></li>
+
+
         </ul>
         <h3>3) 1画像1セクションで設置するタイプ</h3>
         <ul>
@@ -343,13 +346,14 @@
 <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-slideshow-col2_reverse">&#91;medialist:{album_id} src:disp theme:1section-slideshow-col2_reverse limitcnt:3 title: uks:uk-section-large section:1 ukc: animation:fade autoplay:true autoplayinterval:7000 draggable:true easing:ease finite:false pause-on-hover:true index:0 velocity:1 ratio:16_9 minheight:400 maxheight:500 animationduration:0.1s gridl:3-5 gridr:2-5 reverse: dotnav:1 text:詳細を見る media:&#93;</h4>
   <?php echo PLG_replaceTags('[medialist:'.$this->get_var('album_id').' src:disp theme:1section-slideshow-col2_reverse limitcnt:3 title: uks:uk-section-large section:1 ukc: animation:fade autoplay:true autoplayinterval:7000 draggable:true easing:ease finite:false pause-on-hover:true index:0 velocity:1 ratio:16_9 minheight:400 maxheight:500 animationduration:0.1s gridl:3-5 gridr:2-5 reverse: dotnav:1 text:詳細を見る]'); ?>
 
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-slideshow-textimage">&#91;medialist:{album_id} src:disp theme:1section-slideshow-textimage limitcnt:3 title: uks:uk-section-large section:1 ukc: animation:fade autoplay:true autoplayinterval:7000 draggable:true easing:ease finite:false pause-on-hover:true index:0 velocity:1 ratio:16_9 minheight:400 maxheight:500 animationduration:0.1s gridl:3-5 gridr:2-5 reverse: dotnav:1 text:詳細を見る media:&#93;</h4>
+  <?php echo PLG_replaceTags('[medialist:'.$this->get_var('album_id').' src:disp theme:1section-slideshow-textimage limitcnt:3 title: uks:uk-section-large section:1 ukc: animation:fade autoplay:true autoplayinterval:7000 draggable:true easing:ease finite:false pause-on-hover:true index:0 velocity:1 ratio:16_9 minheight:400 maxheight:500 animationduration:0.1s gridl:3-5 gridr:2-5 reverse: dotnav:1 text:詳細を見る]'); ?>
 
 <section class="uk-section uk-section-primary uk-preserve-color">
   <div class="uk-container">
     <h3 style="color:white">3) 1画像1セクションで設置するタイプ</h3>
   </div>
 </section>
-
 
 <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_sections-bg_keyurl">&#91;medialist:{album_id} src:disp theme:sections-bg_keyurl limitcnt:3 text:詳細を見る&#93;</h4>
   {!!autotag medialist:'.{album_id}.' src:disp theme:sections-bg_keyurl limitcnt:3 text:詳細を見る !!}
