@@ -80,7 +80,7 @@ $_MG_DEFAULT = array(
 
     // Display Options
     'dfid'                       => '19', // ISO 8601
-    'displayblocks'              => '0',
+    'displayblocks'              => '3',
     'subalbum_select'            => '0',
     'jpg_orig_quality'           => '85',
     'jpg_quality'                => '85',
@@ -92,11 +92,11 @@ $_MG_DEFAULT = array(
     'full_in_popup'              => '0',
     'seperator'                  => '&gt;',
     'use_flowplayer'             => '0',
-    'custom_image_height'        => '412',
-    'custom_image_width'         => '550',
+    'custom_image_height'        => '600',
+    'custom_image_width'         => '900',
     'popup_from_album'           => '0', // added
     'autotag_caption'            => '0', // added
-    'random_width'               => '120',
+    'random_width'               => '360',
     'random_skin'                => 'default', // changed
     'truncate_breadcrumb'        => '0',
 
@@ -137,7 +137,7 @@ $_MG_DEFAULT = array(
     // Root Album
     'root_album_name'            => 'TOP アルバム', // added
     'album_display_columns'      => '3',
-    'album_display_rows'         => '4',
+    'album_display_rows'         => '20',
     'indextheme'                 => 'default', // added
     'indexskin'                  => 'default', // changed
 
@@ -163,13 +163,13 @@ $_MG_DEFAULT = array(
     'ad_albums_first'            => '1',
     'ad_allow_download'          => '0',
     'ad_full_display'            => '0',
-    'ad_tn_size'                 => '13',
-    'ad_tn_width'                => '300',
-    'ad_tn_height'               => '300',
+    'ad_tn_size'                 => '11',
+    'ad_tn_width'                => '360',
+    'ad_tn_height'               => '360',
     'ad_max_image_width'         => '0',
     'ad_max_image_height'        => '0',
     'ad_max_filesize'            => '0',
-    'ad_display_image_size'      => '9',
+    'ad_display_image_size'      => '5',
     'ad_display_rows'            => '40',
     'ad_display_columns'         => '3',
     'ad_image_skin'              => 'default', // changed

@@ -36,23 +36,23 @@ $locale = array();
 if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
 	$locale['ja'] = array(
 		'locale'    => 'C',
-		'date'      => '%Y年%m月%d日 %H:%M',
-		'daytime'   => '%m月%d日 %H:%M',
+		'date'      => '%Y/%m/%d %H:%M %Z',
+		'daytime'   => '%m-%d %H:%M',
 		'shortdate' => '%d',
-		'dateonly'  => '%m%d',
+		'dateonly'  => '%m-%d',
 		'timeonly'  => '%H:%M',
 	);
 } else {
 	$locale['ja'] = array(
 		'locale'    => ((strtoupper(substr(PHP_OS, 0, 7)) === 'FREEBSD')
-							? 'ja_JP'
-							: 'ja_JP.UTF-8'
+							? 'ja'
+							: 'ja'
 					   ),
-		'date'      => '%Y年%B%e日(%a) %H:%M %Z',
-		'daytime'   => '%m/%d %H:%M %Z',
-		'shortdate' => '%Y年%B%e日',
-		'dateonly'  => '%B%e日',
-		'timeonly'  => '%H:%M %Z',
+		'date'      => '%Y/%m/%d %H:%M %Z',
+		'daytime'   => '%m-%d %H:%M',
+		'shortdate' => '%d',
+		'dateonly'  => '%m-%d',
+		'timeonly'  => '%H:%M',
 	);
 }
 
@@ -115,7 +115,7 @@ $htmlfilter['ja'] = array(
 							),
 		'noscript'		=> array(),
 		'object'		=> array(
-								'type' => 1, 'data' => 1, 'classid' => 1, 
+								'type' => 1, 'data' => 1, 'classid' => 1,
 								'codebase' => 1, 'width' => 1, 'height' => 1,
 								'align' => 1,
 							),
@@ -154,7 +154,7 @@ $htmlfilter['en'] = array(
 		'em'     => array(),
 		'br'     => array(),
 		'tt'     => array(),
-		'hr'     => array(), 
+		'hr'     => array(),
 		'li'     => array(),
 		'ol'     => array(),
 		'ul'     => array(),
@@ -559,146 +559,146 @@ $_JAPANIZE_DATA[4] = array(
 				'ja' => $_CONF['site_url'] . '/japanize/disabledmsg.html', 'Core',
 				'en' => 'Geeklog Site is down. Please come back soon.',
 			),
-			
+
 			// シンジケーション･･･フィードの言語
 			'rdf_language' => array(
 				'ja' => 'ja',
 				'en' => 'en-gb',
 			),
-			
+
 			// 管理者ブロック･･･リンクをソートする=false
 			'sort_admin' => array(
 				'ja' => false,
 				'en' => true,
 			),
-			
+
 			// 話題ブロック･･･記事投稿数を表示する=いいえ
 			'showsubmissioncount' => array(
 				'ja' => false,
 				'en' => true,
 			),
-			
+
 			// 話題ブロック･･･Homeへのリンクを表示しない=はい
 			'hide_home_link' => array(
 				'ja' => true,
 				'en' => false,
 			),
-			
+
 			// コメント･･･コメント形状=flat
 			'comment_mode' => array(
 				'ja' => 'flat',
 				'en' => 'nested',
 			),
-			
+
 			// 画像ライブラリ･･･画像ライブラリ=GD
 			'image_lib' => array(
 				'ja' => (is_callable('gd_info') ? 'gdlib' : 'none'),
 				'en' => 'none',
 			),
-			
+
 			// 画像ライブラリ･･･記事の画像高さの最大値=120ピクセル
 			'max_image_height' => array(
 				'ja' => 120,
 				'en' => 160,
 			),
-			
+
 			// ロケール･･･ロケール
 			'locale' => array(
 				'ja' => $locale['ja']['locale'],
 				'en' => $locale['en']['locale'],
 			),
-			
+
 			// ロケール･･･日付
 			'date' => array(
 				'ja' => $locale['ja']['date'],
 				'en' => $locale['en']['date'],
 			),
-			
+
 			// ロケール･･･日時
 			'daytime' => array(
 				'ja' => $locale['ja']['daytime'],
 				'en' => $locale['en']['daytime'],
 			),
-			
+
 			// ロケール･･･日付短表記
 			'shortdate' => array(
 				'ja' => $locale['ja']['shortdate'],
 				'en' => $locale['en']['shortdate'],
 			),
-			
+
 			// ロケール･･･日付けのみ
 			'dateonly' => array(
 				'ja' => $locale['ja']['dateonly'],
 				'en' => $locale['en']['dateonly'],
 			),
-			
+
 			// ロケール･･･時間のみ
 			'timeonly' => array(
 				'ja' => $locale['ja']['timeonly'],
 				'en' => $locale['en']['timeonly'],
 			),
-			
+
 			// hour_mode･･･時間制
 			'hour_mode' => array(
 				'ja' => 24,
 				'en' => 12,
 			),
-			
+
 			// decimal_count･･･小数点以下の桁数
 			'decimal_count' => array(
 				'ja' => 0,
 				'en' => 2,
 			),
-			
+
 			// timezone タイムゾーン
 			'timezone' => array(
 				'ja' => 'Asia/Tokyo',
 				'en' => 'UTC',
 			),
-			
+
 			// アドバンストエディタ
 			'advanced_editor' => array(
 				'ja' => true,
 				'en' => false,
 			),
-			
+
 			// HTMLフィルタ･･･ユーザーHTML
 			'user_html' => array(
 				'ja' => $htmlfilter['ja']['user'],
 				'en' => $htmlfilter['en']['user'],
 			),
-			
+
 			// HTMLフィルタ･･･管理者HTML
 			'admin_html' => array(
 				'ja' => $htmlfilter['ja']['admin'],
 				'en' => $htmlfilter['en']['admin'],
 			),
-			
+
 			// HTMLフィルタ･･･RootユーザーはHTMLフィルタを無効にする
 			'skip_html_filter_for_root' => array(
 				'ja' => 1,
 				'en' => 0,
 			),
-			
+
 			// バッドワードチェック･･･チェックモード いいえ
 			'censormode' => array(
 				'ja' => 0,
 				'en' => 1,
 			),
-			
+
 			// コメントフィード･･･記事のタグ
 			'comment_feeds_article_tag' => array(
 				'ja' => "<p>[元の記事: <a href=\"%s\">%s</a>%s%s]\n",
 				'en' => "<p>[Original Article: <a href=\"%s\">%s</a>%s%s]\n",
 			),
-			
+
 			// コメントフィード･･･コメントの投稿者のタグ
 			'comment_feeds_comment_author_tag' => array(
 				'ja' => ", Comment By: <a href=\"%s\">%s</a>",
 				'en' => ", コメント投稿者: <a href=\"%s\">%s</a>",
 			),
 		),
-		
+
 		'calendar' => array(
 			'event_types' => array(
 				'ja' => array(
@@ -715,7 +715,7 @@ $_JAPANIZE_DATA[4] = array(
 			),
 		),
 	),
-	
+
 	'set_default' => array(
 		'Core' => array(
 			'rdf_language' => array(
@@ -725,7 +725,7 @@ $_JAPANIZE_DATA[4] = array(
 		),
 	),
 );
-	
+
 // 5. 更新Pingサーバーを変更する
 $_JAPANIZE_DATA[5] = array(
 	array(
@@ -736,7 +736,7 @@ $_JAPANIZE_DATA[5] = array(
 					. "'http://www.blogpeople.net/servlet/weblogUpdates', "
 					. "'weblogUpdates.ping', 1) ",
 	),
-	
+
 	array(
 		'site_url' => 'http://ping.bloggers.jp/',
 		'sql'      => "INSERT INTO {$_TABLES['pingservice']} (pid, name, "
@@ -745,7 +745,7 @@ $_JAPANIZE_DATA[5] = array(
 					. "'http://ping.bloggers.jp/rpc/', "
 					. "'weblogUpdates.ping', 1) ",
 	),
-	
+
 	array(
 		'site_url' => 'http://blog.goo.ne.jp/',
 		'sql'      => "INSERT INTO {$_TABLES['pingservice']} (pid, name, "
@@ -754,7 +754,7 @@ $_JAPANIZE_DATA[5] = array(
 					. "'http://blog.goo.ne.jp/XMLRPC', "
 					. "'weblogUpdates.ping', 1) ",
 	),
-	
+
 	array(
 		'site_url' => 'http://blogsearch.google.co.jp/',
 		'sql'      => "INSERT INTO {$_TABLES['pingservice']} (pid, name, "
