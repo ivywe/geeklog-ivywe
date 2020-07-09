@@ -70,12 +70,12 @@ function MG_getUserPrefs()
 function MG_getSortOrder($enable_sort, $sortOrder)
 {
     if ($enable_sort == 0) {
-        return ' ORDER BY ma.media_order DESC';
+        return ' ORDER BY ma.media_order ASC';
     }
 
     switch ($sortOrder) {
         case 0 :    // default
-            $orderBy = ' ORDER BY ma.media_order DESC';
+            $orderBy = ' ORDER BY ma.media_order ASC';
             break;
         case 1 :    // default, reverse order
             $orderBy = ' ORDER BY ma.media_order ASC';
