@@ -40,6 +40,7 @@ function MG_medialist (
   , $title=''
   , $desc=''
   , $media=''
+  , $tn=''
   , $grid=''
   , $grids=''
   , $gridm=''
@@ -100,6 +101,14 @@ function MG_medialist (
   global $_IMAGE_TYPE;
   global $LANG_MG01;
 	global $_CONF;
+
+	global $gallery_tn_size;
+
+  if  (empty($tn)){
+		$gallery_tn_size="400";
+	} else {
+    $gallery_tn_size=$tn;
+  }
 
 	$rt="";
 
@@ -178,14 +187,14 @@ function MG_medialist (
 			$filename_disp=$_MG_CONF['mediaobjects_url'].'/'."disp".$fn. '.' . $ext;
 		}
 		//
-		$wk=$_MG_CONF['path_mediaobjects']."tn".$fn.'_cropcustom';
+		$wk=$_MG_CONF['path_mediaobjects']."tn".$fn.'_'.$gallery_tn_size;
 		$tnext = MG_getMediaExt($wk);
     $media_size = @getimagesize($wk . $tnext);
     $ext = substr($tnext,1,3);
     if ($media_size == false) {
 			$filename_tn="";
 		}else{
-			$filename_tn=$_MG_CONF['mediaobjects_url'].'/'."tn".$fn.'_cropcustom'. '.' . $ext;
+			$filename_tn=$_MG_CONF['mediaobjects_url'].'/'."tn".$fn.'_'.$gallery_tn_size. '.' . $ext;
 		}
 		if  ($src=="orig"){
 			$filename=$filename_orig;
@@ -216,6 +225,8 @@ function MG_medialist (
 		$T->set_var('desc',$desc);
 		$T->set_var('theme',$theme);
 		$T->set_var('limitcnt',$limitcnt);
+    $T->set_var('media',$media);
+    $T->set_var('tn',$tn);
 		$T->set_var('grid',$grid);
 		$T->set_var('grids',$grids);
 		$T->set_var('gridm',$gridm);
@@ -223,7 +234,6 @@ function MG_medialist (
 		$T->set_var('gridr',$gridr);
 		$T->set_var('uks',$uks);
 		$T->set_var('ukc',$ukc);
-		$T->set_var('media',$media);
 		$T->set_var('reverse',$reverse);
 		$T->set_var('text',$text);
 		$T->set_var('text1',$text1);
@@ -426,7 +436,7 @@ function MG_albumlastimage(
 	$filename
 )
 {
-	global $_MG_CONF;
+	global $_MG_CONF,$gallery_tn_size;
 
     if ( $filename == '' ) {
 		$album_last_image = $_MG_CONF['mediaobjects_url'] . '/empty.svg';
@@ -434,7 +444,7 @@ function MG_albumlastimage(
     } else {
         $mediasize = false;
 		foreach ($_MG_CONF['validExtensions'] as $ext ) {
-           $fn='tn/' . $filename[0] .'/' . $filename .'_cropcustom'. $ext;
+           $fn='tn/' . $filename[0] .'/' . $filename .'_'.$gallery_tn_size. $ext;
            if ( file_exists($_MG_CONF['path_mediaobjects'] . $fn) ) {
                 $album_last_image = $_MG_CONF['mediaobjects_url'] ."/". $fn;
                 $mediasize = @getimagesize($_MG_CONF['path_mediaobjects'] . $fn);
@@ -459,7 +469,8 @@ function MG_parm2 ($p2)
 	$parm2_ary[]="desc";
 	$parm2_ary[]="uks";
 	$parm2_ary[]="ukc";
-	$parm2_ary[]="media";
+  $parm2_ary[]="media";
+  $parm2_ary[]="tn";
 	$parm2_ary[]="grid";
 	$parm2_ary[]="grids";
 	$parm2_ary[]="gridm";

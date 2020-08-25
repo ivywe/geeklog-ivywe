@@ -1354,7 +1354,7 @@ function MG_displayMedia($id, $full=0, $sortOrder=0, $comments=0, $spage=0)
         } elseif (isset($_GET['mode'])) {
             $commode = COM_applyFilter($_GET['mode']);
         }
-        $commentcode = 0; // ���̂Ƃ��떳�����ɃR�����g���e�����B
+        $commentcode = 0; 
         $retval .= CMT_userComments($sid, PLG_replaceTags($media['media_title']), 'mediagallery',
                        $comorder, $commode, 0, $page, false, $delete_option, $commentcode);
     }

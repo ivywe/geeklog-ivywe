@@ -109,6 +109,7 @@
                 <tr>  <th>title</th><td>  </td><td>0:非表示/1:表示</td><td>タイトル表示フラグ</td>  </tr>
                 <tr>  <th>desc</th><td>  </td><td>0:非表示/1:表示</td><td>説明表示フラグ</td>  </tr>
                 <tr>  <th>media</th><td>  </td><td>  </td><td>背景に表示するMedia ID</td>  </tr>
+                <tr>  <th>tn</th><td>  </td><td>  </td><td>サムネイルタイプ (200 360 400 custom 200x200 360x360 400x400 cropcustom)</td>  </tr>
                 <tr>  <th>grid</th><td>  </td><td>n</td><td>grid数 uk-child-width-1-X</td>  </tr>
                 <tr>  <th>grids</th><td>  </td><td>n</td><td>grid数 uk-child-width-1-X@ms</td>  </tr>
                 <tr>  <th>gridm</th><td>  </td><td>n</td><td>grid数 uk-child-width-1-X@s</td>  </tr>
@@ -255,10 +256,10 @@
 
 <?php $media = PLG_replaceTags('[medialist:'.$this->get_var('album_id').' theme:media_id]'); ?>
 
-<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_default">&#91;medialist:{album_id} src:tn theme:default limitcnt:2&#93;</h4>
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_default">&#91;medialist:{album_id} src:tn tn:400 theme:default limitcnt:2&#93;</h4>
 <section class="uk-section uk-section-small">
   <div class="uk-container">
-{!!autotag medialist:'.{album_id}.' src:tn theme:default limitcnt:2 !!}
+{!!autotag medialist:'.{album_id}.' src:tn tn:400 theme:default limitcnt:2 !!}
   </div>
 </section>
 
@@ -310,8 +311,8 @@
 <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-col2_reverse">&#91;medialist:{album_id} src:disp theme:1section-col2_reverse limitcnt:3 title:1 uks:uk-section-small ukc:uk-container-small.uk-comment-primary gridl:2-3 gridr:1-3 reverse:1 class_media_desc:uk-text-left imgclass:uk-border-circle media:&#93;</h4>
   <?php echo PLG_replaceTags('[medialist:'.$this->get_var('album_id').' src:disp theme:1section-col2_reverse limitcnt:3 title:1 uks:uk-section-small ukc:uk-container-small.uk-comment-primary gridl:2-3 gridr:1-3 reverse:1 class_media_desc:uk-text-left imgclass:uk-border-circle media:]'); ?>
 
-<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-filter_search">&#91;medialist:{album_id} src:tn theme:1section-filter_search src:disp limitcnt:10 grids:1 gridm:5 masonry:1 uks:uk-section-large media:<?php echo $media; ?>&#93;</h4>
-  <?php echo PLG_replaceTags('[medialist:'.$this->get_var('album_id').' src:tn theme:1section-filter_search src:disp limitcnt:10 grids:1 gridm:5 masonry:1 uks:uk-section-large media:'.$media.']'); ?>
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-filter_search">&#91;medialist:{album_id} src:tn tn:400x400 theme:1section-filter_search src:disp limitcnt:10 grids:1 gridm:5 masonry:1 uks:uk-section-large media:<?php echo $media; ?>&#93;</h4>
+  <?php echo PLG_replaceTags('[medialist:'.$this->get_var('album_id').' src:tn tn:400x400 theme:1section-filter_search src:disp limitcnt:10 grids:1 gridm:5 masonry:1 uks:uk-section-large media:'.$media.']'); ?>
 
 <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-qa">&#91;medialist:{album_id} src:disp theme:1section-qa limitcnt:3 title:0 uks:uk-section-large media:&#93;</h4>
   <?php echo PLG_replaceTags('[medialist:'.$this->get_var('album_id').' src:disp theme:1section-qa limitcnt:3 title:0 uks:uk-section-large media:]'); ?>
@@ -325,14 +326,14 @@
 <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-slider-bottom">&#91;medialist:{album_id} src:disp theme:1section-slider-bottom limitcnt:10 title: dotnav:1 autoplay:true center:true clsactivated:uk-transition-active media:&#93;</h4>
   <?php echo PLG_replaceTags('[medialist:'.$this->get_var('album_id').' src:disp theme:1section-slider-bottom limitcnt:10 title: dotnav:1 autoplay:true center:true clsactivated:uk-transition-active]'); ?>
 
-<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-slider-cards-grid">&#91;medialist:{album_id} src:tn theme:1section-slider-cards-grid limitcnt:10 title: dotnav:1 autoplay:true center:true clsactivated:uk-transition-active media:&#93;</h4>
-  <?php echo PLG_replaceTags('[medialist:'.$this->get_var('album_id').' src:tn theme:1section-slider-cards-grid limitcnt:10 title: dotnav:1 autoplay:true center:true clsactivated:uk-transition-active]'); ?>
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-slider-cards-grid">&#91;medialist:{album_id} src:tn tn:400 theme:1section-slider-cards-grid limitcnt:10 title: dotnav:1 autoplay:true center:true clsactivated:uk-transition-active media:&#93;</h4>
+  <?php echo PLG_replaceTags('[medialist:'.$this->get_var('album_id').' src:tn tn:400 theme:1section-slider-cards-grid limitcnt:10 title: dotnav:1 autoplay:true center:true clsactivated:uk-transition-active]'); ?>
 
-<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-slider-cards-grid-large">&#91;medialist:{album_id} src:tn theme:1section-slider-cards-grid-large limitcnt:10 title: dotnav:1 autoplay:true center:true clsactivated:uk-transition-active media:&#93;</h4>
-  <?php echo PLG_replaceTags('[medialist:'.$this->get_var('album_id').' src:tn theme:1section-slider-cards-grid-large limitcnt:10 title: dotnav:1 autoplay:true center:true clsactivated:uk-transition-active]'); ?>
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-slider-cards-grid-large">&#91;medialist:{album_id} src:tn tn:360 theme:1section-slider-cards-grid-large limitcnt:10 title: dotnav:1 autoplay:true center:true clsactivated:uk-transition-active media:&#93;</h4>
+  <?php echo PLG_replaceTags('[medialist:'.$this->get_var('album_id').' src:tn tn:360 theme:1section-slider-cards-grid-large limitcnt:10 title: dotnav:1 autoplay:true center:true clsactivated:uk-transition-active]'); ?>
 
-<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-slider1">&#91;medialist:{album_id} src:tn theme:1section-slider1 limitcnt:10 title: grid:2 grids:2 gridm:4 autoplay:true autoplayinterval:7000 center:false draggable:true easing:ease finite:false index:0 pause-on-hover:true sets:false velocity:1 media:&#93;</h4>
-  <?php echo PLG_replaceTags('[medialist:'.$this->get_var('album_id').' src:tn theme:1section-slider1 limitcnt:10 title: grid:2 grids:2 gridm:4 autoplay:true autoplayinterval:7000 center:false draggable:true easing:ease finite:false index:0 pause-on-hover:true sets:false velocity:1]'); ?>
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-slider1">&#91;medialist:{album_id} src:tn tn:400 theme:1section-slider1 limitcnt:10 title: grid:2 grids:2 gridm:4 autoplay:true autoplayinterval:7000 center:false draggable:true easing:ease finite:false index:0 pause-on-hover:true sets:false velocity:1 media:&#93;</h4>
+  <?php echo PLG_replaceTags('[medialist:'.$this->get_var('album_id').' src:tn tn:400 theme:1section-slider1 limitcnt:10 title: grid:2 grids:2 gridm:4 autoplay:true autoplayinterval:7000 center:false draggable:true easing:ease finite:false index:0 pause-on-hover:true sets:false velocity:1]'); ?>
 
 <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-slider2">&#91;medialist:{album_id} src:disp theme:1section-slider2 limitcnt:5 title: dotnav:1 grid:2 grids:2 gridm:3 autoplay:true autoplayinterval:7000 center:false draggable:true easing:ease finite:false index:0 pause-on-hover:true sets:false velocity:1 media:&#93;</h4>
   <?php echo PLG_replaceTags('[medialist:'.$this->get_var('album_id').' src:disp theme:1section-slider2 limitcnt:5 title: dotnav:1 grid:2 grids:2 gridm:3 autoplay:true autoplayinterval:7000 center:false draggable:true easing:ease finite:false index:0 pause-on-hover:true sets:false velocity:1]'); ?>
@@ -429,16 +430,16 @@
 </section>
 
 
-<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_list">&#91;medialist:{album_id} src:tn theme:list limitcnt:3&#93;</h4>
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_list">&#91;medialist:{album_id} src:tn tn:400 theme:list limitcnt:3&#93;</h4>
     <p>ulタグ無し。</p>
     <ul class="uk-subnav uk-flex-inline uk-flex-center uk-margin-remove-bottom">
-      {!!autotag medialist:'.{album_id}.' src:tn theme:list limitcnt:3 !!}
+      {!!autotag medialist:'.{album_id}.' src:tn tn:400 theme:list limitcnt:3 !!}
     </ul>
 
-<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_list_inc">&#91;medialist:{album_id} src:tn theme:list_inc limitcnt:3&#93;</h4>
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_list_inc">&#91;medialist:{album_id} src:tn tn:400 theme:list_inc limitcnt:3&#93;</h4>
     <p>data-slide-index="0","1","2"と画像ごとに数値が加算していきます。ulタグ無し。</p>
     <ul class="uk-subnav uk-flex-inline uk-flex-center uk-margin-remove-bottom">
-      {!!autotag medialist:'.{album_id}.' src:tn theme:list_inc limitcnt:3 !!}
+      {!!autotag medialist:'.{album_id}.' src:tn tn:400 theme:list_inc limitcnt:3 !!}
     </ul>
 
 <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_uk-list">uk-list, uk-list_incでサムネイル付きスライドショー</h4>
@@ -450,7 +451,7 @@
     <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#"></a>
     <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#"></a>
     <div class="uk-grid-small uk-child-width-1-10" style="margin-top:15px" uk-grid>
-        &#91;medialist:{album_id} src:tn theme:uk-list_inc limitcnt:10&#93;
+        &#91;medialist:{album_id} src:tn tn:400 theme:uk-list_inc limitcnt:10&#93;
     </div>
 </div></textarea>
 
@@ -463,7 +464,7 @@
 	    <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#"></a>
 	    <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#"></a>
 	    <div class="uk-grid-small uk-child-width-1-10" style="margin-top:15px" uk-grid>
-	        {!!autotag medialist:'.{album_id}.' src:tn theme:uk-list_inc limitcnt:10 !!}
+	        {!!autotag medialist:'.{album_id}.' src:tn tn:400 theme:uk-list_inc limitcnt:10 !!}
 	    </div>
 		</div>
 	</div>

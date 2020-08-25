@@ -56,6 +56,9 @@ function MG_helper_getContainer($media, $align, $container)
 function MG_autotags($op, $content = '', $autotag = '')
 {
     global $_MG_CONF, $_CONF, $_TABLES, $LANG_MG00, $LANG_MG03, $side_count, $swfjsinclude;
+    global $gallery_tn_size;
+
+
 
     //@@@@@20120730add---->
     $p1 = COM_applyFilter ($autotag['parm1']);
@@ -154,6 +157,10 @@ function MG_autotags($op, $content = '', $autotag = '')
                 $a = explode(':', $part);
                 $autoplay = $a[1];
                 $skip++;
+            } elseif (substr($part,0,3) == 'tn:') {
+                $a = explode(':', $part);
+                $tn = $a[1];
+                $skip++;
             } elseif (substr($part,0,5) == 'link:') {
                 $a = explode(':',$part);
                 $enable_link = $a[1];
@@ -204,6 +211,12 @@ $enable_link=0;
             } else {
                 break;
             }
+        }
+
+        if  (empty($tn)){
+          $gallery_tn_size="400";
+        } else {
+          $gallery_tn_size=$tn;
         }
 
         if ($skip != 0) {
@@ -1057,7 +1070,7 @@ $enable_link=0;
         //@@@@@
         case 'medialist' :
             $link=MG_medialist ($p1
-                , $p['lastparm2'], $p['theme'],$p['limitcnt'],$p['sort'],$p['src'],$p['title'],$p['desc'],$p['media'],$p['grid'],$p['grids'],$p['gridm'],$p['gridl'],$p['gridr'],$p['uks'],$p['ukc'],$p['reverse'],$p['text'],$p['text1'],$p['text2'],$p['text3'],$p['target'],$p['dotnav'],$p['class_album_title'],$p['class_album_desc'],$p['class_media_title'],$p['class_media_desc'],$p['type'],$p['bxslider']
+                , $p['lastparm2'], $p['theme'],$p['limitcnt'],$p['sort'],$p['src'],$p['title'],$p['desc'],$p['media'],$p['tn'],$p['grid'],$p['grids'],$p['gridm'],$p['gridl'],$p['gridr'],$p['uks'],$p['ukc'],$p['reverse'],$p['text'],$p['text1'],$p['text2'],$p['text3'],$p['target'],$p['dotnav'],$p['class_album_title'],$p['class_album_desc'],$p['class_media_title'],$p['class_media_desc'],$p['type'],$p['bxslider']
 
                 // uk-slideshow
                 ,$p['animation']
@@ -1126,7 +1139,7 @@ $enable_link=0;
             } else {
                 $filename = MG_getAlbumCover($parm1);
                 if ($filename != '') {
-                    $tfn = 'tn/' . $filename[0] . '/' . $filename.'_custom';
+                    $tfn = 'tn/' . $filename[0] . '/' . $filename.'_'.$gallery_tn_size;
                     $ext = MG_getMediaExt($_MG_CONF['path_mediaobjects'] . $tfn);
                     $tnImage = $_MG_CONF['mediaobjects_url'] . '/' . $tfn . $ext;
                     $tnFileName = $_MG_CONF['path_mediaobjects'] . $tfn . $ext;
@@ -1315,7 +1328,7 @@ $enable_link=0;
                 $media_thumbnail_file = $_MG_CONF['path_mediaobjects'] . $tfn . $ext;
             } else {
                 if  ($src == 'tn' AND $row['media_type']==0) {
-                    $tfn = 'tn/' . $row['media_filename'][0] . '/' . $row['media_filename'].'_custom';
+                    $tfn = 'tn/' . $row['media_filename'][0] . '/' . $row['media_filename'].'_'.$gallery_tn_size;
                     $ext = MG_getMediaExt($_MG_CONF['path_mediaobjects'] . $tfn);
                     $media_thumbnail      = $_MG_CONF['mediaobjects_url'] . '/' . $tfn . $ext;
                     $media_thumbnail_file = $_MG_CONF['path_mediaobjects'] . $tfn . $ext;
