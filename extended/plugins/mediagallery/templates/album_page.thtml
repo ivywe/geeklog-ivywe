@@ -287,14 +287,14 @@
 <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-grid-card1">&#91;medialist:{album_id} src:disp theme:1section-grid-card1 limitcnt:3 title:1 uks:uk-section-muted section:0 ukc: grids:1 gridm:3 masonry:1 animation:slide text:詳細を見る media:&#93;</h4
   <?php echo PLG_replaceTags('[medialist:'.$this->get_var('album_id').' src:disp theme:1section-grid-card1 limitcnt:3 title:1 uks:uk-section-muted section:0 ukc: grids:1 gridm:3 masonry:1 animation:slide text:詳細を見る section:1 media:]'); ?>
 
-<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-grid-card2_keyurl">&#91;medialist:{album_id} src:disp theme:1section-grid-card2_keyurl limitcnt:3 title:1 uks:uk-section-muted section:0 ukc:uk-text-center ukc: grids:1 gridm:3 text:プランを見る limitcnt:2 media:&#93;</h4>
-  <?php echo PLG_replaceTags('[medialist:'.$this->get_var('album_id').' src:disp theme:1section-grid-card2_keyurl limitcnt:3 title:1 uks:uk-section-muted section:0 ukc:uk-text-center ukc: grids:1 gridm:3 text:プランを見る limitcnt:3 media:]'); ?>
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-grid-card2_keyurl">&#91;medialist:{album_id} src:disp theme:1section-grid-card2_keyurl title:1 uks:uk-section-muted section:0 ukc:uk-text-center ukc: grids:1 gridm:3 text:プランを見る limitcnt:2 media:&#93;</h4>
+  <?php echo PLG_replaceTags('[medialist:'.$this->get_var('album_id').' src:disp theme:1section-grid-card2_keyurl title:1 uks:uk-section-muted section:0 ukc:uk-text-center ukc: grids:1 gridm:3 text:プランを見る limitcnt:3 media:]'); ?>
 
-<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-grid-card-noimage">&#91;medialist:{album_id} src:disp theme:1section-grid-card-noimage limitcnt:3 title:1 uks:uk-section-muted section:0 ukc:uk-text-center ukc: grids:1 gridm:3 text:プランを見る limitcnt:2 media:&#93;</h4>
-  <?php echo PLG_replaceTags('[medialist:'.$this->get_var('album_id').' src:disp theme:1section-grid-card-noimage limitcnt:3 title:1 uks:uk-section-muted section:0 ukc:uk-text-center ukc: grids:1 gridm:3 text:プランを見る limitcnt:3 media:]'); ?>
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-grid-card-noimage">&#91;medialist:{album_id} src:disp theme:1section-grid-card-noimage title:1 uks:uk-section-muted section:0 ukc:uk-text-center ukc: grids:1 gridm:3 text:プランを見る limitcnt:2 media:&#93;</h4>
+  <?php echo PLG_replaceTags('[medialist:'.$this->get_var('album_id').' src:disp theme:1section-grid-card-noimage title:1 uks:uk-section-muted section:0 ukc:uk-text-center ukc: grids:1 gridm:3 text:プランを見る limitcnt:3 media:]'); ?>
 
-<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-menu_keyurl2">&#91;medialist:{album_id} src:disp theme:1section-menu_keyurl2 limitcnt:3 title:1 uks:uk-section-small.uk-section-muted section:0 ukc: grids:1 gridm:3 text1:お品書きを見る text2:詳細を見る text3:ギャラリー media:&#93;</h4>
-  <?php echo PLG_replaceTags('[medialist:'.$this->get_var('album_id').' src:disp theme:1section-menu_keyurl2 limitcnt:3 title:1 uks:uk-section-small.uk-section-muted section:0 ukc: grids:1 gridm:3 text1:お品書きを見る text2:詳細を見る text3:ギャラリー media:]'); ?>
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-menu_keyurl2">&#91;medialist:{album_id} src:disp theme:1section-menu_keyurl2 title:1 uks:uk-section-small.uk-section-muted section:0 ukc: grids:1 gridm:3 text1:お品書きを見る text2:詳細を見る text3:ギャラリー limitcnt:3 media:&#93;</h4>
+  <?php echo PLG_replaceTags('[medialist:'.$this->get_var('album_id').' src:disp theme:1section-menu_keyurl2 title:1 uks:uk-section-small.uk-section-muted section:0 ukc: grids:1 gridm:3 text1:お品書きを見る text2:詳細を見る text3:ギャラリー limitcnt:3 media:]'); ?>
 
 <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-card">&#91;medialist:{album_id} src:disp theme:1section-card limitcnt:3 title:1 uks:uk-section-large section:1 ukc: grids:1 gridm:3 text1:詳細 media:<?php echo $media; ?>&#93;</h4>
   <?php echo PLG_replaceTags('[medialist:'.$this->get_var('album_id').' src:disp theme:1section-card limitcnt:3 title:1 uks:uk-section-large section:1 ukc: grids:1 gridm:3 text1:詳細 media:'.$media.']'); ?>
