@@ -7,7 +7,7 @@
 
 
 <div>
-	<div
+	<div class="uk-text-center"
 
 <?php
 
@@ -22,7 +22,7 @@ uk-lightbox
 
               <a
 
-<?php if( strpos( $media_keywords, '.pdf') ){ ?>
+<?php if( strpos( $media_keywords, '.pdf') || strpos( $media_keywords, '//')){ ?>
   target="_blank"
 <?php } ?>
 

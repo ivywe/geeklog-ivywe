@@ -1128,7 +1128,7 @@ function plugin_dopluginsearch_mediagallery($query, $datestart, $dateend, $topic
     $sql .= COM_getPermSQL('AND') . ' ';
 
     if (!SEC_inGroup('Root')) {
-        $sql .= "AND hidden = 0 ";
+        $sql .= "AND hidden = 1 ";
     }
 
     if (!empty($author)) {
