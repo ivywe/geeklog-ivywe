@@ -83,7 +83,7 @@ function MG_imageAdmin($album_id, $page, $actionURL = '')
     $album_selectbox .= '</select>';
 
     $album_cp_selectbox = '<select class="uk-select uk-form-width-medium" name="album_cp">';
-    $root_album->buildAlbumBox($album_cp_selectbox, $album_id, 3, $album_id, 'manage');
+    $root_album->buildAlbumBox($album_cp_selectbox, $album_id, 3, 0, 'manage');
     $album_cp_selectbox .= '</select>';
 
     $catRow = array();
@@ -338,8 +338,8 @@ function MG_saveMedia($album_id, $actionURL = '')
             $media_title = DB_escapeString(htmlspecialchars(strip_tags(COM_checkWords($media_title_safe))));
             $media_desc  = DB_escapeString(htmlspecialchars(strip_tags(COM_checkWords($media[$i]['description']))));
         } else {
-            $media_title = $media_title_safe;
-            $media_desc  = $media[$i]['description'];
+            $media_title = DB_escapeString(htmlspecialchars($media_title_safe));
+            $media_desc  = DB_escapeString(htmlspecialchars($media[$i]['description']));
         }
         if ($media[$i]['include_ss'] == 1) {
             $ss = 1;
@@ -1073,8 +1073,8 @@ function MG_saveMediaEdit($album_id, $media_id, $actionURL)
     $remote_url = DB_escapeString(COM_stripslashes($_POST['remoteurl']));
 
     if ($_MG_CONF['htmlallowed']) {
-        $media_title    = COM_checkWords(COM_stripslashes($_POST['media_title']));
-        $media_desc     = COM_checkWords(COM_stripslashes($_POST['media_desc']));
+        $media_title    = htmlspecialchars(COM_checkWords(COM_stripslashes($_POST['media_title'])));
+        $media_desc     = htmlspecialchars(COM_checkWords(COM_stripslashes($_POST['media_desc'])));
     } else {
         $media_title    = htmlspecialchars(strip_tags(COM_checkWords(COM_stripslashes($_POST['media_title']))));
         $media_desc     = htmlspecialchars(strip_tags(COM_checkWords(COM_stripslashes($_POST['media_desc']))));

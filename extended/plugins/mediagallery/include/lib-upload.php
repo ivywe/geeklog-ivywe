@@ -1065,9 +1065,9 @@ function MG_getFile($filename, $file, $album_id, $opt = array())
             $media_caption  = DB_escapeString(htmlspecialchars(strip_tags(COM_checkWords(COM_killJS($caption)))));
             $media_keywords = DB_escapeString(htmlspecialchars(strip_tags(COM_checkWords(COM_killJS($keywords)))));
         } else {
-            $media_desc     = COM_checkHTML(COM_killJS($description));
-            $media_caption  = COM_checkHTML(COM_killJS($caption));
-            $media_keywords = COM_checkHTML(COM_killJS($keywords));
+            $media_desc     = htmlspecialchars(COM_checkHTML(COM_killJS($description)));
+            $media_caption  = htmlspecialchars(COM_checkHTML(COM_killJS($caption)));
+            $media_keywords = htmlspecialchars(COM_checkHTML(COM_killJS($keywords)));
         }
 
         // Check and see if moderation is on.  If yes, place in mediasubmission
@@ -1182,9 +1182,9 @@ function MG_getFile($filename, $file, $album_id, $opt = array())
                                . $original_filename               . "','"
                                . DB_escapeString($mimeExt)             . "','1','"
                                . DB_escapeString($mimeType)            . "','"
-                               . $media_caption                   . "','"
-                               . $media_desc                      . "','"
-                               . $media_keywords                  . "','"
+                               . DB_escapeString($media_caption)       . "','"
+                               . DB_escapeString($media_desc)          . "','"
+                               . DB_escapeString($media_keywords)      . "','"
                                . DB_escapeString($media_time)          . "','0','0','0','0.00','"
                                . DB_escapeString($atttn)               . "','','1','"
                                . DB_escapeString($media_user_id)       . "','','0','"

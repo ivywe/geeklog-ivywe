@@ -437,12 +437,6 @@ function MG_batchCopyMedia($album_id, $destination, $media_id_array, $actionURL 
 {
     global $_USER, $_CONF, $_TABLES, $_MG_CONF, $LANG_MG00, $LANG_MG02, $LANG_MG03;
 
-    // make sure they are not the same...
-    if ($album_id == $destination) {
-        echo COM_refresh($actionURL);
-        exit;
-    }
-
     // check permissions for destination album...
 
     $sql = "SELECT * FROM {$_TABLES['mg_albums']} WHERE album_id=" . intval($destination);
@@ -517,12 +511,12 @@ function MG_batchCopyMedia($album_id, $destination, $media_id_array, $actionURL 
         }
 
         $opt = array(
-            'caption'     => COM_stripslashes($M['media_title']),
-            'description' => COM_stripslashes($M['media_desc']),
+            'caption'     => COM_stripslashes(html_entity_decode($M['media_title'])),
+            'description' => COM_stripslashes(html_entity_decode($M['media_desc'])),
             'filetype'    => $M['mime_type'],
             'atttn'       => $M['media_tn_attached'],
             'thumbnail'   => $pThumbnail,
-            'keywords'    => COM_stripslashes($M['media_keywords']),
+            'keywords'    => COM_stripslashes(html_entity_decode($M['media_keywords'])),
             'category'    => $M['media_category'],
             'dnc'         => 0,
             'upload'      => 0,
