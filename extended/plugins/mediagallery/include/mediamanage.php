@@ -249,9 +249,9 @@ function MG_imageAdmin($album_id, $page, $actionURL = '')
                     'mid'               => $row['media_id'],
                     'order'             => $row['media_order'],
                     'u_thumbnail'       => $thumbnail,
-                    'media_title'       => $row['media_title'],
+                    'media_title'       => htmlspecialchars_decode(htmlspecialchars($row['media_title'],ENT_COMPAT | ENT_HTML5,'UTF-8',FALSE),ENT_NOQUOTES),
                     'media_desc'        => $row['media_desc'],
-                    'media_keywords'    => $row['media_keywords'],
+                    'media_keywords'    => htmlspecialchars_decode(htmlspecialchars($row['media_keywords'],ENT_COMPAT | ENT_HTML5,'UTF-8',FALSE),ENT_NOQUOTES),
                     'media_time'        => $media_time[0],
                     'media_views'       => $row['media_views'],
                     'radio_box'         => $radio_box,
@@ -333,21 +333,22 @@ function MG_saveMedia($album_id, $actionURL = '')
 
     for ($i=0; $i < $numItems; $i++) {
         $media_title_safe = substr($media[$i]['title'], 0, 254);
+        $media_keywords_safe = substr($media[$i]['keywords'],0,254);
 
         if ($_MG_CONF['htmlallowed'] != 1) {
             $media_title = DB_escapeString(htmlspecialchars(strip_tags(COM_checkWords($media_title_safe))));
             $media_desc  = DB_escapeString(htmlspecialchars(strip_tags(COM_checkWords($media[$i]['description']))));
+            $media_keywords = DB_escapeString(htmlspecialchars(strip_tags(COM_checkWords($media_keywords_safe))));
         } else {
-            $media_title = DB_escapeString(htmlspecialchars($media_title_safe));
-            $media_desc  = DB_escapeString(htmlspecialchars($media[$i]['description']));
+            $media_title = DB_escapeString($media_title_safe);
+            $media_desc  = DB_escapeString($media[$i]['description']);
+            $media_keywords = DB_escapeString(COM_checkWords($media_keywords_safe));
         }
         if ($media[$i]['include_ss'] == 1) {
             $ss = 1;
         } else {
             $ss = 0;
         }
-        $media_keywords_safe = substr($media[$i]['keywords'],0,254);
-        $media_keywords = DB_escapeString(htmlspecialchars(strip_tags(COM_checkWords($media_keywords_safe))));
         $cat_id = $media[$i]['cat_id'];
 
         $sql = "UPDATE {$_TABLES['mg_media']} SET media_title='" . $media_title
@@ -855,7 +856,7 @@ function MG_mediaEdit($album_id, $media_id, $actionURL='', $mqueue=0, $view=0, $
         'album_id'           => $album_id,
         'media_thumbnail'    => $thumbnail,
         'media_id'           => $row['media_id'],
-        'media_title'        => $row['media_title'],
+        'media_title'        => htmlspecialchars_decode(htmlspecialchars($row['media_title'],ENT_COMPAT | ENT_HTML5,'UTF-8',FALSE),ENT_NOQUOTES),
         'media_desc'         => $row['media_desc'],
         'media_time'         => $media_time[0],
         'media_views'        => $row['media_views'],
@@ -890,7 +891,7 @@ function MG_mediaEdit($album_id, $media_id, $actionURL='', $mqueue=0, $view=0, $
         'lang_resolution'    => $lang_resolution,
         'username'           => $username,
         'cat_select'         => $cat_select,
-        'media_keywords'     => $row['media_keywords'],
+        'media_keywords'     => htmlspecialchars_decode(htmlspecialchars($row['media_keywords'],ENT_COMPAT | ENT_HTML5,'UTF-8',FALSE),ENT_NOQUOTES),
         'artist'             => $row['artist'],
         'musicalbum'         => $row['album'],
         'genre'              => $row['genre'],
@@ -1072,12 +1073,16 @@ function MG_saveMediaEdit($album_id, $media_id, $actionURL)
 
     $remote_url = DB_escapeString(COM_stripslashes($_POST['remoteurl']));
 
+    $media_keywords     = COM_stripslashes($_POST['media_keywords']);
+    $media_keywords_safe = substr($media_keywords,0,254);
     if ($_MG_CONF['htmlallowed']) {
-        $media_title    = htmlspecialchars(COM_checkWords(COM_stripslashes($_POST['media_title'])));
-        $media_desc     = htmlspecialchars(COM_checkWords(COM_stripslashes($_POST['media_desc'])));
+        $media_title    = COM_checkWords(COM_stripslashes($_POST['media_title']));
+        $media_desc     = COM_checkWords(COM_stripslashes($_POST['media_desc']));
+        $media_keywords = COM_checkWords($media_keywords_safe);
     } else {
         $media_title    = htmlspecialchars(strip_tags(COM_checkWords(COM_stripslashes($_POST['media_title']))));
         $media_desc     = htmlspecialchars(strip_tags(COM_checkWords(COM_stripslashes($_POST['media_desc']))));
+        $media_keywords = htmlspecialchars(strip_tags(COM_checkWords($media_keywords_safe)));
     }
     $media_time_month   = COM_applyFilter($_POST['media_month']);
     $media_time_day     = COM_applyFilter($_POST['media_day']);
@@ -1089,9 +1094,6 @@ function MG_saveMediaEdit($album_id, $media_id, $actionURL)
         $original_filename = $filename;
     }
     $cat_id             = COM_applyFilter($_POST['cat_id'],true);
-    $media_keywords     = COM_stripslashes($_POST['media_keywords']);
-    $media_keywords_safe = substr($media_keywords,0,254);
-    $media_keywords = DB_escapeString(htmlspecialchars(strip_tags(COM_checkWords($media_keywords_safe))));
 
     $artist     = DB_escapeString(COM_applyFilter(COM_stripslashes($_POST['artist']) ) );
     $musicalbum = DB_escapeString(COM_applyFilter(COM_stripslashes($_POST['musicalbum']) ) );
@@ -1116,7 +1118,7 @@ function MG_saveMediaEdit($album_id, $media_id, $actionURL)
             media_time="        . $media_time . ",
             media_tn_attached=" . $attachtn . ",
             media_category="    . intval($cat_id) . ",
-            media_keywords='"   . $media_keywords . "',
+            media_keywords='"   . DB_escapeString($media_keywords) . "',
             artist='"           . $artist . "',
             album='"            . $musicalbum . "',
             genre='"            . $genre . "',

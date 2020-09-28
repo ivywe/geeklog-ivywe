@@ -1061,13 +1061,13 @@ function MG_getFile($filename, $file, $album_id, $opt = array())
         }
 
         if ($_MG_CONF['htmlallowed'] != 1) {
-            $media_desc     = DB_escapeString(htmlspecialchars(strip_tags(COM_checkWords(COM_killJS($description)))));
-            $media_caption  = DB_escapeString(htmlspecialchars(strip_tags(COM_checkWords(COM_killJS($caption)))));
-            $media_keywords = DB_escapeString(htmlspecialchars(strip_tags(COM_checkWords(COM_killJS($keywords)))));
+            $media_desc     = htmlspecialchars(strip_tags(COM_checkWords(COM_killJS($description))));
+            $media_caption  = htmlspecialchars(strip_tags(COM_checkWords(COM_killJS($caption))));
+            $media_keywords = htmlspecialchars(strip_tags(COM_checkWords(COM_killJS($keywords))));
         } else {
-            $media_desc     = htmlspecialchars(COM_checkHTML(COM_killJS($description)));
-            $media_caption  = htmlspecialchars(COM_checkHTML(COM_killJS($caption)));
-            $media_keywords = htmlspecialchars(COM_checkHTML(COM_killJS($keywords)));
+            $media_desc     = COM_checkHTML(COM_killJS($description));
+            $media_caption  = COM_checkHTML(COM_killJS($caption));
+            $media_keywords = COM_checkHTML(COM_killJS($keywords));
         }
 
         // Check and see if moderation is on.  If yes, place in mediasubmission
