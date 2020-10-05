@@ -5,9 +5,9 @@
 <?php
 $media_keywords = $this->get_var('media_keywords');
 $media_keywords = explode("\r\n", $media_keywords);
-$msg=$media_keywords[0];
-$url1 = $media_keywords[1];
-$url2 = $media_keywords[2];
+$url1 = $media_keywords[0];
+$url2 = $media_keywords[1];
+$msg=$media_keywords[2];
 ?>
 
           <div>
@@ -26,7 +26,7 @@ $url2 = $media_keywords[2];
                       <div class="uk-text-center@m uk-margin-top">
                         <div class="uk-button-group">
                           <div><a class="uk-button uk-button-primary" href="<?php echo $url1; ?>"{!if target} target="{target}"{!endif}>{!if text2}{text2}{!else}プランを見る(この文言の引数はtext2で){!endif}</a></div>
-                          <div><a class="uk-button uk-button-default" href="<?php echo $url2; ?>"{!if target} target="{target}"{!endif}>{!if text3}{text3}{!else}ギャラリーを見る(この文言の引数はtext3で){!endif}</a></div>
+                          <div><a class="uk-button uk-button-default" href="<?php echo $url2; ?>"{!if target} target="{target}"{!endif}}>{!if text3}{text3}{!else}ギャラリーを見る(この文言の引数はtext3で){!endif}</a></div>
                         </div>
                       </div>
                     </div>
