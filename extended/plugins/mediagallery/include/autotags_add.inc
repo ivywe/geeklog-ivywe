@@ -546,6 +546,7 @@ function MG_parm2 ($p2)
     $ary=array();
     $px = explode (' ', trim ($p2));
     if (is_array ($px)) {
+		$skip = 0;
 		foreach ($px as $part) {
 			$a = explode (':', $part);
 			if (in_array($a[0],$parm2_ary)){
