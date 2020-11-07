@@ -6,19 +6,19 @@
           <div uk-grid>
 
 {!if reverse}
-            <div class="uk-width-1-1 uk-width-{gridl}@m uk-first-column">
-              {!if media_title}<h3 class="<?php echo $class_media_title; ?>" style="font-size: 2.4vw">{media_title}</h3>{!endif}
+            <div class="uk-width-1-1 uk-width-{gridl}{grid_left}@m uk-first-column">
+              {!if media_title}<{!if media_title_tag}{media_title_tag}{!else}h3{!endif} class="<?php echo $class_media_title; ?>" style="font-size: 2.4vw">{media_title}</{!if media_title_tag}{media_title_tag}{!else}h3{!endif}>{!endif}
               <div class="uk-text-left uk-margin<?php echo $class_media_desc; ?>">{media_desc}</div>
             </div>
-            <div class="uk-width-1-1 uk-width-{gridr}@m">
+            <div class="uk-width-1-1 uk-width-{gridr}{grid_right}@m">
               <img class="{imgclass}" src="{filename}" alt="">
             </div>
 {!else}
-            <div class="uk-width-1-1 uk-width-{gridl}@m uk-first-column">
+            <div class="uk-width-1-1 uk-width-{gridl}{grid_left}@m uk-first-column">
               <img class="{imgclass}" src="{filename}" alt="">
             </div>
-            <div class="uk-width-1-1 uk-width-{gridr}@m">
-              {!if media_title}<h3 class="<?php echo $class_media_title; ?>" style="font-size: 2.4vw">{media_title}</h3>{!endif}
+            <div class="uk-width-1-1 uk-width-{gridr}{grid_right}@m">
+              {!if media_title}<{!if media_title_tag}{media_title_tag}{!else}h3{!endif} class="<?php echo $class_media_title; ?>" style="font-size: 2.4vw">{media_title}</{!if media_title_tag}{media_title_tag}{!else}h3{!endif}>{!endif}
               <div class="uk-text-left uk-margin<?php echo $class_media_desc; ?>">{media_desc}</div>
             </div>
 {!endif}
@@ -27,7 +27,7 @@
         </div>
 
         <div class="uk-hidden@m uk-text-center">
-              {!if media_title}<h3 class="<?php echo $class_media_title; ?>" style="font-size: 3vw">{media_title}</h3>{!endif}
+              {!if media_title}<{!if media_title_tag}{media_title_tag}{!else}h3{!endif} class="<?php echo $class_media_title; ?>" style="font-size: 3vw">{media_title}</{!if media_title_tag}{media_title_tag}{!else}h3{!endif}>{!endif}
               <img class="{imgclass}" src="{filename}" alt="">
               <div class="uk-text-left uk-margin<?php echo $class_media_desc; ?>">{media_desc}</div>
         </div>

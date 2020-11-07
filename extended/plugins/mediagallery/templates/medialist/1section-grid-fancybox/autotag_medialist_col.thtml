@@ -8,7 +8,7 @@
 
 
 <span class="overlay-zoom">
-				<img src="{filename}" alt="{media_title}">
+				<img src="{filename}" alt="">
 				<span class="zoom-icon"></span>
 			</span>
       </a>

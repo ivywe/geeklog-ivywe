@@ -6,7 +6,7 @@
   <div class="uk-card uk-card-default uk-card-small uk-background-primary uk-light">
     <div class="uk-flex-middle" uk-grid="">
       <div class="uk-card-media-top uk-width-1-2 uk-width-1-3@s uk-first-column">
-        <img src="{filename}" alt="{media_title}">
+        <img src="{filename}" alt="">
       </div>
       <div class="uk-card-body uk-width-1-2 uk-width-2-3@s uk-padding-remove-top uk-padding-remove-bottom">
         <h3>{media_title}</h3>

@@ -4,7 +4,7 @@
 
   <div class="uk-margin-large uk-text-center@m" uk-lightbox="animation: {!if animation}{animation}{!else}slide{!endif}">
     {!!if {link} == "1" !!}<a href="{filename_orig}" class="uk-inline uk-thumbnail" uk-lightbox="animation: {animation}" title="{media_title}" caption="{media_title}">{!endif}
-      <img src="{filename}" alt="{media_title}" class="uk-container-center uk-overlay-scale {class}" alt="{media_title}"{xhtml}>
+      <img src="{filename}" alt="" class="uk-container-center uk-overlay-scale {class}" alt=""{xhtml}>
 			<div class="uk-thumbnail-caption<?php echo $class_media_title; ?>">{media_title}</div>
     {!!if {link} == "1" !!}</a>{!endif}
     <div class="uk-text-left uk-margin<?php echo $class_media_desc; ?>">{media_desc}</div>

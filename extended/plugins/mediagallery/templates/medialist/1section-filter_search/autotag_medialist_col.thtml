@@ -9,7 +9,7 @@ $key = explode("\r\n", $keywords);
 
             <li group-00="{media_category_name}" group-01="<?php echo $key[0]; ?>" group-02="<?php echo $key[1]; ?>">
               <a class="uk-inline-clip uk-transition-toggle" href="{filename_orig}" data-caption="{media_title}">
-                <img src="{filename}" alt="{media_title}">
+                <img src="{filename}" alt="">
                 <div class="uk-position-center">
                   <span class="uk-transition-fade uk-light" uk-icon="icon: plus; ratio: 2"></span>
                 </div>

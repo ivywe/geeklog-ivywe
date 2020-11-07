@@ -13,6 +13,10 @@
   <dt style="text-transform: none">src</dt><dd>{src}</dd>
   <dt style="text-transform: none">limitcnt</dt><dd>{limitcnt}</dd>
   <dt style="text-transform: none">title</dt><dd>{title}</dd>
+  <dt style="text-transform: none">album_title_disp</dt><dd>{album_title_disp}</dd>
+  <dt style="text-transform: none">media_title_disp</dt><dd>{media_title_disp}</dd>
+  <dt style="text-transform: none">album_title_tag</dt><dd>{album_title_tag}</dd>
+  <dt style="text-transform: none">media_title_tag</dt><dd>{media_title_tag}</dd>
   <dt style="text-transform: none">uks</dt><dd>{uks}</dd>
   <dt style="text-transform: none">ukc</dt><dd>{ukc}</dd>
   <dt style="text-transform: none">media</dt><dd>{media}</dd>

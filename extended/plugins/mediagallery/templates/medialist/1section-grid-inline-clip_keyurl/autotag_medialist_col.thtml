@@ -2,6 +2,13 @@
 
 <?php $ratio = $this->get_var('ratio'); $ratio=str_replace("_",":",$ratio); $cl = $this->get_var('uks');if(strlen($cl)){$uks = ' '.str_replace('.', ' ', $cl);}else{$uks = "";}$cl = $this->get_var('ukc');if(strlen($cl)){$ukc = ' '.str_replace('.', ' ', $cl);}else{$ukc = "";}$cl = $this->get_var('class_album_title');if(strlen($cl)){$class_album_title = ' '.str_replace('.', ' ', $cl);}else{$class_album_title = " uk-text-center";}$cl = $this->get_var('class_album_desc');if(strlen($cl)){$class_album_desc = ' '.str_replace('.', ' ', $cl);}else{$class_album_desc = " uk-text-center@s";}$cl = $this->get_var('class_media_title');if(strlen($cl)){$class_media_title = ' '.str_replace('.', ' ', $cl);}else{$class_media_title = " uk-text-left";}$cl = $this->get_var('class_media_desc');if(strlen($cl)){$class_media_desc = ' '.str_replace('.', ' ', $cl);}else{$class_media_desc = " uk-text-left";} ?>
 
+<?php
+$media_keywords = $this->get_var('media_keywords');
+$media_keywords = explode("\r\n", $media_keywords);
+$url1 = $media_keywords[0];
+$msg=$media_keywords[1];
+?>
+
 <div>
 	<div
 
@@ -29,7 +36,7 @@ class="uk-inline-clip uk-transition-toggle"{!if target} target="{target}"{!endif
 <?php } ?>
 
 href="{media_keywords}">
-                <img src="{filename}" alt="{media_title}">
+                <img src="{filename}" alt="">
                 <div class="uk-position-center">
                   <span class="uk-transition-fade uk-light"
 
@@ -46,7 +53,7 @@ uk-icon="icon:plus; ratio:2"
 ></span>
                 </div>
               </a>
-	{!if title}<div class="uk-caption uk-text-center uk-text-large uk-text-bold uk-margin-small-top">{media_title}</div>{!endif}
+	{!!if {title} || {media_title_disp} !!}<{!if media_title_tag}{media_title_tag}{!else}div{!endif} class="uk-caption uk-text-center uk-text-large uk-text-bold uk-margin-small-top<?php echo $class_media_title; ?>">{media_title}</{!if media_title_tag}{media_title_tag}{!else}div{!endif}>{!endif}
 
 	</div>
 </div>

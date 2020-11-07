@@ -5,12 +5,12 @@
     <fieldset>
     <legend>autotag_medialist_col.thtml</legend>
     {edit}
-    {!if media_title}<h3 class="uk-container-center">{media_title}</h3>{!endif}
+    {!if media_title}<{!if media_title_tag}{media_title_tag}{!else}h3{!endif} class="uk-container-center">{media_title}</{!if media_title_tag}{media_title_tag}{!else}h3{!endif}>{!endif}
 
     <dl class="uk-description-list-line">
-      <img src="{filename_tn}" alt="{media_title}" class="uk-border-rounded uk-align-center" style="max-width:200px" alt="{media_title}"{xhtml}>
-      <img src="{filename_disp}" alt="{media_title}" class="uk-border-rounded uk-align-center" style="max-width:300px" alt="{media_title}"{xhtml}>
-      <img src="{filename_orig}" alt="{media_title}" class="uk-border-rounded uk-align-center" style="max-width:400px" alt="{media_title}"{xhtml}>
+      <img src="{filename_tn}" alt="" class="uk-border-rounded uk-align-center" style="max-width:200px" alt=""{xhtml}>
+      <img src="{filename_disp}" alt="" class="uk-border-rounded uk-align-center" style="max-width:300px" alt=""{xhtml}>
+      <img src="{filename_orig}" alt="" class="uk-border-rounded uk-align-center" style="max-width:400px" alt=""{xhtml}>
       <dt>class</dt><dd>{class}</dd>
       <dt>album_id</dt><dd>{album_id}</dd>
       <dt>album_title</dt><dd>{album_title}</dd>

@@ -38,6 +38,10 @@ function MG_medialist (
   , $sort='asc'
   , $src=''
   , $title=''
+  , $album_title_disp=''
+  , $media_title_disp=''
+  , $album_title_tag=''
+  , $media_title_tag=''
   , $desc=''
   , $media=''
   , $tn=''
@@ -46,6 +50,12 @@ function MG_medialist (
   , $gridm=''
   , $gridl='3-5'
   , $gridr='2-5'
+  , $grid_s=''
+  , $grid_m=''
+  , $grid_l=''
+  , $grid_left='3-5'
+  , $grid_right='2-5'
+
   , $uks=''
   , $ukc=''
   , $reverse=''
@@ -221,6 +231,10 @@ function MG_medialist (
 		$T->set_var('album_desc',$album_desc);
 
 		$T->set_var('title',$title);
+    $T->set_var('album_title_disp',$album_title_disp);
+    $T->set_var('media_title_disp',$media_title_disp);
+    $T->set_var('album_title_tag',$album_title_tag);
+    $T->set_var('media_title_tag',$media_title_tag);
 		$T->set_var('src',$src);
 		$T->set_var('desc',$desc);
 		$T->set_var('theme',$theme);
@@ -232,7 +246,12 @@ function MG_medialist (
 		$T->set_var('gridm',$gridm);
 		$T->set_var('gridl',$gridl);
 		$T->set_var('gridr',$gridr);
-		$T->set_var('uks',$uks);
+    $T->set_var('grid_s',$grid_s);
+    $T->set_var('grid_m',$grid_m);
+    $T->set_var('grid_l',$grid_l);
+    $T->set_var('grid_left',$grid_left);
+    $T->set_var('grid_right',$grid_right);
+    $T->set_var('uks',$uks);
 		$T->set_var('ukc',$ukc);
 		$T->set_var('reverse',$reverse);
 		$T->set_var('text',$text);
@@ -466,6 +485,10 @@ function MG_parm2 ($p2)
 	$parm2_ary[]="limitcnt";
 
 	$parm2_ary[]="title";
+  $parm2_ary[]="album_title_disp";
+  $parm2_ary[]="media_title_disp";
+  $parm2_ary[]="album_title_tag";
+  $parm2_ary[]="media_title_tag";
 	$parm2_ary[]="desc";
 	$parm2_ary[]="uks";
 	$parm2_ary[]="ukc";
@@ -476,7 +499,12 @@ function MG_parm2 ($p2)
 	$parm2_ary[]="gridm";
 	$parm2_ary[]="gridl";
 	$parm2_ary[]="gridr";
-	$parm2_ary[]="reverse";
+  $parm2_ary[]="grid_s";
+  $parm2_ary[]="grid_m";
+  $parm2_ary[]="grid_l";
+  $parm2_ary[]="grid_left";
+  $parm2_ary[]="grid_right";
+  $parm2_ary[]="reverse";
 	$parm2_ary[]="text";
 	$parm2_ary[]="text1";
 	$parm2_ary[]="text2";

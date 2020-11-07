@@ -4,7 +4,7 @@
 
               <li>
                 <a class="uk-inline" href="{filename_disp}" data-caption="{media_title}{!if media_title} | {!endif}{media_desc}">
-                  <img src="{filename}" alt="{media_title}">
+                  <img src="{filename}" alt="">
                 </a>
               </li>
 {# end {templatelocation} #}

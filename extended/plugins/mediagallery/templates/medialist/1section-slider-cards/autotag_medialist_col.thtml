@@ -5,10 +5,10 @@
 <li>
   <div class="uk-card uk-card-default uk-card-small">
     <div class="uk-card-media-top">
-      <img src="{filename}" alt="{media_title}">
+      <img src="{filename}" alt="">
     </div>
     <div class="uk-card-body">
-      <h3 class="uk-card-title">{media_title}</h3>
+      {!if media_title}<{!if media_title_tag}{media_title_tag}{!else}h3{!endif} class="uk-card-title">{media_title}</{!if media_title_tag}{media_title_tag}{!else}h3{!endif}>{!endif}
       <div>{media_desc}</div>
     </div>
   </div>

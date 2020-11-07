@@ -4,9 +4,9 @@
 
 <li class="uk-width-3-4">
   <div class="uk-panel">
-    <img src="{filename}" alt="{media_title}"{xhtml}>
+    <img src="{filename}" alt=""{xhtml}>
     <div class="uk-overlay uk-overlay-primary uk-position-bottom uk-text-center uk-transition-slide-bottom-small">
-      <h3 class="uk-margin-remove">{media_title}</h3>
+      {!if media_title}<{!if media_title_tag}{media_title_tag}{!else}h3{!endif} class="uk-margin-remove">{media_title}</{!if media_title_tag}{media_title_tag}{!else}h3{!endif}>{!endif}
       <div class="uk-margin-remove">{media_desc}</div>
     </div>
   </div>

@@ -4,7 +4,7 @@
 
 <li>
   <div class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-center">
-     <img src="{filename}" alt="{media_title}" uk-cover>
+     <img src="{filename}" alt="" uk-cover>
   </div>
   <div class="uk-position-center uk-position-small uk-text-center uk-light uk-animation-fade uk-animation-slow">
 {!if media_title}<h1 class="uk-heading-primary uk-margin-medium-bottom">{media_title}</h1>{!endif}
