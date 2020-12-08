@@ -62,7 +62,7 @@ switch ($sub) {
     case 'c': $sub_menu = 'miscellaneous';  break;
 }
 
-$home_url = $_CONF['site_url'] . '/admin/moderation.php';
+$home_url = $_CONF['site_admin_url'] . '/moderation.php';
 
 if ($mode == 'editsubmission') {
     $media_id = COM_applyFilter($_GET['id']);
@@ -71,7 +71,7 @@ if ($mode == 'editsubmission') {
         COM_redirect($home_url);
     }
     require_once $_CONF['path'] . 'plugins/mediagallery/include/mediamanage.php';
-    $actionURL = $_CONF['site_url'] . '/admin/plugins/mediagallery/index.php?mode=savemedia';
+    $actionURL = $_CONF['site_admin_url'] . '/plugins/mediagallery/index.php?mode=savemedia';
     $display = MG_mediaEdit($album_id, $media_id, $actionURL, 1);
     $display = COM_createHTMLDocument($display);
     COM_output($display);
