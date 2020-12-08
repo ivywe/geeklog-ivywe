@@ -6,7 +6,7 @@
 
 <?php if(((int)$this->get_var('reverse')+$mgorderslrk)%2!=0) { ?>
 
-<div class="uk-visible@m uk-card uk-card-default uk-grid-collapse uk-margin uk-card-hover" uk-grid>
+<div class="uk-visible@m uk-card uk-card-default uk-grid-collapse uk-flex-middle uk-margin uk-card-hover" uk-grid>
   <div class="uk-card-media-left uk-cover-container uk-first-column uk-width-{gridl}{grid_left}">
       <div uk-lightbox="animation: fade"><a href="{filename_orig}"><img src="{filename_disp}" data-caption="{media_title}"></a></div>
   </div>
@@ -21,7 +21,7 @@
 
 <?php } else { ?>
 
-<div class="uk-visible@m uk-card uk-card-default uk-grid-collapse uk-flex-middle uk-margin" uk-grid>
+<div class="uk-visible@m uk-card uk-card-default uk-grid-collapse uk-flex-middle uk-margin uk-card-hover" uk-grid>
   <div class="uk-flex-last@s uk-card-media-right uk-cover-container uk-width-{gridl}{grid_left}">
       <div uk-lightbox="animation: fade"><a href="{filename_orig}"><img src="{filename_disp}" data-caption="{media_title}"></a></div>
   </div>
