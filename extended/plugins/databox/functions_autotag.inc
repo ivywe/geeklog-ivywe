@@ -300,6 +300,16 @@ function plugin_autotags_databox (
                                 ,$p['permission']
                             );
                         break;
+				   //@@@@@202012---->	
+                   case 'code':
+                        $rt=databox_code(
+                                $p['code']
+                                ,$p['category_id']
+                                ,$p['category_code']
+                                ,$p['mode']
+                            );
+                        break;
+				   //@@@@@202012<----	
                 }
 
                 $content = str_replace ($autotag['tagstr'], $rt, $content);
@@ -3952,6 +3962,150 @@ function databox_searchargedit(
     }
 
     return ;
+}
+function databox_code(
+    $code= ''
+    ,$category_id=null
+    ,$category_code=null
+    ,$mode=''
+)
+// +---------------------------------------------------------------------------+
+// | 機能  指定CODE の　直前（または直後）に公開したデータのコードを取得する
+// |       複数カテゴリ条件選択が可能（OR と AND）
+// +---------------------------------------------------------------------------+
+// | 書式  databox_code($code)
+// +---------------------------------------------------------------------------+
+// | 引数 $code:コード
+// | 引数 $category_id:カテゴリid
+// | 引数 $category_code :
+// | 引数 $mode          :ブランク　または　next prev 
+// +---------------------------------------------------------------------------+
+// | 戻値 nomal:指定値
+// +---------------------------------------------------------------------------+
+{
+	$pi_name= 'databox';
+	
+    global $_TABLES;
+    global $_CONF;
+
+    //-----
+    $tbl1=$_TABLES[strtoupper($pi_name).'_base'] ;
+    $tbl4=$_TABLES[strtoupper($pi_name).'_category'] ;
+	$tbl5=$_TABLES[strtoupper($pi_name).'_def_category'] ;
+
+	if ($code=="" ){
+        return "";
+    }
+    $rt=DB_getItem( $tbl1   ,'code',"code='{$code}'");
+    if (empty($rt)){
+        return "";
+    }
+ 
+    //-----category check
+    $ids="";
+    $idsary=array();
+    if (is_null($category_id) OR $category_id==0){
+        if (is_null($category_code)){
+        }else{
+            $w=explode("|",$category_code);
+            foreach( $w as $val ){
+                if ($ids<>""){
+                    $ids.=",";
+                }
+			$w_id=DATABOX_codetoid($val,strtoupper($pi_name).'_def_category',"category_id");
+			$idsary[]=$w_id;
+                $ids.=$w_id;
+            }
+        }
+    }else{
+        $ids=$category_id;
+        $idsary[]=$category_id;
+    }
+
+    //-----
+    $sql = "SELECT ".LB;
+
+	$sql .= " code ".LB;
+
+	$sql .= " FROM ".LB;
+
+    $sql .= " {$tbl1} AS t1 ".LB;
+
+    $sql .= " WHERE ".LB;
+
+    //@@@@@@@@@@@------>
+    //下書はのぞく
+    $sql .= " t1.draft_flag=0".LB;
+    //アクセス権のないデータ はのぞく
+    if  (strtoupper($permission)=="IGNORE"){
+    }else{
+        $sql .= COM_getPermSql('AND').LB;
+    }
+    //公開日以前のデータはのぞく
+    $sql .= " AND (released <= NOW())".LB;
+    //公開終了日を過ぎたデータはのぞく
+    $sql .= " AND (expired=0 OR expired > NOW())".LB;
+    //@@@@@@@@@@@<------
+
+
+    if (count($idsary)<>0){
+        if (strtoupper($mode)=="AND"){
+            $w="";
+            foreach( $idsary as $val ){
+                if ($w<>""){
+                    $w.=" AND ";
+                }
+                $w.=$val." IN (SELECT t4.category_id";
+                $w.=" FROM {$tbl4} AS t4 ,{$tbl5} AS t5";
+                $w.=" WHERE t1.id = t4.id AND t4.category_id = t5.category_id AND t5.allow_display<2)";
+            }
+        }else{
+            $w= "t1.id IN (SELECT id FROM {$tbl4} AS t4 ,{$tbl5} AS t5 ";
+            $w.="WHERE t4.category_id = t5.category_id AND t5.allow_display<2 AND t4.category_id IN ({$ids})) ";
+        }
+        $sql.=" AND ({$w})".LB;
+    }
+	
+    //--ORDER
+    $sql .= " ORDER BY released,code".LB;
+	
+	
+	
+    $result = DB_query ($sql);
+    $numrows = DB_numRows ($result);
+
+	$code_prev="";
+	$code_next="";
+    if ($numrows > 0) {
+		$code_current="";
+		$code_fit="0";
+		for ($i = 0; $i < $numrows; $i++) {
+            $A = DB_fetchArray ($result);
+            $A = array_map('stripslashes', $A);
+
+            $code_current=COM_applyFilter($A['code']);
+			if  ($code_current==$code) {
+				$code_fit="1";
+			}else{
+				if  ($code_fit=="0"){
+					$code_prev=$code_current;
+				}
+				if ($code_fit=="1"){	
+					$code_next=$code_current;
+					break;
+				}
+			}
+        }
+	}
+
+	if  (strtoupper($mode)=="PREV"){
+		$rt=$code_prev;
+	}else{
+		$rt=$code_next;
+	}
+    return $rt;
+
+
 }
 
 ?>
