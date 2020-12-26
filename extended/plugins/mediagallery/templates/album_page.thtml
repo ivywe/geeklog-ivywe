@@ -205,6 +205,7 @@
         <li><a href="#_1section-card-left-right-lightbox" uk-scroll="offset:100">1section-card-left-right-lightbox</a></li>
         <li><a href="#_1section-col2_reverse" uk-scroll="offset:100">1section-col2_reverse</a></li>
         <li><a href="#_1section-filter_search" uk-scroll="offset:100">1section-filter_search</a></li>
+        <li><a href="#_1section-normal" uk-scroll="offset:100">1section-normal</a></li>
         <li><a href="#_1section-qa" uk-scroll="offset:100">1section-qa</a></li>
         <li><a href="#_1section-slider" uk-scroll="offset:100">1section-slider</a></li>
         <li><a href="#_1section-slider-lightbox" uk-scroll="offset:100">1section-slider-lightbox</a></li>
@@ -354,6 +355,10 @@
 <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-filter_search">
                                             &#91;medialist:{album_id} src:tn tn:400x400 limitcnt:10 theme:1section-filter_search src:disp grid_s:1 grid_m:5 masonry:1 uks:uk-section-large media:<?php echo $media; ?> album_title_disp:1 media_title_disp:1 album_title_tag:h2 media_title_tag:p&#93;</h4>
   <?php echo PLG_replaceTags('[medialist:'.$this->get_var('album_id').' src:tn tn:400x400 limitcnt:10 theme:1section-filter_search src:disp grid_s:1 grid_m:5 masonry:1 uks:uk-section-large media:'.$media.' album_title_disp:1 media_title_disp:1 album_title_tag:h2 media_title_tag:p]'); ?>
+
+<h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-normal">
+                                            &#91;medialist:{album_id} src:tn tn:400x400 limitcnt:10 theme:1section-normal src:disp grid_s:1 grid_m:5 masonry:1 uks:uk-section-large media:<?php echo $media; ?> album_title_disp:1 media_title_disp:1 album_title_tag:h2 media_title_tag:p&#93;</h4>
+  <?php echo PLG_replaceTags('[medialist:'.$this->get_var('album_id').' src:tn tn:400x400 limitcnt:10 theme:1section-normal src:disp grid_s:1 grid_m:5 masonry:1 uks:uk-section-large media:'.$media.' album_title_disp:1 media_title_disp:1 album_title_tag:h2 media_title_tag:p]'); ?>
 
 <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-qa">
                                             &#91;medialist:{album_id} src:disp limitcnt:3 theme:1section-qa title:0 uks:uk-section-large media: album_title_disp:1 media_title_disp:1 album_title_tag:h2 media_title_tag:p&#93;</h4>
