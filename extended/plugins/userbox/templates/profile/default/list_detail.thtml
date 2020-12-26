@@ -1,5 +1,5 @@
 {# begin {templatelocation} #}
-{# plugins/userbox/templates/profile/default/list_detail.thtml 20160623 #}
+
 <div class="userbox">
     <h2>{title}</h2>
     <dl class="uk-description-list-horizontal">
@@ -72,7 +72,7 @@
             <dd style="margin-left:220px;margin-top:-1.5em">{modified_d}</dd>
             <dd style="width:220px;height:1.5em;color:green">&#123;modified_e&#125;</dd>
             <dd style="margin-left:220px;margin-top:-1.5em">{modified_e}</dd>
-    
+
             <dt>{lang_created}</dt>
             <dd style="width:220px;height:1.5em;color:green">&#123;created&#125;</dd>
             <dd style="margin-left:220px;margin-top:-1.5em">{created}</dd>
@@ -217,7 +217,7 @@
         </td>
         <td>{categorieslinkid}</td>
       </tr>
-    
+
 
     </table>
   </fieldset>
@@ -241,7 +241,7 @@
     </fieldset>
     {edit}
 
-<h3 style="margin-top:10em">* Example *</h3> 
+<h3 style="margin-top:10em">* Example *</h3>
 {# 以下は参考例です 登録されていない場合表示されません #}
 
 {# グループ別カテゴリ　グループコードを使用する #}
@@ -253,7 +253,7 @@
         <th style="width:20%; color:green;" class="alignleft">{lang_templatesetvar}</th>
         <th class="alignleft">{lang_content}</th>
       </tr>
-    
+
       {# city #}
       <tr>
         <th style="width:20%" class="alignright">city</th>
@@ -332,7 +332,7 @@
         <th style="width:20%; color:green;" class="alignleft">{lang_templatesetvar}</th>
         <th class="alignleft">{lang_content}</th>
       </tr>
-    
+
       {# city #}
       <tr>
             <th style="width:20%" class="alignright">city</th>
@@ -554,12 +554,12 @@
         <th style="width:20%; color:green" class="alignleft">&#123;tel&#125;</th>
         <td>{tel}</td>
       </tr>
-    
+
       <tr>
         <th style="width:20%; color:green" class="alignleft">&#123;pref&#125;</th>
         <td>{pref}</td>
       </tr>
-    
+
       <tr>
         <th style="width:20%; color:green" class="alignleft">&#123;pref_mst_value2&#125;</th>
         <td>{pref_mst_value2}</td>
@@ -605,10 +605,10 @@
         <th style="width:20%; color:green" class="alignleft">&#123;file_readfile&#125;</th>
         <td>{file_readfile}
         {# ダウンロードのリンク例 #}
-        <a href="{site_url}/databox/download.php?id={id}&field_code=file" 
+        <a href="{site_url}/databox/download.php?id={id}&field_code=file"
          title="{lang_downloadrequired}">{file} {lang_download}</a>
         {# 添付ファイルがpdfの場合の 表示のリンク例 #}
-        <a href="{site_url}/databox/download.php?id={id}&field_code=file&mode=display" 
+        <a href="{site_url}/databox/download.php?id={id}&field_code=file&mode=display"
          title="{lang_displayrequired}">{file} {lang_display}</a>
       </td>
       </tr>
@@ -650,7 +650,7 @@
         <td style="width:20%; color:green" class="alignleft">&#123;additionfield1_tn_noimage&#125;</td>
         <td>{additionfield1_tn_noimage}</td>
       </tr>
-    
+
       <tr>
         <th style="width:20%" class="alignright">1</th>
         <td style="width:20%; color:green" class="alignleft">&#123;additionfield1_disp&#125;</td>
@@ -783,9 +783,9 @@
       <tr>
         <th style="width:20%" class="alignright">2</th>
         <td style="width:20%; color:green" class="alignleft">
-        &#123;additionfield2:disp&#125 
+        &#123;additionfield2:disp&#125
         </td>
-        <td>{additionfield2:disp} 
+        <td>{additionfield2:disp}
         </td>
       </tr>
 
@@ -810,9 +810,9 @@
       <tr>
         <th style="width:20%" class="alignright">2</th>
         <td style="width:20%; color:green" class="alignleft">
-        &#123;additionfield2_mst_disp&#125 
+        &#123;additionfield2_mst_disp&#125
         </td>
-        <td>{additionfield2_mst_disp} 
+        <td>{additionfield2_mst_disp}
         </td>
       </tr>
 
