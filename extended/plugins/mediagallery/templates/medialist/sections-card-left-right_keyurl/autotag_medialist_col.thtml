@@ -10,7 +10,7 @@
 
 <div class="uk-visible@m">
 
-<?php if(($this->get_var('reverse')+$mgorderslrk)%2!=0) { ?>
+<?php if(((int)$this->get_var('reverse')+$mgorderslrk)%2!=0) { ?>
 
       <div class="uk-grid-collapse uk-flex-middle uk-card uk-card-default" uk-grid>
         <div class="uk-width-{gridl}{grid_left}@m uk-card-media-right uk-cover-container">
