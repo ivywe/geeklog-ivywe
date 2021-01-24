@@ -4,7 +4,7 @@
 
   <div class="uk-margin-remove-top uk-text-center@m" style="margin-bottom:5px;" uk-lightbox="animation: {!if animation}{animation}{!else}slide{!endif}">
     {!!if {link} == "1" !!}<a href="{filename_disp}" class="uk-inline uk-thumbnail" uk-lightbox="animation: {animation}" title="{media_title}" caption="{media_title}">{!endif}
-      <img src="{filename}" alt="{media_title}" class="uk-container-center uk-overlay-scale {class}" alt="{media_title}"{xhtml}>
+      <img src="{filename}" alt="" class="uk-container-center uk-overlay-scale"{xhtml}>
 			{!if media_title}<h3 class="<?php echo $class_media_title; ?> uk-margin-top">{media_title}</h3>{!endif}
     {!!if {link} == "1" !!}</a>{!endif}
     {!if media_desc}<div class="uk-text-left<?php echo $class_media_desc; ?>  uk-margin-top uk-margin-bottom">{media_desc}</div>{!endif}
