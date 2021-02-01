@@ -57,6 +57,7 @@
         <div>{jumpbox}</div>
         <div>{bottom_pagination}</div>
         <div>{select_sortbox}</div>
+        <div>{album_cp_select}</div>
       </div>
     </div>
 

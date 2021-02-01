@@ -914,7 +914,7 @@ function MG_quickCreate($parent, $title, $desc='')
 * @return   string              HTML
 *
 */
-function MG_saveAlbum($album_id)
+function MG_saveAlbum($album_id, $mode='')
 {
     global $_DB_dbms, $_USER, $_CONF, $_TABLES, $_MG_CONF, $LANG_MG00, $LANG_MG01, $LANG_MG02;
 
@@ -1293,6 +1293,10 @@ function MG_saveAlbum($album_id)
     MG_buildFullRSS();
     MG_buildAlbumRSS($album->id);
 
+    if ($mode == 'copy') {
+        return $album->id;
+    }
+
     $actionURL = $_MG_CONF['site_url'] . '/album.php?aid=' . $album->id;
     COM_redirect($actionURL);
 }
@@ -1386,5 +1390,135 @@ function MG_staticSortChildAlbum($startaid, $sql_order, $sql_sort_by)
     foreach ($children as $child) {
         MG_staticSortChildAlbum($child, $sql_order, $sql_sort_by);
     }
+}
+
+function MG_buildAlbumData($copy_aid, $parent_aid)
+{
+    global $_USER, $_TABLES, $_MG_CONF, $LANG_MG00;
+
+    $sql = "SELECT * FROM {$_TABLES['mg_albums']} WHERE album_id=" . intval($copy_aid);
+    $result = DB_query($sql);
+    $row = DB_fetchArray($result);
+    if (DB_error() != 0) {
+        echo COM_errorLog("Media Gallery - Error retrieving copy album data.(album_id=".$copy_aid.")");
+    }
+
+    $_POST['album_name'] = isset($row['album_title']) ? 'Copy_'.$row['album_title'] : '';
+    $_POST['album_desc'] = isset($row['album_desc']) ? $row['album_desc'] : '';
+    $_POST['parentaid'] = $parent_aid;
+    $_POST['album_theme'] = isset($row['skin']) ? $row['skin'] : 'default';
+    $_POST['enable_comments'] = isset($row['enable_comments']) ? $row['enable_comments'] : 0;
+    $_POST['enable_exif'] = isset($row['exif_display']) ? $row['exif_display'] : 0;
+    $_POST['enable_rating'] = isset($row['enable_rating']) ? $row['enable_rating'] : 0;
+    $_POST['enable_rss'] = isset($row['enable_rss']) ? $row['enable_rss'] : 0;
+    $_POST['rsschildren'] = isset($row['rsschildren']) ? $row['rsschildren'] : 0;
+    $_POST['podcast'] = isset($row['podcast']) ? $row['podcast'] : 0;
+    $_POST['mp3ribbon'] = isset($row['mp3ribbon']) ? $row['mp3ribbon'] : 0;
+    $_POST['enable_sort'] = isset($row['enable_sort']) ? $row['enable_sort'] : 0;
+    $_POST['album_sort_order'] = isset($row['album_sort_order']) ? $row['album_sort_order'] : 0;
+    $_POST['display_album_desc'] = isset($row['display_album_desc']) ? $row['display_album_desc'] : 0;
+    $_POST['enable_album_views'] = isset($row['enable_album_views']) ? $row['enable_album_views'] : 0;
+    $_POST['enable_views'] = isset($row['enable_views']) ? $row['enable_views'] : 0;
+    $_POST['enable_keywords'] = isset($row['enable_keywords']) ? $row['enable_keywords'] : 0;
+    $_POST['skin'] = isset($row['image_skin']) ? $row['image_skin'] : 'default';
+    $_POST['dskin'] = isset($row['display_skin']) ? $row['display_skin'] : 'default';
+    $_POST['askin'] = isset($row['album_skin']) ? $row['album_skin'] : 'default';
+    $_POST['albums_first'] = isset($row['albums_first']) ? $row['albums_first'] : 1;
+    $_POST['tn_size'] = isset($row['tn_size']) ? $row['tn_size'] : 0;
+    $_POST['tnwidth'] = isset($row['tnwidth']) ? $row['tnwidth'] : 360;
+    $_POST['tnheight'] = isset($row['tnheight']) ? $row['tnheight'] : 360;
+    $_POST['playback_type'] = isset($row['playback_type']) ? $row['playback_type'] : 0;
+    $_POST['enable_slideshow'] = isset($row['enable_slideshow']) ? $row['enable_slideshow'] : 0;
+    $_POST['display_rows'] = isset($row['display_rows']) ? $row['display_rows'] : 40;
+    $_POST['display_columns'] = isset($row['display_columns']) ? $row['display_columns'] : 3;
+    $_POST['attach_tn'] = isset($row['tn_attached']) ? $row['tn_attached'] : 0;
+    if ($_POST['attach_tn'] == 1) {
+        foreach ($_MG_CONF['validExtensions'] as $ext) {
+            if (file_exists($_MG_CONF['path_mediaobjects'] . 'covers/cover_' . $copy_aid . $ext)) {
+                $_FILES['thumbnail']['tmp_name'] = $_MG_CONF['path_mediaobjects'] . 'covers/cover_' . $copy_aid . $ext;
+                break;
+            }
+        }
+    }
+    $_POST['featured'] = isset($row['featured']) ? $row['featured'] : 0;
+    $_POST['featureposition'] = isset($row['cbposition']) ? $row['cbposition'] : 0;
+    $_POST['featurepage'] = isset($row['cbpage']) ? $row['cbpage'] : '';
+    $_POST['filename_title'] = isset($row['filename_title']) ? $row['filename_title'] : 0;
+    $_POST['allow_download'] = isset($row['allow_download']) ? $row['allow_download'] : 0;
+    $_POST['full_display'] = isset($row['full_display']) ? $row['full_display'] : 0;
+    $_POST['enable_random'] = isset($row['enable_random']) ? $row['enable_random'] : 0;
+    $_POST['max_image_width'] = isset($row['max_image_width']) ? $row['max_image_width'] : 0;
+    $_POST['max_image_height'] = isset($row['max_image_height']) ? $row['max_image_height'] : 0;
+    $_POST['max_filesize'] = isset($row['max_filesize']) ? $row['max_filesize'] : 0;
+    $_POST['display_image_size'] = isset($row['display_image_size']) ? $row['display_image_size'] : 2;
+    $_POST['usealternate'] = isset($row['usealternate']) ? $row['usealternate'] : 0;
+    $_POST['wm_auto'] = isset($row['wm_auto']) ? $row['wm_auto'] : 0;
+    $_POST['wm_opacity'] = isset($row['wm_opacity']) ? $row['wm_opacity'] : 0;
+    $_POST['wm_location'] = isset($row['wm_location']) ? $row['wm_location'] : 0;
+    $_POST['wm_id'] = isset($row['wm_id']) ? $row['wm_id'] : 0;
+    $valid_formats = isset($row['valid_formats']) ? $row['valid_formats'] : '65535';
+    $_POST['format_jpg'] = ( $valid_formats & MG_JPG ) ? MG_JPG : 0;
+    $_POST['format_png'] = ( $valid_formats & MG_PNG ) ? MG_PNG : 0;
+    $_POST['format_tif'] = ( $valid_formats & MG_TIF ) ? MG_TIF : 0;
+    $_POST['format_gif'] = ( $valid_formats & MG_GIF ) ? MG_GIF : 0;
+    $_POST['format_bmp'] = ( $valid_formats & MG_BMP ) ? MG_BMP : 0;
+    $_POST['format_tga'] = ( $valid_formats & MG_TGA ) ? MG_TGA : 0;
+    $_POST['format_psd'] = ( $valid_formats & MG_PSD ) ? MG_PSD : 0;
+    $_POST['format_mp3'] = ( $valid_formats & MG_MP3 ) ? MG_MP3 : 0;
+    $_POST['format_ogg'] = ( $valid_formats & MG_OGG ) ? MG_OGG : 0;
+    $_POST['format_asf'] = ( $valid_formats & MG_ASF ) ? MG_ASF : 0;
+    $_POST['format_swf'] = ( $valid_formats & MG_SWF ) ? MG_SWF : 0;
+    $_POST['format_mov'] = ( $valid_formats & MG_MOV ) ? MG_MOV : 0;
+    $_POST['format_mp4'] = ( $valid_formats & MG_MP4 ) ? MG_MP4 : 0;
+    $_POST['format_mpg'] = ( $valid_formats & MG_MPG ) ? MG_MPG : 0;
+    $_POST['format_flv'] = ( $valid_formats & MG_FLV ) ? MG_FLV : 0;
+    $_POST['format_rflv'] = ( $valid_formats & MG_RFLV ) ? MG_RFLV : 0;
+    $_POST['format_emb'] = ( $valid_formats & MG_EMB ) ? MG_EMB : 0;
+    $_POST['format_zip'] = ( $valid_formats & MG_ZIP ) ? MG_ZIP : 0;
+    $_POST['format_other'] = ( $valid_formats & MG_OTHER ) ? MG_OTHER : 0;
+    $_POST['uploads'] = isset($row['member_uploads']) ? $row['member_uploads'] : 0;
+    $_POST['moderate'] = isset($row['moderate']) ? $row['moderate'] : 0;
+    $_POST['mod_id'] = isset($row['mod_group_id']) ? $row['mod_group_id'] : 0;
+    $_POST['email_mod'] = isset($row['email_mod']) ? $row['email_mod'] : 0;
+    $_POST['owner_id'] = isset($row['owner_id']) ? $row['owner_id'] : 0;
+    $_POST['group_id'] = isset($row['group_id']) ? $row['group_id'] : 0;
+    $_POST['perm_owner'] = array();
+    $perm_owner = isset($row['perm_owner']) ? $row['perm_owner'] : 0;
+    if ($perm_owner >= 2) {
+        $_POST['perm_owner'][] = '2';
+    }
+    if ($perm_owner == 3) {
+        $_POST['perm_owner'][] = '1';
+    }
+    $_POST['perm_group'] = array();
+    $perm_group = isset($row['perm_group']) ? $row['perm_group'] : 0;
+    if ($perm_group >= 2) {
+        $_POST['perm_group'][] = '2';
+    }
+    if ($perm_group == 3) {
+        $_POST['perm_group'][] = '1';
+    }
+    $_POST['perm_members'] = array();
+    $perm_members = isset($row['perm_members']) ? $row['perm_members'] : 0;
+    if ($perm_members == 2) {
+        $_POST['perm_members'][] = '2';
+    }
+    $_POST['perm_anon'] = array();
+    $perm_anon = isset($row['perm_anon']) ? $row['perm_anon'] : 0;
+    if ($perm_anon == 2) {
+        $_POST['perm_anon'][] = '2';
+    }
+    $_POST['hidden'] = isset($row['hidden']) ? $row['hidden'] : 0;
+
+    $_POST['album_id'] = '-1';
+    $_POST['cover'] = '-1';
+    $_POST['owner'] = $_POST['owner_id'];
+    $_POST['order'] = '0';
+    $_POST['album_cover_filename'] = '';
+    $_POST['last_update'] = '0';
+    $_POST['media_count'] = '0';
+    $_POST['action'] = 'album';
+    $_POST['origaid'] = $parent_aid;
+
 }
 ?>

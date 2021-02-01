@@ -908,7 +908,7 @@ class mgAlbum {
             }
         }
 
-        if ($type == 'manage') {
+        if ($type == 'manage' || $type == 'album_cp') {
             if ($this->access >= $access) {
                 if ( !$this->hidden || ( $this->hidden && $mgadmin ) ) {
                     if ( $this->id != 0 || ($mgadmin || ($_MG_CONF['member_albums'] == 1 && $_MG_CONF['member_album_root'] == 0 && $_MG_CONF['member_create_new']))) {
@@ -926,11 +926,15 @@ class mgAlbum {
             }
         }
 
-        if ($this->id != $hide || ($this->id == $hide && $type == 'manage')) {
+        if ($this->id != $hide || ($this->id == $hide && ($type == 'manage' || $type == 'album_cp'))) {
             $children = $this->getChildren();
             foreach ($children as $child) {
                 $child_album = new mgAlbum($child);
-                $count += $child_album->buildAlbumBox($album_selectbox, $selected, $access, $hide, $type, $level + 1);
+                if ($this->id == $hide && $type == 'album_cp') {
+                    $count += $child_album->buildAlbumBox($album_selectbox, $selected, $access, $child, $type, $level + 1);
+                } else {
+                    $count += $child_album->buildAlbumBox($album_selectbox, $selected, $access, $hide, $type, $level + 1);
+                }
             }
         }
 

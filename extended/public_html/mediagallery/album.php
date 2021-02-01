@@ -32,6 +32,8 @@
 // |                                                                          |
 // +--------------------------------------------------------------------------+
 
+use Geeklog\Input;
+
 require_once '../lib-common.php';
 
 if (!in_array('mediagallery', $_PLUGINS)) {
@@ -182,6 +184,76 @@ function MG_buildSortbox($album_id, $sortOrder, $page)
     return $retval;
 }
 
+// construct the AlbumCopy
+function MG_buildAlbumCopybox(&$root_album, $album_id)
+{
+    global $_MG_CONF, $LANG_MG01;
+
+    $action = $_MG_CONF['site_url'] . '/album.php?aid='.$album_id;
+    $retval = '<form name="album_cp" id="MG_album_cp" action="' . $action . '" method="post" class="uk-form"><div>' . LB;
+    $retval .= '<input type="hidden" name="album_id" value="' . $album_id . '"' . XHTML . '>' . LB;
+    $retval .= $LANG_MG01['copy_destination_album'] . ':&nbsp;'
+             . '<select class="uk-select uk-form-width-medium" name="album_cp">' . LB;
+    $root_album->buildAlbumBox($retval, $album_id, 3, $album_id, 'album_cp');
+    $retval .= '</select>' . LB;
+    $retval .= '<label for="child_cp">' . $LANG_MG01['copy_children'] . '</label>';
+    $retval .= '<input type="checkbox" class="uk-checkbox" name="child_cp" id="child_cp" value="1" checked="checked"' . XHTML . '>' . LB;
+    $retval .= '<input type="submit" class="uk-button uk-button-primary uk-form-width-medium" name="mode" value="' . $LANG_MG01['copy_album'] . '"' . XHTML . '>' . LB;
+    $retval .= '</div></form>' . LB;
+
+    return $retval;
+}
+
+function MG_invalidRequest()
+{
+    global $LANG_MG02;
+
+    $display = COM_showMessageText($LANG_MG02['generic_error']);
+    $display = MG_createHTMLDocument($display);
+    COM_output($display);
+    exit;
+}
+
+function MG_buildAllChildrens($album_id)
+{
+    $retval = array();
+    $children = MG_getAlbumChildren($album_id);
+    $retval = $children;
+    foreach ($children as $child) {
+        $retval = array_merge($retval,MG_buildAllChildrens($child));
+    }
+    return $retval;
+}
+
+function MG_batchCopyAlbum($album_id, $destination, $copy_childen = 1)
+{
+    global $_CONF;
+
+    require_once $_CONF['path'] . 'plugins/mediagallery/include/albumedit.php';
+    MG_buildAlbumData($album_id, $destination);
+    $create_aid = MG_saveAlbum(-1, 'copy');
+    // media in copy album
+    $media_id_array=array();
+    $sql = MG_buildMediaSql(array(
+        'album_id'  => $album_id,
+        'fields'    => array('media_id'),
+        'sortorder' => $sortOrder
+    ));
+    $result = DB_query($sql);
+    while ($row = DB_fetchArray($result)) {
+        $media_id_array[] = $row['media_id'];
+    }
+    MG_batchCopyMedia($album_id, $create_aid, $media_id_array);
+    if ($copy_childen == 1) {  // copy sub album
+        $children = MG_getAlbumChildren($album_id);
+        foreach ($children as $child) {
+            MG_batchCopyAlbum($child, $create_aid);
+        }
+    }
+    return $create_aid;
+}
+
+
 /*
 * Main
 */
@@ -190,6 +262,7 @@ $album_id  = isset($_GET['aid'])  ? COM_applyFilter($_GET['aid'],  true) : 0;
 $page      = isset($_GET['page']) ? COM_applyFilter($_GET['page'], true) : 0;
 $sortOrder = isset($_GET['sort']) ? COM_applyFilter($_GET['sort'], true) : 0;
 $media_id  = isset($_GET['s'])    ? COM_applyFilter($_GET['s'])          : '';
+$mode = Input::fPost('mode', '');
 
 if ($album_id == 0) {
     header('HTTP/1.1 301 Moved Permanently');
@@ -201,6 +274,31 @@ $_MG_USERPREFS = MG_getUserPrefs();
 
 $root_album = new mgAlbum(0);         // root album
 $album      = new mgAlbum($album_id); // current album
+
+if ($mode == $LANG_MG01['copy_album'] && !empty($LANG_MG01['copy_album'])) {
+    $album_id = (int) Input::fPost('album_id', -1);
+    if ($album_id < 0) {
+        MG_invalidRequest();
+    }
+    require_once $_CONF['path'] . 'plugins/mediagallery/include/batch.php';
+    $destination = (int) Input::fPost('album_cp', -1);
+    if ($album_id == $destination) {
+        MG_invalidRequest();
+    }
+    $no_cp_album_id = MG_buildAllChildrens($album_id);
+    if (is_array($no_cp_album_id) && in_array((string) $destination, $no_cp_album_id)) {
+        MG_invalidRequest();
+    }
+    $copy_children = (int) Input::fPost('child_cp', -1);
+    $create_aid = MG_batchCopyAlbum($album_id, $destination, $copy_children);
+
+    $actionURL = $_MG_CONF['site_url'] . '/album.php?aid=' . $create_aid;
+    if ($create_aid > 0) { // deny move to the root album
+        COM_redirect($actionURL);
+    } else {
+        MG_invalidRequest();
+    }
+}
 
 $columns_per_page = ($album->display_columns == 0) ? $_MG_CONF['ad_display_columns'] : $album->display_columns;
 $rows_per_page    = ($album->display_rows    == 0) ? $_MG_CONF['ad_display_rows']    : $album->display_rows;
@@ -382,6 +480,7 @@ $T->set_var(array(
     'album_description'  => ($album->display_album_desc ? PLG_replaceTags($album->description) : ''),
     'album_id_display'   => ($root_album->owner_id || $_MG_CONF['enable_media_id'] == 1 ? $LANG_MG03['album_id_display'] . $album_id : ''),
     'select_sortbox'     => ($album->enable_sort == 1 ? MG_buildSortbox($album_id, $sortOrder, $page) : ''),
+    'album_cp_select'    => MG_buildAlbumCopybox($root_album, $album_id),
     'album_last_update'  => $album_last_update[0],
     'album_owner'        => $ownername,
     'media_count'        => $album->getMediaCount(),
