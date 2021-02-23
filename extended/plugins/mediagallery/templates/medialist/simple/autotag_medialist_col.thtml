@@ -1,5 +1,7 @@
 {# begin {templatelocation} #}
 
-<img src="{filename_tn}" alt="" class="uk-container-center uk-overlay-scale uk-border-rounded  {class}" style="margin:0 7px 15px 0" alt=""{xhtml}>
+<?php $media_title = $this->get_var('media_title'); $media_title_notag = strip_tags($media_title); ?>
+
+<img src="{filename_tn}" alt="<?php echo $media_title_notag; ?>" class="uk-container-center uk-overlay-scale uk-border-rounded  {class}" style="margin:0 7px 15px 0" alt="<?php echo $media_title_notag; ?>"{xhtml}>
 
 {# end {templatelocation} #}

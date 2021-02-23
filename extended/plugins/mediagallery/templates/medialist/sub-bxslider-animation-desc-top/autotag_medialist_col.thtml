@@ -1,12 +1,17 @@
+{# begin {templatelocation} #}
+
+<?php $media_title = $this->get_var('media_title'); $media_title_notag = strip_tags($media_title); ?>
 
 <li>
   <div class="uk-inline">
-      <img src="{filename}" class="{animation}" title="" alt="">
+      <img src="{filename}" class="{animation}" title="" alt="<?php echo $media_title_notag; ?>">
   </div>
-  {!!if {media_title} || {media_desc} !!}<div class="uk-position-center uk-overlay gl-text-shadow uk-text-center@m uk-text-truncate">
+  {!!if <?php echo $media_title_notag; ?> || {media_desc} !!}<div class="uk-position-center uk-overlay gl-text-shadow uk-text-center@m uk-text-truncate">
 		<div class="gl-slider">
-			{!if media_title}<h2>{media_title}</h2>{!endif}
+			{!!if {title} || {media_title_disp} !!}<h2><?php echo $media_title_notag; ?></h2>{!endif}
     	{media_desc}
 		</div>
   </div>{!endif}
 </li>
+
+{# end {templatelocation} #}

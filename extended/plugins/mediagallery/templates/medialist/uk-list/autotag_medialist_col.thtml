@@ -1,5 +1,5 @@
 {# begin {templatelocation} #}
 
-      <li><img src="{filename}" alt="" title="{media_title}" uk-cover{xhtml}></li>
+      <li><img src="{filename}" alt="" title="<?php echo $media_title_notag; ?>" uk-cover{xhtml}></li>
 
 {# end {templatelocation} #}

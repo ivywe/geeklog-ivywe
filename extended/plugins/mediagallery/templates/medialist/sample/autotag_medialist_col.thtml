@@ -1,16 +1,18 @@
 {# begin {templatelocation} #}
 
+<?php $media_title = $this->get_var('media_title'); $media_title_notag = strip_tags($media_title); ?>
+
   <div class="uk-margin-top-large {class}">
 
     <fieldset>
     <legend>autotag_medialist_col.thtml</legend>
     {edit}
-    {!if media_title}<{!if media_title_tag}{media_title_tag}{!else}h3{!endif} class="uk-container-center">{media_title}</{!if media_title_tag}{media_title_tag}{!else}h3{!endif}>{!endif}
+    {!!if {title} || {media_title_disp} !!}<{!if media_title_tag}{media_title_tag}{!else}h4{!endif} class="<?php echo $class_media_title; ?>">{media_title}</{!if media_title_tag}{media_title_tag}{!else}h4{!endif}>{!endif}
 
     <dl class="uk-description-list-line">
-      <img src="{filename_tn}" alt="" class="uk-border-rounded uk-align-center" style="max-width:200px" alt=""{xhtml}>
-      <img src="{filename_disp}" alt="" class="uk-border-rounded uk-align-center" style="max-width:300px" alt=""{xhtml}>
-      <img src="{filename_orig}" alt="" class="uk-border-rounded uk-align-center" style="max-width:400px" alt=""{xhtml}>
+      <img src="{filename_tn}" alt="<?php echo $media_title_notag; ?>" class="uk-border-rounded uk-align-center" style="max-width:200px" alt="<?php echo $media_title_notag; ?>"{xhtml}>
+      <img src="{filename_disp}" alt="<?php echo $media_title_notag; ?>" class="uk-border-rounded uk-align-center" style="max-width:300px" alt="<?php echo $media_title_notag; ?>"{xhtml}>
+      <img src="{filename_orig}" alt="<?php echo $media_title_notag; ?>" class="uk-border-rounded uk-align-center" style="max-width:400px" alt="<?php echo $media_title_notag; ?>"{xhtml}>
       <dt>class</dt><dd>{class}</dd>
       <dt>album_id</dt><dd>{album_id}</dd>
       <dt>album_title</dt><dd>{album_title}</dd>
@@ -20,7 +22,7 @@
       <dt>filename_tn</dt><dd class="uk-text-truncate" style="max-width:400px">{filename_tn}</dd>
       <dt>filename_disp</dt><dd class="uk-text-truncate" style="max-width:400px">{filename_disp}</dd>
       <dt>filename_orig</dt><dd class="uk-text-truncate" style="max-width:400px">{filename_orig}</dd>
-      <dt>media_title</dt><dd>{media_title}</dd>
+      <dt>media_title</dt><dd><?php echo $media_title_notag; ?></dd>
       <dt>media_desc</dt><dd>{media_desc}</dd>
       <dt>media_keywords</dt><dd>{media_keywords}</dd>
       <dt>media_category</dt><dd>{media_category}</dd>

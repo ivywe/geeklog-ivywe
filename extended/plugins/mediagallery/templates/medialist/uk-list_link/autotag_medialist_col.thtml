@@ -3,7 +3,7 @@
   <li class="uk-inline">
     <a href="{media_keywords}"><img src="{filename}" alt="" uk-cover></a>
     <div class="uk-overlay uk-overlay-primary uk-position-bottom">
-      {!if media_title}<h4><a href="{media_keywords}">{media_title}</a></h4>{!endif}
+      {!if media_title}<h4><a href="{media_keywords}"><?php echo $media_title_notag; ?></a></h4>{!endif}
     </div>
   </li>
 

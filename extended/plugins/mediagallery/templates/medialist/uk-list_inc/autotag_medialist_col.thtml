@@ -1,5 +1,5 @@
 {# begin {templatelocation} #}
 
-      <li uk-slideshow-item="<?php global $inc; echo intval($inc); $inc=$inc+1; ?>"><a href="#"><img src="{filename_tn}" alt="" title="{media_title}"{xhtml}></a></li>
+      <li uk-slideshow-item="<?php global $inc; echo intval($inc); $inc=$inc+1; ?>"><a href="#"><img src="{filename_tn}" alt="" title="<?php echo $media_title_notag; ?>"{xhtml}></a></li>
 
 {# end {templatelocation} #}

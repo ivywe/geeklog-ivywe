@@ -1,5 +1,9 @@
 {# begin {templatelocation} #}
 
+<?php $media_title = $this->get_var('media_title');
+$media_title_notag = strip_tags($media_title);
+?>
+
 <dl class="uk-description-list gl-medialist-debug">
   <dt style="text-transform: none">albumid</dt><dd>{albumid}</dd>
   <dt style="text-transform: none">album_title</dt><dd>{album_title}</dd>
@@ -42,7 +46,10 @@
   <dt style="text-transform: none">container</dt><dd>{container}</dd>
   <dt style="text-transform: none">masonry</dt><dd>{masonry}</dd>
   <dt style="text-transform: none">class</dt><dd>{class}</dd>
+  <dt style="text-transform: none">caption</dt><dd>{caption}</dd>
+  <dt style="text-transform: none">media_title_notag</dt><dd><?php echo $media_title_notag; ?></dd>
 </dl>
+
 <p>※optionは、省略できます。</p>
 
 {# end {templatelocation} #}

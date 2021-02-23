@@ -1,1 +1,1 @@
-          <li><img src="{filename}" title="{media_title}" alt=""></li>
+          <li><img src="{filename}" title="<?php echo $media_title_notag; ?>" alt=""></li>
