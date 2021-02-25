@@ -310,15 +310,15 @@
   <?php echo PLG_replaceTags('[medialist:'.$this->get_var('album_id').' src:disp limitcnt:3 theme:1section-grid_keyurl grid_s:1 grid_m:3 grid_l:4 text:プランを見る uks:uk-section-small media:'.$media.' album_title_disp:1 media_title_disp:1 album_title_tag:h2 media_title_tag:p]'); ?>
 
 <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-grid-card1">
-                                            &#91;medialist:{album_id} src:disp limitcnt:3 theme:1section-grid-card1 uks:uk-section-muted section:0 ukc: grid_s:1 grid_m:3 grid_l:4 masonry:1 animation:slide text:詳細を見る media:&#93;</h4
+                                            &#91;medialist:{album_id} src:disp limitcnt:3 theme:1section-grid-card1 uks:uk-section-muted section:0 ukc: grid_s:1 grid_m:3 grid_l:4 masonry:1 animation:slide text:詳細を見る media:&#93;</h4>
   <?php echo PLG_replaceTags('[medialist:'.$this->get_var('album_id').' src:disp limitcnt:3 theme:1section-grid-card1 uks:uk-section-muted section:0 ukc: grid_s:1 grid_m:3 grid_l:4 masonry:1 animation:slide text:詳細を見る section:1 media: album_title_disp:1 media_title_disp:1 album_title_tag:h2 media_title_tag:p]'); ?>
 
 <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-grid-card1_keyurl2">
-                                            &#91;medialist:{album_id} src:disp limitcnt:3 theme:1section-grid-card1_keyurl2 uks:uk-section-muted section:0 ukc: grid_s:1 grid_m:3 grid_l:4 masonry:1 animation:slide text:詳細を見る media:&#93;</h4
+                                            &#91;medialist:{album_id} src:disp limitcnt:3 theme:1section-grid-card1_keyurl2 uks:uk-section-muted section:0 ukc: grid_s:1 grid_m:3 grid_l:4 masonry:1 animation:slide text:詳細を見る media:&#93;</h4>
   <?php echo PLG_replaceTags('[medialist:'.$this->get_var('album_id').' src:disp limitcnt:3 theme:1section-grid-card1_keyurl2 uks:uk-section-muted section:0 ukc: grid_s:1 grid_m:3 grid_l:4 masonry:1 animation:slide text:詳細を見る section:1 media: album_title_disp:1 media_title_disp:1 album_title_tag:h2 media_title_tag:p]'); ?>
 
 <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-grid-card1-noimage_keyurl2">
-                                            &#91;medialist:{album_id} src:disp limitcnt:3 theme:1section-grid-card1-noimage_keyurl2 uks:uk-section-muted section:0 ukc: grid_s:1 grid_m:3 grid_l:4 masonry:1 animation:slide text:詳細を見る media:&#93;</h4
+                                            &#91;medialist:{album_id} src:disp limitcnt:3 theme:1section-grid-card1-noimage_keyurl2 uks:uk-section-muted section:0 ukc: grid_s:1 grid_m:3 grid_l:4 masonry:1 animation:slide text:詳細を見る media:&#93;</h4>
   <?php echo PLG_replaceTags('[medialist:'.$this->get_var('album_id').' src:disp limitcnt:3 theme:1section-grid-card1-noimage_keyurl2 uks:uk-section-muted section:0 ukc: grid_s:1 grid_m:3 grid_l:4 masonry:1 animation:slide text:詳細を見る section:1 media: album_title_disp:1 media_title_disp:1 album_title_tag:h2 media_title_tag:p]'); ?>
 
 <h4 class="uk-margin-large-top uk-card uk-card-secondary" id="_1section-grid-card2_keyurl">
