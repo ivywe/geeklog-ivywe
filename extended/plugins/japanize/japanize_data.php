@@ -550,7 +550,7 @@ $_JAPANIZE_DATA[4] = array(
 		'Core' => array(
 			// サイト･･･無効のメッセージまたはURL
 			'site_disabled_msg' => array(
-				'ja' => $_CONF['site_url'] . '/japanize/disabledmsg.html', 'Core',
+				'ja' => $_CONF['site_name'] . 'サイトは無効です。しばらくたってからお越しください', 'Core',
 				'en' => 'Geeklog Site is down. Please come back soon.',
 			),
 
