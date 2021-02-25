@@ -1,11 +1,12 @@
-<?php //================================================================================================
+<?php
+//================================================================================================
 //================================================================================================
 //================================================================================================
 /*
 	Exifer
 	Extracts EXIF information from digital photos.
 
-	Copyright © 2003 Jake Olefsky
+	Copyright (C) 2003 Jake Olefsky
 	http://www.offsky.com/software/exif/index.php
 	jake@olefsky.com
 
@@ -414,7 +415,6 @@ function parseCanon($block,&$result,$seek, $globalOffset) {
 				$data = '';
 			}
 		}
-		$result['SubIFD']['MakerNote'][$tag_name] = ''; // insure the index exists
 		$formated_data = formatCanonData($type,$tag,$intel,$data,$result,$result['SubIFD']['MakerNote'][$tag_name]);
 
 		if($result['VerboseOutput']==1) {
