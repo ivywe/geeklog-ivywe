@@ -13,10 +13,10 @@
 <?php if(((int)$this->get_var('reverse')+(int)$mgorderslrk)%2!=0) { ?>
 
       <div class="uk-grid-collapse uk-flex-middle uk-margin-medium-bottom" uk-grid>
-        <div class="uk-width-{gridl}@m uk-text-center" style="padding:0">
+        <div class="uk-width-{grid_left}@m uk-text-center" style="padding:0">
           <img src="{filename}" alt="<?php echo $media_title_notag; ?>">
         </div>
-        <div class="uk-width-{gridr}@m uk-flex uk-flex-middle">
+        <div class="uk-width-{grid_right}@m uk-flex uk-flex-middle">
 					<div class="uk-margin-auto uk-width-4-5@m">
             {!if media_title}<{!if media_title_tag}{media_title_tag}{!else}h2{!endif} class="uk-card-title<?php echo $class_media_title; ?>">{media_title}</{!if media_title_tag}{media_title_tag}{!else}h2{!endif}>{!endif}
             {!if media_desc}<div class="uk-margin-auto<?php echo $class_media_desc; ?>">{media_desc}</div>{!endif}
@@ -28,14 +28,14 @@
 <?php } else { ?>
 
       <div class="uk-grid-collapse uk-flex-middle uk-margin-medium-bottom" uk-grid>
-        <div class="uk-width-{gridr}@m uk-flex uk-flex-middle">
+        <div class="uk-width-{grid_right}@m uk-flex uk-flex-middle">
 					<div class="uk-margin-auto uk-width-4-5@m">
             {!if media_title}<{!if media_title_tag}{media_title_tag}{!else}h2{!endif} class="uk-card-title<?php echo $class_media_title; ?>">{media_title}</{!if media_title_tag}{media_title_tag}{!else}h2{!endif}>{!endif}
             {!if media_desc}<div class="uk-margin-auto<?php echo $class_media_desc; ?>">{media_desc}</div>{!endif}
 						{!if media_keywords}<div class="uk-margin-medium-top uk-text-center"><a href="{media_keywords}" class="uk-button uk-button-default"{!if target} target="{target}"{!endif}>{!if text}{text}{!else}Learn more{!endif}</a></div>{!endif}
 					</div>
 				</div>
-        <div class="uk-width-{gridl}@m uk-text-center" style="padding:0">
+        <div class="uk-width-{grid_left}@m uk-text-center" style="padding:0">
           <img src="{filename}" alt="<?php echo $media_title_notag; ?>">
         </div>
 

@@ -1,3 +1,17 @@
+table.gl-table-condensed th,
+table.gl-table-condensed td {
+   font-size: 12px;
+   padding:3px 12px;
+   background:#eee;
+   color: #111;
+}
+table.gl-table-condensed th {
+   font-weight: bold;
+   background:#ccc;
+   text-transform: none;
+   color: #111;
+}
+
 .mgFrame_default {
   border: 1px solid #DDD;
   background-color: #FFF;
