@@ -199,12 +199,6 @@ $_JAPANIZE_DATA[1] = array(
 			. "SET language = 'en-gb' ",
 	),
 	array(
-		'ja' => "UPDATE {$_TABLES['syndication']} "
-			. "SET charset = 'utf-8' ",
-		'en' => "UPDATE {$_TABLES['syndication']} "
-			. "SET charset = '" . COM_getCharset() . "' ",
-	),
-	array(
 		'ja' => "ALTER TABLE {$_TABLES['users']} "
 			. "MODIFY username VARCHAR(108) NOT NULL DEFAULT '' ",
 		'en' => "ALTER TABLE {$_TABLES['users']} "
@@ -556,7 +550,7 @@ $_JAPANIZE_DATA[4] = array(
 		'Core' => array(
 			// サイト･･･無効のメッセージまたはURL
 			'site_disabled_msg' => array(
-				'ja' => $_CONF['site_url'] . '/japanize/disabledmsg.html', 'Core',
+				'ja' => $_CONF['site_name'] . 'サイトは無効です。しばらくたってからお越しください', 'Core',
 				'en' => 'Geeklog Site is down. Please come back soon.',
 			),
 
