@@ -24,7 +24,7 @@
   <div class="uk-modal-dialog">
     <a class="uk-modal-close uk-close"></a>
     <div class="uk-text-break">
-      <span class="uk-text-bold">theme variables:</span> {templatelocation}(<a href="{site_url}/admin/plaugins/databox/docs/japanese/templatesetvars.html">Document</a>)
+      <span class="uk-text-bold">theme variables:</span> {templatelocation}(<a href="{site_admin_url}plaugins/databox/docs/japanese/templatesetvars.html">Document</a>)
     </div>
     <ul class="uk-list uk-list-line">
       <li><span style="color:green">&#123;field_name&#125;</span>:{field_name}</li>

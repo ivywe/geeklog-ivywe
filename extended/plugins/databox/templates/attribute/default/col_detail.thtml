@@ -8,7 +8,7 @@
   <div class="uk-modal-dialog">
     <a class="uk-modal-close uk-close"></a>
     <div class="uk-text-break">
-      <span class="uk-text-bold">theme variables:</span> {templatelocation}(<a href="{site_url}/admin/plugins/databox/docs/japanese/templatesetvars.html">Document</a>)
+      <span class="uk-text-bold">theme variables:</span> {templatelocation}(<a href="{site_admin_url}/plugins/databox/docs/japanese/templatesetvars.html">Document</a>)
     </div>
 
     <span style="color:green">&#123;data_link&#125;</span>{data_link}<br{xhtml}>
@@ -50,7 +50,6 @@
     <span style="color:green">&#123;data_value&#125;</span>{data_value}<br{xhtml}>
 
 
-    {# 下記テーマ変数　参考例です 登録されていない場合表示されません #}
     <span style="color:green">&#123;zipcode&#125;</span>{zipcode}<br{xhtml}>
     <span style="color:green">&#123;tel&#125;</span>{tel} <br{xhtml}>
     <span style="color:green">&#123;additionfield1&#125;</span>{additionfield1}<br{xhtml}>
@@ -60,7 +59,7 @@
     <span style="color:green">&#123;additionfield5&#125;</span>{additionfield5}<br{xhtml}>
     <span style="color:green">&#123;additionfield6&#125;</span>{additionfield6}<br{xhtml}>
 
-    <!-- カテゴリ グループコードを使用するテーマ変数 -->
+
     <span style="color:green">&#123;group_city&#125;&#123;group_city_code&#125;</span>
     {group_city} {group_city_code}<br{xhtml}>
 
@@ -70,7 +69,7 @@
     <span style="color:green">&#123;group_team&#125;&#123;group_team_code&#125;</span>
     {group_type} {group_team_code}<br{xhtml}>
 
-    <!-- カテゴリ リンク付　グループコード使用テーマ変数 -->
+
     <span style="color:green">&#123;grouplink_city&#125;&#123;grouplink_city_code&#125;</span>
     {grouplink_city} {grouplink_city_code}<br{xhtml}>
 
@@ -80,7 +79,7 @@
     <span style="color:green">&#123;grouplink_team&#125;&#123;grouplink_team_code&#125;</span>
     {grouplink_team} {grouplink_team_code}<br{xhtml}>
 
-    <!-- カテゴリ グループID使用テーマ変数-->
+
     <span style="color:green">&#123;group_1&#125;&#123;group_1_code&#125;</span>
     {group_1} {group_1_code}<br{xhtml}>
 
@@ -90,7 +89,7 @@
     <span style="color:green">&#123;group_3&#125;&#123;group_3_code&#125;</span>
     {group_3} {group_3_code}<br{xhtml}>
 
-    <!-- カテゴリリンク　グループID使用テーマ変数-->
+
     <span style="color:green">&#123;grouplink_1&#125;&#123;grouplink_1_code&#125;</span>
     {grouplink_1} {grouplink_1_code}<br{xhtml}>
 

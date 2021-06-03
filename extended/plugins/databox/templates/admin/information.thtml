@@ -1,5 +1,5 @@
 {# begin {templatelocation} #}
-{# plugins/databox/templates/admin/information.thtml  20151109 #}
+
 {about_thispage}
 <p>Ver:{version}</p>
 <p> <a href="{document_url}" target="_blank">{lang_document}</a></p>
@@ -21,4 +21,3 @@
 <input type='hidden' name='conf_group' value='databox'></form>
 <p> <a style='text-decoration: none;' href='#' onclick="document.databox_conf_link.submit()">{lang_configuration}</a></p>
 {# end {templatelocation} #}
-

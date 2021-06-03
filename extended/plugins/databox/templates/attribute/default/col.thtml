@@ -8,7 +8,7 @@
   <div class="uk-modal-dialog">
     <a class="uk-modal-close uk-close"></a>
     <div class="uk-text-break">
-      <span class="uk-text-bold">theme variables(<a href="{site_url}/admin/plugins/databox/docs/japanese/templatesetvars.html">Document</a>):</span> {templatelocation}
+      <span class="uk-text-bold">theme variables(<a href="{site_admin_url}/plugins/databox/docs/japanese/templatesetvars.html">Document</a>):</span> {templatelocation}
     </div>
     <ul class="uk-list uk-list-line">
       <li><span style="color:green">&#123;field_link&#125;</span>{field_link}</li>

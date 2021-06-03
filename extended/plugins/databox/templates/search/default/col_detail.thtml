@@ -7,7 +7,7 @@
     <div class="uk-modal-dialog">
       <a class="uk-modal-close uk-close"></a>
       <div class="uk-text-break">
-        <span class="uk-text-bold">theme variables:</span> {templatelocation}(<a href="{site_url}/admin/plugins/databox/docs/japanese/templatesetvars.html">Document</a>)
+        <span class="uk-text-bold">theme variables:</span> {templatelocation}(<a href="{site_admin_url}/plugins/databox/docs/japanese/templatesetvars.html">Document</a>)
       </div>
 
       <span style="color:green">&#123;data_link&#125;</span>{data_link}<br{xhtml}>
