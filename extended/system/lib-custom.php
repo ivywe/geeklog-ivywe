@@ -176,9 +176,9 @@ function CUSTOM_templateSetVars($templatename, $template)
     - All other users will see the standard User profile with the optional extended custom information
     - Customization requires changes to a few of the core template files to add {customfields} variables
     - See notes below in the custom function about the template changes
-    - Remember remote accounts (like OAuth and OpenID) behave differently when they are created (and logging in) so the 
-      CUSTOM_userCreate function is not run for new remote accounts. All other functions are as once 
-      created in Geeklog, remote accounts behave pretty much like the other accounts. If you do not want to use the rest 
+    - Remember remote accounts (like OAuth and OpenID) behave differently when they are created (and logging in) so the
+      CUSTOM_userCreate function is not run for new remote accounts. All other functions are as once
+      created in Geeklog, remote accounts behave pretty much like the other accounts. If you do not want to use the rest
       of the custom user functions for remote accounts you will have to handle that within the custom function
 */
 
@@ -560,7 +560,7 @@ function CUSTOM_handleError($errno, $errstr, $errfile, $errline, $errcontext)
  * Additional Custom Functions: PHP block functions and custom functions
  */
 
-// 静的ページコンテンツの内容を返す 
+// 静的ページコンテンツの内容を返す
 // Return Staticpage content
 if (file_exists($_CONF['path'] . 'system/custom/custom_getstaticpage.php')) {
     require_once $_CONF['path'] . 'system/custom/custom_getstaticpage.php';
@@ -572,21 +572,16 @@ if (file_exists($_CONF['path'] . 'system/custom/custom_forcethemechange.php')) {
 	require_once $_CONF['path'] . 'system/custom/custom_forcethemechange.php';
 }
 
-// 新着記事リストを表示する 
+// 新着記事リストを表示する
 // List new articles
 if (file_exists($_CONF['path'] . 'system/custom/phpblock_lastarticles.php')) {
 	require_once $_CONF['path'] . 'system/custom/phpblock_lastarticles.php';
 }
 
-// アクセス数を表示する 
+// アクセス数を表示する
 // Display access number
 if (file_exists($_CONF['path'] . 'system/custom/phpblock_stats.php')) {
 	require_once $_CONF['path'] . 'system/custom/phpblock_stats.php';
-}
-
-// 404
-if (file_exists($_CONF['path'] . 'system/custom/custom_handle404.php')) {
-  require_once $_CONF['path'] . 'system/custom/custom_handle404.php';
 }
 
 // Optional custom functions
@@ -603,13 +598,13 @@ if (file_exists($_CONF['path'] . 'system/custom/custom_handle404.php')) {
 // 	require_once $_CONF['path'] . 'system/custom/useragent.class.php';
 // }
 
-// ログインユーザの権限を表示する 
+// ログインユーザの権限を表示する
 // Show rights
 // if (file_exists($_CONF['path'] . 'system/custom/phpblock_showrights.php')) {
 //	require_once $_CONF['path'] . 'system/custom/phpblock_showrights.php';
 // }
 
-// サイトのテーマを変更する 
+// サイトのテーマを変更する
 // Change site theme
 // if (file_exists($_CONF['path'] . 'system/custom/phpblock_themetester.php')) {
 // 	require_once $_CONF['path'] . 'system/custom/phpblock_themetester.php';
