@@ -21,7 +21,7 @@
 
 <?php } else { ?>
 
-<div class="uk-visible@m uk-card uk-card-default uk-grid-collapse uk-flex-middle uk-margin" uk-grid>
+<div class="uk-visible@m uk-card uk-card-default uk-grid-collapse uk-flex-middle uk-margin uk-card-hover" uk-grid>
   <div class="uk-flex-last@s uk-card-media-right uk-cover-container uk-width-{gridl}{grid_left}">
     {!if media_keywords}<a href="{media_keywords}"{!if target} target="{target}"{!endif}>{!endif}<img src="{filename_disp}" alt="<?php echo $media_title_notag; ?>">{!if media_keywords}</a>{!endif}
   </div>
