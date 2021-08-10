@@ -376,7 +376,7 @@ if ($_REQUEST['mode'] == 'edit') {
 
 //Main
 
-$display = COM_siteHeader('none');
+$display = COM_createHTMLDocument('none');
 $display .= paypal_admin_menu();
 
 $display .= COM_startBlock($LANG_PAYPAL_1['sales_history']);

@@ -56,12 +56,12 @@ if (!SEC_hasRights('paypal.user','paypal.admin','OR') || COM_isAnonUser() ) {
     switch( $_PAY_CONF['display_blocks'] ) {
     case 0 :    // none
     case 2 :    // right only
-        $display .= COM_siteHeader('none', $pagetitle);
+        $display .= COM_createHTMLDocument('none', $pagetitle);
         break;
     case 1 :    // left only
     case 3 :    // both
     default :
-        $display .= COM_siteHeader('none', $pagetitle);
+        $display .= COM_createHTMLDocument('none', $pagetitle);
         break;
     }
 
@@ -74,7 +74,7 @@ if (!SEC_hasRights('paypal.user','paypal.admin','OR') || COM_isAnonUser() ) {
 
 //Main
 
-$display = COM_siteHeader('none');
+$display = COM_createHTMLDocument('none');
 $display .= paypal_user_menu();
 
 if (!empty($_REQUEST['msg'])) $display .= COM_showMessageText( stripslashes($_REQUEST['msg']), $LANG_PAYPAL_1['message']);

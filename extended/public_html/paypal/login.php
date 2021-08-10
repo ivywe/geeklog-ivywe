@@ -53,7 +53,7 @@ paypal_access_check();
 
 //Main
 
-$display = COM_siteHeader();
+$display = COM_createHTMLDocument();
 if (SEC_hasRights('paypal.user', 'paypal.admin')) {
     $display .= paypal_user_menu();
 } else {

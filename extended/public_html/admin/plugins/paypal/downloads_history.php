@@ -123,7 +123,7 @@ function plugin_getListField_paypal_downloads($fieldname, $fieldvalue, $A, $icon
 
 //Main
 
-$display = COM_siteHeader('none');
+$display = COM_createHTMLDocument('none');
 $display .= paypal_admin_menu();
 
 $display .= COM_startBlock($LANG_PAYPAL_1['downloads_history']);

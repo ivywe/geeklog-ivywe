@@ -548,7 +548,7 @@ function repairSerializedArray_R(&$broken)
 
 //Main
 
-$display = COM_siteHeader('none');
+$display = COM_createHTMLDocument('none');
 $display .= paypal_admin_menu();
 
 // base output on selected opeation (op)

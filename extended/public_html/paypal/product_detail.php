@@ -79,7 +79,7 @@ if ($pid == '') {
 
 // Ensure sufficient privs to read this page
 if (($_USER['uid'] < 2) && ($_PAY_CONF['anonymous_buy'] == 0)) {
-    $display .= COM_siteHeader();
+    $display .= COM_createHTMLDocument();
 	if (SEC_hasRights('paypal.user', 'paypal.admin')) {
         $display .= paypal_user_menu();
     } else {

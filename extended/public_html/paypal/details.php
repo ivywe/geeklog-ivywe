@@ -185,7 +185,7 @@ switch ($_REQUEST['mode']) {
         }
 	}
 
-$display = COM_siteHeader('none') . $display . COM_siteFooter();
+$display = COM_createHTMLDocument('none') . $display . COM_siteFooter();
 
 
 COM_output($display);

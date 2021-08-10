@@ -437,7 +437,7 @@ function PAYPAL_saveCatImage ($category, $files, $cat_id) {
 			));
 	
 	if (!$upload->setPath($_PAY_CONF['path_cat_images'])) {
-		$output = COM_siteHeader ('menu', $LANG24[30]);
+		$output = COM_createHTMLDocument ('menu', $LANG24[30]);
 		$output .= COM_startBlock ($LANG24[30], '', COM_getBlockTemplate ('_msg_block', 'header'));
 		$output .= $upload->printErrors (false);
 		$output .= COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
@@ -468,7 +468,7 @@ function PAYPAL_saveCatImage ($category, $files, $cat_id) {
 		$upload->uploadFiles();
 
 		if ($upload->areErrors()) {
-			$retval = COM_siteHeader('menu', $LANG24[30]);
+			$retval = COM_createHTMLDocument('menu', $LANG24[30]);
 			$retval .= COM_startBlock ($LANG24[30], '',
 						COM_getBlockTemplate ('_msg_block', 'header'));
 			$retval .= $upload->printErrors(false);
@@ -1039,7 +1039,7 @@ $shipper_id = $_REQUEST['shipper_service_id'];
 $shipping_to_id = $_REQUEST['shipping_to_id'];
 $shipping_id = $_REQUEST['shipping_id'];
 
-$display = COM_siteHeader('none');
+$display = COM_createHTMLDocument('none');
 
 $display .= paypal_admin_menu();
 

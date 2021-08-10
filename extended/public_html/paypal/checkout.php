@@ -47,12 +47,12 @@ paypal_access_check('paypal.viewer');
     switch( $_PAY_CONF['display_blocks'] ) {
     case 0 :    // none
     case 2 :    // right only
-        $display .= COM_siteHeader('none', $pagetitle);
+        $display .= COM_createHTMLDocument('none', $pagetitle);
         break;
     case 1 :    // left only
     case 3 :    // both
     default :
-        $display .= COM_siteHeader('menu', $pagetitle);
+        $display .= COM_createHTMLDocument('menu', $pagetitle);
         break;
     }
 

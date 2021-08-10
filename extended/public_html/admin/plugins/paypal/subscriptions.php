@@ -154,7 +154,7 @@ function PAYPAL_getSubscriptionForm ($subscription = array())
 
 //Main
 
-$display = COM_siteHeader('none');
+$display = COM_createHTMLDocument('none');
 $display .= paypal_admin_menu();
 
 if (!empty($_REQUEST['msg'])) $display .= COM_showMessageText( stripslashes($_REQUEST['msg']), $LANG_PAYPAL_1['message']);
