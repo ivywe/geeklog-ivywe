@@ -192,6 +192,7 @@ function DATABOX_siteHeader (
     ,$kind = ''
     ,$page_title = ''
     ,$headercode = ''
+    ,$retval = ''
     )
 // +---------------------------------------------------------------------------+
 // | 機能  ヘッダを編集
@@ -206,6 +207,9 @@ function DATABOX_siteHeader (
 // | 戻値 :ヘッダ
 // +---------------------------------------------------------------------------+
 // 20120910
+// upd:20210817 hiroron - COM_siteHeader -> COM_createHTMLDocument の変更により
+//   htmlの終りの</body></html>までがこの関数で作られるため、中央のContents内容
+//   を引数で受け取れるように引数末尾へ$retvalを追加
 {
     global $_CONF;
 

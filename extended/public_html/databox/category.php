@@ -49,6 +49,8 @@ function fnclist(
     global $LANG_DATABOX;
     global $LANG_DATABOX_ADMIN;
 	
+	$retval = '';
+
 	if ($group_id===""){
 		if ($gcode<>""){
 			$group_id=DATABOX_codetoid(
@@ -133,7 +135,6 @@ function fnclist(
 		,$_CONF['meta_description']
 		,$_CONF['smeta_keywords']
 		,$_CONF['meta_description']);
-    $retval .= DATABOX_siteHeader($pi_name,'',$page_title,$headercode) ;
 
     //
 
@@ -272,7 +273,9 @@ function fnclist(
         $retval .=$content;
     }
 
-    $retval =PLG_replacetags ($retval);
+    $retval = PLG_replacetags ($retval);
+    // 20210817 hiroron - _siteHeader()と関数名にはあるがすでにその役割はなく中身ではCOM_createHTMLDocument()になっているので末尾に持ってきて処理
+    $retval = DATABOX_siteHeader($pi_name,'',$page_title,$headercode, $retval) ;
 
     return $retval;
 }
@@ -404,7 +407,8 @@ if ($id===0) { //一覧
 		);
 }
 
-$display .= DATABOX_siteFooter($pi_name);
+//以下のsiteFooterは無駄になっているので削除
+//$display .= DATABOX_siteFooter($pi_name);
 
 //---
 
