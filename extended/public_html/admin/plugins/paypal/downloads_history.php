@@ -124,7 +124,12 @@ function plugin_getListField_paypal_downloads($fieldname, $fieldvalue, $A, $icon
 
 //Main
 
+<<<<<<< HEAD
 $content = paypal_admin_menu();
+=======
+$display = COM_createHTMLDocument('none');
+$display .= paypal_admin_menu();
+>>>>>>> a3585c97bc195947c9f3e425113708436eeef2c8
 
 $content .= COM_startBlock($LANG_PAYPAL_1['downloads_history']);
 

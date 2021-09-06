@@ -610,7 +610,7 @@ function PAYPAL_saveImage ($product, $FILES, $pid) {
 				));
 		
 		if (!$upload->setPath($_PAY_CONF['path_images'])) {
-			$output = COM_siteHeader ('menu', $LANG24[30]);
+			$output = COM_createHTMLDocument ('menu', $LANG24[30]);
 			$output .= COM_startBlock ($LANG24[30], '', COM_getBlockTemplate ('_msg_block', 'header'));
 			$output .= $upload->printErrors (false);
 			$output .= COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
@@ -644,7 +644,7 @@ function PAYPAL_saveImage ($product, $FILES, $pid) {
 		$upload->uploadFiles();
 
 		if ($upload->areErrors()) {
-			$retval = COM_siteHeader('menu', $LANG24[30]);
+			$retval = COM_createHTMLDocument('menu', $LANG24[30]);
 			$retval .= COM_startBlock ($LANG24[30], '',
 						COM_getBlockTemplate ('_msg_block', 'header'));
 			$retval .= $upload->printErrors(false);
@@ -835,8 +835,13 @@ switch ($mode) {
         break;
 }
 
+<<<<<<< HEAD
 $content = paypal_admin_menu() . $content;
 $display = COM_createHTMLDocument($content, ['pagetitle' => $LANG_PAYPAL_1['create_new_product']]);
+=======
+$display = COM_createHTMLDocument('none') . paypal_admin_menu() . $display;
+$display .= COM_siteFooter();
+>>>>>>> a3585c97bc195947c9f3e425113708436eeef2c8
 
 COM_output($display);
 

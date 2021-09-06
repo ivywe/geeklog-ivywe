@@ -14,30 +14,10 @@
   {!!if {title} || {album_title_disp} !!}<{!if album_title_tag}{album_title_tag}{!else}h2{!endif} class="<?php echo $class_album_title; ?>">{album_title}</{!if album_title_tag}{album_title_tag}{!else}h2{!endif}>{!endif}
   {!if album_desc}<div class="uk-margin-bottom<?php echo $class_album_desc; ?>">{album_desc}</div>{!endif}
 
-
-    <div uk-slider="{!if autoplay}autoplay:{autoplay};{!endif}
-    {!if autoplayinterval}autoplay-interval:{autoplayinterval};{!endif}
-    {!if center}center:{center};{!endif}
-    {!if draggable}draggable:{draggable};{!endif}
-    {!if easing}easing:{easing};{!endif}
-    {!if finite}finite:{finite};{!endif}
-    {!if index}index:{index};{!endif}
-    {!if pauseonhover}pause-on-hover:{pauseonhover};{!endif}
-    {!if sets}sets:{sets};{!endif}
-    {!if velocity}velocity:{velocity};{!endif}
-    {!if clsactivated}clsActivated:{clsactivated};{!endif}
-    ">
-
-      <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
-        <ul class="uk-slider-items uk-grid-match" uk-grid>
+    <ul class="uk-child-width-1-1 uk-child-width-1-2@m uk-flex-center uk-margin-medium-top uk-margin-medium-bottom uk-grid">    
     {medialist_col}
-        </ul>
-        <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
-        <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
-      </div>
-    {!!if {dotnav} == '0' !!}{!else}<ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>{!endif}
+    </ul>
 
-    </div>
 
   {!!if {container} == '1' || {container} == '' !!}</div>{!endif}
   {!!if {section} !== '0' !!}</section>{!endif}

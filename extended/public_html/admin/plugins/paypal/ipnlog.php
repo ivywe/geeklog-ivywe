@@ -548,7 +548,12 @@ function repairSerializedArray_R(&$broken)
 
 //Main
 
+<<<<<<< HEAD
 $content = paypal_admin_menu();
+=======
+$display = COM_createHTMLDocument('none');
+$display .= paypal_admin_menu();
+>>>>>>> a3585c97bc195947c9f3e425113708436eeef2c8
 
 // base output on selected opeation (op)
 $op = Geeklog\Input::request('op', '');

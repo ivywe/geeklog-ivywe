@@ -57,16 +57,42 @@ paypal_access_check();
 /* Purchase history for anonymous users/paypal viewers doesn't make sense */
 if (!SEC_hasRights('paypal.user,paypal.admin','OR') || COM_isAnonUser() ) {
 
+<<<<<<< HEAD
     $content = paypal_viewer_menu();
     $content .= PAYPAL_loginRequiredForm();
     $display = COM_createHTMLDocument($content, ['what'=>'none']);
     COM_output($display);
+=======
+		$display = "";
+
+    switch( $_PAY_CONF['display_blocks'] ) {
+    case 0 :    // none
+    case 2 :    // right only
+        $display .= COM_createHTMLDocument('none', $pagetitle);
+        break;
+    case 1 :    // left only
+    case 3 :    // both
+    default :
+        $display .= COM_createHTMLDocument('none', $pagetitle);
+        break;
+    }
+
+    $display .= paypal_viewer_menu();
+    $display .= PAYPAL_loginRequiredForm();
+    $display .= COM_siteFooter();
+    echo $display;
+>>>>>>> a3585c97bc195947c9f3e425113708436eeef2c8
     exit;
 }
 
 //Main
 
+<<<<<<< HEAD
 $content = paypal_user_menu();
+=======
+$display = COM_createHTMLDocument('none');
+$display .= paypal_user_menu();
+>>>>>>> a3585c97bc195947c9f3e425113708436eeef2c8
 
 $msg = Geeklog\Input::fRequest('msg', '');
 if (!empty($msg)) $content .= COM_showMessageText( stripslashes($msg), $LANG_PAYPAL_1['message']);

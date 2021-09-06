@@ -9,7 +9,7 @@
   <div class="uk-position-center uk-position-small uk-text-center uk-light uk-animation-fade uk-animation-slow">
 {!if media_keywords}<div class="catch_img">
             <p>
-                <img src="[media_url:{media_keywords} src:orig]" alt="<?php echo $media_title_notag; ?>" class="wow fadeInDown">
+                <img src="{!!autotag media_url:'.{media_keywords}.' src:orig !!}" alt="<?php echo $media_title_notag; ?>" class="wow fadeInDown">
             </p>
 		</div>{!endif}
   </div>
