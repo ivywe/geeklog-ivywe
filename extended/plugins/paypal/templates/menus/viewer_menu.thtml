@@ -1,9 +1,9 @@
 {# begin {templatelocation} #}
 
 <?php 
-$category = $_GET['category'];
-$n = $_GET['n'];
-$product = $_GET['product'];
+$category = Geeklog\Input::fGet('category');
+$n = Geeklog\Input::fGet('n');
+$product = Geeklog\Input::fGet('product');
 ?>
 
 <?php if($product == ""){ ?>

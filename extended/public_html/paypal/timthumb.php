@@ -13,6 +13,12 @@
  * $Rev$
  */
 require_once '../lib-common.php';
+
+if (!in_array('paypal', $_PLUGINS)) {
+    COM_handle404();
+    exit;
+}
+
 /*
  * --- TimThumb CONFIGURATION ---
  * To edit the configs it is best to create a file called timthumb-config.php

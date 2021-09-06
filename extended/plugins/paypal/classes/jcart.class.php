@@ -2,14 +2,14 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Paypal Plugin 1.1                                                         |
+// | Paypal Plugin 1.5                                                         |
 // +---------------------------------------------------------------------------+
 // | jcart.class.php                                                           |
-// |                                                                           |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2010 by the following authors:                              |
+// | Copyright (C) 2021 by the following authors:                             |
 // |                                                                           |
 // | Authors: ::Ben - cordiste AT free DOT fr                                  |
+// | Authors: Hiroron    - hiroron AT hiroron DOT com                         |
 // +---------------------------------------------------------------------------+
 // | Based on JCART v1.1 & Webforce Cart v.1.5                                 |
 // |                                                                           |
@@ -17,7 +17,7 @@
 // | JCART v1.1  http://conceptlogic.com/jcart/                                |
 // |                                                                           |
 // | Copyright (C) 2004 - 2005 by the following authors:                       |
-// | Webforce Ltd, NZ http://www.webforce.co.nz/cart/                          |   
+// | Webforce Ltd, NZ http://www.webforce.co.nz/cart/                          |
 // +---------------------------------------------------------------------------+
 // |                                                                           |
 // | This program is free software; you can redistribute it and/or             |
@@ -95,7 +95,7 @@ class jcart {
 		if ($valid_item_qty !== false && $valid_item_price !== false)
 			{
 			// IF THE ITEM IS ALREADY IN THE CART, INCREASE THE QTY
-			if( $this->itemqtys[$item_id] > 0 )
+			if( isset($this->itemqtys[$item_id]) && $this->itemqtys[$item_id] > 0 )
 				{
 				$this->itemqtys[$item_id] = $item_qty + $this->itemqtys[$item_id];
 				$this->_update_total();
@@ -157,21 +157,24 @@ class jcart {
 	function update_cart()
 		{
 		// POST VALUE IS AN ARRAY OF ALL ITEM IDs IN THE CART
-		if (is_array($_POST['jcart_item_ids']))
+		$jcart_item_ids = (isset($_POST['jcart_item_ids'])) ? $_POST['jcart_item_ids']:'';
+		if (is_array($jcart_item_ids))
 			{
 			// TREAT VALUES AS A STRING FOR VALIDATION
-			$item_ids = implode($_POST['jcart_item_ids']);
+			$item_ids = implode($jcart_item_ids);
 			}
 
 		// POST VALUE IS AN ARRAY OF ALL ITEM QUANTITIES IN THE CART
-		if (is_array($_POST['jcart_item_qty']))
+		$jcart_item_qty = (isset($_POST['jcart_item_qty'])) ? $_POST['jcart_item_qty']:'';
+		if (is_array($jcart_item_qty))
 			{
 			// TREAT VALUES AS A STRING FOR VALIDATION
-			$item_qtys = implode($_POST['jcart_item_qty']);
+			$item_qtys = implode($jcart_item_qty);
 			}
 
 		// IF NO ITEM IDs, THE CART IS EMPTY
-		if ($_POST['jcart_item_id'])
+		$jcart_item_id = (isset($_POST['jcart_item_id'])) ? $_POST['jcart_item_id']:'';
+		if ($jcart_item_id)
 			{
 			// IF THE ITEM QTY IS AN INTEGER, OR ZERO, OR EMPTY
 			// UPDATE THE ITEM
@@ -181,10 +184,10 @@ class jcart {
 				$count = 0;
 
 				// FOR EACH ITEM IN THE CART
-				foreach ($_POST['jcart_item_id'] as $item_id)
+				foreach ($jcart_item_id as $item_id)
 					{
 					// GET THE ITEM QTY AND DOUBLE-CHECK THAT THE VALUE IS AN INTEGER
-					$update_item_qty = intval($_POST['jcart_item_qty'][$count]);
+					$update_item_qty = intval($jcart_item_qty[$count]);
 
 					if($update_item_qty < 1)
 						{
@@ -203,7 +206,7 @@ class jcart {
 				}
 			}
 		// IF NO ITEMS IN THE CART, RETURN TRUE TO PREVENT UNNECSSARY ERROR MESSAGE
-		else if (!$_POST['jcart_item_id'])
+		else if (!$jcart_item_id)
 			{
 			return true;
 			}
@@ -257,7 +260,7 @@ class jcart {
 		{
 		$this->itemcount = 0;
 		$this->total = 0;
-		if(sizeof($this->items > 0))
+		if(sizeof($this->items) > 0)
 			{
 			foreach($this->items as $item)
 				{
@@ -274,7 +277,7 @@ class jcart {
 		{
 		$this->itemcount = 0;
 		$this->totalweight = 0;
-		if(sizeof($this->items > 0))
+		if(sizeof($this->items) > 0)
 			{
 			foreach($this->items as $item)
 				{
@@ -296,15 +299,17 @@ class jcart {
 
 		// ASSIGN USER CONFIG VALUES AS POST VAR LITERAL INDICES
 		// INDICES ARE THE HTML NAME ATTRIBUTES FROM THE USERS ADD-TO-CART FORM
-		$item_id = $_POST[$item_id];
-		$item_qty = $_POST[$item_qty];
-		$item_price = $_POST[$item_price];
+		$item_id = (isset($_POST[$item_id])) ? $_POST[$item_id]:'';
+		$item_qty = (isset($_POST[$item_qty])) ? $_POST[$item_qty]:'';
+		$item_price = (isset($_POST[$item_price])) ? $_POST[$item_price]:'';
 		//Todo if block==1 shorten name
-		$item_name = $_POST[$item_name];
-		$item_weight = $_POST[$item_weight];
+		$item_name = (isset($_POST[$item_name])) ? $_POST[$item_name]:'';
+		$item_weight = (isset($_POST[$item_weight])) ? $_POST[$item_weight]:'';
+
+		$error_message = '';
 
 		// ADD AN ITEM
-		if ($_POST[$item_add])
+		if (isset($_POST[$item_add]) && $_POST[$item_add])
 			{
 			$item_added = $this->add_item($item_id, $item_qty, $item_price, $item_name, $item_weight);
 			// IF NOT TRUE THE ADD ITEM FUNCTION RETURNS THE ERROR TYPE
@@ -325,7 +330,8 @@ class jcart {
 
 		// UPDATE A SINGLE ITEM
 		// CHECKING POST VALUE AGAINST $text ARRAY FAILS?? HAVE TO CHECK AGAINST $jcart ARRAY
-		if ($_POST['jcart_update_item'] == $jcart['text']['update_button'])
+		$jcart_update_item = (isset($_POST['jcart_update_item'])) ? $_POST['jcart_update_item']:'';
+		if ($jcart_update_item == $jcart['text']['update_button'])
 			{
 			$item_updated = $this->update_item($_POST['item_id'], $_POST['item_qty']);
 			if ($item_updated !== true)
@@ -335,7 +341,9 @@ class jcart {
 			}
 
 		// UPDATE ALL ITEMS IN THE CART
-		if($_POST['jcart_update_cart'] || $_POST['jcart_checkout'])
+		$jcart_update_cart = (isset($_POST['jcart_update_cart'])) ? $_POST['jcart_update_cart']:'';
+		$jcart_checkout = (isset($_POST['jcart_checkout'])) ? $_POST['jcart_checkout']:'';
+		if($jcart_update_cart || $jcart_checkout)
 			{
 			$cart_updated = $this->update_cart();
 			if ($cart_updated !== true)
@@ -345,13 +353,17 @@ class jcart {
 			}
 
 		// REMOVE AN ITEM
-		if($_GET['jcart_remove'] && !$_POST[$item_add] && !$_POST['jcart_update_cart'] && !$_POST['jcart_check_out'])
+		$p_item_add = (isset($_POST[$item_add])) ? $_POST[$item_add]:'';
+		$jcart_remove = (isset($_GET['jcart_remove'])) ? $_GET['jcart_remove']:'';
+		$jcart_check_out = (isset($_POST['jcart_check_out'])) ? $_POST['jcart_check_out']:'';
+		if($jcart_remove && !$p_item_add && !$jcart_update_cart && !$jcart_check_out)
 			{
-			$this->del_item($_GET['jcart_remove']);
+			$this->del_item($jcart_remove);
 			}
 
 		// EMPTY THE CART
-		if($_POST['jcart_empty'])
+		$jcart_empty = (isset($_POST['jcart_empty'])) ? $_POST['jcart_empty']:'';
+		if($jcart_empty)
 			{
 			$this->empty_cart();
 			}
@@ -370,7 +382,8 @@ class jcart {
 		// WE FIRST CHECK THE REQUEST URI AGAINST THE USER CONFIG CHECKOUT (SET WHEN THE VISITOR FIRST CLICKS CHECKOUT)
 		// WE ALSO CHECK FOR THE REQUEST VAR SENT FROM HIDDEN INPUT SENT BY AJAX REQUEST (SET WHEN VISITOR HAS JAVASCRIPT ENABLED AND UPDATES AN ITEM QTY)
 		$is_checkout = strpos($_SERVER['REQUEST_URI'], $form_action);
-		if ($is_checkout !== false || $_REQUEST['jcart_is_checkout'] == 'true')
+		$jcart_is_checkout = (isset($_REQUEST['jcart_is_checkout'])) ? $_REQUEST['jcart_is_checkout']:'';
+		if ($is_checkout !== false || $jcart_is_checkout == 'true')
 			{
 			$is_checkout = true;
 			}
@@ -396,7 +409,8 @@ class jcart {
 		// IF THIS ERROR IS TRUE THE VISITOR UPDATED THE CART FROM THE CHECKOUT PAGE USING AN INVALID PRICE FORMAT
 		// PASSED AS A SESSION VAR SINCE THE CHECKOUT PAGE USES A HEADER REDIRECT
 		// IF PASSED VIA GET THE QUERY STRING STAYS SET EVEN AFTER SUBSEQUENT POST REQUESTS
-		if ($_SESSION['quantity_error'] == true) {
+		$quantity_error = (isset($_SESSION['quantity_error'])) ? $_SESSION['quantity_error']:'';
+		if ($quantity_error == true) {
 			$error_message = $text['quantity_error'];
 			unset($_SESSION['quantity_error']);
 		}
@@ -407,8 +421,9 @@ class jcart {
 		}
 
 		// DISPLAY THE CART HEADER
+		$pay_by = (isset($_REQUEST['pay_by'])) ? $_REQUEST['pay_by']:'';
 		$cart = COM_newTemplate($_CONF['path'] . 'plugins/paypal/templates');
-		if ($_REQUEST['pay_by'] == 'check' && $block == 0) {
+		if ($pay_by == 'check' && $block == 0) {
 		    $cart->set_file(array('cart_start'   => 'cart_start_check.thtml',
                                   'cart_item'    => 'cart_item_check.thtml',
 								  'cart_empty'   => 'cart_empty.thtml',
@@ -434,7 +449,7 @@ class jcart {
 							<button class="uk-button uk-button-default uk-margin-small-bottom uk-text-nowrap" style="cursor: default">' . $LANG_PAYPAL_1['checkout_step_3'] . '</button>
 						</div></div>';
 			$cart->set_var('steps', $steps);
-		} else if ($_REQUEST['pay_by'] == 'check' || PAYBYCHECK == true) {
+		} else if ($pay_by == 'check' || PAYBYCHECK == true) {
 		    PAYBYCHECK == true;
 			$steps = '<div class="uk-width-1-1 uk-margin uk-margin-top"><div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-text-center uk-button-group">
 			        <button class="uk-button uk-button-default uk-margin-small-bottom uk-text-nowrap" style="cursor: default">' . $LANG_PAYPAL_1['checkout_step_1'] . '</button>
@@ -446,14 +461,16 @@ class jcart {
 			$cart->set_var('steps', '');
 		}
 		
-		if ($_REQUEST['pay_by'] == 'check' && $block == 0) {
+		if ($pay_by == 'check' && $block == 0) {
 			// Get details to edit and display the form on informations.php page
 			if (!COM_isAnonUser()) {
 				$sql = "SELECT * FROM {$_TABLES['paypal_users']} WHERE user_id = {$_USER['uid']}";
 				$res = DB_query($sql);
 				$A = DB_fetchArray($res);
+				if (!isset($A['user_id'])) $A['user_id']='';
 				if ($A['user_id'] == '' && SEC_hasRights('paypal.admin')) {
-					$A['user_id'] = $_REQUEST['uid'];
+					$r_uid = (isset($_REQUEST['uid'])) ? $_REQUEST['uid']:'';
+					$A['user_id'] = $r_uid;
 				}
 				if ($A['user_id'] == '') {
 					$A['user_id'] = $_USER['uid'];
@@ -534,7 +551,7 @@ class jcart {
 
 		
 		// IF THIS IS THE CHECKOUT HIDE THE CART CHECKOUT BUTTON
-		if ($is_checkout !== true && $_REQUEST['pay_by'] != 'check') {
+		if ($is_checkout !== true && $pay_by != 'check') {
 			$cart->set_var('checkout', '<button type="submit" id="jcart-checkout" name="jcart_checkout" class="uk-button uk-button-danger uk-button-large uk-text-right" style="border-radius:500px" value="PayPal決済１' . $text['checkout_button']
  . '">' . $text['checkout_button'] . '</button>');
 		} else {
@@ -560,7 +577,7 @@ class jcart {
 		$retval .= "</table>";
 		
 		// IF THIS IS THE CHECKOUT DISPLAY THE PAYPAL CHECKOUT BUTTON AND SHIPPING RATE
-		if ( ($is_checkout == true  && $block == 0 && ($this->itemcount > 0)) || $_REQUEST['pay_by'] == 'check' && $block == 0) {
+		if ( ($is_checkout == true  && $block == 0 && ($this->itemcount > 0)) || $pay_by == 'check' && $block == 0) {
 			// HIDDEN INPUT ALLOWS US TO DETERMINE IF WE'RE ON THE CHECKOUT PAGE
 			// WE NORMALLY CHECK AGAINST REQUEST URI BUT AJAX UPDATE SETS VALUE TO jcart-relay.php
 			$retval .= "<input type='hidden' id='jcart-is-checkout' name='jcart_is_checkout' value='true' />";
@@ -630,7 +647,7 @@ class jcart {
                 $input_type = 'submit';
                 $src = '" alt="' . $text['checkout_paypal_button'] . '" title="" '; 
             }
-			if ($_REQUEST['pay_by'] != 'check') {
+			if ($pay_by != 'check') {
 
 
 				if ($is_checkout == true  && $block == 0 && ($this->itemcount > 0) && $_PAY_CONF['enable_pay_by_ckeck'] == 1) {
@@ -650,6 +667,10 @@ class jcart {
 					}
 				}
 				if ($_PAY_CONF['enable_pay_by_paypal']) {
+					$disable_paypal_checkout = '';
+					if($this->itemcount <= 0) {
+						$disable_paypal_checkout = " disabled='disabled'";
+					}
 					$retval .= '<button class="uk-button uk-button-danger" type="submit" id="jcart-paypal-checkout" name="jcart_paypal_checkout" value="' .
 						$text['checkout_paypal_button'] . '"' . $disable_paypal_checkout . ' style="border-radius:500px" />' . $text['checkout_paypal_button'] . '</button>';	
 				}
@@ -663,9 +684,9 @@ class jcart {
 		$retval .= "\t</form>";
 
 		// IF UPDATING AN ITEM, FOCUS ON ITS QTY INPUT AFTER THE CART IS LOADED (DOESN'T SEEM TO WORK IN IE7)
-		if ($_POST['jcart_update_item'])
+		if ($jcart_update_item)
 			{
-			$retval .= "\t" . '<script>jQuery(function(){jQuery("#jcart-item-id-' . $_POST['item_id'] . '").focus()});</script>' . "";
+			$retval .= "\t" . '<script type="text/javascript">jQuery(function(){jQuery("#jcart-item-id-' . $_POST['item_id'] . '").focus()});</script>' . "";
 			}
 		
         $retval .= "\t<div class=\"jcart_footer\">";

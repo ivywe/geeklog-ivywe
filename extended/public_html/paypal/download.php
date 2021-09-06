@@ -1,16 +1,16 @@
 <?php
 // +--------------------------------------------------------------------------+
-// | PayPal Plugin - geeklog CMS                                             |
+// | PayPal Plugin - geeklog CMS                                              |
 // +--------------------------------------------------------------------------+
 // | download.php                                                             |
 // |                                                                          |
 // | Download page for files purchased using the paypal plugin.               |
 // | No other files will be accessable via this script.                       |
 // +--------------------------------------------------------------------------+
-// |                                                                          |
-// | Copyright (C) 2005-2006 by the following authors:                        |
+// | Copyright (C) 2021 by the following authors:                             |
 // |                                                                          |
 // | Authors: Vincent Furia     - vinny01 AT users DOT sourceforge DOT net    |
+// | Authors: Hiroron    - hiroron AT hiroron DOT com                         |
 // +--------------------------------------------------------------------------+
 // |                                                                          |
 // | This program is free software; you can redistribute it and/or            |
@@ -43,6 +43,11 @@
  */
 require_once('../lib-common.php');
 
+if (!in_array('paypal', $_PLUGINS)) {
+    COM_handle404();
+    exit;
+}
+
 /**
  * Require Downloader Class
  */
@@ -63,7 +68,7 @@ $res = DB_query($sql);
 $A = DB_fetchArray($res);
 
 // If a file was found, do the download.  Otherwise refresh to the home page and log it.
-if (!empty($A['file']) && $A['product_type'] == '1' && $A['active'] == '1') {
+if (is_array($A) && !empty($A['file']) && $A['product_type'] == '1' && $A['active'] == '1') {
     $dwnld = new downloader();
     $dwnld->setLogFile($_CONF['path_log'] . 'paypal_downloads.log');
     $dwnld->setLogging(true);
@@ -92,4 +97,3 @@ if (!empty($A['file']) && $A['product_type'] == '1' && $A['active'] == '1') {
     echo COM_refresh($_CONF['site_url']);
 }
 
-?>

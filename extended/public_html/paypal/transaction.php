@@ -4,9 +4,10 @@
 // +--------------------------------------------------------------------------+
 // | transaction.php                                                          |
 // +--------------------------------------------------------------------------+
-// | Copyright (C) 2010 by the following authors:                              |
-// |                                                                           |
-// | Authors: ::Ben - cordiste AT free DOT fr                                  |
+// | Copyright (C) 2021 by the following authors:                             |
+// |                                                                          |
+// | Authors: ::Ben - cordiste AT free DOT fr                                 |
+// | Authors: Hiroron    - hiroron AT hiroron DOT com                         |
 // +--------------------------------------------------------------------------+
 // |                                                                          |
 // | This program is free software; you can redistribute it and/or            |
@@ -30,6 +31,11 @@
  */
 require_once '../lib-common.php';
 
+if (!in_array('paypal', $_PLUGINS)) {
+    COM_handle404();
+    exit;
+}
+
 // Incoming variable filter
 $vars = array('id' => 'number',
               'type' => 'alpha',
@@ -37,21 +43,21 @@ $vars = array('id' => 'number',
 			 );
 paypal_filterVars($vars, $_REQUEST);
 
-$pid = $_REQUEST['id'];
-$type = $_REQUEST['type']; //purchase or subscription
+$pid = Geeklog\Input::fRequest('id', '');
+$type = Geeklog\Input::fRequest('type', ''); //purchase or subscription
 
 // Ensure sufficient privs to read this page
 if (($_USER['uid'] < 2) && ($_PAY_CONF['anonymous_buy'] == 0)) {
-    $display .= COM_siteHeader();
-	if (SEC_hasRights('paypal.user', 'paypal.admin')) {
-        $display .= paypal_user_menu();
+    $content = '';
+	if (SEC_hasRights('paypal.user,paypal.admin')) {
+        $content .= paypal_user_menu();
     } else {
-        $display .= paypal_viewer_menu();
+        $content .= paypal_viewer_menu();
     }
-    $display .= COM_startBlock($LANG_PAYPAL_1['access_reserved']);
-    $display .= $LANG_PAYPAL_1['you_must_log_in'];
-    $display .= COM_endBlock();
-    $display .= COM_siteFooter();
+    $content .= COM_startBlock($LANG_PAYPAL_1['access_reserved']);
+    $content .= $LANG_PAYPAL_1['you_must_log_in'];
+    $content .= COM_endBlock();
+    $display = COM_createHTMLDocument($content);
     COM_output($display);
     exit;
 }
@@ -84,7 +90,8 @@ $A = DB_fetchArray($res, false);
 $purchase_status = $A['status'];
 
 $transaction = new Template($_CONF['path'] . 'plugins/paypal/templates/transaction');
-if ($_REQUEST['mode'] == 'print') {
+$mode = Geeklog\Input::fRequest('mode', '');
+if ($mode == 'print') {
     $transaction->set_file(array('transaction' => 'print_' . $type . '.thtml'));
 } else {
     $transaction->set_file(array('transaction' => $type . '.thtml'));
@@ -123,16 +130,16 @@ if ( $A['user_id'] != '' && ($_USER['uid'] != $A['user_id']) && SEC_hasRights('p
 
 //Log-In to access
 if (($_USER['uid'] < 2) && ($A['logged'] == 1)) {
-    $display .= COM_siteHeader();
-	if (SEC_hasRights('paypal.user', 'paypal.admin')) {
-        $display .= paypal_user_menu();
+    $content = '';
+	if (SEC_hasRights('paypal.user,paypal.admin')) {
+        $content .= paypal_user_menu();
     } else {
-        $display .= paypal_viewer_menu();
+        $content .= paypal_viewer_menu();
     }
-    $display .= COM_startBlock($LANG_PAYPAL_1['access_reserved']);
-    $display .= $LANG_PAYPAL_1['you_must_log_in'];
-    $display .= COM_endBlock();
-    $display .= COM_siteFooter();
+    $content .= COM_startBlock($LANG_PAYPAL_1['access_reserved']);
+    $content .= $LANG_PAYPAL_1['you_must_log_in'];
+    $content .= COM_endBlock();
+    $display = COM_createHTMLDocument($content);
     COM_output($display);
     exit;
 }
@@ -143,7 +150,8 @@ $transaction->set_var('site_url', $_PAY_CONF['site_url']);
 $transaction->set_var('charset', COM_getCharset());
 $transaction->set_var('br', '<br'. XHTML .'>');
 
-if ($_REQUEST['mode'] == 'print') {
+$mode = Geeklog\Input::fRequest('mode', '');
+if ($mode == 'print') {
     $transaction->set_var('print', '');
 } else {
     $transaction->set_var('print', ' <small>(<a href="' . $_PAY_CONF['site_url'] . '/transaction.php?type=' . $type . '&amp;id=' . $pid . '&amp;mode=print" target="_blank">'. $LANG_PAYPAL_1['print'] . '</a>)</small>');
@@ -193,8 +201,10 @@ $transaction->set_var('user_country', '<p>' . $ipn['address_country'] . '</p>');
 $purchase_date = COM_getUserDateTimeFormat($A['purchase_date']);
 $expiration = COM_getUserDateTimeFormat($A['expiration']);
 
+if (!isset($A['quantity'])) $A['quantity'] = '';
+if (!isset($A['product_name'])) $A['product_name'] = '';
 $transaction->set_var('qty', $A['quantity']);
-$transaction->set_var('product', $A['name']);
+$transaction->set_var('product', $A['product_name']);
 
 $transaction->set_var('from', $LANG_PAYPAL_1['from'] . ' ' . $purchase_date[0]);
 $transaction->set_var('to', $LANG_PAYPAL_1['to'] . ' ' . $expiration[0]);
@@ -223,7 +233,7 @@ if ($ipn['payment_type'] != '') {
 
 $transaction->set_var('total_price', number_format($ipn['mc_gross'], $_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']));
 $transaction->set_var('currency', $_PAY_CONF['currency']);
-$transaction->set_var('name', $A['name']);
+$transaction->set_var('name', $A['product_name']);
 
 //Table header
 $transaction->set_var('quantity', $LANG_PAYPAL_1['quantity']);
@@ -234,11 +244,11 @@ $transaction->set_var('total_row_label', $LANG_PAYPAL_1['total_row_label']);
 //Table row
 $transaction->set_block('transaction', 'tablerow','ttablerow');
 
-if ($ipn['quantity0'] != '') {
+if (isset($ipn['quantity0']) && $ipn['quantity0'] != '') {
     $i = 0;
 	for (; ; ) {
 		
-		if ($ipn['quantity'.$i] == '') {
+		if (!isset($ipn['quantity'.$i]) || $ipn['quantity'.$i] == '') {
 			break;
 		}
 		
@@ -258,12 +268,12 @@ if ($ipn['quantity0'] != '') {
 		$i++;
 	}
 	
-} else if ($ipn['quantity1'] != '') {
+} else if (isset($ipn['quantity1']) && $ipn['quantity1'] != '') {
     
 	$i = 1;
 	
 	for (; ; ) {
-		if ($ipn['quantity'.$i] == '') {
+		if (!isset($ipn['quantity'.$i]) || $ipn['quantity'.$i] == '') {
 			break;
 		}
 		
@@ -297,7 +307,7 @@ if ($ipn['quantity0'] != '') {
 }
 
 //Handling
-if ($ipn['mc_handling'] > 0) {
+if (isset($ipn['mc_handling']) && $ipn['mc_handling'] > 0) {
 	$transaction->set_var(array(
 	'qty'        =>  1,
 	'product'    =>  $LANG_PAYPAL_1['shipping'],
@@ -308,7 +318,7 @@ if ($ipn['mc_handling'] > 0) {
 }
 
 //Shipping
-if ($ipn['mc_shipping'] > 0) {
+if (isset($ipn['mc_shipping']) && $ipn['mc_shipping'] > 0) {
 	$transaction->set_var(array(
 	'qty'        =>  1,
 	'product'    =>  $LANG_PAYPAL_1['shipping'],
@@ -330,24 +340,23 @@ if (XHTML != '') {
 $transaction->set_var('direction', $LANG_DIRECTION);
 
 $transaction->parse('output', 'transaction');
-$content = $transaction->finish($transaction->get_var('output'));
+$tran_content = $transaction->finish($transaction->get_var('output'));
 //Display
 
-if ($_REQUEST['mode'] == 'print') {
-    $display = $content;
+$mode = Geeklog\Input::fRequest('mode', '');
+if ($mode == 'print') {
+    $display = $tran_content;
 } else {
-    $display = COM_siteHeader();
-    if (SEC_hasRights('paypal.user', 'paypal.admin')) {
-        $display .= paypal_user_menu();
+    $content = '';
+    if (SEC_hasRights('paypal.user,paypal.admin')) {
+        $content .= paypal_user_menu();
     } else {
-        $display .= paypal_viewer_menu();
+        $content .= paypal_viewer_menu();
     }
-    $display .= COM_startBlock();
-    $display .= $content;
-    $display .= COM_endBlock();
-    $display .= COM_siteFooter();
+    $content .= COM_startBlock();
+    $content .= $tran_content;
+    $content .= COM_endBlock();
+    $display = COM_createHTMLDocument($content);
 }
 
 COM_output($display);
-
-?>

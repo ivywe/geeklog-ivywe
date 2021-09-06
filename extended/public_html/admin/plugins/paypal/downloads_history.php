@@ -6,9 +6,10 @@
 // |                                                                           |
 // | Allows paypal administrators to view site-wide downloads history          |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2010 by the following authors:                              |
+// | Copyright (C) 2021 by the following authors:                              |
 // |                                                                           |
 // | Authors: Ben        - cordiste AT free DOT fr                             |
+// | Authors: Hiroron    - hiroron AT hiroron DOT com                          |
 // +---------------------------------------------------------------------------+
 // |                                                                           |
 // | This program is free software; you can redistribute it and/or             |
@@ -123,22 +124,20 @@ function plugin_getListField_paypal_downloads($fieldname, $fieldvalue, $A, $icon
 
 //Main
 
-$display = COM_siteHeader('none');
-$display .= paypal_admin_menu();
+$content = paypal_admin_menu();
 
-$display .= COM_startBlock($LANG_PAYPAL_1['downloads_history']);
+$content .= COM_startBlock($LANG_PAYPAL_1['downloads_history']);
 
-if (!empty($_REQUEST['msg'])) {
-    $display .= COM_startBlock($LANG_PAYPAL_1['message']);
-    $display .= stripslashes($_REQUEST['msg']);
-    $display .= COM_endBlock();
+$msg = Geeklog\Input::fRequest('msg', '');
+if (!empty($msg)) {
+    $content .= COM_startBlock($LANG_PAYPAL_1['message']);
+    $content .= stripslashes($msg);
+    $content .= COM_endBlock();
 }
 
-$display .= PAYPAL_listDownloads();
-$display .= COM_endBlock();
+$content .= PAYPAL_listDownloads();
+$content .= COM_endBlock();
 
-$display .= COM_siteFooter();
+$display = COM_createHTMLDocument($content, ['pagetitle' => $LANG_PAYPAL_1['downloads_history']]);
 
 COM_output($display);
-
-?>

@@ -384,7 +384,7 @@ $LANG_PAYPAL_CART = array(
 
 $LANG_PAYPAL_TYPE = array(
     'product'                 => 'Product',
-	'subscrition'             => 'Subscription',
+	'subscription'            => 'Subscription',
 	'donation'                => 'Donation',
 	'rent'                    => 'Rent',
 

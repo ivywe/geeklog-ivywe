@@ -7,12 +7,11 @@
 // | This file contains the BaseIPN class, it provides an interface to        |
 // | deal with IPN transactions from paypal                                   |
 // +--------------------------------------------------------------------------+
-// |                                                                          |
-// | Copyright (C) 2013 by the following authors:                             |
+// | Copyright (C) 2021 by the following authors:                             |
 // |                                                                          |
 // | Authors: Ben     -    ben AT geeklog DOT fr                              |
+// | Authors: Hiroron    - hiroron AT hiroron DOT com                         |
 // +--------------------------------------------------------------------------+
-// |                                                                          |
 // | Copyright (C) 2005-2006 by the following authors:                        |
 // |                                                                          |
 // | Authors: Vincent Furia     - vinny01 AT users DOT sourceforge DOT net    |
@@ -49,12 +48,12 @@ if (!defined ('VERSION')) {
  */
  
 /* Paypal constants */
-define('PAYPAL_FAILURE_UNKNOWN', 0);
-define('PAYPAL_FAILURE_VERIFY', 1);
-define('PAYPAL_FAILURE_COMPLETED', 2);
-define('PAYPAL_FAILURE_UNIQUE', 3);
-define('PAYPAL_FAILURE_EMAIL', 4);
-define('PAYPAL_FAILURE_FUNDS', 5);
+if(!defined('PAYPAL_FAILURE_UNKNOWN'))   define('PAYPAL_FAILURE_UNKNOWN', 0);
+if(!defined('PAYPAL_FAILURE_VERIFY'))    define('PAYPAL_FAILURE_VERIFY', 1);
+if(!defined('PAYPAL_FAILURE_COMPLETED')) define('PAYPAL_FAILURE_COMPLETED', 2);
+if(!defined('PAYPAL_FAILURE_UNIQUE'))    define('PAYPAL_FAILURE_UNIQUE', 3);
+if(!defined('PAYPAL_FAILURE_EMAIL'))     define('PAYPAL_FAILURE_EMAIL', 4);
+if(!defined('PAYPAL_FAILURE_FUNDS'))     define('PAYPAL_FAILURE_FUNDS', 5);
 
 /**
  * This class provides an interface to deal with IPN transactions from paypal
@@ -95,16 +94,21 @@ class BaseIPN {
 		}
 		// read the post from PayPal system and add 'cmd'
 		$req = 'cmd=_notify-validate';
+/*
 		if(function_exists('get_magic_quotes_gpc')) {
 				$get_magic_quotes_exists = true;
 				if(DEBUG) COM_errorLog("PAYPAL-IPN: get_magic_quotes_gpc exists");
 		}
+*/
 		foreach ($myPost as $key => $value) {
+/*
 				if($get_magic_quotes_exists == true && get_magic_quotes_gpc() == 1) {
 						$value = urlencode(stripslashes($value));
 				} else {
 						$value = urlencode($value);
 				}
+*/
+				$value = urlencode(stripslashes($value));
 				$req .= "&$key=$value";
 		}
 
@@ -454,7 +458,7 @@ class BaseIPN {
                 $quantity = array();
                 $names = array();
                 
-				if ( $in['num_cart_items'] > 0 ) {
+				if ( isset($in['num_cart_items']) && $in['num_cart_items'] > 0 ) {
 					for ($i = 1; $i <= $in['num_cart_items']; $i++) {
 						if(DEBUG) COM_errorLog('PAYPAL-IPN: Cart case item: ' . $in["item_number$i"]);
 						$ids[] = $in["item_number$i"];
@@ -520,9 +524,13 @@ class BaseIPN {
             $res = DB_query($sql);
             $A = DB_fetchArray($res);
 			if(DEBUG) COM_errorLog('PAYPAL-IPN: Type: ' . $A['type']);
+/*
+ * paypal_products.type = 'download' -> paypal_downloads.file と見てセット？
+ * download商品は未改修
             if ($A['download'] > 0) {
                 $files[] = $_PAY_CONF['download_path'] . $A['file'];
             }
+*/
 			
 			//TODO + attribute name
 			
@@ -562,6 +570,18 @@ class BaseIPN {
 			$stock_id = PAYPAL_getStockId($oldids[$i]);
 			$qty = $quantity[$i];
 			PAYPAL_stockMovement ($stock_id, $oldids[$i], -$qty);
+
+			// Subscription
+			if ($A['type'] == 'subscription') {
+				//add subscription to db
+				PAYPAL_addsubscription ($A, $paypal_data);
+				if(DEBUG) COM_errorLog('PAYPAL-IPN: Subscription recorded');
+				//add  user to group
+				if ($A['add_to_group'] > 1 && (int)$paypal_data['custom'] > 1) {
+					PAYPAL_addToGroup($A['add_to_group'], $paypal_data['custom']);
+					if(DEBUG) COM_errorLog( 'PAYPAL-IPN: User with UID ' . $paypal_data['custom'] . ' added to group ID ' . $A['add_to_group'] );
+				}
+			}
         }
         
 		// Send the purchaser a confirmation email (if set to do so in config)
@@ -582,8 +602,9 @@ class BaseIPN {
 			$message->set_var('purchase_receipt', $LANG_PAYPAL_EMAIL['purchase_receipt']);
 
             // list of product names
+			$li_products = '';
 			for ($i = 0; $i < count($products); $i++) {
-			$li_products .= '<li>' . $names[$i];
+				$li_products .= '<li>' . $names[$i];
 			}
 			$message->set_var('products', $li_products);
 			
@@ -628,18 +649,6 @@ class BaseIPN {
 		//Send email to receiver
         COM_mail($_PAY_CONF['receiverEmailAddr'], $subject, $subject . ' >> ' . $text, $_PAY_CONF['receiverEmailAddr'], true);
 
-		//Subscription
-		if ($A['type'] == 'subscription') {
-		    //add subscription to db
-		    PAYPAL_addsubscription ($A, $paypal_data);
-			if(DEBUG) COM_errorLog('PAYPAL-IPN: Subscription recorded');
-		    //add  user to group
-		    if ($A['add_to_group'] > 1 && (int)$paypal_data['custom'] > 1) {
-    			PAYPAL_addToGroup($A['add_to_group'], $paypal_data['custom']);
-				if(DEBUG) COM_errorLog( 'PAYPAL-IPN: User with UID ' . $paypal_data['custom'] . ' added to group ID ' . $A['add_to_group'] );
-			}
-				
-		}
     }
 
     /**

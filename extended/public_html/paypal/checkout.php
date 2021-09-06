@@ -1,13 +1,14 @@
 <?php
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Paypal Plugin 1.1                                                         |
+// | Paypal Plugin 1.5                                                         |
 // +---------------------------------------------------------------------------+
-// | checkout.php                                                          |
+// | checkout.php                                                              |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2010 by the following authors:                              |
+// | Copyright (C) 2021 by the following authors:                              |
 // |                                                                           |
 // | Authors: ::Ben - cordiste AT free DOT fr                                  |
+// | Authors: Hiroron    - hiroron AT hiroron DOT com                          |
 // +---------------------------------------------------------------------------+
 // |                                                                           |
 // | This program is free software; you can redistribute it and/or             |
@@ -42,35 +43,33 @@ if (! in_array('paypal', $_PLUGINS)) {
 paypal_access_check('paypal.viewer');
 
 //Main
-		$display = "";
+$content = '';
+$information = array();
 
-    switch( $_PAY_CONF['display_blocks'] ) {
-    case 0 :    // none
-    case 2 :    // right only
-        $display .= COM_siteHeader('none', $pagetitle);
-        break;
-    case 1 :    // left only
-    case 3 :    // both
-    default :
-        $display .= COM_siteHeader('menu', $pagetitle);
-        break;
-    }
+switch( $_PAY_CONF['display_blocks'] ) {
+case 0 :    // none
+case 2 :    // right only
+    $information['what'] = 'none';
+    break;
+case 1 :    // left only
+case 3 :    // both
+default :
+    $information['what'] = 'menu';
+    break;
+}
 
 
 
-
-if (SEC_hasRights('paypal.user', 'paypal.admin')) {
-    $display .= paypal_user_menu();
+if (SEC_hasRights('paypal.user,paypal.admin')) {
+    $content .= paypal_user_menu();
 } else {
-    $display .= paypal_viewer_menu();
+    $content .= paypal_viewer_menu();
 }
 
 //Display cart
-$display .= '<div id="cart">' . PAYPAL_displayCart() .'</div>';
+$content .= '<div id="cart">' . PAYPAL_displayCart() .'</div>';
 
 
-$display .= COM_siteFooter();
+$display = COM_createHTMLDocument($content, $information);
 
 COM_output($display);
-
-?>

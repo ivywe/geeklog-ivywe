@@ -9,10 +9,10 @@
 // | By default displays available products along with links to purchase      |
 // | history and detailed product views                                       |
 // +--------------------------------------------------------------------------+
-// |                                                                          |
-// | Copyright (C) 2011 by the following authors:                             |
+// | Copyright (C) 2021 by the following authors:                             |
 // |                                                                          |
 // | Authors: Ben     -    ben AT geeklog DOT fr                              |
+// | Authors: Hiroron    - hiroron AT hiroron DOT com                         |
 // +--------------------------------------------------------------------------+
 // |                                                                          |
 // | This program is free software; you can redistribute it and/or            |
@@ -39,7 +39,13 @@ require_once '../lib-common.php';
 // START SESSION
 session_start();
 // INITIALIZE JCART AFTER SESSION START
-$cart =& $_SESSION['jcart']; 
+$cart = '';
+if (!isset($_SESSION['jcart'])) {
+	$cart = new jcart();
+	$_SESSION['jcart'] = serialize($cart);
+}
+$cart =& $_SESSION['jcart'];
+$cart = unserialize(serialize($cart));
 
 // take user back to the homepage if the plugin is not active
 if (! in_array('paypal', $_PLUGINS) || COM_isAnonUser() || ($cart->itemcount) < 1) {
@@ -59,19 +65,21 @@ paypal_filterVars($vars, $_REQUEST);
 $items = array();
 $i = 1;
 $quantities = array();
-
+$data = array();
+$namesfromcart=array();
+$item_price=array();
 
 $valid_prices = true;
 foreach ($cart->get_contents() as $item) {
 
-  $item_id = PAYPAL_realId($item['id']); 
+	$item_id = PAYPAL_realId($item['id']); 
 	$items[$i] = $item['id'];
 	$namesfromcart[$i] = $item['name'];
 	$quantities[$i] = $item['qty'];
 	$item_price[$i]	= $item['price'];
 	$A = DB_fetchArray(DB_query("SELECT * FROM {$_TABLES['paypal_products']} WHERE id = '{$item_id}' LIMIT 1"));
 	if ($item_price[$i] <> PAYPAL_productPrice($A) || !SEC_hasAccess2($A) || $A['active'] != '1'){
-	 $valid_prices = false;
+		$valid_prices = false;
 		COM_errorLog("PAYPAL:confirmation.php 72 : item_id=". $item_id . ' realid='.$realid.' item_price $i=' . $item_price[$i] . ' PAYPAL_productPrice$A=' . PAYPAL_productPrice($A), 1);
 	}
 	$i++;
@@ -87,26 +95,23 @@ if ($valid_prices !== true) {
 // EMPTY THE CART
 $cart->empty_cart();
 
-$display .= PAYPAL_siteHeader();
-$display .= paypal_user_menu();
+$content = paypal_user_menu();
 
-switch ($_REQUEST['mode']) {
-		
+$mode = Geeklog\Input::fRequest('mode', '');
+switch ($mode) {
 	default :
 
         //Display cart
-        $display .= '
+        $content .= '
 		             <div class="uk-width-1-1 uk-margin uk-margin-top"><div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-text-center uk-button-group">
 			           <button class="uk-button uk-button-default uk-margin-small-bottom uk-text-nowrap" style="cursor: default">' . $LANG_PAYPAL_1['checkout_step_1'] . '</li>
                  <button class="uk-button uk-button-default uk-margin-small-bottom uk-text-nowrap" style="cursor: default">' . $LANG_PAYPAL_1['checkout_step_2'] . '</li>
 							   <button class="uk-button uk-button-secondary uk-margin-small-bottom uk-text-nowrap" style="cursor: default">' . $LANG_PAYPAL_1['checkout_step_3'] . '</div>
 						</div></div>';
 
-		$display .= PAYPAL_handlePurchase($items, $quantities, $data, $namesfromcart, $item_price);
-		
-        $display .= PAYPAL_siteFooter();
+		$content .= PAYPAL_handlePurchase($items, $quantities, $data, $namesfromcart, $item_price);
 }
 
-COM_output($display);
+$display = PAYPAL_createHTMLDocument($content);
 
-?>
+COM_output($display);

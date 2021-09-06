@@ -1,19 +1,20 @@
 <?php
 // +--------------------------------------------------------------------------+
-// | PayPal Plugin v1.4.4 - geeklog CMS                                       |
+// | PayPal Plugin v1.5 - geeklog CMS                                         |
 // +--------------------------------------------------------------------------+
 // | login.php                                                                |
 // |                                                                          |
 // | Purchase History View.  Displays the current user's history of purchases.|
 // +--------------------------------------------------------------------------+
-// | Copyright (C) 2013 by the following authors:                             |
+// | Copyright (C) 2021 by the following authors:                             |
 // |                                                                          |
 // | Authors: ::Ben - cordiste AT free DOT fr                                 |
+// | Authors: Hiroron    - hiroron AT hiroron DOT com                         |
 // +--------------------------------------------------------------------------+
 // | Based on the original paypal Plugin                                      |
 // | Copyright (C) 2005 - 2006 by the following authors:                      |
 // |                                                                          |
-// | Vincent Furia <vinny01 AT users DOT sourceforge DOT net>                 |   
+// | Vincent Furia <vinny01 AT users DOT sourceforge DOT net>                 |
 // +--------------------------------------------------------------------------+
 // |                                                                          |
 // | This program is free software; you can redistribute it and/or            |
@@ -52,20 +53,19 @@ if (! in_array('paypal', $_PLUGINS)) {
 paypal_access_check();
 
 //Main
-
-$display = COM_siteHeader();
-if (SEC_hasRights('paypal.user', 'paypal.admin')) {
-    $display .= paypal_user_menu();
+$content = '';
+if (SEC_hasRights('paypal.user,paypal.admin')) {
+    $content .= paypal_user_menu();
 } else {
-    $display .= paypal_viewer_menu();
+    $content .= paypal_viewer_menu();
 }
 
-if (!empty($_REQUEST['msg'])) $display .= COM_showMessageText( stripslashes($_REQUEST['msg']), $LANG_PAYPAL_1['message']);
+$msg = Geeklog\Input::request('msg', '');
+if (!empty($msg)) $content .= COM_showMessageText( stripslashes($msg), $LANG_PAYPAL_1['message']);
 
-$display .= '<div id="login">' . SEC_loginRequiredForm() . '</div>';
+$content .= '<div id="login">' . SEC_loginRequiredForm() . '</div>';
 
-$display .= COM_siteFooter();
+$display = COM_createHTMLDocument($content);
 
 COM_output($display);
 
-?>

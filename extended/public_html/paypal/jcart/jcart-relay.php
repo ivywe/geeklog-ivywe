@@ -2,20 +2,19 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Paypal Plugin 1.1                                                         |
+// | Paypal Plugin 1.5                                                         |
 // +---------------------------------------------------------------------------+
 // | jcart-relay.php                                                           |
-// |                                                                           |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2010 by the following authors:                              |
+// | Copyright (C) 2021 by the following authors:                              |
 // |                                                                           |
 // | Authors: ::Ben - cordiste AT free DOT fr                                  |
+// | Authors: Hiroron    - hiroron AT hiroron DOT com                          |
 // +---------------------------------------------------------------------------+
 // | Based on JCART v1.1                                                       |
 // |                                                                           |
 // | Copyright (C) 2010 by the following authors:                              |
 // | JCART v1.1  http://conceptlogic.com/jcart/                                |
-// |                                                                           |   
 // +---------------------------------------------------------------------------+
 // |                                                                           |
 // | This program is free software; you can redistribute it and/or             |
@@ -42,5 +41,10 @@
  */
 require_once '../../lib-common.php';
 
+if (!in_array('paypal', $_PLUGINS)) {
+    COM_handle404();
+    exit;
+}
+
 COM_output( PAYPAL_displayCart(0) );
-?>
+

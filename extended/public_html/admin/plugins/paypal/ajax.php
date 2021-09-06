@@ -1,12 +1,13 @@
 <?php
 // +--------------------------------------------------------------------------+
-// | Maps Plugin 1.1 - geeklog CMS                                            |
+// | Paypal Plugin 1.5 - geeklog CMS                                          |
 // +--------------------------------------------------------------------------+
 // | ajax.php                                                                 |
 // +--------------------------------------------------------------------------+
-// | Copyright (C) 2011 by the following authors:                             |
+// | Copyright (C) 2021 by the following authors:                             |
 // |                                                                          |
 // | Authors: ::Ben - cordiste AT free DOT fr                                 |
+// | Authors: Hiroron    - hiroron AT hiroron DOT com                         |
 // +--------------------------------------------------------------------------+
 // |                                                                          |
 // | This program is free software; you can redistribute it and/or            |
@@ -59,7 +60,9 @@ function to_utf8($in)
         return $out;
 } 
 
-switch ($_POST['action']) {
+//Main
+$action = Geeklog\Input::request('action', '');
+switch ($action ) {
 	case 'delete':
 		DB_delete($_TABLES['paypal_product_attribute'],'pa_id',$_POST['id']);
 		echo '<div id="attributes_actions"><div id="attributes_list">' . PAYPALPRO_displayAttributes($_POST['pid']) . '</div>';
@@ -259,4 +262,3 @@ switch ($_POST['action']) {
 		break;
 }
 
-?>

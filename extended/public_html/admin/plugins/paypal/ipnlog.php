@@ -6,10 +6,10 @@
 // |                                                                          |
 // | Allows paypal administrators to view the ipnlog from the database        |
 // +--------------------------------------------------------------------------+
-// |                                                                          |
-// | Copyright (C) 2005-2006 by the following authors:                        |
+// | Copyright (C) 2021 by the following authors:                             |
 // |                                                                          |
 // | Authors: Vincent Furia     - vinny01 AT users DOT sourceforge DOT net    |
+// | Authors: Hiroron    - hiroron AT hiroron DOT com                         |
 // +--------------------------------------------------------------------------+
 // |                                                                          |
 // | This program is free software; you can redistribute it and/or            |
@@ -117,11 +117,9 @@ function plugin_getListField_paypal_IPNlog($fieldname, $fieldvalue, $A, $icon_ar
 	// PHP7 error {
 	// $out = preg_replace('!s:(\d+):"(.*?)";!se', "'s:'.strlen('$2').':\"$2\";'", $A['ipn_data'] ); 
 
-    $out = preg_replace(
+    $out = preg_replace_callback(
         '!s:(\d+):"(.*?)";!s',
-        function ($args) {
-            return sprintf('s:%d:"%s";', strlen($args[2]), $args[2]);
-        },
+        'PAYPAL_ipnlog_preg_replace_sprintf',
         $A['ipn_data']
     );
 	// } PHP7 error
@@ -162,6 +160,10 @@ function plugin_getListField_paypal_IPNlog($fieldname, $fieldvalue, $A, $icon_ar
             break;
     }
     return $retval;
+}
+
+function PAYPAL_ipnlog_preg_replace_sprintf($args) {
+    return sprintf('s:%d:"%s";', strlen($args[2]), $args[2]);
 }
 
 /**
@@ -215,7 +217,7 @@ function PAYPAL_ipnlog_single($id, $txn_id) {
     $A = DB_fetchArray($res);
 
 	// Start Display
-    $display .= COM_startBlock($LANG_PAYPAL_1['ipn_history'] . " (#{$A['id']})");
+    $content = COM_startBlock($LANG_PAYPAL_1['ipn_history'] . " (#{$A['id']})");
 
     // Create ipnlog template
     $ipnlog = new Template($_CONF['path'] . 'plugins/paypal/templates');
@@ -229,7 +231,7 @@ function PAYPAL_ipnlog_single($id, $txn_id) {
     $ipnlog->set_var('gross_payment', $LANG_PAYPAL_1['gross_payment']);
     $ipnlog->set_var('payment_status_label', $LANG_PAYPAL_1['payment_status']);
 	$ipnlog->set_var('ipn_data', $LANG_PAYPAL_1['ipn_data']);
-	$ipnlog->set_var('mc_gross', $A['mc_gross']);
+	//$ipnlog->set_var('mc_gross', $A['mc_gross']);
 	$ipnlog->set_var('mc_currency', $_PAY_CONF['currency']);
 	$ipnlog->set_var('txn_id', $A['txn_id']);
 	
@@ -244,11 +246,9 @@ function PAYPAL_ipnlog_single($id, $txn_id) {
 	// PHP7 error {
 	// $out = preg_replace('!s:(\d+):"(.*?)";!se', "'s:'.strlen('$2').':\"$2\";'", $A['ipn_data'] ); 
 
-    $out = preg_replace(
+    $out = preg_replace_callback(
         '!s:(\d+):"(.*?)";!s',
-        function ($args) {
-            return sprintf('s:%d:"%s";', strlen($args[2]), $args[2]);
-        },
+        'PAYPAL_ipnlog_preg_replace_sprintf',
         $A['ipn_data']
     );
 	// } PHP7 error
@@ -338,10 +338,10 @@ function PAYPAL_ipnlog_single($id, $txn_id) {
 		$ipnlog->set_var('errormsg', '');
 	}
 	
-	 $display .= $ipnlog->parse('output', 'ipnlog');
+	$content .= $ipnlog->parse('output', 'ipnlog');
 
-    $display .= COM_endBlock();
-    return $display;
+    $content .= COM_endBlock();
+    return $content;
 
 }
 
@@ -548,24 +548,24 @@ function repairSerializedArray_R(&$broken)
 
 //Main
 
-$display = COM_siteHeader('none');
-$display .= paypal_admin_menu();
+$content = paypal_admin_menu();
 
 // base output on selected opeation (op)
-switch ($_REQUEST['op']) {
+$op = Geeklog\Input::request('op', '');
+switch ($op) {
     case 'single':
-        $display .= PAYPAL_ipnlog_single($_REQUEST['id'], $_REQUEST['txn_id']);
+        $r_id = Geeklog\Input::fRequest('id', 0);
+        $r_txn_id = Geeklog\Input::fRequest('txn_id', 0);
+        $content .= PAYPAL_ipnlog_single($r_id, $r_txn_id);
         break;
 
     case 'all':
     default:
-        $display .= COM_startBlock($LANG_PAYPAL_1['IPN_logs']);
-        $display .= PAYPAL_listIPNlog();
-        $display .= COM_endBlock();
+        $content .= COM_startBlock($LANG_PAYPAL_1['IPN_logs']);
+        $content .= PAYPAL_listIPNlog();
+        $content .= COM_endBlock();
         break;
 }
 
-$display .= COM_siteFooter();
-echo $display;
-
-?>
+$display = COM_createHTMLDocument($content, ['pagetitle' => $LANG_PAYPAL_1['IPN_logs']]);
+COM_output($display);

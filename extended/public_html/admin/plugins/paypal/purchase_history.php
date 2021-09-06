@@ -1,14 +1,15 @@
 <?php
 // +--------------------------------------------------------------------------+
-// | PayPal Plugin - geeklog CMS                                             |
+// | PayPal Plugin - geeklog CMS                                              |
 // +--------------------------------------------------------------------------+
 // | purchase_history.php                                                     |
 // |                                                                          |
 // | Allows paypal administrators to view site-wide purchase history          |
 // +--------------------------------------------------------------------------+
-// | Copyright (C) 2010 by the following authors:                              |
-// |                                                                           |
-// | Authors: Ben        - cordiste AT free DOT fr                             |
+// | Copyright (C) 2021 by the following authors:                             |
+// |                                                                          |
+// | Authors: Ben        - cordiste AT free DOT fr                            |
+// | Authors: Hiroron    - hiroron AT hiroron DOT com                         |
 // +---------------------------------------------------------------------------+
 // |                                                                          |
 // | Based on the gl-paypal Plugin for Geeklog CMS                            |
@@ -208,7 +209,9 @@ function PAYPAL_getListField_paypal_transactions($fieldname, $fieldvalue, $A, $i
     return $retval;
 }
 
-if ($_REQUEST['mode'] == 'edit') {
+// MAIN
+$mode = Geeklog\Input::request('mode', '');
+if ($mode == 'edit') {
 	//update ipn
 	$sql = "SELECT * FROM {$_TABLES['paypal_ipnlog']} WHERE txn_id = '{$_REQUEST['txn_id']}'";
 	$res = DB_query($sql);
@@ -374,19 +377,16 @@ if ($_REQUEST['mode'] == 'edit') {
 	$_REQUEST['msg'] = $LANG_PAYPAL_1['order_validated'];
 }
 
-//Main
+$content = paypal_admin_menu();
 
-$display = COM_siteHeader('none');
-$display .= paypal_admin_menu();
+$content .= COM_startBlock($LANG_PAYPAL_1['sales_history']);
 
-$display .= COM_startBlock($LANG_PAYPAL_1['sales_history']);
-
-if (!empty($_REQUEST['msg'])) $display .= COM_showMessageText( stripslashes($_REQUEST['msg']), $LANG_PAYPAL_1['message']);
+$msg = Geeklog\Input::fRequest('msg', '');
+if (!empty($msg)) $content .= COM_showMessageText( stripslashes($msg), $LANG_PAYPAL_1['message']);
 			
-$display .= PAYPAL_listTransactions();
-$display .= COM_endBlock();
+$content .= PAYPAL_listTransactions();
+$content .= COM_endBlock();
 
-$display .= COM_siteFooter();
+$display = COM_createHTMLDocument($content, ['pagetitle' => $LANG_PAYPAL_1['sales_history']]);
 
 COM_output($display);
-?>

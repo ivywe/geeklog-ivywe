@@ -2,20 +2,19 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Paypal Plugin 1.1                                                         |
+// | Paypal Plugin 1.5                                                         |
 // +---------------------------------------------------------------------------+
 // | jcart-gateway.php                                                         |
-// |                                                                           |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2010 by the following authors:                              |
+// | Copyright (C) 2021 by the following authors:                              |
 // |                                                                           |
 // | Authors: ::Ben - cordiste AT free DOT fr                                  |
+// | Authors: Hiroron    - hiroron AT hiroron DOT com                          |
 // +---------------------------------------------------------------------------+
 // | Based on JCART v1.1                                                       |
 // |                                                                           |
 // | Copyright (C) 2010 by the following authors:                              |
 // | JCART v1.1  http://conceptlogic.com/jcart/                                |
-// |                                                                           |   
 // +---------------------------------------------------------------------------+
 // |                                                                           |
 // | This program is free software; you can redistribute it and/or             |
@@ -39,41 +38,57 @@
  */
 require_once '../../lib-common.php';
 
+if (!in_array('paypal', $_PLUGINS)) {
+    COM_handle404();
+    exit;
+}
+
 // START SESSION
 session_start();
 
 // INITIALIZE JCART AFTER SESSION START
-$cart =& $_SESSION['jcart']; if(!is_object($cart)) $cart = new jcart();
-
+$cart = '';
+if (!isset($_SESSION['jcart'])) {
+	require_once($_CONF['path'] . 'plugins/paypal/classes/jcart.class.php');
+	$cart = new jcart();
+	$_SESSION['jcart'] = serialize($cart);
+}
+$cart =& $_SESSION['jcart'];
+$cart = unserialize(serialize($cart));
+if(!is_object($cart)) {
+	require_once($_CONF['path'] . 'plugins/paypal/classes/jcart.class.php');
+	$cart = new jcart();
+}
 // WHEN JAVASCRIPT IS DISABLED THE UPDATE AND EMPTY BUTTONS ARE DISPLAYED
 // RE-DISPLAY THE CART IF THE VISITOR CLICKS EITHER BUTTON
-if ($_POST['jcart_update_cart']  || $_POST['jcart_empty'])
-	{
-
+$jcart_update_cart = Geeklog\Input::fPost('jcart_update_cart', '');
+$jcart_empty = Geeklog\Input::fPost('jcart_empty', '');
+if ($jcart_update_cart || $jcart_empty)
+{
 	// UPDATE THE CART
-	if ($_POST['jcart_update_cart'])
-		{
+	if ($jcart_update_cart)
+	{
 		$cart_updated = $cart->update_cart();
 		if ($cart_updated !== true)
-			{
+		{
 			$_SESSION['quantity_error'] = true;
-			}
 		}
+	}
 
 	// EMPTY THE CART
-	if ($_POST['jcart_empty'])
-		{
+	if ($jcart_empty)
+	{
 		$cart->empty_cart();
-		}
+	}
 
 	// REDIRECT BACK TO THE CHECKOUT PAGE
 	header('Location: ' . $_POST['jcart_checkout_page']);
 	exit;
-	}
+}
 
 // THE VISITOR HAS CLICKED THE PAYPAL CHECKOUT BUTTON
 else 
-	{
+{
 
 	///////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////
@@ -132,13 +147,15 @@ else
 	// SEND CART CONTENTS TO PAYPAL USING THEIR UPLOAD METHOD, FOR DETAILS SEE http://tinyurl.com/djoyoa
 	else if ($valid_prices === true)
 		{
-			if ($_POST['pay_by'] == 'check') {
-			   echo COM_refresh($_PAY_CONF['site_url'] . '/informations.php?shipping=' . $_POST['shipping'] . '&pay_by=check');
+			$pay_by = Geeklog\Input::fPost('pay_by', '');
+			$r_shipping = Geeklog\Input::fPost('shipping', '');
+			if ($pay_by == 'check') {
+			   echo COM_refresh($_PAY_CONF['site_url'] . '/informations.php?shipping=' . $r_shipping . '&pay_by=check');
 			   exit();
 			} else {
 				// PAYPAL COUNT STARTS AT ONE INSTEAD OF ZERO
 				$paypal_count = 1;
-				$items_query_string;
+				$items_query_string = '';
 				foreach ($cart->get_contents() as $item)
 					{
 					// BUILD THE QUERY STRING
@@ -158,8 +175,9 @@ else
 				$items_query_string .= '&rm=2';
 				$items_query_string .= '&no_note=1';
 
-				$items_query_string .= '&handling_cart=' . $_POST['shipping'];
-				//$items_query_string .= '&shipping_cart=' . $_POST['shipping'];
+				$shipping = Geeklog\Input::fPost('shipping', '');
+				$items_query_string .= '&handling_cart=' . $shipping;
+				//$items_query_string .= '&shipping_cart=' . $r_shipping;
 				$items_query_string .= '&custom=' . $_USER['uid'];
 				$items_query_string .= '&cbt=' . urlencode($LANG_PAYPAL_1['cbt'] . ' ' . $_CONF['site_name']);
 				$items_query_string .= '&charset=' . $_CONF['default_charset'];
@@ -186,6 +204,6 @@ else
 				header( 'Location: https://' . $_PAY_CONF['paypalURL'] . '/cgi-bin/webscr?cmd=_cart&upload=1&business=' . $jcart['paypal_id'] . $items_query_string);
 			}
 		}
-	}
+}
 
-?>
+

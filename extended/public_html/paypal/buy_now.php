@@ -2,11 +2,12 @@
 // +--------------------------------------------------------------------------+
 // | PayPal Plugin - geeklog CMS                                              |
 // +--------------------------------------------------------------------------+
-// | buy_now.php                                                          |
+// | buy_now.php                                                              |
 // +--------------------------------------------------------------------------+
-// | Copyright (C) 2010 by the following authors:                              |
-// |                                                                           |
-// | Authors: ::Ben - cordiste AT free DOT fr                                  |
+// | Copyright (C) 2021 by the following authors:                             |
+// |                                                                          |
+// | Authors: ::Ben - cordiste AT free DOT fr                                 |
+// | Authors: Hiroron    - hiroron AT hiroron DOT com                         |
 // +--------------------------------------------------------------------------+
 // |                                                                          |
 // | This program is free software; you can redistribute it and/or            |
@@ -30,6 +31,11 @@
  */
 require_once '../lib-common.php';
 
+if (!in_array('paypal', $_PLUGINS)) {
+    COM_handle404();
+    exit;
+}
+
 // Incoming variable filter
 $vars = array('item_number' => 'number',
               'amount' => 'text',
@@ -38,8 +44,8 @@ $vars = array('item_number' => 'number',
 paypal_filterVars($vars, $_POST);
 
 $valid_process = true;
-$item_id = $_POST['item_number'];
-$item_price = $_POST['amount'];
+$item_id = Geeklog\Input::fPost('item_number');
+$item_price = Geeklog\Input::fPost('amount');
 $paypalURL = 'https://' . $_PAY_CONF['paypalURL'] . '/cgi-bin/webscr?cmd=_xclick';
 
 
@@ -83,4 +89,3 @@ if ($valid_process) {
 } else {
     die($jcart['text']['checkout_error']);
 }
-?>
