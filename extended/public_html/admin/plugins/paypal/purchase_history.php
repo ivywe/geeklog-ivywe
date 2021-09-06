@@ -377,14 +377,9 @@ if ($mode == 'edit') {
 	$_REQUEST['msg'] = $LANG_PAYPAL_1['order_validated'];
 }
 
-<<<<<<< HEAD
-$content = paypal_admin_menu();
-=======
 //Main
 
-$display = COM_createHTMLDocument('none');
-$display .= paypal_admin_menu();
->>>>>>> a3585c97bc195947c9f3e425113708436eeef2c8
+$content = paypal_admin_menu();
 
 $content .= COM_startBlock($LANG_PAYPAL_1['sales_history']);
 

@@ -43,24 +43,8 @@ if (! in_array('paypal', $_PLUGINS)) {
 paypal_access_check('paypal.viewer');
 
 //Main
-<<<<<<< HEAD
 $content = '';
 $information = array();
-=======
-		$display = "";
-
-    switch( $_PAY_CONF['display_blocks'] ) {
-    case 0 :    // none
-    case 2 :    // right only
-        $display .= COM_createHTMLDocument('none', $pagetitle);
-        break;
-    case 1 :    // left only
-    case 3 :    // both
-    default :
-        $display .= COM_createHTMLDocument('menu', $pagetitle);
-        break;
-    }
->>>>>>> a3585c97bc195947c9f3e425113708436eeef2c8
 
 switch( $_PAY_CONF['display_blocks'] ) {
 case 0 :    // none
@@ -76,7 +60,7 @@ default :
 
 
 
-if (SEC_hasRights('paypal.user,paypal.admin')) {
+if (SEC_hasRights('paypal.user, paypal.admin')) {
     $content .= paypal_user_menu();
 } else {
     $content .= paypal_viewer_menu();

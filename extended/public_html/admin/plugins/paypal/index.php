@@ -437,7 +437,7 @@ function PAYPAL_saveCatImage ($category, $files, $cat_id) {
 			));
 	
 	if (!$upload->setPath($_PAY_CONF['path_cat_images'])) {
-		$output = COM_createHTMLDocument ('menu', $LANG24[30]);
+		$output = COM_siteHeader ('menu', $LANG24[30]);
 		$output .= COM_startBlock ($LANG24[30], '', COM_getBlockTemplate ('_msg_block', 'header'));
 		$output .= $upload->printErrors (false);
 		$output .= COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
@@ -469,7 +469,7 @@ function PAYPAL_saveCatImage ($category, $files, $cat_id) {
 		$upload->uploadFiles();
 
 		if ($upload->areErrors()) {
-			$retval = COM_createHTMLDocument('menu', $LANG24[30]);
+			$retval = COM_siteHeader('menu', $LANG24[30]);
 			$retval .= COM_startBlock ($LANG24[30], '',
 						COM_getBlockTemplate ('_msg_block', 'header'));
 			$retval .= $upload->printErrors(false);
@@ -1039,11 +1039,7 @@ $shipper_id = Geeklog\Input::fRequest('shipper_service_id', 0);
 $shipping_to_id = Geeklog\Input::fRequest('shipping_to_id', 0);
 $shipping_id = Geeklog\Input::fRequest('shipping_id', 0);
 
-<<<<<<< HEAD
 $content = paypal_admin_menu();
-=======
-$display = COM_createHTMLDocument('none');
->>>>>>> a3585c97bc195947c9f3e425113708436eeef2c8
 
 $msg = Geeklog\Input::fRequest('msg', '');
 if (!empty($msg)) $content .= PAYPAL_message($msg);

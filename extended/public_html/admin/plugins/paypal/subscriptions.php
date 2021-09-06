@@ -155,12 +155,7 @@ function PAYPAL_getSubscriptionForm ($subscription = array())
 
 //Main
 
-<<<<<<< HEAD
 $content = paypal_admin_menu();
-=======
-$display = COM_createHTMLDocument('none');
-$display .= paypal_admin_menu();
->>>>>>> a3585c97bc195947c9f3e425113708436eeef2c8
 
 $msg = Geeklog\Input::fRequest('msg', '');
 if (!empty($msg)) $content .= COM_showMessageText( stripslashes($msg), $LANG_PAYPAL_1['message']);

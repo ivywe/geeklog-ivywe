@@ -509,6 +509,7 @@ $LANG_confignames['paypal'] = array(
 	'display_item_id'            => '商品リストにIDを表示',
 	'display_complete_memberships' => 'メンバシップの完全リストを表示',
 	'enable_pay_by_ckeck'        => '決済サイトを使わず、チェックのみで購入を可能にする',
+	'enable_buy_now'             => '今すぐ購入ボタンを配置する',
 	'enable_pay_by_paypal'       => 'PayPalでの支払いを有効にする',
 	'displayCatImage'            => 'カテゴリ画像を表示する',
 	'catImageWidth'              => 'カテゴリ画像の最大ピクセル数',

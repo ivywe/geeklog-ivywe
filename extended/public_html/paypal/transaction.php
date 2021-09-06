@@ -48,15 +48,9 @@ $type = Geeklog\Input::fRequest('type', ''); //purchase or subscription
 
 // Ensure sufficient privs to read this page
 if (($_USER['uid'] < 2) && ($_PAY_CONF['anonymous_buy'] == 0)) {
-<<<<<<< HEAD
     $content = '';
 	if (SEC_hasRights('paypal.user,paypal.admin')) {
         $content .= paypal_user_menu();
-=======
-    $display .= COM_createHTMLDocument();
-	if (SEC_hasRights('paypal.user', 'paypal.admin')) {
-        $display .= paypal_user_menu();
->>>>>>> a3585c97bc195947c9f3e425113708436eeef2c8
     } else {
         $content .= paypal_viewer_menu();
     }
@@ -136,15 +130,9 @@ if ( $A['user_id'] != '' && ($_USER['uid'] != $A['user_id']) && SEC_hasRights('p
 
 //Log-In to access
 if (($_USER['uid'] < 2) && ($A['logged'] == 1)) {
-<<<<<<< HEAD
     $content = '';
 	if (SEC_hasRights('paypal.user,paypal.admin')) {
         $content .= paypal_user_menu();
-=======
-    $display .= COM_createHTMLDocument();
-	if (SEC_hasRights('paypal.user', 'paypal.admin')) {
-        $display .= paypal_user_menu();
->>>>>>> a3585c97bc195947c9f3e425113708436eeef2c8
     } else {
         $content .= paypal_viewer_menu();
     }
@@ -359,15 +347,9 @@ $mode = Geeklog\Input::fRequest('mode', '');
 if ($mode == 'print') {
     $display = $tran_content;
 } else {
-<<<<<<< HEAD
     $content = '';
     if (SEC_hasRights('paypal.user,paypal.admin')) {
         $content .= paypal_user_menu();
-=======
-    $display = COM_createHTMLDocument();
-    if (SEC_hasRights('paypal.user', 'paypal.admin')) {
-        $display .= paypal_user_menu();
->>>>>>> a3585c97bc195947c9f3e425113708436eeef2c8
     } else {
         $content .= paypal_viewer_menu();
     }

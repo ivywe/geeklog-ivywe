@@ -197,13 +197,7 @@ switch ($mode) {
         } else {
             echo COM_refresh($_CONF['site_url']);
         }
-<<<<<<< HEAD
 }
-=======
-	}
-
-$display = COM_createHTMLDocument('none') . $display . COM_siteFooter();
->>>>>>> a3585c97bc195947c9f3e425113708436eeef2c8
 
 $display = COM_createHTMLDocument($content);
 

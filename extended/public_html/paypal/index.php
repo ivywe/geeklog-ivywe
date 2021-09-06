@@ -75,7 +75,7 @@ if ($n != '') {
     $pagetitle = $n . ' | ' . $_PAY_CONF['seo_shop_title'];
 }
 
-if (SEC_hasRights('paypal.user,paypal.admin')) {
+if (SEC_hasRights('paypal.user', 'paypal.admin')) {
     $content .= paypal_user_menu();
 } else {
     $content .= paypal_viewer_menu();

@@ -58,16 +58,9 @@ if ( $_PAY_CONF['view_membership'] != '1' && !SEC_hasRights('paypal.admin') ) {
 }
 
 //Main
-<<<<<<< HEAD
 $content = '';
 if (SEC_hasRights('paypal.user,paypal.admin')) {
     $content .= paypal_user_menu();
-=======
-
-$display = COM_createHTMLDocument();
-if (SEC_hasRights('paypal.user', 'paypal.admin')) {
-    $display .= paypal_user_menu();
->>>>>>> a3585c97bc195947c9f3e425113708436eeef2c8
 } else {
     $content .= paypal_viewer_menu();
 }
