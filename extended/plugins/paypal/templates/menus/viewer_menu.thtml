@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<?php 
+<?php
 $category = Geeklog\Input::fGet('category');
 $n = Geeklog\Input::fGet('n');
 $product = Geeklog\Input::fGet('product');
@@ -9,8 +9,8 @@ $product = Geeklog\Input::fGet('product');
 <?php if($product == ""){ ?>
 
 <ul class="uk-breadcrumb">
-    <li><a href="https://www.sciglobe.net/">HOME</a></li>
-    <li><a href="https://www.sciglobe.net/paypal/index.php">SHOP</a></li>
+    <li><a href="/">HOME</a></li>
+    <li><a href="{site_url}/index.php">SHOP</a></li>
     <li><span href="#"><?php echo $n; ?></span></li>
 </ul>
 
@@ -19,9 +19,6 @@ $product = Geeklog\Input::fGet('product');
 <nav class="uk-navbar gl-navbar-small uk-margin">
 	<div class="uk-navbar-left">
 		<ul class="uk-navbar-nav">
-			{!if memberships}<li class="uk-button uk-button-primary">
-				{memberships}
-			</li>{!endif}
 			{!if admin}<li class="uk-button uk-button-default"><a href="/admin/plugins/paypal/index.php" style="color:#444">admin</a></li>{!endif}
 		</ul>
 	</div>
