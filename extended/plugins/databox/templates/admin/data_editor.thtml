@@ -93,7 +93,7 @@
     <div class="uk-form-row uk-clearfix uk-margin-small"{hide_meta}>
       <label class="uk-form-label" for="meta_keywords">{lang_meta_keywords} {help_meta_keywords}</label>
       <div class="uk-form-controls">
-        <textarea class="uk-textarea uk-width-1-1" name="meta_keywords" class="uk-width-1-1" rows="2" id="meta_keywords" 
+        <textarea class="uk-textarea uk-width-1-1" name="meta_keywords" class="uk-width-1-1" rows="2" id="meta_keywords"
   onKeyup="var n={maxlength_meta_keywords}-this.value.length;var s=document.getElementById('meta_keywords_cnt');s.innerHTML='('+n+')';">{meta_keywords}</textarea>
         <span class="uk-form-help-inline uk-text-bold" id="meta_keywords_cnt"></span>
       </div>
@@ -170,7 +170,7 @@
     <div class="uk-form-row uk-clearfix uk-margin-small">
       <label class="uk-form-label">{lang_orderno} {help_orderno}</label>
       <div class="uk-form-controls">
-        <input type="text" class="uk-input uk-form-width-xsmall" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
+        <input type="text" class="uk-input uk-form-width-small" size="8" maxlength="160" name="orderno" value="{orderno}"{xhtml}>
       </div>
     </div>
 
