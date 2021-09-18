@@ -7,10 +7,10 @@
 // | Admin index page for the paypal plugin.  By default, lists products      |
 // | available for editing                                                    |
 // +--------------------------------------------------------------------------+
-// |                                                                          |
-// | Copyright (C) 2005-2006 by the following authors:                        |
+// | Copyright (C) 2021 by the following authors:                             |
 // |                                                                          |
 // | Authors: Vincent Furia     - vinny01 AT users DOT sourceforge DOT net    |
+// | Authors: Hiroron    - hiroron AT hiroron DOT com                         |
 // +--------------------------------------------------------------------------+
 // |                                                                          |
 // | This program is free software; you can redistribute it and/or            |
@@ -169,7 +169,7 @@ function PAYPAL_listProducts()
 */
 function PAYPAL_getListField_paypal($fieldname, $fieldvalue, $A, $icon_arr)
 {
-    global $_CONF, $LANG_ADMIN, $LANG_STATIC, $_TABLES, $_PAY_CONF;
+    global $_CONF, $_PAY_CONF, $LANG_PAYPAL_1, $_TABLES;
 
     switch($fieldname) {
         case "edit":
@@ -292,7 +292,7 @@ function PAYPAL_getListField_categories($fieldname, $fieldvalue, $A, $icon_arr)
  */
 function PAYPAL_getCategoryForm( $category = array() ) {
 
-    global $_CONF, $_PAY_CONF, $LANG_PAYPAL_1, $LANG_PAYPAL_ADMIN, $LANG_ACCESS, $_TABLES;
+    global $_CONF, $_PAY_CONF, $LANG_PAYPAL_1, $LANG_PAYPAL_ADMIN, $LANG_ACCESS, $_TABLES, $_USER;
 
     //PHP 5.4 set all $catory[key] 
 	PAYPAL_setAllKeys($category, array('cat_id', 'cat_name', 'description', 'enabled', 'image', 'perm_owner', 'owner_id', 'group_id', 'perm_group', 'perm_members', 'perm_anon'));
@@ -341,7 +341,7 @@ function PAYPAL_getCategoryForm( $category = array() ) {
 						'lang_permissions_msg' => $LANG_ACCESS['permmsg'],
 						'lang_accessrights'  => $LANG_ACCESS['accessrights'],
 						'lang_owner'         => $LANG_ACCESS['owner'],
-						'owner_name'         => ($creation) ? COM_getDisplayName($_USERS['uid']) : COM_getDisplayName($category['owner_id']),
+						'owner_name'         => ($creation) ? COM_getDisplayName($_USER['uid']) : COM_getDisplayName($category['owner_id']),
 						'owner_id'           => $category['owner_id'],
 						'admin_url'          => $_CONF['site_admin_url'],
 						'description'        => $category['description'],
@@ -390,7 +390,7 @@ function PAYPAL_saveCatImage ($category, $files, $cat_id) {
     $args = $category;
 
     // Handle Magic GPC Garbage:
-    while (list($key, $value) = each($args)) {
+    foreach ($args as $key => $value) {
         if (!is_array($value)) {
             $args[$key] = COM_stripslashes($value);
         } else {
@@ -437,7 +437,7 @@ function PAYPAL_saveCatImage ($category, $files, $cat_id) {
 			));
 	
 	if (!$upload->setPath($_PAY_CONF['path_cat_images'])) {
-		$output = COM_createHTMLDocument ('menu', $LANG24[30]);
+		$output = COM_siteHeader ('menu', $LANG24[30]);
 		$output .= COM_startBlock ($LANG24[30], '', COM_getBlockTemplate ('_msg_block', 'header'));
 		$output .= $upload->printErrors (false);
 		$output .= COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
@@ -456,6 +456,7 @@ function PAYPAL_saveCatImage ($category, $files, $cat_id) {
 	// Set file permissions on file after it gets uploaded (number is in octal)
 	$upload->setPerms('0644');
 
+	$filenames = '';
 	$curfile = current($files);
 	if (!empty($curfile['name'])) {
 		$pos = strrpos($curfile['name'],'.') + 1;
@@ -468,7 +469,7 @@ function PAYPAL_saveCatImage ($category, $files, $cat_id) {
 		$upload->uploadFiles();
 
 		if ($upload->areErrors()) {
-			$retval = COM_createHTMLDocument('menu', $LANG24[30]);
+			$retval = COM_siteHeader('menu', $LANG24[30]);
 			$retval .= COM_startBlock ($LANG24[30], '',
 						COM_getBlockTemplate ('_msg_block', 'header'));
 			$retval .= $upload->printErrors(false);
@@ -838,7 +839,7 @@ function PAYPAL_listShippingCosts ()
     );
 	
 
-    //$defsort_arr = array('field' => 'shipping_shipper_id', 'direction' => 'asc');
+    $defsort_arr = array('field' => 'sc.shipping_shipper_id', 'direction' => 'asc');
 
     $text_arr = array(
         'has_extras' => true,
@@ -853,7 +854,6 @@ function PAYPAL_listShippingCosts ()
 			LEFT JOIN {$_TABLES['paypal_shipping_to']} AS st
 			ON sc.shipping_destination_id = st.shipping_to_id
 			WHERE 1=1 
-			ORDER BY st.shipping_to_order, sc.shipping_shipper_id ASC
 			";
 
     $query_arr = array(
@@ -1034,29 +1034,30 @@ function PAYPAL_requiredSettings()
 }
 
 //Main
-$cat_id = $_REQUEST['cat_id'];
-$shipper_id = $_REQUEST['shipper_service_id'];
-$shipping_to_id = $_REQUEST['shipping_to_id'];
-$shipping_id = $_REQUEST['shipping_id'];
+$cat_id = Geeklog\Input::fRequest('cat_id', 0);
+$shipper_id = Geeklog\Input::fRequest('shipper_service_id', 0);
+$shipping_to_id = Geeklog\Input::fRequest('shipping_to_id', 0);
+$shipping_id = Geeklog\Input::fRequest('shipping_id', 0);
 
-$display = COM_createHTMLDocument('none');
+$content = paypal_admin_menu();
 
-$display .= paypal_admin_menu();
-
-if (!empty($_REQUEST['msg'])) $display .= PAYPAL_message($_REQUEST['msg']);
+$msg = Geeklog\Input::fRequest('msg', '');
+if (!empty($msg)) $content .= PAYPAL_message($msg);
 
 //Check if picture folder is writable
 if ( !file_exists($_PAY_CONF['path_images']) || !is_writable($_PAY_CONF['path_images']) ) {
-    $display .= COM_showMessageText( '>> '. $_PAY_CONF['path_images'] . '<p>' . $LANG_PAYPAL_1['image_not_writable'] . '</p>');
+    $content .= COM_showMessageText( '>> '. $_PAY_CONF['path_images'] . '<p>' . $LANG_PAYPAL_1['image_not_writable'] . '</p>');
 } else {
     // check jquery plugin
     if (! in_array('jquery', $_PLUGINS)) {
-        $display .= '<p>'. $LANG_PAYPAL_1['install_jquery'] . ' >> <a href="http://geeklog.fr/wiki/plugins:jquery" target="_blank">jQuery plugin</a></p>';
+        $content .= '<p>'. $LANG_PAYPAL_1['install_jquery'] . ' >> <a href="http://geeklog.fr/wiki/plugins:jquery" target="_blank">jQuery plugin</a></p>';
     }
 
-    switch ($_REQUEST['mode']) {
+    $mode = Geeklog\Input::request('mode', '');
+    switch ($mode) {
 	    case 'categories':
-			switch ($_REQUEST['op']) {
+            $op = Geeklog\Input::request('op', '');
+			switch ($op) {
 				case 'edit':
 					$cat = array();
 					if (is_numeric($cat_id)) {
@@ -1064,7 +1065,7 @@ if ( !file_exists($_PAY_CONF['path_images']) || !is_writable($_PAY_CONF['path_im
 						$res = DB_query($sql);
 						$cat = DB_fetchArray($res);
 					}
-					$display .= PAYPAL_getCategoryForm($cat);
+					$content .= PAYPAL_getCategoryForm($cat);
 					break;
 				case 'save' :
 						// Convert array values to numeric permission values
@@ -1074,7 +1075,7 @@ if ( !file_exists($_PAY_CONF['path_images']) || !is_writable($_PAY_CONF['path_im
 						}
 						
 						if ($_REQUEST['category'] == '') {
-							$display .= PAYPAL_getCategoryForm($_REQUEST);
+							$content .= PAYPAL_getCategoryForm($_REQUEST);
 							break;
 						}
 						// prepare strings for insertion
@@ -1093,7 +1094,7 @@ if ( !file_exists($_PAY_CONF['path_images']) || !is_writable($_PAY_CONF['path_im
 						 . "perm_anon = '{$_REQUEST['perm_anon']}'						
 						";
 						
-						if ( $cat_id != 0) {
+						if ( $cat_id != 0 && is_numeric($cat_id) ) {
 							//Edit mode 
 							$sql = "UPDATE {$_TABLES['paypal_categories']} SET $sql "
 								 . "WHERE cat_id = {$cat_id}";
@@ -1135,14 +1136,14 @@ if ( !file_exists($_PAY_CONF['path_images']) || !is_writable($_PAY_CONF['path_im
 					
 				default :
 				    if ( !file_exists($_PAY_CONF['path_cat_images']) || !is_writable($_PAY_CONF['path_cat_images']) ) {
-						$display .= COM_showMessageText( '>> '. $_PAY_CONF['path_cat_images'] . '<p>' . $LANG_PAYPAL_1['image_not_writable'] . '</p>');
+						$content .= COM_showMessageText( '>> '. $_PAY_CONF['path_cat_images'] . '<p>' . $LANG_PAYPAL_1['image_not_writable'] . '</p>');
 					}
 
-					$display .= '<div style="clear:both;">&nbsp;</div>' . COM_startBlock($LANG_PAYPAL_1['category_heading']);
-					$display .= '<p>' . $LANG_PAYPAL_1['you_can'] . '<a href="' . $_CONF['site_url'] . '/admin/plugins/paypal/index.php?mode=categories&amp;op=edit">' 
+					$content .= '<div style="clear:both;">&nbsp;</div>' . COM_startBlock($LANG_PAYPAL_1['category_heading']);
+					$content .= '<p>' . $LANG_PAYPAL_1['you_can'] . '<a href="' . $_CONF['site_url'] . '/admin/plugins/paypal/index.php?mode=categories&amp;op=edit">' 
 					. $LANG_PAYPAL_ADMIN['create_category'] . '</a></p>';
-					$display .= PAYPAL_listCategories();
-					$display .= COM_endBlock();
+					$content .= PAYPAL_listCategories();
+					$content .= COM_endBlock();
 					break;
 			}
 		break;
@@ -1150,17 +1151,18 @@ if ( !file_exists($_PAY_CONF['path_images']) || !is_writable($_PAY_CONF['path_im
 		case 'attributes':
 			if ( !file_exists($_PAY_CONF['path_at_images']) && function_exists('PAYPALPRO_attributes') || !is_writable($_PAY_CONF['path_at_images']) 
 			&& function_exists('PAYPALPRO_attributes') ) {
-				$display .= COM_showMessageText( '>> '. $_PAY_CONF['path_at_images'] . '<p>' . $LANG_PAYPAL_1['image_not_writable'] . '</p>');
+				$content .= COM_showMessageText( '>> '. $_PAY_CONF['path_at_images'] . '<p>' . $LANG_PAYPAL_1['image_not_writable'] . '</p>');
 			}
-			if(function_exists('PAYPALPRO_attributes')) $display .= PAYPALPRO_attributes();
+			if(function_exists('PAYPALPRO_attributes')) $content .= PAYPALPRO_attributes();
 			break;
 		
 		case 'attributetypes':
-			if(function_exists('PAYPALPRO_attributeTypes')) $display .= PAYPALPRO_attributeTypes();
+			if(function_exists('PAYPALPRO_attributeTypes')) $content .= PAYPALPRO_attributeTypes();
 			break;
 			
 		case 'shipping':
-		    switch ($_REQUEST['op']) {
+            $op = Geeklog\Input::request('op', '');
+		    switch ($op) {
 				case 'edit_shipper':
 				    $shipper = array();
 					if (is_numeric($shipper_id)) {
@@ -1168,11 +1170,11 @@ if ( !file_exists($_PAY_CONF['path_images']) || !is_writable($_PAY_CONF['path_im
 						$res = DB_query($sql);
 						$shipper = DB_fetchArray($res);
 					}
-					$display .= PAYPAL_getShipperForm($shipper);
+					$content .= PAYPAL_getShipperForm($shipper);
 				    break;
 				case 'save_shipper':
 				    if ($_REQUEST['shipper_service_name'] == '' || $_REQUEST['shipper_service_service'] == '') {
-						$display .= PAYPAL_getShipperForm($_REQUEST);
+						$content .= PAYPAL_getShipperForm($_REQUEST);
 						break;
 					}
 					$shipper_service_name = addslashes($_REQUEST['shipper_service_name']);
@@ -1230,12 +1232,12 @@ if ( !file_exists($_PAY_CONF['path_images']) || !is_writable($_PAY_CONF['path_im
 						$res = DB_query($sql);
 						$shipping_to = DB_fetchArray($res);
 					}
-					$display .= PAYPAL_getShippingToForm($shipping_to);
+					$content .= PAYPAL_getShippingToForm($shipping_to);
 				    break;
 				
                 case 'save_shipping_to':
 				    if ($_REQUEST['shipping_to_name'] == '') {
-						$display .= PAYPAL_getShippingToForm($_REQUEST);
+						$content .= PAYPAL_getShippingToForm($_REQUEST);
 						break;
 					}
 					if ($_REQUEST['shipping_to_order'] == '') $_REQUEST['shipping_to_order'] = 0;
@@ -1288,7 +1290,7 @@ if ( !file_exists($_PAY_CONF['path_images']) || !is_writable($_PAY_CONF['path_im
 						$res = DB_query($sql);
 						$shipping_cost = DB_fetchArray($res);
 					}
-					$display .= PAYPAL_getShippingCostForm($shipping_cost);
+					$content .= PAYPAL_getShippingCostForm($shipping_cost);
 				    break;
 					
 				case 'save_shipping_cost':
@@ -1303,7 +1305,7 @@ if ( !file_exists($_PAY_CONF['path_images']) || !is_writable($_PAY_CONF['path_im
 					$shipping_max = preg_replace('/[^\d.]/', '', $shipping_max);
 					if ($_REQUEST['shipping_shipper_id'] < 1 || $_REQUEST['shipping_destination_id'] < 1 || $shipping_min >= $shipping_max || 
 					$shipping_min == '' || $shipping_max == '') {
-						$display .= PAYPAL_getShippingCostForm($_REQUEST);
+						$content .= PAYPAL_getShippingCostForm($_REQUEST);
 						break;
 					}
 
@@ -1347,45 +1349,45 @@ if ( !file_exists($_PAY_CONF['path_images']) || !is_writable($_PAY_CONF['path_im
 					
 				default:
 				    PAYPAL_reorderShippingTo();
-    				$display .= PAYPAL_shippingServices();
+    				$content .= PAYPAL_shippingServices();
 	        		break;
 			}
 			break;
 			
 		default : 
-			$display .= '<img src="' . $_PAY_CONF['site_url'] . '/images/paypal.gif" alt="" align="left" hspace="10">' 
+			$content .= '<img src="' . $_PAY_CONF['site_url'] . '/images/paypal.gif" alt="" align="left" hspace="10">' 
 			 . $LANG_PAYPAL_1['plugin_doc'] . ' <a href="http://geeklog.fr/wiki/plugins:paypal" target="_blank">'. $LANG_PAYPAL_1['online']
 			 . '</a>. '
 			 . $LANG_PAYPAL_1['plugin_conf'] . ' <a href="' . $_CONF['site_admin_url'] . '/configuration.php">'. $LANG_PAYPAL_1['online']
 			 . '</a>. ';
 			 
-			$display .= '<div style="clear:both;">&nbsp;</div>' . COM_startBlock($LANG_PAYPAL_1['products_list']);
+			$content .= '<div style="clear:both;">&nbsp;</div>' . COM_startBlock($LANG_PAYPAL_1['products_list']);
 			
+			$attributesmenu = '';
+			$attributetypesmenu = '';
 			if(function_exists('PAYPALPRO_attributesMenu')) $attributesmenu = PAYPALPRO_attributesMenu();
 			if(function_exists('PAYPALPRO_attributeTypesMenu')) $attributetypesmenu = PAYPALPRO_attributeTypesMenu();
 			
-			$display .= '<p>' . $LANG_PAYPAL_1['you_can'] . '<a href="' . $_CONF['site_url'] . '/admin/plugins/paypal/product_edit.php?type=product">' 
+			$content .= '<p>' . $LANG_PAYPAL_1['you_can'] . '<a href="' . $_CONF['site_url'] . '/admin/plugins/paypal/product_edit.php?type=product">' 
 			. $LANG_PAYPAL_1['create_product'] . '</a> | <a href="' . $_CONF['site_url'] . '/admin/plugins/paypal/product_edit.php?type=subscription">' 
 			. $LANG_PAYPAL_1['new_membership'] . ' </a> | <a href="' . $_CONF['site_url'] . '/admin/plugins/paypal/index.php?mode=categories">' 
 			. $LANG_PAYPAL_ADMIN['manage_categories'] . '</a>' .  $attributesmenu . $attributetypesmenu . ' | <a href="' . $_CONF['site_url'] .
 			'/admin/plugins/paypal/index.php?mode=shipping">' 
 			. $LANG_PAYPAL_ADMIN['manage_shipping'] . '</a></p>';
 			
-			$display .= PAYPAL_listProducts();
-			$display .= COM_endBlock();
+			$content .= PAYPAL_listProducts();
+			$content .= COM_endBlock();
 			
-			$display .= PAYPAL_requiredSettings();
+			$content .= PAYPAL_requiredSettings();
 			
 			break;
 		}
 	
 	if (!function_exists('PAYPALPRO_newSubscription')) {
-        $display .= '<p>' . $LANG_PAYPAL_PRO['pro_feature'] . '</p>';
+        $content .= '<p>' . $LANG_PAYPAL_PRO['pro_feature'] . '</p>';
     } 
 }
 
-$display .= COM_siteFooter();
+$display = COM_createHTMLDocument($content, ['pagetitle' => $LANG_PAYPAL_1['products_list']]);
 
 COM_output($display);
-
-?>

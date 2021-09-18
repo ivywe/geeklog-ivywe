@@ -1,19 +1,20 @@
 <?php
 // +--------------------------------------------------------------------------+
-// | PayPal Plugin v1.1.6 - geeklog CMS                                       |
+// | PayPal Plugin v1.5 - geeklog CMS                                         |
 // +--------------------------------------------------------------------------+
 // | login.php                                                                |
 // |                                                                          |
 // | Purchase History View.  Displays the current user's history of purchases.|
 // +--------------------------------------------------------------------------+
-// | Copyright (C) 2009 by the following authors:                             |
+// | Copyright (C) 2021 by the following authors:                             |
 // |                                                                          |
 // | Authors: ::Ben - cordiste AT free DOT fr                                 |
+// | Authors: Hiroron    - hiroron AT hiroron DOT com                         |
 // +--------------------------------------------------------------------------+
 // | Based on the original paypal Plugin                                      |
 // | Copyright (C) 2005 - 2006 by the following authors:                      |
 // |                                                                          |
-// | Vincent Furia <vinny01 AT users DOT sourceforge DOT net>                 |   
+// | Vincent Furia <vinny01 AT users DOT sourceforge DOT net>                 |
 // +--------------------------------------------------------------------------+
 // |                                                                          |
 // | This program is free software; you can redistribute it and/or            |
@@ -57,20 +58,18 @@ if ( $_PAY_CONF['view_membership'] != '1' && !SEC_hasRights('paypal.admin') ) {
 }
 
 //Main
-
-$display = COM_createHTMLDocument();
-if (SEC_hasRights('paypal.user', 'paypal.admin')) {
-    $display .= paypal_user_menu();
+$content = '';
+if (SEC_hasRights('paypal.user,paypal.admin')) {
+    $content .= paypal_user_menu();
 } else {
-    $display .= paypal_viewer_menu();
+    $content .= paypal_viewer_menu();
 }
 
-if (!empty($_REQUEST['msg'])) $display .= COM_showMessageText( stripslashes($_REQUEST['msg']), $LANG_PAYPAL_1['message']);
+$msg = Geeklog\Input::request('msg', '');
+if (!empty($msg)) $content .= COM_showMessageText( stripslashes($msg), $LANG_PAYPAL_1['message']);
 
-$display .= '<div id="membership">' . COM_startBlock($LANG_PAYPAL_1['members_list']) . phpblock_PAYPAL_displaySubscriptions() . COM_endBlock() . '</div>';
+$content .= '<div id="membership">' . COM_startBlock($LANG_PAYPAL_1['members_list']) . phpblock_PAYPAL_displaySubscriptions() . COM_endBlock() . '</div>';
 
-$display .= COM_siteFooter();
+$display = COM_createHTMLDocument($content);
 
 COM_output($display);
-
-?>

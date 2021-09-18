@@ -6,10 +6,10 @@
 // |                                                                          |
 // | Product View.  Displays single product with details.                     |
 // +--------------------------------------------------------------------------+
-// |                                                                          |
-// | Copyright (C) 2005-2006 by the following authors:                        |
+// | Copyright (C) 2021 by the following authors:                             |
 // |                                                                          |
 // | Authors: Vincent Furia     - vinny01 AT users DOT sourceforge DOT net    |
+// | Authors: Hiroron    - hiroron AT hiroron DOT com                         |
 // +--------------------------------------------------------------------------+
 // |                                                                          |
 // | This program is free software; you can redistribute it and/or            |
@@ -41,6 +41,11 @@
  * require core geeklog code
  */
 require_once '../lib-common.php';
+
+if (!in_array('paypal', $_PLUGINS)) {
+    COM_handle404();
+    exit;
+}
 
 // Incoming variable filter
 $vars = array('product' => 'number');
@@ -79,16 +84,16 @@ if ($pid == '') {
 
 // Ensure sufficient privs to read this page
 if (($_USER['uid'] < 2) && ($_PAY_CONF['anonymous_buy'] == 0)) {
-    $display .= COM_createHTMLDocument();
-	if (SEC_hasRights('paypal.user', 'paypal.admin')) {
-        $display .= paypal_user_menu();
+    $content = '';
+	if (SEC_hasRights('paypal.user,paypal.admin')) {
+        $content .= paypal_user_menu();
     } else {
-        $display .= paypal_viewer_menu();
+        $content .= paypal_viewer_menu();
     }
-    $display .= COM_startBlock($LANG_PAYPAL_1['access_reserved']);
-    $display .= $LANG_PAYPAL_1['you_must_log_in'];
-    $display .= COM_endBlock();
-    $display .= COM_siteFooter();
+    $content .= COM_startBlock($LANG_PAYPAL_1['access_reserved']);
+    $content .= $LANG_PAYPAL_1['you_must_log_in'];
+    $content .= COM_endBlock();
+    $display = COM_createHTMLDocument($content);
     COM_output($display);
     exit;
 }
@@ -671,6 +676,7 @@ function PAYPAL_review_bar( $rt_id, $title, $order, $url )
 /*
 Main
 */
+$content = '';
 
 if ($_PAY_CONF['anonymous_buy'] == 0) paypal_access_check('paypal.user');
 
@@ -694,17 +700,17 @@ if ($A['customisable'] != 0 && !function_exists('PAYPALPRO_displayAttributes') )
 	exit;
 }
 
-$display .= PAYPAL_siteHeader($A['name'] . ' - '  . $A['cat_name']);
+$pagetitle = $A['name'] . ' - '  . $A['cat_name'];
 
 $breadcrumbs = PAYPAL_Breadcrumbs($A['cat_id']);
 if ($breadcrumbs != '') {
-				   $display .= '<ul class="uk-breadcrumb">' . $breadcrumbs . '<li>' . $A['name'] . '</li></ul>';
-				}
+	$content .= '<ul class="uk-breadcrumb">' . $breadcrumbs . '<li>' . $A['name'] . '</li></ul>';
+}
 
-if (SEC_hasRights('paypal.user', 'paypal.admin')) {
-    $display .= paypal_user_menu();
+if (SEC_hasRights('paypal.user,paypal.admin')) {
+    $content .= paypal_user_menu();
 } else {
-    $display .= paypal_viewer_menu();
+    $content .= paypal_viewer_menu();
 }
 
 $product = COM_newTemplate($_CONF['path'] . 'plugins/paypal/templates');
@@ -857,18 +863,18 @@ if (( $A['price'] > 0 && ($_USER['uid'] < 2 && $_PAY_CONF['anonymous_buy'] == 0)
 } else {
     /* buttons for everyone else */
     $product->set_var('buy_now_button', $LANG_PAYPAL_1['buy_now_button']);
-	if ( $_PAY_CONF['enable_buy_now'] == 1 ) {
-        $product->set_var('buy_now', $product->parse('output', 'buy'));
-	}
+	//if ( $_PAY_CONF['enable_buy_now'] == 1 ) {
+    $product->set_var('buy_now', $product->parse('output', 'buy'));
+	//}
     $product->set_var('add2cart', $product->parse('output', 'cart'));
     if ($A['description'] == '' || $_PAY_CONF['display_2nd_buttons'] == 0) {
 	    $product->set_var('buy_now2', '');
     } else {
-		if ( $_PAY_CONF['enable_buy_now'] == 1 ) {
-            $product->set_var('buy_now2', $product->parse('output', 'buy'));
-		} else {
-		    $product->set_var('buy_now2', '');
-		}
+		//if ( $_PAY_CONF['enable_buy_now'] == 1 ) {
+        $product->set_var('buy_now2', $product->parse('output', 'buy'));
+		//} else {
+		//    $product->set_var('buy_now2', '');
+		//}
 	}
 	($A['description'] == '' || $_PAY_CONF['display_2nd_buttons'] == 0) ? $product->set_var('add2cart2', '') : $product->set_var('add2cart2', $product->parse('output', 'cart'));
 	$product->set_var('login', '');
@@ -891,6 +897,7 @@ $product->set_var('donation', '');
 //Rent
 $product->set_var('rent', '');
 
+/*
 switch ($type) {
     case 'subscription':
         break;
@@ -904,21 +911,20 @@ switch ($type) {
     default:
         break;
 }
+*/
 
 if ( ( $A['active'] == 1   && SEC_hasAccess2($A) ) || SEC_hasRights('paypal.admin')) {
-    $display .= $product->parse('output', 'product');
+    $content .= $product->parse('output', 'product');
 } else {
-	$display .= COM_showMessageText($LANG_PAYPAL_1['not_active_message'], $LANG_PAYPAL_1['active']);
+	$content .= COM_showMessageText($LANG_PAYPAL_1['not_active_message'], $LANG_PAYPAL_1['active']);
 }
 
 //Display cart
-$display .= '<div id="cart">' . PAYPAL_displayCart() .'</div>';
+$content .= '<div id="cart">' . PAYPAL_displayCart() .'</div>';
 
-$display .= PAYPAL_siteFooter();
+$display = PAYPAL_createHTMLDocument($content, $pagetitle);
 
 //hit +1
 hitProduct($A['id']);
 
 COM_output($display);
-
-?>

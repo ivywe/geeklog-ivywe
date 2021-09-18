@@ -8,10 +8,10 @@
 // | A link to this page needs to be associated with your paypal business     |
 // | account.                                                                 |
 // +--------------------------------------------------------------------------+
-// |                                                                          |
-// | Copyright (C) 2005-2006 by the following authors:                        |
+// | Copyright (C) 2021 by the following authors:                             |
 // |                                                                          |
 // | Authors: Vincent Furia     - vinny01 AT users DOT sourceforge DOT net    |
+// | Authors: Hiroron    - hiroron AT hiroron DOT com                         |
 // +--------------------------------------------------------------------------+
 // |                                                                          |
 // | This program is free software; you can redistribute it and/or            |
@@ -39,10 +39,34 @@
  * @package paypal
  */
 
+//sandboxではipnデータに日本語があるとshift_jisで送られてきてutf-8に変更できないのでcharsetやitem_nameXなどをutf-8に変更する
+$convert_utf8 = (isset($_POST['charset']) && strtolower($_POST['charset']) == 'shift_jis') ? true : false;
+if ($convert_utf8) {
+	if (isset($_POST['charset'])) {
+		$_POST['charset'] = 'utf-8';
+	}
+	foreach (array('address_street','first_name','address_name','address_country','address_city','last_name','address_state','transaction_subject') as $key) {
+		if (isset($_POST[$key]) && !empty($_POST[$key])) {
+			$_POST[$key] = mb_convert_encoding($_POST[$key],'UTF-8','SJIS');
+		}
+	}
+	for ($i = 1; $i <= 10; $i++ ) {
+		if (isset($_POST['item_name'.$i])) {
+			$_POST['item_name'.$i] = mb_convert_encoding($_POST['item_name'.$i],'UTF-8','SJIS');
+		}
+	}
+}
+
 /**
  * Require geeklog
  */
 require_once('../lib-common.php');
+
+if (!in_array('paypal', $_PLUGINS)) {
+    COM_handle404();
+    exit;
+}
+
 
 /**
  * Get needed paypal classes
@@ -54,8 +78,6 @@ require_once($_CONF['path'] . 'plugins/paypal/classes/IPN.class.php');
 $ipn = new IPN();
 $ipn->Process($_POST);
 
-
 // Finished (this isn't necessary...but heck...why not?)
 echo "Thanks";
 
-?>

@@ -103,13 +103,15 @@ $_PAY_CONF['allowedextensions'] = array (
 
 /**
  * Paypal products types
- */ 
- $_PAY_CONF['types'] = array (
-    'product'       => $LANG_PAYPAL_TYPE['product'],
-    'subscription'  => $LANG_PAYPAL_TYPE['subscription'],
-    'donation'      => $LANG_PAYPAL_TYPE['donation'],
-	'rent'          => $LANG_PAYPAL_TYPE['rent'],
-);
+ */
+if (isset($LANG_PAYPAL_TYPE) && is_array($LANG_PAYPAL_TYPE)) {
+    $_PAY_CONF['types'] = array (
+        'product'       => $LANG_PAYPAL_TYPE['product'],
+        'subscription'  => $LANG_PAYPAL_TYPE['subscription'],
+        'donation'      => $LANG_PAYPAL_TYPE['donation'],
+        'rent'          => $LANG_PAYPAL_TYPE['rent'],
+    );
+}
 
 /************************************************/
 /* WARNING: Items below this line should never be altered */
@@ -159,28 +161,30 @@ $jcart['button']['empty']					= '';
 
 if (!$jcart['path']) die('The path to jCart isn\'t set. Please see <strong>jcart-config.php</strong> for more info.');
 
-$jcart['text']['cart_title']				= $LANG_PAYPAL_CART['cart'];
-$jcart['text']['single_item']				= $LANG_PAYPAL_CART['item'];
-$jcart['text']['multiple_items']			= $LANG_PAYPAL_CART['items'];
-$jcart['text']['currency_symbol']			= $_PAY_CONF['currency'];
-$jcart['text']['subtotal']				    = $LANG_PAYPAL_CART['subtotal'];
-$jcart['text']['total']				        = $LANG_PAYPAL_CART['total'];
+if (isset($LANG_PAYPAL_CART) && is_array($LANG_PAYPAL_CART)) {
+    $jcart['text']['cart_title']                = $LANG_PAYPAL_CART['cart'];
+    $jcart['text']['single_item']               = $LANG_PAYPAL_CART['item'];
+    $jcart['text']['multiple_items']            = $LANG_PAYPAL_CART['items'];
+    $jcart['text']['currency_symbol']           = $_PAY_CONF['currency'];
+    $jcart['text']['subtotal']                  = $LANG_PAYPAL_CART['subtotal'];
+    $jcart['text']['total']                     = $LANG_PAYPAL_CART['total'];
 
-$jcart['text']['update_button']				= $LANG_PAYPAL_CART['update'];
-$jcart['text']['checkout_button']			= $LANG_PAYPAL_CART['checkout'];
-$jcart['text']['checkout_paypal_button']	= $LANG_PAYPAL_CART['paypal_checkout'];
-$jcart['text']['remove_link']				= $LANG_PAYPAL_CART['remove'];
-$jcart['text']['empty_button']				= $LANG_PAYPAL_CART['empty'];
-$jcart['text']['empty_message']				= $LANG_PAYPAL_CART['cart_empty'];
-$jcart['text']['item_added_message']		= $LANG_PAYPAL_CART['added'];
+    $jcart['text']['update_button']             = $LANG_PAYPAL_CART['update'];
+    $jcart['text']['checkout_button']           = $LANG_PAYPAL_CART['checkout'];
+    $jcart['text']['checkout_paypal_button']    = $LANG_PAYPAL_CART['paypal_checkout'];
+    $jcart['text']['remove_link']               = $LANG_PAYPAL_CART['remove'];
+    $jcart['text']['empty_button']              = $LANG_PAYPAL_CART['empty'];
+    $jcart['text']['empty_message']             = $LANG_PAYPAL_CART['cart_empty'];
+    $jcart['text']['item_added_message']        = $LANG_PAYPAL_CART['added'];
 
-$jcart['text']['price_error']				= $LANG_PAYPAL_CART['invalid_price'];
-$jcart['text']['quantity_error']			= $LANG_PAYPAL_CART['item_quantities'];
-$jcart['text']['checkout_error']			= $LANG_PAYPAL_CART['error'];
+    $jcart['text']['price_error']               = $LANG_PAYPAL_CART['invalid_price'];
+    $jcart['text']['quantity_error']            = $LANG_PAYPAL_CART['item_quantities'];
+    $jcart['text']['checkout_error']            = $LANG_PAYPAL_CART['error'];
 
-$jcart['text']['description']		    	= $LANG_PAYPAL_CART['description'];
-$jcart['text']['unit_price']			    = $LANG_PAYPAL_CART['unit_price'];
-$jcart['text']['quantity']			        = $LANG_PAYPAL_CART['quantity'];
-$jcart['text']['item_price']			    = $LANG_PAYPAL_CART['item_price'];    
+    $jcart['text']['description']               = $LANG_PAYPAL_CART['description'];
+    $jcart['text']['unit_price']                = $LANG_PAYPAL_CART['unit_price'];
+    $jcart['text']['quantity']                  = $LANG_PAYPAL_CART['quantity'];
+    $jcart['text']['item_price']                = $LANG_PAYPAL_CART['item_price'];    
+}
 
 ?>

@@ -7,9 +7,10 @@
 // | Admin index page for the paypal plugin.  By default, lists products      |
 // | available for editing                                                    |
 // +--------------------------------------------------------------------------+
-// | Copyright (C) 2010 by the following authors:                              |
+// | Copyright (C) 2021 by the following authors:                             |
 // |                                                                          |
 // | Authors: ::Ben - cordiste AT free DOT fr                                 |
+// | Authors: Hiroron    - hiroron AT hiroron DOT com                         |
 // +--------------------------------------------------------------------------+
 // |                                                                          |
 // | This program is free software; you can redistribute it and/or            |
@@ -24,7 +25,7 @@
 // |                                                                          |
 // | You should have received a copy of the GNU General Public License        |
 // | along with this program; if not, write to the Free Software Foundation,  |
-// | Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             |
+// | Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.          |
 // |                                                                          |
 // +--------------------------------------------------------------------------+
 
@@ -37,6 +38,11 @@
  * Required geeklog
  */
 require_once('../lib-common.php');
+
+if (!in_array('paypal', $_PLUGINS)) {
+    COM_handle404();
+    exit;
+}
 
 // Check for required permissions
 paypal_access_check('paypal.user');
@@ -63,29 +69,33 @@ paypal_filterVars($vars, $_REQUEST);
 
 //Main
 
-$display = '';
-$display .= paypal_user_menu();
+$content = paypal_user_menu();
 
-if (!empty($_REQUEST['msg'])) $display .= PAYPAL_message($_REQUEST['msg']);
+$msg = Geeklog\Input::fRequest('msg', '');
+if (!empty($msg)) $content .= PAYPAL_message($msg);
 
-switch ($_REQUEST['mode']) {
+$mode = Geeklog\Input::request('mode', '');
+switch ($mode) {
     case 'edit':
 	    // Get the details to edit and display the form
         if (isset($_USER['uid']) && $_USER['uid'] > 1) {
             $sql = "SELECT * FROM {$_TABLES['paypal_users']} WHERE user_id = {$_USER['uid']}";
 			//only admin can edit details of a user
+			$r_uid = Geeklog\Input::fRequest('uid', '');
 			if (SEC_hasRights('paypal.admin')) {
-			    $sql = "SELECT * FROM {$_TABLES['paypal_users']} WHERE user_id = {$_REQUEST['uid']}";
+			    $sql = "SELECT * FROM {$_TABLES['paypal_users']} WHERE user_id = {$r_uid}";
 			}
             $res = DB_query($sql);
+            $nrows = DB_numRows($res);
             $A = DB_fetchArray($res);
+			if (!isset($A['user_id'])) $A['user_id']='';
 			if ($A['user_id'] == '' && SEC_hasRights('paypal.admin')) {
-			    $A['user_id'] = $_REQUEST['uid'];
+			    $A['user_id'] = $r_uid;
 			}
 			if ($A['user_id'] == '') {
 			    $A['user_id'] = $_USER['uid'];
 			}
-            $display .= PAYPAL_getDetailsForm($A, $_PAY_CONF['site_url'] . '/details.php?mode=save', $LANG_PAYPAL_1['save_button']);
+            $content .= PAYPAL_getDetailsForm($A, $_PAY_CONF['site_url'] . '/details.php?mode=save', $LANG_PAYPAL_1['save_button']);
         } else {
             echo COM_refresh($_CONF['site_url']);
         }
@@ -98,12 +108,12 @@ switch ($_REQUEST['mode']) {
         $phone1 = str_replace($remove_from_tel, '', $_REQUEST['phone1']);
 		$phone2 = str_replace($remove_from_tel, '', $_REQUEST['phone2']);
 		$fax = str_replace($remove_from_tel, '', $_REQUEST['fax']);
-		$name = strtoupper(addslashes(COM_getTextContent($_REQUEST['name'])));
+		$name = mb_strtoupper(addslashes(COM_getTextContent($_REQUEST['name'])));
 		$street1 = addslashes(COM_getTextContent($_REQUEST['street1']));
 		$street2 = addslashes(COM_getTextContent($_REQUEST['street2']));
 		$postal = $_REQUEST['postal'];
-		$city =  strtoupper(addslashes(COM_getTextContent($_REQUEST['city'])));
-		$country =  strtoupper(addslashes(COM_getTextContent($_REQUEST['country'])));
+		$city =  mb_strtoupper(addslashes(COM_getTextContent($_REQUEST['city'])));
+		$country =  mb_strtoupper(addslashes(COM_getTextContent($_REQUEST['country'])));
 		$contact =  ucwords(mb_strtolower(addslashes(COM_getTextContent($_REQUEST['contact']))));
 				
         if (isset($_USER['uid']) && $_USER['uid'] > 1) {
@@ -151,7 +161,8 @@ switch ($_REQUEST['mode']) {
                 break;
             } else {
                 // save complete
-				if ($_REQUEST['pay_by'] == 'check') {
+				$r_pay_by = Geeklog\Input::fRequest('pay_by', '');
+				if ($r_pay_by == 'check') {
 					// shipping can only contain numbers and a decimal
 					$shipping = str_replace(",","",$_REQUEST['shipping']);
 					$shipping = preg_replace('/[^\d.]/', '', $shipping);
@@ -171,23 +182,23 @@ switch ($_REQUEST['mode']) {
         if (!COM_isAnonUser()) {
             $sql = "SELECT * FROM {$_TABLES['paypal_users']} WHERE user_id = {$_USER['uid']}";
             $res = DB_query($sql);
+            $nrows = DB_numRows($res);
             $A = DB_fetchArray($res);
+			if (!isset($A['user_id'])) $A['user_id']='';
 			if ($A['user_id'] == '' && SEC_hasRights('paypal.admin')) {
-			    $A['user_id'] = $_REQUEST['uid'];
+				$r_uid = Geeklog\Input::fRequest('uid', '');
+			    $A['user_id'] = $r_uid;
 			}
 			if ($A['user_id'] == '') {
 			    $A['user_id'] = $_USER['uid'];
 			}
 			$validation_url =  $_PAY_CONF['site_url'] . '/details.php?mode=save';
-            $display .= PAYPAL_getDetailsForm($A, $validation_url, $LANG_PAYPAL_1['save_button']);
+            $content .= PAYPAL_getDetailsForm($A, $validation_url, $LANG_PAYPAL_1['save_button']);
         } else {
             echo COM_refresh($_CONF['site_url']);
         }
-	}
+}
 
-$display = COM_createHTMLDocument('none') . $display . COM_siteFooter();
-
+$display = COM_createHTMLDocument($content);
 
 COM_output($display);
-
-?>

@@ -2,20 +2,19 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Paypal Plugin 1.4                                                         |
+// | Paypal Plugin 1.5                                                         |
 // +---------------------------------------------------------------------------+
 // | jcart-javascript.php                                                      |
-// |                                                                           |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2010 by the following authors:                              |
+// | Copyright (C) 2021 by the following authors:                              |
 // |                                                                           |
 // | Authors: ::Ben - cordiste AT free DOT fr                                  |
+// | Authors: Hiroron    - hiroron AT hiroron DOT com                          |
 // +---------------------------------------------------------------------------+
 // | Based on JCART v1.1                                                       |
 // |                                                                           |
 // | Copyright (C) 2010 by the following authors:                              |
 // | JCART v1.1  http://conceptlogic.com/jcart/                                |
-// |                                                                           |   
 // +---------------------------------------------------------------------------+
 // |                                                                           |
 // | This program is free software; you can redistribute it and/or             |
@@ -34,9 +33,15 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 
+/**
+ * require core geeklog code
+ */
+require_once '../../lib-common.php';
 
-// CONTINUE THE SESSION
-session_start();
+if (!in_array('paypal', $_PLUGINS)) {
+    COM_handle404();
+    exit;
+}
 
 // OUTPUT PHP FILE AS JAVASCRIPT
 header('content-type:application/x-javascript');
@@ -45,10 +50,8 @@ header('content-type:application/x-javascript');
 header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
 header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
 
-/**
- * require core geeklog code
- */
-require_once '../../lib-common.php';
+// CONTINUE THE SESSION
+session_start();
 
 ?>
 // WHEN THE DOCUMENT IS READY
@@ -170,7 +173,7 @@ jQuery(function(){
 
 	// SHOW A TOOLTIP AFTER VISITOR CLICKS THE ADD-TO-CART
 	// IN CASE THE CART IS OFF SCREEN
-	jQuery('.jcart input[name="<?php echo $jcart['item_add'];?>"]').jcartTooltip({content: '<?php echo $jcart['text']['item_added_message'];?>', fadeIn: 500, fadeOut: 350 });
+	jQuery('.jcart button[name="<?php echo $jcart['item_add'];?>"]').jcartTooltip({content: '<?php echo $jcart['text']['item_added_message'];?>', fadeIn: 500, fadeOut: 350 });
 
 	// CHECK IF THERE ARE ANY ITEMS IN THE CART
 	var cartHasItems = jQuery('td.jcart-item-qty').html();
@@ -213,7 +216,7 @@ jQuery(function(){
 			var itemId = jQuery(this).find('input[name=<?php echo $jcart['item_id']?>]').val();
 		}
 		var itemQty = jQuery(this).find('input[name=<?php echo $jcart['item_qty']?>]').val();
-		var itemAdd = jQuery(this).find('input[name=<?php echo $jcart['item_add']?>]').val();
+		var itemAdd = jQuery(this).find('button[name=<?php echo $jcart['item_add']?>]').val();
 		var itemWeight = jQuery(this).find('input[name=<?php echo $jcart['item_weight']?>]').val();
 
 		// SEND ITEM INFO VIA POST TO INTERMEDIATE SCRIPT WHICH CALLS jcart.php AND RETURNS UPDATED CART HTML
@@ -260,7 +263,7 @@ jQuery(function(){
 	// JQUERY live METHOD MAKES FUNCTIONS BELOW AVAILABLE TO ELEMENTS ADDED DYNAMICALLY VIA AJAX
 
 	// WHEN A REMOVE LINK IS CLICKED
-	jQuery('#jcart a.jcart-remove').live('click', function(){
+	jQuery('#jcart a.jcart-remove').on('click', function(){
 
 		// GET THE QUERY STRING OF THE LINK THAT WAS CLICKED
 		var queryString = jQuery(this).attr('href');
@@ -295,7 +298,7 @@ jQuery(function(){
 	// CHANGE EVENT IS NOT CURRENTLY SUPPORTED BY LIVE METHOD
 	// STILL WORKS IN MOST BROWSERS, BUT NOT INTERNET EXPLORER
 	// INSTEAD WE SIMULATE THE CHANGE EVENT USING KEYUP AND SET A DELAY BEFORE UPDATING THE CART
-	jQuery('#jcart input[type="text"]').live('keyup', function(){
+	jQuery('#jcart input[type="text"]').on('keyup', function(){
 
 		// GET ITEM ID FROM THE ITEM QTY INPUT ID VALUE, FORMATTED AS jcart-item-id-n
 		var updateId = jQuery(this).attr('id');

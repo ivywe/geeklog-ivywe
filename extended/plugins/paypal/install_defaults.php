@@ -2,7 +2,7 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | paypal plugin 1.1                                                         |
+// | paypal plugin 1.5                                                         |
 // +---------------------------------------------------------------------------+
 // | install_defaults.php                                                      |
 // |                                                                           |
@@ -13,6 +13,7 @@
 // | Copyright (C) 2010 by the following authors:                              |
 // |                                                                           |
 // | Authors: Ben        - cordiste AT free DOT fr                             |
+// | Authors: Hiroron    - hiroron AT hiroron DOT com                          |
 // +---------------------------------------------------------------------------+
 // |                                                                           |
 // | This program is free software; you can redistribute it and/or             |
@@ -49,8 +50,7 @@ if (strpos(strtolower($_SERVER['PHP_SELF']), 'install_defaults.php') !== false) 
 *   Default values to be used during plugin installation/upgrade
 *   @global array $_PAY_DEFAULT
 */
-global $_DB_table_prefix, $_PAY_DEFAULT, $LANG_PAY_1;
-
+global $_PAY_DEFAULT;
 $_PAY_DEFAULT = array();
 
 $_PAY_DEFAULT['pi_name']    = 'paypal'; // Plugin name
@@ -92,7 +92,7 @@ $_PAY_DEFAULT['receiverEmailAddr'] = '';
  * currently requires you to have only one currency balance enabled in your
  * Paypal account. 
  */
- $_PAY_DEFAULT['currency'] = '円';
+$_PAY_DEFAULT['currency'] = '円';
 
 /**
  * 1 to allow anonymous users to make purchases without logging in first.  Note
@@ -129,7 +129,7 @@ $_PAY_DEFAULT['maxPerPage'] = 10;
  * Number of columns of categories to display.  Set to 0 to disable categories.
  * If you don't have any categories set, this setting is meaningless.
  */
- $_PAY_DEFAULT['categoryColumns'] = 3;
+$_PAY_DEFAULT['categoryColumns'] = 3;
  
  /**
  * Images settings
@@ -153,7 +153,7 @@ $_PAY_DEFAULT['products_col'] = 3;
  */
 $_PAY_DEFAULT['order'] = 'name';
 
-$_PAY_DEFAULT['view_memberships'] = 0;
+$_PAY_DEFAULT['view_membership'] = 0;
 $_PAY_DEFAULT['view_review'] = 0;
 $_PAY_DEFAULT['display_2nd_buttons'] = 0;
 
@@ -168,8 +168,12 @@ $_PAY_DEFAULT['display_2nd_buttons'] = 0;
 */
 function plugin_initconfig_paypal()
 {
-    global $_CONF, $_PAY_DEFAULT, $LANG_PAYPAL_1;
-	
+    global $_CONF, $_PAY_CONF, $_PAY_DEFAULT, $LANG_PAYPAL_1;
+
+    if (is_array($_PAY_CONF) && (count($_PAY_CONF) > 1)) {
+        $_PAY_DEFAULT = array_merge($_PAY_DEFAULT, $_PAY_CONF);
+    }
+
     $c = config::get_instance();
     if (!$c->group_exists('paypal')) {
 

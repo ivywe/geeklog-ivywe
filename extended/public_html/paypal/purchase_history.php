@@ -1,19 +1,20 @@
 <?php
 // +--------------------------------------------------------------------------+
-// | PayPal Plugin v1.1 - geeklog CMS                                         |
+// | PayPal Plugin v1.5 - geeklog CMS                                         |
 // +--------------------------------------------------------------------------+
 // | purchase_history.php                                                     |
 // |                                                                          |
 // | Purchase History View.  Displays the current user's history of purchases.|
 // +--------------------------------------------------------------------------+
-// | Copyright (C) 2009 by the following authors:                             |
+// | Copyright (C) 2021 by the following authors:                             |
 // |                                                                          |
 // | Authors: ::Ben - cordiste AT free DOT fr                                 |
+// | Authors: Hiroron    - hiroron AT hiroron DOT com                         |
 // +--------------------------------------------------------------------------+
 // | Based on the original paypal Plugin                                      |
 // | Copyright (C) 2005 - 2006 by the following authors:                      |
 // |                                                                          |
-// | Vincent Furia <vinny01 AT users DOT sourceforge DOT net>                 |   
+// | Vincent Furia <vinny01 AT users DOT sourceforge DOT net>                 |
 // +--------------------------------------------------------------------------+
 // |                                                                          |
 // | This program is free software; you can redistribute it and/or            |
@@ -45,44 +46,33 @@
  */
 require_once '../lib-common.php';
 
+if (!in_array('paypal', $_PLUGINS)) {
+    COM_handle404();
+    exit;
+}
+
 /* Ensure sufficient privs to read this page */
 paypal_access_check();
 
 /* Purchase history for anonymous users/paypal viewers doesn't make sense */
-if (!SEC_hasRights('paypal.user','paypal.admin','OR') || COM_isAnonUser() ) {
+if (!SEC_hasRights('paypal.user,paypal.admin','OR') || COM_isAnonUser() ) {
 
-		$display = "";
-
-    switch( $_PAY_CONF['display_blocks'] ) {
-    case 0 :    // none
-    case 2 :    // right only
-        $display .= COM_createHTMLDocument('none', $pagetitle);
-        break;
-    case 1 :    // left only
-    case 3 :    // both
-    default :
-        $display .= COM_createHTMLDocument('none', $pagetitle);
-        break;
-    }
-
-    $display .= paypal_viewer_menu();
-    $display .= PAYPAL_loginRequiredForm();
-    $display .= COM_siteFooter();
-    echo $display;
+    $content = paypal_viewer_menu();
+    $content .= PAYPAL_loginRequiredForm();
+    $display = COM_createHTMLDocument($content, ['what'=>'none']);
+    COM_output($display);
     exit;
 }
 
 //Main
 
-$display = COM_createHTMLDocument('none');
-$display .= paypal_user_menu();
+$content = paypal_user_menu();
 
-if (!empty($_REQUEST['msg'])) $display .= COM_showMessageText( stripslashes($_REQUEST['msg']), $LANG_PAYPAL_1['message']);
+$msg = Geeklog\Input::fRequest('msg', '');
+if (!empty($msg)) $content .= COM_showMessageText( stripslashes($msg), $LANG_PAYPAL_1['message']);
 
-$display .= PAYPAL_displayPurchaseHistory ();
+$content .= PAYPAL_displayPurchaseHistory ();
 
-$display .= COM_siteFooter();
+$display = COM_createHTMLDocument($content);
 
 COM_output($display);
-
-?>

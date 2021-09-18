@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-<h1>{title}</h1>
+{title}
 
 <span>
 	<?php if ( SEC_inGroup('Root') || file_exists( COM_buildURL($_CONF['site_url'] . '/staticpages/index.php?page=categorydesc-' . $this->get_var('category') ))){ ?>

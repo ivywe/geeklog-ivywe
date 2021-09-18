@@ -294,7 +294,8 @@ $LANG_PAYPAL_1 = array(
 	'year_stat'               => '年:',
 	'evolution_sales_stat'    => '販売のevolution',
 	'no_sales_stat'           => 'その期間で販売無し',
-	'no_download_folder'        => '注意: ダウンロードフォルダーがありません!',
+	'no_download_folder'      => '注意: ダウンロードフォルダーがありません!',
+	'title_display'           => 'title_display',
 
 );
 
@@ -360,6 +361,7 @@ $LANG_PAYPAL_ADMIN = array(
 	'create_shipper_destination' => '発送料金を作成する前に発送者と距離を選んでください。',
 	'exclude_cat_label'       => 'このサービスのカテゴリー',
 	'none'                    => '無し',
+	'per_item'                => 'per_item',
 );
 
 $LANG_PAYPAL_CART = array(
@@ -389,7 +391,7 @@ $LANG_PAYPAL_CART = array(
 );
 $LANG_PAYPAL_TYPE = array(
     'product'                 => '製品',
-    'subscrition'             => '加入',
+    'subscription'            => '加入',
     'donation'                => '寄付',
     'rent'                    => 'レント',
 
@@ -563,7 +565,7 @@ $LANG_configselects['paypal'] = array(
             'DKK - Danish Krone' => 'DKK', 
             'EUR - Euro' => 'EUR',
             'GBP - British Pound' => 'GBP',
-            'JPY - Japanese Yen' => '円',
+            'JPY - Japanese Yen' => 'JPY',
             'NZD - New Zealand Dollar' => 'NZD',
             'CHF - Swiss Franc' => 'CHF',
             'HKD - Hong Kong Dollar' => 'HKD',
@@ -587,4 +589,3 @@ $LANG_configselects['paypal'] = array(
 				'なし' => 0,
 		),
 );
-?>

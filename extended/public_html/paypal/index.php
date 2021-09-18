@@ -9,10 +9,10 @@
 // | By default displays available products along with links to purchase      |
 // | history and detailed product views                                       |
 // +--------------------------------------------------------------------------+
-// |                                                                          |
-// | Copyright (C) 2005-2006 by the following authors:                        |
+// | Copyright (C) 2021 by the following authors:                             |
 // |                                                                          |
 // | Authors: Vincent Furia     - vinny01 AT users DOT sourceforge DOT net    |
+// | Authors: Hiroron    - hiroron AT hiroron DOT com                         |
 // +--------------------------------------------------------------------------+
 // |                                                                          |
 // | This program is free software; you can redistribute it and/or            |
@@ -68,24 +68,32 @@ paypal_filterVars($vars, $_REQUEST);
 
 //Main
 
-if ($_REQUEST['n'] == '') {
-    $display .= PAYPAL_siteHeader($_PAY_CONF['seo_shop_title']);
-} else {
-    $display .= PAYPAL_siteHeader($_REQUEST['n'] . ' | ' . $_PAY_CONF['seo_shop_title']);
+$content = '';
+$pagetitle = $_PAY_CONF['seo_shop_title'];
+$n = Geeklog\Input::request('n', '');
+if ($n != '') {
+    $pagetitle = $n . ' | ' . $_PAY_CONF['seo_shop_title'];
 }
 
 if (SEC_hasRights('paypal.user', 'paypal.admin')) {
-    $display .= paypal_user_menu();
+    $content .= paypal_user_menu();
 } else {
-    $display .= paypal_viewer_menu();
+    $content .= paypal_viewer_menu();
 }
 
-switch ($_REQUEST['mode']) {
+$mode = Geeklog\Input::request('mode', '');
+switch ($mode) {
     case 'endTransaction':
 	    // START SESSION
         session_start();
 		// INITIALIZE JCART AFTER SESSION START
+		$cart = '';
+		if (!isset($_SESSION['jcart'])) {
+			$cart = new jcart();
+			$_SESSION['jcart'] = serialize($cart);
+		}
 		$cart =& $_SESSION['jcart']; 
+		$cart = unserialize(serialize($cart));
 		if(!is_object($cart)) $cart = new jcart();
 		// EMPTY THE CART
 		$cart->empty_cart();
@@ -97,30 +105,26 @@ switch ($_REQUEST['mode']) {
             $msg .= '<li>' . $_POST["quantity$i"] . 'x '. $_POST["item_name$i"] . '... '  . $_POST["mc_gross_$i"] . ' ' . $_POST['mc_currency'];
         }
 		$msg .=  '</ul><p>' . $LANG_PAYPAL_1['total']  . ' ' . $_POST['mc_gross'] . ' ' . $_POST['mc_currency'] . '</p>';
-        $display .= COM_showMessageText($msg, $LANG_PAYPAL_1['thanks']);
-		$display .= '<div id="cart">' . PAYPAL_displayCart() .'</div>';
-        $display .= PAYPAL_siteFooter();
+        $content .= COM_showMessageText($msg, $LANG_PAYPAL_1['thanks']);
+		$content .= '<div id="jcart">' . PAYPAL_displayCart() .'</div>';
         break;
 	
 	case 'cancel':
 		$msg = $LANG_PAYPAL_1['cancel_details']; 
-        $display .= COM_showMessageText($msg, $LANG_PAYPAL_1['cancel']);
-		$display .= '<div id="cart">' . PAYPAL_displayCart() .'</div>';
-        $display .= PAYPAL_siteFooter();
+        $content .= COM_showMessageText($msg, $LANG_PAYPAL_1['cancel']);
+		$content .= '<div id="jcart">' . PAYPAL_displayCart() .'</div>';
         break;
 		
 	default :
-	    if ($_PAY_CONF['paypal_main_header'] != '' && $_REQUEST['category'] == '') $display .= '<div>' . PLG_replaceTags($_PAY_CONF['paypal_main_header']) . '</div>';
-		$display .= PAYPAL_displayProducts('',0,$_REQUEST['category']);
+	    if ($_PAY_CONF['paypal_main_header'] != '' && $_REQUEST['category'] == '') $content .= '<div>' . PLG_replaceTags($_PAY_CONF['paypal_main_header']) . '</div>';
+		$category = Geeklog\Input::fGet('category');
+		$content .= PAYPAL_displayProducts('',0,$category);
         
-		if ($_PAY_CONF['paypal_main_footer'] != '') $display .= '<div>' . PLG_replaceTags($_PAY_CONF['paypal_main_footer']) . '</div>';
+		if ($_PAY_CONF['paypal_main_footer'] != '') $content .= '<div>' . PLG_replaceTags($_PAY_CONF['paypal_main_footer']) . '</div>';
 		
 		//Display cart
-        $display .= '<div id="cart">' . PAYPAL_displayCart() .'</div>';
-		
-        $display .= PAYPAL_siteFooter();
+        $content .= '<div id="jcart">' . PAYPAL_displayCart() .'</div>';
 }
 
+$display = PAYPAL_createHTMLDocument($content, $pagetitle);
 COM_output($display);
-
-?>

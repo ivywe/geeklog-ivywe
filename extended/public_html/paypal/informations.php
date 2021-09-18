@@ -9,10 +9,10 @@
 // | By default displays available products along with links to purchase      |
 // | history and detailed product views                                       |
 // +--------------------------------------------------------------------------+
-// |                                                                          |
-// | Copyright (C) 2011 by the following authors:                             |
+// | Copyright (C) 2021 by the following authors:                             |
 // |                                                                          |
 // | Authors: Ben     -    ben AT geeklog DOT fr                              |
+// | Authors: Hiroron    - hiroron AT hiroron DOT com                         |
 // +--------------------------------------------------------------------------+
 // |                                                                          |
 // | This program is free software; you can redistribute it and/or            |
@@ -51,27 +51,18 @@ paypal_filterVars($vars, $_REQUEST);
 
 
 //Main
+$content = paypal_user_menu();
 
-$display .= PAYPAL_siteHeader();
-
-$display .= paypal_user_menu();
-
-
-switch ($_REQUEST['mode']) {
+$mode = Geeklog\Input::request('mode', '');
+switch ($mode) {
     case 'endTransaction':
         break;
-	
 	case 'cancel':
         break;
-		
 	default :
-
         //Display cart
-        $display .= '<div id="cart">' . PAYPAL_displayCart() .'</div>';
-		
-        $display .= PAYPAL_siteFooter();
+        $content .= '<div id="cart">' . PAYPAL_displayCart() .'</div>';
 }
+$display = PAYPAL_createHTMLDocument($content);
 
 COM_output($display);
-
-?>

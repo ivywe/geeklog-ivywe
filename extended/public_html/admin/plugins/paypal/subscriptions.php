@@ -7,9 +7,10 @@
 // | Admin index page for the paypal plugin.  By default, lists products      |
 // | available for editing                                                    |
 // +--------------------------------------------------------------------------+
-// | Copyright (C) 2010 by the following authors:                              |
-// |                                                                           |
-// | Authors: ::Ben - cordiste AT free DOT fr                                  |
+// | Copyright (C) 2021 by the following authors:                             |
+// |                                                                          |
+// | Authors: ::Ben - cordiste AT free DOT fr                                 |
+// | Authors: Hiroron    - hiroron AT hiroron DOT com                         |
 // +--------------------------------------------------------------------------+
 // |                                                                          |
 // | This program is free software; you can redistribute it and/or            |
@@ -154,10 +155,10 @@ function PAYPAL_getSubscriptionForm ($subscription = array())
 
 //Main
 
-$display = COM_createHTMLDocument('none');
-$display .= paypal_admin_menu();
+$content = paypal_admin_menu();
 
-if (!empty($_REQUEST['msg'])) $display .= COM_showMessageText( stripslashes($_REQUEST['msg']), $LANG_PAYPAL_1['message']);
+$msg = Geeklog\Input::fRequest('msg', '');
+if (!empty($msg)) $content .= COM_showMessageText( stripslashes($msg), $LANG_PAYPAL_1['message']);
 
 // Date picker	
 $_SCRIPTS->setJavaScriptFile('paypal_datepicker_js', '/jquery/datepicker/datepicker.js');
@@ -196,78 +197,88 @@ jQuery(function() {
 ";
 $_SCRIPTS->setJavaScript($js, true);
 
-switch ($_REQUEST['mode']) {
+$mode = Geeklog\Input::request('mode', '');
+switch ($mode) {
     case 'new':
 	    if (function_exists('PAYPALPRO_newSubscription')) {
-		    $display .= PAYPALPRO_newSubscription();
+		    $content .= PAYPALPRO_newSubscription();
 		} else {
-    		$display .= COM_showMessageText( $LANG_PAYPAL_PRO['pro_feature_manual_subscription'], $LANG_PAYPAL_1['message']);
+    		$content .= COM_showMessageText( $LANG_PAYPAL_PRO['pro_feature_manual_subscription'], $LANG_PAYPAL_1['message']);
 		}
 	    break;
 		
 	case 'edit':
         // Get the subscription to edit and display the form
-        if (is_numeric($_REQUEST['id'])) {
-            $sql = "SELECT * FROM {$_TABLES['paypal_subscriptions']} WHERE id = {$_REQUEST['id']}";
+        $r_id = Geeklog\Input::fRequest('id', '');
+        if (is_numeric($r_id)) {
+            $sql = "SELECT * FROM {$_TABLES['paypal_subscriptions']} WHERE id = {$r_id}";
             $res = DB_query($sql);
             $A = DB_fetchArray($res);
-            $display .= PAYPAL_getSubscriptionForm($A);
+            $content .= PAYPAL_getSubscriptionForm($A);
         } else {
             echo COM_refresh($_CONF['site_url']);
         }
         break;
 		
 	case 'save':
-        if (empty($_REQUEST['user_id']) || empty($_REQUEST['purchase_date']) ||empty($_REQUEST['expiration']) ||
-                empty($_REQUEST['add_to_group'])) {
-            $display .= COM_startBlock($LANG_PAYPAL_1['error']);
-            $display .= $LANG_PAYPAL_1['missing_field'];
-            $display .= COM_endBlock();
-            $display .= PAYPAL_getSubscriptionForm($_REQUEST);
+        $r_user_id = Geeklog\Input::fRequest('user_id', '');
+        $r_purchase_date = Geeklog\Input::fRequest('purchase_date', '');
+        $r_expiration = Geeklog\Input::fRequest('expiration', '');
+        $r_add_to_group = Geeklog\Input::fRequest('add_to_group', '');
+        if (empty($r_user_id) || empty($r_purchase_date) ||empty($r_expiration) ||
+                empty($r_add_to_group)) {
+            $content .= COM_startBlock($LANG_PAYPAL_1['error']);
+            $content .= $LANG_PAYPAL_1['missing_field'];
+            $content .= COM_endBlock();
+            $content .= PAYPAL_getSubscriptionForm($_REQUEST);
             break;
         }
 
         // price can only contain numbers and a decimal
-        $_REQUEST['price'] = preg_replace('/[^\d.]/', '', $_REQUEST['price']);
+        $r_price = Geeklog\Input::fRequest('price', '');
+        $r_price = preg_replace('/[^\d.]/', '', $r_price);
 
-        if (!empty($_REQUEST['id'])) {
+        $r_id = Geeklog\Input::fRequest('id', '');
+        $r_product_id = Geeklog\Input::fRequest('product_id', '');
+        if (!empty($r_id)) {
 		    
 			// Edition
+			$r_txn_id = Geeklog\Input::fRequest('txn_id', '');
 		    
-			$sql = "product_id = '{$_REQUEST['product_id']}', "
-        	 . "user_id = '{$_REQUEST['user_id']}', "
-             . "txn_id = '{$_REQUEST['txn_id']}', "
-             . "purchase_date = '{$_REQUEST['purchase_date']}', "
-             . "expiration = '{$_REQUEST['expiration']}', "
-             . "price = '{$_REQUEST['price']}', "
+			$sql = "product_id = '{$r_product_id}', "
+        	 . "user_id = '{$r_user_id}', "
+             . "txn_id = '{$r_txn_id}', "
+             . "purchase_date = '{$r_purchase_date}', "
+             . "expiration = '{$r_expiration}', "
+             . "price = '{$r_price}', "
 			 . "status = '{$_REQUEST['status']}', "
-			 . "add_to_group = '{$_REQUEST['add_to_group']}', "
+			 . "add_to_group = '{$r_add_to_group}', "
 			 . "notification = '{$_REQUEST['notification']}'
 			 ";
 			 
             $sql = "UPDATE {$_TABLES['paypal_subscriptions']} SET $sql "
-                 . "WHERE id = {$_REQUEST['id']}";
+                 . "WHERE id = {$r_id}";
         } else {
 		    
 			// Creation
 			
-			$prod_id = $_REQUEST['product_id'];
-			$products[1] = $_REQUEST['product_id'];
+			$prod_id = $r_product_id;
+			$products[1] = $r_product_id;
 			$quantity[1] = 1;
 			$product_name = DB_getItem($_TABLES['paypal_products'],'name',"id=$prod_id");
 			$names[1] = $product_name;
-			$prices[1] = $_REQUEST['price'];
+			$prices[1] = $r_price;
 			
-		    $txn_id = PAYPAL_handlePurchase($products, $quantity, $data, $names, $prices, 0, 'complete', $_REQUEST['user_id'] );
+		    $txn_id = PAYPAL_handlePurchase($products, $quantity, $data, $names, $prices, 0, 'complete', $r_user_id );
 			
-			$sql = "product_id = '{$_REQUEST['product_id']}', "
-        	 . "user_id = '{$_REQUEST['user_id']}', "
+			$sql = "product_id = '{$r_product_id}', "
+        	 . "user_id = '{$r_user_id}', "
              . "txn_id = '{$txn_id}', "
-             . "purchase_date = '{$_REQUEST['purchase_date']}', "
-             . "expiration = '{$_REQUEST['expiration']}', "
-             . "price = '{$_REQUEST['price']}', "
+             . "purchase_date = '{$r_purchase_date}', "
+             . "expiration = '{$r_expiration}', "
+             . "price = '{$r_price}', "
 			 . "status = '{$_REQUEST['status']}', "
-			 . "add_to_group = '{$_REQUEST['add_to_group']}', "
+			 . "add_to_group = '{$r_add_to_group}', "
 			 . "notification = '{$_REQUEST['notification']}'
 			 ";
 			
@@ -276,14 +287,14 @@ switch ($_REQUEST['mode']) {
         DB_query($sql);
         if (DB_error()) {
             $msg = $LANG_PAYPAL_1['save_fail'];
-        } elseif ($_REQUEST['id'] == 0) {
+        } elseif ($r_id == 0) {
             $msg = $LANG_PAYPAL_1['subscription_label'] . ' >> ' . $LANG_PAYPAL_1['save_success'];
 			//add user to group
-			if ($_POST['notification'] != '3') PAYPAL_addToGroup ($_REQUEST['add_to_group'], $_REQUEST['user_id']);
+			if (isset($_POST['notification']) && $_POST['notification'] != '3') PAYPAL_addToGroup ($r_add_to_group, $r_user_id);
         } else {
-		    $msg = $LANG_PAYPAL_1['subscription_label'] . ' ' . $_REQUEST['id'] . ' >> ' . $LANG_PAYPAL_1['save_success'];
+		    $msg = $LANG_PAYPAL_1['subscription_label'] . ' ' . $r_id . ' >> ' . $LANG_PAYPAL_1['save_success'];
 			//add user to group
-			if ($_POST['notification'] != '3') PAYPAL_addToGroup ($_REQUEST['add_to_group'], $_REQUEST['user_id']);
+			if (isset($_POST['notification']) && $_POST['notification'] != '3') PAYPAL_addToGroup ($r_add_to_group, $r_user_id);
 		}
 		
         // save complete, return to product list
@@ -292,11 +303,14 @@ switch ($_REQUEST['mode']) {
         break;
 		
 	case 'delete':
-	    DB_delete($_TABLES['paypal_subscriptions'], 'id', $_REQUEST['id']);
+        $r_id = Geeklog\Input::fRequest('id', '');
+	    DB_delete($_TABLES['paypal_subscriptions'], 'id', $r_id);
         if (DB_affectedRows('') == 1) {
             $msg = $LANG_PAYPAL_1['deletion_succes'];
 			//remove user from group
-			PAYPAL_removeFromGroup ($_REQUEST['add_to_group'], $_REQUEST['user_id']);
+			$r_add_to_group = Geeklog\Input::fRequest('add_to_group', '');
+			$r_user_id = Geeklog\Input::fRequest('user_id', '');
+			PAYPAL_removeFromGroup ($r_add_to_group, $r_user_id);
         } else {
             $msg = $LANG_PAYPAL_1['deletion_fail'];
         }
@@ -306,13 +320,13 @@ switch ($_REQUEST['mode']) {
         break;
 		
 	default :
-        $display .= COM_startBlock($LANG_PAYPAL_1['memberships_list']);
-        $display .= '<p>' . $LANG_PAYPAL_1['you_can'] . '<a href="' . $_CONF['site_url'] . '/admin/plugins/paypal/subscriptions.php?mode=new">' . $LANG_PAYPAL_1['create_subscription'] . '</a> | <a href="' . $_PAY_CONF['site_url'] . '/memberships_history.php">' . $LANG_PAYPAL_1['see_members_list'] . '</a>.</p>';
-        $display .= PAYPAL_listSubscriptions('all');
-        $display .= COM_endBlock();
+        $content .= COM_startBlock($LANG_PAYPAL_1['memberships_list']);
+        $content .= '<p>' . $LANG_PAYPAL_1['you_can'] . '<a href="' . $_CONF['site_url'] . '/admin/plugins/paypal/subscriptions.php?mode=new">' . $LANG_PAYPAL_1['create_subscription'] . '</a> | <a href="' . $_PAY_CONF['site_url'] . '/memberships_history.php">' . $LANG_PAYPAL_1['see_members_list'] . '</a>.</p>';
+        $content .= PAYPAL_listSubscriptions('all');
+        $content .= COM_endBlock();
 	}
 
-$display .= COM_siteFooter();
+$display = COM_createHTMLDocument($content, ['pagetitle' => $LANG_PAYPAL_1['memberships_list']]);
 
 //Paypal cron
 plugin_runScheduledTask_paypal();

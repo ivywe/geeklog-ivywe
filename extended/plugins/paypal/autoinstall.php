@@ -172,7 +172,7 @@ function plugin_postinstall_paypal($pi_name)
     $message =  'Completed paypal plugin install: ' .date('m d Y',time()) . "   AT " . date('H:i', time()) . "\n";
     $message .= 'Site: ' . $_CONF['site_url'] . ' and Sitename: ' . $_CONF['site_name'] . "\n";
     $pi_version = DB_getItem($_TABLES['plugins'], 'pi_version', "pi_name = 'paypal'");
-    COM_mail("ben@geeklog.fr","$pi_name Version:$pi_version Install successfull",$message);
+    //COM_mail("ben@geeklog.fr","$pi_name Version:$pi_version Install successfull",$message);
 	
 	// Create paypal_downloads.log file
 	$paypalDownload = fopen($_CONF['path_log'] . 'paypal_downloads.log', 'w') or die("can't create file paypal_downloads.log file");
@@ -183,7 +183,16 @@ function plugin_postinstall_paypal($pi_name)
 
 function plugin_load_configuration_paypal($pi_name)
 {
-    global $_CONF;
+    global $_CONF, $LANG_PAYPAL_1;
+
+    if (!isset($LANG_PAYPAL_1) || !is_array($LANG_PAYPAL_1) || count($LANG_PAYPAL_1) < 100) {
+        $langfile = $_CONF['path'] . 'plugins/paypal/language/' . $_CONF['language'] . '.php';
+        if (file_exists($langfile)) {
+            require_once $langfile;
+        } else {
+            require_once $_CONF['path'] . 'plugins/paypal/language/english.php';
+        }
+    }
 
     $base_path = $_CONF['path'] . 'plugins/' . $pi_name . '/';
 

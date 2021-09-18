@@ -1,6 +1,6 @@
 <?php
 // +--------------------------------------------------------------------------+
-// | PayPal Plugin 1.2 - geeklog CMS                                          |
+// | PayPal Plugin 1.5 - geeklog CMS                                          |
 // +--------------------------------------------------------------------------+
 // | product_edit.php                                                         |
 // |                                                                          |
@@ -9,16 +9,17 @@
 // | Allows for the altering and deletion of existing products as well as the |
 // | creation of new products                                                 |
 // +--------------------------------------------------------------------------+
-// | Copyright (C) 2009 - 2010 by the following authors:                      |
+// | Copyright (C) 2021 by the following authors:                             |
 // |                                                                          |
 // | Authors: ::Ben - cordiste AT free DOT fr                                 |
+// | Authors: Hiroron    - hiroron AT hiroron DOT com                         |
 // +--------------------------------------------------------------------------+
 // | Created with the Geeklog Plugin Toolkit.                                 |
 // +--------------------------------------------------------------------------+
 // | Based on the original paypal Plugin                                      |
 // | Copyright (C) 2005 - 2006 by the following authors:                      |
 // |                                                                          |
-// | Vincent Furia <vinny01 AT users DOT sourceforge DOT net>                 |   
+// | Vincent Furia <vinny01 AT users DOT sourceforge DOT net>                 |
 // +--------------------------------------------------------------------------+
 // |                                                                          |
 // | This program is free software; you can redistribute it and/or            |
@@ -203,7 +204,8 @@ function PAYPAL_getProductForm($product = array(), $type = 'product') {
 	$_SCRIPTS->setJavaScript($js, true);
 	
 	//Validate product type
-	if ($_REQUEST['type'] == '' && $product['type'] == '') $type = 'product';
+	$rtype = Geeklog\Input::fRequest('type', '');
+	if ($rtype == '' && $product['type'] == '') $type = 'product';
 	foreach ($_PAY_CONF['types'] as $item => $value) {
 	    $types[$item] = $item; 
 	}
@@ -212,7 +214,7 @@ function PAYPAL_getProductForm($product = array(), $type = 'product') {
 	}
 
     //Display form
-	($product['name'] == '') ? $display = COM_startBlock($LANG_PAYPAL_1['create_new_product']) : $display = COM_startBlock($LANG_PAYPAL_1['edit_label'] . ' ' . $product['name']);
+	($product['name'] == '') ? $content = COM_startBlock($LANG_PAYPAL_1['create_new_product']) : $content = COM_startBlock($LANG_PAYPAL_1['edit_label'] . ' ' . $product['name']);
 
     $template = new Template($_CONF['path'] . 'plugins/paypal/templates');
     $template->set_file(array('product' => 'product_form.thtml'));
@@ -244,7 +246,7 @@ function PAYPAL_getProductForm($product = array(), $type = 'product') {
 	
 	//Product infos
 	$template->set_var('informations', $LANG_PAYPAL_1['product_informations']);
-	if ($_REQUEST['type'] == 'subscription' || $product['type'] == 'subscription') {
+	if ($rtype == 'subscription' || $product['type'] == 'subscription') {
 	    $template->set_var('informations', $LANG_PAYPAL_1['membership_informations']);
 	}
     $template->set_var('name_label', $LANG_PAYPAL_1['name_label']);
@@ -380,6 +382,7 @@ function PAYPAL_getProductForm($product = array(), $type = 'product') {
 	$fileinputs = '';
     $saved_images = '';
     if ($_PAY_CONF['max_images_per_products'] > 0) {
+        $icount = 0;
 	    if ($product['id'] != '') {
             $icount = DB_count($_TABLES['paypal_images'],'pi_pid', $product['id']);
             if ($icount > 0) {
@@ -530,10 +533,10 @@ function PAYPAL_getProductForm($product = array(), $type = 'product') {
     $template->set_var('permissions_msg', $LANG_ACCESS['permmsg']);
     $template->set_var('lang_permissions_msg', $LANG_ACCESS['permmsg']);
 
-    $display .= $template->parse('output', 'product');
+    $content .= $template->parse('output', 'product');
 
-    $display .= COM_endBlock();
-    return $display;
+    $content .= COM_endBlock();
+    return $content;
 }
 
 function PAYPAL_saveImage ($product, $FILES, $pid) {
@@ -542,7 +545,7 @@ function PAYPAL_saveImage ($product, $FILES, $pid) {
     $args = &$product;
 
     // Handle Magic GPC Garbage:
-    while (list($key, $value) = each($args)) {
+    foreach ($args as $key => $value) {
         if (!is_array($value)) {
             $args[$key] = COM_stripslashes($value);
         } else {
@@ -607,7 +610,7 @@ function PAYPAL_saveImage ($product, $FILES, $pid) {
 				));
 		
 		if (!$upload->setPath($_PAY_CONF['path_images'])) {
-			$output = COM_createHTMLDocument ('menu', $LANG24[30]);
+			$output = COM_siteHeader ('menu', $LANG24[30]);
 			$output .= COM_startBlock ($LANG24[30], '', COM_getBlockTemplate ('_msg_block', 'header'));
 			$output .= $upload->printErrors (false);
 			$output .= COM_endBlock (COM_getBlockTemplate ('_msg_block', 'footer'));
@@ -641,7 +644,7 @@ function PAYPAL_saveImage ($product, $FILES, $pid) {
 		$upload->uploadFiles();
 
 		if ($upload->areErrors()) {
-			$retval = COM_createHTMLDocument('menu', $LANG24[30]);
+			$retval = COM_siteHeader('menu', $LANG24[30]);
 			$retval .= COM_startBlock ($LANG24[30], '',
 						COM_getBlockTemplate ('_msg_block', 'header'));
 			$retval .= $upload->printErrors(false);
@@ -685,7 +688,8 @@ function PAYPAL_deleteImage ($image)
 /**
  * main section
  */
-switch ($_REQUEST['op']) {
+$mode = Geeklog\Input::request('op', '');
+switch ($mode) {
     case 'delete':
 	    DB_delete($_TABLES['paypal_products'], 'id', $_REQUEST['id']);
 		if (DB_affectedRows('') == 1) {
@@ -702,10 +706,10 @@ switch ($_REQUEST['op']) {
         if ( empty($_REQUEST['name']) || empty($_REQUEST['short_description']) ||
                 empty($_REQUEST['price']) || !is_numeric($_REQUEST['product_type']) ||
 				($_REQUEST['type'] == 'subscription' &&  ($_REQUEST['duration'] == '' || $_REQUEST['duration'] < 1)) ) {
-            $display = COM_startBlock($LANG_PAYPAL_1['error']);
-            $display .= $LANG_PAYPAL_1['missing_field'];
-            $display .= COM_endBlock();
-            $display .= PAYPAL_getProductForm($_REQUEST, $_REQUEST['type']);
+            $content = COM_startBlock($LANG_PAYPAL_1['error']);
+            $content .= $LANG_PAYPAL_1['missing_field'];
+            $content .= COM_endBlock();
+            $content .= PAYPAL_getProductForm($_REQUEST, $_REQUEST['type']);
             break;
         }
 
@@ -810,7 +814,7 @@ switch ($_REQUEST['op']) {
 
     /* this case is currently not used... future expansion? */
     case 'preview':
-        $display = PAYPAL_getProductForm($_REQUEST);
+        $content = PAYPAL_getProductForm($_REQUEST);
         break;
 
     case 'edit':
@@ -819,7 +823,7 @@ switch ($_REQUEST['op']) {
             $sql = "SELECT * FROM {$_TABLES['paypal_products']} WHERE id = {$_REQUEST['id']}";
             $res = DB_query($sql);
             $A = DB_fetchArray($res);
-            $display = PAYPAL_getProductForm($A, $A['type']);
+            $content = PAYPAL_getProductForm($A, $A['type']);
         } else {
             echo COM_refresh($_CONF['site_url']);
         }
@@ -827,12 +831,12 @@ switch ($_REQUEST['op']) {
 
     case 'new':
     default:
-        $display = PAYPAL_getProductForm(array(), $_REQUEST['type']);
+        $content = PAYPAL_getProductForm(array(), $_REQUEST['type']);
         break;
 }
 
-$display = COM_createHTMLDocument('none') . paypal_admin_menu() . $display;
-$display .= COM_siteFooter();
+$content = paypal_admin_menu() . $content;
+$display = COM_createHTMLDocument($content, ['pagetitle' => $LANG_PAYPAL_1['create_new_product']]);
 
 COM_output($display);
 

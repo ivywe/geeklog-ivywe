@@ -1,7 +1,7 @@
 {# begin {templatelocation} #}
 
 <div>
- <form  method="post" action="#">
+ <form method="post" action="#" class="jcart">
   <input type="hidden" name="add" value="1" />
   <input type="hidden" name="item_name" value="{name_button}"  />
 
