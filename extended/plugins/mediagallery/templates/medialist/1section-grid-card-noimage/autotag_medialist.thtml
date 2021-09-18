@@ -12,7 +12,7 @@
 {!!if {container} == '1' || {container} == '' !!}<div class="uk-container <?php echo $ukc; ?>">{!endif}
         {!!if {title} || {album_title_disp} !!}<{!if album_title_tag}{album_title_tag}{!else}h2{!endif} class="uk-margin-large-bottom<?php echo $class_album_title; ?>">{album_title}</{!if album_title_tag}{album_title_tag}{!else}h2{!endif}>{!endif}
         {!if album_desc}<div class="uk-margin-large-bottom<?php echo $class_album_desc; ?>">{album_desc}</div>{!endif}
-        <div class="uk-grid-match uk-child-width-1-{grid} uk-child-width-1-{grids}{grid_s}@s uk-child-width-1-{gridm}{grid_m}@m uk-child-width-1-{grid_l}@l" uk-grid>
+        <div class="uk-grid-match uk-child-width-1-{grid} uk-child-width-1-{grids}{grid_s}@s uk-child-width-1-{gridm}{grid_m}@m uk-child-width-1-{grid_l}@l uk-grid-small" uk-grid>
 {medialist_col}
         </div>
 {!!if {container} == '1' || {container} == '' !!}</div>{!endif}
