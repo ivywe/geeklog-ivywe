@@ -7,7 +7,7 @@
     <fieldset>
     <legend>autotag_medialist_col.thtml</legend>
     {edit}
-    {!!if {title} || {media_title_disp} !!}<{!if media_title_tag}{media_title_tag}{!else}h4{!endif} class="<?php echo $class_media_title; ?>">{media_title}</{!if media_title_tag}{media_title_tag}{!else}h4{!endif}>{!endif}
+    {!!if {title} || {media_title_disp} || {media_title} !!}<{!if media_title_tag}{media_title_tag}{!else}h4{!endif} class="<?php echo $class_media_title; ?>">{media_title}</{!if media_title_tag}{media_title_tag}{!else}h4{!endif}>{!endif}
 
     <dl class="uk-description-list-line">
       <img src="{filename_tn}" alt="<?php echo $media_title_notag; ?>" class="uk-border-rounded uk-align-center" style="max-width:200px" alt="<?php echo $media_title_notag; ?>"{xhtml}>

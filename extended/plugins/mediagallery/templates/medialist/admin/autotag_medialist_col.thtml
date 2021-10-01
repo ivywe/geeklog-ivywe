@@ -1,6 +1,6 @@
 {# begin {templatelocation} #}
 
-&#60;div class="uk-margin-large"&#62;&#60;div class="uk-text-center@m"&#62;&#91;media:{media_id} src:disp&#93;&#60;/div&#62;{!!if {title} || {media_title_disp} !!}&#60;div class="uk-text-bold uk-text-center@m"&#62;<?php echo $media_title_notag; ?>&#60;/div&#62;{!endif}{!if media_desc}&#60;p&#62;{media_desc}&#60;/p&#62;{!endif}&#60;/div&#62;
+&#60;div class="uk-margin-large"&#62;&#60;div class="uk-text-center@m"&#62;&#91;media:{media_id} src:disp&#93;&#60;/div&#62;{!!if {title} || {media_title_disp} || {media_title} !!}&#60;div class="uk-text-bold uk-text-center@m"&#62;<?php echo $media_title_notag; ?>&#60;/div&#62;{!endif}{!if media_desc}&#60;p&#62;{media_desc}&#60;/p&#62;{!endif}&#60;/div&#62;
 <br{xhtml}>
 
 {# end {templatelocation} #}

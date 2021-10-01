@@ -7,7 +7,7 @@
 
 {!if reverse}
             <div class="uk-width-1-1 uk-width-{gridl}{grid_left}@m uk-first-column">
-              {!!if {title} || {media_title_disp} !!}<{!if media_title_tag}{media_title_tag}{!else}h3{!endif} class="<?php echo $class_media_title; ?>" style="font-size: 2.4vw">{media_title}</{!if media_title_tag}{media_title_tag}{!else}h3{!endif}>{!endif}
+              {!!if {title} || {media_title_disp} || {media_title} !!}<{!if media_title_tag}{media_title_tag}{!else}h3{!endif} class="<?php echo $class_media_title; ?>" style="font-size: 2.4vw">{media_title}</{!if media_title_tag}{media_title_tag}{!else}h3{!endif}>{!endif}
               {!if media_desc}<div class="uk-text-left uk-margin<?php echo $class_media_desc; ?>">{media_desc}</div>{!endif}
             </div>
             <div class="uk-width-1-1 uk-width-{gridr}{grid_right}@m">
@@ -18,7 +18,7 @@
               <img class="{imgclass}" src="{filename}" alt="<?php echo $media_title_notag; ?>">
             </div>
             <div class="uk-width-1-1 uk-width-{gridr}{grid_right}@m">
-              {!!if {title} || {media_title_disp} !!}<{!if media_title_tag}{media_title_tag}{!else}h3{!endif} class="<?php echo $class_media_title; ?>" style="font-size: 2.4vw">{media_title}</{!if media_title_tag}{media_title_tag}{!else}h3{!endif}>{!endif}
+              {!!if {title} || {media_title_disp} || {media_title} !!}<{!if media_title_tag}{media_title_tag}{!else}h3{!endif} class="<?php echo $class_media_title; ?>" style="font-size: 2.4vw">{media_title}</{!if media_title_tag}{media_title_tag}{!else}h3{!endif}>{!endif}
               {!if media_desc}<div class="uk-text-left uk-margin<?php echo $class_media_desc; ?>">{media_desc}</div>{!endif}
             </div>
 {!endif}
@@ -27,7 +27,7 @@
         </div>
 
         <div class="uk-hidden@m uk-text-center">
-              {!!if {title} || {media_title_disp} !!}<div class="uk-container"><{!if media_title_tag}{media_title_tag}{!else}h3{!endif} class="<?php echo $class_media_title; ?>" style="font-size: 3vw">{media_title}</{!if media_title_tag}{media_title_tag}{!else}h3{!endif}></div>{!endif}
+              {!!if {title} || {media_title_disp} || {media_title} !!}<div class="uk-container"><{!if media_title_tag}{media_title_tag}{!else}h3{!endif} class="<?php echo $class_media_title; ?>" style="font-size: 3vw">{media_title}</{!if media_title_tag}{media_title_tag}{!else}h3{!endif}></div>{!endif}
               <img class="{imgclass}" src="{filename}" alt="<?php echo $media_title_notag; ?>">
               {!if media_desc}<div class="uk-container uk-margin-top"><div class="uk-text-left uk-margin<?php echo $class_media_desc; ?>">{media_desc}</div></div>{!endif}
         </div>

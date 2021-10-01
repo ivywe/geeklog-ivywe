@@ -7,7 +7,7 @@
             <div class="uk-card uk-card-default uk-card-hover">
 							<div class="panel panel-default uk-text-center">
 								<div class="panel-heading">
-									{!!if {title} || {media_title_disp} !!}<{!if media_title_tag}{media_title_tag}{!else}h3{!endif} class="panel-title">{media_title}</{!if media_title_tag}{media_title_tag}{!else}h3{!endif}>{!endif}
+									{!!if {title} || {media_title_disp} || {media_title} !!}<{!if media_title_tag}{media_title_tag}{!else}h3{!endif} class="panel-title">{media_title}</{!if media_title_tag}{media_title_tag}{!else}h3{!endif}>{!endif}
 								</div>
 							</div>
 							<div class="uk-text-center">

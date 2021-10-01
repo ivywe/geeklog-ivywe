@@ -8,7 +8,7 @@
 </div>
             <div class="uk-overlay {!if class}{class}{!else}uk-position-center uk-text-center@m{!endif}">
 
-                {!!if {title} || {media_title_disp} !!}<{!if media_title_tag}{media_title_tag}{!else}h2{!endif} class="topslider1 uk-margin-remove gl-text-shadow<?php echo $class_media_title; ?>">{media_title}</{!if media_title_tag}{media_title_tag}{!else}h2{!endif}>{!endif}
+                {!!if {title} || {media_title_disp} || {media_title} !!}<{!if media_title_tag}{media_title_tag}{!else}h2{!endif} class="topslider1 uk-margin-remove gl-text-shadow<?php echo $class_media_title; ?>">{media_title}</{!if media_title_tag}{media_title_tag}{!else}h2{!endif}>{!endif}
                 {!if media_desc}<div class="<?php echo $class_media_desc; ?>">{media_desc}</div>{!endif}
             </div>
           </li>

@@ -8,7 +8,7 @@
   </div>
   {!!if <?php echo $media_title_notag; ?> || {media_desc} !!}<div class="uk-position-center uk-overlay gl-text-shadow uk-text-center@m uk-text-truncate">
 		<div class="gl-slider">
-			{!!if {title} || {media_title_disp} !!}<h2><?php echo $media_title_notag; ?></h2>{!endif}
+			{!!if {title} || {media_title_disp} || {media_title} !!}<h2><?php echo $media_title_notag; ?></h2>{!endif}
     	{media_desc}
 		</div>
   </div>{!endif}

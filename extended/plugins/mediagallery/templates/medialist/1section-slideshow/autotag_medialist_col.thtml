@@ -7,7 +7,7 @@
      <img src="{filename}" alt="<?php echo $media_title_notag; ?>" uk-cover>
   </div>
   <div class="uk-position-center uk-position-small uk-text-center uk-light uk-animation-fade uk-animation-slow">
-{!!if {title} || {media_title_disp} !!}<h1 class="uk-heading-primary uk-margin-medium-bottom"><?php echo $media_title_notag; ?></h1>{!endif}
+{!!if {title} || {media_title_disp} || {media_title} !!}<h1 class="uk-heading-primary uk-margin-medium-bottom"><?php echo $media_title_notag; ?></h1>{!endif}
 
 {!if media_desc}{media_desc}{!endif}
   </div>

@@ -5,7 +5,7 @@
   <li class="uk-inline">
     <a href="{media_keywords}"><img src="{filename}" alt="<?php echo $media_title_notag; ?>" uk-cover></a>
     <div class="uk-overlay uk-overlay-primary uk-position-bottom">
-      {!!if {title} || {media_title_disp} !!}<h4><a href="{media_keywords}"><?php echo $media_title_notag; ?></a></h4>{!endif}
+      {!!if {title} || {media_title_disp} || {media_title} !!}<h4><a href="{media_keywords}"><?php echo $media_title_notag; ?></a></h4>{!endif}
     </div>
   </li>
 

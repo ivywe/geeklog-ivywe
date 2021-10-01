@@ -3,7 +3,7 @@
   <div>
     <div class="uk-card uk-card-default gl-media-cell">
       <div class="uk-card-media-top">
-        <div class="uk-text-center" style="min-height:200px">{media_item_thumbnail}{mp3_podcast}</div>
+        <div class="uk-text-center mg_media_detail" style="min-height:200px">{media_item_thumbnail}{mp3_podcast}</div>
       </div>
       <div class="uk-card-small uk-card-body">
         <h3 class="uk-card-title">{media_link_start}<span uk-icon="icon: image"></span>{!if media_title}{media_title} {musicalbum}{!else}Media{!endif}{media_link_end}</h3>
