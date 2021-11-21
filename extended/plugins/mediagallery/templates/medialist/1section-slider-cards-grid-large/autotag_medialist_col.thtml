@@ -1,0 +1,20 @@
+{# begin {templatelocation} #}
+
+<?php $ratio = $this->get_var('ratio'); $ratio=str_replace("_",":",$ratio); $cl = $this->get_var('uks');if(strlen($cl)){$uks = ' '.str_replace('.', ' ', $cl);}else{$uks = "";}$cl = $this->get_var('ukc');if(strlen($cl)){$ukc = ' '.str_replace('.', ' ', $cl);}else{$ukc = "";}$cl = $this->get_var('class_album_title');if(strlen($cl)){$class_album_title = ' '.str_replace('.', ' ', $cl);}else{$class_album_title = " uk-text-center";}$cl = $this->get_var('class_album_desc');if(strlen($cl)){$class_album_desc = ' '.str_replace('.', ' ', $cl);}else{$class_album_desc = " uk-text-center@s";}$cl = $this->get_var('class_media_title');if(strlen($cl)){$class_media_title = ' '.str_replace('.', ' ', $cl);}else{$class_media_title = " uk-text-left";}$cl = $this->get_var('class_media_desc');if(strlen($cl)){$class_media_desc = ' '.str_replace('.', ' ', $cl);}else{$class_media_desc = " uk-text-left";} ?>
+
+<li class="uk-width-3-5@m">
+  <div class="uk-card uk-card-default uk-card-small uk-background-primary uk-light">
+    <div class="uk-flex-middle" uk-grid="">
+      <div class="uk-card-media-top uk-width-1-2 uk-width-1-3@s uk-first-column">
+        <img src="{filename}" alt="">
+      </div>
+      <div class="uk-card-body uk-width-1-2 uk-width-2-3@s uk-padding-remove-top uk-padding-remove-bottom">
+        <h3>{media_title}</h3>
+        <p class="uk-visible@m">{media_desc}</p>
+        {!if media_keywords}<div class="uk-text-center"><a href="{media_keywords}" class="uk-button uk-button-primary uk-button-small uk-margin-small-top" target="_self">Learn More</a></div>{!endif}
+      </div>
+    </div>
+  </div>
+</li>
+
+{# end {templatelocation} #}
