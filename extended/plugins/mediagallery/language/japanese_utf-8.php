@@ -822,7 +822,7 @@ $LANG_MG03 = array (
     'member_album_signup'   => 'Get your own album in our Media Gallery.<br' . XHTML . '><br' . XHTML . '><center><a href="%s">Sign Up Here</a></center>',
     'album_id_display'      => 'アルバム ID: ',
     'upload_help'           => 'あなたのコンピュータからファイルをアップロードします。ファイルの完全な位置を入力し、できればタイトルや説明・キーワードを入力してください。',
-    'upload_size'           => '<strong>注意:</strong> あなたがアップロード出来るのは一度につき %sMB までです。また個々のファイルは %sMB を超えてはいけません。もっとアップロードしたい場合は、個別にアップロードするか、システム管理者に問い合わせてください。',
+    'upload_size'           => '<div class="uk-text-danger">注意: 画像ファイルの拡張子にjpegは使えません。jpg, pngのどちらかに変更してください。ファイル名にピリオドは一つだけしか使えません。</div>',
     'ftp_help'              => 'サーバーにアップロードしてあるファイルをメディアギャラリーに転送します。<br'.XHTML.'>それらのファイルは既にFTPなどの方法でアップロードされ、Webサーバーからアクセス可能な場所に保存されている必要があります。',
     'no_new_items'          => '-',
     'no_comments'           => '-',
