@@ -38,7 +38,7 @@
 
 $_SQL[] = "
 CREATE TABLE {$_TABLES['autotags']} (
-  tag varchar(24) NOT NULL default '',
+  tag varchar(255) NOT NULL default '',
   description varchar(255) default '',
   is_enabled tinyint(1) NOT NULL default 0,
   is_function tinyint(1) NOT NULL default 0,
@@ -50,7 +50,7 @@ CREATE TABLE {$_TABLES['autotags']} (
   perm_group tinyint(1) unsigned NOT NULL default 2,
   perm_members tinyint(1) unsigned NOT NULL default 2,
   perm_anon tinyint(1) unsigned NOT NULL default 2,
-  
+
   PRIMARY KEY  (tag)
 ) ENGINE=MyISAM
 ";
