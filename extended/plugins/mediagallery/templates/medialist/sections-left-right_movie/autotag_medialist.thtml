@@ -11,15 +11,6 @@
       {!!if {title} || {album_title_disp} !!}<{!if album_title_tag}{album_title_tag}{!else}h2{!endif} class="<?php echo $class_album_title; ?>">{album_title}</{!if album_title_tag}{album_title_tag}{!else}h2{!endif}>{!endif}
       {!if album_desc}<div class="uk-margin-large-bottom<?php echo $class_album_desc; ?>">{album_desc}</div>{!endif}
 
-      <style>
-      div.gl-timeline {
-      background: url({site_url}/mediagallery/images/timeline-border.png) 22px 22px  repeat-y ;
-      height: 100%;
-      }
-      </style>
-
-<div class="gl-timeline">
 {medialist_col}
-</div>
 
 {# end {templatelocation} #}

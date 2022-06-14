@@ -119,7 +119,7 @@ $_SQL[]="CREATE TABLE {$_TABLES['mg_media']} (
   `media_mime_ext` varchar(255) NOT NULL default '',
   `media_exif` tinyint(4) NOT NULL default '1',
   `mime_type` varchar(255) NOT NULL default '',
-  `media_title` varchar(255) NOT NULL default '',
+  `media_title` varchar(511) NOT NULL default '',
   `media_desc` text NOT NULL,
   `media_keywords` varchar(255) NOT NULL default '',
   `media_time` int(11) NOT NULL default '0',

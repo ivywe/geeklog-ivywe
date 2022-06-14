@@ -64,7 +64,7 @@ function doUnCheckAll_mediaitems() {
       {include_ss}
     </td>
     <td>
-      <div class="uk-margin-small"><input type="text" class="uk-input uk-width-1-1" name="mtitle[]" value="{media_title}" placeholder="タイトル（HTMLは使えません）" size="255" {xhtml}></div>
+      <div class="uk-margin-small"><input type="text" class="uk-input uk-width-1-1" name="mtitle[]" value="{media_title}" placeholder="タイトル（HTMLは使えません）" size="511" {xhtml}></div>
       <div class="uk-margin-small-bottom"><textarea class="uk-textarea uk-width-1-1 tinymce_enabled1" name="mdesc[]" cols="50" rows="4" placeholder="説明">{media_desc}</textarea>
       	<div><a href="https://wordhtml.com/" target="_blank"><span uk-icon="icon: pencil"></span> HTMLコンバーター ( Word, EXCEL → HTML )</a></div>
       	<div><a href="https://lab.syncer.jp/Tool/HTML-PrettyPrint/" target="_blank"><span uk-icon="icon: pencil"></span> HTML整形ツール（プチデバッガー）</a></div>

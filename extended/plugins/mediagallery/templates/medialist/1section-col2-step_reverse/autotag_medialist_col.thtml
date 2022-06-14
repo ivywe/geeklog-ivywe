@@ -1,0 +1,35 @@
+{# begin {templatelocation} #}
+
+<?php $media_title = $this->get_var('media_title'); $media_title_notag = strip_tags($media_title); $ratio = $this->get_var('ratio'); $ratio=str_replace("_",":",$ratio); $cl = $this->get_var('uks');if(strlen($cl)){$uks = ' '.str_replace('.', ' ', $cl);}else{$uks = "";}$cl = $this->get_var('ukc');if(strlen($cl)){$ukc = ' '.str_replace('.', ' ', $cl);}else{$ukc = "";}$cl = $this->get_var('class_album_title');if(strlen($cl)){$class_album_title = ' '.str_replace('.', ' ', $cl);}else{$class_album_title = " uk-text-center";}$cl = $this->get_var('class_album_desc');if(strlen($cl)){$class_album_desc = ' '.str_replace('.', ' ', $cl);}else{$class_album_desc = " uk-text-center@s";}$cl = $this->get_var('class_media_title');if(strlen($cl)){$class_media_title = ' '.str_replace('.', ' ', $cl);}else{$class_media_title = " uk-text-left";}$cl = $this->get_var('class_media_desc');if(strlen($cl)){$class_media_desc = ' '.str_replace('.', ' ', $cl);}else{$class_media_desc = " uk-text-left";} ?>
+
+        <div class="uk-visible@s">
+          <div class="uk-grid-medium uk-margin" uk-grid>
+
+{!if reverse}
+            <div class="uk-width-1-1 uk-width-2-3@s uk-width-3-5@m uk-first-column">
+              {!!if {title} || {media_title_disp} || {media_title} !!}<{!if media_title_tag}{media_title_tag}{!else}h3{!endif} class="<?php echo $class_media_title; ?>">{media_title}</{!if media_title_tag}{media_title_tag}{!else}h3{!endif}>{!endif}
+              {!if media_desc}<div class="uk-text-left uk-margin<?php echo $class_media_desc; ?>">{media_desc}</div>{!endif}
+            </div>
+            <div class="uk-width-1-1 uk-width-1-3@s uk-width-2-5@m">
+              <img class="{imgclass}" src="{filename}" alt="<?php echo $media_title_notag; ?>">
+            </div>
+{!else}
+            <div class="uk-width-1-1 uk-width-1-3@s uk-width-2-5@m uk-first-column">
+              <img class="{imgclass}" src="{filename}" alt="<?php echo $media_title_notag; ?>">
+            </div>
+            <div class="uk-width-1-1 uk-width-2-3@s uk-width-3-5@m">
+              {!!if {title} || {media_title_disp} || {media_title} !!}<{!if media_title_tag}{media_title_tag}{!else}h3{!endif} class="<?php echo $class_media_title; ?>">{media_title}</{!if media_title_tag}{media_title_tag}{!else}h3{!endif}>{!endif}
+              {!if media_desc}<div class="uk-text-left uk-margin<?php echo $class_media_desc; ?>">{media_desc}</div>{!endif}
+            </div>
+{!endif}
+
+          </div>
+        </div>
+
+        <div class="uk-hidden@s uk-text-center">
+              {!!if {title} || {media_title_disp} || {media_title} !!}<div class="uk-container"><{!if media_title_tag}{media_title_tag}{!else}h3{!endif} class="<?php echo $class_media_title; ?>" style="font-size: 3vw">{media_title}</{!if media_title_tag}{media_title_tag}{!else}h3{!endif}></div>{!endif}
+              <img class="{imgclass}" src="{filename}" alt="<?php echo $media_title_notag; ?>">
+              {!if media_desc}<div class="uk-container uk-margin-top"><div class="uk-text-left uk-margin<?php echo $class_media_desc; ?>">{media_desc}</div></div>{!endif}
+        </div>
+
+{# end {templatelocation} #}
