@@ -300,7 +300,7 @@ function plugin_autotags_databox (
                                 ,$p['permission']
                             );
                         break;
-				   //@@@@@202012---->	
+				   //@@@@@202012---->
                    case 'code':
                         $rt=databox_code(
                                 $p['code']
@@ -309,7 +309,7 @@ function plugin_autotags_databox (
                                 ,$p['mode']
                             );
                         break;
-				   //@@@@@202012<----	
+				   //@@@@@202012<----
                 }
 
                 $content = str_replace ($autotag['tagstr'], $rt, $content);
@@ -654,6 +654,7 @@ function databox_category(
         $templates->set_var ('lang_category_list_h2',$LANG_DATABOX['category_list_h2']);
 
         $templates->set_var ('category_name',$category_name);
+        $templates->set_var ('category_id',$category_id); // add ivywe
         $templates->set_var ('category_code',$category_code);
         $templates->set_var ('category_description',$category_description);
 
@@ -713,6 +714,7 @@ function databox_category(
             $released=COM_applyFilter($A['released']);
             $expired=COM_applyFilter($A['expired']);
             $fieldset_id=COM_applyFilter($A['fieldset_id']);
+
             $datefield_ary = COM_getUserDateTimeFormat($A['datefield_un']);
             $released_ary = COM_getUserDateTimeFormat($A['released_un']);
             if ($expired==="0000-00-00 00:00:00"){
@@ -728,6 +730,8 @@ function databox_category(
             $owner_id = $A['owner_id'];
 
             $rt= databox_detail_link($id,$code,$title);
+
+            $templates->set_var ('data_fieldset_id', $fieldset_id);
 
             $templates->set_var ('data_link', $rt['link']);
             $templates->set_var ('data_title', $title);
@@ -913,6 +917,7 @@ function databox_category(
             $templates->set_var ('category_top',$category_top);
 
             $templates->set_var ('category_name',$category_name);
+            $templates->set_var ('category_id',$category_id); // add ivywe
             $templates->set_var ('category_code',$category_code);
             $templates->set_var ('category_description',$category_description);
 
@@ -2115,6 +2120,10 @@ function databox_data(
             //コード＆タイトル＆説明
             $templates->set_var('lang_code', $LANG_DATABOX_ADMIN['code']);
             $templates->set_var ('code', $A['code']);
+
+            // タイプ
+            $templates->set_var ('fieldset_id', $A['fieldset_id']);
+
             $templates->set_var('lang_title', $LANG_DATABOX_ADMIN['title']);
             $templates->set_var ('title',$A['title']);
             $templates->set_var('lang_description', $LANG_DATABOX_ADMIN['description']);
@@ -3978,13 +3987,13 @@ function databox_code(
 // | 引数 $code:コード
 // | 引数 $category_id:カテゴリid
 // | 引数 $category_code :
-// | 引数 $mode          :ブランク　または　next prev 
+// | 引数 $mode          :ブランク　または　next prev
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:指定値
 // +---------------------------------------------------------------------------+
 {
 	$pi_name= 'databox';
-	
+
     global $_TABLES;
     global $_CONF;
 
@@ -4000,7 +4009,7 @@ function databox_code(
     if (empty($rt)){
         return "";
     }
- 
+
     //-----category check
     $ids="";
     $idsary=array();
@@ -4065,12 +4074,12 @@ function databox_code(
         }
         $sql.=" AND ({$w})".LB;
     }
-	
+
     //--ORDER
     $sql .= " ORDER BY released,code".LB;
-	
-	
-	
+
+
+
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
 
@@ -4090,7 +4099,7 @@ function databox_code(
 				if  ($code_fit=="0"){
 					$code_prev=$code_current;
 				}
-				if ($code_fit=="1"){	
+				if ($code_fit=="1"){
 					$code_next=$code_current;
 					break;
 				}

@@ -5111,7 +5111,7 @@ function DATABOX_datetimeedit(
 
     $rt="";
     //Year
-    $year_options = COM_getYearFormOptions ($datetime_year);
+    $year_options = COM_getYearFormOptions ($datetime_year, -5);
     $rt.="<select class=\"uk-select uk-form-width-xsmall\" name=\"".$datetime_name."_year\">".LB;
     $rt.=$year_options.LB;
     $rt.="</select>".$lang_ary['yy'].LB;
@@ -5185,7 +5185,7 @@ function DATABOX_datetimeedit_R(
     $rt="";
 
     //Year
-    $year_options = COM_getYearFormOptions ($datetime_ary['year']);
+    $year_options = COM_getYearFormOptions ($datetime_ary['year'], -5);
     $rt.="<select class=\"uk-select uk-form-width-xsmall\" name=\"".$datetime_name."_year\">".LB;
     $rt.=$year_options.LB;
     $rt.="</select>".$lang_ary['yy'].LB;

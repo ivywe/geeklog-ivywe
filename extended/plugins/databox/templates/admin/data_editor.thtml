@@ -56,8 +56,9 @@
     <div class="uk-form-row uk-clearfix uk-margin-small">
       <label class="uk-form-label" >{lang_page_title} {help_page_title}</label>
       <div class="uk-form-controls">
-        <input type="text" class="uk-input uk-width-1-1" size="48" maxlength="160" name="page_title" value="{page_title}" {xhtml}>
+        <input type="text" class="uk-input uk-width-1-1" size="48" maxlength="160" name="page_title" value="{page_title}" placeholder="通常は空白にしてください。" {xhtml}>
       </div>
+      <div class="uk-text-right uk-text-small">※ ページタイトルはサブタイトルではありません。SEO対策としてタイトルを別につけたい時にのみ利用してください。</div>
     </div>
 
     {# description #}

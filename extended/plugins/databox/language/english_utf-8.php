@@ -192,7 +192,7 @@ $LANG_DATABOX_ADMIN['inst_changesetx']='<br'.XHTML.'>';
 
 $LANG_DATABOX_ADMIN['inst_changeset'] = 'Select attribute sets.<br'.XHTML.'>';
 
-$LANG_DATABOX_ADMIN['inst_dataexport'] = 
+$LANG_DATABOX_ADMIN['inst_dataexport'] =
 "
 Select export attribute set.<br".XHTML.">
 ";
@@ -290,12 +290,12 @@ Did you Backup?<br'.XHTML.'>
 master and clear data.<br'.XHTML.'>
 Uploaded file is deleted.<br'.XHTML.'>
 ';
-$LANG_DATABOX_ADMIN['backupmsg'] = 
+$LANG_DATABOX_ADMIN['backupmsg'] =
 "{$_CONF['backup_path']}"."databox/<br".XHTML.">"
 .'DataBox database is backup-ed.<br'.XHTML.'br>
 Backup upload file.<br'.XHTML.'>
 ';
-$LANG_DATABOX_ADMIN['restoremsg'] = 
+$LANG_DATABOX_ADMIN['restoremsg'] =
 "{$_CONF['backup_path']}"."databox/にある"
 .'Filename  select.(default: databox.xml)<br'.XHTML.'>
 DataBox  Database Data Restore.<br'.XHTML.'>
@@ -475,12 +475,12 @@ $LANG_DATABOX_ADMIN['about_admin_csv'] = 'CSV definition ';
 
 $LANG_DATABOX_ADMIN['about_admin_view'] = 'Display for general login user page.';
 
-$LANG_DATABOX_ADMIN['inst_fieldsetfields'] = 
+$LANG_DATABOX_ADMIN['inst_fieldsetfields'] =
 'Attribute Edit: click Attributes name, click add or remove button.<br'.XHTML.'>
 to add Attributes, select only right side.<br'.XHTML.'>
 After edit, click Save button.<br'.XHTML.'>';
 
-$LANG_DATABOX_ADMIN['inst_newdata'] = 
+$LANG_DATABOX_ADMIN['inst_newdata'] =
 'Select Type for Creation of Data<br'.XHTML.'>
 ';
 
@@ -727,7 +727,7 @@ $PLG_databox_MESSAGE3002 = $LANG32[9];
 ###############################################################################
 #
 $LANG_DATABOX_autotag_desc['databox']="
-[databox:count] <br".XHTML.">	
+[databox:count] <br".XHTML.">
 More, see Databox Plugin documents.
 <a href=\"{$_CONF['site_admin_url']}/plugins/databox/docs/japanese/autotags.html\">*</a>
 ";

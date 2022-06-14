@@ -199,11 +199,11 @@ $LANG_DATABOX_ADMIN['changeset']='タイプ変更';
 $LANG_DATABOX_ADMIN['inst_changeset0']="タイプが登録されていないデータのタイプを登録します。<br".XHTML.">";
 $LANG_DATABOX_ADMIN['inst_changesetx']="のタイプを変更します。<br".XHTML.">";
 
-$LANG_DATABOX_ADMIN['inst_changeset'] = 
+$LANG_DATABOX_ADMIN['inst_changeset'] =
 "タイプを選んでください。<br".XHTML.">
 ";
 
-$LANG_DATABOX_ADMIN['inst_dataexport'] = 
+$LANG_DATABOX_ADMIN['inst_dataexport'] =
 "
 エクスポートするデータのタイプを選択してください。<br".XHTML.">
 ";
@@ -304,18 +304,18 @@ $LANG_DATABOX_ADMIN['allclearmsg'] = "
 マスタおよびデータをクリアします。<br".XHTML.">
 アップロードされたファイルも削除されます。<br".XHTML.">
 ";
-$LANG_DATABOX_ADMIN['backupmsg'] = 
+$LANG_DATABOX_ADMIN['backupmsg'] =
 "{$_CONF['backup_path']}"."databox/に<br".XHTML.">"
 ."DataBox のデータベースデータをバックアップします。<br".XHTML.">
 アップロードファイルは別途バックアップしてください。<br".XHTML.">
 ";
-$LANG_DATABOX_ADMIN['restoremsg'] = 
+$LANG_DATABOX_ADMIN['restoremsg'] =
 "リストアするファイルを選択してください。<br".XHTML.">
 DataBox のデータベースデータをリストアします。<br".XHTML.">
 アップロードファイルは別途もどしてください。<br".XHTML.">
 ";
 
-$LANG_DATABOX_ADMIN['restoremsgPHP'] = 
+$LANG_DATABOX_ADMIN['restoremsgPHP'] =
 "{$_CONF['backup_path']}"."databox/にある"
 ."ファイル名を指定してください。（省略時databox.xml）<br".XHTML.">
 phpMyAdmin でエクスポートしたDataBox のデータベースデータをリストアします。<br".XHTML.">
@@ -513,13 +513,13 @@ $LANG_DATABOX_ADMIN['about_admin_csv'] = 'CSV定義の管理';
 
 $LANG_DATABOX_ADMIN['about_admin_view'] = '一般ログインユーザーからみたページはこのようになります';
 
-$LANG_DATABOX_ADMIN['inst_fieldsetfields'] = 
+$LANG_DATABOX_ADMIN['inst_fieldsetfields'] =
 "アトリビュートの編集は、アトリビュート名をクリックして「追加」または「削除」ボタンをクリックしてください。<br".XHTML.">
 アトリビュートが選択されているときは右側だけに表示されます。<br".XHTML.">
 編集が終わったら、「保存」ボタンをクリックしてください。<br".XHTML.">
 管理画面に戻ります。";
 
-$LANG_DATABOX_ADMIN['inst_newdata'] = 
+$LANG_DATABOX_ADMIN['inst_newdata'] =
 "新規登録するデータのタイプを選んでください。<br".XHTML.">
 ";
 
@@ -670,8 +670,8 @@ $LANG_DATABOX_MAIL['message_fieldset_delete']=
 ###############################################################################
 #
 $LANG_DATABOX_NOYES = array(
-    0 => 'いいえ',
-    1 => 'はい'
+  0 => 'いいえ',
+  1 => 'はい'
 );
 $LANG_DATABOX_INPUTTYPE = array(
     0 => 'チェックボックス',
@@ -773,7 +773,7 @@ $PLG_databox_MESSAGE3002 = $LANG32[9];
 ###############################################################################
 #
 $LANG_DATABOX_autotag_desc['databox']="
-[databox:count]他 <br".XHTML.">	
+[databox:count]他 <br".XHTML.">
 詳細は、databoxプラグインのドキュメントを参照してください。
 <a href=\"{$_CONF['site_admin_url']}/plugins/databox/docs/japanese/autotags.html\">*</a>
 ";
