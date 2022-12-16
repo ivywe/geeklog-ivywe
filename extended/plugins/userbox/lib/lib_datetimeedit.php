@@ -32,10 +32,10 @@ function LIB_datetimeedit(
 		$datetime_hour = date ('H', $datetime_value);
 		$datetime_minute = date ('i', $datetime_value) ;
 	}
-	
+
     $rt="";
     //Year
-    $year_options = COM_getYearFormOptions ($datetime_year);
+    $year_options = COM_getYearFormOptions ($datetime_year, -5);
     $rt.="<select class=\"uk-select uk-form-width-xsmall\" name=\"".$datetime_name."_year\">".LB;
     $rt.=$year_options.LB;
     $rt.="</select>".$lang_ary['yy'].LB;
@@ -101,15 +101,15 @@ function LIB_datetimeedit_R(
     $var = $lang;
     global $$var;
     $lang_ary=$$var;
-	
+
 	if  (!is_array($datetime_ary)){
 		return "";
 	}
-	
+
     $rt="";
-	
+
 	//Year
-    $year_options = COM_getYearFormOptions ($datetime_ary['year']);
+    $year_options = COM_getYearFormOptions ($datetime_ary['year'], -5);
     $rt.="<select class=\"uk-select uk-form-width-xsmall\" name=\"".$datetime_name."_year\">".LB;
     $rt.=$year_options.LB;
     $rt.="</select>".$lang_ary['yy'].LB;

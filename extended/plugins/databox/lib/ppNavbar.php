@@ -42,19 +42,21 @@ function ppNavbarjp ($menuitems, $selected='', $parms='') {
         'navbar'       => 'navbar.thtml',
         'menuitem'     => 'menuitem.thtml',
         ));
-    for ($i=1; $i <= count($menuitems); $i++)  {
-        $parms = explode( "=",current($menuitems) );
-        $navbar->set_var( 'link',   current($menuitems));
-        if (key($menuitems) == $selected) {
-            $navbar->set_var( 'cssactive', ' id="active"');
-            $navbar->set_var( 'csscurrent',' id="current"');
-        } else {
-            $navbar->set_var( 'cssactive', '');
-            $navbar->set_var( 'csscurrent','');
-        }
-        $navbar->set_var( 'label',  key($menuitems));
-        $navbar->parse( 'menuitems', 'menuitem', true );
-        next($menuitems);
+    if (is_array($menuitems)) {
+      for ($i=1; $i <= count($menuitems); $i++)  {
+          $parms = explode( "=",current($menuitems) );
+          $navbar->set_var( 'link',   current($menuitems));
+          if (key($menuitems) == $selected) {
+              $navbar->set_var( 'cssactive', ' id="active"');
+              $navbar->set_var( 'csscurrent',' id="current"');
+          } else {
+              $navbar->set_var( 'cssactive', '');
+              $navbar->set_var( 'csscurrent','');
+          }
+          $navbar->set_var( 'label',  key($menuitems));
+          $navbar->parse( 'menuitems', 'menuitem', true );
+          next($menuitems);
+      }
     }
     $navbar->parse ('output', 'navbar');
     $retval = $navbar->finish($navbar->get_var('output'));

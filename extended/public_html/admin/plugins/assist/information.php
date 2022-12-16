@@ -107,6 +107,10 @@ function fncDisplay()
 // | MAIN                                                                      |
 // +---------------------------------------------------------------------------+
 // 引数
+$mode='';
+if (isset ($_REQUEST['mode'])) {
+    $mode = COM_applyFilter ($_REQUEST['mode'], false);
+}
 
 if ($mode=="" OR $mode=="importform" OR $mode=="deleteform") {
 }else{

@@ -204,9 +204,11 @@ function fncdatetime ()
 // | MAIN                                                                      |
 // +---------------------------------------------------------------------------+
 // 引数
+$mode='';
 if (isset ($_REQUEST['mode'])) {
     $mode = COM_applyFilter ($_REQUEST['mode'], false);
 }
+
 if ($mode=="" ) {
 }else{
     if (!SEC_checkToken()){

@@ -635,7 +635,7 @@ function assist_displaypage (
     global $$box_conf;
     $box_conf=$$box_conf;
 
-    if  ($kind=="_admin" OR $kind==""){
+    if  (($kind=="_admin" OR $kind=="") AND isset($box_conf['layout'.$kind])){
         $layout=$box_conf['layout'.$kind];
     }else{
         $layout=$kind;

@@ -51,7 +51,7 @@ function plugin_autoinstall_userbox($pi_name)
     $info = array(
         'pi_name'         => $pi_name,
         'pi_display_name' => $pi_display_name,
-        'pi_version'      => '0.0.20200514a',
+        'pi_version'      => '0.0.0.20221209a',
         'pi_gl_version'   => '2.1.2',
         'pi_homepage'     => 'http://www.ivywe.co.jp/',
     );
@@ -175,7 +175,7 @@ function plugin_postinstall_userbox($pi_name)
     $logfile = $_CONF['path_log'] . 'userbox_xmlimport.log';
     $file = @fopen( $logfile, 'w' );
     @fclose($file);
-    @chmod($file, 0666);
+    if(is_file($logfile)) @chmod($logfile, 0666);
 
     //UserBox データの作成
     require_once ($_CONF['path'] . 'plugins/userbox/functions.inc');

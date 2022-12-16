@@ -35,6 +35,8 @@ function fncDisply(
     global $_CONF;
     global $LANG_USERBOX_ADMIN;
 
+    $retval = '';
+
     $tmplfld=DATABOX_templatePath('admin','default',$pi_name);
     $templates = new Template($tmplfld);
     $templates->set_file (array (

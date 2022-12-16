@@ -64,6 +64,11 @@ require_once ($_CONF['path'] . "plugins/{$pi_name}/functions_stats.inc");
 //コメント機能
 require_once ($_CONF['path'] . "plugins/{$pi_name}/functions_comment.inc");
 //疑似CRON機能
+if (!isset($_DATABOX_CONF['csv_cron_schedule_interval'])) {
+    $databox_config = config::get_instance();
+    $_DATABOX_CONF = $databox_config->get_config('databox');
+
+}
 if ($_DATABOX_CONF['csv_cron_schedule_interval'] > 0) {
     $functions_sc = $_CONF['path'] . "plugins/{$pi_name}/csv/csv_scheduled.inc";
     if (file_exists ($functions_sc)) {

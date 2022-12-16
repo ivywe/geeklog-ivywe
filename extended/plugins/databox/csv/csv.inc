@@ -286,12 +286,12 @@ $display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
 //$display.="mode=".$mode."<br>";
 switch ($mode) {
     case 'export':// エクスポート実行
-        $information['pagetitle']=$LANG_databox_ADMIN['piname'].$LANG_databox_ADMIN['export'];
+        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['export'];
         $display .= fnc_Menu($pi_name);
         $display .= fnc_exportexec($pi_name);
         break;
     case 'import':// インポート実行
-        $information['pagetitle']=$LANG_databox_ADMIN['piname'].$LANG_databox_ADMIN['import'];
+        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['import'];
         $display .= fnc_Menu($pi_name);
         if  (COM_applyFilter ($_REQUEST['unlink'], true)==1){
             $unlink="unlink";
@@ -299,7 +299,7 @@ switch ($mode) {
         $display .= databox_importexec($pi_name,$unlink);
         break;
     case 'new':// 新規登録
-        $information['pagetitle']=$LANG_databox_ADMIN['piname'].$LANG_databox_ADMIN['new'];
+        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
         $display .= fnc_Menu($pi_name);
         $display .= fnc_Edit($pi_name,"",$msg);
         break;
@@ -311,28 +311,28 @@ switch ($mode) {
         break;
     case 'edit':// 編集
         if (!empty ($seq) ) {
-            $information['pagetitle']=$LANG_databox_ADMIN['piname'].$LANG_databox_ADMIN['edit'];
+            $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['edit'];
             $display .= fnc_Menu($pi_name);
             $display .= fnc_Edit($pi_name,$seq,$msg);
         }
         break;
     case 'exportform':// エクスポート　画面
-        $information['pagetitle']=$LANG_databox_ADMIN['piname'].$LANG_databox_ADMIN[$mode];
+        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN[$mode];
         $display .= fnc_Menu($pi_name);
         $display .= fnc_importexport($pi_name,$mode);
         break;
     case 'init'://初期化 Confirmation
-        $information['pagetitle']=$LANG_databox_ADMIN['piname'];
+        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'];
         $display .= fnc_Menu($pi_name);
         $display .= DATABOX_Confirmation($pi_name,$mode);
         break;
     case 'initexec'://初期化実行
-        $information['pagetitle']=$LANG_databox_ADMIN['piname'];
+        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'];
         $display .= fnc_Menu($pi_name);
         $display .= fnc_init($pi_name);
         break;
     case 'sellist'://抽出条件一覧
-        $information['pagetitle']=$LANG_databox_ADMIN['piname'];
+        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'];
         if (isset ($msg)) {
             $display .= COM_showMessage ($msg,$pi_name);
         }
@@ -340,7 +340,7 @@ switch ($mode) {
         $display .= fnc_selList($pi_name);
         break;
     case 'selnew':// 抽出条件新規登録
-        $information['pagetitle']=$LANG_databox_ADMIN['piname'].$LANG_databox_ADMIN['new'];
+        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
         $display .= fnc_Menu($pi_name);
         $display .= fnc_selEdit($pi_name,"",$msg);
         break;
@@ -356,14 +356,14 @@ switch ($mode) {
         break;
     case 'seledit':// 編集
         if (!empty ($id) ) {
-            $information['pagetitle']=$LANG_databox_ADMIN['piname'].$LANG_databox_ADMIN['edit'];
+            $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['edit'];
             $display .= fnc_Menu($pi_name);
             $display .= fnc_selEdit($pi_name,$id,$msg);
         }
         break;
     case 'seldtlnew':// 抽出条件明細新規登録
         if (!empty ($id) ) {
-            $information['pagetitle']=$LANG_databox_ADMIN['piname'].$LANG_databox_ADMIN['new'];
+            $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
             $display .= fnc_Menu($pi_name);
             $display .= fnc_seldtlEdit($pi_name,$id,"",$msg);
         }
@@ -380,26 +380,26 @@ switch ($mode) {
         break;
     case 'seldtledit':// 編集
         if (!empty ($id) ) {
-            $information['pagetitle']=$LANG_databox_ADMIN['piname'].$LANG_databox_ADMIN['edit'];
+            $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['edit'];
             $display .= fnc_Menu($pi_name);
             $display .= fnc_seldtlEdit($pi_name,$id,$seq,$msg);
         }
         break;
     case 'importform':// インポート　画面
-        $information['pagetitle']=$LANG_databox_ADMIN['piname'].$LANG_databox_ADMIN[$mode];
+        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN[$mode];
         $display .= fnc_Menu($pi_name);
         $display .= fnc_importform($pi_name);
         break;
     case 'csvscheduledupdate':
         $dummy= fnc_Scheduledupdate($pi_name);
     case 'csvscheduled'://CSV 更新 疑似CRON
-        $information['pagetitle']=$LANG_databox_ADMIN['piname'];
+        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'];
         $display .= fnc_Menu($pi_name);
         $display .= fnc_Scheduled($pi_name);
         break;
     case 'list':// 一覧
     default:// 初期表示
-        $information['pagetitle']=$LANG_databox_ADMIN['piname'];
+        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'];
         if (isset ($msg)) {
             $display .= COM_showMessage ($msg,$pi_name);
         }

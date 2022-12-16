@@ -219,6 +219,7 @@ function LIB_Edit(
     global $MESSAGE;
     global $LANG_ACCESS;
     global $_USER;
+    global $_LOCALE;
 
     $box_conf="_".strtoupper($pi_name)."_CONF";
     global $$box_conf;
@@ -486,10 +487,20 @@ function LIB_Edit(
     $templates->set_var ('range_end', $range_end);
     $templates->set_var('lang_dfid', $lang_box_admin['dfid']);
     $templates->set_var('help_dfid', $lang_box_admin['help_dfid']);
-    //$list_dfid=DATABOX_getoptionlistary ($lang_box_textcheck,"textcheck",$textcheck,$pi_name);
-    $list_dfid = '<select class="uk-select uk-form-width-medium" id="dfid" name="dfid">' . LB
+    $list_dfid = '';
+    if (isset($_TABLES['dateformats'])) {
+        //Geeklog2.2.1以下用
+        $list_dfid = '<select class="uk-select uk-form-width-medium" id="dfid" name="dfid">' . LB
                . COM_optionList ($_TABLES['dateformats'], 'dfid,description',
                                  $dfid) . '</select>';
+    } else {
+        //Geeklog2.2.2以上用
+        $list_dfid = COM_createControl('type-select', array(
+            'id' => 'dfid',
+            'name' => 'dfid',
+            'select_items' => $_LOCALE->getDateFormatOptions($dfid)
+        ));
+    }
     $templates->set_var( 'list_dfid', $list_dfid);
 	
     //type

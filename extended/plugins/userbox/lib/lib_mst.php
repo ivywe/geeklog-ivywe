@@ -30,7 +30,7 @@ function LIB_List(
     global $$lang_box;
     $lang_box=$$lang_box;
 
-    $table=$_TABLES[$pi_name.'_mst'];
+    $table=$_TABLES[strtolower($pi_name).'_mst'];
 
     $retval = '';
 
@@ -206,8 +206,8 @@ function LIB_Edit(
     global $$lang_box;
     $lang_box=$$lang_box;
 
-    $table=$_TABLES[$pi_name.'_mst'];
-    $table2=$_TABLES[$pi_name.'_def_field'];
+    $table=$_TABLES[strtolower($pi_name).'_mst'];
+    $table2=$_TABLES[strtolower($pi_name).'_def_field'];
 
     $retval = '';
 
@@ -407,7 +407,7 @@ function LIB_Save (
     global $$lang_box_admin_menu;
     $lang_box_admin_menu=$$lang_box_admin_menu;
 
-    $table=$_TABLES[$pi_name.'_mst'];
+    $table=$_TABLES[strtolower($pi_name).'_mst'];
 
     $retval = '';
 
@@ -540,7 +540,7 @@ function LIB_Save (
     $values.=",NOW( )";
     //
 
-    DB_save($table,$fields,$values,$return_page);
+    DB_save($table,$fields,$values);
 
 //    $rt=fncsendmail ($id);
 	$message="";
@@ -593,7 +593,7 @@ function LIB_delete (
     global $$lang_box_admin;
     $lang_box_admin=$$lang_box_admin;
 
-    $table=$_TABLES[$pi_name.'_mst'];
+    $table=$_TABLES[strtolower($pi_name).'_mst'];
 
     $id = COM_applyFilter($_POST['id'],true);
 
@@ -624,7 +624,7 @@ function LIB_export (
     global $$lang_box_admin;
     $lang_box_admin=$$lang_box_admin;
 
-    $table=$_TABLES[$pi_name.'_mst'];
+    $table=$_TABLES[strtolower($pi_name).'_mst'];
 
 require_once ($_CONF['path'].'plugins/databox/lib/comj_dltbldt.php');
 
@@ -675,7 +675,7 @@ function LIB_sampleimport (
     //global $$lang_box_admin;
     //$lang_box_admin=$$lang_box_admin;
 
-    $table=$_TABLES[$pi_name.'_mst'];
+    $table=$_TABLES[strtolower($pi_name).'_mst'];
 
     //サンプルマスタのデータ
     $_SQL =array();
@@ -765,7 +765,7 @@ function LIB_sendmail (
     global $$lang_box_mail;
     $lang_box=$$lang_box_mail;
 
-    $table=$_TABLES[$pi_name.'_def_category'];
+    $table=$_TABLES[strtolower($pi_name).'_def_category'];
 
     $retval = '';
 

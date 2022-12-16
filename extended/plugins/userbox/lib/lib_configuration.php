@@ -23,6 +23,7 @@ function LIB_Backupconfig(
 	COM_errorLog("[".strtoupper($pi_name)."] configuration backup");
 	
 	global $_CONF;
+  $display="";
 
 	if ($pi_name==""){
 		$xconf_name="_CONF";
@@ -140,6 +141,9 @@ function LIB_Restoreconfig(
 			}else{
 				$vl=$box_conf_bak[$nm];
 				//$vl=stripslashes($vl);
+				if (is_array($vl)) {
+					$vl = implode(' ,', $vl);
+				}
 				$display.=$nm."=".$vl."<br>";
 				$config->set($nm, $vl,$group);
 			}
@@ -165,16 +169,21 @@ function LIB_Deleteconfig(
 	,$config
 )
 {
+
+$vl="";
+
 	COM_errorLog("[".strtoupper($pi_name)."] configuration delete");
 
     global $_TABLES;
     $group=$pi_name;
+		$display = "";
 
     $box_conf="_".strtoupper($pi_name)."_CONF";
     global $$box_conf;
     $ary=$$box_conf;
     
-    foreach( $ary  as $nm => $value ){
+    foreach( $ary  as $nm => $vl ){
+      if (is_array($vl)) { $vl = implode(' ,',$vl); }
       $display.="del: ".$nm."=".$vl."<br>";
       $config->del($nm,$group);
     }

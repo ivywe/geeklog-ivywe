@@ -837,7 +837,7 @@ function fncEdit(
     $templates->set_var ('meta_keywords', $meta_keywords);
 	
     //language_id
-    if (is_array($_CONF['languages'])) {
+    if (isset($_CONF['languages']) && is_array($_CONF['languages'])) {
         $templates->set_var('hide_language_id', '');
 		$select_language_id=DATABOX_getoptionlist("language_id",$language_id,0,$pi_name,"",0 );
     } else {
@@ -2137,9 +2137,12 @@ if(isset($_REQUEST['id'])) {
 	if  ($id==0){
 		$inst=$LANG_DATABOX_ADMIN['inst_changeset0'];
 		$templates->set_var ('lang_changeset', $LANG_DATABOX_ADMIN['registset']);
-	}else{
+	}elseif(!empty($id)){
 		$inst=DB_getItem($_TABLES['DATABOX_base'],"title","id=".$id);
 		$inst.=$LANG_DATABOX_ADMIN['inst_changesetx'];
+		$templates->set_var ('lang_changeset', $LANG_DATABOX_ADMIN['changeset']);
+  } else {
+    $inst='';
 		$templates->set_var ('lang_changeset', $LANG_DATABOX_ADMIN['changeset']);
 	}
 	//$inst.=$LANG_DATABOX_ADMIN['inst_changeset'];
@@ -2216,6 +2219,8 @@ function fncexportform (
 	
 	$pi_name="databox";
 	
+  $retval = '';
+
 	//-----
 	$tmpl = new Template ($_CONF['path'] . "plugins/".THIS_PLUGIN."/templates/admin/");
     $tmpl->set_file(array('exportform' => 'exportform.thtml'));

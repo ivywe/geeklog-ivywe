@@ -141,6 +141,9 @@ function LIB_Restoreconfig(
 			}else{
 				$vl=$box_conf_bak[$nm];
 				//$vl=stripslashes($vl);
+				if (is_array($vl)) {
+					$vl = implode(' ,', $vl);
+				}
 				$display.=$nm."=".$vl."<br>";
 				$config->set($nm, $vl,$group);
 			}

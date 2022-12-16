@@ -810,7 +810,10 @@ function DATABOX_getadditiondef(
         $rt[$field_id]['range_start']= COM_stripslashes($A['range_start']);
         $rt[$field_id]['range_end']= COM_stripslashes($A['range_end']);
         $dfid= COM_stripslashes($A['dfid']);
-        $format = DB_getItem($_TABLES['dateformats'], "format", "dfid = $dfid");
+        if (isset($_TABLES['dateformats'])) {
+            //Geeklog2.2.1以下用
+            $format = DB_getItem($_TABLES['dateformats'], "format", "dfid = $dfid");
+        }
         if( empty( $format )) {
             $rt[$field_id]['format'] = $_CONF['date'];
         }else{

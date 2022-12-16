@@ -33,18 +33,16 @@
 
 require_once '../../../lib-common.php';
 
+$display = '';
 /**
 * Only let admin users access this page
 */
 if (!SEC_hasRights('dataproxy.admin')) {
     // Someone is trying to illegally access this page
     COM_errorLog( "Someone has tried to illegally access the dataproxy Admin page.  User id: {$_USER['uid']}, Username: {$_USER['username']}, IP: {$_SERVER['REMOTE_ADDR']}", 1 );
-    $display = COM_siteHeader()
-			 . COM_startBlock(DPXY_str('access_denied'))
-			 . DPXY_str('access_denied_msg')
-			 . COM_endBlock()
-			 . COM_siteFooter();
-    echo $display;
+    $display .= COM_showMessageText(DPXY_str('access_denied_msg'), DPXY_str('access_denied'));
+    $display = COM_createHTMLDocument($display, array('pagetitle' => DPXY_str('access_denied')));
+    COM_output($display);
     exit;
 }
  
@@ -55,7 +53,6 @@ if (!defined('XHTML')) {
 	define('XHTML', '');
 }
 
-$display = COM_siteHeader();
 $T = new Template($_CONF['path'] . 'plugins/dataproxy/templates');
 $T->set_file('admin', 'admin.thtml');
 $T->set_var('xhtml', XHTML);
@@ -69,7 +66,8 @@ $T->set_var('plugin', 'dataproxy');
 
 
 $T->parse('output', 'admin');
-$display .= $T->finish($T->get_var('output'))
-		 .  COM_siteFooter();
+$display .= $T->finish($T->get_var('output'));
+$display = COM_createHTMLDocument($display, array('pagetitle' => DPXY_str('admin')));
+COM_output($display);
 
-echo $display;
+?>

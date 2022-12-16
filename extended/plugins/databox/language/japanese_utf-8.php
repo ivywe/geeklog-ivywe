@@ -239,8 +239,11 @@ $LANG_DATABOX_ADMIN['textconv']='入力値変換（テキスト）';
 $LANG_DATABOX_ADMIN['searchtarget']='検索対象にする';
 
 $LANG_DATABOX_ADMIN['initial_value']='初期値';
+$LANG_DATABOX_ADMIN['help_initial_value']='初期値';
 $LANG_DATABOX_ADMIN['range']='範囲';
+$LANG_DATABOX_ADMIN['help_range']='範囲';
 $LANG_DATABOX_ADMIN['dfid']=$LANG04[42];//'日時のフォーマット';
+$LANG_DATABOX_ADMIN['help_dfid']='日時のフォーマット';
 
 $LANG_DATABOX_ADMIN['draft'] = 'ドラフト';//'下書';
 $LANG_DATABOX_ADMIN['draft_msg'] = '
@@ -581,6 +584,8 @@ $LANG_DATABOX_ADMIN['err_kind'] = '種別が不正です。';
 $LANG_DATABOX_ADMIN['err_no'] = 'No. が不正です。';
 $LANG_DATABOX_ADMIN['err_no_w'] = 'このNo. はすでに登録されています。';
 
+$LANG_DATABOX_ADMIN['instructions'] = '指示';
+
 ###############################################################################
 $LANG_DATABOX_ORDER['random']="ランダム";
 $LANG_DATABOX_ORDER['date']="日付順";
@@ -788,8 +793,8 @@ $LANG_configsections['databox']['title'] = 'DataBoxの設定';
 $LANG_configsubgroups['databox']['sg_main'] = 'メイン';
 //--(0)
 
-// $LANG_tab['databox'][tab_main] = 'メイン設定';
-// $LANG_fs['databox'][fs_main] = 'DataBoxのメイン設定';
+$LANG_tab['databox']['tab_main'] = 'メイン設定';
+$LANG_fs['databox']['fs_main'] = 'DataBoxのメイン設定';
 $LANG_confignames['databox']['perpage'] = 'ページあたりのデータ数';
 $LANG_confignames['databox']['loginrequired'] = 'ログイン要求する';
 $LANG_confignames['databox']['hidemenu'] = 'メニューに表示しない';
@@ -846,8 +851,8 @@ $LANG_confignames['databox']['disable_permission_ignore'] = '新着データの�
 $LANG_confignames['databox']['sitemap_excepts'] = 'サイトマップ XMLSitemap から除外するコード';
 
 //--(1)
-// $LANG_tab['databox'][tab_whatsnew] = '新着情報ブロック';
-// $LANG_fs['databox'][fs_whatsnew] = '新着情報ブロック';
+$LANG_tab['databox']['tab_whatsnew'] = '新着情報ブロック';
+$LANG_fs['databox']['fs_whatsnew'] = '新着情報ブロック';
 $LANG_confignames['databox']['whatsnew_interval'] = '新着の期間';
 $LANG_confignames['databox']['hide_whatsnew'] = '新着ページを表示しない';
 $LANG_confignames['databox']['title_trim_length'] = 'タイトル最大長';
@@ -856,19 +861,19 @@ $LANG_confignames['databox']['title_trim_length'] = 'タイトル最大長';
 
 
 //---(2)
-// $LANG_tab['databox'][tab_search] = '検索';
-// $LANG_fs['databox'][fs_search] = '検索結果';
+$LANG_tab['databox']['tab_search'] = '検索';
+$LANG_fs['databox']['fs_search'] = '検索結果';
 $LANG_confignames['databox']['include_search'] = 'データを検索する';
 $LANG_confignames['databox']['additionsearch'] = '検索対象にするアトリビュートの数';
 
 //---(3)
-// $LANG_tab['databox'][tab_permissions] = 'パーミッション';
-// $LANG_fs['databox'][fs_permissions] = 'データのパーミッションのデフォルト（[0]所有者 [1]グループ [2]メンバー [3]ゲスト）';
+$LANG_tab['databox']['tab_permissions'] = 'パーミッション';
+$LANG_fs['databox']['fs_permissions'] = 'データのパーミッションのデフォルト（[0]所有者 [1]グループ [2]メンバー [3]ゲスト）';
 $LANG_confignames['databox']['default_permissions'] = 'パーミッション';
 
 //---(4)
-// $LANG_tab['databox'][tab_autotag] = '自動タグ';
-// $LANG_fs['databox'][fs_autotag] = '自動タグ';
+$LANG_tab['databox']['tab_autotag'] = '自動タグ';
+$LANG_fs['databox']['fs_autotag'] = '自動タグ';
 $LANG_confignames['databox']['intervalday']="表示期間（日）";
 $LANG_confignames['databox']['limitcnt']="表示件数";//@@@@@
 $LANG_confignames['databox']['newmarkday']="新着マーク表示期間（日）";//@@@@@

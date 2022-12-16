@@ -243,24 +243,24 @@ $display = '';
 $information = array();
 //$information['what']='menu';
 //$information['rightblock']=false;
-$navbarMenu = '';
+//$navbarMenu = '';
 $display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
 
 
 switch ($mode) {
     case 'export':// エキスポート実行
-        $information['pagetitle']=$LANG_databox_ADMIN['piname'].$LANG_databox_ADMIN['export'];
+        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['export'];
         $display .= fnc_Menu($pi_name);
         $display .= fnc_exportexec($pi_name);
         break;
 
     case 'import':// インポート実行
-        $information['pagetitle']=$LANG_databox_ADMIN['piname'].$LANG_databox_ADMIN['import'];
+        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['import'];
         $display .= fnc_Menu($pi_name);
         $display .= fnc_importexec($pi_name);
         break;
     case 'new':// 新規登録
-        $information['pagetitle']=$LANG_databox_ADMIN['piname'].$LANG_databox_ADMIN['new'];
+        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['new'];
         $display .= fnc_Menu($pi_name);
         $display .= fnc_Edit($pi_name,"",$msg);
         break;
@@ -272,7 +272,7 @@ switch ($mode) {
         break;
     case 'edit':// 編集
         if (!empty ($seq) ) {
-            $information['pagetitle']=$LANG_databox_ADMIN['piname'].$LANG_databox_ADMIN['edit'];
+            $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN['edit'];
             $display .= fnc_Menu($pi_name);
             $display .= fnc_Edit($pi_name,$seq,$msg);
         }
@@ -280,24 +280,24 @@ switch ($mode) {
 
     case 'exportform':// エクスポート　画面
     case 'importform':// インポート　画面
-        $information['pagetitle']=$LANG_databox_ADMIN['piname'].$LANG_databox_ADMIN[$mode];
+        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'].$LANG_DATABOX_ADMIN[$mode];
         $display .= fnc_Menu($pi_name);
         $display .= fnc_importexport($pi_name,$mode);
         break;
 
     case 'init'://初期化 Confirmation
-        $information['pagetitle']=$LANG_databox_ADMIN['piname'];
+        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'];
         $display .= fnc_Menu($pi_name);
         $display .= DATABOX_Confirmation($pi_name,$mode);
         break;
     case 'initexec'://初期化
-        $information['pagetitle']=$LANG_databox_ADMIN['piname'];
+        $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'];
         $display .= fnc_Menu($pi_name);
         $display .= fnc_init($pi_name);
         break;
     case 'list':// 一覧
      default:// 初期表示
-          $information['pagetitle']=$LANG_databox_ADMIN['piname'];
+          $information['pagetitle']=$LANG_DATABOX_ADMIN['piname'];
         if (isset ($msg)) {
             $display .= COM_showMessage ($msg,$pi_name);
         }

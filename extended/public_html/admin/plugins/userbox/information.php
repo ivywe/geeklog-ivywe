@@ -55,15 +55,19 @@ function fncDisplay()
 	$document_url = $_CONF['site_url'] . '/' . $path . $lang . '/';
 
     $T->set_file ('admin','information.thtml');
-	$T->set_var ('pi_name',$pi_name);
-	$T->set_var('version',$_USERBOX_CONF['pi_version']);
+    $T->set_var ('pi_name',$pi_name);
+    if (isset($_USERBOX_CONF['pi_version'])) {
+        $T->set_var('version',$_USERBOX_CONF['pi_version']);
+    } else {
+        $T->set_var('version',plugin_chkVersion_userbox());
+    }
 
 	$T->set_var('piname', $LANG_USERBOX_ADMIN['piname']);
 
 	$T->set_var('lang_document', $LANG_USERBOX_ADMIN['document']);
 	$T->set_var('document_url',$document_url);
 	
-	$T->set_var('online', $LANG_USER_ADMIN['online']);
+	$T->set_var('online', $LANG_USERBOX_ADMIN['online']);
 	$T->set_var('lang_configuration', $LANG_USERBOX_ADMIN['configuration']);
 	$T->set_var('lang_autotags', $LANG_USERBOX_ADMIN['autotags']);
 	

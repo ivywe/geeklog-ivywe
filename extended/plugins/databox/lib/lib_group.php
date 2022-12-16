@@ -21,6 +21,8 @@ function LIB_List(
     global $LANG_ADMIN;
     global $LANG09;
 
+    $retval='';
+
     $lang_box_admin="LANG_".strtoupper($pi_name)."_ADMIN";
     global $$lang_box_admin;
     $lang_box_admin=$$lang_box_admin;
@@ -60,7 +62,7 @@ function LIB_List(
         'table' => $table,
         'sql' => $sql,
         'query_fields' => array('group_id','code','name','orderno'),
-        'default_filter' => $exclude);
+        'default_filter' => '');
     //デフォルトソート項目:
     $defsort_arr = array('field' => 'orderno', 'direction' => 'ASC');
     //List 取得
@@ -563,6 +565,7 @@ function LIB_Save (
 //    }else{
 //        $return_page=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?msg=1';
 //    }
+    $return_page='';
 
     DB_save($table,$fields,$values,$return_page);
 

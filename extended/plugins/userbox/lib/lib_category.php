@@ -30,9 +30,9 @@ function LIB_List(
     global $$lang_box;
     $lang_box=$$lang_box;
 
-    $table=$_TABLES[$pi_name.'_def_category'];
-    $table2=$_TABLES[$pi_name.'_def_group'];
-    $table3=$_TABLES[$pi_name.'_def_category'];
+    $table=$_TABLES[strtolower($pi_name).'_def_category'];
+    $table2=$_TABLES[strtolower($pi_name).'_def_group'];
+    $table3=$_TABLES[strtolower($pi_name).'_def_category'];
 
     require_once( $_CONF['path_system'] . 'lib-admin.php' );
 
@@ -242,8 +242,8 @@ function LIB_Edit(
     global $$lang_box_allow_display;
     $lang_box_allow_display=$$lang_box_allow_display;
 
-    $table=$_TABLES[$pi_name.'_def_category'];
-    $table2=$_TABLES[$pi_name.'_category'];
+    $table=$_TABLES[strtolower($pi_name).'_def_category'];
+    $table2=$_TABLES[strtolower($pi_name).'_category'];
 
     //$lang_box_noyes="LANG_".strtoupper($pi_name)."_NOYES";
     //global $$lang_box_noyes;
@@ -469,7 +469,7 @@ function LIB_Save (
     global $$lang_box_admin_menu;
     $lang_box_admin_menu=$$lang_box_admin_menu;
 
-    $table=$_TABLES[$pi_name.'_def_category'];
+    $table=$_TABLES[strtolower($pi_name).'_def_category'];
 
     $retval = '';
 
@@ -596,6 +596,7 @@ function LIB_Save (
 //    }else{
 //        $return_page=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?msg=1';
 //    }
+    $return_page='';
 
     DB_save($table,$fields,$values,$return_page);
 
@@ -649,8 +650,8 @@ function LIB_delete (
     global $$lang_box_admin;
     $lang_box_admin=$$lang_box_admin;
 
-    $table=$_TABLES[$pi_name.'_def_category'];
-    $table2=$_TABLES[$pi_name.'_category'];
+    $table=$_TABLES[strtolower($pi_name).'_def_category'];
+    $table2=$_TABLES[strtolower($pi_name).'_category'];
 
     $id = COM_applyFilter($_POST['id'],true);
 
@@ -694,7 +695,7 @@ function LIB_export (
     global $$lang_box_admin;
     $lang_box_admin=$$lang_box_admin;
 
-    $table=$_TABLES[$pi_name.'_def_category'];
+    $table=$_TABLES[strtolower($pi_name).'_def_category'];
 
 require_once ($_CONF['path'].'plugins/databox/lib/comj_dltbldt.php');
 
@@ -793,7 +794,7 @@ function LIB_sendmail (
     global $$lang_box_mail;
     $lang_box=$$lang_box_mail;
 
-    $table=$_TABLES[$pi_name.'_def_category'];
+    $table=$_TABLES[strtolower($pi_name).'_def_category'];
 
     $retval = '';
 

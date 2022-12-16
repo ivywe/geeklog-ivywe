@@ -30,8 +30,8 @@ function LIB_List(
     global $$lang_box;
     $lang_box=$$lang_box;
 
-    $table=$_TABLES[$pi_name.'_def_field'];
-    $table2=$_TABLES[$pi_name.'_mst'];
+    $table=$_TABLES[strtolower($pi_name).'_def_field'];
+    $table2=$_TABLES[strtolower($pi_name).'_mst'];
 
     require_once( $_CONF['path_system'] . 'lib-admin.php' );
 
@@ -219,6 +219,7 @@ function LIB_Edit(
     global $MESSAGE;
     global $LANG_ACCESS;
     global $_USER;
+    global $_LOCALE;
 
     $box_conf="_".strtoupper($pi_name)."_CONF";
     global $$box_conf;
@@ -256,7 +257,7 @@ function LIB_Edit(
     global $$lang_box_textconv;
     $lang_box_textconv=$$lang_box_textconv;
 	
-    $table=$_TABLES[$pi_name.'_def_field'];
+    $table=$_TABLES[strtolower($pi_name).'_def_field'];
 
 //        $cur_year = date( 'Y' );
 //        $year_startoffset=1990 - $cur_year +1;
@@ -486,10 +487,20 @@ function LIB_Edit(
     $templates->set_var ('range_end', $range_end);
     $templates->set_var('lang_dfid', $lang_box_admin['dfid']);
     $templates->set_var('help_dfid', $lang_box_admin['help_dfid']);
-    //$list_dfid=DATABOX_getoptionlistary ($lang_box_textcheck,"textcheck",$textcheck,$pi_name);
-    $list_dfid = '<select class="uk-select uk-form-width-medium" id="dfid" name="dfid">' . LB
+    $list_dfid = '';
+    if (isset($_TABLES['dateformats'])) {
+        //Geeklog2.2.1以下用
+        $list_dfid = '<select class="uk-select uk-form-width-medium" id="dfid" name="dfid">' . LB
                . COM_optionList ($_TABLES['dateformats'], 'dfid,description',
                                  $dfid) . '</select>';
+    } else {
+        //Geeklog2.2.2以上用
+        $list_dfid = COM_createControl('type-select', array(
+            'id' => 'dfid',
+            'name' => 'dfid',
+            'select_items' => $_LOCALE->getDateFormatOptions($dfid)
+        ));
+    }
     $templates->set_var( 'list_dfid', $list_dfid);
 	
     //type
@@ -593,9 +604,9 @@ function LIB_Save (
     global $$lang_box_admin_menu;
     $lang_box_admin_menu=$$lang_box_admin_menu;
 
-    $table=$_TABLES[$pi_name.'_def_field'];
-    $table1=$_TABLES[$pi_name.'_base'];
-    $table2=$_TABLES[$pi_name.'_addition'];
+    $table=$_TABLES[strtolower($pi_name).'_def_field'];
+    $table1=$_TABLES[strtolower($pi_name).'_base'];
+    $table2=$_TABLES[strtolower($pi_name).'_addition'];
 
     $retval = '';
 
@@ -734,74 +745,74 @@ function LIB_Save (
         $id=$w+1;
     }
 
-    $fields="field_id";
+    $fields="`field_id`";
     $values="$id";
 
-    $fields.=",name";
+    $fields.=",`name`";
     $values.=",'$name'";
 
-    $fields.=",templatesetvar";
+    $fields.=",`templatesetvar`";
     $values.=",'$templatesetvar'";
 
-    $fields.=",description";
+    $fields.=",`description`";
     $values.=",'$description'";
 
-    $fields.=",type";
+    $fields.=",`type`";
     $values.=",$type";
 
-    $fields.=",selection";
+    $fields.=",`selection`";
     $values.=",'$selection'";
 
-    $fields.=",selectlist";
+    $fields.=",`selectlist`";
     $values.=",'$selectlist'";
 
-    $fields.=",checkrequried";
+    $fields.=",`checkrequried`";
     $values.=",$checkrequried";
 
 
-    $fields.=",size";
+    $fields.=",`size`";
     $values.=",$size";
 
-    $fields.=",maxlength";
+    $fields.=",`maxlength`";
     $values.=",$maxlength";
 
     $fields.=",`rows`";
     $values.=",$rows";
 
-    $fields.=",br";
+    $fields.=",`br`";
     $values.=",$br";
 
-    $fields.=",orderno";//
+    $fields.=",`orderno`";//
     $values.=",'$orderno'";
 
-    $fields.=",allow_display";
+    $fields.=",`allow_display`";
     $values.=",$allow_display";
 
-    $fields.=",allow_edit";
+    $fields.=",`allow_edit`";
     $values.=",$allow_edit";
 	
 	
-    $fields.=",textcheck";
+    $fields.=",`textcheck`";
     $values.=",$textcheck";
-    $fields.=",textconv";
+    $fields.=",`textconv`";
     $values.=",$textconv";
-    $fields.=",searchtarget";
+    $fields.=",`searchtarget`";
     $values.=",$searchtarget";
 	
-    $fields.=",initial_value";
+    $fields.=",`initial_value`";
     $values.=",'$initial_value'";
-    $fields.=",range_start";
+    $fields.=",`range_start`";
     $values.=",'$range_start'";
-    $fields.=",range_end";
+    $fields.=",`range_end`";
     $values.=",'$range_end'";
-    $fields.=",dfid";
+    $fields.=",`dfid`";
     $values.=",$dfid";
-    $fields.=",description2";//@@@@@
+    $fields.=",`description2`";//@@@@@
     $values.=",'$description2'";
-    $fields.=",fieldgroupno";
+    $fields.=",`fieldgroupno`";
     $values.=",$fieldgroupno";
 
-    $fields.=",uuid";
+    $fields.=",`uuid`";
     $values.=",$uuid";
 
     DB_save($table,$fields,$values);
@@ -899,8 +910,8 @@ function LIB_delete (
     global $$lang_box_admin;
     $lang_box_admin=$$lang_box_admin;
 
-    $table=$_TABLES[$pi_name.'_def_field'];
-    $table2=$_TABLES[$pi_name.'_addition'];
+    $table=$_TABLES[strtolower($pi_name).'_def_field'];
+    $table2=$_TABLES[strtolower($pi_name).'_addition'];
 
     $id = COM_applyFilter($_POST['id'],true);
     $type=COM_applyFilter($_POST['type']);
@@ -935,7 +946,7 @@ function LIB_export (
     global $$lang_box_admin;
     $lang_box_admin=$$lang_box_admin;
 
-    $table=$_TABLES[$pi_name.'_def_field'];
+    $table=$_TABLES[strtolower($pi_name).'_def_field'];
 
     require_once ($_CONF['path'].'plugins/'.$pi_name.'/lib/comj_dltbldt.php');
 
@@ -1049,7 +1060,7 @@ function LIB_sendmail (
     global $$lang_box_mail;
     $lang_box=$$lang_box_mail;
 
-    $table=$_TABLES[$pi_name.'_def_field'];
+    $table=$_TABLES[strtolower($pi_name).'_def_field'];
 
     $retval = '';
 

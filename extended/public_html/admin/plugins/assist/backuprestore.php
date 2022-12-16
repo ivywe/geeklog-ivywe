@@ -39,6 +39,7 @@ function fncDisply($pi_name)
     $templates->set_var ('site_admin_url', $_CONF['site_admin_url']);
 
     $token = SEC_createToken();
+    $retval = '';
     $retval .= SEC_getTokenExpiryNotice($token);
     $templates->set_var('gltoken_name', CSRF_TOKEN);
     $templates->set_var('gltoken', $token);
@@ -119,15 +120,25 @@ function fncMenu(
 //############################
 $pi_name    = 'assist';
 //############################
-
-$action ="";
+// 引数
+$action='';
+$mode='';
 if (isset ($_REQUEST['action'])) {
     $action = COM_applyFilter($_REQUEST['action'],false);
 }
 if (isset ($_REQUEST['mode'])) {
     $mode = COM_applyFilter ($_REQUEST['mode'], false);
 }
-if ($action == $LANG_ADMIN['cancel'])  { // cancel
+
+if ($action == $LANG_ASSIST_ADMIN['config_backup'])  { // configbackup
+    $mode='configbackup';
+} elseif ($action == $LANG_ASSIST_ADMIN['config_init'])  { // configinit
+    $mode='configinit';
+} elseif ($action == $LANG_ASSIST_ADMIN['config_restore'])  { // configrestore
+    $mode='configrestore';
+} elseif ($action == $LANG_ASSIST_ADMIN['config_update'])  { // configupdate
+    $mode='configupdate';
+} elseif ($action == $LANG_ADMIN['cancel'])  { // cancel
     $mode="";
 }
 

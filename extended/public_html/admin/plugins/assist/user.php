@@ -33,7 +33,6 @@ function fncList()
     global $LANG09;
     global $LANG28 ;
     global $LANG_ASSIST_ADMIN;
-    global $LANG_PROFILE_ADMIN;
 
 
     $retval = '';
@@ -46,10 +45,9 @@ function fncList()
     //ヘッダ：編集～
     $header_arr = array(
         array('text' => $LANG_ADMIN['edit'], 'field' => 'editid', 'sort' => false),
-        array('text' => $LANG_PROFILE_ADMIN['uid'], 'field' => 'uid', 'sort' => true),
-        array('text' => $LANG_PROFILE_ADMIN['udatetime'], 'field' => 'udatetime', 'sort' => true),
-        array('text' => $LANG28[3], 'field' => 'username', 'sort' => true),
-        array('text' => $LANG_PROFILE_ADMIN['draft'], 'field' => 'draft_flag', 'sort' => true)
+        array('text' => $LANG_ASSIST_ADMIN['uuid'], 'field' => 'uid', 'sort' => true),
+        array('text' => $LANG_ASSIST_ADMIN['udatetime'], 'field' => 'regdate', 'sort' => true),
+        array('text' => $LANG28[3], 'field' => 'username', 'sort' => true)
     );
     //
     $text_arr = array('has_menu' =>  true,
@@ -59,7 +57,7 @@ function fncList()
     //Query
     $sql = "SELECT ";
     $sql .= " t1.uid";
-    $sql .= " t1.uname";
+    $sql .= ", t1.username";
     $sql .= " FROM ";
     $sql .= " {$_TABLES['users']} AS t1";
 
@@ -72,7 +70,7 @@ $exclude = "";
     $query_arr = array(
         'table' => 'users',
         'sql' => $sql,
-        'query_fields' => array('seqno','username','draft_flag'),
+        'query_fields' => array('seqno','username'),
         'default_filter' => $exclude);
     //デフォルトソート項目:
     $defsort_arr = array('field' => 'uid', 'direction' => 'ASC');
@@ -117,10 +115,10 @@ function fncGetListField($fieldname, $fieldvalue, $A, $icon_arr)
                 $retval .= "{$icon_arr['edit']}</a>";
                 break;
             //名
-            case 'uname':
+            case 'username':
                 $retval = "<a href=\"{$_CONF['site_url']}";
                 $retval .= "/".THIS_SCRIPT;
-                $retval .= "?uid={$A['seqno']}\">{$A['uname']}</a>";
+                $retval .= "?uid={$A['uid']}\">{$A['username']}</a>";
                 break;
             //各項目
             default:

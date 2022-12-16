@@ -540,7 +540,7 @@ function LIB_Save (
     $values.=",NOW( )";
     //
 
-    DB_save($table,$fields,$values,$return_page);
+    DB_save($table,$fields,$values);
 
 //    $rt=fncsendmail ($id);
 	$message="";

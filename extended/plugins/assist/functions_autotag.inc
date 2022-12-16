@@ -1120,10 +1120,12 @@ function assist_templatePath (
     $box_conf=$$box_conf;
 
 
-    if ($kind==="admin"){
+    if ($kind==="admin" && isset($box_conf["templates_admin"])){
         $conf_templates=$box_conf["templates_admin"];
-    }else{
+    }elseif(isset($box_conf["templates"])){
         $conf_templates=$box_conf["templates"];
+    }else{
+        $conf_templates='standard';
     }
 
 

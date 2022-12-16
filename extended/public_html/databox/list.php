@@ -80,11 +80,7 @@ function fncList(
     //
 	$text_arr = array('has_menu' =>  true,
       'has_extras'   => true,
-      'form_url' => $form_url);
-	$tet_arr['has_menu']=true;
-	$tet_arr['has_extras']=true;
-	$tet_arr['form_url']=$_CONF['site_url'] . "/".THIS_SCRIPT;
-
+      'form_url' => $_CONF['site_url'] . "/".THIS_SCRIPT);
 
     $sql = "SELECT ";
     $sql .= " id";
@@ -125,7 +121,7 @@ function fncList(
         'table' => 'DATABOX_base',
         'sql' => $sql,
         'query_fields' => array('orderno','id','title','code','draft_flag'),
-        'default_filter' => $exclude);
+        'default_filter' => '');
     //デフォルトソート項目:
     $defsort_arr = array('field' => 'orderno', 'direction' => 'ASC');
     //List 取得
@@ -222,7 +218,7 @@ $layout=$_DATABOX_CONF['layout'];
 if (isset ($msg)) {
     $display .= COM_showMessage ($msg,$pi_name);
 }
-$display .= fncList($languageid);
+$display .= fncList();
 $display=DATABOX_displaypage($pi_name,$layout,$display,$information);
 COM_output($display);
 

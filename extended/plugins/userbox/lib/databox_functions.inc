@@ -14,7 +14,7 @@ if (strpos ($_SERVER['PHP_SELF'], 'databox_functions.inc') !== false) {
 //==============================================================================
 function DATABOX_nl2br (
     $text
-) 
+)
 // +---------------------------------------------------------------------------+
 // | 機能 改行をBRに変換
 // | 書式 DATABOX_nl2br ($text)
@@ -88,7 +88,7 @@ function DATABOX_swichlang(
 // | 戻値 nomal:変換後のコード
 // +---------------------------------------------------------------------------+
 {
-    
+
     global $_CONF;
     $newlanguageid = COM_getLanguageId();
     if  ($newlanguageid<>""){
@@ -153,7 +153,7 @@ function DATABOX_templatePath (
         if (is_dir($tmplfld)) {
 
         }else{
-            // COM_handle404(); 
+            // COM_handle404();
 						echo "404 error DATABOX_templatePath: ".$template;
             exit;
         }
@@ -192,6 +192,7 @@ function DATABOX_siteHeader (
     ,$kind = ''
     ,$page_title = ''
     ,$headercode = ''
+    ,$retval = ''
     )
 // +---------------------------------------------------------------------------+
 // | 機能  ヘッダを編集
@@ -206,6 +207,9 @@ function DATABOX_siteHeader (
 // | 戻値 :ヘッダ
 // +---------------------------------------------------------------------------+
 // 20120910
+// upd:20210817 hiroron - COM_siteHeader -> COM_createHTMLDocument の変更により
+//   htmlの終りの</body></html>までがこの関数で作られるため、中央のContents内容
+//   を引数で受け取れるように引数末尾へ$retvalを追加
 {
     global $_CONF;
 
@@ -215,7 +219,7 @@ function DATABOX_siteHeader (
 
 
     $display="";
-    
+
     if  ($kind=="_admin" OR $kind==""){
         $layout=$box_conf['layout'.$kind];
     }else{
@@ -331,7 +335,7 @@ function DATABOX_displaypage (
 // 'breadcrumbs'   Optional content for the page's <title>
 // 'headercode'    Optional code to go into the page's <head>
 // 'rightblock'    右ブロックを表示するかどうか　 default is no (-1)
-// 'custom'        An array defining custom function to be used to 
+// 'custom'        An array defining custom function to be used to
 
 {
     global $_CONF;
@@ -345,10 +349,10 @@ function DATABOX_displaypage (
     }else{
         $layout=$kind;
     }
-    
+
     //全画面表示（ヘッダ・フッタ・ブロックなし）
     if  ($layout=='blankpage'){
-        
+
     }else{
         switch ($layout) {
             // ヘッダ・フッタ・左ブロックあり（右ブロックはテーマ設定による）
@@ -391,8 +395,8 @@ function DATABOX_displaypage (
                 $information['rightblock']=false;
                 break;
         }
-        
-        //FOR GL2.0.0 
+
+        //FOR GL2.0.0
         if (COM_versionCompare(VERSION, "2.0.0",  '>=')){
             $display = COM_createHTMLDocument($display,$information);
         }else{
@@ -421,7 +425,7 @@ function DATABOX_getcheckList(
 // +---------------------------------------------------------------------------+
 // | 引数 $kind:fieldset
 // | 引数 $selected:選択値
-// | 引数 $pi_name:plugin name 'databox' 'userbox' 'formbox' 
+// | 引数 $pi_name:plugin name 'databox' 'userbox' 'formbox'
 // | 引数 $group_id　マスターの時既定リスト名
 // | 引数 $fname フィールド名
 // +---------------------------------------------------------------------------+
@@ -432,15 +436,15 @@ function DATABOX_getcheckList(
 //20140624 fieldset　追加
 {
 global $_TABLES;
-    
+
     if ($fname==""){
         $fname=$kind;
     }
 
-    $table_def_category=$_TABLES[$pi_name.'_def_category'];
-    $table_def_group=$_TABLES[$pi_name.'_def_group'];
-    $table_mst=$_TABLES[$pi_name.'_mst'];
-    $table_def_fieldset=$_TABLES[$pi_name.'_def_fieldset'];
+    $table_def_category=$_TABLES[strtolower($pi_name).'_def_category'];
+    $table_def_group=$_TABLES[strtolower($pi_name).'_def_group'];
+    $table_mst=$_TABLES[strtolower($pi_name).'_mst'];
+    $table_def_fieldset=$_TABLES[strtolower($pi_name).'_def_fieldset'];
     $retval = '';
     if ($kind=="categorygroup"){
         $sql = "SELECT ";
@@ -602,10 +606,10 @@ function DATABOX_savecategorydatas(
         $table_def_category=$_TABLES['DATABOX_def_category'];
         $table_category=$_TABLES['DATABOX_category'];
     }else{
-        $table_def_category=$_TABLES[$pi_name.'_def_category'];
-        $table_category=$_TABLES[$pi_name.'_category'];
+        $table_def_category=$_TABLES[strtolower($pi_name).'_def_category'];
+        $table_category=$_TABLES[strtolower($pi_name).'_category'];
     }
-	
+
 	if  ($mydata==""){
         $rt=DB_delete($table_category,"id",$id);
 	}else{
@@ -619,7 +623,7 @@ function DATABOX_savecategorydatas(
 		    DB_query($sql);
 		}
 	}
-	
+
     if (is_array($fldary)){
         for ($i = 1; $i <= count($fldary); $i++) {
             $val=current($fldary);
@@ -718,47 +722,47 @@ function DATABOX_getadditiondef(
 {
     global $_TABLES;
     global $_CONF;
-    
+
     if ($pi_name==""){
         $table=$_TABLES['DATABOX_def_field'];
         $table2=$_TABLES['DATABOX_mst'];
     }else{
-        $table=$_TABLES[$pi_name.'_def_field'];
-        $table2=$_TABLES[$pi_name.'_mst'];
+        $table=$_TABLES[strtolower($pi_name).'_def_field'];
+        $table2=$_TABLES[strtolower($pi_name).'_mst'];
     }
 
     $rt=array();
 	$fieldgroupno_old="";
-	
+
     $sql="SELECT ";
-    $sql.= " field_id ";
-    $sql.= ",name ";
-    $sql.= ",description";
-    $sql.= ",type";
+    $sql.= " `field_id` ";
+    $sql.= ",`name` ";
+    $sql.= ",`description`";
+    $sql.= ",`type`";
     //$sql.= ",fieldgroup_id AS group_id";
-    $sql.= ",selection";
-    $sql.= ",selectlist";
-    $sql.= ",checkrequried";
-    $sql.= ",size";
-    $sql.= ",maxlength";
+    $sql.= ",`selection`";
+    $sql.= ",`selectlist`";
+    $sql.= ",`checkrequried`";
+    $sql.= ",`size`";
+    $sql.= ",`maxlength`";
     $sql.= ",`rows`";
-    $sql.= ",br";
-    $sql.= ",templatesetvar";
+    $sql.= ",`br`";
+    $sql.= ",`templatesetvar`";
 
-    $sql.= ",allow_display";
-    $sql.= ",allow_edit";
+    $sql.= ",`allow_display`";
+    $sql.= ",`allow_edit`";
 
-    $sql.= ",textcheck";
-    $sql.= ",textconv";
-    $sql.= ",searchtarget";
-    
-    $sql.= ",initial_value";
-    $sql.= ",range_start";
-    $sql.= ",range_end";
-    $sql.= ",dfid";
-    $sql.= ",description2";
-    $sql.= ",fieldgroupno";
-	
+    $sql.= ",`textcheck`";
+    $sql.= ",`textconv`";
+    $sql.= ",`searchtarget`";
+
+    $sql.= ",`initial_value`";
+    $sql.= ",`range_start`";
+    $sql.= ",`range_end`";
+    $sql.= ",`dfid`";
+    $sql.= ",`description2`";
+    $sql.= ",`fieldgroupno`";
+
     $sql.=" FROM";
     $sql.=" {$table}  AS m";
     $sql.= " ORDER BY orderno,field_id";
@@ -776,7 +780,7 @@ function DATABOX_getadditiondef(
         $rt[$field_id]['textcheck'] = COM_stripslashes($A['textcheck']);
         $rt[$field_id]['textconv'] = COM_stripslashes($A['textconv']);
         $rt[$field_id]['searchtarget'] = COM_stripslashes($A['searchtarget']);
-        
+
         $rt[$field_id]['type'] = COM_stripslashes($A['type']);
         //$rt[$field_id]['group_id'] = COM_stripslashes($A['group_id']);
         $rt[$field_id]['selection'] = COM_stripslashes($A['selection']);
@@ -806,7 +810,10 @@ function DATABOX_getadditiondef(
         $rt[$field_id]['range_start']= COM_stripslashes($A['range_start']);
         $rt[$field_id]['range_end']= COM_stripslashes($A['range_end']);
         $dfid= COM_stripslashes($A['dfid']);
-        $format = DB_getItem($_TABLES['dateformats'], "format", "dfid = $dfid");
+        if (isset($_TABLES['dateformats'])) {
+            //Geeklog2.2.1以下用
+            $format = DB_getItem($_TABLES['dateformats'], "format", "dfid = $dfid");
+        }
         if( empty( $format )) {
             $rt[$field_id]['format'] = $_CONF['date'];
         }else{
@@ -862,19 +869,19 @@ function DATABOX_getadditionsearchdef(
 )
 {
     global $_TABLES;
-    
+
     $box_conf="_".strtoupper($pi_name)."_CONF";
     global $$box_conf;
     $box_conf=$$box_conf;
 
-    $table_def_field=$_TABLES[$pi_name.'_def_field'];
-    $table_addition=$_TABLES[$pi_name.'_addition'];
-    
+    $table_def_field=$_TABLES[strtolower($pi_name).'_def_field'];
+    $table_addition=$_TABLES[strtolower($pi_name).'_addition'];
+
     if ($box_conf['additionsearch']==0){
         return;
     }
     $lmt=$box_conf['additionsearch'];
-    
+
     $retval=array();
 
     $rt=array();
@@ -884,7 +891,7 @@ function DATABOX_getadditionsearchdef(
     $sql=LB;
     $sql.="SELECT ";
     $sql.= " field_id ";
-    
+
     $sql.=" FROM";
     $sql.=" {$table_def_field}  AS m";
 
@@ -896,10 +903,10 @@ function DATABOX_getadditionsearchdef(
     //20:HTML  10:TinyMCE 19:CKEditor
     //15:数値  21:通貨
     $sql.=" AND type IN (0,1,10,19,20,15,21)";
-    
+
     //検索対象にする=はい
     $sql.=" AND searchtarget='1'";
-    
+
     $sql.=" ORDER  BY  orderno,field_id";
     $sql.=" LIMIT 0 ,".$lmt;
 
@@ -918,12 +925,12 @@ function DATABOX_getadditionsearchdef(
         $sql3 .= " JOIN {$table_addition} AS ad{$field_id}";
         $sql3 .= " ON t1.id=ad{$field_id}.id ";
         $sql3 .= " AND ad{$field_id}.field_id={$field_id} ".LB;
-        
+
     }
 
     $rt["sql3"]=$sql3;
     $rt["columns"]=$columns;
-    
+
     return $rt;
 
 }
@@ -951,12 +958,12 @@ function DATABOX_getadditiondatas(
         $table_addition=$_TABLES['DATABOX_addition'];
         $table_def_field=$_TABLES['DATABOX_def_field'];
     }else{
-        $table_addition=$_TABLES[$pi_name.'_addition'];
-        $table_def_field=$_TABLES[$pi_name.'_def_field'];
+        $table_addition=$_TABLES[strtolower($pi_name).'_addition'];
+        $table_def_field=$_TABLES[strtolower($pi_name).'_def_field'];
     }
 
     $rt=array();
-    
+
     $sql="SELECT ";
     $sql.=" m.field_id";
     $sql.=" ,m.fieldgroupno";
@@ -974,7 +981,7 @@ function DATABOX_getadditiondatas(
     $sql.=" FROM";
     $sql.=" {$table_def_field}  AS m";
     $sql.=" order by m.fieldgroupno,m.orderno ,m.field_id";
-    
+
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
 
@@ -1022,14 +1029,14 @@ function DATABOX_getaddtionfieldsEdit(
     global $_SCRIPTS;
     global $_CONF;
     global $MESSAGE;
-	
+
     if ($pi_name==""){
         $pi_name="databox";
     }
     $lang_admin_x="LANG_".strtoupper($pi_name)."_ADMIN";
     $lang_admin="LANG_".strtoupper($pi_name)."_ADMIN";
     $lang_noyes="LANG_".strtoupper($pi_name)."_NOYES";
-    $table_def_field=$_TABLES[$pi_name.'_def_field'];
+    $table_def_field=$_TABLES[strtolower($pi_name).'_def_field'];
 
     $box_conf="_".strtoupper($pi_name)."_CONF";
     global $$box_conf;
@@ -1039,13 +1046,13 @@ function DATABOX_getaddtionfieldsEdit(
     global $$lang_noyes;
     $lang_admin=$$lang_admin;
     $lang_noyes=$$lang_noyes;
-    
+
     $langCode = COM_getLangIso639Code();
     $toolTip  = $MESSAGE[118];
     $imgUrl   = $_CONF['site_url'] . '/images/calendar.png';
-    
+
     $fieldsetfields=DATABOX_getfields($pi_name, $fieldset_id);
-    
+
     $retval = '';
 
     if (is_array($fields)){
@@ -1077,9 +1084,9 @@ function DATABOX_getaddtionfieldsEdit(
         $fieldgroup_name=$addition_def[$fid]['fieldgroup_name'];
         $chk=false;
         $disabled="disabled";
-        
+
         if (in_array($fid,$fieldsetfields )) {
-            
+
             if ($chk_user===9999){
                 $chk=true;
                 $disabled="";
@@ -1106,7 +1113,7 @@ function DATABOX_getaddtionfieldsEdit(
                 }
             }
         }
-    
+
         if ($chk) {
 
             $fieldhtml="";
@@ -1157,13 +1164,13 @@ function DATABOX_getaddtionfieldsEdit(
                         $fieldhtml .= ">";
                         $fieldhtml .= $fvalue;
                         $fieldhtml .= "</textarea>";
-                        $fieldhtml .="<br ".XHTML."><strong>";
-                        $fieldhtml .="<span id='".$cntname."'></span></strong>";
+                        if ($type==20){$fieldhtml .='<div><a href="https://wordhtml.com/" target="_blank"><span uk-icon="icon: pencil"></span> HTMLコンバーター </a></div>';}
+                        $fieldhtml .="<div><strong><span id='".$cntname."'></span></strong></div>";
                     }else{
                         $fieldhtml .=$fvalue;
                     }
                     break;
-                case 2://いいえ/はい 
+                case 2://いいえ/はい
                     if ($disabled===""){
                         $fieldhtml=DATABOX_getradiolist
                             ($lang_noyes,"afield[".$fid."]",$fvalue,$br ,$disabled);
@@ -1182,7 +1189,7 @@ function DATABOX_getaddtionfieldsEdit(
                 case 24://チェックボックス（選択肢）
                     if ($disabled===""){
                         $fieldhtml=DATABOX_getcheckboxary($selectionary,"afield[".$fid."]",$fvalue,$pi_name, $disabled,$type,$size);
-					
+
                     }else{
                         $selectionary[$fvalue];
                     }
@@ -1229,7 +1236,7 @@ function DATABOX_getaddtionfieldsEdit(
                 if ($disabled===""){
                         //$filedname="afield[".$fid."]";
                         $filedname="afield".$fid;
-                    
+
                         $_SCRIPTS->setJavaScript(
                         "jQuery(function () {"
                             . "  geeklog.datepicker.set('{$filedname}', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
@@ -1254,14 +1261,14 @@ function DATABOX_getaddtionfieldsEdit(
                     if ($disabled===""){
                         //$filedname="afield[".$fid."]";
                         $filedname="afield".$fid;
-                    
+
                         $_SCRIPTS->setJavaScript(
                         "jQuery(function () {"
                             . "  geeklog.hour_mode = {$_CONF['hour_mode']};"
                             . "  geeklog.datetimepicker.set('{$filedname}', '{$langCode}', '{$toolTip}', '{$imgUrl}');"
                             . "});", TRUE, TRUE
                             );
-					
+
                         if  (is_array($fields_date)){
                             $fieldhtml.=DATABOX_datetimeedit_R($fields_date[$fid],$lang_admin_x,$filedname);
                         }else{
@@ -1281,7 +1288,7 @@ function DATABOX_getaddtionfieldsEdit(
                     if ($disabled===""){
                          $fvalue_time=DATABOX_getTimeformat($fvalue);
                          $filedname="afield".$fid;
-                         
+
                          $wk =  " <input ";
                          $wk .= " type=\"hidden\"";
                          $wk .= " name=\"afield[".$fid."]\" ";
@@ -1334,7 +1341,7 @@ function DATABOX_getaddtionfieldsEdit(
                         $wk .= " value=\"".$fvalue."\"";
                         $wk .= " ".XHTML.">";
                         $fieldhtml.=$wk;
-                        
+
                         $fieldhtml .= "        <input ";
                         $fieldhtml .= " type=\"text\" class=\"uk-input uk-form-width-small\"";
                         $fieldhtml .= "  id=\"afield".$fid."\"";
@@ -1356,7 +1363,7 @@ function DATABOX_getaddtionfieldsEdit(
                             $fvalue_date=date( $box_conf['dateformat'], $fvalue );
                         }
                         $filedname="afield".$fid;
-                        
+
                         $wk =  " <input ";
                         $wk .= " type=\"hidden\"";
                         $wk .= " name=\"afield[".$fid."]\" ";
@@ -1401,7 +1408,7 @@ function DATABOX_getaddtionfieldsEdit(
                     if ($disabled===""){
                         $fieldhtml .= "        <input ";
 
-if($size < 8){ $ukformwidth .= " uk-form-width-xsmall"; } else if ($size < 17) { $ukformwidth .= " uk-form-width-small"; }  else if ($size < 31) { $ukformwidth .= " uk-form-width-large"; } 
+if($size < 8){ $ukformwidth .= " uk-form-width-xsmall"; } else if ($size < 17) { $ukformwidth .= " uk-form-width-small"; }  else if ($size < 31) { $ukformwidth .= " uk-form-width-large"; }
 
                         $fieldhtml .= " type=\"text\" class=\"uk-input". $ukformwidth . '"';
                         $fieldhtml .= " size=\"".$size."\"";
@@ -1520,7 +1527,7 @@ function DATABOX_filehtml(
     $retval .= " name=\"afield[".$fid."]\" ";
     $retval .= " value=\"".$fvalue."\"";
     $retval .= " ".XHTML.">".LB;
-    
+
     $retval .="<input type=\"file\" dir=\"ltr\"";
     $retval .= " id=\"afield_fnm[".$fid."]\" ";
     $retval .= " name=\"afield_fnm[".$fid."]\" ";
@@ -1556,7 +1563,7 @@ function DATABOX_figurehtml12(
 {
 
     global $LANG04;
-    
+
     $a=explode("|",$fvalue);
 
     //
@@ -1571,7 +1578,7 @@ function DATABOX_figurehtml12(
     $retval .= " name=\"afield_fnm[".$fid."]\" ";
     $retval .="size=\"30\"";
     $retval .= " ".XHTML.">".LB;
-    
+
     $retval .= "<input ";
     $retval .= " type=\"text\" class=\"uk-input\"";
     $retval .= " size=\"".$size."\"";
@@ -1614,7 +1621,7 @@ function DATABOX_imagehtml(
     $retval .= " name=\"".$name."\" ";
     $retval .= " value=\"".$fvalue."\"";
     $retval .= " ".XHTML.">".LB;
-    
+
     if ($fvalue==""){
 
         $retval .="<input type=\"file\" dir=\"ltr\"";
@@ -1666,17 +1673,17 @@ function DATABOX_getaddtionfieldsText(
 //
 {
     global $_CONF;
-    
+
     $lang_noyes="LANG_".strtoupper($pi_name)."_NOYES";
 
     global $$lang_noyes;
     $lang_noyes=$$lang_noyes;
-    
+
     $lang_box="LANG_".strtoupper($pi_name);
     global $$lang_box;
     $lang_box=$$lang_box;
     $separater=$lang_box['field_separater'];
-    
+
     $templatesetvar=$addition_def[$fid]['templatesetvar'];
 
     $retval = '';
@@ -1837,17 +1844,17 @@ function DATABOX_getaddtionfieldsDisp(
     $box_conf="_".strtoupper($pi_name)."_CONF";
     global $$box_conf;
     $box_conf=$$box_conf;
-    
+
     $lang_box="LANG_".strtoupper($pi_name);
     global $$lang_box;
     $lang_box=$$lang_box;
     $separater=$lang_box['field_separater'];
 
-    
+
     $noimage="lib/noimage.jpg";
-    
+
     $fieldsetfields=DATABOX_getfields($pi_name, $fieldset_id);
-    
+
     $retval = '';
 
     if (is_array($fields)){
@@ -1935,12 +1942,12 @@ function DATABOX_getaddtionfieldsDisp(
                         $fieldhtmldisp .=" border=\"0\"";
                         $fieldhtmldisp .=" alt=\"{$a[1]}\"";
                         $fieldhtmldisp .=" ".HTML.">";
-                    
+
                         //サムネイル
                         $filename = substr($fvalue, 0, strrpos($fvalue,"."));
                         $thum_filename = $filename . "-small.jpg";
                         $imgfld_thmb=$_CONF['path_html'].$box_conf['imgfile_thumb_frd'];
-                    
+
                         if(file_exists($imgfld_thmb.$thum_filename)) {
                             $fieldhtml_tn=$thum_filename;
                             $fieldhtml_tn_noimage=$thum_filename;
@@ -1955,11 +1962,11 @@ function DATABOX_getaddtionfieldsDisp(
                             $fieldhtml_tn_image .=" alt=\"{$a[1]}\"";
                             $fieldhtml_tn_image .=" ".XHTML.">";
                             $fieldhtml_tn_image .=" </a>";
-                        
+
                         }else{
                             $fieldhtml_tn_noimage=$noimage;
                         }
-                        
+
                     }
 
                     break;
@@ -2017,7 +2024,7 @@ function DATABOX_getaddtionfieldsDisp(
                         $wk_disp.=$mstitems['disp'].$separater;
                     }
                     $fieldhtml .= rtrim($wk,$separater);
-                    
+
                     $mstitems['value2'] = rtrim($wk_value2,$separater);
                     $mstitems['disp'] = rtrim($wk_disp,$separater);
                     $mstitems['no'] =$fvalue;
@@ -2058,19 +2065,19 @@ function DATABOX_getaddtionfieldsDisp(
             }
             $templates->set_var('field_id', $fid);
             $templates->set_var('field_type', $type);
-            
+
             //項目名
             $templates->set_var('additionfield_name', $name);
             $templates->set_var('additionfield'.$fid."_name", $name);
             $templates->set_var($templatesetvar."_name", $name);
-            
+
             //説明
             $templates->set_var('additionfield'.$fid."_description", $description);
             $templates->set_var($templatesetvar."_description", $description);
-            
+
             //登録したテーマ変数名
             $templates->set_var('additionfield_templatesetvar', $templatesetvar);
-            
+
             //
             $templates->set_var('additionfield_value', $fieldhtml);
             $templates->set_var('additionfield'.$fid, $fieldhtml);
@@ -2078,7 +2085,7 @@ function DATABOX_getaddtionfieldsDisp(
             $templates->set_var('additionfield_fvalue', $fvalue);
             $templates->set_var('additionfield'.$fid."_value", $fvalue);
             $templates->set_var($templatesetvar."_value", $fvalue);
-            
+
             if  ($type==12){
                 $templates->set_var('display_a', 'display:');
             }else{
@@ -2088,27 +2095,27 @@ function DATABOX_getaddtionfieldsDisp(
             $templates->set_var('additionfield_value_tn', $fieldhtml_tn);
             $templates->set_var('additionfield'.$fid."_tn", $fieldhtml_tn);
             $templates->set_var($templatesetvar."_tn", $fieldhtml_tn);
-            
+
             //(a_2)_noimage
             $templates->set_var('additionfield_value_noimage', $fieldhtml_noimage);
             $templates->set_var('additionfield'.$fid."_noimage", $fieldhtml_noimage);
             $templates->set_var($templatesetvar."_noimage", $fieldhtml_noimage);
-            
+
             //(a_3)_tn_image サムネイルイメージ
             $templates->set_var('additionfield_value_tn_image', $fieldhtml_tn_image);
             $templates->set_var('additionfield'.$fid."_tn_image", $fieldhtml_tn_image);
             $templates->set_var($templatesetvar."_tn_image", $fieldhtml_tn_image);
-            
+
             //(a_4)_tn_noimage サムネイルイメージ
             $templates->set_var('additionfield_value_tn_noimage', $fieldhtml_tn_noimage);
             $templates->set_var('additionfield'.$fid."_tn_noimage", $fieldhtml_tn_noimage);
             $templates->set_var($templatesetvar."_tn_noimage", $fieldhtml_tn_noimage);
-            
+
             //(a_5)disp 画像（外記憶）表示
             $templates->set_var('additionfield_value_disp', $fieldhtmldisp);
             $templates->set_var('additionfield'.$fid."_disp", $fieldhtmldisp);
             $templates->set_var($templatesetvar."_disp", $fieldhtmldisp);
-            
+
             if  ( $type==9 OR $type==16 OR $type==18 ){
                 $templates->set_var('display_b', 'display:');
             }else{
@@ -2118,20 +2125,20 @@ function DATABOX_getaddtionfieldsDisp(
             $templates->set_var('additionfield_value_mst_value2', $mstitems['value2']);
             $templates->set_var('additionfield'.$fid."_mst_value2", $mstitems['value2']);
             $templates->set_var($templatesetvar."_mst_value2", $mstitems['value2']);
-            
+
             //(b_2)マスターのdisp
             $templates->set_var('additionfield_value_mst_disp', $mstitems['disp']);
             $templates->set_var('additionfield'.$fid."_mst_disp", $mstitems['disp']);
             $templates->set_var($templatesetvar."_mst_disp", $mstitems['disp']);
-            
+
             //(b_3)マスターのno
             $templates->set_var('additionfield_value_mst_no', $mstitems['no']);
             $templates->set_var('additionfield'.$fid."_mst_no", $mstitems['no']);
             $templates->set_var($templatesetvar."_mst_no", $mstitems['no']);
-            
+
             //@@@@@ 準備中　$templates->set_var('additionfield'.$fid."_disptn", $fieldhtmldisp_tn);
             //@@@@@ 準備中　$templates->set_var($templatesetvar."_disptn", $fieldhtmldisp_tn);
-			
+
             if  ( $type==13  ){
                 $templates->set_var('display_c', 'display:');
             }else{
@@ -2141,17 +2148,17 @@ function DATABOX_getaddtionfieldsDisp(
             $templates->set_var('additionfield_value_readfile', $fieldhtml_readfile);
             $templates->set_var('additionfield'.$fid."_readfile", $fieldhtml_readfile);
             $templates->set_var($templatesetvar."_readfile", $fieldhtml_readfile);
-			
+
 			//必須チェック(templatesetvar_(id)_(requied))
             $templates->set_var('additionfield'.$fid."_requried", $checkrequried);
             $templates->set_var($templatesetvar."_requried", $checkrequried);
-			
+
             //文言
             $templates->set_var('lang_download', $lang_box['download']);
             $templates->set_var('lang_downloadrequired', $lang_box['downloadrequired']);
             $templates->set_var('lang_display', $lang_box['display']);
             $templates->set_var('lang_displayrequired', $lang_box['displayrequired']);
-            
+
             //=====
             $templates->parse ('col_var', 'col', true);
             $templates->parse ('additionfields', 'row', true);
@@ -2176,11 +2183,11 @@ function DATABOX_getMstItems(
         return array();
     }
     global $_TABLES;
-    
-    $table_mst=$_TABLES[$pi_name.'_mst'];
+
+    $table_mst=$_TABLES[strtolower($pi_name).'_mst'];
 
     $sql="SELECT * FROM  {$table_mst} WHERE kind='{$selectlist}' AND no={$id}";
-    
+
     $result = DB_query($sql);
     $numrows = DB_numRows ($result);
     if ($numrows > 0) {
@@ -2227,9 +2234,9 @@ function DATABOX_getcategoriesText(
         $lang_box="LANG_".strtoupper($pi_name);
         $lang_box_admin="LANG_".strtoupper($pi_name)."_ADMIN";
 
-        $table_def_category=$_TABLES[$pi_name.'_def_category'];
-        $table_def_group=$_TABLES[$pi_name.'_def_group'];
-        $table_category=$_TABLES[$pi_name.'_category'];
+        $table_def_category=$_TABLES[strtolower($pi_name).'_def_category'];
+        $table_def_group=$_TABLES[strtolower($pi_name).'_def_group'];
+        $table_category=$_TABLES[strtolower($pi_name).'_category'];
     }
 
     global $$lang_box_admin;
@@ -2335,9 +2342,9 @@ function DATABOX_getcategoriesDisp(
     }else{
         $lang_box="LANG_".strtoupper($pi_name);
         $box_conf="_".strtoupper($pi_name)."_CONF";
-        $table_def_category=$_TABLES[$pi_name.'_def_category'];
-        $table_def_group=$_TABLES[$pi_name.'_def_group'];
-        $table_category=$_TABLES[$pi_name.'_category'];
+        $table_def_category=$_TABLES[strtolower($pi_name).'_def_category'];
+        $table_def_group=$_TABLES[strtolower($pi_name).'_def_group'];
+        $table_category=$_TABLES[strtolower($pi_name).'_category'];
     }
 
     global $$box_conf;
@@ -2345,7 +2352,7 @@ function DATABOX_getcategoriesDisp(
 
     global $$lang_box;
     $lang_box=$$lang_box;
-    
+
     $sql = "SELECT ";
     $sql .= " group_id".LB;
     $sql .= " ,code".LB;
@@ -2353,7 +2360,7 @@ function DATABOX_getcategoriesDisp(
     $sql .= " {$table_def_group} ".LB;
     $result = DB_query( $sql );
     $nrows = DB_numRows( $result );
-    
+
     for( $i = 0; $i < $nrows; $i++ )    {
         $A = DB_fetchArray( $result, true );
         $A = array_map('stripslashes', $A);
@@ -2363,16 +2370,16 @@ function DATABOX_getcategoriesDisp(
         $templates->set_var('group_'.$gcode, "");
         $templates->set_var('group_'.$gid."_code", "");
         $templates->set_var('group_'.$gcode."_code", "");
-                
+
         $templates->set_var('grouplink_'.$gid, "");
         $templates->set_var('grouplink_'.$gid."_code", "");
 
         $templates->set_var('grouplink_'.$gcode, "");
         $templates->set_var('grouplink_'.$gcode."_code", "");
     }
-    
-    
-    
+
+
+
     $retval = '';
 
     $sql = "SELECT ".LB;
@@ -2407,23 +2414,23 @@ function DATABOX_getcategoriesDisp(
     $separater=$lang_box['category_separater'];
     $separater_code=$lang_box['category_separater_code'];
     $separater_pipeline="|";
-    
+
     $categpries="";
 
 
     $old_group_id="";
     $old_group_code="";
-    
+
     $categories_group ="";
     $categories_link_id_group ="";
     $categories_link_code_group ="";
-    
+
     $categories_group2 ="";
     $categories_link_id_group2 ="";
     $categories_link_code_group2 ="";
-    
+
     $categories_group_pipeline ="";
-    
+
     //group_id2, group_code2, grouplinkid2, grouplinkcode2,
     //group_id がカテゴリの名称を表示するのに対し、
     //group_id2はカテゴリのコードを表示する。
@@ -2458,7 +2465,7 @@ function DATABOX_getcategoriesDisp(
                 $chk=true;
             }
         }
-        
+
         if  ($chk==false){
             continue;
         }
@@ -2474,7 +2481,7 @@ function DATABOX_getcategoriesDisp(
                 $categories_group_pipeline=rtrim($categories_group_pipeline,$separater_pipeline);//@@
                 $templates->set_var('group_'.$old_group_id."_pipeline", $categories_group_pipeline);//@@
                 $templates->set_var('group_'.$old_group_code."_pipeline", $categories_group_pipeline);//@@
-                
+
                 $categories_link_id_group=rtrim($categories_link_id_group,$separater);
                 $templates->set_var('grouplink_'.$old_group_id, $categories_link_id_group);
                 $categories_link_id_group2=rtrim($categories_link_id_group2,$separater_code);
@@ -2493,7 +2500,7 @@ function DATABOX_getcategoriesDisp(
             $categories_link_id_group2 ="";
             $categories_link_code_group2 ="";
             $categories_group_pipeline="";//@@
-            
+
             $old_group_id=$A['group_id'];
             $old_group_code=$A['group_code'];
         }
@@ -2501,7 +2508,7 @@ function DATABOX_getcategoriesDisp(
         $categories_group.=$A['category_name'].$separater;
         $categories_group2.=$A['category_code'].$separater_code;
         $categories_group_pipeline.=$A['category_code'].$separater_pipeline;
-        
+
 
         $name=$A['category_name'];
         $code=COM_applyFilter($A['category_code']);
@@ -2559,13 +2566,13 @@ function DATABOX_getcategoriesDisp(
 
     $categories_link_id_group=rtrim($categories_link_id_group,$separater);
     $templates->set_var('grouplink_'.$old_group_id, $categories_link_id_group);
-    
+
     $categories_link_id_group2=rtrim($categories_link_id_group2,$separater_code);//@@
     $templates->set_var('grouplink_'.$old_group_id."_code", $categories_link_id_group2);//@@
-    
+
     $categories_link_code_group=rtrim($categories_link_code_group,$separater);
     $templates->set_var('grouplink_'.$old_group_code, $categories_link_code_group);
-    
+
     $categories_link_code_group2=rtrim($categories_link_code_group2,$separater_code);//@@
     $templates->set_var('grouplink_'.$old_group_code."_code", $categories_link_code_group2);//@@
 
@@ -2586,12 +2593,12 @@ global $_TABLES;
         $table_def_fieldset_group=$_TABLES['DATABOX_def_fieldset_group'];
         $table_mst=$_TABLES['DATABOX_mst'];
     }else{
-        $table_def_category=$_TABLES[$pi_name.'_def_category'];
-        $table_def_group=$_TABLES[$pi_name.'_def_group'];
-        $table_def_fieldset_group=$_TABLES[$pi_name.'_def_fieldset_group'];
-        $table_mst=$_TABLES[$pi_name.'_mst'];
+        $table_def_category=$_TABLES[strtolower($pi_name).'_def_category'];
+        $table_def_group=$_TABLES[strtolower($pi_name).'_def_group'];
+        $table_def_fieldset_group=$_TABLES[strtolower($pi_name).'_def_fieldset_group'];
+        $table_mst=$_TABLES[strtolower($pi_name).'_mst'];
     }
-    
+
     //
     if (is_array($selected)){
             $S = $selected;
@@ -2602,7 +2609,7 @@ global $_TABLES;
             $S = array();
         }
     }
-    
+
     //
     $retval = '';
 
@@ -2619,10 +2626,10 @@ global $_TABLES;
         $sql .= " m2.group_id = m3.group_id".LB;
         $sql .= " AND m3.fieldset_id = ".$fieldset_id .LB;
     }
-    
-    
+
+
     $sql .= " ORDER BY m2.orderno".LB;
-        
+
     $result = DB_query( $sql );
     $nrows = DB_numRows( $result );
 
@@ -2630,10 +2637,10 @@ global $_TABLES;
     for( $i = 0; $i < $nrows; $i++ )    {
 
         $A = DB_fetchArray( $result, true );
-        
+
         $chk=false;
         $disabled="disabled";
-        
+
         if ($chk_user===9999){
             $chk=true;
             $disabled="";
@@ -2662,7 +2669,7 @@ global $_TABLES;
         if ($chk==false) {
             continue;
         }
-		
+
         $sql2 = "SELECT ";
         $sql2 .= " m1.category_id".LB;
         $sql2 .= ",m1.name".LB;
@@ -2670,31 +2677,31 @@ global $_TABLES;
         $sql2 .= " FROM {$table_def_category} AS m1".LB;
         $sql2 .= " WHERE ".LB;
         $sql2 .= " m1.categorygroup_id=".$A['group_id'].LB;
-        
+
         $sql2 .= " ORDER BY m1.orderno".LB;
-        
+
         $result2 = DB_query( $sql2 );
         $nrows2 = DB_numRows( $result2 );
-        
+
         if ($nrows2>0){
             $retval .="<div class=\"databox_admin_data_title uk-text-bold uk-margin-top\">";
             $retval .=$A['group_name'];
             $retval .="</div>".LB;
-        
+
             if  ($A['input_type']==1){
                 $retval .='<select class="uk-select uk-form-width-medium" name="category[]" multiple style="height:10em" '.$disabled.' >'.LB;
             }else if ($A['input_type']==3){
                 $retval .='<select class="uk-select uk-form-width-medium" name="category[]" '. $disabled .' >'.LB;
             }
-            
+
             for( $i2 = 0; $i2 < $nrows2; $i2++ )    {
 
                 $A2 = DB_fetchArray( $result2, true );
-                
+
 				if  ($disabled==""){
 					$categoryids.=$A2['category_id']."|";
                 }
-                
+
                 $checked=" ";
                 for( $x = 0; $x < sizeof( $S ); $x++ )            {
                     if( $A2['category_id'] == $S[$x] )                {
@@ -2705,7 +2712,7 @@ global $_TABLES;
                         }
                     }
                 }
-            
+
                 if  ($A['input_type']==0){
                     $retval .= '<span style="white-space:nowrap">';
                     $retval .= '<input type="checkbox" class="uk-checkbox" name="category[]" value="' . $A2['category_id'] ;
@@ -2729,12 +2736,12 @@ global $_TABLES;
                     $retval .= '</option>' . LB;
                 }
             }
-        
+
             if  ($A['input_type']==1  OR  $A['input_type']==3  ){
                 $retval .='</select>';
             }
         }
-        
+
 	}
 	if  ($categoryids==""){
 	}else{
@@ -2763,8 +2770,8 @@ function DATABOX_getaddtionfields(
 
     global $_TABLES;
 
-    $table_def_field=$_TABLES[$pi_name.'_def_field'];
-    $table_addition=$_TABLES[$pi_name.'_addition'];
+    $table_def_field=$_TABLES[strtolower($pi_name).'_def_field'];
+    $table_addition=$_TABLES[strtolower($pi_name).'_addition'];
 
     $lang_noyes="LANG_".strtoupper($pi_name)."_NOYES";
     global $$lang_noyes;
@@ -2834,7 +2841,7 @@ function DATABOX_getfieldvalue(
 {
     global $_TABLES;
     global $_CONF;
-    
+
     switch ($type) {
 
         case 2://いいえ/はい
@@ -2849,7 +2856,7 @@ function DATABOX_getfieldvalue(
             if  ($value==""){
                 $fieldvalue="";
             }else{
-                $fieldvalue=DB_getItem($_TABLES[$pi_name.'_mst'] 
+                $fieldvalue=DB_getItem($_TABLES[strtolower($pi_name).'_mst']
                     ,"value"
                     ,"kind='{$selectlist}' AND no={$value}");
             }
@@ -2900,13 +2907,13 @@ function DATABOX_saveaddtiondatas(
     if ($pi_name==""){
         $table=$_TABLES['DATABOX_addition'];
     }else{
-        $table=$_TABLES[$pi_name.'_addition'];
+        $table=$_TABLES[strtolower($pi_name).'_addition'];
     }
-    
+
     $rt=DB_delete($table,"id",$id);
     if (is_array($fldary)){
         foreach( $fldary as $field_id => $value ){
-            
+
             $sql="INSERT INTO {$table} (";
             $sql.="id, field_id,value ";
             $sql.=") VALUES (";
@@ -2949,7 +2956,7 @@ function DATABOX_saveaddtiondatas_update(
     if ($pi_name==""){
         $table=$_TABLES['DATABOX_addition'];
     }else{
-        $table=$_TABLES[$pi_name.'_addition'];
+        $table=$_TABLES[strtolower($pi_name).'_addition'];
     }
 
     if (is_array($fldary)){
@@ -2989,7 +2996,7 @@ function DATABOX_cleanaddtiondatas(
 // | 引数 $addition_def
 // | 引数 $fnmary
 // | 引数 $delary
-// | 引数 $addslash 
+// | 引数 $addslash
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:                                                               |
 // +---------------------------------------------------------------------------+
@@ -3090,7 +3097,7 @@ function DATABOX_cleanaddtiondatas(
                     break;
                 case 12:// 画像（ファイル保存）
 										if(isset($fnmary[$field_id])){ $fnmary[$field_id]=COM_applyFilter($fnmary[$field_id]); }
-										if(isset($fnmary[$field_id])){ $delary[$field_id]=COM_applyFilter($delary[$field_id]); }
+										if(isset($delary[$field_id])){ $delary[$field_id]=COM_applyFilter($delary[$field_id]); }
                     $wk=COM_applyFilter($wk);
                     $wk=COM_checkHTML (COM_checkWords ($wk));
                     $wk2=COM_applyFilter($altary[$field_id]);
@@ -3100,12 +3107,12 @@ function DATABOX_cleanaddtiondatas(
                     $wk=$a[0]."|".$wk2;
                     break;
                 case 13:// 添付ファイル
-                    $fnmary[$field_id]=COM_applyFilter($fnmary[$field_id]);
-                    $delary[$field_id]=COM_applyFilter($delary[$field_id]);
+                    if(isset($fnmary[$field_id])){ $fnmary[$field_id]=COM_applyFilter($fnmary[$field_id]); }
+                    if(isset($delary[$field_id])){ $delary[$field_id]=COM_applyFilter($delary[$field_id]); }
                     $wk=COM_applyFilter($wk);
                     $wk=COM_checkHTML (COM_checkWords ($wk));
                     $wk2=COM_applyFilter($delary[$field_id]);
-                    $delary[$field_id]=COM_checkHTML (COM_checkWords ($wk2));
+                    if(isset($delary[$field_id])){ $delary[$field_id]=COM_checkHTML (COM_checkWords ($wk2)); }
                     break;
                 case 7://オプションリスト（選択肢）
                 case 8://ラジオボタンリスト（選択肢）
@@ -3148,14 +3155,14 @@ function DATABOX_checkaddtiondatas(
 // | 引数 $fldary_fnm:追加項目データ配列　アップロードファイル名
 // | 引数 $fldary_del:追加項目データ配列　アップロードファイル削除
 // +---------------------------------------------------------------------------+
-// | 戻値 nomal:  
+// | 戻値 nomal:
 // +---------------------------------------------------------------------------+
 //update
 {
     global $_CONF;
     global $LANG04;
     global $_FILES;
-    
+
     $lang_box_admin="LANG_".strtoupper($pi_name)."_ADMIN";
     global $$lang_box_admin;
     $lang_box_admin=$$lang_box_admin;
@@ -3223,7 +3230,7 @@ function DATABOX_checkaddtiondatas(
                                     $imgerr=1;
                                 }
                             }
-                        
+
                             //$imgname=sanitize
                             // 問題文字を除く
                             //$filename = str_replace("&","",$filename);
@@ -3236,8 +3243,8 @@ function DATABOX_checkaddtiondatas(
                             }
                         }
                     }else{
-                        
-                    }    
+
+                    }
                  }
             }
 
@@ -3288,20 +3295,20 @@ function DATABOX_checkaddtiondatas(
                 if ($value ===""){
                 }else{
                     $w=strtotime($value);
-                    
-                    if  ($addition_def[$field_id]['range_start']=="" 
+
+                    if  ($addition_def[$field_id]['range_start']==""
                          AND $addition_def[$field_id]['range_end']=="" ){
                     }else{
                         $w_start=strtotime($addition_def[$field_id]['range_start']);
                         $w_end=strtotime($addition_def[$field_id]['range_end']);
                         if  ($w <$w_start OR $w >$w_end){
                                  $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_range']
-                                  ."(".$addition_def[$field_id]['range_start'] 
+                                  ."(".$addition_def[$field_id]['range_start']
                                   ."-".$addition_def[$field_id]['range_end'].")" ;
                                  $rt.="<br ".XHTML.">".LB;
                         }
                     }
-                    
+
                     if ($w==""){
                         $w_chk=false;
                     }else{
@@ -3329,14 +3336,14 @@ function DATABOX_checkaddtiondatas(
                 if ($value ===""){
                 }else{
                     $w=strtotime("1970-1-1 ".$value);
-                    if  ($addition_def[$field_id]['range_start']=="" 
+                    if  ($addition_def[$field_id]['range_start']==""
                          AND $addition_def[$field_id]['range_end']=="" ){
                     }else{
                         $w_start=strtotime("1970-1-1 ".$addition_def[$field_id]['range_start'].":00");
                         $w_end=strtotime("1970-1-1 ".$addition_def[$field_id]['range_end'].":00");
                         if  ($w <$w_start OR $w >$w_end){
                                  $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_range']
-                                  ."(".$addition_def[$field_id]['range_start'] 
+                                  ."(".$addition_def[$field_id]['range_start']
                                   ."-".$addition_def[$field_id]['range_end'].")" ;
                                  $rt.="<br ".XHTML.">".LB;
                         }
@@ -3364,7 +3371,7 @@ function DATABOX_checkaddtiondatas(
             if ($addition_def[$field_id]['type']==6){
                 if ($value ===""){
                 }else{
-                    
+
                     if (preg_match('/^(https?|ftp)(:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+)$/', $value)) {
                     } else {
                         $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_url'];
@@ -3376,7 +3383,7 @@ function DATABOX_checkaddtiondatas(
             if ($addition_def[$field_id]['type']==15 OR $addition_def[$field_id]['type']==21){
                 if ($value ===""){
                 }else{
-                    
+
                     if (is_numeric($value)) {
                     } else {
                         $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_numeric'];
@@ -3416,10 +3423,10 @@ function DATABOX_checkaddtiondatas(
                     }
                 }
             }
-            
-            
+
+
             //textarea
-            if ($addition_def[$field_id]['type']==1 
+            if ($addition_def[$field_id]['type']==1
                     OR $addition_def[$field_id]['type']==10
                     OR $addition_def[$field_id]['type']==20
                     ){
@@ -3473,7 +3480,7 @@ function DATABOX_checkaddtiondatas(
                             }
                         }
                     }else{
-                        
+
                     }
                  }
             }
@@ -3483,17 +3490,17 @@ function DATABOX_checkaddtiondatas(
             }else{
                 if (($addition_def[$field_id]['type']==0)
                      OR ($addition_def[$field_id]['type']==1)
-                     OR ($addition_def[$field_id]['type']==15) 
+                     OR ($addition_def[$field_id]['type']==15)
                      OR ($addition_def[$field_id]['type']==21) ){
-                    if  ($value <$addition_def[$field_id]['range_start'] 
+                    if  ($value <$addition_def[$field_id]['range_start']
                         OR $value >$addition_def[$field_id]['range_end']){
                                 $rt.=$addition_def[$field_id]['name'].": ".$lang_box_admin['err_range']
-                                ."(".$addition_def[$field_id]['range_start'] 
+                                ."(".$addition_def[$field_id]['range_start']
                                 ."-".$addition_def[$field_id]['range_end'].")";
                                 $rt.="<br ".XHTML.">".LB;
                     }
                 }
-                
+
             }
         }
     }
@@ -3525,7 +3532,7 @@ function DATABOX_uploadaddtiondatas(
 // | 引数 $fldary_del:追加項目データ配列　アップロードファイル削除
 // | 引数 $fldary_old:追加項目データ配列　OLD
 // +---------------------------------------------------------------------------+
-// | 戻値 nomal:  
+// | 戻値 nomal:
 // +---------------------------------------------------------------------------+
 //update
 {
@@ -3546,7 +3553,7 @@ function DATABOX_uploadaddtiondatas(
     if (is_array($fldary)){
 
         foreach( $fldary as $field_id => $value ){
-            
+
             //図 外記憶
             if ($addition_def[$field_id]['type']==12){//図
                 $imgfld=$_CONF['path_html'].$box_conf['imgfile_frd'];
@@ -3563,7 +3570,7 @@ function DATABOX_uploadaddtiondatas(
                     $fldary[$field_id]="";
                 }else{
                     $imgname=$_FILES['afield_fnm']['name'][$field_id];
-                    
+
                     if ($imgname<>""){
                         if  ($filename_old<>""){
                             $rt=DATABOX_deleteFile($imgfld.$filename_old);
@@ -3590,8 +3597,8 @@ function DATABOX_uploadaddtiondatas(
                             if($box_conf['imgfile_thumb_ok'] && function_exists('ImageCreate')) {
                                 $rt=DATABOX_createthumb(
                                     $newfilename
-                                    ,$box_conf['imgfile_thumb_w'] ,$box_conf['imgfile_thumb_h'] 
-                                    ,$box_conf['imgfile_thumb_w2'] ,$box_conf['imgfile_thumb_h2'] 
+                                    ,$box_conf['imgfile_thumb_w'] ,$box_conf['imgfile_thumb_h']
+                                    ,$box_conf['imgfile_thumb_w2'] ,$box_conf['imgfile_thumb_h2']
                                     ,$imgfld_thmb,$imgfld);
                             }
                         }else{
@@ -3601,7 +3608,7 @@ function DATABOX_uploadaddtiondatas(
                     }
                 }
             }
-			
+
             //添付ファイル
             if ($addition_def[$field_id]['type']==13){
                 $imgfld=$box_conf['file_path'];
@@ -3613,7 +3620,7 @@ function DATABOX_uploadaddtiondatas(
                     $fldary[$field_id]="";
                 }else{
                     $imgname=$_FILES['afield_fnm']['name'][$field_id];
-                    
+
                     if ($imgname<>""){
                         if  ($filename_old<>""){
                             $rt=DATABOX_deleteFile($imgfld.$filename_old);
@@ -3668,7 +3675,7 @@ function DATABOX_uploadaddtiondatas_cpy(
 // | 引数 $fldary_del:追加項目データ配列　アップロードファイル削除
 // | 引数 $fldary_old:追加項目データ配列　OLD
 // +---------------------------------------------------------------------------+
-// | 戻値 nomal:  
+// | 戻値 nomal:
 // +---------------------------------------------------------------------------+
 //update
 {
@@ -3689,7 +3696,7 @@ function DATABOX_uploadaddtiondatas_cpy(
     if (is_array($fldary)){
 
         foreach( $fldary as $field_id => $value ){
-            
+
             //図 外記憶
             if ($addition_def[$field_id]['type']==12){//図
                 $imgfld=$_CONF['path_html'].$box_conf['imgfile_frd'];
@@ -3700,7 +3707,7 @@ function DATABOX_uploadaddtiondatas_cpy(
                 $filename=$a[0];//ファイル名
                 $a=explode("|",$fldary_old[$field_id]);
                 $filename_old=$a[0];//ファイル名
-                
+
                 if (is_array($fldary_del) AND $fldary_del[$field_id]){
                     $fldary[$field_id]="";
                 }else{
@@ -3725,8 +3732,8 @@ function DATABOX_uploadaddtiondatas_cpy(
                             if($box_conf['imgfile_thumb_ok'] && function_exists('ImageCreate')) {
                                 $rt=DATABOX_createthumb(
                                     $newfilename
-                                    ,$box_conf['imgfile_thumb_w'] ,$box_conf['imgfile_thumb_h'] 
-                                    ,$box_conf['imgfile_thumb_w2'] ,$box_conf['imgfile_thumb_h2'] 
+                                    ,$box_conf['imgfile_thumb_w'] ,$box_conf['imgfile_thumb_h']
+                                    ,$box_conf['imgfile_thumb_w2'] ,$box_conf['imgfile_thumb_h2']
                                     ,$imgfld_thmb,$imgfld);
                             }
                         }else{
@@ -3838,7 +3845,7 @@ function DATABOX_uploadaddtiondatas_xml(
     if (is_array($fldary)){
         foreach( $fldary as $field_id => $value ){
             if ($fldary[$field_id]<>""){
-                
+
                 //図 外記憶
                 if ($addition_def[$field_id]['type']==12){//図
                     $imgfld=$_CONF['path_html'].$box_conf['imgfile_frd'];
@@ -3856,8 +3863,8 @@ function DATABOX_uploadaddtiondatas_xml(
                             $srcfile=$imgfld.$imgname;
                             $rt=DATABOX_createthumb(
                                 $imgname
-                                ,$box_conf['imgfile_thumb_w'] ,$box_conf['imgfile_thumb_h'] 
-                                ,$box_conf['imgfile_thumb_w2'] ,$box_conf['imgfile_thumb_h2'] 
+                                ,$box_conf['imgfile_thumb_w'] ,$box_conf['imgfile_thumb_h']
+                                ,$box_conf['imgfile_thumb_w2'] ,$box_conf['imgfile_thumb_h2']
                                 ,$imgfld_thmb,$imgfld);
                         }
                     }else{
@@ -3886,7 +3893,7 @@ function DATABOX_deleteaddtionfiles(
 
     if (is_array($fldary)){
         foreach( $fldary as $field_id => $value ){
-            
+
             //図 外記憶
             if ($addition_def[$field_id]['type']==12){//図
                 $a=explode("|",$fldary[$field_id]);
@@ -3927,8 +3934,8 @@ function DATABOX_deleteaddtionfiles_def(
     $box_conf=$$box_conf;
 
     $rt="";
-    
-    $table_addition=$_TABLES[$pi_name.'_addition'];
+
+    $table_addition=$_TABLES[strtolower($pi_name).'_addition'];
     //
     $sql="SELECT value  ";
     $sql.=" FROM";
@@ -3958,9 +3965,9 @@ function DATABOX_deleteaddtionfiles_all(
     $fld
     ,$pi_name
 ){
-    
-    
-    
+
+
+
     global $_CONF;
     global $_TABLES;
 
@@ -3994,7 +4001,7 @@ function DATABOX_deleteaddtionfiles_all(
 // +---------------------------------------------------------------------------+
 // | 引数 $filename:フォルダ/ファイル
 // +---------------------------------------------------------------------------+
-// | 戻値 nomal:  
+// | 戻値 nomal:
 // +---------------------------------------------------------------------------+
 //update
 function DATABOX_deleteFile (
@@ -4008,7 +4015,7 @@ function DATABOX_deleteFile (
         }else{
             $rt=true;
             COM_errorLog ("remove file $filename");
-        }        
+        }
     }else{
             COM_errorLog ("Unable to remove file $filename not exist");
     }
@@ -4033,7 +4040,7 @@ function DATABOX_uploadImageFile (
 // | 引数 $imgtype:
 // | 引数 $imgfld:
 // +---------------------------------------------------------------------------+
-// | 戻値 nomal:  
+// | 戻値 nomal:
 // +---------------------------------------------------------------------------+
 //update
 {
@@ -4043,7 +4050,7 @@ function DATABOX_uploadImageFile (
         //$newfile=$imgfld.$imgname;
         $newfile=$imgfld.$newfilename;
         if(!file_exists($newfile)) {
-            $returnMove = move_uploaded_file($imgfile, $newfile); 
+            $returnMove = move_uploaded_file($imgfile, $newfile);
             if (!$returnMove) {
                 $logmsg="DataBox File upload error: ".$tmp." to ".$name;
                 COM_errorLOG($logmsg);
@@ -4075,7 +4082,7 @@ function DATABOX_uploadImageFile_xml (
     $imgsrc=base64_decode($imgsrc);
     fputs($fp, $imgsrc);
     fclose($fp);
-    
+
     if(!file_exists($newfile)) {
         $logmsg="DataBox ImageFile upload error: ".$tmp." to ".$name;
         COM_errorLOG($logmsg);
@@ -4107,7 +4114,7 @@ function DATABOX_createthumb(
 // | 引数 $imgtype:
 // | 引数 $imgfld:
 // +---------------------------------------------------------------------------+
-// | 戻値 nomal:  
+// | 戻値 nomal:
 // +---------------------------------------------------------------------------+
 //update
 {
@@ -4133,7 +4140,7 @@ function DATABOX_createthumb(
     if (!$srcimage) {
         return false;
     }
-    
+
     $logmsg="size=(w)".$srcfile_w." > ".$w." (h)".$srcfile_h." > ".$h;
     COM_errorLog ($logmsg);
 
@@ -4142,7 +4149,7 @@ function DATABOX_createthumb(
     }else{
         return false;
     }
-        
+
     // リサイズ
     if ($srcfile_w > $W || $srcfile_h > $H) {
         $key_w = $W / $srcfile_w;
@@ -4167,7 +4174,7 @@ function DATABOX_createthumb(
        $filename = substr($filename, 0, strrpos($filename,"."));
     touch($imgfld_thmb.$thum_filename);
     ImageJPEG($outimage, $imgfld_thmb.$thum_filename);
-        
+
     // 出力画像のイメージを作成し、元画像をコピーします。(GD2.0用)
     // リンク先のサイズが設定値より大きい時リンク先も縮小する<-----
     if ($srcfile_w > $W2 || $srcfile_h > $H2) {
@@ -4187,7 +4194,7 @@ function DATABOX_createthumb(
             , $out_w, $out_h, $srcfile_w, $srcfile_h);
 
         touch($imgfld.$filename.".jpg");
-        ImageJPEG($outimage2, $imgfld.$filename.".jpg"); 
+        ImageJPEG($outimage2, $imgfld.$filename.".jpg");
 
         ImageDestroy($outimage2);
         $rt=unlink($imgfld.$filename."-bak.jpg");
@@ -4196,7 +4203,7 @@ function DATABOX_createthumb(
         }
 
    }
-    
+
     // 作成したイメージを破棄
     ImageDestroy($srcimage);
     ImageDestroy($outimage);
@@ -4240,7 +4247,7 @@ function DATABOX_getradiolist(
 // +---------------------------------------------------------------------------+
 //update 20130704
 {
-    
+
     $retval = '';
     if  ($br==="" ) {
         $br=0;
@@ -4257,7 +4264,7 @@ function DATABOX_getradiolist(
             }
         }
         $retval .= ">$ary[$id]&nbsp";
-        
+
         if   ($br<>0){
             $cnt++;
             if  ($cnt==$br){
@@ -4288,7 +4295,7 @@ function DATABOX_getoptionlistary(
 // | 引数 $fld:
 // | 引数 $selected:選択値　省略時
 // | 引数 $pi_name: 'databox' 'userbox' 'formbox'
-// | 引数 $disabled:defalt="" 
+// | 引数 $disabled:defalt=""
 // | 引数 $type:defalt="" 14=multiselect
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:オプションリスト                                               |
@@ -4321,14 +4328,14 @@ function DATABOX_getoptionlistary(
         $retval .= ' name="'.$fld.'"';
     }
     $retval .= $disabled.">".LB;
-    
+
 	if  ($type==7 ){
 		if  ($ary[0]==""){
         }else{
             $retval .= "<option value=''>{$lang_box['selectit']}</option>".LB;
         }
 	}
-    
+
     foreach($ary as $k => $v) {
         $retval .= "<option value=\"".$k."\"";
 		//echo "k=".$k."sa=".$selectedary."s=".$selected."<br>";
@@ -4352,7 +4359,7 @@ function DATABOX_getoptionlistary(
     }
 
     $retval .= '</select>';
-    
+
     return $retval;
 }
 
@@ -4390,7 +4397,7 @@ function DATABOX_getoptionlist(
 global $_CONF;
 global $_TABLES;
 global $LANG_configselects;
-    
+
     if ($pi_name==""){
         $lang_box="LANG_DATABOX";
     }else{
@@ -4398,12 +4405,12 @@ global $LANG_configselects;
     }
     global $$lang_box;
     $lang_box=$$lang_box;
-    
+
     if ($fname==""){
         $fname=$kind;
     }
-    
-    
+
+
     $retval = '';
 
     $retval .= "<select class='uk-select uk-form-width-medium' name='$fname' $disabled>".LB;
@@ -4412,8 +4419,8 @@ global $LANG_configselects;
     }elseif ($selectit){
         $retval .= "<option value=0>{$lang_box['selectit']}</option>".LB;
     }
-    
-    
+
+
     if ($kind=="layout"){
         $retval .= "<option value=0>{$lang_box['byconfig']}</option>".LB;
         $ary=$LANG_configselects[strtolower($pi_name)][22];
@@ -4445,35 +4452,35 @@ global $LANG_configselects;
     }else{
         if ($kind=="group"){
             $where="";
-            $table=$_TABLES[$pi_name.'_def_group'];
+            $table=$_TABLES[strtolower($pi_name).'_def_group'];
             $fields= 'group_id,name,orderno';
         }else if ($kind=="parent"){
             $where="";
-            $table=$_TABLES[$pi_name.'_def_category'];
+            $table=$_TABLES[strtolower($pi_name).'_def_category'];
             $fields= 'category_id,name,orderno';
         }else if ($kind=="fieldset"){
             $where="";
-            $table=$_TABLES[$pi_name.'_def_fieldset'];
+            $table=$_TABLES[strtolower($pi_name).'_def_fieldset'];
             $fields= 'fieldset_id,name,fieldset_id';
         }else if ($kind=="selectlist"){
             $where="";
-            $table=$_TABLES[$pi_name.'_mst'];
+            $table=$_TABLES[strtolower($pi_name).'_mst'];
             $fields= 'DISTINCT kind,kind,kind';
         }else if ($kind=="selectlist_mst"){
-            $table=$_TABLES[$pi_name.'_mst'];
+            $table=$_TABLES[strtolower($pi_name).'_mst'];
             $where="kind='{$selectlist}'";
             if ($relno<>0) $where.=" AND relno='{$relno}'";
             $fields= 'no,value,orderno';
         }else if ($kind=="fieldgroupno"){
             $where="kind='fieldgroup'";
-            $table=$_TABLES[$pi_name.'_mst'];
+            $table=$_TABLES[strtolower($pi_name).'_mst'];
             $fields= 'DISTINCT no,value,no';
         }else if ($kind=="csvsel"){
             $where="";
-            $table=$_TABLES[$pi_name.'_def_csv_sel'];
+            $table=$_TABLES[strtolower($pi_name).'_def_csv_sel'];
             $fields= 'csv_sel_id,name,csv_sel_id*-1';
         }else{
-            $table=$_TABLES[$pi_name.'_mst'];
+            $table=$_TABLES[strtolower($pi_name).'_mst'];
             $where="kind='{$kind}'";
         if ($relno<>0) $where.=" AND relno='{$relno}'";
             $fields= 'no,value,orderno';
@@ -4483,8 +4490,8 @@ global $LANG_configselects;
             , $fields
             , $selected,2,$where);
     }
-    
-    
+
+
     $retval .= '</select>';
 
     if ($disabled==="disabled"){
@@ -4627,7 +4634,7 @@ function DATABOX_dltbldt(
 
     }
     fclose($file);
-    
+
     $filename=basename($outfile).".csv";
     $dir=dirname($outfile);
 
@@ -4635,9 +4642,9 @@ function DATABOX_dltbldt(
     header ("Content-type: application/x-csv");
     readfile ($outfile);
     flush();
-    
+
     $rt=unlink($outfile);
-    
+
     return "";
 }
 
@@ -4664,8 +4671,8 @@ function DATABOX_getfeaturedimage(
     global $$box_conf;
     $box_conf=$$box_conf;
 
-    $tbl1=$_TABLES[$pi_name.'_addition'];
-    $tbl2=$_TABLES[$pi_name.'_def_field'];
+    $tbl1=$_TABLES[strtolower($pi_name).'_addition'];
+    $tbl2=$_TABLES[strtolower($pi_name).'_def_field'];
 
     $rt="";
 
@@ -4714,11 +4721,13 @@ function DATABOX_getheadercode(
     ,$fieldset_id=""
     ,$fieldset_name=""
     ,$code=""
+    ,$expired_shortdate=""
+
 )
 // +---------------------------------------------------------------------------+
 // | 機能 HEADERCODE 編集
 // | 書式 DATABOX_getheadercode("data",$template,$pi_name,$A['id'],$A['title']
-// |         ,$A['meta_description'],$A['meta_keyword'],$A['description']);
+// |         ,$A['meta_description'],$A['meta_keyword'],$A['description'],$A['expired_shortdate']);
 // +---------------------------------------------------------------------------+
 // | 引数  $kind        "data","category"
 // | 引数  $template
@@ -4734,6 +4743,7 @@ function DATABOX_getheadercode(
 // | 引数  $fieldset_id
 // | 引数  $fieldset_name
 // | 引数  $code
+// | 引数  $expired_shortdate
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:HEADERCODE
 // +---------------------------------------------------------------------------+
@@ -4741,19 +4751,19 @@ function DATABOX_getheadercode(
     global $_CONF;
     global $_TABLES;
     global $_IMAGE_TYPE;
-    
+
     $box_conf="_".strtoupper($pi_name)."_CONF";
     global $$box_conf;
     $box_conf=$$box_conf;
-    
+
     $retval="";
-    
+
     $currenturl= COM_getCurrentURL();
     $site_logo= $_CONF['layout_url'] . '/images/logo.' . $_IMAGE_TYPE ;
 
     $og_type="article";
     $og_title=$title;
-    
+
     if ($box_conf['meta_tags'] > 0) {
          $retval .= COM_createMetaTags($meta_description, $meta_keywords);
     }
@@ -4764,8 +4774,8 @@ function DATABOX_getheadercode(
         $og_description = $meta_description;
     }
     $og_description= COM_getTextContent(PLG_replaceTags($og_description));
-        
-    
+
+
     if ($kind==="data"){
         $og_image =DATABOX_getfeaturedimage($id,$pi_name,"url");
         if ($og_image===""){
@@ -4777,7 +4787,7 @@ function DATABOX_getheadercode(
             $og_image=$site_logo;
         }
     }
-    
+
     //テンプレートフォルダの設定
     $tmplfld=DATABOX_templatePath($kind,$template,$pi_name);
     if (file_exists ($tmplfld."/headercode.thtml")) {
@@ -4785,24 +4795,27 @@ function DATABOX_getheadercode(
         $tpl->set_file (array (
             'tpl' => 'headercode.thtml',
             ));
-    
+
+
         $tpl->set_var('xhtml', XHTML);
         $tpl->set_var('site_url', $_CONF['site_url']);
         $tpl->set_var('site_admin_url', $_CONF['site_admin_url']);
         $tpl->set_var('layout_url', $_CONF['layout_url']);
-        
+        $tpl->set_var('expired_shortdate', $expired_shortdate);
+
         $tpl->set_var ('currenturl', htmlspecialchars($currenturl, ENT_QUOTES, 'UTF-8'));
-        
+
         $tpl->set_var ('site_name', $_CONF['site_name']);
         $tpl->set_var ('site_mail', $_CONF['site_mail']);
-        
+
         $tpl->set_var ('og_title', $og_title);
+        $tpl->set_var ('title', $og_title);
         $tpl->set_var ('og_image', $og_image);
         $tpl->set_var ('og_description', $og_description);
         $tpl->set_var ('og_type', $og_type);
         $tpl->set_var ('fieldset_name', $fieldset_name);
-        
-        
+
+
         $tpl->set_var ('code', $code);
         $code_language="";
         $code_withoutlanguage=$code;
@@ -4820,15 +4833,15 @@ function DATABOX_getheadercode(
         $tpl->set_var ('code_language', $code_language);
         $tpl->set_var ('code_withoutlanguage', $code_withoutlanguage);
 
-		
+
         //facebook
         $facebook_consumer_key = trim($_CONF['facebook_consumer_key']);
         $tpl->set_var ('facebook_consumer_key', $facebook_consumer_key);
-        
+
         if ($kind==="data"){
             DATABOX_getaddtionfieldsDisp($additionfields,$addition_def,$tpl,$chk_user,$pi_name,$fieldset_id);
         }
-    
+
         $tpl->parse ('output', 'tpl');
         $retval .= $tpl->finish ($tpl->get_var ('output'));
     }
@@ -4841,32 +4854,32 @@ function DATABOX_getfields(
 )
 {
     global $_TABLES;
-    
+
     if ($fieldset_id==0){
-        $table=$_TABLES[$pi_name.'_def_field'];
+        $table=$_TABLES[strtolower($pi_name).'_def_field'];
     }else{
-        $table=$_TABLES[$pi_name.'_def_fieldset_assignments'];
+        $table=$_TABLES[strtolower($pi_name).'_def_fieldset_assignments'];
     }
     $fields = array();
 
     // Get a list of additionfields in the selected field
     $sql  = "SELECT DISTINCT field_id ";
     $sql  .= " FROM {$table}";
-    
+
     if ($fieldset_id<>0){
         $sql  .= " WHERE  ";
         $sql  .= " fieldset_id = $fieldset_id";
     }
-    
+
     $result = DB_query ($sql);
     $num = DB_numRows ($result);
-    
+
     if ($num<>0){
         while ($A = DB_fetchArray($result)) {
             $fields[] = $A['field_id'];
         }
     }
-    
+
     return $fields;
 }
 
@@ -4881,11 +4894,11 @@ function DATABOX_getAry(
     global $_TABLES;
 
 //    if ($kind=="selectlist_mst"){
-        $table=$_TABLES[$pi_name.'_mst'];
+        $table=$_TABLES[strtolower($pi_name).'_mst'];
         $where=" WHERE kind='{$selectlist}'";
         if ($relno<>0) $where.=" AND relno='{$relno}'";
         $fields= 'no,value';
-        $order=" ORDER BY orderno"; 
+        $order=" ORDER BY orderno";
 //    }
 
     $ary=array();
@@ -4907,8 +4920,8 @@ function DATABOX_getAry(
 
 function DATABOX_categorycount(
     $pi_name
-    ,$categorygroup_id 
-    ,$categorygroup_code 
+    ,$categorygroup_id
+    ,$categorygroup_code
     ,$permission=""
     ,$numberformat=''
 )
@@ -4933,10 +4946,10 @@ function DATABOX_categorycount(
 {
     global $_TABLES;
     //-----
-    $tbl3=$_TABLES[$pi_name.'_def_category'] ;
-    $tbl1=$_TABLES[$pi_name.'_category'] ;
-    $tbl4=$_TABLES[$pi_name.'_def_group'] ;
-    $tbl2=$_TABLES[$pi_name.'_base'] ;
+    $tbl3=$_TABLES[strtolower($pi_name).'_def_category'] ;
+    $tbl1=$_TABLES[strtolower($pi_name).'_category'] ;
+    $tbl4=$_TABLES[strtolower($pi_name).'_def_group'] ;
+    $tbl2=$_TABLES[strtolower($pi_name).'_base'] ;
     if ($categorygroup_id =="" AND $categorygroup_code=="") {
         $categorygroup_id=0;
     }else{
@@ -4947,7 +4960,7 @@ function DATABOX_categorycount(
             }
         }
     }
-    
+
 
     //-----
     $sql = "SELECT ".LB;
@@ -4979,10 +4992,10 @@ function DATABOX_categorycount(
     $sql .= " AND (released <= NOW())".LB;
     //公開終了日を過ぎたデータはのぞく
     $sql .= " AND (expired=0 OR expired > NOW())".LB;
-    
+
     $sql .= " GROUP BY ".LB;
     $sql .= " t1.category_id".LB;
-    
+
     $result = DB_query ($sql);
     $cnt = DB_numRows ($result);
     if  (strtoupper($numberformat)=="YES"){
@@ -5033,7 +5046,7 @@ function DATABOX_Confirmation(
 
     $tmpl->set_var('actionname', $actionname);
     $tmpl->set_var('actionprg', $actionprg);
-    
+
     $tmpl->set_var('help', $lang_box_admin[$mode.'msg']);
     $btn_value=$LANG_ADMIN['submit'];
     $confirm_value=$lang_box_admin['confirm'];
@@ -5047,9 +5060,9 @@ function DATABOX_Confirmation(
         $confirm_value=$lang_box_admin['delete1']." ".$lang_box_admin['confirm'];
         $confirm_value2=$lang_box_admin['delete2']." ".$lang_box_admin['confirm'];
         $confirm_value3=$lang_box_admin['delete3']." ".$lang_box_admin['confirm'];
-        $btn2="<input type='submit' class='uk-button uk-button-danger' name='action' value='{$lang_box_admin['delete2']}'" 
+        $btn2="<input type='submit' class='uk-button uk-button-danger' name='action' value='{$lang_box_admin['delete2']}'"
              ." onclick=\"return confirm('{$confirm_value2}');\"".XHTML.">".LB;
-        $btn3="<input type='submit' class='uk-button uk-button-danger' name='action' value='{$lang_box_admin['delete3']}'" 
+        $btn3="<input type='submit' class='uk-button uk-button-danger' name='action' value='{$lang_box_admin['delete3']}'"
              ." onclick=\"return confirm('{$confirm_value3}');\"".XHTML.">".LB;
     }
 
@@ -5098,10 +5111,10 @@ function DATABOX_datetimeedit(
         $datetime_hour = date ('H', $datetime_value);
         $datetime_minute = date ('i', $datetime_value) ;
     }
-    
+
     $rt="";
     //Year
-    $year_options = COM_getYearFormOptions ($datetime_year);
+    $year_options = COM_getYearFormOptions ($datetime_year, -5);
     $rt.="<select class=\"uk-select uk-form-width-xsmall\" name=\"".$datetime_name."_year\">".LB;
     $rt.=$year_options.LB;
     $rt.="</select>".$lang_ary['yy'].LB;
@@ -5167,15 +5180,15 @@ function DATABOX_datetimeedit_R(
     $var = $lang;
     global $$var;
     $lang_ary=$$var;
-    
+
     if  (!is_array($datetime_ary)){
         return "";
     }
-    
+
     $rt="";
-    
+
     //Year
-    $year_options = COM_getYearFormOptions ($datetime_ary['year']);
+    $year_options = COM_getYearFormOptions ($datetime_ary['year'], -5);
     $rt.="<select class=\"uk-select uk-form-width-xsmall\" name=\"".$datetime_name."_year\">".LB;
     $rt.=$year_options.LB;
     $rt.="</select>".$lang_ary['yy'].LB;
@@ -5351,21 +5364,21 @@ function DATABOX_fieldvalue(
     global $_TABLES;
     global $_CONF;
     global $_PLUGINS;
-    
+
     $lang_noyes="LANG_".strtoupper($pi_name)."_NOYES";
     global $$lang_noyes;
     $lang_noyes=$$lang_noyes;
-          
+
     $lang_box="LANG_".strtoupper($pi_name);
     global $$lang_box;
     $lang_box=$$lang_box;
     $separater=$lang_box['field_separater'];
 
-    $table_base=$_TABLES[$pi_name.'_base'];
-    $table_def_field=$_TABLES[$pi_name.'_def_field'];
-    $table_addition=$_TABLES[$pi_name.'_addition'];
+    $table_base=$_TABLES[strtolower($pi_name).'_base'];
+    $table_def_field=$_TABLES[strtolower($pi_name).'_def_field'];
+    $table_addition=$_TABLES[strtolower($pi_name).'_addition'];
     $table_def_fieldset_assignments
-        =$_TABLES[$pi_name.'_def_fieldset_assignments'];
+        =$_TABLES[strtolower($pi_name).'_def_fieldset_assignments'];
     //-----引数チェック
     if (is_null($id)){
         if (is_null($code) OR $code===""){
@@ -5401,7 +5414,7 @@ function DATABOX_fieldvalue(
             return "";
         }
     }
-          
+
     //
     $sql  = "SELECT DISTINCT ".LB;
     $sql  .= " t.value ".LB;
@@ -5414,12 +5427,12 @@ function DATABOX_fieldvalue(
     $sql  .= " FROM ".LB;
     $sql  .= "{$table_addition} AS t".LB;
     $sql  .= " , {$table_def_field} AS m".LB;
-    
+
     $sql  .= " WHERE  ".LB;
     $sql  .= " t.id = {$id} AND t.field_id = {$field_id} ".LB;
     $sql  .= " AND m.field_id = {$field_id} ".LB;
     $sql  .= " AND m.allow_display = 0 ".LB;
-    
+
     $result = DB_query ($sql);
     $num = DB_numRows ($result);
     $rt="";
@@ -5567,7 +5580,7 @@ function DATABOX_fieldownload(
     ,$mode
 )
 // +---------------------------------------------------------------------------+
-// | 機能  ファイルダウンロード 
+// | 機能  ファイルダウンロード
 // | 書式 DATABOX_fieldownload($pi_name,$id,$code,$field_id,$field_code)
 // +---------------------------------------------------------------------------+
 // | 引数 $pi_name:plugin name 'databox' 'userbox' 'formbox'
@@ -5582,21 +5595,21 @@ function DATABOX_fieldownload(
 {
     global $_TABLES;
     global $_CONF;
-     
+
     $box_conf="_".strtoupper($pi_name)."_CONF";
     global $$box_conf;
     $box_conf=$$box_conf;
-          
+
     $lang_box="LANG_".strtoupper($pi_name);
     global $$lang_box;
     $lang_box=$$lang_box;
     $separater=$lang_box['field_separater'];
 
-    $table_base=$_TABLES[$pi_name.'_base'];
-    $table_def_field=$_TABLES[$pi_name.'_def_field'];
-    $table_addition=$_TABLES[$pi_name.'_addition'];
+    $table_base=$_TABLES[strtolower($pi_name).'_base'];
+    $table_def_field=$_TABLES[strtolower($pi_name).'_def_field'];
+    $table_addition=$_TABLES[strtolower($pi_name).'_addition'];
     $table_def_fieldset_assignments
-        =$_TABLES[$pi_name.'_def_fieldset_assignments'];
+        =$_TABLES[strtolower($pi_name).'_def_fieldset_assignments'];
     //-----引数チェック
     if (is_null($id)  OR $id===""){
         if (is_null($code) OR $code===""){
@@ -5642,7 +5655,7 @@ function DATABOX_fieldownload(
     $sql  .= "{$table_addition} AS t".LB;
     $sql  .= " , {$table_def_field} AS m".LB;
     $sql  .= " , {$table_base} AS d".LB;
-    
+
     $sql  .= " WHERE  ".LB;
     $sql  .= " t.id = {$id} AND t.field_id = {$field_id} ".LB;
     $sql  .= " AND m.field_id = {$field_id} ".LB;
@@ -5668,7 +5681,7 @@ function DATABOX_fieldownload(
 		$allow_display= $A['allow_display'];
         $chk_user=DATABOX_chkuser($group_id,$owner_id,$pi_name.".admin");
 		if  ($value<>""){
-			
+
             $chk=false;
             //表示する
             if  ($allow_display==='0') {
@@ -5723,12 +5736,12 @@ function DATABOX_fieldownload(
             }
         }
     }
-    
+
     return $rt;
 
 }
 function DATABOX_getFileTypeAry(
-    $extension 
+    $extension
 )
 {
     $ary=array();
@@ -5796,11 +5809,11 @@ function DATABOX_count_each_afield(
     if  ($type_id=="" OR  $type_id==NULL){
         $type_id=0;
     }
-    
+
     //-----
-    $tbl1=$_TABLES[$pi_name.'_base'] ;
-    $tbl2=$_TABLES[$pi_name.'_addition'] ;
-    $tbl3=$_TABLES[$pi_name.'_def_field'];
+    $tbl1=$_TABLES[strtolower($pi_name).'_base'] ;
+    $tbl2=$_TABLES[strtolower($pi_name).'_addition'] ;
+    $tbl3=$_TABLES[strtolower($pi_name).'_def_field'];
 
     //-----
     $sql = "SELECT ".LB;
@@ -5888,7 +5901,7 @@ function DATABOX_math(
     if  ($type_id=="" OR  $type_id==NULL){
         $type_id=0;
     }
-	
+
 	$method=strtoupper($method);
     if  ($method=="MAX" OR $method=="MIN" OR $method=="SUM" OR $method=="AVG" OR $method=="COUNT" ){
     }else if  ($method=="AVERAGE" ){
@@ -5917,17 +5930,17 @@ function DATABOX_math(
         $idsary[]=$category_id;
     }
     //-----
-    $tbl1=$_TABLES[$pi_name.'_base'] ;
-    $tbl2=$_TABLES[$pi_name.'_addition'] ;
-    $tbl3=$_TABLES[$pi_name.'_def_field'];
-    $tbl4=$_TABLES[$pi_name.'_category'] ;
-	$tbl5=$_TABLES[$pi_name.'_def_category'] ;
-	
+    $tbl1=$_TABLES[strtolower($pi_name).'_base'] ;
+    $tbl2=$_TABLES[strtolower($pi_name).'_addition'] ;
+    $tbl3=$_TABLES[strtolower($pi_name).'_def_field'];
+    $tbl4=$_TABLES[strtolower($pi_name).'_category'] ;
+	$tbl5=$_TABLES[strtolower($pi_name).'_def_category'] ;
+
     $type=DB_getItem( $tbl3   ,"type","templatesetvar='{$templatesetvar}'");
-	
+
     //-----
     $sql = "SELECT ".LB;
-    
+
     if  ($type==15  OR $type==21 OR strtoupper($numberformat)=="YES") {
         $sql .= $method ."(t2.value + 0) AS rt".LB;
     }else{
@@ -5954,12 +5967,12 @@ function DATABOX_math(
     //公開終了日を過ぎたデータはのぞく
     $sql .= " AND (expired=0 OR expired > NOW())".LB;
     //@@@@@@@@@@@<------
-    
+
     $sql .= " AND fieldset_id=".$type_id;
     $sql .= " AND t1.id = t2.id ".LB;
     $sql .= " AND t2.field_id= t3.field_id" .LB;
     $sql .= " AND t3.templatesetvar='". $templatesetvar ."'".LB;
-	
+
     if (count($idsary)<>0){
         if (strtoupper($mode)=="AND"){
             $w="";
@@ -5979,7 +5992,7 @@ function DATABOX_math(
     }
     $result = DB_query ($sql);
     $numrows = DB_numRows ($result);
-	
+
     if ($numrows > 0) {
         $A = DB_fetchArray ($result);
 		$A = array_map('stripslashes', $A);
@@ -5991,20 +6004,20 @@ function DATABOX_math(
 			$rt="";
 		}
 	}
-	
+
     if ( is_numeric($rt) ) {
         if  (!is_numeric($roundprecision)){
             $roundprecision=0;
         }
         $rt=round($rt,$roundprecision);
         if  (strtoupper($numberformat)=="YES"){
-            $rt=number_format( $rt, 
+            $rt=number_format( $rt,
                 $roundprecision, $_CONF['decimal_separator'], $_CONF['thousand_separator'] );
         }
     }
     return $rt;
-	
-	
+
+
 }
 function DATABOX_getcheckboxary(
     $ary
@@ -6023,7 +6036,7 @@ function DATABOX_getcheckboxary(
 // | 引数 $fld:
 // | 引数 $selected:選択値　省略時
 // | 引数 $pi_name: 'databox' 'userbox' 'formbox'
-// | 引数 $disabled:defalt="" 
+// | 引数 $disabled:defalt=""
 // | 引数 $type:defalt="" 14=multiselect
 // +---------------------------------------------------------------------------+
 // | 戻値 nomal:オプションリスト                                               |
@@ -6037,11 +6050,11 @@ function DATABOX_getcheckboxary(
     }
     global $$lang_box;
     $lang_box=$$lang_box;
-	
+
     $selectedary=explode(":",$selected);
-	
+
 	$retval = '';
-	
+
     foreach($ary as $k => $v) {
         $retval .= '<span style="white-space:nowrap">';
         $retval .= '<input type="checkbox" name="' . $fld . '[]" value="' . $k ;
@@ -6059,7 +6072,7 @@ function DATABOX_getcheckboxary(
 }
 function DATABOX_isExcepted(
 $code
-,$excepts) 
+,$excepts)
 {
 
 	foreach ($excepts as $except) {
@@ -6069,7 +6082,7 @@ $code
 			}
 		}
 	}
-	
+
 	return FALSE;
 }
 ?>

@@ -188,7 +188,7 @@ abstract class Dbman
 	public static function quoteString($item) {
 		$item = str_replace(array("\r", "\n"), array('\\r', '\\n'), $item);
 
-		if (!get_magic_quotes_gpc()) {
+		if (function_exists("get_magic_quotes_gpc") && !get_magic_quotes_gpc()) {
 			$item = self::escapeString($item);
 			$item = str_replace(array('\\\\r', '\\\\n'), array('\\r', '\\n'), $item);
 		}

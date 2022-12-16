@@ -227,12 +227,12 @@ function fncGetListField($fieldname, $fieldvalue, $A, $icon_arr)
             } else {
                 $switch = '';
             }
-            $query_limit=COM_applyFilter($_REQUEST['query_limit']);
-            $direction=COM_applyFilter($_REQUEST['direction']);
-            $filter_val=COM_applyFilter($_REQUEST['filter_val']);
-            $databoxlistpage=COM_applyFilter($_REQUEST['databoxlistpage']);
-            $order=COM_applyFilter($_REQUEST['order'],true);
-            $prevorder=COM_applyFilter($_REQUEST['prevorder']);
+            $query_limit= isset($_REQUEST['query_limit']) ? COM_applyFilter($_REQUEST['query_limit']) : '';
+            $direction=isset($_REQUEST['direction']) ? COM_applyFilter($_REQUEST['direction']) : '';
+            $filter_val=isset($_REQUEST['filter_val']) ? COM_applyFilter($_REQUEST['filter_val']) : '';
+            $databoxlistpage=isset($_REQUEST['databoxlistpage']) ? COM_applyFilter($_REQUEST['databoxlistpage']) : '';
+            $order=isset($_REQUEST['order']) ? COM_applyFilter($_REQUEST['order'],true) : '';
+            $prevorder=isset($_REQUEST['prevorder']) ? COM_applyFilter($_REQUEST['prevorder']) : '';
 
             $retval = "<form action=\"{$_CONF['site_admin_url']}";
             $retval .= "/plugins/".THIS_SCRIPT."\" method=\"post\">";
@@ -1898,7 +1898,7 @@ function fncChangeSet (
 	
     $retval = '';
 	
-	$id = COM_applyFilter ($_REQUEST['id'], true);
+	$id = isset($_REQUEST['id']) ? COM_applyFilter ($_REQUEST['id'], true) : 0;
 	//-----
 	if  ($id==0){
 		$actionname=$LANG_USERBOX_ADMIN['registset'];
@@ -2005,6 +2005,7 @@ function fncexportform (
 	
 	$pi_name="userbox";
 	
+  $retval = '';
 	//-----
 	$tmpl = new Template ($_CONF['path'] . "plugins/".THIS_PLUGIN."/templates/admin/");
     $tmpl->set_file(array('exportform' => 'exportform.thtml'));
@@ -2093,6 +2094,7 @@ $pi_name    = 'userbox';
 
 
 // 引数
+$mode='';
 $action = '';
 if (isset ($_REQUEST['action'])) {
     $action = COM_applyFilter ($_REQUEST['action'], false);

@@ -756,7 +756,7 @@ if (($mode == $LANG_ADMIN['delete']) && !empty ($LANG_ADMIN['delete'])) {
             COM_applyFilter ($_POST['end_minute'], true), $_POST['end_ampm'],
             $_POST['location'], $_POST['address1'], $_POST['address2'],
             $_POST['city'], $_POST['state'], $_POST['zipcode'],
-            $_POST['text_description'], $_POST['postmode'] ,
+            $_POST['description'], $_POST['postmode'] ,
             COM_applyFilter ($_POST['owner_id'], true),
             COM_applyFilter ($_POST['group_id'], true),
             $_POST['perm_owner'], $_POST['perm_group'],

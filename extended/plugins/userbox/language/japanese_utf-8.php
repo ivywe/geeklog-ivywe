@@ -1,7 +1,7 @@
 <?php
 //* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | UserBox Plugin 0.0.20200521a for Geeklog 2.2.1
+// | UserBox Plugin 0.0.20221209a for Geeklog 2.2.2
 // +---------------------------------------------------------------------------+
 // | Copyright (C) 2020 by the following authors:                              |
 // | Authors    : Tsuchi            - tsuchi AT geeklog DOT jp                 |
@@ -12,10 +12,9 @@
 ###############################################################################
 # plugins/USERBOX/language/japanese_utf-8.php
 # もし万一エンコードの種類が　UTF-8でない場合は、utf-8に変換してください。
-# Last Update 20200521
-
+# Last Update 20221209
 ###############################################################################
-global $_CONF, $_USER, $_TABLES, $LANG04;
+global $_CONF, $_USER, $_TABLES, $LANG04, $LANG28, $LANG32;
 
 ## 管理画面 menu
 $LANG_USERBOX_admin_menu = array();
@@ -100,6 +99,7 @@ $LANG_USERBOX_ADMIN['piname'] = 'UserBox';
 
 # 管理画面　start block title
 $LANG_USERBOX_ADMIN['admin_list'] = 'USERBOX';
+$LANG_USERBOX_ADMIN['instructions'] = 'USERBOX';
 
 $LANG_USERBOX_ADMIN['edit'] = '編集';
 $LANG_USERBOX_ADMIN['ref'] = '参考';

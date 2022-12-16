@@ -653,7 +653,7 @@ $information = array();
 
 $information['pagetitle']=$LANG_DATABOX_ADMIN['piname']."backup and restore";
 //$display.=ppNavbarjp($navbarMenu,$LANG_DATABOX_admin_menu[$menuno]);
-$display.=$admin_menu_top;
+
 if (isset ($_REQUEST['msg'])) {
     $display .= COM_showMessage (COM_applyFilter ($_REQUEST['msg'],
                                                   true), $pi_name);

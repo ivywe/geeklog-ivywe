@@ -103,6 +103,8 @@ function fnc_List(
     require_once( $_CONF['path_system'] . 'lib-admin.php' );
 
     $retval = '';
+    $exclude='';
+    $filter='';
 
     //ヘッダ：編集～
     $header_arr[]=array('text' => $lang_box_admin['seq'], 'field' => 'seq', 'sort' => true);
@@ -602,7 +604,7 @@ function fnc_Save (
     //
 
 
-    DB_save($table,$fields,$values,$return_page);
+    DB_save($table,$fields,$values);
 
     if ($box_conf['aftersave_admin']==='no') {
         $retval['title']=$lang_box_admin['piname'].$lang_box_admin['edit'];
@@ -1354,7 +1356,7 @@ function fnc_selSave (
     //
 
 
-    DB_save($table,$fields,$values,$return_page);
+    DB_save($table,$fields,$values);
 
     $retval['title']=$lang_box_admin['piname'].$lang_box_admin['edit'];
     $retval['display'] .= fnc_Menu($pi_name);
@@ -1641,7 +1643,7 @@ function fnc_seldtlSave (
     //
 
 
-    DB_save($table,$fields,$values,$return_page);
+    DB_save($table,$fields,$values);
 
     $retval['title']=$lang_box_admin['piname'].$lang_box_admin['edit'];
     $retval['display'] .= fnc_Menu($pi_name);

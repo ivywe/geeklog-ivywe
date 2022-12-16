@@ -569,7 +569,7 @@ function fnc_Save (
     //
 
 
-    DB_save($table,$fields,$values,$return_page);
+    DB_save($table,$fields,$values);
 
     if ($box_conf['aftersave_admin']==='no') {
         $retval['title']=$lang_box_admin['piname'].$lang_box_admin['edit'];

@@ -122,7 +122,7 @@ function fncList()
         'table' => " {$table} AS t ,{$table1} AS t1",
         'sql' => $sql,
         'query_fields' => array('id','username','fullname','draft_flag'),
-        'default_filter' => $exclude);
+        'default_filter' => '');
     //デフォルトソート項目:
     $defsort_arr = array('field' => 'id', 'direction' => 'ASC');
     //List 取得

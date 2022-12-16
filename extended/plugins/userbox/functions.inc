@@ -118,7 +118,11 @@ function plugin_upgrade_userbox ()
 
 	$installed_version = DB_getItem($_TABLES['plugins'], 'pi_version',
                                     "pi_name = '{$pi_name}'");
-	$newversion=$_USERBOX_CONF['pi_version'];
+  if (isset($_USERBOX_CONF['pi_version'])) {
+    $newversion=$_USERBOX_CONF['pi_version'];
+  } else {
+    $newversion=plugin_chkVersion_userbox();
+  }
 	
 	//update the configuration
 		require_once ($_CONF['path'] . 'plugins/userbox/lib/lib_configuration.php');
@@ -251,13 +255,13 @@ function plugin_getmenuitems_userbox()
 
 
     $anon = (empty ($_USER['uid']) || ($_USER['uid'] <= 1)) ? true : false;
-    if (($_USERBOX_CONF['hidemenu'] == 1) || ($anon &&
+    if ((isset($_USERBOX_CONF['hidemenu']) && $_USERBOX_CONF['hidemenu'] == 1) || ($anon &&
                 ($_CONF['loginrequired'] || $_USERBOX_CONF['loginrequired']))) {
         return false;
     }
     $menuitems[$LANG_USERBOX['profile']] = $_CONF['site_url'] . '/userbox/index.php';
 
-    if ($_USERBOX_CONF['allow_profile_update']==1){
+    if (isset($_USERBOX_CONF['allow_profile_update']) && $_USERBOX_CONF['allow_profile_update']==1){
         $menuitems[$LANG_USERBOX['myprofile']] = $_CONF['site_url'] . '/userbox/myprofile/index.php';
     }
     return $menuitems;
@@ -271,7 +275,7 @@ function plugin_getuseroption_userbox()
     global $_CONF;
     global $LANG_USERBOX;
     global $_USERBOX_CONF;
-	
+
 	if ($_USERBOX_CONF['hideuseroption'] == 1)  {
         return;
     }

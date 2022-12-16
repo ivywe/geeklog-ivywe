@@ -102,7 +102,7 @@ function CMED_setMI()
         'tid'          => COM_applyFilter ($_POST['tid']),
         'menuorder'    => empty($menuorder) ? 0 : COM_applyFilter($menuorder, true),
         'pattern'      => $_POST['pattern'],
-        'is_preg'      => ($_POST['is_preg'] == 'on') ? 1 : 0,
+        'is_preg'      => (isset($_POST['is_preg']) && $_POST['is_preg'] == 'on') ? 1 : 0,
         'class_name'   => COM_applyFilter($_POST['class_name']),
         'owner_id'     => COM_applyFilter($_POST['owner_id'], true),
         'group_id'     => COM_applyFilter($_POST['group_id'], true),

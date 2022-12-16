@@ -223,7 +223,7 @@ $LANG_ASSIST_ADMIN['templatesetvars'] = 'テーマ変数';
 
 //管理画面：このページについて
 $LANG_ASSIST_ADMIN['about_admin_information'] = '　';
-$LANG_ASSIST_ADMIN['about_admin_backuprestore'] = 'バックアップの作成とリストア';
+$LANG_ASSIST_ADMIN['about_admin_backuprestore'] = 'バックアップの作成とリストア。Geeklog2.2現在で当機能は未メンテナンスにつき同様のことができる標準機能の『データベース』から行うのを推奨';
 
 //ERR
 $LANG_ASSIST_ADMIN['msg'] = 'メッセージ';
@@ -307,6 +307,9 @@ $LANG_ASSIST_ADMIN['err_reservcancel_no_id']="番号が正しくありません�
 $LANG_ASSIST_ADMIN['err_reservcancel_no_file']="この番号の送信予約が存在しません。";
 $LANG_ASSIST_ADMIN['done_reservcancel']="送信予約を削除しました。";
 // hiroron end 2010/07/15
+// hiroron start 2022/12/06
+$LANG_ASSIST_ADMIN['last_scheduled_run']="擬似クーロン実施日";
+// hiroron end 2022/12/06
 
 $LANG_ASSIST_ADMIN['introbody']="送信テキスト";
 //$LANG_ASSIST_ADMIN['mail_bulkbooking'] = '一括予約';

@@ -179,7 +179,7 @@ function plugin_postinstall_databox(
     $logfile = $_CONF['path_log'] . 'databox_xmlimport.log';
     $file = @fopen( $logfile, 'w' );
     @fclose($file);
-    @chmod($file, 0666);
+    if(is_file($logfile)) @chmod($logfile, 0666);
 
     //マスタのデータ
     $_SQL =array();

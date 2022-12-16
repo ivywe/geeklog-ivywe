@@ -21,6 +21,8 @@ function LIB_List(
     global $LANG_ADMIN;
     global $LANG09;
 
+    $retval='';
+
     $lang_box_admin="LANG_".strtoupper($pi_name)."_ADMIN";
     global $$lang_box_admin;
     $lang_box_admin=$$lang_box_admin;
@@ -29,7 +31,7 @@ function LIB_List(
     global $$lang_box;
     $lang_box=$$lang_box;
 
-    $table=$_TABLES[$pi_name.'_def_group'];
+    $table=$_TABLES[strtolower($pi_name).'_def_group'];
 
     //ヘッダ：編集～
     $header_arr[]=array('text' => $lang_box_admin['orderno'], 'field' => 'orderno', 'sort' => true);
@@ -60,7 +62,7 @@ function LIB_List(
         'table' => $table,
         'sql' => $sql,
         'query_fields' => array('group_id','code','name','orderno'),
-        'default_filter' => $exclude);
+        'default_filter' => '');
     //デフォルトソート項目:
     $defsort_arr = array('field' => 'orderno', 'direction' => 'ASC');
     //List 取得
@@ -190,9 +192,9 @@ function LIB_Edit(
     global $$lang_box_allow_edit;
     $lang_box_allow_edit=$$lang_box_allow_edit;
 
-    $table=$_TABLES[$pi_name.'_def_group'];
-    $table1=$_TABLES[$pi_name.'_def_category'];
-    $table2=$_TABLES[$pi_name.'_def_field'];
+    $table=$_TABLES[strtolower($pi_name).'_def_group'];
+    $table1=$_TABLES[strtolower($pi_name).'_def_category'];
+    $table2=$_TABLES[strtolower($pi_name).'_def_field'];
 
 //        $cur_year = date( 'Y' );
 //        $year_startoffset=1990 - $cur_year +1;
@@ -429,7 +431,7 @@ function LIB_Save (
     global $$lang_box_inputtype;
     $lang_box_inputtype=$$lang_box_inputtype;
 
-    $table=$_TABLES[$pi_name.'_def_group'];
+    $table=$_TABLES[strtolower($pi_name).'_def_group'];
 
     $retval = '';
 
@@ -563,6 +565,7 @@ function LIB_Save (
 //    }else{
 //        $return_page=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?msg=1';
 //    }
+    $return_page='';
 
     DB_save($table,$fields,$values,$return_page);
 
@@ -617,7 +620,7 @@ function LIB_delete (
     global $$lang_box_admin;
     $lang_box_admin=$$lang_box_admin;
 
-    $table=$_TABLES[$pi_name.'_def_group'];
+    $table=$_TABLES[strtolower($pi_name).'_def_group'];
 
     $id = COM_applyFilter($_POST['id'],true);
 
@@ -662,7 +665,7 @@ function LIB_export (
     global $$lang_box_admin;
     $lang_box_admin=$$lang_box_admin;
 
-    $table=$_TABLES[$pi_name.'_def_group'];
+    $table=$_TABLES[strtolower($pi_name).'_def_group'];
 
     require_once ($_CONF['path'].'plugins/'.$pi_name.'/lib/comj_dltbldt.php');
 
@@ -764,7 +767,7 @@ function LIB_sendmail (
     $lang_box=$$lang_box_mail;
 
 
-    $table=$_TABLES[$pi_name.'_def_group'];
+    $table=$_TABLES[strtolower($pi_name).'_def_group'];
 
 
 
@@ -776,7 +779,7 @@ function LIB_sendmail (
     $sql .= " *";
 
     $sql .= " FROM ";
-    $sql .= $_TABLES[$pi_name.'_def_group'];
+    $sql .= $_TABLES[strtolower($pi_name).'_def_group'];
     $sql .= " WHERE ";
     $sql .= " group_id = $id";
 

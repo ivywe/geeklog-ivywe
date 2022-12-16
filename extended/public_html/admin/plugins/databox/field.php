@@ -31,6 +31,7 @@ $pi_name    = 'databox';
 
 // 引数
 $action = '';
+$mode='';
 if (isset ($_REQUEST['action'])) {
     $action = COM_applyFilter ($_REQUEST['action'], false);
 }

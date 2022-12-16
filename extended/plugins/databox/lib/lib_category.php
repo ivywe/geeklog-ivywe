@@ -596,6 +596,7 @@ function LIB_Save (
 //    }else{
 //        $return_page=$_CONF['site_admin_url'] . '/plugins/'.THIS_SCRIPT.'?msg=1';
 //    }
+    $return_page='';
 
     DB_save($table,$fields,$values,$return_page);
 

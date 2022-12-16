@@ -26,13 +26,14 @@ $pi_name    = 'userbox';
 
 // 引数
 $action = '';
+$mode = '';
+$msg = '';
 if (isset ($_REQUEST['action'])) {
     $action = COM_applyFilter ($_REQUEST['action'], false);
 }
 if (isset ($_REQUEST['mode'])) {
     $mode = COM_applyFilter ($_REQUEST['mode'], false);
 }
-$msg = '';
 if (isset ($_REQUEST['msg'])) {
     $msg = COM_applyFilter ($_REQUEST['msg'], true);
 }
