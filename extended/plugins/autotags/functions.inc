@@ -217,6 +217,11 @@ function plugin_upgrade_autotags()
 
             $current_version = '1.1.3';
             break;
+        
+		case '1.1.3':
+
+            $current_version = '1.1.4';
+            break;
 
         default:
             $done = true;
