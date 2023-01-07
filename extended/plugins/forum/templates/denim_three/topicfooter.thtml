@@ -1,0 +1,13 @@
+{# begin {templatelocation} #}
+
+<hr class="glforum-hr-none"{xhtml}>
+
+{pagenavigation}
+
+<div class="uk-text-right uk-margin-bottom">
+    {newtopic_link}{replytopic_link}
+</div>
+
+{# {page_generated_time} #} 
+
+{# end {templatelocation} #}

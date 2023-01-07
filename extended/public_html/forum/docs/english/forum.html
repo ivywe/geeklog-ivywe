@@ -82,6 +82,22 @@
   <td>blockmenu</td>
   <td>The type of user menu to display. Use a Geeklog block or the navigation bar (supported by the NavMan Plugin).</td>
 </tr>
+<tr class="r2">
+  <td><a name="desc_likes_forum">likes_forum</a></td>
+  <td>1</td>
+  <td>Disable (0) the Likes System for forum posts or enable it with Likes and Dislikes (1) or just Likes (2). The Geeklog config option likes_enabled also must be set if you wish to enable the Likes System for fourm posts.</td>
+</tr>
+<tr>
+  <td><a name="desc_recaptcha">recaptcha</a></td>
+  <td>1</td>
+  <td>Requires the reCAPTCHA plugin v1.2.1+ to be installed, setup with the proper keys, and enabled. reCAPTCHA options include :
+    <ul>
+      <li>0: Disabled, don't show reCAPTCHA</li>
+      <li>1: Use reCAPTCHA V2 (default)</li>
+      <li>2: Use reCAPTCHA V2 Invisible</li>
+    </ul>
+    For more about how reCAPTCHA helps fight SPAM see the reCAPTCHA plugin docs or visit the <a href="https://www.google.com/recaptcha/" target="_blank">Google reCAPTCHA</a> website.</td>
+</tr>
 </table>
 
 <h3><a name="config_topicposting">Topic Posting</a></h3>
@@ -124,7 +140,7 @@
 <tr>
   <td><a name="desc_allowed_editwindow">allowed_editwindow</a></td>
   <td>60</td>
-  <td>Allowed time in seconds to allow users to edit their posts.</td>
+  <td>Allowed time in seconds to allow users to edit their posts. To disable set to 0. To always enable set to -1.</td>
 </tr>
 <tr class="r2">
   <td><a name="desc_allow_html">allow_html</a></td>
@@ -379,7 +395,7 @@ forum config.php file (found in /path/to/geeklog/plugins/forum/) in your favorit
 <tr class="r2">
   <td><a name="desc_silent_edit_default">silent_edit_default</a></td>
   <td>true</td>
-  <td>When editing a post, you have a checkbox by the Submit button. If the silent option is not checked, the posted date will be updated and notifications sent out. If checked the Edit/Save is done siliently. This config option sets the default - set to <strong>true</strong> to have this checked by default.</td>
+  <td>When editing a post, you have a checkbox by the Submit button. If the silent option is not checked, the posted date will be updated and notifications sent out. If checked the Edit/Save is done silently. This config option sets the default - set to <strong>true</strong> to have this checked by default.</td>
 </tr>
 <tr>
   <td><a name="desc_allow_img_bbcode">allow_img_bbcode</a></td>
@@ -404,12 +420,12 @@ forum config.php file (found in /path/to/geeklog/plugins/forum/) in your favorit
 <tr>
   <td><a name="desc_default_Datetime_format">default_Datetime_format</a></td>
   <td>$_CONF['shortdate']." ".$_CONF['timeonly']</td>
-  <td>Default date/time format to use if Forum setting for allow user-dateformat is disabled. Refer to the online <a href="http://ca3.php.net/manual/en/function.strftime.php">php manual</a> for more info on the time format string options.</td>
+  <td>Default date/time format to use if Forum setting for allow user-dateformat is disabled. Refer to the online <a href="http://ca3.php.net/manual/en/function.strftime.php">php manual</a> for more info on the time format string options. Please note as of Forum 2.9.5, it uses COM_strftime which uses the same format string options as the function strftime which was depreciated in PHP 8.1.</td>
 </tr>
 <tr class="r2">
   <td><a name="desc_default_Topic_Datetime_format">default_Topic_Datetime_format</a></td>
   <td>$_CONF['shortdate']." ".$_CONF['timeonly']</td>
-  <td>Date format that is shown at the top of of the topic post used if Forum setting for allow user-dateformat is disabled. Refer to the online <a href="http://ca3.php.net/manual/en/function.strftime.php">php manual</a> for more info on the time format string options.</td>
+  <td>Date format that is shown at the top of of the topic post used if Forum setting for allow user-dateformat is disabled. Refer to the online <a href="http://ca3.php.net/manual/en/function.strftime.php">php manual</a> for more info on the time format string options. Please note as of Forum 2.9.5, it uses COM_strftime which uses the same format string options as the function strftime which was depreciated in PHP 8.1.</td>
 </tr>
 <tr>
   <td><a name="desc_contentinfo_numchars">contentinfo_numchars</a></td>

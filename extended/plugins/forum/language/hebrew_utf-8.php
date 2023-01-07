@@ -165,6 +165,7 @@ $LANG_GF01 = array(
     'SUBSCRIPTIONS' => 'Subscriptions',
     'TOP' => 'Top of Post',
     'PRINTABLE' => 'גירסה להדפסה',
+	'printed_subject' => 'Forum Subject: %s',
     'USERPREFS' => 'User Preferences',
     'SPEEDLIMIT' => 'תגובתכם הקודמת הייתה לפני %s שניות.<br' . XHTML . '>אתר זה דורש לפחות %s שניות בין שליחת הודעות פורומים.',
     'ACCESSERROR' => 'שגיאה בגישה',
@@ -172,6 +173,8 @@ $LANG_GF01 = array(
     'DELETEALL' => 'מחיקת כל הפריטים המסומנים',
     'DELCONFIRM' => 'האם הנכם בטוחים שאתם רוצים למחוק את הפריטים המסומנים',
     'DELALLCONFIRM' => 'האם הנכם בטוחים שאתם רוצים למחוק את *כל* הפריטים המסומנים',
+	'DELCONFIRM_PARENT' => 'Are you sure you want to Delete this parent topic? It means that any replies it has will also be deleted.',
+	'DELALLCONFIRM_PARENT' => 'Are you sure you want to Delete ALL selected records? If you have selected parent topics, then any replies to those topics will also be deleted. Parent Topics are the ones that show Views greater than 0.',	
     'STARTEDBY' => 'נוצר על ידי:',
     'WARNING' => 'אזהרה',
     'MODERATED' => 'מפקחים: %s',
@@ -235,12 +238,16 @@ $LANG_GF02 = array(
     'msg18' => 'שגיאה! לא כל השדות הושלמו או שהם היו קצרים מדי באורכם.',
     'msg19' => 'הודעתכם נשלחה.',
     'msg22' => '- Forum Post Notification',
-    'msg23a' => "A reply has been made to the thread '%s' by %s.\n\nThis topic was started by %s in the %s forum. ",
-    'msg23b' => "A new topic '%s' has been posted by %s in the %s forum on the %s website. You may view it at:\n%s/forum/viewtopic.php?showtopic=%s\n",
-    'msg23c' => "You may view it at:\n%s/forum/viewtopic.php?showtopic=%s&lastpost=true\n",
-    'msg25' => "\nHave a great day! \n",
-    'msg26' => "\nYou are receiving this email because you have chosen to be notified when a reply has been made to this topic. ",
-    'msg27' => "To stop receiving notifications on this topic go to <%s> to remove it.\n",
+	'reply_to_thread_msg' => "A reply has been made to the thread '%s' by %s.",
+	'topic_started_msg' => "This topic was started by %s in the %s forum.",
+	'view_reply_at_msg' => "You may view the reply at:",
+	'new_topic_msg' => "A new topic '%s' has been posted by %s in the '%s' forum on the %s website.",
+	'view_topic_at_msg' => "You may view it at:",
+	'edit_to_post_msg' => "An edit has been made to a post in the thread '%s' by %s.",
+	'view_edit_at_msg' => "You may view the edited post at:",
+	'stop_reply_notify_msg' => "You are receiving this email because you have chosen to be notified when a reply has been made to this topic. To stop receiving notifications on this topic go to:",
+	'stop_new_notify_msg' => "You are receiving this email because you have chosen to be notified when a new topic has been posted to this forum. To stop receiving notifications for this forum go to:",
+	'great_day_msg' => "Have a great day!",
     'msg33' => 'מחבר: ',
     'msg36' => 'מצב רוח:',
     'msg38' => 'הודיעו לי על תגובות ',
@@ -249,13 +256,14 @@ $LANG_GF02 = array(
     'msg49' => '(נצפה %s פעמים) ',
     'msg55' => 'ההודעה נמחקה.',
     'msg56' => 'כתובת ה-IP הוחרמה.',
+	'msg57' => 'IP removed from being Banned.',
     'msg59' => 'דיון רגיל',
     'msg60' => 'הודעה חדשה',
     'msg61' => 'דיון דביק',
     'msg62' => 'Notify me of replies',
     'msg64' => 'האם הנכם מעוניינים למחוק את נושא %s שכותרתו: %s ?',
     'msg65' => '<br' . XHTML . '>זהו נושא ראשי, ולכן כל התגובות לו ימחקו גם.',
-    'msg68' => 'שימו לב: *היזהרו כשאתם מחרימים*, רק מנהלים יכולים להפסיק חרם.',
+    'msg68' => 'Do you really want to remove the ban for the ip address: %s?',
     'msg69' => 'האם הנכם באמת מעוניינים להחרים את הכתובת: %s?',
     'msg71' => 'שום פונקציה לא נבחרה. ביחרו הודעה ואז פונקציית מפקח.<br' . XHTML . '>שימו לב: הנכם חייבים להיות מפקחים כדי לבצע פונקציות אלה.',
     'msg72' => 'אזהרה, אין לכם הרשאה לבצע פעולת פיקוח זו.',
@@ -302,7 +310,12 @@ $LANG_GF02 = array(
     'msg135' => 'You will now be notified of all posts to this forum.',
     'msg136' => 'You must choose a forum to subscribe to.',
     'msg137' => 'Notification for topic enabled',
-    'msg138' => '<b>רשום לכל הפורום</b>',
+	'msg138a' => 'Listed below are all the forum topics you have subscribed to. This means for these subscriptions you will receive an email notification when someone replies to one of your subscribed topics.',
+	'msg138b' => 'Listed below are all the forums you have subscribed to. This means for these subscriptions you will receive an email notification when a new topic is created in one of these forums, or someone replies to a topic. Please note that deleting a forum subscription will also delete any Topic Exception Notifications associated with the forum (but not any individual topic notifications).',
+	'msg138c' => 'Listed below are all the topics that belong to the forum(s) you have subscribed to (see Forum Notifications), but you have unsubscribed from and chosen not to receive any more topic reply email notifications for.',
+	'msg139a' => 'Listed below are all the forum topics the user you are viewing has subscribed to. This means for these subscriptions the user will receive an email notification when someone replies to one of their subscribed topics. If "All Users" are selected then the User column contains the name of the account the notification is for.',
+	'msg139b' => 'Listed below are all the forums the user you are viewing has subscribed to. This means for these subscriptions the user will receive an email notification when a new topic is created in one of these forums, or someone replies to a topic. Please note that deleting a forum subscription will also delete any Topic Exception Notifications associated with the forum (but not any individual topic notifications).  If "All Users" are selected then the User column contains the name of the account the notification is for.',
+	'msg139c' => 'Listed below are all the topics that belong to the forum(s) the user has subscribed to (see Forum Notifications), but they have unsubscribed from and chosen not to receive any more topic reply email notifications for. If "All Users" are selected then the User column contains the name of the account the notification is for.',
     'msg142' => 'בקשת ההרשמה נשמרה.',
     'msg144' => 'Return to topic',
     'msg146' => 'ההתראה נמחקה',
@@ -341,6 +354,7 @@ $LANG_GF02 = array(
     'msg188' => 'Click to go directly to last post',
     'msg189' => 'Error: You can not edit this post anymore',
     'msg190' => 'Silent Edit',
+	'msg190b' => 'When enabled and the forum post is saved, no notifications will be sent to users subscribed to this topic (or forum) about this update, and the forum post date will not be changed to the current date and time.',
     'msg191' => 'Edit not permitted. Allowable edit timeframe expired or you need moderator rights',
     'msg192' => 'Completed ... Migrated %s topics and %s comments.',
     'msg193' => 'STORY&nbsp;&nbsp;TO&nbsp;&nbsp;FORUM&nbsp;&nbsp;MIGRATION&nbsp;&nbsp;UTILITY',
@@ -353,21 +367,37 @@ $LANG_GF02 = array(
     'msg200' => 'Site members report',
     'msg201' => 'Popular topics',
     'msg202' => 'No new posts',
-    'msg300' => 'Your preferences have block anonymous posts enabled',
-    'msg301' => 'Realy mark all categories read?',
-    'msg302' => 'Realy mark all topics read?',
+    'msg300' => 'This Forum Post by an anonymous user has been blocked. To enable see your <a href="/forum/userprefs.php">Forum User Preferences</a>.',
+	'msg301' 	=> 'Really mark all topics in all forums and categories read?',
+	'msg301a' 	=> 'All topics in all forums and categories have now been marked as read.',
+	'msg302' 	=> 'Really mark all topics read in this forum?',
+	'msg302a' 	=> 'All topics in this forum have now been marked as read.',
+	'msg303' 	=> 'Really mark all topics in all forums in this category read?',
+	'msg303a' 	=> 'All topics in all forums from this category have now been marked as read.',
     'PostReply' => 'הוסיפו תגובה חדשה',
     'PostTopic' => 'הוסיפו דיון חדש',
     'EditTopic' => 'Edit Topic',
     'quietforum' => 'Forum has no new topics'
 );
+$LANG_GF02['adminconfirmation']   = 'Administrator Confirmation';
+$LANG_GF02['num_forumposts']   = '%s Forum Post(s)';
+$LANG_GF02['gl_topics_desc']   = '<em>Important:</em> These are Geeklog Topics (which you have Edit access for) which can be assigned to the root parent forum topic post (which then applies to the entire fourm topic) or the Forum, or Category itself. If Geeklog Topics are assigned to the Category or Forum they will then be inherited by and items below it (unless that item is assigned to another Geeklog Topic).<br' . XHTML . '><br' . XHTML . '>Since Blocks (and their positions) are assigned to Geeklog Topics this allows you to select the Geeklog Topic you want and then have these Blocks display for the forum topic. This also allows the blocks postion "Forum Show Topic" to be used more effectively.<br' . XHTML . '><br' . XHTML . '>The Geeklog Topic assignment(s) for forum topics does not affect the permissions of the forum (like it does with articles). If the visitor has access to view the forum post but not the topic assigned to it then "All Topics" is assumed. If no Geeklog Topics are assigned to the forum topic then the default "All Topics" is assumed.';
+$LANG_GF02['gl_topics_inherit_category'] = '%s (inherited from Category)';
+$LANG_GF02['gl_topics_inherit_forum'] = '%s (inherited from Forum)';
+$LANG_GF02['gl_topics_inherit_config'] = '%s (inherited from Config)';
+$LANG_GF02['gl_topics_assigned']   = 'Geeklog Topic Assigned:';
 
 $LANG_GF03 = array(
     'delete' => 'מחיקת תגובה',
     'edit' => 'עריכת תגובה',
     'move' => 'הזזת דיון',
     'split' => 'פצלו את הדיון',
-    'ban' => 'החרמת כתובת IP',
+    'banippost'         => 'Ban IP from Posting',
+    'banippostremove'   => 'Remove Ban for IP from Posting',
+    'banip'             => 'Ban IP from Site',
+    'banipremove'       => 'Remove Ban for IP from Site',
+    'banipmsg'      	=> 'IP has been banned from site',
+    'banipremovemsg'	=> 'Ban has been removed for IP from Site',  
     'movetopic' => 'הזיזו את הדיון',
     'movetopicmsg' => '<br' . XHTML . '>הדיון להזזה: "<b>%s</b>"',
     'splittopicmsg' => '<br' . XHTML . '>צרו דיון חדש עם הודעה זו: "<b>%s</b>"<br' . XHTML . '><em>מאת:</em>&nbsp;%s&nbsp <em>נכתבה ב:</em>&nbsp;%s',
@@ -411,7 +441,8 @@ $LANG_GF06 = array(
     4 => 'מפקחים',
     5 => 'המרות',
     6 => 'הודעות',
-    7 => 'ניהול ה-IP'
+	7 => 'Subscriptions',
+    8 => 'ניהול ה-IP'
 );
 
 $LANG_GF07 = array(
@@ -519,7 +550,9 @@ $LANG_GF93 = array(
     'hideposts' => 'החביאו הודעות חדשות',
     'hidepostsdscp' => 'עדכונים לא יופיעו בקוביות מידע של הודעות חדשות או בהזנות RSS',
     'mod_title' => 'מפקחי הפורומים',
-    'allforums' => 'כל הפורומים'
+    'allforums' => 'כל הפורומים',
+    'namerequired' => 'Name is required.',
+	'resyncedmsg' => 'ReSynch and Clean completed for selected category or forum.<br><ul><li>%s topic posts re-synced.</li><li>%s orphan topic records (those without a parent topic) found and fixed.</li><li>%s orphan records found and cleaned from all other Forum tables.</li></ul>'
 );
 
 $LANG_GF95 = array(
@@ -548,6 +581,9 @@ $LANG_GF96 = array(
     'noip' => 'You did not provide an IP address!'
 );
 
+$LANG_GF97 = array (
+    'gfsubscriptions' => 'Forum Subscriptions'
+);
 
 $LANG_GF_SMILIES = array(
     'biggrin' => 'Big Grin',
@@ -603,7 +639,8 @@ $LANG_confignames['forum'] = array(
     'show_searches_perpage' => 'Number of Search Results per Page',
     'showblocks' => 'Block Columns to Show with Forum',
     'usermenu' => 'Type of User Menu',
-    'use_themes_template' => 'Use templates in the theme directory',
+    'likes_forum' => 'Forum Likes',
+    'recaptcha' => 'reCAPTCHA',
     'show_subject_length' => 'Max Length of Subject',
     'min_username_length' => 'Min Length of Username',
     'min_subject_length' => 'Min Length of Subject',
@@ -692,7 +729,9 @@ $LANG_configselects['forum'] = array(
     12 => array('No access' => 0, 'Read-Only' => 2, 'Read-Write' => 3),
     13 => array('No access' => 0, 'Use' => 2),
     14 => array('No access' => 0, 'Read-Only' => 2),
-    15 => array('All' => 'TOPIC_ALL_OPTION', 'Homepage Only' => 'TOPIC_HOMEONLY_OPTION', 'Select Topics' => 'TOPIC_SELECTED_OPTION')
+    15 => array('All' => 'TOPIC_ALL_OPTION', 'Homepage Only' => 'TOPIC_HOMEONLY_OPTION', 'Select Topics' => 'TOPIC_SELECTED_OPTION'),
+    16 => array('Disabled' => RECAPTCHA_NO_SUPPORT, 'reCAPTCHA V2' => RECAPTCHA_SUPPORT_V2, 'reCAPTCHA V2 Invisible' => RECAPTCHA_SUPPORT_V2_INVISIBLE),
+    41 => array('False' => 0, 'Likes and Dislikes' => 1, 'Likes Only' => 2)
 );
 
 ?>

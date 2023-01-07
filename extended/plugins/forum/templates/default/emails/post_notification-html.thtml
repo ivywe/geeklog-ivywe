@@ -1,0 +1,20 @@
+{!if lang_hello_msg}
+<p>{lang_hello_msg} {username}</p>
+{!endif}
+
+<p>{lang_topic_thread_msg}</p>
+
+{!if lang_topic_started_msg}
+<p>{lang_topic_started_msg}</p>
+{!endif}
+
+<p>{lang_view_post_at_msg}<br{XHTML}>
+{post_url}</p>
+
+{!if subscriptions_url}
+<p>{lang_stop_notify_msg}<br{XHTML}>
+{subscriptions_url}</p>
+
+<p>{lang_great_day_msg}<br{XHTML}>
+{site_name} {lang_admin}</p>
+{!endif}

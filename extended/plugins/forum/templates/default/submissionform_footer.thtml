@@ -1,17 +1,14 @@
 {# begin {templatelocation} #}
 
+	</div>
 </form>
 
 {topic_review}
 
 <!-- BEGIN topic_review -->
-<div class="uk-margin-large-top">
-	<div class="uk-width-1-1">
-		<hr{xhtml}>
-		<iframe class="uk-align-center" src="{site_url}/forum/viewtopic.php?mode=preview&amp;showtopic={topic_id}&amp;onlytopic=1&amp;lastpost=true" height="300" width="98%"></iframe>
-		<hr{xhtml}>
-	</div>
-</div>
+
+{# The style and onload code is needed for Chrome and Edge Browsers to make sure page doesn't jump down to iframe if the iframe itself contains an anchor in the src link #}
+<iframe src="{previewlastpostURL}" height="300" width="100%" style="position: absolute; top: -9999em; visibility: hidden;" onload="this.style.position='static'; this.style.visibility='visible';"></iframe>
 
 <!-- END topic_review -->
 

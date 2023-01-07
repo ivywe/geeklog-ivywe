@@ -1,0 +1,95 @@
+{# begin {templatelocation} - List of icons used by the forum #}
+
+<!-- BEGIN new_icon -->
+<span uk-icon="icon: file"></span>
+<!-- END new_icon -->
+
+<!-- BEGIN quiet_icon -->
+<span class="uk-text-muted" uk-icon="icon: comments"></span>
+<!-- END quiet_icon -->
+
+<!-- BEGIN active_icon -->
+<span class="uk-text-emphasis" uk-icon="icon: comments"></span>
+<!-- END active_icon -->
+
+<!-- BEGIN normal_icon -->
+<span uk-icon="icon: file-text" class="uk-text-success"></span>
+<!-- END normal_icon -->
+
+<!-- BEGIN normalnew_icon -->
+<span uk-icon="icon: file-text" class="uk-text-warning"></span>
+<!-- END normalnew_icon -->
+
+<!-- BEGIN sticky_icon -->
+<span uk-icon="icon: push" class="uk-text-success"></span>
+<!-- END sticky_icon -->
+
+<!-- BEGIN stickynew_icon -->
+<span uk-icon="icon: push" class="uk-text-warning"></span>
+<!-- END stickynew_icon -->
+
+<!-- BEGIN locked_icon -->
+<span uk-icon="icon: lock" class="uk-text-success"></span>
+<!-- END locked_icon -->
+
+<!-- BEGIN lockednew_icon -->
+<span uk-icon="icon: lock" class="uk-text-warning"></span>
+<!-- END lockednew_icon -->
+
+<!-- BEGIN status_yes -->
+<span uk-icon="icon: check" class="uk-text-success"></span>
+<!-- END status_yes -->
+
+<!-- BEGIN status_no -->
+<span uk-icon="icon: close" class="uk-text-danger"></span>
+<!-- END status_no -->
+
+<!-- BEGIN sort_desc -->
+<span uk-icon="icon: arrow-down; ratio:0.75" class="uk-text-muted"></span>
+<!-- END sort_desc -->
+
+<!-- BEGIN sort_desc_on -->
+<span uk-icon="icon: arrow-down; ratio:1" class="uk-text-emphasis"></span>
+<!-- END sort_desc_on -->
+
+<!-- BEGIN sort_asc -->
+<span uk-icon="icon: arrow-up; ratio:0.75" class="uk-text-muted"></span>
+<!-- END sort_asc -->
+
+<!-- BEGIN sort_asc_on -->
+<span uk-icon="icon: arrow-up; ratio:1" class="uk-text-emphasis"></span>
+<!-- END sort_asc_on -->
+
+<!-- BEGIN topiclocked_icon -->
+<span uk-icon="icon: lock"></span>
+<!-- END topiclocked_icon -->
+
+<!-- BEGIN mood_icon -->
+	<div><img src="{moodicon}" width="40" height="40" title="{moodicontitle}" alt="{moodtitle}"{xhtml}></div>
+<!-- END mood_icon -->
+
+<!-- BEGIN memberbadge_icon -->
+<div class="uk-label">{memberbadgetitle}</div>
+<!-- END memberbadge_icon -->
+
+<!-- BEGIN user_icon -->
+<span uk-icon="icon: user"></span>
+<!-- END user_icon -->
+
+{# User Forum Rank #}
+<!-- BEGIN rankon_icon -->
+<span class="uk-text-success">&#9632;</span>
+<!-- END rankon_icon -->
+
+<!-- BEGIN rankoff_icon -->
+<span>&#9632;</span>
+<!-- END rankoff_icon -->
+
+<!-- BEGIN rankmod_icon -->
+<span class="uk-text-warning">&#9632;</span>
+<!-- END rankmod_icon -->
+
+<!-- BEGIN rankadmin_icon -->
+<span class="uk-text-danger">&#9632;</span>
+
+<!-- END rankadmin_icon -->

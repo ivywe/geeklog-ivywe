@@ -57,7 +57,9 @@ $_FORUM_DEFAULT = array(
     'show_searches_perpage' => '20',
     'showblocks'            => 'leftblocks', // Added
     'usermenu'              => 'blockmenu',  // Added
-    'use_themes_template'   => '0',          // Added
+    'likes_forum'           => '1',
+    'recaptcha'             => RECAPTCHA_SUPPORT_V2, // Possible values are: RECAPTCHA_SUPPORT_NONE, RECAPTCHA_SUPPORT_V2, RECAPTCHA_SUPPORT_V2_INVISIBLE
+    'use_themes_template'   => '0',          // Now removed but left in as may be need if user is upgrading from a really old version
     // ----------------------------------
     'show_subject_length'   => '75',
     'min_username_length'   => '2',
@@ -152,7 +154,9 @@ function plugin_initconfig_forum()
         $c->add('show_searches_perpage', $_FORUM_DEFAULT['show_searches_perpage'], 'text',     0, 0, 0,    $o++, true, $n, $t);
         $c->add('showblocks',            $_FORUM_DEFAULT['showblocks'],            'select',   0, 0, 6,    $o++, true, $n, $t);
         $c->add('usermenu',              $_FORUM_DEFAULT['usermenu'],              'select',   0, 0, 7,    $o++, true, $n, $t);
-        $c->add('use_themes_template',   $_FORUM_DEFAULT['use_themes_template'],   'select',   0, 0, 0,    $o++, true, $n, $t);
+        //$c->add('use_themes_template',   $_FORUM_DEFAULT['use_themes_template'],   'select',   0, 0, 0,    $o++, true, $n, $t);
+        $c->add('likes_forum',           $_FORUM_DEFAULT['likes_forum'],           'select',   0, 0, 41,   $o++, true, $n, $t);
+        $c->add('recaptcha',             $_FORUM_DEFAULT['recaptcha'],             'select',   0, 0, 16,   $o++, true, $n, $t);
         // ----------------------------------
         $t = 1;
         $c->add('tab_topicposting',      NULL,                                     'tab',      0, $t, NULL, 0,   true, $n, $t);
@@ -439,6 +443,32 @@ function forum_update_ConfValues_2_9_0()
     // Remove use_themes_template override
 	$c = config::get_instance();
 	$c->del('use_themes_template', 'forum');
+    
+	return true;	
+}
+
+function forum_update_ConfValues_2_9_4()
+{
+	global $_CONF, $_FORUM_DEFAULT;
+	
+    require_once $_CONF['path_system'] . 'classes/config.class.php';
+	
+	$c = config::get_instance();
+
+    $n = 'forum';
+	
+    // Remove use_themes_template override
+	// This was removed in 2.9.0 but gets reinstalled in later versions by accident so remove for good here
+	$c->del('use_themes_template', $n);
+
+    // Add Likes System config value
+    $o = 59;
+    $t = 0;    
+    $c->add('likes_forum',           $_FORUM_DEFAULT['likes_forum'],           'select',   0, 0, 41,   $o, true, $n, $t);
+    // Add reCAPTCHA plugin v1.2.1+ support
+    $o = 60;
+    $t = 0;    
+    $c->add('recaptcha',             $_FORUM_DEFAULT['recaptcha'],             'select',   0, 0, 16,   $o++, true, $n, $t);
     
 	return true;	
 }

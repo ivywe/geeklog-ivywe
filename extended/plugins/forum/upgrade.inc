@@ -228,4 +228,31 @@ function upgrade_293() {
     COM_errorLog("Success - Completed Forum plugin version 2.9.3 update",1);
     return 0;
 }
+
+function upgrade_294() {
+	global $_CONF, $_TABLES;
+	
+	require_once $_CONF['path'] . 'plugins/forum/install_defaults.php';
+    forum_update_ConfValues_2_9_4();
+	
+	// For Github issue #89 https://github.com/Geeklog-Plugins/forum/issues/89
+	// For Github issue #82 https://github.com/Geeklog-Plugins/forum/issues/82
+	require_once $_CONF['path_admin'] . 'plugins/forum/gf_functions.php';
+	gf_cleanforum(); // Note this process can take a long time with a forum that has 1000s of posts
+
+    COM_errorLog("Success - Completed Forum plugin version 2.9.4 update",1);
+    return 0;
+}
+
+function upgrade_295() {
+	global $_CONF, $_TABLES;
+	
+	// Requires Geeklog 2.2.2
+	// Older forum posts may be linked to users that no longer exist. This must be a bug in an older version of the forum as user delete function does exist now to deal with forum posts (which deletes watch records and reassigns posts to anonymous users)
+	DB_query("UPDATE {$_TABLES['forum_topic']} ft SET ft.uid = 1 WHERE ft.uid NOT IN (SELECT uid FROM {$_TABLES['users']})");
+
+    COM_errorLog("Success - Completed Forum plugin version 2.9.5 update",1);
+    return 0;
+}
+
 ?>

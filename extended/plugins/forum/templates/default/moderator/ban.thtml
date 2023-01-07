@@ -1,14 +1,15 @@
 {# begin {templatelocation} #}
 
-<form action="{site_url}/forum/moderation.php" method="post">
-	<input type="hidden" name="hostip" value="{hostip}"{xhtml}>
-	<input type="hidden" name="confirmbanip" value="1"{xhtml}>
-	<input type="hidden" name="forum" value="{forum}"{xhtml}>
-	<input type="hidden" name="fortopicid" value="{fortopicid}"{xhtml}>
-	<div class="uk-text-center">
-		<button class="uk-button" type="submit" name="submit" value="{$LANG_GF01[CONFIRM]}">{$LANG_GF01[CONFIRM]}</button>
-		<button class="uk-button" type="submit" name="submit" value="{$LANG_GF01[CANCEL]}">{$LANG_GF01[CANCEL]}</button>
-	</div>
-</form>
+<p>
+	<form action="{site_url}/forum/moderation.php" method="post">
+		<input type="hidden" name="hostip" value="{hostip}"{xhtml}>
+		<input type="hidden" name="confirmbanip" value="1"{xhtml}>
+		<input type="hidden" name="msgid" value="{fortopicid}"{xhtml}>
+		<div style="text-align: center;">
+			<input type="submit" name="submit" value="{$LANG_GF01[CONFIRM]}"{xhtml}>&nbsp;&nbsp;
+			<input type="submit" name="submit" value="{$LANG_GF01[CANCEL]}"{xhtml}>
+		</div>
+	</form>
+</p>
 
 {# end {templatelocation} #}

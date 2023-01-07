@@ -165,6 +165,7 @@ $LANG_GF01 = array(
     'SUBSCRIPTIONS' => 'Varslinger',
     'TOP' => 'Til toppen',
     'PRINTABLE' => 'Utskriftsvennlig',
+	'printed_subject' => 'Forum Subject: %s',
     'USERPREFS' => 'Forum innstillinger',
     'SPEEDLIMIT' => '"Ditt siste innlegg var for %s sekunder siden.<br' . XHTML . '>Systemet krever minst %s sekunder mellom innlegg."',
     'ACCESSERROR' => 'ADGANGSFEIL',
@@ -172,6 +173,8 @@ $LANG_GF01 = array(
     'DELETEALL' => 'Slett alle valgte',
     'DELCONFIRM' => 'Er du sikker på å slette alle valgte?',
     'DELALLCONFIRM' => 'Er du sikker på å slette alle valgte?',
+	'DELCONFIRM_PARENT' => 'Are you sure you want to Delete this parent topic? It means that any replies it has will also be deleted.',
+	'DELALLCONFIRM_PARENT' => 'Are you sure you want to Delete ALL selected records? If you have selected parent topics, then any replies to those topics will also be deleted. Parent Topics are the ones that show Views greater than 0.',	
     'STARTEDBY' => 'Startet av:',
     'WARNING' => 'Advarsel',
     'MODERATED' => 'Moderatorer: %s',
@@ -235,12 +238,16 @@ $LANG_GF02 = array(
     'msg18' => 'Feil! Alle felt er ikke fylt i, elle er for korte i lengde.',
     'msg19' => 'Ditt innlegg er postet.',
     'msg22' => '- Forumvarsel',
-    'msg23a' => "Et svar er skrevet i tråden '%s' av %s.\n\nInnlegget ble startet av %s i emnet %s . ",
-    'msg23b' => "Et nytt innlegg '%s' er postet av %s i emnet %s på %s webside. Du kan vise det her:\n%s/forum/viewtopic.php?showtopic=%s\n",
-    'msg23c' => "Du kan vise det her:\n%s/forum/viewtopic.php?showtopic=%s&lastpost=true\n",
-    'msg25' => "\nHa en strålende dag! \n",
-    'msg26' => "\nDu mottar denne mailen fordi du har valgt å bli varslet når et svar har blitt skrevet i denne tråden. ",
-    'msg27' => "For å stoppe mottak av varsler gå til <%s> for å fjerne varsling.\n",
+	'reply_to_thread_msg' => "A reply has been made to the thread '%s' by %s.",
+	'topic_started_msg' => "This topic was started by %s in the %s forum.",
+	'view_reply_at_msg' => "You may view the reply at:",
+	'new_topic_msg' => "A new topic '%s' has been posted by %s in the '%s' forum on the %s website.",
+	'view_topic_at_msg' => "You may view it at:",
+	'edit_to_post_msg' => "An edit has been made to a post in the thread '%s' by %s.",
+	'view_edit_at_msg' => "You may view the edited post at:",
+	'stop_reply_notify_msg' => "You are receiving this email because you have chosen to be notified when a reply has been made to this topic. To stop receiving notifications on this topic go to:",
+	'stop_new_notify_msg' => "You are receiving this email because you have chosen to be notified when a new topic has been posted to this forum. To stop receiving notifications for this forum go to:",
+	'great_day_msg' => "Have a great day!",
     'msg33' => 'Av: ',
     'msg36' => 'Mood:',
     'msg38' => 'Varsle svar ',
@@ -249,13 +256,14 @@ $LANG_GF02 = array(
     'msg49' => '(Vist %s ganger) ',
     'msg55' => 'Innlegg Slettet.',
     'msg56' => 'IP Banned.',
+	'msg57' => 'IP removed from being Banned.',
     'msg59' => 'Normalt Emne',
     'msg60' => 'Nytt Innlegg',
     'msg61' => 'Prioritert Emne',
     'msg62' => 'Varsle meg ved svar',
     'msg64' => 'Er du sikker på at du vil slette emnet %s med navn: %s ?',
     'msg65' => '<br' . XHTML . '>Dette er hovedinnlegget, så alle svar vil også bli slettet.',
-    'msg68' => 'Note: BE CAREFUL WHEN YOU BAN, only admins have the rights to unban someone.',
+    'msg68' => 'Do you really want to remove the ban for the ip address: %s?',
     'msg69' => 'Do you really want to ban the ip address: %s?',
     'msg71' => 'No function selected, choose a post and then a moderator function.<br' . XHTML . '>Note: You must be a moderator to perform these functions.',
     'msg72' => 'Warning, you do not have rights to perform this moderation function.',
@@ -302,7 +310,12 @@ $LANG_GF02 = array(
     'msg135' => 'Du blir nå varlset om alle innlegg i denne kategorien.',
     'msg136' => 'Du må velge kategori å abbonnere på.',
     'msg137' => 'Varsling for kategori aktivert',
-    'msg138' => '<b>Varsling for komplett forum</b>',
+	'msg138a' => 'Listed below are all the forum topics you have subscribed to. This means for these subscriptions you will receive an email notification when someone replies to one of your subscribed topics.',
+	'msg138b' => 'Listed below are all the forums you have subscribed to. This means for these subscriptions you will receive an email notification when a new topic is created in one of these forums, or someone replies to a topic. Please note that deleting a forum subscription will also delete any Topic Exception Notifications associated with the forum (but not any individual topic notifications).',
+	'msg138c' => 'Listed below are all the topics that belong to the forum(s) you have subscribed to (see Forum Notifications), but you have unsubscribed from and chosen not to receive any more topic reply email notifications for.',
+	'msg139a' => 'Listed below are all the forum topics the user you are viewing has subscribed to. This means for these subscriptions the user will receive an email notification when someone replies to one of their subscribed topics. If "All Users" are selected then the User column contains the name of the account the notification is for.',
+	'msg139b' => 'Listed below are all the forums the user you are viewing has subscribed to. This means for these subscriptions the user will receive an email notification when a new topic is created in one of these forums, or someone replies to a topic. Please note that deleting a forum subscription will also delete any Topic Exception Notifications associated with the forum (but not any individual topic notifications).  If "All Users" are selected then the User column contains the name of the account the notification is for.',
+	'msg139c' => 'Listed below are all the topics that belong to the forum(s) the user has subscribed to (see Forum Notifications), but they have unsubscribed from and chosen not to receive any more topic reply email notifications for. If "All Users" are selected then the User column contains the name of the account the notification is for.',
     'msg142' => 'Varlsing lagret.',
     'msg144' => 'Returner til emne',
     'msg146' => 'Varlsing slettet',
@@ -341,6 +354,7 @@ $LANG_GF02 = array(
     'msg188' => 'Klikk for å gå direkte til siste innlegg',
     'msg189' => 'Feil: Du kan ikke endre dette innlegget lenger',
     'msg190' => 'Stille endring',
+	'msg190b' => 'When enabled and the forum post is saved, no notifications will be sent to users subscribed to this topic (or forum) about this update, and the forum post date will not be changed to the current date and time.',
     'msg191' => 'Endring ikke tillatt. Tillatt tid for endring er utløpt eller du trenger moderatorrettigheter',
     'msg192' => 'Ferdig ... Migrert %s emner og %s innlegg.',
     'msg193' => 'STORY&nbsp;&nbsp;TO&nbsp;&nbsp;FORUM&nbsp;&nbsp;MIGRATION&nbsp;&nbsp;UTILITY',
@@ -353,21 +367,37 @@ $LANG_GF02 = array(
     'msg200' => 'Vis meldemsrapport',
     'msg201' => 'Vis rapport over populære emner',
     'msg202' => 'No new posts',
-    'msg300' => 'Your preferences have block anonymous posts enabled',
-    'msg301' => 'Realy mark all categories read?',
-    'msg302' => 'Realy mark all topics read?',
+    'msg300' => 'This Forum Post by an anonymous user has been blocked. To enable see your <a href="/forum/userprefs.php">Forum User Preferences</a>.',
+	'msg301' 	=> 'Really mark all topics in all forums and categories read?',
+	'msg301a' 	=> 'All topics in all forums and categories have now been marked as read.',
+	'msg302' 	=> 'Really mark all topics read in this forum?',
+	'msg302a' 	=> 'All topics in this forum have now been marked as read.',
+	'msg303' 	=> 'Really mark all topics in all forums in this category read?',
+	'msg303a' 	=> 'All topics in all forums from this category have now been marked as read.',
     'PostReply' => 'Skriv svar',
     'PostTopic' => 'Nytt emne',
     'EditTopic' => 'Endre emne',
     'quietforum' => 'Forumet har ingen nye emner'
 );
+$LANG_GF02['adminconfirmation']   = 'Administrator Confirmation';
+$LANG_GF02['num_forumposts']   = '%s Forum Post(s)';
+$LANG_GF02['gl_topics_desc']   = '<em>Important:</em> These are Geeklog Topics (which you have Edit access for) which can be assigned to the root parent forum topic post (which then applies to the entire fourm topic) or the Forum, or Category itself. If Geeklog Topics are assigned to the Category or Forum they will then be inherited by and items below it (unless that item is assigned to another Geeklog Topic).<br' . XHTML . '><br' . XHTML . '>Since Blocks (and their positions) are assigned to Geeklog Topics this allows you to select the Geeklog Topic you want and then have these Blocks display for the forum topic. This also allows the blocks postion "Forum Show Topic" to be used more effectively.<br' . XHTML . '><br' . XHTML . '>The Geeklog Topic assignment(s) for forum topics does not affect the permissions of the forum (like it does with articles). If the visitor has access to view the forum post but not the topic assigned to it then "All Topics" is assumed. If no Geeklog Topics are assigned to the forum topic then the default "All Topics" is assumed.';
+$LANG_GF02['gl_topics_inherit_category'] = '%s (inherited from Category)';
+$LANG_GF02['gl_topics_inherit_forum'] = '%s (inherited from Forum)';
+$LANG_GF02['gl_topics_inherit_config'] = '%s (inherited from Config)';
+$LANG_GF02['gl_topics_assigned']   = 'Geeklog Topic Assigned:';
 
 $LANG_GF03 = array(
     'delete' => 'Slett',
     'edit' => 'Endre',
     'move' => 'Flytt',
     'split' => 'Splitt',
-    'ban' => 'Ban IP',
+    'banippost'         => 'Ban IP from Posting',
+    'banippostremove'   => 'Remove Ban for IP from Posting',
+    'banip'             => 'Ban IP from Site',
+    'banipremove'       => 'Remove Ban for IP from Site',
+    'banipmsg'      	=> 'IP has been banned from site',
+    'banipremovemsg'	=> 'Ban has been removed for IP from Site',  
     'movetopic' => 'Flytt emne',
     'movetopicmsg' => '<br' . XHTML . '>Emne som flyttes: "<b>%s</b>"',
     'splittopicmsg' => '<br' . XHTML . '>Lag nytt emne med dette innlegget: "<b>%s</b>"<br' . XHTML . '><em>Av:</em>&nbsp;%s&nbsp <em>Den:</em>&nbsp;%s',
@@ -411,7 +441,8 @@ $LANG_GF06 = array(
     4 => 'Moderator',
     5 => 'Convert',
     6 => 'Messages',
-    7 => 'IP Mgmt'
+	7 => 'Subscriptions',
+    8 => 'IP Mgmt'
 );
 
 $LANG_GF07 = array(
@@ -519,7 +550,9 @@ $LANG_GF93 = array(
     'hideposts' => 'Skjul nye innlegg',
     'hidepostsdscp' => 'Oppdateringer vises ikke i blokker eller RSS Feeds',
     'mod_title' => 'Forum Moderatorer',
-    'allforums' => 'Alle Forum'
+    'allforums' => 'Alle Forum',
+    'namerequired' => 'Name is required.',
+	'resyncedmsg' => 'ReSynch and Clean completed for selected category or forum.<br><ul><li>%s topic posts re-synced.</li><li>%s orphan topic records (those without a parent topic) found and fixed.</li><li>%s orphan records found and cleaned from all other Forum tables.</li></ul>'
 );
 
 $LANG_GF95 = array(
@@ -548,6 +581,9 @@ $LANG_GF96 = array(
     'noip' => 'You did not provide an IP address!'
 );
 
+$LANG_GF97 = array (
+    'gfsubscriptions' => 'Forum Subscriptions'
+);
 
 $LANG_GF_SMILIES = array(
     'biggrin' => 'Big Grin',
@@ -603,7 +639,8 @@ $LANG_confignames['forum'] = array(
     'show_searches_perpage' => 'Number of Search Results per Page',
     'showblocks' => 'Block Columns to Show with Forum',
     'usermenu' => 'Type of User Menu',
-    'use_themes_template' => 'Use templates in the theme directory',
+    'likes_forum' => 'Forum Likes',
+    'recaptcha' => 'reCAPTCHA',
     'show_subject_length' => 'Max Length of Subject',
     'min_username_length' => 'Min Length of Username',
     'min_subject_length' => 'Min Length of Subject',
@@ -692,7 +729,9 @@ $LANG_configselects['forum'] = array(
     12 => array('No access' => 0, 'Read-Only' => 2, 'Read-Write' => 3),
     13 => array('No access' => 0, 'Use' => 2),
     14 => array('No access' => 0, 'Read-Only' => 2),
-    15 => array('All' => 'TOPIC_ALL_OPTION', 'Homepage Only' => 'TOPIC_HOMEONLY_OPTION', 'Select Topics' => 'TOPIC_SELECTED_OPTION')
+    15 => array('All' => 'TOPIC_ALL_OPTION', 'Homepage Only' => 'TOPIC_HOMEONLY_OPTION', 'Select Topics' => 'TOPIC_SELECTED_OPTION'),
+    16 => array('Disabled' => RECAPTCHA_NO_SUPPORT, 'reCAPTCHA V2' => RECAPTCHA_SUPPORT_V2, 'reCAPTCHA V2 Invisible' => RECAPTCHA_SUPPORT_V2_INVISIBLE),
+    41 => array('False' => 0, 'Likes and Dislikes' => 1, 'Likes Only' => 2)
 );
 
 ?>

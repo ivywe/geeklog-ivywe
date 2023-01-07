@@ -1,0 +1,15 @@
+{# begin {templatelocation} #}
+
+<form action="{site_url}/forum/index.php" method="post" name="searchbox" onsubmit="return (this.query.value != '');">
+	<div uk-form-custom="target: true">
+		<input class="uk-input" type="text" name="query" placeholder="{search}" value=""{xhtml}>
+	</div>
+    <button class="uk-button uk-button-primary" uk-icon="icon: search" type="submit" name="btnsubmit"></button>
+    
+    <input type="hidden" name="op" value="search"{xhtml}>
+	{!if forum}
+	<input type="hidden" name="forum" value="{forum}"{xhtml}>
+	{!endif}	
+</form>
+
+{# end {templatelocation} #}

@@ -42,7 +42,7 @@ if (!in_array('forum', $_PLUGINS)) {
 
 require_once $CONF_FORUM['path_include'] . 'gf_format.php';
 
-//Check is anonymous users can access - and need to be signed in
+// Check is anonymous users can access and if not, regular user can access
 forum_chkUsercanAccess(true);
 
 $display = '';
@@ -65,6 +65,15 @@ if (isset($_POST['submit']) && SEC_checkToken()) {
     $xshowiframe      = isset($_POST['xshowiframe'])      ? COM_applyFilter($_POST['xshowiframe'],true)      : '';
     $xtopicsperpage   = isset($_POST['xtopicsperpage'])   ? COM_applyFilter($_POST['xtopicsperpage'],true)   : '';
     $xviewanonposts   = isset($_POST['xviewanonposts'])   ? COM_applyFilter($_POST['xviewanonposts'],true)   : '';
+	
+	// Make sure save within requirements else set to mins. 
+	// This is also checked at beginning of functions.inc for main config items like $CONF_FORUM['show_topics_perpage']. 
+	// If change requirements here update in functions.inc
+	$xtopicsperpage = $xtopicsperpage > 9 	? $xtopicsperpage	: 10;
+	$xpostsperpage = $xpostsperpage > 2 	? $xpostsperpage	: 3;
+	$xpopularlimit = $xpopularlimit > 9 	? $xpopularlimit	: 10;
+	$xmembersperpage = $xmembersperpage > 9 ? $xmembersperpage	: 10;
+	$xsearchperpage = $xsearchperpage > 9 	? $xsearchperpage	: 10;
 
     DB_query("UPDATE {$_TABLES['forum_userprefs']} SET
         topicsperpage='$xtopicsperpage',
@@ -81,9 +90,7 @@ if (isset($_POST['submit']) && SEC_checkToken()) {
         showiframe='$xshowiframe'
      WHERE uid='{$_USER['uid']}'");
 
-    $display = COM_refresh($_CONF['site_url'] .'/forum/userprefs.php?msg=1');
-    COM_output($display);
-    exit;
+    COM_redirect($_CONF['site_url'] .'/forum/userprefs.php?msg=1');
 }
 
 
@@ -186,5 +193,3 @@ if (!isset($_POST['$submit'])) {
 $display = gf_createHTMLDocument($display);
 
 COM_output($display);
-
-?>

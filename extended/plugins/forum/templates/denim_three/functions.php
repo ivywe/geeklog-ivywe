@@ -1,5 +1,4 @@
 <?php
-
 // Allows plugin to add extra CSS and javascript libraries for individual themes.
 // Theme settings will overwrite any plugin settings that are the same name/file
 
@@ -13,11 +12,12 @@ if (strpos(strtolower($_SERVER['PHP_SELF']), 'functions.php') !== false) {
 /**
  * Return an array of CSS files to be loaded
  */
-function forum_css_denim()
+function forum_css_denim_three()
 {
     global $_CONF, $LANG_DIRECTION;
 
-    // No extra CSS files needed by plugin. Assume theme loads all required.
+    // No extra CSS files needed by plugin. Assume theme loads all required
+    // These forum templates requires UIkit 2.
     return array();
 
     // BELOW NOT NEEDED ANYMORE AS LOADED BY THEME NOW
@@ -36,7 +36,7 @@ function forum_css_denim()
 /**
  * Return an array of JS libraries to be loaded
  */
-function forum_js_libs_denim()
+function forum_js_libs_denim_three()
 {
     // No extra JS libraries needed by plugin. Assume theme loads all required.
     return array();
@@ -45,11 +45,12 @@ function forum_js_libs_denim()
 /**
  * Return an array of JS files to be loaded
  */
-function forum_js_files_denim()
+function forum_js_files_denim_three()
 {
     global $_CONF;
 
     // No extra JS libraries needed by plugin. Assume theme loads all required.
+    // These forum templates requires UIkit 2.
     return array();
 
     // BELOW NOT NEEDED ANYMORE AS LOADED BY THEME NOW
@@ -64,10 +65,10 @@ function forum_js_files_denim()
 }
 
 /**
- * Return a list of CSS classes from the requested item
- *
+ * Return information for the request item location
+ * CSS Classes, Styles, etc... can be passed
  */
-function forum_getCSSClasses_denim($item)
+function forum_getThemeItem_denim_three($item)
 {
     $retval = '';
     
@@ -75,7 +76,7 @@ function forum_getCSSClasses_denim($item)
         // ***************************
         // Used for lists by COM_makeList 
             
-        case 'forum-list-menu': 
+        case 'forum-css-list-menu': 
             $retval = ''; // no extra css classes needed for forum menu for this theme
             break;
             

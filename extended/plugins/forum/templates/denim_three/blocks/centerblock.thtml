@@ -1,0 +1,37 @@
+{# begin {templatelocation} #}
+
+<h2>{LANG_FORUM}</h2>
+<div class="uk-panel">
+	<dl class="uk-description-list uk-description-list-divider">
+		<dt>{LANG_NEWPOST}</dt>
+		{block_record}
+	</dl>
+</div>
+
+<hr class="uk-margin-bottom"{xhtml}>
+
+<!-- BEGIN block_record -->
+<dt>
+	<span uk-icon="icon:folder"></span> <a href="{site_url}/forum/index.php?forum={forum_id}" class="uk-text-success uk-text-bold">{forum_name}</a>
+</dt>
+<dd>
+    <div class=" uk-margin-left">
+    	<span uk-icon="icon:file-text"></span> <a href="{site_url}/forum/viewtopic.php?showtopic={topic_id}" data-uk-tooltip title="{topicinfo}">{topic_subject}</a>
+
+		<div class="uk-grid">
+			<div class="uk-width-1-2@m">
+				{topicinfo_short}
+			</div>
+			<div class="uk-width-1-2@m">
+				{!!if ($this->get_var('replies') == '0') !!} 
+					<span class="uk-text-right uk-text-muted uk-align-right"><a href="{lastpostURL}">{repliesinfo}</a> <span uk-icon="icon:comments"></span></span>
+				{!else} 
+					<span class="uk-text-right uk-text-muted uk-align-right"><a href="{lastpostURL}" data-uk-tooltip title="{lastpostinfo}">{repliesinfo}</a> <span uk-icon="icon:comments"></span></span>
+				{!endif}
+			</div>
+		</div>
+    </div>
+</dd>
+<!-- END block_record -->
+
+{# end {templatelocation} #}

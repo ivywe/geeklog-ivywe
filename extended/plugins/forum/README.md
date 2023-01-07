@@ -1,21 +1,14 @@
-# Geeklog Forum plugin - version 2.9.3
+# Geeklog Forum Plugin
 
-* Current Maintainers: [Geeklog Community Members](https://github.com/orgs/Geeklog-Plugins/people)
+* Current Maintainers: [Geeklog Community Members](https://github.com/Geeklog-Plugins/forum/graphs/contributors)
 * Original Author: Blaine Lang
-* Release Date: June 22, 2018
+* Latest Release Supports: Geeklog v2.2.2 or higher, PHP 8.1 and MySQL 4.1 or higher
 
-**Requires minimum Geeklog version 2.1.3 and MySQL 4.1+**
-
-* Features
-* Changelog
-* Installing
-* Upgrading
-* Configuration
-* Profile Integration
-
-## Summary of features
+## Summary
 
 This plugin provides a full featured discussion forum with integrated Geeklog features for your community website. The initial version of this plugin was released in 2002.
+
+## Main Features
 
 * Integrated Geeklog group security to create restricted forums
 * Support for Read-only Forums
@@ -32,6 +25,21 @@ This plugin provides a full featured discussion forum with integrated Geeklog fe
 * Integrated support for Captcha 2.0 and reCAPTCHA 1.0 and higher versions
 * Integration with glMessenger for member private messaging and online smilie admin
 * Easy online administration and member control
+* In a forum topic, 1 or more Geeklog Blocks can be displayed every X number of forum posts
+* Can assign Forum Categories and Forum Topics to Geeklog Topics to help control the Block layout
+* Supports Geeklog built in Likes System
 * Supports MySql 5
 
-If you've enjoyed this plugin, please consider supporting Geeklog and the Geeklog Forum plugin. These projects require considerable time and effort to create and any help we get is appreciated. You do not have to be a programmer to help out either, we can always use help in testing, graphics, themes and writing documentation. If you are interested in helping out, please drop by [our GitHub site](https://github.com/Geeklog-Plugins) and post a message letting us know what you want to do.
+# Other Information
+
+Geeklog Homepage:
+https://www.geeklog.net
+
+Forum Plugin Homepage:
+https://github.com/Geeklog-Plugins/forum
+
+To find the latest releases see:
+https://github.com/Geeklog-Plugins/forum/releases
+
+To request a feature or report an issue see: 
+https://github.com/Geeklog-Plugins/forum/issues

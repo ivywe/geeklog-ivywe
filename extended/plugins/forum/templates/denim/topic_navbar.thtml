@@ -1,0 +1,45 @@
+{# begin {templatelocation} #}
+
+<div class="uk-margin-large-top">
+    <ul class="uk-breadcrumb">
+        <li><i class="uk-icon-folder-o"></i></li>
+        <li><a href="{site_url}/forum/index.php">{forum_home}</a></li>
+        <li><a href="{site_url}/forum/index.php?category={category_id}">{cat_name}</a></li>
+        <li class="uk-active"><a href="{site_url}/forum/index.php?forum={forum_id}">{forum_name}</a></li>
+    </ul>
+</div>	
+
+{#
+<div class="uk-margin-bottom uk-text-large">
+	<i class="uk-icon-comments-o"></i> <a href="viewtopic.php?showtopic={topic_id}">
+		<span>{subject}</span>
+	</a>
+</div>
+#}
+
+<h2>
+	<i class="uk-icon-comments-o"></i> <a href="viewtopic.php?showtopic={topic_id}">
+		<span>{subject}</span>
+	</a>
+</h2>
+
+{!if geeklog_topic}
+<div class="uk-text-small">{lang_geeklog_topic} {geeklog_topic}</div>
+{!endif} 
+
+<div class="uk-margin-bottom uk-text-right">
+	{topicmenu_link}
+	{newtopic_link}
+	{replytopic_link}
+	{# Buttons instead of Menu - Remove comments to enable (plus remove topicmenu_link template variable) and change related links in forum_links.html #}
+	{# 	
+	{subscribe_link}
+	{print_link}
+	{prevtopic_link}
+	{nexttopic_link}
+	#}
+</div> 
+
+{pagenavigation}
+
+{# end {templatelocation} #}

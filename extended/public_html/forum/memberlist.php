@@ -42,24 +42,24 @@ if (!in_array('forum', $_PLUGINS)) {
 
 require_once $CONF_FORUM['path_include'] . 'gf_format.php';
 
+// Check is anonymous users can access and if not, regular user can access
+forum_chkUsercanAccess();
+
+// Check if user is anonymous and can view member list as forum_chkUsercanAccess does not do this
+if (!$CONF_FORUM['show_memberslist_anonymous'] && COM_isAnonUser()) {
+	// Display access error message for a feature
+	forum_chkUsercanAccess(true);
+}
+
 // Use filter to remove all possible hostile SQL injections - only expecting numeric data
 $chkactivity = isset($_REQUEST['chkactivity']) ? COM_applyFilter($_REQUEST['chkactivity'],true) : '';
 $direction   = isset($_GET['direction'])       ? COM_applyFilter($_GET['direction'])            : '';
 $op          = isset($_GET['op'])              ? COM_applyFilter($_GET['op'])                   : '';
 $order       = isset($_GET['order'])           ? COM_applyFilter($_GET['order'],true)           : '';
-$page        = isset($_GET['page'])            ? COM_applyFilter($_GET['page'],true)            : '';
+$page        = isset($_GET['page'])            ? (int) COM_applyFilter($_GET['page'],true)      : 0;
 $prevorder   = isset($_GET['prevorder'])       ? COM_applyFilter($_GET['prevorder'],true)       : '';
-$show        = isset($_GET['show'])            ? COM_applyFilter($_GET['show'],true)            : '';
 $showuser    = isset($_GET['showuser'])        ? COM_applyFilter($_GET['showuser'],true)        : '';
 $sort        = isset($_GET['sort'])            ? COM_applyFilter($_GET['sort'],true)            : '';
-
-//Check is anonymous users can access forum
-forum_chkUsercanAccess();
-
-// Check if anonymouse users can access
-if (!$CONF_FORUM['show_memberslist_anonymous'] && COM_isAnonUser()) {
-	forum_chkUsercanAccess(true);
-}
 
 $display = '';
 
@@ -143,9 +143,9 @@ if ($op == "lastposts") {
     $nrows = DB_numRows($result);
     if ($nrows > 0) {
         for ($i = 1; $i <= $nrows; $i++) {
-            $postdate = COM_getUserDateTimeFormat($P['date']);
             $P = DB_fetchArray($result);
-            $report->set_var('post_start_ahref', '<a href="' . $_CONF['site_url'] . '/forum/viewtopic.php?showtopic=' . $P['id'] . '">');
+			$postdate = COM_getUserDateTimeFormat($P['date']);
+            $report->set_var('post_start_ahref', '<a href="' . forum_buildForumPostURL($P['id']) . '">');
             $report->set_var('post_subject', $P['subject']);
             $report->set_var('post_end_ahref', '</a>');
             $report->set_var('post_date', $postdate[0]);
@@ -182,13 +182,9 @@ if ($op == "lastposts") {
     }    
 
     // Check if the number of records was specified to show
-    if (empty($show) AND $CONF_FORUM['show_members_perpage'] > 0) {
-        $show = $CONF_FORUM['show_members_perpage'];
-    } elseif (empty($show)) {
-        $show = 20;
-    }
+	$show = $CONF_FORUM['show_members_perpage'];
     // Check if this is the first page.
-    if ($page == 0) {
+    if ($page === 0) {
         $page = 1;
     }
 
@@ -231,13 +227,17 @@ if ($op == "lastposts") {
     if ($chkactivity) {
         $memberlistsql = DB_query("SELECT user.uid FROM {$_TABLES['users']} user, {$_TABLES['forum_topic']} topic WHERE user.uid > 1 AND user.status = " . USER_ACCOUNT_ACTIVE . " AND user.uid=topic.uid GROUP BY uid");
     } else {
-        $memberlistsql = DB_query("SELECT user.uid FROM {$_TABLES['users']} user, {$_TABLES['userprefs']} userprefs WHERE user.uid > 1 AND user.status = " . USER_ACCOUNT_ACTIVE . " AND user.uid=userprefs.uid");
+		if (COM_versionCompare(VERSION, '2.2.2', '>=')) {
+			$memberlistsql = DB_query("SELECT user.uid FROM {$_TABLES['users']} user, {$_TABLES['user_attributes']} userattributes WHERE user.uid > 1 AND user.status = " . USER_ACCOUNT_ACTIVE . " AND user.uid=userattributes.uid");
+		} else {
+			$memberlistsql = DB_query("SELECT user.uid FROM {$_TABLES['users']} user, {$_TABLES['userprefs']} userprefs WHERE user.uid > 1 AND user.status = " . USER_ACCOUNT_ACTIVE . " AND user.uid=userprefs.uid");
+		}
     }
 
     $membercount = DB_numRows($memberlistsql);
     $numpages = ceil($membercount / $show);
     $offset = ($page - 1) * $show;
-    $base_url = "{$_CONF['site_url']}/forum/memberlist.php?show={$show}&amp;order={$order}&amp;sort=$sort";
+    $base_url = "{$_CONF['site_url']}/forum/memberlist.php?order={$order}&amp;sort=$sort";
     $base_url .= "&amp;chkactivity=$chkactivity";
     /*
     if ($chkactivity) {
@@ -253,14 +253,15 @@ if ($op == "lastposts") {
         $sql .= "AND user.uid=userprefs.uid";
     }
     */
+	$prefsTable = COM_versionCompare(VERSION, '2.2.2', '>=') ? $_TABLES['user_attributes'] : $_TABLES['userprefs'];
     $sql = "SELECT u.uid, u.uid, u.username, u.regdate, u.email, u.homepage, COUNT(ft.uid) AS posts, up.emailfromuser ";
     if ($chkactivity) {
-        $sql .= "FROM {$_TABLES['users']} u, {$_TABLES['userprefs']} up, {$_TABLES['forum_topic']} ft 
+        $sql .= "FROM {$_TABLES['users']} u, {$prefsTable} up, {$_TABLES['forum_topic']} ft 
         		WHERE u.uid > 1 AND u.status = " . USER_ACCOUNT_ACTIVE . " AND u.uid = ft.uid AND u.uid=up.uid ";
     } else {
         $sql .= "FROM {$_TABLES['users']} u  
         		LEFT JOIN {$_TABLES['forum_topic']} ft ON u.uid = ft.uid, 
-        		{$_TABLES['userprefs']} up
+        		{$prefsTable} up
         		WHERE u.uid > 1 AND u.status = " . USER_ACCOUNT_ACTIVE . " AND u.uid = up.uid ";
     }    
     $sql .= "GROUP BY u.uid 

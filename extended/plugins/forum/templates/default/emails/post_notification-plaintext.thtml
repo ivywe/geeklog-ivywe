@@ -1,0 +1,20 @@
+{!if lang_hello_msg}
+{lang_hello_msg} {username}{LB}
+{LB}
+{!endif}
+{lang_topic_thread_msg}{LB}
+{LB}
+{!if lang_topic_started_msg}
+{lang_topic_started_msg}{LB}
+{LB}
+{!endif}
+{lang_view_post_at_msg}{LB}
+{post_url}{LB}
+{!if subscriptions_url}
+{LB}
+{lang_stop_notify_msg}{LB}
+{subscriptions_url}{LB}
+{LB}
+{lang_great_day_msg}{LB}
+{site_name} {lang_admin}{LB}
+{!endif}

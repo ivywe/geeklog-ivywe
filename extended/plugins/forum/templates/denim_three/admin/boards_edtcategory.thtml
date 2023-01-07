@@ -1,0 +1,60 @@
+{# begin {templatelocation} #}
+
+{message}
+
+<form class="uk-form-horizontal" name="formcatedit" action="{PHP_SELF}" method="post">
+	<input type="hidden" name="type" value="category"{xhtml}>
+	<input type="hidden" name="id" value="{id}"{xhtml}>
+	<input type="hidden" name="mode" value="{mode}"{xhtml}>
+	<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+	
+	<div class="uk-card uk-card-default uk-card-small uk-card-body">
+		<fieldset>
+			<legend>{title}</legend>	
+			<div class="uk-margin">
+				<label class="uk-form-label" for="form-category-name">{LANG_NAME}</label>
+				<div class="uk-form-controls">
+					<input class="uk-input" type="text" name="name" id="form-category-name" value="{catname}" maxlength="255"{xhtml}>
+				</div>
+			</div>
+			<div class="uk-margin">				
+				<label class="uk-form-label" for="form-category-order">{LANG_ORDER}</label>
+				<div class="uk-form-controls">
+					<input class="uk-input uk-form-width-xsmall" type="text" name="catorder" id="form-category-order" value="{catorder}" maxlength="2"{xhtml}>
+				</div>			
+			</div>
+			<div class="uk-margin">				
+				<label class="uk-form-label" for="form-category-dscp">{LANG_DESCRIPTION}</label>
+				<div class="uk-form-controls">
+					<textarea class="uk-textarea post" name="dscp" id="form-category-dscp" rows="5">{catdscp}</textarea>
+				</div>				
+			</div>
+            {gl_topics}
+			<div class="uk-margin-top uk-text-right">
+                <button class="uk-button uk-button-primary" type="submit" name="submit" value="{LANG_SAVE}">{LANG_SAVE}</button>
+                <button class="uk-button uk-button-secondary" type="submit" name="submit" value="{LANG_CANCEL}">{LANG_CANCEL}</button>		
+			</div>			
+		</fieldset>
+	</div>
+</form>
+
+<!-- BEGIN message -->
+<div class="uk-alert-warning" uk-alert>
+	<a class="uk-alert-close" uk-close></a>
+	<p>{status_message}</p>
+</div>
+<!-- END message -->
+
+<!-- BEGIN gl_topics_row -->
+<hr>
+<div class="uk-margin">
+	<label class="uk-form-label" for="form-forum-topics">{LANG_TOPIC}</label>
+	<div class="uk-form-controls">
+        {topic_selection}
+        {LANG_GL_TOPICS_DESC}
+	</div>
+</div>
+<hr>
+<!-- END gl_topics_row -->
+
+{# end {templatelocation} #}

@@ -1,0 +1,94 @@
+{# begin {templatelocation} #}
+
+{block_start}
+
+{navmenu}
+
+<h2>{lang_user_preferences}</h2>
+
+<form class="uk-form-horizontal" action="{PHP_SELF}" method="post">
+	<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+	<div class="uk-grid">
+		<div class="uk-width-1-2@m uk-margin-bottom">
+			<div class="uk-margin">
+				<label class="uk-form-label" for="form-up-tpp" data-uk-tooltip title="{$LANG_GF92[topicsppdscp]}">{$LANG_GF92[topicspp]}</label>
+				<div class="uk-form-controls">
+					<input class="uk-input uk-form-width-xsmall" id="form-up-tpp" type="text" name="xtopicsperpage" size="2" maxlength="2" value="{topicsperpage}"{xhtml}>
+				</div>
+			</div>
+			<div class="uk-margin">
+				<label class="uk-form-label" for="form-up-ppp" data-uk-tooltip title="{$LANG_GF92[postsppdscp]}">{$LANG_GF92[postspp]}</label>
+				<div class="uk-form-controls">
+					<input class="uk-input uk-form-width-xsmall" id="form-up-ppp" type="text" name="xpostsperpage" size="2" maxlength="2" value="{postsperpage}"{xhtml}>
+				</div>
+			</div>
+			<div class="uk-margin">
+				<label class="uk-form-label" for="form-up-npp" data-uk-tooltip title="{$LANG_GF92[newppdscp]}">{$LANG_GF92[newpp]}</label>
+				<div class="uk-form-controls">
+					<input class="uk-input uk-form-width-xsmall" id="form-up-npp" type="text" name="xnewperpage" size="2" maxlength="2" value="{newperpage}"{xhtml}>
+				</div>
+			</div>
+			<div class="uk-margin">
+				<label class="uk-form-label" for="form-up-ppp" data-uk-tooltip title="{$LANG_GF92[popularppdscp]}">{$LANG_GF92[popularpp]}</label>
+				<div class="uk-form-controls">
+					<input class="uk-input uk-form-width-xsmall" id="form-up-ppp" type="text" name="xpopularperpage" size="2" maxlength="2" value="{popularperpage}"{xhtml}>
+				</div>
+			</div>
+			<div class="uk-margin">
+				<label class="uk-form-label" for="form-up-pl" data-uk-tooltip title="{$LANG_GF92[popularldscp]}">{$LANG_GF92[popularl]}</label>
+				<div class="uk-form-controls">
+					<input class="uk-input uk-form-width-xsmall" id="form-up-pl" type="text" name="xpopularlimit" size="2" maxlength="2" value="{popularlimit}"{xhtml}>
+				</div>
+			</div>
+			<div class="uk-margin">
+				<label class="uk-form-label" for="form-up-spp" data-uk-tooltip title="{$LANG_GF92[searchppdscp]}">{$LANG_GF92[searchpp]}</label>
+				<div class="uk-form-controls">
+					<input class="uk-input uk-form-width-xsmall" id="form-up-spp" type="text" name="xsearchperpage" size="2" maxlength="2" value="{searchperpage}"{xhtml}>
+				</div>
+			</div>
+			<div class="uk-margin">
+				<label class="uk-form-label" for="form-up-mpp" data-uk-tooltip title="{$LANG_GF92[membersppdscp]}">{$LANG_GF92[memberspp]}</label>
+				<div class="uk-form-controls">
+					<input class="uk-input uk-form-width-xsmall" id="form-up-mpp" type="text" name="xmembersperpage" size="2" maxlength="2" value="{membersperpage}"{xhtml}>
+				</div>
+			</div>
+		</div>
+		<div class="uk-width-1-2@m uk-margin-bottom">
+			<div class="uk-margin">
+				<label class="uk-form-label" for="form-up-vp" data-uk-tooltip title="{$LANG_GF92[viewapdscp]}">{$LANG_GF92[viewap]}</label>
+				<div class="uk-form-controls uk-form-controls-text">
+					<input class="uk-radio" type="radio" name="xviewanonposts" id="xviewanonposts_yes" value="1" {viewanonposts_yes}{xhtml}><label for="xviewanonposts_yes">{$LANG_GF01[YES]}</label>&nbsp;
+					<input class="uk-radio" type="radio" name="xviewanonposts" id="xviewanonposts_no" value="0" {viewanonposts_no}{xhtml}><label for="xviewanonposts_no">{$LANG_GF01[NO]}</label>
+				</div>
+			</div>
+			<div class="uk-margin">
+				<label class="uk-form-label" for="form-up-an" data-uk-tooltip title="{$LANG_GF92[alwaysndscp]}">{$LANG_GF92[alwaysn]}</label>
+				<div class="uk-form-controls uk-form-controls-text">
+					<input class="uk-radio" type="radio" name="xalwaysnotify" id="xalwaysnotify_yes" value="1" {alwaysnotify_yes}{xhtml}><label for="xalwaysnotify_yes">{$LANG_GF01[YES]}</label>&nbsp;
+					<input class="uk-radio" type="radio" name="xalwaysnotify" id="xalwaysnotify_no" value="0" {alwaysnotify_no}{xhtml}><label for="xalwaysnotify_no">{$LANG_GF01[NO]}</label>
+				</div>
+			</div>
+			<div class="uk-margin">
+				<label class="uk-form-label" for="form-up-noo" data-uk-tooltip title="{$LANG_GF92[notifyoodscp]}">{$LANG_GF92[notifyoo]}</label>
+				<div class="uk-form-controls uk-form-controls-text">
+					<input class="uk-radio" type="radio" name="xnotifyonce" id="xnotifyonce_yes" value="1" {notifyonce_yes}{xhtml}><label for="xnotifyonce_yes">{$LANG_GF01[YES]}</label>&nbsp;
+					<input class="uk-radio" type="radio" name="xnotifyonce" id="xnotifyonce_no" value="0" {notifyonce_no}{xhtml}><label for="xnotifyonce_no">{$LANG_GF01[NO]}</label>
+				</div>
+			</div>
+			<div class="uk-margin">
+				<label class="uk-form-label" for="form-up-sif" data-uk-tooltip title="{$LANG_GF92[showiframedscp]}">{$LANG_GF92[showiframe]}</label>
+				<div class="uk-form-controls uk-form-controls-text">
+					<input class="uk-radio" type="radio" name="xshowiframe" id="xshowiframe_yes" value="1" {showiframe_yes}{xhtml}><label for="xshowiframe_yes">{$LANG_GF01[YES]}</label>&nbsp;
+					<input class="uk-radio" type="radio" name="xshowiframe" id="xshowiframe_no" value="0" {showiframe_no}{xhtml}><label for="xshowiframe_no">{$LANG_GF01[NO]}</label>
+				</div>
+			</div>
+		</div>
+		<div class="uk-width-1-1 uk-text-right uk-margin-bottom">
+			<button class="uk-button uk-button-primary" name="submit" value="{LANG_save}">{LANG_save}</button>
+		</div>
+	</div>
+</form>
+
+{block_end}
+
+{# end {templatelocation} #}

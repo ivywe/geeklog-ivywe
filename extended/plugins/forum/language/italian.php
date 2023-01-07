@@ -168,6 +168,7 @@ $LANG_GF01 = array(
     'SUBSCRIPTIONS' => 'Iscrizioni',
     'TOP' => 'Inizio Messaggio',
     'PRINTABLE' => 'Versione Stampabile',
+	'printed_subject' => 'Forum Subject: %s',
     'USERPREFS' => 'Preferenze Utente',
     'SPEEDLIMIT' => '"Your last comment was %s seconds ago.<br' . XHTML . '>This site requires at least %s seconds between forum posts."',
     'ACCESSERROR' => 'ERRORE DI ACCESSO',
@@ -175,6 +176,8 @@ $LANG_GF01 = array(
     'DELETEALL' => 'Elimina tutti gli oggetti selezionati',
     'DELCONFIRM' => 'Sei sicuro di volr eliminare gli oggetti selezionati?',
     'DELALLCONFIRM' => 'Sei sicuro di volr Eliminare TUTTI gli oggetti selezionati??',
+	'DELCONFIRM_PARENT' => 'Are you sure you want to Delete this parent topic? It means that any replies it has will also be deleted.',
+	'DELALLCONFIRM_PARENT' => 'Are you sure you want to Delete ALL selected records? If you have selected parent topics, then any replies to those topics will also be deleted. Parent Topics are the ones that show Views greater than 0.',	
     'STARTEDBY' => 'Iniziato da:',
     'WARNING' => 'Avviso',
     'MODERATED' => 'Moderatori: %s',
@@ -238,12 +241,16 @@ $LANG_GF02 = array(
     'msg18' => 'Errore! Non tutti i campi richiesti sono stati completati oppure erano troppo corti come lunghezza.',
     'msg19' => 'Il tuo messaggio é stato inviato.',
     'msg22' => '- Notifica Nuovo Messaggio sul Forum',
-    'msg23a' => "\nUna risposta è stata aggiunta all'argomento '%s' da %s\n\nQuesto argomento è stato aperto da %s nel forum %s.\n",
-    'msg23b' => "Il nuovo argomento '%s' è stato aggiunto da %s nel forum %s sul sito web %s.\nPuoi vederlo su: %s/forum/viewtopic.php?showtopic=%s\n",
-    'msg23c' => "\nPuoi leggerlo su: %s/forum/viewtopic.php?showtopic=%s&lastpost=true\n",
-    'msg25' => "\nBuona giornata! \n",
-    'msg26' => "\nHai ricevuto questa e-mail perchè hai scelto di ricevere una notifica\nper ogni risposta aggiunta.",
-    'msg27' => 'Per non ricevere più notifiche su questo argomento vai <a href="%s">qui</a> per rimuoverti.',
+	'reply_to_thread_msg' => "A reply has been made to the thread '%s' by %s.",
+	'topic_started_msg' => "This topic was started by %s in the %s forum.",
+	'view_reply_at_msg' => "You may view the reply at:",
+	'new_topic_msg' => "A new topic '%s' has been posted by %s in the '%s' forum on the %s website.",
+	'view_topic_at_msg' => "You may view it at:",
+	'edit_to_post_msg' => "An edit has been made to a post in the thread '%s' by %s.",
+	'view_edit_at_msg' => "You may view the edited post at:",
+	'stop_reply_notify_msg' => "You are receiving this email because you have chosen to be notified when a reply has been made to this topic. To stop receiving notifications on this topic go to:",
+	'stop_new_notify_msg' => "You are receiving this email because you have chosen to be notified when a new topic has been posted to this forum. To stop receiving notifications for this forum go to:",
+	'great_day_msg' => "Have a great day!",
     'msg33' => 'Autore: ',
     'msg36' => 'Umore:',
     'msg38' => 'Inviami una Notifica per ogni risposta ',
@@ -252,14 +259,15 @@ $LANG_GF02 = array(
     'msg49' => '(Letto %s volte) ',
     'msg55' => 'Messaggio Eliminato.',
     'msg56' => 'IP Bloccato.',
+	'msg57' => 'IP removed from being Banned.',
     'msg59' => 'Argomento Normale',
     'msg60' => 'Nuovo Messaggio',
     'msg61' => 'Argomento Segnalato',
     'msg62' => 'Inviami una notifica ad ogni risposta',
     'msg64' => 'Sei sicuro di voler eliminare l\'argomento %s con titolo: %s ?',
     'msg65' => '<br' . XHTML . '>C\'é un argomento superiore, per cui saranno eliminate anche tutte le risposte a questo.',
-    'msg68' => 'Nota: FAI ATTENZIONI QUANDO BLOCCHI QUALCUNO, solo gli amministratori hanno i diritti per sbloccare qualcuno.',
-    'msg69' => '<br' . XHTML . '>Vuoi davvero bloccare l\'indirizzo IP: %s?',
+    'msg68' => 'Do you really want to remove the ban for the ip address: %s?',
+    'msg69' => 'Vuoi davvero bloccare l\'indirizzo IP: %s?',
     'msg71' => 'Nessuna funzione selezionata, scegli un messaggio e poi una funzione di moderazione.<br' . XHTML . '>Nota: Devi essere un moderatore per utilizzare queste funzionalitá.',
     'msg72' => 'Se questo messaggio é online non hai i diritti per eseguire questa operazione di moderazione.',
     'msg74' => 'Ultimi %s Messaggi sul Forum',
@@ -305,7 +313,12 @@ $LANG_GF02 = array(
     'msg135' => 'Riceverai una notifica per ogni messaggio inviato su questo forum.',
     'msg136' => 'Devi scegliere un forum cui iscrivervi.',
     'msg137' => 'Notifica per argomento attiva',
-    'msg138' => '<b>Iscritto all\'intero forum</b>',
+	'msg138a' => 'Listed below are all the forum topics you have subscribed to. This means for these subscriptions you will receive an email notification when someone replies to one of your subscribed topics.',
+	'msg138b' => 'Listed below are all the forums you have subscribed to. This means for these subscriptions you will receive an email notification when a new topic is created in one of these forums, or someone replies to a topic. Please note that deleting a forum subscription will also delete any Topic Exception Notifications associated with the forum (but not any individual topic notifications).',
+	'msg138c' => 'Listed below are all the topics that belong to the forum(s) you have subscribed to (see Forum Notifications), but you have unsubscribed from and chosen not to receive any more topic reply email notifications for.',
+	'msg139a' => 'Listed below are all the forum topics the user you are viewing has subscribed to. This means for these subscriptions the user will receive an email notification when someone replies to one of their subscribed topics. If "All Users" are selected then the User column contains the name of the account the notification is for.',
+	'msg139b' => 'Listed below are all the forums the user you are viewing has subscribed to. This means for these subscriptions the user will receive an email notification when a new topic is created in one of these forums, or someone replies to a topic. Please note that deleting a forum subscription will also delete any Topic Exception Notifications associated with the forum (but not any individual topic notifications).  If "All Users" are selected then the User column contains the name of the account the notification is for.',
+	'msg139c' => 'Listed below are all the topics that belong to the forum(s) the user has subscribed to (see Forum Notifications), but they have unsubscribed from and chosen not to receive any more topic reply email notifications for. If "All Users" are selected then the User column contains the name of the account the notification is for.',
     'msg142' => 'Notifica registrata.',
     'msg144' => 'Ritorna all\'argomento',
     'msg146' => 'Notifica Eliminata',
@@ -344,6 +357,7 @@ $LANG_GF02 = array(
     'msg188' => 'Clicca per andare direttamente all\'ulmito messaggio',
     'msg189' => 'Errore: Non puoi piú modificare questo messaggio',
     'msg190' => 'Modifica Nascosta',
+	'msg190b' => 'When enabled and the forum post is saved, no notifications will be sent to users subscribed to this topic (or forum) about this update, and the forum post date will not be changed to the current date and time.',
     'msg191' => 'Modifica non permessa. Il tempo di modifica consentito é scaduto o hai bisogno di permessi da moderatore',
     'msg192' => 'Completato ... Migrato %s argomenti e %s commenti.',
     'msg193' => 'ATRICOLO&nbsp;&nbsp;A&nbsp;&nbsp;FORUM&nbsp;&nbsp;MIGRAZIONE&nbsp;&nbsp;EXTRA',
@@ -356,21 +370,37 @@ $LANG_GF02 = array(
     'msg200' => 'Relazione sugli Utenti del Sito',
     'msg201' => 'Argomenti Popolari',
     'msg202' => 'Nessun nuovo messaggio',
-    'msg300' => 'Il blocco per messaggi anonimi é attivo nelle tue preferenze',
-    'msg301' => 'Davvero segnare tutte le categorie come lette?',
-    'msg302' => 'Davvero segnare tutti gli argomenti come letti?',
+    'msg300' => 'This Forum Post by an anonymous user has been blocked. To enable see your <a href="/forum/userprefs.php">Forum User Preferences</a>.',
+	'msg301' 	=> 'Really mark all topics in all forums and categories read?',
+	'msg301a' 	=> 'All topics in all forums and categories have now been marked as read.',
+	'msg302' 	=> 'Really mark all topics read in this forum?',
+	'msg302a' 	=> 'All topics in this forum have now been marked as read.',
+	'msg303' 	=> 'Really mark all topics in all forums in this category read?',
+	'msg303a' 	=> 'All topics in all forums from this category have now been marked as read.',
     'PostReply' => 'Invia Nuova Risposta',
     'PostTopic' => 'Invia Nuovo Argomento',
     'EditTopic' => 'Modifica Argomento',
     'quietforum' => 'Il forum non ha nuovi argomenti'
 );
+$LANG_GF02['adminconfirmation']   = 'Administrator Confirmation';
+$LANG_GF02['num_forumposts']   = '%s Forum Post(s)';
+$LANG_GF02['gl_topics_desc']   = '<em>Important:</em> These are Geeklog Topics (which you have Edit access for) which can be assigned to the root parent forum topic post (which then applies to the entire fourm topic) or the Forum, or Category itself. If Geeklog Topics are assigned to the Category or Forum they will then be inherited by and items below it (unless that item is assigned to another Geeklog Topic).<br' . XHTML . '><br' . XHTML . '>Since Blocks (and their positions) are assigned to Geeklog Topics this allows you to select the Geeklog Topic you want and then have these Blocks display for the forum topic. This also allows the blocks postion "Forum Show Topic" to be used more effectively.<br' . XHTML . '><br' . XHTML . '>The Geeklog Topic assignment(s) for forum topics does not affect the permissions of the forum (like it does with articles). If the visitor has access to view the forum post but not the topic assigned to it then "All Topics" is assumed. If no Geeklog Topics are assigned to the forum topic then the default "All Topics" is assumed.';
+$LANG_GF02['gl_topics_inherit_category'] = '%s (inherited from Category)';
+$LANG_GF02['gl_topics_inherit_forum'] = '%s (inherited from Forum)';
+$LANG_GF02['gl_topics_inherit_config'] = '%s (inherited from Config)';
+$LANG_GF02['gl_topics_assigned']   = 'Geeklog Topic Assigned:';
 
 $LANG_GF03 = array(
     'delete' => 'Elimina Messaggio',
     'edit' => 'Modifica Messaggio',
     'move' => 'Sposta Argomento',
     'split' => 'Split Topic',
-    'ban' => 'Blocca IP',
+    'banippost'         => 'Ban IP from Posting',
+    'banippostremove'   => 'Remove Ban for IP from Posting',
+    'banip'             => 'Ban IP from Site',
+    'banipremove'       => 'Remove Ban for IP from Site',
+    'banipmsg'      	=> 'IP has been banned from site',
+    'banipremovemsg'	=> 'Ban has been removed for IP from Site',  
     'movetopic' => 'Sposta Argomento',
     'movetopicmsg' => '<br' . XHTML . '>É possibile spostare l\'argomento <b>%s</b> nei seguenti forum:',
     'splittopicmsg' => '<br' . XHTML . '>Create a new Topic with this post: "<b>%s</b>"<br' . XHTML . '><em>By:</em>&nbsp;%s&nbsp <em>On:</em>&nbsp;%s',
@@ -414,7 +444,8 @@ $LANG_GF06 = array(
     4 => 'Moderatori',
     5 => 'Converti',
     6 => 'Messaggi',
-    7 => 'Gestione IP'
+	7 => 'Subscriptions',
+    8 => 'Gestione IP'
 );
 
 $LANG_GF07 = array(
@@ -522,7 +553,9 @@ $LANG_GF93 = array(
     'hideposts' => 'Nascondi i Nuovi Messaggi',
     'hidepostsdscp' => 'Gli aggiornamenti non verranno mostrati nel Blocco dei Nuovi Messaggi o i flussi RSS',
     'mod_title' => 'Moderatori Forum',
-    'allforums' => 'Tutti i Forum'
+    'allforums' => 'Tutti i Forum',
+    'namerequired' => 'Name is required.',
+	'resyncedmsg' => 'ReSynch and Clean completed for selected category or forum.<br><ul><li>%s topic posts re-synced.</li><li>%s orphan topic records (those without a parent topic) found and fixed.</li><li>%s orphan records found and cleaned from all other Forum tables.</li></ul>'
 );
 
 $LANG_GF95 = array(
@@ -551,6 +584,9 @@ $LANG_GF96 = array(
     'noip' => 'You did not provide an IP address!'
 );
 
+$LANG_GF97 = array (
+    'gfsubscriptions' => 'Forum Subscriptions'
+);
 
 $LANG_GF_SMILIES = array(
     'biggrin' => 'Big Grin',
@@ -606,7 +642,8 @@ $LANG_confignames['forum'] = array(
     'show_searches_perpage' => 'Numbero di Search Results per Page',
     'showblocks' => 'Block Columns to Show with Forum',
     'usermenu' => 'Tipo del Menu Utente',
-    'use_themes_template' => 'Use templates in the theme directory',
+    'likes_forum' => 'Forum Likes',
+    'recaptcha' => 'reCAPTCHA',
     'show_subject_length' => 'Mass Lunghezza del Oggetto',
     'min_username_length' => 'Min Lunghezza del Nome Utente',
     'min_subject_length' => 'Min Lunghezza del Oggetto',
@@ -695,7 +732,9 @@ $LANG_configselects['forum'] = array(
     12 => array('Nessun accesso' => 0, 'Solo Lettura' => 2, 'Lettura e Scrittura' => 3),
     13 => array('No access' => 0, 'Use' => 2),
     14 => array('No access' => 0, 'Read-Only' => 2),
-    15 => array('All' => 'TOPIC_ALL_OPTION', 'Homepage Only' => 'TOPIC_HOMEONLY_OPTION', 'Select Topics' => 'TOPIC_SELECTED_OPTION')
+    15 => array('All' => 'TOPIC_ALL_OPTION', 'Homepage Only' => 'TOPIC_HOMEONLY_OPTION', 'Select Topics' => 'TOPIC_SELECTED_OPTION'),
+    16 => array('Disabled' => RECAPTCHA_NO_SUPPORT, 'reCAPTCHA V2' => RECAPTCHA_SUPPORT_V2, 'reCAPTCHA V2 Invisible' => RECAPTCHA_SUPPORT_V2_INVISIBLE),
+    41 => array('False' => 0, 'Likes and Dislikes' => 1, 'Likes Only' => 2)
 );
 
 ?>

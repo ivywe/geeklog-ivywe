@@ -41,7 +41,7 @@ if (!class_exists('StringParser') ) {
     require_once $CONF_FORUM['path_include'] . 'bbcode/stringparser_bbcode.class.php';
 }
 
-function gf_createHTMLDocument(&$content = '', $subject = '', $noIndex = 0) {
+function gf_createHTMLDocument(&$content = '', $subject = '', $noIndex = 0, $canonical_url = '') {
     global $CONF_FORUM, $LANG_GF01;
 
     // Display Common headers
@@ -49,6 +49,15 @@ function gf_createHTMLDocument(&$content = '', $subject = '', $noIndex = 0) {
     if (!isset($CONF_FORUM['usermenu'])) $CONF_FORUM['usermenu'] = 'blockmenu';
 
     $information = array();
+	// see if noindex or canonical url passed (can't have both)
+    if ($noIndex) {
+        $information['headercode'] = '<meta name="robots" content="noindex"' . XHTML . '>';
+    } else {
+		if (!empty($canonical_url)) {
+			$information['headercode'] = '<link rel="canonical" href="' . $canonical_url . '"' . XHTML . '>';		
+		}
+	}
+	
     if ($subject != '') {
         $information['pagetitle'] = $subject;
     } else {
@@ -56,9 +65,6 @@ function gf_createHTMLDocument(&$content = '', $subject = '', $noIndex = 0) {
     }
     $information['what'] = 'menu';
     $information['rightblock'] = false;
-    if ($noIndex) {
-        $information['headercode'] = '<meta name="robots" content="noindex"' . XHTML . '>';
-    }
 
     if ($CONF_FORUM['showblocks'] == 'noblocks' OR $CONF_FORUM['showblocks'] == 'rightblocks') {
         $information['what'] = 'none';
@@ -182,6 +188,10 @@ function do_bbcode_color  ($action, $attributes, $content, $params, $node_object
     if ( $action == 'validate') {
         return true;
     }
+	if (!isset ($attributes['default'])) {
+		return $content;
+	}
+	
     return '<span style="color: '.COM_applyFilter($attributes['default']).';">'.$content.'</span>';
 }
 
@@ -220,21 +230,32 @@ function do_bbcode_code($action, $attributes, $content, $params, $node_object) {
     return $codeblock;
 }
 
-
-function forumNavbarMenu($current='') {
+// Category and Forum must already be filtered and permissions checked
+function forumNavbarMenu($current = '', $category = '', $forum = '') {
     global $_CONF, $CONF_FORUM, $_USER, $LANG_GF01, $LANG_GF02;
+
+	$urlVariable = '';
+	if (!empty($forum)) {
+		$urlVariable = "&amp;forum=$forum";
+		$delMessage = $LANG_GF02['msg302'];
+	} elseif (!empty($category)) {
+		$urlVariable = "&amp;category=$category";
+		$delMessage = $LANG_GF02['msg303'];
+	} else {
+		$delMessage = $LANG_GF02['msg301'];
+	}
 
     require_once $_CONF['path_system'] . 'classes/navbar.class.php';
     $navmenu = new navbar; 
     $navmenu->add_menuitem($LANG_GF01['INDEXPAGE'],"{$_CONF['site_url']}/forum/index.php");
     $navmenu->set_onclick($LANG_GF01['INDEXPAGE'], 'location.href="' . "{$_CONF['site_url']}/forum/index.php" . '";'); // Added as a fix for the navbar class (since uikit tabs do not support urls)
     if (!COM_isAnonUser()) {  
-        $navmenu->add_menuitem($LANG_GF02['msg197'],"{$_CONF['site_url']}/forum/index.php?op=markallread");
+        $navmenu->add_menuitem($LANG_GF02['msg197'],"{$_CONF['site_url']}/forum/index.php?op=markallread$urlVariable");
         // Added as a fix for the navbar class (since uikit tabs do not support urls)
         //$navmenu->set_onclick($LANG_GF02['msg197'], 'return confirm("' . $LANG_GF02['msg301'] . '");');
         $navmenu->set_onclick($LANG_GF02['msg197'], '
-          if (confirm("' . $LANG_GF02['msg301'] . '")) {
-            window.location.href="' . "{$_CONF['site_url']}/forum/index.php?op=markallread" . '";
+          if (confirm("' . $delMessage . '")) {
+            window.location.href="' . "{$_CONF['site_url']}/forum/index.php?op=markallread$urlVariable" . '";
           }
           return false;        
         ');
@@ -255,7 +276,8 @@ function forumNavbarMenu($current='') {
     return $navmenu->generate();
 }
 
-function ForumHeader($forum, $showtopic, &$display) {
+// Category and Forum must be filtered and permissions already checked. Can be empty
+function ForumHeader($category, $forum, $showtopic, &$display) {
     global $_TABLES, $_CONF, $CONF_FORUM, $LANG_GF01, $LANG_GF02;
     
     $navbar = COM_newTemplate(CTL_plugin_templatePath('forum'));
@@ -263,10 +285,10 @@ function ForumHeader($forum, $showtopic, &$display) {
     $navbar->set_var ('search_forum', f_forumsearch());
     $navbar->set_var ('select_forum', f_forumjump());
     if ($CONF_FORUM['usermenu'] == 'navbar') {
-        if ($forum == 0) {
-            $navbar->set_var('navmenu', forumNavbarMenu($LANG_GF01['INDEXPAGE']));
+        if (empty($forum)) {
+            $navbar->set_var('navmenu', forumNavbarMenu($LANG_GF01['INDEXPAGE'], $category, $forum));
         } else {
-            $navbar->set_var('navmenu', forumNavbarMenu());
+            $navbar->set_var('navmenu', forumNavbarMenu('', $category, $forum));
         }
     } else {
         $navbar->set_var('navmenu','');
@@ -276,27 +298,6 @@ function ForumHeader($forum, $showtopic, &$display) {
     
     $navbar->parse ('output', 'topicheader');
     $display .= $navbar->finish($navbar->get_var('output'));
-
-    if (($forum != '') || ($showtopic != '')) {
-        if ($showtopic != '') {
-            $forum_id = DB_getItem($_TABLES['forum_topic'],'forum',"id='$showtopic'");
-            $grp_id = DB_getItem($_TABLES['forum_forums'],'grp_id',"forum_id='$forum_id'");
-        } elseif ($forum != "") {
-            $grp_id = DB_getItem($_TABLES['forum_forums'],'grp_id',"forum_id='$forum'");
-        }
-        // Double check forum and/or topic exists
-        if ($grp_id == "") {
-            COM_handle404("{$_CONF['site_url']}/forum/index.php");
-            exit;
-        }        
-        $groupname = DB_getItem($_TABLES['groups'],'grp_name',"grp_id='$grp_id'");
-        if (!SEC_inGroup($groupname)) {
-        	$display .= alertMessage($LANG_GF02['msg77'], $LANG_GF01['ACCESSERROR']);
-            $display = gf_createHTMLDocument($display);
-            COM_output($display);            
-            exit;
-        }
-    }
 }
 
 function gf_checkHTMLforSQL($str,$postmode='html') {
@@ -344,9 +345,9 @@ function gf_preparefordb($message,$postmode) {
     global $CONF_FORUM, $_CONF;
 
     // if magic quotes is on, remove the slashes from the $_POST
-    if (get_magic_quotes_gpc() ) {
-       $message = stripslashes($message);
-    }
+    //if (get_magic_quotes_gpc() ) {
+    //   $message = stripslashes($message);
+    //}
     
     // Remove any autotags the user doesn't have permission to use
     $message = PLG_replaceTags($message, '', true);    
@@ -365,29 +366,34 @@ function gf_preparefordb($message,$postmode) {
     return $message;
 }
 
-function geshi_formatted($str,$type='PHP') {
+function geshi_formatted($str,$type='Text') {
     global $_CONF, $CONF_FORUM;
 
     include_once 'geshi.php';
 
-    $geshi = new Geshi($str,$type,"{$CONF_FORUM['path_include']}geshi");
-    $geshi->set_header_type(GESHI_HEADER_DIV);
-    //$geshi->enable_strict_mode(true);
-    //$geshi->enable_classes();
-    $geshi->enable_line_numbers(GESHI_NO_LINE_NUMBERS, 5);
-    $geshi->set_overall_class('glforum-code');
-    //$geshi->set_overall_style('font-size: 12px; color: #000066; border: 1px solid #d0d0d0; background-color: #FAFAFA;', true);
-    //// Note the use of set_code_style to revert colours...
-    //$geshi->set_line_style('font: normal normal 95% \'Courier New\', Courier, monospace; color: #003030;', 'font-weight: bold; color: #006060;', true);
-    //$geshi->set_code_style('color: #000020;', 'color: #000020;');
-    //$geshi->set_line_style('background: red;', true);
-    //$geshi->set_link_styles(GESHI_LINK, 'color: #000060;');
-    //$geshi->set_link_styles(GESHI_HOVER, 'background-color: #f0f000;');
+    $geshi = new Geshi($str, $type, "{$CONF_FORUM['path_include']}geshi");
+	if (!$geshi->error()) { // Make Sure Type Exists
+		$geshi->set_header_type(GESHI_HEADER_DIV);
+		//$geshi->enable_strict_mode(true);
+		//$geshi->enable_classes();
+		$geshi->enable_line_numbers(GESHI_NO_LINE_NUMBERS, 5);
+		$geshi->set_overall_class('glforum-code');
+		//$geshi->set_overall_style('font-size: 12px; color: #000066; border: 1px solid #d0d0d0; background-color: #FAFAFA;', true);
+		//// Note the use of set_code_style to revert colours...
+		//$geshi->set_line_style('font: normal normal 95% \'Courier New\', Courier, monospace; color: #003030;', 'font-weight: bold; color: #006060;', true);
+		//$geshi->set_code_style('color: #000020;', 'color: #000020;');
+		//$geshi->set_line_style('background: red;', true);
+		//$geshi->set_link_styles(GESHI_LINK, 'color: #000060;');
+		//$geshi->set_link_styles(GESHI_HOVER, 'background-color: #f0f000;');
 
-    $geshi->set_header_content("$type Formatted Code");
-    //$geshi->set_header_content_style('font-family: Verdana, Arial, sans-serif; color: #808080; font-size: 90%; font-weight: bold; background-color: #f0f0ff; border-bottom: 1px solid #d0d0d0; padding: 2px;');
+		$geshi->set_header_content("$type Formatted Code");
+		//$geshi->set_header_content_style('font-family: Verdana, Arial, sans-serif; color: #808080; font-size: 90%; font-weight: bold; background-color: #f0f0ff; border-bottom: 1px solid #d0d0d0; padding: 2px;');
 
-    return $geshi->parse_code();
+		return $geshi->parse_code();
+	} else {
+		// Type / Code Language not found so fallback and return basic monospaced text code block (like when Geshi is not enabled) 
+		return '<pre class="codeblock">'  . htmlspecialchars($str,ENT_QUOTES, $CONF_FORUM['charset']) . '</pre>';
+	}
 }
 
 function gf_htmLawed($str, $permissions = '') {
@@ -471,9 +477,13 @@ function gf_formatTextBlock($str,$postmode='html',$mode='') {
     if ( $postmode == 'text') {
         $bbcode->addParser (array ('block', 'inline', 'link', 'listitem'), 'bbcode_htmlspecialchars');
     }
-    if ( $CONF_FORUM['use_glfilter'] == 1 && ($postmode == 'html')) {
+
+    // This filtering should only happen on save and preview and not when viewed in a topic.
+    // If an Admin adds HTML that he can only use to a post, we then want ALL users to see it.
+    if ( $CONF_FORUM['use_glfilter'] == 1 && $postmode == 'html' && $mode == 'preview') {
         $bbcode->addParser(array('block','inline','link','listitem'), 'gf_checkHTML');      // calls GL's checkHTML on all text blocks
     }
+    
     if ( $postmode == 'text' OR $mode == 'subject') {
     	$bbcode->addParser(array('block','inline','link','listitem'), 'nl2br');
 	}
@@ -482,13 +492,15 @@ function gf_formatTextBlock($str,$postmode='html',$mode='') {
     }
     $bbcode->addParser(array('block','inline','link','listitem'), 'gf_fixtemplate');
     if ( $mode != 'subject' ) {
-        $bbcode->addParser(array('block','inline','link','listitem'), 'PLG_replacetags');
+//        $bbcode->addParser(array('block','inline','link','listitem'), 'PLG_replacetags');
     }
+
+	// Docs http://christian-seiler.de/projekte/php/bbcode/doc/en/chapter1.php
 
     $bbcode->addParser ('list', 'bbcode_stripcontents');
     $bbcode->addCode ('b', 'simple_replace', null, array ('start_tag' => '<b>', 'end_tag' => '</b>'),
                       'inline', array ('listitem', 'block', 'inline', 'link'), array ());
-    $bbcode->addCode ('i', 'simple_replace', null, array ('start_tag' => '<i>', 'end_tag' => '</span>'),
+    $bbcode->addCode ('i', 'simple_replace', null, array ('start_tag' => '<i>', 'end_tag' => '</i>'),
                       'inline', array ('listitem', 'block', 'inline', 'link'), array ());
     $bbcode->addCode ('u', 'simple_replace', null, array ('start_tag' => '<span style="text-decoration: underline;">', 'end_tag' => '</span>'),
                       'inline', array ('listitem', 'block', 'inline', 'link'), array ());
@@ -496,9 +508,11 @@ function gf_formatTextBlock($str,$postmode='html',$mode='') {
                       'inline', array ('listitem', 'block', 'inline', 'link'), array ());
     $bbcode->addCode ('s', 'simple_replace', null, array ('start_tag' => '<del>', 'end_tag' => '</del>'),
                       'inline', array ('listitem', 'block', 'inline', 'link'), array ());
-    $bbcode->addCode ('size', 'usecontent?', 'do_bbcode_size', array ('usercontent_param' => 'default'),
+	// Below was 'usecontent?' but switched to 'callback_replace' since size always requires to be equal something ie [size=15] and we want the bbcode within the size tag to be parsed
+    $bbcode->addCode ('size', 'callback_replace', 'do_bbcode_size', array ('usercontent_param' => 'default'),
                       'inline', array ('listitem', 'block', 'inline', 'link'), array ());
-    $bbcode->addCode ('color', 'usecontent?', 'do_bbcode_color', array ('usercontent_param' => 'default'),
+	// Below was 'usecontent?' but switched to 'callback_replace' since color always requires to be equal something ie [color=red] and we want the bbcode within the size tag to be parsed
+    $bbcode->addCode ('color', 'callback_replace', 'do_bbcode_color', array ('usercontent_param' => 'default'),
                       'inline', array ('listitem', 'block', 'inline', 'link'), array ());
     if ( $mode != 'subject' ) {                      
         $bbcode->addCode ('list', 'callback_replace', 'do_bbcode_list', array ('usecontent_param' => 'default'),
@@ -531,7 +545,57 @@ function gf_formatTextBlock($str,$postmode='html',$mode='') {
     if ($CONF_FORUM['use_censor'] and $mode == 'preview') {
         $str = COM_checkWords($str);
     }
-    $str = $bbcode->parse ($str);
+
+    // Replace autotags with random strings to prevent them from being parsed
+    $markers = [];
+    $simpleTags = [
+		'[p]', '[/p]',
+        '[b]', '[/b]',
+        '[i]', '[/i]',
+        '[u]', '[/u]',
+        '[s]', '[/s]',
+        '[img]', '[/img]',
+        '[quote]', '[/quote]',
+        '[list]', '[/list]',
+        '[*]',
+        '[url]', '[/url]',
+        '[/size]',
+        '[/color]',
+        '[code]', '[/code]',
+    ];
+
+    if (preg_match_all('/\[[^\]]+?\]/', $str, $matches, PREG_SET_ORDER)) {
+        foreach ($matches as $match) {
+            $content = strtolower($match[0]);
+
+            if (in_array($content, $simpleTags)) {
+                continue;
+            } elseif ((strpos($content, '[img ') === 0) ||
+                    (strpos($content, '[url=') === 0) ||
+                    (strpos($content, '[size=') === 0) ||
+                    (strpos($content, '[color=') === 0) ||
+                    (strpos($content, '[list=') === 0) ||
+                    (strpos($content, '[code=') === 0)) {
+                continue;
+            }
+
+            $replace = '___' . bin2hex(random_bytes(10)) . '___';
+            $markers[] = ['search' => $match[0], 'replace' => $replace];
+            $str = str_replace($match[0], $replace, $str);
+        }
+    }
+
+    $str = $bbcode->parse($str);
+
+    // Restore original autotags
+    if (count($markers) > 0) {
+        foreach ($markers as $marker) {
+            $str = str_replace($marker['replace'], $marker['search'], $str);
+        }
+    }
+    
+    // Replace autotags
+    $str = PLG_replacetags($str);
 
     return $str;
 }
@@ -552,7 +616,7 @@ function bbcode_oldpost($text) {
         $comment = str_replace ( '<b>', '[b]', $comment );
         $comment = str_replace ( '</b>', '[/b]', $comment );
         $comment = str_replace ( '<i>', '[i]', $comment );
-        $comment = str_replace ( '</span>', '[/i]', $comment );
+        $comment = str_replace ( '</i>', '[/i]', $comment );
         $comment = str_replace ( '<p>', '[p]', $comment );
         $comment = str_replace ( '</p>', '[/p]', $comment );
     } else {
@@ -682,8 +746,10 @@ function alertMessage($message, $title = '', $prompt = '') {
     global $_CONF, $CONF_FORUM, $LANG_GF01, $LANG_GF02;
 
     $retval = '';
-    
-    if (empty($title)) {
+
+    if ($prompt == "0") {
+        $title = ''; // No Prompt
+    } elseif (empty($title)) {
     	$title = $LANG_GF01['MESSAGE'];
 	}
     
@@ -694,10 +760,8 @@ function alertMessage($message, $title = '', $prompt = '') {
     $alertmsg->set_var ('layout_url', $CONF_FORUM['layout_url']);
     $alertmsg->set_var ('alert_title', $title);
     $alertmsg->set_var ('alert_message', $message);
-    if ($prompt == "0") {
+    if (empty($prompt)) {
         $alertmsg->set_var ('prompt', ''); // No Prompt
-	} elseif (empty($prompt)) {
-		$alertmsg->set_var ('prompt', $LANG_GF02['msg148']);
     } else {
         $alertmsg->set_var ('prompt', $prompt);
     }
@@ -713,7 +777,9 @@ function BaseFooter($showbottom=true) {
     global $_USER,$_CONF,$LANG_GF02,$forum,$CONF_FORUM;
 
     $retval = '';
-    if (!$CONF_FORUM['registration_required'] OR !COM_isAnonUser()) {
+	
+    // if (!$CONF_FORUM['registration_required'] OR !COM_isAnonUser()) {
+	if ($CONF_FORUM['registration_required'] == 0 || ($CONF_FORUM['registration_required'] && SEC_hasRights('forum.user'))) {
         $footer = COM_newTemplate(CTL_plugin_templatePath('forum'));
         $footer->set_file (array ('footerblock'=>'footer/footer.thtml'));
         
@@ -733,12 +799,12 @@ function BaseFooter($showbottom=true) {
         }
         $footer->set_var ('search_forum', f_forumsearch() );
         $footer->set_var ('select_forum', f_forumjump() );
-        $footer->parse ('output', 'footerblock');
-        
         $footer->set_var('block_end', COM_endBlock());     
-        
+		$footer->parse ('output', 'footerblock');
+		
         $retval .= $footer->finish($footer->get_var('output'));
     }
+	
     return $retval;
 }
 
@@ -759,7 +825,39 @@ function f_forumsearch() {
     return $forum_search->finish($forum_search->get_var('output'));
 }
 
-function f_forumjump($action='',$selected=0) {
+
+// Used by some admin pages as well
+function f_userjump($type, $selected = '') {
+    global $_CONF,$_TABLES,$LANG_GF02;
+	
+    $selectHTML = '';
+	if ($type == 2) {
+		// Users that have posted Forum and/or Topic Subscriptions
+		$sql  = "SELECT u.uid, u.username FROM {$_TABLES['users']} u, {$_TABLES['forum_watch']} fw ";
+		$sql .= "WHERE u.uid = fw.uid GROUP BY u.uid ORDER BY u.username";
+	} else { // $type = 1
+		// Users that have posted in the forum
+		$sql  = "SELECT u.uid, u.username FROM {$_TABLES['users']} u, {$_TABLES['forum_topic']} ft ";
+		$sql .= "WHERE u.uid = ft.uid GROUP BY u.uid ORDER BY u.username";
+	}
+    $memberlistsql = DB_query($sql);
+    if ($selected == -1) {
+        $selectHTML .= LB .'<option value="-1" selected="selected">' .$LANG_GF02['msg177']. '</option>';
+    } else {
+        $selectHTML .= LB .'<option value="-1">' .$LANG_GF02['msg177']. '</option>';
+    }
+    while($A = DB_fetchArray($memberlistsql)) {
+        if ($A['uid'] == $selected) {
+            $selectHTML .= LB .'<option value="' .$A['uid']. '" selected="selected">' .$A['username']. '</option>';
+        } else {
+            $selectHTML .= LB .'<option value="' .$A['uid']. '">' .$A['username']. '</option>';
+        }
+    }
+    return $selectHTML;
+
+}
+
+function f_forumjump($action = '', $selected = 0, $OptionsOnly = false) {
     global $CONF_FORUM, $_CONF,$_TABLES,$LANG_GF01,$LANG_GF02;
 
     $selecthtml = '';
@@ -783,6 +881,11 @@ function f_forumjump($action='',$selected=0) {
         	$selecthtml .= $catthtml . $formhtml . '</optgroup>' . LB;
 		}
     }
+	
+	if ($OptionsOnly) {
+		return $selecthtml;
+	}
+	
     $forum_jump = COM_newTemplate(CTL_plugin_templatePath('forum'));
     $forum_jump->set_file (array ('forum_jump'=>'forum_jump.thtml'));
     $forum_jump->set_var ('LANG_msg103', $LANG_GF02['msg103']);
@@ -805,8 +908,13 @@ function f_forumtime() {
 
     $forum_time = COM_newTemplate(CTL_plugin_templatePath('forum', 'footer'));
     $forum_time->set_file (array ('forum_time'=>'forum_time.thtml'));
-    $timezone = strftime('%Z');
-    $time = strftime('%I:%M %p');
+    $timezone = COM_strftime('%Z');
+	if (($_CONF['language'] === 'japanese_utf-8') &&
+		(strpos(PHP_OS, 'WIN') === 0) &&
+		is_callable('mb_convert_encoding')) {
+		$timezone = mb_convert_encoding($timezone, COM_getCharset(), 'cp932');
+	}
+    $time = COM_strftime('%I:%M %p');
     $forum_time->set_var ('imgset', $CONF_FORUM['imgset']);
     $forum_time->set_var ('message', sprintf($LANG_GF02['msg121'],$timezone,$time));
     $forum_time->parse ('output', 'forum_time');
@@ -888,6 +996,7 @@ function f_forumrules() {
         $forum_rules->set_block('forum_icons', $block);
     }     
 
+	// By this point permission of user is checked for viewing already
     if ( $CONF_FORUM['registered_to_post'] AND ($_USER['uid'] < 2 OR empty($_USER['uid'])) ) {
         $postperm_msg = $LANG_GF01['POST_PERM_MSG2'];
         $post_perm_image = "status_no";
@@ -937,56 +1046,113 @@ function f_forumrules() {
 
 }
 
-
-function gf_updateLastPost($forumid,$topicparent=0) {
+function gf_updateLastPost($forumid = 0, $topicparent = 0) {
     global $_TABLES;
-
-    if ($topicparent == 0) {
-        // Get the last topic in this forum
-        $query = DB_query("SELECT MAX(id) FROM {$_TABLES['forum_topic']} WHERE forum=$forumid");
-        list($topicparent) = DB_fetchArray($query);
-        if ($topicparent > 0) {
-            $lastrecid = $topicparent;
-            DB_query("UPDATE {$_TABLES['forum_forums']} SET last_post_rec=$lastrecid WHERE forum_id=$forumid");
-        }
-    } else {
+    
+	// Used to skip forum sync in gf_resyncforum when syncing each topic in forum
+	if ($forumid > 0) {
+		// Update forum record for: last_post_rec, topic_count, post_count
+		
+		// Get the last topic in this forum
+		// Assuming that the forumid is the topicparent forum
+		$query = DB_query("SELECT MAX(id) FROM {$_TABLES['forum_topic']} WHERE forum=$forumid");
+		list($lastrecid) = DB_fetchArray($query);
+		if ($lastrecid > 0) {
+			// If topicparent not already specified set it now
+			if ($topicparent == 0) {
+				$topicparent = $lastrecid;
+			}
+			
+			$topicCount = DB_count($_TABLES['forum_topic'], array('forum', 'pid'), array($forumid, 0));
+			$postCount = DB_Count($_TABLES['forum_topic'],'forum',$forumid);
+			 
+			// Update the forum definition record to know the number of topics and number of posts
+			DB_query("UPDATE {$_TABLES['forum_forums']} SET last_post_rec=$lastrecid, topic_count=$topicCount, post_count=$postCount WHERE forum_id=$forumid");		
+		} else {
+			// Forum has no posts
+			DB_query("UPDATE {$_TABLES['forum_forums']} SET last_post_rec=0, topic_count=0, post_count=0 WHERE forum_id=$forumid");		
+		}
+	}
+	
+    if ($topicparent > 0) {
+		// Update topic record for: lastupdated, last_reply_rec, numreplies
+		
         $query = DB_query("SELECT MAX(id) FROM {$_TABLES['forum_topic']} WHERE pid=$topicparent");
         list($lastrecid) = DB_fetchArray($query);
-    }
-
-    if ($lastrecid == NULL AND $topicparent > 0) {
-        $topicdatecreated = DB_getItem($_TABLES['forum_topic'],'date',"id=$topicparent");
-        DB_query("UPDATE {$_TABLES['forum_topic']} SET last_reply_rec=$topicparent, lastupdated='$topicdatecreated' WHERE id=$topicparent");
-    } elseif ($topicparent > 0) {
-        $topicdatecreated = DB_getItem($_TABLES['forum_topic'],'date',"id=$lastrecid");
-        DB_query("UPDATE {$_TABLES['forum_topic']}  SET last_reply_rec=$lastrecid, lastupdated='$topicdatecreated' WHERE id=$topicparent");
-    }
-    if ($topicparent > 0) {
-        // Recalculate and Update the number of replies
-        $numreplies = DB_Count($_TABLES['forum_topic'], "pid", $topicparent);
-        DB_query("UPDATE {$_TABLES['forum_topic']} SET replies = '$numreplies' WHERE id=$topicparent");
-    }
+		if ($lastrecid == NULL) {
+			// Means just the original parent forum post and no replies
+			$topicdatecreated = DB_getItem($_TABLES['forum_topic'],'date',"id=$topicparent");
+			DB_query("UPDATE {$_TABLES['forum_topic']} SET last_reply_rec=0, lastupdated='$topicdatecreated' WHERE id=$topicparent");
+		} else {
+			$topicdatecreated = DB_getItem($_TABLES['forum_topic'],'date',"id=$lastrecid");
+			DB_query("UPDATE {$_TABLES['forum_topic']}  SET last_reply_rec=$lastrecid, lastupdated='$topicdatecreated' WHERE id=$topicparent");
+		}
+		
+		// Recalculate and Update the number of replies
+		$numreplies = DB_Count($_TABLES['forum_topic'], "pid", $topicparent);
+		DB_query("UPDATE {$_TABLES['forum_topic']} SET replies = $numreplies WHERE id=$topicparent");
+	}
 }
 
-function forum_chkUsercanAccess($secure = false) {
-    global $_CONF, $LANG_GF01, $LANG_GF02, $CONF_FORUM, $_USER;
+/**
+ * Check is anonymous users can access and if not, regular user can access.
+ * If $secure then will be a feature check and if user logged in (elseif before takes care of user security check for features as well)
+ */
+function forum_chkUsercanAccess($secure = false, $forum = '', $showtopic = '') {
+    global $_CONF, $LANG_GF01, $LANG_GF02, $CONF_FORUM, $_USER, $_TABLES;
 
-    if ($CONF_FORUM['registration_required'] && COM_isAnonUser()) {
+    $display = '';
+	
+	// Can anonymous users view posts
+	if ($CONF_FORUM['registration_required'] && COM_isAnonUser()) {
     	$message = sprintf($LANG_GF01['loginreqview'], '<a href="' .$_CONF['site_url']. '/users.php?mode=new">', '<a href="' .$_CONF['site_url']. '/users.php">');
-    	$display .= alertMessage($message);
+		$display = COM_showMessageText($message);
         $display = gf_createHTMLDocument($display);
         COM_output($display);
-
         exit;
-    //} elseif ($secure AND empty($_USER['uid'])) {
+	// Can regular users view posts
+	} elseif ($CONF_FORUM['registration_required'] && !SEC_hasRights('forum.user')) {
+		$display = COM_showMessageText($LANG_GF02['msg02'], $LANG_GF01['ACCESSERROR']);
+        $display = gf_createHTMLDocument($display);
+        COM_output($display);
+        exit;
+	// Login required to use this feature of the forum
     } elseif ($secure AND (empty($_USER['uid']) || $_USER['uid'] < 2)) {
 		$message = sprintf($LANG_GF01['loginreqfeature'], '<a href="' .$_CONF['site_url']. '/users.php?mode=new">', '<a href="' .$_CONF['site_url']. '/users.php">');
-		$display .= alertMessage($message, $LANG_GF01['ACCESSERROR']);
+		ForumHeader('', $forum, $showtopic, $display);
+		$display .= COM_showMessageText($message, $LANG_GF01['ACCESSERROR']);
 		$display = gf_createHTMLDocument($display);
 		COM_output($display);
-	
 		exit;    	
     }
+
+	// Check for forum and topic access if passed
+    if (($forum !== '') || ($showtopic !== '')) { // Must not be blanks and number must be 0 or higher
+		$grp_id = '';
+        if ($showtopic !== '') {
+            $forum_id = DB_getItem($_TABLES['forum_topic'],'forum',"id='$showtopic'");
+			// Make sure if forum passed, that it matches actual forum of topic if also passed
+			if (empty($forum_id) || (!empty($forum) && $forum != $forum_id)) {
+				COM_handle404("{$_CONF['site_url']}/forum/index.php");
+			}
+            $grp_id = DB_getItem($_TABLES['forum_forums'],'grp_id',"forum_id='$forum_id'");
+        } elseif ($forum !== '') {
+            $grp_id = DB_getItem($_TABLES['forum_forums'],'grp_id',"forum_id='$forum'");
+        }
+        // Double check forum and/or topic exists
+        if ($grp_id == '') {
+            COM_handle404("{$_CONF['site_url']}/forum/index.php");
+            exit;
+        }        
+        $groupname = DB_getItem($_TABLES['groups'],'grp_name',"grp_id='$grp_id'");
+        if (!SEC_inGroup($groupname)) {
+			ForumHeader('', $forum, $showtopic, $display);
+			$display .= COM_showMessageText($LANG_GF02['msg77'], $LANG_GF01['ACCESSERROR']); // Access Forum Error
+            $display = gf_createHTMLDocument($display);
+            COM_output($display);            
+            exit;
+        }
+    }	
 }
 
 /**

@@ -1,0 +1,111 @@
+{# begin {templatelocation} #}
+
+<script type="text/javascript">
+    <!-- Begin
+    var allChecked;
+    function checkAll(field)
+    {
+    allChecked=true;
+    for (i = 0; i < field.length; i++)
+        field[i].checked = true ;
+    }
+
+    function uncheckAll(field)
+    {
+    allChecked=false;
+    for (i = 0; i < field.length; i++)
+        field[i].checked = false ;
+    }
+    function confirmSubmit(text) {
+      var yes = confirm(text);
+      if (yes) return true;
+      else return false;
+    }
+    //  End -->
+</script>
+
+<form name="report_table" action="{action_url}" method="post">
+	<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+
+	<div class="uk-card uk-card-default uk-card-small uk-card-body">
+		<div class="uk-margin">
+			<label class="uk-form-label" for="selectforum">
+				{LANG_migratearticles}
+				<select class="uk-select uk-width-auto" name="selforum" id="selectforum">
+					<option value="0">{LANG_selectforum}</option>
+					{select_filter_options}
+				</select>     
+			</label>
+		</div>
+		<div class="uk-margin">		
+			<label class="uk-form-label" for="delPostMigrate">
+				<input class="uk-checkbox" type="checkbox" name="delPostMigrate" id="delPostMigrate" value="1"{xhtml}> {LANG_deleteafter}
+			</label>			
+		</div>    
+		<div class="uk-text-right">
+			<button class="uk-button uk-button-primary" type="submit" name="migrate" value="{LANG_migrate}">{LANG_migrate}</button>
+		</div>
+	</div>
+	
+	{message}
+	
+    <div class="uk-margin-top uk-text-right">
+        {filter_topic_selection} <button class="uk-button uk-button-default" type="submit" value="{LANG_filterlist}">{LANG_filterlist}</button>
+	</div>
+
+    <div class="uk-overflow-auto">
+        <table class="uk-table uk-table-hover uk-table-striped uk-table-small uk-margin-bottom">
+            <thead>
+                <tr>
+                    <th class="uk-table-shrink uk-text-center">
+                        <input type="checkbox" name="chk_record_all" id="chk_record_all" value="y" onclick="if(!allChecked) checkAll(document.report_table.elements['chk_record_delete[]']); else uncheckAll(document.report_table.elements['chk_record_delete[]']);"{xhtml}>		
+                    </th>
+                    <th class="uk-table-shrink">				
+                        {LANG_topic}
+                    </th>
+                    <th class="uk-table-expand">				
+                        {LANG_title}
+                    </th>
+                    <th class="uk-table-shrink">				
+                        {LANG_date}
+                    </th>
+                    <th class="uk-table-shrink">				
+                        {LANG_comments}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>                                
+                {report_record}
+                {no_records_message}
+            </tbody>
+        </table>
+    </div>
+</form>
+
+{pagenavigation}
+			
+<!-- BEGIN report_record -->
+<tr>
+	<td class="uk-text-center"><input type="checkbox" name="chk_record_delete[]" value="{sid}"{xhtml}></td>
+	<td class="uk-text-nowrap">{topic}</td>
+	<td><a href="{story_link}">{story_title}</a></td>
+	<td class="uk-text-nowrap">{date}</td>
+	<td class="uk-text-center">{num_comments}</td>
+</tr>
+<!-- END report_record -->
+
+<!-- BEGIN message -->
+<div class="uk-alert-success" uk-alert>
+	<a class="uk-alert-close" uk-close></a>
+	<p>{status_message}</p>
+</div>
+<!-- END message -->
+
+<!-- BEGIN no_records_message -->
+<tr>
+	<td></td>
+	<td colspan="4">{message}</td>
+</tr>
+<!-- END no_records_message -->
+
+{# end {templatelocation} #}

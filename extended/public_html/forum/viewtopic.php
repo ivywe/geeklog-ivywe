@@ -54,17 +54,45 @@ $mytimer->startTimer();
 $display = '';
 
 // Pass thru filter any get or post variables to only allow numeric values and remove any hostile data
-$highlight = isset($_REQUEST['highlight']) ? COM_applyFilter($_REQUEST['highlight'])      : '';
-$lastpost  = isset($_REQUEST['lastpost'])  ? COM_applyFilter($_REQUEST['lastpost'])       : '';
-$mode      = isset($_REQUEST['mode'])      ? COM_applyFilter($_REQUEST['mode'])           : '';
+$lastpost  = isset($_REQUEST['lastpost'])  ? COM_applyFilter($_REQUEST['lastpost'])       : ''; // Depreciated as last page is calculated now for the center block. Left in to keep backwards compatibility
 $msg       = isset($_GET['msg'])           ? COM_applyFilter($_GET['msg'])                : '';
-$onlytopic = isset($_REQUEST['onlytopic']) ? COM_applyFilter($_REQUEST['onlytopic'])      : '';
+$onlytopic = isset($_REQUEST['onlytopic']) ? COM_applyFilter($_REQUEST['onlytopic'])      : ''; // Used for preview of topic when in post editor
 $page      = isset($_REQUEST['page'])      ? COM_applyFilter($_REQUEST['page'],true)      : '';
-$show      = isset($_REQUEST['show'])      ? COM_applyFilter($_REQUEST['show'],true)      : '';
-$showtopic = isset($_REQUEST['showtopic']) ? COM_applyFilter($_REQUEST['showtopic'],true) : '';
+$showtopic = isset($_REQUEST['showtopic']) ? COM_applyFilter($_REQUEST['showtopic'],true) : ''; // Required to be parent topic, if other topic id found then will be redirected
+
+// Check is anonymous users can access and if not, regular user can access
+forum_chkUsercanAccess(false, '', $showtopic);
+
+// If set to 1 then show preview of topic. For iframe for createtopic.php
+if ($onlytopic != 1) {
+	$onlytopic = 0;
+	$showTopicMode = '';
+} else {
+	$showTopicMode = 'preview'; // used just by showtopic function
+}
+
+// Set search criteria (same as Geeklog Search) for highlight
+if (isset($_REQUEST['query'])) { 
+	$query = Geeklog\Input::request('query'); // use request instead of frequest so no filtering
+	$query = urldecode($query);
+	$query = GLText::remove4byteUtf8Chars($query);
+	$query = GLText::stripTags($query);
+	$queryEncoded = urlencode($query);
+} else {
+	$query = '';
+	$queryEncoded = '';
+}
 
 $result = DB_query("SELECT forum, pid, subject FROM {$_TABLES['forum_topic']} WHERE id = '$showtopic'"); // <- new
 list($forum, $topic_pid, $subject) = DB_fetchArray($result); // <- new
+
+// *****************************
+// As of Forum 2.9.4 (and Geeklog v2.2.1)
+// Lets clean up the view topic URLs so no duplicate content issues. See: https://github.com/Geeklog-Plugins/forum/issues/87
+// - $showtopic: Now required to be a parent topic so reply posts will not return content and be redirected
+// - $show: Now removed from URL and internally can only be changed via user prefs or config. This way search engine will always show the same number of posts per page
+// - $lastpost: Not used anymore. Proper urls with page number is now used so. When lastpost was used in url, content would differ over time as new posts added. Redirect now happens (which is not perfect since it can still change)
+// *****************************
 
 if ($topic_pid == '') {
     // Topic doesn't exist so exit gracefully
@@ -72,10 +100,58 @@ if ($topic_pid == '') {
     exit;
 }
 if ($topic_pid != 0) {
-    $showtopic = $topic_pid;
+    //$showtopic = $topic_pid;
+	// *****************************
+	// As of Forum 2.9.4 (and Geeklog v2.2.1)
+	// For above commented out code: Do a 301 redirect now as we don't want duplicate content issues for the parent topic 
+	// as it would create multiple urls for the parent post since a switch like this may actually not show the post if it is on for example page 2 of the topic
+	$query_string = '';
+	if (!empty($query)) {
+		$query_string = "&amp;query=$queryEncoded";
+	}
+	$url = html_entity_decode(forum_buildForumPostURL($showtopic, $query_string)); // For some reason urldecode was not converting the &amp; in the query string so used html_entity_decode
+	if (!empty($url)) {
+		//* Permanently redirect page
+		header("Location: $url", true, 301);
+		die(1);
+	} else {
+		COM_handle404('/forum/index.php');
+	}
+	// *****************************
 }
 
-if ($onlytopic == 1) {
+// *****************************
+// As of Forum 2.9.4 (and Geeklog v2.2.1)
+// The problem with last post with search engines is that the content would change as new post is added for the same URL 
+// Option either redirect to the parent post or continue the tradition
+// $lastpost is now not used anywhere else (including center block)
+if ($lastpost) {
+	// Should be a parent topic passed when $lastpost is used
+	if ($topic_pid == 0) {
+		// Example URL using lastpost: http://www.example.com/forum/viewtopic.php?showtopic=5486&lastpost=true#18046
+		// Unfortunately we cannot parse out the hash tag as is is never passed to the server (which contains the actual post we are looking for)
+		
+		// So, lets find the current last post in topic (unfortunately this will still change as new posts are added)
+		$sql = DB_query("SELECT MAX(id) FROM {$_TABLES['forum_topic']} WHERE pid=$showtopic");
+		list($lastrecid) = DB_fetchArray($sql);
+		
+		$url = html_entity_decode(forum_buildForumPostURL($lastrecid));  // For some reason urldecode was not converting the &amp; in the query string so used html_entity_decode
+		if (!empty($url)) {
+			//* Permanently redirect page
+			header("Location: $url", true, 301);
+			die(1);
+		} else {
+			// This shouldn't happen as it should happen when $topic_pid is checked
+			COM_handle404('/forum/index.php');
+		}
+	} else {
+		COM_handle404('/forum/index.php');
+	}
+}
+// *****************************
+
+// Used to return preview of topic in iframe for create topic
+if ($onlytopic) {
     // Send out the HTML headers and load the stylesheet for the iframe preview
     switch ($_CONF['doctype']) {
     case 'html401transitional':
@@ -108,33 +184,12 @@ if ($onlytopic == 1) {
     $display .= "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=$LANG_CHARSET\"" . XHTML . ">" . LB;
     $display .= '<meta name="robots" content="NOINDEX"' . XHTML . '>' . LB;
     $display .= '<title>Forum Preview</title>' . LB;
-    if (version_compare($_CONF['supported_version_theme'], '2.0.0', '>=')) {
-    	/*
-        $func = "theme_css_" . $_CONF['theme'];
-        if (function_exists($func)) {
-            $FORUM_SCRIPTS = new scripts();
-            foreach ($func() as $info) {
-                $file = $info['file'];
-                $name = md5($file);
-                $constant   = (!empty($info['constant']))   ? $info['constant']   : true;
-                $attributes = (!empty($info['attributes'])) ? $info['attributes'] : array();
-                $FORUM_SCRIPTS->setCssFile($name, $file, $constant, $attributes);
-            }
-            
-            $display .= $FORUM_SCRIPTS->getHeader();
-        }
-        */
-		// need to call this incase plugin doesnt use script class OR headercode function is used to set css file
-		$display .= PLG_getHeaderCode();
-		$display .= $_SCRIPTS->getHeader();
-        $display .= '</head>' . LB;
-    } else {
-        $display .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"{$_CONF['site_url']}/layout/{$_CONF['theme']}/style.css\"></head>\n";
-    }
+	$display .= PLG_getHeaderCode(); // This allows plugins to add their css etc to scripts class
+	$display .= $_SCRIPTS->getHeader();
+    $display .= '</head>' . LB;
+        
     $display .= '<body class="glforum-preview-body">';
 } else {
-    //Check is anonymous users can access
-    forum_chkUsercanAccess();
     // Debug Code to show variables
     $display .= gf_showVariables();
 
@@ -156,6 +211,7 @@ if ($onlytopic == 1) {
         $display .= COM_showMessageText($LANG_GF02['msg55']);
     }
     if ($msg==6) {
+		// Banned IP
         $display .= COM_showMessageText($LANG_GF02['msg56']);
     }
     if ($msg==7) {
@@ -180,17 +236,21 @@ if ($onlytopic == 1) {
     	// Notification Saved but no email address reminder
         $display .= COM_showMessageText($LANG_GF02['msg143']);
     }      
+    if ($msg==13) {
+		// Un Ban IP
+        $display .= COM_showMessageText($LANG_GF02['msg57']);
+    }
     
     // Now display the forum header
-    ForumHeader($forum, $showtopic, $display);
+    ForumHeader('',  $forum, $showtopic, $display);
 }
 
 // Check if the number of records was specified to show
-if (empty($show) AND $CONF_FORUM['show_posts_perpage'] > 0) {
-    $show = $CONF_FORUM['show_posts_perpage'];
-} elseif (empty($show)) {
-    $show = 20;
-}
+$show = $CONF_FORUM['show_posts_perpage'];
+
+// Find topic assignment if exists for topic or at a higher level
+// Note: We don't care about Geeklog topic security for forum topics
+forum_getGeeklogTopic(TOPIC_TYPE_FORUM_TOPIC, $showtopic);
 
 $sql  = "SELECT a.forum,a.pid,a.locked,a.subject,a.replies,b.forum_cat,b.forum_name,b.is_readonly,c.cat_name ";
 $sql .= "FROM {$_TABLES['forum_topic']} a ";
@@ -201,26 +261,12 @@ $viewtopic = DB_fetchArray(DB_query($sql),false);
 $numpages = ceil(($viewtopic['replies'] + 1) / $show);
 
 if ($CONF_FORUM['sort_order_asc']) {
-    if ($lastpost) {
-        if ($page == 0) {
-            $page = $numpages;
-        }
-        $order = 'ASC';
-    } else {
-        if ($page == 0) {
-            $page = 1;
-        }
-        if ($onlytopic == 1) {
-            $order = 'DESC';
-        } else {
-            $order = 'ASC';
-        }
-    }
+	$order = 'ASC';
 } else {
-    if ($page == 0) {
-        $page = 1;
-    }
     $order = 'DESC';
+}
+if ($page == 0) {
+	$page = 1;
 }
 if ($page > 1) {
     $offset = ($page - 1) * $show;
@@ -228,11 +274,12 @@ if ($page > 1) {
     $offset = 0;
 }
 
-if ($onlytopic == 1) {
+$base_url = "{$_CONF['site_url']}/forum/viewtopic.php?showtopic=$showtopic";
+if ($onlytopic) {
 	// If using submission forum post read preview mode
-	$base_url = "{$_CONF['site_url']}/forum/viewtopic.php?showtopic=$showtopic&amp;mode=$mode&amp;onlytopic=1";
-} else {	
-	$base_url = "{$_CONF['site_url']}/forum/viewtopic.php?showtopic=$showtopic&amp;mode=$mode&amp;show=$show";
+	$base_url .= "&amp;onlytopic=1";
+} elseif (!empty($query)) {
+	$base_url .= "&amp;query=$queryEncoded";
 }
 
 // Check to see if requesting a forum topic page that does not exist
@@ -246,10 +293,10 @@ if ($numpages > 1) {
 }
 
 // Stop timer and print elapsed time
-//$intervalTime = $mytimer->stopTimer();
-//COM_errorLog("Start Topic Display Time: $intervalTime");
+// $intervalTime = $mytimer->stopTimer();
+// COM_errorLog("Start Topic Display Time: $intervalTime");
 
-if ($mode != 'preview') {
+if (!$onlytopic) {
 
     $topicnavbar = COM_newTemplate(CTL_plugin_templatePath('forum'));
     $topicnavbar->set_file (array (
@@ -270,27 +317,32 @@ if ($mode != 'preview') {
     }
 
     if ($viewtopic['is_readonly'] == 0 OR forum_modPermission($viewtopic['forum'],$_USER['uid'],'mod_edit')) {
-        $newtopiclink = "{$_CONF['site_url']}/forum/createtopic.php?method=newtopic&amp;forum=$forum";
+        $newtopiclink = "{$_CONF['site_url']}/forum/createtopic.php?method=newtopic&amp;id=$forum";
         $newtopiclinktext = $LANG_GF09['newtopic'];
         $newtopiclinkimg = gf_getImage('post_newtopic');
-        if ($viewtopic['locked'] != 1) {
-            $replytopiclink = "{$_CONF['site_url']}/forum/createtopic.php?method=postreply&amp;forum=$forum&amp;id=$replytopic_id";
+		
+		$topicnavbar->set_var ('newtopiclink', $newtopiclink);
+		$topicnavbar->set_var ('newtopiclinkimg', $newtopiclinkimg);
+		$topicnavbar->set_var ('newtopiclinktext', $newtopiclinktext);
+		$topicnavbar->set_var ('LANG_newtopic', $LANG_GF01['NEWTOPIC']);
+		$topicnavbar->parse ('newtopic_link', 'newtopic_link');		
+        
+		if ($viewtopic['locked'] != 1) {
+			//$replytopiclink = "{$_CONF['site_url']}/forum/createtopic.php?method=postreply&amp;forum=$forum&amp;id=$replytopic_id";
+            $replytopiclink = "{$_CONF['site_url']}/forum/createtopic.php?method=postreply&amp;id=$replytopic_id";
             $topicnavbar->set_var ('replytopiclink', $replytopiclink);
             $topicnavbar->set_var ('replytopiclinkimg', gf_getImage('post_reply'));
             $topicnavbar->set_var ('replytopiclinktext', $LANG_GF09['replytopic']);
             $topicnavbar->set_var ('LANG_reply', $LANG_GF01['POSTREPLY']);
             $topicnavbar->parse ('replytopic_link', 'replytopic_link');
         }
-    } else {
-        $newtopiclink = '';
-        $newtopiclinkimg = '';
-        $newtopiclinktext = '';
     }
 
 
     $prev_sql = DB_query("SELECT id FROM {$_TABLES['forum_topic']} WHERE (forum='$forum') AND (pid=0) AND (id < '$showtopic') ORDER BY id DESC LIMIT 1");
-    $P = DB_fetchArray($prev_sql);
-    if ($P['id'] != "") {
+	$nrows  = DB_numRows($prev_sql);
+    if ($nrows > 0) {
+		$P = DB_fetchArray($prev_sql);
         $prevlink = "{$_CONF['site_url']}/forum/viewtopic.php?showtopic={$P['id']}";
         $topicnavbar->set_var ('prevlink', $prevlink);
         $topicnavbar->set_var ('LANG_prevlink',$LANG_GF01['PREVTOPIC']);
@@ -298,8 +350,9 @@ if ($mode != 'preview') {
     }
 
     $next_sql = DB_query("SELECT id FROM {$_TABLES['forum_topic']} WHERE (forum='$forum') AND (pid=0) AND (id > '$showtopic') ORDER BY id ASC LIMIT 1");
-    $N = DB_fetchArray($next_sql);
-    if ($N['id'] > 0) {
+	$nrows  = DB_numRows($next_sql);
+    if ($nrows > 0) {
+		$N = DB_fetchArray($next_sql);
         $nextlink = "{$_CONF['site_url']}/forum/viewtopic.php?showtopic={$N['id']}";
         $topicnavbar->set_var ('nextlink', $nextlink);
         $topicnavbar->set_var ('LANG_nextlink',$LANG_GF01['NEXTTOPIC']);
@@ -347,20 +400,6 @@ if ($mode != 'preview') {
 
     }
 
-    /* Blaine: Commented out this section of code that will trim the displayed title */
-    //if (strlen($viewtopic['subject']) > $CONF_FORUM['show_subject_length'])  {
-    //    $viewtopic['subject'] = substr($viewtopic['subject'], 0, $CONF_FORUM['show_subject_length']);
-    //   $viewtopic['subject'] .= "..";
-    //}
-
-    if (function_exists('prj_getSessionProject')) {
-        $projectid = prj_getSessionProject();
-        if ($projectid > 0) {
-            $link = "<a href=\"{$_CONF['site_url']}/projects/viewproject.php?pid=$projectid\">{$strings['RETURN2PROJECT']}</a>";
-            $topicnavbar->set_var ('return2project',$link);
-        }
-    }
-
     $topicnavbar->set_var ('printlink', "{$_CONF['site_url']}/forum/print.php?id=$showtopic");
     $topicnavbar->set_var ('printlinktext', $LANG_GF01['PRINTABLE']);
     $topicnavbar->set_var ('LANG_print', $LANG_GF01['PRINTABLE']);
@@ -371,23 +410,36 @@ if ($mode != 'preview') {
     $topicnavbar->set_var ('navtopicimg','<img alt="" src="'.gf_getImage('nav_topic').'"' . XHTML . '>');
     $topicnavbar->set_var ('forum_home',$LANG_GF01['INDEXPAGE']);
     $topicnavbar->set_var ('category_id', $viewtopic['forum_cat']);
-    $topicnavbar->set_var ('cat_name', DB_getItem($_TABLES['forum_categories'],"cat_name","id={$viewtopic['forum_cat']}"));
+    $cat_name = DB_getItem($_TABLES['forum_categories'],"cat_name","id={$viewtopic['forum_cat']}");
+    $topicnavbar->set_var ('cat_name', $cat_name);
     $topicnavbar->set_var ('forum_id', $forum);
     $topicnavbar->set_var ('forum_name', $viewtopic['forum_name']);
+    
+    $forum_bc_id = "forum-" . $forum;
+    $_STRUCT_DATA->add_BreadcrumbList('forum-breadcrumb', $forum_bc_id);
+    $url = "{$_CONF['site_url']}/forum/index.php";
+    $_STRUCT_DATA->set_breadcrumb_item('forum-breadcrumb', $forum_bc_id, 1, $url, $LANG_GF01['INDEXPAGE']);
+    $url = "{$_CONF['site_url']}/forum/index.php?category={$viewtopic['forum_cat']}";
+    $_STRUCT_DATA->set_breadcrumb_item('forum-breadcrumb', $forum_bc_id, 2, $url, $cat_name);
+    $url = "{$_CONF['site_url']}/forum/index.php?forum=$forum";
+    $_STRUCT_DATA->set_breadcrumb_item('forum-breadcrumb', $forum_bc_id, 3, $url, $viewtopic['forum_name']);
 
     $topicnavbar->set_var ('topic_id', $replytopic_id);
-
-    $topicnavbar->set_var ('newtopiclink', $newtopiclink);
-    $topicnavbar->set_var ('newtopiclinkimg', $newtopiclinkimg);
-    $topicnavbar->set_var ('newtopiclinktext', $newtopiclinktext);
-    $topicnavbar->set_var ('LANG_newtopic', $LANG_GF01['NEWTOPIC']);
-    $topicnavbar->parse ('newtopic_link', 'newtopic_link');
 
     $topicnavbar->set_var ('LANG_next', $LANG_GF01['NEXT']);
     $topicnavbar->set_var ('LANG_TOP', $LANG_GF01['TOP']);
     $topicnavbar->set_var ('subject', $viewtopic['subject']);
     $topicnavbar->set_var ('LANG_HOME', $LANG_GF01['HOMEPAGE']);
     $topicnavbar->set_var ('pagenavigation', $pagenavigation);
+    
+    $geeklog_topic = '';
+    if (forum_modPermission($forum,$_USER['uid'],'mod_edit')) {
+        $geeklog_topic = forum_getGeeklogTopicLabel(TOPIC_TYPE_FORUM_TOPIC, $replytopic_id);
+        if (!empty($geeklog_topic)) {
+            $topicnavbar->set_var ('lang_geeklog_topic', $LANG_GF02['gl_topics_assigned']);
+        }
+    }
+    $topicnavbar->set_var ('geeklog_topic', $geeklog_topic);      
     
 	$topicnavbar->parse ('topicmenu_link', 'topicmenu_link');
     
@@ -407,8 +459,8 @@ if ($mode != 'preview') {
 // Update the topic view counter and user access log
 DB_query("UPDATE {$_TABLES['forum_topic']} SET views=views+1 WHERE id='$showtopic'");
 if (!COM_isAnonUser()) {
-    $query = DB_query("SELECT pid,forum FROM {$_TABLES['forum_topic']} WHERE id='$showtopic'");
-    list ($showtopicpid,$forumid) = DB_fetchArray($query);
+    $sql = DB_query("SELECT pid,forum FROM {$_TABLES['forum_topic']} WHERE id='$showtopic'");
+    list ($showtopicpid,$forumid) = DB_fetchArray($sql);
     if ($showtopicpid == 0 ) {
         $showtopicpid = $showtopic;
     }
@@ -436,17 +488,15 @@ while ($topicRec = DB_fetchArray($result)) {
     //$intervalTime = $mytimer->stopTimer();
     //COM_errorLog("Topic Display Time: $intervalTime");
     if ($CONF_FORUM['show_anonymous_posts'] == 0 AND $topicRec['uid'] == 1) {
-        $display .= '<div class="pluginAlert" style="padding:10px;margin:10px;">' . $LANG_GF02['msg300'] . '</div>';
-        break;
-        //Do nothing - but this way I don't always have to do this check
+		$display .= COM_showMessageText($LANG_GF02['msg300'], $LANG_GF01['FORUM']);
     } else {
-        $display .= showtopic($topicRec,$mode,$postcount,$onetwo,$page);
+        $display .= showtopic($topicRec,$showTopicMode,$postcount,$onetwo,$page, $query);
         $onetwo = ($onetwo == 1) ? 2 : 1;
     }
     $postcount++;
 }
 
-if ($mode != 'preview') {
+if (!$onlytopic) {
     $topic_footer = COM_newTemplate(CTL_plugin_templatePath('forum'));
     $topic_footer->set_file (array ('topicfooter'=>'topicfooter.thtml',
 			'forum_links'    => 'forum_links.thtml'));                    
@@ -457,7 +507,7 @@ if ($mode != 'preview') {
     }    
     
     if ($viewtopic['is_readonly'] == 0 OR forum_modPermission($viewtopic['forum'],$_USER['uid'],'mod_edit')) {
-        $newtopiclink = "{$_CONF['site_url']}/forum/createtopic.php?method=newtopic&amp;forum=$forum";
+        $newtopiclink = "{$_CONF['site_url']}/forum/createtopic.php?method=newtopic&amp;id=$forum";
         $newtopiclinktext = $LANG_GF09['newtopic'];
         $topic_footer->set_var ('layout_url', $CONF_FORUM['layout_url']);
         $topicDisplayTime = $mytimer->stopTimer();
@@ -469,7 +519,7 @@ if ($mode != 'preview') {
         $topic_footer->parse ('newtopic_link', 'newtopic_link');
 
         if ($viewtopic['locked'] != 1) {
-            $replytopiclink = "{$_CONF['site_url']}/forum/createtopic.php?method=postreply&amp;forum=$forum&amp;id=$replytopic_id";
+            $replytopiclink = "{$_CONF['site_url']}/forum/createtopic.php?method=postreply&amp;id=$replytopic_id";
             $topic_footer->set_var ('replytopiclink', $replytopiclink);
             $topic_footer->set_var ('replytopiclinkimg', gf_getImage('post_reply'));
             $topic_footer->set_var ('replytopiclinktext', $LANG_GF09['replytopic']);
@@ -493,11 +543,18 @@ $display .= $topic_footer->finish($topic_footer->get_var('output'));
 $intervalTime = $mytimer->stopTimer();
 //COM_errorLog("End Topic Display Time: $intervalTime");
 
-if ($onlytopic != 1) {
+if (!$onlytopic) {
     $display .= BaseFooter();
-    $display = gf_createHTMLDocument($display, $subject);
+	
+	$page_url = '';
+	if ($page > 1) {
+		$page_url = "&page=$page";
+	}
+	$canonical_url = "{$_CONF['site_url']}/forum/viewtopic.php?showtopic=$showtopic$page_url";
+	
+    $display = gf_createHTMLDocument($display, $subject, 0 , $canonical_url);
 } else {
-	// need to call this incase plugin doesnt use script class OR footercode function is used to set required javascript file
+	// need to call this in case plugin doesn't use script class OR footercode function is used to set required javascript file
 	$display .= PLG_getFooterCode();
 	$display .= $_SCRIPTS->getFooter();
     $display .= '</body>' . LB;

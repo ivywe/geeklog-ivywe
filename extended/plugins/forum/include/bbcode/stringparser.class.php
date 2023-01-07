@@ -6,35 +6,33 @@
  * memory structure. It would e.g. be possible to create an HTML parser based
  * upon this class.
  * 
- * Version: 0.3.1
+ * Version: 0.3.3
  *
  * @author Christian Seiler <spam@christian-seiler.de>
- * @copyright Christian Seiler 2006
+ * @copyright Christian Seiler 2004-2008
  * @package stringparser
  *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of either:
+ * The MIT License
  *
- *  a) the GNU General Public License as published by the Free
- *  Software Foundation; either version 1, or (at your option) any
- *  later version, or
+ * Copyright (c) 2004-2009 Christian Seiler
  *
- *  b) the Artistic License as published by Larry Wall, either version 2.0,
- *     or (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See either
- *  the GNU General Public License or the Artistic License for more details.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
- *  You should have received a copy of the Artistic License with this Kit,
- *  in the file named "Artistic.clarified".  If not, I'll be glad to provide
- *  one.
- *
- *  You should also have received a copy of the GNU General Public License
- *  along with this program in the file named "COPYING"; if not, write to
- *  the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
- *  MA 02111-1307, USA.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 
 /**
@@ -201,7 +199,7 @@ class StringParser {
 	 *
 	 * @access public
 	 */
-	function StringParser () {
+	function __construct () {
 	}
 	
 	/**
@@ -285,7 +283,7 @@ class StringParser {
 		}
 		unset ($this->_root);
 		$this->_root = new StringParser_Node_Root ();
-		$this->_stack[0] = $this->_root;
+		$this->_stack[0] =& $this->_root;
 		
 		$this->_parserInit ();
 		
@@ -344,7 +342,7 @@ class StringParser {
 		}
 		
 		if (is_null ($this->_output)) {
-			$root = $this->_root;
+			$root =& $this->_root;
 			unset ($this->_root);
 			$this->_root = null;
 			while (count ($this->_stack)) {
@@ -440,9 +438,9 @@ class StringParser {
 		if (($stack_count = count ($this->_stack)) < 2) {
 			return false;
 		}
-		$topelem = $this->_stack[$stack_count-1];
+		$topelem =& $this->_stack[$stack_count-1];
 		
-		$node_parent = $topelem->_parent;
+		$node_parent =& $topelem->_parent;
 		// remove the child from the tree
 		$res = $node_parent->removeChild ($topelem, false);
 		if (!$res) {
@@ -461,7 +459,7 @@ class StringParser {
 		// if yes, how should this be achieved? Another member of
 		// StringParser_Node?
 		$this->_setStatus (0);
-		$res = $this->_appendText ($this->_text{$topelem->occurredAt});
+		$res = $this->_appendText ($this->_text[$topelem->occurredAt]);
 		if (!$res) {
 			return false;
 		}
@@ -570,7 +568,7 @@ class StringParser {
 				return false;
 			}
 			if (!$res) {
-				$res = $this->_appendText ($this->_text{$this->_cpos});
+				$res = $this->_appendText ($this->_text[$this->_cpos]);
 				if (!$res) {
 					return false;
 				}
@@ -613,7 +611,7 @@ class StringParser {
 			
 			if ($needle === false) {
 				// not found => see if character is allowed
-				if (!in_array ($this->_text{$this->_cpos}, $this->_charactersAllowed)) {
+				if (!in_array ($this->_text[$this->_cpos], $this->_charactersAllowed)) {
 					if ($strict) {
 						return false;
 					}
@@ -621,7 +619,7 @@ class StringParser {
 					continue;
 				}
 				// lot's of FIXMES
-				$res = $this->_appendText ($this->_text{$this->_cpos});
+				$res = $this->_appendText ($this->_text[$this->_cpos]);
 				if (!$res) {
 					return false;
 				}
@@ -748,11 +746,11 @@ class StringParser {
 	 */
 	function _pushNode (&$node) {
 		$stack_count = count ($this->_stack);
-		$max_node = $this->_stack[$stack_count-1];
+		$max_node =& $this->_stack[$stack_count-1];
 		if (!$max_node->appendChild ($node)) {
 			return false;
 		}
-		$this->_stack[$stack_count] = $node;
+		$this->_stack[$stack_count] =& $node;
 		return true;
 	}
 	
@@ -782,7 +780,7 @@ class StringParser {
 		}
 		$method = array_shift ($args);
 		$stack_count = count ($this->_stack);
-		$method = array ($this->_stack[$stack_count-1], $method);
+		$method = array (&$this->_stack[$stack_count-1], $method);
 		if (!is_callable ($method)) {
 			return; // oops?
 		}
@@ -912,7 +910,7 @@ class StringParser_Node {
 	 *                        occurred at. If not determinable, it is -1.
 	 * @global __STRINGPARSER_NODE_ID
 	 */
-	function StringParser_Node ($occurredAt = -1) {
+	function __construct ($occurredAt = -1) {
 		$this->_id = $GLOBALS['__STRINGPARSER_NODE_ID']++;
 		$this->occurredAt = $occurredAt;
 	}
@@ -949,7 +947,7 @@ class StringParser_Node {
 		// if node already has a parent
 		if ($node->_parent !== false) {
 			// remove node from there
-			$parent = $node->_parent;
+			$parent =& $node->_parent;
 			if (!$parent->removeChild ($node, false)) {
 				return false;
 			}
@@ -960,15 +958,15 @@ class StringParser_Node {
 		// move all nodes to a new index
 		while ($index >= 0) {
 			// save object
-			$object = $this->_children[$index];
+			$object =& $this->_children[$index];
 			// we have to unset it because else it will be
 			// overridden in in the loop
 			unset ($this->_children[$index]);
 			// put object to new position
-			$this->_children[$index+1] = $object;
+			$this->_children[$index+1] =& $object;
 			$index--;
 		}
-		$this->_children[0] = $node;
+		$this->_children[0] =& $node;
 		return true;
 	}
 	
@@ -1013,7 +1011,7 @@ class StringParser_Node {
 		// if node already has a parent
 		if ($node->_parent !== null) {
 			// remove node from there
-			$parent = $node->_parent;
+			$parent =& $node->_parent;
 			if (!$parent->removeChild ($node, false)) {
 				return false;
 			}
@@ -1022,8 +1020,8 @@ class StringParser_Node {
 		
 		// append it to current node
 		$new_index = count ($this->_children);
-		$this->_children[$new_index] = $node;
-		$node->_parent = $this;
+		$this->_children[$new_index] =& $node;
+		$node->_parent =& $this;
 		return true;
 	}
 	
@@ -1056,7 +1054,7 @@ class StringParser_Node {
 		// if node already has a parent
 		if ($node->_parent !== null) {
 			// remove node from there
-			$parent = $node->_parent;
+			$parent =& $node->_parent;
 			if (!$parent->removeChild ($node, false)) {
 				return false;
 			}
@@ -1067,15 +1065,15 @@ class StringParser_Node {
 		// move all nodes to a new index
 		while ($index >= $child) {
 			// save object
-			$object = $this->_children[$index];
+			$object =& $this->_children[$index];
 			// we have to unset it because else it will be
 			// overridden in in the loop
 			unset ($this->_children[$index]);
 			// put object to new position
-			$this->_children[$index+1] = $object;
+			$this->_children[$index+1] =& $object;
 			$index--;
 		}
-		$this->_children[$child] = $node;
+		$this->_children[$child] =& $node;
 		return true;
 	}
 	
@@ -1108,7 +1106,7 @@ class StringParser_Node {
 		// if node already has a parent
 		if ($node->_parent !== false) {
 			// remove node from there
-			$parent = $node->_parent;
+			$parent =& $node->_parent;
 			if (!$parent->removeChild ($node, false)) {
 				return false;
 			}
@@ -1119,15 +1117,15 @@ class StringParser_Node {
 		// move all nodes to a new index
 		while ($index >= $child + 1) {
 			// save object
-			$object = $this->_children[$index];
+			$object =& $this->_children[$index];
 			// we have to unset it because else it will be
 			// overridden in in the loop
 			unset ($this->_children[$index]);
 			// put object to new position
-			$this->_children[$index+1] = $object;
+			$this->_children[$index+1] =& $object;
 			$index--;
 		}
-		$this->_children[$child + 1] = $node;
+		$this->_children[$child + 1] =& $node;
 		return true;
 	}
 	
@@ -1149,7 +1147,7 @@ class StringParser_Node {
 	function removeChild (&$child, $destroy = false) {
 		if (is_object ($child)) {
 			// if object: get index
-			$object = $child;
+			$object =& $child;
 			unset ($child);
 			$child = $this->_findChild ($object);
 			if ($child === false) {
@@ -1165,7 +1163,7 @@ class StringParser_Node {
 			if (!isset($this->_children[$child])) {
 				return false;
 			}
-			$object = $this->_children[$child];
+			$object =& $this->_children[$child];
 		}
 		
 		// store count for later use
@@ -1195,12 +1193,12 @@ class StringParser_Node {
 		// move all remaining objects one index higher
 		while ($child < $ccount - 1) {
 			// save object
-			$obj = $this->_children[$child+1];
+			$obj =& $this->_children[$child+1];
 			// we have to unset it because else it will be
 			// overridden in in the loop
 			unset ($this->_children[$child+1]);
 			// put object to new position
-			$this->_children[$child] = $obj;
+			$this->_children[$child] =& $obj;
 			// UNSET THE OBJECT!
 			unset ($obj);
 			$child++;
@@ -1219,7 +1217,7 @@ class StringParser_Node {
 	 * @access public
 	 * @return mixed
 	 */
-	function firstChild () {
+	function &firstChild () {
 		$ret = null;
 		if (!count ($this->_children)) {
 			return $ret;
@@ -1233,7 +1231,7 @@ class StringParser_Node {
 	 * @access public
 	 * @return mixed
 	 */
-	function lastChild () {
+	function &lastChild () {
 		$ret = null;
 		$c = count ($this->_children);
 		if (!$c) {
@@ -1256,7 +1254,7 @@ class StringParser_Node {
 		}
 		// if parent exists: remove node from tree!
 		if ($node->_parent !== null) {
-			$parent = $node->_parent;
+			$parent =& $node->_parent;
 			// directly return that result because the removeChild
 			// method will call destroyNode again
 			return $parent->removeChild ($node, true);
@@ -1354,18 +1352,18 @@ class StringParser_Node {
 	 * @param mixed $value The value that is to be compared
 	 * @return array All subnodes that match this criterium
 	 */
-	function getNodesByCriterium ($criterium, $value) {
+	function &getNodesByCriterium ($criterium, $value) {
 		$nodes = array ();
 		$node_ctr = 0;
 		for ($i = 0; $i < count ($this->_children); $i++) {
 			if ($this->_children[$i]->matchesCriterium ($criterium, $value)) {
-				$nodes[$node_ctr++] = $this->_children[$i];
+				$nodes[$node_ctr++] =& $this->_children[$i];
 			}
 			$subnodes = $this->_children[$i]->getNodesByCriterium ($criterium, $value);
 			if (count ($subnodes)) {
 				$subnodes_count = count ($subnodes);
 				for ($j = 0; $j < $subnodes_count; $j++) {
-					$nodes[$node_ctr++] = $subnodes[$j];
+					$nodes[$node_ctr++] =& $subnodes[$j];
 					unset ($subnodes[$j]);
 				}
 			}
@@ -1488,8 +1486,8 @@ class StringParser_Node_Text extends StringParser_Node {
 	 *                        occurred at. If not determinable, it is -1.
 	 * @see StringParser_Node_Text::content
 	 */
-	function StringParser_Node_Text ($content, $occurredAt = -1) {
-		parent::StringParser_Node ($occurredAt);
+	function __construct ($content, $occurredAt = -1) {
+		parent::__construct ($occurredAt);	 
 		$this->content = $content;
 	}
 	

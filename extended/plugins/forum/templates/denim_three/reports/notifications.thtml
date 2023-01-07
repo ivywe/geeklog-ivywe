@@ -1,0 +1,149 @@
+{# begin {templatelocation} #}
+
+<script type="text/javascript">
+    <!-- Begin
+    var allChecked;
+    function checkAll(field)
+    {
+    allChecked=true;
+    for (i = 0; i < field.length; i++)
+        field[i].checked = true ;
+    }
+
+    function uncheckAll(field)
+    {
+    allChecked=false;
+    for (i = 0; i < field.length; i++)
+        field[i].checked = false ;
+    }
+    //  End -->
+</script>
+
+{block_start}
+
+{navmenu}
+
+<h2>{lang_subscriptions}</h2>
+
+<div class="uk-grid">
+  	<div class="uk-width-1-1">
+		<form action="{phpself}" method="post">
+			<div class="uk-form-controls">
+				<select class="uk-select uk-width-auto" name="filter" onchange="this.form.submit();">{filter_options}</select>
+			</div>
+		</form>
+	</div>
+</div>
+
+{!if lang_notify_filter_desc}
+<p>{lang_notify_filter_desc}</p>
+{!endif}
+
+<div class="uk-grid">
+  	<div class="uk-width-3-5">
+		{!if isAdminUser}
+		<form action="{phpself}" method="post">
+			<div class="uk-form-controls">
+				<select class="uk-select uk-width-auto" name="uid" onchange="this.form.submit();">{user_options}</select>
+			</div>
+		</form>
+		{!endif}
+	</div>
+	<div class="uk-width-2-5 uk-text-right">
+		{select_forum}
+	</div>
+</div>
+
+<div class="uk-overflow-auto">
+	<form action="{phpself}" method="post" name="report_table">
+        <input type="hidden" name="op" value=""{xhtml}>
+        <table class="uk-table uk-table-hover uk-table-striped uk-table-small uk-text-nowrap uk-margin-bottom">
+            <thead>
+                <tr>
+                    <th class="uk-table-shrink uk-text-center">
+                        <input class="uk-checkbox" type="checkbox" name="chk_record_all" id="chk_record_all" value="y" onclick="if(!allChecked) checkAll(document.report_table.elements['chk_record_delete[]']); else uncheckAll(document.report_table.elements['chk_record_delete[]']);"{xhtml}>
+                    </th>
+					{!if uid}
+						<th class="uk-width-1-5@l uk-width-2-5@m uk-width-2-5">{LANG_Heading2}</th>
+					{!else}
+						<th class="uk-width-1-6">{LANG_Heading9}</th>
+						<th class="uk-width-1-5@l uk-width-2-5@m uk-width-2-5">{LANG_Heading2}</th>
+					{!endif}
+                    <th class="uk-width-1-5@l uk-width-2-5@m uk-width-2-5">{LANG_Heading3}</th>
+                    <th class="uk-width-1-6">{LANG_Heading4}</th>
+                    <th class="uk-width-1-6">{LANG_Heading5}</th>
+                    <th class="uk-width-1-6 uk-visible@l uk-text-center">{LANG_Heading6}</th>
+                    <th class="uk-width-1-6 uk-visible@l uk-text-center">{LANG_Heading7}</th>
+                    <th class="uk-width-1-6 uk-text-center">{LANG_Heading8}</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <td class="uk-text-center">{trash_link}</td>
+					{!if uid}
+						<td></td>
+					{!else}
+						<td></td>
+						<td></td>
+					{!endif}
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+                <tr>
+            </tfoot>
+            <tbody>
+                {notification_record}
+                {no_records_message}
+            </tbody>
+        </table>
+	</form>
+
+</div>
+
+{pagenavigation}
+
+{!if links}
+<div class="uk-margin-top uk-text-right">
+    {links}
+</div>
+{!endif}
+
+
+{block_end}
+
+<!-- BEGIN notification_record -->
+<tr>
+	<td class="uk-text-center">
+		<input class="uk-checkbox" type="checkbox" name="chk_record_delete[]" value="{id}"{xhtml}>
+	</td>
+	{!if uid}
+		<td>{forum_link}</td>
+	{!else}
+		<td>{user_link}</td>
+		<td>{forum_link}</td>
+	{!endif}
+	<td>{topic_link}</td>
+	<td>{date_added}</td>
+	<td>{topicauthor}</td>
+	<td class="uk-visible@l uk-text-center">{views}</td>
+	<td class="uk-visible@l uk-text-center">{replies}</td>
+	<td><a class="uk-button uk-button-default uk-button-small" href="notify.php?submit=delete&amp;id={notify_id}{!if isAdminUser}&amp;mode=admin{!endif}{!if forum}&amp;forum={forum}{!endif}{!if uid}&amp;uid={uid}{!endif}&amp;filter={notifytype}">{LANG_REMOVE}</a></td>
+</tr>
+<!-- END notification_record -->
+
+<!-- BEGIN no_records_message -->
+<tr>
+	<td></td>
+	<td colspan="7">{message}</td>
+</tr>
+<!-- END no_records_message -->
+
+<!-- BEGIN links -->
+{return_link}
+<!-- END links -->
+
+{# end {templatelocation} #}

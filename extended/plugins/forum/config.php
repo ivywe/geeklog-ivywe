@@ -106,8 +106,11 @@ $CONF_FORUM['blocks_showtopic_repeat_after_num_posts'] = 3; // Needs to be great
 // Only send Notification once - even if more posts are created since your last visit
 $CONF_FORUM['notify_once'] = 1;
 
-// When this value is true, set the sort order of the topic view list in ASC.
+// When this value is true, set the sort order of the forum posts for a topic to ASC. (oldest to newest)
 $CONF_FORUM['sort_order_asc'] = true;
+
+// Default Geeklog Topic to assign to most forum pages (must be only 1 Topic ID or TOPIC_ALL_OPTION)
+$CONF_FORUM['gl_topic_default'] = TOPIC_ALL_OPTION;
 
 // Mapping of Group Names to badges that can optionally be displayed in Forum Post under user avatar
 // Place images in the directory /forum/forum/image_set/badges

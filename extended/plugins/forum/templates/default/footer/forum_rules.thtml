@@ -1,12 +1,24 @@
-{# begin {templatelocation} #}
-
-<div class="uk-width-1-3@m uk-margin-top">
-	<ul class="uk-list uk-list-space">
-		<li>{anon_perm_image}&nbsp;{anonymous_msg}</li>
-		<li>{post_perm_image}&nbsp;{postingperm_msg}</li>
-		<li>{html_perm_image}&nbsp;{html_msg}</li>
-		<li>{censor_perm_image}&nbsp;{censor_msg}</li>
-	</ul>
-</div>
-
-{# end {templatelocation} #}
+<!-- start forum_rules.thtml -->
+<table width="100%" cellpadding="0" cellspacing="2" border="0" class="alignright pluginSubTitle">
+    <tr>
+            <td>
+                    {anonymous_msg}&nbsp;{anon_perm_image}
+            </td>
+    </tr>
+    <tr>
+            <td>
+                    {postingperm_msg}&nbsp;{post_perm_image}
+            </td>
+    </tr>
+    <tr>
+            <td>
+                    {html_msg}&nbsp;{html_perm_image}
+            </td>
+    </tr>
+    <tr>
+            <td>
+                    {censor_msg}&nbsp;{censor_perm_image}
+            </td>
+    </tr>
+</table>
+<!-- end forum_rules.thtml -->

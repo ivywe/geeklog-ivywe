@@ -1,5 +1,42 @@
 Geeklog Forum Plugin History/Changes:
 
+October 3, 2022 (2.9.5)
+------------
+For a complete list of closed issues and features please see: https://github.com/Geeklog-Plugins/forum/milestone/7?closed=1
+
+- [Improvement] Support for PHP 8
+- [Improvement] Updated GeSHI to v1.0.9.1 (now includes all 259 code languages)
+- [Improvement] Allow for HTML and plaintext Forum Notification Emails
+- [Improvement] Support the new Sitemap Plugin API
+- [Improvement] If Anonymous user is posting should check for Geeklog Anonymous Username cookie and autofill that name
+- [Bug] Fixed forum posts linked to users that no longer exist cause error
+
+May 12, 2020 (2.9.4)
+------------
+For a complete list of closed issues and features please see: https://github.com/Geeklog-Plugins/forum/milestone/6?closed=1
+
+- [Improvement] Cleaned up code in forum editor. On forum post error, forum editor is returned with content and proper error message
+- [Improvement] Cleaned up and centralized code for when posts are added and deleted.
+- [Improvement] Category and Forum ReSync now also clean up tables of orphan records
+- [Improvement] Removed show and lastpost variables from Forum URL to fix Duplicate Content Issues with search engines. The forum is still backwards compatible with these variables so it can handle old backlinks
+- [Improvement] Added Canonical links to forum topic pages for better SEO
+- [Improvement] Better Support of Sitemap Plugin. Returns Forum Topics only (not posts)
+- [Improvement] Better Support of RSS Feeds. Returns links directly to Forum posts
+- [Improvement] Centralized code for security when detecting if visitor/user has access to forum and topic
+- [Feature] Added support for Geeklog Likes
+- [Feature] Forum Categories and Topics can now be assigned to a Geeklog Topic. This means you can better control how Geeklog Blocks are displayed in the forum
+- [Feature] Added Invisible reCAPTCHA V2 support
+- [Feature] Admin can now edit individual user notification subscriptions
+- [Feature] Admins can now be notified directly of new posts by using the Geeklog Configuration Notifications option
+- [Feature] Denim Three templates now included for the forum
+- [Bug] Fixed issues with deleting forum posts where the forums and categories needed to be resynch for counts to be correct
+- [Bug] Fixed moving topic issues
+- [Bug] Fixed User Name change not being reflected for the Forum Moderators in the Admin area
+- [Bug] Fixed issue where Autotags could get corrupted
+- [Bug] BBCode now removed from search results
+- [Bug] Fixed anonymous minimum user length issue
+- [Bug] Fixed Mode checkboxes in forum editor. Sometimes they would not remember the correct setting if a preview happened
+
 June 22, 2018 (2.9.3)
 ------------
 For a complete list of closed issues and features please see: https://github.com/Geeklog-Plugins/forum/milestone/3?closed=1

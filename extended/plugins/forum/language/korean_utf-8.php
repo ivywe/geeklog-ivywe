@@ -165,6 +165,7 @@ $LANG_GF01 = array(
     'SUBSCRIPTIONS' => '메일통지 설정목록',
     'TOP' => '토픽 첫머리',
     'PRINTABLE' => '인쇄용 페이지',
+	'printed_subject' => 'Forum Subject: %s',
     'USERPREFS' => '게시판의 사용자설정',
     'SPEEDLIMIT' => '"귀하의 최신 덧글은 %s 초 전이었습니다. <br' . XHTML . '> 다음의 덧글쓰기 까지 최소한 %s 초 이상 기다려 주시기 바랍니다."',
     'ACCESSERROR' => '접속 에러',
@@ -172,6 +173,8 @@ $LANG_GF01 = array(
     'DELETEALL' => '선택한 데이터를 전부 삭제',
     'DELCONFIRM' => '선택한 데이터를 전부 삭제해도 괜찮겠습니까?',
     'DELALLCONFIRM' => '데이터를 전부 삭제해도 괜찮겠습니까?',
+	'DELCONFIRM_PARENT' => 'Are you sure you want to Delete this parent topic? It means that any replies it has will also be deleted.',
+	'DELALLCONFIRM_PARENT' => 'Are you sure you want to Delete ALL selected records? If you have selected parent topics, then any replies to those topics will also be deleted. Parent Topics are the ones that show Views greater than 0.',	
     'STARTEDBY' => '초기덧글:',
     'WARNING' => '요주의',
     'MODERATED' => '모더레이터: %s',
@@ -235,12 +238,16 @@ $LANG_GF02 = array(
     'msg18' => '에러! 필수 기입항목에 입력 되지 않은 부분이 있거나 너무 짧습니다.',
     'msg19' => '메세지는 등록 되었습니다.',
     'msg22' => '- Forum Post Notification',
-    'msg23a' => "게시판 [%s] 에 '%s' 씨의 글달기가 있었습니다. \n\n (덧글쓴이 %s 씨 게시판: %s) ",
-    'msg23b' => "새 덧글 '%s'는  %s 씨에 의해서 %s 게시판에 덧글을 쓰셨습니다. (사이트 : %s) :\n%s/forum/viewtopic.php?showtopic=%s\n",
-    'msg23c' => "n%s/forum/viewtopic.php?showtopic=%s&lastpost=true 에서 열람할 수 있습니다. \n",
-    'msg25' => "\n",
-    'msg26' => "\n* 이 덧글에 메일통지를 지정하고 있으므로 메일을 보내시기 바랍니다. ",
-    'msg27' => "메일통지 지정을 해제하기 위해서는 <a href=  <%s>여기를 클릭 </a> 하시기 바랍니다.\n",
+	'reply_to_thread_msg' => "A reply has been made to the thread '%s' by %s.",
+	'topic_started_msg' => "This topic was started by %s in the %s forum.",
+	'view_reply_at_msg' => "You may view the reply at:",
+	'new_topic_msg' => "A new topic '%s' has been posted by %s in the '%s' forum on the %s website.",
+	'view_topic_at_msg' => "You may view it at:",
+	'edit_to_post_msg' => "An edit has been made to a post in the thread '%s' by %s.",
+	'view_edit_at_msg' => "You may view the edited post at:",
+	'stop_reply_notify_msg' => "You are receiving this email because you have chosen to be notified when a reply has been made to this topic. To stop receiving notifications on this topic go to:",
+	'stop_new_notify_msg' => "You are receiving this email because you have chosen to be notified when a new topic has been posted to this forum. To stop receiving notifications for this forum go to:",
+	'great_day_msg' => "Have a great day!",
     'msg33' => '글쓴이: ',
     'msg36' => '기분:',
     'msg38' => '신규 덧글달기를 메일로 알림',
@@ -249,13 +256,14 @@ $LANG_GF02 = array(
     'msg49' => '(참조수 %s 회) ',
     'msg55' => '삭제 되었습니다.',
     'msg56' => 'IP 주소는 금지 되었습니다.',
+	'msg57' => 'IP removed from being Banned.',
     'msg59' => '통상',
     'msg60' => '신착',
     'msg61' => '주목토픽',
     'msg62' => '글달기 있으면 메일로 알리기',
     'msg64' => '토픽 %s  제목: %s 을 정말 삭제해도 괜찮겠습니까?',
     'msg65' => '<br' . XHTML . '> 이것은 부모덧글입니다.  그러므로 이 토픽 의 모든 글달기도 함께 삭제 됩니다.',
-    'msg68' => '주의: 금지는 주의깊게 행하시기 바랍니다. 관리자만이 금지자를 해제 할 수 있습니다.',
+    'msg68' => 'Do you really want to remove the ban for the ip address: %s?',
     'msg69' => '<br' . XHTML . '>정말 이 IP 주소를 금지 하시겠습니까: %s씨?',
     'msg71' => '기능이 선택되지 않습니다. 덧글을 선택하여 모더레이터의 기능을 실행 하시기 바랍니다.<br' . XHTML . '>주의: 직접 모더레이터가 되셔서 이 기능을 사용하시기 바랍니다.',
     'msg72' => '이 메세지는 온라인에서는 관리자 기능이 성공하지 않습니다.',
@@ -302,7 +310,12 @@ $LANG_GF02 = array(
     'msg135' => '귀하의 덧글 전부가 게시판에 통지 됩니다.',
     'msg136' => '덧글을 쓰고자 하는 게시판을 선택해 주시기 바랍니다.',
     'msg137' => '글달기가 있으면 메일로 통지 됩니다',
-    'msg138' => '<b>게시판 전체</b>',
+	'msg138a' => 'Listed below are all the forum topics you have subscribed to. This means for these subscriptions you will receive an email notification when someone replies to one of your subscribed topics.',
+	'msg138b' => 'Listed below are all the forums you have subscribed to. This means for these subscriptions you will receive an email notification when a new topic is created in one of these forums, or someone replies to a topic. Please note that deleting a forum subscription will also delete any Topic Exception Notifications associated with the forum (but not any individual topic notifications).',
+	'msg138c' => 'Listed below are all the topics that belong to the forum(s) you have subscribed to (see Forum Notifications), but you have unsubscribed from and chosen not to receive any more topic reply email notifications for.',
+	'msg139a' => 'Listed below are all the forum topics the user you are viewing has subscribed to. This means for these subscriptions the user will receive an email notification when someone replies to one of their subscribed topics. If "All Users" are selected then the User column contains the name of the account the notification is for.',
+	'msg139b' => 'Listed below are all the forums the user you are viewing has subscribed to. This means for these subscriptions the user will receive an email notification when a new topic is created in one of these forums, or someone replies to a topic. Please note that deleting a forum subscription will also delete any Topic Exception Notifications associated with the forum (but not any individual topic notifications).  If "All Users" are selected then the User column contains the name of the account the notification is for.',
+	'msg139c' => 'Listed below are all the topics that belong to the forum(s) the user has subscribed to (see Forum Notifications), but they have unsubscribed from and chosen not to receive any more topic reply email notifications for. If "All Users" are selected then the User column contains the name of the account the notification is for.',
     'msg142' => '메일통지 설정모드로 변경 하였습니다.',
     'msg144' => '토픽으로',
     'msg146' => '메일통지 설정모드는 해제 되었습니다',
@@ -341,6 +354,7 @@ $LANG_GF02 = array(
     'msg188' => '클릭하면 최신 덧글로 점프',
     'msg189' => '에러: 이제 이 덧글은 편집할 수 없습니다',
     'msg190' => '조용히 편집',
+	'msg190b' => 'When enabled and the forum post is saved, no notifications will be sent to users subscribed to this topic (or forum) about this update, and the forum post date will not be changed to the current date and time.',
     'msg191' => '편집 불가능. 편집가능한 기간이 지났거나 모더레이터 권한이 없습니다.',
     'msg192' => '완료 되었습니다...  %s개의 토픽과  %s개의 코멘트를 인포트 하였습니다.',
     'msg193' => '기사를 게시판에 인포트 가능한 유용성 STORY&nbsp;&nbsp;TO&nbsp;&nbsp;FORUM&nbsp;&nbsp;MIGRATION&nbsp;&nbsp;',
@@ -353,21 +367,37 @@ $LANG_GF02 = array(
     'msg200' => '게시판 사이트 회원의 레포트 읽기',
     'msg201' => '인기토픽 레포트 읽기',
     'msg202' => 'No new posts',
-    'msg300' => 'Your preferences have block anonymous posts enabled',
-    'msg301' => 'Realy mark all categories read?',
-    'msg302' => 'Realy mark all topics read?',
+    'msg300' => 'This Forum Post by an anonymous user has been blocked. To enable see your <a href="/forum/userprefs.php">Forum User Preferences</a>.',
+	'msg301' 	=> 'Really mark all topics in all forums and categories read?',
+	'msg301a' 	=> 'All topics in all forums and categories have now been marked as read.',
+	'msg302' 	=> 'Really mark all topics read in this forum?',
+	'msg302a' 	=> 'All topics in this forum have now been marked as read.',
+	'msg303' 	=> 'Really mark all topics in all forums in this category read?',
+	'msg303a' 	=> 'All topics in all forums from this category have now been marked as read.',
     'PostReply' => '새로 글달기',
     'PostTopic' => '신규덧글',
     'EditTopic' => '덧글편집',
     'quietforum' => '게시판에 신규덧글은 없습니다'
 );
+$LANG_GF02['adminconfirmation']   = 'Administrator Confirmation';
+$LANG_GF02['num_forumposts']   = '%s Forum Post(s)';
+$LANG_GF02['gl_topics_desc']   = '<em>Important:</em> These are Geeklog Topics (which you have Edit access for) which can be assigned to the root parent forum topic post (which then applies to the entire fourm topic) or the Forum, or Category itself. If Geeklog Topics are assigned to the Category or Forum they will then be inherited by and items below it (unless that item is assigned to another Geeklog Topic).<br' . XHTML . '><br' . XHTML . '>Since Blocks (and their positions) are assigned to Geeklog Topics this allows you to select the Geeklog Topic you want and then have these Blocks display for the forum topic. This also allows the blocks postion "Forum Show Topic" to be used more effectively.<br' . XHTML . '><br' . XHTML . '>The Geeklog Topic assignment(s) for forum topics does not affect the permissions of the forum (like it does with articles). If the visitor has access to view the forum post but not the topic assigned to it then "All Topics" is assumed. If no Geeklog Topics are assigned to the forum topic then the default "All Topics" is assumed.';
+$LANG_GF02['gl_topics_inherit_category'] = '%s (inherited from Category)';
+$LANG_GF02['gl_topics_inherit_forum'] = '%s (inherited from Forum)';
+$LANG_GF02['gl_topics_inherit_config'] = '%s (inherited from Config)';
+$LANG_GF02['gl_topics_assigned']   = 'Geeklog Topic Assigned:';
 
 $LANG_GF03 = array(
     'delete' => '삭제',
     'edit' => '편집',
     'move' => '이동',
     'split' => '투고분할',
-    'ban' => 'IP 주소금지',
+    'banippost'         => 'Ban IP from Posting',
+    'banippostremove'   => 'Remove Ban for IP from Posting',
+    'banip'             => 'Ban IP from Site',
+    'banipremove'       => 'Remove Ban for IP from Site',
+    'banipmsg'      	=> 'IP has been banned from site',
+    'banipremovemsg'	=> 'Ban has been removed for IP from Site',  
     'movetopic' => '이동&map;삭제',
     'movetopicmsg' => '<br' . XHTML . '> 다음 게시판으로"<b>%s</b>를 이동하기"',
     'splittopicmsg' => '<br' . XHTML . '> 신규덧글 :"<b>%s</b>"<br' . XHTML . '><em> 글쓴이 :</em>&nbsp;%s&nbsp <em>원래 덧글:</em>&nbsp;%s',
@@ -411,7 +441,8 @@ $LANG_GF06 = array(
     4 => '모더레이터',
     5 => '기사를 게시판으로',
     6 => '메세지',
-    7 => '금지IP 주소'
+	7 => 'Subscriptions',
+    8 => '금지IP 주소'
 );
 
 $LANG_GF07 = array(
@@ -519,7 +550,9 @@ $LANG_GF93 = array(
     'hideposts' => 'Hide New posts',
     'hidepostsdscp' => 'Updates will not show in the New Posts Blocks or RSS Feeds',
     'mod_title' => 'Forum Moderators',
-    'allforums' => 'All Forums'
+    'allforums' => 'All Forums',
+    'namerequired' => 'Name is required.',
+	'resyncedmsg' => 'ReSynch and Clean completed for selected category or forum.<br><ul><li>%s topic posts re-synced.</li><li>%s orphan topic records (those without a parent topic) found and fixed.</li><li>%s orphan records found and cleaned from all other Forum tables.</li></ul>'
 );
 
 $LANG_GF95 = array(
@@ -548,6 +581,9 @@ $LANG_GF96 = array(
     'noip' => 'You did not provide an IP address!'
 );
 
+$LANG_GF97 = array (
+    'gfsubscriptions' => 'Forum Subscriptions'
+);
 
 $LANG_GF_SMILIES = array(
     'biggrin' => 'Big Grin',
@@ -603,7 +639,8 @@ $LANG_confignames['forum'] = array(
     'show_searches_perpage' => 'Number of Search Results per Page',
     'showblocks' => 'Block Columns to Show with Forum',
     'usermenu' => 'Type of User Menu',
-    'use_themes_template' => 'Use templates in the theme directory',
+    'likes_forum' => 'Forum Likes',
+    'recaptcha' => 'reCAPTCHA',
     'show_subject_length' => 'Max Length of Subject',
     'min_username_length' => 'Min Length of Username',
     'min_subject_length' => 'Min Length of Subject',
@@ -692,7 +729,9 @@ $LANG_configselects['forum'] = array(
     12 => array('No access' => 0, 'Read-Only' => 2, 'Read-Write' => 3),
     13 => array('No access' => 0, 'Use' => 2),
     14 => array('No access' => 0, 'Read-Only' => 2),
-    15 => array('All' => 'TOPIC_ALL_OPTION', 'Homepage Only' => 'TOPIC_HOMEONLY_OPTION', 'Select Topics' => 'TOPIC_SELECTED_OPTION')
+    15 => array('All' => 'TOPIC_ALL_OPTION', 'Homepage Only' => 'TOPIC_HOMEONLY_OPTION', 'Select Topics' => 'TOPIC_SELECTED_OPTION'),
+    16 => array('Disabled' => RECAPTCHA_NO_SUPPORT, 'reCAPTCHA V2' => RECAPTCHA_SUPPORT_V2, 'reCAPTCHA V2 Invisible' => RECAPTCHA_SUPPORT_V2_INVISIBLE),
+    41 => array('False' => 0, 'Likes and Dislikes' => 1, 'Likes Only' => 2)
 );
 
 ?>

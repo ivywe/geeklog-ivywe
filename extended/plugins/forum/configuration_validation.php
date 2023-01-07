@@ -44,12 +44,16 @@ $_CONF_VALIDATE['forum']['show_topics_perpage']   = array('rule' => 'numeric');
 $_CONF_VALIDATE['forum']['show_posts_perpage']    = array('rule' => 'numeric');
 $_CONF_VALIDATE['forum']['show_messages_perpage'] = array('rule' => 'numeric');
 $_CONF_VALIDATE['forum']['show_searches_perpage'] = array('rule' => 'numeric');
-$_CONF_VALIDATE['links']['showblocks']            = array(
+$_CONF_VALIDATE['forum']['showblocks']            = array(
     'rule' => array('inList', array('leftblocks', 'rightblocks', 'allblocks', 'noblocks'), true)
 );
-$_CONF_VALIDATE['links']['usermenu']              = array(
+$_CONF_VALIDATE['forum']['usermenu']              = array(
     'rule' => array('inList', array('blockmenu', 'navbar', 'none'), true)
 );
+$_CONF_VALIDATE['forum']['likes_forum'] = array(
+    'rule' => array('inList', array(0, 1, 2), false)
+);  
+$_CONF_VALIDATE['forum']['recaptcha'] = ['rule' => ['inList', ['0', '1', '2'], true]];
 
 // Topic Posting Settings
 $_CONF_VALIDATE['forum']['show_subject_length']   = array('rule' => 'numeric');

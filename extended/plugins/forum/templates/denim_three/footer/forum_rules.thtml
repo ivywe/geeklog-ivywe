@@ -1,0 +1,12 @@
+{# begin {templatelocation} #}
+
+<div class="uk-width-1-3@l uk-margin-top">
+	<ul class="uk-list uk-list-large uk-margin-left">
+		<li>{anon_perm_image}&nbsp;{anonymous_msg}</li>
+		<li>{post_perm_image}&nbsp;{postingperm_msg}</li>
+		<li>{html_perm_image}&nbsp;{html_msg}</li>
+		<li>{censor_perm_image}&nbsp;{censor_msg}</li>
+	</ul>
+</div>
+
+{# end {templatelocation} #}

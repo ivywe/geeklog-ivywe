@@ -1,96 +1,107 @@
-{# begin {templatelocation} #}
-
-<div uk-grid>
-	<div class="uk-width-1-1 uk-text-right">		
-		<a class="uk-button uk-button-primary" href="{phpself}?mode=add&amp;type=category">{addcat}</a>
-	</div>
-</div>
-
+<!-- start boards.thtml -->   
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+    <tr>
+        <td class="pluginHeader aligncenter" style="padding:5px;">[&nbsp;<a href="{phpself}?mode=add&amp;type=category">{addcat}</a>&nbsp;]</td>
+    </tr>
+</table>
 {category_record}
 
+
 <!-- BEGIN category_record -->
-<div class="uk-panel uk-panel-box uk-width-medium-1-1 uk-margin uk-form">
-	<div uk-grid>
-		<div class="uk-width-1-1 uk-text-right">		
-			<b>{LANG_order}:</b> {catorder}		
-		</div>
-	</div>
-	
-	<fieldset>
-		<legend>{LANG_category}: {catname}</legend>
-		
-		<div uk-grid>
-			<div class="uk-width-3-5">
-				{catdesc}&nbsp; {# Need space incase description is blank #}
-			</div>
-			<div class="uk-width-2-5 uk-text-right">
-			 	<form action="{phpself}" method="post">
-					<input type="hidden" name="type" value="category"{xhtml}>
-					<input type="hidden" name="forumname" value="{forumname}"{xhtml}>
-					<input type="hidden" name="id" value="{catid}"{xhtml}>
-					<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
-			 	
-					<button class="uk-button uk-button-small" type="submit" name="mode" value="{edit}">{edit}</button>
-					<button class="uk-button uk-button-small" type="submit" name="mode" value="{delete}">{delete}</button>
-					<button class="uk-button uk-button-small" type="submit" name="mode" value="{resync_cat}" style="display:{hide_options};">{resync}</button>
-				</form>
-			</div>
-		</div>
-		
-		<div uk-grid>
-			<div class="uk-width-1-1 uk-text-right">		
-				<a class="uk-button uk-button-primary" href="{phpself}?mode=add&amp;type=forum&amp;category={catid}&amp;catname={catname}">{addforum}</a>
-			</div>
-		</div>
-		
-		<table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
-			<thead>
-				<tr>
-					<th>{LANG_forum}</th>
-					<th>{LANG_posts}</th>
-					<th>{LANG_order}</th>
-					<th>{LANG_action}</th>
-				</tr>
-			</thead>
-			<tbody>                                
-				{forum_record}
+<table width="100%" cellspacing="0" cellpadding="3" style="margin-top:10px; margin-bottom:20px; border:0 none;">
+    <tr>
+        <td>
+            <table width="100%" cellspacing="0" cellpadding="0" style="border:0 none;">
+                <tr>
+                    <td style="height:8px; width:10px;"><img alt="" src="{imgset}/forumindex.png" style="border:none;"{xhtml}></td>
+                    <td class="pluginHeader alignleft" style="white-space:nowrap;">&nbsp;{catname}:</td>
+                    <td class="alignleft">{catdesc}</td>
+                    <td class="alignright" style="white-space:nowrap;">{LANG_catorder}:&nbsp;{catorder}&nbsp;&nbsp;</td>
+                </tr>
+                {!if geeklog_topic_category}
+                <tr><td colspan="2"></td><td colspan="2">{lang_geeklog_topic} {geeklog_topic_category}</td></tr>
+                {!endif}                  
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td style="padding:0px;">
+            <table width="100%" cellspacing="1" cellpadding="3" class="pluginSolidOutline" style="border:0 none;">
+                <tr>
+                    <td class="pluginCellTitle aligncenter" style="padding-left:5px width:15%;">{LANG_action}</td>
+                    <td class="pluginCellTitle" style="width:70%;">{LANG_forumdesc}</td>
+                    <td class="pluginCellTitle aligncenter" style="width:5%; white-space:nowrap;">{LANG_posts}</td>
+                    <td class="pluginCellTitle aligncenter" style="width:10%;">{LANG_order}</td>
+                </tr>
+                {forum_record}
 				{no_records_message}
-			</tbody>
-		</table>		
-	</fieldset>
-</div>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td class="pluginSolidOutline pluginCellSubTitle">
+            <table width="100%" cellspacing="1" cellpadding="4" style="border:0 none;">
+                <tr>
+                    <td style="white-space:nowrap;">
+                        <form action="{phpself}" method="post">
+                            <fieldset><legend style="padding-bottom:5px;">Category</legend>
+                                <input type="hidden" name="type" value="category"{xhtml}>
+                                <input type="hidden" name="forumname" value="{forumname}"{xhtml}>
+                                <input type="hidden" name="id" value="{catid}"{xhtml}>
+                                <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+                                <input type="submit" name="mode" value="{delete}"{xhtml}>&nbsp;
+                                <input type="submit" name="mode" value="{edit}"{xhtml}>&nbsp;
+                                <input type="submit" name="mode" value="{resync_cat}" style="display:{hide_options};"{xhtml}>
+                            </fieldset>
+                        </form>
+                    </td>
+                    <td class="alignright" style="width:60%; white-space:nowrap;">[&nbsp;<a href="{phpself}?mode=add&amp;type=forum&amp;category={catid}&amp;catname={catname}">{addforum}</a>&nbsp;]&nbsp;&nbsp;<br{xhtml}></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
 <!-- END category_record -->
 
 <!-- BEGIN forum_record -->
-<tr>
-	<td>
-		<a href="messages.php?forum={forumid}&amp;forumname={forumname}">{forumname}</a><br{xhtml}>
-		{forumdscp}
+<tr style="padding:0px 0px 5px 2px;">
+	<td class="pluginCellSubTitle">
+		<form action="{phpself}" method="post" style="margin:0px;">
+			<table border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td style="padding:2px 2px 0px 2px; white-space:nowrap;"><input type="submit" name="mode" value="{delete}"{xhtml}></td>
+					<td style="padding:2px 0px 0px 2px; white-space:nowrap;"><input type="submit" name="mode" value="{edit}"{xhtml}></td>
+				</tr>
+				<tr>
+					<td style="padding:2px 0px 0px 2px; white-space:nowrap;"><input type="submit" name="mode" value="{merge}"{xhtml}></td>
+					<td style="padding:2px 0px 2px 2px;">
+						<input type="submit" name="mode" value="{resync}"{xhtml}>
+						<input type="hidden" name="type" value="forum"{xhtml}>
+						<input type="hidden" name="forumname" value="{forumname}"{xhtml}>
+						<input type="hidden" name="id" value="{forumid}"{xhtml}>
+						<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+					</td>
+				</tr>
+			</table>
+		</form>
 	</td>
-	<td class="uk-text-center">{messagecount}</td>
-	<td class="uk-text-center">
-		<form action="{phpself}" method="post">
+	<td class="pluginCellText pluginCellFill" style="vertical-align:top;text-align:left;"><a href="messages.php?forum={forumid}&amp;forumname={forumname}">{forumname}</a><br{xhtml}>{forumdscp}
+        {!if geeklog_topic_forum}
+        <br{xhtml}>{lang_geeklog_topic} {geeklog_topic_forum}
+        {!endif}     
+    
+    </td>
+	<td class="pluginCellText pluginCellFill aligncenter" style="white-space:nowrap;">{messagecount}</td>
+	<td class="pluginCellText pluginCellFill" style="padding:0 6px; white-space:nowrap;">
+		<!-- CHANGE FORUM ORDER -->
+		<form action="{phpself}" method="post"><div>
 			<input type="hidden" name="type" value="forum"{xhtml}>
 			<input type="hidden" name="mode" value="{edit}"{xhtml}>
 			<input type="hidden" name="what" value="order"{xhtml}>
 			<input type="hidden" name="id" value="{forumid}"{xhtml}>
 			<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
-			
-			<input type="text" class="uk-input uk-form-width-xsmall" size="2" maxlength="2" name="order" value="{forumorder}"{xhtml}>&nbsp;
-			<button class="uk-button uk-button-small" type="submit" name="submit" value="{submit}">{submit}</button>
-		</form>
-	</td>
-	<td>
-		<form action="{phpself}" method="post">
-			<input type="hidden" name="type" value="forum"{xhtml}>
-			<input type="hidden" name="forumname" value="{forumname}"{xhtml}>
-			<input type="hidden" name="id" value="{forumid}"{xhtml}>
-			<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
-		
-			<button class="uk-button uk-button-small" type="submit" name="mode" value="{delete}">{delete}</button>
-			<button class="uk-button uk-button-small" type="submit" name="mode" value="{edit}">{edit}</button><br{xhtml}>
-			<button class="uk-button uk-button-small uk-margin-small-top" type="submit" name="mode" value="{merge}">{merge}</button>
-			<button class="uk-button uk-button-small uk-margin-small-top" type="submit" name="mode" value="{resync}">{resync}</button>
+			<input type="text" size="2" name="order" value="{forumorder}"{xhtml}>&nbsp;
+			<input type="submit" name="submit" value="{submit}"{xhtml}></div>
 		</form>
 	</td>
 </tr>
@@ -98,7 +109,7 @@
 
 <!-- BEGIN no_records_message -->
 <tr>
-	<td colspan="4">{records_message}</td>
+	<td class="pluginCellText pluginCellFill" colspan="4">{records_message}</td>
 </tr>
 <!-- END no_records_message -->
 

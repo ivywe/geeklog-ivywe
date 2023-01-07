@@ -1,0 +1,26 @@
+{# begin {templatelocation} #}
+
+<div style="margin-bottom:1em;">
+	<p>
+	<b>{lang_posted_on}:</b> {topic_date}<br>
+	<b>{lang_by}</b> {topic_author}{!if topic_nickname} ({topic_nickname}){!endif}<br>
+	</p>
+</div>
+<div>{topic_comment}</div>
+{reply_posts}
+
+<!-- BEGIN block_reply_post -->
+
+<hr>
+
+<div style="margin-bottom:1em;">
+	<h2>{reply_subject}</h2>
+	<p>
+	<b>{lang_posted_on}:</b> {reply_date}<br>
+	<b>{lang_by}</b> {reply_author}{!if reply_nickname} ({reply_nickname}){!endif}<br>
+	</p>
+</div>
+<div>{reply_comment}</div>
+<!-- END block_reply_post -->
+
+{# end {templatelocation} #}

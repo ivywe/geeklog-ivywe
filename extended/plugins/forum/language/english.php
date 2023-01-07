@@ -132,8 +132,8 @@ $LANG_GF01['loginreqfeature']   = 'Sorry you must %s register</a> or %s login </
 $LANG_GF01['loginreqpost']   = 'Sorry you must register or login to post on these forums';
 $LANG_GF01['nolastpostmsg']  = 'N/A';
 $LANG_GF01['no_one']         = 'No one.';
-$LANG_GF01['TEXTMODE']       = 'Text Mode:';
-$LANG_GF01['HTMLMODE']       = 'HTML Mode:';
+$LANG_GF01['TEXTMODE']       = 'Text Mode';
+$LANG_GF01['HTMLMODE']       = 'HTML Mode';
 $LANG_GF01['TopicPreview']   = 'Topic post preview';
 $LANG_GF01['moderator']      = 'Moderator';
 $LANG_GF01['admin']          = 'Admin';
@@ -163,13 +163,16 @@ $LANG_GF01['SubscribeLink_FALSE'] = 'Subscribe:Disabled';
 $LANG_GF01['SUBSCRIPTIONS']  = 'Subscriptions';
 $LANG_GF01['TOP']            = 'Top of Post';
 $LANG_GF01['PRINTABLE']      = 'Printable Version';
+$LANG_GF01['printed_subject']   = 'Forum Subject: %s';
 $LANG_GF01['USERPREFS']      = 'Preferences';
-$LANG_GF01['SPEEDLIMIT']     = '"Your last comment was %s seconds ago.<br' . XHTML . '>This site requires at least %s seconds between forum posts."';
+$LANG_GF01['SPEEDLIMIT']     = 'Your last comment was %s seconds ago. This site requires at least %s seconds between forum posts.';
 $LANG_GF01['ACCESSERROR']    = 'ACCESS ERROR';
 $LANG_GF01['ACTIONS']        = 'Actions';
 $LANG_GF01['DELETEALL']      = 'Delete all selected records';
 $LANG_GF01['DELCONFIRM']     = 'Are you sure you want to Delete selected records?';
 $LANG_GF01['DELALLCONFIRM']  = 'Are you sure you want to Delete ALL selected records?';
+$LANG_GF01['DELCONFIRM_PARENT'] = 'Are you sure you want to Delete this parent topic? It means that any replies it has will also be deleted.';
+$LANG_GF01['DELALLCONFIRM_PARENT'] = 'Are you sure you want to Delete ALL selected records? If you have selected parent topics, then any replies to those topics will also be deleted. Parent Topics are the ones that show Views greater than 0.';
 $LANG_GF01['STARTEDBY']      = 'Started By';
 $LANG_GF01['WARNING']        = 'Warning';
 $LANG_GF01['MODERATED']      = 'Moderators: %s';
@@ -237,12 +240,20 @@ $LANG_GF02['msg14']    = 'Sorry, You have been banned from making entries. If yo
 $LANG_GF02['msg18']    = 'Error! Not all required fields were completed or were too short in length.';
 $LANG_GF02['msg19']    = 'Your message has been posted.';
 $LANG_GF02['msg22']    = '- Forum Post Notification';
-$LANG_GF02['msg23a']   = "A reply has been made to the thread '%s' by %s.\n\nThis topic was started by %s in the %s forum. ";
-$LANG_GF02['msg23b']   = "A new topic '%s' has been posted by %s in the %s forum on the %s website. You may view it at:\n%s/forum/viewtopic.php?showtopic=%s\n";
-$LANG_GF02['msg23c']   = "You may view it at:\n%s/forum/viewtopic.php?showtopic=%s&lastpost=true\n";
-$LANG_GF02['msg25']    = "\nHave a great day! \n";
-$LANG_GF02['msg26']    = "\nYou are receiving this email because you have chosen to be notified when a reply has been made to this topic. ";
-$LANG_GF02['msg27']    = "To stop receiving notifications on this topic go to <%s> to remove it.\n";
+
+
+$LANG_GF02['reply_to_thread_msg']   	= "A reply has been made to the thread '%s' by %s.";
+$LANG_GF02['topic_started_msg']     	= "This topic was started by %s in the %s forum.";
+$LANG_GF02['view_reply_at_msg']     	= "You may view the reply at:";
+$LANG_GF02['new_topic_msg']   			= "A new topic '%s' has been posted by %s in the '%s' forum on the %s website.";
+$LANG_GF02['view_topic_at_msg']     	= "You may view it at:";
+$LANG_GF02['edit_to_post_msg']   	= "An edit has been made to a post in the thread '%s' by %s.";
+$LANG_GF02['view_edit_at_msg']     	= "You may view the edited post at:";
+$LANG_GF02['stop_reply_notify_msg'] 	= "You are receiving this email because you have chosen to be notified when a reply has been made to this topic. To stop receiving notifications on this topic go to:";
+$LANG_GF02['stop_new_notify_msg'] 	= "You are receiving this email because you have chosen to be notified when a new topic has been posted to this forum. To stop receiving notifications for this forum go to:";
+$LANG_GF02['great_day_msg']     		= "Have a great day!";
+
+
 $LANG_GF02['msg33']    = 'Author: ';
 $LANG_GF02['msg36']    = 'Mood:';
 $LANG_GF02['msg38']    = 'Notify me of replies ';
@@ -251,13 +262,14 @@ $LANG_GF02['msg44']    = 'No notifications found for specified settings.';
 $LANG_GF02['msg49']    = '(Read %s times) ';
 $LANG_GF02['msg55']    = 'Post Deleted.';
 $LANG_GF02['msg56']    = 'IP Banned.';
+$LANG_GF02['msg57']    = 'IP removed from being Banned.';
 $LANG_GF02['msg59']    = 'Normal Topic';
 $LANG_GF02['msg60']    = 'New Post';
 $LANG_GF02['msg61']    = 'Sticky Topic';
 $LANG_GF02['msg62']    = 'Notify me of replies';
 $LANG_GF02['msg64']    = 'Are you sure you want to delete topic %s titled: %s ?';
-$LANG_GF02['msg65']    = 'This is a parent topic, so all replies posted to it will also be deleted.';
-$LANG_GF02['msg68']    = 'Note: BE CAREFUL WHEN YOU BAN, only admins have the rights to unban someone.';
+$LANG_GF02['msg65']    = 'This is a parent topic, so all replies posted to it will also be deleted.<br><br>';
+$LANG_GF02['msg68']    = 'Do you really want to remove the ban for the ip address: %s?';
 $LANG_GF02['msg69']    = 'Do you really want to ban the ip address: %s?';
 $LANG_GF02['msg71']    = 'No function selected, choose a post and then a moderator function. Note: You must be a moderator to perform these functions.';
 $LANG_GF02['msg72']    = 'Warning, you do not have rights to perform this moderation function.';
@@ -270,7 +282,7 @@ $LANG_GF02['msg84']    = 'Mark all topics read';
 $LANG_GF02['msg85']    = 'Page:';
 $LANG_GF02['msg86']    = '&nbsp;Last %s posts&nbsp;';
 $LANG_GF02['msg87']    = 'Warning: This topic has been locked by the moderator. No additional posts are permitted';
-$LANG_GF02['msg88']    = 'Site Members';
+$LANG_GF02['msg88']    = 'Site Users';
 $LANG_GF02['msg88b']   = 'Forum Activity Only';
 $LANG_GF02['msg89']    = 'My Enabled Notifications';
 $LANG_GF02['msg101']   = 'Forum Rules:';
@@ -293,14 +305,19 @@ $LANG_GF02['msg134']   = 'Subscription Added';
 $LANG_GF02['msg135']   = 'You will now be notified of all posts to this forum.';
 $LANG_GF02['msg136']   = 'You must choose a forum to subscribe to.';
 $LANG_GF02['msg137']   = 'Notification for topic enabled';
-$LANG_GF02['msg138']   = '<b>Subscribed to complete forum</b>';
+$LANG_GF02['msg138a']  = 'Listed below are all the forum topics you have subscribed to. This means for these subscriptions you will receive an email notification when someone replies to one of your subscribed topics.';
+$LANG_GF02['msg138b']  = 'Listed below are all the forums you have subscribed to. This means for these subscriptions you will receive an email notification when a new topic is created in one of these forums, or someone replies to a topic. Please note that deleting a forum subscription will also delete any Forum Topic Exceptions associated with the forum (but not any individual topic notifications).';
+$LANG_GF02['msg138c']  = 'Listed below are all the topics that belong to the forum(s) you have subscribed to (see Forum Notifications), but you have unsubscribed from and chosen not to receive any more topic reply email notifications for.';
+$LANG_GF02['msg139a']  = 'Listed below are all the forum topics the user you are viewing has subscribed to. This means for these subscriptions the user will receive an email notification when someone replies to one of their subscribed topics. If "All Users" are selected then the User column contains the name of the account the notification is for.';
+$LANG_GF02['msg139b']  = 'Listed below are all the forums the user you are viewing has subscribed to. This means for these subscriptions the user will receive an email notification when a new topic is created in one of these forums, or someone replies to a topic. Please note that deleting a forum subscription will also delete any Forum Topic Exceptions associated with the forum (but not any individual topic notifications).  If "All Users" are selected then the User column contains the name of the account the notification is for.';
+$LANG_GF02['msg139c']  = 'Listed below are all the topics that belong to the forum(s) the user has subscribed to (see Forum Notifications), but they have unsubscribed from and chosen not to receive any more topic reply email notifications for. If "All Users" are selected then the User column contains the name of the account the notification is for.';
 $LANG_GF02['msg142']   = 'Notification saved.';
 $LANG_GF02['msg143']   = 'Notification saved but, no email is associated with your user account (or it is invalid). Please add one to your <a href="/usersettings.php">account</a> or you will not receive any notifications.';
 $LANG_GF02['msg144']   = 'Return to topic';
 $LANG_GF02['msg145']   = 'No email is associated with your user account (or it is invalid). Please add one to your <a href="/usersettings.php">account</a> or you will not receive any notifications.';
-$LANG_GF02['msg146']   = 'Notification Deleted';
+$LANG_GF02['msg146']   = 'Notification(s) Deleted.';
 $LANG_GF02['msg147']   = 'Forum [printable version of topic %s]';
-$LANG_GF02['msg148']   = 'Click <a href="javascript:history.back()">HERE</a> to return';
+$LANG_GF02['msg148']   = '';
 $LANG_GF02['msg149']   = 'Forum post canceled.';
 $LANG_GF02['msg155']   = 'No user posts.';
 $LANG_GF02['msg156']   = 'Total number of forum posts:';
@@ -313,7 +330,7 @@ $LANG_GF02['msg164']   = 'Mark all Categories and Topics Read';
 $LANG_GF02['msg166']   = 'ERROR: Invalid topic or Topic not found';
 $LANG_GF02['msg167']   = 'Notification Option';
 $LANG_GF02['msg168']   = 'Setting of No will disable email notifications';
-$LANG_GF02['msg169']   = 'Return to Members listing';
+$LANG_GF02['msg169']   = 'Return to Users listing';
 $LANG_GF02['msg170']   = 'Latest Forum Posts';
 $LANG_GF02['msg171']   = 'Forum Access Error';
 $LANG_GF02['msg172']   = 'Topic does not exist. It possibly has been deleted';
@@ -321,19 +338,20 @@ $LANG_GF02['msg173']   = 'Transferring to Post Message page..';
 $LANG_GF02['msg174']   = 'Unable to BAN Member - Invalid or Empty IP Address';
 $LANG_GF02['msg175']   = 'Return to Forum Listing';
 $LANG_GF02['msg176']   = 'Select a member';
-$LANG_GF02['msg177']   = 'All Members';
+$LANG_GF02['msg177']   = 'All Users';
 $LANG_GF02['msg178']   = 'Parent Posts Only';
 $LANG_GF02['msg179']   = 'Content generated in: %s seconds';
 $LANG_GF02['msg180']   = 'Forum Posting Alert';
-$LANG_GF02['msg181']   = 'You don\'t have access to any other forum as a moderator';
+$LANG_GF02['msg181']   = 'You don\'t have access to any other forum as a moderator so you cannot move this topic';
 $LANG_GF02['msg182']   = 'Moderator Confirmation';
 $LANG_GF02['msg183']   = 'Topic split and moved';
 $LANG_GF02['msg186']   = 'New Topic Title';
 $LANG_GF02['msg187']   = 'Return to topic - click <a href="%s">here</a>';
 $LANG_GF02['msg188']   = 'Click to go directly to last post';
-$LANG_GF02['msg189']   = 'Error: You can not edit this post anymore';
+$LANG_GF02['msg189']   = 'Sorry, you ran out of time to edit this post. Edit has been canceled.';
 $LANG_GF02['msg190']   = 'Silent Edit';
-$LANG_GF02['msg191']   = 'Edit not permitted. Allowable edit time frame expired or you need moderator rights';
+$LANG_GF02['msg190b']  = 'When enabled and the forum post is saved, no notifications will be sent to users subscribed to this topic (or forum) about this update, and the forum post last updated date will not be changed to the current date and time.';
+$LANG_GF02['msg191']   = 'Edit not permitted. Allowable edit time frame expired.';
 $LANG_GF02['msg192']   = 'Completed ... Migrated %s topics and %s comments.';
 $LANG_GF02['msg193']   = 'Article to Forum Post Migration Tool';
 $LANG_GF02['msg194']   = 'Quiet Forum';
@@ -342,7 +360,7 @@ $LANG_GF02['msg196']   = 'View the main forum index';
 $LANG_GF02['msg197']   = 'Mark All Read';
 $LANG_GF02['msg198']   = 'Update your forum settings';
 $LANG_GF02['msg199']   = 'View or remove forum notifications';
-$LANG_GF02['msg200']   = 'Members Report';
+$LANG_GF02['msg200']   = 'Users Report';
 $LANG_GF02['msg201']   = 'Popular Topics';
 $LANG_GF02['popularforumtopics']   = 'Popular Forum Topics';
 $LANG_GF02['poptopisby']   = 'Popular Topics by %s';
@@ -353,15 +371,24 @@ $LANG_GF02['forumsearchresults']   = 'Forum Search Results';
 $LANG_GF02['forumsearchfor']   = 'Forum Search results for "%s"';
 $LANG_GF02['msg202']   = 'No new posts.';
 $LANG_GF02['msg203']   = 'No posts found.';
-$LANG_GF02['msg300']   = 'Your preferences have block anonymous posts enabled';
-$LANG_GF02['msg301']   = 'Realy mark all categories read?';
-$LANG_GF02['msg302']   = 'Realy mark all topics read?';
+$LANG_GF02['msg300']   = 'This Forum Post by an anonymous user has been blocked. To enable see your <a href="/forum/userprefs.php">Forum User Preferences</a>.';
+$LANG_GF02['msg301']   = 'Really mark all topics in all forums and categories read?';
+$LANG_GF02['msg301a']   = 'All topics in all forums and categories have now been marked as read.';
+$LANG_GF02['msg302']   = 'Really mark all topics read in this forum?';
+$LANG_GF02['msg302a']   = 'All topics in this forum have now been marked as read.';
+$LANG_GF02['msg303']   = 'Really mark all topics in all forums in this category read?';
+$LANG_GF02['msg303a']   = 'All topics in all forums from this category have now been marked as read.';
 $LANG_GF02['PostReply']   = 'Post New Reply';
 $LANG_GF02['PostTopic']   = 'Post New Topic';
 $LANG_GF02['EditTopic']   = 'Edit Topic';
 $LANG_GF02['quietforum']  = 'Forum has no new topics';
 $LANG_GF02['adminconfirmation']   = 'Administrator Confirmation';
 $LANG_GF02['num_forumposts']   = '%s Forum Post(s)';
+$LANG_GF02['gl_topics_desc']   = '<em>Important:</em> These are Geeklog Topics (which you have Edit access for) which can be assigned to the root parent forum topic post (which then applies to the entire fourm topic) or the Forum, or Category itself. If Geeklog Topics are assigned to the Category or Forum they will then be inherited by and items below it (unless that item is assigned to another Geeklog Topic).<br' . XHTML . '><br' . XHTML . '>Since Blocks (and their positions) are assigned to Geeklog Topics this allows you to select the Geeklog Topic you want and then have these Blocks display for the forum topic. This also allows the blocks postion "Forum Show Topic" to be used more effectively.<br' . XHTML . '><br' . XHTML . '>The Geeklog Topic assignment(s) for forum topics does not affect the permissions of the forum (like it does with articles). If the visitor has access to view the forum post but not the topic assigned to it then "All Topics" is assumed. If no Geeklog Topics are assigned to the forum topic then the default "All Topics" is assumed.';
+$LANG_GF02['gl_topics_inherit_category'] = '%s (inherited from Category)';
+$LANG_GF02['gl_topics_inherit_forum'] = '%s (inherited from Forum)';
+$LANG_GF02['gl_topics_inherit_config'] = '%s (inherited from Config)';
+$LANG_GF02['gl_topics_assigned']   = 'Geeklog Topic Assigned:';
 
 $LANG_GF03 = array (
     'delete'            => 'Delete Post',
@@ -373,7 +400,7 @@ $LANG_GF03 = array (
     'banip'             => 'Ban IP from Site',
     'banipremove'       => 'Remove Ban for IP from Site',
     'banipmsg'      	=> 'IP has been banned from site',
-    'banipremovemsg'	=> 'Ban has been removed for IP from Site',      
+    'banipremovemsg'	=> 'Ban has been removed for IP from Site',  
     'movetopic'         => 'Move Topic',
     'movetopicmsg'      => 'Topic to be moved: "<b>%s</b>"',
     'splittopicmsg'     => 'Create a new Topic with this post "<b>%s</b>" by %s on %s',
@@ -420,7 +447,8 @@ $LANG_GF06 = array (
     4   => 'Moderator',
     5   => 'Migrate',
     6   => 'Posts',
-    7   => 'Banned IPs'
+	7   => 'Subscriptions',
+    8   => 'Banned IPs'
 );
 
 
@@ -430,15 +458,15 @@ $LANG_GF07 = array (
     2   => 'Preferences',
     3   => 'Popular Topics',
     4   => 'Subscriptions',
-    5   => 'Members'
+    5   => 'Users'
 );
 
 
 /* Forum User Features */
 $LANG_GF08 = array (
     1   => 'Topic Notifications',
-    2   => 'Track Forum Notifications',
-    3   => 'Topic Exception Notifications'
+    2   => 'Forum Notifications',
+    3   => 'Forum Topic ExceptionS'
 );
 
 /* Text for the buttons */
@@ -493,8 +521,8 @@ $LANG_GF92 = array (
     'popularldscp'       => 'Number of posts or views before calling a topic popular',
     'searchpp'         	 => 'Search Results Per Pages',
     'searchppdscp'       => 'Number of search results to display on the search page',
-    'memberspp'          => 'Members Per Page',
-    'membersppdscp'      => 'Number of Members to show on the members report page',
+    'memberspp'          => 'Users Per Page',
+    'membersppdscp'      => 'Number of Users to show on the Users report page',
     'viewap'         	 => 'View Anonymous Posts',
     'viewapdscp'         => 'Setting of No will filter out anonymous posts',
     'alwaysn'            => 'Always Notify',
@@ -502,7 +530,8 @@ $LANG_GF92 = array (
     'notifyoo'			 => 'Notify Once Only', 
     'notifyoodscp'   	 => 'Notifications will only be sent once for forums and topics which have multiple new posts since your last visit.', 
     'showiframe'         => 'Show Topic Review',
-    'showiframedscp'     => 'Show Topic Review frame at bottom when replying to a topic'
+    'showiframedscp'     => 'Show Topic Review frame at bottom when replying to a topic',
+    'gfsettings'         => 'Forum Settings'
 );
 
 // Board Admin
@@ -566,7 +595,9 @@ $LANG_GF93 = array (
     'hideposts'          => 'Hide New posts',
     'hidepostsdscp'      => 'Updates will not show in the New Posts Blocks or RSS Feeds',
     'mod_title'          => 'Forum Moderators',
-    'allforums'          => 'All Forums'
+    'allforums'          => 'All Forums',
+    'namerequired'       => 'Name is required.',
+	'resyncedmsg' 		 => 'ReSynch and Clean completed for selected category or forum.<br><ul><li>%s topic posts re-synced.</li><li>%s orphan topic records (those without a parent topic) found and fixed.</li><li>%s orphan records found and cleaned from all other Forum tables.</li></ul>'
 );
 
 // Posts
@@ -596,6 +627,10 @@ $LANG_GF96 = array (
     'ipunbanned'         => 'IP Address Un-Banned.',
     'ipnotvalid'         => 'IP Address %s is not valid. Therefore it has not been added.',
     'noip'               => 'You did not provide an IP address!'
+);
+
+$LANG_GF97 = array (
+    'gfsubscriptions'    => 'Forum Subscriptions'
 );
 
 // Smilies
@@ -648,6 +683,8 @@ $LANG_confignames['forum'] = array(
     'show_searches_perpage' => 'Number of Search Results per Page',
     'showblocks'            => 'Block Columns to Show with Forum',
     'usermenu'              => 'Type of User Menu',
+    'likes_forum'           => 'Forum Likes',
+    'recaptcha'             => 'reCAPTCHA',
     // ----------------------------------
     'show_subject_length'   => 'Max Length of Subject',
     'min_username_length'   => 'Min Length of Username',
@@ -741,6 +778,8 @@ $LANG_configselects['forum'] = array(
     12 => array('No access' => 0, 'Read-Only' => 2, 'Read-Write' => 3),
     13 => array('No access' => 0, 'Use' => 2),
     14 => array('No access' => 0, 'Read-Only' => 2),
-    15 => array('All' => TOPIC_ALL_OPTION, 'Homepage Only' => TOPIC_HOMEONLY_OPTION, 'Select Topics' => TOPIC_SELECTED_OPTION)
+    15 => array('All' => TOPIC_ALL_OPTION, 'Homepage Only' => TOPIC_HOMEONLY_OPTION, 'Select Topics' => TOPIC_SELECTED_OPTION),
+    16 => array('Disabled' => RECAPTCHA_NO_SUPPORT, 'reCAPTCHA V2' => RECAPTCHA_SUPPORT_V2, 'reCAPTCHA V2 Invisible' => RECAPTCHA_SUPPORT_V2_INVISIBLE),
+    41 => array('False' => 0, 'Likes and Dislikes' => 1, 'Likes Only' => 2)
 );
 ?>

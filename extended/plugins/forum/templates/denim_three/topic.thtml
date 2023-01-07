@@ -1,0 +1,149 @@
+{# begin {templatelocation} #}
+
+<hr class="glforum-hr-none"{xhtml}>
+
+<div class="uk-card uk-card-default uk-card-body uk-margin-bottom glforum-panel-topic-container{csscode}">
+	<div class="uk-panel">
+		<div class="uk-float-right uk-margin-right">
+			{mod_functions}
+		</div>
+		<div class="uk-float-left uk-margin-left">
+			<div class="uk-panel glforum-panel-link">
+				<span uk-icon="icon: comment"></span>&nbsp;{posted_date}{preview_topic_subject}&nbsp;{read_msg}&nbsp;{topiclocked_icon}
+				<a id="{topic_post_id}"></a> {# topic post link jump point #}
+			</div>
+		</div>
+	</div>
+	<div class="uk-grid uk-margin-small-top uk-grid-collapse glforum-grid-divider" uk-height-match>
+		<div class="uk-width-1-5@m">
+			{user_information}
+		</div>
+		<div class="uk-width-4-5@m">
+			{# <div class="uk-panel uk-panel-box uk-width-1-1@m uk-panel-box-primary uk-text-break uk-margin topic-panel glforum-post-link" style="{comment_minheight};"> #}
+			{# <div class="uk-panel uk-panel-box uk-width-1-1@m uk-panel-box-primary uk-text-break uk-margin glforum-post-link"> #}
+			<div class="uk-panel uk-width-1-1@m uk-text-break uk-margin glforum-post-link glforum-panel-topic">
+				{topic_comment}
+				{post_signature}
+			</div>
+			<div class="uk-text-right uk-text-bottom uk-margin-right">
+                {!if likes_control}
+                <span class="uk-margin-right">{likes_control}</span>
+                {!endif}
+				{edittopic_link}
+				{quotetopic_link}
+			</div>
+		</div>
+	</div>
+</div>
+
+{!if blocks_showtopic}
+{blocks_showtopic}
+{!endif} 
+
+<!-- BEGIN block_user_name -->
+<h4 class="uk-margin-small-top uk-margin-small-bottom">{userlink}</h4>
+<!-- END block_user_name -->
+
+<!-- BEGIN block_user_information -->
+		<div class="uk-panel uk-text-center uk-margin-small-bottom glforum-panel-userinfo" style="height: auto">
+			<div class="uk-clearfix glforum-userinfo-container">
+				<div class="glforum-userinfo-thumbnail">
+					<div class="uk-panel">
+						<div class="uk-inline-clip uk-transition-toggle">
+							<figure class="forum-userphoto">
+                                {# Require avatar image no matter how Geeklog is configured since overlay is used #}
+		                    	{!if avatar}{avatar}{!else}<img src="{site_url}/forum/image_set/avatar.jpg" alt="" class="userphoto"{xhtml}>{!endif}
+		                    </figure>
+                            {!!if {profile_link} != '' OR {email_link} != '' OR {website_link} != '' OR {pm_link} != '' !!}
+							<div class="uk-transition-fade uk-position-cover uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle">
+                                {profile_link}
+                                {email_link}
+                                {website_link}
+                                {pm_link}
+							</div>
+                            {!endif}
+						</div>
+					</div>
+					<div class="uk-text-small">{user_status}</div>
+				</div>
+				<div class="glforum-userinfo-name">
+					{user_name}
+					<div class="uk-text-muted uk-text-small">
+						{!if member_badge}<div class="glforum-userinfo-badge">{member_badge}</div>{!endif}
+						{!if user_level}<div class="glforum-userinfo-level">{user_level}</div>{!endif}
+						{!if user_levelname}<div class="glforum-userinfo-levelname">{user_levelname}</div>{!endif}
+						{!if regdate}<div class="glforum-userinfo-regdate glforum-br">{regdate}</div>{!endif}
+						{!if numposts}<div class="glforum-userinfo-numposts">{numposts}</div>{!endif}
+						{!if location}<div class="glforum-userinfo-location">{location}</div>{!endif}
+						{!if ip_address}<div class="glforum-userinfo-ip glforum-br">{ip_address}</div>{!endif}
+					</div>
+				</div>
+                {!if mood_icon}
+                <div class="glforum-userinfo-mood">
+					{mood_icon}
+				</div>
+                {!endif}
+			</div>
+		</div>
+<!-- END block_user_information -->
+
+<!-- BEGIN block_anon_user_name -->
+<h4 class="uk-margin-small-top uk-margin-small-bottom">{userlink}</h4>
+<!-- END block_anon_user_name -->
+
+<!-- BEGIN block_anon_user_information -->
+		<div class="uk-panel uk-text-center uk-margin-small-bottom glforum-panel-userinfo" style="height: auto">
+			<div class="uk-clearfix glforum-userinfo-container">
+				<div class="glforum-userinfo-thumbnail">
+					<div class="uk-panel">
+                        {# Require avatar image for consistency with actual users #}
+						<figure class="forum-userphoto">
+	                    	{!if avatar}{avatar}{!else}<img src="{site_url}/forum/image_set/avatar.jpg" alt="" class="userphoto"{xhtml}>{!endif}
+	                    </figure>
+					</div>
+				</div>
+				<div class="glforum-userinfo-name">
+					{user_name}
+					<div class="uk-text-muted uk-text-small">
+						<div class="glforum-userinfo-badge"><div class="uk-label">{$LANG_GF01[ANON]}</div></div>
+						{!if ip_address}<div class="glforum-userinfo-ip glforum-br">{ip_address}</div>{!endif}
+					</div>
+				</div>
+                {!if mood_icon}
+                <div class="glforum-userinfo-mood">
+					{mood_icon}
+				</div>
+                {!endif}
+			</div>
+		</div>
+<!-- END block_anon_user_information -->
+
+<!-- BEGIN location -->
+{$LANG_GF04[label_location]}:{user_location}
+<!-- END location -->
+
+<!-- BEGIN ip_address -->
+{ip}
+<!-- END ip_address -->
+
+<!-- BEGIN anon_ip_address -->
+{ip}
+<!-- END anon_ip_address -->
+
+<!-- BEGIN banned_ip_address -->
+<span style="text-decoration: line-through;">{banned_ip}</span>
+<!-- END banned_ip_address -->
+
+<!-- BEGIN mod_functions -->
+<form action="{site_url}/forum/moderation.php" method="post">
+	{mod_functions}
+</form>
+<!-- END mod_functions -->
+
+<!-- BEGIN post_signature -->
+<hr class="uk-margin-large-top"{xhtml}>
+<!-- <br{XHTML}>{signature_divider_html} -->
+{user_signature}
+<!-- END post_signature -->
+
+{# end {templatelocation} #}

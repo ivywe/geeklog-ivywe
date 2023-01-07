@@ -1,0 +1,169 @@
+{# begin {templatelocation} #}
+
+{user_name}
+{moods}
+{code}
+{smilies}
+<div class="uk-margin">
+	<label class="uk-form-label" for="form-forum-subject">{LANG_SUBJECT}</label>
+	<div class="uk-form-controls">
+		<input id="form-forum-subject" type="text" placeholder="" class="uk-input uk-form-width-large" name="subject" value="{subject}" maxlength="255"{xhtml}>
+	</div>	
+</div>
+<div class="uk-margin">
+	<div class="uk-form-controls">
+		<textarea class="uk-textarea" name="comment" id="form-forum-text" rows="20" class="post" style="width:98%" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);">{post_message}</textarea>
+	</div>	
+</div>
+{options}
+{gl_topics}
+{!if captcha}
+<div class="uk-margin">
+    <div class="uk-align-right">
+        {captcha}
+    </div>
+</div>
+{!endif}
+<div class="uk-grid">
+	<div class="uk-width-1-1">
+        <div class="uk-align-right">
+            <button class="uk-button uk-button-primary g-recaptcha" type="submit" name="submitmode" value="{LANG_SUBMIT}"{!if invisible_recaptcha}{invisible_recaptcha}{!endif}>{LANG_SUBMIT}</button>
+            <input type="hidden" name="submitmode" value="{LANG_SUBMIT}"{xhtml}> {# Needed for Invisible reCaptcha Error message #}
+            <button class="uk-button uk-button-default" type="submit" name="submitmode" value="{LANG_PREVIEW}">{LANG_PREVIEW}</button>
+            <button class="uk-button uk-button-secondary" type="submit" name="submitmode" value="{LANG_CANCEL}">{LANG_CANCEL}</button>
+        </div>
+    </div>
+</div>
+
+<!-- BEGIN submissionform_membertop -->
+<h2>{post_message}</h2>
+
+<div>
+	<label class="uk-form-label" for="form-forum-username">{LANG_NAME}</label>
+	<div class="uk-form-controls">
+		{username}{!if aname}: <input id="form-forum-username" placeholder="" type="text" name="aname" value="{aname}"  maxlength="50" class="uk-form-width-medium"{xhtml}>{!endif}
+	</div>	
+</div>
+<!-- END submissionform_membertop -->
+
+<!-- BEGIN submissionform_anontop -->
+<h2>{post_message}</h2>
+
+<div>
+	<label class="uk-form-label" for="form-forum-username">{LANG_NAME}</label>
+	<div class="uk-form-controls">
+		<input class="uk-input uk-form-width-medium" id="form-forum-username" placeholder="" type="text" name="aname" value="{name}"  maxlength="50" class="uk-form-width-medium"{xhtml}>
+	</div>	
+</div>
+<!-- END submissionform_anontop -->
+
+<!-- BEGIN submissionform_moods -->
+<div class="uk-margin">
+	<label class="uk-form-label" for="form-forum-mood">{LANG_MOOD}</label>
+	<div class="uk-form-controls">
+		<select class="uk-select uk-width-auto" id="form-forum-mood" name="mood">
+			{moodoptions}
+		</select>
+	</div>	
+</div>
+<!-- END submissionform_moods -->
+
+<!-- BEGIN submissionform_code -->
+<div class="uk-margin">
+	<label class="uk-form-label" for="form-forum-code">{LANG_code}</label>
+	<div class="uk-form-controls">
+		<div>
+			<button class="uk-button uk-button-default uk-button-small" type="button" accesskey="b" name="addbbcode0" onclick="bbstyle(0)" onmouseover="helpline('b')"><span uk-icon="icon: bold"></button>
+			<button class="uk-button uk-button-default uk-button-small" type="button" accesskey="i" name="addbbcode2" onclick="bbstyle(2)" onmouseover="helpline('i')"><span uk-icon="icon: italic"></span></button>
+			<button class="uk-button uk-button-default uk-button-small" type="button" accesskey="u" name="addbbcode4" onclick="bbstyle(4)" onmouseover="helpline('u')"><span class="uk-text-bold" style="text-decoration: underline">U</span></button>
+			<button class="uk-button uk-button-default uk-button-small" type="button" accesskey="q" name="addbbcode6" onclick="bbstyle(6)" onmouseover="helpline('q')"><span uk-icon="icon: quote-right"></span></button>
+			<button class="uk-button uk-button-default uk-button-small" type="button" accesskey="c" name="addbbcode8" onclick="bbstyle(8)" onmouseover="helpline('c')"><span uk-icon="icon: code"></span></button>
+			<button class="uk-button uk-button-default uk-button-small" type="button" accesskey="l" name="addbbcode10" onclick="bbstyle(10)" onmouseover="helpline('l')"><span uk-icon="icon: list"></span></button>
+			{hide_imgbutton_begin}
+			<button class="uk-button uk-button-default uk-button-small" type="button" accesskey="p" name="addbbcode14" onclick="bbstyle(14)" onmouseover="helpline('p')"><span uk-icon="icon: image"></span></button>
+			{hide_imgbutton_end} 
+			<button class="uk-button uk-button-default uk-button-small" type="button" accesskey="w" name="addbbcode16" onclick="bbstyle(16)" onmouseover="helpline('w')"><span uk-icon="icon: link"></span></button>
+			<button class="uk-button uk-button-default uk-button-small" type="button" name="bbcode-help" uk-toggle="target: #modal-bbcode-help" onmouseover="helpline('h')"><span uk-icon="icon: question"></span></button>
+		</div>
+		<div>
+			<span class="uk-margin-right uk-text-small" for="form-forum-font-color">{LANG_fontcolor}
+                <select class="uk-select uk-form-small uk-width-auto" id="form-forum-font-color" name="addbbcode18" onchange="bbfontstyle('[color=' + this.form.addbbcode18.options[this.form.addbbcode18.selectedIndex].value + ']', '[/color]')" onmouseover="helpline('s')">
+                    <option style="color:black;" value="#">{LANG_default}</option>
+                    <option style="color:darkred;" value="darkred">{LANG_dkred}</option>
+                    <option style="color:red;" value="red">{LANG_red}</option>
+                    <option style="color:orange;" value="orange">{LANG_orange}</option>
+                    <option style="color:brown;" value="brown">{LANG_brown}</option>
+                    <option style="color:yellow;" value="yellow">{LANG_yellow}</option>
+                    <option style="color:green;" value="green">{LANG_green}</option>
+                    <option style="color:olive;" value="olive">{LANG_olive}</option>
+                    <option style="color:cyan;" value="cyan">{LANG_cyan}</option>
+                    <option style="color:blue;" value="blue">{LANG_blue}</option>
+                    <option style="color:darkblue;" value="darkblue">{LANG_dkblue}</option>
+                    <option style="color:indigo;" value="indigo">{LANG_indigo}</option>
+                    <option style="color:violet;" value="violet">{LANG_violet}</option>
+                    <option style="color:white;" value="white">{LANG_white}</option>
+                    <option style="color:black;" value="black">{LANG_black}</option>
+                </select>
+			</span>
+			<span class="uk-margin-right uk-text-small" for="form-forum-font-size">{LANG_fontsize}
+                <select class="uk-select uk-form-small uk-width-auto" id="form-forum-font-size" name="addbbcode20" onchange="bbfontstyle('[size=' + this.form.addbbcode20.options[this.form.addbbcode20.selectedIndex].value + ']', '[/size]')" onmouseover="helpline('f')">
+                    <option value="7">{LANG_tiny}</option>
+                    <option value="9">{LANG_small}</option>
+                    <option value="12" selected="selected">{LANG_normal}</option>
+                    <option value="18">{LANG_large}</option>
+                    <option value="24">{LANG_huge}</option>
+                </select>
+			</span>
+			<span class="uk-margin-right">
+				<a id="form-forum-close-tags" class="uk-button uk-button-default uk-button-small" href="javascript:bbstyle(-1)" onmouseover="helpline('a')">{LANG_closetags}</a>
+			</span>
+		</div>
+		<div>
+			<input class="uk-input uk-form-width-large" type="text" name="helpbox" class="helpline" value="{LANG_codetip}" disabled{xhtml}>
+		</div>
+	</div>
+</div>
+
+{modal_bbcode_help}
+<!-- END submissionform_code -->
+
+<!-- BEGIN submissionform_smilies -->
+<div class="uk-margin">
+    <div class="uk-form-controls">
+        {smilies}
+    </div>
+</div>
+<!-- END submissionform_smilies -->
+
+<!-- BEGIN submissionform_options -->
+<div class="uk-margin">
+	<label class="uk-form-label" for="form-forum-options">{LANG_OPTIONS}</label>
+	<div class="uk-form-controls">
+        <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+			{option}
+        </div>
+	</div>
+</div>
+<!-- END submissionform_options -->
+
+<!-- BEGIN submissionform_option -->
+	<label class="uk-form-label" for="form-forum-{option_name}">
+		<input class="uk-checkbox" type="checkbox" name="{option_name}" id="form-forum-{option_name}" {option_checked} value="1"{xhtml}>
+		{option_extra}
+		{LANG_OPTION}
+	</label>
+<!-- END submissionform_option -->
+
+<!-- BEGIN submissionform_gl_topics -->
+<hr>
+<div class="uk-margin">
+	<label class="uk-form-label" for="form-forum-topics">{LANG_TOPIC}</label>
+	<div class="uk-form-controls">
+        {topic_selection}
+        {LANG_GL_TOPICS_DESC}
+	</div>
+</div>
+<hr>
+<!-- END submissionform_gl_topics -->
+
+{# end {templatelocation} #}

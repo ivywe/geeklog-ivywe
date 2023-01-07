@@ -1,0 +1,15 @@
+{# begin {templatelocation} #}
+
+<div class="uk-card uk-card-default uk-card-small uk-card-body">
+	{forum_time}
+	<hr{xhtml}>
+	<div class="uk-grid uk-grid-collapse">
+		{forum_legend}
+		{forum_rules}
+	</div>
+	{forum_whosonline}
+</div>
+
+{block_end}
+
+{# end {templatelocation} #}

@@ -1,0 +1,19 @@
+{# begin {templatelocation} #}
+
+<form action="{PHP_SELF}" method="post">
+	<div class="uk-alert uk-alert-warning">
+		<input type="hidden" name="type" value="{type}"{xhtml}>
+		<input type="hidden" name="confirm" value="1"{xhtml}>
+		<input type="hidden" name="id" value="{id}"{xhtml}>
+		<input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+		
+		<h3>{alert_title}</h3>
+		<p>{alert_message} <select class="uk-select uk-width-auto" name="new_id">{forumlist}</select></p>
+        <div class="uk-margin-top uk-text-center">
+				<button class="uk-button uk-button-danger" type="submit" name="mode" value="{LANG_MERGE}">{LANG_MERGE}</button>
+                <button class="uk-button uk-button-secondary" type="submit" name="submit" value="{LANG_CANCEL}">{LANG_CANCEL}</button>
+		</div>        
+	</div>
+</form>
+
+{# end {templatelocation} #}

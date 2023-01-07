@@ -1,0 +1,103 @@
+{# begin {templatelocation} #}
+
+<div class="uk-margin-large">
+	<div class="uk-panel">
+	  	<div class="uk-float-left uk-margin-bottom">
+			<ul class="uk-breadcrumb uk-margin-small">
+				<li><span uk-icon="icon: folder"></span></li>
+				<li><a href="{site_url}/forum/index.php">{forum_home}</a></li>
+				<li><a href="{site_url}/forum/index.php?category={category_id}">{cat_name}</a></li>
+				<li class="uk-active"><a href="{site_url}/forum/index.php?forum={forum_id}">{forum_name}</a></li>
+			</ul>
+		</div>    
+
+        <h2 class="clearboth">{forum_name_forum}</h2>
+        
+        {!if geeklog_topic}
+        <div class="uk-text-small">{lang_geeklog_topic} {geeklog_topic}</div>
+        {!endif}        
+            
+		<div class="uk-float-right uk-text-right uk-margin-bottom">
+			{forummenu_link}
+			{newtopic_link}
+		</div>
+	</div>
+
+	{# Buttons instead of Menu - Remove comments to enable (plus remove forummenu_link template variable) and change related links in forum_links.html #}
+	{# 
+	<div class="uk-grid uk-grid-small uk-margin-bottom">
+		<div class="uk-width-1-1 uk-text-right">
+			{subscribeforum_link}
+		</div>
+	</div>
+	#}
+
+	{pagenavigation}
+
+	<table class="uk-table uk-table-hover uk-table-striped glforum-table">
+		<thead>
+			<tr>
+				<th class="uk-width-1-2@l uk-width-1-3@m uk-width-2-3 uk-text-center">
+                    {LANG_TOPIC}<br{xhtml}><a href="index.php?forum={forum_id}&amp;order=0&amp;sort=1">{img_asc1}</a>&nbsp;<a href="index.php?forum={forum_id}&amp;order=1&amp;sort=1">{img_desc1}</a>
+                </th>
+				<th class="uk-width-1-6@l uk-width-1-6@m uk-text-center uk-visible@m">
+                    {LANG_VIEWS}<br{xhtml}><a href="index.php?forum={forum_id}&amp;order=0&amp;sort=2">{img_asc2}</a>&nbsp;<a href="index.php?forum={forum_id}&amp;order=1&amp;sort=2">{img_desc2}</a>
+                </th>
+				<th class="uk-width-1-6@l uk-width-1-6@m uk-text-center uk-visible@m">
+                    {LANG_REPLIES}<br{xhtml}><a href="index.php?forum={forum_id}&amp;order=0&amp;sort=3">{img_asc3}</a>&nbsp;<a href="index.php?forum={forum_id}&amp;order=1&amp;sort=3">{img_desc3}</a>
+                </th>
+	          	<th class="uk-width-1-6@l uk-width-1-3@m uk-width-1-3 uk-text-center">
+                    {LANG_LASTPOST}<br{xhtml}><a href="index.php?forum={forum_id}&amp;order=0&amp;sort=5">{img_asc5}</a>&nbsp;<a href="index.php?forum={forum_id}&amp;order=1&amp;sort=5">{img_desc5}</a>
+                </th>
+			</tr>
+		</thead>
+		<tbody>
+			{topic_record}
+			{no_records_message}
+		</tbody>
+	</table>
+
+	{pagenavigation}
+
+	<div class="uk-text-right">
+		{newtopic_link}
+	</div>
+
+</div>
+
+<!-- BEGIN topic_record -->
+<tr>
+    <td>
+		<div class="glforum-topic-record" onmouseover="this.style.cursor='pointer';" onclick="window.location.href='viewtopic.php?showtopic={topic_id}'">
+			<div class="glforum-folderimg">{folderimg}</div>
+	    	<div class="glforum-topic-name">{moved}<a href="viewtopic.php?showtopic={topic_id}" data-uk-tooltip title="{topicinfo}">{subject}</a>
+	    	{!if displaypageslink}<div class="glforum-topic-displaypageslink">{gotomsg}&nbsp;{displaypageslink}</div>{!endif}
+    		</div>
+		</div>    
+    </td>
+    <td class="uk-text-center uk-visible@m">
+    	{views}
+	</td>
+    <td class="uk-text-center uk-visible@m">
+    	{replies}
+	</td>
+    <td>
+        <div class="glforum-topic-lastpost">
+            <a href="{lastpostURL}" data-uk-tooltip title="{LANG_lastpost}">{LANG_BY}{lastposter}<br{xhtml}>
+            {lastdate}</a>
+        </div>
+    </td>
+</tr>
+<!-- END topic_record -->
+
+<!-- BEGIN no_records_message -->
+<tr>
+	<td colspan="4">
+		<div class="glforum-topic-record">
+			{records_message}
+		</div>
+	</td>
+</tr>
+<!-- END no_records_message -->
+
+{# end {templatelocation} #}

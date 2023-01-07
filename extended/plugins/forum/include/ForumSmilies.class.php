@@ -36,7 +36,7 @@
  */
 
 // This file can't be used on its own
-if (strpos(strtolower($_SERVER['PHP_SELF']), 'smilies.php') !== false) {
+if (strpos(strtolower($_SERVER['PHP_SELF']), basename(__FILE__)) !== false) {
     die ('This file can not be used on its own.');
 }
 

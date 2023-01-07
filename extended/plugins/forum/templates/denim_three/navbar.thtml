@@ -1,0 +1,12 @@
+{# begin {templatelocation} #}
+
+{block_start}
+
+{navmenu}
+
+<div class="uk-panel">
+    <div class="uk-float-left">{search_forum}</div>
+    <div class="uk-float-right uk-text-right">{select_forum}</div>
+</div>
+
+{# end {templatelocation} #}

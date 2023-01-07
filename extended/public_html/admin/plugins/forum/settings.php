@@ -51,5 +51,3 @@ $display .= "<script type='text/javascript'>document.redirect.submit();</script>
 $display = COM_createHTMLDocument($display, array('what' => 'none'));
 
 COM_output($display);
-
-?>

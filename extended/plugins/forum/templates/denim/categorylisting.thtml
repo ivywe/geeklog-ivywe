@@ -1,0 +1,89 @@
+{# begin {templatelocation} #}
+
+<div class="uk-margin-large">
+
+	<div class="uk-panel uk-margin-bottom">
+		
+	  	<div class="uk-float-left">
+            <ul class="uk-breadcrumb uk-margin-small">
+                <li><i class="uk-icon-folder-o"></i></li>
+                <li><a href="{site_url}/forum/index.php">{forum_home}</a></li>
+                <li><a href="{site_url}/forum/index.php?category={category_id}">{cat_name}</a></li>
+            </ul>
+	    </div>
+		
+	  	{#
+	  	<div class="uk-float-left uk-text-large">
+			<i class="uk-icon-folder-o"></i> <a href="{site_url}/forum/index.php?category={category_id}">
+				<span>{cat_name}</span>
+			</a>
+	    </div>
+	    #}
+        <h2 class="clearboth">{cat_name_category}</h2>
+        
+        {!if geeklog_topic}
+        <div class="uk-text-small">{lang_geeklog_topic} {geeklog_topic}</div>
+        {!endif}        
+
+	  	<div class="uk-float-right uk-text-right">
+			{categorymenu_link}
+			{# Buttons instead of Menu - Remove comments to enable (plus remove categorymenu_link template variable) and change related links in forum_links.html #}
+			{#
+			{newposts_link}
+			{markread_link}
+			#}
+	    </div>
+	</div>
+
+	<table class="uk-table uk-table-hover uk-table-striped glforum-table">
+		<thead>
+			<tr>
+				<th class="uk-width-large-6-10 uk-width-medium-7-10 uk-width-6-10">
+					{cat_desc}
+				</th>
+				<th class="uk-width-large-1-10 uk-text-center uk-visible-large">
+					{LANGGF01_TOPICS}
+				</th>
+				<th class="uk-width-large-1-10 uk-text-center uk-visible-large">
+					{LANGGF01_POSTS}
+				</th>
+				<th class="uk-width-large-2-10 uk-width-medium-3-10 uk-width-4-10 uk-text-center">
+					{LANGGF01_LASTPOST}
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			{forum_record}
+		</tbody>
+	</table>
+
+</div>
+
+<!-- BEGIN forum_record -->
+<tr>
+	<td>
+		<div class="glforum-record" onmouseover="this.style.cursor='pointer';" onclick="window.location.href='index.php?forum={forum_id}';">
+			<div class="glforum-folderimg">{folderimg}</div>
+			<div class="glforum-category-name">
+			    <a href="index.php?forum={forum_id}">{forum_name}</a>{!if forumlocked_icon}&nbsp;{forumlocked_icon}{!endif}
+			    {!if forum_desc}<div class="glforum-category-desc">{forum_desc}</div>{!endif}
+			</div>
+		</div>
+	</td>
+	<td class="uk-text-center uk-visible-large">
+		{topics}
+	</td>
+	<td class="uk-text-center uk-visible-large">
+		{posts}
+	</td>
+	<td>
+		<div class="glforum-lastpost">
+			{!if lastpostURL}<div><a href="{lastpostURL}">{lastpostmsgTopic}</a></div>{!endif}
+			<div>{lastpostmsgDate}</div>
+			{!if lastpostURL}<div>{lastpostmsgBy}{!if moderator}<br>{moderator}{!endif}</div>{!endif}
+		</div>
+	</td>
+</tr>
+<!-- END forum_record -->
+
+{# end {templatelocation} #}

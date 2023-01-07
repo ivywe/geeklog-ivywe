@@ -35,6 +35,9 @@
 
 
 require_once 'gf_functions.php';
+
+require_once $CONF_FORUM['path_include'] . 'gf_format.php';
+
 if (COM_versionCompare(VERSION, '2.2.0', '>=')) {
     require_once $_CONF['path_system'] . 'lib-article.php';
 } else { // For Geeklog 2.1.3 support
@@ -42,7 +45,6 @@ if (COM_versionCompare(VERSION, '2.2.0', '>=')) {
 }
 
 $page     = isset($_GET['page'])            ? COM_applyFilter($_GET['page'],true)            : '';
-$show     = isset($_GET['show'])            ? COM_applyFilter($_GET['show'],true)            : '';
 $migrate  = isset($_POST['migrate'])        ? COM_applyFilter($_POST['migrate'])             : '';
 $selforum = isset($_POST['selforum'])       ? COM_applyFilter($_POST['selforum'])            : '';
 $curtopic = isset($_POST['seltopic'])       ? COM_applyFilter($_POST['seltopic'])            : '';
@@ -88,10 +90,9 @@ if ($migrate == $LANG_GF01['MIGRATE_NOW'] && $selforum != "select"
     $cacheInstance = 'forum__centerblock_';
     CACHE_remove_instance($cacheInstance);
     
-    echo COM_refresh($_CONF['site_admin_url']
+    COM_redirect($_CONF['site_admin_url']
                      . "/plugins/forum/migrate.php?num_stories="
                      . $num_stories . "&num_posts=" . $num_posts);
-    exit;
 }
 
 function migratetopic($forum, $sid, $storydate, $uid, $subject, $introtext, $bodytext, $hits)
@@ -234,11 +235,7 @@ $display .= gf_showVariables();
 
 
 // Check if the number of records was specified to show - part of page navigation.
-if ($show == 0 AND $CONF_FORUM['show_messages_perpage'] > 0) {
-	$show = $CONF_FORUM['show_messages_perpage'];
-} elseif ($show == 0) {
-	$show = 20;
-}
+$show = $CONF_FORUM['show_messages_perpage'];
 
 // Check if this is the first page.
 if (empty($page)) {
@@ -297,8 +294,8 @@ $nrows = DB_numRows($result);
 
 $p->set_var('action_url', $_CONF['site_admin_url'] . '/plugins/forum/migrate.php');
 $p->set_var('filter_topic_selection', migrate_topicsList($curtopic));
-$p->set_var('select_filter_options',
-    COM_optionList($_TABLES['forum_forums'], "forum_id,forum_name", $selforum));
+//$p->set_var('select_filter_options', COM_optionList($_TABLES['forum_forums'], "forum_id,forum_name", $selforum));
+$p->set_var('select_filter_options', f_forumjump('', $selforum, true));
 $p->set_var('LANG_migrate', $LANG_GF01['MIGRATE_NOW']);
 $p->set_var('LANG_filterlist', $LANG_GF01['FILTERLIST']);
 $p->set_var('LANG_selectforum', $LANG_GF01['SELECTFORUM']);

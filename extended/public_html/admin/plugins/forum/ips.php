@@ -60,42 +60,36 @@ if ($msg == 1) {
 
 $display .= COM_startBlock($LANG_GF96['gfipman']);
 
-$navbar->set_selected($LANG_GF06['7']);
+$navbar->set_selected($LANG_GF06['8']);
 $display .= $navbar->generate();
 
 if ($op == 'banip' && $ip != '' && $submit != $LANG_GF01['CANCEL']) {
     if ($sure == 'yes' && SEC_checkToken()) {
         DB_query("INSERT INTO {$_TABLES['forum_banned_ip']} (host_ip) VALUES ('$ip')");
-        $display = COM_refresh($_CONF['site_admin_url'] .'/plugins/forum/ips.php?msg=1');
-        COM_output($display);
-        exit;
+        COM_redirect($_CONF['site_admin_url'] .'/plugins/forum/ips.php?msg=1');
     } else {
-    	if (filter_var($ip, FILTER_VALIDATE_IP) !== false) {
-			$ips_unban = COM_newTemplate(CTL_plugin_templatePath('forum', 'admin'));
-			$ips_unban->set_file(array ('ips_ban_question'=>'ips_ban_question.thtml'));
-			$ips_unban->set_var('phpself', $_CONF['site_admin_url'] .'/plugins/forum/ips.php');
-			$ips_unban->set_var('ip', $ip);
-			$ips_unban->set_var('alert_title', $LANG_GF02['adminconfirmation']);
-			$ips_unban->set_var('alert_message', sprintf($LANG_GF96['banipmsg'], $ip));
-			$ips_unban->set_var('ban', $LANG_GF96['ban']);
-			$ips_unban->set_var ('LANG_CANCEL', $LANG_GF01['CANCEL']);
-			$ips_unban->set_var('gltoken_name', CSRF_TOKEN);
-			$ips_unban->set_var('gltoken', SEC_createToken());
-			$ips_unban->parse('output', 'ips_ban_question');
-			$display .= $ips_unban->finish($ips_unban->get_var('output'));
-		} else {
-			$display = COM_refresh("{$_CONF['site_admin_url']}/plugins/forum/ips.php?msg=3&amp;ip=$ip");
-			COM_output($display);
-			exit;			
-		}
+        if (filter_var($ip, FILTER_VALIDATE_IP) !== false) {
+            $ips_unban = COM_newTemplate(CTL_plugin_templatePath('forum', 'admin'));
+            $ips_unban->set_file(array ('ips_ban_question'=>'ips_ban_question.thtml'));
+            $ips_unban->set_var('phpself', $_CONF['site_admin_url'] .'/plugins/forum/ips.php');
+            $ips_unban->set_var('ip', $ip);
+            $ips_unban->set_var('alert_title', $LANG_GF02['adminconfirmation']);
+            $ips_unban->set_var('alert_message', sprintf($LANG_GF96['banipmsg'], $ip));
+            $ips_unban->set_var('ban', $LANG_GF96['ban']);
+            $ips_unban->set_var ('LANG_CANCEL', $LANG_GF01['CANCEL']);
+            $ips_unban->set_var('gltoken_name', CSRF_TOKEN);
+            $ips_unban->set_var('gltoken', SEC_createToken());
+            $ips_unban->parse('output', 'ips_ban_question');
+            $display .= $ips_unban->finish($ips_unban->get_var('output'));
+        } else {
+            COM_redirect("{$_CONF['site_admin_url']}/plugins/forum/ips.php?msg=3&amp;ip=$ip");
+        }
     }
 } else if ($op == 'unban' && $ip != '' && SEC_checkToken()) {
     // Remove the entry from the database
     DB_query ("DELETE FROM {$_TABLES['forum_banned_ip']} WHERE (host_ip='$ip')");
     // ... and assume that everything went well
-    $display = COM_refresh($_CONF['site_admin_url'] .'/plugins/forum/ips.php?msg=2');
-    COM_output($display);
-    exit;
+    COM_redirect($_CONF['site_admin_url'] .'/plugins/forum/ips.php?msg=2');
 } else {
     // Default case:
     // Show the list of banned IPs and quit

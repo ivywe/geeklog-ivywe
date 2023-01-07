@@ -1,102 +1,81 @@
 {# begin {templatelocation} #}
 
-<div class="uk-margin-large">
-
-	<div class="uk-card uk-card-default uk-card-small uk-card-body uk-margin">
-		<div class="uk-float-left">
-				<ul class="uk-breadcrumb uk-margin-small" itemscope itemtype="http://schema.org/BreadcrumbList">
-					<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-						<a itemprop="item" href="{site_url}/forum/index.php">
-							<span class="uk-margin-small-right" uk-icon="icon: message"></span><span itemprop="name">{forum_home}</span>
-						</a>
-					</li>
-					<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-						<a itemprop="item" href="{site_url}/forum/index.php?category={category_id}">
-							<span itemprop="name">{cat_name}</span>
-						</a>
-						<meta itemprop="position" content="2" />
-					</li>
-					<li class="uk-active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-						<a itemprop="item" href="{site_url}/forum/index.php?forum={forum_id}">
-							<span itemprop="name">{forum_name}</span>
-						</a>
-						<meta itemprop="position" content="3" />
-					</li>
-				</ul>
-		</div>
-
-        <h2 class="clearboth">{forum_name_forum}</h2>
-            
-		<div class="uk-float-right uk-text-right uk-margin-bottom">
-			{forummenu_link}
-			{newtopic_link}
-		</div>
-	</div>
-
-	{# Buttons instead of Menu - Remove comments to enable (plus remove forummenu_link template variable) and change related links in forum_links.html #}
-	{# 
-	<div class="uk-grid uk-grid-small uk-margin-bottom">
-		<div class="uk-width-1-1 uk-text-right">
-			{subscribeforum_link}
-		</div>
-	</div>
-	#}
-
-	{pagenavigation}
-
-	<table class="uk-table uk-table-hover uk-table-striped glforum-table">
-		<thead>
-			<tr>
-				<th style="width:60%">{LANG_TOPIC}<br{xhtml}><a href="index.php?forum={forum_id}&amp;order=0&amp;sort=1">{img_asc1}</a>&nbsp;<a href="index.php?forum={forum_id}&amp;order=1&amp;sort=1">{img_desc1}</a></th>
-				<th style="width:8%">{LANG_VIEWS}<br{xhtml}><a href="index.php?forum={forum_id}&amp;order=0&amp;sort=2">{img_asc2}</a>&nbsp;<a href="index.php?forum={forum_id}&amp;order=1&amp;sort=2">{img_desc2}</a></th>
-				<th style="width:8%">{LANG_REPLIES}<br{xhtml}><a href="index.php?forum={forum_id}&amp;order=0&amp;sort=3">{img_asc3}</a>&nbsp;<a href="index.php?forum={forum_id}&amp;order=1&amp;sort=3">{img_desc3}</a></th>
-	      <th style="width:24%">{LANG_LASTPOST}<br{xhtml}><a href="index.php?forum={forum_id}&amp;order=0&amp;sort=5">{img_asc5}</a>&nbsp;<a href="index.php?forum={forum_id}&amp;order=1&amp;sort=5">{img_desc5}</a></th>
-			</tr>
-		</thead>
-		<tbody>
-			{topic_record}
-			{no_records_message}
-		</tbody>
-	</table>
-
-	{pagenavigation}
-
-	<div class="uk-text-right">
-		{newtopic_link}
-	</div>
-
-</div>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td style="width:16px;">{navbreadcrumbsimg}</td>
+        <td class="alignleft" style="white-space:nowrap;">
+            &nbsp;<a href="{site_url}/forum/index.php">{forum_home}</a>&nbsp;&#62;&nbsp;<a href="{site_url}/forum/index.php?category={category_id}">{cat_name}</a>&nbsp;&#62;&nbsp;<a href="{site_url}/forum/index.php?forum={forum_id}">{forum_name}</a>
+            {!if geeklog_topic}
+            <br><span style="font-size: smaller;">{lang_geeklog_topic} {geeklog_topic}</span>
+            {!endif}  
+        </td>
+        <td class="alignright" style="padding-right:10px; white-space:nowrap;">{newtopic_link}</td>
+    </tr>
+</table>
+<table cellspacing="0" cellpadding="2" width="100%">
+        <tr>
+                <td style="white-space:nowrap;">{pagenavigation}</td>
+        </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="pluginCellTitle alignleft">
+    <tr>
+        <td class="pluginCellText alignleft" style="padding-left:5px; white-space:nowrap;">&nbsp;</td>  
+        <td class="pluginCellText alignright" style="width:80%; padding-right:15px; white-space:nowrap;">{subscribeforum_link}</td>
+    </tr>
+</table>  
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="alignleft">
+        <tr>
+                <td>
+                        <table width="100%" border="0" cellspacing="1" cellpadding="2" class="pluginSolidOutline">
+                                <tr>
+          <td colspan="2" class="aligncenter pluginCellSubTitle"><span style="white-space:nowrap">{LANG_TOPIC}</span><br{xhtml}><a href="index.php?forum={forum_id}&amp;order=0&amp;sort=1">{img_asc1}</a>&nbsp;<a href="index.php?forum={forum_id}&amp;order=1&amp;sort=1">{img_desc1}</a></td>
+          <td class="aligncenter pluginCellSubTitle"><span style="white-space:nowrap">{LANG_VIEWS}</span><br{xhtml}><a href="index.php?forum={forum_id}&amp;order=0&amp;sort=2">{img_asc2}</a>&nbsp;<a href="index.php?forum={forum_id}&amp;order=1&amp;sort=2">{img_desc2}</a></td>
+          <td class="aligncenter pluginCellSubTitle"><span style="white-space:nowrap">{LANG_REPLIES}</span><br{xhtml}><a href="index.php?forum={forum_id}&amp;order=0&amp;sort=3">{img_asc3}</a>&nbsp;<a href="index.php?forum={forum_id}&amp;order=1&amp;sort=3">{img_desc3}</a></td>
+          <!-- <td class="aligncenter pluginCellSubTitle"><span style="white-space:nowrap">{LANG_AUTHOR}</span><br{xhtml}><a href="index.php?forum={forum_id}&amp;order=0&amp;sort=4">{img_asc4}</a>&nbsp;<a href="index.php?forum={forum_id}&amp;order=1&amp;sort=4">{img_desc4}</a></td> -->
+          <td class="aligncenter pluginCellSubTitle"><span style="white-space:nowrap">{LANG_LASTPOST}</span><br{xhtml}><a href="index.php?forum={forum_id}&amp;order=0&amp;sort=5">{img_asc5}</a>&nbsp;<a href="index.php?forum={forum_id}&amp;order=1&amp;sort=5">{img_desc5}</a></td>
+                                </tr>
+                                        {topic_record}
+                                        {no_records_message}
+                        </table>
+                </td>
+        </tr>
+</table>
+<table cellspacing="0" cellpadding="2" width="100%">
+        <tr>
+                <td style="height:24px; white-space:nowrap;">{pagenavigation}</td>
+        </tr>
+</table>
 
 <!-- BEGIN topic_record -->
-<tr>
-    <td>
-		<div class="glforum-topic-record">
-	    	<div class="glforum-topic-name">{moved}<a href="viewtopic.php?showtopic={topic_id}"><span class="uk-margin-small-right" uk-icon="icon: commenting"></span>{subject}</a>
-	    	{!if displaypageslink}<div class="glforum-topic-displaypageslink">{gotomsg}&nbsp;{displaypageslink}</div>{!endif}    		</div>
-		</div>
+<tr class="pluginRollOut" onmouseover="className='pluginRollOver';" onmouseout="className='pluginRollOut pluginLinks';">
+    <td style="width:22px;" class="aligncenter pluginCol">{folderimg}</td>
+    <td style="width:65%;" onmouseover="this.style.cursor='pointer';" onclick="window.location.href='viewtopic.php?showtopic={topic_id}'">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr class="pluginLinks">
+                        <td style="width:50%; white-space:nowrap;">{moved}<a class="tooltip" style="text-decoration:none;" href="viewtopic.php?showtopic={topic_id}"></a>{tooltip_subject}</td>
+                        <td colspan="2" class="alignright pluginLinks">{gotomsg}&nbsp;{displaypageslink}</td>
+                </tr>
+        </table>
     </td>
-    <td class="uk-text-center">
-    	{views}
-    </td>
-    <td class="uk-text-center">
-    	{replies}
-    </td>
-    <td>
-    	<div class="glforum-topic-lastpost">
-	    	<a href="viewtopic.php?showtopic={topic_id}&amp;lastpost=true#{lastpostid}" data-uk-tooltip title="{LANG_lastpost}">{LANG_BY}{lastposter}<br{xhtml}>
-	    	{lastdate}</a>
-	    </div>
+    <td class="aligncenter pluginCol" style="width:45px; white-space:nowrap;">{views}</td>
+    <td class="aligncenter pluginCol" style="width:45px; white-space:nowrap;">{replies}</td>
+    <td style="width:20%;" onmouseover="this.style.cursor='pointer';" onclick="window.location.href='{lastpostURL}'" title="{LANG_lastpost}">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                            <td style="padding-left:2px; white-space:nowrap;" class="pluginLinks">{LANG_BY}{lastposter}</td>
+                    </tr>
+                    <tr>
+                            <td style="padding-left:2px" class="pluginLinks">{lastdate}</td>
+                    </tr>
+            </table>
     </td>
 </tr>
 <!-- END topic_record -->
 
+
 <!-- BEGIN no_records_message -->
-<tr>
-	<td colspan="4">
-		<div class="glforum-topic-record">
-			{records_message}
-		</div>
-	</td>
+<tr class="pluginRollOut" onmouseover="className='pluginRollOver';" onmouseout="className='pluginRollOut pluginLinks';">
+	<td class="pluginCol" colspan="5">{records_message}</td>
 </tr>
 <!-- END no_records_message -->
 
