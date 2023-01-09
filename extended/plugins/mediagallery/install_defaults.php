@@ -132,7 +132,7 @@ $_MG_DEFAULT = array(
     'zip_enabled'                => '0', // added
     'zip_path'                   => '',  // added
     'tmp_path'                   => $_CONF['path'] . 'plugins/mediagallery/tmp/',
-    'ftp_path'                   => $_CONF['path_html'] . 'images/mediagallery/uploads/',
+    'ftp_path'                   => $_CONF['path'] . 'plugins/mediagallery/uploads/',
 
     // Root Album
     'root_album_name'            => 'TOP アルバム', // added

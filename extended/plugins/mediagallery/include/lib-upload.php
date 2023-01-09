@@ -269,8 +269,15 @@ function MG_convertImage($srcImage, $imageThumb, $imageDisplay, $mimeExt, $mimeT
         return array(false, $msg);
     }
 
-    @chmod($imageThumb, 0644);
-    @chmod($imageDisplay, 0644);
+    clearstatcache();
+    if (file_exists($imageThumb)) {
+        @chmod($imageThumb, 0644);
+    }
+
+    if (file_exists($imageDisplay)) {
+        @chmod($imageDisplay, 0644);
+    }
+
     return array(true, '');
 }
 
@@ -513,7 +520,7 @@ function MG_getFile($filename, $file, $album_id, $opt = array())
         return array(false, $LANG_MG00['access_denied_msg']);
     }
 
-    sleep(0.1);                       // We do this to make sure we don't get dupe sid's
+    usleep(100000);                       // We do this to make sure we don't get dupe sid's
 
     /*
      * The following section of code will generate a unique name for a temporary

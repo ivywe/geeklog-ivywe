@@ -21,6 +21,18 @@
 
           <div class="mg_time">{media_time}</div>
 
+          {!if media_comments}
+          <div class="mg_comments">{lang_comments} {media_comments_count}</div>
+          {!endif}
+
+          {!if media_views}
+          <div class="mg_views">{lang_views} {media_views_count}</div>
+          {!endif}
+
+          {!if rating_box}
+          {rating_box}
+          {!endif}
+
           {!if edit_link}
           <div class="mgMediaEdit">{edit_link}</div>
           {!endif}

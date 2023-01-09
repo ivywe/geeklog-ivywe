@@ -5,7 +5,7 @@
 
 <ul class="uk-breadcrumb">
 <li><a href="{site_url}/index.php">ホーム</a></li>
-<li><a href="{site_url}/mediagallery/index.php"><?php global $_MG_DEFAULT; echo $_MG_DEFAULT['root_album_name']; ?></a></li>
+<li><a href="{site_url}/mediagallery/index.php"><?php global $_MG_DEFAULT; if(isset($_MG_DEFAULT['root_album_name'])) echo $_MG_DEFAULT['root_album_name']; else echo "TOPアルバム"; ?></a></li>
 <li>ウォーターマークアップロード</li></ul>
 </ul>
 

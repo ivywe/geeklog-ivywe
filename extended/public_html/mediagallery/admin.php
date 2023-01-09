@@ -60,24 +60,26 @@ function MG_invalidRequest()
     exit;
 }
 
-function MG_navbar($selected='', $album_id)
+function MG_navbar($selected, $album_id)
 {
     global $_CONF, $_MG_CONF, $LANG_MG01, $LANG_MG03;
 
     include_once $_CONF['path'] . 'system/classes/navbar.class.php';
     $navbar = new navbar;
-    $navbar->add_menuitem($LANG_MG01['browser_upload'], $_MG_CONF['site_url'] . '/admin.php?mode=browser&amp;album_id=' . $album_id);
-    $navbar->set_onclick($LANG_MG01['browser_upload'], 'location.href="' . $_MG_CONF['site_url'] . '/admin.php?mode=browser&amp;album_id=' . $album_id . '";');
-
+    $navbar->add_menuitem($LANG_MG01['browser_upload'], $_MG_CONF['site_url'] . '/admin.php?mode=browser&amp;album_id=' . $album_id); // This supports regular tabs for some themes
+	$navbar->set_onclick($LANG_MG01['browser_upload'], 'location.href="' . "{$_MG_CONF['site_url']}/admin.php?mode=browser&amp;album_id={$album_id}" . '";'); // Added as a fix for the navbar class (since uikit tabs do not support urls)
+	
     if (SEC_hasRights('mediagallery.admin')) {
-        $navbar->add_menuitem($LANG_MG01['ftp_media'], $_MG_CONF['site_url'] . '/admin.php?mode=import&amp;album_id=' . $album_id);
-        $navbar->set_onclick($LANG_MG01['ftp_media'], 'location.href="' . $_MG_CONF['site_url'] . '/admin.php?mode=import&amp;album_id=' . $album_id . '";');
+        $navbar->add_menuitem($LANG_MG01['ftp_media'], $_MG_CONF['site_url'] . '/admin.php?mode=import&amp;album_id=' . $album_id);  // This supports regular tabs for some themes
+		$navbar->set_onclick($LANG_MG01['ftp_media'], 'location.href="' . "{$_MG_CONF['site_url']}/admin.php?mode=import&amp;album_id={$album_id}" . '";'); // Added as a fix for the navbar class (since uikit tabs do not support urls)
     }
-
-    $navbar->add_menuitem($LANG_MG01['remote_media'], $_MG_CONF['site_url'] . '/admin.php?mode=remote&amp;album_id=' . $album_id);
-    $navbar->set_onclick($LANG_MG01['remote_media'], 'location.href="' . $_MG_CONF['site_url'] . '/admin.php?mode=remote&amp;album_id=' . $album_id . '";');
+	
+	$navbar->add_menuitem($LANG_MG01['remote_media'], $_MG_CONF['site_url'] . '/admin.php?mode=remote&amp;album_id=' . $album_id);  // This supports regular tabs for some themes
+	$navbar->set_onclick($LANG_MG01['remote_media'], 'location.href="' . "{$_MG_CONF['site_url']}/admin.php?mode=remote&amp;album_id={$album_id}" . '";'); // Added as a fix for the navbar class (since uikit tabs do not support urls)
+	
     $navbar->set_selected($selected);
     $retval = $navbar->generate();
+	
     return $retval;
 }
 

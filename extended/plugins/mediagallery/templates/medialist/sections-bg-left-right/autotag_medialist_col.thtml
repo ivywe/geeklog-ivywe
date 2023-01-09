@@ -4,9 +4,9 @@
 
 <?php global $mgorderslrk; $mgorderslrk=$mgorderslrk+1; ?>
 
-{!!if {section} !== '0' !!}<section id="album{album_id}-section<?php global $sectionid; $sectionid++; echo $sectionid; ?>" class="uk-section<?php echo $uks; ?>">{!endif}
+{!!if {section} !== '0' !!}<section id="album{album_id}-section<?php global $sectionid; $sectionid++; echo $sectionid; ?>" class="uk-section<?php if(isset($uks)) echo $uks; ?>">{!endif}
 
-{!!if {container} == '1' || {container} == '' !!}<div class="uk-container <?php echo $ukc; ?>">{!endif}
+{!!if {container} == '1' || {container} == '' !!}<div class="uk-container <?php if(isset($ukc)) echo $ukc; ?>">{!endif}
 
 <div class="uk-visible@m">
 

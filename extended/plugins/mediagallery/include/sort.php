@@ -72,7 +72,7 @@ function MG_reorderAlbum($parent = 0)
 * @return   string  HTML for list of albums
 *
 */
-function MG_sortAlbums($parent=0, $actionURL)
+function MG_sortAlbums($parent=0, $actionURL = '')
 {
     global $_USER, $_CONF, $_TABLES, $_MG_CONF, $LANG_MG01;
 
@@ -292,8 +292,8 @@ function MG_saveStaticSortMedia($album_id, $actionURL='')
     // -- get the sort options
     //
 
-    $sortby = COM_applyFilter($_POST['sortyby'], true);
-    $sorder = COM_applyFilter($_POST['sortorder'], true);
+    $sortby = (int) Geeklog\Input::fPost('sortyby', 0);
+    $sorder = (int) Geeklog\Input::fPost('sortorder', 0);
 
     switch ($sortby) {
         case '0' :  // media_time

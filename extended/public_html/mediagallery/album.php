@@ -35,6 +35,7 @@
 use Geeklog\Input;
 
 require_once '../lib-common.php';
+require_once $_CONF['path'] . 'plugins/mediagallery/include/common.php';
 
 if (!in_array('mediagallery', $_PLUGINS)) {
     COM_redirect($_CONF['site_url'] . '/index.php');
@@ -47,7 +48,6 @@ if (COM_isAnonUser() && $_MG_CONF['loginrequired'] == 1) {
     exit;
 }
 
-require_once $_CONF['path'] . 'plugins/mediagallery/include/common.php';
 require_once $_CONF['path'] . 'plugins/mediagallery/include/classAlbum.php';
 require_once $_CONF['path'] . 'plugins/mediagallery/include/classMedia.php';
 
@@ -259,7 +259,7 @@ function MG_batchCopyAlbum($album_id, $destination, $copy_childen = 1)
 */
 
 $album_id  = isset($_GET['aid'])  ? COM_applyFilter($_GET['aid'],  true) : 0;
-$page      = isset($_GET['page']) ? COM_applyFilter($_GET['page'], true) : 0;
+$page      = isset($_GET['page']) ? COM_applyFilter($_GET['page'], true) : 1;
 $sortOrder = isset($_GET['sort']) ? COM_applyFilter($_GET['sort'], true) : 0;
 $media_id  = isset($_GET['s'])    ? COM_applyFilter($_GET['s'])          : '';
 $mode = Input::fPost('mode', '');

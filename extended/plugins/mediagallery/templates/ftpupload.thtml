@@ -5,7 +5,7 @@
 
 <ul class="uk-breadcrumb">
 <li><a href="{site_url}/index.php">ホーム</a></li>
-<li><a href="{site_url}/mediagallery/index.php"><?php global $_MG_DEFAULT; if( $_MG_DEFAULT['root_album_name']) echo $_MG_DEFAULT['root_album_name']; else echo "TOPアルバム"; ?></a></li>
+<li><a href="{site_url}/mediagallery/index.php"><?php global $_MG_DEFAULT; if(isset($_MG_DEFAULT['root_album_name'])) echo $_MG_DEFAULT['root_album_name']; else echo "TOPアルバム"; ?></a></li>
 <li><a href="{site_url}/mediagallery/album.php?aid={album_id}&page=1">アルバム{album_title}</a></li>
 <li>{album_title} 一括アップロード</li></ul>
 </ul>

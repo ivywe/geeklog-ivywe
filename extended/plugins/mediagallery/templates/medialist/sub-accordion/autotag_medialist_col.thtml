@@ -7,6 +7,6 @@ $media_desc = strip_tags($this->get_var('media_desc'));
 ?>
 
               <dt><?php echo $media_title_notag; ?></dt>
-              <dd><?php echo $media_desc; ?></dd>
+              <dd><?php if(isset($media_desc)) echo $media_desc; ?></dd>
 
 {# end {templatelocation} #}

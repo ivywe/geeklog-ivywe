@@ -59,9 +59,15 @@ public_html/mediagallery/mediaobjects/disp   and the following directories
 public_html/mediagallery/mediaobjects/orig   and the following directories
 public_html/mediagallery/mediaobjects/tn     and the following directories
 
-Feature of Version1.6.10
+Change Log for Version 1.7.3
 ------------------------
-From Version1.6.10 I extend the functionality of glFusion version in earnest.
+* Fixed remote upload of media issue
+* Fixes for PHP 7 and 8.1
+* Fix for comments not taking into account user permissions on item
+
+Change Log for Version 1.6.10
+------------------------
+From Version 1.6.10 I extend the functionality of the glFusion version.
 
 (1) Imported some of the version 1.6.10 of glFusion.
 
@@ -77,9 +83,9 @@ From Version1.6.10 I extend the functionality of glFusion version in earnest.
     Added the following three templates.
     * css_layout :        As its name suggests,avoid table layout,this is the CSS
                           layout. Finished my taste.
-    * jquery_ad-gallery : This template is built in AD-Gallery. AD-Gallery is a
+    * jquery_ad-gallery : This template is built in AD-Gallery. AD-Gallery is a 
                           well-known software created by jQuery.
-    * jquery_colorbox :   This template is built in Colorbox. Colorbox is a
+    * jquery_colorbox :   This template is built in Colorbox. Colorbox is a 
                           well-known software created by jQuery.
     NOTE: jquery_ad-gallery and jquery_colorbox works on jQuery mode only.
 
@@ -87,7 +93,7 @@ From Version1.6.10 I extend the functionality of glFusion version in earnest.
 
     * new_border
     * new_shadow
-    These frame templates, abolishing the table layout, and using the normal
+    These frame templates, abolishing the table layout, and using the normal 
     thtml and CSS files. Probably everyone has more easy to handle.
     In a 'public_html/frames' folder, Please check the 'new_border' folder
     and the 'new_shadow' folder.
@@ -127,7 +133,7 @@ From Version1.6.10 I extend the functionality of glFusion version in earnest.
 
 (9) Several bug fixes and optimizations.
 
-Feature of Version1.6.11
+Change Log for Version 1.6.11
 ------------------------
 * Added one setting 'Media Gallery Administration'->'System Defaults Editor'->
   'Album Defaults'->'Access Rights'->'Group'.
@@ -139,16 +145,16 @@ Feature of Version1.6.11
   /plugins/mediagallery/templates/autotag_ss_jquery.thtml
 * Fixed Line feed codes had been mixed. (CR+LF to LF)
 
-Feature of Version1.6.12
+Change Log for Version 1.6.12
 ------------------------
 * Fixed issue not work with Geeklog 1.8.0 or later.
 * Fixed issue can not be installed with MySQL 5.3.3 or later.
 
-Feature of Version1.6.13
+Change Log for Version 1.6.13
 ------------------------
 * Fixed issue can not be installed with Geeklog 2.0.0b1 or later.
 
-Feature of Version1.6.14
+Change Log for Version 1.6.14
 ------------------------
 * Supported COM_createHTMLDocument function with Geeklog2.0.0.
 * Updated Slimbox, AD Gallery and Colorbox.
@@ -156,10 +162,46 @@ Feature of Version1.6.14
 * Fixed issue Slideshow does not work with Internet Explorer 10.
 * Fixed issue error occurs in the search form.
 
-Feature of Version1.6.15
+Change Log for Version 1.6.15
 ------------------------
 * Updated jQuery Cycle Lite Plugin.
 * Updated SWFObject.
+
+Change Log for Version 1.6.16
+------------------------
+* Fixed Slideshow Autotag does not work correctly.
+
+Change Log for Version 1.6.17
+------------------------
+* Fixed issue not work with Geeklog 2.1.0.
+
+Change Log for Version 1.7.2.2
+------------------------
+* Misc fixes to be compatible with PHP v7.0+
+* Replaced SWFUpload with normal upload
+* Misc bug fixes on the Admin page
+* Refactored some code to work with the latest Geeklog API found in Geeklog 2.2.1sr1
+* Latest Geeklog Comment API is supported
+* Added New Media Comments to What's New Block
+* Fixed Media Comments when displayed on more than one page
+* Added Help menu item to Media Gallery Admin page for easy access
+
+Change Log for Version 1.7.2.3
+------------------------
+* Fixed Media tab in Media Gallery plugin to work with themes that use UIKit
+* Fixed remote upload of media issue
+* Now works with XML Sitemap Plugin (fixed issue with plugin_getiteminfo_mediagallery and keys)
+* Added support for XML Sitemap Plugin v2.0.3 that should eventually ship with Geeklog v2.2.2
+* Updated support for Nikon cameras
+* Other minor misc fixes
+
+Change Log for Version 1.7.2.4
+------------------------
+* Misc PHP 7.4+ support fixes
+
+Change Log for Version 1.7.2.5
+------------------------
+* Now works with Geeklog 2.2.2 and PHP 8.1
 
 Caution
 -------

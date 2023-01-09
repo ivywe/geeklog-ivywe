@@ -5,9 +5,9 @@
 <?php
 $media_keywords = $this->get_var('media_keywords');
 $media_keywords = explode("\r\n", $media_keywords);
-$url1 = $media_keywords[0];
-$url2 = $media_keywords[1];
-$msg=$media_keywords[2];
+$url1 = (isset($media_keywords[0])) ? $media_keywords[0] : '';
+$url2 = (isset($media_keywords[1])) ? $media_keywords[1] : '';;
+$msg= (isset($media_keywords[2])) ? $media_keywords[2] : '';;
 ?>
 
           <div>
@@ -17,7 +17,7 @@ $msg=$media_keywords[2];
               </div>
               <div class="uk-card-body">
                 {!!if {title} || {media_title_disp} || {media_title} !!}<{!if media_title_tag}{media_title_tag}{!else}h3{!endif} class="uk-card-title<?php echo $class_media_title; ?>">{media_title}</{!if media_title_tag}{media_title_tag}{!else}h3{!endif}>{!endif}
-                <p><?php echo $msg; ?></p>
+                <p><?php if(isset($msg)) echo $msg; ?></p>
                 <ul uk-accordion>
                   <li>
                     <a class="uk-accordion-title" href="#"{!if target} target="{target}"{!endif}>{!if text1}{text1}{!else}お品書きを見る(この文言の引数はtext1で){!endif}</a>
@@ -25,8 +25,8 @@ $msg=$media_keywords[2];
 {media_desc}
                       <div class="uk-text-center@m uk-margin-top">
                         <div class="uk-button-group">
-                          <div><a class="uk-button uk-button-primary" href="<?php echo $url1; ?>"{!if target} target="{target}"{!endif}>{!if text2}{text2}{!else}プランを見る(この文言の引数はtext2で){!endif}</a></div>
-                          <div><a class="uk-button uk-button-default" href="<?php echo $url2; ?>"{!if target} target="{target}"{!endif}}>{!if text3}{text3}{!else}ギャラリーを見る(この文言の引数はtext3で){!endif}</a></div>
+                          <div><a class="uk-button uk-button-primary" href="<?php if(isset($url1)) echo $url1; ?>"{!if target} target="{target}"{!endif}>{!if text2}{text2}{!else}プランを見る(この文言の引数はtext2で){!endif}</a></div>
+                          <div><a class="uk-button uk-button-default" href="<?php if(isset($url2)) echo $url2; ?>"{!if target} target="{target}"{!endif}}>{!if text3}{text3}{!else}ギャラリーを見る(この文言の引数はtext3で){!endif}</a></div>
                         </div>
                       </div>
                     </div>

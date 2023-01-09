@@ -5,8 +5,8 @@
 <?php
 $media_keywords = $this->get_var('media_keywords');
 $media_keywords = explode("\r\n", $media_keywords);
-$url1 = $media_keywords[0];
-$msg=$media_keywords[1];
+$url1 = (isset($media_keywords[0])) ? $media_keywords[0] : '';
+$msg = (isset($media_keywords[1])) ? $media_keywords[1] : '';
 ?>
 
 <div>

@@ -7,7 +7,7 @@ $keywords = $this->get_var('media_keywords');
 $key = explode("\r\n", $keywords);
 ?>
 
-            <li group-00="{media_category_name}" group-01="<?php echo $key[0]; ?>" group-02="<?php echo $key[1]; ?>">
+            <li group-00="{media_category_name}" group-01="<?php if(isset($key[0])) echo $key[0]; ?>" group-02="<?php if(isset($key[1])) echo $key[1]; ?>">
               <a class="uk-inline-clip uk-transition-toggle" href="{filename_orig}" data-caption="<?php echo $media_title_notag; ?>">
                 <img src="{filename}" alt="<?php echo $media_title_notag; ?>">
                 <div class="uk-position-center">

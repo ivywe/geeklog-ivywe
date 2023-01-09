@@ -38,23 +38,13 @@ if (strpos(strtolower($_SERVER['PHP_SELF']), strtolower(basename(__FILE__))) !==
     die('This file can not be used on its own!');
 }
 
-/**
-* Include language file
-*/
-$plugin_path = $_CONF['path'] . 'plugins/mediagallery/';
-$langfile = $plugin_path . 'language/' . $_CONF['language'] . '.php';
-if (file_exists($langfile)) {
-    require_once $langfile;
-} else {
-    require_once $plugin_path . 'language/english.php';
-}
-
-global $_TABLES;
-//global $_MG_CONF;
+global $_TABLES, $_DB_table_prefix; // Needs to be set for when plugin enabled (if plugin already disabled)
 $_MG_CONF = array();
-$_MG_CONF['pi_version'] = '1.7.2.2';
+$_MG_CONF['pi_version'] = '1.7.3';
 $_MG_CONF['installed_version'] = DB_getItem($_TABLES['plugins'], 'pi_version', "pi_name = 'mediagallery'");
 $_MG_CONF['var_current_code'] = version_compare($_MG_CONF['installed_version'], $_MG_CONF['pi_version'], '>=');
+$_MG_CONF['custom_image_width'] = 0;
+$_MG_CONF['custom_image_height'] = 0;
 
 /**
 * Add to $_TABLES array the tables mediagallery plugin uses
@@ -303,7 +293,12 @@ $_MG_CONF['up_mp3_player_enabled'] = 0;
 
 if ($_MG_CONF['installed_version']) {
     $_MG_CONF['dfid'] = '19';
-    $_MG_CONF['dateformat'] = DB_getItem($_TABLES['dateformats'], 'format', "dfid = {$_MG_CONF['dfid']}");
+	if (COM_versionCompare(VSERSION, '2.2.2', '>=') {
+        $_MG_CONF['dateformat'] = Locale::dateFormatIdToString($_MG_CONF['dfid']);
+	} else {
+        $_MG_CONF['dateformat'] = DB_getItem($_TABLES['dateformats'], 'format', "dfid = {$_MG_CONF['dfid']}");
+	}
+
     // safety checks....
     if ($_MG_CONF['album_display_columns'] < 1) {
         $_MG_CONF['album_display_columns'] = 1;
@@ -314,7 +309,13 @@ if ($_MG_CONF['installed_version']) {
 }
 */
 if (version_compare($_MG_CONF['installed_version'], '1.7.0', '>=')) {
-    $_MG_CONF['dateformat'] = DB_getItem($_TABLES['dateformats'], 'format', "dfid = {$_MG_CONF['dfid']}");
+	if (COM_versionCompare(VERSION, '2.2.2', '>=')) {
+        $_MG_CONF['dateformat'] = \Geeklog\Locale::dateFormatIdToString($_MG_CONF['dfid']);
+	} else {
+        $_MG_CONF['dateformat'] = empty($_MG_CONF['dfid'])
+					? ''
+					: DB_getItem($_TABLES['dateformats'], 'format', "dfid = {$_MG_CONF['dfid']}");
+	}
 }
 
 $_MG_CONF['path_to_imagemagick'] = '';
@@ -377,6 +378,19 @@ if ($_MG_CONF['usage_tracking']) {
 }
 
 $_MG_CONF['verbose'] = false;
+
+/**
+* Include language file
+*/
+// Have to include language files after $_MG_CONF is retrieved as some of these values are included in language files
+$plugin_path = $_CONF['path'] . 'plugins/mediagallery/';
+$langfile = $plugin_path . 'language/' . $_CONF['language'] . '.php';
+if (file_exists($langfile)) {
+    require_once $langfile;
+} else {
+    require_once $plugin_path . 'language/english.php';
+}
+
 
 /**
 * Check to see if this Plugin uses comments
@@ -513,25 +527,26 @@ function plugin_getcommenturlid_mediagallery($id)
 	return $_MG_CONF['site_url'] . "/media.php?s=$id";
 }
 
-
 /**
  * Return the comment code to this plugin item. This is based not only the code of the actual plugin item but the access the user has to the item
  *
  * @param   string $id   Item id to which $cid belongs
+ * @param   int    $uid  user id or 0 = current user
  * @return  int    Return a CommentCode: COMMENT_CODE_ENABLED (0), COMMENT_CODE_DISABLED (-1), COMMENT_CODE_CLOSED (1)
  */
-function plugin_commentenabled_mediagallery($id)
+function plugin_commentenabled_mediagallery($id, $uid = 0)
 {
     global $_CONF, $_TABLES;
 
     // CommentCode: COMMENT_CODE_ENABLED (0), COMMENT_CODE_DISABLED (-1), COMMENT_CODE_CLOSED (1)
     $commentCode = COMMENT_CODE_DISABLED;
-
+	
+	// Albums have permissions, the actual media does not have individual permissions (it inherits the permissions from the album)
     $sql = "SELECT a.enable_comments, a.owner_id, group_id, perm_owner, perm_group, perm_members, perm_anon "
          . "FROM {$_TABLES['mg_albums']} AS a "
          . "LEFT JOIN {$_TABLES['mg_media_albums']} AS ma ON a.album_id = ma.album_id "
-         . "WHERE ma.media_id = '$id'";
-    $result = DB_query($sql);
+         . "WHERE ma.media_id = '$id'" . COM_getPermSQL('AND', $uid, 2, 'a');
+    $result = DB_query($sql);	
     $A = DB_fetchArray($result);
     if (DB_numRows($result) == 1) {
 
@@ -545,10 +560,10 @@ function plugin_commentenabled_mediagallery($id)
         if ($A['commentcode'] == COMMENT_CODE_ENABLED) {
             $commentCode = COMMENT_CODE_ENABLED;
         } elseif ($A['commentcode'] == COMMENT_CODE_CLOSED) { // Closed but still visible so give admins access
-            if (SEC_hasRights('mediagallery.admin') &&
+            if (SEC_hasRights('mediagallery.admin', 'AND', $uid) &&
                 (SEC_hasAccess($A['owner_id'], $A['group_id'],
                         $A['perm_owner'], $A['perm_group'], $A['perm_members'],
-                        $A['perm_anon']) == 3)) {
+                        $A['perm_anon'], $uid) == 3)) {
                 $commentCode = COMMENT_CODE_ENABLED; // If Admin then treat comment like enabled
             } else {
                 $commentCode = COMMENT_CODE_CLOSED;
@@ -1128,7 +1143,7 @@ function plugin_dopluginsearch_mediagallery($query, $datestart, $dateend, $topic
     $sql .= COM_getPermSQL('AND') . ' ';
 
     if (!SEC_inGroup('Root')) {
-        $sql .= "AND hidden = 1 ";
+        $sql .= "AND hidden = 0 ";
     }
 
     if (!empty($author)) {
@@ -1344,11 +1359,7 @@ function MG_clean_directories($path, $needle = '')
 function plugin_upgrade_mediagallery()
 {
     global $_CONF, $_TABLES, $_MG_CONF;
-/*
-    require_once $_CONF['path'].'plugins/mediagallery/upgrade.php';
 
-    return mediagallery_upgrade();
-*/
     require_once $_CONF['path'].'plugins/mediagallery/autoinstall.php';
 
     return MG_upgrade();
@@ -1705,6 +1716,21 @@ function plugin_getiteminfo_mediagallery($id, $what, $uid = 0, $options = array(
 }
 
 /**
+ * Return URL of item even if the item doesn't exist, e.g., after it has been deleted
+ *
+ * @param  string  $sub_type  (unused) sub type of plugin
+ * @param  string  $item_id   the id of the item
+ * @return string
+ * @since  Geeklog 2.2.2
+ */
+function plugin_idToURL_mediagallery($sub_type, $item_id)
+{
+    global $_MG_CONF;
+
+    return $_MG_CONF['site_url'].'/media.php?f=0&amp;sort=0&amp;s='.$item_id;
+}
+
+/**
 * Provide URL of a documentation file
 *
 * @param    string  $file   documentation file being requested, e.g. 'config'
@@ -1758,7 +1784,11 @@ function plugin_getconfigtooltip_mediagallery($id)
 
 function plugin_configmanager_select_dfid_mediagallery()
 {
-    global $_TABLES, $LANG_MG00, $LANG_dateformats;
+    global $_TABLES, $LANG_MG00, $LANG_dateformats, $_LOCALE;
+
+    if (COM_versionCompare(VERSION, '2.2.2', '>=')) {
+        return array_flip($_LOCALE->getDateFormatOptions(0, true));
+    }
 
     $retval = array();
     $retval[$LANG_MG00['no_date']] = 99;

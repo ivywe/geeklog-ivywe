@@ -1,12 +1,30 @@
 {# begin {templatelocation} #}
 
-<video
-width="100%" height="100%"
-playsinline muted autoplay controls>
-<source src="{movie}">
-<p>動画を再生するには、videoタグをサポートしたブラウザが必要です。</p>
-</video>
-
-<div class="uk-text-center"><a href="{movie}" class="uk-button uk-button-primary">ダウンロード</a></div>
+<object classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" width="{width}" height="{height}">
+  <param name="src" value="{movie}"{xhtml}>
+  <param name="autoplay" value="{autoplay}"{xhtml}>
+  <param name="controller" value="{controller}"{xhtml}>
+  <param name="autoref" value="{autoref}"{xhtml}>
+  <param name="kioskmode" value="{kioskmode}"{xhtml}>
+  <param name="scale" value="{scale}"{xhtml}>
+  <param name="bgcolor" value="{bgcolor}"{xhtml}>
+  <param name="loop" value="{loop}"{xhtml}>
+  <param name="filename" value="{filename}"{xhtml}>
+  <!--[if gte IE 7]> <!-->
+  <object type="video/quicktime" data="{movie}" width="{width}" height="{height}">
+    <param name="autoplay" value="{autoplay}"{xhtml}>
+    <param name="controller" value="{controller}"{xhtml}>
+    <param name="autoref" value="{autoref}"{xhtml}>
+    <param name="kioskmode" value="{kioskmode}"{xhtml}>
+    <param name="scale" value="{scale}"{xhtml}>
+    <param name="bgcolor" value="{bgcolor}"{xhtml}>
+    <param name="loop" value="{loop}"{xhtml}>
+   alt : <a href="{movie}">ダウンロード</a>
+  </object>
+  <!--<![endif]-->
+  <!--[if lt IE 7]>
+   alt : <a href="{movie}">ダウンロード</a>
+  <![endif]-->
+</object>
 
 {# end {templatelocation} #}

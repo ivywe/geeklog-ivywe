@@ -74,7 +74,7 @@ function formatCanonData($type,$tag,$intel,$data,$exif,&$result) {
 		}
 
 	} else if($type=="USHORT" || $type=="SSHORT" || $type=="ULONG" || $type=="SLONG" || $type=="FLOAT" || $type=="DOUBLE") {
-
+		$result = array();
 		$data = bin2hex($data);
 		$result['RAWDATA'] = $data;
 
@@ -415,6 +415,7 @@ function parseCanon($block,&$result,$seek, $globalOffset) {
 				$data = '';
 			}
 		}
+		$result['SubIFD']['MakerNote'][$tag_name] = ''; // insure the index exists
 		$formated_data = formatCanonData($type,$tag,$intel,$data,$result,$result['SubIFD']['MakerNote'][$tag_name]);
 
 		if($result['VerboseOutput']==1) {
@@ -431,6 +432,3 @@ function parseCanon($block,&$result,$seek, $globalOffset) {
 		}
 	}
 }
-
-
-?>

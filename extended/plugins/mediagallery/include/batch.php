@@ -437,6 +437,8 @@ function MG_batchCopyMedia($album_id, $destination, $media_id_array, $actionURL 
 {
     global $_USER, $_CONF, $_TABLES, $_MG_CONF, $LANG_MG00, $LANG_MG02, $LANG_MG03;
 
+    $retval = '';
+
     // check permissions for destination album...
 
     $sql = "SELECT * FROM {$_TABLES['mg_albums']} WHERE album_id=" . intval($destination);
@@ -736,7 +738,10 @@ function MG_deleteChildAlbums($album_id) {
 
     $feedname = sprintf($_MG_CONF['rss_feed_name'] . "%06d", $album_id);
     $feedpath = MG_getFeedPath();
-    @unlink($feedpath . '/' . $feedname . '.rss');
+    clearstatcache();
+    if (file_exists($feedpath . '/' . $feedname . '.rss')) {
+        @unlink($feedpath . '/' . $feedname . '.rss');
+    }
 }
 
 

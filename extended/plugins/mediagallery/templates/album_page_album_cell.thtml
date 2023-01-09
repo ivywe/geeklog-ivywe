@@ -14,6 +14,9 @@
           <div class="uk-text-small"><span class="uk-text-bold">{updated}</span> {album_last_update}</div>
           {!endif}
 
+          {!if lang_views}
+          <div class="uk-text-small"><span class="uk-text-bold">{lang_views}</span> {views}</div>
+          {!endif}
 
 
           {!if lang_subalbums}
