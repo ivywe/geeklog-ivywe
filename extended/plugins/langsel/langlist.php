@@ -1,6 +1,6 @@
 <?php
 
-return array(
+$_tempArray = array(
     'afrikaans'           => array('ltr', 'Afrikaans'),
     'bosnian'             => array('ltr', 'босански'),
     'bulgarian'           => array('ltr', 'български'),
@@ -13,7 +13,6 @@ return array(
     'dutch'               => array('ltr', 'Nederlands'),
     'english'             => array('ltr', 'English'),
     'estonian'            => array('ltr', 'eesti keel'),
-    'farsi'               => array('rtl', 'فارسی'),
     'finnish'             => array('ltr', 'suomen kieli'),
     'french_canada'       => array('ltr', 'Français canadien'),
     'french_france'       => array('ltr', 'Français'),
@@ -40,3 +39,11 @@ return array(
     'turkish'             => array('ltr', 'Türkçe'),
     'ukrainian'           => array('ltr', 'українська мова'),
 );
+
+if (COM_versionCompare(VERSION, '2.2.2', '>=')) {
+    $_tempArray['persian'] = array('rtl', 'فارسی');
+} else {
+    $_tempArray['farsi'] = array('rtl', 'فارسی');
+}
+
+return $_tempArray;
