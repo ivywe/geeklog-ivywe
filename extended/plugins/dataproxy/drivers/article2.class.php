@@ -62,9 +62,16 @@ class dpxyDriver_Article extends dpxyDriver
 			 . "FROM {$_TABLES['topics']} ";
 		
 		if (Dataproxy::uid() > 1) {
-			$tids = DB_getItem(
-				$_TABLES['userindex'], 'tids', "uid = " . Dataproxy::uid()
-			);
+			$tids = '';
+			if (COM_versionCompare(VERSION, '2.2.2', '>=')) {
+				$tids = DB_getItem(
+					$_TABLES['user_attributes'], 'etids', "uid = " . Dataproxy::uid()
+				);
+			} else {
+				$tids = DB_getItem(
+					$_TABLES['userindex'], 'tids', "uid = " . Dataproxy::uid()
+				);
+			}
 			
 			if (!empty($tids)) {
 				$where[] = "(tid NOT IN ('"

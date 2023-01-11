@@ -213,7 +213,7 @@ if (isset($_GET['op']) AND isset($_GET['driver'])) {
 
 // Saves vars
 if (isset($_POST['submit']) AND ($_POST['submit'] === $LANG_SMAP['submit'])) {
-	if (!is_array($_POST['drivers'])) {
+	if (isset($_POST['drivers']) && !is_array($_POST['drivers'])) {
 		$_POST['drivers'] = (array) $_POST['drivers'];
 	}
 	
@@ -383,7 +383,10 @@ if (($pos = strpos($filename, ';')) !== FALSE) {
 }
 
 clearstatcache();
-$last_updated = @filemtime($_CONF['path_html'] . $filename);
+$last_updated = FALSE;
+if (file_exists($_CONF['path_html'] . $filename)) {
+    $last_updated = @filemtime($_CONF['path_html'] . $filename);
+}
 
 if ($last_updated === FALSE) {
 	$last_updated = SITEMAP_str('unknown');
