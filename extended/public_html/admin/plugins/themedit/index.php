@@ -62,7 +62,7 @@ $op          = '';
 $contents    = '';
 
 // Undoes magic_quotes if necessary
-if (get_magic_quotes_gpc()) {
+if (function_exists("get_magic_quotes_gpc") && get_magic_quotes_gpc()) {
 	$_GET    = array_map('stripslashes', $_GET);
 	$_POST   = array_map('stripslashes', $_POST);
 	$_COOKIE = array_map('stripslashes', $_COOKIE);
@@ -95,7 +95,10 @@ switch (strtolower($_THM_CONF['resync_database'])) {
 
 // Retrieve request vars
 $theme_names = THM_getAllowedThemes();
-$theme = @$theme_names[0];
+$theme = '';
+if (isset($theme_names[0])) {
+	$theme = @$theme_names[0];
+}
 
 // Theme name
 if (isset($_POST['thm_theme'])) {
@@ -212,6 +215,7 @@ if ($op === $LANG_THM['preview']) {
 	* corresponding file saved on the Web, then create a preview, and finally
 	* restore the file contents
 	*/
+	$is_css='';
 	if (!empty($file)) {
 		$path_parts = pathinfo($file);
 		$is_css = preg_match("/\.css$/i", $file);
@@ -263,11 +267,13 @@ if ($op === $LANG_THM['preview']) {
 		);
 	}
 	
-	$fh = fopen($_CONF['path_html'] . 'admin/plugins/themedit/preview.html', 'wb');
-	
-	if ($fh !== false) {
-		fwrite($fh, $preview);
-		fclose($fh);
+	if (is_writable($_CONF['path_html'] . 'admin/plugins/themedit/preview.html')) {
+		$fh = @fopen($_CONF['path_html'] . 'admin/plugins/themedit/preview.html', 'wb');
+		
+		if ($fh !== false) {
+			fwrite($fh, $preview);
+			fclose($fh);
+		}
 	}
 	
 	$T->set_var('temp_preview_code', $code4preview);

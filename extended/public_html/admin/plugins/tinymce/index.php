@@ -33,11 +33,8 @@ require_once $_CONF['path_system'] . 'lib-admin.php';
 if (!SEC_hasRights('tinymce.edit')) {
     // Someone is trying to illegally access this page
     COM_errorLog("Someone has tried to illegally access the tinymce Admin page.  User id: {$_USER['uid']}, Username: {$_USER['username']}, IP: {$_SERVER['REMOTE_ADDR']}", 1);
-    $display = COM_siteHeader()
-			 . COM_startBlock(TMCE_str('access_denied'))
-			 . TMCE_str('access_denied_msg')
-			 . COM_endBlock()
-			 . COM_siteFooter();
+    $display = COM_showMessageText(TMCE_str('admin_error'), TMCE_str('admin'));
+    $display = COM_createHTMLDocument($display, array('pagetitle' => TMCE_str('admin')));
     COM_output($display);
     exit;
 }
@@ -558,6 +555,9 @@ if (!defined('XHTML')) {
 
 $mode = '';
 $what = '';
+$submit = '';
+$cid = 0;
+$template = '';
 
 // Retrieve request vars
 if (isset($_GET['mode'])) {
@@ -583,24 +583,18 @@ if (($what !== 'config') AND ($what !== 'template')) {
 
 if (($mode === 'edit') AND isset($_POST['submit'])) {
 	$submit = COM_stripslashes($_POST['submit']);
-} else {
-	$submit = '';
 }
 
 if (isset($_GET['cid'])) {
 	$cid = (int) COM_applyFilter($_GET['cid'], TRUE);
 } else if (isset($_POST['cid'])) {
 	$cid = (int) COM_applyFilter($_POST['cid'], TRUE);
-} else {
-	$cid = 0;
 }
 
 if (isset($_GET['template'])) {
 	$template = COM_stripslashes($_GET['template']);
 } else if (isset($_POST['template'])) {
 	$template = COM_stripslashes($_POST['template']);
-} else {
-	$template = '';
 }
 
 if ($template != '') {

@@ -64,9 +64,15 @@ define('THEMEDIT_BASE_URL', $_CONF['site_admin_url'] . '/plugins/themedit');
 // Enables all files if $_THM_CONF['enable_all_files'] is true
 if (isset($_THM_CONF['enable_all_files']) && $_THM_CONF['enable_all_files'] == true) {
 	$_THM_CONF['allowed_files'] = array();
-	$_THM_CONF['allowed_files'] = THM_getAllThemeFiles(
-		$_CONF['path_themes'] . 'professional', true
-	);
+	if (COM_versionCompare(VERSION, '2.1.2', '>=')) {
+		$_THM_CONF['allowed_files'] = THM_getAllThemeFiles(
+			$_CONF['path_themes'] . 'denim', true
+		);
+	} else {
+		$_THM_CONF['allowed_files'] = THM_getAllThemeFiles(
+			$_CONF['path_themes'] . 'professional', true
+		);
+	}
 }
 
 // +---------------------------------------------------------------------------+
@@ -703,31 +709,39 @@ function THM_getAllThemeFiles($path, $top_level = false) {
 	
 	$retval = array();
 	
-	$dh = @opendir($path);
-	
-	if ($dh !== false) {
-		while (($entry = readdir($dh)) !== false) {
-			$this_path = $path . '/' . $entry;
-			
-			if (is_dir($this_path)) {
-				if (($entry != '.') && ($entry != '..')) {
-					$retval = array_merge($retval, THM_getAllThemeFiles($this_path, false));
-				}
-			} else {
-				if (preg_match("/\.(thtml|css)$/i", $this_path)) {
-					$retval[] = $this_path;
+	if (is_dir($path)) {
+		$dh = @opendir($path);
+		
+		if ($dh !== false) {
+			while (($entry = readdir($dh)) !== false) {
+				$this_path = $path . '/' . $entry;
+				
+				if (is_dir($this_path)) {
+					if (($entry != '.') && ($entry != '..')) {
+						$retval = array_merge($retval, THM_getAllThemeFiles($this_path, false));
+					}
+				} else {
+					if (preg_match("/\.(thtml|css)$/i", $this_path)) {
+						$retval[] = $this_path;
+					}
 				}
 			}
 		}
+		closedir($dh);
 	}
 	
-	closedir($dh);
 	
 	if ($top_level) {
 		for ($i = 0; $i < count($retval); $i ++) {
-			$retval[$i] = substr(
-				$retval[$i], strlen($_CONF['path_themes'] . 'professional/')
-			);
+			if (COM_versionCompare(VERSION, '2.1.2', '>=')) {
+				$retval[$i] = substr(
+					$retval[$i], strlen($_CONF['path_themes'] . 'denim/')
+				);
+			} else {
+				$retval[$i] = substr(
+					$retval[$i], strlen($_CONF['path_themes'] . 'professional/')
+				);
+			}
 		}
 	}
 	
